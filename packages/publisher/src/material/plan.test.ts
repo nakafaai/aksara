@@ -1,14 +1,8 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { Effect, HashSet } from "effect";
 import {
-  Array as Arr,
-  Effect,
-  HashMap,
-  HashSet,
-  MutableHashMap,
-  Option,
-} from "effect";
-import {
+  changedMaterialSources,
   MaterialPlanTestFixtures,
   materialPlanFingerprintCases,
   materialPlanTestLayer,
@@ -94,18 +88,11 @@ layer(materialPlanTestLayer)("material plan", (it) => {
     Effect.gen(function* () {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
       const fixture = yield* MaterialTestFixtures;
-      const sources = MutableHashMap.fromIterable(fixture.sources);
-      const absolutePath = yield* Effect.fromNullishOr(
-        Option.getOrUndefined(HashMap.get(fixture.absolutePaths, englishPath))
-      );
-      const english = yield* Effect.fromNullishOr(
-        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
-      );
-      MutableHashMap.set(sources, absolutePath, `${english}\n`);
+      const sources = yield* changedMaterialSources(fixture, englishPath);
 
       const records = yield* collectMaterialPublication({
         heads: publishedHeads,
-        sources: Arr.fromIterable(sources),
+        sources,
       });
 
       expect(records).toHaveLength(1);
@@ -240,16 +227,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
       Effect.gen(function* () {
         const { publishedHeads } = yield* MaterialPlanTestFixtures;
         const fixture = yield* MaterialTestFixtures;
-        const sources = MutableHashMap.fromIterable(fixture.sources);
-        const absolutePath = yield* Effect.fromNullishOr(
-          Option.getOrUndefined(
-            HashMap.get(fixture.absolutePaths, atomEnglishPath)
-          )
-        );
-        const source = yield* Effect.fromNullishOr(
-          Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
-        );
-        MutableHashMap.set(sources, absolutePath, `${source}\n`);
+        const sources = yield* changedMaterialSources(fixture, atomEnglishPath);
 
         const scope = PublicationScopeSchema.make({
           families: ["page"],
@@ -258,12 +236,12 @@ layer(materialPlanTestLayer)("material plan", (it) => {
         const records = yield* collectMaterialPublication({
           heads: publishedHeads,
           scope,
-          sources: Arr.fromIterable(sources),
+          sources,
         });
         const result = yield* collectMaterialResult({
           heads: publishedHeads,
           scope,
-          sources: Arr.fromIterable(sources),
+          sources,
         });
 
         expect(records).toEqual([]);

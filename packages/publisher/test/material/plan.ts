@@ -2,9 +2,19 @@ import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Schema } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  HashMap,
+  Layer,
+  MutableHashMap,
+  Option,
+  Schema,
+} from "effect";
 import {
   functionContentKey,
+  type MaterialTestFixtures,
   materialTestLayer,
   publishedMaterialHeads,
 } from "#test/material/spec";
@@ -84,4 +94,21 @@ const materialPlanFixtureLayer = Layer.effect(
 export const materialPlanTestLayer = Layer.merge(
   materialTestLayer,
   materialPlanFixtureLayer
+);
+
+/** Returns the source entries, in fixture order, with one reviewed body changed. */
+export const changedMaterialSources = Effect.fn(
+  "MaterialPlanTest.changedSources"
+)((fixture: MaterialTestFixtures["Service"], sourcePath: string) =>
+  Effect.gen(function* () {
+    const sources = MutableHashMap.fromIterable(fixture.sources);
+    const absolutePath = yield* Effect.fromNullishOr(
+      Option.getOrUndefined(HashMap.get(fixture.absolutePaths, sourcePath))
+    );
+    const body = yield* Effect.fromNullishOr(
+      Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+    );
+    MutableHashMap.set(sources, absolutePath, `${body}\n`);
+    return Arr.fromIterable(sources);
+  })
 );
