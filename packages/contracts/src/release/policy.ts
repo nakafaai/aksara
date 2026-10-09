@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
 import type { Sha256Hash } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
@@ -39,7 +39,7 @@ export class ReleasePolicyClosureError extends Schema.TaggedError<ReleasePolicyC
 function hasSameLocaleCodes(left: readonly string[], right: readonly string[]) {
   return (
     left.length === right.length &&
-    left.every((locale, index) => locale === right[index])
+    Arr.every(left, (locale, index) => locale === right[index])
   );
 }
 
@@ -72,8 +72,8 @@ function verifyManifestPolicy(
     )
   ) {
     return failClosure({
-      actual: manifest.manifest.activeAppLocales.join(","),
-      expected: policy.activeAppLocales.join(","),
+      actual: Arr.join(manifest.manifest.activeAppLocales, ","),
+      expected: Arr.join(policy.activeAppLocales, ","),
       family: manifest.family,
       field: "activeAppLocales",
     });
@@ -113,7 +113,8 @@ export const verifyReleasePolicyTransition = Effect.fn(
   }
 
   for (const family of ContentSnapshotKindSchema.literals) {
-    const manifests = input.manifests.filter(
+    const manifests = Arr.filter(
+      input.manifests,
       (candidate) => candidate.family === family
     );
     if (manifests.length > 1) {

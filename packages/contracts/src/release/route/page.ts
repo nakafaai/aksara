@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import {
   ContentKeySchema,
   ReleaseIdSchema,
@@ -59,7 +59,8 @@ function hasCoherentRoutePage(page: {
   if (!(first && last)) {
     return page.done && page.nextIndex === -1 && page.total === 0;
   }
-  const contiguous = page.records.every(
+  const contiguous = Arr.every(
+    page.records,
     (record, offset) => record.current.index === first.current.index + offset
   );
   return (

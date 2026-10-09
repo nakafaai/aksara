@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -49,7 +49,8 @@ describe("release policy", () => {
     () =>
       Effect.gen(function* () {
         const current = yield* makeSnapshotTestData();
-        const program = current.manifests.filter(
+        const program = Arr.filter(
+          current.manifests,
           (manifest) => manifest.family === "program"
         );
 
@@ -142,7 +143,8 @@ describe("release policy", () => {
       const current = yield* makeSnapshotTestData();
       const missingError = yield* verifyReleasePolicyTransition({
         basePolicy,
-        manifests: current.manifests.filter(
+        manifests: Arr.filter(
+          current.manifests,
           (manifest) => manifest.family !== "quran"
         ),
         policy,
@@ -160,15 +162,16 @@ describe("release policy", () => {
   it.effect("rejects duplicate structured scopes", () =>
     Effect.gen(function* () {
       const current = yield* makeSnapshotTestData();
-      const program = current.manifests.find(
+      const program = Arr.findFirst(
+        current.manifests,
         (manifest) => manifest.family === "program"
       );
-      if (program === undefined) {
+      if (Option.isNone(program)) {
         return yield* Effect.die("Expected the current program manifest.");
       }
       const duplicateError = yield* verifyReleasePolicyTransition({
         basePolicy: policy,
-        manifests: [...current.manifests, program],
+        manifests: [...current.manifests, program.value],
         policy,
         scope: completeScope,
       }).pipe(Effect.flip);
@@ -185,8 +188,11 @@ describe("release policy", () => {
   it.effect("rejects locale policy drift", () =>
     Effect.gen(function* () {
       const current = yield* makeSnapshotTestData();
-      const program = current.manifests.find(
-        (manifest) => manifest.family === "program"
+      const program = Option.getOrUndefined(
+        Arr.findFirst(
+          current.manifests,
+          (manifest) => manifest.family === "program"
+        )
       );
       if (
         program?.family !== "program" ||
@@ -204,7 +210,7 @@ describe("release policy", () => {
       const reject = (manifest: typeof program) =>
         verifyReleasePolicyTransition({
           basePolicy: policy,
-          manifests: current.manifests.map((candidate) =>
+          manifests: Arr.map(current.manifests, (candidate) =>
             candidate.family === "program" ? manifest : candidate
           ),
           policy,
