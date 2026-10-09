@@ -3,7 +3,15 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableHashSet,
+  MutableList,
+  Path,
+  Schema,
+} from "effect";
 import {
   isCallExpression,
   isExportDeclaration,
@@ -32,9 +40,11 @@ export class SourceDependencyError extends Schema.TaggedError<SourceDependencyEr
 
 /** Collects every static module reference or rejects unsupported loading. */
 function inspectModuleSpecifiers(sourceFile: SourceFile) {
-  const specifiers: string[] = [];
-  const pending: Node[] = [sourceFile];
-  for (const node of pending) {
+  const specifiers = MutableList.make<string>();
+  const pending = MutableList.make<Node>();
+  MutableList.append(pending, sourceFile);
+  let node = MutableList.take(pending);
+  while (node !== MutableList.Empty) {
     if (isImportEqualsDeclaration(node)) {
       return;
     }
@@ -50,7 +60,7 @@ function inspectModuleSpecifiers(sourceFile: SourceFile) {
       node.moduleSpecifier !== undefined &&
       isStringLiteral(node.moduleSpecifier)
     ) {
-      specifiers.push(node.moduleSpecifier.text);
+      MutableList.append(specifiers, node.moduleSpecifier.text);
     }
     if (isImportTypeNode(node)) {
       if (
@@ -61,13 +71,14 @@ function inspectModuleSpecifiers(sourceFile: SourceFile) {
       ) {
         return;
       }
-      specifiers.push(node.argument.literal.text);
+      MutableList.append(specifiers, node.argument.literal.text);
     }
     node.forEachChild((child) => {
-      pending.push(child);
+      MutableList.append(pending, child);
     });
+    node = MutableList.take(pending);
   }
-  return specifiers;
+  return MutableList.toArray(specifiers);
 }
 
 /** Decodes one corpus alias into its canonical source-controlled file path. */
@@ -130,14 +141,13 @@ const readSourceDependencies = Effect.fn("AksaraCorpus.readSourceDependencies")(
         sourcePath,
       });
     }
-    const dependencies: CorpusSourcePath[] = [];
-    for (const specifier of specifiers) {
-      const dependency = yield* decodeCorpusImport(specifier, sourcePath);
-      if (dependency !== undefined) {
-        dependencies.push(dependency);
-      }
-    }
-    return dependencies;
+    const dependencies = yield* Effect.forEach(specifiers, (specifier) =>
+      decodeCorpusImport(specifier, sourcePath)
+    );
+    return Arr.filter(
+      dependencies,
+      (dependency): dependency is CorpusSourcePath => dependency !== undefined
+    );
   }
 );
 
@@ -145,11 +155,14 @@ const readSourceDependencies = Effect.fn("AksaraCorpus.readSourceDependencies")(
 export const discoverSourceDependencies = Effect.fn(
   "AksaraCorpus.discoverSourceDependencies"
 )(function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
-  const dependencies: [CorpusSourcePath, ...CorpusSourcePath[]] = [sourcePath];
-  const scheduled = MutableHashSet.fromIterable(dependencies);
+  const scheduled = MutableHashSet.fromIterable([sourcePath]);
+  const pending = MutableList.make<CorpusSourcePath>();
+  const discovered = MutableList.make<CorpusSourcePath>();
+  MutableList.append(pending, sourcePath);
   let processed = 0;
+  let current = MutableList.take(pending);
 
-  for (const current of dependencies) {
+  while (current !== MutableList.Empty) {
     if (processed === MAX_SOURCE_FILES) {
       return yield* new SourceDependencyError({
         reason: "limit",
@@ -163,8 +176,10 @@ export const discoverSourceDependencies = Effect.fn(
         continue;
       }
       MutableHashSet.add(scheduled, dependency);
-      dependencies.push(dependency);
+      MutableList.append(pending, dependency);
+      MutableList.append(discovered, dependency);
     }
+    current = MutableList.take(pending);
   }
-  return dependencies;
+  return Arr.prepend(MutableList.toArray(discovered), sourcePath);
 }, Effect.provide(TypeScriptParser.layer));

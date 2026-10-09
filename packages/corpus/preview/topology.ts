@@ -1,5 +1,5 @@
 import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
-import { Cache, Effect } from "effect";
+import { Array as Arr, Cache, Effect } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
 import type { PreviewDependency } from "#corpus/preview/source";
 
@@ -21,7 +21,8 @@ export const restartDependencies = Effect.fn(
       mode: "restart",
       sourcePath: first,
     },
-    ...remaining.map(
+    ...Arr.map(
+      remaining,
       (dependency): PreviewDependency => ({
         mode: "restart",
         sourcePath: dependency,

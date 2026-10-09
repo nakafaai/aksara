@@ -4,7 +4,7 @@ import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Layer, Path } from "effect";
+import { Array as Arr, Effect, Layer, Path } from "effect";
 import { selectQuestion } from "#corpus/preview/question/prompt";
 import {
   corpusRoot,
@@ -71,7 +71,7 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
           sourcePath: `${sharedRoot}/item.ts`,
         });
         expect(
-          germanSource.dependencies.filter(({ sourcePath }) =>
+          Arr.filter(germanSource.dependencies, ({ sourcePath }) =>
             sourcePath.endsWith("/item.ts")
           )
         ).toHaveLength(1);

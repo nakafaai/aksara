@@ -5,7 +5,7 @@ import {
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import { questionArtifactLocaleForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
 import { selectQuestionContentPreview } from "#corpus/preview/question/selection";
 import { PreviewSelectionError } from "#corpus/preview/source";
@@ -17,7 +17,7 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 const resolvePreviewAppLocale = Effect.fn(
   "AksaraCorpus.resolveQuestionPreviewAppLocale"
 )(function* (entry: QuestionEntry, requested?: AppLocale) {
-  const compatible = ACTIVE_APP_LOCALES.filter((appLocale) => {
+  const compatible = Arr.filter(ACTIVE_APP_LOCALES, (appLocale) => {
     if (entry.bodyKind === "answer") {
       return (
         artifactLocaleCode(entry.artifactLocale) === appLocaleCode(appLocale)

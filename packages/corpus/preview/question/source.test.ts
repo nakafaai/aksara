@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { selectQuestionPreviewSources } from "#corpus/preview/question/source";
 import { loadQuestionContent } from "#corpus/question-bank/content";
 import {
@@ -20,13 +20,14 @@ layer(realQuestionCorpusLayer)("question preview source", (it) => {
         const content = yield* loadQuestionContent(root, tryoutSources).pipe(
           Effect.provide(questionLayer)
         );
-        const german = yield* Effect.fromNullishOr(
-          content.entries.find(({ sourcePath }) =>
+        const german = yield* Effect.fromOption(
+          Arr.findFirst(content.entries, ({ sourcePath }) =>
             sourcePath.endsWith("answer.de.mdx")
           )
         );
-        const active = yield* Effect.fromNullishOr(
-          content.entries.find(
+        const active = yield* Effect.fromOption(
+          Arr.findFirst(
+            content.entries,
             ({ bodyKind, questionKey }) =>
               bodyKind === "question" &&
               questionKey.includes("general-reasoning")
