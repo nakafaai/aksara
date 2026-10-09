@@ -21,7 +21,7 @@ import type {
 } from "@nakafa/aksara-contracts/transport/group";
 
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { PublicationTargetRejectedError } from "#publisher/target/errors";
 import {
@@ -36,9 +36,9 @@ type LifecyclePhase = "aborted" | "completed" | "staging" | "verified";
 export function makeTarget(release: {
   readonly manifest: ContentReleaseManifest;
 }) {
-  const bundles = new Map<string, ContentReleaseBundle>();
-  const completed = new Map<string, ActiveContentRelease>();
-  const phases = new Map<string, LifecyclePhase>();
+  const bundles = MutableHashMap.empty<string, ContentReleaseBundle>();
+  const completed = MutableHashMap.empty<string, ActiveContentRelease>();
+  const phases = MutableHashMap.empty<string, LifecyclePhase>();
   const rows = createLifecycleRows();
   let active: ActiveContentRelease | null = null;
   let candidate: StagedContentRelease | null = null;
@@ -48,12 +48,12 @@ export function makeTarget(release: {
   /** Records the durable identity shared by candidate and recovery staging. */
   function recordBundle(bundle: ContentReleaseBundle) {
     const { release: signed } = bundle;
-    bundles.set(signed.manifest.releaseId, bundle);
+    MutableHashMap.set(bundles, signed.manifest.releaseId, bundle);
     rows.forRelease(signed.manifest.releaseId);
     if (active?.release.manifest.releaseId === signed.manifest.releaseId) {
       return false;
     }
-    phases.set(signed.manifest.releaseId, "staging");
+    MutableHashMap.set(phases, signed.manifest.releaseId, "staging");
     return true;
   }
 
@@ -143,7 +143,7 @@ export function makeTarget(release: {
             },
           });
         }
-        phases.set(signed.manifest.releaseId, "verified");
+        MutableHashMap.set(phases, signed.manifest.releaseId, "verified");
         if (
           candidate?.release.manifest.releaseId === signed.manifest.releaseId
         ) {
@@ -165,7 +165,9 @@ export function makeTarget(release: {
       if (active?.release.manifest.releaseId !== signed.manifest.releaseId) {
         activationTransitions += 1;
       }
-      const bundle = bundles.get(signed.manifest.releaseId);
+      const bundle = Option.getOrUndefined(
+        MutableHashMap.get(bundles, signed.manifest.releaseId)
+      );
       if (!bundle) {
         return yield* Effect.die(
           "Expected the staged bundle before activation."
@@ -173,28 +175,30 @@ export function makeTarget(release: {
       }
       const receipt = releaseReceipt(signed);
       active = { ...bundle, receipt };
-      completed.set(signed.manifest.releaseId, active);
+      MutableHashMap.set(completed, signed.manifest.releaseId, active);
       if (candidate?.release.manifest.releaseId === signed.manifest.releaseId) {
         candidate = null;
       }
       if (recovery?.release.manifest.releaseId === signed.manifest.releaseId) {
         recovery = null;
       }
-      phases.set(signed.manifest.releaseId, "completed");
+      MutableHashMap.set(phases, signed.manifest.releaseId, "completed");
       return receipt;
     })
   );
   const abort = vi.fn(({ releaseId }) =>
     Effect.sync(() => {
       abortOrder.push(releaseId);
-      const bundle = bundles.get(releaseId);
+      const bundle = Option.getOrUndefined(
+        MutableHashMap.get(bundles, releaseId)
+      );
       if (recovery?.release.manifest.releaseId === releaseId) {
         recovery = null;
       }
       if (candidate?.release.manifest.releaseId === releaseId) {
         candidate = null;
       }
-      phases.set(releaseId, "aborted");
+      MutableHashMap.set(phases, releaseId, "aborted");
       const totalItems = bundle?.release.manifest.itemCount ?? 0;
       return {
         complete: true,
@@ -217,9 +221,11 @@ export function makeTarget(release: {
     accept: ({ recoveryId }) =>
       Effect.sync(() => {
         abortOrder.push(recoveryId);
-        const bundle = bundles.get(recoveryId);
+        const bundle = Option.getOrUndefined(
+          MutableHashMap.get(bundles, recoveryId)
+        );
         recovery = null;
-        phases.set(recoveryId, "aborted");
+        MutableHashMap.set(phases, recoveryId, "aborted");
         return {
           complete: true,
           processedItems: bundle?.release.manifest.itemCount ?? 0,
@@ -234,7 +240,9 @@ export function makeTarget(release: {
     current: Effect.suspend(current),
     headPage: (request) => Effect.succeed(rows.headPage(request)),
     recovery: ({ recoveryId }) => {
-      const value = completed.get(recoveryId);
+      const value = Option.getOrUndefined(
+        MutableHashMap.get(completed, recoveryId)
+      );
       if (!value) {
         return Effect.succeed({ kind: "missing" as const });
       }
@@ -256,9 +264,13 @@ export function makeTarget(release: {
     stageSnapshotBatch,
     stageTryoutRuntimeBundle,
     status: ({ manifestHash, releaseId }) => {
-      const phase = phases.get(releaseId) ?? "missing";
+      const phase =
+        Option.getOrUndefined(MutableHashMap.get(phases, releaseId)) ??
+        "missing";
       if (phase === "completed") {
-        const value = completed.get(releaseId);
+        const value = Option.getOrUndefined(
+          MutableHashMap.get(completed, releaseId)
+        );
         if (!value) {
           return Effect.die("Expected completed release evidence.");
         }
