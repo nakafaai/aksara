@@ -11,7 +11,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * The nakafa.com commit whose source check runs here. Move this pin on purpose,
  * in a pull request of its own, after the new engine reports zero findings here.
  */
-export const NAKAFA_COMMIT = "ecae0d3e63224deb9d6bff48f2ff5634e56b9093";
+export const NAKAFA_COMMIT = "52aba867932e74c393c65f629c38c882d22d23fb";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
