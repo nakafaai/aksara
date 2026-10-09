@@ -1,3 +1,4 @@
+import { QuranSajdaSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   Array as Arr,
   Effect,
@@ -5,6 +6,7 @@ import {
   MutableHashMap,
   MutableList,
   Option,
+  Schema,
 } from "effect";
 
 import { readQuranSurahNames } from "#corpus/quran/names";
@@ -124,13 +126,13 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
     }
 
     const sajdaEntries =
-      MutableList.make<readonly [number, "obligatory" | "recommended"]>();
+      MutableList.make<readonly [number, typeof QuranSajdaSchema.Type]>();
     for (const row of xmlRows(source, "sajda")) {
       const surah = Number(attribute(row, "sura"));
       const aya = Number(attribute(row, "aya"));
       const type = attribute(row, "type");
       const position = globalPosition(surahs, surah, aya);
-      if (!position || (type !== "obligatory" && type !== "recommended")) {
+      if (!(position && Schema.is(QuranSajdaSchema)(type))) {
         return yield* quranGenerationFailure(
           `Invalid Tanzil sajda marker: ${row}`
         );
