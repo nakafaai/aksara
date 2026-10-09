@@ -2,6 +2,7 @@ import { Array as Arr, Effect, Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
 import type { Sha256Hash } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
+import { hasSameAppLocales } from "#contracts/release/current/evidence";
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
 import {
   ContentSnapshotKindSchema,
@@ -35,17 +36,9 @@ export class ReleasePolicyClosureError extends Schema.TaggedError<ReleasePolicyC
   }
 ) {}
 
-/** Compares locale lists without exchanging their branded element roles. */
-function hasSameLocaleCodes(left: readonly string[], right: readonly string[]) {
-  return (
-    left.length === right.length &&
-    Arr.every(left, (locale, index) => locale === right[index])
-  );
-}
-
 /** Returns whether two release policies have the same signed identity. */
 function hasSamePolicy(left: ReleasePolicy, right: ReleasePolicy) {
-  return hasSameLocaleCodes(left.activeAppLocales, right.activeAppLocales);
+  return hasSameAppLocales(left.activeAppLocales, right.activeAppLocales);
 }
 
 /** Fails with one exact structured-scope policy mismatch. */
@@ -66,7 +59,7 @@ function verifyManifestPolicy(
   policy: ReleasePolicy
 ) {
   if (
-    !hasSameLocaleCodes(
+    !hasSameAppLocales(
       manifest.manifest.activeAppLocales,
       policy.activeAppLocales
     )
