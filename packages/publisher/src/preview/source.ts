@@ -8,19 +8,17 @@ import { Effect, MutableHashMap, Option, Schema } from "effect";
 import {
   type InspectedArticleDocument,
   loadArticleDocument,
-  makeArticleCompileSource,
   makeArticleProjectionFromSource,
 } from "#publisher/article/document";
+import { makeCompileSource } from "#publisher/compilation";
 import {
   type InspectedMaterialDocument,
   loadMaterialDocument,
-  makeMaterialCompileSource,
   makeMaterialProjection,
 } from "#publisher/material/document";
 import {
   type InspectedPageDocument,
   loadPageDocument,
-  makePageCompileSource,
   makePageProjectionFromSource,
 } from "#publisher/page/document";
 import {
@@ -115,21 +113,17 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
   ) {
     if (selected.family === "article") {
       const source = yield* loadArticleDocument(checkoutRoot, selected.entry);
-      return loadedPreview("article", makeArticleCompileSource(source), source);
+      return loadedPreview("article", makeCompileSource(source), source);
     }
 
     if (selected.family === "material") {
       const source = yield* loadMaterialDocument(checkoutRoot, selected.entry);
-      return loadedPreview(
-        "material",
-        makeMaterialCompileSource(source),
-        source
-      );
+      return loadedPreview("material", makeCompileSource(source), source);
     }
 
     if (selected.family === "page") {
       const source = yield* loadPageDocument(checkoutRoot, selected.entry);
-      return loadedPreview("page", makePageCompileSource(source), source);
+      return loadedPreview("page", makeCompileSource(source), source);
     }
 
     const item = yield* loadQuestionItem(checkoutRoot, selected, itemsByRoot);

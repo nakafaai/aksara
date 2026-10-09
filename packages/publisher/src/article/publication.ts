@@ -1,6 +1,5 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
@@ -23,7 +22,6 @@ import {
   Schema,
   type Scope,
   Stream,
-  Tuple,
 } from "effect";
 import { constUndefined } from "effect/Function";
 import {
@@ -31,16 +29,17 @@ import {
   type ArticleSourceError,
   mapArticleSourceError,
 } from "#publisher/article/document";
-import {
-  type ArticleHeadOwner,
-  type HeadOrderState,
-  headOwnerKey,
-} from "#publisher/article/head";
+import { type ArticleHeadOwner, headOwnerKey } from "#publisher/article/head";
 import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
 } from "#publisher/article/plan";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import {
+  type HeadOrderState,
+  orderPublishedHeads,
+  validateHeadOrder,
+} from "#publisher/publication/order";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import {
@@ -199,57 +198,30 @@ function validatePublishedHead(
   head: ArticleHead,
   ownerByHead: MutableHashMap.MutableHashMap<string, ArticleHeadOwner>,
   rendererByCategory: MutableHashMap.MutableHashMap<string, RendererDomain>
-): Effect.Effect<
-  readonly [HeadOrderState, readonly ArticleHead[]],
-  ArticleHeadDuplicateError | ArticleHeadFamilyError | ArticleHeadOrderError
-> {
-  const field = mismatchedFamilyField(head, ownerByHead, rendererByCategory);
-  if (field !== undefined) {
-    return Effect.fail(
-      new ArticleHeadFamilyError({
-        artifactLocale: head.artifactLocale,
-        contentKey: head.contentKey,
-        field,
-      })
-    );
-  }
-
-  const { previous } = state;
-  if (previous !== undefined) {
-    const comparison = compareContentHeads(previous, head);
-    if (comparison === 0) {
-      return Effect.fail(
-        new ArticleHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (comparison > 0) {
-      return Effect.fail(
-        new ArticleHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed(Tuple.make({ previous: head }, [head]));
-}
-
-/** Proves every published article head before the constant-space merge. */
-function validatePublishedHeads<E, R>(
-  published: Stream.Stream<ArticleHead, E, R>,
-  ownerByHead: MutableHashMap.MutableHashMap<string, ArticleHeadOwner>,
-  rendererByCategory: MutableHashMap.MutableHashMap<string, RendererDomain>
 ) {
-  const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(
-    Stream.mapAccumEffect(
-      () => initial,
-      (state, head) =>
-        validatePublishedHead(state, head, ownerByHead, rendererByCategory)
-    )
+  return validateHeadOrder(
+    state,
+    head,
+    (candidate) =>
+      mismatchedFamilyField(candidate, ownerByHead, rendererByCategory),
+    {
+      duplicate: (candidate) =>
+        new ArticleHeadDuplicateError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+        }),
+      family: (candidate, field) =>
+        new ArticleHeadFamilyError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+          field,
+        }),
+      order: (candidate) =>
+        new ArticleHeadOrderError({
+          artifactLocale: candidate.artifactLocale,
+          contentKey: candidate.contentKey,
+        }),
+    }
   );
 }
 
@@ -285,10 +257,8 @@ export const prepareArticlePublication: <E, R>(
   const plans = planArticlePublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(
-      input.published,
-      ownerByHead,
-      rendererByCategory
+    published: orderPublishedHeads(input.published, (state, head) =>
+      validatePublishedHead(state, head, ownerByHead, rendererByCategory)
     ),
     rebuild: input.rebuild,
     rendererManifest,

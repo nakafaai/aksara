@@ -21,6 +21,7 @@ import {
 import { teams } from "@nakafa/aksara-corpus/team/source";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
+import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored article metadata does not satisfy Nakafa's exact page contract. */
@@ -38,17 +39,6 @@ export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()
 /** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {
   return (cause: unknown) => new ArticleSourceError({ cause, checkoutRoot });
-}
-
-/** Creates the exact authored body shared by every article compiler mode. */
-export function makeArticleCompileSource(source: ArticleDocumentSource) {
-  return {
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
-    rawMdx: source.rawMdx,
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  };
 }
 
 /** Decodes authored metadata and derives the canonical article projection. */
@@ -107,7 +97,7 @@ export const inspectArticleDocument = Effect.fn(
 ) {
   const source = yield* loadArticleDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makeArticleCompileSource(source),
+    ...makeCompileSource(source),
     rendererManifest,
   });
   const projection = yield* makeArticleProjectionFromSource(
@@ -165,7 +155,7 @@ export const compileArticleDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeArticleCompileSource(document.source),
+    ...makeCompileSource(document.source),
     rendererManifest,
   });
   return makeArticleRecord(document.source, result, document.projection);

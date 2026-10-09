@@ -20,6 +20,7 @@ import {
 } from "@nakafa/aksara-corpus/pages/source";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
+import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored page metadata does not satisfy Nakafa's exact public contract. */
@@ -37,17 +38,6 @@ export class PageSourceError extends Schema.TaggedError<PageSourceError>()(
 /** Binds one checkout root to the shared public page source error adapter. */
 export function mapPageSourceError(checkoutRoot: string) {
   return (cause: unknown) => new PageSourceError({ cause, checkoutRoot });
-}
-
-/** Creates the exact authored body shared by every public page compiler mode. */
-export function makePageCompileSource(source: PageDocumentSource) {
-  return {
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
-    rawMdx: source.rawMdx,
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  };
 }
 
 /** Decodes authored metadata and derives the canonical page projection. */
@@ -99,7 +89,7 @@ export const inspectPageDocument = Effect.fn(
 ) {
   const source = yield* loadPageDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makePageCompileSource(source),
+    ...makeCompileSource(source),
     rendererManifest,
   });
   const projection = yield* makePageProjectionFromSource(
@@ -157,7 +147,7 @@ export const compilePageDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makePageCompileSource(document.source),
+    ...makeCompileSource(document.source),
     rendererManifest,
   });
   return makePageRecord(document.source, result, document.projection);

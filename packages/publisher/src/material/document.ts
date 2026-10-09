@@ -20,6 +20,7 @@ import {
 } from "@nakafa/aksara-corpus/material/source";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
+import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored material metadata does not satisfy Nakafa's exact page contract. */
@@ -37,17 +38,6 @@ export class MaterialSourceError extends Schema.TaggedError<MaterialSourceError>
 /** Wraps every registry and filesystem failure at the checkout source seam. */
 export function mapMaterialSourceError(checkoutRoot: string) {
   return (cause: unknown) => new MaterialSourceError({ cause, checkoutRoot });
-}
-
-/** Creates the exact authored body shared by every material compiler mode. */
-export function makeMaterialCompileSource(source: MaterialDocumentSource) {
-  return {
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
-    rawMdx: source.rawMdx,
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  };
 }
 
 /** Decodes authored metadata and derives the canonical material projection. */
@@ -98,7 +88,7 @@ export const inspectMaterialDocument = Effect.fn(
 ) {
   const source = yield* loadMaterialDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makeMaterialCompileSource(source),
+    ...makeCompileSource(source),
     rendererManifest,
   });
   const projection = yield* makeMaterialProjection(source, inspection.metadata);
@@ -153,7 +143,7 @@ export const compileMaterialDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeMaterialCompileSource(document.source),
+    ...makeCompileSource(document.source),
     rendererManifest,
   });
   return makeMaterialRecord(document.source, result, document.projection);

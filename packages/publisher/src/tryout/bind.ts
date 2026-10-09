@@ -28,6 +28,7 @@ import {
   Schema,
   Stream,
 } from "effect";
+import type { HeadOrderState } from "#publisher/publication/order";
 import {
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
@@ -58,12 +59,6 @@ const BoundTryoutPlacementSchema = Schema.Struct({
 
 /** Exact question and answer hashes bound to one active placement source. */
 export type BoundTryoutPlacement = typeof BoundTryoutPlacementSchema.Type;
-
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(QuestionHeadSchema),
-});
-
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Advances one canonical desired-head stream or reports its exact disorder. */
 function validateHeadOrder(
