@@ -80,7 +80,9 @@ describe("Quran snapshot row contract", () => {
     if (Option.isNone(attribution) || Option.isNone(chunk)) {
       throw new Error("Expected current Quran attribution and chunk fixtures.");
     }
-    const lastSource = attribution.value.sources.at(-1);
+    const lastSource = Option.getOrUndefined(
+      Arr.last(attribution.value.sources)
+    );
     const [firstVerse] = chunk.value.verses;
     if (!(lastSource && firstVerse)) {
       throw new Error("Expected nonempty current Quran row fixtures.");
@@ -100,7 +102,7 @@ describe("Quran snapshot row contract", () => {
             ...firstVerse,
             translations: Arr.reverse(firstVerse.translations),
           },
-          ...chunk.value.verses.slice(1),
+          ...Arr.drop(chunk.value.verses, 1),
         ],
       })
     ).toContain(
@@ -123,7 +125,7 @@ describe("Quran snapshot row contract", () => {
               inQuran: firstVerse.number.inQuran + 1,
             },
           },
-          ...chunk.value.verses.slice(1),
+          ...Arr.drop(chunk.value.verses, 1),
         ],
       })
     ).toContain("Expected one contiguous Quran runtime chunk.");

@@ -1,4 +1,4 @@
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import {
   ArtifactRendererComponentMissingError,
   ArtifactRendererDomainUnpublishedError,
@@ -67,7 +67,7 @@ export const verifyRendererManifestCompatibility = Effect.fn(
   }
   yield* verifyCapabilitySuperset(input.frozen.base, input.live.base, "base");
   for (const rendererDomain of input.frozen.publishedDomains) {
-    if (!input.live.publishedDomains.includes(rendererDomain)) {
+    if (!Arr.contains(input.live.publishedDomains, rendererDomain)) {
       return yield* new RendererManifestDomainUnpublishedError({
         rendererDomain,
       });
@@ -103,7 +103,7 @@ export const verifyContentRendererCompatibility = Effect.fn(
   readonly rendererManifest: unknown;
 }) {
   const manifest = yield* validateRendererManifestHash(rendererManifest);
-  if (!manifest.publishedDomains.includes(payload.rendererDomain)) {
+  if (!Arr.contains(manifest.publishedDomains, payload.rendererDomain)) {
     return yield* new ArtifactRendererDomainUnpublishedError({
       contentKey: payload.contentKey,
       rendererDomain: payload.rendererDomain,

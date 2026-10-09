@@ -1,7 +1,16 @@
 import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Schema, Sink, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Option,
+  Path,
+  Schema,
+  Sink,
+  Stream,
+} from "effect";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
@@ -126,6 +135,14 @@ const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
   return { archive, input, release: pinnedRelease, root };
 });
 
+/** Reads the argument that follows one flag, or undefined when the flag has none. */
+function valueAfterFlag(args: readonly string[], flag: string) {
+  const flagIndex = Arr.findFirstIndex(args, (arg) => arg === flag);
+  return Option.getOrUndefined(
+    Option.flatMap(flagIndex, (index) => Arr.get(args, index + 1))
+  );
+}
+
 /** Models only the exact GitHub and Git commands owned by the proof program. */
 function makeFakeSpawner(
   live: ChildProcessSpawner.ChildProcessSpawner["Service"],
@@ -156,16 +173,9 @@ function makeFakeSpawner(
       if (command.args[0] !== "release" || command.args[1] !== "download") {
         return makeProcessHandle("");
       }
-      const directoryIndex = command.args.indexOf("--dir");
-      const patternIndex = command.args.indexOf("--pattern");
-      const directory = command.args[directoryIndex + 1];
-      const name = command.args[patternIndex + 1];
-      if (
-        directoryIndex < 0 ||
-        patternIndex < 0 ||
-        directory === undefined ||
-        name === undefined
-      ) {
+      const directory = valueAfterFlag(command.args, "--dir");
+      const name = valueAfterFlag(command.args, "--pattern");
+      if (directory === undefined || name === undefined) {
         return yield* Effect.die("Malformed release download fixture command");
       }
       yield* fs.makeDirectory(directory, { recursive: true });
@@ -279,9 +289,9 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
             ).pipe(Effect.flip),
           { concurrency: "unbounded" }
         );
-        for (const [index, error] of errors.entries()) {
+        Arr.forEach(errors, (error, index) => {
           expect(error.detail).toContain(cases[index]?.[2] ?? "");
-        }
+        });
         const ancestry = yield* proveWithCommands(
           fixture.input,
           fakeCommands(fixture.archive, fixture.release, { failGit: true })

@@ -213,7 +213,7 @@ export function unresolvedProximityIndexes(
   const leftTree = makeTree(upper.values.length);
   const rightTree = makeTree(lower.values.length);
   const unresolved = MutableHashSet.empty<number>();
-  for (const [sourceIndex, interval] of intervals.entries()) {
+  EffectArray.forEach(intervals, (interval, sourceIndex) => {
     const leftEnd = firstRank(upper.values, interval.lower, false);
     const closestLeft = queryTree(leftTree, 0, leftEnd, greaterRatio);
     const rightStart = firstRank(lower.values, interval.upper, true);
@@ -245,6 +245,6 @@ export function unresolvedProximityIndexes(
       interval.upper,
       lesserRatio
     );
-  }
+  });
   return unresolved;
 }

@@ -115,9 +115,9 @@ describe("program aggregate digest golden vectors", () => {
       const failure = yield* digestProgramRows({
         activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.fromIterable([
-          ...digestRows.slice(0, 2),
-          ...digestRows.slice(4),
-          ...digestRows.slice(2, 4),
+          ...Arr.take(digestRows, 2),
+          ...Arr.drop(digestRows, 4),
+          ...Arr.take(Arr.drop(digestRows, 2), 2),
         ]),
       }).pipe(Effect.flip);
 
@@ -283,7 +283,7 @@ describe("program aggregate digest", () => {
         failures.construct = false;
         failures.stage = "update";
       });
-      const updateError = yield* reject(records.slice(0, 1));
+      const updateError = yield* reject(Arr.take(records, 1));
       yield* Effect.sync(() => {
         failures.stage = "digest";
       });

@@ -152,7 +152,7 @@ describe("content runtime verification", () => {
     Effect.gen(function* () {
       const incompleteContract = {
         ...rendererManifest,
-        domains: rendererManifest.domains.slice(0, -1),
+        domains: Arr.dropRight(rendererManifest.domains, 1),
       };
       const incompleteRenderer = {
         ...incompleteContract,

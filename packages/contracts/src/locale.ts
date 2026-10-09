@@ -1,5 +1,7 @@
 import { Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
+
 /** Stable locale codes supported by the current Aksara contract. */
 export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de"]);
 export type AppLocaleCode = typeof AppLocaleCodeSchema.Type;
@@ -68,15 +70,7 @@ export function artifactLocaleCode(artifactLocale: ArtifactLocale) {
 
 /** Checks a nonempty locale subset for uniqueness and canonical order. */
 function hasCanonicalActiveAppLocales(locales: readonly AppLocale[]) {
-  let previousIndex = -1;
-  for (const locale of locales) {
-    const index = APP_LOCALE_CODES.indexOf(locale);
-    if (index <= previousIndex) {
-      return false;
-    }
-    previousIndex = index;
-  }
-  return true;
+  return hasCanonicalOrder(APP_LOCALE_CODES, locales);
 }
 
 /** Nonempty unique active locale subset in canonical contract order. */

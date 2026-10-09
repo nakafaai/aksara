@@ -68,12 +68,14 @@ function parseQuestionSetParts(input: string): QuestionSetParts | undefined {
   ) {
     return;
   }
+  const [countryKey, examKey, ...rest] = keys;
+  const [sectionKey, setKey] = Arr.takeRight(rest, 2);
   return Schema.decodeUnknownSync(QuestionSetPartsSchema)({
-    countryKey: keys.at(0),
-    examKey: keys.at(1),
-    intermediateBankKeys: keys.slice(2, -2),
-    sectionKey: keys.at(-2),
-    setKey: keys.at(-1),
+    countryKey,
+    examKey,
+    intermediateBankKeys: Arr.dropRight(rest, 2),
+    sectionKey,
+    setKey,
   });
 }
 

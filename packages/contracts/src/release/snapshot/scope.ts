@@ -1,5 +1,6 @@
-import { Array as Arr, Schema } from "effect";
+import { Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
 
 /** Fixed structured families selected by the one global release pointer. */
@@ -15,25 +16,9 @@ function hasCanonicalPublicationScope(input: {
   readonly families: readonly ContentFamily[];
   readonly snapshots: readonly ContentSnapshotKind[];
 }) {
-  const snapshotsAreCanonical = Arr.every(input.snapshots, (family, index) => {
-    const previous = input.snapshots[index - 1];
-    return (
-      previous === undefined ||
-      ContentSnapshotKindSchema.literals.indexOf(previous) <
-        ContentSnapshotKindSchema.literals.indexOf(family)
-    );
-  });
-  const familiesAreCanonical = Arr.every(input.families, (family, index) => {
-    const previous = input.families[index - 1];
-    return (
-      previous === undefined ||
-      ContentFamilySchema.literals.indexOf(previous) <
-        ContentFamilySchema.literals.indexOf(family)
-    );
-  });
   return (
-    familiesAreCanonical &&
-    snapshotsAreCanonical &&
+    hasCanonicalOrder(ContentFamilySchema.literals, input.families) &&
+    hasCanonicalOrder(ContentSnapshotKindSchema.literals, input.snapshots) &&
     input.families.length + input.snapshots.length > 0
   );
 }

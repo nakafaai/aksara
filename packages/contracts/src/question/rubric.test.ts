@@ -288,7 +288,7 @@ describe("question rubric", () => {
           levelKey: "level-9",
         })),
       })),
-      [{ ...first, levels: first?.levels.slice(0, 1) }],
+      [{ ...first, levels: first && Arr.take(first.levels, 1) }],
     ]) {
       expect(
         rejects(QuestionRubricResponseSchema, { criteria, kind: "rubric" })

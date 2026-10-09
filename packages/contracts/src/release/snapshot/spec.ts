@@ -49,7 +49,8 @@ export function hasScopedSnapshotTransitions(
   return Arr.every(
     ContentSnapshotKindSchema.literals,
     (family) =>
-      scope.snapshots.includes(family) || snapshots[family].mode === "inherit"
+      Arr.contains(scope.snapshots, family) ||
+      snapshots[family].mode === "inherit"
   );
 }
 

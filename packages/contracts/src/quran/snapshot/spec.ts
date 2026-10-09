@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -63,7 +63,8 @@ function hasCompleteSnapshotCounts(input: {
   readonly tafsirLocales: readonly "id"[];
   readonly verseCount: number;
 }) {
-  const hasIndonesian = input.activeAppLocales.includes(
+  const hasIndonesian = Arr.contains(
+    input.activeAppLocales,
     AppLocaleSchema.make("id")
   );
   return (

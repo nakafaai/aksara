@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import { Array as Arr, Effect, MutableList } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
@@ -39,7 +40,7 @@ function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
         notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
         title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
       },
-      ...Arr.map(ACTIVE_APP_LOCALES.slice(1), (appLocale) => ({
+      ...Arr.map(Arr.drop(ACTIVE_APP_LOCALES, 1), (appLocale) => ({
         appLocale,
         notice: `Technical ${appLocale} notice for ${id}.`,
         title: `Technical ${appLocale} source ${id}.`,
@@ -150,9 +151,7 @@ export function quranAttribution() {
     quranSourceAttribution
   );
   const [first, ...rest] = sources;
-  if (first === undefined) {
-    throw new Error("Expected technical Quran source identities.");
-  }
+  assert.ok(first !== undefined, "Expected technical Quran source identities.");
   return QuranAttributionRowSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,
     kind: "quran-attribution",
@@ -180,7 +179,7 @@ export function quranTestPayloads() {
   const rows = MutableList.make<QuranRowPayload>();
   MutableList.append(rows, quranAttribution());
   let inQuran = 1;
-  for (const [index, numberOfVerses] of quranVerseCounts().entries()) {
+  Arr.forEach(quranVerseCounts(), (numberOfVerses, index) => {
     const surahNumber = index + 1;
     MutableList.append(
       rows,
@@ -223,7 +222,7 @@ export function quranTestPayloads() {
       );
       inQuran += verses.length;
     }
-  }
+  });
   for (
     let surahNumber = 1;
     surahNumber <= QURAN_SURAH_COUNT;

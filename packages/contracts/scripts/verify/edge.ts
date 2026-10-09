@@ -1,10 +1,12 @@
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   MutableHashSet,
   MutableList,
+  Option,
   Path,
   Schema,
 } from "effect";
@@ -234,7 +236,7 @@ export const runEdgeVerification = Effect.fn(
 
 NodeRuntime.runMain(
   runEdgeVerification({
-    entry: process.argv.at(1),
+    entry: Option.getOrUndefined(Arr.get(process.argv, 1)),
     moduleFile: import.meta.filename,
     scriptDirectory: import.meta.dirname,
   }).pipe(Effect.provide(NodeServices.layer))

@@ -1,4 +1,11 @@
-import { Effect, MutableRef, Option, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableRef,
+  Option,
+  Schema,
+  Stream,
+} from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
@@ -104,7 +111,7 @@ function validateItemIdentity(
       })
     );
   }
-  if (!manifest.scope.families.includes(item.change.family)) {
+  if (!Arr.contains(manifest.scope.families, item.change.family)) {
     return Effect.fail(
       new ReleaseItemScopeError({ itemOffset: expectedIndex })
     );

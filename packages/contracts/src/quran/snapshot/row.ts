@@ -1,5 +1,6 @@
 import { Array as Arr, Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
 import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
@@ -28,14 +29,10 @@ export type QuranLocalizedTranslation =
 function hasCanonicalTranslations(
   translations: readonly QuranLocalizedTranslation[]
 ) {
-  return Arr.every(translations, (translation, index) => {
-    const previous = translations[index - 1];
-    return (
-      previous === undefined ||
-      APP_LOCALE_CODES.indexOf(previous.appLocale) <
-        APP_LOCALE_CODES.indexOf(translation.appLocale)
-    );
-  });
+  return hasCanonicalOrder(
+    APP_LOCALE_CODES,
+    Arr.map(translations, (translation) => translation.appLocale)
+  );
 }
 
 const QuranTranslationListSchema = Schema.NonEmptyArray(

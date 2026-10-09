@@ -191,7 +191,7 @@ describe("Quran provenance", () => {
       });
       const errors = yield* Effect.forEach(
         [
-          canonical.slice(1),
+          Arr.drop(canonical, 1),
           Arr.reverse(canonical),
           [firstRecord, ...canonical],
         ],
@@ -219,7 +219,7 @@ describe("Quran provenance", () => {
       );
       const missingCoverage = Schema.decodeUnknownExit(
         QuranProvenanceManifestSchema
-      )({ ...manifest, records: canonical.slice(1) });
+      )({ ...manifest, records: Arr.drop(canonical, 1) });
       const missingCopy = Schema.decodeUnknownExit(
         QuranProvenanceManifestSchema
       )({
@@ -230,7 +230,7 @@ describe("Quran provenance", () => {
                 ...candidate,
                 attribution: {
                   ...candidate.attribution,
-                  copy: candidate.attribution.copy.slice(0, -1),
+                  copy: Arr.dropRight(candidate.attribution.copy, 1),
                 },
               }
             : candidate

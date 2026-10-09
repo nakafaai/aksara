@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
@@ -168,7 +168,7 @@ export function releaseActivatesAppLocale(
   release: SignedContentRelease,
   appLocale: AppLocale
 ) {
-  return release.manifest.activeAppLocales.includes(appLocale);
+  return Arr.contains(release.manifest.activeAppLocales, appLocale);
 }
 /** Signed release whose provenance identifies one exact rollback target. */
 export type RollbackSignedContentRelease = SignedContentRelease & {

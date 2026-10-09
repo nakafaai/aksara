@@ -1,7 +1,14 @@
 import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it, layer } from "@effect/vitest";
-import { Effect, FileSystem, MutableList, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableList,
+  Path,
+  Schema,
+} from "effect";
 import { encodeJsonText } from "#scripts/text/json";
 import {
   type InstallVerificationInput,
@@ -135,8 +142,8 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
 
       const imported = MutableList.toArray(importedList);
       assert.strictEqual(imported.length, 4);
-      assert.ok(imported.includes(packageName));
-      assert.ok(imported.includes(`${packageName}/feature`));
+      assert.ok(Arr.contains(imported, packageName));
+      assert.ok(Arr.contains(imported, `${packageName}/feature`));
       assert.deepStrictEqual(write.mock.calls, [
         [
           "Verified 2 exact exports and 2 Node-importable conditions from the installed tarball.\n",

@@ -160,7 +160,7 @@ describe("try-out locale closure", () => {
 
   it.effect("rejects a nonempty hierarchy missing one active locale", () =>
     Effect.gen(function* () {
-      const error = yield* rejectClosure({ catalog: catalog.slice(1) });
+      const error = yield* rejectClosure({ catalog: Arr.drop(catalog, 1) });
 
       expect(error.code).toBe("missing-locale");
       expect(error.identity).not.toBe("empty");

@@ -114,14 +114,14 @@ function duplicateKeyIndexes<T>(
 ) {
   const seen = MutableHashSet.empty<string>();
   const duplicates = MutableList.make<number>();
-  for (const [index, value] of values.entries()) {
+  Arr.forEach(values, (value, index) => {
     const key = keyOf(value);
     if (MutableHashSet.has(seen, key)) {
       MutableList.append(duplicates, index);
     } else {
       MutableHashSet.add(seen, key);
     }
-  }
+  });
   return MutableList.toArray(duplicates);
 }
 

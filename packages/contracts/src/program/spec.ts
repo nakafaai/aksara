@@ -1,5 +1,6 @@
 import { Array as Arr, Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
 import { APP_LOCALE_CODES, AppLocaleSchema } from "#contracts/locale";
@@ -125,14 +126,10 @@ export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
 
 /** Checks translations for unique canonical application-locale order. */
 function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
-  return Arr.every(translations, (translation, index) => {
-    const previous = translations[index - 1];
-    return (
-      previous === undefined ||
-      APP_LOCALE_CODES.indexOf(previous.appLocale) <
-        APP_LOCALE_CODES.indexOf(translation.appLocale)
-    );
-  });
+  return hasCanonicalOrder(
+    APP_LOCALE_CODES,
+    Arr.map(translations, (translation) => translation.appLocale)
+  );
 }
 
 const ProgramTranslationListSchema = Schema.NonEmptyArray(

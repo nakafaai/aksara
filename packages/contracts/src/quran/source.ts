@@ -1,5 +1,6 @@
 import { Array as Arr, Schema } from "effect";
 
+import { hasCanonicalOrder } from "#contracts/canonical";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type ActiveAppLocaleList,
@@ -38,8 +39,8 @@ export function quranSourceIds(
   return [
     "tanzil-text",
     "tanzil-metadata",
-    ...Arr.filter(QURAN_SOURCE_IDS.slice(2), (sourceId) =>
-      sourceIds.includes(sourceId)
+    ...Arr.filter(Arr.drop(QURAN_SOURCE_IDS, 2), (sourceId) =>
+      Arr.contains(sourceIds, sourceId)
     ),
   ];
 }
@@ -50,7 +51,10 @@ export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
     activeAppLocales,
     (appLocale) => quranNameSourceId(appLocale) !== "tanzil-metadata"
   ).length;
-  const tafsirFileCount = activeAppLocales.includes(AppLocaleSchema.make("id"))
+  const tafsirFileCount = Arr.contains(
+    activeAppLocales,
+    AppLocaleSchema.make("id")
+  )
     ? QURAN_SURAH_COUNT
     : 0;
   return (
@@ -170,14 +174,10 @@ export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
-  return Arr.every(sources, (source, index) => {
-    const previous = sources[index - 1];
-    return (
-      previous === undefined ||
-      QURAN_SOURCE_IDS.indexOf(previous.id) <
-        QURAN_SOURCE_IDS.indexOf(source.id)
-    );
-  });
+  return hasCanonicalOrder(
+    QURAN_SOURCE_IDS,
+    Arr.map(sources, (source) => source.id)
+  );
 }
 
 /** Checks every source copy against the exact active locale set and order. */

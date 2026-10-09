@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import { Array as Arr, Effect, Number as Num, Option, Order } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
@@ -76,9 +77,7 @@ function programTranslation(
     program.translations,
     (candidate) => candidate.appLocale === appLocale
   );
-  if (Option.isNone(translation)) {
-    throw new Error("Expected a test program translation.");
-  }
+  assert.ok(Option.isSome(translation), "Expected a test program translation.");
   return translation.value;
 }
 

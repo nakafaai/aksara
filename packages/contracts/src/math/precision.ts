@@ -144,7 +144,7 @@ export function polygonAltitudeUnresolved(
     z: decimal("z" in point ? point.z : 0),
   }));
   const thresholdSquared = BigDecimal.multiply(threshold, threshold);
-  for (const [index, point] of exact.entries()) {
+  return EffectArray.some(exact, (point, index) => {
     const previous = EffectArray.getUnsafe(
       exact,
       (index + exact.length - 1) % exact.length
@@ -180,23 +180,18 @@ export function polygonAltitudeUnresolved(
       )
     );
     if (BigDecimal.isZero(crossSquared)) {
-      continue;
+      return false;
     }
     const baselineSquared = BigDecimal.sumAll(
       EffectArray.map(Rec.values(baseline), (value) =>
         BigDecimal.multiply(value, value)
       )
     );
-    if (
-      BigDecimal.isLessThan(
-        crossSquared,
-        BigDecimal.multiply(thresholdSquared, baselineSquared)
-      )
-    ) {
-      return true;
-    }
-  }
-  return false;
+    return BigDecimal.isLessThan(
+      crossSquared,
+      BigDecimal.multiply(thresholdSquared, baselineSquared)
+    );
+  });
 }
 
 /** Checks exact quadratic curvature without relying on renderer sampling. */

@@ -210,7 +210,7 @@ class ProgramDigestState {
       MutableHashMap.get(this.#programs, row.programKey)
     );
     if (
-      !this.#activeAppLocales.includes(row.appLocale) ||
+      !Arr.contains(this.#activeAppLocales, row.appLocale) ||
       program?.navigation.model !== "curriculum-tree"
     ) {
       return Effect.fail(

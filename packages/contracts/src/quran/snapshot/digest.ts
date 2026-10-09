@@ -1,6 +1,6 @@
-import { createHash } from "node:crypto";
+import { createHash, type Hash } from "node:crypto";
 
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Option, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
@@ -47,6 +47,11 @@ export class QuranRowOrderError extends Schema.TaggedError<QuranRowOrderError>()
 /** Joins the parts of one row identity with colons, stringifying each part. */
 function joinIdentity(parts: readonly (number | string)[]) {
   return Arr.join(Arr.map(parts, String), ":");
+}
+
+/** Formats one finished digest as the signed sha256 hash of a Quran domain. */
+function sha256Digest(hash: Hash) {
+  return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
 }
 
 /** Resolves one complete stable current row identity. */
@@ -146,7 +151,8 @@ class QuranDigestState {
     if (payload.kind !== "quran-chunk") {
       return true;
     }
-    const expectedTafsir = this.#activeAppLocales.includes(
+    const expectedTafsir = Arr.contains(
+      this.#activeAppLocales,
       AppLocaleSchema.make("id")
     )
       ? ["id"]
@@ -182,7 +188,12 @@ class QuranDigestState {
       this.#nextSurahVerse = payload.lastVerse + 1;
       return;
     }
-    const localeIndex = this.#activeAppLocales.indexOf(this.#nextSearchLocale);
+    const localeIndex = Option.getOrThrow(
+      Arr.findFirstIndex(
+        this.#activeAppLocales,
+        (locale) => locale === this.#nextSearchLocale
+      )
+    );
     const nextLocale = this.#activeAppLocales[localeIndex + 1];
     if (nextLocale !== undefined) {
       this.#nextSearchLocale = nextLocale;
@@ -252,17 +263,11 @@ class QuranDigestState {
       attributionCount: this.attributionCount,
       chunkCount: this.chunkCount,
       projectionCount: this.projectionCount,
-      projectionDigest: Sha256HashSchema.make(
-        `sha256:${this.#projection.digest("hex")}`
-      ),
+      projectionDigest: sha256Digest(this.#projection),
       runtimeCount: this.runtimeCount,
-      runtimeDigest: Sha256HashSchema.make(
-        `sha256:${this.#runtime.digest("hex")}`
-      ),
+      runtimeDigest: sha256Digest(this.#runtime),
       searchCount: this.searchCount,
-      searchDigest: Sha256HashSchema.make(
-        `sha256:${this.#search.digest("hex")}`
-      ),
+      searchDigest: sha256Digest(this.#search),
     };
   }
 }
