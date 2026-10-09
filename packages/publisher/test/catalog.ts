@@ -206,9 +206,9 @@ export function catalogRoutes(
     rows,
     (
       row
-    ): row is TestCatalogIdentity & {
-      readonly publicPath: string;
-    } => row.publicPath !== undefined
+    ): row is TestCatalogIdentity &
+      Required<Pick<TestCatalogIdentity, "publicPath">> =>
+      row.publicPath !== undefined
   );
   return Arr.map(publicRows, (row, index) => ({
     current: {
