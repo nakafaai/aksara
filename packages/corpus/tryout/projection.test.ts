@@ -259,4 +259,44 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
       }),
     { timeout: 30_000 }
   );
+
+  it.effect(
+    "reports one invalid shared stimulus when a section has two",
+    () =>
+      Effect.gen(function* () {
+        const [sources, questions] = yield* loadTryoutProjectionSources();
+        const groupPath = "/tka/compulsory-mathematics/set-1/";
+        const questionAt = (number: number) =>
+          Effect.fromOption(
+            Arr.findFirst(questions, ({ questionKey }) =>
+              questionKey.endsWith(`${groupPath}question-${number}`)
+            )
+          );
+        const fifth = yield* questionAt(5);
+        const sixth = yield* questionAt(6);
+        const eighteenth = yield* questionAt(18);
+        const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
+        const withoutStimuli = Arr.map(questions, (question) => {
+          if (question !== sixth && question !== eighteenth) {
+            return question;
+          }
+          const { stimulusKey: _stimulusKey, ...item } = question.item;
+          return { ...question, item };
+        });
+        const failure = yield* projectTryoutSources(
+          sources,
+          withoutStimuli
+        ).pipe(Effect.flip);
+
+        expect(failure).toEqual(
+          expect.objectContaining({
+            _tag: "TryoutStimulusGroupError",
+            questionKey: fifth.questionKey,
+            reason: "isolated",
+            stimulusKey,
+          })
+        );
+      }),
+    { timeout: 30_000 }
+  );
 });
