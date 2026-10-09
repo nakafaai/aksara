@@ -1,6 +1,6 @@
 import { Sha256MismatchFields } from "#contracts/errors";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
-import { ReleaseCountSchema } from "#contracts/release/spec";
+import { ReleaseCountSchema } from "#contracts/release/count";
 
 /** Fields that name one signed release digest and the replayed digest that failed. */
 export const ReleaseDigestMismatchFields = {

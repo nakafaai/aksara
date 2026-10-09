@@ -8,13 +8,13 @@ import {
 } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema } from "#contracts/ids";
+import { ReleaseCountSchema } from "#contracts/release/count";
 import { digestItems } from "#contracts/release/digest";
 import { ReleaseDigestMismatchFields } from "#contracts/release/mismatch";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
   type ContentReleaseManifest,
-  ReleaseCountSchema,
 } from "#contracts/release/spec";
 
 /** One release item failed strict wire decoding. */

@@ -6,14 +6,12 @@ import {
   type ContentProjection,
   ContentProjectionSchema,
 } from "#contracts/projection/spec";
+import { ReleaseCountSchema } from "#contracts/release/count";
 import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,
 } from "#contracts/release/mismatch";
-import {
-  type ContentReleaseManifest,
-  ReleaseCountSchema,
-} from "#contracts/release/spec";
+import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 /** One streamed projection failed strict schema decoding. */
 export class ProjectionDecodeError extends Schema.TaggedError<ProjectionDecodeError>()(

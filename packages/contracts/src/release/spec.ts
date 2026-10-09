@@ -14,6 +14,8 @@ import {
   type AppLocale,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
+import { ReleaseCountSchema } from "#contracts/release/count";
+import { ActiveCatalogIdentitySchema } from "#contracts/release/identity";
 import {
   ReleaseOriginSchema,
   RollbackReleaseOriginSchema,
@@ -33,11 +35,6 @@ import { RendererDomainSchema } from "#contracts/renderer/domain";
 
 /** Semantic wire identity of the current localized content release. */
 export const CONTENT_RELEASE_FORMAT = "localized-content-release";
-/** Nonnegative release inventory count authenticated by one manifest. */
-export const ReleaseCountSchema = Schema.Finite.pipe(
-  Schema.check(Schema.isInt()),
-  Schema.check(Schema.isGreaterThanOrEqualTo(0))
-);
 /** Stable inventory and provenance fields owned by the current release. */
 const ContentReleaseManifestFields = {
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
@@ -220,7 +217,7 @@ function hasCoherentVerificationCounts(input: {
 
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
-  activeAppLocales: ActiveAppLocaleListSchema,
+  ...ActiveCatalogIdentitySchema.fields,
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
@@ -229,18 +226,13 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   deleteHeads: ReleaseCountSchema,
   itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
-  manifestHash: Sha256HashSchema,
   projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
   rendererManifestHash: Sha256HashSchema,
-  resultCount: ReleaseCountSchema,
-  resultDigest: Sha256HashSchema,
   rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
   routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
-  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ReleaseCountSchema,
   stagedRoutes: ReleaseCountSchema,
   stagedSnapshotRows: ReleaseCountSchema,
@@ -279,16 +271,11 @@ export type ReleaseVerificationStatus =
 
 /** Delta evidence returned after a release is staged and activated. */
 export const PublicationReceiptSchema = Schema.Struct({
+  ...ActiveCatalogIdentitySchema.fields,
   activatedHeads: ReleaseCountSchema,
-  activeAppLocales: ActiveAppLocaleListSchema,
   deletedHeads: ReleaseCountSchema,
-  manifestHash: Sha256HashSchema,
   projectionDigest: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
-  resultCount: ReleaseCountSchema,
-  resultDigest: Sha256HashSchema,
   routeDigest: Sha256HashSchema,
-  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ReleaseCountSchema,
   stagedItems: ReleaseCountSchema,
   stagedProjections: ReleaseCountSchema,
