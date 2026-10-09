@@ -18,7 +18,7 @@ import {
 } from "effect";
 
 /** One CLI selector does not form a canonical production publication scope. */
-export class ProductionScopeDecodeError extends Schema.TaggedError<ProductionScopeDecodeError>()(
+class ProductionScopeDecodeError extends Schema.TaggedError<ProductionScopeDecodeError>()(
   "ProductionScopeDecodeError",
   {}
 ) {}

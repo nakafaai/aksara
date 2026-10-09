@@ -1,6 +1,6 @@
 import { issueAtOffset } from "#nakafa-content/math/finding";
 
-export type PointsRule =
+type PointsRule =
   | "interactive-visuals-fell"
   | "literal-points"
   | "long-decimal";

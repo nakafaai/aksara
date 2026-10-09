@@ -16,7 +16,7 @@ import {
 } from "#nakafa-content/mdx/static";
 
 /** One heading-delimited part of a lesson document and the node that opens it. */
-export interface HighlightSection {
+interface HighlightSection {
   nodes: MdxNode[];
   opener: MdxNode;
 }

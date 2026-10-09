@@ -52,7 +52,7 @@ const ContractProofSchema = Schema.Struct({
 });
 
 /** Durable facts returned only after every immutable release proof succeeds. */
-export type ContractProof = typeof ContractProofSchema.Type;
+type ContractProof = typeof ContractProofSchema.Type;
 
 /** Executes one external proof command whose exit status is its result. */
 function commandVoid(

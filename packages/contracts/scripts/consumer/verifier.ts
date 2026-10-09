@@ -35,8 +35,7 @@ const ConsumerVerificationInputSchema = Schema.Struct({
 });
 
 /** Inputs supplied by the Node CLI boundary. */
-export type ConsumerVerificationInput =
-  typeof ConsumerVerificationInputSchema.Type;
+type ConsumerVerificationInput = typeof ConsumerVerificationInputSchema.Type;
 
 /** The one JSON document that the install runner writes to standard output. */
 const InstallInspectionOutputSchema = Schema.fromJsonString(

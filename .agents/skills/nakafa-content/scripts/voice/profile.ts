@@ -5,7 +5,7 @@ const PATH_SEPARATOR = /[\\/]/u;
 const MDX_SUFFIX = /\.mdx$/u;
 
 /** The authored contract that controls which checks inspect one document. */
-export type DocumentProfile = "article" | "lesson" | "question" | "answer";
+type DocumentProfile = "article" | "lesson" | "question" | "answer";
 
 /** Reads the contract-owned question body role from a locale-qualified file. */
 function questionBodyKind(file: string): "question" | "answer" | undefined {

@@ -3,7 +3,7 @@ import { Array as Arr, Record as Rec, Schema } from "effect";
 import { isObject } from "effect/Predicate";
 import { encodePrettyJsonText, JsonTextSchema } from "#scripts/text/json";
 
-export const DEPENDENCY_SECTIONS = [
+const DEPENDENCY_SECTIONS = [
   "dependencies",
   "devDependencies",
   "optionalDependencies",

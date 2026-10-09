@@ -20,7 +20,7 @@ import {
 } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
-export interface LineEquationSeriesInspection {
+interface LineEquationSeriesInspection {
   exactSegment: boolean;
   excerpt: string;
   line: number;

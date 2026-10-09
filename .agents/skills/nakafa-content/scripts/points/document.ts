@@ -10,7 +10,7 @@ import {
 } from "#nakafa-content/mdx/parse";
 
 /** One ESTree node of an authored expression, with the component that owns it. */
-export interface ExpressionNode {
+interface ExpressionNode {
   readonly component: string | undefined;
   readonly node: EstreeNode;
 }

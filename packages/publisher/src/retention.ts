@@ -7,7 +7,7 @@ import type {
 import { Effect, Schema } from "effect";
 
 /** Operator identities do not select the exact retained inverse state. */
-export class RetainedRecoveryStateError extends Schema.TaggedError<RetainedRecoveryStateError>()(
+class RetainedRecoveryStateError extends Schema.TaggedError<RetainedRecoveryStateError>()(
   "RetainedRecoveryStateError",
   {
     reason: Schema.Literals(["active", "missing", "phase", "recovery"]),

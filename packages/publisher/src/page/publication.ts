@@ -41,19 +41,19 @@ const PageFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same public page identity more than once. */
-export class PageHeadDuplicateError extends Schema.TaggedError<PageHeadDuplicateError>()(
+class PageHeadDuplicateError extends Schema.TaggedError<PageHeadDuplicateError>()(
   "PageHeadDuplicateError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned public page heads outside canonical content-head order. */
-export class PageHeadOrderError extends Schema.TaggedError<PageHeadOrderError>()(
+class PageHeadOrderError extends Schema.TaggedError<PageHeadOrderError>()(
   "PageHeadOrderError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** A public page-head response contained a row owned by another family. */
-export class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>()(
+class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>()(
   "PageHeadFamilyError",
   {
     ...ContentHeadIdentitySchema.fields,
@@ -83,7 +83,7 @@ export interface PagePublication {
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and page-head stream. */
-export interface PagePublicationInput<E, R> {
+interface PagePublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<PageHead, E, R>;
   readonly rebuild?: boolean | undefined;

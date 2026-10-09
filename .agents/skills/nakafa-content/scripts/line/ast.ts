@@ -5,7 +5,7 @@ export type ArrayExpressionNode = EstreeNode & {
   type: "ArrayExpression";
 };
 
-export type BlockStatementNode = EstreeNode & {
+type BlockStatementNode = EstreeNode & {
   body: unknown[];
   type: "BlockStatement";
 };

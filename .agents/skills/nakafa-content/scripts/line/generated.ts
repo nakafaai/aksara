@@ -16,7 +16,7 @@ import {
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 
-export interface GeneratedLineInspection {
+interface GeneratedLineInspection {
   exactSegment: boolean;
   pointCount: number;
 }
