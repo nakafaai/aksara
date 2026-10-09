@@ -3,6 +3,7 @@ import {
   type BigDecimal,
   MutableHashMap,
   MutableHashSet,
+  MutableList,
   Option,
 } from "effect";
 
@@ -33,16 +34,23 @@ export function coordinateCollisionPaths(
 ) {
   const axes: readonly SceneAxis[] = ["x", "y", "z"];
   return uniquePaths(
-    axes.flatMap((axis) => {
-      const entries = coordinates.filter((entry) => entry.axis === axis);
+    Arr.flatMap(axes, (axis) => {
+      const entries = Arr.filter(coordinates, (entry) => entry.axis === axis);
       const unresolved = unresolvedProximityIndexes(entries, threshold);
-      return entries.flatMap((entry, index) =>
+      return Arr.flatMap(entries, (entry, index) =>
         entry.reportable && MutableHashSet.has(unresolved, index)
           ? [entry.path]
           : []
       );
     })
   );
+}
+
+/** One circle or arc of a concentric group, with its authored index and radius. */
+interface RadiusEntry {
+  readonly index: number;
+  readonly kind: "arc" | "circle";
+  readonly value: ReturnType<typeof numberRatio>;
 }
 
 /** Finds non-zero radius deltas between concentric circles or arcs. */
@@ -52,29 +60,33 @@ export function concentricRadiusCollisionPaths(
 ) {
   const groups = MutableHashMap.empty<
     string,
-    Array<{
-      readonly index: number;
-      readonly kind: "arc" | "circle";
-      readonly value: ReturnType<typeof numberRatio>;
-    }>
+    MutableList.MutableList<RadiusEntry>
   >();
   for (const [index, object] of objects.entries()) {
     if (object.kind !== "arc" && object.kind !== "circle") {
       continue;
     }
     const key = `${object.center.x}:${object.center.y}`;
-    const group = Option.getOrUndefined(MutableHashMap.get(groups, key)) ?? [];
-    group.push({ index, kind: object.kind, value: numberRatio(object.radius) });
-    MutableHashMap.set(groups, key, group);
+    const group = Option.getOrElse(MutableHashMap.get(groups, key), () => {
+      const created = MutableList.make<RadiusEntry>();
+      MutableHashMap.set(groups, key, created);
+      return created;
+    });
+    MutableList.append(group, {
+      index,
+      kind: object.kind,
+      value: numberRatio(object.radius),
+    });
   }
-  const paths: ScenePath[] = [];
+  const paths = MutableList.make<ScenePath>();
   for (const group of MutableHashMap.values(groups)) {
-    const unresolved = unresolvedProximityIndexes(group, threshold);
-    for (const [entryIndex, entry] of group.entries()) {
+    const entries = MutableList.toArray(group);
+    const unresolved = unresolvedProximityIndexes(entries, threshold);
+    for (const [entryIndex, entry] of entries.entries()) {
       if (MutableHashSet.has(unresolved, entryIndex)) {
-        paths.push(radialGeometryPath(entry.kind, entry.index));
+        MutableList.append(paths, radialGeometryPath(entry.kind, entry.index));
       }
     }
   }
-  return paths;
+  return MutableList.toArray(paths);
 }

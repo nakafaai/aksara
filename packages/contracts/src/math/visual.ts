@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 import { decodeContract } from "#contracts/decode";
 import { PlaneMathVisualSchema } from "#contracts/math/plane";
@@ -18,5 +18,5 @@ export const decodeMathVisual = Effect.fn("AksaraContracts.decodeMathVisual")(
 
 /** Returns every rich-label key in authored anchor order. */
 export function mathVisualLabelKeys(visual: MathVisual) {
-  return (visual.labels ?? []).map(({ key }) => key);
+  return Arr.map(visual.labels ?? [], ({ key }) => key);
 }

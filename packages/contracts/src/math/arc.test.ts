@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { BigDecimal, Schema } from "effect";
+import { Array as Arr, BigDecimal, Schema } from "effect";
 
 import {
   arcCurvatureUnresolved,
@@ -36,7 +36,8 @@ function arc(startDegrees: number, sweepDegrees: number) {
 
 /** Returns stable authoring paths from public scene-resolution issues. */
 function paths(object: ReturnType<typeof arc>) {
-  return planeResolutionIssues(planeFrame, [object], [], { kind: "fit" }).map(
+  return Arr.map(
+    planeResolutionIssues(planeFrame, [object], [], { kind: "fit" }),
     (candidate) => (hasAuthoredIssue(candidate) ? candidate.path : [])
   );
 }

@@ -1,4 +1,4 @@
-import type { Schema } from "effect";
+import { Array as Arr, type Schema } from "effect";
 import {
   arcContained,
   axisContains,
@@ -21,10 +21,13 @@ import type {
 
 /** Checks one plane point against both inclusive frame ranges. */
 function planeContains(frame: PlaneMathFrame, point: { x: number; y: number }) {
-  return [
-    { coordinate: point.x, range: frame.x },
-    { coordinate: point.y, range: frame.y },
-  ].every(({ coordinate, range }) => axisContains(range, coordinate));
+  return Arr.every(
+    [
+      { coordinate: point.x, range: frame.x },
+      { coordinate: point.y, range: frame.y },
+    ],
+    ({ coordinate, range }) => axisContains(range, coordinate)
+  );
 }
 
 /** Checks one space point against all three inclusive frame ranges. */
@@ -32,11 +35,14 @@ function spaceContains(
   frame: SpaceMathFrame,
   point: { x: number; y: number; z: number }
 ) {
-  return [
-    { coordinate: point.x, range: frame.x },
-    { coordinate: point.y, range: frame.y },
-    { coordinate: point.z, range: frame.z },
-  ].every(({ coordinate, range }) => axisContains(range, coordinate));
+  return Arr.every(
+    [
+      { coordinate: point.x, range: frame.x },
+      { coordinate: point.y, range: frame.y },
+      { coordinate: point.z, range: frame.z },
+    ],
+    ({ coordinate, range }) => axisContains(range, coordinate)
+  );
 }
 
 /** Maps one plane path onto the Cartesian frame slabs it traverses. */
@@ -86,12 +92,12 @@ function planeObjectContained(
     return planeContains(frame, object.at);
   }
   if (object.kind === "segment") {
-    return [object.from, object.to].every((point) =>
+    return Arr.every([object.from, object.to], (point) =>
       planeContains(frame, point)
     );
   }
   if (object.kind === "polyline" || object.kind === "polygon") {
-    return object.vertices.every((point) => planeContains(frame, point));
+    return Arr.every(object.vertices, (point) => planeContains(frame, point));
   }
   if (object.kind === "circle") {
     return circleContained(frame, object);
@@ -124,12 +130,12 @@ function spaceObjectContained(
     return spaceContains(frame, object.at);
   }
   if (object.kind === "segment") {
-    return [object.from, object.to].every((point) =>
+    return Arr.every([object.from, object.to], (point) =>
       spaceContains(frame, point)
     );
   }
   if (object.kind === "polyline" || object.kind === "polygon") {
-    return object.vertices.every((point) => spaceContains(frame, point));
+    return Arr.every(object.vertices, (point) => spaceContains(frame, point));
   }
   return cuboidContained(frame, object);
 }
@@ -141,7 +147,7 @@ export function planeBoundsIssues(
   labels: readonly PlaneLabelAnchor[]
 ): readonly Schema.FilterIssue[] {
   return [
-    ...objects.flatMap((object, index): Schema.FilterIssue[] =>
+    ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
       planeObjectContained(frame, object)
         ? []
         : [
@@ -151,7 +157,7 @@ export function planeBoundsIssues(
             },
           ]
     ),
-    ...labels.flatMap((label, index): Schema.FilterIssue[] =>
+    ...Arr.flatMap(labels, (label, index): Schema.FilterIssue[] =>
       planeContains(frame, label.at)
         ? []
         : [
@@ -184,7 +190,7 @@ export function spaceBoundsIssues(
         ]
       : [];
   return [
-    ...objects.flatMap((object, index): Schema.FilterIssue[] =>
+    ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
       spaceObjectContained(frame, object)
         ? []
         : [
@@ -194,7 +200,7 @@ export function spaceBoundsIssues(
             },
           ]
     ),
-    ...labels.flatMap((label, index): Schema.FilterIssue[] =>
+    ...Arr.flatMap(labels, (label, index): Schema.FilterIssue[] =>
       spaceContains(frame, label.at)
         ? []
         : [

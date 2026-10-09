@@ -1,4 +1,11 @@
-import { HashSet, MutableHashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  HashSet,
+  MutableHashSet,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 
 const KEY_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/u;
 
@@ -106,16 +113,16 @@ function duplicateKeyIndexes<T>(
   keyOf: (value: T) => string
 ) {
   const seen = MutableHashSet.empty<string>();
-  const duplicates: number[] = [];
+  const duplicates = MutableList.make<number>();
   for (const [index, value] of values.entries()) {
     const key = keyOf(value);
     if (MutableHashSet.has(seen, key)) {
-      duplicates.push(index);
+      MutableList.append(duplicates, index);
     } else {
       MutableHashSet.add(seen, key);
     }
   }
-  return duplicates;
+  return MutableList.toArray(duplicates);
 }
 
 /** Reports every repeated scene identity at its exact authored key path. */
@@ -123,17 +130,23 @@ export function mathVisualIdentityIssues(
   objects: readonly { readonly id: string }[],
   labels: readonly { readonly key: string; readonly objectId: string }[]
 ): readonly Schema.FilterIssue[] {
-  const objectIds = HashSet.fromIterable(objects.map(({ id }) => id));
+  const objectIds = HashSet.fromIterable(Arr.map(objects, ({ id }) => id));
   return [
-    ...duplicateKeyIndexes(objects, ({ id }) => id).map((index) => ({
-      issue: "Expected a unique mathematical object id.",
-      path: ["objects", index, "id"],
-    })),
-    ...duplicateKeyIndexes(labels, ({ key }) => key).map((index) => ({
-      issue: "Expected a unique mathematical label key.",
-      path: ["labels", index, "key"],
-    })),
-    ...labels.flatMap((label, index) =>
+    ...Arr.map(
+      duplicateKeyIndexes(objects, ({ id }) => id),
+      (index) => ({
+        issue: "Expected a unique mathematical object id.",
+        path: ["objects", index, "id"],
+      })
+    ),
+    ...Arr.map(
+      duplicateKeyIndexes(labels, ({ key }) => key),
+      (index) => ({
+        issue: "Expected a unique mathematical label key.",
+        path: ["labels", index, "key"],
+      })
+    ),
+    ...Arr.flatMap(labels, (label, index) =>
       HashSet.has(objectIds, label.objectId)
         ? []
         : [
@@ -152,8 +165,10 @@ export function hasUniquePositions<T>(
   values: readonly T[],
   same: (left: T, right: T) => boolean
 ) {
-  return values.every(
-    (value, index) =>
-      values.findIndex((candidate) => same(value, candidate)) === index
+  return Arr.every(values, (value, index) =>
+    Option.contains(
+      Arr.findFirstIndex(values, (candidate) => same(value, candidate)),
+      index
+    )
   );
 }

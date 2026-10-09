@@ -1,4 +1,4 @@
-import { BigDecimal, Schema } from "effect";
+import { Array as Arr, BigDecimal, Schema } from "effect";
 
 import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import { decimal } from "#contracts/math/rational";
@@ -159,8 +159,11 @@ export function arcEndpointAxesUnresolved(
 ) {
   const exactStart = decimal(startDegrees);
   const exactEnd = BigDecimal.sum(exactStart, decimal(sweepDegrees));
-  return [
-    endpointAxisMeasure(radius, exactStart, startDegrees),
-    endpointAxisMeasure(radius, exactEnd, startDegrees + sweepDegrees),
-  ].some((measure) => boundedMeasureUnresolved(measure, threshold));
+  return Arr.some(
+    [
+      endpointAxisMeasure(radius, exactStart, startDegrees),
+      endpointAxisMeasure(radius, exactEnd, startDegrees + sweepDegrees),
+    ],
+    (measure) => boundedMeasureUnresolved(measure, threshold)
+  );
 }

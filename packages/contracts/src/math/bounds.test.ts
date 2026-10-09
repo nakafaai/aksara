@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import { planeBoundsIssues, spaceBoundsIssues } from "#contracts/math/bounds";
 import {
@@ -158,7 +158,7 @@ describe("math visual bounds", () => {
         { at: p2(0, 3), key: "outside", objectId: "test-object" },
       ]),
       [
-        ...objects.map((_, index) => ({
+        ...Arr.map(objects, (_, index) => ({
           issue: "Expected plane geometry visible inside its frame.",
           path: ["objects", index],
         })),
@@ -230,7 +230,7 @@ describe("math visual bounds", () => {
         { kind: "isometric" }
       ),
       [
-        ...objects.map((_, index) => ({
+        ...Arr.map(objects, (_, index) => ({
           issue: "Expected space geometry visible inside its frame.",
           path: ["objects", index + infinite.length],
         })),
