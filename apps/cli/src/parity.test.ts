@@ -8,7 +8,13 @@ import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { ConfigProvider, Effect, Schema } from "effect";
+import {
+  ConfigProvider,
+  Effect,
+  MutableHashMap,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { HttpClient } from "effect/http";
 import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
@@ -226,12 +232,13 @@ describe("authenticated parity command", () => {
   ] as const)("fails closed for %s target evidence", (failure) =>
     Effect.gen(function* () {
       const { value, resolver } = yield* signedActiveState(active);
-      const values = new Map(Object.entries(config));
+      const values = MutableHashMap.fromIterable(Rec.toEntries(config));
       if (failure === "missing") {
-        values.delete("AKSARA_DEV_PUBLICATION_TOKEN");
+        MutableHashMap.remove(values, "AKSARA_DEV_PUBLICATION_TOKEN");
       }
       if (failure === "aliased") {
-        values.set(
+        MutableHashMap.set(
+          values,
           "AKSARA_DEV_PUBLICATION_ENDPOINT",
           config.AKSARA_PUBLICATION_ENDPOINT
         );
@@ -275,7 +282,7 @@ describe("authenticated parity command", () => {
       const error = yield* runParityCommand(args).pipe(
         Effect.provideService(
           ConfigProvider.ConfigProvider,
-          ConfigProvider.fromUnknown(Object.fromEntries(values))
+          ConfigProvider.fromUnknown(Rec.fromEntries(values))
         ),
         Effect.provideService(HttpClient.HttpClient, captured.client),
         Effect.provideService(ContentVerificationKeyResolver, resolver),
