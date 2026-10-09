@@ -173,9 +173,7 @@ export function releaseActivatesAppLocale(
   return release.manifest.activeAppLocales.includes(appLocale);
 }
 const RollbackContentReleaseManifestSchema = Schema.Struct({
-  ...ContentReleaseManifestFields,
-  activeAppLocales: ActiveAppLocaleListSchema,
-  format: Schema.Literal(CONTENT_RELEASE_FORMAT),
+  ...ContentReleaseManifestSchema.fields,
   origin: RollbackReleaseOriginSchema,
 });
 
