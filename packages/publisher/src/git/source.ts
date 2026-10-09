@@ -1,7 +1,14 @@
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
-import { Effect, Layer, MutableHashMap, Option, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Layer,
+  MutableHashMap,
+  Option,
+  Stream,
+} from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
@@ -30,7 +37,7 @@ const loadBatch = Effect.fn("AksaraPublisher.loadGitSourceBatch")(function* (
   const blobs = yield* gitBlob
     .read({
       revision: aksaraSha,
-      sourcePaths: changes.map(({ sourcePath }) => sourcePath),
+      sourcePaths: Arr.map(changes, ({ sourcePath }) => sourcePath),
     })
     .pipe(
       Effect.mapError(

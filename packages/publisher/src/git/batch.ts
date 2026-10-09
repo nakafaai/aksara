@@ -4,7 +4,13 @@ import type {
 } from "@nakafa/aksara-contracts/ids";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { Effect, MutableHashMap, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableList,
+  Schema,
+} from "effect";
 
 export const MAX_GIT_BATCH_BLOBS = 128;
 const MAX_BATCH_HEADER_BYTES = 96;
@@ -39,7 +45,10 @@ export function makeGitMetadataRequest(
 ) {
   return {
     stdin: new TextEncoder().encode(
-      sourcePaths.map((sourcePath) => `${commitSha}:${sourcePath}\n`).join("")
+      Arr.join(
+        Arr.map(sourcePaths, (sourcePath) => `${commitSha}:${sourcePath}\n`),
+        ""
+      )
     ),
     stdoutLimit: sourcePaths.length * MAX_BATCH_HEADER_BYTES,
   };
@@ -49,12 +58,15 @@ export function makeGitMetadataRequest(
 export function makeGitBatchRequest(blobs: readonly GitBlobMetadata[]) {
   return {
     stdin: new TextEncoder().encode(
-      blobs.map(({ objectId }) => `${objectId}\n`).join("")
+      Arr.join(
+        Arr.map(blobs, ({ objectId }) => `${objectId}\n`),
+        ""
+      )
     ),
-    stdoutLimit: blobs.reduce(
-      (total, { byteLength }) =>
-        total + byteLength + MAX_BATCH_HEADER_BYTES + 1,
-      0
+    stdoutLimit: Arr.reduce(
+      blobs,
+      0,
+      (total, { byteLength }) => total + byteLength + MAX_BATCH_HEADER_BYTES + 1
     ),
   };
 }
@@ -119,15 +131,15 @@ const verifyEnd = Effect.fn("AksaraPublisher.verifyGitBatchEnd")(function* (
 export const decodeGitBatchMetadata = Effect.fn(
   "AksaraPublisher.decodeGitBatchMetadata"
 )(function* (output: Uint8Array, sourcePaths: readonly CorpusSourcePath[]) {
-  const blobs: GitBlobMetadata[] = [];
+  const blobs = MutableList.make<GitBlobMetadata>();
   let offset = 0;
   for (const sourcePath of sourcePaths) {
     const header = yield* readHeader(output, offset, sourcePath);
-    blobs.push(header.blob);
+    MutableList.append(blobs, header.blob);
     offset = header.nextOffset;
   }
   yield* verifyEnd(output, offset);
-  return blobs;
+  return MutableList.toArray(blobs);
 });
 
 /** Checks body framing and identity against the metadata-only preflight. */
