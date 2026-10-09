@@ -21,7 +21,7 @@ const PreviewDependencySchema = Schema.Struct({
 export type PreviewDependency = typeof PreviewDependencySchema.Type;
 
 /** One exact source directory whose authored file set must remain unchanged. */
-const PreviewDirectorySchema = Schema.Struct({
+export const PreviewDirectorySchema = Schema.Struct({
   files: Schema.Array(Schema.String),
   sourcePath: CorpusSourcePathSchema,
 });

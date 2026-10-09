@@ -4,6 +4,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
+  PreviewDirectorySchema,
   PreviewSelectionSchema,
   PreviewSourceSchema,
 } from "@nakafa/aksara-corpus/preview/source";
@@ -62,12 +63,12 @@ export type SelectedFileCandidate = ReloadFileCandidate | RestartFileCandidate;
 
 type SelectedFile = typeof SelectedFileSchema.Type;
 
-/** Exact source directory whose authored file membership is startup topology. */
+/** Startup-scoped source directory with its absolute path in this checkout. */
 const SelectedDirectorySchema = Schema.Struct({
+  ...PreviewDirectorySchema.fields,
   absolutePath: Schema.String,
-  files: Schema.Array(Schema.String),
-  sourcePath: CorpusSourcePathSchema,
 });
+/** Exact source directory whose authored file membership is startup topology. */
 export type SelectedDirectory = typeof SelectedDirectorySchema.Type;
 
 /** Exact selected document and its ordered compilation closure. */
