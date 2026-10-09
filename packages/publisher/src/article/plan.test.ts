@@ -3,7 +3,16 @@ import {
   type ArticleHead,
   ArticleHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Schema } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  HashMap,
+  Layer,
+  MutableHashMap,
+  Option,
+  Schema,
+} from "effect";
 import {
   ArticleTestFixtures,
   articleTestLayer,
@@ -108,16 +117,20 @@ layer(planTestLayer)("article plan", (it) => {
   it.effect("compiles only the real article whose source changed", () =>
     Effect.gen(function* () {
       const fixture = yield* ArticlePlanTestFixtures;
-      const sources = new Map(fixture.sources);
+      const sources = MutableHashMap.fromIterable(fixture.sources);
       const absolutePath = yield* Effect.fromNullishOr(
-        fixture.absolutePaths.get(fixture.englishEntry.sourcePath)
+        Option.getOrUndefined(
+          HashMap.get(fixture.absolutePaths, fixture.englishEntry.sourcePath)
+        )
       );
-      const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${english}\n`);
+      const english = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+      );
+      MutableHashMap.set(sources, absolutePath, `${english}\n`);
 
       const records = yield* collectArticlePublication({
         heads: fixture.publishedHeads,
-        sources,
+        sources: Arr.fromIterable(sources),
       });
 
       expect(records).toHaveLength(1);

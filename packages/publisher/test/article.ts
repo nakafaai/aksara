@@ -7,22 +7,37 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
-import { Context, Effect, FileSystem, Layer, Path, Stream } from "effect";
+import {
+  Context,
+  Effect,
+  FileSystem,
+  HashMap,
+  Layer,
+  Path,
+  Schema,
+  Stream,
+} from "effect";
 import { prepareArticlePublication } from "#publisher/article/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
 
-interface ArticlePublicationInput {
-  readonly heads: readonly ArticleHead[];
-  readonly renderer?: unknown;
-  readonly sources?: ReadonlyMap<string, string>;
-}
+const ArticlePublicationInputSchema = Schema.Struct({
+  heads: Schema.Array(ArticleHeadSchema),
+  renderer: Schema.optionalKey(Schema.Unknown),
+  sources: Schema.optionalKey(
+    Schema.Array(Schema.Tuple([Schema.String, Schema.String]))
+  ),
+});
 
-interface ArticleFixtureSource {
-  readonly checkoutRoot: string;
-  readonly rendererManifest: unknown;
-  readonly sources: ReadonlyMap<string, string>;
-}
+type ArticlePublicationInput = typeof ArticlePublicationInputSchema.Type;
+
+const ArticleFixtureSourceSchema = Schema.Struct({
+  checkoutRoot: Schema.String,
+  rendererManifest: Schema.Unknown,
+  sources: Schema.Array(Schema.Tuple([Schema.String, Schema.String])),
+});
+
+type ArticleFixtureSource = typeof ArticleFixtureSourceSchema.Type;
 
 const baseComponents = ["ContentGrid", "Highlight", "InlineMath"];
 const politicsComponents = [
@@ -153,11 +168,11 @@ const makeArticleTestFixtures = Effect.fn("ArticleTest.makeFixtures")(() =>
           Effect.map((source) => [sourcePath, absolutePath, source] as const)
         );
     });
-    const absolutePaths = new Map(
+    const absolutePaths = HashMap.fromIterable(
       sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
     );
-    const sources = new Map(
-      sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
+    const sources = sourceRows.map(
+      ([, absolutePath, source]) => [absolutePath, source] as const
     );
     const rendererManifest = yield* articleManifest();
     const fixture = { checkoutRoot, entries, rendererManifest, sources };
