@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import { MathVisualSchema } from "#contracts/math/visual";
 
@@ -84,7 +84,7 @@ describe("plane math visual", () => {
       view: { kind: "fit", padding: 1 },
     });
 
-    expect(visual.objects.map(({ kind }) => kind)).toEqual([
+    expect(Arr.map(visual.objects, ({ kind }) => kind)).toEqual([
       "point",
       "line",
       "ray",

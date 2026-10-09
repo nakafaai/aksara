@@ -1,4 +1,4 @@
-import { BigDecimal, Schema } from "effect";
+import { Array as Arr, BigDecimal, Schema } from "effect";
 
 import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
@@ -97,18 +97,18 @@ export function radialOffsets(
   object: Extract<PlaneMathObject, { readonly kind: "arc" | "circle" }>
 ): readonly RadialOffset[] {
   if (object.kind === "circle") {
-    return [0, 90, 180, 270].map((angle) => arcOffset(object.radius, angle));
+    return Arr.map([0, 90, 180, 270], (angle) =>
+      arcOffset(object.radius, angle)
+    );
   }
   const angles = [
     object.startDegrees,
     object.startDegrees + object.sweepDegrees,
+    ...Arr.filter([0, 90, 180, 270], (angle) =>
+      arcContainsAngle(object.startDegrees, object.sweepDegrees, angle)
+    ),
   ];
-  for (const angle of [0, 90, 180, 270]) {
-    if (arcContainsAngle(object.startDegrees, object.sweepDegrees, angle)) {
-      angles.push(angle);
-    }
-  }
-  return angles.map((angle) => arcOffset(object.radius, angle));
+  return Arr.map(angles, (angle) => arcOffset(object.radius, angle));
 }
 
 /** Checks the exact endpoints and cardinal extrema of one directed arc. */
@@ -116,7 +116,8 @@ export function arcContained(
   frame: PlaneMathFrame,
   object: Extract<PlaneMathObject, { readonly kind: "arc" }>
 ) {
-  return radialOffsets(object).every(
+  return Arr.every(
+    radialOffsets(object),
     (offset) =>
       axisContainsTranslated(
         frame.x,
@@ -133,7 +134,8 @@ export function circleContained(
   frame: PlaneMathFrame,
   object: Extract<PlaneMathObject, { readonly kind: "circle" }>
 ) {
-  return radialOffsets(object).every(
+  return Arr.every(
+    radialOffsets(object),
     (offset) =>
       axisContainsTranslated(
         frame.x,
@@ -170,10 +172,13 @@ export type QuadraticExtremum = typeof QuadraticExtremumSchema.Type;
 export function quadraticExtrema(
   object: Extract<PlaneMathObject, { readonly kind: "quadratic" }>
 ): readonly QuadraticExtremum[] {
-  const endpoints = [object.domain.min, object.domain.max].map((input) => ({
-    input: numberRatio(input),
-    output: decimalRatio(quadraticValue(object, input)),
-  }));
+  const endpoints = Arr.map(
+    [object.domain.min, object.domain.max],
+    (input) => ({
+      input: numberRatio(input),
+      output: decimalRatio(quadraticValue(object, input)),
+    })
+  );
   const a = decimal(object.coefficients.a);
   const b = decimal(object.coefficients.b);
   const fourA = BigDecimal.multiply(decimal(4), a);
@@ -202,13 +207,13 @@ export function quadraticContained(
   const inputRange = object.inputAxis === "x" ? frame.x : frame.y;
   const outputRange = object.inputAxis === "x" ? frame.y : frame.x;
   if (
-    ![object.domain.min, object.domain.max].every((input) =>
+    !Arr.every([object.domain.min, object.domain.max], (input) =>
       axisContains(inputRange, input)
     )
   ) {
     return false;
   }
-  return quadraticExtrema(object).every(({ output }) =>
+  return Arr.every(quadraticExtrema(object), ({ output }) =>
     ratioInRange(output, outputRange.min, outputRange.max)
   );
 }
@@ -253,7 +258,8 @@ export function cuboidContained(
   frame: SpaceMathFrame,
   object: Extract<SpaceMathObject, { readonly kind: "cuboid" }>
 ) {
-  return cuboidExtents(object).every(
+  return Arr.every(
+    cuboidExtents(object),
     ({ axis, center, extent }) =>
       axisContainsTranslated(frame[axis], center, extent, ZERO) &&
       axisContainsTranslated(
