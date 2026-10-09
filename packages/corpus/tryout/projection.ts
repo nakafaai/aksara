@@ -81,12 +81,19 @@ function activeSections(sources: readonly TryoutExamSource[]) {
   );
 }
 
-/** One shared stimulus, its first question in section order, and the later questions that name it. */
-interface StimulusGroup {
-  readonly first: QuestionSource;
-  readonly rest: MutableList.MutableList<QuestionSource>;
-  readonly stimulusKey: NonNullable<QuestionSource["item"]["stimulusKey"]>;
+/** Starts one shared-stimulus group at its first question, in section order. */
+function startGroup(
+  question: QuestionSource,
+  stimulusKey: NonNullable<QuestionSource["item"]["stimulusKey"]>
+) {
+  return {
+    first: question,
+    rest: MutableList.make<QuestionSource>(),
+    stimulusKey,
+  };
 }
+
+type StimulusGroup = ReturnType<typeof startGroup>;
 
 /** Requires every shared-stimulus group to contain contiguous sibling items, checked in section order. */
 const validateStimulusGroups = Effect.fn(
@@ -106,11 +113,7 @@ const validateStimulusGroups = Effect.fn(
       MutableHashMap.get(groups, stimulusKey)
     );
     if (group === undefined) {
-      const created: StimulusGroup = {
-        first: question,
-        rest: MutableList.make<QuestionSource>(),
-        stimulusKey,
-      };
+      const created = startGroup(question, stimulusKey);
       MutableHashMap.set(groups, stimulusKey, created);
       MutableList.append(groupsInOrder, created);
     } else {

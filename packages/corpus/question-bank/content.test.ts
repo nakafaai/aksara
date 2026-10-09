@@ -155,6 +155,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         expect(observed.readFileString).toHaveBeenCalledTimes(2);
         expect(sources).toHaveLength(2);
         expect(entries).toHaveLength(8);
+        /** Finds the Indonesian body of one content key in the registry entries. */
         const indonesianBody = (contentKey: string) =>
           Option.getOrUndefined(
             Arr.findFirst(
