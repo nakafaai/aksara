@@ -1,19 +1,21 @@
 import { spawn } from "node:child_process";
 import { terminateProcessGroup } from "@nakafa/aksara-utilities/process/group";
-import { Context, Deferred, Effect, Layer } from "effect";
+import { Context, Deferred, Effect, Layer, Schema } from "effect";
 import type * as Scope from "effect/Scope";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 
 const TERMINATION_GRACE = "2 seconds";
 const TERMINATION_LIMIT = "1 second";
 
+const NakafaProcessInputSchema = Schema.Struct({
+  args: Schema.Array(Schema.String),
+  command: Schema.String,
+  environment: Schema.Record(Schema.String, Schema.String),
+  root: Schema.String,
+});
+
 /** Exact operating-system process request with no implicit environment. */
-export interface NakafaProcessInput {
-  readonly args: readonly string[];
-  readonly command: string;
-  readonly environment: Readonly<Record<string, string>>;
-  readonly root: string;
-}
+export type NakafaProcessInput = typeof NakafaProcessInputSchema.Type;
 
 /** Scoped child process whose exit can be observed exactly once. */
 export interface RunningProcess {
