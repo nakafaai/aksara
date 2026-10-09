@@ -11,6 +11,7 @@ import {
   Result,
   Schema,
   SchemaIssue,
+  type StandardSchema,
 } from "effect";
 import type { Root } from "mdast";
 import type { Plugin } from "unified";
@@ -31,7 +32,7 @@ import {
 
 /** Normalizes Standard Schema path values into the compiler contract. */
 export function normalizeSchemaPath(
-  path: readonly (PropertyKey | { readonly key: PropertyKey })[] | undefined
+  path: StandardSchema.StandardSchemaV1.Issue["path"]
 ): readonly StaticLiteralPathSegment[] {
   return Arr.map(path ?? [], (segment) => {
     const key = Predicate.hasProperty(segment, "key") ? segment.key : segment;
