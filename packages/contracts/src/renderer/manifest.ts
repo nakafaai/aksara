@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Order, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
 import { hashText } from "#contracts/hash/text";
 import {
@@ -16,7 +16,6 @@ import {
   sortRendererDomains,
 } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
-import { compareCodeUnits } from "#contracts/text/order";
 
 const RendererManifestCreationSchema = Schema.Struct({
   base: Schema.Array(RendererComponentNameSchema),
@@ -57,7 +56,7 @@ export const createRendererManifest = Effect.fn(
     RendererManifestDomainsSchema,
     "RendererManifestDomains",
     sortRendererDomains(
-      wire.domains.map(({ name, components }) => ({
+      Arr.map(wire.domains, ({ name, components }) => ({
         components: sortRendererComponents(components),
         name,
       }))
@@ -66,7 +65,7 @@ export const createRendererManifest = Effect.fn(
   const contract = {
     base: sortRendererComponents(wire.base),
     domains,
-    publishedDomains: [...wire.publishedDomains].sort(compareCodeUnits),
+    publishedDomains: Arr.sort(wire.publishedDomains, Order.String),
   };
   const hash = yield* hashRendererContract(contract);
   return yield* decodeContract(
