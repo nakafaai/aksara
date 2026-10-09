@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import {
   canonicalQuestionResponse,
@@ -99,10 +99,10 @@ describe("question response", () => {
 
   it("rejects noncanonical option identity and answer keys", () => {
     for (const response of [
-      { ...single, options: [...single.options].reverse() },
+      { ...single, options: Arr.reverse(single.options) },
       {
         ...single,
-        options: single.options.map((option) => ({
+        options: Arr.map(single.options, (option) => ({
           ...option,
           isCorrect: false,
         })),
@@ -269,15 +269,17 @@ describe("question response", () => {
   });
 
   it("returns canonical responses that stay valid frozen responses", () => {
-    const responses = [single, shortNumber, shortText, rubric].map((response) =>
-      Schema.decodeSync(QuestionResponseSchema)(response)
+    const responses = Arr.map(
+      [single, shortNumber, shortText, rubric],
+      (response) => Schema.decodeSync(QuestionResponseSchema)(response)
     );
-    const stored: readonly QuestionResponse[] = responses.map(
+    const stored: readonly QuestionResponse[] = Arr.map(
+      responses,
       canonicalQuestionResponse
     );
 
     expect(
-      stored.map((response) =>
+      Arr.map(stored, (response) =>
         Schema.decodeSync(QuestionResponseSchema)(response)
       )
     ).toEqual(responses);

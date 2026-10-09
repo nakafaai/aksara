@@ -1,4 +1,4 @@
-import { Schema, Struct } from "effect";
+import { Array as Arr, Schema, Struct } from "effect";
 
 import { ActiveAppLocaleCodeSchema } from "#contracts/locale";
 import {
@@ -66,11 +66,13 @@ function hasCanonicalCriteria(
 ) {
   return (
     criteria.length > 0 &&
-    criteria.every(
+    Arr.every(
+      criteria,
       ({ criterionKey, levels, order }, index) =>
         order === index + 1 &&
         criterionKey === `criterion-${order}` &&
-        levels.every(
+        Arr.every(
+          levels,
           (level, levelIndex) =>
             level.order === levelIndex + 1 &&
             level.levelKey === `level-${level.order}`
@@ -187,13 +189,13 @@ export type QuestionRubricResponseSource =
 /** Derives stable criterion and level keys once from authored array order. */
 export function freezeQuestionRubric(source: QuestionRubricResponseSource) {
   return QuestionRubricResponseSchema.make({
-    criteria: source.criteria.map((criterion, index) => ({
+    criteria: Arr.map(source.criteria, (criterion, index) => ({
       criterionKey: `criterion-${index + 1}`,
       ...(criterion.finalAnswer === undefined
         ? {}
         : { finalAnswer: criterion.finalAnswer }),
       label: criterion.label,
-      levels: criterion.levels.map(({ label, points }, levelIndex) => ({
+      levels: Arr.map(criterion.levels, ({ label, points }, levelIndex) => ({
         label,
         levelKey: `level-${levelIndex + 1}`,
         order: levelIndex + 1,
@@ -215,14 +217,15 @@ function canonicalRubricCriteria<Key>(
   rubric: QuestionRubricResponse,
   canonicalKey: (key: QuestionAnswerKey) => Key
 ) {
-  return rubric.criteria.map(
+  return Arr.map(
+    rubric.criteria,
     ({ criterionKey, finalAnswer, label, levels, order }) => ({
       criterionKey,
       ...(finalAnswer === undefined
         ? {}
         : { finalAnswer: canonicalKey(finalAnswer) }),
       label: canonicalRubricLabel(label),
-      levels: levels.map((level) => ({
+      levels: Arr.map(levels, (level) => ({
         label: canonicalRubricLabel(level.label),
         levelKey: level.levelKey,
         order: level.order,
@@ -260,10 +263,11 @@ export function canonicalQuestionRubric(rubric: QuestionRubricResponse) {
 
 /** Returns the rubric total: the sum of every criterion's highest level. */
 export function questionRubricPoints(rubric: QuestionRubricScale) {
-  return rubric.criteria.reduce(
+  return Arr.reduce(
+    rubric.criteria,
+    0,
     (total, { levels }) =>
       total +
-      levels.reduce((highest, { points }) => Math.max(highest, points), 0),
-    0
+      Arr.reduce(levels, 0, (highest, { points }) => Math.max(highest, points))
   );
 }

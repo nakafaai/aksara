@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import {
   CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,
@@ -64,7 +64,7 @@ function parseQuestionSetParts(input: string): QuestionSetParts | undefined {
   const keys = input.slice(prefix.length).split("/");
   if (
     keys.length < 4 ||
-    keys.some((key) => !isTryoutKey(key) || isQuestionSegment(key))
+    Arr.some(keys, (key) => !isTryoutKey(key) || isQuestionSegment(key))
   ) {
     return;
   }
