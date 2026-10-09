@@ -7,11 +7,13 @@ import {
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/current/state";
 import {
   MaterialHeadSchema,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -55,7 +57,7 @@ const TargetCallsSchema = Schema.Struct({
   catalogRebuild: Schema.mutableKey(Schema.UndefinedOr(Schema.Boolean)),
   checkoutRoot: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
   cleanReads: Schema.mutableKey(Schema.Finite),
-  current: Schema.mutableKey(Schema.Unknown),
+  current: Schema.mutableKey(ContentReleaseCurrentSchema),
   derivedPublicKeyPem: Schema.mutableKey(Schema.String),
   environmentKeyId: Schema.String,
   finalSha: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
@@ -66,12 +68,14 @@ const TargetCallsSchema = Schema.Struct({
       Schema.Struct({
         allowInsecureLoopback: Schema.Boolean,
         endpoint: Schema.String,
-        timeout: Schema.Unknown,
+        timeout: Schema.String,
       })
     )
   ),
   rendererCalls: Schema.mutableKey(Schema.Finite),
-  rendererManifestOverride: Schema.mutableKey(Schema.Unknown),
+  rendererManifestOverride: Schema.mutableKey(
+    Schema.UndefinedOr(RendererManifestEnvelopeSchema)
+  ),
   rootReads: Schema.mutableKey(Schema.Finite),
   runtimeBundleRefreshes: Schema.mutableKey(Schema.Finite),
   runtimeResultSnapshotId: Schema.mutableKey(
@@ -268,7 +272,7 @@ export function httpTargetMock(calls: TargetCalls): {
   readonly makeHttpPublicationTarget: (input: {
     readonly allowInsecureLoopback: boolean;
     readonly endpoint: URL;
-    readonly timeout: unknown;
+    readonly timeout: string;
   }) => Effect.Effect<typeof PublicationTarget.Service>;
 } {
   return {
