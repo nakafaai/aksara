@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { Effect, Struct } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
@@ -10,6 +10,7 @@ import {
   corpusRoot,
   physicalQuestionBankTestTimeout,
   questionLayer,
+  realQuestionCorpusLayer,
 } from "#corpus/test/question";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
@@ -23,9 +24,11 @@ const loadTkaReadiness = Effect.fn("AksaraCorpus.test.loadTkaReadiness")(
     const readiness = yield* tkaCompulsoryMathematicsReadiness;
     const registry = yield* decodeTryoutRegistry();
     const banks = yield* indexQuestionBanks(registry);
-    const discovered = yield* discoverQuestionSources(corpusRoot, banks).pipe(
-      Effect.provide(questionLayer)
-    );
+    const repositoryRoot = yield* corpusRoot;
+    const discovered = yield* discoverQuestionSources(
+      repositoryRoot,
+      banks
+    ).pipe(Effect.provide(questionLayer));
     const questions = discovered.filter(({ setKey }) =>
       setKey.startsWith(
         "question-bank/tryout/indonesia/tka/compulsory-mathematics/"
@@ -66,7 +69,7 @@ const rejectField = Effect.fn("AksaraCorpus.test.rejectReadinessField")(
     )
 );
 
-describe("assessment question readiness", () => {
+layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
   it.effect(
     "accepts every actual TKA set against its official vocabulary",
     () =>

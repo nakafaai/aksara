@@ -1,14 +1,19 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { Effect } from "effect";
-import { corpusRoot, questionLayer } from "#corpus/test/question";
+import {
+  corpusRoot,
+  questionLayer,
+  realQuestionCorpusLayer,
+} from "#corpus/test/question";
 import { loadTryoutContent } from "#corpus/tryout/content";
 
-describe("tryout content", () => {
+layer(realQuestionCorpusLayer)("tryout content", (it) => {
   it.effect(
     "projects one discovered question source set into entries and placements",
     () =>
       Effect.gen(function* () {
-        const content = yield* loadTryoutContent(corpusRoot).pipe(
+        const repositoryRoot = yield* corpusRoot;
+        const content = yield* loadTryoutContent(repositoryRoot).pipe(
           Effect.provide(questionLayer)
         );
 

@@ -73,7 +73,8 @@ layer(NodeServices.layer)("material preview projection", (it) => {
         if (selected === undefined) {
           return;
         }
-        const selection = yield* selectMaterialEntry(corpusRoot, selected);
+        const root = yield* corpusRoot;
+        const selection = yield* selectMaterialEntry(root, selected);
 
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);

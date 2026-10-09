@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, test } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 import { importCorpusModules } from "#corpus/test/imports";
@@ -286,6 +287,6 @@ describe("tryout schema", () => {
       const files = yield* importCorpusModules("tryout/**/source.ts");
 
       expect(files).toHaveLength(2);
-    })
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

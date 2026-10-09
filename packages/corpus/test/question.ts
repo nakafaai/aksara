@@ -1,91 +1,178 @@
-import { globSync, readdirSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { NodeServices } from "@effect/platform-node";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
 import {
+  Array as Arr,
+  Context,
   Effect,
   FileSystem,
   HashMap,
   Layer,
+  MutableHashMap,
   Option,
+  Order,
   Path,
   PlatformError,
+  Schema,
 } from "effect";
 import {
   indexQuestionBanks,
+  type QuestionBankIndex,
   questionSourceFiles,
 } from "#corpus/question-bank/path";
 import { discoverQuestionSources } from "#corpus/question-bank/source";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 
-export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
-
 export const questionTestSourceRoot = "packages/corpus/question-bank/tryout";
 /** Headroom for integrity tests that decode the complete physical question bank. */
 export const physicalQuestionBankTestTimeout = 30_000;
-export const absoluteQuestionTestSourceRoot = resolve(
-  corpusRoot,
-  questionTestSourceRoot
-);
 const QUESTION_DIRECTORY_PATTERN = /\/question-[1-9]\d*$/u;
-export const realQuestionEntries = globSync("**/*", {
-  cwd: absoluteQuestionTestSourceRoot,
+const QUESTION_PROMPT_PATTERN = /^question\..*\.mdx$/u;
+
+const QuestionDirectoryReadSchema = Schema.Struct({
+  path: Schema.String,
+  recursive: Schema.Boolean,
 });
-const sources = new Map<string, string>();
-for (const sourcePath of globSync("packages/corpus/**/*.ts", {
-  cwd: corpusRoot,
-})) {
-  const absolutePath = resolve(corpusRoot, sourcePath);
-  sources.set(absolutePath, readFileSync(absolutePath, "utf8"));
-}
-export const realQuestionItems = new Map(
-  [...sources].filter(([sourcePath]) => sourcePath.endsWith("/item.ts"))
+/** One observed directory read made through the controlled corpus test layer. */
+export type QuestionDirectoryRead = typeof QuestionDirectoryReadSchema.Type;
+
+const QuestionLayerOverridesSchema = Schema.Struct({
+  directories: Schema.optionalKey(
+    Schema.HashMap(Schema.String, Schema.Array(Schema.String))
+  ),
+  sources: Schema.optionalKey(Schema.HashMap(Schema.String, Schema.String)),
+});
+/** Optional virtual question files layered over the real corpus test tree. */
+export type QuestionLayerOverrides = typeof QuestionLayerOverridesSchema.Type;
+
+/** Resolves the repository root, three folders above this test helper. */
+export const corpusRoot = Effect.gen(function* () {
+  const path = yield* Path.Path;
+  return path.resolve(import.meta.dirname, "..", "..", "..");
+});
+
+/** Resolves the absolute folder of the physical question bank that the tests read. */
+export const absoluteQuestionTestSourceRoot = Effect.gen(function* () {
+  const path = yield* Path.Path;
+  return path.resolve(yield* corpusRoot, questionTestSourceRoot);
+});
+
+/** The real question bank, read once for each test suite and shared by its tests. */
+class RealQuestionCorpus extends Context.Service<
+  RealQuestionCorpus,
+  {
+    /** Every entry of the physical question tree, sorted by code unit. */
+    readonly entries: readonly string[];
+    /** Every real item source keyed by absolute path, sorted by path. */
+    readonly items: MutableHashMap.MutableHashMap<string, string>;
+    /** Every real question prompt keyed by absolute path, sorted by path. */
+    readonly prompts: MutableHashMap.MutableHashMap<string, string>;
+    /** Every corpus TypeScript source and question prompt keyed by absolute path. */
+    readonly sources: MutableHashMap.MutableHashMap<string, string>;
+    /** The decoded real try-out registry. */
+    readonly tryoutSources: Effect.Success<
+      ReturnType<typeof decodeTryoutRegistry>
+    >;
+    /** The question-bank index of the decoded real try-out registry. */
+    readonly banks: QuestionBankIndex;
+  }
+>()("AksaraCorpus.test.RealQuestionCorpus") {}
+
+/** Tells whether a path lies inside installed dependencies, whose symlinked folders a recursive read would follow. */
+const isInstalledFile = (file: string) =>
+  file.split("/").includes("node_modules");
+
+/** Reads the corpus sources and the physical question tree, then decodes the real try-out registry. */
+const loadRealQuestionCorpus = Effect.gen(function* () {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  /** Reads the text of each path, keeping the order of the paths. */
+  const readTexts = (paths: readonly string[]) =>
+    Effect.forEach(
+      paths,
+      (filePath) =>
+        fileSystem
+          .readFileString(filePath)
+          .pipe(Effect.map((text) => [filePath, text] as const)),
+      { concurrency: 16 }
+    );
+  const packageRoot = path.resolve(yield* corpusRoot, "packages/corpus");
+  const questionRoot = yield* absoluteQuestionTestSourceRoot;
+  const entries = Arr.sort(
+    yield* fileSystem.readDirectory(questionRoot, { recursive: true }),
+    Order.String
+  );
+  const sourcePaths = Arr.sort(
+    (yield* fileSystem.readDirectory(packageRoot, { recursive: true }))
+      .filter((file) => file.endsWith(".ts") && !isInstalledFile(file))
+      .map((file) => path.resolve(packageRoot, file)),
+    Order.String
+  );
+  const promptPaths = Arr.sort(
+    entries
+      .filter((entry) => QUESTION_PROMPT_PATTERN.test(path.basename(entry)))
+      .map((entry) => path.resolve(questionRoot, entry)),
+    Order.String
+  );
+  const sourceTexts = yield* readTexts(sourcePaths);
+  const promptTexts = yield* readTexts(promptPaths);
+  const tryoutSources = yield* decodeTryoutRegistry();
+  return {
+    banks: yield* indexQuestionBanks(tryoutSources),
+    entries,
+    items: MutableHashMap.fromIterable(
+      sourceTexts.filter(([sourcePath]) => sourcePath.endsWith("/item.ts"))
+    ),
+    prompts: MutableHashMap.fromIterable(promptTexts),
+    sources: MutableHashMap.fromIterable([...sourceTexts, ...promptTexts]),
+    tryoutSources,
+  };
+});
+
+/** Loads the real question bank once for the tests that share it, with the Node services they use. */
+export const realQuestionCorpusLayer = Layer.effect(
+  RealQuestionCorpus,
+  loadRealQuestionCorpus
+).pipe(Layer.provideMerge(NodeServices.layer));
+
+/** Every entry of the physical question tree, sorted by code unit. */
+export const realQuestionEntries = RealQuestionCorpus.pipe(
+  Effect.map(({ entries }) => entries)
 );
-/** Every real prompt body, so whole-bank loads can check prompt uniqueness. */
-export const realQuestionPrompts = new Map<string, string>();
-for (const sourcePath of globSync("**/question.*.mdx", {
-  cwd: absoluteQuestionTestSourceRoot,
-})) {
-  const absolutePath = resolve(absoluteQuestionTestSourceRoot, sourcePath);
-  const prompt = readFileSync(absolutePath, "utf8");
-  realQuestionPrompts.set(absolutePath, prompt);
-  sources.set(absolutePath, prompt);
-}
-export const realTryoutSources = await Effect.runPromise(
-  decodeTryoutRegistry()
+/** Every real item source keyed by absolute path, sorted by path. */
+export const realQuestionItems = RealQuestionCorpus.pipe(
+  Effect.map(({ items }) => items)
 );
-export const realQuestionBanks = await Effect.runPromise(
-  indexQuestionBanks(realTryoutSources)
+/** The decoded real try-out registry. */
+export const realTryoutSources = RealQuestionCorpus.pipe(
+  Effect.map(({ tryoutSources }) => tryoutSources)
+);
+/** The question-bank index of the decoded real try-out registry. */
+export const realQuestionBanks = RealQuestionCorpus.pipe(
+  Effect.map(({ banks }) => banks)
 );
 
-/** Discovers synthetic question sources through the controlled test layer. */
-export function discoverSyntheticQuestionSources(
+/** Discovers synthetic question sources through the controlled test layer over the real question banks. */
+export const discoverSyntheticQuestionSources = Effect.fn(
+  "AksaraCorpus.test.discoverSyntheticQuestionSources"
+)(function* (
   directoryEntries: readonly string[],
   sourceFiles: Iterable<readonly [string, string]>,
   failDirectory = false
 ) {
-  return Effect.provide(
-    discoverQuestionSources(corpusRoot, realQuestionBanks),
-    makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
+  const root = yield* corpusRoot;
+  const banks = yield* realQuestionBanks;
+  return yield* discoverQuestionSources(root, banks).pipe(
+    Effect.provide(
+      makeQuestionSourceLayer(directoryEntries, sourceFiles, failDirectory)
+    )
   );
-}
+});
 
 /** Flips one typed synthetic discovery failure into the success channel. */
 export function rejectSyntheticQuestionSources(
   ...arguments_: Parameters<typeof discoverSyntheticQuestionSources>
 ) {
   return Effect.flip(discoverSyntheticQuestionSources(...arguments_));
-}
-
-/** One observed directory read made through the controlled corpus test layer. */
-export interface QuestionDirectoryRead {
-  readonly path: string;
-  readonly recursive: boolean;
-}
-
-/** Optional virtual question files layered over the real corpus test tree. */
-export interface QuestionLayerOverrides {
-  readonly directories?: ReadonlyMap<string, readonly string[]>;
-  readonly sources?: ReadonlyMap<string, string>;
 }
 
 export const validQuestionItemSource = `import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
@@ -125,12 +212,13 @@ export function questionEntries(root: string, files: readonly string[]) {
 }
 
 /** Maps a physical synthetic question root to its absolute item source. */
-export function itemForQuestion(
-  root: string,
-  source = validQuestionItemSource
-): readonly (readonly [string, string])[] {
-  return [[resolve(absoluteQuestionTestSourceRoot, root, "item.ts"), source]];
-}
+export const itemForQuestion = Effect.fn("AksaraCorpus.test.itemForQuestion")(
+  function* (root: string, source = validQuestionItemSource) {
+    const path = yield* Path.Path;
+    const questionRoot = yield* absoluteQuestionTestSourceRoot;
+    return [[path.resolve(questionRoot, root, "item.ts"), source]] as const;
+  }
+);
 
 /** Creates a deterministic synthetic question filesystem for source tests. */
 export function makeQuestionSourceLayer(
@@ -161,48 +249,64 @@ export function makeQuestionRegistryLayer(
   directoryEntries: readonly string[],
   sourceFiles: Iterable<readonly [string, string]>
 ) {
-  return Layer.merge(
-    makeQuestionSourceLayer(directoryEntries, [
-      ...realQuestionPrompts,
-      ...sourceFiles,
-    ]),
-    Path.layer
+  return Layer.unwrap(
+    Effect.map(RealQuestionCorpus, ({ prompts }) =>
+      Layer.merge(
+        makeQuestionSourceLayer(directoryEntries, [...prompts, ...sourceFiles]),
+        Path.layer
+      )
+    )
   );
 }
 
-/** Creates a path-faithful question filesystem with optional read evidence. */
+/** Creates a path-faithful question filesystem over the real corpus with optional read evidence. */
 export function makeQuestionLayer(
   directoryReads: QuestionDirectoryRead[] = [],
   overrides: QuestionLayerOverrides = {}
 ) {
-  return FileSystem.layerNoop({
-    readDirectory: (path, options) => {
-      const recursive = options?.recursive === true;
-      directoryReads.push({ path, recursive });
-      const directory = overrides.directories?.get(path);
-      if (directory !== undefined) {
-        return Effect.succeed([...directory]);
-      }
-      if (path === absoluteQuestionTestSourceRoot && recursive) {
-        return Effect.succeed(realQuestionEntries);
-      }
-      if (
-        path.startsWith(`${absoluteQuestionTestSourceRoot}/`) &&
-        !recursive &&
-        QUESTION_DIRECTORY_PATTERN.test(path)
-      ) {
-        return Effect.succeed(readdirSync(path).sort());
-      }
-      return Effect.fail(missing("readDirectory", path));
-    },
-    readFileString: (path) => {
-      const source = overrides.sources?.get(path) ?? sources.get(path);
-      if (source !== undefined) {
-        return Effect.succeed(source);
-      }
-      return Effect.fail(missing("readFileString", path));
-    },
-  });
+  return Layer.unwrap(
+    Effect.gen(function* () {
+      const realFileSystem = yield* FileSystem.FileSystem;
+      const corpus = yield* RealQuestionCorpus;
+      const questionRoot = yield* absoluteQuestionTestSourceRoot;
+      return FileSystem.layerNoop({
+        readDirectory: (path, options) => {
+          const recursive = options?.recursive === true;
+          directoryReads.push({ path, recursive });
+          const directory = Option.getOrUndefined(
+            HashMap.get(overrides.directories ?? HashMap.empty(), path)
+          );
+          if (directory !== undefined) {
+            return Effect.succeed([...directory]);
+          }
+          if (path === questionRoot && recursive) {
+            return Effect.succeed([...corpus.entries]);
+          }
+          if (
+            path.startsWith(`${questionRoot}/`) &&
+            !recursive &&
+            QUESTION_DIRECTORY_PATTERN.test(path)
+          ) {
+            return realFileSystem
+              .readDirectory(path)
+              .pipe(Effect.map((names) => Arr.sort(names, Order.String)));
+          }
+          return Effect.fail(missing("readDirectory", path));
+        },
+        readFileString: (path) => {
+          const source =
+            Option.getOrUndefined(
+              HashMap.get(overrides.sources ?? HashMap.empty(), path)
+            ) ??
+            Option.getOrUndefined(MutableHashMap.get(corpus.sources, path));
+          if (source !== undefined) {
+            return Effect.succeed(source);
+          }
+          return Effect.fail(missing("readFileString", path));
+        },
+      });
+    })
+  );
 }
 
 /** Creates one stable missing-path error for the controlled filesystem. */
@@ -215,6 +319,10 @@ function missing(method: "readDirectory" | "readFileString", path: string) {
   });
 }
 
-const fileLayer = makeQuestionLayer();
+export const questionLayer = Layer.merge(makeQuestionLayer(), Path.layer);
 
-export const questionLayer = Layer.merge(fileLayer, Path.layer);
+/** Serves the real question tree through the controlled filesystem, with the real corpus it reads provided once. */
+export const questionTestLayer = Layer.provide(
+  Layer.merge(makeQuestionLayer(), Path.layer),
+  realQuestionCorpusLayer
+);

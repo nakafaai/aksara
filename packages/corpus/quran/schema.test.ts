@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
 import {
   QURAN_SURAH_COUNT,
@@ -6,7 +6,10 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Record, Schema, Stream } from "effect";
 import { QuranSurahSchema } from "#corpus/quran/schema";
-import { testQuranSources } from "#corpus/test/quran/sources";
+import {
+  quranTestSourcesLayer,
+  testQuranSources,
+} from "#corpus/test/quran/sources";
 
 const decodeSurah = Schema.decodeUnknownEffect(QuranSurahSchema);
 
@@ -22,13 +25,17 @@ function reject(source: unknown) {
 
 /** Returns the first real decoded surah for isolated schema failures. */
 function firstSurah() {
-  return Effect.fromNullishOr(testQuranSources[0]).pipe(Effect.flatMap(decode));
+  return testQuranSources.pipe(
+    Effect.flatMap((sources) => Effect.fromNullishOr(sources[0])),
+    Effect.flatMap(decode)
+  );
 }
 
-describe("Quran schema", () => {
+layer(quranTestSourcesLayer)("Quran schema", (it) => {
   it.effect("strictly decodes all 114 surahs and 6,236 verses", () =>
     Effect.gen(function* () {
-      const values = yield* Stream.fromIterable(testQuranSources).pipe(
+      const sources = yield* testQuranSources;
+      const values = yield* Stream.fromIterable(sources).pipe(
         Stream.mapEffect((source) =>
           decodeSurah(source, { onExcessProperty: "error" })
         ),

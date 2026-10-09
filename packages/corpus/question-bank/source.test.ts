@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, HashSet, MutableHashMap, Option, Path } from "effect";
+import { Effect, HashSet, MutableHashMap, Option } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
   indexQuestionItems,
@@ -17,19 +17,20 @@ import {
   questionRendererCounts,
   questionTestSourceRoot,
   realQuestionBanks,
+  realQuestionCorpusLayer,
   realQuestionEntries,
   realQuestionItems,
   rejectSyntheticQuestionSources,
 } from "#corpus/test/question";
 
-layer(Path.layer)("question source", (it) => {
+layer(realQuestionCorpusLayer)("question source", (it) => {
   it.effect(
     "discovers and validates all 1850 real question directories",
     () =>
       Effect.gen(function* () {
         const sources = yield* discoverSyntheticQuestionSources(
-          realQuestionEntries,
-          realQuestionItems
+          yield* realQuestionEntries,
+          yield* realQuestionItems
         );
         const itemsByRoot = indexQuestionItems(sources);
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
@@ -94,9 +95,12 @@ layer(Path.layer)("question source", (it) => {
         [],
         true
       );
-      const location = yield* decodeQuestionPath(realQuestionBanks, root);
+      const location = yield* decodeQuestionPath(
+        yield* realQuestionBanks,
+        root
+      );
       const selectedDirectoryError = yield* readQuestionSource(
-        corpusRoot,
+        yield* corpusRoot,
         location
       ).pipe(
         Effect.provide([
@@ -174,13 +178,14 @@ layer(Path.layer)("question source", (it) => {
     Effect.gen(function* () {
       const errors = yield* Effect.forEach(
         invalidQuestionItemSources,
-        (source, index) => {
-          const root = `indonesia/snbt/general-reasoning/set-1/question-${index + 1}`;
-          return rejectSyntheticQuestionSources(
-            questionEntries(root, generalQuestionSourceFiles),
-            itemForQuestion(root, source)
-          );
-        },
+        (source, index) =>
+          Effect.gen(function* () {
+            const root = `indonesia/snbt/general-reasoning/set-1/question-${index + 1}`;
+            return yield* rejectSyntheticQuestionSources(
+              questionEntries(root, generalQuestionSourceFiles),
+              yield* itemForQuestion(root, source)
+            );
+          }),
         { concurrency: "unbounded" }
       );
 
@@ -198,7 +203,10 @@ layer(Path.layer)("question source", (it) => {
         ...questionEntries(first, generalQuestionSourceFiles),
         ...questionEntries(third, generalQuestionSourceFiles),
       ];
-      const items = [...itemForQuestion(first), ...itemForQuestion(third)];
+      const items = [
+        ...(yield* itemForQuestion(first)),
+        ...(yield* itemForQuestion(third)),
+      ];
       const error = yield* rejectSyntheticQuestionSources(entries, items);
 
       expect(error).toMatchObject({

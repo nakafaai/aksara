@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 
@@ -171,6 +172,6 @@ describe("curriculum schema", () => {
       ]);
 
       expect(files).toHaveLength(20);
-    })
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

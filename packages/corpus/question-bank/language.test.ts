@@ -9,6 +9,7 @@ import {
   corpusRoot,
   makeQuestionSourceLayer,
   realQuestionBanks,
+  realQuestionCorpusLayer,
   validQuestionItemSource,
 } from "#corpus/test/question";
 
@@ -25,24 +26,26 @@ const item: QuestionItem = {
 export default item;`;
 }
 
-layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
+layer(Layer.merge(realQuestionCorpusLayer, TypeScriptParser.layer))(
   "question source language policy",
   (it) => {
     it.effect("requires exactly the source-owned item locales", () =>
       Effect.gen(function* () {
         const path = yield* Path.Path;
+        const repositoryRoot = yield* corpusRoot;
+        const banks = yield* realQuestionBanks;
         const location = yield* decodeQuestionPath(
-          realQuestionBanks,
+          banks,
           "indonesia/snbt/literacy-in-english/set-1/question-1"
         );
         const sourcePath = path.join(
-          corpusRoot,
+          repositoryRoot,
           location.sourceRoot,
           "item.ts"
         );
         /** Reads the language-section item through the synthetic source adapter. */
         const read = (source: string) =>
-          readQuestionItem(corpusRoot, location).pipe(
+          readQuestionItem(repositoryRoot, location).pipe(
             Effect.provide(makeQuestionSourceLayer([], [[sourcePath, source]]))
           );
         const [item, extraLocales, wrongLocale] = yield* Effect.all(
@@ -92,10 +95,16 @@ layer(Layer.merge(Path.layer, TypeScriptParser.layer))(
     it.effect("loads the fixed exam response from one owner source", () =>
       Effect.gen(function* () {
         const path = yield* Path.Path;
+        const repositoryRoot = yield* corpusRoot;
+        const banks = yield* realQuestionBanks;
         const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-        const location = yield* decodeQuestionPath(realQuestionBanks, root);
-        const basePath = path.join(corpusRoot, location.sourceRoot, "item.ts");
-        const item = yield* readQuestionItem(corpusRoot, location).pipe(
+        const location = yield* decodeQuestionPath(banks, root);
+        const basePath = path.join(
+          repositoryRoot,
+          location.sourceRoot,
+          "item.ts"
+        );
+        const item = yield* readQuestionItem(repositoryRoot, location).pipe(
           Effect.provide(
             makeQuestionSourceLayer([], [[basePath, validQuestionItemSource]])
           )
