@@ -93,24 +93,19 @@ function failedLabel<Value>(
   return { success: false, violation: { ...location, reason } };
 }
 
-type SceneReason = MathVisualSourceReason;
 /** Maps a generic literal finding into the MathVisual scene vocabulary. */
 function sceneReason(
   reason: StaticLiteralSyntaxReason
 ): MathVisualSourceReason {
   return Match.value(reason).pipe(
-    Match.when("array-hole", (): SceneReason => "scene-array-hole"),
-    Match.when(
-      "computed-property",
-      (): SceneReason => "scene-computed-property"
-    ),
-    Match.when(
-      "duplicate-property",
-      (): SceneReason => "scene-duplicate-property"
-    ),
-    Match.when("spread", (): SceneReason => "scene-spread"),
-    Match.when("unsupported-property", (): SceneReason => "scene-property"),
-    Match.orElse((): SceneReason => "scene-dynamic-value")
+    Match.withReturnType<MathVisualSourceReason>(),
+    Match.when("array-hole", () => "scene-array-hole"),
+    Match.when("computed-property", () => "scene-computed-property"),
+    Match.when("duplicate-property", () => "scene-duplicate-property"),
+    Match.when("dynamic-value", () => "scene-dynamic-value"),
+    Match.when("spread", () => "scene-spread"),
+    Match.when("unsupported-property", () => "scene-property"),
+    Match.exhaustive
   );
 }
 

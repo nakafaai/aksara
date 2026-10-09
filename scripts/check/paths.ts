@@ -77,12 +77,11 @@ function isQuestionSource(segments: readonly string[]) {
     return false;
   }
 
-  const questionIndex = segments.length - 2;
-  const hierarchy = Arr.take(
+  const hierarchy = Arr.dropRight(
     Arr.drop(segments, QUESTION_BANK_PREFIX.length),
-    questionIndex - QUESTION_BANK_PREFIX.length
+    2
   );
-  const question = Arr.get(segments, questionIndex);
+  const question = Arr.get(segments, segments.length - 2);
   const source = Arr.last(segments);
 
   return (
@@ -137,11 +136,11 @@ export function pathViolations(files: readonly string[]): readonly string[] {
   const tracked = HashSet.fromIterable(files);
   return Arr.flatMap(files, (file) => {
     const segments = file.split("/");
-    const basename = Option.getOrThrow(Arr.last(segments));
-    const toolchainViolation =
-      basename && HashSet.has(FORBIDDEN_FILE_NAMES, basename)
-        ? [`${file}: pnpm and package.json own the toolchain contract`]
-        : [];
+    const toolchainViolation = Option.exists(Arr.last(segments), (basename) =>
+      HashSet.has(FORBIDDEN_FILE_NAMES, basename)
+    )
+      ? [`${file}: pnpm and package.json own the toolchain contract`]
+      : [];
     const sourceViolation = JAVASCRIPT_PATTERN.test(file)
       ? [`${file}: hand-written JavaScript source is not allowed`]
       : [];
