@@ -127,7 +127,7 @@ export function validateReleaseSnapshots(
 }
 
 /** Joins a release's base app locales, keeping a missing base as undefined. */
-function joinBaseLocales(locales: readonly string[] | null) {
+export function joinBaseLocales(locales: readonly string[] | null) {
   return locales === null ? undefined : Arr.join(locales, ",");
 }
 

@@ -4,6 +4,7 @@ import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import { Array as Arr } from "effect";
+import { joinBaseLocales } from "#publisher/validation";
 
 type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
 type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
@@ -17,11 +18,6 @@ type RecoverySuccess = Extract<
   PublicationSuccess,
   { operation: "activateRecovery" }
 >;
-
-/** Joins a release's base app locales, keeping a missing base as undefined. */
-function joinBaseLocales(locales: readonly string[] | null) {
-  return locales === null ? undefined : Arr.join(locales, ",");
-}
 
 /** Checks every fixed structured-family transition field for exact equality. */
 function hasBoundSnapshots(
