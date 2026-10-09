@@ -11,15 +11,6 @@ const ConsumerManifestInputSchema = Schema.Struct({
 
 type ConsumerManifestInput = typeof ConsumerManifestInputSchema.Type;
 
-/** Executables used to build and inspect the isolated package. */
-const ConsumerToolsSchema = Schema.Struct({
-  pnpm: Schema.String,
-  tar: Schema.String,
-});
-
-/** Executables used to build and inspect the isolated package. */
-export type ConsumerTools = typeof ConsumerToolsSchema.Type;
-
 /** Host inputs required to stage one isolated consumer package. */
 export const ConsumerPackageInputSchema = Schema.Struct({
   platform: Schema.Literals([
