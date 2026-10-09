@@ -1,30 +1,23 @@
 import { fileURLToPath } from "node:url";
 import { assert, it } from "@effect/vitest";
 import { Effect } from "effect";
+import { TestConsole } from "effect/testing";
 import { runMain } from "#nakafa-content/similar/check";
 
 const SET =
   "packages/corpus/question-bank/tryout/indonesia/tka/english-language/set-4";
 const BANK_TIMEOUT = 60_000;
 
-/** Captures console output while one effect runs, then restores it. */
+/** Runs one effect with a fresh test console and returns the lines it wrote. */
 function capture<A, E, R>(self: Effect.Effect<A, E, R>) {
-  return Effect.acquireUseRelease(
-    Effect.sync(() => {
-      const error: string[] = [];
-      const log: string[] = [];
-      const original = { error: console.error, log: console.log };
-      console.error = (...parts: unknown[]) => error.push(parts.join(" "));
-      console.log = (...parts: unknown[]) => log.push(parts.join(" "));
-      return { error, log, original };
-    }),
-    ({ error, log }) => self.pipe(Effect.map((code) => ({ code, error, log }))),
-    ({ original }) =>
-      Effect.sync(() => {
-        console.error = original.error;
-        console.log = original.log;
-      })
-  );
+  return Effect.gen(function* () {
+    const code = yield* self;
+    return {
+      code,
+      error: (yield* TestConsole.errorLines).map(String),
+      log: (yield* TestConsole.logLines).map(String),
+    };
+  }).pipe(Effect.provide(TestConsole.layer));
 }
 
 it.effect("rejects missing, extra, unknown, and out-of-range arguments", () =>
