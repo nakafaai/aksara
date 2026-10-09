@@ -225,9 +225,11 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
         { fileName: "isolated.ts", source: "export {};" },
         () => true
       );
-      const fileSystem = MutableList.toArray(nativeFileSystems).at(-1);
-      expect(fileSystem?.fileExists?.(import.meta.filename)).toBe(false);
-      expect(fileSystem?.readFile?.(import.meta.filename)).toBeNull();
+      const fileSystem = Option.getOrThrow(
+        Arr.last(MutableList.toArray(nativeFileSystems))
+      );
+      expect(fileSystem.fileExists?.(import.meta.filename)).toBe(false);
+      expect(fileSystem.readFile?.(import.meta.filename)).toBeNull();
     }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)))
   );
 });
