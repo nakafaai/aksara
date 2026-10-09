@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -84,6 +84,16 @@ function reject(rows: readonly QuranSnapshotRow[], locales = activeAppLocales) {
   }).pipe(Effect.flip);
 }
 
+/** Returns the first current fixture row of one payload kind. */
+function fixtureRow(
+  records: readonly QuranSnapshotRow[],
+  kind: QuranSnapshotRow["payload"]["kind"]
+) {
+  return Effect.fromOption(
+    Arr.findFirst(records, (record) => record.payload.kind === kind)
+  );
+}
+
 describe("Quran aggregate digest golden vectors", () => {
   it.effect(
     "pins the complete aggregate digests of the synthetic Quran test records",
@@ -154,15 +164,9 @@ describe("Quran aggregate digest", () => {
       const germanLocales = yield* Schema.decodeEffect(
         ActiveAppLocaleListSchema
       )(["en", "de"]);
-      const attribution = yield* Effect.fromNullishOr(
-        records.find((record) => record.payload.kind === "quran-attribution")
-      );
-      const surah = yield* Effect.fromNullishOr(
-        records.find((record) => record.payload.kind === "quran-surah")
-      );
-      const chunk = yield* Effect.fromNullishOr(
-        records.find((record) => record.payload.kind === "quran-chunk")
-      );
+      const attribution = yield* fixtureRow(records, "quran-attribution");
+      const surah = yield* fixtureRow(records, "quran-surah");
+      const chunk = yield* fixtureRow(records, "quran-chunk");
       const attributionPayload = yield* Schema.decodeUnknownEffect(
         QuranAttributionRowSchema
       )(attribution.payload);
@@ -177,8 +181,8 @@ describe("Quran aggregate digest", () => {
       )({
         ...attributionPayload,
         activeAppLocales: germanLocales,
-        sources: attributionPayload.sources
-          .filter((candidate) =>
+        sources: Arr.map(
+          Arr.filter(attributionPayload.sources, (candidate) =>
             [
               "tanzil-text",
               "tanzil-metadata",
@@ -188,21 +192,24 @@ describe("Quran aggregate digest", () => {
               "mokhtasar-english",
               "mokhtasar-german",
             ].includes(candidate.id)
-          )
-          .map((candidate) => ({
+          ),
+          (candidate) => ({
             ...candidate,
-            copy: candidate.copy.filter(({ appLocale }) =>
+            copy: Arr.filter(candidate.copy, ({ appLocale }) =>
               ["en", "de"].includes(appLocale)
             ),
-          })),
-        tafsirAccess: attributionPayload.tafsirAccess.filter(({ appLocale }) =>
-          ["en", "de"].includes(appLocale)
+          })
+        ),
+        tafsirAccess: Arr.filter(
+          attributionPayload.tafsirAccess,
+          ({ appLocale }) => ["en", "de"].includes(appLocale)
         ),
       });
       const germanVerses = yield* Effect.forEach(chunkPayload.verses, (verse) =>
         Effect.gen(function* () {
-          const english = yield* Effect.fromNullishOr(
-            verse.translations.find(
+          const english = yield* Effect.fromOption(
+            Arr.findFirst(
+              verse.translations,
               (translation) => translation.appLocale === "en"
             )
           );

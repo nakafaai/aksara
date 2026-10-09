@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
@@ -25,7 +25,7 @@ export class QuranRowHashError extends Schema.TaggedError<QuranRowHashError>()(
 function canonicalizeTranslations(
   translations: QuranRuntimeVerse["translations"]
 ) {
-  return translations.map((translation) => ({
+  return Arr.map(translations, (translation) => ({
     appLocale: translation.appLocale,
     value: {
       footnotes: translation.value.footnotes,
@@ -59,7 +59,7 @@ function canonicalizeVerse(verse: QuranRuntimeVerse) {
       inQuran: verse.number.inQuran,
       inSurah: verse.number.inSurah,
     },
-    tafsir: verse.tafsir.map((entry) => ({
+    tafsir: Arr.map(verse.tafsir, (entry) => ({
       appLocale: entry.appLocale,
       footnotes: entry.footnotes,
       text: entry.text,
@@ -75,8 +75,8 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
     return encodeJsonText({
       activeAppLocales: payload.activeAppLocales,
       kind: payload.kind,
-      sources: payload.sources.map(canonicalizeQuranAttribution),
-      tafsirAccess: payload.tafsirAccess.map(canonicalizeTafsirAccess),
+      sources: Arr.map(payload.sources, canonicalizeQuranAttribution),
+      tafsirAccess: Arr.map(payload.tafsirAccess, canonicalizeTafsirAccess),
     });
   }
   if (payload.kind === "quran-surah") {
@@ -106,7 +106,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
       kind: payload.kind,
       lastVerse: payload.lastVerse,
       surahNumber: payload.surahNumber,
-      verses: payload.verses.map(canonicalizeVerse),
+      verses: Arr.map(payload.verses, canonicalizeVerse),
     });
   }
   return encodeJsonText({

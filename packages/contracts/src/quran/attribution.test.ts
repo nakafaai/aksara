@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Record as Rec, Schema } from "effect";
+import { Array as Arr, Record as Rec, Schema } from "effect";
 
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import { QuranSourceAttributionSchema } from "#contracts/quran/source";
@@ -62,7 +62,7 @@ describe("Quran attribution golden canonical bytes", () => {
 
   it("keeps the canonical bytes independent of input object key order", () => {
     const embeddedRecord: Readonly<Record<string, unknown>> = embedded;
-    expect(Rec.keys(reversed)).toEqual(Rec.keys(embeddedRecord).reverse());
+    expect(Rec.keys(reversed)).toEqual(Arr.reverse(Rec.keys(embeddedRecord)));
     expect(encodeJsonText(canonicalizeQuranAttribution(reversed))).toBe(
       '{"artifact":{"byteCount":1234,"digest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","fileCount":2},"copy":[{"appLocale":"en","notice":"Reviewed notice é","title":"Arabic text"},{"appLocale":"id","notice":"Catatan é","title":"Teks Arab"}],"id":"tanzil-text","kind":"embedded","publisher":"Technical publisher for tanzil-text.","retrievedAt":"2026-07-24T17:57:50Z","sourceUrl":"https://example.test/tanzil-text","terms":{"artifact":{"byteCount":99,"digest":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","fileCount":1},"url":"https://example.test/terms-text"},"updateUrl":"https://example.test/update-text","version":"1.0"}'
     );

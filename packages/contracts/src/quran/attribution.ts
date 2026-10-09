@@ -1,3 +1,5 @@
+import { Array as Arr } from "effect";
+
 import type { QuranSourceAttribution } from "#contracts/quran/source";
 
 /** Serializes one source attribution without trusting object insertion order. */
@@ -5,7 +7,7 @@ export function canonicalizeQuranAttribution(
   attribution: QuranSourceAttribution
 ) {
   const common = {
-    copy: attribution.copy.map((entry) => ({
+    copy: Arr.map(attribution.copy, (entry) => ({
       appLocale: entry.appLocale,
       notice: entry.notice,
       title: entry.title,
