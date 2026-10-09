@@ -33,6 +33,7 @@ import {
   transientPublicationError,
 } from "#publisher/target/protocol";
 import { readPublicationResponse } from "#publisher/target/response";
+import { encodeJsonText } from "#publisher/text/json";
 
 const REQUEST_BYTE_LIMITS: Readonly<{
   [Operation in
@@ -93,7 +94,7 @@ function validateRequestBytes(request: PublicationRequest, bytes: number) {
     request.operation === "stageGroup" &&
     request.requests.some(
       (child) =>
-        Buffer.byteLength(JSON.stringify(child), "utf8") >
+        Buffer.byteLength(encodeJsonText(child), "utf8") >
         REQUEST_BYTE_LIMITS[child.operation]
     );
   if (bytes <= REQUEST_BYTE_LIMITS[request.operation] && !hasOversizedChild) {

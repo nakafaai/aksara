@@ -10,6 +10,7 @@ import {
   MAX_REPLAY_TOTAL_BYTES,
   validateReplaySpoolUsage,
 } from "#publisher/replay/record";
+import { encodeJsonText } from "#publisher/text/json";
 
 const ReplayEntrySchema = Schema.Struct({
   sequence: Schema.Finite,
@@ -101,7 +102,7 @@ describe("replay record", () => {
       expect(
         yield* reject(
           decodeReplayRecord({
-            data: JSON.stringify(entry),
+            data: encodeJsonText(entry),
             hash: "invalid",
             index: 6,
             schema: ReplayEntrySchema,
@@ -113,7 +114,7 @@ describe("replay record", () => {
 
   it.effect("rejects digest tampering before parsing", () =>
     Effect.gen(function* () {
-      const data = JSON.stringify(entry);
+      const data = encodeJsonText(entry);
       const error = yield* reject(
         decodeReplayRecord({
           data: `${data} `,
@@ -130,13 +131,13 @@ describe("replay record", () => {
     ["invalid JSON", "{", hashData("{")],
     [
       "invalid schema",
-      JSON.stringify({ sequence: "one", value: "test-record" }),
-      hashData(JSON.stringify({ sequence: "one", value: "test-record" })),
+      encodeJsonText({ sequence: "one", value: "test-record" }),
+      hashData(encodeJsonText({ sequence: "one", value: "test-record" })),
     ],
     [
       "excess properties",
-      JSON.stringify({ ...entry, unexpected: true }),
-      hashData(JSON.stringify({ ...entry, unexpected: true })),
+      encodeJsonText({ ...entry, unexpected: true }),
+      hashData(encodeJsonText({ ...entry, unexpected: true })),
     ],
   ] as const)("rejects %s after digest verification", ([_label, data, hash]) =>
     Effect.gen(function* () {

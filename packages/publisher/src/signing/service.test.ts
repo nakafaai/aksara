@@ -13,6 +13,7 @@ import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
+import { encodeJsonText } from "#publisher/text/json";
 import {
   changeOneByte,
   signingManifest as manifest,
@@ -151,7 +152,7 @@ describe("Ed25519 publication signing", () => {
       }).pipe(Effect.flip);
 
       expect(error._tag).toBe("ContentSigningError");
-      expect(JSON.stringify(error)).not.toContain("PRIVATE KEY");
+      expect(encodeJsonText(error)).not.toContain("PRIVATE KEY");
     })
   );
 

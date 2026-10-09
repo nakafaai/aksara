@@ -4,6 +4,7 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import { replaySpoolFailure } from "#publisher/replay/error";
+import { encodeJsonText } from "#publisher/text/json";
 
 /** Maximum records accepted by one bounded publication replay spool. */
 export const MAX_REPLAY_RECORDS = 100_000;
@@ -76,7 +77,7 @@ export function validateReplaySpoolUsage(usage: ReplaySpoolUsage) {
 export function encodeReplayRecord<A>(value: A, index: number) {
   return Effect.try({
     catch: (cause) => replaySpoolFailure("encode", cause, index),
-    try: () => JSON.stringify(value),
+    try: () => (value === undefined ? undefined : encodeJsonText(value)),
   }).pipe(
     Effect.flatMap((data) => {
       if (data === undefined) {
@@ -129,18 +130,12 @@ export function decodeReplayRecord<A, I>(input: {
           replaySpoolFailure("hash", { actualHash, expectedHash }, input.index)
         );
       }
-      return Effect.try({
-        catch: (cause) => replaySpoolFailure("decode", cause, input.index),
-        try: (): unknown => JSON.parse(input.data),
-      }).pipe(
-        Effect.flatMap((value) =>
-          Schema.decodeUnknownEffect(input.schema)(value, {
-            onExcessProperty: "error",
-          }).pipe(
-            Effect.mapError((cause) =>
-              replaySpoolFailure("decode", cause, input.index)
-            )
-          )
+      return Schema.decodeUnknownEffect(Schema.fromJsonString(input.schema))(
+        input.data,
+        { onExcessProperty: "error" }
+      ).pipe(
+        Effect.mapError((cause) =>
+          replaySpoolFailure("decode", cause, input.index)
         )
       );
     })

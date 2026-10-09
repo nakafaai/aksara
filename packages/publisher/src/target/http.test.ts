@@ -7,6 +7,7 @@ import {
 import { Effect, Fiber, Schema } from "effect";
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
+import { encodeJsonText } from "#publisher/text/json";
 import {
   capturedClient,
   endpoint,
@@ -184,7 +185,7 @@ describe("HTTP publication target", () => {
         detail: { reason: "network" },
         stage: "release",
       });
-      expect(JSON.stringify(failedError)).not.toContain("test-secret-token");
+      expect(encodeJsonText(failedError)).not.toContain("test-secret-token");
     })
   );
 

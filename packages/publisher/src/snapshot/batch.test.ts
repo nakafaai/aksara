@@ -24,6 +24,7 @@ import {
   canonicalizeSnapshotBatch,
   makeSnapshotBatches,
 } from "#publisher/snapshot/batch";
+import { JsonTextSchema } from "#publisher/text/json";
 import { materialGraph } from "#test/graph";
 import { tryoutCatalogRecord, tryoutPlacementRecord } from "#test/tryout/rows";
 
@@ -126,8 +127,10 @@ describe("snapshot batching", () => {
     )(request);
     const canonical = canonicalizeSnapshotBatch(batch);
 
-    expect(JSON.parse(canonical)).toEqual(request);
-    expect(JSON.parse(encoded)).toEqual(request);
+    expect(Schema.decodeUnknownSync(JsonTextSchema)(canonical)).toEqual(
+      request
+    );
+    expect(Schema.decodeUnknownSync(JsonTextSchema)(encoded)).toEqual(request);
     expect(Buffer.byteLength(canonical, "utf8")).toBe(
       Buffer.byteLength(encoded, "utf8")
     );

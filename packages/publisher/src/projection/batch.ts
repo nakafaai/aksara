@@ -10,6 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
+import { encodeJsonText } from "#publisher/text/json";
 
 /** Serializes one projection batch in deterministic wire field order. */
 export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
@@ -17,7 +18,7 @@ export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {
     .map(canonicalizeContentProjection)
     .join(
       ","
-    )}],"operation":"stageProjectionBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
+    )}],"operation":"stageProjectionBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Streams bounded projection envelopes with contiguous batch identities. */

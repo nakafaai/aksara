@@ -13,6 +13,7 @@ import {
 import { TestClock } from "effect/testing";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
+import { encodeJsonText } from "#publisher/text/json";
 import { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 
@@ -39,7 +40,7 @@ describe("sendPublicationRequest", () => {
       const fetch: typeof globalThis.fetch = (_input, init) => {
         redirect = init?.redirect;
         return Promise.resolve(
-          new Response(JSON.stringify(transportSuccess(request)), {
+          new Response(encodeJsonText(transportSuccess(request)), {
             headers: { "content-type": "application/json" },
             status: 200,
           })
@@ -86,7 +87,7 @@ describe("sendPublicationRequest", () => {
         return Effect.succeed(
           HttpClientResponse.fromWeb(
             redirectedRequest,
-            new Response(JSON.stringify(transportSuccess(request)), {
+            new Response(encodeJsonText(transportSuccess(request)), {
               headers: { "content-type": "application/json" },
               status: 200,
             })
