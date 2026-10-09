@@ -5,7 +5,6 @@ import {
   ReleaseAbortRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
-import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 /** Abort input or target evidence failed its exact shared contract. */
@@ -39,20 +38,26 @@ function validateReceipt(
 export const abortContentRelease = Effect.fn(
   "AksaraPublisher.abortContentRelease"
 )(function* (input: unknown) {
-  const request = yield* decodeContract(
-    ReleaseAbortRequestSchema,
+  const request = yield* Schema.decodeUnknownEffect(ReleaseAbortRequestSchema)(
     input,
-    new ReleaseAbortContractError({ contract: "request" })
+    { onExcessProperty: "error" }
+  ).pipe(
+    Effect.mapError(
+      () => new ReleaseAbortContractError({ contract: "request" })
+    )
   );
   const target = yield* PublicationTarget;
   let previous: ReleaseAbortReceipt | undefined;
   let receipt: ReleaseAbortReceipt;
   do {
     const response = yield* target.abort(request);
-    receipt = yield* decodeContract(
-      ReleaseAbortReceiptSchema,
+    receipt = yield* Schema.decodeUnknownEffect(ReleaseAbortReceiptSchema)(
       response,
-      new ReleaseAbortContractError({ contract: "receipt" })
+      { onExcessProperty: "error" }
+    ).pipe(
+      Effect.mapError(
+        () => new ReleaseAbortContractError({ contract: "receipt" })
+      )
     );
     yield* validateReceipt(request.releaseId, previous, receipt);
     previous = receipt;

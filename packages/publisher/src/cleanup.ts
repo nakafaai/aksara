@@ -5,7 +5,6 @@ import {
   ReleaseCleanupRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect, Schema } from "effect";
-import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 const CLEANUP_CALL_LIMIT = 100;
@@ -66,20 +65,24 @@ function validateReceipt(
 export const cleanupContentRelease = Effect.fn(
   "AksaraPublisher.cleanupContentRelease"
 )(function* (input: unknown) {
-  const request = yield* decodeContract(
-    ReleaseCleanupRequestSchema,
-    input,
-    new ReleaseCleanupContractError({ contract: "request" })
+  const request = yield* Schema.decodeUnknownEffect(
+    ReleaseCleanupRequestSchema
+  )(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(
+      () => new ReleaseCleanupContractError({ contract: "request" })
+    )
   );
   const target = yield* PublicationTarget;
   let progress = { deletedArtifacts: 0 };
   let previous: ReleaseCleanupReceipt | undefined;
   for (let attempts = 1; attempts <= CLEANUP_CALL_LIMIT; attempts += 1) {
     const response = yield* target.cleanup(request);
-    const receipt = yield* decodeContract(
-      ReleaseCleanupReceiptSchema,
-      response,
-      new ReleaseCleanupContractError({ contract: "receipt" })
+    const receipt = yield* Schema.decodeUnknownEffect(
+      ReleaseCleanupReceiptSchema
+    )(response, { onExcessProperty: "error" }).pipe(
+      Effect.mapError(
+        () => new ReleaseCleanupContractError({ contract: "receipt" })
+      )
     );
     yield* validateReceipt(request, previous, receipt);
     if (receipt.complete) {
