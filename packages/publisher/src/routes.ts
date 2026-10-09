@@ -12,6 +12,7 @@ import {
   type ContentRouteItem,
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route/spec";
+import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import {
   Array as Arr,
   Effect,
@@ -205,7 +206,7 @@ function routeChanges(state: RoutePlanState) {
   const ordered = Arr.sortWith(
     entries,
     ({ identity }) => identity,
-    Order.String
+    Order.make(compareCodeUnits)
   );
   return Arr.map(ordered, ({ change }) => change);
 }
