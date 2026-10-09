@@ -1,6 +1,7 @@
 import {
   Array as Arr,
   HashSet,
+  Match,
   MutableHashSet,
   MutableList,
   Option,
@@ -92,24 +93,25 @@ function failedLabel<Value>(
   return { success: false, violation: { ...location, reason } };
 }
 
+type SceneReason = MathVisualSourceReason;
 /** Maps a generic literal finding into the MathVisual scene vocabulary. */
 function sceneReason(
   reason: StaticLiteralSyntaxReason
 ): MathVisualSourceReason {
-  switch (reason) {
-    case "array-hole":
-      return "scene-array-hole";
-    case "computed-property":
-      return "scene-computed-property";
-    case "duplicate-property":
-      return "scene-duplicate-property";
-    case "spread":
-      return "scene-spread";
-    case "unsupported-property":
-      return "scene-property";
-    default:
-      return "scene-dynamic-value";
-  }
+  return Match.value(reason).pipe(
+    Match.when("array-hole", (): SceneReason => "scene-array-hole"),
+    Match.when(
+      "computed-property",
+      (): SceneReason => "scene-computed-property"
+    ),
+    Match.when(
+      "duplicate-property",
+      (): SceneReason => "scene-duplicate-property"
+    ),
+    Match.when("spread", (): SceneReason => "scene-spread"),
+    Match.when("unsupported-property", (): SceneReason => "scene-property"),
+    Match.orElse((): SceneReason => "scene-dynamic-value")
+  );
 }
 
 /** Enumerates rich-label keys without interpreting their React values. */
@@ -157,10 +159,10 @@ function recordDuplicates(
   reason: MathVisualSourceReason,
   violations: MutableList.MutableList<MathVisualPolicyViolation>
 ) {
-  const duplicates = Arr.filter(
-    attributes,
-    (attribute) => attribute.name === name
-  ).slice(1);
+  const duplicates = Arr.drop(
+    Arr.filter(attributes, (attribute) => attribute.name === name),
+    1
+  );
   for (const duplicate of duplicates) {
     MutableList.append(violations, { ...mdxLocation(duplicate), reason });
   }

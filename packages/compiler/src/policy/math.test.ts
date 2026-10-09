@@ -214,7 +214,10 @@ describe("createMathVisualPolicy", () => {
       );
       assert.ok(Option.isSome(violation));
       if (violation.value.reason === "scene-schema") {
-        assert.strictEqual(violation.value.path.at(-1), name);
+        assert.deepStrictEqual(
+          Arr.last(violation.value.path),
+          Option.some(name)
+        );
         assert.strictEqual(
           violation.value.message,
           "Expected no excess property"

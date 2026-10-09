@@ -1,4 +1,4 @@
-import { Array as Arr, HashSet, Predicate } from "effect";
+import { Array as Arr, HashSet, Match, Predicate } from "effect";
 import type {
   Expression,
   JSXAttribute,
@@ -58,10 +58,10 @@ const VISIBLE_RICH_TEXT_ELEMENTS = HashSet.make(
 function combineStates(
   states: readonly RichAttributeState[]
 ): RichAttributeState {
-  if (states.includes("dynamic")) {
+  if (Arr.contains(states, "dynamic")) {
     return "dynamic";
   }
-  return states.includes("meaningful") ? "meaningful" : "empty";
+  return Arr.contains(states, "meaningful") ? "meaningful" : "empty";
 }
 
 /** Reads the simple JSX name used by one authored component. */
@@ -185,24 +185,28 @@ function inspectMath(element: JSXElement): RichAttributeState | undefined {
   return additionalChildren.length === 0 ? inspectMathChild(child) : "dynamic";
 }
 
-/** Inspects whether one rich JSX child contributes visible content. */
-function inspectChild(
-  child: JSXElement["children"][number] | JSXFragment["children"][number]
-): RichAttributeState {
-  switch (child.type) {
-    case "JSXText":
-      return isMeaningfulString(child.value) ? "meaningful" : "empty";
-    case "JSXExpressionContainer":
-      return inspectExpression(child.expression);
-    case "JSXElement":
-      return inspectElement(child);
-    case "JSXFragment":
-      return combineStates(Arr.map(child.children, inspectChild));
-    /* istanbul ignore next -- the MDX parser rejects JSX spread children. */
-    default:
-      return "dynamic";
-  }
+/** Classifies a JSX spread child, which the MDX parser never produces. */
+/* istanbul ignore next -- the MDX parser rejects JSX spread children. */
+function spreadChildState(): RichAttributeState {
+  return "dynamic";
 }
+
+/** Inspects whether one rich JSX child contributes visible content. */
+const inspectChild: (
+  child: JSXElement["children"][number] | JSXFragment["children"][number]
+) => RichAttributeState = Match.type<
+  JSXElement["children"][number] | JSXFragment["children"][number]
+>().pipe(
+  Match.discriminatorsExhaustive("type")({
+    JSXElement: (child) => inspectElement(child),
+    JSXExpressionContainer: (child) => inspectExpression(child.expression),
+    JSXFragment: (child) =>
+      combineStates(Arr.map(child.children, inspectChild)),
+    JSXSpreadChild: spreadChildState,
+    JSXText: (child): RichAttributeState =>
+      isMeaningfulString(child.value) ? "meaningful" : "empty",
+  })
+);
 
 /** Inspects whether one JSX element contributes text or static math. */
 function inspectElement(element: JSXElement): RichAttributeState {
