@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect, Struct } from "effect";
+import { Array as Arr, Effect, Struct } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
 import {
@@ -29,7 +29,7 @@ const loadTkaReadiness = Effect.fn("AksaraCorpus.test.loadTkaReadiness")(
       repositoryRoot,
       banks
     ).pipe(Effect.provide(questionLayer));
-    const questions = discovered.filter(({ setKey }) =>
+    const questions = Arr.filter(discovered, ({ setKey }) =>
       setKey.startsWith(
         "question-bank/tryout/indonesia/tka/compulsory-mathematics/"
       )
@@ -45,7 +45,7 @@ function mapBlueprints(
     blueprint: NonNullable<QuestionSource["item"]["blueprint"]>
   ) => NonNullable<QuestionSource["item"]["blueprint"]>
 ) {
-  return questions.map((question) => {
+  return Arr.map(questions, (question) => {
     const { blueprint } = question.item;
     return blueprint === undefined
       ? question
@@ -94,7 +94,7 @@ layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
       Effect.gen(function* () {
         const { questions, readiness, source } = yield* loadTkaReadiness();
         const [first, ...rest] = questions;
-        const missingBlueprint = questions.map((question) => {
+        const missingBlueprint = Arr.map(questions, (question) => {
           if (question !== first) {
             return question;
           }
@@ -145,7 +145,7 @@ layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
       Effect.gen(function* () {
         const { questions, readiness, source } = yield* loadTkaReadiness();
         const [first] = questions;
-        const unknownDomain = questions.map((question) =>
+        const unknownDomain = Arr.map(questions, (question) =>
           question === first
             ? {
                 ...question,
@@ -211,21 +211,23 @@ layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
     () =>
       Effect.gen(function* () {
         const { questions, readiness, source } = yield* loadTkaReadiness();
-        const numberQuestion = yield* Effect.fromNullishOr(
-          questions.find(
+        const numberQuestion = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
             ({ item, questionNumber }) =>
               questionNumber <= 25 &&
               item.blueprint?.contentDomain === "numbers"
           )
         );
-        const algebraQuestion = yield* Effect.fromNullishOr(
-          questions.find(
+        const algebraQuestion = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
             ({ item, questionNumber }) =>
               questionNumber <= 25 &&
               item.blueprint?.contentDomain === "algebra"
           )
         );
-        const swappedOwners = questions.map((question) => {
+        const swappedOwners = Arr.map(questions, (question) => {
           const { blueprint } = question.item;
           if (blueprint === undefined) {
             return question;
@@ -249,18 +251,19 @@ layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
               }
             : question;
         });
-        const single = yield* Effect.fromNullishOr(
-          questions.find(({ item }) =>
-            Struct.keys(item.responses).some(
+        const single = yield* Effect.fromOption(
+          Arr.findFirst(questions, ({ item }) =>
+            Arr.some(
+              Struct.keys(item.responses),
               (key) => item.responses[key]?.kind === "single-choice"
             )
           )
         );
-        const singleOnly = questions.map((question) => ({
+        const singleOnly = Arr.map(questions, (question) => ({
           ...question,
           item: { ...question.item, responses: single.item.responses },
         }));
-        const withoutGroups = questions.map((question) => {
+        const withoutGroups = Arr.map(questions, (question) => {
           const { stimulusKey: _stimulusKey, ...item } = question.item;
           return { ...question, item };
         });
