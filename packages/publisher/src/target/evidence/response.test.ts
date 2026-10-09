@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
-import { Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response";
 import { foreignTransportSuccess } from "#test/foreign";
@@ -13,24 +13,27 @@ import { transportSuccess } from "#test/transport/success";
 describe("publication success evidence", () => {
   it("binds every successful operation to its exact request", () => {
     expect(
-      transportRequests.map((request) =>
+      Arr.map(transportRequests, (request) =>
         hasBoundPublicationSuccess(request, transportSuccess(request))
       )
-    ).toEqual(transportRequests.map(() => true));
+    ).toEqual(Arr.map(transportRequests, () => true));
   });
 
   it("rejects every success carrying a foreign operation identity", () => {
     expect(
-      transportRequests.map((request) =>
+      Arr.map(transportRequests, (request) =>
         hasBoundPublicationSuccess(request, foreignTransportSuccess(request))
       )
     ).toEqual(
-      transportRequests.map(({ operation }) => operation === "current")
+      Arr.map(transportRequests, ({ operation }) => operation === "current")
     );
   });
   it("binds completed recovery evidence to the protected active relation", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "recovery"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "recovery"
+      )
     );
     if (request?.operation !== "recovery") {
       return;
@@ -46,8 +49,11 @@ describe("publication success evidence", () => {
     ).toBe(false);
   });
   it("binds head pages to the requested cursor and row ceiling", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "headPage"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "headPage"
+      )
     );
     if (request?.operation !== "headPage") {
       return;
@@ -86,8 +92,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(limited, twoHeads)).toBe(false);
   });
   it("rejects verification evidence from another signed manifest", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "verify"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "verify"
+      )
     );
     if (request?.operation !== "verify") {
       return;
@@ -126,7 +135,7 @@ describe("publication success evidence", () => {
       { ...success.value.evidence, rendererManifestHash: foreignHash },
     ];
     expect(
-      evidenceCases.map((value) =>
+      Arr.map(evidenceCases, (value) =>
         hasBoundPublicationSuccess(
           request,
           Schema.decodeSync(PublicationSuccessSchema)({
@@ -135,11 +144,14 @@ describe("publication success evidence", () => {
           })
         )
       )
-    ).toEqual(evidenceCases.map(() => false));
+    ).toEqual(Arr.map(evidenceCases, () => false));
   });
   it("binds pending verification to the requested release identity", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "verify"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "verify"
+      )
     );
     if (request?.operation !== "verify") {
       return;
@@ -172,8 +184,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, foreignHash)).toBe(false);
   });
   it("rejects activation receipts that contradict their signed manifest", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "activate"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "activate"
+      )
     );
     if (request?.operation !== "activate") {
       return;
@@ -193,7 +208,7 @@ describe("publication success evidence", () => {
       { ...success.value, stagedProjections: 2 },
     ];
     expect(
-      receiptCases.map((value) =>
+      Arr.map(receiptCases, (value) =>
         hasBoundPublicationSuccess(
           request,
           Schema.decodeSync(PublicationSuccessSchema)({
@@ -202,17 +217,20 @@ describe("publication success evidence", () => {
           })
         )
       )
-    ).toEqual(receiptCases.map(() => false));
+    ).toEqual(Arr.map(receiptCases, () => false));
   });
 
   it("binds rollback pages to their requested cursor and limit", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "rollbackPage"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "rollbackPage"
+      )
     );
     if (request?.operation !== "rollbackPage") {
       return;
     }
-    const records = [0, 1].map((index) => {
+    const records = Arr.map([0, 1], (index) => {
       const state = {
         change: {
           artifactLocale: "en" as const,
@@ -248,15 +266,18 @@ describe("publication success evidence", () => {
       limit: 1,
     });
     expect(
-      [wrongCursor, tooSmall].map((candidate) =>
+      Arr.map([wrongCursor, tooSmall], (candidate) =>
         hasBoundPublicationSuccess(candidate, response)
       )
     ).toEqual([false, false]);
   });
 
   it("binds cumulative cleanup evidence to its requested release", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "cleanup"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "cleanup"
+      )
     );
     if (request?.operation !== "cleanup") {
       return;
@@ -273,8 +294,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, progressed)).toBe(true);
   });
   it("rejects batch receipts with another index or row count", () => {
-    const request = transportRequests.find(
-      (candidate) => candidate.operation === "stageItemBatch"
+    const request = Option.getOrUndefined(
+      Arr.findFirst(
+        transportRequests,
+        (candidate) => candidate.operation === "stageItemBatch"
+      )
     );
     if (request?.operation !== "stageItemBatch") {
       return;
@@ -294,7 +318,9 @@ describe("publication success evidence", () => {
       }),
     ];
     expect(
-      responses.map((response) => hasBoundPublicationSuccess(request, response))
+      Arr.map(responses, (response) =>
+        hasBoundPublicationSuccess(request, response)
+      )
     ).toEqual([false, false]);
   });
 });
