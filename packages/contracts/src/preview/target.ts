@@ -9,11 +9,14 @@ import {
 } from "#contracts/tryout/catalog";
 import { TryoutPlacementSourceSchema } from "#contracts/tryout/placement";
 
-/** Locale and existing public route refreshed by one preview update. */
-export const PreviewRouteSchema = Schema.Struct({
+/** Locale and public route that name one page. Route errors and previews share them. */
+export const PublicRouteFields = {
   appLocale: AppLocaleSchema,
   publicPath: PublicPathSchema,
-});
+};
+
+/** Locale and existing public route refreshed by one preview update. */
+export const PreviewRouteSchema = Schema.Struct(PublicRouteFields);
 
 /**
  * Placement identity needed to select one preview body.

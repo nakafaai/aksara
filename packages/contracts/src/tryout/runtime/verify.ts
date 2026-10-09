@@ -1,5 +1,6 @@
 import { Effect, Schema } from "effect";
 
+import { Sha256MismatchFields } from "#contracts/errors";
 import { Sha256HashSchema } from "#contracts/ids";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
@@ -24,10 +25,7 @@ export class TryoutRuntimeBundleVerificationDecodeError extends Schema.TaggedErr
 /** The envelope hash does not identify its complete canonical payload. */
 export class TryoutRuntimeBundleHashMismatchError extends Schema.TaggedError<TryoutRuntimeBundleHashMismatchError>()(
   "TryoutRuntimeBundleHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-  }
+  { ...Sha256MismatchFields }
 ) {}
 
 /** The embedded snapshot identity does not match its semantic facts. */

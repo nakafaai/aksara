@@ -1,7 +1,5 @@
-import {
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { Sha256MismatchFields } from "@nakafa/aksara-contracts/errors";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
@@ -15,8 +13,7 @@ import type {
 export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<PreparedStoredReleaseMismatchError>()(
   "PreparedStoredReleaseMismatchError",
   {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
+    ...Sha256MismatchFields,
     releaseId: ReleaseIdSchema,
   }
 ) {}

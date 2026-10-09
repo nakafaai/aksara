@@ -1,20 +1,18 @@
-import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
-import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { PublicRouteFields } from "@nakafa/aksara-contracts/preview/target";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect, MutableHashSet, Schema } from "effect";
 
 /** Two source-derived nodes claim one locale-specific public route. */
 export class TryoutRouteDuplicateError extends Schema.TaggedError<TryoutRouteDuplicateError>()(
   "TryoutRouteDuplicateError",
-  { appLocale: AppLocaleSchema, publicPath: PublicPathSchema }
+  { ...PublicRouteFields }
 ) {}
 
 /** A public route does not spell the title of the page it opens. */
 export class TryoutRouteTitleError extends Schema.TaggedError<TryoutRouteTitleError>()(
   "TryoutRouteTitleError",
   {
-    appLocale: AppLocaleSchema,
-    publicPath: PublicPathSchema,
+    ...PublicRouteFields,
     title: Schema.String,
   }
 ) {}
