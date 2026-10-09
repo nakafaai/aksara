@@ -1,41 +1,44 @@
 import { routeIdentity } from "@nakafa/aksara-contracts/content";
 import {
-  type ContentKey,
   ContentKeySchema,
-  type PublicPath,
   PublicPathSchema,
   type ReleaseId,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  type AppLocale,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ContentRouteChange,
+  ContentRouteChangeSchema,
   type ContentRouteItem,
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 
+const RouteVersionSchema = Schema.Struct({
+  appLocale: AppLocaleSchema,
+  contentKey: ContentKeySchema,
+  publicPath: Schema.optional(PublicPathSchema),
+});
+
 /** One route-bearing state on either side of a content transition. */
-export interface RouteVersion {
-  readonly appLocale: AppLocale;
-  readonly contentKey: ContentKey;
-  readonly publicPath?: PublicPath | undefined;
-}
+export type RouteVersion = typeof RouteVersionSchema.Type;
+
+const RouteTransitionSchema = Schema.Struct({
+  current: RouteVersionSchema,
+  next: RouteVersionSchema,
+});
 
 /** Exact before-and-after states used to derive immutable route versions. */
-export interface RouteTransition {
-  readonly current: RouteVersion;
-  readonly next: RouteVersion;
-}
+export type RouteTransition = typeof RouteTransitionSchema.Type;
 
-interface RouteOwner extends RouteVersion {
-  readonly publicPath: PublicPath;
-}
+const RouteOwnerSchema = Schema.Struct({
+  ...RouteVersionSchema.fields,
+  publicPath: PublicPathSchema,
+});
+
+type RouteOwner = typeof RouteOwnerSchema.Type;
 
 /** Two transition rows claimed the same route on one side of the delta. */
 export class RoutePlanConflictError extends Schema.TaggedError<RoutePlanConflictError>()(
@@ -49,15 +52,22 @@ export class RoutePlanConflictError extends Schema.TaggedError<RoutePlanConflict
   }
 ) {}
 
-interface RoutePlanState {
-  readonly current: Map<string, RouteOwner>;
-  readonly next: Map<string, RouteOwner>;
+/** Creates the two empty ownership maps that one route plan fills in transition order. */
+function emptyRoutePlanState() {
+  return {
+    current: MutableHashMap.empty<string, RouteOwner>(),
+    next: MutableHashMap.empty<string, RouteOwner>(),
+  };
 }
 
-interface IndexedRouteChange {
-  readonly change: ContentRouteChange;
-  readonly identity: string;
-}
+type RoutePlanState = ReturnType<typeof emptyRoutePlanState>;
+
+const IndexedRouteChangeSchema = Schema.Struct({
+  change: ContentRouteChangeSchema,
+  identity: Schema.String,
+});
+
+type IndexedRouteChange = typeof IndexedRouteChangeSchema.Type;
 
 /** Derives the exact route transition represented by one body transition. */
 export function routeTransitionForContent(
@@ -98,7 +108,7 @@ export function routeTransitionForContent(
 
 /** Adds one compact route owner to its exact side of the bounded plan. */
 function addOwner(
-  owners: Map<string, RouteOwner>,
+  owners: MutableHashMap.MutableHashMap<string, RouteOwner>,
   side: "current" | "next",
   version: RouteVersion
 ) {
@@ -107,7 +117,7 @@ function addOwner(
   }
   const owner: RouteOwner = { ...version, publicPath: version.publicPath };
   const identity = routeIdentity(owner);
-  const existing = owners.get(identity);
+  const existing = Option.getOrUndefined(MutableHashMap.get(owners, identity));
   if (existing !== undefined) {
     return Effect.fail(
       new RoutePlanConflictError({
@@ -119,7 +129,7 @@ function addOwner(
       })
     );
   }
-  owners.set(identity, owner);
+  MutableHashMap.set(owners, identity, owner);
   return Effect.void;
 }
 
@@ -157,15 +167,18 @@ function finalChange(
 
 /** Produces one canonical final-path delta from compact ownership maps. */
 function routeChanges(state: RoutePlanState) {
-  const changed: IndexedRouteChange[] = [...state.current.entries()].flatMap(
+  const changed: IndexedRouteChange[] = [...state.current].flatMap(
     ([identity, current]) => {
-      const change = finalChange(current, state.next.get(identity));
+      const change = finalChange(
+        current,
+        Option.getOrUndefined(MutableHashMap.get(state.next, identity))
+      );
       return change === undefined ? [] : [{ change, identity }];
     }
   );
-  const created: IndexedRouteChange[] = [...state.next.entries()].flatMap(
+  const created: IndexedRouteChange[] = [...state.next].flatMap(
     ([identity, next]) =>
-      state.current.has(identity)
+      MutableHashMap.has(state.current, identity)
         ? []
         : [
             {
@@ -190,7 +203,7 @@ export function makeRouteItems<E, R>(
   transitions: Stream.Stream<RouteTransition, E, R>
 ): Stream.Stream<ContentRouteItem, E | RoutePlanConflictError, R> {
   return Stream.suspend(() => {
-    const initial: RoutePlanState = { current: new Map(), next: new Map() };
+    const initial = emptyRoutePlanState();
     return Stream.unwrap(
       transitions.pipe(
         Stream.runFoldEffect(() => initial, indexTransition),
