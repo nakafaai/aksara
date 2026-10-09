@@ -1,12 +1,14 @@
 import type { QuestionResponseSource } from "@nakafa/aksara-contracts/question/item";
-import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import {
   Array as Arr,
   Effect,
   MutableHashMap,
   MutableHashSet,
+  MutableList,
   Option,
+  Order,
   Predicate,
+  Record as Rec,
   Schema,
   Struct,
 } from "effect";
@@ -40,7 +42,7 @@ function words(text: string, mask: boolean) {
     .replace(COMMAND_PATTERN, " \\$1 ")
     .replace(SYMBOL_PATTERN, " ");
   const masked = mask ? spaced.replace(NUMBER_PATTERN, "#") : spaced;
-  return masked.split(SPACE_PATTERN).filter((word) => word.length > 0);
+  return Arr.filter(masked.split(SPACE_PATTERN), (word) => word.length > 0);
 }
 
 /** Prints one text in both comparison forms. */
@@ -82,13 +84,12 @@ type Unit = typeof UnitSchema.Type;
 
 /** Reads the visible paragraphs of one prompt, math included. */
 function paragraphs(rawMdx: string) {
-  return rawMdx
+  const text = rawMdx
     .replace(METADATA_PATTERN, "")
     .replace(MATH_ATTRIBUTE_PATTERN, " $1 ")
-    .replace(TAG_PATTERN, " ")
-    .split(PARAGRAPH_PATTERN)
-    .map((part) => part.trim())
-    .filter((part) => part.length > 0);
+    .replace(TAG_PATTERN, " ");
+  const parts = Arr.map(text.split(PARAGRAPH_PATTERN), (part) => part.trim());
+  return Arr.filter(parts, (part) => part.length > 0);
 }
 
 /** Lists every option, category, and statement a learner reads with the prompt. */
@@ -96,13 +97,13 @@ function labels(response: QuestionResponseSource): readonly string[] {
   if (response.kind === "category") {
     return [
       ...response.categories,
-      ...response.statements.map(({ label }) => label),
+      ...Arr.map(response.statements, ({ label }) => label),
     ];
   }
   if (response.kind === "rubric" || response.kind === "short-answer") {
     return [];
   }
-  return response.options.map(({ label }) => label);
+  return Arr.map(response.options, ({ label }) => label);
 }
 
 /** Names the set directory that owns one question directory. */
@@ -120,13 +121,13 @@ function units(prompts: readonly QuestionPrompt[]) {
       prompt,
     ]);
   }
-  return [...MutableHashMap.values(groups)].flatMap((members) => {
-    const read = members.map((prompt) => ({
+  return Arr.flatMap([...MutableHashMap.values(groups)], (members) => {
+    const read = Arr.map(members, (prompt) => ({
       list: paragraphs(prompt.rawMdx),
       prompt,
     }));
     const counts = MutableHashMap.empty<string, number>();
-    for (const part of read.flatMap(({ list }) => Arr.dedupe(list))) {
+    for (const part of Arr.flatMap(read, ({ list }) => Arr.dedupe(list))) {
       MutableHashMap.set(
         counts,
         part,
@@ -136,19 +137,23 @@ function units(prompts: readonly QuestionPrompt[]) {
     /** A paragraph is shared unless exactly one prompt in the set uses it. */
     const isShared = (part: string) =>
       Option.getOrUndefined(MutableHashMap.get(counts, part)) !== 1;
-    return read.map(({ list, prompt }): Omit<Unit, "id"> => {
-      const answers = Struct.keys(prompt.source.item.responses)
-        .map((key) => prompt.source.item.responses[key])
-        .filter(Predicate.isNotUndefined)
-        .flatMap(labels);
-      const own = list.filter((part) => !isShared(part));
+    return Arr.map(read, ({ list, prompt }): Omit<Unit, "id"> => {
+      const responses = Arr.map(
+        Struct.keys(prompt.source.item.responses),
+        (key) => prompt.source.item.responses[key]
+      );
+      const answers = Arr.flatMap(
+        Arr.filter(responses, Predicate.isNotUndefined),
+        labels
+      );
+      const own = Arr.filter(list, (part) => !isShared(part));
       return {
-        full: print([...list, ...answers].join(" ")),
+        full: print(Arr.join([...list, ...answers], " ")),
         locale: prompt.locale,
-        own: print([...own, ...answers].join(" ")),
+        own: print(Arr.join([...own, ...answers], " ")),
         root: prompt.source.sourceRoot,
         set: setOf(prompt.source.sourceRoot),
-        stimulus: list.filter(isShared),
+        stimulus: Arr.filter(list, isShared),
       };
     });
   });
@@ -156,16 +161,18 @@ function units(prompts: readonly QuestionPrompt[]) {
 
 /** Adds one unit to the list kept under one key. */
 function collect(
-  map: MutableHashMap.MutableHashMap<string, Unit[]>,
+  map: MutableHashMap.MutableHashMap<string, MutableList.MutableList<Unit>>,
   key: string,
   unit: Unit
 ) {
   const list = Option.getOrUndefined(MutableHashMap.get(map, key));
   if (list === undefined) {
-    MutableHashMap.set(map, key, [unit]);
+    const created = MutableList.make<Unit>();
+    MutableList.append(created, unit);
+    MutableHashMap.set(map, key, created);
     return;
   }
-  list.push(unit);
+  MutableList.append(list, unit);
 }
 
 /** Lists each unordered pair of one group once when either side is a target. */
@@ -173,11 +180,14 @@ function pairs<Item>(
   group: readonly Item[],
   isTarget: (item: Item) => boolean
 ) {
-  return group.flatMap((left, index) =>
-    group
-      .slice(index + 1)
-      .filter((right) => isTarget(left) || isTarget(right))
-      .map((right) => ({ left, right }))
+  return Arr.flatMap(group, (left, index) =>
+    Arr.map(
+      Arr.filter(
+        group.slice(index + 1),
+        (right) => isTarget(left) || isTarget(right)
+      ),
+      (right) => ({ left, right })
+    )
   );
 }
 
@@ -187,22 +197,31 @@ function itemMatches(
   isTarget: (root: string) => boolean,
   threshold: number
 ) {
-  const siblings = MutableHashMap.empty<string, Unit[]>();
-  const shared = MutableHashMap.empty<string, Unit[]>();
+  const siblings = MutableHashMap.empty<
+    string,
+    MutableList.MutableList<Unit>
+  >();
+  const shared = MutableHashMap.empty<string, MutableList.MutableList<Unit>>();
   for (const unit of all) {
     collect(siblings, `${unit.set}\n${unit.locale}`, unit);
     for (const shingle of unit.full.masked) {
       collect(shared, `${unit.locale}\n${shingle}`, unit);
     }
   }
+  const siblingGroups = Arr.map(
+    [...MutableHashMap.values(siblings)],
+    MutableList.toArray
+  );
+  const sharedGroups = Arr.map(
+    [...MutableHashMap.values(shared)],
+    MutableList.toArray
+  );
   const groups = [
-    ...MutableHashMap.values(siblings),
-    ...[...MutableHashMap.values(shared)].filter(
-      ({ length }) => length <= COMMON_SHINGLE
-    ),
+    ...siblingGroups,
+    ...Arr.filter(sharedGroups, ({ length }) => length <= COMMON_SHINGLE),
   ];
   const seen = MutableHashSet.empty<string>();
-  const matches: SimilarityMatch[] = [];
+  const matches = MutableList.make<SimilarityMatch>();
   for (const group of groups) {
     for (const { left, right } of pairs(group, ({ root }) => isTarget(root))) {
       const key = `${left.id}\n${right.id}`;
@@ -215,11 +234,11 @@ function itemMatches(
         ? score(left.root, left.own, right.root, right.own)
         : score(left.root, left.full, right.root, right.full);
       if (match.score >= threshold) {
-        matches.push(match);
+        MutableList.append(matches, match);
       }
     }
   }
-  return matches;
+  return MutableList.toArray(matches);
 }
 
 /** One passage shared inside a set, with the questions that share it. */
@@ -233,7 +252,32 @@ type Passage = typeof PassageSchema.Type;
 
 /** Names one shared passage by its set and the questions that use it. */
 function passageName({ members, set }: Passage) {
-  return `${set} (${members.join(", ")})`;
+  return `${set} (${Arr.join(members, ", ")})`;
+}
+
+/** Joins the shared paragraphs of one unit into the text that keys its passage. */
+function passageText(unit: Unit) {
+  return Arr.join(unit.stimulus, " ");
+}
+
+/** Groups the units that share one passage text inside one set and locale. */
+function sharedPassages(all: readonly Unit[]) {
+  const groups = Arr.groupBy(
+    Arr.filter(
+      all,
+      (unit) => words(passageText(unit), false).length >= PASSAGE_WORDS
+    ),
+    (unit) => `${unit.set}\n${unit.locale}\n${passageText(unit)}`
+  );
+  return Arr.map(Rec.values(groups), (group): Passage => {
+    const [first] = group;
+    return {
+      locale: first.locale,
+      members: Arr.map(group, (unit) => unit.root.slice(unit.set.length + 1)),
+      print: print(passageText(first)),
+      set: first.set,
+    };
+  });
 }
 
 /** Compares every shared passage with the passages of other sets. */
@@ -242,46 +286,27 @@ function passageMatches(
   isTarget: (root: string) => boolean,
   threshold: number
 ) {
-  const passages = MutableHashMap.empty<string, Passage>();
-  for (const unit of all) {
-    const text = unit.stimulus.join(" ");
-    if (words(text, false).length < PASSAGE_WORDS) {
-      continue;
-    }
-    const key = `${unit.set}\n${unit.locale}\n${text}`;
-    const name = unit.root.slice(unit.set.length + 1);
-    const passage = Option.getOrUndefined(MutableHashMap.get(passages, key));
-    if (passage === undefined) {
-      const { locale, set } = unit;
-      MutableHashMap.set(passages, key, {
-        locale,
-        members: [name],
-        print: print(text),
-        set,
-      });
-      continue;
-    }
-    passage.members.push(name);
-  }
-  return pairs([...MutableHashMap.values(passages)], ({ set }) => isTarget(set))
-    .filter(
-      ({ left, right }) =>
-        left.set !== right.set && left.locale === right.locale
-    )
-    .map(({ left, right }) =>
-      score(passageName(left), left.print, passageName(right), right.print)
-    )
-    .filter((match) => match.score >= threshold);
+  const candidates = Arr.filter(
+    pairs(sharedPassages(all), ({ set }) => isTarget(set)),
+    ({ left, right }) => left.set !== right.set && left.locale === right.locale
+  );
+  const matches = Arr.map(candidates, ({ left, right }) =>
+    score(passageName(left), left.print, passageName(right), right.print)
+  );
+  return Arr.filter(matches, (match) => match.score >= threshold);
 }
+
+const RANKING = Order.combineAll([
+  Order.flip(
+    Order.mapInput(Order.Number, (match: SimilarityMatch) => match.score)
+  ),
+  Order.mapInput(Order.String, (match: SimilarityMatch) => match.first),
+  Order.mapInput(Order.String, (match: SimilarityMatch) => match.second),
+]);
 
 /** Orders matches from the most similar, then by path. */
 function ranked(matches: readonly SimilarityMatch[]) {
-  return [...matches].sort(
-    (left, right) =>
-      right.score - left.score ||
-      compareCodeUnits(left.first, right.first) ||
-      compareCodeUnits(left.second, right.second)
-  );
+  return Arr.sort(matches, RANKING);
 }
 
 /** Finds questions and passages under a target that read like others in the bank. */
@@ -294,7 +319,7 @@ export const scanQuestionSimilarity = Effect.fn(
   threshold: number
 ) {
   const prompts = yield* readQuestionPrompts(corpusRoot, sources);
-  const all = units(prompts).map((unit, id): Unit => ({ ...unit, id }));
+  const all = Arr.map(units(prompts), (unit, id): Unit => ({ ...unit, id }));
   /** Targets the directory itself and everything beneath it. */
   const isTarget = (root: string) =>
     root === target || root.startsWith(`${target}/`);

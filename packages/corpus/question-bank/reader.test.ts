@@ -1,7 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import { decodeQuestionItemSource } from "#corpus/question-bank/reader";
 
@@ -193,7 +193,9 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
         "const first = 1;",
       ];
 
-      return expectRejections(invalidImports.map((value) => itemModule(value)));
+      return expectRejections(
+        Arr.map(invalidImports, (value) => itemModule(value))
+      );
     }
   );
 
@@ -212,7 +214,7 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
     ];
 
     return expectRejections(
-      invalidDeclarations.map((value) => itemModule(typeImport, value))
+      Arr.map(invalidDeclarations, (value) => itemModule(typeImport, value))
     );
   });
 
@@ -246,7 +248,7 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
       ];
 
       return expectRejections(
-        invalidObjects.map((object) =>
+        Arr.map(invalidObjects, (object) =>
           itemModule(typeImport, `const item: QuestionItem = ${object};`)
         )
       );
