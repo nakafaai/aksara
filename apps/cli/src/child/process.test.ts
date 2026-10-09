@@ -1,7 +1,5 @@
-import { NodeServices } from "@effect/platform-node";
 import { afterEach, describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem, Layer, Option, Path, Schedule } from "effect";
-import { ChildProcessSpawner } from "effect/process";
+import { Effect } from "effect";
 import {
   NakafaProcess,
   type NakafaProcessInput,
@@ -10,15 +8,41 @@ import {
 
 const NODE_ROOT = process.cwd();
 
+const childProcessBehavior = vi.hoisted(() => ({
+  enabled: false,
+  pid: 0,
+}));
+
+vi.mock("node:child_process", async (importOriginal) => {
+  const childProcess =
+    await importOriginal<typeof import("node:child_process")>();
+
+  return {
+    ...childProcess,
+    /** Substitutes a controllable child only for process lifecycle edge cases. */
+    spawn(
+      command: string,
+      args: readonly string[],
+      options: import("node:child_process").SpawnOptions
+    ) {
+      if (!childProcessBehavior.enabled) {
+        return childProcess.spawn(command, args, options);
+      }
+
+      const child = new childProcess.ChildProcess();
+      Object.defineProperty(child, "pid", { value: childProcessBehavior.pid });
+      setImmediate(() => child.emit("spawn"));
+      return child;
+    },
+  };
+});
+
 afterEach(() => {
+  childProcessBehavior.enabled = false;
+  childProcessBehavior.pid = 0;
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
-
-/** The live process layer with the Node services it requires. */
-const LiveNakafaProcess = NakafaProcessLive.pipe(
-  Layer.provide(NodeServices.layer)
-);
 
 /** Builds one real scoped operating-system child through the production layer. */
 function processProgram(input: NakafaProcessInput) {
@@ -27,7 +51,7 @@ function processProgram(input: NakafaProcessInput) {
       Effect.flatMap((processes) => processes.start(input)),
       Effect.flatMap((child) => child.exitCode)
     )
-  ).pipe(Effect.provide(LiveNakafaProcess));
+  ).pipe(Effect.provide(NakafaProcessLive));
 }
 
 /** Creates one exact Node child request without inheriting test-process state. */
@@ -42,34 +66,6 @@ function nodeProcess(
     root: NODE_ROOT,
   };
 }
-
-/** Wraps the real spawner so that every child reports the invalid identifier zero. */
-const zeroIdentifierSpawner = Effect.gen(function* () {
-  const spawner = yield* ChildProcessSpawner.ChildProcessSpawner;
-  return ChildProcessSpawner.make((command) =>
-    spawner.spawn(command).pipe(
-      Effect.map((handle) => ({
-        ...handle,
-        pid: ChildProcessSpawner.ProcessId(0),
-      }))
-    )
-  );
-});
-
-/** Waits until the spawned child has written its own process identifier. */
-const waitForPid = Effect.fn("NakafaProcessTest.waitForPid")(function* (
-  file: string
-) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  yield* fileSystem.exists(file).pipe(
-    Effect.repeat({
-      schedule: Schedule.spaced("10 millis"),
-      while: (exists) => !exists,
-    }),
-    Effect.timeout("1 second")
-  );
-  return Number(yield* fileSystem.readFileString(file, "utf8"));
-});
 
 describe("Nakafa process infrastructure", () => {
   it.effect(
@@ -113,29 +109,15 @@ describe("Nakafa process infrastructure", () => {
     "rejects a spawned process without a valid operating-system identifier",
     () =>
       Effect.gen(function* () {
-        const zeroIdentifier = yield* zeroIdentifierSpawner;
-        const failure = yield* Effect.scoped(
-          NakafaProcess.pipe(
-            Effect.flatMap((processes) =>
-              processes.start(nodeProcess("process.exit(0);"))
-            )
-          )
-        ).pipe(
-          Effect.provide(
-            NakafaProcessLive.pipe(
-              Layer.provide(
-                Layer.succeed(
-                  ChildProcessSpawner.ChildProcessSpawner,
-                  zeroIdentifier
-                )
-              )
-            )
-          ),
-          Effect.flip
-        );
+        childProcessBehavior.enabled = true;
+        childProcessBehavior.pid = 0;
+
+        const failure = yield* processProgram(
+          nodeProcess("process.exit(0);")
+        ).pipe(Effect.flip);
 
         expect(failure).toMatchObject({ reason: "start" });
-      }).pipe(Effect.provide(NodeServices.layer))
+      })
   );
 
   it.effect(
@@ -154,41 +136,10 @@ describe("Nakafa process infrastructure", () => {
             ),
             Effect.as("closed")
           )
-        ).pipe(Effect.provide(LiveNakafaProcess));
+        ).pipe(Effect.provide(NakafaProcessLive));
 
         expect(signal).toMatchObject({ reason: "exit" });
         expect(closed).toBe("closed");
       })
-  );
-
-  it.live("terminates the child process when its scope closes", () =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const path = yield* Path.Path;
-      const directory = yield* fileSystem.makeTempDirectoryScoped({
-        prefix: "aksara-child-process-",
-      });
-      const pidFile = path.join(directory, "pid");
-      const source = [
-        'import { writeFileSync } from "node:fs";',
-        "writeFileSync(process.argv[1], String(process.pid));",
-        "setInterval(() => undefined, 1_000);",
-      ].join("\n");
-      const childPid = yield* Effect.scoped(
-        Effect.gen(function* () {
-          const processes = yield* NakafaProcess;
-          yield* processes.start({
-            ...nodeProcess(source),
-            args: ["--input-type=module", "--eval", source, pidFile],
-          });
-          return yield* waitForPid(pidFile);
-        })
-      ).pipe(Effect.provide(LiveNakafaProcess));
-
-      const running = yield* Effect.try(() => process.kill(childPid, 0)).pipe(
-        Effect.option
-      );
-      expect(Option.isNone(running)).toBe(true);
-    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

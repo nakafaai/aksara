@@ -1,6 +1,6 @@
+import { spawn } from "node:child_process";
 import { terminateProcessGroup } from "@nakafa/aksara-utilities/process/group";
 import { Context, Deferred, Effect, Layer, Schema } from "effect";
-import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import type * as Scope from "effect/Scope";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 
@@ -33,32 +33,36 @@ export class NakafaProcess extends Context.Service<
   }
 >()("AksaraCliNakafaProcess") {}
 
-/** Opens one process in its own group and records its exit before returning control. */
+/** Opens one process and records exit before returning control to its caller. */
 const openProcess = Effect.fn("AksaraCli.openNakafaProcess")(function* (
   input: NakafaProcessInput
 ) {
-  const child = yield* ChildProcess.make(input.command, input.args, {
-    cwd: input.root,
-    detached: true,
-    env: input.environment,
-    extendEnv: false,
-    shell: false,
-    stderr: "inherit",
-    stdin: "inherit",
-    stdout: "inherit",
-  }).pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
-  const { pid } = child;
+  const exit = yield* Deferred.make<number | null, NakafaAppError>();
+  const child = yield* Effect.try({
+    catch: () => makeNakafaAppError("start", false),
+    try: () =>
+      spawn(input.command, input.args, {
+        cwd: input.root,
+        detached: true,
+        env: input.environment,
+        shell: false,
+        stdio: "inherit",
+      }),
+  });
+  yield* Effect.callback<void, NakafaAppError>((resume) => {
+    child.once("error", () => {
+      Deferred.doneUnsafe(exit, Effect.fail(makeNakafaAppError("exit", false)));
+      resume(Effect.fail(makeNakafaAppError("start", false)));
+    });
+    child.once("exit", (code) => {
+      Deferred.doneUnsafe(exit, Effect.succeed(code));
+    });
+    child.once("spawn", () => resume(Effect.void));
+  });
+  const pid = Number(child.pid);
   if (!(Number.isSafeInteger(pid) && pid > 0)) {
     return yield* makeNakafaAppError("start", false);
   }
-  const exit = yield* Deferred.make<number, NakafaAppError>();
-  // A signal fails exitCode, which is the signal exit of this process.
-  yield* Deferred.complete(
-    exit,
-    child.exitCode.pipe(
-      Effect.mapError(() => makeNakafaAppError("exit", false))
-    )
-  ).pipe(Effect.forkScoped);
   return { exit, pid };
 });
 
@@ -71,22 +75,20 @@ const startProcess = Effect.fn("AksaraCli.startNakafaProcess")(
         grace: TERMINATION_GRACE,
         limit: TERMINATION_LIMIT,
       })
-    ).pipe(Effect.map(({ exit }) => ({ exitCode: Deferred.await(exit) })))
+    ).pipe(
+      Effect.map(({ exit }) => ({
+        exitCode: Deferred.await(exit).pipe(
+          Effect.filterOrFail(
+            (code): code is number => code !== null,
+            () => makeNakafaAppError("exit", false)
+          )
+        ),
+      }))
+    )
 );
 
 /** Node implementation that never merges the parent process environment. */
-export const NakafaProcessLive = Layer.effect(
+export const NakafaProcessLive = Layer.succeed(
   NakafaProcess,
-  Effect.gen(function* () {
-    const spawner = yield* ChildProcessSpawner.ChildProcessSpawner;
-    return NakafaProcess.of({
-      start: (input) =>
-        startProcess(input).pipe(
-          Effect.provideService(
-            ChildProcessSpawner.ChildProcessSpawner,
-            spawner
-          )
-        ),
-    });
-  })
+  NakafaProcess.of({ start: startProcess })
 );
