@@ -13,7 +13,7 @@ import {
   type QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Option, Schema, Stream, Tuple } from "effect";
+import { Array as Arr, Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type PublicationTargetFailure,
@@ -62,7 +62,10 @@ function nextPageState(previous: HeadPageState, page: HeadPage) {
   }
   return Effect.succeedSome<HeadPageState>({
     cursor: page.nextCursor,
-    last: page.heads.at(-1) ?? previous.last,
+    last: Option.getOrElse(
+      Arr.last<ContentHead>(page.heads),
+      () => previous.last
+    ),
   });
 }
 

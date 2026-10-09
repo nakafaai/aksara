@@ -49,7 +49,7 @@ describe("streamBatches", () => {
       );
       const maxBytes = Buffer.byteLength(
         serializeBatch(
-          buildBatch(values.slice(0, 3), Number.MAX_SAFE_INTEGER, releaseId)
+          buildBatch(Arr.take(values, 3), Number.MAX_SAFE_INTEGER, releaseId)
         ),
         "utf8"
       );
@@ -95,7 +95,7 @@ describe("streamBatches", () => {
         );
         const maxBytes = Buffer.byteLength(
           serializeBatch(
-            buildBatch(values.slice(0, 1), Number.MAX_SAFE_INTEGER, releaseId)
+            buildBatch(Arr.take(values, 1), Number.MAX_SAFE_INTEGER, releaseId)
           ),
           "utf8"
         );
@@ -120,7 +120,7 @@ describe("streamBatches", () => {
         const consumedCount = yield* Ref.get(consumption);
 
         expect(batches).toHaveLength(1);
-        expect(batches[0]?.values).toEqual(values.slice(0, 1));
+        expect(batches[0]?.values).toEqual(Arr.take(values, 1));
         expect(consumedCount).toBe(2);
       })
   );
@@ -148,7 +148,7 @@ describe("streamBatches", () => {
     Effect.gen(function* () {
       const error = yield* streamBatches({
         build: (values, batchIndex, batchReleaseId) =>
-          buildBatch(values.slice(1), batchIndex, batchReleaseId),
+          buildBatch(Arr.drop(values, 1), batchIndex, batchReleaseId),
         count: (batch) => batch.values.length,
         kind: "release-item",
         maxBytes: 100,

@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import { Array as Arr, Option } from "effect";
 import { transportRequests } from "#test/transport/spec";
 
@@ -87,24 +88,23 @@ export function publicationFailures() {
       (request) => request.operation === "cleanup"
     )
   );
-  if (
-    current?.operation !== "current" ||
-    head?.operation !== "headPage" ||
-    release?.operation !== "stageRelease" ||
-    item?.operation !== "stageItemBatch" ||
-    projection?.operation !== "stageProjectionBatch" ||
-    artifact?.operation !== "stageArtifactBatch" ||
-    snapshot?.operation !== "stageSnapshot" ||
-    snapshotBatch?.operation !== "stageSnapshotBatch" ||
-    runtimeBundle?.operation !== "stageTryoutRuntimeBundle" ||
-    activate?.operation !== "activate" ||
-    statusRequest?.operation !== "status" ||
-    verify?.operation !== "verify" ||
-    rollback?.operation !== "rollbackPage" ||
-    cleanup?.operation !== "cleanup"
-  ) {
-    throw new Error("Expected every publication request fixture.");
-  }
+  assert(
+    current?.operation === "current" &&
+      head?.operation === "headPage" &&
+      release?.operation === "stageRelease" &&
+      item?.operation === "stageItemBatch" &&
+      projection?.operation === "stageProjectionBatch" &&
+      artifact?.operation === "stageArtifactBatch" &&
+      snapshot?.operation === "stageSnapshot" &&
+      snapshotBatch?.operation === "stageSnapshotBatch" &&
+      runtimeBundle?.operation === "stageTryoutRuntimeBundle" &&
+      activate?.operation === "activate" &&
+      statusRequest?.operation === "status" &&
+      verify?.operation === "verify" &&
+      rollback?.operation === "rollbackPage" &&
+      cleanup?.operation === "cleanup",
+    "Expected every publication request fixture."
+  );
   return [
     {
       request: current,

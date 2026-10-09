@@ -1,4 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
+import { assert } from "@effect/vitest";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
   type QuestionHead,
@@ -42,9 +43,10 @@ export const questionSources = Arr.filter(
 );
 const [firstEntry] = questionEntries;
 const [firstSource] = questionSources;
-if (!(firstEntry && firstSource)) {
-  throw new Error("Expected the real question-bank source and body slice.");
-}
+assert(
+  firstEntry && firstSource,
+  "Expected the real question-bank source and body slice."
+);
 export const questionItem = firstSource.item;
 export const questionPaths = Arr.map(
   firstSource.files,

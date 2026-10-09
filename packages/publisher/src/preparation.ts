@@ -39,7 +39,7 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
@@ -68,7 +68,7 @@ function requireScopedSnapshot(
   scope: PublicationScope,
   family: ContentSnapshotKind
 ) {
-  if (scope.snapshots.includes(family)) {
+  if (Arr.contains(scope.snapshots, family)) {
     return Effect.void;
   }
   return Effect.fail(new PreparedSnapshotScopeError({ family }));

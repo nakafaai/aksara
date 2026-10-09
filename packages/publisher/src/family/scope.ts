@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Stream, Tuple } from "effect";
+import { Array as Arr, Stream, Tuple } from "effect";
 import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
 
 /** One family diff row annotated with whole-family scope ownership. */
@@ -28,7 +28,7 @@ function selectsFamily(
   scope: PublicationScope | undefined,
   family: ContentFamily
 ) {
-  return scope === undefined || scope.families.includes(family);
+  return scope === undefined || Arr.contains(scope.families, family);
 }
 
 /** Builds one constant-space merge that preserves every unselected base head. */
