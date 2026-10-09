@@ -10,9 +10,18 @@ import {
   type PublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Context, Effect, FileSystem, Layer, Path, Stream } from "effect";
+import {
+  Context,
+  Effect,
+  FileSystem,
+  HashMap,
+  Layer,
+  Path,
+  Schema,
+  Stream,
+} from "effect";
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { testFileLayer } from "#test/files";
 import { materialSlicePaths } from "#test/material/slice";
@@ -27,18 +36,24 @@ export const materialFamilyScope = PublicationScopeSchema.make({
   snapshots: [],
 });
 
-interface MaterialPublicationInput {
-  readonly heads: readonly MaterialHead[];
-  readonly renderer?: unknown;
-  readonly scope?: PublicationScope | undefined;
-  readonly sources?: ReadonlyMap<string, string>;
-}
+const MaterialPublicationInputSchema = Schema.Struct({
+  heads: Schema.Array(MaterialHeadSchema),
+  renderer: Schema.optionalKey(Schema.Unknown),
+  scope: Schema.optional(PublicationScopeSchema),
+  sources: Schema.optionalKey(
+    Schema.Array(Schema.Tuple([Schema.String, Schema.String]))
+  ),
+});
 
-interface MaterialFixtureSource {
-  readonly checkoutRoot: string;
-  readonly rendererManifest: RendererManifestEnvelope;
-  readonly sources: ReadonlyMap<string, string>;
-}
+type MaterialPublicationInput = typeof MaterialPublicationInputSchema.Type;
+
+const MaterialFixtureSourceSchema = Schema.Struct({
+  checkoutRoot: Schema.String,
+  rendererManifest: RendererManifestEnvelopeSchema,
+  sources: Schema.Array(Schema.Tuple([Schema.String, Schema.String])),
+});
+
+type MaterialFixtureSource = typeof MaterialFixtureSourceSchema.Type;
 
 /** Creates a valid manifest while varying only the current mathematics component set. */
 export const materialManifest = Effect.fn("MaterialTest.manifest")(
@@ -84,7 +99,7 @@ const collectMaterialResultFrom = Effect.fn("MaterialTest.collectResultFrom")(
     input: {
       readonly heads: readonly MaterialHead[];
       readonly scope: PublicationScope;
-      readonly sources?: ReadonlyMap<string, string>;
+      readonly sources?: MaterialPublicationInput["sources"];
     }
   ) =>
     Effect.scoped(
@@ -197,11 +212,11 @@ const makeMaterialTestFixtures = Effect.fn("MaterialTest.makeFixtures")(() =>
           );
       }
     );
-    const absolutePaths = new Map<string, string>(
+    const absolutePaths = HashMap.fromIterable<string, string>(
       sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
     );
-    const sources = new Map(
-      sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
+    const sources = sourceRows.map(
+      ([, absolutePath, source]) => [absolutePath, source] as const
     );
     const rendererManifest = yield* materialManifest();
     const fixture = { checkoutRoot, rendererManifest, sources };
@@ -238,7 +253,7 @@ export const collectMaterialResult = Effect.fn("MaterialTest.collectResult")(
   (input: {
     readonly heads: readonly MaterialHead[];
     readonly scope: PublicationScope;
-    readonly sources?: ReadonlyMap<string, string>;
+    readonly sources?: MaterialPublicationInput["sources"];
   }) =>
     Effect.flatMap(MaterialTestFixtures, (fixture) =>
       collectMaterialResultFrom(fixture, input)

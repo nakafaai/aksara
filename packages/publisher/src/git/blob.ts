@@ -5,7 +5,15 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Context, Effect, Layer, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  Layer,
+  MutableHashMap,
+  Path,
+  Schema,
+} from "effect";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
@@ -51,7 +59,10 @@ export class GitBlob extends Context.Service<
     /** Resolves unique paths at one commit after checking every body size. */
     readonly read: (
       input: GitBlobInput
-    ) => Effect.Effect<ReadonlyMap<CorpusSourcePath, string>, GitBlobError>;
+    ) => Effect.Effect<
+      MutableHashMap.MutableHashMap<CorpusSourcePath, string>,
+      GitBlobError
+    >;
   }
 >()("AksaraGitBlob") {}
 
@@ -146,8 +157,8 @@ export function makeGitBlobLive(repositoryRoot: string) {
                 })
             )
           );
-          const paths = [...new Set(sourcePaths)];
-          const result = new Map<CorpusSourcePath, string>();
+          const paths = Arr.dedupe(sourcePaths);
+          const result = MutableHashMap.empty<CorpusSourcePath, string>();
           if (paths.length === 0) {
             return result;
           }
@@ -226,7 +237,7 @@ export function makeGitBlobLive(repositoryRoot: string) {
               "decode-blob",
               "The reviewed corpus blob is not valid UTF-8."
             );
-            result.set(sourcePath, rawMdx);
+            MutableHashMap.set(result, sourcePath, rawMdx);
           }
           return result;
         });

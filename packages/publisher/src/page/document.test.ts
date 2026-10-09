@@ -39,7 +39,7 @@ layer(pageTestLayer)("page document", (it) => {
       Effect.gen(function* () {
         const { entry, fixture } = yield* requireEnglishEntry();
         const error = yield* loadPageDocument(fixture.checkoutRoot, entry).pipe(
-          Effect.provide([testFileLayer(new Map()), Path.layer]),
+          Effect.provide([testFileLayer([]), Path.layer]),
           Effect.flip
         );
 
@@ -97,7 +97,7 @@ layer(pageTestLayer)("page document", (it) => {
           fixedPageEntry
         ).pipe(
           Effect.provide([
-            testFileLayer(new Map([[absolutePath, fixedPageSource]])),
+            testFileLayer([[absolutePath, fixedPageSource]]),
             Path.layer,
           ])
         );

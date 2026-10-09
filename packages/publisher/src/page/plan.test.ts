@@ -13,6 +13,7 @@ import {
   publishedPageTestLayer,
 } from "#test/page/publication";
 import {
+  changedSources,
   PageTestFixtures,
   pageFamilyScope,
   pageFixtureIdentities,
@@ -95,24 +96,7 @@ function replaceHead(
   );
 }
 
-/** Returns a mutable source map with one reviewed page body changed. */
-const changedSources = Effect.fn("PagePlanTest.changedSources")(
-  (
-    fixture: PageTestFixtures["Service"],
-    sourcePath: typeof privacySourcePath
-  ) =>
-    Effect.gen(function* () {
-      const sources = new Map(fixture.sources);
-      const absolutePath = yield* Effect.fromNullishOr(
-        fixture.absolutePaths.get(sourcePath)
-      );
-      const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${source}\n`);
-      return sources;
-    })
-);
-
-/** Combines scoped source fixtures with their canonical published heads. */
+/** Reads the page fixtures and the published page fixtures as one record. */
 const planFixture = Effect.fn("PagePlanTest.fixture")(function* () {
   return {
     ...(yield* PageTestFixtures),

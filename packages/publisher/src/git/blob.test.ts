@@ -7,7 +7,7 @@ import {
   type ExactProcessInput,
   ExactProcessLive,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem, Layer } from "effect";
+import { Effect, FileSystem, Layer, MutableHashMap, Option } from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
@@ -41,7 +41,11 @@ describe("GitBlob", () => {
               ),
               Effect.provide(makeGitBlobLive(fixture.root))
             );
-            expect(blobs.get(fixture.sourcePath)).toBe(rawMdx);
+            expect(
+              Option.getOrUndefined(
+                MutableHashMap.get(blobs, fixture.sourcePath)
+              )
+            ).toBe(rawMdx);
             return fixture.root;
           })
         );
@@ -56,7 +60,7 @@ describe("GitBlob", () => {
     Effect.gen(function* () {
       const commands: ExactProcessInput[] = [];
       expect(yield* readTestBlobs(makeGitProcess({}, commands), [])).toEqual(
-        new Map()
+        MutableHashMap.empty()
       );
       expect(commands).toEqual([]);
     })
@@ -81,7 +85,7 @@ describe("GitBlob", () => {
             TEST_SOURCE_PATH,
             TEST_SOURCE_PATH,
           ])
-        ).toEqual(new Map([[TEST_SOURCE_PATH, TEST_RAW_MDX]]));
+        ).toEqual(MutableHashMap.make([TEST_SOURCE_PATH, TEST_RAW_MDX]));
         expect(commands).toHaveLength(3);
         expect(new TextDecoder().decode(commands[1]?.stdin)).toBe(
           `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}\n`
@@ -92,10 +96,13 @@ describe("GitBlob", () => {
   it.effect("preserves the UTF-8 BOM, Unicode, and original line endings", () =>
     Effect.gen(function* () {
       const text = `\ufeff${TEST_RAW_MDX}`;
-      const blobs = new Map([
-        [TEST_SOURCE_PATH, new TextEncoder().encode(text)],
-      ]);
-      expect(yield* readTestBlob(makeGitProcess({ blobs }))).toBe(text);
+      expect(
+        yield* readTestBlob(
+          makeGitProcess({
+            blobs: [[TEST_SOURCE_PATH, new TextEncoder().encode(text)]],
+          })
+        )
+      ).toBe(text);
     })
   );
 
@@ -166,12 +173,11 @@ describe("GitBlob", () => {
 
   it.effect("rejects invalid UTF-8 instead of inserting replacement text", () =>
     Effect.gen(function* () {
-      const blobs = new Map([
-        [TEST_SOURCE_PATH, Uint8Array.from([0xc3, 0x28])],
-      ]);
-      const error = yield* readTestBlob(makeGitProcess({ blobs })).pipe(
-        Effect.flip
-      );
+      const error = yield* readTestBlob(
+        makeGitProcess({
+          blobs: [[TEST_SOURCE_PATH, Uint8Array.from([0xc3, 0x28])]],
+        })
+      ).pipe(Effect.flip);
       expect(error).toMatchObject({
         _tag: "GitBlobError",
         operation: "decode-blob",

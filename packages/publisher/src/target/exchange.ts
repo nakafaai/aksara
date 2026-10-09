@@ -15,7 +15,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import {
@@ -75,15 +75,16 @@ function protocolError(
   });
 }
 
-const ACTIVATION_OPERATIONS: ReadonlySet<PublicationRequest["operation"]> =
-  new Set(["activate", "activateRecovery"]);
+const ACTIVATION_OPERATIONS = HashSet.fromIterable<
+  PublicationRequest["operation"]
+>(["activate", "activateRecovery"]);
 
 /** Selects one exchange bound; activation waits on a server-side read model. */
 function exchangeTimeout(
   config: ValidatedHttpConfig,
   operation: PublicationRequest["operation"]
 ) {
-  return ACTIVATION_OPERATIONS.has(operation)
+  return HashSet.has(ACTIVATION_OPERATIONS, operation)
     ? config.activationTimeout
     : config.timeout;
 }

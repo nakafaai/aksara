@@ -4,19 +4,26 @@ import {
   type PageHead,
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Context, Effect, Layer, Path, Stream } from "effect";
+import {
+  type PublicationScope,
+  PublicationScopeSchema,
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { Context, Effect, Layer, Path, Schema, Stream } from "effect";
 import { preparePagePublication } from "#publisher/page/publication";
 import { testFileLayer } from "#test/files";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
 
-interface PagePublicationInput {
-  readonly heads: readonly PageHead[];
-  readonly rebuild?: boolean | undefined;
-  readonly renderer?: unknown;
-  readonly scope?: PublicationScope | undefined;
-  readonly sources?: ReadonlyMap<string, string>;
-}
+const PagePublicationInputSchema = Schema.Struct({
+  heads: Schema.Array(PageHeadSchema),
+  rebuild: Schema.optional(Schema.Boolean),
+  renderer: Schema.optionalKey(Schema.Unknown),
+  scope: Schema.optional(PublicationScopeSchema),
+  sources: Schema.optionalKey(
+    Schema.Array(Schema.Tuple([Schema.String, Schema.String]))
+  ),
+});
+
+type PagePublicationInput = typeof PagePublicationInputSchema.Type;
 
 type PageFixtureSource = PageTestFixtures["Service"];
 
@@ -52,7 +59,7 @@ const collectPageResultFrom = Effect.fn("PageTest.collectResultFrom")(
     input: {
       readonly heads: readonly PageHead[];
       readonly scope: PublicationScope;
-      readonly sources?: ReadonlyMap<string, string>;
+      readonly sources?: PagePublicationInput["sources"];
     }
   ) =>
     Effect.scoped(
@@ -161,7 +168,7 @@ export const collectPageResult = Effect.fn("PageTest.collectResult")(
   (input: {
     readonly heads: readonly PageHead[];
     readonly scope: PublicationScope;
-    readonly sources?: ReadonlyMap<string, string>;
+    readonly sources?: PagePublicationInput["sources"];
   }) =>
     Effect.flatMap(PageTestFixtures, (fixture) =>
       collectPageResultFrom(fixture, input)

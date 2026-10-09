@@ -249,17 +249,15 @@ const resolver = ContentVerificationKeyResolver.of({
     ),
 });
 
-interface RecordPolicies {
-  readonly currentPolicy: RollbackArtifactPolicy;
-  readonly priorPolicy: RollbackArtifactPolicy;
-}
-
 /** Collects derived records through the selected signature and renderer policy. */
 export const collectRollbackRecords = Effect.fn(
   "publisher.rollback.collectTestRecords"
 )(function* (
   records: Stream.Stream<RollbackRecord>,
-  policies?: RecordPolicies
+  policies?: {
+    readonly currentPolicy: RollbackArtifactPolicy;
+    readonly priorPolicy: RollbackArtifactPolicy;
+  }
 ) {
   let selectedPolicies = policies;
   if (selectedPolicies === undefined) {

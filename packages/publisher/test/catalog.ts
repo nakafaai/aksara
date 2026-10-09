@@ -1,16 +1,26 @@
-import type { ContentFamily } from "@nakafa/aksara-contracts/content";
+import {
+  type ContentFamily,
+  ContentFamilySchema,
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   PublicPathSchema,
+  ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
-  type ArtifactLocale,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  ArticleHeadSchema,
+  type ContentHead,
+  MaterialHeadSchema,
+  PageHeadSchema,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
+import { Schema } from "effect";
 
 const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
@@ -62,21 +72,25 @@ export const emptyCandidateValidationEvidence = {
   tryoutCatalogCount: 0,
 };
 
+const TestCatalogCountsSchema = Schema.Struct({
+  article: Schema.Finite,
+  material: Schema.Finite,
+  page: Schema.Finite,
+  question: Schema.Finite,
+});
+
 /** Compact family counts used by catalog orchestration tests. */
-export interface TestCatalogCounts {
-  readonly article: number;
-  readonly material: number;
-  readonly page: number;
-  readonly question: number;
-}
+export type TestCatalogCounts = typeof TestCatalogCountsSchema.Type;
+
+const TestCatalogIdentitySchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: Schema.String,
+  family: ContentFamilySchema,
+  publicPath: Schema.optionalKey(Schema.String),
+});
 
 /** Stable source identity used without inventing educational fixture bodies. */
-export interface TestCatalogIdentity {
-  readonly artifactLocale: ArtifactLocale;
-  readonly contentKey: string;
-  readonly family: ContentFamily;
-  readonly publicPath?: string;
-}
+export type TestCatalogIdentity = typeof TestCatalogIdentitySchema.Type;
 
 /** Returns one deterministic artifactLocale for compact source identities. */
 function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {
@@ -210,3 +224,21 @@ export function catalogRoutes(
     },
   }));
 }
+
+const CatalogTestInputSchema = Schema.Struct({
+  article: Schema.optionalKey(Schema.Array(ArticleHeadSchema)),
+  base: Schema.optionalKey(
+    Schema.NullOr(
+      Schema.Struct({
+        count: Schema.Finite,
+        digest: Sha256HashSchema,
+        releaseId: ReleaseIdSchema,
+      })
+    )
+  ),
+  material: Schema.optionalKey(Schema.Array(MaterialHeadSchema)),
+  page: Schema.optionalKey(Schema.Array(PageHeadSchema)),
+  question: Schema.optionalKey(Schema.Array(QuestionHeadSchema)),
+});
+
+export type CatalogTestInput = typeof CatalogTestInputSchema.Type;

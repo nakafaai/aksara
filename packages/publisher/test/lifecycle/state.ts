@@ -1,10 +1,11 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import type { MaterialLessonProjection } from "@nakafa/aksara-contracts/projection/material";
-import type {
-  ContentReleaseItem,
-  PublicationReceipt,
-  SignedContentRelease,
+import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import {
+  type ContentReleaseItem,
+  ContentReleaseItemSchema,
+  type PublicationReceipt,
+  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type {
   HeadPage,
@@ -19,20 +20,23 @@ import type {
   RoutePage,
   RoutePageRequest,
 } from "@nakafa/aksara-contracts/release/route/page";
-import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
-import type {
-  ContentSnapshotManifest,
-  ContentSnapshotRow,
+import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
+import {
+  ContentSnapshotManifestSchema,
+  ContentSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { MutableHashMap, Option, Schema } from "effect";
 
-interface StagedRows {
-  readonly items: ContentReleaseItem[];
-  readonly projections: MaterialLessonProjection[];
-  readonly routes: ContentRouteItem[];
-  readonly snapshotRows: ContentSnapshotRow[];
-  readonly snapshots: ContentSnapshotManifest[];
-}
+const StagedRowsSchema = Schema.Struct({
+  items: Schema.mutable(Schema.Array(ContentReleaseItemSchema)),
+  projections: Schema.mutable(Schema.Array(MaterialLessonProjectionSchema)),
+  routes: Schema.mutable(Schema.Array(ContentRouteItemSchema)),
+  snapshotRows: Schema.mutable(Schema.Array(ContentSnapshotRowSchema)),
+  snapshots: Schema.mutable(Schema.Array(ContentSnapshotManifestSchema)),
+});
+
+type StagedRows = typeof StagedRowsSchema.Type;
 
 /** Builds terminal publication evidence from one exact signed release. */
 export function releaseReceipt(
@@ -95,19 +99,19 @@ export function releaseEvidence(
 
 /** Owns staged rows and derives exact material heads for one isolated target. */
 export function createLifecycleRows() {
-  const artifacts = new Map<string, SignedContentArtifact>();
-  const rows = new Map<string, StagedRows>();
+  const artifacts = MutableHashMap.empty<string, SignedContentArtifact>();
+  const rows = MutableHashMap.empty<string, StagedRows>();
 
   /** Retains immutable artifact bodies independently from release-owned rows. */
   const retainArtifacts = (values: Iterable<SignedContentArtifact>) => {
     for (const artifact of values) {
-      artifacts.set(artifact.artifactHash, artifact);
+      MutableHashMap.set(artifacts, artifact.artifactHash, artifact);
     }
   };
 
   /** Returns release-owned staged rows, creating them on first write. */
   const forRelease = (releaseId: string) => {
-    const existing = rows.get(releaseId);
+    const existing = Option.getOrUndefined(MutableHashMap.get(rows, releaseId));
     if (existing) {
       return existing;
     }
@@ -118,7 +122,7 @@ export function createLifecycleRows() {
       snapshotRows: [],
       snapshots: [],
     };
-    rows.set(releaseId, created);
+    MutableHashMap.set(rows, releaseId, created);
     return created;
   };
 
@@ -126,7 +130,8 @@ export function createLifecycleRows() {
   const hasRetainedArtifacts = (releaseId: string) =>
     forRelease(releaseId).items.every(
       ({ change }) =>
-        change.operation === "delete" || artifacts.has(change.artifactHash)
+        change.operation === "delete" ||
+        MutableHashMap.has(artifacts, change.artifactHash)
     );
 
   /** Returns one material head reconstructed from exact staged rows. */
@@ -136,7 +141,9 @@ export function createLifecycleRows() {
     }
     const staged = forRelease(item.releaseId);
     const { change } = item;
-    const artifact = artifacts.get(change.artifactHash);
+    const artifact = Option.getOrUndefined(
+      MutableHashMap.get(artifacts, change.artifactHash)
+    );
     const projection = staged.projections.find(
       (value) =>
         value.contentKey === change.contentKey &&
@@ -210,7 +217,9 @@ export function createLifecycleRows() {
       if (!(head && change.operation === "upsert")) {
         throw new TypeError("Expected one staged upsert rollback record.");
       }
-      const artifact = artifacts.get(change.artifactHash);
+      const artifact = Option.getOrUndefined(
+        MutableHashMap.get(artifacts, change.artifactHash)
+      );
       const projection = staged.projections.find(
         (value) =>
           value.contentKey === change.contentKey &&

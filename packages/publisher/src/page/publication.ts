@@ -4,7 +4,10 @@ import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
-import type { PageHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  type PageHead,
+  PageHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -59,9 +62,12 @@ export class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>
   }
 ) {}
 
-interface HeadOrderState {
-  readonly previous: PageHead | undefined;
-}
+const HeadOrderStateSchema = Schema.Struct({
+  previous: Schema.UndefinedOr(PageHeadSchema),
+});
+
+/** The previous page head in the streamed order, or undefined before the first one. */
+type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative page records. */
 export type PagePublicationStreamError<E> =

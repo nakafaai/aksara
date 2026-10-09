@@ -1,5 +1,9 @@
-import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
-import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import {
+  type ReleaseId,
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
+import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseManifest,
@@ -8,7 +12,7 @@ import type {
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/rollback/digest";
 import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { Effect, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { RollbackProofIdentityError } from "#publisher/rollback/errors";
 import {
@@ -17,15 +21,18 @@ import {
   snapshotRollbackState,
 } from "#publisher/rollback/records";
 
+const RollbackProofSelectionSchema = Schema.Union([
+  Schema.Struct({ kind: Schema.Literal("source") }),
+  Schema.Struct({
+    baseActiveAppLocales: ActiveAppLocaleListSchema,
+    baseManifestHash: Sha256HashSchema,
+    baseReleaseId: ReleaseIdSchema,
+    kind: Schema.Literal("recovery"),
+  }),
+]);
+
 /** Authenticated proof orientation plus exact recovery-base identity. */
-export type RollbackProofSelection =
-  | { readonly kind: "source" }
-  | {
-      readonly baseActiveAppLocales: ActiveAppLocaleList;
-      readonly baseManifestHash: Sha256Hash;
-      readonly baseReleaseId: ReleaseId;
-      readonly kind: "recovery";
-    };
+export type RollbackProofSelection = typeof RollbackProofSelectionSchema.Type;
 
 export type RollbackProofMode = RollbackProofSelection["kind"];
 export type RollbackRecordSide = "current" | "prior";

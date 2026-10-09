@@ -4,7 +4,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
 import { readQuestionItem } from "@nakafa/aksara-corpus/question-bank/source";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 import {
   type InspectedArticleDocument,
   loadArticleDocument,
@@ -36,40 +36,34 @@ type QuestionEntry = Extract<
 >["entry"];
 type QuestionSourceRoot = QuestionEntry["sourceRoot"];
 
-/** Loaded article source normalized for trusted preview compilation. */
-interface LoadedArticlePreview {
-  readonly body: CompileDocumentSource;
-  readonly family: "article";
-  readonly source: InspectedArticleDocument["source"];
-}
+type PreviewFamily = PreviewSource["family"];
 
-/** Loaded material source normalized for trusted preview compilation. */
-interface LoadedMaterialPreview {
-  readonly body: CompileDocumentSource;
-  readonly family: "material";
-  readonly source: InspectedMaterialDocument["source"];
-}
+/** The loaded document source of each preview family. */
+type LoadedDocument<Family extends PreviewFamily> = Family extends "article"
+  ? InspectedArticleDocument["source"]
+  : Family extends "material"
+    ? InspectedMaterialDocument["source"]
+    : Family extends "page"
+      ? InspectedPageDocument["source"]
+      : InspectedQuestionDocument["source"];
 
-/** Loaded public page source normalized for trusted preview compilation. */
-interface LoadedPagePreview {
-  readonly body: CompileDocumentSource;
-  readonly family: "page";
-  readonly source: InspectedPageDocument["source"];
-}
-
-/** Loaded question source normalized for trusted preview compilation. */
-interface LoadedQuestionPreview {
-  readonly body: CompileDocumentSource;
-  readonly family: "question";
-  readonly source: InspectedQuestionDocument["source"];
+/**
+ * Pairs one loaded family with its compile body and its own document. The
+ * source type follows from the family, so a branch cannot pair a family with
+ * another family's document.
+ */
+function loadedPreview<Family extends PreviewFamily>(
+  family: Family,
+  body: CompileDocumentSource,
+  source: LoadedDocument<Family>
+) {
+  return { body, family, source };
 }
 
 /** Complete source vocabulary accepted by incremental preview compilation. */
-export type LoadedPreviewSource =
-  | LoadedArticlePreview
-  | LoadedMaterialPreview
-  | LoadedPagePreview
-  | LoadedQuestionPreview;
+export type LoadedPreviewSource = Readonly<
+  Effect.Success<ReturnType<typeof loadSelectedSource>>
+>;
 
 /** Reading the current item failed at the trusted preview source seam. */
 export class PreviewItemSourceError extends Schema.TaggedError<PreviewItemSourceError>()(
@@ -86,11 +80,13 @@ const loadQuestionItem = Effect.fn("AksaraPublisher.loadPreviewItem")(
   function* (
     checkoutRoot: string,
     selected: Extract<PreviewSource, { readonly family: "question" }>,
-    itemsByRoot: Map<QuestionSourceRoot, QuestionItem>
+    itemsByRoot: MutableHashMap.MutableHashMap<QuestionSourceRoot, QuestionItem>
   ) {
     const { entry } = selected;
     const { sourceRoot } = entry;
-    const cached = itemsByRoot.get(sourceRoot);
+    const cached = Option.getOrUndefined(
+      MutableHashMap.get(itemsByRoot, sourceRoot)
+    );
     if (cached !== undefined) {
       return cached;
     }
@@ -105,7 +101,7 @@ const loadQuestionItem = Effect.fn("AksaraPublisher.loadPreviewItem")(
       ),
       Effect.provide(TypeScriptParser.layer)
     );
-    itemsByRoot.set(sourceRoot, item);
+    MutableHashMap.set(itemsByRoot, sourceRoot, item);
     return item;
   }
 );
@@ -115,33 +111,25 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
   function* (
     checkoutRoot: string,
     selected: PreviewSource,
-    itemsByRoot: Map<QuestionSourceRoot, QuestionItem>
+    itemsByRoot: MutableHashMap.MutableHashMap<QuestionSourceRoot, QuestionItem>
   ) {
     if (selected.family === "article") {
       const source = yield* loadArticleDocument(checkoutRoot, selected.entry);
-      return {
-        body: makeArticleCompileSource(source),
-        family: "article",
-        source,
-      } satisfies LoadedPreviewSource;
+      return loadedPreview("article", makeArticleCompileSource(source), source);
     }
 
     if (selected.family === "material") {
       const source = yield* loadMaterialDocument(checkoutRoot, selected.entry);
-      return {
-        body: makeMaterialCompileSource(source),
-        family: "material",
-        source,
-      } satisfies LoadedPreviewSource;
+      return loadedPreview(
+        "material",
+        makeMaterialCompileSource(source),
+        source
+      );
     }
 
     if (selected.family === "page") {
       const source = yield* loadPageDocument(checkoutRoot, selected.entry);
-      return {
-        body: makePageCompileSource(source),
-        family: "page",
-        source,
-      } satisfies LoadedPreviewSource;
+      return loadedPreview("page", makePageCompileSource(source), source);
     }
 
     const item = yield* loadQuestionItem(checkoutRoot, selected, itemsByRoot);
@@ -150,11 +138,7 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
       selected.entry,
       item
     );
-    return {
-      body: makeQuestionCompileSource(source),
-      family: "question",
-      source,
-    } satisfies LoadedPreviewSource;
+    return loadedPreview("question", makeQuestionCompileSource(source), source);
   }
 );
 
@@ -165,7 +149,7 @@ export const loadPreviewSources = Effect.fn(
   checkoutRoot: string,
   sources: readonly [PreviewSource, ...PreviewSource[]]
 ) {
-  const itemsByRoot = new Map<QuestionSourceRoot, QuestionItem>();
+  const itemsByRoot = MutableHashMap.empty<QuestionSourceRoot, QuestionItem>();
   const [firstSource, ...remainingSources] = sources;
   const first = yield* loadSelectedSource(
     checkoutRoot,

@@ -1,4 +1,4 @@
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseCurrent,
   StagedRollbackContentRelease,
@@ -15,11 +15,13 @@ export class RetainedRecoveryStateError extends Schema.TaggedError<RetainedRecov
   }
 ) {}
 
+const RetainedRecoveryInputSchema = Schema.Struct({
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+});
+
 /** Exact active and inverse identities required by a terminal operator command. */
-export interface RetainedRecoveryInput {
-  readonly recoveryId: ReleaseId;
-  readonly releaseId: ReleaseId;
-}
+export type RetainedRecoveryInput = typeof RetainedRecoveryInputSchema.Type;
 
 /** Selects one retained inverse without accepting a stale operator identity. */
 export function selectRetainedRecovery(

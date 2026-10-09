@@ -1,9 +1,15 @@
 import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import {
+  type SignedContentArtifact,
+  SignedContentArtifactSchema,
+} from "@nakafa/aksara-contracts/content";
 
-import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
+import {
+  type ContentReleaseItem,
+  ContentReleaseItemSchema,
+} from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Option, Stream } from "effect";
+import { Effect, Option, Schema, Stream } from "effect";
 import type { CompiledReleaseSource } from "#publisher/compilation";
 import type { PublicationSigner } from "#publisher/signing/service";
 import {
@@ -23,14 +29,23 @@ type ArtifactSigningError = Effect.Error<
   ReturnType<PublicationSigner["signArtifact"]>
 >;
 
-type RollbackArtifactPair =
-  | { readonly artifact: SignedContentArtifact; readonly kind: "extra" }
-  | { readonly item: ContentReleaseItem; readonly kind: "missing" }
-  | {
-      readonly artifact: SignedContentArtifact;
-      readonly item: ContentReleaseItem;
-      readonly kind: "both";
-    };
+const RollbackArtifactPairSchema = Schema.Union([
+  Schema.Struct({
+    artifact: SignedContentArtifactSchema,
+    kind: Schema.Literal("extra"),
+  }),
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("missing"),
+  }),
+  Schema.Struct({
+    artifact: SignedContentArtifactSchema,
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("both"),
+  }),
+]);
+
+type RollbackArtifactPair = typeof RollbackArtifactPairSchema.Type;
 
 /** Extends a finite stream with explicit absence for a constant-space full zip. */
 function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {

@@ -275,7 +275,7 @@ export function prepareRollbackFixture(
     rollbackOf: requestedRollbackOf,
   }).pipe(
     Effect.provide([
-      testFileLayer(new Map()),
+      testFileLayer([]),
       Path.layer,
       Layer.succeed(ContentVerificationKeyResolver, resolver),
       Layer.succeed(PublicationTarget, target),

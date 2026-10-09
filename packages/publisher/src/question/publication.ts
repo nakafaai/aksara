@@ -11,7 +11,10 @@ import {
   questionSourcePathParts,
 } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionResponseLocaleMissingError } from "@nakafa/aksara-contracts/question/item";
-import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
+import {
+  type QuestionHead,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -78,9 +81,12 @@ export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFami
   }
 ) {}
 
-interface HeadOrderState {
-  readonly previous: QuestionHead | undefined;
-}
+const HeadOrderStateSchema = Schema.Struct({
+  previous: Schema.UndefinedOr(QuestionHeadSchema),
+});
+
+/** The previous question head in the streamed order, or undefined before the first one. */
+type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative question records. */
 export type QuestionPublicationStreamError<E> =

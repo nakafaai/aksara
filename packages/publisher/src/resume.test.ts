@@ -40,18 +40,16 @@ function makeReceipt(bundle: ResumeBundle) {
   };
 }
 
-interface ResumeFixture {
-  readonly bundle: ResumeBundle;
-  readonly receipt: ReturnType<typeof makeReceipt>;
-}
-
 /** Builds one isolated signed resume fixture inside the Effect test runtime. */
 const makeResumeFixture = Effect.fn("AksaraPublisher.test.makeResumeFixture")(
   function* () {
     const bundle = yield* Effect.promise(() => makeSignedBundle("test-resume"));
-    return { bundle, receipt: makeReceipt(bundle) } satisfies ResumeFixture;
+    return { bundle, receipt: makeReceipt(bundle) };
   }
 );
+
+/** The signed bundle and the receipt that every resume test starts from. */
+type ResumeFixture = Effect.Success<ReturnType<typeof makeResumeFixture>>;
 
 /** Creates an exact durable status for one recovery test phase. */
 function statusFor(

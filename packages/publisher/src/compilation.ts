@@ -16,20 +16,24 @@ import {
   validateCompiledPayloadForItem,
 } from "#publisher/validation";
 
-type SourcePair =
-  | {
-      readonly item: ContentReleaseItem;
-      readonly kind: "missing-source";
-    }
-  | {
-      readonly kind: "extra-source";
-      readonly source: unknown;
-    }
-  | {
-      readonly item: ContentReleaseItem;
-      readonly kind: "both";
-      readonly source: unknown;
-    };
+const SourcePairSchema = Schema.Union([
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("missing-source"),
+  }),
+  Schema.Struct({
+    kind: Schema.Literal("extra-source"),
+    source: Schema.Unknown,
+  }),
+  Schema.Struct({
+    item: ContentReleaseItemSchema,
+    kind: Schema.Literal("both"),
+    source: Schema.Unknown,
+  }),
+]);
+
+/** One stream position: a release item, a source, or both, told apart by kind. */
+type SourcePair = typeof SourcePairSchema.Type;
 
 /** Extends a finite stream with explicit absence for a constant-space full zip. */
 function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {

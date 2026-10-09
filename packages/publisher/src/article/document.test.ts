@@ -33,10 +33,7 @@ layer(articleTestLayer)("article document", (it) => {
         const error = yield* loadArticleDocument(
           fixture.checkoutRoot,
           fixture.entry
-        ).pipe(
-          Effect.provide([testFileLayer(new Map()), Path.layer]),
-          Effect.flip
-        );
+        ).pipe(Effect.provide([testFileLayer([]), Path.layer]), Effect.flip);
 
         expect(error).toMatchObject({
           _tag: "ArticleSourceError",

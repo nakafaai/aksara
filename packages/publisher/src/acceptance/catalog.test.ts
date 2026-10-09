@@ -5,7 +5,7 @@ import {
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Effect, HashSet, Stream } from "effect";
 import { prepareAcceptanceCatalog } from "#publisher/acceptance/catalog";
 import {
   AcceptanceSourceError,
@@ -87,7 +87,9 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
         expect(repeatedRecords).toEqual(records);
         expect(repeatedResult).toEqual(result);
         expect(result).toEqual([...result].sort(compareContentHeads));
-        expect(new Set(result.map(headIdentity)).size).toBe(count);
+        expect(
+          HashSet.size(HashSet.fromIterable(result.map(headIdentity)))
+        ).toBe(count);
         expect(result.map(({ family }) => family)).toEqual([
           ...fixture.sources.article.map(() => "article"),
           ...fixture.sources.material.map(() => "material"),

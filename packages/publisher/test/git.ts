@@ -12,10 +12,17 @@ import {
 } from "@nakafa/aksara-utilities/git/exact";
 import {
   ExactProcess,
-  type ExactProcessError,
+  ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import {
+  Effect,
+  FileSystem,
+  MutableHashMap,
+  Option,
+  Path,
+  Schema,
+} from "effect";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 
 export const TEST_COMMIT_SHA = GitCommitShaSchema.make("b".repeat(40));
@@ -27,17 +34,23 @@ export const TEST_RAW_MDX =
 export const TEST_RAW_BYTES = new TextEncoder().encode(TEST_RAW_MDX);
 export const TEST_REPOSITORY_ROOT = "/test-only/aksara";
 
-interface TestGitOverrides {
-  readonly batch?: string | Uint8Array;
-  readonly batchFailure?: ExactProcessError;
-  readonly blobs?: ReadonlyMap<CorpusSourcePath, Uint8Array>;
-  readonly exitCode?: number;
-  readonly failure?: ExactProcessError;
-  readonly metadata?: string | Uint8Array;
-  readonly metadataFailure?: ExactProcessError;
-  readonly revision?: string;
-  readonly stderr?: string | Uint8Array;
-}
+const TestGitOverridesSchema = Schema.Struct({
+  batch: Schema.optionalKey(Schema.Union([Schema.String, Schema.Uint8Array])),
+  batchFailure: Schema.optionalKey(Schema.instanceOf(ExactProcessError)),
+  blobs: Schema.optionalKey(
+    Schema.Array(Schema.Tuple([CorpusSourcePathSchema, Schema.Uint8Array]))
+  ),
+  exitCode: Schema.optionalKey(Schema.Finite),
+  failure: Schema.optionalKey(Schema.instanceOf(ExactProcessError)),
+  metadata: Schema.optionalKey(
+    Schema.Union([Schema.String, Schema.Uint8Array])
+  ),
+  metadataFailure: Schema.optionalKey(Schema.instanceOf(ExactProcessError)),
+  revision: Schema.optionalKey(Schema.String),
+  stderr: Schema.optionalKey(Schema.Union([Schema.String, Schema.Uint8Array])),
+});
+
+type TestGitOverrides = typeof TestGitOverridesSchema.Type;
 
 /** Converts test protocol output into exact process bytes. */
 function outputBytes(value: string | Uint8Array | undefined) {
@@ -75,7 +88,7 @@ export function gitFrame(bytes: Uint8Array, body: boolean) {
 
 /** Resolves requested coordinates and emits their ordered protocol frames. */
 const batchOutput = Effect.fn("GitBlobTest.batchOutput")(function* (
-  blobs: ReadonlyMap<CorpusSourcePath, Uint8Array>,
+  blobs: MutableHashMap.MutableHashMap<CorpusSourcePath, Uint8Array>,
   stdin: Uint8Array | undefined,
   body: boolean
 ) {
@@ -98,8 +111,9 @@ export function makeGitProcess(
   overrides: TestGitOverrides = {},
   commands: ExactProcessInput[] = []
 ) {
-  const blobs =
-    overrides.blobs ?? new Map([[TEST_SOURCE_PATH, TEST_RAW_BYTES]]);
+  const blobs = MutableHashMap.fromIterable(
+    overrides.blobs ?? [[TEST_SOURCE_PATH, TEST_RAW_BYTES]]
+  );
   const stderr = outputBytes(overrides.stderr);
   const exitCode = overrides.exitCode ?? 0;
   return ExactProcess.of({
@@ -154,7 +168,9 @@ export function readTestBlobs(
 export function readTestBlob(exactProcess: typeof ExactProcess.Service) {
   return readTestBlobs(exactProcess, [TEST_SOURCE_PATH]).pipe(
     Effect.flatMap((blobs) =>
-      Effect.fromNullishOr(blobs.get(TEST_SOURCE_PATH)).pipe(Effect.orDie)
+      Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(blobs, TEST_SOURCE_PATH))
+      ).pipe(Effect.orDie)
     )
   );
 }

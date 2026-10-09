@@ -15,10 +15,13 @@ import {
 } from "#publisher/rollback/errors";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
-interface RouteCursor {
-  readonly afterIndex: number;
-  readonly total: number;
-}
+const RouteCursorSchema = Schema.Struct({
+  afterIndex: Schema.Finite,
+  total: Schema.Finite,
+});
+
+/** Position in one replayed route stream and the signed total every page keeps. */
+type RouteCursor = typeof RouteCursorSchema.Type;
 
 /** Strictly decodes one unknown target route page. */
 function decodePage(source: unknown, afterIndex: number) {

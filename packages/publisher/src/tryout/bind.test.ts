@@ -70,17 +70,15 @@ function placement(artifactLocale: typeof ArtifactLocaleSchema.Encoded) {
   });
 }
 
-interface HeadInput {
+/** Returns one compact test head with independently overridable ownership. */
+function head(input: {
   readonly artifactLocale: typeof ArtifactLocaleSchema.Encoded;
   readonly bodyKind: QuestionBodyKind;
   readonly contentRoot?: string;
   readonly delivery?: QuestionHead["delivery"];
   readonly rendererDomain?: QuestionHead["rendererDomain"];
   readonly sourcePath?: string;
-}
-
-/** Returns one compact test head with independently overridable ownership. */
-function head(input: HeadInput) {
+}) {
   const root = input.contentRoot ?? questionRoot;
   return QuestionHeadSchema.make({
     artifactHash: hash,

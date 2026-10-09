@@ -1,5 +1,13 @@
-import { Duration, Effect, Option, Redacted, Schema } from "effect";
+import { Duration, Effect, HashSet, Option, Redacted, Schema } from "effect";
 import { PublicationTargetConfigurationError } from "#publisher/target/errors";
+
+const HttpPublicationTargetConfigSchema = Schema.Struct({
+  activationTimeout: Schema.Unknown,
+  allowInsecureLoopback: Schema.Boolean,
+  endpoint: Schema.URL,
+  timeout: Schema.Unknown,
+  token: Schema.Redacted(Schema.String),
+});
 
 /**
  * Runtime configuration for one authenticated publication ingress.
@@ -9,23 +17,20 @@ import { PublicationTargetConfigurationError } from "#publisher/target/errors";
  * which is sized for one bounded request. Both bounds are required so no target
  * can silently size an activation wait as one bounded request.
  */
-export interface HttpPublicationTargetConfig {
-  readonly activationTimeout: unknown;
-  readonly allowInsecureLoopback: boolean;
-  readonly endpoint: URL;
-  readonly timeout: unknown;
-  readonly token: Redacted.Redacted<string>;
-}
+export type HttpPublicationTargetConfig =
+  typeof HttpPublicationTargetConfigSchema.Type;
+
+const ValidatedHttpConfigSchema = Schema.Struct({
+  activationTimeout: Schema.Duration,
+  endpoint: Schema.URL,
+  timeout: Schema.Duration,
+  token: Schema.Redacted(Schema.String),
+});
 
 /** Security-checked immutable values captured by one target instance. */
-export interface ValidatedHttpConfig {
-  readonly activationTimeout: Duration.Duration;
-  readonly endpoint: URL;
-  readonly timeout: Duration.Duration;
-  readonly token: Redacted.Redacted<string>;
-}
+export type ValidatedHttpConfig = typeof ValidatedHttpConfigSchema.Type;
 
-const LOOPBACK_HOSTS = new Set(["127.0.0.1", "[::1]", "localhost"]);
+const LOOPBACK_HOSTS = HashSet.make("127.0.0.1", "[::1]", "localhost");
 const TOKEN_WHITESPACE = /\s/u;
 const PublicationTimeoutSchema = Schema.Union([
   Schema.Duration,
@@ -62,7 +67,7 @@ export const validateHttpConfig = Effect.fn(
   const loopback =
     endpoint.protocol === "http:" &&
     config.allowInsecureLoopback &&
-    LOOPBACK_HOSTS.has(endpoint.hostname);
+    HashSet.has(LOOPBACK_HOSTS, endpoint.hostname);
   if (
     !(secure || loopback) ||
     endpoint.username.length > 0 ||

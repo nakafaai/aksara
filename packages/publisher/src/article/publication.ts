@@ -15,13 +15,27 @@ import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/rend
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import type { FileSystem, Path } from "effect";
-import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import {
+  Effect,
+  MutableHashMap,
+  Option,
+  Result,
+  Schema,
+  type Scope,
+  Stream,
+  Tuple,
+} from "effect";
 import { constUndefined } from "effect/Function";
 import {
   type ArticleMetadataError,
   type ArticleSourceError,
   mapArticleSourceError,
 } from "#publisher/article/document";
+import {
+  type ArticleHeadOwner,
+  type HeadOrderState,
+  headOwnerKey,
+} from "#publisher/article/head";
 import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
@@ -63,22 +77,6 @@ export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamily
     field: ArticleFamilyFieldSchema,
   }
 ) {}
-
-interface HeadOrderState {
-  readonly previous: ArticleHead | undefined;
-}
-
-interface ArticleHeadOwner {
-  readonly publicPath: string;
-}
-
-/** Builds the stable key shared by one registry entry and published head. */
-function headOwnerKey(input: {
-  readonly artifactLocale: string;
-  readonly contentKey: string;
-}) {
-  return `${input.artifactLocale}\0${input.contentKey}`;
-}
 
 /** Every failure possible while replaying authoritative article records. */
 export type ArticlePublicationStreamError<E> =
@@ -124,8 +122,8 @@ export type PrepareArticlePublicationError<E> =
 /** Finds the first field proving a head does not own its article source. */
 function mismatchedFamilyField(
   head: ArticleHead,
-  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
-  rendererByCategory: ReadonlyMap<string, RendererDomain>
+  ownerByHead: MutableHashMap.MutableHashMap<string, ArticleHeadOwner>,
+  rendererByCategory: MutableHashMap.MutableHashMap<string, RendererDomain>
 ): typeof ArticleFamilyFieldSchema.Type | undefined {
   const [family, category, slug, contentRemainder] = head.contentKey.split("/");
   if (
@@ -150,11 +148,15 @@ function mismatchedFamilyField(
   ) {
     return "publicPath";
   }
-  const owner = ownerByHead.get(headOwnerKey(head));
+  const owner = Option.getOrUndefined(
+    MutableHashMap.get(ownerByHead, headOwnerKey(head))
+  );
   if (owner !== undefined && head.publicPath !== owner.publicPath) {
     return "publicPath";
   }
-  const rendererDomain = rendererByCategory.get(category);
+  const rendererDomain = Option.getOrUndefined(
+    MutableHashMap.get(rendererByCategory, category)
+  );
   if (rendererDomain !== undefined && head.rendererDomain !== rendererDomain) {
     return "rendererDomain";
   }
@@ -195,8 +197,8 @@ function mismatchedFamilyField(
 function validatePublishedHead(
   state: HeadOrderState,
   head: ArticleHead,
-  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
-  rendererByCategory: ReadonlyMap<string, RendererDomain>
+  ownerByHead: MutableHashMap.MutableHashMap<string, ArticleHeadOwner>,
+  rendererByCategory: MutableHashMap.MutableHashMap<string, RendererDomain>
 ): Effect.Effect<
   readonly [HeadOrderState, readonly ArticleHead[]],
   ArticleHeadDuplicateError | ArticleHeadFamilyError | ArticleHeadOrderError
@@ -238,8 +240,8 @@ function validatePublishedHead(
 /** Proves every published article head before the constant-space merge. */
 function validatePublishedHeads<E, R>(
   published: Stream.Stream<ArticleHead, E, R>,
-  ownerByHead: ReadonlyMap<string, ArticleHeadOwner>,
-  rendererByCategory: ReadonlyMap<string, RendererDomain>
+  ownerByHead: MutableHashMap.MutableHashMap<string, ArticleHeadOwner>,
+  rendererByCategory: MutableHashMap.MutableHashMap<string, RendererDomain>
 ) {
   const initial: HeadOrderState = { previous: undefined };
   return published.pipe(
@@ -268,11 +270,15 @@ export const prepareArticlePublication: <E, R>(
   const entries = yield* decodeArticleRegistry().pipe(
     Effect.mapError(mapArticleSourceError(input.checkoutRoot))
   );
-  const rendererByCategory = new Map<string, RendererDomain>();
-  const ownerByHead = new Map<string, ArticleHeadOwner>();
+  const rendererByCategory = MutableHashMap.empty<string, RendererDomain>();
+  const ownerByHead = MutableHashMap.empty<string, ArticleHeadOwner>();
   for (const entry of entries) {
-    rendererByCategory.set(entry.route.category, entry.rendererDomain);
-    ownerByHead.set(headOwnerKey(entry.route), {
+    MutableHashMap.set(
+      rendererByCategory,
+      entry.route.category,
+      entry.rendererDomain
+    );
+    MutableHashMap.set(ownerByHead, headOwnerKey(entry.route), {
       publicPath: entry.route.publicPath,
     });
   }

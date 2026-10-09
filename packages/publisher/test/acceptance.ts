@@ -11,7 +11,7 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { selectQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, HashSet, MutableHashMap, Path } from "effect";
 import type { AcceptanceSources } from "#publisher/acceptance/source";
 import { materialSlicePaths } from "#test/material/slice";
 import { testRendererDomains } from "#test/renderer";
@@ -79,26 +79,30 @@ export const makeAcceptanceTestSources: Effect.Effect<
     )
   );
   const questionEntries = [
-    ...new Map(
-      questions.flatMap(({ entries }) =>
-        entries.map((entry) => [headIdentity(entry), entry] as const)
+    ...MutableHashMap.values(
+      MutableHashMap.fromIterable(
+        questions.flatMap(({ entries }) =>
+          entries.map((entry) => [headIdentity(entry), entry] as const)
+        )
       )
-    ).values(),
+    ),
   ].sort(compareContentHeads);
   const questionSources = [
-    ...new Map(
-      questions.map(({ source }) => [source.questionKey, source] as const)
-    ).values(),
+    ...MutableHashMap.values(
+      MutableHashMap.fromIterable(
+        questions.map(({ source }) => [source.questionKey, source] as const)
+      )
+    ),
   ];
   const projection = yield* projectTryoutSources(registry, questionSources);
-  const materialPaths = new Set<string>(materialSlicePaths);
+  const materialPaths = HashSet.fromIterable<string>(materialSlicePaths);
   const sources = {
     article: articles.filter(
       ({ route }) =>
         route.contentKey === "articles/politics/regional-elections-turmoil"
     ),
     material: materials.filter(({ sourcePath }) =>
-      materialPaths.has(sourcePath)
+      HashSet.has(materialPaths, sourcePath)
     ),
     page,
     tryout: {
@@ -136,7 +140,9 @@ export const makeAcceptanceTestSources: Effect.Effect<
       "mathematics",
       "politics",
       "site",
-      ...new Set(questionEntries.map(({ rendererDomain }) => rendererDomain)),
+      ...Arr.dedupe(
+        questionEntries.map(({ rendererDomain }) => rendererDomain)
+      ),
     ],
   });
   return { checkoutRoot, rendererManifest, sources };

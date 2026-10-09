@@ -2,49 +2,59 @@ import {
   compareContentHeads,
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
-import type { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
+import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
 import {
-  type ContentKeySchema,
+  ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
-  ACTIVE_APP_LOCALES,
-  type ArtifactLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
-import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
+  type QuestionHead,
+  QuestionHeadSchema,
+} from "@nakafa/aksara-contracts/release/head";
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Stream } from "effect";
+import { Effect, HashMap, HashSet, Option, Schema, Stream } from "effect";
 import {
-  type TryoutHeadBodySchema,
+  TryoutHeadBodySchema,
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
   TryoutHeadMissingError,
   TryoutHeadOrderError,
 } from "#publisher/tryout/error";
+import {
+  questionRoot,
+  validatePlacementPairs,
+} from "#publisher/tryout/placement";
 
-interface HeadRequirement {
-  readonly artifactLocale: typeof ArtifactLocaleSchema.Type;
-  readonly bodyKind: typeof TryoutHeadBodySchema.Type;
-  readonly contentKey: typeof ContentKeySchema.Type;
-  readonly delivery: typeof ContentDeliveryClassSchema.Type;
-  readonly placement: TryoutPlacementSource;
-  readonly sourcePath: typeof CorpusSourcePathSchema.Type;
-}
+const HeadRequirementSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  bodyKind: TryoutHeadBodySchema,
+  contentKey: ContentKeySchema,
+  delivery: ContentDeliveryClassSchema,
+  placement: TryoutPlacementSourceSchema,
+  sourcePath: CorpusSourcePathSchema,
+});
+
+type HeadRequirement = typeof HeadRequirementSchema.Type;
+
+const BoundTryoutPlacementSchema = Schema.Struct({
+  answerHead: QuestionHeadSchema,
+  placement: TryoutPlacementSourceSchema,
+  questionHead: QuestionHeadSchema,
+});
 
 /** Exact question and answer hashes bound to one active placement source. */
-export interface BoundTryoutPlacement {
-  readonly answerHead: QuestionHead;
-  readonly placement: TryoutPlacementSource;
-  readonly questionHead: QuestionHead;
-}
+export type BoundTryoutPlacement = typeof BoundTryoutPlacementSchema.Type;
 
-interface HeadOrderState {
-  readonly previous: QuestionHead | undefined;
-}
+const HeadOrderStateSchema = Schema.Struct({
+  previous: Schema.UndefinedOr(QuestionHeadSchema),
+});
+
+type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Advances one canonical desired-head stream or reports its exact disorder. */
 function validateHeadOrder(
@@ -135,69 +145,28 @@ function mismatchedField(requirement: HeadRequirement, head: QuestionHead) {
   }
 }
 
-/** Returns the logical question root shared by all body head identities. */
-function questionRoot(contentKey: string) {
-  return contentKey.slice(0, contentKey.lastIndexOf("/"));
-}
-
-/** Rejects incomplete or repeated app-locale placements for one question root. */
-function validatePlacementPairs(placements: readonly TryoutPlacementSource[]) {
-  const localesByRoot = new Map<string, Set<string>>();
-  for (const placement of placements) {
-    const root = questionRoot(placement.questionContentKey);
-    const locales = localesByRoot.get(root) ?? new Set<string>();
-    if (locales.has(placement.appLocale)) {
-      return Effect.fail(
-        new TryoutHeadMismatchError({
-          artifactLocale: placement.answerArtifactLocale,
-          contentKey: placement.questionContentKey,
-          field: "bodyPair",
-        })
-      );
-    }
-    locales.add(placement.appLocale);
-    localesByRoot.set(root, locales);
-  }
-  for (const placement of placements) {
-    const locales = localesByRoot.get(
-      questionRoot(placement.questionContentKey)
-    );
-    if (
-      locales?.size !== ACTIVE_APP_LOCALES.length ||
-      ACTIVE_APP_LOCALES.some((appLocale) => !locales.has(appLocale))
-    ) {
-      return Effect.fail(
-        new TryoutHeadMismatchError({
-          artifactLocale: placement.answerArtifactLocale,
-          contentKey: placement.questionContentKey,
-          field: "bodyPair",
-        })
-      );
-    }
-  }
-  return Effect.void;
-}
-
 /** Indexes only exact active compact heads while validating the full stream. */
 function indexTryoutHeads<E, R>(
   requirements: readonly HeadRequirement[],
   heads: Stream.Stream<QuestionHead, E, R>
 ) {
-  const requirementByIdentity = new Map(
+  const requirementByIdentity = HashMap.fromIterable(
     requirements.map((requirement) => [headIdentity(requirement), requirement])
   );
-  const activeRoots = new Set(
+  const activeRoots = HashSet.fromIterable(
     requirements.map(({ contentKey }) => questionRoot(contentKey))
   );
   return validateTryoutHeadStream(heads).pipe(
     Stream.runFoldEffect(
-      () => new Map<string, QuestionHead>(),
+      () => HashMap.empty<string, QuestionHead>(),
       (headsByIdentity, head) => {
-        if (!activeRoots.has(questionRoot(head.contentKey))) {
+        if (!HashSet.has(activeRoots, questionRoot(head.contentKey))) {
           return Effect.succeed(headsByIdentity);
         }
         const identity = headIdentity(head);
-        const requirement = requirementByIdentity.get(identity);
+        const requirement = Option.getOrUndefined(
+          HashMap.get(requirementByIdentity, identity)
+        );
         if (requirement === undefined) {
           return Effect.fail(
             new TryoutHeadMismatchError({
@@ -217,8 +186,7 @@ function indexTryoutHeads<E, R>(
             })
           );
         }
-        headsByIdentity.set(identity, head);
-        return Effect.succeed(headsByIdentity);
+        return Effect.succeed(HashMap.set(headsByIdentity, identity, head));
       }
     )
   );
@@ -226,10 +194,12 @@ function indexTryoutHeads<E, R>(
 
 /** Reads one required active head from the validated compact-head index. */
 function requiredHead(
-  heads: ReadonlyMap<string, QuestionHead>,
+  heads: HashMap.HashMap<string, QuestionHead>,
   requirement: HeadRequirement
 ) {
-  const head = heads.get(headIdentity(requirement));
+  const head = Option.getOrUndefined(
+    HashMap.get(heads, headIdentity(requirement))
+  );
   return head === undefined
     ? Effect.fail(
         new TryoutHeadMissingError({
@@ -243,7 +213,7 @@ function requiredHead(
 
 /** Binds one placement to its exact delivery-specific body artifacts. */
 function bindPlacement(
-  heads: ReadonlyMap<string, QuestionHead>,
+  heads: HashMap.HashMap<string, QuestionHead>,
   placement: TryoutPlacementSource
 ) {
   const [answerRequirement, questionRequirement] =

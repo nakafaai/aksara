@@ -1,7 +1,8 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect } from "effect";
+import { Effect, HashSet } from "effect";
 import {
+  changedMaterialSources,
   MaterialPlanTestFixtures,
   materialPlanFingerprintCases,
   materialPlanTestLayer,
@@ -40,14 +41,14 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
       original.decodeMaterialRegistry(input).pipe(
         Effect.map((entries) =>
           entries
-            .filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            .filter(({ sourcePath }) => HashSet.has(sourcePaths, sourcePath))
             .map((entry) =>
               registryState.changedOrder &&
               entry.rendererDomain === "mathematics" &&
@@ -87,12 +88,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
     Effect.gen(function* () {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
       const fixture = yield* MaterialTestFixtures;
-      const sources = new Map(fixture.sources);
-      const absolutePath = yield* Effect.fromNullishOr(
-        fixture.absolutePaths.get(englishPath)
-      );
-      const english = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${english}\n`);
+      const sources = yield* changedMaterialSources(fixture, englishPath);
 
       const records = yield* collectMaterialPublication({
         heads: publishedHeads,
@@ -231,12 +227,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
       Effect.gen(function* () {
         const { publishedHeads } = yield* MaterialPlanTestFixtures;
         const fixture = yield* MaterialTestFixtures;
-        const sources = new Map(fixture.sources);
-        const absolutePath = yield* Effect.fromNullishOr(
-          fixture.absolutePaths.get(atomEnglishPath)
-        );
-        const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
-        sources.set(absolutePath, `${source}\n`);
+        const sources = yield* changedMaterialSources(fixture, atomEnglishPath);
 
         const scope = PublicationScopeSchema.make({
           families: ["page"],

@@ -25,13 +25,6 @@ function isQuestion(head: ContentHead): head is QuestionHead {
   return head.family === "question";
 }
 
-/** Prepares an independent signed genesis publication for isolated acceptance. */
-interface AcceptanceReleaseInput {
-  readonly aksaraSha: GitCommitSha;
-  readonly checkoutRoot: string;
-  readonly releaseId: ReleaseId;
-  readonly rendererManifest: unknown;
-}
 type AcceptanceReleaseRowsError =
   | ReplaySpoolError
   | ProgramRowError
@@ -50,10 +43,13 @@ type AcceptancePreparationError =
       ReturnType<typeof prepareTryoutSnapshot<ReplaySpoolError, never>>
     >;
 
-/** Prepares an independent genesis publication with canonical signed evidence. */
-export const prepareAcceptanceRelease: (
-  input: AcceptanceReleaseInput
-) => Effect.Effect<
+/** Prepares an independent signed genesis publication for isolated acceptance, with canonical signed evidence. */
+export const prepareAcceptanceRelease: (input: {
+  readonly aksaraSha: GitCommitSha;
+  readonly checkoutRoot: string;
+  readonly releaseId: ReleaseId;
+  readonly rendererManifest: unknown;
+}) => Effect.Effect<
   Effect.Success<PreparedAcceptanceRelease>,
   AcceptancePreparationError,
   FileSystem.FileSystem | Path.Path | Scope.Scope

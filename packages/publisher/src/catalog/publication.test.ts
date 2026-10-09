@@ -11,9 +11,18 @@ import type {
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Context, Effect, Layer, Path, Stream } from "effect";
+import {
+  Context,
+  Effect,
+  HashSet,
+  Layer,
+  MutableHashMap,
+  Path,
+  Stream,
+} from "effect";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
+import type { CatalogTestInput } from "#test/catalog";
 import { testFileLayer } from "#test/files";
 import { MaterialTestFixtures, materialTestLayer } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
@@ -45,7 +54,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
@@ -53,7 +62,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            entries.filter(({ sourcePath }) =>
+              HashSet.has(sourcePaths, sourcePath)
+            )
           )
         ),
   };
@@ -61,24 +72,12 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 
 const baseReleaseId = ReleaseIdSchema.make("test-catalog-base");
 
-interface CatalogTestInput {
-  readonly article?: readonly ArticleHead[];
-  readonly base?: {
-    readonly count: number;
-    readonly digest: typeof Sha256HashSchema.Type;
-    readonly releaseId: typeof baseReleaseId;
-  } | null;
-  readonly material?: readonly MaterialHead[];
-  readonly page?: readonly PageHead[];
-  readonly question?: readonly QuestionHead[];
-}
-
 interface CatalogFixtureSource {
   readonly checkoutRoot: string;
   readonly rendererManifest: Effect.Success<
     ReturnType<typeof createRendererManifest>
   >;
-  readonly sources: ReadonlyMap<string, string>;
+  readonly sources: MutableHashMap.MutableHashMap<string, string>;
 }
 
 /** Builds one whole-catalog program from an already loaded source fixture. */
@@ -151,7 +150,7 @@ const makeCatalogTestFixtures = Effect.fn(
       }),
       publishedDomains: ["mathematics", "politics"],
     });
-    const sources = new Map([
+    const sources = MutableHashMap.fromIterable([
       ...article.sources,
       ...material.sources,
       ...page.sources,

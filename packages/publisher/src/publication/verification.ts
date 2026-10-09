@@ -1,11 +1,11 @@
-import type {
-  PublicationReceipt,
-  ReleaseVerificationEvidence,
-  SignedContentRelease,
+import {
+  PublicationReceiptSchema,
+  type ReleaseVerificationEvidence,
+  type SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Duration, Effect, Schedule } from "effect";
+import { Duration, Effect, Schedule, Schema } from "effect";
 import type { PublicationPlan } from "#publisher/publication/plan";
 import type { PublishContentReleaseError } from "#publisher/publication/program";
 import {
@@ -21,9 +21,15 @@ import {
 } from "#publisher/validation";
 
 /** Candidate staging either found a terminal receipt or reached verification. */
-export type CandidateStageResult =
-  | { readonly kind: "completed"; readonly receipt: PublicationReceipt }
-  | { readonly kind: "verified" };
+const CandidateStageResultSchema = Schema.Union([
+  Schema.Struct({
+    kind: Schema.Literal("completed"),
+    receipt: PublicationReceiptSchema,
+  }),
+  Schema.Struct({ kind: Schema.Literal("verified") }),
+]);
+
+export type CandidateStageResult = typeof CandidateStageResultSchema.Type;
 
 type StageCandidateRelease = <E, R>(
   plan: PublicationPlan<E, R>

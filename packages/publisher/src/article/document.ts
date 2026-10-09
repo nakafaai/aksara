@@ -2,10 +2,7 @@ import {
   type CompiledContentResult,
   compileContent,
 } from "@nakafa/aksara-compiler/compile";
-import {
-  type ContentSourceInspection,
-  inspectContentSource,
-} from "@nakafa/aksara-compiler/inspect";
+import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
@@ -37,14 +34,6 @@ export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()
   "ArticleSourceError",
   { cause: Schema.Unknown, checkoutRoot: Schema.String }
 ) {}
-
-/** Lightweight article facts sufficient to decide whether compilation is needed. */
-export interface InspectedArticleDocument {
-  readonly inspection: ContentSourceInspection;
-  readonly projection: ArticleProjection;
-  readonly projectionHash: ReturnType<typeof hashContentProjection>;
-  readonly source: ArticleDocumentSource;
-}
 
 /** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {
@@ -130,8 +119,13 @@ export const inspectArticleDocument = Effect.fn(
     projection,
     projectionHash: hashContentProjection(projection),
     source,
-  } satisfies InspectedArticleDocument;
+  };
 });
+
+/** One article source with its inspection, projection, and projection hash. */
+export type InspectedArticleDocument = Readonly<
+  Effect.Success<ReturnType<typeof inspectArticleDocument>>
+>;
 
 /** Binds compiled output to its registry-owned article change and projection. */
 function makeArticleRecord(

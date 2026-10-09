@@ -1,4 +1,7 @@
-import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import {
+  ReleaseIdSchema,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import {
   type ArticleHead,
   ArticleHeadSchema,
@@ -34,12 +37,14 @@ import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import type { RouteTransition } from "#publisher/routes";
 
+const ContentCatalogBaseSchema = Schema.Struct({
+  count: Schema.Finite,
+  digest: Sha256HashSchema,
+  releaseId: ReleaseIdSchema,
+});
+
 /** Signed identity of the complete active result catalog. */
-export interface ContentCatalogBase {
-  readonly count: number;
-  readonly digest: Sha256Hash;
-  readonly releaseId: ReleaseId;
-}
+export type ContentCatalogBase = typeof ContentCatalogBaseSchema.Type;
 
 /** A genesis publication found active heads without an authenticated base. */
 export class CatalogGenesisError extends Schema.TaggedError<CatalogGenesisError>()(

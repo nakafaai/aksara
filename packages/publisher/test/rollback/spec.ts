@@ -31,16 +31,14 @@ export const rollbackFixtureReleaseId = ReleaseIdSchema.make(
   "test-derived-rollback"
 );
 
-interface MaterialFixtureInput {
+/** Builds one internally coherent derived material state and compact head. */
+export function makeDerivedMaterial(input: {
   readonly contentKey: string;
   readonly hashCharacter: string;
   readonly index: number;
   readonly publicPath: string;
   readonly releaseId?: ReleaseId;
-}
-
-/** Builds one internally coherent derived material state and compact head. */
-export function makeDerivedMaterial(input: MaterialFixtureInput) {
+}) {
   const appLocale = AppLocaleSchema.make("en");
   const artifactLocale = ArtifactLocaleSchema.make("en");
   const contentKey = ContentKeySchema.make(input.contentKey);

@@ -16,7 +16,7 @@ import {
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { Effect } from "effect";
+import { Effect, MutableHashMap, Option } from "effect";
 
 import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
@@ -104,7 +104,7 @@ describe("publication runtime", () => {
         }).pipe(
           Effect.provideService(ContentVerificationKeyResolver, resolver)
         );
-        const recordedSignatures = new Map([
+        const recordedSignatures = MutableHashMap.fromIterable([
           [
             "sha256:436ab25a3c201eff2f15b393b4d748e0f6e31a6387d5166dfeff342612c9d33b",
             TEST_RESULT_BUNDLE_SIGNATURE,
@@ -115,12 +115,14 @@ describe("publication runtime", () => {
           ],
         ]);
         expect(bundles.map((bundle) => bundle.bundleHash)).toEqual([
-          ...recordedSignatures.keys(),
+          ...MutableHashMap.keys(recordedSignatures),
         ]);
         /** Verifies each produced bundle over the transformed signing input with its recorded signature. */
         const verifies = (transform: (input: string) => string) =>
           bundles.map((bundle) => {
-            const signature = recordedSignatures.get(bundle.bundleHash);
+            const signature = Option.getOrUndefined(
+              MutableHashMap.get(recordedSignatures, bundle.bundleHash)
+            );
             const input = canonicalizeTryoutRuntimeBundleSigningInput(
               bundle.bundleHash,
               bundle.payload

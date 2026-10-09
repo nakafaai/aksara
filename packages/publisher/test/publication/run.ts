@@ -125,7 +125,7 @@ export function publishFromSource<E, R>(
 ) {
   return publishGitRelease(prepared).pipe(
     Effect.provide([
-      testFileLayer(new Map()),
+      testFileLayer([]),
       Path.layer,
       Layer.succeed(
         PublicationSigningKey,
@@ -168,7 +168,7 @@ export function prepareRecoveryPlan<E, R>(
 ) {
   return preparePublicationPlan({ input: prepared, kind: "rollback" }).pipe(
     Effect.provide([
-      testFileLayer(new Map()),
+      testFileLayer([]),
       Path.layer,
       Layer.succeed(PublicationSigningKey, signingKey),
       Layer.succeed(ContentVerificationKeyResolver, resolver),

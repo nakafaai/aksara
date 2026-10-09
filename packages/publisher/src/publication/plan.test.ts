@@ -150,7 +150,7 @@ function collectCacheChanges<E>(input: PreparedGitRelease<E, never>) {
     })
   ).pipe(
     Effect.provide([
-      testFileLayer(new Map()),
+      testFileLayer([]),
       Path.layer,
       Layer.succeed(PublicationSigningKey, signingKey),
       Layer.succeed(PublicationTarget, makePublicationTarget({})),

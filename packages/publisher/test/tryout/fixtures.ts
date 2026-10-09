@@ -12,14 +12,14 @@ const tryoutPrompts = questionEntries.filter(
   ({ bodyKind }) => bodyKind === "question"
 );
 
-interface TryoutFixtures {
-  readonly tryoutHeads: Awaited<ReturnType<typeof publishedQuestionHeads>>;
-  readonly tryoutPlacements: ReturnType<typeof selectTryoutSlice>["placements"];
-}
-
 /** Loads the real try-out fixture inside the calling Effect test runtime. */
 export const tryoutFixtures: Effect.Effect<
-  TryoutFixtures,
+  {
+    readonly tryoutHeads: Awaited<ReturnType<typeof publishedQuestionHeads>>;
+    readonly tryoutPlacements: ReturnType<
+      typeof selectTryoutSlice
+    >["placements"];
+  },
   Effect.Error<ReturnType<typeof loadTryoutContent>>
 > = Effect.gen(function* () {
   const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
