@@ -3,7 +3,7 @@ import {
   ContentKeySchema,
   type CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, Predicate, Schema, Struct } from "effect";
+import { Effect, MutableList, Predicate, Schema, Struct } from "effect";
 import { visit as visitEstree } from "estree-util-visit";
 import type { Heading, Root } from "mdast";
 import { toString as mdastToString } from "mdast-util-to-string";
@@ -93,12 +93,14 @@ export function createHeadingPolicy(
   const bounded =
     sourcePath.startsWith("packages/corpus/material/lesson/") ||
     sourcePath.startsWith("packages/corpus/articles/");
-  const depths: (typeof AuthoredHeadingDepthError.fields.occurrences.Type)[number][] =
-    [];
+  const depths =
+    MutableList.make<
+      (typeof AuthoredHeadingDepthError.fields.occurrences.Type)[number]
+    >();
   /** Records source positions for headings that exceed the owning genre's limit. */
   function recordDepth(depth: number, line: number, column: number) {
     if (bounded && depth > 3) {
-      depths.push({ column, depth, line });
+      MutableList.append(depths, { column, depth, line });
     }
   }
   /** Inspects JSX headings inside expressions and component properties. */
@@ -143,14 +145,14 @@ export function createHeadingPolicy(
       }
     }
   }
-  const occurrences: AuthoredListHeadingOccurrence[] = [];
+  const occurrences = MutableList.make<AuthoredListHeadingOccurrence>();
   /** Records list-shaped headings during the remark pass. */
   const remarkPlugin: Plugin<[], Root> = () => (tree) => {
     visit(tree, (node) => {
       if (node.type === "heading") {
         const occurrence = listHeadingOccurrence(node);
         if (occurrence) {
-          occurrences.push(occurrence);
+          MutableList.append(occurrences, occurrence);
         }
         recordDepth(
           node.depth,
@@ -174,14 +176,14 @@ export function createHeadingPolicy(
       if (occurrences.length > 0) {
         return yield* new AuthoredListHeadingError({
           contentKey,
-          occurrences: [...occurrences],
+          occurrences: MutableList.toArray(occurrences),
         });
       }
       if (depths.length > 0) {
         return yield* new AuthoredHeadingDepthError({
           contentKey,
           maximumDepth: 3,
-          occurrences: [...depths],
+          occurrences: MutableList.toArray(depths),
         });
       }
     }

@@ -1,3 +1,4 @@
+import { Array as Arr, MutableList } from "effect";
 import type { Program } from "estree-jsx";
 import type { Root } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
@@ -45,13 +46,13 @@ function moduleOccurrence(node: MdxjsEsm): UnsupportedMdxModuleOccurrence {
 /** Records redacted source locations for every unsupported MDX module. */
 export function collectUnsupportedMdxModules(
   tree: Root,
-  unsupportedModules: UnsupportedMdxModuleOccurrence[]
+  unsupportedModules: MutableList.MutableList<UnsupportedMdxModuleOccurrence>
 ) {
-  tree.children = tree.children.filter((node) => {
+  tree.children = Arr.filter(tree.children, (node) => {
     if (node.type !== "mdxjsEsm") {
       return true;
     }
-    unsupportedModules.push(moduleOccurrence(node));
+    MutableList.append(unsupportedModules, moduleOccurrence(node));
     return true;
   });
 }

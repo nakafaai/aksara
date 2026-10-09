@@ -1,4 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
 import { foldNumber } from "#compiler/ast/constant";
 import { parseExpression } from "#compiler/test/expression";
 
@@ -84,7 +85,7 @@ describe("constant numeric expressions", () => {
 
   it.each(MATH_FUNCTIONS)("calls the Math function %s", (name) => {
     const method: (...values: number[]) => number = Math[name];
-    const results = [0.5, 1.5].map((sample) => {
+    const results = Arr.map([0.5, 1.5], (sample) => {
       const expected = method(sample, 2);
       const folded = fold(`Math.${name}(${sample}, 2)`);
       assert.isTrue(
@@ -94,7 +95,7 @@ describe("constant numeric expressions", () => {
       return folded;
     });
     assert.isTrue(
-      results.some((result) => result !== undefined),
+      Arr.some(results, (result) => result !== undefined),
       name
     );
   });

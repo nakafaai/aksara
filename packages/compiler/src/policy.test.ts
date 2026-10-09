@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { Effect, HashSet } from "effect";
+import { Effect, HashSet, MutableList } from "effect";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";
 import { unified } from "unified";
@@ -28,8 +28,9 @@ vi.mock("eslint-scope", async (importOriginal) => {
 /** Runs the executable-policy plugin against one MDX fixture. */
 const inspectPolicy = Effect.fn("ExecutablePolicyTest.inspectPolicy")(
   function* (rawMdx: string, allowedComponents: readonly string[] = []) {
-    const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-    const violations: ExecutablePolicyViolation[] = [];
+    const unsupportedModules =
+      MutableList.make<UnsupportedMdxModuleOccurrence>();
+    const violations = MutableList.make<ExecutablePolicyViolation>();
     yield* Effect.promise(() =>
       compile(rawMdx, {
         remarkPlugins: [
@@ -41,15 +42,18 @@ const inspectPolicy = Effect.fn("ExecutablePolicyTest.inspectPolicy")(
         ],
       })
     );
-    return { unsupportedModules, violations };
+    return {
+      unsupportedModules: MutableList.toArray(unsupportedModules),
+      violations: MutableList.toArray(violations),
+    };
   }
 );
 /** Runs executable-policy inspection against an already constructed MDX tree. */
 const inspectTree = Effect.fn("ExecutablePolicyTest.inspectTree")(function* (
   tree: Root
 ) {
-  const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
-  const violations: ExecutablePolicyViolation[] = [];
+  const unsupportedModules = MutableList.make<UnsupportedMdxModuleOccurrence>();
+  const violations = MutableList.make<ExecutablePolicyViolation>();
   yield* Effect.promise(() =>
     unified()
       .use(
@@ -61,7 +65,10 @@ const inspectTree = Effect.fn("ExecutablePolicyTest.inspectTree")(function* (
       )
       .run(tree)
   );
-  return { unsupportedModules, violations };
+  return {
+    unsupportedModules: MutableList.toArray(unsupportedModules),
+    violations: MutableList.toArray(violations),
+  };
 });
 afterEach(() => {
   scopeState.withoutGlobalScope = false;
