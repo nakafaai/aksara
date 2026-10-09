@@ -88,8 +88,9 @@ export const validateQuestionUniqueness = Effect.fn(
       HashSet.size(HashSet.fromIterable(Arr.map(group, ({ text }) => text))) > 1
   );
   const repeats = [
-    ...Arr.map(sharedPrints(prints, ({ text }) => text), (group) =>
-      repeat("text", group)
+    ...Arr.map(
+      sharedPrints(prints, ({ text }) => text),
+      (group) => repeat("text", group)
     ),
     ...Arr.map(numberGroups, (group) => repeat("numbers", group)),
   ];

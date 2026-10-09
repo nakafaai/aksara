@@ -24,13 +24,16 @@ export const readQuestionPrompts = Effect.fn(
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const prompts = Arr.flatMap(sources, (source) =>
-    Arr.map(questionArtifactLocalesForPolicy(source.languagePolicy), (locale) => ({
-      locale,
-      path: CorpusSourcePathSchema.make(
-        `${source.sourceRoot}/question.${locale}.mdx`
-      ),
-      source,
-    }))
+    Arr.map(
+      questionArtifactLocalesForPolicy(source.languagePolicy),
+      (locale) => ({
+        locale,
+        path: CorpusSourcePathSchema.make(
+          `${source.sourceRoot}/question.${locale}.mdx`
+        ),
+        source,
+      })
+    )
   );
   return yield* Effect.forEach(
     prompts,

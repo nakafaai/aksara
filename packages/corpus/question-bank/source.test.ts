@@ -1,12 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import {
-  Array as Arr,
-  Effect,
-  HashSet,
-  MutableHashMap,
-  Option,
-} from "effect";
+import { Array as Arr, Effect, HashSet, MutableHashMap, Option } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
   indexQuestionItems,
@@ -203,9 +197,7 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
 
       expect(
         Arr.every(errors, ({ _tag }) => _tag === "QuestionItemError")
-      ).toBe(
-        true
-      );
+      ).toBe(true);
     })
   );
 

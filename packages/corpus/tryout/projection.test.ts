@@ -265,11 +265,13 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        const groupPath = "/tka/compulsory-mathematics/set-1/";
+        /** Finds one question of the compulsory mathematics set 1 section by number. */
         const questionAt = (number: number) =>
           Effect.fromOption(
             Arr.findFirst(questions, ({ questionKey }) =>
-              questionKey.endsWith(`${groupPath}question-${number}`)
+              questionKey.endsWith(
+                `/tka/compulsory-mathematics/set-1/question-${number}`
+              )
             )
           );
         const fifth = yield* questionAt(5);

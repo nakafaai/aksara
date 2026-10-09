@@ -124,7 +124,13 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         ).toEqual([2150, 3400, 1850]);
         expect(
           Arr.map(
-            ["snbt-general", "snbt-math", "snbt-plain", "snbt-quant", "tka-math"],
+            [
+              "snbt-general",
+              "snbt-math",
+              "snbt-plain",
+              "snbt-quant",
+              "tka-math",
+            ],
             (domain) =>
               Arr.filter(entries, (entry) => entry.rendererDomain === domain)
                 .length
@@ -225,10 +231,9 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
       );
 
       expect(selected.selected.sourcePath).toBe(answer);
-      expect(Arr.map(selected.entries, ({ sourcePath }) => sourcePath)).toEqual([
-        prompt,
-        answer,
-      ]);
+      expect(Arr.map(selected.entries, ({ sourcePath }) => sourcePath)).toEqual(
+        [prompt, answer]
+      );
     })
   );
 

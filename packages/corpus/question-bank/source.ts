@@ -43,10 +43,13 @@ export type QuestionSource = typeof QuestionSourceSchema.Type;
 /** Indexes canonical items once by their physical question directory. */
 export function indexQuestionItems(sources: readonly QuestionSource[]) {
   return MutableHashMap.fromIterable(
-    Arr.map(sources, ({ item, sourceRoot }): [string, QuestionSource["item"]] => [
-      sourceRoot,
-      item,
-    ])
+    Arr.map(
+      sources,
+      ({ item, sourceRoot }): [string, QuestionSource["item"]] => [
+        sourceRoot,
+        item,
+      ]
+    )
   );
 }
 /** Reading a question-bank directory or source file failed. */
