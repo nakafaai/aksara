@@ -16,9 +16,7 @@ const repositories = makeRepositoryTracker();
 const QUESTION_PATH =
   "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
 
-afterEach(() => {
-  repositories.clear();
-});
+afterEach(() => repositories.clear());
 
 layer(NodeServices.layer)("preview source integrity", (it) => {
   it.effect(
@@ -27,7 +25,7 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
-        const repository = repositories.create();
+        const repository = yield* repositories.create();
         const aksaraRoot = yield* fileSystem.realPath(repository.aksaraRoot);
         const documentPath = yield* fileSystem.realPath(
           repository.documentPath

@@ -1,8 +1,8 @@
 import { Server } from "node:http";
-import { afterEach, assert, describe, expect, it } from "@effect/vitest";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Effect, Predicate } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
@@ -16,6 +16,13 @@ import {
   withProvider,
 } from "#test/provider";
 import { RENDERER_MANIFEST } from "#test/real";
+
+/** A ready manifest lists at least one artifact, and each names its served path. */
+const ReadyArtifactsSchema = Schema.Struct({
+  artifacts: Schema.NonEmptyArray(
+    Schema.Struct({ artifactPath: Schema.String })
+  ),
+});
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -40,14 +47,11 @@ describe("local preview provider", () => {
           );
           const readyManifest = yield* responseJson(readyManifestResponse);
           expect(readyManifest).toMatchObject({ revision: 2, status: "ready" });
-          assert(
-            Predicate.isObject(readyManifest) &&
-              Predicate.hasProperty(readyManifest, "artifacts") &&
-              Array.isArray(readyManifest.artifacts) &&
-              Predicate.isString(readyManifest.artifacts[0]?.artifactPath),
-            "Ready provider manifest omitted its artifact paths."
-          );
-          const [readyArtifact] = readyManifest.artifacts;
+          const readyArtifacts =
+            yield* Schema.decodeUnknownEffect(ReadyArtifactsSchema)(
+              readyManifest
+            );
+          const [readyArtifact] = readyArtifacts.artifacts;
           const artifact = yield* requestProvider(
             provider,
             token,
@@ -164,19 +168,16 @@ describe("local preview provider", () => {
     () =>
       withProvider(({ provider, ready, token }) =>
         Effect.gen(function* () {
-          const signal = yield* Effect.abortSignal;
           const response = yield* requestProvider(
             provider,
             token,
-            PREVIEW_EVENTS_PATH,
-            { signal }
+            PREVIEW_EVENTS_PATH
           );
           expect(response.status).toBe(200);
-          expect(response.headers.get("content-type")).toContain(
+          expect(response.headers["content-type"]).toContain(
             "text/event-stream"
           );
-          const reader = response.body?.getReader();
-          assert(reader !== undefined, "Expected one provider event stream.");
+          const reader = Stream.toReadableStream(response.stream).getReader();
           const initial = yield* readProviderEvent(reader);
           const initialEvent = new TextDecoder().decode(initial.value);
           const route = previewDocumentRoute(ready.document);

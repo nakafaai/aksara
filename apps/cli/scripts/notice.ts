@@ -1,4 +1,4 @@
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, MutableHashMap, Path, Schema } from "effect";
 
 const ManifestSchema = Schema.fromJsonString(
   Schema.Struct({
@@ -19,10 +19,11 @@ export class NoticeError extends Schema.TaggedError<NoticeError>()(
   }
 ) {}
 
-interface PackageLocation {
-  readonly name: string;
-  readonly root: string;
-}
+const PackageLocationSchema = Schema.Struct({
+  name: Schema.String,
+  root: Schema.String,
+});
+type PackageLocation = typeof PackageLocationSchema.Type;
 
 /** Finds the closest installed package that owns one bundle input. */
 const packageLocation = (input: string, root: string, path: Path.Path) => {
@@ -114,16 +115,20 @@ const readNotice = Effect.fn("AksaraCliNotice.read")(function* (
 export const generateBundledNotice = Effect.fn("AksaraCliNotice.generate")(
   function* (inputs: readonly string[], root: string) {
     const path = yield* Path.Path;
-    const locations = new Map<string, PackageLocation>();
+    const locations = MutableHashMap.empty<string, PackageLocation>();
     for (const input of inputs) {
       const location = packageLocation(input, root, path);
       if (location !== undefined) {
-        locations.set(location.root, location);
+        MutableHashMap.set(locations, location.root, location);
       }
     }
-    const notices = yield* Effect.forEach([...locations.values()], readNotice, {
-      concurrency: "unbounded",
-    });
+    const notices = yield* Effect.forEach(
+      [...MutableHashMap.values(locations)],
+      readNotice,
+      {
+        concurrency: "unbounded",
+      }
+    );
     notices.sort((left, right) =>
       `${left.name}@${left.version}`.localeCompare(
         `${right.name}@${right.version}`

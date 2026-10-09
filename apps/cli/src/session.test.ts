@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Effect, FileSystem, Logger, Redacted } from "effect";
+import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { RunningNakafa } from "#cli/child/session";
 import type { PreviewDocumentCompiler } from "#cli/document";
 import { makeNakafaAppError } from "#cli/error";
@@ -25,13 +26,11 @@ type ProviderControl = Parameters<typeof makeProvider>[0];
 function makeControl(): ProviderControl {
   return { failed: 0, pending: 0, ready: 0 };
 }
-
 /** Acquires one repository pair and removes it when the test scope closes. */
 const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
   function* () {
-    return yield* Effect.acquireRelease(
-      Effect.sync(() => repositories.create()),
-      () => Effect.sync(() => repositories.clear())
+    return yield* Effect.acquireRelease(repositories.create(), () =>
+      Effect.promise(() => repositories.clear())
     );
   }
 );
@@ -262,16 +261,19 @@ layer(NodeServices.layer)("local preview session", (it) => {
         Effect.gen(function* () {
           const { input } = capture;
           assert(input !== undefined, "Expected preview application input.");
-          const response = yield* Effect.tryPromise(() =>
-            fetch(new URL(input.provider.manifestPath, input.provider.origin), {
-              headers: {
-                authorization: `Bearer ${Redacted.value(input.credentials.providerToken)}`,
-              },
-            })
+          const client = yield* HttpClient.HttpClient;
+          const response = yield* client.execute(
+            HttpClientRequest.get(
+              new URL(input.provider.manifestPath, input.provider.origin)
+            ).pipe(
+              HttpClientRequest.bearerToken(
+                Redacted.value(input.credentials.providerToken)
+              )
+            )
           );
-          const body = yield* Effect.tryPromise(() => response.json());
+          const body = yield* response.json;
           expect(body).toMatchObject({ status: "failed" });
-        }).pipe(Effect.orDie)
+        }).pipe(Effect.provide(FetchHttpClient.layer), Effect.orDie)
       );
     })
   );

@@ -25,6 +25,7 @@ import {
   type PreviewHttp,
   type PreviewHttpState,
 } from "#cli/provider/http";
+import { encodeJsonText } from "#cli/text/json";
 
 /** Loopback provider startup or state encoding failed safely. */
 export class PreviewProviderError extends Schema.TaggedError<PreviewProviderError>()(
@@ -93,7 +94,7 @@ const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
       ),
       Effect.map((decoded) => ({
         manifest: decoded,
-        manifestJson: JSON.stringify(decoded),
+        manifestJson: encodeJsonText(decoded),
       }))
     )
 );
