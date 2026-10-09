@@ -7,7 +7,7 @@ import {
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
+import { Effect, Record as Rec, Schema, type Scope, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 
 const CountSchema = Schema.Int.pipe(
@@ -103,7 +103,7 @@ function tryoutCatalogCount(
     { readonly family: "tryout" }
   >["manifest"]["counts"]
 ) {
-  return Object.values(counts).reduce((total, count) => total + count, 0);
+  return Rec.values(counts).reduce((total, count) => total + count, 0);
 }
 
 /** Validates every current structured family and returns signed-source facts. */

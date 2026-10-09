@@ -20,7 +20,7 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Stream } from "effect";
+import { Effect, Record as Rec, Stream } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
 import { materialGraph } from "#test/graph";
@@ -177,7 +177,7 @@ const mismatchCases = {
 >;
 
 describe("derivePreparedRecords", () => {
-  it.effect.each(Object.entries(mismatchCases))(
+  it.effect.each(Rec.toEntries(mismatchCases))(
     "rejects %s incoherence",
     ([field, mutate]) =>
       Effect.gen(function* () {

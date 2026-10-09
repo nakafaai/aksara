@@ -24,6 +24,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
+import { encodeJsonText } from "#publisher/text/json";
 
 /** Serializes one complete release-item batch in deterministic wire order. */
 export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {
@@ -31,12 +32,12 @@ export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {
     .map(canonicalizeContentReleaseItem)
     .join(
       ","
-    )}],"operation":"stageItemBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
+    )}],"operation":"stageItemBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Serializes one complete route batch in deterministic wire order. */
 export function canonicalizeRouteBatch(batch: StageRouteBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"operation":"stageRouteBatch","releaseId":${JSON.stringify(batch.releaseId)},"routes":[${batch.routes.map(canonicalizeContentRouteItem).join(",")}]}`;
+  return `{"batchIndex":${batch.batchIndex},"operation":"stageRouteBatch","releaseId":${encodeJsonText(batch.releaseId)},"routes":[${batch.routes.map(canonicalizeContentRouteItem).join(",")}]}`;
 }
 
 /** Serializes one complete artifact batch in deterministic wire order. */
@@ -45,7 +46,7 @@ export function canonicalizeArtifactBatch(batch: StageArtifactBatchInput) {
     .map(canonicalizeSignedContentArtifact)
     .join(
       ","
-    )}],"batchIndex":${batch.batchIndex},"operation":"stageArtifactBatch","releaseId":${JSON.stringify(batch.releaseId)}}`;
+    )}],"batchIndex":${batch.batchIndex},"operation":"stageArtifactBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Streams bounded release-item envelopes with contiguous batch identities. */

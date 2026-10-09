@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
@@ -11,7 +10,7 @@ import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Stream } from "effect";
+import { Effect, Path, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 import {
   makeQuranSnapshotFixture,
@@ -20,7 +19,9 @@ import {
   tryoutSnapshotFixture,
 } from "#test/snapshot";
 
-const checkoutRoot = resolve(process.cwd(), "..", "..");
+const repositoryRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(process.cwd(), "..", "..")
+);
 const quranState = vi.hoisted((): { current: QuranFixture | undefined } => ({
   current: undefined,
 }));
@@ -75,7 +76,7 @@ function prepare(
   return Effect.scoped(
     Effect.gen(function* () {
       const prepared = yield* prepareReleaseSnapshots({
-        checkoutRoot,
+        checkoutRoot: yield* repositoryRoot,
         families,
         previousSnapshots,
         questionHeads: Stream.empty,

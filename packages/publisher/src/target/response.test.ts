@@ -4,6 +4,7 @@ import { PublicationStatusRequestSchema } from "@nakafa/aksara-contracts/transpo
 import { Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import { readPublicationResponse } from "#publisher/target/response";
+import { encodeJsonText } from "#publisher/text/json";
 import { transportRelease } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 
@@ -33,7 +34,7 @@ const reject = Effect.fn("PublicationResponseTest.reject")(
 describe("publication response body", () => {
   it.effect("decodes one bounded strict UTF-8 JSON success", () =>
     Effect.gen(function* () {
-      const body = JSON.stringify(transportSuccess(request));
+      const body = encodeJsonText(transportSuccess(request));
       const result = yield* readPublicationResponse(
         request,
         response(body, {
@@ -100,7 +101,7 @@ describe("publication response body", () => {
             headers: { "content-type": "application/json" },
           }),
           response("{", { headers: { "content-type": "application/json" } }),
-          response(JSON.stringify({ ...success, extra: true }), {
+          response(encodeJsonText({ ...success, extra: true }), {
             headers: { "content-type": "application/json" },
           }),
         ];
@@ -144,7 +145,7 @@ describe("publication response body", () => {
           detail: { reason: "network" },
           stage: "status",
         });
-        expect(JSON.stringify(error)).not.toContain("test-stream-failure");
+        expect(encodeJsonText(error)).not.toContain("test-stream-failure");
       })
   );
 });

@@ -1,5 +1,3 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
@@ -9,12 +7,16 @@ import {
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Path, Stream } from "effect";
+import { Effect, FileSystem, Path, Stream } from "effect";
 import { prepareQuestionPublication } from "#publisher/question/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
 
-export const checkoutRoot = resolve(process.cwd(), "..", "..");
+export const checkoutRoot = await Effect.runPromise(
+  Effect.map(Path.Path, (path) => path.resolve(process.cwd(), "..", "..")).pipe(
+    Effect.provide(NodeServices.layer)
+  )
+);
 const questionKey =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
 const tryoutSources = await Effect.runPromise(decodeTryoutRegistry());
@@ -39,10 +41,17 @@ export const questionPaths = firstSource.files.map(
   (file) => `${firstSource.sourceRoot}/${file}`
 );
 export const sourceByPath = new Map(
-  questionPaths.map((sourcePath) => {
-    const absolutePath = resolve(checkoutRoot, sourcePath);
-    return [absolutePath, readFileSync(absolutePath, "utf8")] as const;
-  })
+  await Effect.runPromise(
+    Effect.forEach(questionPaths, (sourcePath) =>
+      Effect.gen(function* () {
+        const path = yield* Path.Path;
+        const fileSystem = yield* FileSystem.FileSystem;
+        const absolutePath = path.resolve(checkoutRoot, sourcePath);
+        const text = yield* fileSystem.readFileString(absolutePath);
+        return [absolutePath, text] as const;
+      })
+    ).pipe(Effect.provide(NodeServices.layer))
+  )
 );
 
 const baseComponents = ["InlineMath"];

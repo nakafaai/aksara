@@ -10,6 +10,7 @@ import {
   canonicalizeStageGroup,
   makeStageGroups,
 } from "#publisher/stage/group";
+import { encodeJsonText } from "#publisher/text/json";
 import { transportRequests } from "#test/transport/spec";
 
 describe("makeStageGroups", () => {
@@ -42,7 +43,7 @@ describe("makeStageGroups", () => {
             (group) =>
               group.requests.length <= MAX_STAGE_GROUP_COUNT &&
               Buffer.byteLength(
-                JSON.stringify({ ...group, operation: "stageGroup" }),
+                encodeJsonText({ ...group, operation: "stageGroup" }),
                 "utf8"
               ) <= MAX_STAGE_GROUP_BYTES
           )

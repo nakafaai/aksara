@@ -3,6 +3,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Ref, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
+import { encodeJsonText } from "#publisher/text/json";
 
 const releaseId = ReleaseIdSchema.make("test-batch-core");
 
@@ -17,7 +18,7 @@ function buildBatch(
 
 /** Serializes one complete test envelope for byte-accurate partitioning. */
 function serializeBatch(batch: ReturnType<typeof buildBatch>) {
-  return JSON.stringify(batch);
+  return encodeJsonText(batch);
 }
 
 describe("streamBatches", () => {

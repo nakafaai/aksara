@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import {
@@ -12,14 +11,16 @@ import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry"
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { QuestionReadError } from "@nakafa/aksara-corpus/question-bank/source";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect } from "effect";
+import { Effect, Path } from "effect";
 import {
   AcceptanceSourceError,
   loadAcceptanceSources,
   loadAcceptanceTryout,
 } from "#publisher/acceptance/source";
 
-const checkoutRoot = resolve(process.cwd(), "..", "..");
+const checkoutRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(process.cwd(), "..", "..")
+);
 const firstSetSuffix = /:set-1$/;
 const state = vi.hoisted(() => ({ missing: "" }));
 
@@ -96,7 +97,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
     "keeps complete material groups, pages, and every first-set question locale",
     () =>
       Effect.gen(function* () {
-        const selected = yield* loadAcceptanceSources(checkoutRoot);
+        const selected = yield* loadAcceptanceSources(yield* checkoutRoot);
         const materials = yield* decodeMaterialRegistry();
         const articles = yield* decodeArticleRegistry();
         const pages = yield* decodePageRegistry();
@@ -199,7 +200,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
     (identity) =>
       Effect.gen(function* () {
         state.missing = identity;
-        const error = yield* loadAcceptanceSources(checkoutRoot).pipe(
+        const error = yield* loadAcceptanceSources(yield* checkoutRoot).pipe(
           Effect.flip
         );
         expect(error).toBeInstanceOf(AcceptanceSourceError);
@@ -210,7 +211,9 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
   it.effect("rejects a track without its complete first set", () =>
     Effect.gen(function* () {
       state.missing = "set-1";
-      const error = yield* loadAcceptanceTryout(checkoutRoot).pipe(Effect.flip);
+      const error = yield* loadAcceptanceTryout(yield* checkoutRoot).pipe(
+        Effect.flip
+      );
       expect(error).toBeInstanceOf(AcceptanceSourceError);
       expect(error).toMatchObject({
         identity: expect.stringMatching(firstSetSuffix),

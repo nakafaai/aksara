@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import type { DateOnly } from "@nakafa/aksara-contracts/date";
 import { artifactLocaleCode } from "@nakafa/aksara-contracts/locale";
 import {
@@ -109,7 +108,9 @@ export const collectEnrichedTryoutContent = Effect.fn(
   const stimulusKey = TryoutKeySchema.make("shared-function-model");
   const enrichedItem = { ...source.item, blueprint, stimulusKey };
   const enrichedSources = [{ ...source, item: enrichedItem }];
-  const questionPath = resolve(checkoutRoot, questionEntry.sourcePath);
+  const questionPath = yield* Effect.map(Path.Path, (path) =>
+    path.resolve(checkoutRoot, questionEntry.sourcePath)
+  ).pipe(Effect.provide(Path.layer));
   const questionSource = yield* Effect.fromNullishOr(
     sourceByPath.get(questionPath)
   );

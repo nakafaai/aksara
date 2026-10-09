@@ -11,6 +11,7 @@ import {
 import type { StageSnapshotBatchInput } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Effect, Schema, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
+import { encodeJsonText } from "#publisher/text/json";
 
 /** One structured row is not owned by its declared snapshot envelope. */
 export class SnapshotBatchBindingError extends Schema.TaggedError<SnapshotBatchBindingError>()(
@@ -29,7 +30,7 @@ export class SnapshotBatchBindingError extends Schema.TaggedError<SnapshotBatchB
 
 /** Serializes one complete snapshot-row request in canonical wire order. */
 export function canonicalizeSnapshotBatch(batch: StageSnapshotBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"family":${JSON.stringify(batch.family)},"operation":"stageSnapshotBatch","releaseId":${JSON.stringify(batch.releaseId)},"rows":[${batch.rows.map(canonicalizeContentSnapshotRow).join(",")}],"snapshotId":${JSON.stringify(batch.snapshotId)}}`;
+  return `{"batchIndex":${batch.batchIndex},"family":${encodeJsonText(batch.family)},"operation":"stageSnapshotBatch","releaseId":${encodeJsonText(batch.releaseId)},"rows":[${batch.rows.map(canonicalizeContentSnapshotRow).join(",")}],"snapshotId":${encodeJsonText(batch.snapshotId)}}`;
 }
 
 /** Verifies one row against the family and snapshot identity of its envelope. */

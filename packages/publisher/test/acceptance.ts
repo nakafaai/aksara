@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import {
   compareContentHeads,
   headIdentity,
@@ -12,12 +11,14 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { selectQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect } from "effect";
+import { Effect, Path } from "effect";
 import type { AcceptanceSources } from "#publisher/acceptance/source";
 import { materialSlicePaths } from "#test/material/slice";
 import { testRendererDomains } from "#test/renderer";
 
-const checkoutRoot = resolve(process.cwd(), "..", "..");
+const repositoryRoot = Effect.map(Path.Path, (path) =>
+  path.resolve(process.cwd(), "..", "..")
+);
 const questionKey =
   "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
 
@@ -61,8 +62,9 @@ export const makeAcceptanceTestSources: Effect.Effect<
     readonly sources: AcceptanceSources;
   },
   AcceptanceTestError,
-  Effect.Services<ReturnType<typeof selectQuestionContent>>
+  Effect.Services<ReturnType<typeof selectQuestionContent>> | Path.Path
 > = Effect.gen(function* () {
+  const checkoutRoot = yield* repositoryRoot;
   const articles = yield* decodeArticleRegistry();
   const materials = yield* decodeMaterialRegistry();
   const page = yield* decodePageRegistry();
