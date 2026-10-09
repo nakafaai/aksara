@@ -36,6 +36,14 @@ export const makePreviewCredentials = Effect.fn(
         .export({ format: "pem", type: "spki" })
         .toString();
       const digest = createHash("sha256").update(publicKeyPem).digest("hex");
+      const renderer: RendererCredentials = {
+        secret: Redacted.make(
+          PreviewRendererSecretSchema.make(
+            randomBytes(32).toString("base64url")
+          )
+        ),
+        token: Redacted.make(randomBytes(32).toString("base64url")),
+      };
       return {
         contentRuntimeToken: Redacted.make(
           randomBytes(32).toString("base64url")
@@ -47,14 +55,7 @@ export const makePreviewCredentials = Effect.fn(
         privateKeyPem,
         providerToken: Redacted.make(randomBytes(32).toString("base64url")),
         publicKeyPem,
-        renderer: {
-          secret: Redacted.make(
-            PreviewRendererSecretSchema.make(
-              randomBytes(32).toString("base64url")
-            )
-          ),
-          token: Redacted.make(randomBytes(32).toString("base64url")),
-        },
+        renderer,
       };
     },
   });
@@ -73,6 +74,6 @@ export const makePreviewCredentials = Effect.fn(
 });
 
 /** Ephemeral authentication and signing values scoped to one preview process. */
-export type PreviewCredentials = Effect.Success<
-  ReturnType<typeof makePreviewCredentials>
+export type PreviewCredentials = Readonly<
+  Effect.Success<ReturnType<typeof makePreviewCredentials>>
 >;
