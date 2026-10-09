@@ -6,7 +6,15 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { Effect, HashMap, MutableHashMap, Option, Path, Stream } from "effect";
+import {
+  Effect,
+  HashMap,
+  HashSet,
+  MutableHashMap,
+  Option,
+  Path,
+  Stream,
+} from "effect";
 
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -52,7 +60,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
@@ -60,7 +68,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            entries.filter(({ sourcePath }) =>
+              HashSet.has(sourcePaths, sourcePath)
+            )
           )
         ),
   };
