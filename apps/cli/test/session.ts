@@ -113,9 +113,9 @@ export function runWatch(
   );
 }
 
-/** Builds the actual-app test service used by session orchestration. */
+/** Builds the actual-app test service used by session orchestration; each start is reported to a test double. */
 export function makeApp(
-  capture: { input?: Parameters<typeof NakafaApp.Service.start>[0] },
+  onStart: (input: Parameters<typeof NakafaApp.Service.start>[0]) => void,
   child: RunningNakafa = {
     awaitExit: Effect.never,
     origin: new URL(`http://${NAKAFA_LOOPBACK_HOST}:31234`),
@@ -125,7 +125,7 @@ export function makeApp(
   return NakafaApp.of({
     fetchRenderer: () => fetchRenderer,
     start: (input) => {
-      capture.input = input;
+      onStart(input);
       return Effect.succeed(child);
     },
   });

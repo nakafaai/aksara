@@ -22,22 +22,16 @@ import {
 const repositoryRoot = Effect.map(Path.Path, (path) =>
   path.resolve(process.cwd(), "..", "..")
 );
-const quranState = vi.hoisted((): { current: QuranFixture | undefined } => ({
-  current: undefined,
-}));
-const tryoutState = vi.hoisted((): { current: TryoutFixture | undefined } => ({
-  current: undefined,
-}));
+const quranSnapshot = vi.hoisted(() =>
+  vi.fn<() => Effect.Effect<QuranFixture>>()
+);
+const tryoutSnapshot = vi.hoisted(() =>
+  vi.fn<() => Effect.Effect<TryoutFixture>>()
+);
 
-vi.mock("@nakafa/aksara-corpus/quran/snapshot", async () => {
-  const { Effect: RuntimeEffect } = await import("effect");
-  return {
-    prepareQuranSnapshot: () =>
-      quranState.current === undefined
-        ? RuntimeEffect.die(new Error("Expected a configured Quran snapshot."))
-        : RuntimeEffect.succeed(quranState.current),
-  };
-});
+vi.mock("@nakafa/aksara-corpus/quran/snapshot", () => ({
+  prepareQuranSnapshot: quranSnapshot,
+}));
 
 vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
   const { Effect: RuntimeEffect } = await import("effect");
@@ -51,17 +45,9 @@ vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
   };
 });
 
-vi.mock("#publisher/tryout/snapshot", async () => {
-  const { Effect: RuntimeEffect } = await import("effect");
-  return {
-    prepareTryoutSnapshot: () =>
-      tryoutState.current === undefined
-        ? RuntimeEffect.die(
-            new Error("Expected a configured try-out snapshot.")
-          )
-        : RuntimeEffect.succeed(tryoutState.current),
-  };
-});
+vi.mock("#publisher/tryout/snapshot", () => ({
+  prepareTryoutSnapshot: tryoutSnapshot,
+}));
 
 /** Runs snapshot preparation and collects both replayable outputs. */
 function prepare(
@@ -119,13 +105,17 @@ const makeFixtures = Effect.fn("AksaraPublisherTest.makeSnapshotFixtures")(
     const quranFixture = makeQuranSnapshotFixture();
     const tryoutFixture = yield* tryoutSnapshotFixture;
     yield* Effect.sync(() => {
-      quranState.current = quranFixture;
-      tryoutState.current = tryoutFixture;
+      quranSnapshot.mockReturnValue(Effect.succeed(quranFixture));
+      tryoutSnapshot.mockReturnValue(Effect.succeed(tryoutFixture));
     });
     yield* Effect.addFinalizer(() =>
       Effect.sync(() => {
-        quranState.current = undefined;
-        tryoutState.current = undefined;
+        quranSnapshot.mockReturnValue(
+          Effect.die(new Error("Expected a configured Quran snapshot."))
+        );
+        tryoutSnapshot.mockReturnValue(
+          Effect.die(new Error("Expected a configured try-out snapshot."))
+        );
       })
     );
     const changedSnapshots = yield* prepare(null);
@@ -196,11 +186,13 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
           manifest: { provenanceStatus: "blocked" },
         });
         yield* Effect.sync(() => {
-          quranState.current = undefined;
+          quranSnapshot.mockReturnValue(
+            Effect.die(new Error("Expected a configured Quran snapshot."))
+          );
         });
         const tryoutOnly = yield* prepare(null, ["tryout"]);
         yield* Effect.sync(() => {
-          quranState.current = quranFixture;
+          quranSnapshot.mockReturnValue(Effect.succeed(quranFixture));
         });
         expect(tryoutOnly.manifests).toEqual([completeSnapshots.tryout]);
         expect(tryoutOnly.rows).toHaveLength(tryoutFixture.rowCount);
@@ -254,16 +246,18 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
         const { completeSnapshots, tryoutFixture } = yield* makeFixtures();
         const activeSnapshot = completeSnapshots.tryout.manifest;
         yield* Effect.sync(() => {
-          tryoutState.current = {
-            ...tryoutFixture,
-            manifest: {
-              family: "tryout",
+          tryoutSnapshot.mockReturnValue(
+            Effect.succeed({
+              ...tryoutFixture,
               manifest: {
-                ...tryoutFixture.manifest.manifest,
-                snapshotId: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+                family: "tryout",
+                manifest: {
+                  ...tryoutFixture.manifest.manifest,
+                  snapshotId: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
+                },
               },
-            },
-          };
+            })
+          );
         });
 
         const rendererRefresh = yield* prepare(

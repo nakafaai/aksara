@@ -8,7 +8,6 @@ import type { PreviewDocumentCompiler } from "#cli/document";
 import { makeNakafaAppError } from "#cli/error";
 import { PreviewEvidenceError } from "#cli/evidence";
 import { PreviewRepositoryError, PreviewRestartError } from "#cli/integrity";
-import type { NakafaApp } from "#cli/nakafa";
 import { refreshDocument } from "#cli/session";
 import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
 import {
@@ -231,14 +230,14 @@ layer(NodeServices.layer)("local preview session", (it) => {
     () =>
       Effect.gen(function* () {
         const repository = yield* acquireRepository();
-        const capture: {
-          input?: Parameters<typeof NakafaApp.Service.start>[0];
-        } = {};
+        const start = vi.fn<Parameters<typeof makeApp>[0]>();
         yield* runLocal(
           repository,
-          makeApp(capture),
+          makeApp(start),
           () => {
-            expect(capture.input?.provider.origin.hostname).toBe("127.0.0.1");
+            expect(start.mock.lastCall?.[0].provider.origin.hostname).toBe(
+              "127.0.0.1"
+            );
             return Effect.void;
           },
           AppLocaleSchema.make("en")
@@ -254,12 +253,10 @@ layer(NodeServices.layer)("local preview session", (it) => {
         repository.documentPath,
         `${REAL_SOURCE}\n\n{process.env}\n`
       );
-      const capture: {
-        input?: Parameters<typeof NakafaApp.Service.start>[0];
-      } = {};
-      yield* runLocal(repository, makeApp(capture), () =>
+      const start = vi.fn<Parameters<typeof makeApp>[0]>();
+      yield* runLocal(repository, makeApp(start), () =>
         Effect.gen(function* () {
-          const { input } = capture;
+          const input = start.mock.lastCall?.[0];
           assert(input !== undefined, "Expected preview application input.");
           const client = yield* HttpClient.HttpClient;
           const response = yield* client.execute(
@@ -290,7 +287,7 @@ layer(NodeServices.layer)("local preview session", (it) => {
         const error = yield* runLocal(
           repository,
           makeApp(
-            {},
+            vi.fn(),
             child,
             Effect.sleep("20 millis").pipe(Effect.as(RENDERER_MANIFEST))
           ),

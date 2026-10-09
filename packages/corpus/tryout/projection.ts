@@ -6,7 +6,6 @@ import {
 } from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import {
   Array as Arr,
   Effect,
@@ -204,7 +203,10 @@ const projectPlacements = Effect.fn("AksaraCorpus.projectTryoutPlacements")(
   }
 );
 
-/** Projects decoded sources into strict active-only snapshot inputs. */
+/**
+ * Projects decoded sources into strict active-only snapshot inputs: the exact
+ * active try-out hierarchy and the server-only placement expectations.
+ */
 export const projectTryoutSources = Effect.fn(
   "AksaraCorpus.projectTryoutSources"
 )(function* (
@@ -229,10 +231,5 @@ export const projectTryoutSources = Effect.fn(
       catalog,
       ({ row }) => "publicPath" in row && row.publicPath !== undefined
     ).length,
-  } satisfies {
-    /** Exact active try-out hierarchy and server-only placement expectations. */
-    readonly catalog: readonly ReturnType<typeof makeTryoutCatalogRecord>[];
-    readonly placements: readonly TryoutPlacementSource[];
-    readonly routeCount: number;
   };
 });

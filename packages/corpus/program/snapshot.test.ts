@@ -7,24 +7,6 @@ import {
   streamProgramRows,
 } from "#corpus/program/snapshot";
 
-/** Reads one required canonical active translation from a program row. */
-function requireTranslation(
-  row: {
-    readonly translations: readonly {
-      readonly appLocale: string;
-      readonly publicSlug: string;
-    }[];
-  },
-  appLocale: string
-) {
-  return Effect.fromOption(
-    Arr.findFirst(
-      row.translations,
-      (candidate) => candidate.appLocale === appLocale
-    )
-  );
-}
-
 describe("program snapshot preparation", () => {
   it.effect("prepares exact programs and localized curriculum routes", () =>
     Effect.gen(function* () {
@@ -47,10 +29,18 @@ describe("program snapshot preparation", () => {
       );
       const localizedPrograms = yield* Effect.forEach(programRows, ({ row }) =>
         Effect.gen(function* () {
+          /** Reads one required canonical active translation of this program row. */
+          const requireTranslation = (appLocale: string) =>
+            Effect.fromOption(
+              Arr.findFirst(
+                row.translations,
+                (candidate) => candidate.appLocale === appLocale
+              )
+            );
           const [german, english, indonesian] = yield* Effect.all([
-            requireTranslation(row, "de"),
-            requireTranslation(row, "en"),
-            requireTranslation(row, "id"),
+            requireTranslation("de"),
+            requireTranslation("en"),
+            requireTranslation("id"),
           ]);
           return {
             de: german.publicSlug,

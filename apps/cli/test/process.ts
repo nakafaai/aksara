@@ -29,14 +29,14 @@ export const unusedExactProcess = ExactProcess.of({
     Effect.die(new Error("Unexpected exact process execution in test.")),
 });
 
-/** Captures one process request while returning a deterministic child result. */
+/** Reports each process request to a test double while returning a deterministic child result. */
 export const makeProcess = (
-  capture: { input?: NakafaProcessInput },
+  onStart: (input: NakafaProcessInput) => void,
   result: Effect.Effect<RunningProcess, NakafaAppError>
 ) =>
   NakafaProcess.of({
     start: (input) => {
-      capture.input = input;
+      onStart(input);
       return result;
     },
   });
@@ -65,15 +65,15 @@ const inheritedVariables = (path: string | undefined) =>
 export function captureInheritedStart(path: string) {
   return Effect.gen(function* () {
     const input = yield* makeStartInput();
-    const capture: { input?: NakafaProcessInput } = {};
+    const onStart = vi.fn<(input: NakafaProcessInput) => void>();
     const processes = makeProcess(
-      capture,
+      onStart,
       Effect.succeed({ exitCode: Effect.succeed(0) })
     );
     yield* Effect.scoped(
       startNakafa(input).pipe(Effect.provideService(NakafaProcess, processes))
     );
-    return capture.input;
+    return onStart.mock.lastCall?.[0];
   }).pipe(
     Effect.provide(
       ConfigProvider.layer(
@@ -88,7 +88,7 @@ export function failInheritedStart(path: string | undefined) {
   return Effect.gen(function* () {
     const input = yield* makeStartInput();
     const processes = makeProcess(
-      {},
+      vi.fn(),
       Effect.succeed({ exitCode: Effect.succeed(0) })
     );
     return yield* Effect.scoped(

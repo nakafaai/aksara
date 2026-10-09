@@ -133,14 +133,14 @@ const downloadSource = Effect.fn("AksaraCorpus.downloadGermanQuranSource")(
     )
 );
 
-/** Writes every authenticated German artifact into one isolated staging tree. */
+/**
+ * Writes every authenticated German artifact into one isolated staging tree.
+ * Each entry pairs one pinned file with its authenticated bytes.
+ */
 const stageSources = Effect.fn("AksaraCorpus.stageGermanQuranSources")(
   function* (
     staging: string,
-    sources: readonly {
-      readonly bytes: Uint8Array;
-      readonly source: PinnedQuranFile;
-    }[]
+    sources: readonly (readonly [PinnedQuranFile, Uint8Array])[]
   ) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
@@ -153,7 +153,7 @@ const stageSources = Effect.fn("AksaraCorpus.stageGermanQuranSources")(
       });
     yield* Effect.forEach(
       sources,
-      ({ bytes, source }) =>
+      ([source, bytes]) =>
         fileSystem
           .writeFile(path.join(staging, path.basename(source.path)), bytes)
           .pipe(Effect.mapError(mapWriteError(source))),
@@ -208,10 +208,10 @@ export const syncGermanQuranSources = Effect.fn(
       }).pipe(Effect.ignore)
   );
   yield* stageSources(staging, [
-    { bytes: bytes.edition, source: edition },
-    { bytes: bytes.publication, source: publication },
-    { bytes: bytes.terms, source: terms },
-    { bytes: bytes.translation, source: translation },
+    [edition, bytes.edition],
+    [publication, bytes.publication],
+    [terms, bytes.terms],
+    [translation, bytes.translation],
   ]);
   yield* replaceGermanSourceBundle({ ...replacement, staging }).pipe(
     Effect.mapError(writeError)

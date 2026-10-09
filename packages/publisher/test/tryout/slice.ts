@@ -1,8 +1,7 @@
-import type { ContentKey } from "@nakafa/aksara-contracts/ids";
-import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
+import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import { Array as Arr, HashSet } from "effect";
 
 /** Identifies one localized catalog row without depending on route slugs. */
@@ -28,10 +27,7 @@ export function selectTryoutSlice(
     readonly catalog: readonly TryoutCatalogRecord[];
     readonly placements: readonly TryoutPlacementSource[];
   },
-  prompts: readonly {
-    readonly artifactLocale: ArtifactLocale;
-    readonly contentKey: ContentKey;
-  }[]
+  prompts: readonly Pick<QuestionEntry, "artifactLocale" | "contentKey">[]
 ) {
   const promptKeys = HashSet.fromIterable(
     Arr.map(

@@ -12,7 +12,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { Array as Arr, Effect, Stream } from "effect";
+import { Array as Arr, Effect, MutableRef, Stream } from "effect";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -67,31 +67,25 @@ const completeManifests: readonly ContentSnapshotManifest[] = [
   { family: "tryout", manifest: tryoutManifest },
 ];
 
-const control = vi.hoisted(
-  (): {
-    decodeFailure: boolean;
-    manifests: readonly ContentSnapshotManifest[];
-    prepareFailure: boolean;
-    verifyFailure: boolean;
-  } => ({
-    decodeFailure: false,
-    manifests: [],
-    prepareFailure: false,
-    verifyFailure: false,
-  })
+/** Scenario switches that the mocked release and verification modules read when they are called. */
+const decodeFailure = MutableRef.make(false);
+const streamedManifests = MutableRef.make<readonly ContentSnapshotManifest[]>(
+  []
 );
+const prepareFailure = MutableRef.make(false);
+const verifyFailure = MutableRef.make(false);
 
 vi.mock("#publisher/snapshot/release", async () => {
   const { Effect: TestEffect, Stream: TestStream } = await import("effect");
   return {
     /** Supplies controlled replayable structured-source output. */
     prepareReleaseSnapshots: () =>
-      control.prepareFailure
+      MutableRef.get(prepareFailure)
         ? TestEffect.fail("prepare")
         : TestEffect.succeed({
-            manifests: control.decodeFailure
+            manifests: MutableRef.get(decodeFailure)
               ? TestStream.fail("decode")
-              : TestStream.fromIterable(control.manifests),
+              : TestStream.fromIterable(MutableRef.get(streamedManifests)),
             rows: TestStream.empty,
           }),
   };
@@ -109,7 +103,7 @@ vi.mock(
       ...original,
       /** Supplies verification evidence without duplicating row fixtures. */
       verifyContentSnapshots: () =>
-        control.verifyFailure
+        MutableRef.get(verifyFailure)
           ? TestEffect.fail("verify")
           : TestEffect.succeed({ stagedRows: 1415 }),
     };
@@ -127,10 +121,10 @@ const configureControl = Effect.fn("CatalogSnapshotsTest.configureControl")(
     }> = {}
   ) =>
     Effect.sync(() => {
-      control.decodeFailure = input.decodeFailure ?? false;
-      control.manifests = input.manifests ?? completeManifests;
-      control.prepareFailure = input.prepareFailure ?? false;
-      control.verifyFailure = input.verifyFailure ?? false;
+      MutableRef.set(decodeFailure, input.decodeFailure ?? false);
+      MutableRef.set(streamedManifests, input.manifests ?? completeManifests);
+      MutableRef.set(prepareFailure, input.prepareFailure ?? false);
+      MutableRef.set(verifyFailure, input.verifyFailure ?? false);
     })
 );
 

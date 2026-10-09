@@ -180,25 +180,20 @@ function isIntact(entry: LocalCache) {
 }
 
 /** Decodes unknown local state and classifies every non-hit for recompilation. */
-function lookupCache(
-  input: unknown,
-  identity: CompileIdentity
-):
-  | { readonly entry: LocalCache; readonly kind: "hit" }
-  | { readonly kind: "miss"; readonly reason: CompileReason } {
+function lookupCache(input: unknown, identity: CompileIdentity) {
   if (input === undefined) {
-    return { kind: "miss", reason: "missing" };
+    return { kind: "miss", reason: "missing" } as const;
   }
   const decoded = Schema.decodeUnknownExit(LocalCacheSchema)(input, {
     onExcessProperty: "error",
   });
   if (Exit.isFailure(decoded) || !isIntact(decoded.value)) {
-    return { kind: "miss", reason: "corrupt" };
+    return { kind: "miss", reason: "corrupt" } as const;
   }
   if (decoded.value.identityHash !== hashUtf8(canonicalizeIdentity(identity))) {
-    return { kind: "miss", reason: "changed" };
+    return { kind: "miss", reason: "changed" } as const;
   }
-  return { entry: decoded.value, kind: "hit" };
+  return { entry: decoded.value, kind: "hit" } as const;
 }
 
 /**
