@@ -19,12 +19,10 @@ import {
   programCatalogRows,
 } from "#contracts/test/program";
 
-const failures = vi.hoisted(
-  (): { construct: boolean; stage: "digest" | "update" | null } => ({
-    construct: false,
-    stage: null,
-  })
-);
+const failures = vi.hoisted(() => ({
+  construct: vi.fn<() => boolean>(() => false),
+  stage: vi.fn<() => "digest" | "update" | null>(() => null),
+}));
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -32,7 +30,7 @@ vi.mock("node:crypto", async (importOriginal) => {
     ...crypto,
     /** Injects deterministic failures into the current aggregate digest. */
     createHash(algorithm: string) {
-      if (failures.construct) {
+      if (failures.construct()) {
         throw new TypeError("injected current digest construction failure");
       }
       const hash = crypto.createHash(algorithm);
@@ -44,7 +42,7 @@ vi.mock("node:crypto", async (importOriginal) => {
             return (data: BinaryLike) => {
               if (String(data).startsWith("nakafa.aksara.program-rows\n")) {
                 aggregate = true;
-              } else if (aggregate && failures.stage === "update") {
+              } else if (aggregate && failures.stage() === "update") {
                 throw new TypeError("injected current digest update failure");
               }
               target.update(data);
@@ -54,7 +52,7 @@ vi.mock("node:crypto", async (importOriginal) => {
           if (
             property === "digest" &&
             aggregate &&
-            failures.stage === "digest"
+            failures.stage() === "digest"
           ) {
             return () => {
               throw new TypeError(
@@ -271,21 +269,21 @@ describe("program aggregate digest", () => {
       const records = yield* makeProgramTestRecords();
       yield* Effect.addFinalizer(() =>
         Effect.sync(() => {
-          failures.construct = false;
-          failures.stage = null;
+          failures.construct.mockReturnValue(false);
+          failures.stage.mockReturnValue(null);
         })
       );
       yield* Effect.sync(() => {
-        failures.construct = true;
+        failures.construct.mockReturnValue(true);
       });
       const constructError = yield* reject([]);
       yield* Effect.sync(() => {
-        failures.construct = false;
-        failures.stage = "update";
+        failures.construct.mockReturnValue(false);
+        failures.stage.mockReturnValue("update");
       });
       const updateError = yield* reject(Arr.take(records, 1));
       yield* Effect.sync(() => {
-        failures.stage = "digest";
+        failures.stage.mockReturnValue("digest");
       });
       const digestError = yield* reject(records);
       for (const error of [constructError, updateError, digestError]) {
