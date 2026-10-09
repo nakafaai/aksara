@@ -1,8 +1,13 @@
-import type { ContentFamily } from "@nakafa/aksara-contracts/content";
-import type { ContentKey, PublicPath } from "@nakafa/aksara-contracts/ids";
-import type {
-  AppLocale,
-  ArtifactLocale,
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
+import {
+  type ContentKey,
+  ContentKeySchema,
+  type PublicPath,
+} from "@nakafa/aksara-contracts/ids";
+import {
+  type AppLocale,
+  type ArtifactLocale,
+  ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
@@ -10,25 +15,30 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
-import type { RouteTransition } from "#publisher/routes";
+import { type RouteTransition, RouteTransitionSchema } from "#publisher/routes";
+
+const ExpectedCatalogHeadSchema = Schema.Struct({
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+  family: ContentFamilySchema,
+});
 
 /** Source-owned identity expected to survive complete catalog preparation. */
-export interface ExpectedCatalogHead {
-  readonly artifactLocale: ArtifactLocale;
-  readonly contentKey: ContentKey;
-  readonly family: ContentFamily;
-}
+export type ExpectedCatalogHead = typeof ExpectedCatalogHeadSchema.Type;
+
+const ContentCatalogExpectationSchema = Schema.Struct({
+  articleCount: Schema.Finite,
+  heads: Schema.Array(ExpectedCatalogHeadSchema),
+  materialCount: Schema.Finite,
+  pageCount: Schema.Finite,
+  questionCount: Schema.Finite,
+  routes: Schema.Array(RouteTransitionSchema),
+  totalCount: Schema.Finite,
+});
 
 /** Source-derived body inventory used to prove compiler and route completeness. */
-export interface ContentCatalogExpectation {
-  readonly articleCount: number;
-  readonly heads: readonly ExpectedCatalogHead[];
-  readonly materialCount: number;
-  readonly pageCount: number;
-  readonly questionCount: number;
-  readonly routes: readonly RouteTransition[];
-  readonly totalCount: number;
-}
+export type ContentCatalogExpectation =
+  typeof ContentCatalogExpectationSchema.Type;
 
 /** An authoritative source registry failed before expectation projection. */
 export class ContentCatalogExpectationError extends Schema.TaggedError<ContentCatalogExpectationError>()(

@@ -62,14 +62,16 @@ export class CatalogResultIdentityError extends Schema.TaggedError<CatalogResult
   }
 ) {}
 
-interface CatalogResultState {
-  readonly articleCount: number;
-  readonly index: number;
-  readonly materialCount: number;
-  readonly pageCount: number;
-  readonly questionCount: number;
-  readonly totalCount: number;
-}
+const CatalogResultStateSchema = Schema.Struct({
+  articleCount: Schema.Finite,
+  index: Schema.Finite,
+  materialCount: Schema.Finite,
+  pageCount: Schema.Finite,
+  questionCount: Schema.Finite,
+  totalCount: Schema.Finite,
+});
+
+type CatalogResultState = typeof CatalogResultStateSchema.Type;
 
 const EMPTY_RESULT_STATE: CatalogResultState = {
   articleCount: 0,

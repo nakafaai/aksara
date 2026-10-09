@@ -25,7 +25,7 @@ const RouteVersionSchema = Schema.Struct({
 /** One route-bearing state on either side of a content transition. */
 export type RouteVersion = typeof RouteVersionSchema.Type;
 
-const RouteTransitionSchema = Schema.Struct({
+export const RouteTransitionSchema = Schema.Struct({
   current: RouteVersionSchema,
   next: RouteVersionSchema,
 });

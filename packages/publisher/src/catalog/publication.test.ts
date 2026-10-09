@@ -3,15 +3,28 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type {
-  ArticleHead,
-  MaterialHead,
-  PageHead,
-  QuestionHead,
+import {
+  type ArticleHead,
+  ArticleHeadSchema,
+  type MaterialHead,
+  MaterialHeadSchema,
+  type PageHead,
+  PageHeadSchema,
+  type QuestionHead,
+  QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Context, Effect, Layer, Path, Stream } from "effect";
+import {
+  Context,
+  Effect,
+  HashSet,
+  Layer,
+  MutableHashMap,
+  Path,
+  Schema,
+  Stream,
+} from "effect";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
 import { testFileLayer } from "#test/files";
@@ -45,7 +58,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
       typeof import("@nakafa/aksara-corpus/material/registry")
     >();
   const { materialSlicePaths } = await import("#test/material/slice");
-  const sourcePaths = new Set<string>(materialSlicePaths);
+  const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
     decodeMaterialRegistry: (input?: unknown) =>
@@ -53,7 +66,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) => sourcePaths.has(sourcePath))
+            entries.filter(({ sourcePath }) =>
+              HashSet.has(sourcePaths, sourcePath)
+            )
           )
         ),
   };
@@ -61,24 +76,30 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
 
 const baseReleaseId = ReleaseIdSchema.make("test-catalog-base");
 
-interface CatalogTestInput {
-  readonly article?: readonly ArticleHead[];
-  readonly base?: {
-    readonly count: number;
-    readonly digest: typeof Sha256HashSchema.Type;
-    readonly releaseId: typeof baseReleaseId;
-  } | null;
-  readonly material?: readonly MaterialHead[];
-  readonly page?: readonly PageHead[];
-  readonly question?: readonly QuestionHead[];
-}
+const CatalogTestInputSchema = Schema.Struct({
+  article: Schema.optionalKey(Schema.Array(ArticleHeadSchema)),
+  base: Schema.optionalKey(
+    Schema.NullOr(
+      Schema.Struct({
+        count: Schema.Finite,
+        digest: Sha256HashSchema,
+        releaseId: ReleaseIdSchema,
+      })
+    )
+  ),
+  material: Schema.optionalKey(Schema.Array(MaterialHeadSchema)),
+  page: Schema.optionalKey(Schema.Array(PageHeadSchema)),
+  question: Schema.optionalKey(Schema.Array(QuestionHeadSchema)),
+});
+
+type CatalogTestInput = typeof CatalogTestInputSchema.Type;
 
 interface CatalogFixtureSource {
   readonly checkoutRoot: string;
   readonly rendererManifest: Effect.Success<
     ReturnType<typeof createRendererManifest>
   >;
-  readonly sources: ReadonlyMap<string, string>;
+  readonly sources: MutableHashMap.MutableHashMap<string, string>;
 }
 
 /** Builds one whole-catalog program from an already loaded source fixture. */
@@ -151,7 +172,7 @@ const makeCatalogTestFixtures = Effect.fn(
       }),
       publishedDomains: ["mathematics", "politics"],
     });
-    const sources = new Map([
+    const sources = MutableHashMap.fromIterable([
       ...article.sources,
       ...material.sources,
       ...page.sources,
