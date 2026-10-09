@@ -13,7 +13,7 @@ import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { validateAssessmentReadinessRegistry } from "@nakafa/aksara-corpus/tryout/readiness/registry";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Schema } from "effect";
+import { Effect, HashSet, Schema } from "effect";
 
 const materialKeys = [
   "material/lesson/mathematics/analytic-geometry/hyperbola",
@@ -158,11 +158,11 @@ export const loadAcceptanceSources: (
   );
   const materialRegistry = yield* decodeMaterialRegistry();
   const required = yield* selectEntries(materialRegistry, materialKeys);
-  const materialGroups = new Set(
+  const materialGroups = HashSet.fromIterable(
     required.map(({ route }) => route.materialKey)
   );
   const material = materialRegistry.filter(({ route }) =>
-    materialGroups.has(route.materialKey)
+    HashSet.has(materialGroups, route.materialKey)
   );
   const page = yield* decodePageRegistry();
   const tryout = yield* loadAcceptanceTryout(checkoutRoot);

@@ -11,7 +11,7 @@ import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry"
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { QuestionReadError } from "@nakafa/aksara-corpus/question-bank/source";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, HashSet, Path } from "effect";
 import {
   AcceptanceSourceError,
   loadAcceptanceSources,
@@ -101,7 +101,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         const materials = yield* decodeMaterialRegistry();
         const articles = yield* decodeArticleRegistry();
         const pages = yield* decodePageRegistry();
-        const groups = new Set(
+        const groups = HashSet.fromIterable(
           selected.material.map(({ route }) => route.materialKey)
         );
         expect([...groups].sort()).toEqual([
@@ -112,7 +112,9 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           "lesson.mathematics.trigonometry",
         ]);
         expect(selected.material).toEqual(
-          materials.filter(({ route }) => groups.has(route.materialKey))
+          materials.filter(({ route }) =>
+            HashSet.has(groups, route.materialKey)
+          )
         );
         expect(selected.material.length).toBeGreaterThan(
           6 * ACTIVE_APP_LOCALES.length
@@ -151,13 +153,13 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         );
         expect(
           tryout.sources.map(({ questionKey }) => questionKey).sort()
-        ).toEqual([...new Set(expectedRoots)].sort());
+        ).toEqual(Arr.dedupe(expectedRoots).sort());
         expect(tryout.entries).toEqual(
           [...tryout.entries].sort(compareContentHeads)
         );
-        expect(new Set(tryout.entries.map(headIdentity)).size).toBe(
-          tryout.entries.length
-        );
+        expect(
+          HashSet.size(HashSet.fromIterable(tryout.entries.map(headIdentity)))
+        ).toBe(tryout.entries.length);
         for (const source of tryout.sources) {
           const entries = tryout.entries.filter(
             ({ questionKey }) => questionKey === source.questionKey

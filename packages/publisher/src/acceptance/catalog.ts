@@ -31,11 +31,6 @@ const AcceptancePlanSchema = Schema.Struct({
   result: ContentHeadSchema,
 });
 
-/** Compiles one fixed genesis corpus through the production family planners. */
-interface AcceptanceCatalogInput {
-  readonly checkoutRoot: string;
-  readonly rendererManifest: RendererManifestEnvelope;
-}
 type AcceptanceCatalogError =
   | AcceptanceSourceFailure
   | ReplaySpoolError
@@ -45,9 +40,10 @@ type AcceptanceCatalogError =
   | Stream.Error<ReturnType<typeof planQuestionPublication<never, never>>>;
 
 /** Compiles the fixed genesis corpus through the production family planners. */
-export const prepareAcceptanceCatalog: (
-  input: AcceptanceCatalogInput
-) => Effect.Effect<
+export const prepareAcceptanceCatalog: (input: {
+  readonly checkoutRoot: string;
+  readonly rendererManifest: RendererManifestEnvelope;
+}) => Effect.Effect<
   ContentCatalogPublication & { readonly tryout: AcceptanceSources["tryout"] },
   AcceptanceCatalogError,
   FileSystem.FileSystem | Path.Path | Scope.Scope
