@@ -1,12 +1,11 @@
-import { existsSync, readFileSync, realpathSync } from "node:fs";
-import { isAbsolute, join, relative, sep } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   Array as Arr,
   Effect,
+  FileSystem,
   HashSet,
   MutableList,
   Option,
+  Path,
   Record as Rec,
   Schema,
 } from "effect";
@@ -27,38 +26,54 @@ export class InstallVerificationError extends Schema.TaggedError<InstallVerifica
   }
 ) {}
 
+/** The request that one consumer inspection receives: specifiers to import, and public specifiers to resolve. */
+const InstallInspectionSchema = Schema.Struct({
+  imports: Schema.Array(Schema.String),
+  resolutions: Schema.Array(Schema.String),
+});
+
+/** The request that one consumer inspection receives. */
+export type InstallInspection = typeof InstallInspectionSchema.Type;
+
+/** One public specifier whose Node resolution must select the expected target. */
+const ExpectedResolutionSchema = Schema.Struct({
+  expectedTarget: Schema.String,
+  publicSpecifier: Schema.String,
+});
+
+type ExpectedResolution = typeof ExpectedResolutionSchema.Type;
+
 /** Effect dependencies used to verify one isolated package installation. */
 export interface InstallVerificationInput<E, R> {
   readonly consumerRoot: string;
-  /** Imports one file URL or public package specifier from the consumer. */
-  readonly importModule: (specifier: string) => Effect.Effect<unknown, E, R>;
+  /**
+   * Imports every listed specifier or file URL, and resolves every listed public
+   * specifier, from inside the consumer. It answers with the resolved URL of each
+   * resolved specifier.
+   */
+  readonly inspect: (
+    inspection: InstallInspection
+  ) => Effect.Effect<Readonly<Record<string, URL>>, E, R>;
   readonly packageName: string;
-  /** Resolves one public package specifier from the consumer. */
-  readonly resolveSpecifier: (specifier: string) => Effect.Effect<string, E, R>;
   /** Emits the final human-readable installation receipt. */
   readonly write: (message: string) => Effect.Effect<void, E, R>;
 }
 
-/** Reports whether a real path remains inside the isolated node_modules root. */
-export function isInstalledPath(relativePath: string): boolean {
+/** Reports whether a relative path stays inside the isolated node_modules root. */
+export function isInstalledPath(
+  path: Path.Path,
+  relativePath: string
+): boolean {
   return (
     relativePath.length > 0 &&
-    !relativePath.startsWith(`..${sep}`) &&
-    !isAbsolute(relativePath)
+    !relativePath.startsWith(`..${path.sep}`) &&
+    !path.isAbsolute(relativePath)
   );
 }
 
-/** Converts an unknown synchronous failure into the verifier's typed channel. */
-function verificationError(cause: unknown, fallback: string) {
-  return new InstallVerificationError({ cause, message: fallback });
-}
-
-/** Runs one synchronous Node operation without leaking an exception boundary. */
-function tryVerification<A>(fallback: string, evaluate: () => A) {
-  return Effect.try({
-    catch: (cause) => verificationError(cause, fallback),
-    try: evaluate,
-  });
+/** Maps one platform, parse, or resolution failure to the verifier's typed failure. */
+function verificationFailure(message: string) {
+  return (cause: unknown) => new InstallVerificationError({ cause, message });
 }
 
 /** Requires one expected installation invariant through the typed error channel. */
@@ -68,44 +83,75 @@ function requireVerification(condition: boolean, message: string) {
     : Effect.fail(new InstallVerificationError({ cause: message, message }));
 }
 
-/** Verifies exact exports, files, imports, and resolution from one installation. */
-export const verifyInstalledPackage = Effect.fn(
-  "AksaraContracts.verifyInstalledPackage"
-)(function* <E, R>({
-  consumerRoot,
-  importModule,
-  packageName,
-  resolveSpecifier,
-  write,
-}: InstallVerificationInput<E, R>) {
-  const nodeModulesRoot = yield* tryVerification(
-    "Unable to resolve the isolated node_modules directory.",
-    () => realpathSync(join(consumerRoot, "node_modules"))
-  );
-  const packageRoot = yield* tryVerification(
-    `Unable to resolve the installed ${packageName} directory.`,
-    () => realpathSync(join(nodeModulesRoot, ...packageName.split("/")))
-  );
-  yield* requireVerification(
-    isInstalledPath(relative(nodeModulesRoot, packageRoot)),
-    `${packageName} must resolve inside the isolated consumer's node_modules`
-  );
+/** Resolves the real directory of the installed package inside the isolated node_modules. */
+const locatePackageRoot = Effect.fn("AksaraContracts.locatePackageRoot")(
+  function* (consumerRoot: string, packageName: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const nodeModulesRoot = yield* fileSystem
+      .realPath(path.join(consumerRoot, "node_modules"))
+      .pipe(
+        Effect.mapError(
+          verificationFailure(
+            "Unable to resolve the isolated node_modules directory."
+          )
+        )
+      );
+    const packageRoot = yield* fileSystem
+      .realPath(path.join(nodeModulesRoot, ...packageName.split("/")))
+      .pipe(
+        Effect.mapError(
+          verificationFailure(
+            `Unable to resolve the installed ${packageName} directory.`
+          )
+        )
+      );
+    yield* requireVerification(
+      isInstalledPath(path, path.relative(nodeModulesRoot, packageRoot)),
+      `${packageName} must resolve inside the isolated consumer's node_modules`
+    );
+    return packageRoot;
+  }
+);
 
-  const manifest = yield* tryVerification(
-    `Unable to read the installed manifest ${join(packageRoot, "package.json")}.`,
-    () =>
-      parseInstalledManifest(
-        readFileSync(join(packageRoot, "package.json"), "utf8")
+/** Reads the installed manifest, and requires it to name the packed package. */
+const readInstalledManifest = Effect.fn(
+  "AksaraContracts.readInstalledManifest"
+)(function* (packageRoot: string, packageName: string) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const manifestFile = path.join(packageRoot, "package.json");
+  const manifest = yield* fileSystem.readFileString(manifestFile, "utf8").pipe(
+    Effect.flatMap((source) =>
+      Effect.try(() => parseInstalledManifest(source))
+    ),
+    Effect.mapError(
+      verificationFailure(
+        `Unable to read the installed manifest ${manifestFile}.`
       )
+    )
   );
   yield* requireVerification(
     manifest.name === packageName,
     "The packed package name changed"
   );
+  return manifest;
+});
 
-  let importedConditionCount = 0;
-  const moduleSpecifiers = MutableList.make<string>();
-  for (const [subpath, descriptor] of Rec.toEntries(manifest.exports)) {
+/**
+ * Checks every exact export statically, then lists what the consumer must import
+ * and resolve: the file URL of each Node-importable target, and each public specifier.
+ */
+const planExports = Effect.fn("AksaraContracts.planExports")(function* (
+  packageRoot: string,
+  packageName: string,
+  exports: Readonly<Record<string, Readonly<Record<string, string>>>>
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const fileUrls = MutableList.make<string>();
+  const resolutions = MutableList.make<ExpectedResolution>();
+  for (const [subpath, descriptor] of Rec.toEntries(exports)) {
     yield* requireVerification(
       subpath === "." || (subpath.startsWith("./") && !subpath.includes("*")),
       `Only exact package exports are supported: ${subpath}`
@@ -135,49 +181,113 @@ export const verifyInstalledPackage = Effect.fn(
         target.startsWith("./dist/"),
         `Export ${subpath} condition ${condition} must target dist`
       );
-      const targetExists = yield* tryVerification(
-        `Unable to inspect export ${subpath} condition ${condition}.`,
-        () => existsSync(join(packageRoot, target))
-      );
+      const targetExists = yield* fileSystem
+        .exists(path.join(packageRoot, target))
+        .pipe(
+          Effect.mapError(
+            verificationFailure(
+              `Unable to inspect export ${subpath} condition ${condition}.`
+            )
+          )
+        );
       yield* requireVerification(
         targetExists,
         `Export ${subpath} condition ${condition} is missing ${target}`
       );
     }
     for (const [, target] of importTargets) {
-      MutableList.append(
-        moduleSpecifiers,
-        pathToFileURL(join(packageRoot, target)).href
-      );
-      importedConditionCount += 1;
+      // The package root comes from realPath, so every target path is absolute,
+      // and Path.toFileUrl cannot fail for an absolute path.
+      const fileUrl = yield* path
+        .toFileUrl(path.join(packageRoot, target))
+        .pipe(Effect.orDie);
+      MutableList.append(fileUrls, fileUrl.href);
     }
 
-    const publicSpecifier =
-      subpath === "." ? packageName : `${packageName}/${subpath.slice(2)}`;
     const [, expectedTarget] = firstImportTarget;
-    const resolvedSpecifier = yield* resolveSpecifier(publicSpecifier);
+    MutableList.append(resolutions, {
+      expectedTarget,
+      publicSpecifier:
+        subpath === "." ? packageName : `${packageName}/${subpath.slice(2)}`,
+    });
+  }
+  return {
+    fileUrls: MutableList.toArray(fileUrls),
+    resolutions: MutableList.toArray(resolutions),
+  };
+});
+
+/** Proves that the consumer resolved one public specifier to the file that the package declares. */
+const verifyResolution = Effect.fn("AksaraContracts.verifyResolution")(
+  function* (
+    packageRoot: string,
+    resolved: Readonly<Record<string, URL>>,
+    resolution: ExpectedResolution
+  ) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const { expectedTarget, publicSpecifier } = resolution;
+    const resolvedUrl = yield* Effect.fromOption(
+      Rec.get(resolved, publicSpecifier)
+    ).pipe(
+      Effect.mapError(
+        verificationFailure(
+          `Unable to inspect Node resolution for ${publicSpecifier}.`
+        )
+      )
+    );
     const [resolvedPath, expectedPath] = yield* Effect.all([
-      tryVerification(
-        `Unable to inspect Node resolution for ${publicSpecifier}.`,
-        () => realpathSync(fileURLToPath(resolvedSpecifier))
+      path.fromFileUrl(resolvedUrl).pipe(
+        Effect.flatMap((file) => fileSystem.realPath(file)),
+        Effect.mapError(
+          verificationFailure(
+            `Unable to inspect Node resolution for ${publicSpecifier}.`
+          )
+        )
       ),
-      tryVerification(
-        `Unable to inspect the expected target for ${publicSpecifier}.`,
-        () => realpathSync(join(packageRoot, expectedTarget))
-      ),
+      fileSystem
+        .realPath(path.join(packageRoot, expectedTarget))
+        .pipe(
+          Effect.mapError(
+            verificationFailure(
+              `Unable to inspect the expected target for ${publicSpecifier}.`
+            )
+          )
+        ),
     ]);
     yield* requireVerification(
       resolvedPath === expectedPath,
       `Node selected the wrong condition for ${publicSpecifier}`
     );
-    MutableList.append(moduleSpecifiers, publicSpecifier);
   }
+);
 
-  yield* Effect.forEach(MutableList.toArray(moduleSpecifiers), importModule, {
-    concurrency: "unbounded",
-    discard: true,
+/** Verifies exact exports, files, imports, and resolution from one installation. */
+export const verifyInstalledPackage = Effect.fn(
+  "AksaraContracts.verifyInstalledPackage"
+)(function* <E, R>({
+  consumerRoot,
+  inspect,
+  packageName,
+  write,
+}: InstallVerificationInput<E, R>) {
+  const packageRoot = yield* locatePackageRoot(consumerRoot, packageName);
+  const manifest = yield* readInstalledManifest(packageRoot, packageName);
+  const plan = yield* planExports(packageRoot, packageName, manifest.exports);
+  const publicSpecifiers = Arr.map(
+    plan.resolutions,
+    (resolution) => resolution.publicSpecifier
+  );
+  const resolved = yield* inspect({
+    imports: Arr.appendAll(plan.fileUrls, publicSpecifiers),
+    resolutions: publicSpecifiers,
   });
+  yield* Effect.forEach(
+    plan.resolutions,
+    (resolution) => verifyResolution(packageRoot, resolved, resolution),
+    { discard: true }
+  );
   yield* write(
-    `Verified ${Rec.keys(manifest.exports).length} exact exports and ${importedConditionCount} Node-importable conditions from the installed tarball.\n`
+    `Verified ${Rec.keys(manifest.exports).length} exact exports and ${plan.fileUrls.length} Node-importable conditions from the installed tarball.\n`
   );
 });

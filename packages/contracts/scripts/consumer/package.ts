@@ -1,11 +1,11 @@
 import { createRequire } from "node:module";
 import { Effect, FileSystem, Path, Schema } from "effect";
+import { runConsumerCommand } from "#scripts/consumer/command";
+import { consumerEnvironment } from "#scripts/consumer/environment";
 import { validatePackedManifest } from "#scripts/consumer/packed";
 import {
   type ConsumerPackageInput,
-  createCredentialFreeEnvironment,
   consumerFailure as failure,
-  runConsumerCommand,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
 import {
@@ -99,8 +99,7 @@ export const stageConsumerPackage = Effect.fn(
   ]).pipe(
     Effect.mapError(failure("filesystem", "npm configuration staging failed"))
   );
-  const childEnvironment = createCredentialFreeEnvironment(
-    input.environment,
+  const childEnvironment = yield* consumerEnvironment(
     emptyGlobalConfig,
     emptyUserConfig
   );
@@ -203,7 +202,6 @@ export const stageConsumerPackage = Effect.fn(
     packageName: sourceManifest.name,
     packedManifest,
     pnpm: tools.pnpm,
-    scriptDirectory,
     tarballPath,
     verifierDirectory,
     workspaceRoot,

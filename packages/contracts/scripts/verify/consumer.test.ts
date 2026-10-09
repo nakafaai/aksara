@@ -1,7 +1,7 @@
 import { inspect } from "node:util";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Schedule } from "effect";
+import { ConfigProvider, Effect, FileSystem, Path, Schedule } from "effect";
 import { TestClock } from "effect/testing";
 import {
   preserveTarball,
@@ -12,10 +12,19 @@ import {
 /** Supplies the exact live boundary inputs for direct program verification. */
 const input = (args: readonly string[] = []) => ({
   args,
-  environment: process.env,
   executable: process.execPath,
   platform: process.platform,
 });
+
+/** Supplies the verifier's configuration explicitly, so no failure test reads the host environment. */
+const configuration = (home: string, variables: Record<string, string> = {}) =>
+  ConfigProvider.layer(
+    ConfigProvider.fromEnvRecord({
+      HOME: home,
+      PATH: "/usr/bin:/bin",
+      ...variables,
+    })
+  );
 
 /** Imports the CLI with exact arguments and always restores process state. */
 const runConsumerCommand = Effect.fn(
@@ -88,35 +97,52 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
         Effect.scoped,
         Effect.flip
       );
-      expect(argumentError).toMatchObject({ reason: "argument" });
-      expect(argumentError.detail).toContain(
-        "Consumer verification arguments are malformed"
-      );
-      expect(argumentError.detail).toContain("Unknown option '--unknown'");
+      expect(argumentError).toMatchObject({
+        detail: expect.stringContaining(
+          "Consumer verification arguments are malformed"
+        ),
+        reason: "argument",
+      });
+      expect(argumentError).toMatchObject({
+        detail: expect.stringContaining("Unknown option '--unknown'"),
+      });
       expect(argumentError.cause).toBeInstanceOf(TypeError);
 
       const processError = yield* verifyConsumer({
         ...input(),
         temporaryDirectory: workspace,
         tools: { pnpm: process.execPath },
-      }).pipe(Effect.scoped, Effect.flip);
-      expect(processError).toMatchObject({ reason: "process" });
-      expect(processError.detail).toContain("Contract package creation");
-      expect(processError.detail).toContain("code 1");
+      }).pipe(Effect.scoped, Effect.provide(configuration(root)), Effect.flip);
+      expect(processError).toMatchObject({
+        detail: expect.stringContaining("Contract package creation"),
+        reason: "process",
+      });
+      expect(processError).toMatchObject({
+        detail: expect.stringContaining("code 1"),
+      });
       expect(processError.cause).toEqual({ exitCode: 1 });
       expect(yield* fileSystem.readDirectory(workspace)).toEqual([]);
 
       const credential = "must-not-appear-in-consumer-errors";
       const startError = yield* verifyConsumer({
         ...input(),
-        environment: { ...process.env, NPM_TOKEN: credential },
         temporaryDirectory: workspace,
         tools: { pnpm: path.join(root, "missing-command") },
-      }).pipe(Effect.scoped, Effect.flip);
-      expect(startError).toMatchObject({ reason: "process" });
-      expect(startError.detail).toContain("Contract package creation");
-      expect(startError.detail).toContain("missing-command");
-      expect(startError.detail).not.toContain(credential);
+      }).pipe(
+        Effect.scoped,
+        Effect.provide(configuration(root, { NPM_TOKEN: credential })),
+        Effect.flip
+      );
+      expect(startError).toMatchObject({
+        detail: expect.stringContaining("Contract package creation"),
+        reason: "process",
+      });
+      expect(startError).toMatchObject({
+        detail: expect.stringContaining("missing-command"),
+      });
+      expect(startError).toMatchObject({
+        detail: expect.not.stringContaining(credential),
+      });
       expect(startError.cause).toMatchObject({
         _tag: "PlatformError",
         reason: { _tag: "NotFound" },
@@ -132,9 +158,13 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
         ...input(),
         temporaryDirectory: file,
       }).pipe(Effect.scoped, Effect.flip);
-      expect(fileError).toMatchObject({ reason: "filesystem" });
-      expect(fileError.detail).toContain("Temporary directory creation failed");
-      expect(fileError.detail).toContain("not-a-directory");
+      expect(fileError).toMatchObject({
+        detail: expect.stringContaining("Temporary directory creation failed"),
+        reason: "filesystem",
+      });
+      expect(fileError).toMatchObject({
+        detail: expect.stringContaining("not-a-directory"),
+      });
       expect(fileError.cause).toMatchObject({ _tag: "PlatformError" });
     })
   );

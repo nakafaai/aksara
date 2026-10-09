@@ -1,10 +1,6 @@
 import assert from "node:assert/strict";
-import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
-import { ChildProcess } from "effect/process";
+import { Array as Arr, Schema } from "effect";
 import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
-
-const CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/iu;
-const CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/iu;
 
 const ConsumerManifestInputSchema = Schema.Struct({
   effectVersion: Schema.String,
@@ -26,7 +22,6 @@ export type ConsumerTools = typeof ConsumerToolsSchema.Type;
 
 /** Host inputs required to stage one isolated consumer package. */
 export const ConsumerPackageInputSchema = Schema.Struct({
-  environment: Schema.Record(Schema.String, Schema.UndefinedOr(Schema.String)),
   platform: Schema.Literals([
     "aix",
     "android",
@@ -51,33 +46,6 @@ export const ConsumerPackageInputSchema = Schema.Struct({
 
 /** Host inputs required to stage one isolated consumer package. */
 export type ConsumerPackageInput = typeof ConsumerPackageInputSchema.Type;
-
-/** Removes registry credentials and pins empty package-manager configuration. */
-export function createCredentialFreeEnvironment(
-  environment: NodeJS.ProcessEnv,
-  globalConfig: string,
-  userConfig: string
-): NodeJS.ProcessEnv {
-  return {
-    ...Rec.fromEntries(
-      Arr.filter(
-        Rec.toEntries(environment),
-        ([name]) =>
-          !(
-            CREDENTIAL_ENVIRONMENT_PATTERN.test(name) ||
-            CONFIG_ENVIRONMENT_PATTERN.test(name)
-          )
-      )
-    ),
-    NPM_CONFIG_GLOBALCONFIG: globalConfig,
-    NPM_CONFIG_USERCONFIG: userConfig,
-  };
-}
-
-/** Resolves the platform-specific executable name without invoking a shell. */
-export function executablePath(executable: string, platform: NodeJS.Platform) {
-  return platform === "win32" ? `${executable}.cmd` : executable;
-}
 
 /** One expected isolated-consumer verification failure. */
 export class ConsumerVerificationError extends Schema.TaggedError<ConsumerVerificationError>()(
@@ -107,45 +75,6 @@ export function consumerFailure(
     consumerError(reason, `${detail}: ${String(cause)}`, cause);
 }
 
-/** Executes one child command without a shell and verifies its exact exit code. */
-export const runConsumerCommand = Effect.fn(
-  "AksaraContracts.runConsumerCommand"
-)(
-  (
-    executable: string,
-    args: readonly string[],
-    environment: NodeJS.ProcessEnv,
-    platform: NodeJS.Platform,
-    stage: string,
-    cwd?: string
-  ) =>
-    Effect.gen(function* () {
-      const exitCode = yield* ChildProcess.make(
-        executablePath(executable, platform),
-        args,
-        {
-          cwd,
-          env: environment,
-          extendEnv: false,
-          stderr: "inherit",
-          stdin: "inherit",
-          stdout: "inherit",
-        }
-      ).pipe(
-        Effect.flatMap((child) => child.exitCode),
-        Effect.mapError(consumerFailure("process", `${stage} command failed`)),
-        Effect.scoped
-      );
-      if (exitCode !== 0) {
-        return yield* consumerError(
-          "process",
-          `${stage} exited unsuccessfully with code ${exitCode}`,
-          { exitCode }
-        );
-      }
-    })
-);
-
 /** Requires package tooling to produce exactly one tarball archive. */
 export function selectPackedArchive(paths: readonly string[]): string {
   const archives = Arr.filter(paths, (path) => path.endsWith(".tgz"));
@@ -166,9 +95,6 @@ export function createConsumerManifest({
     dependencies: {
       [packageName]: `file:${tarballPath}`,
       effect: effectVersion,
-    },
-    imports: {
-      "#scripts/*": "./verify/*.ts",
     },
     name: "aksara-contracts-external-consumer",
     packageManager,
@@ -251,42 +177,48 @@ export function createConsumerTsconfig() {
   })}\n`;
 }
 
-/** Serializes the external Node runtime verifier for the installed tarball. */
+/**
+ * Serializes the plain Node script that the verifier runs inside the isolated
+ * consumer. It reads one JSON request from standard input, resolves each public
+ * specifier with import.meta.resolve, imports each specifier or file URL, and
+ * writes the resolved URLs as one JSON document to standard output. It imports
+ * nothing from the repository, so only the consumer's own packages are used.
+ */
 export function createInstallRunner() {
-  return `import { Effect } from "effect";
-import {
-  InstallVerificationError,
-  verifyInstalledPackage,
-} from "#scripts/verify/install";
-import { textField } from "#scripts/manifest";
+  return `const chunks = [];
+for await (const chunk of process.stdin) {
+  chunks.push(chunk);
+}
+const request = JSON.parse(Buffer.concat(chunks).toString("utf8"));
 
-const packageName = textField(
-  process.argv[2],
-  "The installed package name is required"
-);
+function resolveSpecifier(specifier) {
+  try {
+    return import.meta.resolve(specifier);
+  } catch (cause) {
+    throw new Error("Unable to resolve " + specifier + ": " + String(cause));
+  }
+}
 
-const installError = (message: string) => (cause: unknown) =>
-  new InstallVerificationError({ cause, message });
+async function importSpecifier(specifier) {
+  try {
+    await import(specifier);
+  } catch (cause) {
+    throw new Error("Unable to import " + specifier + ": " + String(cause));
+  }
+}
 
-await Effect.runPromise(
-  verifyInstalledPackage({
-    consumerRoot: process.cwd(),
-    importModule: (specifier) =>
-      Effect.tryPromise({
-        catch: installError(\`Unable to import \${specifier}.\`),
-        try: () => import(specifier),
-      }),
-    packageName,
-    resolveSpecifier: (specifier) =>
-      Effect.try({
-        catch: installError(\`Unable to resolve \${specifier}.\`),
-        try: () => import.meta.resolve(specifier),
-      }),
-    write: (message) =>
-      Effect.sync(() => {
-        process.stdout.write(message);
-      }),
-  })
-);
+try {
+  const resolved = {};
+  for (const specifier of request.resolutions) {
+    resolved[specifier] = resolveSpecifier(specifier);
+  }
+  for (const specifier of request.imports) {
+    await importSpecifier(specifier);
+  }
+  process.stdout.write(JSON.stringify({ resolved }) + "\\n");
+} catch (error) {
+  process.stderr.write(error.message + "\\n");
+  process.exitCode = 1;
+}
 `;
 }
