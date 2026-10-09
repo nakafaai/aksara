@@ -7,7 +7,7 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import {
   readCleanAksaraRevision,
   readRepositoryEvidence,
@@ -17,17 +17,19 @@ import { encodeJsonText } from "#cli/text/json";
 
 const COMMIT_SHA = "a".repeat(40);
 
-interface EvidenceResult {
-  readonly exitCode?: number;
-  readonly stdout?: string | Uint8Array;
-}
+const EvidenceResultSchema = Schema.Struct({
+  exitCode: Schema.optionalKey(Schema.Finite),
+  stdout: Schema.optionalKey(Schema.Union([Schema.String, Schema.Uint8Array])),
+});
 
-interface EvidenceOverrides {
-  readonly failure?: ExactProcessError;
-  readonly sha?: EvidenceResult;
-  readonly shas?: readonly EvidenceResult[];
-  readonly status?: EvidenceResult;
-}
+const EvidenceOverridesSchema = Schema.Struct({
+  failure: Schema.optionalKey(Schema.instanceOf(ExactProcessError)),
+  sha: Schema.optionalKey(EvidenceResultSchema),
+  shas: Schema.optionalKey(Schema.Array(EvidenceResultSchema)),
+  status: Schema.optionalKey(EvidenceResultSchema),
+});
+
+type EvidenceOverrides = typeof EvidenceOverridesSchema.Type;
 
 /** Converts one optional evidence value into exact process output bytes. */
 function outputBytes(value: string | Uint8Array | undefined) {
