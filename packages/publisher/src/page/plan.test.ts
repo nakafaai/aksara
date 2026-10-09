@@ -5,7 +5,14 @@ import {
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableHashMap,
+  Option,
+  Schema,
+} from "effect";
 import {
   collectPagePublication,
   collectPageResult,
@@ -95,20 +102,22 @@ function replaceHead(
   );
 }
 
-/** Returns a mutable source map with one reviewed page body changed. */
+/** Returns the source entries, in fixture order, with one reviewed page body changed. */
 const changedSources = Effect.fn("PagePlanTest.changedSources")(
   (
     fixture: PageTestFixtures["Service"],
     sourcePath: typeof privacySourcePath
   ) =>
     Effect.gen(function* () {
-      const sources = new Map(fixture.sources);
+      const sources = MutableHashMap.fromIterable(fixture.sources);
       const absolutePath = yield* Effect.fromNullishOr(
-        fixture.absolutePaths.get(sourcePath)
+        Option.getOrUndefined(HashMap.get(fixture.absolutePaths, sourcePath))
       );
-      const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
-      sources.set(absolutePath, `${source}\n`);
-      return sources;
+      const source = yield* Effect.fromNullishOr(
+        Option.getOrUndefined(MutableHashMap.get(sources, absolutePath))
+      );
+      MutableHashMap.set(sources, absolutePath, `${source}\n`);
+      return Arr.fromIterable(sources);
     })
 );
 

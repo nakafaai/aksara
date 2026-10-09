@@ -2,10 +2,7 @@ import {
   type CompiledContentResult,
   compileContent,
 } from "@nakafa/aksara-compiler/compile";
-import {
-  type ContentSourceInspection,
-  inspectContentSource,
-} from "@nakafa/aksara-compiler/inspect";
+import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
@@ -38,13 +35,6 @@ export class PageSourceError extends Schema.TaggedError<PageSourceError>()(
 ) {}
 
 /** Lightweight page facts sufficient to decide whether compilation is needed. */
-export interface InspectedPageDocument {
-  readonly inspection: ContentSourceInspection;
-  readonly projection: PublicPageProjection;
-  readonly projectionHash: ReturnType<typeof hashContentProjection>;
-  readonly source: PageDocumentSource;
-}
-
 /** Binds one checkout root to the shared public page source error adapter. */
 export function mapPageSourceError(checkoutRoot: string) {
   return (cause: unknown) => new PageSourceError({ cause, checkoutRoot });
@@ -122,8 +112,13 @@ export const inspectPageDocument = Effect.fn(
     projection,
     projectionHash: hashContentProjection(projection),
     source,
-  } satisfies InspectedPageDocument;
+  };
 });
+
+/** One page source with its inspection, public projection, and projection hash. */
+export type InspectedPageDocument = Effect.Success<
+  ReturnType<typeof inspectPageDocument>
+>;
 
 /** Binds compiled output to its registry-owned page change and projection. */
 function makePageRecord(

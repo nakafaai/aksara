@@ -14,7 +14,7 @@ import {
   decodePageRegistry,
   type PageEntry,
 } from "@nakafa/aksara-corpus/pages/registry";
-import { Context, Effect, Layer, Path } from "effect";
+import { Context, Effect, HashMap, Layer, MutableHashMap, Path } from "effect";
 import { testRendererDomains } from "#test/renderer";
 
 export const pageFamilyScope = PublicationScopeSchema.make({
@@ -95,10 +95,10 @@ const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>
 `;
       return [entry.sourcePath, absolutePath, source] as const;
     });
-    const absolutePaths = new Map(
+    const absolutePaths = HashMap.fromIterable(
       sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
     );
-    const sources = new Map(
+    const sources = MutableHashMap.fromIterable(
       sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
     );
     const rendererManifest = yield* pageManifest();
