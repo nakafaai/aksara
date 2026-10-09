@@ -1,7 +1,11 @@
 import { createHash } from "node:crypto";
-import { Effect, FileSystem, Path, Schema, Stream } from "effect";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import { ChildProcess } from "effect/process";
-import { verifyArchive } from "#scripts/release/archive";
+import {
+  commandText,
+  platformError,
+  verifyArchive,
+} from "#scripts/release/archive";
 import { decodeRelease, decodeTag } from "#scripts/release/github";
 import { packageIdentity, releaseError } from "#scripts/release/identity";
 
@@ -50,40 +54,6 @@ const ContractProofSchema = Schema.Struct({
 /** Durable facts returned only after every immutable release proof succeeds. */
 export type ContractProof = typeof ContractProofSchema.Type;
 
-/** Maps one external command failure to its stable proof stage. */
-function commandError(stage: string) {
-  return () =>
-    releaseError("platform", `Contract release ${stage} operation failed`);
-}
-
-/** Executes one external proof command and captures complete UTF-8 output. */
-function commandText(
-  executable: string,
-  args: readonly string[],
-  stage: string
-) {
-  return Effect.gen(function* () {
-    const process = yield* ChildProcess.make(executable, args, {
-      stderr: "inherit",
-    });
-    const output = yield* process.stdout.pipe(
-      Stream.decodeText(),
-      Stream.runFold(
-        () => "",
-        (text, chunk) => text + chunk
-      )
-    );
-    const exitCode = yield* process.exitCode;
-    if (exitCode !== 0) {
-      return yield* releaseError(
-        "platform",
-        `Contract release ${stage} command exited unsuccessfully`
-      );
-    }
-    return output;
-  }).pipe(Effect.mapError(commandError(stage)), Effect.scoped);
-}
-
 /** Executes one external proof command whose exit status is its result. */
 function commandVoid(
   executable: string,
@@ -95,9 +65,9 @@ function commandVoid(
       const process = yield* ChildProcess.make(executable, args, {
         stderr: "inherit",
         stdout: "inherit",
-      }).pipe(Effect.mapError(commandError(stage)));
+      }).pipe(Effect.mapError(platformError(stage)));
       const exitCode = yield* process.exitCode.pipe(
-        Effect.mapError(commandError(stage))
+        Effect.mapError(platformError(stage))
       );
       if (exitCode !== 0) {
         return yield* releaseError(
@@ -129,7 +99,7 @@ export const proveContractRelease = Effect.fn(
   const fileSystem = yield* FileSystem.FileSystem;
   const source = yield* fileSystem
     .readFileString(input.packagePath, "utf8")
-    .pipe(Effect.mapError(commandError("package read")));
+    .pipe(Effect.mapError(platformError("package read")));
   const identity = yield* packageIdentity(source);
   const currentBytes = yield* verifyArchive(
     input.archivePath,
@@ -195,7 +165,7 @@ export const proveContractRelease = Effect.fn(
   const path = yield* Path.Path;
   const downloadRoot = yield* fileSystem
     .makeTempDirectoryScoped({ prefix: "aksara-contract-proof-" })
-    .pipe(Effect.mapError(commandError("temporary directory")));
+    .pipe(Effect.mapError(platformError("temporary directory")));
   const downloadedPath = path.join(downloadRoot, identity.assetName);
   yield* commandVoid(
     tools.gh,

@@ -16,13 +16,13 @@ import {
 const MULTILINE_PATTERN = /[\r\n]/u;
 
 /** Maps one platform failure to its stable contract release operation. */
-function platformError(stage: string) {
+export function platformError(stage: string) {
   return () =>
     releaseError("platform", `Contract release ${stage} operation failed`);
 }
 
 /** Executes one external command and captures its complete UTF-8 output. */
-function commandText(
+export function commandText(
   executable: string,
   args: readonly string[],
   stage: string
