@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
@@ -110,9 +110,9 @@ describe("content snapshot state", () => {
       },
     ];
 
-    const failures = cases.map(decode);
+    const failures = Arr.map(cases, decode);
 
-    expect(failures.every(Exit.isFailure)).toBe(true);
+    expect(Arr.every(failures, Exit.isFailure)).toBe(true);
     const [firstFailure] = failures;
     expect(
       firstFailure !== undefined && Exit.isFailure(firstFailure)

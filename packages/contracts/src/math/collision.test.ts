@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { BigDecimal, MutableHashSet, Schema } from "effect";
+import { Array as Arr, BigDecimal, MutableHashSet, Schema } from "effect";
 
 import {
   PlaneMathFrameSchema,
@@ -53,14 +53,14 @@ function spaceObject(kind: string, fields: Record<string, unknown>) {
 
 /** Returns authored paths from stable resolution issues. */
 function paths(issues: ReturnType<typeof planeResolutionIssues>) {
-  return issues.map((candidate) =>
+  return Arr.map(issues, (candidate) =>
     hasAuthoredIssue(candidate) ? candidate.path : []
   );
 }
 
 /** Lifts finite test values into exact rational proximity entries. */
 function proximityEntries(values: readonly number[]) {
-  return values.map((value) => ({ value: numberRatio(value) }));
+  return Arr.map(values, (value) => ({ value: numberRatio(value) }));
 }
 
 describe("mathematical visual collisions", () => {

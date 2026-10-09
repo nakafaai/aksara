@@ -1,4 +1,11 @@
-import { BigDecimal, HashSet, Option, Schema, String as Str } from "effect";
+import {
+  Array as Arr,
+  BigDecimal,
+  HashSet,
+  Option,
+  Schema,
+  String as Str,
+} from "effect";
 
 import type { AppLocaleCode } from "#contracts/locale";
 
@@ -136,7 +143,7 @@ function normalizeTextAnswer(text: string, rules: TextKeyRules) {
 function hasDistinctAcceptedAnswers(
   key: TextKeyRules & { readonly acceptedAnswers: readonly string[] }
 ) {
-  const normalized = key.acceptedAnswers.map((text) =>
+  const normalized = Arr.map(key.acceptedAnswers, (text) =>
     normalizeTextAnswer(text, key)
   );
   return HashSet.size(HashSet.fromIterable(normalized)) === normalized.length;
@@ -289,7 +296,8 @@ export function matchesAnswerKey(
 ) {
   if (key.kind === "text") {
     const typed = normalizeTextAnswer(answer, key);
-    return key.acceptedAnswers.some(
+    return Arr.some(
+      key.acceptedAnswers,
       (accepted) => normalizeTextAnswer(accepted, key) === typed
     );
   }

@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import { verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Result } from "effect";
+import { Array as Arr, Effect, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { verifyProtectedContentRuntimeExchange } from "#contracts/runtime/protected/verify";
 import {
@@ -40,19 +40,21 @@ describe("protected content runtime verification", () => {
       ).toEqual(protectedFound);
 
       const outcomes = yield* Effect.all(
-        protectedMismatchCases.map(([, response, request = protectedRequest]) =>
-          verifyProtectedExchange({ request, response }).pipe(Effect.result)
+        Arr.map(
+          protectedMismatchCases,
+          ([, response, request = protectedRequest]) =>
+            verifyProtectedExchange({ request, response }).pipe(Effect.result)
         ),
         { concurrency: "unbounded" }
       );
       expect(
-        outcomes.map((outcome) =>
+        Arr.map(outcomes, (outcome) =>
           Result.isFailure(outcome) &&
           outcome.failure._tag === "ContentRuntimeMismatchError"
             ? outcome.failure.reason
             : "none"
         )
-      ).toEqual(protectedMismatchCases.map(([reason]) => reason));
+      ).toEqual(Arr.map(protectedMismatchCases, ([reason]) => reason));
     })
   );
 
@@ -128,7 +130,9 @@ describe("protected content runtime verification", () => {
       ] as const;
       expect(
         yield* Effect.all(
-          responses.map((response) => verifyProtectedExchange({ response })),
+          Arr.map(responses, (response) =>
+            verifyProtectedExchange({ response })
+          ),
           { concurrency: "unbounded" }
         )
       ).toEqual(responses);
@@ -182,7 +186,8 @@ describe("pinned protected runtime exchange bytes", () => {
   );
   /** Verifies one recorded signature over its exact bytes, then over the same bytes with one changed byte. */
   function verifyRecorded(message: string, signature: string | undefined) {
-    return [message, message.replace("nakafa", "makafa")].map(
+    return Arr.map(
+      [message, message.replace("nakafa", "makafa")],
       (text) =>
         signature !== undefined &&
         verifyBytes(

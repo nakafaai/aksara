@@ -1,10 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 
 import { materialGraph } from "#contracts/test/graph";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import { JsonTextSchema } from "#contracts/text/json";
 import {
+  type TryoutCatalogRecord,
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
   type TryoutSection,
@@ -18,7 +19,8 @@ import {
 } from "#contracts/tryout/hash/catalog";
 import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 
-const rows: readonly TryoutCatalogRow[] = makeTryoutTestRows().catalog.map(
+const rows: readonly TryoutCatalogRow[] = Arr.map(
+  makeTryoutTestRows().catalog,
   ({ row }) => row
 );
 
@@ -142,31 +144,37 @@ const markedSectionRow = Schema.decodeSync(TryoutCatalogRowSchema)({
 describe("try-out catalog identity and hashing", () => {
   it.effect("canonicalizes and digests signed catalog rows", () =>
     Effect.gen(function* () {
-      const records = rows.map(makeTryoutCatalogRecord).reverse();
-      records.sort((left, right) => compareTryoutCatalog(left.row, right.row));
+      const records = Arr.sort(
+        Arr.reverse(Arr.map(rows, makeTryoutCatalogRecord)),
+        Order.make<TryoutCatalogRecord>((left, right) =>
+          compareTryoutCatalog(left.row, right.row)
+        )
+      );
       const first = yield* Effect.fromNullishOr(rows[0]);
       const summary = yield* digestTryoutCatalog(Stream.fromIterable(records));
       const chunked = yield* digestTryoutCatalog(
         Stream.fromIterable(records).pipe(Stream.rechunk(3))
       );
 
-      expect(records.map(({ row }) => tryoutCatalogIdentity(row))).toEqual([
-        "de\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
-        "de\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
-        "de\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
-        "de\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
-        "de\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
-        "en\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
-        "en\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
-        "en\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
-        "en\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
-        "en\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
-        "id\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
-        "id\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
-        "id\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
-        "id\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
-        "id\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
-      ]);
+      expect(Arr.map(records, ({ row }) => tryoutCatalogIdentity(row))).toEqual(
+        [
+          "de\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
+          "de\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
+          "de\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
+          "de\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
+          "de\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
+          "en\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
+          "en\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
+          "en\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
+          "en\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
+          "en\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
+          "id\u0000country\u0000indonesia\u0000\u0000\u0000\u0000",
+          "id\u0000exam\u0000indonesia\u0000snbt\u0000\u0000\u0000",
+          "id\u0000section\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000quantitative-knowledge",
+          "id\u0000set\u0000indonesia\u0000snbt\u00002027\u0000set-1\u0000",
+          "id\u0000track\u0000indonesia\u0000snbt\u00002027\u0000\u0000",
+        ]
+      );
       expect(yield* readJson(canonicalizeTryoutCatalog(first))).toEqual(first);
       expect(summary).toEqual({
         count: 15,
@@ -179,8 +187,9 @@ describe("try-out catalog identity and hashing", () => {
 
   it.effect("keeps unmarked section bytes and binds penalized marks", () =>
     Effect.gen(function* () {
-      const section = yield* Effect.fromNullishOr(
-        rows.find(
+      const section = yield* Effect.fromOption(
+        Arr.findFirst(
+          rows,
           (row): row is TryoutSection =>
             row.kind === "section" && row.appLocale === "en"
         )
@@ -209,69 +218,52 @@ describe("try-out catalog identity and hashing", () => {
     })
   );
 
-  it("pins the full canonical bytes of every catalog kind", () => {
-    expect(canonicalizeTryoutCatalog(countryRow)).toBe(
-      '{"appLocale":"en","description":"Deskripsi é","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Negara uji é","countryCode":"ZZ","countryKey":"test-country","kind":"country","order":1,"publicPath":"try-out/test-country"}'
-    );
-    expect(canonicalizeTryoutCatalog(examRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:exam","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:exam","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:exam","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Ujian uji é","countryKey":"test-country","examKey":"test-exam","kind":"exam","order":1,"publicPath":"try-out/test-country/test-exam","scoringStrategy":"irt"}'
-    );
-    expect(canonicalizeTryoutCatalog(trackRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:track","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:track","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:track","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Trek uji é","countryKey":"test-country","examKey":"test-exam","kind":"track","order":1,"publicPath":"try-out/test-country/test-exam/test-track","questionCount":2,"sectionCount":2,"setCount":2,"trackKey":"test-track","trackKind":"year","visibleSectionCount":2}'
-    );
-    expect(canonicalizeTryoutCatalog(entrySetRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set 1 é","countryKey":"test-country","examKey":"test-exam","internalEntrySectionKey":"test-section","kind":"set","order":1,"publicPath":"try-out/test-country/test-exam/test-track/test-set","questionCount":1,"scoringStrategy":"irt","sectionCount":1,"setKey":"test-set","trackKey":"test-track","visibleSectionCount":0}'
-    );
-    expect(canonicalizeTryoutCatalog(openSetRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set 2","countryKey":"test-country","examKey":"test-exam","kind":"set","order":2,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2","questionCount":2,"scoringStrategy":"irt","sectionCount":2,"setKey":"test-set-2","trackKey":"test-track","visibleSectionCount":2}'
-    );
-    expect(canonicalizeTryoutCatalog(entrySectionRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Kuantitatif é","countryKey":"test-country","examKey":"test-exam","kind":"section","order":1,"questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set","sectionKey":"test-section","setKey":"test-set","timeLimitSeconds":60,"trackKey":"test-track","visibility":"internal-entry"}'
-    );
-    expect(canonicalizeTryoutCatalog(markedSectionRow)).toBe(
-      '{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Umum é","countryKey":"test-country","examKey":"test-exam","kind":"section","marks":{"blank":0,"correct":4,"wrong":-1},"order":2,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2/general","questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set-2","sectionKey":"general","setKey":"test-set-2","timeLimitSeconds":90,"trackKey":"test-track","visibility":"visible"}'
-    );
+  it.each`
+    name                | row                 | bytes
+    ${"country"}        | ${countryRow}       | ${'{"appLocale":"en","description":"Deskripsi é","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Negara uji é","countryCode":"ZZ","countryKey":"test-country","kind":"country","order":1,"publicPath":"try-out/test-country"}'}
+    ${"exam"}           | ${examRow}          | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:exam","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:exam","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:exam","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Ujian uji é","countryKey":"test-country","examKey":"test-exam","kind":"exam","order":1,"publicPath":"try-out/test-country/test-exam","scoringStrategy":"irt"}'}
+    ${"track"}          | ${trackRow}         | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:track","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:track","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:track","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Trek uji é","countryKey":"test-country","examKey":"test-exam","kind":"track","order":1,"publicPath":"try-out/test-country/test-exam/test-track","questionCount":2,"sectionCount":2,"setCount":2,"trackKey":"test-track","trackKind":"year","visibleSectionCount":2}'}
+    ${"entry set"}      | ${entrySetRow}      | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set 1 é","countryKey":"test-country","examKey":"test-exam","internalEntrySectionKey":"test-section","kind":"set","order":1,"publicPath":"try-out/test-country/test-exam/test-track/test-set","questionCount":1,"scoringStrategy":"irt","sectionCount":1,"setKey":"test-set","trackKey":"test-track","visibleSectionCount":0}'}
+    ${"open set"}       | ${openSetRow}       | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set 2","countryKey":"test-country","examKey":"test-exam","kind":"set","order":2,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2","questionCount":2,"scoringStrategy":"irt","sectionCount":2,"setKey":"test-set-2","trackKey":"test-track","visibleSectionCount":2}'}
+    ${"entry section"}  | ${entrySectionRow}  | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Kuantitatif é","countryKey":"test-country","examKey":"test-exam","kind":"section","order":1,"questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set","sectionKey":"test-section","setKey":"test-set","timeLimitSeconds":60,"trackKey":"test-track","visibility":"internal-entry"}'}
+    ${"marked section"} | ${markedSectionRow} | ${'{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Umum é","countryKey":"test-country","examKey":"test-exam","kind":"section","marks":{"blank":0,"correct":4,"wrong":-1},"order":2,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2/general","questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set-2","sectionKey":"general","setKey":"test-set-2","timeLimitSeconds":90,"trackKey":"test-track","visibility":"visible"}'}
+  `("pins the full canonical bytes of $name", ({ row, bytes }) => {
+    expect(canonicalizeTryoutCatalog(row)).toBe(bytes);
   });
 
-  it("pins the locale-neutral facts of every catalog kind", () => {
-    expect(canonicalizeTryoutCatalogFacts(countryRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"kind":"country","order":1,"sourceRevision":"2026-08-12","countryCode":"ZZ","countryKey":"test-country"}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(examRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:exam","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:exam","lensId":"lens:material:lesson:tryout"},"kind":"exam","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","scoringStrategy":"irt"}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(trackRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:track","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:track","lensId":"lens:material:lesson:tryout"},"kind":"track","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":2,"sectionCount":2,"setCount":2,"trackKey":"test-track","trackKind":"year","visibleSectionCount":2}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(entrySetRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"kind":"set","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","internalEntrySectionKey":"test-section","questionCount":1,"scoringStrategy":"irt","sectionCount":1,"setKey":"test-set","trackKey":"test-track","visibleSectionCount":0}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(openSetRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"kind":"set","order":2,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":2,"scoringStrategy":"irt","sectionCount":2,"setKey":"test-set-2","trackKey":"test-track","visibleSectionCount":2}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(entrySectionRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"kind":"section","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set","sectionKey":"test-section","setKey":"test-set","timeLimitSeconds":60,"trackKey":"test-track","visibility":"internal-entry"}'
-    );
-    expect(canonicalizeTryoutCatalogFacts(markedSectionRow)).toBe(
-      '{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"kind":"section","order":2,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","marks":{"blank":0,"correct":4,"wrong":-1},"questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set-2","sectionKey":"general","setKey":"test-set-2","timeLimitSeconds":90,"trackKey":"test-track","visibility":"visible"}'
-    );
+  it.each`
+    name                | row                 | bytes
+    ${"country"}        | ${countryRow}       | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"kind":"country","order":1,"sourceRevision":"2026-08-12","countryCode":"ZZ","countryKey":"test-country"}'}
+    ${"exam"}           | ${examRow}          | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:exam","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:exam","lensId":"lens:material:lesson:tryout"},"kind":"exam","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","scoringStrategy":"irt"}'}
+    ${"track"}          | ${trackRow}         | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:track","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:track","lensId":"lens:material:lesson:tryout"},"kind":"track","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":2,"sectionCount":2,"setCount":2,"trackKey":"test-track","trackKind":"year","visibleSectionCount":2}'}
+    ${"entry set"}      | ${entrySetRow}      | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"kind":"set","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","internalEntrySectionKey":"test-section","questionCount":1,"scoringStrategy":"irt","sectionCount":1,"setKey":"test-set","trackKey":"test-track","visibleSectionCount":0}'}
+    ${"open set"}       | ${openSetRow}       | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"kind":"set","order":2,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":2,"scoringStrategy":"irt","sectionCount":2,"setKey":"test-set-2","trackKey":"test-track","visibleSectionCount":2}'}
+    ${"entry section"}  | ${entrySectionRow}  | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"kind":"section","order":1,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set","sectionKey":"test-section","setKey":"test-set","timeLimitSeconds":60,"trackKey":"test-track","visibility":"internal-entry"}'}
+    ${"marked section"} | ${markedSectionRow} | ${'{"graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section","lensId":"lens:material:lesson:tryout"},"kind":"section","order":2,"sourceRevision":"2026-08-12","countryKey":"test-country","examKey":"test-exam","marks":{"blank":0,"correct":4,"wrong":-1},"questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-track/test-set-2","sectionKey":"general","setKey":"test-set-2","timeLimitSeconds":90,"trackKey":"test-track","visibility":"visible"}'}
+  `("pins the locale-neutral facts of $name", ({ row, bytes }) => {
+    expect(canonicalizeTryoutCatalogFacts(row)).toBe(bytes);
   });
 
   it.effect(
     "sorts shuffled literal rows by identity and pins the digest under two chunkings",
     () =>
       Effect.gen(function* () {
-        const records = [
-          markedSectionRow,
-          trackRow,
-          countryRow,
-          openSetRow,
-          examRow,
-          entrySectionRow,
-          entrySetRow,
-        ].map(makeTryoutCatalogRecord);
-        records.sort((left, right) =>
-          compareTryoutCatalog(left.row, right.row)
+        const records = Arr.sort(
+          Arr.map(
+            [
+              markedSectionRow,
+              trackRow,
+              countryRow,
+              openSetRow,
+              examRow,
+              entrySectionRow,
+              entrySetRow,
+            ],
+            makeTryoutCatalogRecord
+          ),
+          Order.make<TryoutCatalogRecord>((left, right) =>
+            compareTryoutCatalog(left.row, right.row)
+          )
         );
         const single = yield* digestTryoutCatalog(
           Stream.fromIterable(records).pipe(Stream.rechunk(1))
@@ -280,7 +272,9 @@ describe("try-out catalog identity and hashing", () => {
           Stream.fromIterable(records).pipe(Stream.rechunk(3))
         );
 
-        expect(records.map(({ row }) => tryoutCatalogIdentity(row))).toEqual([
+        expect(
+          Arr.map(records, ({ row }) => tryoutCatalogIdentity(row))
+        ).toEqual([
           "en\u0000country\u0000test-country\u0000\u0000\u0000\u0000",
           "en\u0000exam\u0000test-country\u0000test-exam\u0000\u0000\u0000",
           "en\u0000section\u0000test-country\u0000test-exam\u0000test-track\u0000test-set\u0000test-section",

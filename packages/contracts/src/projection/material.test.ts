@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import { AppLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeMaterialProjection,
@@ -202,7 +202,7 @@ describe("material projection", () => {
       title: "Earlier",
     });
 
-    expect([legacy, equal, earlier].every(Exit.isFailure)).toBe(true);
+    expect(Arr.every([legacy, equal, earlier], Exit.isFailure)).toBe(true);
     if (Exit.isFailure(earlier)) {
       expect(String(earlier.cause)).toContain(
         "Expected dateModified to be later than datePublished."

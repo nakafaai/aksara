@@ -1,4 +1,11 @@
-import { Effect, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Number as Num,
+  Order,
+  Schema,
+  Stream,
+} from "effect";
 
 import { compareContentHeads } from "#contracts/content";
 import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
@@ -19,11 +26,12 @@ export function makeReleaseItems(
   releaseId: ReleaseId,
   changes: readonly ContentChange[]
 ) {
-  return [...changes]
-    .sort(compareContentHeads)
-    .map((change, index) =>
-      ContentReleaseItemSchema.make({ change, index, releaseId })
-    );
+  const contentHeadOrder = Order.make<ContentChange>((left, right) =>
+    Num.sign(compareContentHeads(left, right))
+  );
+  return Arr.map(Arr.sort(changes, contentHeadOrder), (change, index) =>
+    ContentReleaseItemSchema.make({ change, index, releaseId })
+  );
 }
 
 const fixtureReleaseId =
@@ -119,7 +127,7 @@ export function replaceItem(
   index: number,
   update: (item: ContentReleaseItem) => unknown
 ) {
-  return items.map((item, itemIndex) =>
+  return Arr.map(items, (item, itemIndex) =>
     itemIndex === index ? update(item) : item
   );
 }

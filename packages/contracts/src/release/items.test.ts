@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { verifyContentReleaseItems } from "#contracts/release/items";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
@@ -113,7 +113,7 @@ describe("release item integrity", () => {
   );
   it.effect("rejects order, count, release, and index mismatches", () =>
     Effect.gen(function* () {
-      const reversed = [...items].reverse().map((item, index) => ({
+      const reversed = Arr.map(Arr.reverse(items), (item, index) => ({
         ...item,
         index,
       }));
@@ -124,7 +124,7 @@ describe("release item integrity", () => {
         reject(replaceItem(1, (item) => ({ ...item, index: 0 }))),
         reject(replaceItem(1, (item) => ({ ...item, index: 2 }))),
       ]);
-      expect(errors.map((error) => error._tag)).toEqual([
+      expect(Arr.map(errors, (error) => error._tag)).toEqual([
         "ReleaseItemOrderError",
         "ReleaseItemCountMismatchError",
         "ReleaseItemReleaseMismatchError",

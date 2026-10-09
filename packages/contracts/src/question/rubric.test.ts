@@ -1,5 +1,13 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Exit,
+  Option,
+  Record as Rec,
+  Schema,
+  Struct,
+} from "effect";
 import { Decision, DecisionModel } from "effect/ai";
 
 import {
@@ -58,23 +66,17 @@ const textResult = rubricSourceWith({
 
 describe("question rubric", () => {
   it("freezes stable criterion and level keys from authored order", () => {
-    const [approach, result] = rubric.criteria;
+    const approach = Option.getOrThrow(Arr.head(rubric.criteria));
+    const [, result] = rubric.criteria;
 
     expect(
-      rubric.criteria.map(({ criterionKey, order }) => ({
-        criterionKey,
-        order,
-      }))
+      Arr.map(rubric.criteria, Struct.pick(["criterionKey", "order"]))
     ).toEqual([
       { criterionKey: "criterion-1", order: 1 },
       { criterionKey: "criterion-2", order: 2 },
     ]);
     expect(
-      approach?.levels.map(({ levelKey, order, points }) => ({
-        levelKey,
-        order,
-        points,
-      }))
+      Arr.map(approach.levels, Struct.pick(["levelKey", "order", "points"]))
     ).toEqual([
       { levelKey: "level-1", order: 1, points: 0 },
       { levelKey: "level-2", order: 2, points: 1 },
@@ -97,11 +99,11 @@ describe("question rubric", () => {
 
   it("signs every label with its locales in alphabetical order", () => {
     const reversed = Schema.decodeUnknownSync(QuestionRubricLabelSchema)(
-      Rec.fromEntries(Rec.toEntries(label("Approach")).reverse())
+      Rec.fromEntries(Arr.reverse(Rec.toEntries(label("Approach"))))
     );
     const relabeled = QuestionRubricResponseSchema.make({
       ...rubric,
-      criteria: rubric.criteria.map((criterion, index) =>
+      criteria: Arr.map(rubric.criteria, (criterion, index) =>
         index === 0 ? { ...criterion, label: reversed } : criterion
       ),
     });
@@ -133,14 +135,15 @@ describe("question rubric", () => {
 
   it.effect("maps each judged criterion onto one Effect rating decision", () =>
     Effect.gen(function* () {
-      const judged = rubric.criteria.filter(
+      const judged = Arr.filter(
+        rubric.criteria,
         ({ finalAnswer }) => finalAnswer === undefined
       );
       const decisions = Rec.fromEntries(
-        judged.map(({ criterionKey, label: criterionLabel, levels }) => [
+        Arr.map(judged, ({ criterionKey, label: criterionLabel, levels }) => [
           criterionKey,
           Decision.rate({
-            criteria: levels.map(({ levelKey }) => levelKey),
+            criteria: Arr.map(levels, ({ levelKey }) => levelKey),
             instructions: criterionLabel.en,
           }),
         ])
@@ -166,10 +169,14 @@ describe("question rubric", () => {
         Decision.make({ decisions, input: Schema.String }),
         { input: "Test-only learner answer" }
       );
-      const earned = judged.map(
+      const earned = Arr.map(
+        judged,
         ({ criterionKey, levels }) =>
-          levels.find(
-            ({ levelKey }) => levelKey === answers[criterionKey]?.label
+          Option.getOrUndefined(
+            Arr.findFirst(
+              levels,
+              ({ levelKey }) => levelKey === answers[criterionKey]?.label
+            )
           )?.points
       );
 
@@ -194,7 +201,7 @@ describe("question rubric", () => {
   it("rejects scales that are short, flat, descending, fractional, or ambiguous", () => {
     const [, result] = source.criteria;
     const criteria = [
-      ...[[0], [0, 0], [2, 0], [-1, 0], [0, 0.5]].map((points) => ({
+      ...Arr.map([[0], [0, 0], [2, 0], [-1, 0], [0, 0.5]], (points) => ({
         label: label("Criterion"),
         levels: authoredLevels(...points),
       })),
@@ -217,10 +224,10 @@ describe("question rubric", () => {
 
   it("validates a single-language rubric's scale without its labels", () => {
     const school = {
-      criteria: rubric.criteria.map((criterion) => ({
+      criteria: Arr.map(rubric.criteria, (criterion) => ({
         ...criterion,
         label: criterion.label.id,
-        levels: criterion.levels.map((level) => ({
+        levels: Arr.map(criterion.levels, (level) => ({
           ...level,
           label: level.label.id,
         })),
@@ -238,7 +245,7 @@ describe("question rubric", () => {
       Exit.isFailure(
         Schema.decodeUnknownExit(QuestionRubricScaleSchema)({
           ...school,
-          criteria: [...school.criteria].reverse(),
+          criteria: Arr.reverse(school.criteria),
         })
       )
     ).toBe(true);
@@ -265,18 +272,18 @@ describe("question rubric", () => {
     const [first] = rubric.criteria;
     for (const criteria of [
       [],
-      [...rubric.criteria].reverse(),
-      rubric.criteria.map((criterion) => ({
+      Arr.reverse(rubric.criteria),
+      Arr.map(rubric.criteria, (criterion) => ({
         ...criterion,
         criterionKey: "criterion-9",
       })),
-      rubric.criteria.map((criterion) => ({
+      Arr.map(rubric.criteria, (criterion) => ({
         ...criterion,
-        levels: [...criterion.levels].reverse(),
+        levels: Arr.reverse(criterion.levels),
       })),
-      rubric.criteria.map((criterion) => ({
+      Arr.map(rubric.criteria, (criterion) => ({
         ...criterion,
-        levels: criterion.levels.map((level) => ({
+        levels: Arr.map(criterion.levels, (level) => ({
           ...level,
           levelKey: "level-9",
         })),

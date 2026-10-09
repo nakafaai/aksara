@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -34,7 +34,7 @@ function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
     sourceRevision: "2026-08-12",
     title: "Test-only title",
   } as const;
-  return Schema.decodeSync(Schema.Array(TryoutCatalogRowSchema))([
+  const rows = Schema.decodeSync(Schema.Array(TryoutCatalogRowSchema))([
     {
       ...common,
       countryCode: "ID",
@@ -101,7 +101,8 @@ function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
       trackKey: "2027",
       visibility: "internal-entry",
     },
-  ]).map(makeTryoutCatalogRecord);
+  ]);
+  return Arr.map(rows, makeTryoutCatalogRecord);
 }
 
 /** Builds one locale-closed placement pair for a non-language section. */
@@ -159,7 +160,7 @@ export function makeTryoutTestRows(
   appLocales: readonly AppLocale[] = ACTIVE_APP_LOCALES
 ) {
   return {
-    catalog: appLocales.flatMap(catalogRows),
-    placements: appLocales.map(placement),
+    catalog: Arr.flatMap(appLocales, catalogRows),
+    placements: Arr.map(appLocales, placement),
   };
 }

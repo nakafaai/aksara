@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import type { QuestionAnswerKey } from "#contracts/question/answer";
 import {
@@ -62,7 +62,7 @@ export function patchRubricCriterion(
 ): QuestionRubricResponseSource {
   return {
     ...rubricSource,
-    criteria: rubricSource.criteria.map((criterion, at) =>
+    criteria: Arr.map(rubricSource.criteria, (criterion, at) =>
       at === index ? { ...criterion, ...patch } : criterion
     ),
   };
@@ -196,7 +196,7 @@ export function oneCriterion(criterion: unknown) {
 
 /** Builds authored levels worth the given points, in order. */
 export function authoredLevels(...points: number[]) {
-  return points.map((value) => ({
+  return Arr.map(points, (value) => ({
     label: rubricLabel(`Level ${value}`),
     points: value,
   }));

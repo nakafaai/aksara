@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
@@ -26,12 +26,12 @@ describe("renderer manifest", () => {
       Effect.gen(function* () {
         const manifest = yield* createRendererManifest({
           ...input,
-          base: [...input.base].reverse(),
-          domains: [...input.domains].reverse(),
+          base: Arr.reverse(input.base),
+          domains: Arr.reverse(input.domains),
         });
         expect(manifest.base).toEqual(input.base);
         expect(manifest.domains).toEqual(input.domains);
-        expect(manifest.domains.map(({ name }) => name)).toEqual(
+        expect(Arr.map(manifest.domains, ({ name }) => name)).toEqual(
           RENDERER_DOMAINS
         );
         expect(manifest.hash).toBe(
@@ -50,9 +50,14 @@ describe("renderer manifest", () => {
         }),
         publishedDomains: ["site", "mathematics"],
       });
-      expect(
-        manifest.domains.find(({ name }) => name === "mathematics")?.components
-      ).toEqual(["FunctionMachine", "NumberLine"]);
+      const mathematics = Arr.findFirst(
+        manifest.domains,
+        ({ name }) => name === "mathematics"
+      );
+      expect(Option.getOrThrow(mathematics).components).toEqual([
+        "FunctionMachine",
+        "NumberLine",
+      ]);
       expect(manifest.publishedDomains).toEqual(["mathematics", "site"]);
     })
   );
@@ -89,7 +94,7 @@ describe("renderer manifest", () => {
         const manifest = yield* createRendererManifest(input);
         const error = yield* validateRendererManifestHash({
           ...manifest,
-          base: [...manifest.base].reverse(),
+          base: Arr.reverse(manifest.base),
         }).pipe(Effect.flip);
         expect(error._tag).toBe("ContractDecodeError");
         const mismatch = yield* validateRendererManifestHash({
@@ -106,13 +111,13 @@ describe("renderer manifest", () => {
       Effect.gen(function* () {
         const incomplete = yield* createRendererManifest({
           ...input,
-          domains: input.domains.filter(({ name }) => name !== "site"),
+          domains: Arr.filter(input.domains, ({ name }) => name !== "site"),
         }).pipe(Effect.flip);
         expect(incomplete._tag).toBe("ContractDecodeError");
         const manifest = yield* createRendererManifest(input);
         const contract = {
           ...manifest,
-          domains: manifest.domains.filter(({ name }) => name !== "site"),
+          domains: Arr.filter(manifest.domains, ({ name }) => name !== "site"),
         };
         const incompleteEnvelope = {
           ...contract,
@@ -188,7 +193,7 @@ describe("pinned renderer manifest hashes", () => {
 
   /** Replaces only the mathematics component list of the pinned domain set. */
   const withMathematics = (components: readonly string[]) =>
-    pinnedDomains.map((domain) =>
+    Arr.map(pinnedDomains, (domain) =>
       domain.name === "mathematics" ? { ...domain, components } : domain
     );
 
@@ -198,8 +203,8 @@ describe("pinned renderer manifest hashes", () => {
       Effect.gen(function* () {
         const manifest = yield* createRendererManifest(pinnedInput);
         const reversed = yield* createRendererManifest({
-          base: [...pinnedInput.base].reverse(),
-          domains: [...pinnedDomains].reverse(),
+          base: Arr.reverse(pinnedInput.base),
+          domains: Arr.reverse(pinnedDomains),
           publishedDomains: pinnedInput.publishedDomains,
         });
 

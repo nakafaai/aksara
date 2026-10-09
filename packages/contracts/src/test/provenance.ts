@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import {
   ACTIVE_APP_LOCALES,
@@ -142,7 +142,7 @@ export function record(
 ) {
   const source = quranSourceForProvenanceScope(scope);
   const common = {
-    copy: activeAppLocales.map((appLocale) => ({
+    copy: Arr.map(activeAppLocales, (appLocale) => ({
       appLocale,
       notice: `Reviewed ${appLocale} notice ${source}.`,
       title: `Reviewed ${appLocale} title ${source}.`,
@@ -195,7 +195,7 @@ export function records(
   status: "approved" | "blocked",
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
-  return quranProvenanceScopes(activeAppLocales).map((scope) =>
+  return Arr.map(quranProvenanceScopes(activeAppLocales), (scope) =>
     record(scope, status, activeAppLocales)
   );
 }

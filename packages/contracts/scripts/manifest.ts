@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { Record as Rec, Schema } from "effect";
+import { Array as Arr, Record as Rec, Schema } from "effect";
 import { isObject } from "effect/Predicate";
 import { encodePrettyJsonText, JsonTextSchema } from "#scripts/text/json";
 
@@ -78,7 +78,8 @@ export function assertPortableDependencies(manifest: PackageManifest): void {
 function releasedExports(value: unknown): Readonly<Record<string, unknown>> {
   assert.ok(isObject(value), "Package exports must be an object");
   return Rec.fromEntries(
-    Rec.toEntries(value).map(
+    Arr.map(
+      Rec.toEntries(value),
       ([subpath, descriptor]): readonly [
         string,
         Readonly<Record<string, unknown>>,
@@ -87,7 +88,8 @@ function releasedExports(value: unknown): Readonly<Record<string, unknown>> {
         return [
           subpath,
           Rec.fromEntries(
-            Rec.toEntries(descriptor).filter(
+            Arr.filter(
+              Rec.toEntries(descriptor),
               ([condition]) => condition !== SOURCE_CONDITION
             )
           ),

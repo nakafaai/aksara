@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import { CorpusSourcePathSchema } from "#contracts/ids";
 import {
   canonicalizePublicPageProjection,
@@ -60,10 +60,13 @@ describe("public page projection", () => {
 
   it("rejects incoherent locale and stable content identity", () => {
     expect(
-      [
-        { ...route, artifactLocale: "id" },
-        { ...route, contentKey: "pages/security-policy" },
-      ].every((candidate) => !accepts(PublicPageRouteSchema, candidate))
+      Arr.every(
+        [
+          { ...route, artifactLocale: "id" },
+          { ...route, contentKey: "pages/security-policy" },
+        ],
+        (candidate) => !accepts(PublicPageRouteSchema, candidate)
+      )
     ).toBe(true);
   });
 
@@ -74,16 +77,19 @@ describe("public page projection", () => {
       sourcePath,
     });
     expect(
-      [
-        { ...projection, pageKey: "Privacy Policy" },
-        { ...projection, metadata: { ...metadata, description: " " } },
-        {
-          ...projection,
-          metadata: { ...metadata, datePublished: "2026-20-08" },
-        },
-        { ...projection, metadata: { ...metadata, title: " " } },
-        { ...projection, layout: "legal" },
-      ].every((candidate) => !accepts(PublicPageProjectionSchema, candidate))
+      Arr.every(
+        [
+          { ...projection, pageKey: "Privacy Policy" },
+          { ...projection, metadata: { ...metadata, description: " " } },
+          {
+            ...projection,
+            metadata: { ...metadata, datePublished: "2026-20-08" },
+          },
+          { ...projection, metadata: { ...metadata, title: " " } },
+          { ...projection, layout: "legal" },
+        ],
+        (candidate) => !accepts(PublicPageProjectionSchema, candidate)
+      )
     ).toBe(true);
   });
 
@@ -99,7 +105,8 @@ describe("public page projection", () => {
     ];
 
     expect(
-      invalidMetadata.every(
+      Arr.every(
+        invalidMetadata,
         (candidate) =>
           !accepts(PublicPageProjectionSchema, {
             ...projection,

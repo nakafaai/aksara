@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   canonicalizeRollbackPage,
   canonicalizeRollbackRecord,
@@ -64,9 +64,10 @@ describe("rollback contracts", () => {
   it("canonically serializes absent and implemented snapshot states", () => {
     const entries = [absentEntry, materialEntry, questionEntry];
     expect(
-      entries
-        .map(canonicalizeRollbackSnapshotEntry)
-        .map((serialized) => Schema.decodeSync(JsonTextSchema)(serialized))
+      Arr.map(
+        Arr.map(entries, canonicalizeRollbackSnapshotEntry),
+        (serialized) => Schema.decodeSync(JsonTextSchema)(serialized)
+      )
     ).toEqual(entries);
   });
   it("decodes and serializes complete current-to-prior transitions", () => {
@@ -173,19 +174,22 @@ describe("rollback contracts", () => {
     ).toBe(true);
   });
   it("requires current and prior states to share one head identity", () => {
-    const errors = [
-      { change: { ...deletion.change, contentKey: "test:other" } },
-      { change: { ...deletion.change, artifactLocale: "id" } },
-    ].flatMap((prior) => {
-      const result = Schema.decodeUnknownExit(RollbackRecordSchema)({
-        current: upsert,
-        index: 0,
-        prior,
-      });
-      return Exit.isFailure(result) ? [String(result.cause)] : [];
-    });
+    const errors = Arr.flatMap(
+      [
+        { change: { ...deletion.change, contentKey: "test:other" } },
+        { change: { ...deletion.change, artifactLocale: "id" } },
+      ],
+      (prior) => {
+        const result = Schema.decodeUnknownExit(RollbackRecordSchema)({
+          current: upsert,
+          index: 0,
+          prior,
+        });
+        return Exit.isFailure(result) ? [String(result.cause)] : [];
+      }
+    );
     expect(errors).toHaveLength(2);
-    expect(errors.join("\n")).toContain(
+    expect(Arr.join(errors, "\n")).toContain(
       "Expected rollback current and prior states to share one identity"
     );
   });

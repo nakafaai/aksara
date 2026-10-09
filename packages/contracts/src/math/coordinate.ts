@@ -1,4 +1,4 @@
-import { type BigDecimal, Schema } from "effect";
+import { Array as Arr, type BigDecimal, Schema } from "effect";
 
 import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
@@ -77,7 +77,7 @@ export function frameCoordinates(frame: SceneFrame): SceneCoordinate[] {
     ["y", frame.y],
     ...("z" in frame ? ([["z", frame.z]] as const) : []),
   ];
-  return axes.flatMap(([axis, range]) => [
+  return Arr.flatMap(axes, ([axis, range]) => [
     sceneCoordinate(axis, ["frame", axis], numberRatio(range.min), false),
     sceneCoordinate(axis, ["frame", axis], numberRatio(range.max), false),
   ]);
@@ -123,8 +123,8 @@ export function clippedPathCoordinates(
   if (!visiblePathResolvable(kind, axes, threshold)) {
     return [];
   }
-  return [interval.entry, interval.exit].flatMap((parameter) =>
-    axes.map((axis) =>
+  return Arr.flatMap([interval.entry, interval.exit], (parameter) =>
+    Arr.map(axes, (axis) =>
       sceneCoordinate(
         axis.axis,
         path,

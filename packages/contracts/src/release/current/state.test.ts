@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   ContentReleaseCurrentSchema,
   StagedRollbackContentReleaseSchema,
@@ -209,7 +209,7 @@ describe("current release state", () => {
         recovery: { ...retained, phase: "staging" },
         tryoutRuntimeBundle: null,
       },
-      ...invalidManifests.map((manifest) => ({
+      ...Arr.map(invalidManifests, (manifest) => ({
         active,
         candidate,
         recovery: recoveryWith(manifest),

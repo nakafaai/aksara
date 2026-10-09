@@ -1,4 +1,4 @@
-import { Predicate } from "effect";
+import { Array as Arr, Predicate } from "effect";
 
 /** A value that also reads as a record, so Record.keys accepts it. */
 type RecordView<T> = T & Readonly<Record<string, unknown>>;
@@ -21,6 +21,6 @@ function reverseNestedKeys<T extends object>(value: T): T {
       }
       return reverseNestedKeys(nested);
     },
-    ownKeys: (target) => Reflect.ownKeys(target).reverse(),
+    ownKeys: (target) => Arr.reverse(Reflect.ownKeys(target)),
   });
 }

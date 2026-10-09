@@ -1,7 +1,15 @@
 import { existsSync, readFileSync, realpathSync } from "node:fs";
 import { isAbsolute, join, relative, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { Effect, HashSet, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableList,
+  Option,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { parseInstalledManifest } from "#scripts/manifest";
 
 const NODE_IMPORT_CONDITIONS = HashSet.fromIterable([
@@ -96,21 +104,22 @@ export const verifyInstalledPackage = Effect.fn(
   );
 
   let importedConditionCount = 0;
-  const moduleSpecifiers: string[] = [];
+  const moduleSpecifiers = MutableList.make<string>();
   for (const [subpath, descriptor] of Rec.toEntries(manifest.exports)) {
     yield* requireVerification(
       subpath === "." || (subpath.startsWith("./") && !subpath.includes("*")),
       `Only exact package exports are supported: ${subpath}`
     );
     const conditionEntries = Rec.toEntries(descriptor);
-    const typesTarget = conditionEntries.find(
+    const typesTarget = Arr.findFirst(
+      conditionEntries,
       ([condition]) => condition === "types"
     );
-    const importTargets = conditionEntries.filter(([condition]) =>
+    const importTargets = Arr.filter(conditionEntries, ([condition]) =>
       HashSet.has(NODE_IMPORT_CONDITIONS, condition)
     );
     yield* requireVerification(
-      typesTarget !== undefined,
+      Option.isSome(typesTarget),
       `Export ${subpath} must declare a types condition`
     );
     const [firstImportTarget] = importTargets;
@@ -136,7 +145,10 @@ export const verifyInstalledPackage = Effect.fn(
       );
     }
     for (const [, target] of importTargets) {
-      moduleSpecifiers.push(pathToFileURL(join(packageRoot, target)).href);
+      MutableList.append(
+        moduleSpecifiers,
+        pathToFileURL(join(packageRoot, target)).href
+      );
       importedConditionCount += 1;
     }
 
@@ -158,10 +170,10 @@ export const verifyInstalledPackage = Effect.fn(
       resolvedPath === expectedPath,
       `Node selected the wrong condition for ${publicSpecifier}`
     );
-    moduleSpecifiers.push(publicSpecifier);
+    MutableList.append(moduleSpecifiers, publicSpecifier);
   }
 
-  yield* Effect.forEach(moduleSpecifiers, importModule, {
+  yield* Effect.forEach(MutableList.toArray(moduleSpecifiers), importModule, {
     concurrency: "unbounded",
     discard: true,
   });

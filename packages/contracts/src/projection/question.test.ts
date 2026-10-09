@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import { ContentKeySchema } from "#contracts/ids";
 import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
@@ -122,7 +122,7 @@ describe("question projection", () => {
       });
       expect("response" in answer).toBe(false);
       expect(
-        [prompt, answer].map((value) =>
+        Arr.map([prompt, answer], (value) =>
           Schema.decodeSync(QuestionBodyProjectionSchema)(value)
         )
       ).toEqual([prompt, answer]);

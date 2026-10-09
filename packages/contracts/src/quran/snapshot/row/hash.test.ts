@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import {
   canonicalizeQuranRow,
@@ -80,19 +80,23 @@ describe("Quran row golden identities", () => {
 
 describe("Quran row hashing", () => {
   it("signs the source locale and text of a surah name meaning", () => {
-    const payload = quranRepresentativePayloads().find(
-      (candidate) => candidate.kind === "quran-surah"
+    const payload = Option.getOrThrow(
+      Arr.findFirst(
+        quranRepresentativePayloads(),
+        (candidate) => candidate.kind === "quran-surah"
+      )
     );
 
-    expect(payload && canonicalizeQuranRow(payload)).toContain(
+    expect(canonicalizeQuranRow(payload)).toContain(
       '"meaning":{"de":"Technische Sure 1","en":"Test Surah 1","id":"Surah Teknis 1"}'
     );
   });
 
   it.effect("maps current row hashing failures to the typed error", () =>
     Effect.gen(function* () {
-      const payload = yield* Effect.fromNullishOr(
-        quranRepresentativePayloads().find(
+      const payload = yield* Effect.fromOption(
+        Arr.findFirst(
+          quranRepresentativePayloads(),
           (candidate) => candidate.kind === "quran-surah"
         )
       );

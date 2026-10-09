@@ -1,4 +1,4 @@
-import { BigDecimal } from "effect";
+import { Array as Arr, BigDecimal } from "effect";
 
 import {
   arcCurvatureUnresolved,
@@ -54,7 +54,7 @@ function radialCoordinates(
   ) {
     return [];
   }
-  return radialOffsets(object).flatMap((offset) => [
+  return Arr.flatMap(radialOffsets(object), (offset) => [
     coordinate(
       "x",
       path,
@@ -95,7 +95,7 @@ function quadraticCoordinates(
   }
   const { inputAxis } = object;
   const outputAxis = inputAxis === "x" ? "y" : "x";
-  return quadraticExtrema(object).flatMap(({ input, output }) => [
+  return Arr.flatMap(quadraticExtrema(object), ({ input, output }) => [
     coordinate(inputAxis, path, input),
     coordinate(outputAxis, path, output),
   ]);
@@ -108,18 +108,21 @@ function cuboidCoordinates(
 ): SceneCoordinate[] {
   return [
     ...pointCoordinates(object.center, [...path, "center"]),
-    ...cuboidExtents(object).flatMap(({ axis, center, dimension, extent }) => [
-      coordinate(
-        axis,
-        [...path, "size", dimension],
-        decimalRatio(BigDecimal.subtract(decimal(center), extent))
-      ),
-      coordinate(
-        axis,
-        [...path, "size", dimension],
-        decimalRatio(BigDecimal.sum(decimal(center), extent))
-      ),
-    ]),
+    ...Arr.flatMap(
+      cuboidExtents(object),
+      ({ axis, center, dimension, extent }) => [
+        coordinate(
+          axis,
+          [...path, "size", dimension],
+          decimalRatio(BigDecimal.subtract(decimal(center), extent))
+        ),
+        coordinate(
+          axis,
+          [...path, "size", dimension],
+          decimalRatio(BigDecimal.sum(decimal(center), extent))
+        ),
+      ]
+    ),
   ];
 }
 
@@ -162,7 +165,7 @@ function objectCoordinates(
     ];
   }
   if (object.kind === "polyline" || object.kind === "polygon") {
-    return object.vertices.flatMap((point, pointIndex) =>
+    return Arr.flatMap(object.vertices, (point, pointIndex) =>
       pointCoordinates(point, [...root, "vertices", pointIndex])
     );
   }
@@ -186,7 +189,7 @@ function objectCoordinates(
 function labelCoordinates(
   labels: readonly (PlaneLabelAnchor | SpaceLabelAnchor)[]
 ) {
-  return labels.flatMap((label, index) =>
+  return Arr.flatMap(labels, (label, index) =>
     pointCoordinates(label.at, ["labels", index, "at"])
   );
 }
@@ -213,7 +216,7 @@ export function planeSceneCoordinates(
 ) {
   return [
     ...frameCoordinates(frame),
-    ...objects.flatMap((object, index) =>
+    ...Arr.flatMap(objects, (object, index) =>
       objectCoordinates(frame, object, index, threshold)
     ),
     ...labelCoordinates(labels),
@@ -231,7 +234,7 @@ export function spaceSceneCoordinates(
   return [
     ...frameCoordinates(frame),
     ...viewCoordinates(view),
-    ...objects.flatMap((object, index) =>
+    ...Arr.flatMap(objects, (object, index) =>
       objectCoordinates(frame, object, index, threshold)
     ),
     ...labelCoordinates(labels),

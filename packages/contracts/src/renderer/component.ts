@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Order, Schema } from "effect";
 import { compareCodeUnits } from "#contracts/text/order";
 
 const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -33,5 +33,5 @@ export type RendererComponents = typeof RendererComponentsSchema.Type;
 
 /** Sorts current names without discarding duplicate input. */
 export function sortRendererComponents(names: readonly string[]) {
-  return [...names].sort(compareCodeUnits);
+  return Arr.sort(names, Order.String);
 }

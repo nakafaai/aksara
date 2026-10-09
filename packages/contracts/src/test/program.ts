@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Array as Arr, Effect, Number as Num, Option, Order } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import {
@@ -72,13 +72,14 @@ function programTranslation(
   program: ReturnType<typeof makeTestProgram>,
   appLocale: AppLocale
 ) {
-  const translation = program.translations.find(
+  const translation = Arr.findFirst(
+    program.translations,
     (candidate) => candidate.appLocale === appLocale
   );
-  if (translation === undefined) {
+  if (Option.isNone(translation)) {
     throw new Error("Expected a test program translation.");
   }
-  return translation;
+  return translation.value;
 }
 
 /** Builds one localized root route owned by a test-only program. */
@@ -143,24 +144,27 @@ function makeTestCurriculumChildren(
 export const makeProgramTestRecords = Effect.fn(
   "AksaraContracts.makeProgramTestRecords"
 )(function* () {
-  const programs = [1, 2, 3, 4, 5, 6].map(makeTestProgram);
+  const programs = Arr.map([1, 2, 3, 4, 5, 6], makeTestProgram);
   const programRecords = yield* Effect.forEach(
     programs,
     makeProgramSnapshotRow
   );
-  const curriculum = programs
-    .flatMap((program) =>
-      ACTIVE_APP_LOCALES.flatMap((appLocale) => [
+  const curriculum = Arr.sort(
+    Arr.flatMap(programs, (program) =>
+      Arr.flatMap(ACTIVE_APP_LOCALES, (appLocale) => [
         makeTestCurriculumRoot(program, appLocale),
         ...makeTestCurriculumChildren(program, appLocale),
       ])
-    )
-    .sort((left, right) =>
-      compareCodeUnits(
-        `${left.programKey}\0${left.appLocale}\0${left.publicPath}`,
-        `${right.programKey}\0${right.appLocale}\0${right.publicPath}`
+    ),
+    Order.make<ReturnType<typeof makeTestCurriculumRoot>>((left, right) =>
+      Num.sign(
+        compareCodeUnits(
+          `${left.programKey}\0${left.appLocale}\0${left.publicPath}`,
+          `${right.programKey}\0${right.appLocale}\0${right.publicPath}`
+        )
       )
-    );
+    )
+  );
   const curriculumRecords = yield* Effect.forEach(
     curriculum,
     makeCurriculumSnapshotRow
@@ -170,7 +174,8 @@ export const makeProgramTestRecords = Effect.fn(
 
 /** Selects current program catalog records from one complete fixture. */
 export function programCatalogRows(records: readonly ProgramSnapshotRow[]) {
-  return records.filter(
+  return Arr.filter(
+    records,
     (record): record is Extract<ProgramSnapshotRow, { kind: "program" }> =>
       record.kind === "program"
   );
@@ -178,7 +183,8 @@ export function programCatalogRows(records: readonly ProgramSnapshotRow[]) {
 
 /** Selects current curriculum records from one complete fixture. */
 export function curriculumRows(records: readonly ProgramSnapshotRow[]) {
-  return records.filter(
+  return Arr.filter(
+    records,
     (record): record is Extract<ProgramSnapshotRow, { kind: "curriculum" }> =>
       record.kind === "curriculum"
   );

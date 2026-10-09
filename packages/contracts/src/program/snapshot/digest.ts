@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 
 import {
+  Array as Arr,
   Effect,
   MutableHashMap,
   MutableHashSet,
@@ -10,7 +11,7 @@ import {
 } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
+import type { ActiveAppLocaleList } from "#contracts/locale";
 import {
   type CurriculumRoute,
   curriculumNamespace,
@@ -51,32 +52,31 @@ export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()
 
 /** Serializes source-derived counts for exact replay comparison. */
 function countIdentity(counts: ProgramCounts) {
-  return [
+  const values = [
     counts.curriculumRowCount,
     counts.programRowCount,
     counts.rowCount,
     counts.sitemapCount,
     counts.slugCount,
-  ].join(":");
+  ];
+  return Arr.join(Arr.map(values, String), ":");
 }
 
-/** Resolves one required localized program identity. */
-function translationFor(program: LearningProgram, appLocale: AppLocale) {
-  return program.translations.find(
-    (translation) => translation.appLocale === appLocale
-  );
-}
-
-/** Checks that one root is the exact localized route owned by its program. */
+/**
+ * Checks that one root is the exact localized route owned by its program.
+ * Translation locales are unique, because the catalog row must repeat the
+ * signed active locale list, so at most one translation matches the root.
+ */
 function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
-  const translation = translationFor(program, row.appLocale);
-  return (
-    translation !== undefined &&
-    row.iconKey === program.iconKey &&
-    row.order === program.displayOrder &&
-    row.publicPath ===
-      `${curriculumNamespace(row.appLocale)}/${translation.publicSlug}` &&
-    row.title === translation.title
+  return Arr.some(
+    program.translations,
+    (translation) =>
+      translation.appLocale === row.appLocale &&
+      row.iconKey === program.iconKey &&
+      row.order === program.displayOrder &&
+      row.publicPath ===
+        `${curriculumNamespace(row.appLocale)}/${translation.publicSlug}` &&
+      row.title === translation.title
   );
 }
 
@@ -137,7 +137,7 @@ class ProgramDigestState {
       MutableHashSet.size(this.#slugs) ===
         this.programRowCount * this.#activeAppLocales.length &&
       MutableHashSet.size(expectedRoots) === MutableHashSet.size(this.#roots) &&
-      [...expectedRoots].every((root) =>
+      Arr.every([...expectedRoots], (root) =>
         MutableHashSet.has(this.#roots, root)
       ) &&
       countIdentity(counts) === countIdentity(expectedCounts)
@@ -167,7 +167,8 @@ class ProgramDigestState {
   /** Adds one catalog row before any current curriculum records. */
   #addProgram(record: Extract<ProgramSnapshotRow, { kind: "program" }>) {
     const { row } = record;
-    const translationLocales = row.translations.map(
+    const translationLocales = Arr.map(
+      row.translations,
       (translation) => translation.appLocale
     );
     if (

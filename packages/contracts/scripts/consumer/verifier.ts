@@ -1,5 +1,6 @@
 import { parseArgs } from "node:util";
 import {
+  Array as Arr,
   Console,
   Effect,
   FileSystem,
@@ -130,8 +131,9 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       "Consumer dependency installation",
       staged.consumerDirectory
     );
-    const specifiers = Rec.keys(staged.packedManifest.exports).map((subpath) =>
-      publicSpecifier(staged.packageName, subpath)
+    const specifiers = Arr.map(
+      Rec.keys(staged.packedManifest.exports),
+      (subpath) => publicSpecifier(staged.packageName, subpath)
     );
     yield* Effect.all([
       write(

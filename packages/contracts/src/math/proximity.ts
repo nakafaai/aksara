@@ -2,6 +2,8 @@ import {
   BigDecimal,
   Array as EffectArray,
   MutableHashSet,
+  MutableList,
+  Order,
   Schema,
 } from "effect";
 
@@ -83,21 +85,28 @@ function firstRank(
 
 /** Assigns a stable exact rank to every source-ordered ratio. */
 function rankRatios(values: readonly ExactRatio[]): RankedRatios {
-  const ordered = values
-    .map((value, sourceIndex) => ({ sourceIndex, value }))
-    .sort((left, right) => compareRatios(left.value, right.value));
-  const distinct: ExactRatio[] = [];
+  const indexed = EffectArray.map(values, (value, sourceIndex) => ({
+    sourceIndex,
+    value,
+  }));
+  const ordered = EffectArray.sortWith(
+    indexed,
+    (entry) => entry.value,
+    Order.make(compareRatios)
+  );
+  const distinct = MutableList.make<ExactRatio>();
   const ranks = new Array<number>(values.length);
+  let previous: ExactRatio | undefined;
   for (const entry of ordered) {
-    const previous = distinct.at(-1);
-    if (previous && compareRatios(previous, entry.value) === 0) {
+    if (previous !== undefined && compareRatios(previous, entry.value) === 0) {
       ranks[entry.sourceIndex] = distinct.length - 1;
       continue;
     }
     ranks[entry.sourceIndex] = distinct.length;
-    distinct.push(entry.value);
+    MutableList.append(distinct, entry.value);
+    previous = entry.value;
   }
-  return { ranks, values: distinct };
+  return { ranks, values: MutableList.toArray(distinct) };
 }
 
 /** Builds an empty segment tree over exact ratio ranks. */
@@ -198,9 +207,9 @@ export function unresolvedProximityIndexes(
   entries: readonly ExactProximityEntry[],
   threshold: BigDecimal.BigDecimal
 ) {
-  const intervals = entries.map(exactInterval);
-  const lower = rankRatios(intervals.map((entry) => entry.lower));
-  const upper = rankRatios(intervals.map((entry) => entry.upper));
+  const intervals = EffectArray.map(entries, exactInterval);
+  const lower = rankRatios(EffectArray.map(intervals, (entry) => entry.lower));
+  const upper = rankRatios(EffectArray.map(intervals, (entry) => entry.upper));
   const leftTree = makeTree(upper.values.length);
   const rightTree = makeTree(lower.values.length);
   const unresolved = MutableHashSet.empty<number>();

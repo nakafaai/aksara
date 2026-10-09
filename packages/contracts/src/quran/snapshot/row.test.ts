@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Option, Schema } from "effect";
 
 import {
   ActiveAppLocaleListSchema,
@@ -69,39 +69,38 @@ describe("Quran snapshot row contract", () => {
   });
 
   it("reports source order, translation order, and chunk continuity failures", () => {
-    const attribution = payloads.find(
+    const attribution = Arr.findFirst(
+      payloads,
       (payload) => payload.kind === "quran-attribution"
     );
-    const chunk = payloads.find((payload) => payload.kind === "quran-chunk");
-    if (
-      !(
-        attribution?.kind === "quran-attribution" &&
-        chunk?.kind === "quran-chunk"
-      )
-    ) {
+    const chunk = Arr.findFirst(
+      payloads,
+      (payload) => payload.kind === "quran-chunk"
+    );
+    if (Option.isNone(attribution) || Option.isNone(chunk)) {
       throw new Error("Expected current Quran attribution and chunk fixtures.");
     }
-    const lastSource = attribution.sources.at(-1);
-    const [firstVerse] = chunk.verses;
+    const lastSource = attribution.value.sources.at(-1);
+    const [firstVerse] = chunk.value.verses;
     if (!(lastSource && firstVerse)) {
       throw new Error("Expected nonempty current Quran row fixtures.");
     }
 
     expect(
       formatFailure(QuranAttributionRowSchema, {
-        ...attribution,
-        sources: [...attribution.sources, lastSource],
+        ...attribution.value,
+        sources: [...attribution.value.sources, lastSource],
       })
     ).toContain("Expected unique Quran sources in canonical order.");
     expect(
       formatFailure(QuranChunkRowSchema, {
-        ...chunk,
+        ...chunk.value,
         verses: [
           {
             ...firstVerse,
-            translations: [...firstVerse.translations].reverse(),
+            translations: Arr.reverse(firstVerse.translations),
           },
-          ...chunk.verses.slice(1),
+          ...chunk.value.verses.slice(1),
         ],
       })
     ).toContain(
@@ -109,13 +108,13 @@ describe("Quran snapshot row contract", () => {
     );
     expect(
       formatFailure(QuranChunkRowSchema, {
-        ...chunk,
-        lastVerse: chunk.lastVerse + 1,
+        ...chunk.value,
+        lastVerse: chunk.value.lastVerse + 1,
       })
     ).toContain("Expected one contiguous Quran runtime chunk.");
     expect(
       formatFailure(QuranChunkRowSchema, {
-        ...chunk,
+        ...chunk.value,
         verses: [
           {
             ...firstVerse,
@@ -124,7 +123,7 @@ describe("Quran snapshot row contract", () => {
               inQuran: firstVerse.number.inQuran + 1,
             },
           },
-          ...chunk.verses.slice(1),
+          ...chunk.value.verses.slice(1),
         ],
       })
     ).toContain("Expected one contiguous Quran runtime chunk.");

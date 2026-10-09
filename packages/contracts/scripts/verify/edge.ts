@@ -1,6 +1,13 @@
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
+import {
+  Effect,
+  FileSystem,
+  MutableHashSet,
+  MutableList,
+  Path,
+  Schema,
+} from "effect";
 import {
   isCallExpression,
   isExportDeclaration,
@@ -60,15 +67,20 @@ export const runtimeImports = Effect.fn("AksaraContracts.runtimeImports")(
     return yield* parser.inspect(
       { fileName: file, source },
       ({ sourceFile }) => {
-        const imports: string[] = [];
-        const nodes: Node[] = [sourceFile];
-        for (const node of nodes) {
+        const imports = MutableList.make<string>();
+        const nodes = MutableList.make<Node>();
+        MutableList.append(nodes, sourceFile);
+        for (
+          let node = MutableList.take(nodes);
+          node !== MutableList.Empty;
+          node = MutableList.take(nodes)
+        ) {
           if (
             (isImportDeclaration(node) || isExportDeclaration(node)) &&
             node.moduleSpecifier &&
             isStringLiteral(node.moduleSpecifier)
           ) {
-            imports.push(node.moduleSpecifier.text);
+            MutableList.append(imports, node.moduleSpecifier.text);
           }
           if (
             isCallExpression(node) &&
@@ -76,15 +88,15 @@ export const runtimeImports = Effect.fn("AksaraContracts.runtimeImports")(
           ) {
             for (const argument of node.arguments) {
               if (isStringLiteral(argument)) {
-                imports.push(argument.text);
+                MutableList.append(imports, argument.text);
               }
             }
           }
           node.forEachChild((child) => {
-            nodes.push(child);
+            MutableList.append(nodes, child);
           });
         }
-        return imports;
+        return MutableList.toArray(imports);
       }
     );
   }
@@ -116,8 +128,13 @@ export const verifyEdgeEntry = Effect.fn("AksaraContracts.verifyEdgeEntry")(
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
     const visited = MutableHashSet.empty<string>();
-    const pending = [path.resolve(distRoot, `${entry}.js`)];
-    for (const file of pending) {
+    const pending = MutableList.make<string>();
+    MutableList.append(pending, path.resolve(distRoot, `${entry}.js`));
+    for (
+      let file = MutableList.take(pending);
+      file !== MutableList.Empty;
+      file = MutableList.take(pending)
+    ) {
       if (MutableHashSet.has(visited, file)) {
         continue;
       }
@@ -143,7 +160,7 @@ export const verifyEdgeEntry = Effect.fn("AksaraContracts.verifyEdgeEntry")(
         }
         const internal = internalImport(path, distRoot, file, specifier);
         if (internal !== undefined) {
-          pending.push(internal);
+          MutableList.append(pending, internal);
         }
       }
     }

@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, Path } from "effect";
 import { ChildProcess } from "effect/process";
 import { makeReleaseCommand } from "#scripts/release/program";
 
@@ -162,7 +162,7 @@ layer(NodeServices.layer)("contract release program", (it) => {
         ["prove", "--archive", "archive", "--repository", "nakafaai/aksara"],
       ] as const;
       const errors = yield* Effect.all(
-        cases.map((args) => makeReleaseCommand(args).pipe(Effect.flip)),
+        Arr.map(cases, (args) => makeReleaseCommand(args).pipe(Effect.flip)),
         { concurrency: "unbounded" }
       );
       for (const error of errors) {

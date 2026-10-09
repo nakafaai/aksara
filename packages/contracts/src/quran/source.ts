@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -27,15 +27,18 @@ import { isHttpsUrl } from "#contracts/text/syntax";
 export function quranSourceIds(
   activeAppLocales: ActiveAppLocaleList
 ): readonly [QuranSourceId, QuranSourceId, ...QuranSourceId[]] {
-  const sourceIds: QuranSourceId[] = activeAppLocales.flatMap((appLocale) => [
-    quranNameSourceId(appLocale),
-    quranTranslationSourceId(appLocale),
-    quranTafsirSourceId(appLocale),
-  ]);
+  const sourceIds: QuranSourceId[] = Arr.flatMap(
+    activeAppLocales,
+    (appLocale) => [
+      quranNameSourceId(appLocale),
+      quranTranslationSourceId(appLocale),
+      quranTafsirSourceId(appLocale),
+    ]
+  );
   return [
     "tanzil-text",
     "tanzil-metadata",
-    ...QURAN_SOURCE_IDS.slice(2).filter((sourceId) =>
+    ...Arr.filter(QURAN_SOURCE_IDS.slice(2), (sourceId) =>
       sourceIds.includes(sourceId)
     ),
   ];
@@ -43,7 +46,8 @@ export function quranSourceIds(
 
 /** Counts exact source files required by one active locale set. */
 export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
-  const supplementalNameFileCount = activeAppLocales.filter(
+  const supplementalNameFileCount = Arr.filter(
+    activeAppLocales,
     (appLocale) => quranNameSourceId(appLocale) !== "tanzil-metadata"
   ).length;
   const tafsirFileCount = activeAppLocales.includes(AppLocaleSchema.make("id"))
@@ -166,7 +170,7 @@ export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 
 /** Checks source identities for uniqueness and canonical contract order. */
 function hasCanonicalSources(sources: readonly QuranSourceAttribution[]) {
-  return sources.every((source, index) => {
+  return Arr.every(sources, (source, index) => {
     const previous = sources[index - 1];
     return (
       previous === undefined ||
@@ -183,7 +187,8 @@ export function hasCompleteQuranSourceCopy(
 ) {
   return (
     source.copy.length === activeAppLocales.length &&
-    source.copy.every(
+    Arr.every(
+      source.copy,
       ({ appLocale }, index) => appLocale === activeAppLocales[index]
     )
   );
@@ -194,7 +199,7 @@ function hasCompleteLocalizedCopy(input: {
   readonly activeAppLocales: ActiveAppLocaleList;
   readonly sources: readonly QuranSourceAttribution[];
 }) {
-  return input.sources.every((source) =>
+  return Arr.every(input.sources, (source) =>
     hasCompleteQuranSourceCopy(source, input.activeAppLocales)
   );
 }
@@ -204,8 +209,8 @@ function hasAttributedTafsirSources(input: {
   readonly sources: readonly QuranSourceAttribution[];
   readonly tafsirAccess: readonly QuranTafsirAccess[];
 }) {
-  return input.tafsirAccess.every((access) =>
-    input.sources.some((source) => source.id === access.sourceId)
+  return Arr.every(input.tafsirAccess, (access) =>
+    Arr.some(input.sources, (source) => source.id === access.sourceId)
   );
 }
 
@@ -216,7 +221,8 @@ export function hasCompleteQuranTafsirAccess(
 ) {
   return (
     access.length === activeAppLocales.length &&
-    access.every(
+    Arr.every(
+      access,
       ({ appLocale }, index) => appLocale === activeAppLocales[index]
     )
   );
@@ -275,6 +281,6 @@ export function hasRequiredQuranSources(
   const expected = quranSourceIds(activeAppLocales);
   return (
     sources.length === expected.length &&
-    sources.every(({ id }, index) => id === expected[index])
+    Arr.every(sources, ({ id }, index) => id === expected[index])
   );
 }

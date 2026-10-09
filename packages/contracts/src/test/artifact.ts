@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
 import { verify as verifyBytes } from "node:crypto";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
 import {
   CompiledContentPayloadSchema,
@@ -57,7 +57,7 @@ export function verifyPinnedSignature() {
     hashCompiledContentPayload(payload),
     payload
   );
-  return [input, input.replace("aksara", "aksarb")].map((text) =>
+  return Arr.map([input, input.replace("aksara", "aksarb")], (text) =>
     verifyBytes(
       null,
       Buffer.from(text, "utf8"),

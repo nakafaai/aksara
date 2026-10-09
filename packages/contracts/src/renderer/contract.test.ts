@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 import {
   canonicalizeRendererManifestContract,
   type RendererDomainCapability,
@@ -32,7 +32,7 @@ function domainCapability(name: RendererDomain) {
   return { components: [requirement], name };
 }
 
-const domains = RENDERER_DOMAINS.map(domainCapability);
+const domains = Arr.map(RENDERER_DOMAINS, domainCapability);
 const publishedDomains = ["mathematics"] as const;
 const manifest = {
   base,
@@ -47,7 +47,9 @@ function replaceDomain(
   name: RendererDomain,
   replacement: RendererDomainCapability
 ) {
-  return domains.map((domain) => (domain.name === name ? replacement : domain));
+  return Arr.map(domains, (domain) =>
+    domain.name === name ? replacement : domain
+  );
 }
 
 describe("renderer contract", () => {
@@ -61,7 +63,7 @@ describe("renderer contract", () => {
         const selected = yield* Effect.forEach(RENDERER_DOMAINS, (name) =>
           selectRendererDomainCapability(decoded, name)
         );
-        expect(selected.map(({ name }) => name)).toEqual(RENDERER_DOMAINS);
+        expect(Arr.map(selected, ({ name }) => name)).toEqual(RENDERER_DOMAINS);
       })
   );
 
@@ -77,7 +79,7 @@ describe("renderer contract", () => {
     expect(Exit.isFailure(empty)).toBe(true);
     const reversed = decode({
       ...manifest,
-      domains: [...domains].reverse(),
+      domains: Arr.reverse(domains),
     });
     expect(Exit.isFailure(reversed)).toBe(true);
     if (Exit.isFailure(reversed)) {
@@ -87,7 +89,7 @@ describe("renderer contract", () => {
     }
     const duplicated = decode({
       ...manifest,
-      domains: domains.flatMap((domain) =>
+      domains: Arr.flatMap(domains, (domain) =>
         domain.name === "chemistry" ? [domain, domain] : [domain]
       ),
     });
@@ -102,7 +104,10 @@ describe("renderer contract", () => {
       const error = yield* selectRendererDomainCapability(
         {
           ...complete,
-          domains: complete.domains.filter(({ name }) => name !== "tka-math"),
+          domains: Arr.filter(
+            complete.domains,
+            ({ name }) => name !== "tka-math"
+          ),
         },
         "tka-math"
       ).pipe(Effect.flip);
@@ -156,8 +161,9 @@ describe("renderer contract", () => {
     ).toBe(true);
     const shared = { components: ["SharedChart"], name: "chemistry" } as const;
     const sharedMathematics = { ...shared, name: "mathematics" } as const;
-    const sharedDomains = replaceDomain("chemistry", shared).map((domain) =>
-      domain.name === "mathematics" ? sharedMathematics : domain
+    const sharedDomains = Arr.map(
+      replaceDomain("chemistry", shared),
+      (domain) => (domain.name === "mathematics" ? sharedMathematics : domain)
     );
     expect(
       Exit.isSuccess(decode({ ...manifest, domains: sharedDomains }))
@@ -194,7 +200,7 @@ describe("renderer contract", () => {
     expect(
       canonicalizeRendererManifestContract({
         base,
-        domains: [...domains].reverse(),
+        domains: Arr.reverse(domains),
         publishedDomains,
       })
     ).toBe(expected);

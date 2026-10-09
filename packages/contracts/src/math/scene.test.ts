@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import {
   PlaneMathFrameSchema,
@@ -29,7 +29,7 @@ function planeObject(kind: string, fields: Record<string, unknown>) {
 
 /** Returns authored paths from stable resolution issues. */
 function paths(issues: ReturnType<typeof planeResolutionIssues>) {
-  return issues.map((candidate) =>
+  return Arr.map(issues, (candidate) =>
     hasAuthoredIssue(candidate) ? candidate.path : []
   );
 }

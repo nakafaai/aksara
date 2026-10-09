@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import { ArtifactLocaleSchema } from "#contracts/locale";
 import {
@@ -117,14 +117,14 @@ describe("question item", () => {
       { kind: "single-choice", options: [singleChoice.options[0]] },
       {
         kind: "single-choice",
-        options: singleChoice.options.map((option) => ({
+        options: Arr.map(singleChoice.options, (option) => ({
           ...option,
           isCorrect: true,
         })),
       },
       {
         kind: "multiple-choice",
-        options: multipleChoice.options.map((option) => ({
+        options: Arr.map(multipleChoice.options, (option) => ({
           ...option,
           isCorrect: true,
         })),
@@ -184,7 +184,7 @@ describe("question item", () => {
         en: singleChoice,
         id: {
           ...singleChoice,
-          options: [...singleChoice.options].reverse(),
+          options: Arr.reverse(singleChoice.options),
         },
       },
     ]) {
@@ -234,7 +234,7 @@ describe("question item", () => {
     /** Builds the fixture rubric whose result accepts one written text. */
     const textResult = (text: string) =>
       rubricSourceWith({ ...shortText.key, acceptedAnswers: [text] });
-    const rescaled = [0, 2].map((points) => ({
+    const rescaled = Arr.map([0, 2], (points) => ({
       label: rubricLabel("R"),
       points,
     }));

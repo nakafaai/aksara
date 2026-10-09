@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
@@ -189,7 +189,9 @@ describe("rollback snapshot digest", () => {
         initial
       ).pipe(Effect.flip);
 
-      expect([creation, update, finalization].map(({ _tag }) => _tag)).toEqual([
+      expect(
+        Arr.map([creation, update, finalization], ({ _tag }) => _tag)
+      ).toEqual([
         "RollbackSnapshotHashError",
         "RollbackSnapshotHashError",
         "RollbackSnapshotHashError",

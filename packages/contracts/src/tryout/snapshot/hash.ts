@@ -1,4 +1,4 @@
-import { Record as Rec } from "effect";
+import { Array as Arr, Record as Rec } from "effect";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 import {
   canonicalizeTryoutSnapshot,
@@ -28,7 +28,7 @@ export function makeTryoutSnapshot(input: TryoutSnapshotFacts): TryoutSnapshot {
 export function tryoutSnapshotRowEvidence(input: TryoutSnapshotFacts) {
   return {
     rowCount:
-      Rec.values(input.counts).reduce((total, count) => total + count, 0) +
+      Arr.reduce(Rec.values(input.counts), 0, (total, count) => total + count) +
       input.placementCount,
     rowDigest: hashTryoutCanonical(
       TRYOUT_SNAPSHOT_ROWS_DOMAIN,

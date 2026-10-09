@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { afterEach, describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   canonicalizePreviewRendererAuth,
@@ -117,7 +117,7 @@ describe("preview renderer authentication", () => {
         );
 
         expect(errors).toEqual(
-          inputs.map(() => expect.objectContaining({ reason: "invalid" }))
+          Arr.map(inputs, () => expect.objectContaining({ reason: "invalid" }))
         );
       })
   );

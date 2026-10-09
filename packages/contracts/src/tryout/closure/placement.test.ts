@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import { ACTIVE_APP_LOCALES, DeliveryLanguageSchema } from "#contracts/locale";
 import { makeTryoutTestRows, responseText } from "#contracts/test/tryout";
@@ -35,7 +35,9 @@ const updatePlacement = Effect.fn("AksaraContracts.test.updateTryoutPlacement")(
 const indonesianPlacement = Effect.fn(
   "AksaraContracts.test.indonesianTryoutPlacement"
 )(function* () {
-  const index = placements.findIndex(({ row }) => row.appLocale === "id");
+  const index = yield* Effect.fromOption(
+    Arr.findFirstIndex(placements, ({ row }) => row.appLocale === "id")
+  );
   const placement = yield* Effect.fromNullishOr(placements[index]);
   return { index, placement };
 });
@@ -61,7 +63,7 @@ describe("try-out locale closure placement facts", () => {
       const replacement = yield* updatePlacement(placement, {
         response: {
           kind: "single-choice",
-          options: placement.row.response.options.map((option) => ({
+          options: Arr.map(placement.row.response.options, (option) => ({
             ...option,
             label: responseText(
               option.isCorrect ? "Jawaban benar" : "Pengecoh"
@@ -135,7 +137,7 @@ describe("try-out locale closure placement facts", () => {
       const replacement = yield* updatePlacement(placement, {
         response: {
           kind: "single-choice",
-          options: placement.row.response.options.map((option) => ({
+          options: Arr.map(placement.row.response.options, (option) => ({
             ...option,
             isCorrect: !option.isCorrect,
           })),
@@ -165,8 +167,8 @@ describe("try-out closure placement golden facts", () => {
     "pins the locale-neutral facts of a row without optional facts",
     () =>
       Effect.gen(function* () {
-        const english = yield* Effect.fromNullishOr(
-          placements.find(({ row }) => row.appLocale === "en")
+        const english = yield* Effect.fromOption(
+          Arr.findFirst(placements, ({ row }) => row.appLocale === "en")
         );
 
         expect(canonicalizeLocaleNeutralPlacementFacts(english.row)).toBe(
@@ -179,8 +181,8 @@ describe("try-out closure placement golden facts", () => {
     "pins the locale-neutral facts of a row with blueprint, points, and stimulus",
     () =>
       Effect.gen(function* () {
-        const english = yield* Effect.fromNullishOr(
-          placements.find(({ row }) => row.appLocale === "en")
+        const english = yield* Effect.fromOption(
+          Arr.findFirst(placements, ({ row }) => row.appLocale === "en")
         );
         const documented = yield* Schema.decodeEffect(TryoutPlacementSchema)({
           ...english.row,
@@ -203,8 +205,8 @@ describe("try-out closure placement golden facts", () => {
     "pins the assessed-language facts with a non-ASCII option label",
     () =>
       Effect.gen(function* () {
-        const indonesian = yield* Effect.fromNullishOr(
-          placements.find(({ row }) => row.appLocale === "id")
+        const indonesian = yield* Effect.fromOption(
+          Arr.findFirst(placements, ({ row }) => row.appLocale === "id")
         );
         const localized = yield* Schema.decodeEffect(TryoutPlacementSchema)({
           ...indonesian.row,
