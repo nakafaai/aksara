@@ -32,6 +32,13 @@ function isSearch(row: QuranRowPayload): row is QuranSearchRow {
   return row.kind === "quran-search";
 }
 
+/** Finds the first search row of one locale, or undefined when that locale has none. */
+function findLocaleSearch(rows: readonly QuranSearchRow[], appLocale: string) {
+  return Option.getOrUndefined(
+    Arr.findFirst(rows, (row) => row.appLocale === appLocale)
+  );
+}
+
 layer(quranTestSourcesLayer)("Quran projection", (it) => {
   it.effect(
     "emits the complete bounded runtime and locale search snapshot",
@@ -122,30 +129,15 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           searches,
           ({ surahNumber }) => surahNumber === 1
         );
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(
-              openingSearches,
-              ({ appLocale }) => appLocale === "en"
-            )
-          )?.text
-        ).toContain("The Opening");
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(
-              openingSearches,
-              ({ appLocale }) => appLocale === "id"
-            )
-          )?.text
-        ).toContain("Pembuka");
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(
-              openingSearches,
-              ({ appLocale }) => appLocale === "de"
-            )
-          )?.text
-        ).toContain("Die Eröffnende");
+        expect(findLocaleSearch(openingSearches, "en")?.text).toContain(
+          "The Opening"
+        );
+        expect(findLocaleSearch(openingSearches, "id")?.text).toContain(
+          "Pembuka"
+        );
+        expect(findLocaleSearch(openingSearches, "de")?.text).toContain(
+          "Die Eröffnende"
+        );
         expect(
           Arr.every(
             Arr.filter(openingSearches, ({ appLocale }) => appLocale !== "en"),
@@ -235,11 +227,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           ])
         );
         expect(searches).toHaveLength(QURAN_SURAH_COUNT * 3);
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(searches, ({ appLocale }) => appLocale === "de")
-          )
-        ).toMatchObject({
+        expect(findLocaleSearch(searches, "de")).toMatchObject({
           graph: { assetId: "asset:de:quran:quran-surah:1" },
           route: "quran/1",
         });
@@ -296,11 +284,9 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           Stream.runCollect
         );
 
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(searches, ({ appLocale }) => appLocale === "id")
-          )?.text
-        ).toContain("Catatan tafsir.");
+        expect(findLocaleSearch(searches, "id")?.text).toContain(
+          "Catatan tafsir."
+        );
       })
   );
 });

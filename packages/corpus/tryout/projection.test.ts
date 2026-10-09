@@ -1,6 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
 import { Array as Arr, Effect, HashSet, Record as Rec } from "effect";
+import type { QuestionSource } from "#corpus/question-bank/source";
 import { realQuestionCorpusLayer } from "#corpus/test/question";
 import {
   hasValidQuestionResponse,
@@ -10,6 +11,34 @@ import {
 import { projectTryoutSources } from "#corpus/tryout/projection";
 
 const COMPULSORY_TRACK = "compulsory-mathematics";
+const COMPULSORY_SET_ONE_PATH = "/tka/compulsory-mathematics/set-1/";
+
+/** Finds one question of the compulsory mathematics set 1 by its number. */
+function compulsoryQuestion(
+  questions: readonly QuestionSource[],
+  number: number
+) {
+  const fragment = `${COMPULSORY_SET_ONE_PATH}question-${number}`;
+  return Effect.fromOption(
+    Arr.findFirst(questions, ({ questionKey }) =>
+      questionKey.includes(fragment)
+    )
+  );
+}
+
+/** Copies one question with its shared stimulus replaced by the given key. */
+function withStimulus(
+  question: QuestionSource,
+  stimulusKey: QuestionSource["item"]["stimulusKey"]
+) {
+  return { ...question, item: { ...question.item, stimulusKey } };
+}
+
+/** Copies one question without its shared stimulus. */
+function withoutStimulus(question: QuestionSource) {
+  const { stimulusKey: _stimulusKey, ...item } = question.item;
+  return { ...question, item };
+}
 
 layer(realQuestionCorpusLayer)("tryout projection", (it) => {
   it.effect(
@@ -41,16 +70,11 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
         expect(projection.catalog).toHaveLength(321);
         expect(projection.routeCount).toBe(291);
         expect(projection.placements).toHaveLength(5550);
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              Arr.map(
-                projection.placements,
-                ({ questionContentKey }) => questionContentKey
-              )
-            )
-          )
-        ).toBe(1850);
+        const questionKeys = Arr.map(
+          projection.placements,
+          ({ questionContentKey }) => questionContentKey
+        );
+        expect(HashSet.size(HashSet.fromIterable(questionKeys))).toBe(1850);
         expect(HashSet.size(bodyHeads)).toBe(11_100);
         expect(
           Arr.every(
@@ -210,34 +234,15 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        const groupPath = "/tka/compulsory-mathematics/set-1/";
-        const fifth = yield* Effect.fromOption(
-          Arr.findFirst(questions, ({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-5`)
-          )
-        );
-        const sixth = yield* Effect.fromOption(
-          Arr.findFirst(questions, ({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-6`)
-          )
-        );
-        const seventh = yield* Effect.fromOption(
-          Arr.findFirst(questions, ({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-7`)
-          )
-        );
+        const fifth = yield* compulsoryQuestion(questions, 5);
+        const sixth = yield* compulsoryQuestion(questions, 6);
+        const seventh = yield* compulsoryQuestion(questions, 7);
         const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
-        const withoutSixth = Arr.map(questions, (question) => {
-          if (question !== sixth) {
-            return question;
-          }
-          const { stimulusKey: _stimulusKey, ...item } = question.item;
-          return { ...question, item };
-        });
+        const withoutSixth = Arr.map(questions, (question) =>
+          question === sixth ? withoutStimulus(question) : question
+        );
         const noncontiguous = Arr.map(withoutSixth, (question) =>
-          question === seventh
-            ? { ...question, item: { ...question.item, stimulusKey } }
-            : question
+          question === seventh ? withStimulus(question, stimulusKey) : question
         );
         const [isolated, separated] = yield* Effect.all([
           projectTryoutSources(sources, withoutSixth).pipe(Effect.flip),
@@ -265,26 +270,15 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        /** Finds one question of the compulsory mathematics set 1 section by number. */
-        const questionAt = (number: number) =>
-          Effect.fromOption(
-            Arr.findFirst(questions, ({ questionKey }) =>
-              questionKey.endsWith(
-                `/tka/compulsory-mathematics/set-1/question-${number}`
-              )
-            )
-          );
-        const fifth = yield* questionAt(5);
-        const sixth = yield* questionAt(6);
-        const eighteenth = yield* questionAt(18);
+        const fifth = yield* compulsoryQuestion(questions, 5);
+        const sixth = yield* compulsoryQuestion(questions, 6);
+        const eighteenth = yield* compulsoryQuestion(questions, 18);
         const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
-        const withoutStimuli = Arr.map(questions, (question) => {
-          if (question !== sixth && question !== eighteenth) {
-            return question;
-          }
-          const { stimulusKey: _stimulusKey, ...item } = question.item;
-          return { ...question, item };
-        });
+        const withoutStimuli = Arr.map(questions, (question) =>
+          question === sixth || question === eighteenth
+            ? withoutStimulus(question)
+            : question
+        );
         const failure = yield* projectTryoutSources(
           sources,
           withoutStimuli
