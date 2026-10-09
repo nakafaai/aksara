@@ -32,7 +32,7 @@ function hasPlaneArea(
   let twiceArea = 0;
   let termMagnitude = 0;
   let previous: PlanePoint = { x: 0, y: 0 };
-  for (const current of offsets.slice(1)) {
+  for (const current of Arr.drop(offsets, 1)) {
     const positive = previous.x * current.y;
     const negative = previous.y * current.x;
     twiceArea += positive - negative;

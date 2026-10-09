@@ -6,19 +6,9 @@ export function hasCoplanarArea(
   vertices: readonly [SpacePoint, SpacePoint, SpacePoint, ...SpacePoint[]]
 ) {
   const offsets = normalizedSpaceOffsets(vertices);
-  let strongestNormal: SpacePoint | undefined;
-  let strongestLength = 0;
-  const vectors = offsets.slice(1);
-  for (const [leftIndex, left] of vectors.entries()) {
-    for (const right of vectors.slice(leftIndex + 1)) {
-      const candidate = cross(left, right);
-      const candidateLength = length(candidate);
-      if (candidateLength > strongestLength) {
-        strongestLength = candidateLength;
-        strongestNormal = candidate;
-      }
-    }
-  }
+  const [strongestNormal, strongestLength] = strongestCrossProduct(
+    Arr.drop(offsets, 1)
+  );
   if (!(strongestNormal && strongestLength > GEOMETRY_TOLERANCE)) {
     return false;
   }
@@ -28,6 +18,18 @@ export function hasCoplanarArea(
     (offset) =>
       Math.abs(dot(unitNormal, offset)) <=
       GEOMETRY_TOLERANCE * Math.max(1, length(offset))
+  );
+}
+
+/** Returns the first longest cross product of every ordered pair, with its length. */
+function strongestCrossProduct(vectors: readonly SpacePoint[]) {
+  const initial: readonly [SpacePoint | undefined, number] = [undefined, 0];
+  return Arr.reduce(vectors, initial, (strongest, left, leftIndex) =>
+    Arr.reduce(Arr.drop(vectors, leftIndex + 1), strongest, (best, right) => {
+      const candidate = cross(left, right);
+      const candidateLength = length(candidate);
+      return candidateLength > best[1] ? [candidate, candidateLength] : best;
+    })
   );
 }
 
