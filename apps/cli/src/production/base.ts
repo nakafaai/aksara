@@ -1,40 +1,23 @@
-import {
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
-import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
+import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   baseContentSnapshots,
-  ContentSnapshotSetSchema,
   inheritContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
 import { encodeJsonText } from "#cli/text/json";
-
-const ProductionBaseIdentitySchema = Schema.Struct({
-  activeAppLocales: ActiveAppLocaleListSchema,
-  manifestHash: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
-  resultCount: Schema.Finite,
-  resultDigest: Sha256HashSchema,
-  snapshots: ContentSnapshotSetSchema,
-});
-
-/** Immutable active catalog identity required to rebuild one candidate release. */
-export type ProductionBaseIdentity = typeof ProductionBaseIdentitySchema.Type;
 
 /** Selects the authenticated base catalog represented by one source bundle. */
 export function selectSourceBase(bundle: null): null;
 /** Selects the exact identity from a present authenticated source bundle. */
 export function selectSourceBase(
   bundle: ContentReleaseBundle
-): ProductionBaseIdentity;
+): ActiveCatalogIdentity;
 /** Selects a nullable identity when the authenticated source may be absent. */
 export function selectSourceBase(
   bundle: ContentReleaseBundle | null
-): ProductionBaseIdentity | null;
+): ActiveCatalogIdentity | null;
 /** Implements nullable source selection after overload narrowing. */
 export function selectSourceBase(bundle: ContentReleaseBundle | null) {
   if (bundle === null) {
@@ -47,7 +30,7 @@ export function selectSourceBase(bundle: ContentReleaseBundle | null) {
     resultCount: bundle.release.manifest.resultCount,
     resultDigest: bundle.release.manifest.resultDigest,
     snapshots: inheritContentSnapshots(bundle.release.manifest.snapshots),
-  } satisfies ProductionBaseIdentity;
+  } satisfies ActiveCatalogIdentity;
 }
 
 /** Selects the authenticated base catalog frozen inside a candidate release. */
@@ -67,13 +50,13 @@ export function selectRecoveryBase(bundle: ContentReleaseBundle) {
     resultCount: manifest.baseResultCount,
     resultDigest: manifest.baseResultDigest,
     snapshots: baseContentSnapshots(manifest.snapshots),
-  } satisfies ProductionBaseIdentity;
+  } satisfies ActiveCatalogIdentity;
 }
 
 /** Finds the first immutable base field that differs during candidate recovery. */
 function recoveryBaseMismatch(
-  expected: ProductionBaseIdentity | null,
-  actual: ProductionBaseIdentity | null
+  expected: ActiveCatalogIdentity | null,
+  actual: ActiveCatalogIdentity | null
 ): RecoveryBaseMismatchError["field"] | undefined {
   if (expected === null || actual === null) {
     return expected === actual ? undefined : "presence";
@@ -103,8 +86,8 @@ function recoveryBaseMismatch(
 
 /** Requires active target state to match the candidate's signed base identity. */
 export function validateRecoveryBase(
-  expected: ProductionBaseIdentity | null,
-  actual: ProductionBaseIdentity | null
+  expected: ActiveCatalogIdentity | null,
+  actual: ActiveCatalogIdentity | null
 ) {
   const field = recoveryBaseMismatch(expected, actual);
   return field === undefined

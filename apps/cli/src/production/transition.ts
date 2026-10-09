@@ -1,15 +1,14 @@
+import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Effect } from "effect";
-
-import type { ProductionBaseIdentity } from "#cli/production/base";
 import { BaseTryoutRuntimeBundleMismatchError } from "#cli/production/bundle";
 
 /** Selects the candidate pair and any retained inverse that must be re-signed. */
 export const selectTryoutRuntimeTransition = Effect.fn(
   "AksaraCli.selectTryoutRuntimeTransition"
 )(function* (input: {
-  readonly base: ProductionBaseIdentity | null;
+  readonly base: ActiveCatalogIdentity | null;
   readonly bundle: SignedTryoutRuntimeBundle | null;
   readonly snapshot: TryoutSnapshot | null;
 }) {
