@@ -14,7 +14,6 @@ import type { Plugin } from "unified";
 import {
   decodeStaticLiteral,
   type StaticLiteral,
-  type StaticLiteralResult,
   StaticLiteralSchema,
 } from "#compiler/ast/literal";
 import {
@@ -52,12 +51,7 @@ const MetadataSourceRangeSchema = Schema.Struct({
 export type MetadataSourceRange = typeof MetadataSourceRangeSchema.Type;
 
 /** Detects and statically decodes a metadata export statement, or none for any other statement. */
-function inspectStatement(
-  statement: Program["body"][number]
-): Option.Option<
-  | StaticLiteralResult
-  | { readonly reason: "invalid-declaration"; readonly success: false }
-> {
+function inspectStatement(statement: Program["body"][number]) {
   if (statement.type !== "ExportNamedDeclaration") {
     return Option.none();
   }
@@ -77,11 +71,17 @@ function inspectStatement(
     declaration.declarations.length !== 1 ||
     metadata.length !== 1
   ) {
-    return Option.some({ reason: "invalid-declaration", success: false });
+    return Option.some({
+      reason: "invalid-declaration",
+      success: false,
+    } as const);
   }
   const initializer = metadata[0]?.init;
   if (!initializer) {
-    return Option.some({ reason: "invalid-declaration", success: false });
+    return Option.some({
+      reason: "invalid-declaration",
+      success: false,
+    } as const);
   }
   return Option.some(decodeStaticLiteral(initializer));
 }
