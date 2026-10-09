@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Record as Rec, Schema } from "effect";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -81,7 +81,7 @@ describe("Quran provenance golden identities", () => {
 
   it("pins the official source that proves each active provenance scope", () => {
     expect(
-      quranProvenanceScopes(ACTIVE_APP_LOCALES).map((scope) => [
+      Arr.map(quranProvenanceScopes(ACTIVE_APP_LOCALES), (scope) => [
         scope,
         quranSourceForProvenanceScope(scope),
       ])
@@ -134,7 +134,7 @@ describe("Quran provenance", () => {
   it.effect("canonicalizes, hashes, and derives the gate status", () =>
     Effect.gen(function* () {
       const approved = records("approved");
-      const blocked = approved.map((source, index) =>
+      const blocked = Arr.map(approved, (source, index) =>
         index === 1 ? { ...source, status: "blocked" as const } : source
       );
       const approvedManifest = yield* makeQuranProvenanceManifest({
@@ -192,7 +192,7 @@ describe("Quran provenance", () => {
       const errors = yield* Effect.forEach(
         [
           canonical.slice(1),
-          [...canonical].reverse(),
+          Arr.reverse(canonical),
           [firstRecord, ...canonical],
         ],
         (candidate) =>
@@ -224,7 +224,7 @@ describe("Quran provenance", () => {
         QuranProvenanceManifestSchema
       )({
         ...manifest,
-        records: canonical.map((candidate, index) =>
+        records: Arr.map(canonical, (candidate, index) =>
           index === 0
             ? {
                 ...candidate,
@@ -237,7 +237,7 @@ describe("Quran provenance", () => {
         ),
       });
 
-      expect(manifest.records.map(({ scope }) => scope)).toEqual(
+      expect(Arr.map(manifest.records, ({ scope }) => scope)).toEqual(
         quranProvenanceScopes(ACTIVE_APP_LOCALES)
       );
       expect(manifest.records).toContainEqual(
@@ -246,7 +246,7 @@ describe("Quran provenance", () => {
       expect(manifest.records).toContainEqual(
         expect.objectContaining({ scope: "de-tafsir-access" })
       );
-      expect(errors.map(({ _tag }) => _tag)).toEqual([
+      expect(Arr.map(errors, ({ _tag }) => _tag)).toEqual([
         "QuranProvenanceCoverageError",
         "QuranProvenanceCoverageError",
         "QuranProvenanceCoverageError",

@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, MutableList, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -60,20 +60,21 @@ export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
 export function quranProvenanceScopes(
   activeAppLocales: ActiveAppLocaleList
 ): readonly QuranProvenanceScope[] {
-  const scopes: QuranProvenanceScope[] = ["arabic-text"];
+  const scopes = MutableList.make<QuranProvenanceScope>();
+  MutableList.append(scopes, "arabic-text");
   for (const appLocale of activeAppLocales) {
-    scopes.push(quranNameProvenanceScope(appLocale));
-    scopes.push(quranTranslationProvenanceScope(appLocale));
+    MutableList.append(scopes, quranNameProvenanceScope(appLocale));
+    MutableList.append(scopes, quranTranslationProvenanceScope(appLocale));
     if (appLocale === AppLocaleSchema.make("en")) {
-      scopes.push("en-tafsir-access");
+      MutableList.append(scopes, "en-tafsir-access");
     } else if (appLocale === AppLocaleSchema.make("id")) {
-      scopes.push("id-tafsir");
+      MutableList.append(scopes, "id-tafsir");
     } else {
-      scopes.push("de-tafsir-access");
+      MutableList.append(scopes, "de-tafsir-access");
     }
   }
-  scopes.push("metadata");
-  return scopes;
+  MutableList.append(scopes, "metadata");
+  return MutableList.toArray(scopes);
 }
 
 const QURAN_STATIC_PROVENANCE_SOURCE = {
@@ -122,7 +123,8 @@ function hasCanonicalSourceCoverage(input: {
   const expected = quranProvenanceScopes(input.activeAppLocales);
   return (
     input.records.length === expected.length &&
-    input.records.every(
+    Arr.every(
+      input.records,
       (record, index) =>
         record.scope === expected[index] &&
         record.attribution.id === quranSourceForProvenanceScope(record.scope) &&
@@ -136,7 +138,10 @@ function hasCoherentProvenanceStatus(input: {
   readonly records: readonly QuranProvenanceRecord[];
   readonly status: "approved" | "blocked";
 }) {
-  const expected = input.records.some((record) => record.status === "blocked")
+  const expected = Arr.some(
+    input.records,
+    (record) => record.status === "blocked"
+  )
     ? "blocked"
     : "approved";
   return input.status === expected;
@@ -229,12 +234,15 @@ export const makeQuranProvenanceManifest = Effect.fn(
     Effect.mapError(
       () =>
         new QuranProvenanceCoverageError({
-          actualScopes: input.records.map(({ scope }) => scope),
+          actualScopes: Arr.map(input.records, ({ scope }) => scope),
         })
     )
   );
   const digest = yield* hashQuranProvenance(decoded);
-  const status = decoded.records.some((record) => record.status === "blocked")
+  const status = Arr.some(
+    decoded.records,
+    (record) => record.status === "blocked"
+  )
     ? "blocked"
     : "approved";
   return QuranProvenanceManifestSchema.make({ ...decoded, digest, status });
