@@ -183,9 +183,9 @@ layer(NodeServices.layer)("catalog snapshots", (it) => {
 
   it.effect.each([
     { manifests: [] },
-    { manifests: completeManifests.slice(1, 2) },
-    { manifests: completeManifests.slice(0, 1) },
-    { manifests: completeManifests.slice(0, 2) },
+    { manifests: Arr.take(Arr.drop(completeManifests, 1), 1) },
+    { manifests: Arr.take(completeManifests, 1) },
+    { manifests: Arr.take(completeManifests, 2) },
   ])("rejects an incomplete structured family set %#", ({ manifests }) =>
     Effect.gen(function* () {
       yield* configureControl({ manifests });

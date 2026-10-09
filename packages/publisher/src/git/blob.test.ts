@@ -175,7 +175,7 @@ describe("GitBlob", () => {
           expect(
             Arr.every(
               MutableList.toArray(commands),
-              ({ args }) => !args.includes("--batch")
+              ({ args }) => !Arr.contains(args, "--batch")
             )
           ).toBe(true);
         }

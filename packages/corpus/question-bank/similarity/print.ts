@@ -17,9 +17,7 @@ export function shingles(list: readonly string[]): HashSet.HashSet<string> {
     return HashSet.make(Arr.join(list, " "));
   }
   return HashSet.fromIterable(
-    Arr.map(list.slice(SHINGLE_SIZE - 1), (_, index) =>
-      Arr.join(list.slice(index, index + SHINGLE_SIZE), " ")
-    )
+    Arr.map(Arr.window(list, SHINGLE_SIZE), (words) => Arr.join(words, " "))
   );
 }
 

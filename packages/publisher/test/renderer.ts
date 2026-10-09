@@ -27,7 +27,7 @@ export function testRendererDomains(
 export function incompleteRendererManifest(
   manifest: RendererManifestEnvelope
 ): RendererManifestEnvelope {
-  const domains = manifest.domains.slice(0, -1);
+  const domains = Arr.dropRight(manifest.domains, 1);
   const contract = {
     base: manifest.base,
     domains,

@@ -170,12 +170,13 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
         expect(
           Arr.map(changedSnapshots.manifests, ({ family }) => family)
         ).toEqual(["program", "quran", "tryout"]);
-        const programRows = changedSnapshots.rows.slice(0, programRowCount);
-        const quranRows = changedSnapshots.rows.slice(
-          programRowCount,
-          programRowCount + quranRowCount
+        const programRows = Arr.take(changedSnapshots.rows, programRowCount);
+        const quranRows = Arr.take(
+          Arr.drop(changedSnapshots.rows, programRowCount),
+          quranRowCount
         );
-        const tryoutRows = changedSnapshots.rows.slice(
+        const tryoutRows = Arr.drop(
+          changedSnapshots.rows,
           programRowCount + quranRowCount
         );
         expect(programRows).toHaveLength(program.manifest.rowCount);

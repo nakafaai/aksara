@@ -140,12 +140,12 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
         yield* Effect.all(
           [
             rejectSyntheticQuestionSources(
-              questionEntries(root, generalQuestionSourceFiles.slice(1)),
+              questionEntries(root, Arr.drop(generalQuestionSourceFiles, 1)),
               []
             ),
             rejectSyntheticQuestionSources(
               questionEntries(root, [
-                ...generalQuestionSourceFiles.slice(0, 4),
+                ...Arr.take(generalQuestionSourceFiles, 4),
                 "wrong.mdx",
               ]),
               []

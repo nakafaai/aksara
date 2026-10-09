@@ -1,4 +1,4 @@
-import { HashSet, MutableList } from "effect";
+import { Array as Arr, HashSet, MutableList, Option } from "effect";
 import type { MemberExpression, Program, Property } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
 import type { ExecutablePolicyViolation } from "#compiler/errors";
@@ -28,20 +28,19 @@ function staticStringValue(expression: PropertyExpression): string | undefined {
   if (expression.type !== "TemplateLiteral") {
     return;
   }
-  let value = "";
-  for (const [index, quasi] of expression.quasis.entries()) {
-    value += quasi.value.cooked ?? quasi.value.raw;
-    const substitution = expression.expressions[index];
+  const { expressions } = expression;
+  const parts = Arr.map(expression.quasis, (quasi, index) => {
+    const text = quasi.value.cooked ?? quasi.value.raw;
+    const substitution = expressions[index];
     if (!substitution) {
-      continue;
+      return Option.some(text);
     }
-    const staticSubstitution = staticStringValue(substitution);
-    if (staticSubstitution === undefined) {
-      return;
-    }
-    value += staticSubstitution;
-  }
-  return value;
+    return Option.map(
+      Option.fromUndefinedOr(staticStringValue(substitution)),
+      (resolved) => text + resolved
+    );
+  });
+  return Option.getOrUndefined(Option.map(Option.all(parts), Arr.join("")));
 }
 
 /** Resolves a property name only when its syntax is statically knowable. */

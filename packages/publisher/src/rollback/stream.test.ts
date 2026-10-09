@@ -180,13 +180,13 @@ describe("streamRollbackRecords", () => {
 
   it.effect("replays a source larger than one operational page", () => {
     const recordCount = MAX_ROLLBACK_PAGE_RECORDS + 1;
-    const records = Array.from({ length: recordCount }, (_, index) =>
-      deletion(index)
-    );
+    const records = Arr.makeBy(recordCount, deletion);
     const rollbackPage = vi.fn((request: RollbackPageRequest) => {
       const start = request.afterIndex + 1;
-      const selected = records.slice(start, start + request.limit);
-      const nextIndex = selected.at(-1)?.index ?? request.afterIndex;
+      const selected = Arr.take(Arr.drop(records, start), request.limit);
+      const nextIndex = Arr.isReadonlyArrayNonEmpty(selected)
+        ? Arr.lastNonEmpty(selected).index
+        : request.afterIndex;
       return Effect.succeed(
         page({
           done: nextIndex === records.length - 1,

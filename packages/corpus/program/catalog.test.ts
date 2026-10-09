@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import {
   decodeProgramCatalog,
@@ -150,8 +150,8 @@ describe("learning program catalog", () => {
       Effect.gen(function* () {
         const programs = yield* decodeProgramCatalog(Arr.reverse(sources));
 
-        expect(programs.at(0)?.key).toBe("merdeka");
-        expect(programs.at(-1)?.key).toBe("snbt");
+        expect(Option.getOrThrow(Arr.head(programs)).key).toBe("merdeka");
+        expect(Option.getOrThrow(Arr.last(programs)).key).toBe("snbt");
       })
   );
 });

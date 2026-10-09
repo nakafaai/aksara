@@ -127,10 +127,13 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         expect(selected.article).toEqual(
           Arr.sort(
             Arr.filter(articles, ({ route }) =>
-              [
-                "articles/politics/merah-putih-cabinet-analysis",
-                "articles/politics/regional-elections-turmoil",
-              ].includes(route.contentKey)
+              Arr.contains(
+                [
+                  "articles/politics/merah-putih-cabinet-analysis",
+                  "articles/politics/regional-elections-turmoil",
+                ],
+                route.contentKey
+              )
             ),
             Order.make((left: ArticleEntry, right: ArticleEntry) =>
               compareContentHeads(left.route, right.route)

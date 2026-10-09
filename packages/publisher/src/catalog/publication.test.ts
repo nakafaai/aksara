@@ -294,7 +294,7 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
     Effect.gen(function* () {
       const { articleHeads } = yield* CatalogTestFixtures;
       const error = yield* rejectCatalog({
-        article: articleHeads.slice(0, 1),
+        article: Arr.take(articleHeads, 1),
       });
       expect(error).toMatchObject({
         _tag: "CatalogGenesisError",

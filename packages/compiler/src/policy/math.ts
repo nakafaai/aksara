@@ -45,7 +45,7 @@ export function normalizeSchemaPath(
 function hasSameKeys(left: readonly string[], right: readonly string[]) {
   return (
     left.length === right.length &&
-    Arr.every(left, (key) => right.includes(key))
+    Arr.every(left, (key) => Arr.contains(right, key))
   );
 }
 

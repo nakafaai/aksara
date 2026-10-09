@@ -166,10 +166,10 @@ describe("tryout catalog", () => {
                   ...set,
                   sections: [
                     { ...section, questionCount: 0 },
-                    ...set.sections.slice(1),
+                    ...Arr.drop(set.sections, 1),
                   ],
                 },
-                ...track.sets.slice(1),
+                ...Arr.drop(track.sets, 1),
               ],
             },
           ],

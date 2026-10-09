@@ -12,7 +12,6 @@ import {
 import {
   QuranChunkRowSchema,
   type QuranRowPayload,
-  type QuranRuntimeVerse,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot/row";
@@ -56,7 +55,7 @@ const projectVerse = Effect.fn("AksaraCorpus.projectQuranVerse")(function* (
   return QuranRuntimeVerseSchema.make({
     meta: verse.meta,
     number: verse.number,
-    tafsir: activeAppLocales.includes(AppLocaleSchema.make("id"))
+    tafsir: Arr.contains(activeAppLocales, AppLocaleSchema.make("id"))
       ? [{ appLocale: "id", ...verse.tafsir.id }]
       : [],
     text: verse.text,
@@ -86,18 +85,7 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
     { concurrency: "unbounded" }
   );
   const chunks = MutableList.make<QuranRowPayload>();
-  for (const [index, firstVerse] of projectedVerses.entries()) {
-    if (index % QURAN_CHUNK_SIZE !== 0) {
-      continue;
-    }
-    const remaining = projectedVerses.slice(
-      index + 1,
-      index + QURAN_CHUNK_SIZE
-    );
-    const verses: [QuranRuntimeVerse, ...QuranRuntimeVerse[]] = [
-      firstVerse,
-      ...remaining,
-    ];
+  for (const verses of Arr.chunksOf(projectedVerses, QURAN_CHUNK_SIZE)) {
     const [first] = verses;
     const last = Arr.lastNonEmpty(verses);
     MutableList.append<QuranRowPayload>(
@@ -108,7 +96,7 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
         kind: "quran-chunk",
         lastVerse: last.number.inSurah,
         surahNumber: surah.number,
-        verses: [first, ...verses.slice(1)],
+        verses: [first, ...Arr.drop(verses, 1)],
       })
     );
   }

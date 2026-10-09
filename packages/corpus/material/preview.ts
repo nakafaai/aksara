@@ -46,15 +46,20 @@ export const decodeMaterialPreviewEntries = Effect.fn(
       if (HashSet.size(selectedSections) === 0) {
         continue;
       }
-      for (const [sectionIndex, section] of binding.source.sections.entries()) {
-        if (!HashSet.has(selectedSections, section.slug)) {
-          continue;
-        }
-        MutableList.append(
-          projected,
-          yield* projectMaterial(binding, section, sectionIndex, appLocale)
-        );
-      }
+      yield* Effect.forEach(
+        binding.source.sections,
+        (section, sectionIndex) =>
+          Effect.gen(function* () {
+            if (!HashSet.has(selectedSections, section.slug)) {
+              return;
+            }
+            MutableList.append(
+              projected,
+              yield* projectMaterial(binding, section, sectionIndex, appLocale)
+            );
+          }),
+        { discard: true }
+      );
     }
   }
   const entries = yield* Schema.decodeUnknownEffect(
