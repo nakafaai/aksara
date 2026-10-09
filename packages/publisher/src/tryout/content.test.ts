@@ -36,7 +36,7 @@ const EXPECTED_CONTENT_HASHES = [
 const makeContentTestFixtures = Effect.fn("TryoutContentTest.makeFixtures")(
   () =>
     Effect.gen(function* () {
-      const { tryoutHeads, tryoutPlacements } = yield* tryoutFixtures;
+      const [tryoutHeads, tryoutPlacements] = yield* tryoutFixtures;
       const bindings = [
         ...(yield* bindTryoutHeads(
           tryoutPlacements,

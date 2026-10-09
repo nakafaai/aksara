@@ -13,14 +13,15 @@ const tryoutPrompts = Arr.filter(
   ({ bodyKind }) => bodyKind === "question"
 );
 
-/** Loads the real try-out fixture inside the calling Effect test runtime. */
+/**
+ * Loads the real try-out fixture inside the calling Effect test runtime: the
+ * published question heads, then the placements of the selected slice.
+ */
 export const tryoutFixtures: Effect.Effect<
-  {
-    readonly tryoutHeads: Awaited<ReturnType<typeof publishedQuestionHeads>>;
-    readonly tryoutPlacements: ReturnType<
-      typeof selectTryoutSlice
-    >["placements"];
-  },
+  readonly [
+    Awaited<ReturnType<typeof publishedQuestionHeads>>,
+    ReturnType<typeof selectTryoutSlice>["placements"],
+  ],
   Effect.Error<ReturnType<typeof loadTryoutContent>>
 > = Effect.gen(function* () {
   const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
@@ -31,5 +32,5 @@ export const tryoutFixtures: Effect.Effect<
     tryoutContent.projection,
     tryoutPrompts
   );
-  return { tryoutHeads, tryoutPlacements };
+  return [tryoutHeads, tryoutPlacements];
 });

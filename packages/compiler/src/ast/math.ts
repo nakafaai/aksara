@@ -7,7 +7,7 @@ import {
   Option,
   Schema,
 } from "effect";
-import type { ObjectExpression } from "estree-jsx";
+import type { Node, ObjectExpression } from "estree-jsx";
 import type {
   MdxJsxAttribute,
   MdxJsxFlowElement,
@@ -75,9 +75,7 @@ export function mdxLocation(node: {
 
 /** Reads a one-based ESTree source location with an MDX fallback. */
 export function estreeLocation(
-  node: {
-    readonly loc?: { readonly start: SourceLocation } | null | undefined;
-  },
+  node: Pick<Node, "loc">,
   fallback: SourceLocation
 ) {
   return node.loc
