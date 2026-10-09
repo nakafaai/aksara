@@ -1,11 +1,11 @@
 import { assert, beforeEach, describe, it } from "@effect/vitest";
 import { Effect, Result, Schema } from "effect";
 import {
-  ProvenanceBundleVerifier,
   publisherPolicy,
   SigstoreProvenanceBundleVerifierLive,
 } from "#scripts/provenance/bundle";
 import type { PublisherIdentity } from "#scripts/provenance/schema";
+import { ProvenanceBundleVerifier } from "#scripts/provenance/service";
 
 const mocks = vi.hoisted(() => ({
   bundleFromJSON: vi.fn(),
