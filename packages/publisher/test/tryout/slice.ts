@@ -3,16 +3,7 @@ import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-
-interface PromptIdentity {
-  readonly artifactLocale: ArtifactLocale;
-  readonly contentKey: ContentKey;
-}
-
-interface TryoutProjectionSliceSource {
-  readonly catalog: readonly TryoutCatalogRecord[];
-  readonly placements: readonly TryoutPlacementSource[];
-}
+import { HashSet } from "effect";
 
 /** Identifies one localized catalog row without depending on route slugs. */
 function catalogIdentity(row: TryoutCatalogRecord["row"]) {
@@ -33,19 +24,28 @@ function catalogIdentity(row: TryoutCatalogRecord["row"]) {
 
 /** Selects one locale-closed hierarchy and placement slice for real prompts. */
 export function selectTryoutSlice(
-  projection: TryoutProjectionSliceSource,
-  prompts: readonly PromptIdentity[]
+  projection: {
+    readonly catalog: readonly TryoutCatalogRecord[];
+    readonly placements: readonly TryoutPlacementSource[];
+  },
+  prompts: readonly {
+    readonly artifactLocale: ArtifactLocale;
+    readonly contentKey: ContentKey;
+  }[]
 ) {
-  const promptKeys = new Set(
+  const promptKeys = HashSet.fromIterable(
     prompts.map(
       ({ contentKey, artifactLocale }) => `${contentKey}\0${artifactLocale}`
     )
   );
   const placements = projection.placements.filter(
     ({ questionArtifactLocale, questionContentKey }) =>
-      promptKeys.has(`${questionContentKey}\0${questionArtifactLocale}`)
+      HashSet.has(
+        promptKeys,
+        `${questionContentKey}\0${questionArtifactLocale}`
+      )
   );
-  const catalogIdentities = new Set(
+  const catalogIdentities = HashSet.fromIterable(
     placements.flatMap((placement) => [
       `${placement.appLocale}\0country\0${placement.countryKey}`,
       `${placement.appLocale}\0exam\0${placement.countryKey}\0${placement.examKey}`,
@@ -55,7 +55,7 @@ export function selectTryoutSlice(
     ])
   );
   const catalog = projection.catalog.flatMap(({ row }) => {
-    if (!catalogIdentities.has(catalogIdentity(row))) {
+    if (!HashSet.has(catalogIdentities, catalogIdentity(row))) {
       return [];
     }
     if (row.kind !== "section") {

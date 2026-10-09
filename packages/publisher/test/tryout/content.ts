@@ -22,18 +22,16 @@ import {
 
 const DATE_MODIFIED_METADATA = /^ {2}dateModified: "[^"]+",\r?\n/mu;
 
-interface TryoutContentBindingInput {
-  readonly entries?: typeof questionEntries;
-  readonly files?: ReadonlyMap<string, string>;
-  readonly sources?: typeof questionSources;
-  readonly values?: readonly BoundTryoutPlacement[];
-}
-
 /** Collects exact artifact records through the real question inspection seam. */
 export const collectTryoutContent = Effect.fn("TryoutContentTest.collect")(
   (
     bindings: readonly BoundTryoutPlacement[],
-    input: TryoutContentBindingInput
+    input: {
+      readonly entries?: typeof questionEntries;
+      readonly files?: MutableHashMap.MutableHashMap<string, string>;
+      readonly sources?: typeof questionSources;
+      readonly values?: readonly BoundTryoutPlacement[];
+    }
   ) =>
     bindTryoutContent({
       bindings: Stream.fromIterable(input.values ?? bindings),
@@ -52,7 +50,7 @@ export const collectTryoutContent = Effect.fn("TryoutContentTest.collect")(
 export const rejectTryoutContent = Effect.fn("TryoutContentTest.reject")(
   (
     bindings: readonly BoundTryoutPlacement[],
-    input: TryoutContentBindingInput
+    input: Parameters<typeof collectTryoutContent>[1]
   ) =>
     bindTryoutContent({
       bindings: Stream.fromIterable(input.values ?? bindings),
@@ -122,7 +120,11 @@ export const collectEnrichedTryoutContent = Effect.fn(
         ? '  datePublished: "2026-01-01",'
         : `  dateModified: "${dateModified}",\n  datePublished: "2026-01-01",`
     );
-  const files = new Map(sourceByPath).set(questionPath, modifiedQuestionSource);
+  const files = MutableHashMap.set(
+    MutableHashMap.fromIterable(sourceByPath),
+    questionPath,
+    modifiedQuestionSource
+  );
   const [answerDocument, questionDocument] = yield* Effect.all([
     inspectQuestionDocument(
       checkoutRoot,
