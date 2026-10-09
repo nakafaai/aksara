@@ -16,9 +16,7 @@ import {
 
 const repositories = makeRepositoryTracker();
 
-afterEach(() => {
-  repositories.clear();
-});
+afterEach(() => repositories.clear());
 
 /** Builds one compiler from the selected real English registry document. */
 const makeCompiler = Effect.fn("AksaraCliTest.makeCompiler")(function* (

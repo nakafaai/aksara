@@ -16,9 +16,7 @@ const repositories = makeRepositoryTracker();
 const QUESTION_PATH =
   "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
 
-afterEach(() => {
-  repositories.clear();
-});
+afterEach(() => repositories.clear());
 
 layer(NodeServices.layer)("preview source integrity", (it) => {
   it.effect(

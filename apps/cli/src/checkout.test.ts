@@ -6,9 +6,7 @@ import { makeRepositoryTracker } from "#test/real";
 
 const repositories = makeRepositoryTracker();
 
-afterEach(() => {
-  repositories.clear();
-});
+afterEach(() => repositories.clear());
 
 layer(NodeServices.layer)("preview checkout resolution", (it) => {
   it.effect("finds exact Aksara and Nakafa roots", () =>
