@@ -25,7 +25,7 @@ describe("JSON text codec", () => {
 
   it("reads JSON text into the value JSON.parse reads", () => {
     expect(
-      Schema.decodeUnknownSync(JsonTextSchema)('{"items":[1,"\\u00d1"]}')
+      Schema.decodeSync(JsonTextSchema)('{"items":[1,"\\u00d1"]}')
     ).toEqual({ items: [1, "\u{d1}"] });
   });
 });

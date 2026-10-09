@@ -127,10 +127,8 @@ describe("snapshot batching", () => {
     )(request);
     const canonical = canonicalizeSnapshotBatch(batch);
 
-    expect(Schema.decodeUnknownSync(JsonTextSchema)(canonical)).toEqual(
-      request
-    );
-    expect(Schema.decodeUnknownSync(JsonTextSchema)(encoded)).toEqual(request);
+    expect(Schema.decodeSync(JsonTextSchema)(canonical)).toEqual(request);
+    expect(Schema.decodeSync(JsonTextSchema)(encoded)).toEqual(request);
     expect(Buffer.byteLength(canonical, "utf8")).toBe(
       Buffer.byteLength(encoded, "utf8")
     );
