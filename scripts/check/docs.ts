@@ -171,11 +171,9 @@ export const missingDocumentation = Effect.fn(
 
 /** Collects missing JSDoc diagnostics from authored TypeScript source files. */
 export const documentationViolations = Effect.fn("AksaraPolicy.documentation")(
-  function* (
+  function* <E>(
     files: readonly string[],
-    readText: (
-      file: string
-    ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
+    readText: (file: string) => Effect.Effect<string, E, FileSystem.FileSystem>
   ) {
     const violations = yield* Effect.forEach(files, (file) =>
       readText(file).pipe(

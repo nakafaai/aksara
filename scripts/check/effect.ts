@@ -76,11 +76,9 @@ function effectPolicyViolations(file: string, sourceFile: SourceFile) {
 
 /** Reports every native Effect policy violation across the supplied modules. */
 export const effectViolations = Effect.fn("AksaraPolicy.effectViolations")(
-  function* (
+  function* <E>(
     files: readonly string[],
-    readText: (
-      file: string
-    ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
+    readText: (file: string) => Effect.Effect<string, E, FileSystem.FileSystem>
   ) {
     const parser = yield* TypeScriptParser;
     const violations = yield* Effect.forEach(files, (file) =>

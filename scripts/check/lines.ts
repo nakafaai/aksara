@@ -89,11 +89,11 @@ export const countModuleLines = Effect.fn("AksaraPolicy.countModuleLines")(
 );
 
 /** Collects authored TypeScript modules that exceed the repository line limit. */
-export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* (
+export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* <
+  E,
+>(
   files: readonly string[],
-  readText: (
-    file: string
-  ) => Effect.Effect<string, unknown, FileSystem.FileSystem>
+  readText: (file: string) => Effect.Effect<string, E, FileSystem.FileSystem>
 ) {
   const violations = yield* Effect.forEach(files, (file) =>
     readText(file).pipe(
