@@ -4,6 +4,7 @@ import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
 import {
   type AxisTraversal,
+  type InfinitePathKind,
   infinitePathInterval,
 } from "#contracts/math/intersection";
 import { decimal, type ExactRatio, makeRatio } from "#contracts/math/rational";
@@ -94,7 +95,7 @@ function ratioDifference(left: ExactRatio, right: ExactRatio) {
 
 /** Checks that the frame-visible portion of one infinite path remains visible. */
 export function visiblePathResolvable(
-  kind: "line" | "ray",
+  kind: InfinitePathKind,
   axes: readonly AxisTraversal[],
   threshold: RenderThreshold
 ) {

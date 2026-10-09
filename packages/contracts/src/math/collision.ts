@@ -6,11 +6,8 @@ import {
   Record as Rec,
 } from "effect";
 
-import type {
-  SceneAxis,
-  SceneCoordinate,
-  ScenePath,
-} from "#contracts/math/coordinate";
+import { type SceneAxis, SceneAxisSchema } from "#contracts/math/base";
+import type { SceneCoordinate, ScenePath } from "#contracts/math/coordinate";
 import type { PlaneMathObject } from "#contracts/math/plane";
 import { unresolvedProximityIndexes } from "#contracts/math/proximity";
 import { numberRatio } from "#contracts/math/rational";
@@ -31,7 +28,7 @@ export function coordinateCollisionPaths(
   coordinates: readonly SceneCoordinate[],
   threshold: BigDecimal.BigDecimal
 ) {
-  const axes: readonly SceneAxis[] = ["x", "y", "z"];
+  const axes: readonly SceneAxis[] = SceneAxisSchema.literals;
   return uniquePaths(
     Arr.flatMap(axes, (axis) => {
       const entries = Arr.filter(coordinates, (entry) => entry.axis === axis);

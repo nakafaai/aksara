@@ -17,10 +17,17 @@ const RowCountSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThanOrEqualTo(0))
 );
 
+const ContentSnapshotModeSchema = Schema.Literals([
+  "inherit",
+  "replace",
+  "restore",
+]);
+type ContentSnapshotMode = typeof ContentSnapshotModeSchema.Type;
+
 /** One family's immutable snapshot transition authenticated by a release. */
 export const ContentSnapshotStateSchema = Schema.Struct({
   baseSnapshotId: Schema.NullOr(Sha256HashSchema),
-  mode: Schema.Literals(["inherit", "replace", "restore"]),
+  mode: ContentSnapshotModeSchema,
   resultSnapshotId: Schema.NullOr(Sha256HashSchema),
   rowCount: RowCountSchema,
   rowDigest: Sha256HashSchema,
@@ -57,7 +64,7 @@ export function hasScopedSnapshotTransitions(
 /** Checks inheritance, replacement, and forward restore row semantics. */
 export function hasCoherentSnapshotState(state: {
   readonly baseSnapshotId: Sha256Hash | null;
-  readonly mode: "inherit" | "replace" | "restore";
+  readonly mode: ContentSnapshotMode;
   readonly resultSnapshotId: Sha256Hash | null;
   readonly rowCount: number;
   readonly rowDigest: Sha256Hash;

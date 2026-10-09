@@ -10,6 +10,7 @@ import {
   quranProvenanceScopes,
   quranSourceForProvenanceScope,
 } from "#contracts/quran/provenance";
+import type { QuranProvenanceStatus } from "#contracts/quran/snapshot/spec";
 import { QuranSourceAttributionSchema } from "#contracts/quran/source";
 
 const goldenText = Schema.decodeSync(QuranSourceAttributionSchema)({
@@ -137,7 +138,7 @@ export const goldenRecords = [
 /** Builds one exact technical provenance record. */
 export function record(
   scope: QuranProvenanceScope,
-  status: "approved" | "blocked",
+  status: QuranProvenanceStatus,
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   const source = quranSourceForProvenanceScope(scope);
@@ -192,7 +193,7 @@ export function record(
 
 /** Builds complete provenance for one exact active application locale set. */
 export function records(
-  status: "approved" | "blocked",
+  status: QuranProvenanceStatus,
   activeAppLocales: ActiveAppLocaleList = ACTIVE_APP_LOCALES
 ) {
   return Arr.map(quranProvenanceScopes(activeAppLocales), (scope) =>

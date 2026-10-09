@@ -52,6 +52,9 @@ const QuranRuntimeTafsirSchema = Schema.Struct({
   text: QuranMeaningfulTextSchema,
 });
 
+/** Sajda obligation of one verse, present only where the source assigns one. */
+export const QuranSajdaSchema = Schema.Literals(["obligatory", "recommended"]);
+
 /** One exact verse with explicit translation locale entries. */
 export const QuranRuntimeVerseSchema = Schema.Struct({
   meta: Schema.Struct({
@@ -60,7 +63,7 @@ export const QuranRuntimeVerseSchema = Schema.Struct({
     manzil: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
     page: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
     ruku: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    sajda: Schema.NullOr(Schema.Literals(["obligatory", "recommended"])),
+    sajda: Schema.NullOr(QuranSajdaSchema),
   }),
   number: Schema.Struct({
     inQuran: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),

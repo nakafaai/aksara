@@ -2,6 +2,10 @@ import { Effect, Schema, type Stream } from "effect";
 
 import type { Sha256Hash } from "#contracts/ids";
 import type { ContentSnapshotRow } from "#contracts/release/snapshot/data";
+import {
+  type ContentSnapshotKind,
+  ContentSnapshotKindSchema,
+} from "#contracts/release/snapshot/scope";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */
 export class SnapshotEvidenceError extends Schema.TaggedError<SnapshotEvidenceError>()(
@@ -9,7 +13,7 @@ export class SnapshotEvidenceError extends Schema.TaggedError<SnapshotEvidenceEr
   {
     actual: Schema.String,
     expected: Schema.String,
-    family: Schema.Literals(["program", "quran", "tryout"]),
+    family: ContentSnapshotKindSchema,
     field: Schema.String,
   }
 ) {}
@@ -21,7 +25,7 @@ export type SnapshotRowSource<E, R> = Stream.Stream<ContentSnapshotRow, E, R>;
 export function requireSnapshotEvidence(input: {
   readonly actual: number | Sha256Hash;
   readonly expected: number | Sha256Hash;
-  readonly family: "program" | "quran" | "tryout";
+  readonly family: ContentSnapshotKind;
   readonly field: string;
 }) {
   if (input.actual === input.expected) {

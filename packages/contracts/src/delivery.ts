@@ -7,3 +7,11 @@ export const ContentDeliveryClassSchema = Schema.Literals([
   "entitled",
 ]);
 export type ContentDeliveryClass = typeof ContentDeliveryClassSchema.Type;
+
+/** Delivery classes whose artifact bodies need a product-authorized runtime read. */
+export const ProtectedContentDeliverySchema = Schema.Literals([
+  "authenticated",
+  "entitled",
+]);
+export type ProtectedContentDelivery =
+  typeof ProtectedContentDeliverySchema.Type;

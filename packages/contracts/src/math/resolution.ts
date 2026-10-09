@@ -1,10 +1,10 @@
 import { Array as Arr, MutableHashMap, Schema } from "effect";
-
 import {
   arcCurvatureUnresolved,
   arcEndpointAxesUnresolved,
   arcEndpointsUnresolved,
 } from "#contracts/math/arc";
+import type { SceneAxis } from "#contracts/math/base";
 import {
   concentricRadiusCollisionPaths,
   coordinateCollisionPaths,
@@ -155,7 +155,7 @@ function planeObjectIssues(
 /** Reports every frame axis whose non-zero span collapses in the envelope. */
 function frameIssues(
   entries: readonly {
-    readonly axis: "x" | "y" | "z";
+    readonly axis: SceneAxis;
     readonly range: PlaneMathFrame["x"];
   }[],
   threshold: RenderThreshold
