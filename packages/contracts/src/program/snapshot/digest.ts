@@ -11,7 +11,7 @@ import {
 } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
+import type { ActiveAppLocaleList } from "#contracts/locale";
 import {
   type CurriculumRoute,
   curriculumNamespace,
@@ -62,25 +62,22 @@ function countIdentity(counts: ProgramCounts) {
   return Arr.join(Arr.map(values, String), ":");
 }
 
-/** Resolves one required localized program identity. */
-function translationFor(program: LearningProgram, appLocale: AppLocale) {
-  return Arr.findFirst(
-    program.translations,
-    (translation) => translation.appLocale === appLocale
-  );
-}
-
-/** Checks that one root is the exact localized route owned by its program. */
+/**
+ * Checks that one root is the exact localized route owned by its program.
+ * Translation locales are unique, because the catalog row must repeat the
+ * signed active locale list, so at most one translation matches the root.
+ */
 function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
-  return Option.match(translationFor(program, row.appLocale), {
-    onNone: () => false,
-    onSome: (translation) =>
+  return Arr.some(
+    program.translations,
+    (translation) =>
+      translation.appLocale === row.appLocale &&
       row.iconKey === program.iconKey &&
       row.order === program.displayOrder &&
       row.publicPath ===
         `${curriculumNamespace(row.appLocale)}/${translation.publicSlug}` &&
-      row.title === translation.title,
-  });
+      row.title === translation.title
+  );
 }
 
 /** Keeps current locale closure, identity, and digest state in one replay. */

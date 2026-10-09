@@ -73,22 +73,10 @@ describe("local preview manifest", () => {
   it("accepts one artifact for article, material, page, and prompt documents", () => {
     const readyStates = Arr.map(
       [
-        {
-          artifacts: [articleArtifact],
-          document: testArticleDocument,
-        },
-        {
-          artifacts: [materialArtifact],
-          document: testMaterialDocument,
-        },
-        {
-          artifacts: [pageArtifact],
-          document: testPageDocument,
-        },
-        {
-          artifacts: [promptArtifact],
-          document: testPromptDocument,
-        },
+        { artifacts: [articleArtifact], document: testArticleDocument },
+        { artifacts: [materialArtifact], document: testMaterialDocument },
+        { artifacts: [pageArtifact], document: testPageDocument },
+        { artifacts: [promptArtifact], document: testPromptDocument },
       ],
       ({ artifacts, document }, index) => ({
         artifacts,
