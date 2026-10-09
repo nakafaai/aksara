@@ -13,7 +13,7 @@ import { TryoutPlacementSourceSchema } from "#contracts/tryout/placement";
 export const PublicRouteFields = {
   appLocale: AppLocaleSchema,
   publicPath: PublicPathSchema,
-};
+} as const;
 
 /** Locale and existing public route refreshed by one preview update. */
 export const PreviewRouteSchema = Schema.Struct(PublicRouteFields);
