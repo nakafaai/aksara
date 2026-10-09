@@ -26,7 +26,7 @@ export class NakafaApp extends Context.Service<
       input: NakafaStartInput
     ) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;
   }
->()("AksaraCliNakafaApp") {}
+>()("@nakafa/aksara-cli/nakafa/NakafaApp") {}
 
 /** Actual Nakafa process and renderer endpoint implementation. */
 export const NakafaAppLive = Layer.effect(
