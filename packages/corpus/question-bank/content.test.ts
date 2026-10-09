@@ -10,6 +10,7 @@ import {
   Option,
   Order,
   Path,
+  pipe,
 } from "effect";
 import {
   loadQuestionContent,
@@ -35,36 +36,28 @@ const readingSetKey =
   "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1";
 const readingQuestionKey = `${readingSetKey}/question-1`;
 const readingSourceRoot = `packages/corpus/${readingQuestionKey}`;
+const literacyQuestionKey =
+  "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1";
+const OVERSIZED_SET_NUMBER = "9".repeat(440);
 
 /** Builds one synthetic question registry Effect without hiding its error type. */
-function registry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
+function registry(...arguments_: Parameters<typeof makeQuestionRegistryLayer>) {
   return Effect.all([corpusRoot, realTryoutSources]).pipe(
     Effect.flatMap(([root, tryoutSources]) =>
       loadQuestionContent(root, tryoutSources)
     ),
-    Effect.provide(makeQuestionRegistryLayer(discoveredEntries, items))
+    Effect.provide(makeQuestionRegistryLayer(...arguments_))
   );
 }
 
 /** Projects one synthetic question registry without leaving Effect. */
-function questionRegistry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
-  return registry(discoveredEntries, items).pipe(
-    Effect.map(({ entries }) => entries)
-  );
+function questionRegistry(...arguments_: Parameters<typeof registry>) {
+  return registry(...arguments_).pipe(Effect.map(({ entries }) => entries));
 }
 
 /** Returns one typed registry rejection for native Effect composition. */
-function rejectRegistry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
-  return questionRegistry(discoveredEntries, items).pipe(Effect.flip);
+function rejectRegistry(...arguments_: Parameters<typeof questionRegistry>) {
+  return questionRegistry(...arguments_).pipe(Effect.flip);
 }
 
 layer(realQuestionCorpusLayer)("question registry", (it) => {
@@ -95,17 +88,11 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         );
 
         expect(entries).toHaveLength(7400);
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              Arr.map(
-                entries,
-                ({ artifactLocale, contentKey }) =>
-                  `${contentKey}\0${artifactLocale}`
-              )
-            )
-          )
-        ).toBe(7400);
+        const compositeKeys = Arr.map(
+          entries,
+          ({ artifactLocale, contentKey }) => `${contentKey}\0${artifactLocale}`
+        );
+        expect(HashSet.size(HashSet.fromIterable(compositeKeys))).toBe(7400);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
           Arr.map(
@@ -156,11 +143,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
           readFileString: vi.fn(fileSystem.readFileString),
         };
         const keys = Arr.map(
-          [
-            readingQuestionKey,
-            readingQuestionKey,
-            "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1",
-          ],
+          [readingQuestionKey, readingQuestionKey, literacyQuestionKey],
           (key) => QuestionKeySchema.make(key)
         );
         const { entries, sources } = yield* loadSelectedQuestionContent(
@@ -172,22 +155,16 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         expect(observed.readFileString).toHaveBeenCalledTimes(2);
         expect(sources).toHaveLength(2);
         expect(entries).toHaveLength(8);
-        const question = Option.getOrUndefined(
-          Arr.findFirst(
-            entries,
-            ({ artifactLocale, contentKey }) =>
-              contentKey === `${readingQuestionKey}/question` &&
-              artifactLocale === "id"
-          )
-        );
-        const answer = Option.getOrUndefined(
-          Arr.findFirst(
-            entries,
-            ({ artifactLocale, contentKey }) =>
-              contentKey === `${readingQuestionKey}/answer` &&
-              artifactLocale === "id"
-          )
-        );
+        const indonesianBody = (contentKey: string) =>
+          Option.getOrUndefined(
+            Arr.findFirst(
+              entries,
+              (entry) =>
+                entry.contentKey === contentKey && entry.artifactLocale === "id"
+            )
+          );
+        const question = indonesianBody(`${readingQuestionKey}/question`);
+        const answer = indonesianBody(`${readingQuestionKey}/answer`);
 
         expect(question).toEqual({
           artifactLocale: "id",
@@ -284,9 +261,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
 
   it.effect("rejects an oversized physical identity before projection", () =>
     Effect.gen(function* () {
-      const root = `indonesia/snbt/general-reasoning/set-${"9".repeat(
-        440
-      )}/question-1`;
+      const root = `indonesia/snbt/general-reasoning/set-${OVERSIZED_SET_NUMBER}/question-1`;
       const error = yield* rejectRegistry(
         questionEntries(root, generalQuestionSourceFiles),
         yield* itemForQuestion(root)
@@ -312,20 +287,15 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
       Effect.gen(function* () {
         const root = "indonesia/snbt/general-reasoning/set-1/question-1";
         const content = yield* registry(
-          [
-            root,
-            ...Arr.map(generalQuestionSourceFiles, (file) => `${root}/${file}`),
-          ],
+          questionEntries(root, generalQuestionSourceFiles),
           yield* itemForQuestion(root)
         );
 
         expect(
-          Arr.map(
-            Arr.filter(
-              content.entries,
-              ({ artifactLocale }) => artifactLocale === "de"
-            ),
-            ({ sourcePath }) => sourcePath
+          pipe(
+            content.entries,
+            Arr.filter(({ artifactLocale }) => artifactLocale === "de"),
+            Arr.map(({ sourcePath }) => sourcePath)
           )
         ).toEqual([`${questionTestSourceRoot}/${root}/answer.de.mdx`]);
       })
