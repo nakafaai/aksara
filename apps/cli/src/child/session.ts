@@ -85,11 +85,14 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
   })
 );
 
+/** Reports every failure to build the child environment as one typed start failure. */
+const childEnvironmentFailure = () => makeNakafaAppError("child-env", false);
+
 /** Reads one inherited variable, keeping an absent variable absent for the decode. */
 const readInheritedVariable = (name: string) =>
   Config.option(Config.String(name)).pipe(
     Effect.map(Option.getOrUndefined),
-    Effect.mapError(() => makeNakafaAppError("child-env", false))
+    Effect.mapError(childEnvironmentFailure)
   );
 
 /** Decodes every child environment value together before process creation. */
@@ -143,7 +146,7 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       NEXT_PUBLIC_VERSION: "aksara-preview",
       PATH: path,
       SITE_URL: origin.toString(),
-    }).pipe(Effect.mapError(() => makeNakafaAppError("child-env", false)));
+    }).pipe(Effect.mapError(childEnvironmentFailure));
   }
 );
 
