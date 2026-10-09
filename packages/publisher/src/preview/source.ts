@@ -24,7 +24,6 @@ import {
 import {
   type InspectedQuestionDocument,
   loadQuestionDocument,
-  makeQuestionCompileSource,
   makeQuestionProjectionFromSource,
 } from "#publisher/question/document";
 
@@ -132,7 +131,11 @@ const loadSelectedSource = Effect.fn("AksaraPublisher.loadSelectedSource")(
       selected.entry,
       item
     );
-    return loadedPreview("question", makeQuestionCompileSource(source), source);
+    return loadedPreview(
+      "question",
+      makeCompileSource({ ...source, route: source }),
+      source
+    );
   }
 );
 

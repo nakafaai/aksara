@@ -30,6 +30,7 @@ import {
   readQuestionDocument,
 } from "@nakafa/aksara-corpus/question-bank/content";
 import { Effect, Schema } from "effect";
+import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored question metadata does not satisfy its exact publication contract. */
@@ -66,17 +67,6 @@ type QuestionAnswerEntry = Extract<
 /** Wraps every registry and filesystem failure at the checkout source seam. */
 export function mapQuestionSourceError(checkoutRoot: string) {
   return (cause: unknown) => new QuestionSourceError({ cause, checkoutRoot });
-}
-
-/** Creates the exact authored body shared by every question compiler mode. */
-export function makeQuestionCompileSource(source: QuestionDocumentSource) {
-  return {
-    artifactLocale: source.artifactLocale,
-    contentKey: source.contentKey,
-    rawMdx: source.rawMdx,
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  };
 }
 
 /** Decodes one question document's exact authored metadata. */
@@ -132,7 +122,7 @@ const inspectQuestionSource = Effect.fn(
 ) {
   const source = yield* loadQuestionDocument(checkoutRoot, entry, item);
   const inspection = yield* inspectContentSource({
-    ...makeQuestionCompileSource(source),
+    ...makeCompileSource({ ...source, route: source }),
     rendererManifest,
   });
   const metadata = yield* decodeQuestionMetadata(source, inspection.metadata);
@@ -263,7 +253,7 @@ export const compileQuestionDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeQuestionCompileSource(document.source),
+    ...makeCompileSource({ ...document.source, route: document.source }),
     rendererManifest,
   });
   return makeQuestionRecord(document.source, result, document.projection);
