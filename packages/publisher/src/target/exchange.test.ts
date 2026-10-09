@@ -3,7 +3,14 @@ import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spe
 import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
-import { Duration, Effect, Fiber, Redacted, Schema } from "effect";
+import {
+  Array as Arr,
+  Duration,
+  Effect,
+  Fiber,
+  Redacted,
+  Schema,
+} from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -105,11 +112,15 @@ describe("sendPublicationRequest", () => {
 
   it.effect("rejects an oversized grouped child before network IO", () =>
     Effect.gen(function* () {
-      const groupRequest = yield* Effect.fromNullishOr(
-        transportRequests.find((value) => value.operation === "stageGroup")
+      const groupRequest = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
+          (value) => value.operation === "stageGroup"
+        )
       );
-      const projectionRequest = yield* Effect.fromNullishOr(
-        groupRequest.requests.find(
+      const projectionRequest = yield* Effect.fromOption(
+        Arr.findFirst(
+          groupRequest.requests,
           (value) => value.operation === "stageProjectionBatch"
         )
       );
@@ -160,11 +171,17 @@ describe("sendPublicationRequest", () => {
 
   it.effect("bounds activation by the read-model build budget", () =>
     Effect.gen(function* () {
-      const activation = yield* Effect.fromNullishOr(
-        transportRequests.find((value) => value.operation === "activate")
+      const activation = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
+          (value) => value.operation === "activate"
+        )
       );
-      const staged = yield* Effect.fromNullishOr(
-        transportRequests.find((value) => value.operation === "stageRelease")
+      const staged = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
+          (value) => value.operation === "stageRelease"
+        )
       );
       const bounds: ValidatedHttpConfig = {
         activationTimeout: Duration.seconds(5),

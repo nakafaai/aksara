@@ -3,6 +3,7 @@ import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snap
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
+import { Array as Arr } from "effect";
 
 type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
 type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;
@@ -17,12 +18,17 @@ type RecoverySuccess = Extract<
   { operation: "activateRecovery" }
 >;
 
+/** Joins a release's base app locales, keeping a missing base as undefined. */
+function joinBaseLocales(locales: readonly string[] | null) {
+  return locales === null ? undefined : Arr.join(locales, ",");
+}
+
 /** Checks every fixed structured-family transition field for exact equality. */
 function hasBoundSnapshots(
   expected: VerifyRequest["release"]["manifest"]["snapshots"],
   actual: ReleaseVerificationEvidence["snapshots"]
 ) {
-  return ContentSnapshotKindSchema.literals.every((family) => {
+  return Arr.every(ContentSnapshotKindSchema.literals, (family) => {
     const expectedState = expected[family];
     const actualState = actual[family];
     return (
@@ -44,8 +50,8 @@ export function hasBoundManifestReceipt(
   return (
     receipt.releaseId === manifest.releaseId &&
     receipt.manifestHash === request.manifestHash &&
-    receipt.activeAppLocales.join(",") ===
-      manifest.activeAppLocales.join(",") &&
+    Arr.join(receipt.activeAppLocales, ",") ===
+      Arr.join(manifest.activeAppLocales, ",") &&
     receipt.activatedHeads === manifest.upsertCount &&
     receipt.deletedHeads === manifest.deleteCount &&
     receipt.projectionDigest === manifest.projectionDigest &&
@@ -78,10 +84,10 @@ export function hasBoundVerification(
   return (
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === manifestHash &&
-    evidence.activeAppLocales.join(",") ===
-      manifest.activeAppLocales.join(",") &&
-    evidence.baseActiveAppLocales?.join(",") ===
-      manifest.baseActiveAppLocales?.join(",") &&
+    Arr.join(evidence.activeAppLocales, ",") ===
+      Arr.join(manifest.activeAppLocales, ",") &&
+    joinBaseLocales(evidence.baseActiveAppLocales) ===
+      joinBaseLocales(manifest.baseActiveAppLocales) &&
     evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.baseResultCount === manifest.baseResultCount &&

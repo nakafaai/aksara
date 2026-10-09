@@ -4,7 +4,7 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Fiber, Schema } from "effect";
+import { Array as Arr, Effect, Fiber, Option, Schema } from "effect";
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
 import { encodeJsonText } from "#publisher/text/json";
@@ -55,8 +55,11 @@ describe("HTTP publication target", () => {
     Effect.gen(function* () {
       const captured = capturedClient();
       const target = yield* makeTarget(captured.client);
-      const projectionRequest = transportRequests.find(
-        (request) => request.operation === "stageProjectionBatch"
+      const projectionRequest = Option.getOrUndefined(
+        Arr.findFirst(
+          transportRequests,
+          (request) => request.operation === "stageProjectionBatch"
+        )
       );
       if (projectionRequest?.operation !== "stageProjectionBatch") {
         return yield* Effect.die(

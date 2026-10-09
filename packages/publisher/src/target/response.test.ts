@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationStatusRequestSchema } from "@nakafa/aksara-contracts/transport/request";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import { readPublicationResponse } from "#publisher/target/response";
 import { encodeJsonText } from "#publisher/text/json";
@@ -55,7 +55,8 @@ describe("publication response body", () => {
         response("{}", {
           headers: { "content-type": "application/json-evil" },
         }),
-        ...["invalid", "-1", String(MAX_PUBLICATION_RESPONSE_BYTES + 1)].map(
+        ...Arr.map(
+          ["invalid", "-1", String(MAX_PUBLICATION_RESPONSE_BYTES + 1)],
           (length) =>
             response("{}", {
               headers: {
@@ -107,7 +108,8 @@ describe("publication response body", () => {
         ];
         const errors = yield* Effect.forEach(bodies, reject);
         expect(
-          errors.every(
+          Arr.every(
+            errors,
             (error) =>
               error._tag === "PublicationTargetProtocolError" &&
               error.reason === "response-decoding"

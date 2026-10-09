@@ -23,7 +23,7 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 /** Signed payloads do not exactly satisfy their authenticated item stream. */
 export class ReleaseArtifactMismatchError extends Schema.TaggedError<ReleaseArtifactMismatchError>()(
@@ -126,6 +126,11 @@ export function validateReleaseSnapshots(
   );
 }
 
+/** Joins a release's base app locales, keeping a missing base as undefined. */
+function joinBaseLocales(locales: readonly string[] | null) {
+  return locales === null ? undefined : Arr.join(locales, ",");
+}
+
 /** Proves the target staged the complete authenticated release before activation. */
 export function validateVerificationEvidence(
   release: SignedContentRelease,
@@ -139,10 +144,10 @@ export function validateVerificationEvidence(
   const matches =
     evidence.releaseId === manifest.releaseId &&
     evidence.manifestHash === release.manifestHash &&
-    evidence.activeAppLocales.join(",") ===
-      manifest.activeAppLocales.join(",") &&
-    evidence.baseActiveAppLocales?.join(",") ===
-      manifest.baseActiveAppLocales?.join(",") &&
+    Arr.join(evidence.activeAppLocales, ",") ===
+      Arr.join(manifest.activeAppLocales, ",") &&
+    joinBaseLocales(evidence.baseActiveAppLocales) ===
+      joinBaseLocales(manifest.baseActiveAppLocales) &&
     evidence.baseManifestHash === manifest.baseManifestHash &&
     evidence.baseReleaseId === manifest.baseReleaseId &&
     evidence.baseResultCount === manifest.baseResultCount &&
@@ -189,8 +194,8 @@ export function validateManifestReceipt(
   const matches =
     receipt.releaseId === manifest.releaseId &&
     receipt.manifestHash === release.manifestHash &&
-    receipt.activeAppLocales.join(",") ===
-      manifest.activeAppLocales.join(",") &&
+    Arr.join(receipt.activeAppLocales, ",") ===
+      Arr.join(manifest.activeAppLocales, ",") &&
     receipt.stagedArtifacts === manifest.upsertCount &&
     receipt.stagedItems === manifest.itemCount &&
     receipt.stagedProjections === manifest.projectionCount &&
