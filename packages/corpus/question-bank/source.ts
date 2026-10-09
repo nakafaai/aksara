@@ -4,16 +4,17 @@ import {
   QuestionSetKeySchema,
 } from "@nakafa/aksara-contracts/question/identity";
 import { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
-import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   MutableHashMap,
   MutableHashSet,
   Option,
+  Order,
   Path,
   Schema,
 } from "effect";
@@ -42,10 +43,13 @@ export type QuestionSource = typeof QuestionSourceSchema.Type;
 /** Indexes canonical items once by their physical question directory. */
 export function indexQuestionItems(sources: readonly QuestionSource[]) {
   return MutableHashMap.fromIterable(
-    sources.map(({ item, sourceRoot }): [string, QuestionSource["item"]] => [
-      sourceRoot,
-      item,
-    ])
+    Arr.map(
+      sources,
+      ({ item, sourceRoot }): [string, QuestionSource["item"]] => [
+        sourceRoot,
+        item,
+      ]
+    )
   );
 }
 /** Reading a question-bank directory or source file failed. */
@@ -93,9 +97,7 @@ function groupQuestionFiles(entries: readonly string[], separator: string) {
     MutableHashMap.set(filesByRoot, located.root, files);
   }
 
-  return [...filesByRoot].sort(([left], [right]) =>
-    compareCodeUnits(left, right)
-  );
+  return Arr.sortWith([...filesByRoot], ([root]) => root, Order.String);
 }
 
 /** Derives every reviewed physical ancestor from the renderer bank index. */
@@ -105,7 +107,7 @@ function questionAncestors(questionBanks: QuestionBankIndex) {
   for (const bankKey of MutableHashMap.keys(questionBanks)) {
     const segments = bankKey.slice(prefix.length).split("/");
     for (let length = 1; length <= segments.length; length += 1) {
-      MutableHashSet.add(ancestors, segments.slice(0, length).join("/"));
+      MutableHashSet.add(ancestors, Arr.join(segments.slice(0, length), "/"));
     }
   }
   return ancestors;
@@ -162,9 +164,15 @@ export const readQuestionItem = Effect.fn("AksaraCorpus.readQuestionItem")(
 const validateQuestionFiles = Effect.fn("AksaraCorpus.validateQuestionFiles")(
   function* (location: QuestionLocation, discoveredFiles: readonly string[]) {
     const requiredFiles = questionSourceFiles(location.languagePolicy);
-    const files = [...discoveredFiles].sort();
-    const missingRequired = requiredFiles.some((file) => !files.includes(file));
-    const unsupported = files.some((file) => !requiredFiles.includes(file));
+    const files = Arr.sort(discoveredFiles, Order.String);
+    const missingRequired = Arr.some(
+      requiredFiles,
+      (file) => !files.includes(file)
+    );
+    const unsupported = Arr.some(
+      files,
+      (file) => !requiredFiles.includes(file)
+    );
     if (missingRequired || unsupported) {
       return yield* new QuestionFileSetError({
         files,
@@ -197,7 +205,7 @@ const loadQuestionSource = Effect.fn("AksaraCorpus.loadQuestionSource")(
     location: QuestionLocation,
     discoveredFiles: readonly string[]
   ) {
-    const files = [...discoveredFiles].sort();
+    const files = Arr.sort(discoveredFiles, Order.String);
     yield* validateQuestionFiles(location, files);
     const item = yield* readQuestionItem(corpusRoot, location);
     return { ...location, files, item };
@@ -221,8 +229,8 @@ const validateSequences = Effect.fn("AksaraCorpus.validateQuestionSequences")(
     }
 
     for (const [setPath, numbers] of numbersBySet) {
-      const ordered = [...numbers].sort((left, right) => left - right);
-      if (ordered.some((number, index) => number !== index + 1)) {
+      const ordered = Arr.sort(numbers, Order.Number);
+      if (Arr.some(ordered, (number, index) => number !== index + 1)) {
         return yield* new QuestionSequenceError({
           questionNumbers: ordered,
           setPath,
@@ -248,19 +256,20 @@ export const discoverQuestionSources = Effect.fn(
         (cause) => new QuestionReadError({ cause, path: QUESTION_BANK_ROOT })
       )
     );
-  const invalidEntry = entries.find((entry) => {
-    const normalized = entry.split(path.sep).join("/");
+  const invalidEntry = Arr.findFirst(entries, (entry) => {
+    const normalized = Arr.join(entry.split(path.sep), "/");
     return (
       locateQuestionEntry(entry, path.sep) === undefined &&
       !isQuestionAncestor(normalized, questionBanks, ancestors)
     );
   });
-  if (invalidEntry !== undefined) {
+  if (Option.isSome(invalidEntry)) {
     return yield* new QuestionPathError({
       reason: "grammar",
-      sourcePath: `${QUESTION_BANK_ROOT}/${invalidEntry
-        .split(path.sep)
-        .join("/")}`,
+      sourcePath: `${QUESTION_BANK_ROOT}/${Arr.join(
+        invalidEntry.value.split(path.sep),
+        "/"
+      )}`,
     });
   }
 

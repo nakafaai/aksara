@@ -3,7 +3,7 @@ import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Layer, Path } from "effect";
+import { Array as Arr, Effect, Layer, Path } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
 import {
   corpusRoot,
@@ -151,10 +151,13 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
           sources: [{ family: "page" }],
         });
         expect(
-          page.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+          Arr.map(page.sources[0].dependencies, ({ sourcePath }) => sourcePath)
         ).toEqual(pageRestartSourcePaths);
         expect(
-          germanPage.sources[0].dependencies.map(({ sourcePath }) => sourcePath)
+          Arr.map(
+            germanPage.sources[0].dependencies,
+            ({ sourcePath }) => sourcePath
+          )
         ).toEqual(pageRestartSourcePaths);
         expect(prompt).toMatchObject({
           document: {
@@ -233,10 +236,9 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             sourcePath: answerPath,
           },
         });
-        expect(answer.sources.map(({ entry }) => entry.sourcePath)).toEqual([
-          promptPath,
-          answerPath,
-        ]);
+        expect(
+          Arr.map(answer.sources, ({ entry }) => entry.sourcePath)
+        ).toEqual([promptPath, answerPath]);
       }),
     { timeout: 30_000 }
   );

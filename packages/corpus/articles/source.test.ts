@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -80,16 +81,16 @@ layer(NodeServices.layer)("article source", (it) => {
 
       expect(sources).toHaveLength(7);
       expect(
-        HashSet.size(HashSet.fromIterable(sources.map(({ slug }) => slug)))
+        HashSet.size(HashSet.fromIterable(Arr.map(sources, ({ slug }) => slug)))
       ).toBe(7);
       expect(
         HashSet.size(
-          HashSet.fromIterable(sources.map(({ sourceRoot }) => sourceRoot))
+          HashSet.fromIterable(Arr.map(sources, ({ sourceRoot }) => sourceRoot))
         )
       ).toBe(7);
-      expect(sources.every(({ references }) => references.length > 0)).toBe(
-        true
-      );
+      expect(
+        Arr.every(sources, ({ references }) => references.length > 0)
+      ).toBe(true);
     })
   );
 
@@ -109,11 +110,12 @@ layer(NodeServices.layer)("article source", (it) => {
       const documents = yield* readSources(entries, sourceByPath);
 
       expect(documents).toHaveLength(21);
-      expect(documents.map(({ sourcePath }) => sourcePath)).toEqual(
-        entries.map(({ sourcePath }) => sourcePath)
+      expect(Arr.map(documents, ({ sourcePath }) => sourcePath)).toEqual(
+        Arr.map(entries, ({ sourcePath }) => sourcePath)
       );
       expect(
-        documents.every(
+        Arr.every(
+          documents,
           ({ rawMdx, sourcePath }) =>
             rawMdx ===
             Option.getOrUndefined(
@@ -121,9 +123,9 @@ layer(NodeServices.layer)("article source", (it) => {
             )
         )
       ).toBe(true);
-      expect(documents.every(({ references }) => references.length > 0)).toBe(
-        true
-      );
+      expect(
+        Arr.every(documents, ({ references }) => references.length > 0)
+      ).toBe(true);
     })
   );
 

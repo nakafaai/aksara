@@ -3,7 +3,7 @@ import {
   type LearningProgram,
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 /** Checks exact active locale closure for one program source. */
 function hasActiveProgramTranslations(
@@ -11,7 +11,8 @@ function hasActiveProgramTranslations(
 ) {
   return (
     translations.length === ACTIVE_APP_LOCALES.length &&
-    translations.every(
+    Arr.every(
+      translations,
       ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALES[index]
     )
   );

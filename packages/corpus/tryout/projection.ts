@@ -7,7 +7,15 @@ import {
 import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, MutableHashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableList,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import {
@@ -59,10 +67,10 @@ const indexQuestions = Effect.fn("AksaraCorpus.indexTryoutQuestions")(
 
 /** Flattens active source-owned sections while preserving their hierarchy. */
 function activeSections(sources: readonly TryoutExamSource[]) {
-  return sources.flatMap((source) =>
-    source.tracks.flatMap((track) =>
-      track.sets.flatMap((set) =>
-        set.sections.map((section) => ({
+  return Arr.flatMap(sources, (source) =>
+    Arr.flatMap(source.tracks, (track) =>
+      Arr.flatMap(track.sets, (set) =>
+        Arr.map(set.sections, (section) => ({
           section,
           set,
           source,
@@ -73,14 +81,29 @@ function activeSections(sources: readonly TryoutExamSource[]) {
   );
 }
 
-/** Requires every shared-stimulus group to contain contiguous sibling items. */
+/** Starts one shared-stimulus group at its first question, in section order. */
+function startGroup(
+  question: QuestionSource,
+  stimulusKey: NonNullable<QuestionSource["item"]["stimulusKey"]>
+) {
+  return {
+    first: question,
+    rest: MutableList.make<QuestionSource>(),
+    stimulusKey,
+  };
+}
+
+type StimulusGroup = ReturnType<typeof startGroup>;
+
+/** Requires every shared-stimulus group to contain contiguous sibling items, checked in section order. */
 const validateStimulusGroups = Effect.fn(
   "AksaraCorpus.validateTryoutStimulusGroups"
 )(function* (questions: readonly QuestionSource[]) {
   const groups = MutableHashMap.empty<
-    NonNullable<QuestionSource["item"]["stimulusKey"]>,
-    [QuestionSource, ...QuestionSource[]]
+    StimulusGroup["stimulusKey"],
+    StimulusGroup
   >();
+  const groupsInOrder = MutableList.make<StimulusGroup>();
   for (const question of questions) {
     const { stimulusKey } = question.item;
     if (stimulusKey === undefined) {
@@ -90,13 +113,17 @@ const validateStimulusGroups = Effect.fn(
       MutableHashMap.get(groups, stimulusKey)
     );
     if (group === undefined) {
-      MutableHashMap.set(groups, stimulusKey, [question]);
+      const created = startGroup(question, stimulusKey);
+      MutableHashMap.set(groups, stimulusKey, created);
+      MutableList.append(groupsInOrder, created);
     } else {
-      group.push(question);
+      MutableList.append(group.rest, question);
     }
   }
-  for (const [stimulusKey, group] of groups) {
-    const [first] = group;
+  for (const { first, rest, stimulusKey } of MutableList.toArray(
+    groupsInOrder
+  )) {
+    const group = [first, ...MutableList.toArray(rest)];
     if (group.length < 2) {
       return yield* new TryoutStimulusGroupError({
         questionKey: first.questionKey,
@@ -105,7 +132,8 @@ const validateStimulusGroups = Effect.fn(
       });
     }
     if (
-      group.some(
+      Arr.some(
+        group,
         ({ questionNumber }, index) =>
           questionNumber !== first.questionNumber + index
       )
@@ -130,7 +158,7 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
     >
   ) {
     const { section, set, source, track } = context;
-    const selected: QuestionSource[] = [];
+    const collected = MutableList.make<QuestionSource>();
     for (
       let questionOrder = 1;
       questionOrder <= section.questionCount;
@@ -145,8 +173,9 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
       if (question === undefined) {
         return yield* new TryoutQuestionMissingError({ questionKey });
       }
-      selected.push(question);
+      MutableList.append(collected, question);
     }
+    const selected = MutableList.toArray(collected);
     yield* validateStimulusGroups(selected);
     const rows = yield* Effect.forEach(selected, (question) =>
       Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
@@ -157,7 +186,7 @@ const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
         )
       )
     );
-    return rows.flat();
+    return Arr.flatten(rows);
   }
 );
 
@@ -171,7 +200,7 @@ const projectPlacements = Effect.fn("AksaraCorpus.projectTryoutPlacements")(
     const rows = yield* Effect.forEach(activeSections(sources), (section) =>
       projectSection(section, questions)
     );
-    return rows.flat();
+    return Arr.flatten(rows);
   }
 );
 
@@ -184,15 +213,20 @@ export const projectTryoutSources = Effect.fn(
 ) {
   const catalogRows = yield* projectTryoutCatalog(sources);
   const placementRows = yield* projectPlacements(sources, questionSources);
-  const catalog = [...catalogRows]
-    .sort(compareTryoutCatalog)
-    .map(makeTryoutCatalogRecord);
-  const sortedPlacements = [...placementRows].sort(compareTryoutPlacements);
+  const catalog = Arr.map(
+    Arr.sort(catalogRows, Order.make(compareTryoutCatalog)),
+    makeTryoutCatalogRecord
+  );
+  const sortedPlacements = Arr.sort(
+    placementRows,
+    Order.make(compareTryoutPlacements)
+  );
 
   return {
     catalog,
     placements: sortedPlacements,
-    routeCount: catalog.filter(
+    routeCount: Arr.filter(
+      catalog,
       ({ row }) => "publicPath" in row && row.publicPath !== undefined
     ).length,
   } satisfies {

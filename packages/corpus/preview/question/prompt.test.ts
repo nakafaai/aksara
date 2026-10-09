@@ -4,7 +4,7 @@ import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, Layer, Path } from "effect";
+import { Array as Arr, Effect, Layer, MutableList, Path } from "effect";
 import { selectQuestion } from "#corpus/preview/question/prompt";
 import {
   corpusRoot,
@@ -17,7 +17,7 @@ import {
 /** Selects one question through the real preview owner. */
 function selectDocument(
   sourcePath: string,
-  directoryReads: QuestionDirectoryRead[] = [],
+  directoryReads: MutableList.MutableList<QuestionDirectoryRead> = MutableList.make(),
   appLocale?: AppLocaleCode,
   overrides?: QuestionLayerOverrides
 ) {
@@ -44,7 +44,7 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
           "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1";
         const sharedPrompt = `${sharedRoot}/question.en.mdx`;
         const [german, ambiguous] = yield* Effect.all([
-          selectDocument(sharedPrompt, [], "de"),
+          selectDocument(sharedPrompt, MutableList.make(), "de"),
           selectQuestion(
             yield* corpusRoot,
             CorpusSourcePathSchema.make(sharedPrompt)
@@ -71,7 +71,7 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
           sourcePath: `${sharedRoot}/item.ts`,
         });
         expect(
-          germanSource.dependencies.filter(({ sourcePath }) =>
+          Arr.filter(germanSource.dependencies, ({ sourcePath }) =>
             sourcePath.endsWith("/item.ts")
           )
         ).toHaveLength(1);
@@ -84,7 +84,11 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
       const genericRoot =
         "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1";
       const genericPrompt = `${genericRoot}/question.id.mdx`;
-      const german = yield* selectDocument(genericPrompt, [], "de");
+      const german = yield* selectDocument(
+        genericPrompt,
+        MutableList.make(),
+        "de"
+      );
 
       expect(german.document).toMatchObject({
         identity: { artifactLocale: "id" },
@@ -111,7 +115,7 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
       Effect.gen(function* () {
         const questionRoot =
           "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1";
-        const directoryReads: QuestionDirectoryRead[] = [];
+        const directoryReads = MutableList.make<QuestionDirectoryRead>();
 
         yield* selectDocument(
           `${questionRoot}/question.id.mdx`,
@@ -120,7 +124,7 @@ layer(realQuestionCorpusLayer)("question preview", (it) => {
         );
 
         const root = yield* corpusRoot;
-        expect(directoryReads).toEqual([
+        expect(MutableList.toArray(directoryReads)).toEqual([
           {
             path: `${root}/${questionRoot}`,
             recursive: false,

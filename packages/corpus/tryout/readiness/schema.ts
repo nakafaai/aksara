@@ -6,7 +6,7 @@ import {
   TryoutMarksSchema,
   TryoutSourceRevisionSchema,
 } from "@nakafa/aksara-contracts/tryout/spec";
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Schema } from "effect";
 
 const PositiveCountSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThan(0))
@@ -92,25 +92,28 @@ function uniqueBy<Value>(
   values: readonly Value[],
   key: (value: Value) => string
 ) {
-  return HashSet.size(HashSet.fromIterable(values.map(key))) === values.length;
+  return (
+    HashSet.size(HashSet.fromIterable(Arr.map(values, key))) === values.length
+  );
 }
 
 /** Checks stable order, unique coverage keys, and complete evidence references. */
 function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
   const evidenceKeys = HashSet.fromIterable(
-    readiness.evidence.map(({ key }) => key)
+    Arr.map(readiness.evidence, ({ key }) => key)
   );
   if (!uniqueBy(readiness.evidence, ({ key }) => key)) {
     return false;
   }
-  return readiness.sections.every((section, index) => {
+  return Arr.every(readiness.sections, (section, index) => {
     const { blueprint } = section;
     const expectations = [
       section.questionCount,
       section.timeLimitSeconds,
       ...(section.marks === undefined ? [] : [section.marks]),
     ];
-    const evidenceExists = expectations.every(
+    const evidenceExists = Arr.every(
+      expectations,
       ({ provenance }) =>
         provenance.kind === "editorial" ||
         HashSet.has(evidenceKeys, provenance.evidenceKey)
@@ -124,17 +127,20 @@ function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
           uniqueBy(blueprint.cognitiveLevels, ({ key }) => key) &&
           uniqueBy(blueprint.responseMinimums, ({ kind }) => kind) &&
           uniqueBy(blueprint.topics, ({ key }) => key) &&
-          blueprint.topics.every(
+          Arr.every(
+            blueprint.topics,
             ({ cognitiveLevels, contentDomains }) =>
               uniqueBy(cognitiveLevels, (cognitiveLevel) => cognitiveLevel) &&
-              cognitiveLevels.every((cognitiveLevel) =>
-                blueprint.cognitiveLevels.some(
+              Arr.every(cognitiveLevels, (cognitiveLevel) =>
+                Arr.some(
+                  blueprint.cognitiveLevels,
                   ({ key }) => key === cognitiveLevel
                 )
               ) &&
               uniqueBy(contentDomains, (contentDomain) => contentDomain) &&
-              contentDomains.every((contentDomain) =>
-                blueprint.contentDomains.some(
+              Arr.every(contentDomains, (contentDomain) =>
+                Arr.some(
+                  blueprint.contentDomains,
                   ({ key }) => key === contentDomain
                 )
               )

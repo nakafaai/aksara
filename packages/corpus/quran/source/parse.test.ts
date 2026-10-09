@@ -1,6 +1,15 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Context, Effect, Layer, Path, Schema, Struct } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  Layer,
+  Order,
+  Path,
+  Schema,
+  Struct,
+} from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
 import { type RawSources, RawSourcesSchema } from "#corpus/quran/source/model";
@@ -64,7 +73,7 @@ function withTafsir(
 ): RawSources {
   return {
     ...fixture.rawSources,
-    tafsir: fixture.rawSources.tafsir.map((current, currentIndex) =>
+    tafsir: Arr.map(fixture.rawSources.tafsir, (current, currentIndex) =>
       currentIndex === index ? source : current
     ),
   };
@@ -88,12 +97,13 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
 
         expect(surahs).toHaveLength(114);
         expect(
-          surahs.reduce((count, surah) => count + surah.verses.length, 0)
+          Arr.reduce(surahs, 0, (count, surah) => count + surah.verses.length)
         ).toBe(6236);
+        const firstVerse = surahs[0]?.verses[0];
         expect(
-          Struct.keys(surahs[0]?.verses[0]?.translation ?? {}).sort()
+          Arr.sort(Struct.keys(firstVerse?.translation ?? {}), Order.String)
         ).toEqual(["de", "en", "id"]);
-        expect(surahs[0]?.verses[0]?.translation.de).toEqual({
+        expect(firstVerse?.translation.de).toEqual({
           footnotes: "",
           text: "Im Namen Allahs, des Allerbarmers, des Barmherzigen.",
         });
@@ -119,7 +129,7 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
         { concurrency: "unbounded" }
       );
 
-      expect(errors.map(({ detail }) => detail)).toEqual([
+      expect(Arr.map(errors, ({ detail }) => detail)).toEqual([
         "Tanzil Arabic text is incomplete.",
         "Tanzil Arabic text is incomplete.",
       ]);
@@ -150,7 +160,7 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
         );
 
         expect(
-          errors.every(({ detail }) =>
+          Arr.every(errors, ({ detail }) =>
             detail.startsWith("Invalid QuranEnc surah")
           )
         ).toBe(true);
@@ -232,7 +242,7 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
         { concurrency: "unbounded" }
       );
 
-      expect(errors.map(({ detail }) => detail)).toEqual([
+      expect(Arr.map(errors, ({ detail }) => detail)).toEqual([
         "Incomplete QuranEnc tafsir surah 1.",
         "Incomplete QuranEnc tafsir surah 115.",
       ]);
@@ -258,7 +268,8 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
       );
 
       expect(
-        errors.every(
+        Arr.every(
+          errors,
           ({ detail }) => detail === "Invalid QuranEnc tafsir verse 1:1."
         )
       ).toBe(true);

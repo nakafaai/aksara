@@ -17,7 +17,7 @@ import {
   type ProgramSnapshot,
   ProgramSnapshotFactsSchema,
 } from "@nakafa/aksara-contracts/program/snapshot/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
@@ -59,7 +59,7 @@ function programSourceCounts({
     curriculumRowCount,
     programRowCount,
     rowCount: curriculumRowCount + programRowCount,
-    sitemapCount: routes.filter(({ sitemap }) => sitemap).length,
+    sitemapCount: Arr.filter(routes, ({ sitemap }) => sitemap).length,
     slugCount: programRowCount * ACTIVE_APP_LOCALES.length,
   });
 }

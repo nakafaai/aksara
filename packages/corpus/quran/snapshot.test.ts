@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
-import { Effect, Path, Stream } from "effect";
+import { Array as Arr, Effect, Path, Stream } from "effect";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 
 layer(NodeServices.layer)("Quran snapshot preparation", (it) => {
@@ -44,7 +44,8 @@ layer(NodeServices.layer)("Quran snapshot preparation", (it) => {
         );
         expect(rows).toHaveLength(snapshot.manifest.projectionCount);
         expect(
-          rows.every(
+          Arr.every(
+            rows,
             (row) =>
               row.snapshotId === snapshot.manifest.snapshotId &&
               QuranSnapshotRowSchema.make(row).rowHash === row.rowHash

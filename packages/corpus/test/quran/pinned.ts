@@ -1,5 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import {
+  Array as Arr,
   Context,
   Effect,
   FileSystem,
@@ -27,12 +28,13 @@ export class QuranSourceFixture extends Context.Service<
 const pinnedSourcePaths = [
   QURAN_SOURCE_POLICY.data.arabic.path,
   QURAN_SOURCE_POLICY.data.metadata.path,
-  ...Record.values(QURAN_SOURCE_POLICY.data.names).map(({ path }) => path),
-  ...Record.values(QURAN_SOURCE_POLICY.data.translations).map(
+  ...Arr.map(Record.values(QURAN_SOURCE_POLICY.data.names), ({ path }) => path),
+  ...Arr.map(
+    Record.values(QURAN_SOURCE_POLICY.data.translations),
     ({ path }) => path
   ),
-  ...Record.values(QURAN_SOURCE_POLICY.evidence).map(({ path }) => path),
-  ...Record.values(QURAN_SOURCE_POLICY.terms).map(({ path }) => path),
+  ...Arr.map(Record.values(QURAN_SOURCE_POLICY.evidence), ({ path }) => path),
+  ...Arr.map(Record.values(QURAN_SOURCE_POLICY.terms), ({ path }) => path),
   ...Array.from(
     { length: 114 },
     (_, index) => `${QURAN_SOURCE_POLICY.tafsir.directory}/${index + 1}.json`

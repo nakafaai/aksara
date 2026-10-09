@@ -1,4 +1,5 @@
 import {
+  Array as Arr,
   Effect,
   HashSet,
   MutableHashMap,
@@ -49,7 +50,9 @@ const validateCoverage = Effect.fn("AksaraCorpus.validateReadinessCoverage")(
     field: string,
     scope: string
   ) {
-    const allowed = HashSet.fromIterable(requirements.map(({ key }) => key));
+    const allowed = HashSet.fromIterable(
+      Arr.map(requirements, ({ key }) => key)
+    );
     for (const actual of MutableHashMap.keys(actualCounts)) {
       yield* validateReadinessField(
         HashSet.has(allowed, actual) ? "allowed" : actual,
@@ -81,7 +84,8 @@ const validateTopicBlueprints = Effect.fn(
   scope: string
 ) {
   for (const topic of readiness.topics) {
-    for (const blueprint of blueprints.filter(
+    for (const blueprint of Arr.filter(
+      blueprints,
       ({ topic: actual }) => actual === topic.key
     )) {
       yield* validateReadinessField(
@@ -113,7 +117,8 @@ const validateSectionQuestionReadiness = Effect.fn(
   questions: readonly QuestionSource[],
   scope: string
 ) {
-  const selected = questions.filter(
+  const selected = Arr.filter(
+    questions,
     ({ questionNumber, setKey }) =>
       setKey === section.questionSourcePath &&
       questionNumber <= section.questionCount
@@ -124,7 +129,7 @@ const validateSectionQuestionReadiness = Effect.fn(
     "questionInventory",
     scope
   );
-  const blueprints = selected.flatMap(({ item }) =>
+  const blueprints = Arr.flatMap(selected, ({ item }) =>
     item.blueprint === undefined ? [] : [item.blueprint]
   );
   yield* validateReadinessField(
@@ -134,26 +139,27 @@ const validateSectionQuestionReadiness = Effect.fn(
     scope
   );
   yield* validateCoverage(
-    countBy(blueprints.map(({ contentDomain }) => contentDomain)),
+    countBy(Arr.map(blueprints, ({ contentDomain }) => contentDomain)),
     readiness.contentDomains,
     "contentDomain",
     scope
   );
   yield* validateCoverage(
-    countBy(blueprints.map(({ cognitiveLevel }) => cognitiveLevel)),
+    countBy(Arr.map(blueprints, ({ cognitiveLevel }) => cognitiveLevel)),
     readiness.cognitiveLevels,
     "cognitiveLevel",
     scope
   );
   yield* validateCoverage(
-    countBy(blueprints.map(({ topic }) => topic)),
+    countBy(Arr.map(blueprints, ({ topic }) => topic)),
     readiness.topics,
     "topic",
     scope
   );
-  const responseKinds = readiness.responseMinimums.flatMap(({ kind }) =>
-    selected.flatMap(({ item }) =>
-      Struct.keys(item.responses).some(
+  const responseKinds = Arr.flatMap(readiness.responseMinimums, ({ kind }) =>
+    Arr.flatMap(selected, ({ item }) =>
+      Arr.some(
+        Struct.keys(item.responses),
         (key) => item.responses[key]?.kind === kind
       )
         ? [kind]
@@ -168,7 +174,7 @@ const validateSectionQuestionReadiness = Effect.fn(
   );
   yield* validateCoverage(
     countBy(responseKinds),
-    readiness.responseMinimums.map(({ editorialMinimum, kind }) => ({
+    Arr.map(readiness.responseMinimums, ({ editorialMinimum, kind }) => ({
       editorialMinimum,
       key: kind,
     })),
@@ -177,7 +183,7 @@ const validateSectionQuestionReadiness = Effect.fn(
   );
   yield* validateTopicBlueprints(blueprints, readiness, scope);
   const grouped = HashSet.fromIterable(
-    selected.flatMap(({ item }) =>
+    Arr.flatMap(selected, ({ item }) =>
       item.stimulusKey === undefined ? [] : [item.stimulusKey]
     )
   );

@@ -1,6 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
-import { Effect, HashSet, Record as Rec } from "effect";
+import { Array as Arr, Effect, HashSet, Record as Rec } from "effect";
+import type { QuestionSource } from "#corpus/question-bank/source";
 import { realQuestionCorpusLayer } from "#corpus/test/question";
 import {
   hasValidQuestionResponse,
@@ -10,6 +11,33 @@ import {
 import { projectTryoutSources } from "#corpus/tryout/projection";
 
 const COMPULSORY_TRACK = "compulsory-mathematics";
+const COMPULSORY_SET_ONE_PATH = "/tka/compulsory-mathematics/set-1/";
+
+/** Finds one question of the compulsory mathematics set 1 by its number. */
+function compulsoryQuestion(
+  questions: readonly QuestionSource[],
+  number: number
+) {
+  return Effect.fromOption(
+    Arr.findFirst(questions, ({ questionKey }) =>
+      questionKey.includes(`${COMPULSORY_SET_ONE_PATH}question-${number}`)
+    )
+  );
+}
+
+/** Copies one question with its shared stimulus replaced by the given key. */
+function withStimulus(
+  question: QuestionSource,
+  stimulusKey: QuestionSource["item"]["stimulusKey"]
+) {
+  return { ...question, item: { ...question.item, stimulusKey } };
+}
+
+/** Copies one question without its shared stimulus. */
+function withoutStimulus(question: QuestionSource) {
+  const { stimulusKey: _stimulusKey, ...item } = question.item;
+  return { ...question, item };
+}
 
 layer(realQuestionCorpusLayer)("tryout projection", (it) => {
   it.effect(
@@ -18,13 +46,14 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
       Effect.gen(function* () {
         const { projection } = yield* loadTryoutProjectionContent();
         const counts = Rec.fromEntries(
-          ["country", "exam", "track", "set", "section"].map((kind) => [
+          Arr.map(["country", "exam", "track", "set", "section"], (kind) => [
             kind,
-            projection.catalog.filter(({ row }) => row.kind === kind).length,
+            Arr.filter(projection.catalog, ({ row }) => row.kind === kind)
+              .length,
           ])
         );
         const bodyHeads = HashSet.fromIterable(
-          projection.placements.flatMap((row) => [
+          Arr.flatMap(projection.placements, (row) => [
             `${row.questionContentKey}\0${row.appLocale}`,
             `${row.answerContentKey}\0${row.appLocale}`,
           ])
@@ -40,18 +69,15 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
         expect(projection.catalog).toHaveLength(321);
         expect(projection.routeCount).toBe(291);
         expect(projection.placements).toHaveLength(5550);
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              projection.placements.map(
-                ({ questionContentKey }) => questionContentKey
-              )
-            )
-          )
-        ).toBe(1850);
+        const questionKeys = Arr.map(
+          projection.placements,
+          ({ questionContentKey }) => questionContentKey
+        );
+        expect(HashSet.size(HashSet.fromIterable(questionKeys))).toBe(1850);
         expect(HashSet.size(bodyHeads)).toBe(11_100);
         expect(
-          projection.placements.every(
+          Arr.every(
+            projection.placements,
             ({ response, scope }) =>
               scope === "server" && hasValidQuestionResponse(response)
           )
@@ -66,21 +92,25 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
       Effect.gen(function* () {
         const { projection, sources: questions } =
           yield* loadTryoutProjectionContent();
-        const english = projection.placements.filter(({ questionContentKey }) =>
-          questionContentKey.includes("/snbt/literacy-in-english/")
+        const english = Arr.filter(
+          projection.placements,
+          ({ questionContentKey }) =>
+            questionContentKey.includes("/snbt/literacy-in-english/")
         );
-        const placement = yield* Effect.fromNullishOr(
-          english.find(({ appLocale }) => appLocale === "en")
+        const placement = yield* Effect.fromOption(
+          Arr.findFirst(english, ({ appLocale }) => appLocale === "en")
         );
-        const peer = yield* Effect.fromNullishOr(
-          english.find(
+        const peer = yield* Effect.fromOption(
+          Arr.findFirst(
+            english,
             ({ appLocale, questionContentKey }) =>
               appLocale === "id" &&
               questionContentKey === placement.questionContentKey
           )
         );
-        const source = yield* Effect.fromNullishOr(
-          questions.find(
+        const source = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
             ({ questionKey }) =>
               `${questionKey}/question` === placement.questionContentKey
           )
@@ -103,41 +133,49 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const { projection } = yield* loadTryoutProjectionContent();
-        const snbt = projection.placements.filter(
+        const snbt = Arr.filter(
+          projection.placements,
           ({ examKey }) => examKey === "snbt"
         );
-        const tka = projection.placements.filter(
+        const tka = Arr.filter(
+          projection.placements,
           ({ examKey }) => examKey === "tka"
         );
 
         expect(snbt).toHaveLength(4800);
         expect(tka).toHaveLength(750);
         expect(
-          Array.from({ length: 10 }, (_, index) => `set-${index + 1}`).map(
+          Arr.map(
+            Array.from({ length: 10 }, (_, index) => `set-${index + 1}`),
             (setKey) =>
-              snbt.filter(
+              Arr.filter(
+                snbt,
                 ({ appLocale, setKey: placementSetKey }) =>
                   appLocale === "en" && placementSetKey === setKey
               ).length
           )
         ).toEqual(Array.from({ length: 10 }, () => 160));
         expect(
-          [COMPULSORY_TRACK, "indonesian-language", "english-language"].map(
+          Arr.map(
+            [COMPULSORY_TRACK, "indonesian-language", "english-language"],
             (trackKey) =>
-              tka.filter(
+              Arr.filter(
+                tka,
                 ({ appLocale, trackKey: placementTrackKey }) =>
                   appLocale === "en" && placementTrackKey === trackKey
               ).length
           )
         ).toEqual([75, 75, 100]);
-        expect(HashSet.fromIterable(snbt.map(({ setKey }) => setKey))).toEqual(
+        expect(
+          HashSet.fromIterable(Arr.map(snbt, ({ setKey }) => setKey))
+        ).toEqual(
           HashSet.fromIterable(
             Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
           )
         );
-        expect(HashSet.fromIterable(tka.map(({ setKey }) => setKey))).toEqual(
-          HashSet.make("set-1", "set-2", "set-3", "set-4")
-        );
+        expect(
+          HashSet.fromIterable(Arr.map(tka, ({ setKey }) => setKey))
+        ).toEqual(HashSet.make("set-1", "set-2", "set-3", "set-4"));
       }),
     { timeout: 30_000 }
   );
@@ -147,15 +185,15 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        const active = yield* Effect.fromNullishOr(
-          questions.find(({ questionKey }) =>
+        const active = yield* Effect.fromOption(
+          Arr.findFirst(questions, ({ questionKey }) =>
             questionKey.includes("/snbt/general-reasoning/set-1/question-1")
           )
         );
         const activeIndonesianResponse = yield* Effect.fromNullishOr(
           active.item.responses.id
         );
-        const invalidItems = questions.map((question) =>
+        const invalidItems = Arr.map(questions, (question) =>
           question.questionKey === active.questionKey
             ? {
                 ...question,
@@ -170,7 +208,8 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
         const failures = yield* Effect.all([
           projectTryoutSources(
             sources,
-            questions.filter(
+            Arr.filter(
+              questions,
               ({ questionKey }) => questionKey !== active.questionKey
             )
           ).pipe(Effect.flip),
@@ -180,7 +219,7 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
           projectTryoutSources(sources, invalidItems).pipe(Effect.flip),
         ]);
 
-        expect(failures.map(({ _tag }) => _tag)).toEqual([
+        expect(Arr.map(failures, ({ _tag }) => _tag)).toEqual([
           "TryoutQuestionMissingError",
           "TryoutQuestionDuplicateError",
           "TryoutPlacementError",
@@ -194,34 +233,15 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     () =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
-        const groupPath = "/tka/compulsory-mathematics/set-1/";
-        const fifth = yield* Effect.fromNullishOr(
-          questions.find(({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-5`)
-          )
-        );
-        const sixth = yield* Effect.fromNullishOr(
-          questions.find(({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-6`)
-          )
-        );
-        const seventh = yield* Effect.fromNullishOr(
-          questions.find(({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-7`)
-          )
-        );
+        const fifth = yield* compulsoryQuestion(questions, 5);
+        const sixth = yield* compulsoryQuestion(questions, 6);
+        const seventh = yield* compulsoryQuestion(questions, 7);
         const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
-        const withoutSixth = questions.map((question) => {
-          if (question !== sixth) {
-            return question;
-          }
-          const { stimulusKey: _stimulusKey, ...item } = question.item;
-          return { ...question, item };
-        });
-        const noncontiguous = withoutSixth.map((question) =>
-          question === seventh
-            ? { ...question, item: { ...question.item, stimulusKey } }
-            : question
+        const withoutSixth = Arr.map(questions, (question) =>
+          question === sixth ? withoutStimulus(question) : question
+        );
+        const noncontiguous = Arr.map(withoutSixth, (question) =>
+          question === seventh ? withStimulus(question, stimulusKey) : question
         );
         const [isolated, separated] = yield* Effect.all([
           projectTryoutSources(sources, withoutSixth).pipe(Effect.flip),
@@ -240,6 +260,43 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
             stimulusKey,
           }),
         ]);
+      }),
+    { timeout: 30_000 }
+  );
+
+  it.effect.each([
+    ["stationery-bundles", "park-and-pond"],
+    ["park-and-pond", "stationery-bundles"],
+  ] as const)(
+    "reports the earlier invalid shared stimulus with stimulus keys %s",
+    ([fifthKey, seventeenthKey]) =>
+      Effect.gen(function* () {
+        const [sources, questions] = yield* loadTryoutProjectionSources();
+        const fifth = yield* compulsoryQuestion(questions, 5);
+        const sixth = yield* compulsoryQuestion(questions, 6);
+        const seventeenth = yield* compulsoryQuestion(questions, 17);
+        const eighteenth = yield* compulsoryQuestion(questions, 18);
+        const withStimuli = Arr.map(questions, (question) => {
+          if (question === fifth) {
+            return withStimulus(question, fifthKey);
+          }
+          if (question === seventeenth) {
+            return withStimulus(question, seventeenthKey);
+          }
+          return question === sixth || question === eighteenth
+            ? withoutStimulus(question)
+            : question;
+        });
+        const failure = yield* projectTryoutSources(sources, withStimuli).pipe(
+          Effect.flip
+        );
+
+        expect(failure).toMatchObject({
+          _tag: "TryoutStimulusGroupError",
+          questionKey: fifth.questionKey,
+          reason: "isolated",
+          stimulusKey: fifthKey,
+        });
       }),
     { timeout: 30_000 }
   );

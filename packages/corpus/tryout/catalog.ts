@@ -4,7 +4,7 @@ import {
   type AppLocale,
 } from "@nakafa/aksara-contracts/locale";
 import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, MutableHashMap, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
 import { projectTryoutExam } from "#corpus/tryout/exam";
@@ -58,7 +58,7 @@ function uniqueCountries(sources: readonly TryoutExamSource[]) {
   return [
     ...MutableHashMap.values(
       MutableHashMap.fromIterable(
-        sources.map((source): [string, TryoutExamSource] => [
+        Arr.map(sources, (source): [string, TryoutExamSource] => [
           source.countryKey,
           source,
         ])
@@ -87,7 +87,7 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
     );
     const rows = yield* Schema.decodeUnknownEffect(
       Schema.Array(TryoutCatalogRowSchema)
-    )([...countries.flat(), ...exams.flat(2)], {
+    )([...Arr.flatten(countries), ...Arr.flatten(Arr.flatten(exams))], {
       onExcessProperty: "error",
     }).pipe(
       Effect.mapError((cause) => new TryoutCatalogDecodeError({ cause }))

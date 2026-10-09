@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Deferred, Effect, Fiber, Result } from "effect";
+import { Array as Arr, Deferred, Effect, Fiber, Result } from "effect";
 import { TestClock } from "effect/testing";
 
 import {
@@ -105,7 +105,7 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
       );
 
       expect(results).toMatchObject(
-        cases.map(([, , source]) => ({
+        Arr.map(cases, ([, , source]) => ({
           installed: false,
           outcome: { failure: { phase: "integrity", source } },
         }))
@@ -191,7 +191,8 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
         );
 
         expect(
-          failures.every(
+          Arr.every(
+            failures,
             ({ installed, outcome }) =>
               !installed &&
               outcome._tag === "Failure" &&

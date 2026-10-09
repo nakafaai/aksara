@@ -1,5 +1,5 @@
 import { QUESTION_BANK_KEY_ROOT } from "@nakafa/aksara-contracts/question/identity";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
@@ -166,7 +166,7 @@ const snbtTryoutCatalog = defineTryoutExamSource({
       kind: "year",
       order: 1,
       routeSlugs: { de: "2027", en: "2027", id: "2027" },
-      sets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((setNumber) => {
+      sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (setNumber) => {
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,
@@ -176,7 +176,7 @@ const snbtTryoutCatalog = defineTryoutExamSource({
             en: setKey,
             id: setKey,
           },
-          sections: snbtSections.map((section, sectionIndex) => ({
+          sections: Arr.map(snbtSections, (section, sectionIndex) => ({
             ...section,
             order: sectionIndex + 1,
             questionSourcePath: `${QUESTION_ROOT}/${section.key}/${setKey}`,

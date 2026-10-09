@@ -1,5 +1,5 @@
 import { canonicalTryoutMarks } from "@nakafa/aksara-contracts/tryout/spec";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
@@ -48,9 +48,12 @@ export function validateReadinessField(
 export const requireReadinessTrack = Effect.fn(
   "AksaraCorpus.requireReadinessTrack"
 )(function* (source: TryoutExamSource, readiness: AssessmentReadiness) {
-  const track = source.tracks.find(({ key }) => key === readiness.trackKey);
-  if (track !== undefined) {
-    return track;
+  const track = Arr.findFirst(
+    source.tracks,
+    ({ key }) => key === readiness.trackKey
+  );
+  if (Option.isSome(track)) {
+    return track.value;
   }
   return yield* new AssessmentReadinessMismatchError({
     actual: "missing",

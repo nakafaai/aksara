@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
 import {
   PageEntrySchema,
@@ -21,19 +21,19 @@ export const decodePagePreviewEntries = Effect.fn(
   const selected = HashSet.fromIterable(sourcePaths);
   const sources = yield* decodePageSources(input);
   yield* validatePageSources(sources);
-  const projected: unknown[] = [];
-  for (const source of sources) {
-    for (const appLocale of ACTIVE_APP_LOCALES) {
+  const selectedPages = Arr.flatMap(sources, (source) =>
+    Arr.flatMap(ACTIVE_APP_LOCALES, (appLocale) => {
       const localeCode = appLocaleCode(appLocale);
       const expectedPath = CorpusSourcePathSchema.make(
         `packages/corpus/${source.sourceRoot}/${localeCode}.mdx`
       );
-      if (!HashSet.has(selected, expectedPath)) {
-        continue;
-      }
-      projected.push(yield* projectPage(source, appLocale));
-    }
-  }
+      return HashSet.has(selected, expectedPath) ? [{ appLocale, source }] : [];
+    })
+  );
+  const projected = yield* Effect.forEach(
+    selectedPages,
+    ({ source, appLocale }) => projectPage(source, appLocale)
+  );
   const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(PageEntrySchema)
   )(projected, { onExcessProperty: "error" }).pipe(

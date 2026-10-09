@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -82,21 +83,26 @@ layer(NodeServices.layer)("material source", (it) => {
 
         expect(sources).toHaveLength(36);
         expect(
-          sources.reduce((count, source) => count + source.sections.length, 0)
+          Arr.reduce(
+            sources,
+            0,
+            (count, source) => count + source.sections.length
+          )
         ).toBe(383);
         expect(
-          HashSet.size(HashSet.fromIterable(sources.map(({ key }) => key)))
+          HashSet.size(HashSet.fromIterable(Arr.map(sources, ({ key }) => key)))
         ).toBe(36);
         expect(
           HashSet.size(
-            HashSet.fromIterable(sources.map(({ assetRoot }) => assetRoot))
+            HashSet.fromIterable(Arr.map(sources, ({ assetRoot }) => assetRoot))
           )
         ).toBe(36);
 
-        const sectionsWithEvidence = sources.flatMap(({ sections }) =>
-          sections.filter(({ evidenceUrls }) => evidenceUrls !== undefined)
+        const sectionsWithEvidence = Arr.flatMap(sources, ({ sections }) =>
+          Arr.filter(sections, ({ evidenceUrls }) => evidenceUrls !== undefined)
         );
-        const catalogEvidenceUrls = sectionsWithEvidence.flatMap(
+        const catalogEvidenceUrls = Arr.flatMap(
+          sectionsWithEvidence,
           ({ evidenceUrls }) => evidenceUrls ?? []
         );
         expect(sectionsWithEvidence.length).toBeGreaterThan(0);
@@ -104,7 +110,8 @@ layer(NodeServices.layer)("material source", (it) => {
           sectionsWithEvidence.length
         );
         expect(
-          sectionsWithEvidence.every(
+          Arr.every(
+            sectionsWithEvidence,
             ({ evidenceUrls }) =>
               evidenceUrls !== undefined &&
               HashSet.size(HashSet.fromIterable(evidenceUrls)) ===
@@ -113,7 +120,9 @@ layer(NodeServices.layer)("material source", (it) => {
         ).toBe(true);
 
         const entries = yield* decodeMaterialRegistry();
-        expect(entries.some((entry) => "evidenceUrls" in entry)).toBe(false);
+        expect(Arr.some(entries, (entry) => "evidenceUrls" in entry)).toBe(
+          false
+        );
       })
   );
 
@@ -135,11 +144,12 @@ layer(NodeServices.layer)("material source", (it) => {
         const documents = yield* readSources(entries, sourceByPath);
 
         expect(documents).toHaveLength(1149);
-        expect(documents.map(({ sourcePath }) => sourcePath)).toEqual(
-          entries.map(({ sourcePath }) => sourcePath)
+        expect(Arr.map(documents, ({ sourcePath }) => sourcePath)).toEqual(
+          Arr.map(entries, ({ sourcePath }) => sourcePath)
         );
         expect(
-          documents.every(
+          Arr.every(
+            documents,
             ({ rawMdx, sourcePath }) =>
               rawMdx ===
               Option.getOrUndefined(
@@ -147,7 +157,9 @@ layer(NodeServices.layer)("material source", (it) => {
               )
           )
         ).toBe(true);
-        expect(documents.every(({ rawMdx }) => rawMdx.length > 0)).toBe(true);
+        expect(Arr.every(documents, ({ rawMdx }) => rawMdx.length > 0)).toBe(
+          true
+        );
       })
   );
 

@@ -5,7 +5,14 @@ import {
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, HashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 
 /** A material route has no complete subject or course presentation context. */
 export class CurriculumContextError extends Schema.TaggedError<CurriculumContextError>()(
@@ -43,15 +50,15 @@ function findMaterialContext(
 export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
   function* (routes: readonly CurriculumRouteDraft[]) {
     const routeByPath = HashMap.fromIterable(
-      routes.map((route): [string, CurriculumRouteDraft] => [
+      Arr.map(routes, (route): [string, CurriculumRouteDraft] => [
         `${route.programKey}\0${route.appLocale}\0${route.publicPath}`,
         route,
       ])
     );
-    const contextualRoutes: CurriculumRoute[] = [];
+    const contextualRoutes = MutableList.make<CurriculumRoute>();
     for (const route of routes) {
       if (!route.materialKey) {
-        contextualRoutes.push(route);
+        MutableList.append(contextualRoutes, route);
         continue;
       }
       const context = findMaterialContext(route, routeByPath);
@@ -61,7 +68,8 @@ export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
           programKey: route.programKey,
         });
       }
-      contextualRoutes.push(
+      MutableList.append(
+        contextualRoutes,
         CurriculumRouteSchema.make({
           ...route,
           materialContextNodeKey: CurriculumNodeKeySchema.make(
@@ -72,6 +80,6 @@ export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
         })
       );
     }
-    return contextualRoutes;
+    return MutableList.toArray(contextualRoutes);
   }
 );

@@ -4,7 +4,7 @@ import {
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import { mokhtasarCatalog } from "#corpus/quran/catalog/mokhtasar";
 import {
   type QuranCatalogEntry,
@@ -20,7 +20,7 @@ function replace(
   sourceId: QuranCatalogEntry["attribution"]["id"],
   replacement: QuranCatalogEntry
 ) {
-  return quranCatalog.map((entry) =>
+  return Arr.map(quranCatalog, (entry) =>
     entry.attribution.id === sourceId ? replacement : entry
   );
 }
@@ -38,9 +38,9 @@ describe("Quran source catalog", () => {
         });
 
         expect(attribution.sources).toHaveLength(10);
-        expect(attribution.sources.every(({ copy }) => copy.length === 3)).toBe(
-          true
-        );
+        expect(
+          Arr.every(attribution.sources, ({ copy }) => copy.length === 3)
+        ).toBe(true);
         expect(attribution.tafsirAccess).toMatchObject([
           {
             appLocale: "en",
@@ -64,12 +64,14 @@ describe("Quran source catalog", () => {
     () =>
       Effect.gen(function* () {
         const attribution = yield* quranAttributionRowFor(ACTIVE_APP_LOCALES);
-        const external = attribution.sources.filter(
+        const external = Arr.filter(
+          attribution.sources,
           ({ kind }) => kind === "external"
         );
 
         expect(
-          mokhtasarCatalog.editions.map(
+          Arr.map(
+            mokhtasarCatalog.editions,
             ({ appLocale, bookId, completed, version }) => ({
               appLocale,
               bookId,
@@ -84,13 +86,19 @@ describe("Quran source catalog", () => {
         ]);
         expect(external).toHaveLength(2);
         expect(
-          external.every(
+          Arr.every(
+            external,
             (source) =>
               !("artifact" in source) && source.terms.access === "link-only"
           )
         ).toBe(true);
         expect(
-          attribution.tafsirAccess.find(({ appLocale }) => appLocale === "id")
+          Option.getOrUndefined(
+            Arr.findFirst(
+              attribution.tafsirAccess,
+              ({ appLocale }) => appLocale === "id"
+            )
+          )
         ).toMatchObject({ kind: "embedded", sourceId: "quranenc-tafsir" });
       })
   );
@@ -102,7 +110,7 @@ describe("Quran source catalog", () => {
       ]);
       const attribution = yield* quranAttributionRowFor(selected);
 
-      expect(attribution.sources.map(({ id }) => id)).toEqual([
+      expect(Arr.map(attribution.sources, ({ id }) => id)).toEqual([
         "tanzil-text",
         "tanzil-metadata",
         "bubenheim-names",
@@ -119,8 +127,9 @@ describe("Quran source catalog", () => {
     "fails typed when catalog source and copy ownership are not exact",
     () =>
       Effect.gen(function* () {
-        const german = yield* Effect.fromNullishOr(
-          quranCatalog.find(
+        const german = yield* Effect.fromOption(
+          Arr.findFirst(
+            quranCatalog,
             ({ attribution }) => attribution.id === "quranenc-german"
           )
         );
@@ -140,7 +149,8 @@ describe("Quran source catalog", () => {
           [
             quranAttributionRowFor(
               ACTIVE_APP_LOCALES,
-              quranCatalog.filter(
+              Arr.filter(
+                quranCatalog,
                 ({ attribution }) => attribution.id !== "quranenc-german"
               )
             ).pipe(Effect.flip),
@@ -160,7 +170,7 @@ describe("Quran source catalog", () => {
           { concurrency: "unbounded" }
         );
 
-        expect(failures.map(({ reason }) => reason)).toEqual([
+        expect(Arr.map(failures, ({ reason }) => reason)).toEqual([
           "missing-source",
           "duplicate-source",
           "missing-copy",
@@ -171,22 +181,28 @@ describe("Quran source catalog", () => {
 
   it.effect("fails typed when Tafsir access or provenance is not exact", () =>
     Effect.gen(function* () {
-      const tafsir = yield* Effect.fromNullishOr(
-        quranCatalog.find(
+      const tafsir = yield* Effect.fromOption(
+        Arr.findFirst(
+          quranCatalog,
           ({ attribution }) => attribution.id === "quranenc-tafsir"
         )
       );
       const tafsirAccess = yield* Effect.fromNullishOr(tafsir.tafsirAccess);
-      const text = yield* Effect.fromNullishOr(
-        quranCatalog.find(({ attribution }) => attribution.id === "tanzil-text")
+      const text = yield* Effect.fromOption(
+        Arr.findFirst(
+          quranCatalog,
+          ({ attribution }) => attribution.id === "tanzil-text"
+        )
       );
-      const german = yield* Effect.fromNullishOr(
-        quranCatalog.find(
+      const german = yield* Effect.fromOption(
+        Arr.findFirst(
+          quranCatalog,
           ({ attribution }) => attribution.id === "quranenc-german"
         )
       );
-      const english = yield* Effect.fromNullishOr(
-        quranCatalog.find(
+      const english = yield* Effect.fromOption(
+        Arr.findFirst(
+          quranCatalog,
           ({ attribution }) => attribution.id === "quranenc-english"
         )
       );
@@ -194,7 +210,8 @@ describe("Quran source catalog", () => {
         attribution: tafsir.attribution,
         provenance: tafsir.provenance,
       } satisfies QuranCatalogEntry;
-      const withoutProvenance = quranCatalog.filter(
+      const withoutProvenance = Arr.filter(
+        quranCatalog,
         ({ attribution }) => attribution.id !== "quranenc-tafsir"
       );
       const duplicateAccess = replace("tanzil-text", {
@@ -205,7 +222,7 @@ describe("Quran source catalog", () => {
         ...german,
         provenance: [...german.provenance, ...tafsir.provenance],
       });
-      const mismatchedProvenance = quranCatalog.map((entry) => {
+      const mismatchedProvenance = Arr.map(quranCatalog, (entry) => {
         if (entry.attribution.id === "quranenc-english") {
           return { ...english, provenance: german.provenance };
         }
@@ -238,7 +255,7 @@ describe("Quran source catalog", () => {
         { concurrency: "unbounded" }
       );
 
-      expect(failures.map(({ reason }) => reason)).toEqual([
+      expect(Arr.map(failures, ({ reason }) => reason)).toEqual([
         "missing-access",
         "duplicate-access",
         "missing-provenance",

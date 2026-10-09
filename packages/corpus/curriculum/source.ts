@@ -1,6 +1,5 @@
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
-import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Order, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -34,8 +33,12 @@ export const validateCurriculumCatalog = Effect.fn(
     }
     MutableHashSet.add(programKeys, curriculum.programKey);
   }
-  return [...curricula].sort((left, right) =>
-    compareCodeUnits(left.programKey, right.programKey)
+  return Arr.sort(
+    curricula,
+    Order.mapInput(
+      Order.String,
+      (curriculum: CurriculumSource) => curriculum.programKey
+    )
   );
 });
 

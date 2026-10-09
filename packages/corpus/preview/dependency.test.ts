@@ -5,6 +5,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -137,7 +138,8 @@ layer(NodeServices.layer)("source dependencies", (it) => {
           ])
         );
         expect(
-          material.some(
+          Arr.some(
+            material,
             (path) =>
               path.includes("/ai-programming/") && !path.endsWith("source.ts")
           )
@@ -246,7 +248,7 @@ layer(NodeServices.layer)("source dependencies", (it) => {
         ]);
 
         expect(
-          failures.map((failure) =>
+          Arr.map(failures, (failure) =>
             Schema.is(SourceDependencyError)(failure)
               ? failure.reason
               : failure._tag

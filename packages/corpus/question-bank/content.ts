@@ -1,4 +1,3 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   type CorpusSourcePath,
@@ -26,6 +25,7 @@ import {
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Path, Schema, Struct } from "effect";
+import { contentHeadOrder } from "#corpus/locale/source";
 import {
   decodeQuestionDocumentPath,
   decodeQuestionPath,
@@ -153,23 +153,24 @@ export function questionContentForEntry(
 
 /** Projects discovered question sources into the canonical body registry. */
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
-  return sources
-    .flatMap((source) => {
-      const answers = ACTIVE_APP_LOCALES.map((appLocale) =>
+  return Arr.sort(
+    Arr.flatMap(sources, (source) => {
+      const answers = Arr.map(ACTIVE_APP_LOCALES, (appLocale) =>
         projectQuestionEntry(
           source,
           "answer",
           ArtifactLocaleSchema.make(appLocale)
         )
       );
-      const prompts = questionArtifactLocalesForPolicy(
-        source.languagePolicy
-      ).map((artifactLocale) =>
-        projectQuestionEntry(source, "question", artifactLocale)
+      const prompts = Arr.map(
+        questionArtifactLocalesForPolicy(source.languagePolicy),
+        (artifactLocale) =>
+          projectQuestionEntry(source, "question", artifactLocale)
       );
       return [...answers, ...prompts];
-    })
-    .sort(compareContentHeads);
+    }),
+    contentHeadOrder
+  );
 }
 
 /** Discovers every unique question once and returns its canonical body registry. */

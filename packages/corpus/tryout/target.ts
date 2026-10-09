@@ -6,7 +6,7 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { TryoutPreviewTargetSchema } from "@nakafa/aksara-contracts/preview/target";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { QuestionEntry } from "#corpus/question-bank/content";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { makeTryoutPlacement } from "#corpus/tryout/placement";
@@ -58,10 +58,10 @@ function placementContexts(
   sources: readonly TryoutExamSource[],
   entry: QuestionEntry
 ) {
-  return sources.flatMap((source) =>
-    source.tracks.flatMap((track) =>
-      track.sets.flatMap((set) =>
-        set.sections.flatMap((section) =>
+  return Arr.flatMap(sources, (source) =>
+    Arr.flatMap(source.tracks, (track) =>
+      Arr.flatMap(track.sets, (set) =>
+        Arr.flatMap(set.sections, (section) =>
           section.questionSourcePath === entry.setKey
             ? [{ section, set, source, track }]
             : []
@@ -80,7 +80,7 @@ const selectCatalogRow = Effect.fn("AksaraCorpus.selectTryoutCatalogRow")(
     sourcePath: CorpusSourcePath
   ) {
     return yield* selectOne(
-      rows.filter((row) => {
+      Arr.filter(rows, (row) => {
         if (
           row.kind !== rowKind ||
           row.countryKey !== placement.countryKey ||
@@ -133,7 +133,7 @@ export const selectTryoutTarget = Effect.fn("AksaraCorpus.selectTryoutTarget")(
         sourcePath: entry.sourcePath,
       });
     }
-    if (!rows.some((row) => row.appLocale === appLocale)) {
+    if (!Arr.some(rows, (row) => row.appLocale === appLocale)) {
       return yield* new TryoutTargetError({
         count: 0,
         rowKind: "target",

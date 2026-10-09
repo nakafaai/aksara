@@ -7,7 +7,7 @@ import {
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
@@ -180,14 +180,11 @@ export function materialNode(
 function flattenCurriculumTree(
   nodes: readonly CurriculumTreeNode[]
 ): CurriculumTreeNode[] {
-  const flattened: CurriculumTreeNode[] = [];
-  for (const node of nodes) {
-    flattened.push(node);
-    if ("children" in node && node.children) {
-      flattened.push(...flattenCurriculumTree(node.children));
-    }
-  }
-  return flattened;
+  return Arr.flatMap(nodes, (node) =>
+    "children" in node && node.children
+      ? [node, ...flattenCurriculumTree(node.children)]
+      : [node]
+  );
 }
 
 /** Strictly decodes one authored curriculum and rejects duplicate node keys. */

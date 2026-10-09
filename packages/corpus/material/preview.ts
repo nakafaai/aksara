@@ -1,6 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, MutableList, Schema } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
@@ -27,20 +27,21 @@ export const decodeMaterialPreviewEntries = Effect.fn(
   const descriptors = domainDescriptors ?? (yield* decodeMaterialDomains());
   const sources = yield* decodeMaterialSources(input);
   const bindings = yield* validateMaterialSources(sources, descriptors);
-  const projected: unknown[] = [];
+  const projected = MutableList.make<unknown>();
   for (const binding of bindings) {
     for (const appLocale of ACTIVE_APP_LOCALES) {
       const selectedSections = HashSet.fromIterable(
-        binding.source.sections
-          .filter((section) =>
+        Arr.map(
+          Arr.filter(binding.source.sections, (section) =>
             HashSet.has(
               selected,
               CorpusSourcePathSchema.make(
                 `packages/corpus/${binding.source.assetRoot}/${section.slug}/${appLocaleCode(appLocale)}.mdx`
               )
             )
-          )
-          .map(({ slug }) => slug)
+          ),
+          ({ slug }) => slug
+        )
       );
       if (HashSet.size(selectedSections) === 0) {
         continue;
@@ -49,7 +50,8 @@ export const decodeMaterialPreviewEntries = Effect.fn(
         if (!HashSet.has(selectedSections, section.slug)) {
           continue;
         }
-        projected.push(
+        MutableList.append(
+          projected,
           yield* projectMaterial(binding, section, sectionIndex, appLocale)
         );
       }
@@ -57,7 +59,7 @@ export const decodeMaterialPreviewEntries = Effect.fn(
   }
   const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(MaterialEntrySchema)
-  )(projected, { onExcessProperty: "error" }).pipe(
+  )(MutableList.toArray(projected), { onExcessProperty: "error" }).pipe(
     Effect.mapError((cause) => new MaterialRegistryError({ cause }))
   );
   return yield* validateMaterialEntries(entries);

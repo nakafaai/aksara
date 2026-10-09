@@ -8,7 +8,14 @@ import {
 } from "@nakafa/aksara-contracts/material/domain";
 import { ProgramNavigationIconKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Schema,
+} from "effect";
 import {
   localizedSourceMapSchema,
   sourceLocaleValue,
@@ -138,11 +145,14 @@ export const requireMaterialDomain = Effect.fn(
   key: MaterialDomain,
   owner: string
 ) {
-  const descriptor = descriptors.find((candidate) => candidate.key === key);
-  if (!descriptor) {
+  const descriptor = Arr.findFirst(
+    descriptors,
+    (candidate) => candidate.key === key
+  );
+  if (Option.isNone(descriptor)) {
     return yield* new MaterialDomainMissingError({ key, owner });
   }
-  return descriptor;
+  return descriptor.value;
 });
 
 /** Reads one descriptor's localized public route segment. */

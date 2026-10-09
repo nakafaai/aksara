@@ -2,7 +2,16 @@ import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
-import { Effect, FileSystem, HashSet, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashSet,
+  Option,
+  Order,
+  Path,
+  pipe,
+} from "effect";
 import {
   loadQuestionContent,
   loadSelectedQuestionContent,
@@ -27,36 +36,28 @@ const readingSetKey =
   "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1";
 const readingQuestionKey = `${readingSetKey}/question-1`;
 const readingSourceRoot = `packages/corpus/${readingQuestionKey}`;
+const literacyQuestionKey =
+  "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1";
+const OVERSIZED_SET_NUMBER = "9".repeat(440);
 
 /** Builds one synthetic question registry Effect without hiding its error type. */
-function registry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
+function registry(...arguments_: Parameters<typeof makeQuestionRegistryLayer>) {
   return Effect.all([corpusRoot, realTryoutSources]).pipe(
     Effect.flatMap(([root, tryoutSources]) =>
       loadQuestionContent(root, tryoutSources)
     ),
-    Effect.provide(makeQuestionRegistryLayer(discoveredEntries, items))
+    Effect.provide(makeQuestionRegistryLayer(...arguments_))
   );
 }
 
 /** Projects one synthetic question registry without leaving Effect. */
-function questionRegistry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
-  return registry(discoveredEntries, items).pipe(
-    Effect.map(({ entries }) => entries)
-  );
+function questionRegistry(...arguments_: Parameters<typeof registry>) {
+  return registry(...arguments_).pipe(Effect.map(({ entries }) => entries));
 }
 
 /** Returns one typed registry rejection for native Effect composition. */
-function rejectRegistry(
-  discoveredEntries: readonly string[],
-  items: Iterable<readonly [string, string]>
-) {
-  return questionRegistry(discoveredEntries, items).pipe(Effect.flip);
+function rejectRegistry(...arguments_: Parameters<typeof questionRegistry>) {
+  return questionRegistry(...arguments_).pipe(Effect.flip);
 }
 
 layer(realQuestionCorpusLayer)("question registry", (it) => {
@@ -69,58 +70,61 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
           yield* realQuestionEntries,
           yield* realQuestionItems
         );
-        const authoredPaths = (yield* fileSystem.glob(
+        const globbed = yield* fileSystem.glob(
           "packages/corpus/question-bank/tryout/indonesia/**/*.mdx",
           { root: yield* corpusRoot }
-        ))
-          .filter((sourcePath) =>
-            ACTIVE_APP_LOCALES.some((locale) =>
+        );
+        const authoredPaths = Arr.sort(
+          Arr.filter(globbed, (sourcePath) =>
+            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
               sourcePath.endsWith(`.${locale}.mdx`)
             )
-          )
-          .sort();
-        const projectedPaths = entries
-          .map(({ sourcePath }) => sourcePath)
-          .sort();
+          ),
+          Order.String
+        );
+        const projectedPaths = Arr.sort(
+          Arr.map(entries, ({ sourcePath }) => sourcePath),
+          Order.String
+        );
 
         expect(entries).toHaveLength(7400);
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(
-              entries.map(
-                ({ artifactLocale, contentKey }) =>
-                  `${contentKey}\0${artifactLocale}`
-              )
-            )
-          )
-        ).toBe(7400);
+        const compositeKeys = Arr.map(
+          entries,
+          ({ artifactLocale, contentKey }) => `${contentKey}\0${artifactLocale}`
+        );
+        expect(HashSet.size(HashSet.fromIterable(compositeKeys))).toBe(7400);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
-          ["authenticated", "entitled"].map(
+          Arr.map(
+            ["authenticated", "entitled"],
             (delivery) =>
-              entries.filter((entry) => entry.delivery === delivery).length
+              Arr.filter(entries, (entry) => entry.delivery === delivery).length
           )
         ).toEqual([1850, 5550]);
         expect(
-          ["en", "id", "de"].map(
+          Arr.map(
+            ["en", "id", "de"],
             (locale) =>
-              entries.filter((entry) => entry.artifactLocale === locale).length
+              Arr.filter(entries, (entry) => entry.artifactLocale === locale)
+                .length
           )
         ).toEqual([2150, 3400, 1850]);
         expect(
-          [
-            "snbt-general",
-            "snbt-math",
-            "snbt-plain",
-            "snbt-quant",
-            "tka-math",
-          ].map(
+          Arr.map(
+            [
+              "snbt-general",
+              "snbt-math",
+              "snbt-plain",
+              "snbt-quant",
+              "tka-math",
+            ],
             (domain) =>
-              entries.filter((entry) => entry.rendererDomain === domain).length
+              Arr.filter(entries, (entry) => entry.rendererDomain === domain)
+                .length
           )
         ).toEqual([1200, 800, 4300, 800, 300]);
         expect(
-          entries.some(({ contentKey }) =>
+          Arr.some(entries, ({ contentKey }) =>
             contentKey.includes("snbt/general-reasoning/set-10/")
           )
         ).toBe(true);
@@ -138,11 +142,10 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
           readDirectory: vi.fn(fileSystem.readDirectory),
           readFileString: vi.fn(fileSystem.readFileString),
         };
-        const keys = [
-          readingQuestionKey,
-          readingQuestionKey,
-          "question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1",
-        ].map((key) => QuestionKeySchema.make(key));
+        const keys = Arr.map(
+          [readingQuestionKey, readingQuestionKey, literacyQuestionKey],
+          (key) => QuestionKeySchema.make(key)
+        );
         const { entries, sources } = yield* loadSelectedQuestionContent(
           yield* corpusRoot,
           yield* realTryoutSources,
@@ -152,16 +155,17 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         expect(observed.readFileString).toHaveBeenCalledTimes(2);
         expect(sources).toHaveLength(2);
         expect(entries).toHaveLength(8);
-        const question = entries.find(
-          ({ artifactLocale, contentKey }) =>
-            contentKey === `${readingQuestionKey}/question` &&
-            artifactLocale === "id"
-        );
-        const answer = entries.find(
-          ({ artifactLocale, contentKey }) =>
-            contentKey === `${readingQuestionKey}/answer` &&
-            artifactLocale === "id"
-        );
+        /** Finds the Indonesian body of one content key in the registry entries. */
+        const indonesianBody = (contentKey: string) =>
+          Option.getOrUndefined(
+            Arr.findFirst(
+              entries,
+              (entry) =>
+                entry.contentKey === contentKey && entry.artifactLocale === "id"
+            )
+          );
+        const question = indonesianBody(`${readingQuestionKey}/question`);
+        const answer = indonesianBody(`${readingQuestionKey}/answer`);
 
         expect(question).toEqual({
           artifactLocale: "id",
@@ -205,10 +209,9 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
       );
 
       expect(selected.selected.sourcePath).toBe(answer);
-      expect(selected.entries.map(({ sourcePath }) => sourcePath)).toEqual([
-        prompt,
-        answer,
-      ]);
+      expect(Arr.map(selected.entries, ({ sourcePath }) => sourcePath)).toEqual(
+        [prompt, answer]
+      );
     })
   );
 
@@ -220,14 +223,16 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
         const root = yield* corpusRoot;
         const tryoutSources = yield* realTryoutSources;
         const content = yield* loadQuestionContent(root, tryoutSources);
-        const entry = yield* Effect.fromNullishOr(
-          content.entries.find(
+        const entry = yield* Effect.fromOption(
+          Arr.findFirst(
+            content.entries,
             ({ bodyKind, sourcePath }) =>
               bodyKind === "question" && sourcePath.endsWith("question.en.mdx")
           )
         );
-        const source = yield* Effect.fromNullishOr(
-          content.sources.find(
+        const source = yield* Effect.fromOption(
+          Arr.findFirst(
+            content.sources,
             ({ sourceRoot }) => sourceRoot === entry.sourceRoot
           )
         );
@@ -257,9 +262,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
 
   it.effect("rejects an oversized physical identity before projection", () =>
     Effect.gen(function* () {
-      const root = `indonesia/snbt/general-reasoning/set-${"9".repeat(
-        440
-      )}/question-1`;
+      const root = `indonesia/snbt/general-reasoning/set-${OVERSIZED_SET_NUMBER}/question-1`;
       const error = yield* rejectRegistry(
         questionEntries(root, generalQuestionSourceFiles),
         yield* itemForQuestion(root)
@@ -285,17 +288,16 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
       Effect.gen(function* () {
         const root = "indonesia/snbt/general-reasoning/set-1/question-1";
         const content = yield* registry(
-          [
-            root,
-            ...generalQuestionSourceFiles.map((file) => `${root}/${file}`),
-          ],
+          questionEntries(root, generalQuestionSourceFiles),
           yield* itemForQuestion(root)
         );
 
         expect(
-          content.entries
-            .filter(({ artifactLocale }) => artifactLocale === "de")
-            .map(({ sourcePath }) => sourcePath)
+          pipe(
+            content.entries,
+            Arr.filter(({ artifactLocale }) => artifactLocale === "de"),
+            Arr.map(({ sourcePath }) => sourcePath)
+          )
         ).toEqual([`${questionTestSourceRoot}/${root}/answer.de.mdx`]);
       })
   );

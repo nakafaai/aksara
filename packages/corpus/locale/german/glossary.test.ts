@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Order } from "effect";
 
 import {
   decodeGermanGlossary,
@@ -13,11 +13,14 @@ describe("German terminology glossary", () => {
       const glossary = yield* decodeGermanGlossary();
 
       expect(glossary.length).toBeGreaterThan(60);
-      expect(glossary.map(({ key }) => key)).toEqual(
-        [...glossary.map(({ key }) => key)].sort()
+      expect(Arr.map(glossary, ({ key }) => key)).toEqual(
+        Arr.sort(
+          Arr.map(glossary, ({ key }) => key),
+          Order.String
+        )
       );
       expect(
-        glossary.every(({ sourceUrl }) => sourceUrl.startsWith("https://"))
+        Arr.every(glossary, ({ sourceUrl }) => sourceUrl.startsWith("https://"))
       ).toBe(true);
     })
   );

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
 import {
@@ -17,8 +17,11 @@ function requireTranslation(
   },
   appLocale: string
 ) {
-  return Effect.fromNullishOr(
-    row.translations.find((candidate) => candidate.appLocale === appLocale)
+  return Effect.fromOption(
+    Arr.findFirst(
+      row.translations,
+      (candidate) => candidate.appLocale === appLocale
+    )
   );
 }
 
@@ -37,8 +40,11 @@ describe("program snapshot preparation", () => {
         sitemapCount: 78,
         slugCount: 18,
       });
-      const programRows = rows.filter((row) => row.kind === "program");
-      const curriculumRows = rows.filter((row) => row.kind === "curriculum");
+      const programRows = Arr.filter(rows, (row) => row.kind === "program");
+      const curriculumRows = Arr.filter(
+        rows,
+        (row) => row.kind === "curriculum"
+      );
       const localizedPrograms = yield* Effect.forEach(programRows, ({ row }) =>
         Effect.gen(function* () {
           const [german, english, indonesian] = yield* Effect.all([

@@ -1,7 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 import {
   QuestionReadError,
   type QuestionSource,
@@ -23,14 +23,17 @@ export const readQuestionPrompts = Effect.fn(
 )(function* (corpusRoot: string, sources: readonly QuestionSource[]) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
-  const prompts = sources.flatMap((source) =>
-    questionArtifactLocalesForPolicy(source.languagePolicy).map((locale) => ({
-      locale,
-      path: CorpusSourcePathSchema.make(
-        `${source.sourceRoot}/question.${locale}.mdx`
-      ),
-      source,
-    }))
+  const prompts = Arr.flatMap(sources, (source) =>
+    Arr.map(
+      questionArtifactLocalesForPolicy(source.languagePolicy),
+      (locale) => ({
+        locale,
+        path: CorpusSourcePathSchema.make(
+          `${source.sourceRoot}/question.${locale}.mdx`
+        ),
+        source,
+      })
+    )
   );
   return yield* Effect.forEach(
     prompts,

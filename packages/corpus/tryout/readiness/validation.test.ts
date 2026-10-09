@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
@@ -127,7 +127,7 @@ const MARKS_FACT = '{"blank":0,"correct":4,"wrong":-1}';
 /** Builds the fixture exam as a penalized source with uniform section marks. */
 function penalizedSource(value: typeof marks) {
   const [track] = sourceInput.tracks;
-  const markedSections = sections.map((section) => ({
+  const markedSections = Arr.map(sections, (section) => ({
     ...section,
     marks: value,
   }));
@@ -287,7 +287,11 @@ describe("assessment source readiness validation", () => {
         yield* validateAssessmentSourceReadiness(penalized, readiness)
       ).toBe(penalized);
       expect(
-        failures.map(({ actual, expected, field }) => [field, actual, expected])
+        Arr.map(failures, ({ actual, expected, field }) => [
+          field,
+          actual,
+          expected,
+        ])
       ).toEqual([
         ["marks", '{"blank":0,"correct":3,"wrong":-1}', MARKS_FACT],
         ["marks", "none", MARKS_FACT],

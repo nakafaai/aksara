@@ -1,4 +1,11 @@
-import { Effect, HashMap, MutableHashMap, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableHashMap,
+  MutableList,
+  Option,
+} from "effect";
 
 import { readQuranSurahNames } from "#corpus/quran/names";
 import { quranGenerationFailure } from "#corpus/quran/source/error";
@@ -18,7 +25,8 @@ function attribute(row: string, name: string) {
 
 /** Lists all exact self-closing XML rows for one Tanzil metadata tag. */
 function xmlRows(source: string, tag: string) {
-  return [...source.matchAll(new RegExp(`<${tag} [^>]+/>`, "g"))].map(
+  return Arr.map(
+    [...source.matchAll(new RegExp(`<${tag} [^>]+/>`, "g"))],
     ([row]) => row
   );
 }
@@ -42,7 +50,7 @@ const parseMarkers = Effect.fn("AksaraCorpus.parseQuranMarkers")(function* (
   tag: string,
   surahs: readonly SurahMetadata[]
 ) {
-  const markers: Marker[] = [];
+  const markerRows = MutableList.make<Marker>();
   for (const row of xmlRows(source, tag)) {
     const index = Number(attribute(row, "index"));
     const surah = Number(attribute(row, "sura"));
@@ -53,8 +61,9 @@ const parseMarkers = Effect.fn("AksaraCorpus.parseQuranMarkers")(function* (
         `Invalid Tanzil ${tag} marker: ${row}`
       );
     }
-    markers.push({ index, position });
+    MutableList.append(markerRows, { index, position });
   }
+  const markers = MutableList.toArray(markerRows);
   if (markers.length === 0 || markers[0]?.position !== 1) {
     return yield* quranGenerationFailure(`Missing first Tanzil ${tag} marker.`);
   }
@@ -65,7 +74,7 @@ const parseMarkers = Effect.fn("AksaraCorpus.parseQuranMarkers")(function* (
 export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
   function* (source: string) {
     const localizedNames = yield* readQuranSurahNames();
-    const surahs: SurahMetadata[] = [];
+    const surahRows = MutableList.make<SurahMetadata>();
     for (const row of xmlRows(source, "sura")) {
       const name = attribute(row, "name");
       const meaning = attribute(row, "ename");
@@ -81,13 +90,13 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       if (
         !(name && meaning && transliteration && localizedName) ||
         (place !== "Meccan" && place !== "Medinan") ||
-        ![number, numberOfVerses, order, start].every(Number.isInteger)
+        !Arr.every([number, numberOfVerses, order, start], Number.isInteger)
       ) {
         return yield* quranGenerationFailure(
           `Invalid Tanzil surah metadata: ${row}`
         );
       }
-      surahs.push({
+      MutableList.append<SurahMetadata>(surahRows, {
         name: {
           arabic: name,
           meaning: { de: localizedName.de, en: meaning, id: localizedName.id },
@@ -99,12 +108,14 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
         start,
       });
     }
+    const surahs = MutableList.toArray(surahRows);
     if (
       surahs.length !== EXPECTED_SURAHS ||
-      surahs.some(({ number }, index) => number !== index + 1) ||
-      surahs.reduce(
-        (count, { numberOfVerses }) => count + numberOfVerses,
-        0
+      Arr.some(surahs, ({ number }, index) => number !== index + 1) ||
+      Arr.reduce(
+        surahs,
+        0,
+        (count, { numberOfVerses }) => count + numberOfVerses
       ) !== EXPECTED_VERSES
     ) {
       return yield* quranGenerationFailure(
@@ -112,8 +123,8 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       );
     }
 
-    const sajdaEntries: (readonly [number, "obligatory" | "recommended"])[] =
-      [];
+    const sajdaEntries =
+      MutableList.make<readonly [number, "obligatory" | "recommended"]>();
     for (const row of xmlRows(source, "sajda")) {
       const surah = Number(attribute(row, "sura"));
       const aya = Number(attribute(row, "aya"));
@@ -124,7 +135,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
           `Invalid Tanzil sajda marker: ${row}`
         );
       }
-      sajdaEntries.push([position, type]);
+      MutableList.append(sajdaEntries, [position, type]);
     }
 
     return {
@@ -133,7 +144,7 @@ export const parseQuranMetadata = Effect.fn("AksaraCorpus.parseQuranMetadata")(
       manzils: yield* parseMarkers(source, "manzil", surahs),
       pages: yield* parseMarkers(source, "page", surahs),
       rukus: yield* parseMarkers(source, "ruku", surahs),
-      sajdas: HashMap.fromIterable(sajdaEntries),
+      sajdas: HashMap.fromIterable(MutableList.toArray(sajdaEntries)),
       surahs,
     } satisfies ParsedMetadata;
   }

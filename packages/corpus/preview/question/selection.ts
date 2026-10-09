@@ -4,7 +4,7 @@ import type {
   QuestionPromptPreviewDocument,
 } from "@nakafa/aksara-contracts/preview/document";
 import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { makeQuestionPreviewSource } from "#corpus/preview/question/source";
 import type { PreviewSelection } from "#corpus/preview/source";
 import {
@@ -24,10 +24,11 @@ function questionOwners(
   sources: readonly TryoutExamSource[],
   entry: QuestionEntry
 ) {
-  return sources.filter((source) =>
-    source.tracks.some((track) =>
-      track.sets.some((set) =>
-        set.sections.some(
+  return Arr.filter(sources, (source) =>
+    Arr.some(source.tracks, (track) =>
+      Arr.some(track.sets, (set) =>
+        Arr.some(
+          set.sections,
           (section) => section.questionSourcePath === entry.setKey
         )
       )

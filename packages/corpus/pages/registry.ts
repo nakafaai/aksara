@@ -1,4 +1,3 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -14,8 +13,20 @@ import {
   PageKeySchema,
   PublicPageRouteSchema,
 } from "@nakafa/aksara-contracts/projection/page";
-import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
-import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Order,
+  Schema,
+} from "effect";
+import {
+  appLocaleCode,
+  contentHeadOrder,
+  requireSourceLocale,
+} from "#corpus/locale/source";
 import { PageRootSchema, type PageSource } from "#corpus/pages/schema";
 import { decodePageSources } from "#corpus/pages/source";
 
@@ -153,12 +164,13 @@ export const decodePageRegistry = Effect.fn("AksaraCorpus.decodePageRegistry")(
     );
     const entries = yield* Schema.decodeUnknownEffect(
       Schema.Array(PageEntrySchema)
-    )(expanded.flat(), { onExcessProperty: "error" }).pipe(
+    )(Arr.flatten(expanded), { onExcessProperty: "error" }).pipe(
       Effect.mapError((cause) => new PageRegistryError({ cause }))
     );
     yield* validatePageRoutes(entries);
-    return [...entries].sort((left, right) =>
-      compareContentHeads(left.route, right.route)
+    return Arr.sort(
+      entries,
+      Order.mapInput(contentHeadOrder, (entry: PageEntry) => entry.route)
     );
   }
 );

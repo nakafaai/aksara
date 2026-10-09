@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -68,7 +68,7 @@ describe("curriculum schema", () => {
         tree: nodes,
       });
 
-      expect(nodes.map(({ level }) => level)).toEqual([
+      expect(Arr.map(nodes, ({ level }) => level)).toEqual([
         "class",
         "subject",
         "course",
@@ -149,7 +149,7 @@ describe("curriculum schema", () => {
         unitedStatesCurriculum,
       ]);
 
-      expect(curricula.map(({ programKey }) => programKey)).toEqual([
+      expect(Arr.map(curricula, ({ programKey }) => programKey)).toEqual([
         "cambridge-international",
         "merdeka",
         "singapore-moe",

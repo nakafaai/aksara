@@ -6,7 +6,7 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, HashSet, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, HashSet, Order, Path } from "effect";
 
 import {
   decodeMaterialDomains,
@@ -46,29 +46,34 @@ layer(NodeServices.layer)("material registry", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const corpusRoot = yield* resolveCorpusRoot;
         const entries = yield* decodeMaterialRegistry();
-        const authoredPaths = (yield* fileSystem.glob(
+        const lessonPaths = yield* fileSystem.glob(
           "packages/corpus/material/lesson/**/*.mdx",
           { root: corpusRoot }
-        ))
-          .filter((sourcePath) =>
-            ACTIVE_APP_LOCALES.some((locale) =>
+        );
+        const authoredPaths = Arr.sort(
+          Arr.filter(lessonPaths, (sourcePath) =>
+            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
-          )
-          .sort();
-        const projectedPaths = entries
-          .map(({ sourcePath }) => sourcePath)
-          .sort();
+          ),
+          Order.String
+        );
+        const projectedPaths = Arr.sort(
+          Arr.map(entries, ({ sourcePath }) => sourcePath),
+          Order.String
+        );
 
         expect(entries).toHaveLength(1149);
         expect(
           HashSet.size(
-            HashSet.fromIterable(entries.map(({ route }) => route.materialKey))
+            HashSet.fromIterable(
+              Arr.map(entries, ({ route }) => route.materialKey)
+            )
           )
         ).toBe(36);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
-            entries.filter(({ route }) => route.appLocale === locale)
+            Arr.filter(entries, ({ route }) => route.appLocale === locale)
           ).toHaveLength(383);
         }
         expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(1149);
@@ -82,11 +87,12 @@ layer(NodeServices.layer)("material registry", (it) => {
           "material/lesson/physics/kinematics/acceleration",
         ]);
         expect(
-          entries
-            .filter(({ route }) =>
+          Arr.map(
+            Arr.filter(entries, ({ route }) =>
               HashSet.has(representativeKeys, route.contentKey)
-            )
-            .map(({ route }) => route.publicPath)
+            ),
+            ({ route }) => route.publicPath
+          )
         ).toEqual([
           "faecher/ki-und-data-science/ki-programmierung/rechenoperatoren",
           "subjects/ai-ds/ai-programming/arithmetic-operator",
