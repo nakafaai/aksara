@@ -1,5 +1,11 @@
 import { generateKeyPairSync } from "node:crypto";
-import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
+import {
+  Array as Arr,
+  ConfigProvider,
+  Effect,
+  MutableHashMap,
+  Record as Rec,
+} from "effect";
 import {
   readProductionEnvironment,
   readPublicationEnvironment,
@@ -26,7 +32,7 @@ export const makeEnvironmentFixture = Effect.sync(() => {
     ["AKSARA_SIGNING_PRIVATE_KEY", privateKeyPem],
   ]);
   const publicationValues = MutableHashMap.fromIterable(
-    [...productionValues].filter(([variable]) =>
+    Arr.filter([...productionValues], ([variable]) =>
       variable.startsWith("AKSARA_PUBLICATION_")
     )
   );
