@@ -1,9 +1,4 @@
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
-import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   createProjectionDigest,
   finalizeProjectionDigest,
@@ -17,6 +12,7 @@ import {
   updateReleaseItemsDigest,
 } from "@nakafa/aksara-contracts/release/digest";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import {
   createResultCatalogDigest,
@@ -35,9 +31,8 @@ import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { ContentSnapshotSetSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import {
   makePreparedRollbackRelease,
   type PreparedRollbackRelease,
@@ -54,24 +49,14 @@ import {
   snapshotRollbackState,
 } from "#publisher/rollback/records";
 
-const RollbackActiveCatalogSchema = Schema.Struct({
-  activeAppLocales: ActiveAppLocaleListSchema,
-  manifestHash: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
-  resultCount: Schema.Finite,
-  resultDigest: Sha256HashSchema,
-});
-
 /** Exact active catalog identity replaced by one rollback release. */
-type RollbackActiveCatalog = typeof RollbackActiveCatalogSchema.Type;
-
-const RollbackTargetPolicySchema = Schema.Struct({
-  activeAppLocales: ActiveAppLocaleListSchema,
-  snapshots: ContentSnapshotSetSchema,
-});
+type RollbackActiveCatalog = Omit<ActiveCatalogIdentity, "snapshots">;
 
 /** Locale and snapshot policy restored by one rollback. */
-export type RollbackTargetPolicy = typeof RollbackTargetPolicySchema.Type;
+export type RollbackTargetPolicy = Pick<
+  ActiveCatalogIdentity,
+  "activeAppLocales" | "snapshots"
+>;
 
 /** Complete inputs for signing one already-authenticated rollback transition. */
 interface BuildRollbackReleaseInput<E, R> {

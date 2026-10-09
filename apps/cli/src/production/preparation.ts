@@ -6,6 +6,7 @@ import type {
   ContentHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
+import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -35,7 +36,6 @@ import {
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
 import {
-  type ProductionBaseIdentity,
   selectRecoveryBase,
   selectSourceBase,
   validateRecoveryBase,
@@ -91,7 +91,7 @@ type PrepareProductionGit = (
 ) => Effect.Effect<PreparedGit, ProductionError, PreparationServices>;
 
 /** Streams no prior heads for genesis and both exact target-owned families later. */
-function publishedContentHeads(base: ProductionBaseIdentity | null) {
+function publishedContentHeads(base: ActiveCatalogIdentity | null) {
   if (base === null) {
     return {
       article: Stream.empty,
@@ -122,7 +122,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       input.baseBundle === null
         ? null
         : yield* verifyContentReleaseBundle(input.baseBundle);
-    let base: ProductionBaseIdentity | null;
+    let base: ActiveCatalogIdentity | null;
     if (input.kind === "new") {
       base = selectSourceBase(verifiedBaseBundle);
     } else {
