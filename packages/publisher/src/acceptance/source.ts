@@ -13,7 +13,15 @@ import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { validateAssessmentReadinessRegistry } from "@nakafa/aksara-corpus/tryout/readiness/registry";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, HashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableList,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 
 const materialKeys = [
   "material/lesson/mathematics/analytic-geometry/hyperbola",
@@ -41,24 +49,27 @@ const selectEntries = Effect.fn("AksaraPublisher.selectAcceptanceEntries")(
       readonly route: Pick<ContentHead, "contentKey" | "artifactLocale">;
     },
   >(entries: readonly Entry[], keys: readonly string[]) {
-    const selected: Entry[] = [];
+    const selected = MutableList.make<Entry>();
     for (const key of keys) {
       for (const locale of ACTIVE_APP_LOCALES) {
         const artifactLocale = ArtifactLocaleSchema.make(locale);
-        const entry = entries.find(
+        const entry = Arr.findFirst(
+          entries,
           ({ route }) =>
             route.contentKey === key && route.artifactLocale === artifactLocale
         );
-        if (entry === undefined) {
+        if (Option.isNone(entry)) {
           return yield* new AcceptanceSourceError({
             identity: `${key}:${locale}`,
           });
         }
-        selected.push(entry);
+        MutableList.append(selected, entry.value);
       }
     }
-    return selected.sort((left, right) =>
-      compareContentHeads(left.route, right.route)
+    return Arr.sortWith(
+      MutableList.toArray(selected),
+      ({ route }) => route,
+      Order.make(compareContentHeads)
     );
   }
 );
@@ -93,22 +104,22 @@ export const loadAcceptanceTryout: (
     Effect.gen(function* () {
       const tracks = yield* Effect.forEach(source.tracks, (track) =>
         Effect.gen(function* () {
-          const set = track.sets.find(({ key }) => key === "set-1");
-          if (set === undefined) {
+          const set = Arr.findFirst(track.sets, ({ key }) => key === "set-1");
+          if (Option.isNone(set)) {
             return yield* new AcceptanceSourceError({
               identity: `${source.examKey}:${track.key}:set-1`,
             });
           }
-          return { ...track, sets: [set] };
+          return { ...track, sets: [set.value] };
         })
       );
       return { ...source, tracks };
     })
   );
-  const questionKeys = selection.flatMap(({ tracks }) =>
-    tracks.flatMap(({ sets }) =>
-      sets.flatMap(({ sections }) =>
-        sections.flatMap((section) =>
+  const questionKeys = Arr.flatMap(selection, ({ tracks }) =>
+    Arr.flatMap(tracks, ({ sets }) =>
+      Arr.flatMap(sets, ({ sections }) =>
+        Arr.flatMap(sections, (section) =>
           Array.from({ length: section.questionCount }, (_, index) =>
             QuestionKeySchema.make(
               `${section.questionSourcePath}/question-${index + 1}`
@@ -159,9 +170,9 @@ export const loadAcceptanceSources: (
   const materialRegistry = yield* decodeMaterialRegistry();
   const required = yield* selectEntries(materialRegistry, materialKeys);
   const materialGroups = HashSet.fromIterable(
-    required.map(({ route }) => route.materialKey)
+    Arr.map(required, ({ route }) => route.materialKey)
   );
-  const material = materialRegistry.filter(({ route }) =>
+  const material = Arr.filter(materialRegistry, ({ route }) =>
     HashSet.has(materialGroups, route.materialKey)
   );
   const page = yield* decodePageRegistry();

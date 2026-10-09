@@ -8,7 +8,7 @@ import {
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Option, Stream } from "effect";
 import { prepareAcceptanceRelease } from "#publisher/acceptance/preparation";
 import {
   AcceptanceSourceError,
@@ -62,12 +62,14 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
             snapshots: ["program", "quran", "tryout"],
           },
         });
-        expect(manifests.map(({ family }) => family)).toEqual([
+        expect(Arr.map(manifests, ({ family }) => family)).toEqual([
           "program",
           "quran",
           "tryout",
         ]);
-        const tryout = manifests.find(({ family }) => family === "tryout");
+        const tryout = Option.getOrUndefined(
+          Arr.findFirst(manifests, ({ family }) => family === "tryout")
+        );
         expect(tryout).toMatchObject({
           manifest: {
             placementCount: fixture.sources.tryout.projection.placements.length,
