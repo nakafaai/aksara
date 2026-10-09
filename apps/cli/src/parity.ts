@@ -3,7 +3,7 @@ import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/cur
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Order, Schema } from "effect";
 import {
   type PublicationEnvironment,
   readPublicationEnvironment,
@@ -96,8 +96,8 @@ export const verifyPublicationParity = Effect.fn(
     });
   }
   if (
-    encodeJsonText([...a.activeAppLocales].sort()) !==
-    encodeJsonText([...b.activeAppLocales].sort())
+    encodeJsonText(Arr.sort(a.activeAppLocales, Order.String)) !==
+    encodeJsonText(Arr.sort(b.activeAppLocales, Order.String))
   ) {
     return yield* new PublicationParityError({
       reason: "locales",
@@ -111,7 +111,8 @@ export const verifyPublicationParity = Effect.fn(
     });
   }
   if (
-    ContentSnapshotKindSchema.literals.some(
+    Arr.some(
+      ContentSnapshotKindSchema.literals,
       (kind) =>
         a.snapshots[kind].resultSnapshotId !==
         b.snapshots[kind].resultSnapshotId

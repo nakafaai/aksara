@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import type { Program } from "estree-jsx";
 import type { Root } from "mdast";
 import { unified } from "unified";
@@ -64,7 +64,7 @@ describe("MathVisual authored syntax", () => {
     Effect.gen(function* () {
       const error = yield* rejectMathVisual(rawMdx);
       assert.ok(
-        error.violations.some((violation) => violation.reason === reason)
+        Arr.some(error.violations, (violation) => violation.reason === reason)
       );
     })
   );
@@ -78,7 +78,7 @@ describe("MathVisual authored syntax", () => {
         `<MathVisual ${attribute} scene={${planeScene()}} />`
       );
       assert.ok(
-        error.violations.some((violation) => violation.reason === reason)
+        Arr.some(error.violations, (violation) => violation.reason === reason)
       );
     })
   );
@@ -97,7 +97,8 @@ describe("MathVisual authored syntax", () => {
         `<MathVisual ${name} scene={${planeScene()}} />`
       );
       assert.ok(
-        error.violations.some(
+        Arr.some(
+          error.violations,
           (violation) => violation.reason === "attribute-unexpected"
         )
       );
@@ -112,7 +113,8 @@ describe("MathVisual authored syntax", () => {
           `<MathVisual ${name}="A" ${name}="B" scene={${planeScene()}} />`
         );
         assert.ok(
-          error.violations.some(
+          Arr.some(
+            error.violations,
             (violation) => violation.reason === "attribute-duplicate"
           )
         );
@@ -125,7 +127,8 @@ describe("MathVisual authored syntax", () => {
         "<MathVisual scene={{}}>Unexpected child</MathVisual>"
       );
       assert.ok(
-        error.violations.some(
+        Arr.some(
+          error.violations,
           (violation) => violation.reason === "children-unexpected"
         )
       );

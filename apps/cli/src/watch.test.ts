@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { assert, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
+  Array as Arr,
   Deferred,
   Effect,
   Fiber,
@@ -202,7 +203,7 @@ layer(NodeServices.layer)("selected document watch", (it) => {
         ).pipe(Effect.forkChild({ startImmediately: true }));
         const refreshes = yield* awaitRefresh(count);
         yield* Fiber.interrupt(watcher);
-        expect(selected.files.map(({ sourcePath }) => sourcePath)).toEqual([
+        expect(Arr.map(selected.files, (file) => file.sourcePath)).toEqual([
           questionPath,
           "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/item.ts",
           "packages/corpus/tryout/registry.ts",

@@ -3,6 +3,7 @@ import {
   RENDERER_DOMAINS,
   type RendererDomain,
 } from "@nakafa/aksara-contracts/renderer/domain";
+import { Array as Arr } from "effect";
 
 /** Expands sparse compiler fixtures into every canonical renderer domain. */
 export function testRendererDomains(
@@ -10,7 +11,7 @@ export function testRendererDomains(
     Partial<Record<RendererDomain, readonly RendererComponentName[]>>
   >
 ) {
-  return RENDERER_DOMAINS.map((name) => {
+  return Arr.map(RENDERER_DOMAINS, (name) => {
     const selected = components[name] ?? [];
     return { components: selected, name };
   });

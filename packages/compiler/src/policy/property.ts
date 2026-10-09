@@ -1,4 +1,4 @@
-import { HashSet } from "effect";
+import { HashSet, MutableList } from "effect";
 import type { MemberExpression, Program, Property } from "estree-jsx";
 import { visit as visitEstree } from "estree-util-visit";
 import type { ExecutablePolicyViolation } from "#compiler/errors";
@@ -88,7 +88,7 @@ function inspectProperty(
 
 /** Finds dynamic and prototype-chain property capabilities in one program. */
 export function inspectPropertyProgram(program: Program) {
-  const violations: ExecutablePolicyViolation[] = [];
+  const violations = MutableList.make<ExecutablePolicyViolation>();
   visitEstree(program, (node) => {
     if (node.type === "MemberExpression") {
       const violation = inspectProperty(
@@ -97,7 +97,7 @@ export function inspectPropertyProgram(program: Program) {
         memberPropertyName(node)
       );
       if (violation) {
-        violations.push(violation);
+        MutableList.append(violations, violation);
       }
       return;
     }
@@ -109,14 +109,14 @@ export function inspectPropertyProgram(program: Program) {
       : staticPropertyName(node.key);
     const violation = inspectProperty(node.computed, node.key, propertyName);
     if (violation) {
-      violations.push(violation);
+      MutableList.append(violations, violation);
     }
     if (propertyName === "dangerouslySetInnerHTML") {
-      violations.push({
+      MutableList.append(violations, {
         identifier: "dangerouslySetInnerHTML",
         rule: "dangerous-jsx-attribute",
       });
     }
   });
-  return violations;
+  return MutableList.toArray(violations);
 }

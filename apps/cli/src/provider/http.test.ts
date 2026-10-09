@@ -8,7 +8,7 @@ import {
   LocalPreviewManifestSchema,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { Effect, HashMap, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Schema } from "effect";
 import { TestClock } from "effect/testing";
 import {
   PREVIEW_EVENTS_PATH,
@@ -149,7 +149,7 @@ describe("preview HTTP transport", () => {
         yield* Effect.sync(() => http.close());
         const closed = yield* readProviderEvent(reader);
 
-        expect(responses.map(({ status }) => status)).toEqual([200, 200]);
+        expect(Arr.map(responses, ({ status }) => status)).toEqual([200, 200]);
         expect(bodies).toEqual([firstBody, secondBody]);
         expect(unauthenticated.status).toBe(401);
         expect(wrongToken.status).toBe(401);
@@ -178,9 +178,11 @@ describe("preview HTTP transport", () => {
           state,
           10
         );
-        const closedStreams: ServerResponse[] = [];
+        let closedStreams: ServerResponse[] = [];
         server.on("request", (_request, response) => {
-          response.once("close", () => closedStreams.push(response));
+          response.once("close", () => {
+            closedStreams = Arr.append(closedStreams, response);
+          });
         });
         const reader = yield* openEventStream(origin);
         const readEvent = makeEventReader(reader);

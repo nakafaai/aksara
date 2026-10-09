@@ -2,7 +2,13 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { Effect, type FileSystem, MutableHashMap, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  type FileSystem,
+  MutableHashMap,
+  Path,
+} from "effect";
 import {
   captureSelectedFiles,
   PreviewRepositoryError,
@@ -43,10 +49,10 @@ export const selectPreviewDocument: (
 ) {
   const path = yield* Path.Path;
   const absolutePath = path.resolve(aksaraRoot, requestedPath);
-  const relativePath = path
-    .relative(aksaraRoot, absolutePath)
-    .split(path.sep)
-    .join("/");
+  const relativePath = Arr.join(
+    path.relative(aksaraRoot, absolutePath).split(path.sep),
+    "/"
+  );
   if (path.normalize(requestedPath) !== requestedPath) {
     return yield* new PreviewRepositoryError({
       kind: "document",
@@ -106,16 +112,20 @@ export const selectPreviewDocument: (
       mode: "reload",
       sourcePath: firstPath,
     },
-    ...[...remainingPaths].map(([sourcePath, mode]): SelectedFileCandidate => {
-      const selectedPath = path.resolve(aksaraRoot, sourcePath);
-      if (mode === "reload") {
-        return { absolutePath: selectedPath, mode: "reload", sourcePath };
+    ...Arr.map(
+      [...remainingPaths],
+      ([sourcePath, mode]): SelectedFileCandidate => {
+        const selectedPath = path.resolve(aksaraRoot, sourcePath);
+        if (mode === "reload") {
+          return { absolutePath: selectedPath, mode: "reload", sourcePath };
+        }
+        return { absolutePath: selectedPath, mode: "restart", sourcePath };
       }
-      return { absolutePath: selectedPath, mode: "restart", sourcePath };
-    }),
+    ),
   ] satisfies readonly [SelectedFileCandidate, ...SelectedFileCandidate[]];
   const files = yield* captureSelectedFiles(candidates);
-  const directories = [...directoriesByPath].map(
+  const directories = Arr.map(
+    [...directoriesByPath],
     ([sourcePath, expectedFiles]): SelectedDirectory => ({
       absolutePath: path.resolve(aksaraRoot, sourcePath),
       files: expectedFiles,

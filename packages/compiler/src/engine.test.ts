@@ -3,7 +3,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { canonicalizeCompiledContentPayload } from "@nakafa/aksara-contracts/content";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   compileValidatedContent,
   validateCompileRequest,
@@ -16,7 +16,7 @@ describe("validateCompileRequest", () => {
       const live = yield* createTestRendererManifest({
         components: ["BlockMath"],
       });
-      const domains = live.domains.filter(({ name }) => name !== "site");
+      const domains = Arr.filter(live.domains, ({ name }) => name !== "site");
       const contract = {
         base: live.base,
         domains,

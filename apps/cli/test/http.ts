@@ -1,4 +1,4 @@
-import { type Effect, Schema } from "effect";
+import { type Effect, MutableList, Schema } from "effect";
 import {
   HttpClient,
   type HttpClientError,
@@ -26,12 +26,18 @@ export function captureClient(
     HttpClientError.HttpClientError
   >
 ) {
-  const requests: HttpClientRequest.HttpClientRequest[] = [];
+  const requests = MutableList.make<HttpClientRequest.HttpClientRequest>();
   const client = HttpClient.make((request) => {
-    requests.push(request);
+    MutableList.append(requests, request);
     return respond(request);
   });
-  return { client, requests };
+  return {
+    client,
+    /** Requests received so far, copied when a test reads this property. */
+    get requests() {
+      return MutableList.toArray(requests);
+    },
+  };
 }
 
 /** Decodes the strict JSON bytes written by one production HTTP request. */

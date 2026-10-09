@@ -1,4 +1,11 @@
-import { HashSet, MutableHashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  HashSet,
+  MutableHashSet,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 import type { ObjectExpression } from "estree-jsx";
 import type {
   MdxJsxAttribute,
@@ -68,12 +75,7 @@ export function mdxLocation(node: {
 /** Reads a one-based ESTree source location with an MDX fallback. */
 export function estreeLocation(
   node: {
-    readonly loc?:
-      | {
-          readonly start: { readonly column: number; readonly line: number };
-        }
-      | null
-      | undefined;
+    readonly loc?: { readonly start: SourceLocation } | null | undefined;
   },
   fallback: SourceLocation
 ) {
@@ -122,35 +124,30 @@ function readRichLabelKeys(
   if (expression.type !== "ObjectExpression") {
     return failedLabel("labels-object", estreeLocation(expression, fallback));
   }
-  const keys: string[] = [];
+  const keys = MutableList.make<string>();
   const names = MutableHashSet.empty<string>();
   for (const property of expression.properties) {
+    const location = estreeLocation(property, fallback);
     if (property.type === "SpreadElement") {
-      return failedLabel("labels-spread", estreeLocation(property, fallback));
+      return failedLabel("labels-spread", location);
     }
     if (property.computed) {
-      return failedLabel(
-        "labels-computed-property",
-        estreeLocation(property, fallback)
-      );
+      return failedLabel("labels-computed-property", location);
     }
     if (property.kind !== "init" || property.method || property.shorthand) {
-      return failedLabel("labels-property", estreeLocation(property, fallback));
+      return failedLabel("labels-property", location);
     }
     const name = staticPropertyName(property);
     if (name === undefined) {
-      return failedLabel("labels-property", estreeLocation(property, fallback));
+      return failedLabel("labels-property", location);
     }
     if (MutableHashSet.has(names, name)) {
-      return failedLabel(
-        "labels-duplicate-property",
-        estreeLocation(property, fallback)
-      );
+      return failedLabel("labels-duplicate-property", location);
     }
     MutableHashSet.add(names, name);
-    keys.push(name);
+    MutableList.append(keys, name);
   }
-  return { success: true, value: keys };
+  return { success: true, value: MutableList.toArray(keys) };
 }
 
 /** Records duplicate values of one allowed named attribute. */
@@ -158,13 +155,14 @@ function recordDuplicates(
   attributes: readonly MdxJsxAttribute[],
   name: string,
   reason: MathVisualSourceReason,
-  violations: MathVisualPolicyViolation[]
+  violations: MutableList.MutableList<MathVisualPolicyViolation>
 ) {
-  const duplicates = attributes
-    .filter((attribute) => attribute.name === name)
-    .slice(1);
+  const duplicates = Arr.filter(
+    attributes,
+    (attribute) => attribute.name === name
+  ).slice(1);
   for (const duplicate of duplicates) {
-    violations.push({ ...mdxLocation(duplicate), reason });
+    MutableList.append(violations, { ...mdxLocation(duplicate), reason });
   }
 }
 
@@ -173,32 +171,38 @@ function requiredMetadataViolations(
   attributes: readonly MdxJsxAttribute[],
   location: SourceLocation
 ): MathVisualPolicyViolation[] {
-  const violations: MathVisualPolicyViolation[] = [];
-  const title = attributes.find(({ name }) => name === "title");
-  if (title) {
-    const state = inspectRichAttribute(title);
+  const violations = MutableList.make<MathVisualPolicyViolation>();
+  const title = Arr.findFirst(attributes, ({ name }) => name === "title");
+  if (Option.isSome(title)) {
+    const state = inspectRichAttribute(title.value);
     if (state !== "meaningful") {
-      violations.push({
-        ...mdxLocation(title),
+      MutableList.append(violations, {
+        ...mdxLocation(title.value),
         reason: state === "empty" ? "title-empty" : "title-dynamic",
       });
     }
   } else {
-    violations.push({ ...location, reason: "title-missing" });
+    MutableList.append(violations, { ...location, reason: "title-missing" });
   }
-  const description = attributes.find(({ name }) => name === "description");
-  if (description) {
-    const state = inspectRichAttribute(description);
+  const description = Arr.findFirst(
+    attributes,
+    ({ name }) => name === "description"
+  );
+  if (Option.isSome(description)) {
+    const state = inspectRichAttribute(description.value);
     if (state !== "meaningful") {
-      violations.push({
-        ...mdxLocation(description),
+      MutableList.append(violations, {
+        ...mdxLocation(description.value),
         reason: state === "empty" ? "description-empty" : "description-dynamic",
       });
     }
   } else {
-    violations.push({ ...location, reason: "description-missing" });
+    MutableList.append(violations, {
+      ...location,
+      reason: "description-missing",
+    });
   }
-  return violations;
+  return MutableList.toArray(violations);
 }
 
 /** Inspects the exact authored JSX surface of one MathVisual node. */
@@ -207,31 +211,32 @@ export function inspectMathVisual(
 ): MathVisualInspection {
   const fallback = mdxLocation(node);
   if (node.type === "mdxJsxTextElement") {
-    return {
-      violations: [{ ...fallback, reason: "placement-inline" }],
-    };
+    return { violations: [{ ...fallback, reason: "placement-inline" }] };
   }
-  const violations: MathVisualPolicyViolation[] = node.children.map(
-    (child) => ({
+  const violations = MutableList.make<MathVisualPolicyViolation>();
+  MutableList.appendAll(
+    violations,
+    Arr.map(node.children, (child) => ({
       ...mdxLocation(child),
       reason: "children-unexpected" as const,
-    })
+    }))
   );
   for (const attribute of node.attributes) {
     if (attribute.type === "mdxJsxExpressionAttribute") {
-      violations.push({
+      MutableList.append(violations, {
         ...mdxLocation(attribute),
         reason: "attribute-spread",
       });
     }
   }
-  const named = node.attributes.filter(
+  const named = Arr.filter(
+    node.attributes,
     (attribute): attribute is MdxJsxAttribute =>
       attribute.type === "mdxJsxAttribute"
   );
   for (const attribute of named) {
     if (!HashSet.has(ALLOWED_ATTRIBUTES, attribute.name)) {
-      violations.push({
+      MutableList.append(violations, {
         ...mdxLocation(attribute),
         reason: "attribute-unexpected",
       });
@@ -243,52 +248,54 @@ export function inspectMathVisual(
   recordDuplicates(named, "labels", "labels-duplicate", violations);
   const metadataViolations = requiredMetadataViolations(named, fallback);
 
-  const sceneAttribute = named.find(({ name }) => name === "scene");
-  const labelAttribute = named.find(({ name }) => name === "labels");
-  if (!sceneAttribute) {
-    violations.push({ ...fallback, reason: "scene-missing" });
-    violations.push(...metadataViolations);
-    return { violations };
+  const sceneAttribute = Arr.findFirst(named, ({ name }) => name === "scene");
+  const labelAttribute = Arr.findFirst(named, ({ name }) => name === "labels");
+  if (Option.isNone(sceneAttribute)) {
+    MutableList.append(violations, { ...fallback, reason: "scene-missing" });
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  if (named.filter(({ name }) => name === "scene").length > 1) {
-    violations.push(...metadataViolations);
-    return { violations };
+  if (Arr.filter(named, ({ name }) => name === "scene").length > 1) {
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  if (named.filter(({ name }) => name === "labels").length > 1) {
-    violations.push(...metadataViolations);
-    return { violations };
+  if (Arr.filter(named, ({ name }) => name === "labels").length > 1) {
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  const sceneExpression = attributeExpression(sceneAttribute);
+  const sceneExpression = attributeExpression(sceneAttribute.value);
   if (sceneExpression?.type !== "ObjectExpression") {
-    violations.push({
-      ...mdxLocation(sceneAttribute),
+    MutableList.append(violations, {
+      ...mdxLocation(sceneAttribute.value),
       reason: "scene-expression",
     });
-    violations.push(...metadataViolations);
-    return { violations };
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  const sceneLocation = mdxLocation(sceneAttribute);
+  const sceneLocation = mdxLocation(sceneAttribute.value);
   const scene = decodeConstantLiteral(sceneExpression);
   if (!scene.success) {
-    violations.push({
+    MutableList.append(violations, {
       ...estreeLocation(scene.failure.node, sceneLocation),
       reason: sceneReason(scene.failure.reason),
     });
-    violations.push(...metadataViolations);
-    return { violations };
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  const labelLocation = labelAttribute
-    ? mdxLocation(labelAttribute)
+  const labelLocation = Option.isSome(labelAttribute)
+    ? mdxLocation(labelAttribute.value)
     : sceneLocation;
-  const labelKeys: StaticResult<readonly string[]> = labelAttribute
-    ? readRichLabelKeys(labelAttribute, labelLocation)
+  const labelKeys: StaticResult<readonly string[]> = Option.isSome(
+    labelAttribute
+  )
+    ? readRichLabelKeys(labelAttribute.value, labelLocation)
     : { success: true, value: [] };
   if (!labelKeys.success) {
-    violations.push(labelKeys.violation);
-    violations.push(...metadataViolations);
-    return { violations };
+    MutableList.append(violations, labelKeys.violation);
+    MutableList.appendAll(violations, metadataViolations);
+    return { violations: MutableList.toArray(violations) };
   }
-  violations.push(...metadataViolations);
+  MutableList.appendAll(violations, metadataViolations);
   return {
     candidate: {
       labelKeys: labelKeys.value,
@@ -297,6 +304,6 @@ export function inspectMathVisual(
       sceneLocation,
       sceneNode: sceneExpression,
     },
-    violations,
+    violations: MutableList.toArray(violations),
   };
 }

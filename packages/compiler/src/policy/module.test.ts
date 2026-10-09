@@ -1,6 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { Effect } from "effect";
+import { Effect, MutableList } from "effect";
 import type { Root } from "mdast";
 import type { UnsupportedMdxModuleOccurrence } from "#compiler/errors";
 import { collectUnsupportedMdxModules } from "#compiler/policy/module";
@@ -9,7 +9,7 @@ import { collectUnsupportedMdxModules } from "#compiler/policy/module";
 const inspectModules = Effect.fn("ModulePolicyTest.inspectModules")(function* (
   rawMdx: string
 ) {
-  const occurrences: UnsupportedMdxModuleOccurrence[] = [];
+  const occurrences = MutableList.make<UnsupportedMdxModuleOccurrence>();
   yield* Effect.promise(() =>
     compile(rawMdx, {
       remarkPlugins: [
@@ -17,7 +17,7 @@ const inspectModules = Effect.fn("ModulePolicyTest.inspectModules")(function* (
       ],
     })
   );
-  return occurrences;
+  return MutableList.toArray(occurrences);
 });
 
 describe("collectUnsupportedMdxModules", () => {
@@ -62,12 +62,12 @@ describe("collectUnsupportedMdxModules", () => {
       ],
       type: "root",
     };
-    const occurrences: UnsupportedMdxModuleOccurrence[] = [];
+    const occurrences = MutableList.make<UnsupportedMdxModuleOccurrence>();
 
     collectUnsupportedMdxModules(tree, occurrences);
 
     assert.strictEqual(tree.children.length, 3);
-    assert.deepStrictEqual(occurrences, [
+    assert.deepStrictEqual(MutableList.toArray(occurrences), [
       { column: 1, kind: "unknown", line: 1 },
       { column: 1, kind: "unknown", line: 1 },
     ]);

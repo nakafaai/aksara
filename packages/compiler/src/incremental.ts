@@ -10,6 +10,7 @@ import {
   Array as Arr,
   Effect,
   Exit,
+  Order,
   Predicate,
   Record as Rec,
   Schema,
@@ -73,7 +74,7 @@ const IncrementalResultSchema = Schema.Union([
 ]);
 /** Kind of one local authoring outcome, derived from the result branches. */
 export const IncrementalResultKindSchema = Schema.Union(
-  IncrementalResultSchema.members.map((member) => member.fields.kind)
+  Arr.map(IncrementalResultSchema.members, (member) => member.fields.kind)
 );
 export type IncrementalResult = typeof IncrementalResultSchema.Type;
 
@@ -92,15 +93,19 @@ function canonicalizeIdentity(identity: CompileIdentity) {
 /** Serializes recursive metadata with stable object-key ordering. */
 function canonicalizeMetadata(value: AuthoredMetadataValue): string {
   if (Arr.isArray<AuthoredMetadataValue>(value)) {
-    return `[${value.map(canonicalizeMetadata).join(",")}]`;
+    return `[${Arr.join(Arr.map(value, canonicalizeMetadata), ",")}]`;
   }
   if (!Predicate.isObject(value)) {
     return encodeJson(value);
   }
-  const fields = Rec.toEntries(value)
-    .map(([key, item]) => `${encodeJson(key)}:${canonicalizeMetadata(item)}`)
-    .sort();
-  return `{${fields.join(",")}}`;
+  const fields = Arr.sort(
+    Arr.map(
+      Rec.toEntries(value),
+      ([key, item]) => `${encodeJson(key)}:${canonicalizeMetadata(item)}`
+    ),
+    Order.String
+  );
+  return `{${Arr.join(fields, ",")}}`;
 }
 
 /** Hashes every cached compiler result field, including static metadata. */

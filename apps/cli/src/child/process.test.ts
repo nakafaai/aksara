@@ -3,6 +3,7 @@ import { Effect, Fiber } from "effect";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
   childHandleReferenced,
+  ISOLATION_CHILD,
   nodeProcess,
   processProgram,
   REPORTING_CHILD,
@@ -74,15 +75,7 @@ describe("Nakafa process infrastructure", () => {
       Effect.gen(function* () {
         vi.stubEnv("AKSARA_TEST_PARENT_SECRET", "must-not-cross");
         const status = yield* processProgram(
-          nodeProcess(
-            [
-              "const isolated =",
-              "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
-              'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
-              "process.exit(isolated && allowed ? 0 : 23);",
-            ].join("\n"),
-            { AKSARA_TEST_ALLOWED: "visible" }
-          )
+          nodeProcess(ISOLATION_CHILD, { AKSARA_TEST_ALLOWED: "visible" })
         );
 
         expect(status).toBe(0);

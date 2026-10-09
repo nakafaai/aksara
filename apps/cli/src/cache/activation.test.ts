@@ -3,7 +3,7 @@ import {
   type ContentCacheChange,
   ContentCacheRequestSchema,
 } from "@nakafa/aksara-contracts/cache/content";
-import { Effect, Fiber, Redacted, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Fiber, Redacted, Schema, Stream } from "effect";
 import { HttpClientError, HttpClientRequest } from "effect/http";
 import { TestClock } from "effect/testing";
 import {
@@ -47,12 +47,12 @@ function makeInvalidation(
 ) {
   const captured = captureClient(respond);
   return {
+    captured,
     invalidate: makeProductionCacheInvalidation({
       client: captured.client,
       endpoint,
       token: Redacted.make("renderer-token"),
     }),
-    requests: captured.requests,
   };
 }
 
@@ -76,10 +76,10 @@ describe("production cache activation", () => {
     "invalidates the exact authenticated cache endpoint after commit",
     () =>
       Effect.gen(function* () {
-        const { invalidate, requests } = makeInvalidation();
+        const { captured, invalidate } = makeInvalidation();
         expect(yield* invalidate(cacheInput())).toBeUndefined();
-        expect(requests).toHaveLength(1);
-        expect(requests[0]).toMatchObject({
+        expect(captured.requests).toHaveLength(1);
+        expect(captured.requests[0]).toMatchObject({
           headers: {
             accept: "application/json",
             authorization: "Bearer renderer-token",
@@ -88,7 +88,7 @@ describe("production cache activation", () => {
           method: "POST",
           url: "https://www.example.test/api/internal/content/cache",
         });
-        const [request] = requests;
+        const [request] = captured.requests;
         assert(request !== undefined, "Expected one cache request.");
         expect(requestJson(request)).toEqual({
           releaseId: "release-next",
@@ -101,7 +101,7 @@ describe("production cache activation", () => {
     "invalidates each changed scope once while retaining immutable bodies",
     () =>
       Effect.gen(function* () {
-        const { invalidate, requests } = makeInvalidation();
+        const { captured, invalidate } = makeInvalidation();
         yield* invalidate(
           cacheInput([
             ...Array.from({ length: 250 }, () =>
@@ -115,7 +115,7 @@ describe("production cache activation", () => {
             { scope: "program" },
           ])
         );
-        expect(requests.map(requestJson)).toEqual([
+        expect(Arr.map(captured.requests, requestJson)).toEqual([
           { releaseId: "release-next", scope: "material" },
           { releaseId: "release-next", scope: "program" },
           { releaseId: "release-next", scope: "quran" },
@@ -127,7 +127,7 @@ describe("production cache activation", () => {
     "finishes the complete change stream before invalidating any cache",
     () =>
       Effect.gen(function* () {
-        const { invalidate, requests } = makeInvalidation();
+        const { captured, invalidate } = makeInvalidation();
         const cacheChanges = Stream.make({ scope: "material" } as const).pipe(
           Stream.concat(Stream.fail("source-unavailable"))
         );
@@ -136,7 +136,7 @@ describe("production cache activation", () => {
             Effect.flip
           )
         ).toBe("source-unavailable");
-        expect(requests).toHaveLength(0);
+        expect(captured.requests).toHaveLength(0);
       })
   );
 
@@ -158,12 +158,12 @@ describe("production cache activation", () => {
     new URL("http://www.example.test/api/internal/content/renderer"),
   ])("rejects unsafe cache derivation from %s", (endpoint) =>
     Effect.gen(function* () {
-      const { invalidate, requests } = makeInvalidation(undefined, endpoint);
+      const { captured, invalidate } = makeInvalidation(undefined, endpoint);
       expect(yield* Effect.flip(invalidate(cacheInput()))).toMatchObject({
         phase: "cache",
         releaseId: "release-next",
       });
-      expect(requests).toHaveLength(0);
+      expect(captured.requests).toHaveLength(0);
     })
   );
 
@@ -171,13 +171,13 @@ describe("production cache activation", () => {
     "fails one permanent cache response %d without retrying",
     (status) =>
       Effect.gen(function* () {
-        const { invalidate, requests } = makeInvalidation((request) =>
+        const { captured, invalidate } = makeInvalidation((request) =>
           Effect.succeed(cacheResponse(request, { status }))
         );
         expect(yield* Effect.flip(invalidate(cacheInput()))).toMatchObject({
           phase: "cache",
         });
-        expect(requests).toHaveLength(1);
+        expect(captured.requests).toHaveLength(1);
       })
   );
 
@@ -185,7 +185,7 @@ describe("production cache activation", () => {
     "retries transient cache response %d within the bounded policy",
     (status) =>
       Effect.gen(function* () {
-        const { invalidate, requests } = makeInvalidation((request) =>
+        const { captured, invalidate } = makeInvalidation((request) =>
           Effect.succeed(cacheResponse(request, { status }))
         );
         const failure = yield* runAfter(
@@ -193,7 +193,7 @@ describe("production cache activation", () => {
           1000
         );
         expect(failure).toMatchObject({ phase: "cache" });
-        expect(requests).toHaveLength(4);
+        expect(captured.requests).toHaveLength(4);
       })
   );
 

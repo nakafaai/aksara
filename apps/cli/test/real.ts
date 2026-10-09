@@ -3,7 +3,16 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableHashSet,
+  MutableList,
+  Option,
+  Path,
+  Schema,
+} from "effect";
 import { selectPreviewDocument } from "#cli/repository";
 
 /** Runs one module-load program that needs the Node file system and path services. */
@@ -28,21 +37,23 @@ export const FUNCTION_SCOPE = PublicationScopeSchema.make({
   families: ["material"],
   snapshots: [],
 });
-const englishEntry = MATERIAL_ENTRIES.find(
+const englishEntry = Arr.findFirst(
+  MATERIAL_ENTRIES,
   ({ route }) =>
     route.contentKey === functionContentKey && route.appLocale === "en"
 );
-if (!englishEntry) {
+if (Option.isNone(englishEntry)) {
   throw new Error(
     "The real English material registry row is required by tests."
   );
 }
-export const ENGLISH_ENTRY = englishEntry;
-const indonesianEntry = MATERIAL_ENTRIES.find(
+export const ENGLISH_ENTRY = englishEntry.value;
+const indonesianEntry = Arr.findFirst(
+  MATERIAL_ENTRIES,
   ({ route }) =>
     route.contentKey === functionContentKey && route.appLocale === "id"
 );
-if (!indonesianEntry) {
+if (Option.isNone(indonesianEntry)) {
   throw new Error(
     "The real Indonesian material registry row is required by tests."
   );
@@ -62,13 +73,13 @@ const selectedDocument = await Effect.runPromise(
   )
 );
 const selectedPaths = MutableHashSet.fromIterable([
-  ...selectedDocument.files.map(({ sourcePath }) => sourcePath),
-  indonesianEntry.sourcePath,
+  ...Arr.map(selectedDocument.files, ({ sourcePath }) => sourcePath),
+  indonesianEntry.value.sourcePath,
 ]);
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
     base: ["BlockMath", "Highlight", "InlineMath", "MathContainer"],
-    domains: RENDERER_DOMAINS.map((name) => {
+    domains: Arr.map(RENDERER_DOMAINS, (name) => {
       if (name === "chemistry") {
         const component = "AtomShellLab";
         return { components: [component], name };
@@ -162,19 +173,19 @@ const removeTestRepositories = Effect.fn(
 
 /** Tracks isolated repository pairs and removes every surviving pair on demand. */
 export function makeRepositoryTracker() {
-  const repositories: TestRepositories[] = [];
+  const repositories = MutableList.make<TestRepositories>();
 
   /** Creates and retains one isolated repository pair for later cleanup. */
   const create = Effect.fn("AksaraCliTest.createRepositories")(function* () {
     const repository = yield* makeTestRepositories();
-    repositories.push(repository);
+    MutableList.append(repositories, repository);
     return repository;
   });
 
   /** Removes every tracked repository pair that still exists. */
   const removeAll = Effect.fn("AksaraCliTest.clearRepositories")(function* () {
     const fileSystem = yield* FileSystem.FileSystem;
-    for (const repository of repositories.splice(0)) {
+    for (const repository of MutableList.takeAll(repositories)) {
       if (yield* fileSystem.exists(repository.root)) {
         yield* removeTestRepositories(repository);
       }
