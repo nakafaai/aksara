@@ -3,7 +3,7 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, FileSystem, MutableHashSet, Path } from "effect";
+import { Effect, FileSystem, MutableHashSet, Path, Schema } from "effect";
 import { selectPreviewDocument } from "#cli/repository";
 
 /** Runs one module-load program that needs the Node file system and path services. */
@@ -83,13 +83,15 @@ export const RENDERER_MANIFEST = await Effect.runPromise(
   })
 );
 
+const TestRepositoriesSchema = Schema.Struct({
+  aksaraRoot: Schema.String,
+  documentPath: Schema.String,
+  nakafaRoot: Schema.String,
+  root: Schema.String,
+});
+
 /** Isolated real-corpus checkout pair used by filesystem integration tests. */
-export interface TestRepositories {
-  readonly aksaraRoot: string;
-  readonly documentPath: string;
-  readonly nakafaRoot: string;
-  readonly root: string;
-}
+export type TestRepositories = typeof TestRepositoriesSchema.Type;
 
 /** Copies only final registered source files into isolated repository shells. */
 const makeTestRepositories = Effect.fn("AksaraCliTest.makeTestRepositories")(
