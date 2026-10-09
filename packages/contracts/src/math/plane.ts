@@ -14,7 +14,14 @@ import {
   samePlanePoint,
 } from "#contracts/math/base";
 import { planeBoundsIssues } from "#contracts/math/bounds";
-import { MathObjectFields, makeSharedMathShapes } from "#contracts/math/object";
+import {
+  MATH_LINE_MESSAGE,
+  MATH_POLYLINE_MESSAGE,
+  MATH_RAY_MESSAGE,
+  MATH_SEGMENT_MESSAGE,
+  MathObjectFields,
+  mathLabelAnchorFields,
+} from "#contracts/math/object";
 import { planeResolutionIssues } from "#contracts/math/resolution";
 
 /** Checks a plane polygon has non-zero signed area. */
@@ -64,11 +71,71 @@ function normalizedPlaneOffsets(
   return Arr.map(offsets, ({ x, y }) => ({ x: x / divisor, y: y / divisor }));
 }
 
-const PlaneShapes = makeSharedMathShapes(PlanePointSchema, samePlanePoint);
+const PlanePointObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  at: PlanePointSchema,
+  kind: Schema.Literal("point"),
+});
+
+const PlanePathSchema = Schema.TupleWithRest(
+  Schema.Tuple([PlanePointSchema, PlanePointSchema]),
+  [PlanePointSchema]
+);
 
 const PlaneShapeSchema = Schema.TupleWithRest(
   Schema.Tuple([PlanePointSchema, PlanePointSchema, PlanePointSchema]),
   [PlanePointSchema]
+);
+
+const PlaneLineObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("line"),
+  through: Schema.Tuple([PlanePointSchema, PlanePointSchema]),
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ through: [from, to] }) => !samePlanePoint(from, to), {
+      message: MATH_LINE_MESSAGE,
+    })
+  )
+);
+
+const PlaneRayObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  from: PlanePointSchema,
+  kind: Schema.Literal("ray"),
+  through: PlanePointSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ from, through }) => !samePlanePoint(from, through), {
+      message: MATH_RAY_MESSAGE,
+    })
+  )
+);
+
+const PlaneSegmentObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  from: PlanePointSchema,
+  kind: Schema.Literal("segment"),
+  to: PlanePointSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ from, to }) => !samePlanePoint(from, to), {
+      message: MATH_SEGMENT_MESSAGE,
+    })
+  )
+);
+
+const PlanePolylineObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("polyline"),
+  vertices: PlanePathSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(
+      ({ vertices }) => hasUniquePositions(vertices, samePlanePoint),
+      { message: MATH_POLYLINE_MESSAGE }
+    )
+  )
 );
 
 const PlanePolygonObjectSchema = Schema.Struct({
@@ -123,13 +190,13 @@ const PlaneQuadraticObjectSchema = Schema.Struct({
 export const PlaneMathObjectSchema = Schema.Union([
   PlaneArcObjectSchema,
   PlaneCircleObjectSchema,
-  PlaneShapes.line,
-  PlaneShapes.point,
+  PlaneLineObjectSchema,
+  PlanePointObjectSchema,
   PlanePolygonObjectSchema,
-  PlaneShapes.polyline,
+  PlanePolylineObjectSchema,
   PlaneQuadraticObjectSchema,
-  PlaneShapes.ray,
-  PlaneShapes.segment,
+  PlaneRayObjectSchema,
+  PlaneSegmentObjectSchema,
 ]);
 export type PlaneMathObject = typeof PlaneMathObjectSchema.Type;
 
@@ -149,7 +216,9 @@ export const PlaneMathViewSchema = Schema.Struct({
 export type PlaneMathView = typeof PlaneMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
-export const PlaneLabelAnchorSchema = PlaneShapes.labelAnchor;
+export const PlaneLabelAnchorSchema = Schema.Struct(
+  mathLabelAnchorFields(PlanePointSchema)
+);
 export type PlaneLabelAnchor = typeof PlaneLabelAnchorSchema.Type;
 
 /** Complete stable plane visual before rich labels are attached. */
