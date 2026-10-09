@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { DateTime, Schema } from "effect";
 
 const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/u;
 
@@ -11,12 +11,12 @@ function isDateOnly(value: string) {
   const year = Number.parseInt(value.slice(0, 4), 10);
   const month = Number.parseInt(value.slice(5, 7), 10);
   const day = Number.parseInt(value.slice(8, 10), 10);
-  const date = new Date(Date.UTC(year, month - 1, day));
+  const date = DateTime.makeUnsafe(Date.UTC(year, month - 1, day));
 
   return (
-    date.getUTCFullYear() === year &&
-    date.getUTCMonth() === month - 1 &&
-    date.getUTCDate() === day
+    DateTime.getPartUtc(date, "year") === year &&
+    DateTime.getPartUtc(date, "month") === month &&
+    DateTime.getPartUtc(date, "day") === day
   );
 }
 
