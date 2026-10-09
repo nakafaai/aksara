@@ -18,10 +18,9 @@ function compulsoryQuestion(
   questions: readonly QuestionSource[],
   number: number
 ) {
-  const fragment = `${COMPULSORY_SET_ONE_PATH}question-${number}`;
   return Effect.fromOption(
     Arr.findFirst(questions, ({ questionKey }) =>
-      questionKey.includes(fragment)
+      questionKey.includes(`${COMPULSORY_SET_ONE_PATH}question-${number}`)
     )
   );
 }
@@ -265,33 +264,39 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
     { timeout: 30_000 }
   );
 
-  it.effect(
-    "reports one invalid shared stimulus when a section has two",
-    () =>
+  it.effect.each([
+    ["stationery-bundles", "park-and-pond"],
+    ["park-and-pond", "stationery-bundles"],
+  ] as const)(
+    "reports the earlier invalid shared stimulus with stimulus keys %s",
+    ([fifthKey, seventeenthKey]) =>
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
         const fifth = yield* compulsoryQuestion(questions, 5);
         const sixth = yield* compulsoryQuestion(questions, 6);
+        const seventeenth = yield* compulsoryQuestion(questions, 17);
         const eighteenth = yield* compulsoryQuestion(questions, 18);
-        const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
-        const withoutStimuli = Arr.map(questions, (question) =>
-          question === sixth || question === eighteenth
+        const withStimuli = Arr.map(questions, (question) => {
+          if (question === fifth) {
+            return withStimulus(question, fifthKey);
+          }
+          if (question === seventeenth) {
+            return withStimulus(question, seventeenthKey);
+          }
+          return question === sixth || question === eighteenth
             ? withoutStimulus(question)
-            : question
+            : question;
+        });
+        const failure = yield* projectTryoutSources(sources, withStimuli).pipe(
+          Effect.flip
         );
-        const failure = yield* projectTryoutSources(
-          sources,
-          withoutStimuli
-        ).pipe(Effect.flip);
 
-        expect(failure).toEqual(
-          expect.objectContaining({
-            _tag: "TryoutStimulusGroupError",
-            questionKey: fifth.questionKey,
-            reason: "isolated",
-            stimulusKey,
-          })
-        );
+        expect(failure).toMatchObject({
+          _tag: "TryoutStimulusGroupError",
+          questionKey: fifth.questionKey,
+          reason: "isolated",
+          stimulusKey: fifthKey,
+        });
       }),
     { timeout: 30_000 }
   );

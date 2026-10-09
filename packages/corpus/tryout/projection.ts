@@ -81,17 +81,22 @@ function activeSections(sources: readonly TryoutExamSource[]) {
   );
 }
 
-/** Requires every shared-stimulus group to contain contiguous sibling items. */
+/** One shared stimulus, its first question in section order, and the later questions that name it. */
+interface StimulusGroup {
+  readonly first: QuestionSource;
+  readonly rest: MutableList.MutableList<QuestionSource>;
+  readonly stimulusKey: NonNullable<QuestionSource["item"]["stimulusKey"]>;
+}
+
+/** Requires every shared-stimulus group to contain contiguous sibling items, checked in section order. */
 const validateStimulusGroups = Effect.fn(
   "AksaraCorpus.validateTryoutStimulusGroups"
 )(function* (questions: readonly QuestionSource[]) {
   const groups = MutableHashMap.empty<
-    NonNullable<QuestionSource["item"]["stimulusKey"]>,
-    {
-      readonly first: QuestionSource;
-      readonly rest: MutableList.MutableList<QuestionSource>;
-    }
+    StimulusGroup["stimulusKey"],
+    StimulusGroup
   >();
+  const groupsInOrder = MutableList.make<StimulusGroup>();
   for (const question of questions) {
     const { stimulusKey } = question.item;
     if (stimulusKey === undefined) {
@@ -101,15 +106,20 @@ const validateStimulusGroups = Effect.fn(
       MutableHashMap.get(groups, stimulusKey)
     );
     if (group === undefined) {
-      MutableHashMap.set(groups, stimulusKey, {
+      const created: StimulusGroup = {
         first: question,
         rest: MutableList.make<QuestionSource>(),
-      });
+        stimulusKey,
+      };
+      MutableHashMap.set(groups, stimulusKey, created);
+      MutableList.append(groupsInOrder, created);
     } else {
       MutableList.append(group.rest, question);
     }
   }
-  for (const [stimulusKey, { first, rest }] of groups) {
+  for (const { first, rest, stimulusKey } of MutableList.toArray(
+    groupsInOrder
+  )) {
     const group = [first, ...MutableList.toArray(rest)];
     if (group.length < 2) {
       return yield* new TryoutStimulusGroupError({
