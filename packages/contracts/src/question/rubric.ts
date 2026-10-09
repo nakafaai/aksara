@@ -34,7 +34,10 @@ export type QuestionRubricLabel = typeof QuestionRubricLabelSchema.Type;
  */
 function hasOrderedScale(criterion: {
   readonly finalAnswer?: QuestionAnswerKey;
-  readonly levels: readonly { readonly points: number }[];
+  readonly levels: readonly Pick<
+    typeof QuestionRubricLevelSchema.Type,
+    "points"
+  >[];
 }) {
   let previous = -1;
   for (const { points } of criterion.levels) {
@@ -53,16 +56,12 @@ function hasOrderedScale(criterion: {
 const ORDERED_SCALE_MESSAGE =
   "Rubric criteria need two or more levels whose points strictly ascend, and a final-answer criterion needs exactly a zero level and one higher level.";
 
-/** Checks one or more criteria and the stable keys derived from their order. */
+/**
+ * Checks one or more criteria and the stable keys derived from their order. A
+ * labeled criterion is a scale criterion with labels, so both kinds pass here.
+ */
 function hasCanonicalCriteria(
-  criteria: readonly {
-    readonly criterionKey: string;
-    readonly levels: readonly {
-      readonly levelKey: string;
-      readonly order: number;
-    }[];
-    readonly order: number;
-  }[]
+  criteria: readonly (typeof QuestionRubricCriterionScaleSchema.Type)[]
 ) {
   return (
     criteria.length > 0 &&

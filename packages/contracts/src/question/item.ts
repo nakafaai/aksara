@@ -90,7 +90,9 @@ const CategoryStatementSourceSchema = Schema.Struct({
 /** Checks category cardinality and every statement's category reference. */
 function hasCoherentCategoryResponse(input: {
   readonly categories: readonly string[];
-  readonly statements: readonly { readonly correctCategoryOrder: number }[];
+  readonly statements: readonly Readonly<
+    Pick<typeof CategoryStatementSourceSchema.Type, "correctCategoryOrder">
+  >[];
 }) {
   return (
     input.categories.length >= 2 &&

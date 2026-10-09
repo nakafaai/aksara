@@ -7,6 +7,9 @@ import {
   Schema,
 } from "effect";
 
+import type { PlaneLabelAnchor, PlaneMathObject } from "#contracts/math/plane";
+import type { SpaceLabelAnchor, SpaceMathObject } from "#contracts/math/space";
+
 const KEY_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/u;
 
 /** Relative floating-point tolerance used by normalized geometry predicates. */
@@ -131,8 +134,11 @@ function duplicateKeyIndexes<T>(
 
 /** Reports every repeated scene identity at its exact authored key path. */
 export function mathVisualIdentityIssues(
-  objects: readonly { readonly id: string }[],
-  labels: readonly { readonly key: string; readonly objectId: string }[]
+  objects: readonly Pick<PlaneMathObject | SpaceMathObject, "id">[],
+  labels: readonly Pick<
+    PlaneLabelAnchor | SpaceLabelAnchor,
+    "key" | "objectId"
+  >[]
 ): readonly Schema.FilterIssue[] {
   const objectIds = HashSet.fromIterable(Arr.map(objects, ({ id }) => id));
   return [

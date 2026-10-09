@@ -17,12 +17,10 @@ import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import { QuranSurahRowSchema } from "#contracts/quran/spec";
 import { makeQuranTestRecords } from "#contracts/test/quran";
 
-const failures = vi.hoisted(
-  (): { construct: boolean; stage: "digest" | "update" | null } => ({
-    construct: false,
-    stage: null,
-  })
-);
+const failures = vi.hoisted(() => ({
+  construct: vi.fn<() => boolean>(() => false),
+  stage: vi.fn<() => "digest" | "update" | null>(() => null),
+}));
 const QURAN_DIGEST_DOMAIN_PATTERN =
   /^nakafa\.aksara\.quran-(?:projection|runtime|search)\n/u;
 
@@ -32,7 +30,7 @@ vi.mock("node:crypto", async (importOriginal) => {
     ...crypto,
     /** Injects deterministic failures into current Quran aggregate digests. */
     createHash(algorithm: string) {
-      if (failures.construct) {
+      if (failures.construct()) {
         throw new TypeError(
           "injected current Quran digest construction failure"
         );
@@ -46,7 +44,7 @@ vi.mock("node:crypto", async (importOriginal) => {
             return (data: BinaryLike) => {
               if (QURAN_DIGEST_DOMAIN_PATTERN.test(String(data))) {
                 aggregate = true;
-              } else if (aggregate && failures.stage === "update") {
+              } else if (aggregate && failures.stage() === "update") {
                 throw new TypeError(
                   "injected current Quran digest update failure"
                 );
@@ -58,7 +56,7 @@ vi.mock("node:crypto", async (importOriginal) => {
           if (
             property === "digest" &&
             aggregate &&
-            failures.stage === "digest"
+            failures.stage() === "digest"
           ) {
             return () => {
               throw new TypeError(
@@ -267,21 +265,21 @@ describe("Quran aggregate digest", () => {
       const records = yield* makeQuranTestRecords();
       yield* Effect.addFinalizer(() =>
         Effect.sync(() => {
-          failures.construct = false;
-          failures.stage = null;
+          failures.construct.mockReturnValue(false);
+          failures.stage.mockReturnValue(null);
         })
       );
       yield* Effect.sync(() => {
-        failures.construct = true;
+        failures.construct.mockReturnValue(true);
       });
       const constructError = yield* reject([]);
       yield* Effect.sync(() => {
-        failures.construct = false;
-        failures.stage = "update";
+        failures.construct.mockReturnValue(false);
+        failures.stage.mockReturnValue("update");
       });
       const updateError = yield* reject(Arr.take(records, 1));
       yield* Effect.sync(() => {
-        failures.stage = "digest";
+        failures.stage.mockReturnValue("digest");
       });
       const digestError = yield* reject(records);
 

@@ -116,15 +116,14 @@ export const QuestionCategoryStatementSchema = Schema.Struct({
 
 /** Checks stable category and statement identities plus valid references. */
 function hasCanonicalCategories(input: {
-  readonly categories: readonly {
-    readonly categoryKey: string;
-    readonly order: number;
-  }[];
-  readonly statements: readonly {
-    readonly correctCategoryKey: string;
-    readonly order: number;
-    readonly statementKey: string;
-  }[];
+  readonly categories: readonly Pick<
+    typeof QuestionCategorySchema.Type,
+    "categoryKey" | "order"
+  >[];
+  readonly statements: readonly Pick<
+    typeof QuestionCategoryStatementSchema.Type,
+    "correctCategoryKey" | "order" | "statementKey"
+  >[];
 }) {
   const categoryKeys = HashSet.fromIterable(
     Arr.map(input.categories, ({ categoryKey }) => categoryKey)

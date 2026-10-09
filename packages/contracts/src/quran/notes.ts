@@ -73,11 +73,7 @@ const QuranTranslationSourceSchema = Schema.Struct({
 type QuranTranslationSource = typeof QuranTranslationSourceSchema.Type;
 
 /** Reads every numeric marker without treating editorial brackets as notes. */
-function readMarkers(
-  source: string
-):
-  | { readonly _tag: "Failure" }
-  | { readonly _tag: "Success"; readonly markers: readonly Marker[] } {
+function readMarkers(source: string) {
   const markers = MutableList.make<Marker>();
   for (const match of source.matchAll(/\[(\d+)\]/gu)) {
     const rawNumber = match[0].slice(1, -1);
@@ -87,7 +83,7 @@ function readMarkers(
       rawNumber !== String(number) ||
       !Schema.is(QuranTranslationNoteNumberSchema)(number)
     ) {
-      return { _tag: "Failure" };
+      return Option.none<Marker[]>();
     }
     MutableList.append(markers, {
       end: start + match[0].length,
@@ -95,7 +91,7 @@ function readMarkers(
       start,
     });
   }
-  return { _tag: "Success", markers: MutableList.toArray(markers) };
+  return Option.some(MutableList.toArray(markers));
 }
 
 /** Converts the translation body to text and note-reference segments. */
@@ -134,15 +130,12 @@ function analyzeTranslation(
 ): TranslationAnalysis {
   const referencesResult = readMarkers(source.text);
   const definitionsResult = readMarkers(source.footnotes);
-  if (
-    referencesResult._tag === "Failure" ||
-    definitionsResult._tag === "Failure"
-  ) {
+  if (Option.isNone(referencesResult) || Option.isNone(definitionsResult)) {
     return { _tag: "Failure", reason: "invalid-marker" };
   }
 
-  const references = referencesResult.markers;
-  const definitions = definitionsResult.markers;
+  const references = referencesResult.value;
+  const definitions = definitionsResult.value;
   const uniqueReferences = Arr.filter(references, (reference, index) =>
     Option.contains(
       Arr.findFirstIndex(

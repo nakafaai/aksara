@@ -1,8 +1,5 @@
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
-import {
-  type SignedContentArtifact,
-  SignedContentArtifactSchema,
-} from "#contracts/content";
+import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import {
   type ProtectedContentDelivery,
@@ -99,7 +96,10 @@ export type ProtectedContentRuntimeItem =
 
 /** Checks one protected response never repeats an immutable artifact. */
 function hasUniqueArtifacts(
-  items: readonly { readonly artifact: SignedContentArtifact }[]
+  items: readonly Pick<
+    typeof ProtectedContentRuntimeItemSchema.Type,
+    "artifact"
+  >[]
 ) {
   const hashes = Arr.map(items, ({ artifact }) => artifact.artifactHash);
   return HashSet.size(HashSet.fromIterable(hashes)) === hashes.length;

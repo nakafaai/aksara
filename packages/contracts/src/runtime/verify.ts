@@ -1,4 +1,4 @@
-import { Array as Arr, Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { hashContentProjection } from "#contracts/projection/hash";
 import type { RoutedContentProjection } from "#contracts/projection/spec";
@@ -104,13 +104,15 @@ const verifyPublicRelease = Effect.fn("AksaraContracts.verifyPublicRelease")(
   }
 );
 
-/** Authenticates one public response and applies its explicit use policy. */
+/**
+ * Authenticates one public response. With a live renderer manifest it also
+ * proves that the renderer can execute the artifact; without one the response
+ * is evidence only.
+ */
 const verifyPublicRuntimeExchange = Effect.fn(
   "AksaraContracts.verifyPublicRuntimeExchange"
 )(function* (input: {
-  readonly policy:
-    | { readonly kind: "evidence" }
-    | { readonly kind: "execution"; readonly rendererManifest: unknown };
+  readonly rendererManifest: Option.Option<unknown>;
   readonly request: unknown;
   readonly response: unknown;
 }) {
@@ -130,11 +132,11 @@ const verifyPublicRuntimeExchange = Effect.fn(
 
     rendererManifest: bundle.rendererManifest,
   });
-  if (input.policy.kind === "evidence") {
+  if (Option.isNone(input.rendererManifest)) {
     return response;
   }
   const liveRenderer = yield* validateRendererManifestHash(
-    input.policy.rendererManifest
+    input.rendererManifest.value
   );
   if (liveRenderer.hash !== bundle.rendererManifest.hash) {
     yield* verifyContentRendererCompatibility({
@@ -156,7 +158,7 @@ export const verifyContentRuntimeEvidenceExchange = Effect.fn(
 )(function* (input: { readonly request: unknown; readonly response: unknown }) {
   return yield* verifyPublicRuntimeExchange({
     ...input,
-    policy: { kind: "evidence" },
+    rendererManifest: Option.none(),
   });
 });
 
@@ -174,10 +176,7 @@ export const verifyContentRuntimeExchange = Effect.fn(
   readonly response: unknown;
 }) {
   return yield* verifyPublicRuntimeExchange({
-    policy: {
-      kind: "execution",
-      rendererManifest: input.rendererManifest,
-    },
+    rendererManifest: Option.some(input.rendererManifest),
     request: input.request,
     response: input.response,
   });
