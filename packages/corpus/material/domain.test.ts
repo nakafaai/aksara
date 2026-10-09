@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import {
   decodeMaterialDomains,
@@ -30,7 +30,7 @@ describe("material domain registry", () => {
       Effect.gen(function* () {
         const descriptors = yield* decodeMaterialDomains();
 
-        expect(descriptors.map(({ key }) => key)).toEqual([
+        expect(Arr.map(descriptors, ({ key }) => key)).toEqual([
           "ai-ds",
           "biology",
           "chemistry",
@@ -38,7 +38,7 @@ describe("material domain registry", () => {
           "physics",
         ]);
         expect(
-          descriptors.map(({ key, navigationIconKey }) => ({
+          Arr.map(descriptors, ({ key, navigationIconKey }) => ({
             key,
             navigationIconKey,
           }))
@@ -50,7 +50,7 @@ describe("material domain registry", () => {
           { key: "physics", navigationIconKey: "science" },
         ]);
         expect(
-          descriptors.map(({ key, routeSlugs }) => [key, routeSlugs.de])
+          Arr.map(descriptors, ({ key, routeSlugs }) => [key, routeSlugs.de])
         ).toEqual([
           ["ai-ds", "ki-und-data-science"],
           ["biology", "biologie"],

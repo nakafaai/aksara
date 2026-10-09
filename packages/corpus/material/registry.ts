@@ -1,8 +1,4 @@
-import {
-  compareContentHeads,
-  headIdentity,
-  routeIdentity,
-} from "@nakafa/aksara-contracts/content";
+import { headIdentity, routeIdentity } from "@nakafa/aksara-contracts/content";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ContentKeySchema,
@@ -20,7 +16,14 @@ import {
   MaterialKeySchema,
   MaterialLessonRouteSchema,
 } from "@nakafa/aksara-contracts/projection/material";
-import { Effect, MutableHashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashSet,
+  MutableList,
+  Order,
+  Schema,
+} from "effect";
 import { appLocaleCode, requireSourceLocale } from "#corpus/locale/source";
 import {
   decodeMaterialDomains,
@@ -145,7 +148,7 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
       projectMaterial(binding, section, sectionIndex, appLocale)
     )
   );
-  return sections.flat();
+  return Arr.flatten(sections);
 });
 
 /** Rejects repeated source identities before projecting lesson bodies. */
@@ -157,7 +160,7 @@ export const validateMaterialSources = Effect.fn(
 ) {
   const keys = MutableHashSet.empty<string>();
   const roots = MutableHashSet.empty<string>();
-  const bindings: MaterialSourceBinding[] = [];
+  const bindings = MutableList.make<MaterialSourceBinding>();
 
   for (const source of sources) {
     if (MutableHashSet.has(keys, source.key)) {
@@ -174,10 +177,10 @@ export const validateMaterialSources = Effect.fn(
       source.domain,
       source.key
     );
-    bindings.push({ descriptor, source });
+    MutableList.append(bindings, { descriptor, source });
   }
 
-  return bindings;
+  return MutableList.toArray(bindings);
 });
 
 /** Rejects duplicate content heads and public routes after source expansion. */
@@ -207,8 +210,18 @@ export const validateMaterialEntries = Effect.fn(
     MutableHashSet.add(routes, route);
   }
 
-  return [...entries].sort((left, right) =>
-    compareContentHeads(left.route, right.route)
+  return Arr.sort(
+    entries,
+    Order.combine(
+      Order.mapInput(
+        Order.String,
+        (entry: MaterialEntry) => entry.route.contentKey
+      ),
+      Order.mapInput(
+        Order.String,
+        (entry: MaterialEntry) => entry.route.artifactLocale
+      )
+    )
   );
 });
 
@@ -229,7 +242,7 @@ export const decodeMaterialRegistry = Effect.fn(
 
   const entries = yield* Schema.decodeUnknownEffect(
     Schema.Array(MaterialEntrySchema)
-  )(expanded.flat(), { onExcessProperty: "error" }).pipe(
+  )(Arr.flatten(expanded), { onExcessProperty: "error" }).pipe(
     Effect.mapError(
       (cause) =>
         new MaterialRegistryError({

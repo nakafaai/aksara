@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import {
   decodeMaterialDomains,
@@ -18,8 +18,11 @@ describe("material public routes", () => {
           decodeMaterialDomains(),
           decodeMaterialSources(),
         ]);
-        const material = materials.find(
-          ({ key }) => key === "lesson.mathematics.function-modeling"
+        const material = Option.getOrUndefined(
+          Arr.findFirst(
+            materials,
+            ({ key }) => key === "lesson.mathematics.function-modeling"
+          )
         );
 
         expect(material).toBeDefined();
