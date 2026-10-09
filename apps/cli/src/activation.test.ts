@@ -1,19 +1,22 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
-import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Array as Arr, Effect, Redacted, Stream } from "effect";
+import { Array as Arr, Effect, Redacted, Schema, Stream } from "effect";
 import { HttpClient } from "effect/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 import { gitBundle } from "#test/target";
 
-interface ActivationCalls {
-  endpoint: string;
-  fetches: number;
-  renderer: RendererManifestEnvelope | undefined;
-  token: string;
-}
+const ActivationCallsSchema = Schema.Struct({
+  endpoint: Schema.mutableKey(Schema.String),
+  fetches: Schema.mutableKey(Schema.Finite),
+  renderer: Schema.mutableKey(
+    Schema.UndefinedOr(RendererManifestEnvelopeSchema)
+  ),
+  token: Schema.mutableKey(Schema.String),
+});
+type ActivationCalls = typeof ActivationCallsSchema.Type;
 const calls = vi.hoisted(
   (): ActivationCalls => ({
     endpoint: "",

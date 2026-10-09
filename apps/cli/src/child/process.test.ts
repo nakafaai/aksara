@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from "@effect/vitest";
-import { Effect, Fiber } from "effect";
+import { Effect, Fiber, Schema } from "effect";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import {
   childHandleReferenced,
@@ -22,17 +22,18 @@ import {
 /** Signals to this identifier are always mocked, so no operating-system process can be reached. */
 const FAKE_PID = 424_242;
 
-interface ChildProcessBehavior {
-  enabled: boolean;
-  pid: number;
-  spawnOptions: import("node:child_process").SpawnOptions | undefined;
-  throwOnSpawn: boolean;
-}
+const ChildProcessBehaviorSchema = Schema.Struct({
+  enabled: Schema.mutableKey(Schema.Boolean),
+  pid: Schema.mutableKey(Schema.Finite),
+  stdio: Schema.mutableKey(Schema.UndefinedOr(Schema.Unknown)),
+  throwOnSpawn: Schema.mutableKey(Schema.Boolean),
+});
+type ChildProcessBehavior = typeof ChildProcessBehaviorSchema.Type;
 const childProcessBehavior = vi.hoisted(
   (): ChildProcessBehavior => ({
     enabled: false,
     pid: 0,
-    spawnOptions: undefined,
+    stdio: undefined,
     throwOnSpawn: false,
   })
 );
@@ -49,7 +50,7 @@ vi.mock("node:child_process", async (importOriginal) => {
       args: readonly string[],
       options: import("node:child_process").SpawnOptions
     ) {
-      childProcessBehavior.spawnOptions = options;
+      childProcessBehavior.stdio = options.stdio;
       if (childProcessBehavior.throwOnSpawn) {
         throw new Error("Synchronous spawn failure.");
       }
@@ -68,7 +69,7 @@ vi.mock("node:child_process", async (importOriginal) => {
 afterEach(() => {
   childProcessBehavior.enabled = false;
   childProcessBehavior.pid = 0;
-  childProcessBehavior.spawnOptions = undefined;
+  childProcessBehavior.stdio = undefined;
   childProcessBehavior.throwOnSpawn = false;
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
@@ -248,7 +249,7 @@ describe("Nakafa child lifetime", () => {
           expect(withoutSystemVariables(report.environment)).toEqual({
             AKSARA_TEST_ALLOWED: "visible",
           });
-          expect(childProcessBehavior.spawnOptions?.stdio).toBe("inherit");
+          expect(childProcessBehavior.stdio).toBe("inherit");
         })
       )
   );
