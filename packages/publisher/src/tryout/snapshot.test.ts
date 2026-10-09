@@ -10,7 +10,17 @@ import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapsh
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { Context, Effect, HashMap, Layer, Option, Path, Stream } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  HashMap,
+  Layer,
+  Option,
+  Order,
+  Path,
+  Stream,
+} from "effect";
 import { TryoutHeadMismatchError } from "#publisher/tryout/error";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
 import { testFileLayer } from "#test/files";
@@ -42,7 +52,8 @@ function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {
 
 /** Counts public hierarchy routes represented by the configured fixture. */
 function countCatalogRoutes(records: readonly TryoutCatalogRecord[]) {
-  return records.filter(
+  return Arr.filter(
+    records,
     ({ row }) => "publicPath" in row && row.publicPath !== undefined
   ).length;
 }
@@ -58,7 +69,7 @@ const makeSnapshotTestFixtures = Effect.fn("TryoutSnapshotTest.makeFixtures")(
       const { catalog: tryoutCatalog, placements: tryoutPlacements } =
         selectTryoutSlice(
           completeTryoutContent.projection,
-          questionEntries.filter(({ bodyKind }) => bodyKind === "question")
+          Arr.filter(questionEntries, ({ bodyKind }) => bodyKind === "question")
         );
       const routeCount = countCatalogRoutes(tryoutCatalog);
       const content = {
@@ -145,7 +156,8 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
         Effect.gen(function* () {
           const fixture = yield* TryoutSnapshotTestFixtures;
           const prepared = yield* prepare(fixture);
-          const placements = prepared.first.filter(
+          const placements = Arr.filter(
+            prepared.first,
             (
               row
             ): row is Extract<
@@ -154,7 +166,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
             > => row.family === "tryout" && row.rowKind === "placement"
           );
           const headByIdentity = HashMap.fromIterable(
-            fixture.tryoutHeads.map((head) => [
+            Arr.map(fixture.tryoutHeads, (head) => [
               `${head.contentKey}\0${head.artifactLocale}`,
               head.artifactHash,
             ])
@@ -168,7 +180,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
             routeCount: countCatalogRoutes(fixture.tryoutCatalog),
           });
           expect(
-            placements.every(({ record: { row } }) => {
+            Arr.every(placements, ({ record: { row } }) => {
               const question = Option.getOrUndefined(
                 HashMap.get(
                   headByIdentity,
@@ -203,7 +215,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
               ...fixture.content,
               projection: {
                 ...projection,
-                placements: [...placements].reverse(),
+                placements: Arr.reverse(placements),
               },
             },
           });
@@ -252,7 +264,10 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
         });
         const error = yield* reject(fixture, {
           questionHeads: Stream.fromIterable(
-            [altered, secondHead, ...rest].sort(compareContentHeads)
+            Arr.sort(
+              [altered, secondHead, ...rest],
+              Order.make(compareContentHeads)
+            )
           ),
         });
 

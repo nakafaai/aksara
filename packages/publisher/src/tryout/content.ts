@@ -6,7 +6,14 @@ import { TryoutPlacementSchema } from "@nakafa/aksara-contracts/tryout/placement
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
-import { Effect, HashMap, MutableHashMap, Option, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableHashMap,
+  Option,
+  Stream,
+} from "effect";
 import {
   type InspectedQuestionDocument,
   inspectQuestionAnswerDocument,
@@ -199,7 +206,7 @@ export function bindTryoutContent<E, R>(input: {
   readonly sources: readonly QuestionSource[];
 }) {
   const entries = HashMap.fromIterable(
-    input.entries.map((entry) => [entryIdentity(entry), entry])
+    Arr.map(input.entries, (entry) => [entryIdentity(entry), entry])
   );
   const itemsByRoot = indexQuestionItems(input.sources);
   return input.bindings.pipe(

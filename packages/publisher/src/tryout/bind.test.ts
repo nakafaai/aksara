@@ -12,7 +12,7 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Order, Schema } from "effect";
 import {
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
@@ -101,12 +101,13 @@ function head(input: {
 
 /** Returns all six active heads in canonical content order. */
 function activeHeads() {
-  return (["en", "id", "de"] as const)
-    .flatMap((artifactLocale) => [
+  return Arr.sort(
+    Arr.flatMap(["en", "id", "de"] as const, (artifactLocale) => [
       head({ artifactLocale, bodyKind: "answer" }),
       head({ artifactLocale, bodyKind: "question" }),
-    ])
-    .sort(compareContentHeads);
+    ]),
+    Order.make(compareContentHeads)
+  );
 }
 
 /** Returns the complete active placement closure for one question root. */
@@ -139,28 +140,32 @@ describe("try-out head binding", () => {
       Effect.gen(function* () {
         const unrelatedRoot =
           "question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1";
-        const heads = [
-          ...activeHeads(),
-          head({
-            artifactLocale: "en",
-            bodyKind: "answer",
-            contentRoot: unrelatedRoot,
-            sourcePath:
-              "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
-          }),
-        ].sort(compareContentHeads);
+        const heads = Arr.sort(
+          [
+            ...activeHeads(),
+            head({
+              artifactLocale: "en",
+              bodyKind: "answer",
+              contentRoot: unrelatedRoot,
+              sourcePath:
+                "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-9/question-1/answer.en.mdx",
+            }),
+          ],
+          Order.make(compareContentHeads)
+        );
         const result = yield* collectTryoutHeadBindings(
           activePlacements(),
           heads
         );
 
-        expect(result.map(({ placement: row }) => row.appLocale)).toEqual([
+        expect(Arr.map(result, ({ placement: row }) => row.appLocale)).toEqual([
           "de",
           "en",
           "id",
         ]);
         expect(
-          result.every(
+          Arr.every(
+            result,
             ({ answerHead, questionHead }) =>
               answerHead.artifactHash === hash &&
               questionHead.artifactHash === hash
@@ -191,7 +196,8 @@ describe("try-out head binding", () => {
     Effect.gen(function* () {
       const missing = yield* rejectTryoutHeadBindings(
         activePlacements(),
-        activeHeads().filter(
+        Arr.filter(
+          activeHeads(),
           ({ artifactLocale, contentKey }) =>
             !(
               artifactLocale === "en" && contentKey === `${questionRoot}/answer`
@@ -210,11 +216,11 @@ describe("try-out head binding", () => {
       });
       const trailingError = yield* rejectTryoutHeadBindings(
         activePlacements(),
-        [...activeHeads(), trailing].sort(compareContentHeads)
+        Arr.sort([...activeHeads(), trailing], Order.make(compareContentHeads))
       );
       const leadingError = yield* rejectTryoutHeadBindings(
         activePlacements(),
-        [...activeHeads(), leading].sort(compareContentHeads)
+        Arr.sort([...activeHeads(), leading], Order.make(compareContentHeads))
       );
 
       expect(missing).toBeInstanceOf(TryoutHeadMissingError);
@@ -250,16 +256,20 @@ describe("try-out head binding", () => {
       Effect.gen(function* () {
         const error = yield* rejectTryoutHeadBindings(
           activePlacements(),
-          [
-            mismatchedHead(field),
-            ...activeHeads().filter(
-              ({ artifactLocale, contentKey }) =>
-                !(
-                  artifactLocale === "en" &&
-                  contentKey === `${questionRoot}/answer`
-                )
-            ),
-          ].sort(compareContentHeads)
+          Arr.sort(
+            [
+              mismatchedHead(field),
+              ...Arr.filter(
+                activeHeads(),
+                ({ artifactLocale, contentKey }) =>
+                  !(
+                    artifactLocale === "en" &&
+                    contentKey === `${questionRoot}/answer`
+                  )
+              ),
+            ],
+            Order.make(compareContentHeads)
+          )
         );
 
         expect(error).toBeInstanceOf(TryoutHeadMismatchError);
@@ -271,7 +281,8 @@ describe("try-out head binding", () => {
     "rejects incomplete and repeated artifactLocale placement pairs",
     () =>
       Effect.gen(function* () {
-        const englishHeads = activeHeads().filter(
+        const englishHeads = Arr.filter(
+          activeHeads(),
           ({ artifactLocale }) => artifactLocale === "en"
         );
         const [incomplete, repeated, substituted] = yield* Effect.all(
