@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
@@ -123,14 +123,20 @@ export const ProgramTranslationSchema = Schema.Struct({
 });
 export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
 
+/** Returns the canonical position of one decoded application locale. */
+function localeIndex(appLocale: ProgramTranslation["appLocale"]) {
+  return Option.getOrThrow(
+    Arr.findFirstIndex(APP_LOCALE_CODES, (code) => code === appLocale)
+  );
+}
+
 /** Checks translations for unique canonical application-locale order. */
 function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
   return Arr.every(translations, (translation, index) => {
     const previous = translations[index - 1];
     return (
       previous === undefined ||
-      APP_LOCALE_CODES.indexOf(previous.appLocale) <
-        APP_LOCALE_CODES.indexOf(translation.appLocale)
+      localeIndex(previous.appLocale) < localeIndex(translation.appLocale)
     );
   });
 }
