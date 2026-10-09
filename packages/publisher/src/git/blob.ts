@@ -64,7 +64,7 @@ export class GitBlob extends Context.Service<
       GitBlobError
     >;
   }
->()("AksaraGitBlob") {}
+>()("@nakafa/aksara-publisher/git/blob/GitBlob") {}
 
 /** Decodes trusted bytes without replacement characters or BOM removal. */
 const decodeGitText = Effect.fn("AksaraPublisher.decodeGitText")(

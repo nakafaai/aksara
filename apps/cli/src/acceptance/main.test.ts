@@ -1,8 +1,15 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ConfigProvider, Effect } from "effect";
+import type { publishAcceptance } from "#cli/acceptance/publication";
+
+/** The program that the acceptance entry hands to the Node runtime. */
+type AcceptanceProgram = Effect.Effect<
+  Effect.Success<typeof publishAcceptance>,
+  Effect.Error<typeof publishAcceptance>
+>;
 
 const runtime = vi.hoisted(() => ({
-  runMain: vi.fn<(program: Effect.Effect<unknown, unknown>) => void>(),
+  runMain: vi.fn<(program: AcceptanceProgram) => void>(),
 }));
 
 vi.mock("@effect/platform-node", async (importOriginal) => {

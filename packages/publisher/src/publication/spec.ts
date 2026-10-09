@@ -141,13 +141,13 @@ export class PublicationSigningKey extends Context.Service<
     readonly keyId: string;
     readonly privateKeyPem: Redacted.Redacted<string>;
   }
->()("AksaraPublicationSigningKey") {}
+>()("@nakafa/aksara-publisher/publication/spec/PublicationSigningKey") {}
 
 /** Operator-selected immutable identity for the pre-activation inverse release. */
 export class PublicationRecoveryId extends Context.Service<
   PublicationRecoveryId,
   typeof ReleaseIdSchema.Type
->()("AksaraPublicationRecoveryId") {}
+>()("@nakafa/aksara-publisher/publication/spec/PublicationRecoveryId") {}
 
 /** Owns renderer preflight and post-commit Nakafa cache convergence. */
 export class PublicationActivation extends Context.Service<
@@ -170,7 +170,7 @@ export class PublicationActivation extends Context.Service<
       preflight: RendererPreflight
     ) => Effect.Effect<void, PublicationActivationError>;
   }
->()("AksaraPublicationActivation") {}
+>()("@nakafa/aksara-publisher/publication/spec/PublicationActivation") {}
 
 /** Loads ordered sources only from one exact reviewed Aksara revision. */
 export class PublicationSource extends Context.Service<
@@ -182,7 +182,7 @@ export class PublicationSource extends Context.Service<
       readonly items: Stream.Stream<ContentReleaseItem, E, R>;
     }) => Stream.Stream<unknown, E | PublicationSourceError, R>;
   }
->()("AksaraPublicationSource") {}
+>()("@nakafa/aksara-publisher/publication/spec/PublicationSource") {}
 
 /** Idempotent invisible staging and atomic activation infrastructure seam. */
 export class PublicationTarget extends Context.Service<
@@ -281,4 +281,4 @@ export class PublicationTarget extends Context.Service<
       release: SignedContentRelease
     ) => Effect.Effect<ReleaseVerificationStatus, PublicationTargetFailure>;
   }
->()("AksaraPublicationTarget") {}
+>()("@nakafa/aksara-publisher/publication/spec/PublicationTarget") {}

@@ -76,7 +76,7 @@ export const prepareQuranSnapshot = Effect.fn(
   });
   const rowSummary = yield* digestQuranRows({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    rows: rowHashStream(streamQuranRows(verifiedSource.source)),
+    rows: verifiedSource.source.pipe(streamQuranRows, rowHashStream),
   });
   const facts = QuranSnapshotFactsSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,

@@ -94,7 +94,7 @@ const makePlanTestFixtures = Effect.fn("QuestionPlanTest.makeFixtures")(() =>
 class QuestionPlanTestFixtures extends Context.Service<
   QuestionPlanTestFixtures,
   Effect.Success<ReturnType<typeof makePlanTestFixtures>>
->()("AksaraPublisherQuestionPlanTestFixtures") {}
+>()("@nakafa/aksara-publisher/question/plan.test/QuestionPlanTestFixtures") {}
 
 const planTestLayer = Layer.effect(
   QuestionPlanTestFixtures,

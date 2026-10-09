@@ -1,5 +1,6 @@
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Cause, Data, Effect, Exit, FileSystem, Runtime } from "effect";
+import type { PlatformError } from "effect/PlatformError";
 import { TestConsole } from "effect/testing";
 import { runEntry } from "#scripts/entry";
 
@@ -7,7 +8,7 @@ const runtime = vi.hoisted(() => ({
   runMain:
     vi.fn<
       (
-        program: Effect.Effect<unknown, unknown>,
+        program: Effect.Effect<unknown, EntryFailure>,
         options?: { readonly disableErrorReporting?: boolean | undefined }
       ) => void
     >(),
@@ -32,6 +33,9 @@ class AlreadyReported extends Data.TaggedError("AlreadyReported")<{
 }> {
   readonly [Runtime.errorReported] = false;
 }
+
+/** Every failure that a program handed to the runtime in this file ends with. */
+type EntryFailure = AlreadyReported | PlatformError | string;
 
 /** Returns the program and options that the entry handed to the Node runtime. */
 const handedRuntimeCall = Effect.fn("ScriptEntryTest.handedRuntimeCall")(

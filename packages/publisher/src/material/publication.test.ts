@@ -93,7 +93,9 @@ const makePublicationTestFixtures = Effect.fn(
 class MaterialPublicationTestFixtures extends Context.Service<
   MaterialPublicationTestFixtures,
   Effect.Success<ReturnType<typeof makePublicationTestFixtures>>
->()("AksaraPublisherMaterialPublicationTestFixtures") {}
+>()(
+  "@nakafa/aksara-publisher/material/publication.test/MaterialPublicationTestFixtures"
+) {}
 
 const publicationFixtureLayer = Layer.effect(
   MaterialPublicationTestFixtures,

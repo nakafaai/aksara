@@ -31,7 +31,7 @@ export class NakafaProcess extends Context.Service<
       input: NakafaProcessInput
     ) => Effect.Effect<RunningProcess, NakafaAppError, Scope.Scope>;
   }
->()("AksaraCliNakafaProcess") {}
+>()("@nakafa/aksara-cli/child/process/NakafaProcess") {}
 
 /** Opens one process and records exit before returning control to its caller. */
 const openProcess = Effect.fn("AksaraCli.openNakafaProcess")(function* (

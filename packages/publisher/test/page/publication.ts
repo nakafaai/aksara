@@ -234,7 +234,9 @@ const makePublishedPageTestFixtures = Effect.fn(
 export class PublishedPageTestFixtures extends Context.Service<
   PublishedPageTestFixtures,
   Effect.Success<ReturnType<typeof makePublishedPageTestFixtures>>
->()("AksaraPublisherPublishedPageTestFixtures") {}
+>()(
+  "@nakafa/aksara-publisher/test/page/publication/PublishedPageTestFixtures"
+) {}
 
 const publishedFixtureLayer = Layer.effect(
   PublishedPageTestFixtures,

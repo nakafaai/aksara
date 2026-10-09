@@ -9,7 +9,9 @@ import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";
 import type { ProductionCalls } from "#test/production/mock";
 
-type PrepareContentReleaseInput = Parameters<typeof prepareContentRelease>[0];
+type PrepareContentReleaseInput<E, R> = Parameters<
+  typeof prepareContentRelease<E, R>
+>[0];
 
 const calls = vi.hoisted(() => {
   /** Creates pristine observable state for one production-command test. */
@@ -106,7 +108,7 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   const { Effect: TestEffect, Stream: TestStream } = await import("effect");
   const { gitBundle, releaseId } = await import("#test/target");
   return {
-    prepareContentRelease: (input: PrepareContentReleaseInput) => {
+    prepareContentRelease: <E, R>(input: PrepareContentReleaseInput<E, R>) => {
       calls.baseReleaseId = input.baseReleaseId;
       calls.baseManifestHash = input.baseManifestHash;
       calls.baseResultCount = input.baseResultCount;

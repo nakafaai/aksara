@@ -10,11 +10,15 @@ import {
   scanQuestionSimilarity,
 } from "@nakafa/aksara-corpus/question-bank/similarity";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, Path, Schema } from "effect";
+import { Console, Effect, Path, Schema } from "effect";
 
 const DEFAULT_THRESHOLD = 0.5;
 const USAGE =
   "Usage: similar/check.ts <question-bank directory> [--threshold 0.5]";
+/** Two-space indented JSON text, the bytes JSON.stringify(value, null, 2) writes. */
+const encodePrettyJson = Schema.encodeSync(
+  Schema.fromJsonString(Schema.Unknown, { space: 2 })
+);
 
 /** The similarity check was called with arguments it cannot use. */
 export class SimilarityCheckError extends Schema.TaggedError<SimilarityCheckError>()(
@@ -70,17 +74,14 @@ const runCli = Effect.fn("SimilarityCheck.runCli")(function* (
     target,
     options.threshold
   );
-  // Output stays on the console globals so tests can capture it.
   for (const match of report.items) {
-    yield* Effect.sync(() => console.error(`ITEM ${line(match)}`));
+    yield* Console.error(`ITEM ${line(match)}`);
   }
   for (const match of report.passages) {
-    yield* Effect.sync(() => console.error(`PASSAGE ${line(match)}`));
+    yield* Console.error(`PASSAGE ${line(match)}`);
   }
-  yield* Effect.sync(() =>
-    console.log(
-      `${report.items.length} item pairs and ${report.passages.length} passages under ${target} reach ${options.threshold}.`
-    )
+  yield* Console.log(
+    `${report.items.length} item pairs and ${report.passages.length} passages under ${target} reach ${options.threshold}.`
   );
   return report.items.length + report.passages.length === 0 ? 0 : 1;
 });
@@ -92,9 +93,9 @@ export const runMain = Effect.fn("SimilarityCheck.runMain")(function* (
   return yield* Effect.provide(
     runCli(arguments_).pipe(
       Effect.catch((error) =>
-        Effect.sync(() =>
-          console.error(`${error._tag}: ${JSON.stringify(error, null, 2)}`)
-        ).pipe(Effect.as(2))
+        Console.error(`${error._tag}: ${encodePrettyJson(error)}`).pipe(
+          Effect.as(2)
+        )
       )
     ),
     NodeServices.layer

@@ -3,7 +3,7 @@
 import { join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Effect, FileSystem } from "effect";
+import { Console, Effect, FileSystem } from "effect";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import {
   changedFiles,
@@ -113,9 +113,9 @@ export const runMain = Effect.fn("PointsCheck.runMain")(function* (
       return yield* printReport(yield* checkPoints(root, options));
     }).pipe(
       Effect.catchTag("PointsCheckError", (error) =>
-        Effect.sync(() =>
-          console.error(`${error._tag} [${error.reason}]: ${error.detail}`)
-        ).pipe(Effect.as(2))
+        Console.error(`${error._tag} [${error.reason}]: ${error.detail}`).pipe(
+          Effect.as(2)
+        )
       )
     ),
     NodeServices.layer

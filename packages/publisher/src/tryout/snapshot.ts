@@ -164,8 +164,8 @@ export const prepareTryoutSnapshot: <E, R>(
   /** Replays the sealed rows used by every digest and release operation. */
   const rows = spool.replay;
   const [catalog, placement] = yield* Effect.all([
-    digestTryoutCatalog(selectCatalogRows(rows)),
-    digestTryoutPlacements(selectPlacementRows(rows)),
+    rows.pipe(selectCatalogRows, digestTryoutCatalog),
+    rows.pipe(selectPlacementRows, digestTryoutPlacements),
   ]);
   const manifest = {
     family: "tryout",

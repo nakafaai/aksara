@@ -18,7 +18,7 @@ import {
 class QuranMetadataSource extends Context.Service<
   QuranMetadataSource,
   string
->()("AksaraCorpus.test.QuranMetadataSource") {}
+>()("@nakafa/aksara-corpus/quran/source/metadata.test/QuranMetadataSource") {}
 
 const metadataLayer = Layer.effect(QuranMetadataSource)(
   Effect.gen(function* () {

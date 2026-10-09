@@ -237,7 +237,7 @@ const makeMaterialTestFixtures = Effect.fn("MaterialTest.makeFixtures")(() =>
 export class MaterialTestFixtures extends Context.Service<
   MaterialTestFixtures,
   Effect.Success<ReturnType<typeof makeMaterialTestFixtures>>
->()("AksaraPublisherTestMaterialFixtures") {}
+>()("@nakafa/aksara-publisher/test/material/spec/MaterialTestFixtures") {}
 
 export const materialTestLayer: Layer.Layer<MaterialTestFixtures> =
   Layer.effect(MaterialTestFixtures, makeMaterialTestFixtures()).pipe(

@@ -29,9 +29,6 @@ type RecoverContentRelease = (
   | Effect.Error<ReturnType<typeof selectRetainedRecovery>>
   | RecoveryRuntimeMissingError
   | Effect.Error<ReturnType<(typeof PublicationActivation.Service)["verify"]>>
-  | Effect.Error<
-      ReturnType<(typeof PublicationActivation.Service)["invalidate"]>
-    >
   | Effect.Error<(typeof PublicationTarget.Service)["current"]>
   | Effect.Error<
       ReturnType<(typeof PublicationTarget.Service)["activateRecovery"]>

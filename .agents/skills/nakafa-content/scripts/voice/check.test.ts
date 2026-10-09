@@ -11,8 +11,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeFileSystem } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
-import { Effect, type FileSystem, type Scope } from "effect";
+import { Effect, type FileSystem, Schema, type Scope } from "effect";
 
+import { loggedLines } from "#nakafa-content/points/test/console";
 import {
   checkLessonRoot,
   collectLessonFiles,
@@ -22,6 +23,7 @@ import {
 import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
 const PASSING_REPORT_PATTERN = /passed for 3 files/u;
+const JSON_TEXT = Schema.fromJsonString(Schema.Unknown);
 
 type TestServices = FileSystem.FileSystem | Scope.Scope;
 
@@ -226,27 +228,18 @@ checkTest(
 checkTest(
   "prints clean text and JSON reports",
   Effect.gen(function* () {
-    const logs: string[] = [];
-    yield* Effect.acquireRelease(
-      Effect.sync(() => {
-        const originalLog = console.log;
-        console.log = (value?: unknown) => logs.push(String(value));
-        return originalLog;
-      }),
-      (originalLog) =>
-        Effect.sync(() => {
-          console.log = originalLog;
-        })
-    );
     const root = yield* temporaryRoot({
       "answer.en.mdx": "A vector has magnitude and direction.",
       "en.mdx": '**Magnitude** is the length.\n\n<BlockMath math="A=3" />',
       "question.en.mdx": "**A quoted question remains exactly as written.**",
     });
     assert.equal(yield* runCli(["--format", "text", "--root", root]), 0);
-    assert.match(logs.at(-1) ?? "", PASSING_REPORT_PATTERN);
+    assert.match((yield* loggedLines).at(-1) ?? "", PASSING_REPORT_PATTERN);
     assert.equal(yield* runCli(["--format", "json", "--root", root]), 0);
-    assert.deepEqual(JSON.parse(logs.at(-1) ?? "{}"), {
+    const json = yield* Effect.orDie(
+      Schema.decodeEffect(JSON_TEXT)((yield* loggedLines).at(-1) ?? "{}")
+    );
+    assert.deepEqual(json, {
       blockingIssueCount: 0,
       fileCount: 3,
       issues: [],
@@ -259,6 +252,7 @@ checkTest(
       false
     );
     assert.equal(yield* runCli(["--root", root, "--pedagogy-review"]), 0);
+    const logs = yield* loggedLines;
     assert.ok(logs.some((line) => line.includes("[manual] unmarked-body")));
     assert.ok(logs.at(-1)?.includes("contextual review"));
   })

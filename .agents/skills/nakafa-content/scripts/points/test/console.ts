@@ -1,21 +1,17 @@
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
+import { TestConsole } from "effect/testing";
 
-/** Captures console output while one effect runs, then restores it. */
+/** Every console log line that the test console has captured so far. */
+export const loggedLines = Effect.map(TestConsole.logLines, Arr.map(String));
+
+/** Runs one effect with a fresh test console and returns the lines it wrote. */
 export function capture<A, E, R>(self: Effect.Effect<A, E, R>) {
-  return Effect.acquireUseRelease(
-    Effect.sync(() => {
-      const error: string[] = [];
-      const log: string[] = [];
-      const original = { error: console.error, log: console.log };
-      console.error = (...parts: unknown[]) => error.push(parts.join(" "));
-      console.log = (...parts: unknown[]) => log.push(parts.join(" "));
-      return { error, log, original };
-    }),
-    ({ error, log }) => self.pipe(Effect.map((code) => ({ code, error, log }))),
-    ({ original }) =>
-      Effect.sync(() => {
-        console.error = original.error;
-        console.log = original.log;
-      })
-  );
+  return Effect.gen(function* () {
+    const code = yield* self;
+    return {
+      code,
+      error: Arr.map(yield* TestConsole.errorLines, String),
+      log: yield* loggedLines,
+    };
+  }).pipe(Effect.provide(TestConsole.layer));
 }

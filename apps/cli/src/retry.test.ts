@@ -63,16 +63,12 @@ describe("publication transport retry", () => {
     () =>
       Effect.gen(function* () {
         let attempts = 0;
-        const result = yield* runRetries(
-          retryTransport(
-            Effect.suspend(() => {
-              attempts += 1;
-              return attempts === 1
-                ? Effect.fail(transportFailure())
-                : Effect.succeed("published");
-            })
-          )
-        );
+        const result = yield* Effect.suspend(() => {
+          attempts += 1;
+          return attempts === 1
+            ? Effect.fail(transportFailure())
+            : Effect.succeed("published");
+        }).pipe(retryTransport, runRetries);
 
         expect(result).toBe("published");
         expect(attempts).toBe(2);
