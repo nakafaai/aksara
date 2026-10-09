@@ -92,7 +92,7 @@ const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>
     const workingDirectory = yield* Effect.sync(() => process.cwd());
     const checkoutRoot = path.resolve(workingDirectory, "..", "..");
     const entries = yield* decodePageRegistry();
-    const sourceRows = entries.map((entry) => {
+    const sourceRows = Arr.map(entries, (entry) => {
       const absolutePath = path.resolve(checkoutRoot, entry.sourcePath);
       const source = `export const metadata = {
   title: "Test ${entry.route.pageKey}",
@@ -105,10 +105,13 @@ const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>
       return [entry.sourcePath, absolutePath, source] as const;
     });
     const absolutePaths = HashMap.fromIterable(
-      sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
+      Arr.map(sourceRows, ([sourcePath, absolutePath]) => [
+        sourcePath,
+        absolutePath,
+      ])
     );
     const sources = MutableHashMap.fromIterable(
-      sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
+      Arr.map(sourceRows, ([, absolutePath, source]) => [absolutePath, source])
     );
     const rendererManifest = yield* pageManifest();
 

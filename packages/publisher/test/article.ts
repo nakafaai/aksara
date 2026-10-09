@@ -8,6 +8,7 @@ import {
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import {
+  Array as Arr,
   Context,
   Effect,
   FileSystem,
@@ -129,7 +130,7 @@ const rejectArticlePublicationFrom = Effect.fn(
 function deriveArticleHeads(
   records: Effect.Success<ReturnType<typeof collectArticlePublicationFrom>>
 ) {
-  return records.flatMap((transition) => {
+  return Arr.flatMap(records, (transition) => {
     const { record } = transition;
     if (!("payload" in record)) {
       return [];
@@ -169,9 +170,13 @@ const makeArticleTestFixtures = Effect.fn("ArticleTest.makeFixtures")(() =>
         );
     });
     const absolutePaths = HashMap.fromIterable(
-      sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
+      Arr.map(sourceRows, ([sourcePath, absolutePath]) => [
+        sourcePath,
+        absolutePath,
+      ])
     );
-    const sources = sourceRows.map(
+    const sources = Arr.map(
+      sourceRows,
       ([, absolutePath, source]) => [absolutePath, source] as const
     );
     const rendererManifest = yield* articleManifest();
