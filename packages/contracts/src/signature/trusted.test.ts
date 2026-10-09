@@ -85,7 +85,8 @@ describe("trusted content keys", () => {
       const retained = yield* makeRetainedKey;
       const entries = [...TRUSTED_CONTENT_KEYS];
       const resolver = makeTrustedKeyResolver(entries);
-      entries.push(retained.entry);
+      // The caller changes its own list in place: the resolver must not see it.
+      entries[entries.length] = retained.entry;
 
       const failure = yield* resolver.resolve(oldKeyId).pipe(Effect.flip);
 
