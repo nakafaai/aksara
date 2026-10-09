@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
 import {
   loadArticleDocument,
   makeArticleProjectionFromSource,
@@ -13,8 +13,9 @@ const articleDocumentFixture = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const fixture = yield* ArticleTestFixtures;
-    const entry = yield* Effect.fromNullishOr(
-      fixture.entries.find(
+    const entry = yield* Effect.fromOption(
+      Arr.findFirst(
+        fixture.entries,
         ({ route }) =>
           route.articleSlug === "dynastic-politics-asian-values" &&
           route.artifactLocale === "en"
