@@ -12,7 +12,7 @@ import {
   type LearningProgram,
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, HashMap, HashSet, Option, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, HashSet, Option, Schema } from "effect";
 import {
   curriculumSourcePath,
   requireCurriculumProgram,
@@ -97,7 +97,7 @@ const projectCurriculumNodeRoute = Effect.fn(
   const translation = yield* requireProgramTranslation(program, appLocale);
   const segments = yield* nodeSegments(node, appLocale);
   const root = `${curriculumNamespace(appLocale)}/${translation.publicSlug}`;
-  const publicPath = `${root}/${segments.join("/")}`;
+  const publicPath = `${root}/${Arr.join(segments, "/")}`;
   const canonicalPath =
     material === undefined || materialDescriptor === undefined
       ? undefined
@@ -165,5 +165,5 @@ export const projectCurriculumNodeRoutes = Effect.fn(
       projectCurriculumNodeRoute(node, appLocale, context)
     )
   );
-  return routes.flat();
+  return Arr.flatten(routes);
 });

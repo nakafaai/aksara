@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Schema } from "effect";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
 import { projectCurriculumNodes } from "#corpus/curriculum/projection";
@@ -68,21 +68,24 @@ describe("curriculum node projection", () => {
           decodeMaterialSources(),
         ]);
         const nodes = yield* projectCurriculumNodes(curricula, materials);
-        const materialNodes = nodes.filter(
+        const materialNodes = Arr.filter(
+          nodes,
           ({ materialKeys }) => materialKeys.length > 0
         );
 
         expect(nodes).toHaveLength(191);
         expect(materialNodes).toHaveLength(96);
         expect(
-          nodes.every(
+          Arr.every(
+            nodes,
             ({ displayGroup, materialCard, translations }) =>
               translations.de !== undefined &&
               (displayGroup === undefined || displayGroup.de !== undefined) &&
               (materialCard === undefined || materialCard.de !== undefined)
           )
         ).toBe(true);
-        const allMaterialKeys = materialNodes.flatMap(
+        const allMaterialKeys = Arr.flatMap(
+          materialNodes,
           ({ materialKeys }) => materialKeys
         );
         expect(HashSet.size(HashSet.fromIterable(allMaterialKeys))).toBe(34);
@@ -116,8 +119,8 @@ describe("curriculum node projection", () => {
     () =>
       Effect.gen(function* () {
         const materials = yield* decodeMaterialSources();
-        const material = yield* Effect.fromNullishOr(
-          materials.find(({ key }) => key === matrixKey)
+        const material = yield* Effect.fromOption(
+          Arr.findFirst(materials, ({ key }) => key === matrixKey)
         );
         const [english, indonesian] = yield* Effect.all([
           materialDisplay(material, "en"),
@@ -140,8 +143,8 @@ describe("curriculum node projection", () => {
     () =>
       Effect.gen(function* () {
         const materials = yield* decodeMaterialSources();
-        const material = yield* Effect.fromNullishOr(
-          materials.find(({ key }) => key === matrixKey)
+        const material = yield* Effect.fromOption(
+          Arr.findFirst(materials, ({ key }) => key === matrixKey)
         );
         const [english, indonesian] = yield* Effect.all([
           Effect.fromNullishOr(material.translations.en),
@@ -166,9 +169,11 @@ describe("curriculum node projection", () => {
     Effect.gen(function* () {
       const materials = yield* decodeMaterialSources();
       const [matrix, polynomial] = yield* Effect.all([
-        Effect.fromNullishOr(materials.find(({ key }) => key === matrixKey)),
-        Effect.fromNullishOr(
-          materials.find(({ key }) => key === polynomialKey)
+        Effect.fromOption(
+          Arr.findFirst(materials, ({ key }) => key === matrixKey)
+        ),
+        Effect.fromOption(
+          Arr.findFirst(materials, ({ key }) => key === polynomialKey)
         ),
       ]);
       const [english, indonesian] = yield* Effect.all([
@@ -235,8 +240,8 @@ describe("curriculum node projection", () => {
       Effect.gen(function* () {
         const material = earthScienceMaterialSource();
         const materials = yield* decodeMaterialSources();
-        const mathematics = yield* Effect.fromNullishOr(
-          materials.find(({ key }) => key === matrixKey)
+        const mathematics = yield* Effect.fromOption(
+          Arr.findFirst(materials, ({ key }) => key === matrixKey)
         );
         const mixedCurriculum = yield* merdekaLeaf({
           materialKeys: [material.key, mathematics.key],

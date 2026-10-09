@@ -10,8 +10,14 @@ import {
   curriculumNamespace,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
-import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, HashMap, HashSet } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  HashSet,
+  MutableList,
+  Order,
+} from "effect";
 
 import { addMaterialContext } from "#corpus/curriculum/context";
 import {
@@ -43,7 +49,7 @@ const validateProgramOwnership = Effect.fn(
   programs: readonly LearningProgram[]
 ) {
   const curriculumKeys = HashSet.fromIterable(
-    curricula.map((curriculum) => curriculum.programKey)
+    Arr.map(curricula, (curriculum) => curriculum.programKey)
   );
   for (const program of programs) {
     if (
@@ -62,10 +68,13 @@ const validateProgramOwnership = Effect.fn(
 /** Identifies every curriculum node with at least one material descendant. */
 function materialAncestorIdentities(nodes: readonly ProjectedCurriculumNode[]) {
   return HashSet.fromIterable(
-    nodes.flatMap((node) =>
+    Arr.flatMap(nodes, (node) =>
       node.materialKeys.length === 0
         ? []
-        : node.path.map((ancestor) => `${node.curriculumKey}\0${ancestor.key}`)
+        : Arr.map(
+            node.path,
+            (ancestor) => `${node.curriculumKey}\0${ancestor.key}`
+          )
     )
   );
 }
@@ -78,13 +87,14 @@ const projectCurriculumRoots = Effect.fn("AksaraCorpus.projectCurriculumRoots")(
     readonly nodes: readonly ProjectedCurriculumNode[];
     readonly programByKey: HashMap.HashMap<string, LearningProgram>;
   }) {
-    const routes: CurriculumRouteDraft[] = [];
+    const routes = MutableList.make<CurriculumRouteDraft>();
     for (const curriculum of input.curricula) {
       const program = yield* requireCurriculumProgram(
         input.programByKey,
         curriculum.programKey
       );
-      const hasMaterials = input.nodes.some(
+      const hasMaterials = Arr.some(
+        input.nodes,
         (node) =>
           node.curriculumKey === curriculum.programKey &&
           node.materialKeys.length > 0
@@ -95,7 +105,8 @@ const projectCurriculumRoots = Effect.fn("AksaraCorpus.projectCurriculumRoots")(
           appLocale
         );
         const root = `${curriculumNamespace(appLocale)}/${translation.publicSlug}`;
-        routes.push(
+        MutableList.append(
+          routes,
           CurriculumRouteDraftSchema.make({
             appLocale,
             iconKey: program.iconKey,
@@ -112,7 +123,7 @@ const projectCurriculumRoots = Effect.fn("AksaraCorpus.projectCurriculumRoots")(
         );
       }
     }
-    return routes;
+    return MutableList.toArray(routes);
   }
 );
 
@@ -130,13 +141,13 @@ export const projectCurriculumRoutes = Effect.fn(
   const domains = input.domains ?? (yield* decodeMaterialDomains());
   yield* validateProgramOwnership(input.curricula, input.programs);
   const programByKey = HashMap.fromIterable(
-    input.programs.map((program): [string, LearningProgram] => [
+    Arr.map(input.programs, (program): [string, LearningProgram] => [
       program.key,
       program,
     ])
   );
   const materialByKey = HashMap.fromIterable(
-    input.materials.map((material): [string, LessonMaterialSource] => [
+    Arr.map(input.materials, (material): [string, LessonMaterialSource] => [
       material.key,
       material,
     ])
@@ -166,9 +177,12 @@ export const projectCurriculumRoutes = Effect.fn(
     { concurrency: 2 }
   );
   const contextual = yield* addMaterialContext([...roots, ...nodesRoutes]);
-  return contextual.sort((left: CurriculumRoute, right: CurriculumRoute) => {
-    const leftKey = `${left.programKey}\0${left.appLocale}\0${left.publicPath}`;
-    const rightKey = `${right.programKey}\0${right.appLocale}\0${right.publicPath}`;
-    return compareCodeUnits(leftKey, rightKey);
-  });
+  return Arr.sort(
+    contextual,
+    Order.mapInput(
+      Order.String,
+      (route: CurriculumRoute) =>
+        `${route.programKey}\0${route.appLocale}\0${route.publicPath}`
+    )
+  );
 });
