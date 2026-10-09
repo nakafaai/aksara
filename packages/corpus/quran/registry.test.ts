@@ -92,20 +92,15 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
         const [sourceError, surahCountError, verseCountError] =
           yield* Effect.all(
             [
-              reject(
-                streamQuranRegistry(
-                  Stream.succeed({ ...first, unexpectedField: true })
-                )
+              Stream.succeed({ ...first, unexpectedField: true }).pipe(
+                streamQuranRegistry,
+                reject
               ),
-              reject(streamQuranRegistry(Stream.empty)),
-              reject(
-                streamQuranRegistry(
-                  Stream.fromIterable([
-                    ...Arr.dropRight(surahs, 1),
-                    shortenedLast,
-                  ])
-                )
-              ),
+              Stream.empty.pipe(streamQuranRegistry, reject),
+              Stream.fromIterable([
+                ...Arr.dropRight(surahs, 1),
+                shortenedLast,
+              ]).pipe(streamQuranRegistry, reject),
             ],
             { concurrency: "unbounded" }
           );
@@ -136,34 +131,22 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
 
       const errors = yield* Effect.all(
         [
-          reject(
-            streamQuranRegistry(
-              Stream.succeed({
-                ...first,
-                numberOfVerses: first.verses.length - 1,
-              })
-            )
-          ),
-          reject(
-            streamQuranRegistry(
-              Stream.succeed(
-                withVerse(first, {
-                  ...firstVerse,
-                  number: { ...firstVerse.number, inSurah: 2 },
-                })
-              )
-            )
-          ),
-          reject(
-            streamQuranRegistry(
-              Stream.succeed(
-                withVerse(first, {
-                  ...firstVerse,
-                  number: { ...firstVerse.number, inQuran: 2 },
-                })
-              )
-            )
-          ),
+          Stream.succeed({
+            ...first,
+            numberOfVerses: first.verses.length - 1,
+          }).pipe(streamQuranRegistry, reject),
+          Stream.succeed(
+            withVerse(first, {
+              ...firstVerse,
+              number: { ...firstVerse.number, inSurah: 2 },
+            })
+          ).pipe(streamQuranRegistry, reject),
+          Stream.succeed(
+            withVerse(first, {
+              ...firstVerse,
+              number: { ...firstVerse.number, inQuran: 2 },
+            })
+          ).pipe(streamQuranRegistry, reject),
         ],
         { concurrency: "unbounded" }
       );
@@ -189,21 +172,20 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
 
       const [sequenceError, revelationError] = yield* Effect.all(
         [
-          reject(streamQuranRegistry(Stream.succeed({ ...first, number: 2 }))),
-          reject(
-            streamQuranRegistry(
-              Stream.fromIterable([
-                first,
-                {
-                  ...second,
-                  revelation: {
-                    ...second.revelation,
-                    order: first.revelation.order,
-                  },
-                },
-              ])
-            )
+          Stream.succeed({ ...first, number: 2 }).pipe(
+            streamQuranRegistry,
+            reject
           ),
+          Stream.fromIterable([
+            first,
+            {
+              ...second,
+              revelation: {
+                ...second.revelation,
+                order: first.revelation.order,
+              },
+            },
+          ]).pipe(streamQuranRegistry, reject),
         ],
         { concurrency: "unbounded" }
       );
