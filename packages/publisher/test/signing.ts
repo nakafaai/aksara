@@ -24,7 +24,7 @@ import {
   type TryoutRuntimeBundlePayload,
 } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 
 import { testRendererDomains } from "#test/renderer";
 
@@ -57,11 +57,11 @@ const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release");
 
 /** Builds canonically ordered release items for signing fixtures. */
 function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
-  return [...changes]
-    .sort(compareContentHeads)
-    .map((change, index) =>
+  return Arr.map(
+    Arr.sort(changes, Order.make(compareContentHeads)),
+    (change, index) =>
       ContentReleaseItemSchema.make({ change, index, releaseId: release })
-    );
+  );
 }
 
 const items = makeItems(
