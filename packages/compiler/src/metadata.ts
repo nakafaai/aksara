@@ -33,7 +33,6 @@ export const AuthoredMetadataSchema = Schema.Record(
 );
 export type AuthoredMetadata = typeof AuthoredMetadataSchema.Type;
 
-/** Mutable metadata state scoped to one official MDX compilation. */
 /** Creates the empty metadata state of one official MDX compilation. */
 export function createMetadataCollector() {
   return {
@@ -167,10 +166,7 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
 export const readMetadataDocument = Effect.fn(
   "AksaraCompiler.readMetadataDocument"
 )(function* (contentKey: ContentKey, tree: Root) {
-  const collector: MetadataCollector = {
-    candidates: MutableList.make(),
-    syntaxReasons: MutableList.make(),
-  };
+  const collector = createMetadataCollector();
   const bodyChildren = MutableList.make<RootContent>();
   let sourceRange: MetadataSourceRange | undefined;
   for (const node of tree.children) {
