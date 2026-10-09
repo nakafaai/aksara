@@ -3,9 +3,10 @@ import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type {
-  PreviewSelection,
-  PreviewSource,
+import {
+  PreviewDirectorySchema,
+  PreviewSelectionSchema,
+  PreviewSourceSchema,
 } from "@nakafa/aksara-corpus/preview/source";
 import { Effect, FileSystem, HashMap, Option, Schema } from "effect";
 
@@ -48,6 +49,11 @@ const RestartSelectedFileSchema = Schema.Struct({
   ...RestartFileCandidateSchema.fields,
   baselineHash: Sha256HashSchema,
 });
+/** One reloadable body or restart-scoped source dependency. */
+const SelectedFileSchema = Schema.Union([
+  ReloadFileCandidateSchema,
+  RestartSelectedFileSchema,
+]);
 type ReloadFileCandidate = typeof ReloadFileCandidateSchema.Type;
 type RestartFileCandidate = typeof RestartFileCandidateSchema.Type;
 type RestartSelectedFile = typeof RestartSelectedFileSchema.Type;
@@ -55,24 +61,27 @@ type RestartSelectedFile = typeof RestartSelectedFileSchema.Type;
 /** One selected file before its restart baseline has been captured. */
 export type SelectedFileCandidate = ReloadFileCandidate | RestartFileCandidate;
 
-/** One reloadable body or restart-scoped source dependency. */
-type SelectedFile = ReloadFileCandidate | RestartSelectedFile;
+type SelectedFile = typeof SelectedFileSchema.Type;
 
-/** Exact source directory whose authored file membership is startup topology. */
+/** Startup-scoped source directory with its absolute path in this checkout. */
 const SelectedDirectorySchema = Schema.Struct({
+  ...PreviewDirectorySchema.fields,
   absolutePath: Schema.String,
-  files: Schema.Array(Schema.String),
-  sourcePath: CorpusSourcePathSchema,
 });
+/** Exact source directory whose authored file membership is startup topology. */
 export type SelectedDirectory = typeof SelectedDirectorySchema.Type;
 
 /** Exact selected document and its ordered compilation closure. */
-export interface SelectedDocument {
-  readonly directories: readonly SelectedDirectory[];
-  readonly document: PreviewSelection["document"];
-  readonly files: readonly [SelectedFile, ...SelectedFile[]];
-  readonly sources: readonly [PreviewSource, ...PreviewSource[]];
-}
+const SelectedDocumentSchema = Schema.Struct({
+  directories: Schema.Array(SelectedDirectorySchema),
+  // Each selection variant owns one document Schema, so the field accepts any of them.
+  document: Schema.Union(
+    PreviewSelectionSchema.members.map((member) => member.fields.document)
+  ),
+  files: Schema.NonEmptyArray(SelectedFileSchema),
+  sources: Schema.NonEmptyArray(PreviewSourceSchema),
+});
+export type SelectedDocument = typeof SelectedDocumentSchema.Type;
 
 /** Revalidates selected paths before they are read or watched. */
 const verifySelectedFiles = Effect.fn("AksaraCli.verifySelectedFiles")(
@@ -226,7 +235,8 @@ export const SelectedFingerprintSchema = Schema.Struct({
     })
   ),
 });
-export type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
+/** Type of the immutable source hashes captured for one atomic compilation attempt. */
+type SelectedFingerprint = typeof SelectedFingerprintSchema.Type;
 
 /** Rejects a closure that changed while its related sources were loaded. */
 export const verifySelectedFingerprint = Effect.fn(

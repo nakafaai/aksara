@@ -88,7 +88,11 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
 /** Reports every failure to build the child environment as one typed start failure. */
 const childEnvironmentFailure = () => makeNakafaAppError("child-env", false);
 
-/** Reads one inherited variable, keeping an absent variable absent for the decode. */
+/**
+ * Reads one inherited variable, keeping an absent variable absent for the decode.
+ * Effect's default ConfigProvider copies the process environment once, at its first use,
+ * so a later change of process.env in the same process is not seen.
+ */
 const readInheritedVariable = (name: string) =>
   Config.option(Config.String(name)).pipe(
     Effect.map(Option.getOrUndefined),

@@ -3,29 +3,18 @@ import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Record as Rec, Redacted } from "effect";
 import { NakafaProcess, type NakafaProcessInput } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
-import { makePreviewCredentials } from "#cli/credentials";
 import { makeNakafaAppError } from "#cli/error";
-import type { PreviewProvider } from "#cli/provider";
 import { inheritedEnvironment } from "#test/environment";
-import { makeProcess } from "#test/process";
+import {
+  captureInheritedStart,
+  failInheritedStart,
+  makeProcess,
+  makeStartInput,
+} from "#test/process";
 
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
-});
-
-/** Creates one minimal provider input for the real child-process seam. */
-const makeStartInput = Effect.fn("test.makeStartInput")(function* () {
-  const credentials = yield* makePreviewCredentials();
-  const provider: PreviewProvider = {
-    eventsPath: "/events",
-    failed: () => Effect.succeed(true),
-    manifestPath: "/manifest",
-    origin: new URL("http://127.0.0.1:32123"),
-    pending: () => Effect.succeed(1),
-    ready: () => Effect.succeed(true),
-  };
-  return { credentials, provider, root: "/code/nakafa.com" };
 });
 
 describe("Nakafa child process", () => {
@@ -163,6 +152,31 @@ describe("Nakafa child process", () => {
       expect(childEnvironment).toMatchObject({ reason: "child-env" });
       expect(operatingSystem).toMatchObject({ reason: "child-env" });
     }).pipe(Effect.provide(inheritedEnvironment("/usr/bin:/bin")))
+  );
+
+  it.effect(
+    "reads the inherited HOME and PATH through the production environment provider",
+    () =>
+      Effect.gen(function* () {
+        const started = yield* captureInheritedStart("/usr/bin");
+
+        expect(started?.environment).toMatchObject({
+          HOME: "/home/aksara-test",
+          PATH: "/usr/bin",
+        });
+      })
+  );
+
+  it.effect(
+    "rejects an empty or absent inherited PATH through the production environment provider",
+    () =>
+      Effect.gen(function* () {
+        const emptyPath = yield* failInheritedStart("");
+        const absentPath = yield* failInheritedStart(undefined);
+
+        expect(emptyPath).toMatchObject({ reason: "child-env" });
+        expect(absentPath).toMatchObject({ reason: "child-env" });
+      })
   );
 
   it.effect("maps process start and exit observation failures", () =>
