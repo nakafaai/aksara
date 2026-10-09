@@ -3,26 +3,30 @@ import {
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
-import type {
-  ArticleHead,
-  ContentHead,
-  HeadPage,
-  MaterialHead,
-  PageHead,
-  QuestionHead,
+import {
+  type ArticleHead,
+  type ContentHead,
+  ContentHeadSchema,
+  type HeadPage,
+  type MaterialHead,
+  type PageHead,
+  type QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
-import { Effect, Option, Stream, Tuple } from "effect";
+import { Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import {
   type PublicationTargetFailure,
   PublicationTargetProtocolError,
 } from "#publisher/target/errors";
 
-interface HeadPageState {
-  readonly cursor: string | null;
-  readonly last: ContentHead | undefined;
-}
+const HeadPageStateSchema = Schema.Struct({
+  cursor: Schema.NullOr(Schema.String),
+  last: Schema.UndefinedOr(ContentHeadSchema),
+});
+
+/** The page cursor and the last head read so far; last is undefined before the first head. */
+type HeadPageState = typeof HeadPageStateSchema.Type;
 
 /** Creates one permanent contradiction for a non-canonical target page stream. */
 function headPageError() {
