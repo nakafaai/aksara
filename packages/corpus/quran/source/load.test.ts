@@ -4,6 +4,7 @@ import {
   ActiveAppLocaleListSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -71,7 +72,7 @@ function expectFileErrors(
   details: readonly string[]
 ) {
   expect(actual).toMatchObject(
-    details.map((detail) => ({ _tag: "QuranSourceFileError", detail }))
+    Arr.map(details, (detail) => ({ _tag: "QuranSourceFileError", detail }))
   );
 }
 

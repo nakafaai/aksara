@@ -2,7 +2,14 @@ import {
   type QuranTranslation,
   QuranTranslationSchema,
 } from "@nakafa/aksara-contracts/quran/notes";
-import { Effect, HashMap, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 import {
   mapLocalizedSource,
   traverseLocalizedSources,
@@ -50,7 +57,7 @@ function xmlText(source: string, tag: "footnotes" | "translation") {
 /** Parses one complete QuranEnc XML translation in canonical order. */
 const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
   function* (source: string, metadata: readonly SurahMetadata[]) {
-    const translations: QuranTranslation[] = [];
+    const translationRows = MutableList.make<QuranTranslation>();
     const suraRows = [
       ...source.matchAll(/<sura number="(\d+)">([\s\S]*?)<\/sura>/g),
     ];
@@ -96,9 +103,10 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
             )
           )
         );
-        translations.push(translation);
+        MutableList.append(translationRows, translation);
       }
     }
+    const translations = MutableList.toArray(translationRows);
     if (translations.length !== EXPECTED_VERSES) {
       return yield* quranGenerationFailure(
         "QuranEnc translation is incomplete."
@@ -113,7 +121,7 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
   sources: readonly string[],
   metadata: readonly SurahMetadata[]
 ) {
-  const tafsir: Tafsir[] = [];
+  const tafsirRows = MutableList.make<Tafsir>();
   for (const [surahIndex, source] of sources.entries()) {
     const response = yield* Schema.decodeEffect(TafsirJsonSchema)(source, {
       onExcessProperty: "error",
@@ -140,9 +148,13 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
           `Invalid QuranEnc tafsir verse ${surahIndex + 1}:${verseIndex + 1}.`
         );
       }
-      tafsir.push({ footnotes: row.footnotes, text: row.translation });
+      MutableList.append(tafsirRows, {
+        footnotes: row.footnotes,
+        text: row.translation,
+      });
     }
   }
+  const tafsir = MutableList.toArray(tafsirRows);
   if (tafsir.length !== EXPECTED_VERSES) {
     return yield* quranGenerationFailure("QuranEnc tafsir is incomplete.");
   }
@@ -162,7 +174,7 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
         : [];
     if (
       arabic.length !== EXPECTED_VERSES ||
-      arabic.some((text) => text.length === 0)
+      Arr.some(arabic, (text) => text.length === 0)
     ) {
       return yield* quranGenerationFailure("Tanzil Arabic text is incomplete.");
     }
@@ -172,9 +184,9 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
     );
     const tafsir = yield* parseTafsir(sources.tafsir, metadata.surahs);
 
-    const surahs: Surah[] = [];
+    const surahRows = MutableList.make<Surah>();
     for (const surah of metadata.surahs) {
-      const verses: Surah["verses"][number][] = [];
+      const verseRows = MutableList.make<Surah["verses"][number]>();
       for (let index = 0; index < surah.numberOfVerses; index += 1) {
         const position = surah.start + index + 1;
         const hizbQuarter = quranMarkerAt(metadata.hizbQuarters, position);
@@ -212,7 +224,7 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
           germanText === undefined
             ? { en: englishText, id: indonesianText }
             : { de: germanText, en: englishText, id: indonesianText };
-        verses.push({
+        MutableList.append(verseRows, {
           meta: {
             hizbQuarter,
             juz,
@@ -227,7 +239,8 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
           translation: verseTranslation,
         });
       }
-      surahs.push({
+      const verses = MutableList.toArray(verseRows);
+      MutableList.append(surahRows, {
         name: surah.name,
         number: surah.number,
         numberOfVerses: surah.numberOfVerses,
@@ -235,6 +248,6 @@ export const parseQuranSources = Effect.fn("AksaraCorpus.parseQuranSources")(
         verses,
       });
     }
-    return surahs;
+    return MutableList.toArray(surahRows);
   }
 );

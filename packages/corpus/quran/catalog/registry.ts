@@ -13,7 +13,7 @@ import {
   type QuranTafsirAccess,
   QuranTafsirAccessSchema,
 } from "@nakafa/aksara-contracts/quran/source";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import {
   mokhtasarCatalog,
   mokhtasarEnglishAttribution,
@@ -68,7 +68,8 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
       Schema.makeFilter(
         (entries) =>
           entries.length === QURAN_SOURCE_IDS.length &&
-          entries.every(
+          Arr.every(
+            entries,
             ({ attribution }, index) =>
               attribution.id === QURAN_SOURCE_IDS[index]
           ),

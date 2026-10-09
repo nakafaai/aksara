@@ -1,6 +1,14 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Context, Effect, FileSystem, HashMap, Layer, Path } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  FileSystem,
+  HashMap,
+  Layer,
+  Path,
+} from "effect";
 
 import {
   parseQuranMetadata,
@@ -62,7 +70,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
       );
 
       expect(
-        errors.every(({ detail }) =>
+        Arr.every(errors, ({ detail }) =>
           detail.startsWith("Invalid Tanzil surah metadata:")
         )
       ).toBe(true);
@@ -84,7 +92,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
           { concurrency: "unbounded" }
         );
 
-        expect(errors.map(({ detail }) => detail)).toEqual([
+        expect(Arr.map(errors, ({ detail }) => detail)).toEqual([
           "Tanzil surah inventory is incomplete.",
           "Tanzil surah inventory is incomplete.",
           "Tanzil surah inventory is incomplete.",
@@ -109,7 +117,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
       );
 
       expect(
-        errors.every(({ detail }) =>
+        Arr.every(errors, ({ detail }) =>
           detail.startsWith("Invalid Tanzil juz marker:")
         )
       ).toBe(true);
@@ -132,7 +140,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
         { concurrency: "unbounded" }
       );
 
-      expect(errors.map(({ detail }) => detail)).toEqual([
+      expect(Arr.map(errors, ({ detail }) => detail)).toEqual([
         "Missing first Tanzil manzil marker.",
         "Missing first Tanzil ruku marker.",
       ]);
@@ -156,7 +164,7 @@ layer(metadataLayer)("Quran metadata parsing", (it) => {
       );
 
       expect(
-        errors.every(({ detail }) =>
+        Arr.every(errors, ({ detail }) =>
           detail.startsWith("Invalid Tanzil sajda marker:")
         )
       ).toBe(true);

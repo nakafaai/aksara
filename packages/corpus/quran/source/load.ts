@@ -9,7 +9,15 @@ import {
   QuranSourceArtifactSchema,
   quranSourceFileCount,
 } from "@nakafa/aksara-contracts/quran/source";
-import { Effect, FileSystem, Path, Record, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableList,
+  Path,
+  Record,
+  Schema,
+} from "effect";
 import { mapLocalizedSource } from "#corpus/locale/source";
 import { RawSourcesSchema } from "#corpus/quran/source/model";
 import {
@@ -54,7 +62,7 @@ function matchesExactLocales(
 ) {
   return (
     appLocales.length === expected.length &&
-    appLocales.every((appLocale, index) => appLocale === expected[index])
+    Arr.every(appLocales, (appLocale, index) => appLocale === expected[index])
   );
 }
 
@@ -150,8 +158,8 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
     sourceRoot: string
   ) {
     const hash = createHash("sha256").update(`${QURAN_TAFSIR_BUNDLE_DOMAIN}\n`);
-    const sourceBytes: Uint8Array[] = [];
-    const sources: string[] = [];
+    const sourceBytes = MutableList.make<Uint8Array>();
+    const sources = MutableList.make<string>();
     let byteCount = 0;
     for (let number = 1; number <= 114; number += 1) {
       const name = `${number}.json`;
@@ -170,8 +178,8 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
       const text = yield* decodeSource(name, bytes);
       updateBundle(hash, name, bytes);
       byteCount += bytes.byteLength;
-      sourceBytes.push(bytes);
-      sources.push(text);
+      MutableList.append(sourceBytes, bytes);
+      MutableList.append(sources, text);
     }
     const expected = QURAN_SOURCE_POLICY.tafsir.artifact;
     if (
@@ -182,7 +190,10 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
         detail: "Pinned QuranEnc Tafsir bundle drifted.",
       });
     }
-    return { sourceBytes, sources };
+    return {
+      sourceBytes: MutableList.toArray(sourceBytes),
+      sources: MutableList.toArray(sources),
+    };
   }
 );
 
@@ -275,11 +286,8 @@ export const loadPinnedQuranSources = Effect.fn(
     [QURAN_SOURCE_POLICY.data.names.de.name, names.de],
     [QURAN_SOURCE_POLICY.data.translations.en.name, translations.en.bytes],
     [QURAN_SOURCE_POLICY.data.translations.id.name, translations.id.bytes],
+    [QURAN_SOURCE_POLICY.data.translations.de.name, translations.de.bytes],
   ];
-  canonicalData.push([
-    QURAN_SOURCE_POLICY.data.translations.de.name,
-    translations.de.bytes,
-  ]);
   for (const [name, bytes] of canonicalData) {
     updateBundle(bundle, name, bytes);
     byteCount += bytes.byteLength;
