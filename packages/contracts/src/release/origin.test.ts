@@ -4,6 +4,7 @@ import {
   canonicalizeReleaseOrigin,
   ReleaseOriginSchema,
 } from "#contracts/release/origin";
+import { encodeJsonText } from "#contracts/text/json";
 
 describe("release origin", () => {
   it("preserves exact Git provenance in canonical field order", () => {
@@ -56,7 +57,7 @@ describe("release origin", () => {
       sha: "0123456789abcdef0123456789abcdef01234567",
     });
 
-    expect(JSON.stringify(canonicalizeReleaseOrigin(origin))).toBe(
+    expect(encodeJsonText(canonicalizeReleaseOrigin(origin))).toBe(
       '{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"}'
     );
   });
@@ -67,7 +68,7 @@ describe("release origin", () => {
       releaseId: "release-active",
     });
 
-    expect(JSON.stringify(canonicalizeReleaseOrigin(origin))).toBe(
+    expect(encodeJsonText(canonicalizeReleaseOrigin(origin))).toBe(
       '{"kind":"rollback","releaseId":"release-active"}'
     );
   });

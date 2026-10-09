@@ -21,6 +21,7 @@ import {
   signVerificationRelease as signRelease,
   verificationKeyResolver as trustedResolver,
 } from "#contracts/test/verification";
+import { encodeJsonText } from "#contracts/text/json";
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -246,7 +247,7 @@ describe("server-only release verification", () => {
       });
       const error = yield* reject(signRelease(), resolver);
       expect(error._tag).toBe("PublicKeyParseError");
-      expect(JSON.stringify(error)).not.toContain(sensitiveKey);
+      expect(encodeJsonText(error)).not.toContain(sensitiveKey);
     })
   );
   it.effect("rejects excess fields without exposing source values", () =>
@@ -258,7 +259,7 @@ describe("server-only release verification", () => {
         manifest: { ...release.manifest, sensitiveSource },
       });
       expect(error._tag).toBe("ReleaseVerificationDecodeError");
-      expect(JSON.stringify(error)).not.toContain(sensitiveSource);
+      expect(encodeJsonText(error)).not.toContain(sensitiveSource);
     })
   );
   it.effect("maps manifest hashing failures to the release identity", () =>

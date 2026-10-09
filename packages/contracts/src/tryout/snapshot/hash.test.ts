@@ -2,6 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
+import { JsonTextSchema } from "#contracts/text/json";
 import { canonicalizeTryoutSnapshot } from "#contracts/tryout/snapshot/canonical";
 import {
   makeTryoutSnapshot,
@@ -40,7 +41,9 @@ describe("try-out snapshot hashing", () => {
     const first = makeTryoutSnapshot(input);
     const second = makeTryoutSnapshot(input);
 
-    expect(JSON.parse(canonicalizeTryoutSnapshot(input))).toEqual({
+    expect(
+      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutSnapshot(input))
+    ).toEqual({
       ...input,
       format: TRYOUT_SNAPSHOT_FORMAT,
     });

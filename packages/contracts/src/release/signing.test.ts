@@ -11,6 +11,7 @@ import { EMPTY_SNAPSHOT_ROW_DIGEST } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
 import { verificationManifest } from "#contracts/test/verification";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Test-only Ed25519 public key that verifies the pinned release signature below. */
 const testPublicKeyPem = `-----BEGIN PUBLIC KEY-----
@@ -138,7 +139,7 @@ describe("release signing", () => {
     expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
     expect(canonical).toContain(`"rollbackCount":${manifest.rollbackCount}`);
     expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
-    expect(canonical).toContain(`"scope":${JSON.stringify(manifest.scope)}`);
+    expect(canonical).toContain(`"scope":${encodeJsonText(manifest.scope)}`);
     expect(canonical).not.toContain('"scope":{"content"');
     expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
       `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`

@@ -1,11 +1,12 @@
 /** Signed structured snapshot transition contracts. */
-import { Schema } from "effect";
+import { Record as Rec, Schema } from "effect";
 
 import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
 import {
   ContentSnapshotKindSchema,
   type PublicationScope,
 } from "#contracts/release/snapshot/scope";
+import { encodeJsonText } from "#contracts/text/json";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */
 export const EMPTY_SNAPSHOT_ROW_DIGEST = Sha256HashSchema.make(
@@ -154,19 +155,19 @@ export function invertContentSnapshots(snapshots: ContentSnapshotSet) {
 
 /** Checks that an initial release does not claim an unstated snapshot base. */
 export function hasEmptySnapshotBases(snapshots: ContentSnapshotSet) {
-  return Object.values(snapshots).every(
+  return Rec.values(snapshots).every(
     ({ baseSnapshotId }) => baseSnapshotId === null
   );
 }
 
 /** Checks that a rollback only inherits or restores immutable snapshots. */
 export function hasRollbackSnapshotModes(snapshots: ContentSnapshotSet) {
-  return Object.values(snapshots).every(({ mode }) => mode !== "replace");
+  return Rec.values(snapshots).every(({ mode }) => mode !== "replace");
 }
 
 /** Checks that reviewed Git sources only inherit or replace snapshots. */
 export function hasGitSnapshotModes(snapshots: ContentSnapshotSet) {
-  return Object.values(snapshots).every(({ mode }) => mode !== "restore");
+  return Rec.values(snapshots).every(({ mode }) => mode !== "restore");
 }
 
 /** Returns the number of rows that must be staged for this release. */
@@ -204,7 +205,7 @@ export function hasSameContentSnapshots(
   right: ContentSnapshotSet
 ) {
   return (
-    JSON.stringify(canonicalizeContentSnapshotSet(left)) ===
-    JSON.stringify(canonicalizeContentSnapshotSet(right))
+    encodeJsonText(canonicalizeContentSnapshotSet(left)) ===
+    encodeJsonText(canonicalizeContentSnapshotSet(right))
   );
 }

@@ -2,6 +2,7 @@ import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
+import { encodeJsonText } from "#scripts/text/json";
 import {
   type InstallVerificationInput,
   isInstalledPath,
@@ -21,10 +22,12 @@ const defaultExports = {
   },
 } satisfies Readonly<Record<string, unknown>>;
 
-interface InstallFixture {
-  readonly consumerRoot: string;
-  readonly packageRoot: string;
-}
+const InstallFixtureSchema = Schema.Struct({
+  consumerRoot: Schema.String,
+  packageRoot: Schema.String,
+});
+
+type InstallFixture = typeof InstallFixtureSchema.Type;
 
 class TestBoundaryError extends Schema.TaggedError<TestBoundaryError>()(
   "TestBoundaryError",
@@ -53,7 +56,7 @@ const createInstallFixture = Effect.fn("InstallVerificationTest.createFixture")(
     });
     yield* fileSystem.writeFileString(
       path.join(packageRoot, "package.json"),
-      JSON.stringify({ exports, name: installedName })
+      encodeJsonText({ exports, name: installedName })
     );
     yield* Effect.forEach(
       ["index.js", "index.d.ts", "feature.js", "feature.d.ts"],

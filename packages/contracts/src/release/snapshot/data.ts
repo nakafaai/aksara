@@ -5,6 +5,7 @@ import { ProgramSnapshotRowSchema } from "#contracts/program/snapshot/row";
 import { ProgramSnapshotSchema } from "#contracts/program/snapshot/spec";
 import { QuranSnapshotRowSchema } from "#contracts/quran/snapshot/row";
 import { QuranSnapshotSchema } from "#contracts/quran/snapshot/spec";
+import { encodeJsonText } from "#contracts/text/json";
 import { TryoutCatalogRecordSchema } from "#contracts/tryout/catalog";
 import { TryoutPlacementRecordSchema } from "#contracts/tryout/placement";
 import { TryoutSnapshotSchema } from "#contracts/tryout/snapshot/spec";
@@ -78,9 +79,9 @@ export function contentSnapshotId(snapshot: ContentSnapshotManifest) {
 /** Serializes one structured row with stable envelope field order. */
 export function canonicalizeContentSnapshotRow(row: ContentSnapshotRow) {
   if (row.family === "program" || row.family === "quran") {
-    return JSON.stringify({ family: row.family, record: row.record });
+    return encodeJsonText({ family: row.family, record: row.record });
   }
-  return JSON.stringify({
+  return encodeJsonText({
     family: row.family,
     record: row.record,
     rowKind: row.rowKind,

@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableRef, Option, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
@@ -70,15 +70,17 @@ export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseI
   }
 ) {}
 
-/** Counts derived without retaining a complete release-item collection. */
-export interface VerifiedContentReleaseItems {
-  readonly deleteCount: number;
-  readonly upsertCount: number;
-}
+const VerifiedContentReleaseItemsSchema = Schema.Struct({
+  deleteCount: Schema.Finite,
+  upsertCount: Schema.Finite,
+});
 
-interface ItemValidationState {
-  previous: ContentReleaseItem | undefined;
-}
+/** Counts derived without retaining a complete release-item collection. */
+export type VerifiedContentReleaseItems =
+  typeof VerifiedContentReleaseItemsSchema.Type;
+
+/** The last accepted item of one stream of release items, read to check the next one. */
+type PreviousItem = MutableRef.MutableRef<Option.Option<ContentReleaseItem>>;
 
 /** Verifies one item's signed release identity and sequence position. */
 function validateItemIdentity(
@@ -111,24 +113,22 @@ function validateItemIdentity(
 }
 
 /** Rejects a head that is duplicated or outside canonical head order. */
-function validateItemOrder(
-  state: ItemValidationState,
-  item: ContentReleaseItem
-) {
+function validateItemOrder(previous: PreviousItem, item: ContentReleaseItem) {
+  const last = MutableRef.get(previous);
   if (
-    state.previous &&
-    compareContentHeads(state.previous.change, item.change) >= 0
+    Option.isSome(last) &&
+    compareContentHeads(last.value.change, item.change) >= 0
   ) {
     return Effect.fail(new ReleaseItemOrderError({ itemOffset: item.index }));
   }
-  state.previous = item;
+  MutableRef.set(previous, Option.some(item));
   return Effect.void;
 }
 
 /** Decodes one item and applies stateful canonical stream invariants. */
 const decodeItem = Effect.fn("AksaraContracts.decodeReleaseItem")(function* (
   manifest: ContentReleaseManifest,
-  state: ItemValidationState,
+  previous: PreviousItem,
   source: unknown,
   itemOffset: number
 ) {
@@ -137,7 +137,7 @@ const decodeItem = Effect.fn("AksaraContracts.decodeReleaseItem")(function* (
     { onExcessProperty: "error" }
   ).pipe(Effect.mapError(() => new ReleaseItemDecodeError({ itemOffset })));
   yield* validateItemIdentity(manifest, item, itemOffset);
-  yield* validateItemOrder(state, item);
+  yield* validateItemOrder(previous, item);
   return item;
 });
 
@@ -151,11 +151,11 @@ export function decodeContentReleaseItems<E, R>(input: {
 }) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ItemValidationState = { previous: undefined };
+      const previous = MutableRef.make(Option.none<ContentReleaseItem>());
       return input.items.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, itemOffset]) =>
-          decodeItem(input.manifest, state, source, itemOffset)
+          decodeItem(input.manifest, previous, source, itemOffset)
         )
       );
     })

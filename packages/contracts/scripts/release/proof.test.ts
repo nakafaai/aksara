@@ -1,12 +1,13 @@
 import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Sink, Stream } from "effect";
+import { Effect, FileSystem, Path, Schema, Sink, Stream } from "effect";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
+import { encodeJsonText } from "#scripts/text/json";
 
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);
@@ -34,13 +35,15 @@ const pinnedRelease = {
   target_commitish: RELEASE_SHA,
 };
 
-interface FakeCommandInput {
-  readonly downloadArchive: string;
-  readonly failApi?: boolean;
-  readonly failGit?: boolean;
-  readonly release: unknown;
-  readonly tag: unknown;
-}
+const FakeCommandInputSchema = Schema.Struct({
+  downloadArchive: Schema.String,
+  failApi: Schema.optionalKey(Schema.Boolean),
+  failGit: Schema.optionalKey(Schema.Boolean),
+  release: Schema.Unknown,
+  tag: Schema.Unknown,
+});
+
+type FakeCommandInput = typeof FakeCommandInputSchema.Type;
 
 /** Builds one complete fake command contract with explicit overrides. */
 function fakeCommands(
@@ -146,8 +149,8 @@ function makeFakeSpawner(
       }
       if (command.args[0] === "api") {
         const output = command.args[1]?.includes("/releases/")
-          ? JSON.stringify(input.release)
-          : JSON.stringify(input.tag);
+          ? encodeJsonText(input.release)
+          : encodeJsonText(input.tag);
         return makeProcessHandle(output, input.failApi === true ? 1 : 0);
       }
       if (command.args[0] !== "release" || command.args[1] !== "download") {
@@ -245,33 +248,22 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
     () =>
       Effect.gen(function* () {
         const fixture = yield* proofFixture("aksara-proof-state-");
+        /** Replaces the only release asset digest and keeps every other field. */
+        const withDigest = (digest: string) => ({
+          ...fixture.release,
+          assets: [{ ...fixture.release.assets[0], digest }],
+        });
         const cases: readonly [unknown, unknown, string][] = [
           [{ ...fixture.release, immutable: false }, releaseTag, "final"],
           [{ ...fixture.release, assets: [] }, releaseTag, "archive and size"],
           [
-            {
-              ...fixture.release,
-              assets: [
-                {
-                  ...fixture.release.assets[0],
-                  digest:
-                    "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b0",
-                },
-              ],
-            },
+            withDigest(
+              "sha256:d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b0"
+            ),
             releaseTag,
             "digest",
           ],
-          [
-            {
-              ...fixture.release,
-              assets: [
-                { ...fixture.release.assets[0], digest: "sha256:wrong" },
-              ],
-            },
-            releaseTag,
-            "digest",
-          ],
+          [withDigest("sha256:wrong"), releaseTag, "digest"],
           [
             fixture.release,
             { object: { sha: SOURCE_SHA, type: "commit" } },

@@ -3,6 +3,7 @@ import { canonicalizeReleaseOrigin } from "#contracts/release/origin";
 import { canonicalizePublicationScope } from "#contracts/release/snapshot/scope";
 import { canonicalizeContentSnapshotSet } from "#contracts/release/snapshot/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
+import { encodeJsonText } from "#contracts/text/json";
 
 const CONTENT_RELEASE_SIGNATURE_DOMAIN =
   "nakafa.aksara.localized-content-release";
@@ -11,7 +12,7 @@ const CONTENT_RELEASE_SIGNATURE_DOMAIN =
 export function canonicalizeContentReleaseManifest(
   manifest: ContentReleaseManifest
 ) {
-  return JSON.stringify({
+  return encodeJsonText({
     activeAppLocales: manifest.activeAppLocales,
     baseActiveAppLocales: manifest.baseActiveAppLocales,
     baseManifestHash: manifest.baseManifestHash,

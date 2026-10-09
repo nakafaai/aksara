@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Effect, Exit, HashSet, Schema } from "effect";
 
 import {
   ContentSnapshotManifestSchema,
@@ -29,6 +29,7 @@ import {
 } from "#contracts/test/row/program";
 import { quranSearchRow } from "#contracts/test/row/quran";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
+import { JsonTextSchema } from "#contracts/text/json";
 
 describe("structured snapshot data", () => {
   it.effect("returns every current domain manifest identity", () =>
@@ -37,7 +38,7 @@ describe("structured snapshot data", () => {
       const identities = snapshotData.manifests.map(contentSnapshotId);
 
       expect(identities).toHaveLength(3);
-      expect(new Set(identities).size).toBe(3);
+      expect(HashSet.size(HashSet.fromIterable(identities))).toBe(3);
     })
   );
 
@@ -69,7 +70,11 @@ describe("structured snapshot data", () => {
       expect(
         snapshotData.rows.every((row) =>
           Exit.isSuccess(
-            decode(JSON.parse(canonicalizeContentSnapshotRow(row)))
+            decode(
+              Schema.decodeSync(JsonTextSchema)(
+                canonicalizeContentSnapshotRow(row)
+              )
+            )
           )
         )
       ).toBe(true);

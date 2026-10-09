@@ -1,8 +1,15 @@
 import { parseArgs } from "node:util";
-import { Console, Effect, FileSystem, Path } from "effect";
+import {
+  Console,
+  Effect,
+  FileSystem,
+  Path,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { stageConsumerPackage } from "#scripts/consumer/package";
 import {
-  type ConsumerPackageInput,
+  ConsumerPackageInputSchema,
   consumerError,
   consumerFailure,
   createConsumerManifest,
@@ -12,11 +19,15 @@ import {
   runConsumerCommand,
 } from "#scripts/consumer/tools";
 
+const ConsumerVerificationInputSchema = Schema.Struct({
+  ...ConsumerPackageInputSchema.fields,
+  args: Schema.Array(Schema.String),
+  executable: Schema.String,
+});
+
 /** Inputs supplied by the Node CLI boundary. */
-export interface ConsumerVerificationInput extends ConsumerPackageInput {
-  readonly args: readonly string[];
-  readonly executable: string;
-}
+export type ConsumerVerificationInput =
+  typeof ConsumerVerificationInputSchema.Type;
 
 /** Converts one exact export subpath into its public package specifier. */
 export function publicSpecifier(packageName: string, subpath: string): string {
@@ -119,8 +130,8 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       "Consumer dependency installation",
       staged.consumerDirectory
     );
-    const specifiers = Object.keys(staged.packedManifest.exports).map(
-      (subpath) => publicSpecifier(staged.packageName, subpath)
+    const specifiers = Rec.keys(staged.packedManifest.exports).map((subpath) =>
+      publicSpecifier(staged.packageName, subpath)
     );
     yield* Effect.all([
       write(
@@ -150,11 +161,25 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
           consumerFailure("filesystem", "Install verifier staging failed")
         )
       );
+    yield* fileSystem
+      .makeDirectory(path.join(staged.verifierDirectory, "text"), {
+        recursive: true,
+      })
+      .pipe(
+        Effect.mapError(
+          consumerFailure("filesystem", "Install verifier staging failed")
+        )
+      );
     yield* Effect.all([
       copy(
         path.join(staged.scriptDirectory, "manifest.ts"),
         path.join(staged.verifierDirectory, "manifest.ts"),
         "Verifier manifest staging failed"
+      ),
+      copy(
+        path.join(staged.scriptDirectory, "text", "json.ts"),
+        path.join(staged.verifierDirectory, "text", "json.ts"),
+        "JSON text staging failed"
       ),
       copy(
         path.join(staged.scriptDirectory, "verify", "install.ts"),

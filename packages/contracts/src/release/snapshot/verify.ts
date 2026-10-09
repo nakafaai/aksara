@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, MutableRef, Option, Schema, Stream } from "effect";
 import {
   type ContentSnapshotManifest,
   ContentSnapshotManifestSchema,
@@ -70,11 +70,14 @@ export class SnapshotStagedCountError extends Schema.TaggedError<SnapshotStagedC
   }
 ) {}
 
+const VerifiedContentSnapshotsSchema = Schema.Struct({
+  snapshots: ContentSnapshotSetSchema,
+  stagedRows: Schema.Finite,
+});
+
 /** Fixed verified snapshot state selected by one global release. */
-export interface VerifiedContentSnapshots {
-  readonly snapshots: ContentSnapshotSet;
-  readonly stagedRows: number;
-}
+export type VerifiedContentSnapshots =
+  typeof VerifiedContentSnapshotsSchema.Type;
 
 const familyOrder: Readonly<Record<ContentSnapshotKind, number>> = {
   program: 0,
@@ -82,9 +85,8 @@ const familyOrder: Readonly<Record<ContentSnapshotKind, number>> = {
   tryout: 2,
 };
 
-interface ManifestOrderState {
-  previous: ContentSnapshotKind | undefined;
-}
+/** The family of the last accepted manifest of one stream, read to check the next one. */
+type PreviousFamily = MutableRef.MutableRef<Option.Option<ContentSnapshotKind>>;
 
 /** Derives one replacement's aggregate row evidence in its owning runtime. */
 function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
@@ -105,7 +107,7 @@ function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
 
 /** Strictly decodes one manifest and advances canonical family order. */
 function decodeManifest(
-  state: ManifestOrderState,
+  previous: PreviousFamily,
   source: unknown,
   manifestIndex: number
 ) {
@@ -114,20 +116,20 @@ function decodeManifest(
   }).pipe(
     Effect.mapError(() => new SnapshotManifestDecodeError({ manifestIndex })),
     Effect.tap((manifest) => {
-      const { previous } = state;
+      const last = MutableRef.get(previous);
       if (
-        previous !== undefined &&
-        familyOrder[previous] >= familyOrder[manifest.family]
+        Option.isSome(last) &&
+        familyOrder[last.value] >= familyOrder[manifest.family]
       ) {
         return Effect.fail(
           new SnapshotManifestOrderError({
             actualFamily: manifest.family,
             manifestIndex,
-            previousFamily: previous,
+            previousFamily: last.value,
           })
         );
       }
-      state.previous = manifest.family;
+      MutableRef.set(previous, Option.some(manifest.family));
       return Effect.void;
     })
   );
@@ -139,11 +141,11 @@ export function decodeContentSnapshotManifests<E, R>(
 ) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state: ManifestOrderState = { previous: undefined };
+      const previous = MutableRef.make(Option.none<ContentSnapshotKind>());
       return manifests.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, manifestIndex]) =>
-          decodeManifest(state, source, manifestIndex)
+          decodeManifest(previous, source, manifestIndex)
         )
       );
     })

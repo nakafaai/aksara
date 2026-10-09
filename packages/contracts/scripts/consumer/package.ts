@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { Effect, FileSystem, Path, Schema } from "effect";
+import { validatePackedManifest } from "#scripts/consumer/packed";
 import {
   type ConsumerPackageInput,
   createCredentialFreeEnvironment,
@@ -9,108 +9,13 @@ import {
   selectPackedArchive,
 } from "#scripts/consumer/tools";
 import {
-  assertContractPackageMetadata,
-  assertPortableDependencies,
   createReleaseManifest,
-  type PackageManifest,
   parsePackageManifest,
   parseWorkspaceManifest,
-  textField,
 } from "#scripts/manifest";
 
-const EXACT_VERSION_PATTERN =
-  /^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:\.[0-9A-Za-z]+)*)?$/u;
 const EffectManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
-);
-
-interface PackedManifestInput {
-  readonly effectVersion: string;
-  readonly packedLicense: string;
-  readonly packedManifest: PackageManifest;
-  readonly packedReadme: string;
-  readonly sourceLicense: string;
-  readonly sourceManifest: PackageManifest;
-}
-
-/** Validates archive metadata while converting assertion throws to typed data. */
-const validatePackedManifest = Effect.fn(
-  "AksaraContracts.validatePackedConsumerManifest"
-)(
-  ({
-    effectVersion,
-    packedLicense,
-    packedManifest,
-    packedReadme,
-    sourceLicense,
-    sourceManifest,
-  }: PackedManifestInput) =>
-    Effect.try({
-      catch: failure(
-        "manifest",
-        "Packed contract metadata verification failed"
-      ),
-      try: () => {
-        const p = packedManifest;
-        const s = sourceManifest;
-        assertContractPackageMetadata(s);
-        assertContractPackageMetadata(p);
-        assert.equal(p.name, s.name, "The tarball package name changed");
-        assert.equal(
-          p.description,
-          s.description,
-          "The tarball package description changed"
-        );
-        assert.equal(
-          p.license,
-          "SEE LICENSE IN LICENSE",
-          "The tarball must point to its included custom license"
-        );
-        assert.equal(
-          packedLicense,
-          sourceLicense,
-          "The tarball must preserve the exact approved software license"
-        );
-        assert.equal(
-          p.engines.node,
-          s.engines.node,
-          "The tarball must preserve its Node runtime contract"
-        );
-        assert.ok(
-          packedReadme.trim().length > 0,
-          "The tarball README.md must not be empty"
-        );
-        assertPortableDependencies(p);
-        assert.deepEqual(
-          p.imports["#contracts/*"],
-          {
-            default: "./dist/*.js",
-            types: "./dist/*.d.ts",
-          },
-          "The released contract imports must resolve only archive files"
-        );
-        const packedEffectVersion = textField(
-          p.peerDependencies?.effect,
-          "The packed contract must declare its exact Effect peer runtime"
-        );
-        assert.match(
-          packedEffectVersion,
-          EXACT_VERSION_PATTERN,
-          "The packed Effect peer must be an exact semantic version"
-        );
-        assert.equal(
-          p.dependencies?.effect,
-          undefined,
-          "Effect must not be a nested runtime dependency"
-        );
-        assert.equal(
-          packedEffectVersion,
-          effectVersion,
-          "Packed and development Effect versions must match"
-        );
-        return packedEffectVersion;
-      },
-    })
 );
 
 /** Builds and validates one exact release archive in a scoped workspace. */
@@ -141,11 +46,17 @@ export const stageConsumerPackage = Effect.fn(
       read(path.join(workspaceRoot, "package.json")),
     ]);
   const sourceManifest = yield* Effect.try({
-    catch: failure("manifest", "Contract package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Contract package manifest ${packageFile("package.json")} is malformed`
+    ),
     try: () => parsePackageManifest(sourceManifestSource),
   });
   const rootManifest = yield* Effect.try({
-    catch: failure("manifest", "Workspace package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Workspace package manifest ${path.join(workspaceRoot, "package.json")} is malformed`
+    ),
     try: () => parseWorkspaceManifest(rootManifestSource),
   });
   const temporaryRoot = yield* fileSystem
@@ -203,7 +114,10 @@ export const stageConsumerPackage = Effect.fn(
     { onExcessProperty: "ignore" }
   ).pipe(
     Effect.mapError(
-      failure("manifest", "Installed Effect manifest is malformed")
+      failure(
+        "manifest",
+        `Installed Effect manifest ${effectManifestPath} is malformed`
+      )
     )
   );
   const releaseManifest = yield* Effect.try({
@@ -267,7 +181,10 @@ export const stageConsumerPackage = Effect.fn(
     ]
   );
   const packedManifest = yield* Effect.try({
-    catch: failure("manifest", "Packed package manifest is malformed"),
+    catch: failure(
+      "manifest",
+      `Packed package manifest ${path.join(packedRoot, "package.json")} is malformed`
+    ),
     try: () => parsePackageManifest(packedManifestSource),
   });
   const effectVersion = yield* validatePackedManifest({
