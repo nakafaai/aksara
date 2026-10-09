@@ -20,6 +20,7 @@ import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
 import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
+import { parityConfig } from "#test/parity";
 import {
   activeState,
   signedActiveState,
@@ -180,15 +181,6 @@ describe("complete publication parity", () => {
   );
 });
 
-const config = {
-  AKSARA_DEV_PUBLICATION_ENDPOINT:
-    "https://development.example.test/internal/content/releases",
-  AKSARA_DEV_PUBLICATION_TOKEN: "development-token",
-  AKSARA_PUBLICATION_ENDPOINT:
-    "https://production.example.test/internal/content/releases",
-  AKSARA_PUBLICATION_TOKEN: "production-token",
-};
-
 describe("authenticated parity command", () => {
   it.effect(
     "reads both targets with isolated credentials and verifies actual signatures",
@@ -207,7 +199,7 @@ describe("authenticated parity command", () => {
         const evidence = yield* runParityCommand(args).pipe(
           Effect.provideService(
             ConfigProvider.ConfigProvider,
-            ConfigProvider.fromUnknown(config)
+            ConfigProvider.fromUnknown(parityConfig)
           ),
           Effect.provideService(HttpClient.HttpClient, captured.client),
           Effect.provideService(ContentVerificationKeyResolver, resolver)
@@ -232,7 +224,7 @@ describe("authenticated parity command", () => {
   ] as const)("fails closed for %s target evidence", (failure) =>
     Effect.gen(function* () {
       const { value, resolver } = yield* signedActiveState(active);
-      const values = MutableHashMap.fromIterable(Rec.toEntries(config));
+      const values = MutableHashMap.fromIterable(Rec.toEntries(parityConfig));
       if (failure === "missing") {
         MutableHashMap.remove(values, "AKSARA_DEV_PUBLICATION_TOKEN");
       }
@@ -240,7 +232,7 @@ describe("authenticated parity command", () => {
         MutableHashMap.set(
           values,
           "AKSARA_DEV_PUBLICATION_ENDPOINT",
-          config.AKSARA_PUBLICATION_ENDPOINT
+          parityConfig.AKSARA_PUBLICATION_ENDPOINT
         );
       }
       let response =
