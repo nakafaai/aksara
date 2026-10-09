@@ -1,5 +1,5 @@
 import { createServer } from "node:net";
-import { Effect, HashSet, Redacted, Schema } from "effect";
+import { Config, Effect, HashSet, Option, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
 import { NakafaProcess } from "#cli/child/process";
 import type { PreviewCredentials } from "#cli/credentials";
@@ -85,16 +85,25 @@ const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
   })
 );
 
+/** Reads one inherited variable, keeping an absent variable absent for the decode. */
+const readInheritedVariable = (name: string) =>
+  Config.option(Config.String(name)).pipe(
+    Effect.map(Option.getOrUndefined),
+    Effect.mapError(() => makeNakafaAppError("child-env", false))
+  );
+
 /** Decodes every child environment value together before process creation. */
 const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
-  (
+  function* (
     input: {
       readonly credentials: PreviewCredentials;
       readonly provider: PreviewProvider;
     },
     origin: URL
-  ) =>
-    Schema.decodeUnknownEffect(ChildEnvironmentSchema)({
+  ) {
+    const home = yield* readInheritedVariable("HOME");
+    const path = yield* readInheritedVariable("PATH");
+    return yield* Schema.decodeUnknownEffect(ChildEnvironmentSchema)({
       AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
       AKSARA_PREVIEW_KEY_ID: input.credentials.keyId,
       AKSARA_PREVIEW_MANIFEST_PATH: input.provider.manifestPath,
@@ -115,7 +124,7 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       CONTENT_RUNTIME_TOKEN: Redacted.value(
         input.credentials.contentRuntimeToken
       ),
-      HOME: process.env.HOME,
+      HOME: home,
       INTERNAL_CONTENT_API_KEY: Redacted.value(
         input.credentials.internalContentToken
       ),
@@ -132,9 +141,10 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
       NEXT_PUBLIC_POSTHOG_UI_HOST: origin.toString(),
       NEXT_PUBLIC_VERSION: "aksara-preview",
-      PATH: process.env.PATH,
+      PATH: path,
       SITE_URL: origin.toString(),
-    }).pipe(Effect.mapError(() => makeNakafaAppError("child-env", false)))
+    }).pipe(Effect.mapError(() => makeNakafaAppError("child-env", false)));
+  }
 );
 
 /** Starts the Next app with inherited stdio and explicit preview environment. */
