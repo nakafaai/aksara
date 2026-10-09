@@ -3,7 +3,7 @@ import {
   QURAN_VERSE_COUNT,
   QuranSurahNumberSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Effect, HashSet, Schema, Stream } from "effect";
+import { Array as Arr, Effect, HashSet, Option, Schema, Stream } from "effect";
 import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
 
 const QuranRegistryStateSchema = Schema.Struct({
@@ -89,10 +89,10 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
     );
   }
 
-  for (const [index, verse] of surah.verses.entries()) {
+  const sequenceFailure = Arr.findFirst(surah.verses, (verse, index) => {
     const expectedSurahVerse = index + 1;
     if (verse.number.inSurah !== expectedSurahVerse) {
-      return Effect.fail(
+      return Option.some(
         new QuranSequenceError({
           actual: verse.number.inSurah,
           expected: expectedSurahVerse,
@@ -104,7 +104,7 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
 
     const expectedQuranVerse = state.nextVerse + index;
     if (verse.number.inQuran !== expectedQuranVerse) {
-      return Effect.fail(
+      return Option.some(
         new QuranSequenceError({
           actual: verse.number.inQuran,
           expected: expectedQuranVerse,
@@ -113,6 +113,10 @@ function validateSurah(state: QuranRegistryState, surah: QuranSurah) {
         })
       );
     }
+    return Option.none();
+  });
+  if (Option.isSome(sequenceFailure)) {
+    return Effect.fail(sequenceFailure.value);
   }
 
   if (HashSet.has(state.revelationOrders, surah.revelation.order)) {

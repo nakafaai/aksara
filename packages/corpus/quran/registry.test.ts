@@ -3,7 +3,7 @@ import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
-import { Array as Arr, Effect, Order, Stream } from "effect";
+import { Array as Arr, Effect, Option, Order, Stream } from "effect";
 import {
   QuranCountError,
   QuranRevelationError,
@@ -35,7 +35,7 @@ function firstTwoSurahs() {
 
 /** Replaces one verse while retaining the exact real surah fields. */
 function withVerse(surah: QuranSurah, verse: QuranSurah["verses"][number]) {
-  return { ...surah, verses: [verse, ...surah.verses.slice(1)] };
+  return { ...surah, verses: [verse, ...Arr.drop(surah.verses, 1)] };
 }
 
 layer(quranTestSourcesLayer)("Quran registry", (it) => {
@@ -72,21 +72,21 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
       Effect.gen(function* () {
         const [first] = yield* firstTwoSurahs();
         const surahs = yield* collect(yield* testQuranRegistry);
-        const last = surahs.at(-1);
+        const last = Arr.last(surahs);
         if (first === undefined) {
           return yield* Effect.die(
             "Expected the reviewed Quran source to contain a surah."
           );
         }
-        if (last === undefined) {
+        if (Option.isNone(last)) {
           return yield* Effect.die(
             "Expected the reviewed Quran source to contain 114 surahs."
           );
         }
         const shortenedLast = {
-          ...last,
-          numberOfVerses: last.numberOfVerses - 1,
-          verses: last.verses.slice(0, -1),
+          ...last.value,
+          numberOfVerses: last.value.numberOfVerses - 1,
+          verses: Arr.dropRight(last.value.verses, 1),
         };
 
         const [sourceError, surahCountError, verseCountError] =
@@ -100,7 +100,10 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
               reject(streamQuranRegistry(Stream.empty)),
               reject(
                 streamQuranRegistry(
-                  Stream.fromIterable([...surahs.slice(0, -1), shortenedLast])
+                  Stream.fromIterable([
+                    ...Arr.dropRight(surahs, 1),
+                    shortenedLast,
+                  ])
                 )
               ),
             ],
@@ -169,7 +172,7 @@ layer(quranTestSourcesLayer)("Quran registry", (it) => {
         _tag: "QuranCountError",
         scope: "surah-verses",
       });
-      expect(errors.slice(1)).toMatchObject([
+      expect(Arr.drop(errors, 1)).toMatchObject([
         { _tag: "QuranSequenceError", scope: "surah-verse" },
         { _tag: "QuranSequenceError", scope: "quran-verse" },
       ]);

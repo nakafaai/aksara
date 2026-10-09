@@ -87,7 +87,7 @@ layer(quranTestSourcesLayer)("Quran schema", (it) => {
                   ...firstVerse,
                   audio: { primary: "https://invalid.test/audio.mp3" },
                 },
-                ...first.verses.slice(1),
+                ...Arr.drop(first.verses, 1),
               ],
             }),
             reject({
@@ -104,7 +104,7 @@ layer(quranTestSourcesLayer)("Quran schema", (it) => {
                     de: firstVerse.tafsir.id,
                   },
                 },
-                ...first.verses.slice(1),
+                ...Arr.drop(first.verses, 1),
               ],
             }),
           ],

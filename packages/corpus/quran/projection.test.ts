@@ -58,8 +58,8 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
           0,
           (count, { verses }) => count + verses.length
         );
-        const firstChunks = chunks.slice(0, 2);
-        const firstSearches = searches.slice(0, 2);
+        const firstChunks = Arr.take(chunks, 2);
+        const firstSearches = Arr.take(searches, 2);
 
         expect(rows).toHaveLength(
           attributions.length + surahs.length + chunks.length + searches.length
@@ -276,7 +276,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
                 id: { ...firstVerse.tafsir.id, footnotes: "Catatan tafsir." },
               },
             },
-            ...quranSource.verses.slice(1),
+            ...Arr.drop(quranSource.verses, 1),
           ],
         };
         const searches = yield* streamQuranRows(Stream.succeed(surah)).pipe(

@@ -61,51 +61,60 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
     const suraRows = [
       ...source.matchAll(/<sura number="(\d+)">([\s\S]*?)<\/sura>/g),
     ];
-    for (const [surahIndex, suraRow] of suraRows.entries()) {
-      const [, surahNumberSource, body] = suraRow;
-      const surahNumber = Number(surahNumberSource);
-      const expected = metadata[surahIndex];
-      if (!(body && expected) || surahNumber !== expected.number) {
-        return yield* quranGenerationFailure(
-          `Invalid QuranEnc surah ${surahIndex + 1}.`
-        );
-      }
-      const ayaRows = [
-        ...body.matchAll(/<aya number="(\d+)">([\s\S]*?)<\/aya>/g),
-      ];
-      if (ayaRows.length !== expected.numberOfVerses) {
-        return yield* quranGenerationFailure(
-          `Incomplete QuranEnc surah ${surahNumber}.`
-        );
-      }
-      for (const [verseIndex, ayaRow] of ayaRows.entries()) {
-        const [, verseNumberSource, aya] = ayaRow;
-        const number = Number(verseNumberSource);
-        const text = aya ? xmlText(aya, "translation") : undefined;
-        const footnotes = aya ? xmlText(aya, "footnotes") : undefined;
-        if (
-          number !== verseIndex + 1 ||
-          text === undefined ||
-          text.length === 0 ||
-          footnotes === undefined
-        ) {
-          return yield* quranGenerationFailure(
-            `Invalid QuranEnc verse ${surahNumber}:${verseIndex + 1}.`
+    yield* Effect.forEach(
+      suraRows,
+      (suraRow, surahIndex) =>
+        Effect.gen(function* () {
+          const [, surahNumberSource, body] = suraRow;
+          const surahNumber = Number(surahNumberSource);
+          const expected = metadata[surahIndex];
+          if (!(body && expected) || surahNumber !== expected.number) {
+            return yield* quranGenerationFailure(
+              `Invalid QuranEnc surah ${surahIndex + 1}.`
+            );
+          }
+          const ayaRows = [
+            ...body.matchAll(/<aya number="(\d+)">([\s\S]*?)<\/aya>/g),
+          ];
+          if (ayaRows.length !== expected.numberOfVerses) {
+            return yield* quranGenerationFailure(
+              `Incomplete QuranEnc surah ${surahNumber}.`
+            );
+          }
+          yield* Effect.forEach(
+            ayaRows,
+            (ayaRow, verseIndex) =>
+              Effect.gen(function* () {
+                const [, verseNumberSource, aya] = ayaRow;
+                const number = Number(verseNumberSource);
+                const text = aya ? xmlText(aya, "translation") : undefined;
+                const footnotes = aya ? xmlText(aya, "footnotes") : undefined;
+                if (
+                  number !== verseIndex + 1 ||
+                  text === undefined ||
+                  text.length === 0 ||
+                  footnotes === undefined
+                ) {
+                  return yield* quranGenerationFailure(
+                    `Invalid QuranEnc verse ${surahNumber}:${verseIndex + 1}.`
+                  );
+                }
+                const translation = yield* Schema.decodeEffect(
+                  QuranTranslationSchema
+                )({ footnotes, text }, { onExcessProperty: "error" }).pipe(
+                  Effect.mapError(() =>
+                    quranGenerationFailure(
+                      `Invalid QuranEnc translation notes ${surahNumber}:${verseIndex + 1}.`
+                    )
+                  )
+                );
+                MutableList.append(translationRows, translation);
+              }),
+            { discard: true }
           );
-        }
-        const translation = yield* Schema.decodeEffect(QuranTranslationSchema)(
-          { footnotes, text },
-          { onExcessProperty: "error" }
-        ).pipe(
-          Effect.mapError(() =>
-            quranGenerationFailure(
-              `Invalid QuranEnc translation notes ${surahNumber}:${verseIndex + 1}.`
-            )
-          )
-        );
-        MutableList.append(translationRows, translation);
-      }
-    }
+        }),
+      { discard: true }
+    );
     const translations = MutableList.toArray(translationRows);
     if (translations.length !== EXPECTED_VERSES) {
       return yield* quranGenerationFailure(
@@ -122,38 +131,48 @@ const parseTafsir = Effect.fn("AksaraCorpus.parseQuranTafsir")(function* (
   metadata: readonly SurahMetadata[]
 ) {
   const tafsirRows = MutableList.make<Tafsir>();
-  for (const [surahIndex, source] of sources.entries()) {
-    const response = yield* Schema.decodeEffect(TafsirJsonSchema)(source, {
-      onExcessProperty: "error",
-    }).pipe(
-      Effect.mapError(() =>
-        quranGenerationFailure(
-          `Invalid QuranEnc response for surah ${surahIndex + 1}.`
-        )
-      )
-    );
-    const expected = metadata[surahIndex];
-    if (!expected || response.result.length !== expected.numberOfVerses) {
-      return yield* quranGenerationFailure(
-        `Incomplete QuranEnc tafsir surah ${surahIndex + 1}.`
-      );
-    }
-    for (const [verseIndex, row] of response.result.entries()) {
-      if (
-        Number(row.sura) !== surahIndex + 1 ||
-        Number(row.aya) !== verseIndex + 1 ||
-        row.translation.length === 0
-      ) {
-        return yield* quranGenerationFailure(
-          `Invalid QuranEnc tafsir verse ${surahIndex + 1}:${verseIndex + 1}.`
+  yield* Effect.forEach(
+    sources,
+    (source, surahIndex) =>
+      Effect.gen(function* () {
+        const response = yield* Schema.decodeEffect(TafsirJsonSchema)(source, {
+          onExcessProperty: "error",
+        }).pipe(
+          Effect.mapError(() =>
+            quranGenerationFailure(
+              `Invalid QuranEnc response for surah ${surahIndex + 1}.`
+            )
+          )
         );
-      }
-      MutableList.append(tafsirRows, {
-        footnotes: row.footnotes,
-        text: row.translation,
-      });
-    }
-  }
+        const expected = metadata[surahIndex];
+        if (!expected || response.result.length !== expected.numberOfVerses) {
+          return yield* quranGenerationFailure(
+            `Incomplete QuranEnc tafsir surah ${surahIndex + 1}.`
+          );
+        }
+        yield* Effect.forEach(
+          response.result,
+          (row, verseIndex) =>
+            Effect.gen(function* () {
+              if (
+                Number(row.sura) !== surahIndex + 1 ||
+                Number(row.aya) !== verseIndex + 1 ||
+                row.translation.length === 0
+              ) {
+                return yield* quranGenerationFailure(
+                  `Invalid QuranEnc tafsir verse ${surahIndex + 1}:${verseIndex + 1}.`
+                );
+              }
+              MutableList.append(tafsirRows, {
+                footnotes: row.footnotes,
+                text: row.translation,
+              });
+            }),
+          { discard: true }
+        );
+      }),
+    { discard: true }
+  );
   const tafsir = MutableList.toArray(tafsirRows);
   if (tafsir.length !== EXPECTED_VERSES) {
     return yield* quranGenerationFailure("QuranEnc tafsir is incomplete.");
