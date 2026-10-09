@@ -7,6 +7,7 @@ import {
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
+  Array as Arr,
   Effect,
   HashMap,
   HashSet,
@@ -68,7 +69,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) =>
+            Arr.filter(entries, ({ sourcePath }) =>
               HashSet.has(sourcePaths, sourcePath)
             )
           )

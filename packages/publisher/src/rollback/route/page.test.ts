@@ -13,7 +13,7 @@ import {
   RouteRollbackRecordSchema,
 } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRouteRecords } from "#publisher/rollback/route/page";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
@@ -123,11 +123,11 @@ describe("streamRouteRecords", () => {
       });
       const records = yield* collect(targetWith(routePage));
 
-      expect([...records].map(({ current }) => current.index)).toEqual([
-        0, 1, 2,
-      ]);
       expect(
-        routePage.mock.calls.map(([request]) => request.afterIndex)
+        Arr.map(Arr.fromIterable(records), ({ current }) => current.index)
+      ).toEqual([0, 1, 2]);
+      expect(
+        Arr.map(routePage.mock.calls, ([request]) => request.afterIndex)
       ).toEqual([-1, 0, 1]);
     })
   );

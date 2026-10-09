@@ -16,7 +16,7 @@ import {
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { Effect, MutableHashMap, Option } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Option } from "effect";
 
 import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
@@ -114,12 +114,12 @@ describe("publication runtime", () => {
             TEST_RECOVERY_BUNDLE_SIGNATURE,
           ],
         ]);
-        expect(bundles.map((bundle) => bundle.bundleHash)).toEqual([
+        expect(Arr.map(bundles, (bundle) => bundle.bundleHash)).toEqual([
           ...MutableHashMap.keys(recordedSignatures),
         ]);
         /** Verifies each produced bundle over the transformed signing input with its recorded signature. */
         const verifies = (transform: (input: string) => string) =>
-          bundles.map((bundle) => {
+          Arr.map(bundles, (bundle) => {
             const signature = Option.getOrUndefined(
               MutableHashMap.get(recordedSignatures, bundle.bundleHash)
             );
@@ -173,8 +173,8 @@ describe("publication runtime", () => {
       }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
 
       assert.deepStrictEqual(
-        bundles.map((bundle) => bundle.payload),
-        [snapshot, recoverySnapshot].map((runtimeSnapshot) => ({
+        Arr.map(bundles, (bundle) => bundle.payload),
+        Arr.map([snapshot, recoverySnapshot], (runtimeSnapshot) => ({
           format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
           rendererManifestHash: rendererManifest.hash,
           snapshot: runtimeSnapshot,
@@ -184,7 +184,7 @@ describe("publication runtime", () => {
         }))
       );
       assert.deepStrictEqual(
-        bundles.map((bundle) => bundle.keyId),
+        Arr.map(bundles, (bundle) => bundle.keyId),
         [signingKeyId, signingKeyId]
       );
     })

@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { describe, expect, layer } from "@effect/vitest";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   Layer,
@@ -27,9 +28,10 @@ const listRoots = Effect.fn("ReplaySpoolTest.listRoots")(
     Effect.gen(function* () {
       const temporaryRoot = yield* Effect.sync(tmpdir);
       const names = yield* fileSystem.readDirectory(temporaryRoot);
-      return names
-        .filter((name) => name.startsWith(prefix))
-        .map((name) => `${temporaryRoot}/${name}`);
+      return Arr.map(
+        Arr.filter(names, (name) => name.startsWith(prefix)),
+        (name) => `${temporaryRoot}/${name}`
+      );
     })
 );
 
@@ -121,9 +123,9 @@ describe("replay spool", () => {
             spool.read(index).pipe(Effect.flip)
           );
 
-          expect(failures.every(({ operation }) => operation === "read")).toBe(
-            true
-          );
+          expect(
+            Arr.every(failures, ({ operation }) => operation === "read")
+          ).toBe(true);
         })
       )
     );
