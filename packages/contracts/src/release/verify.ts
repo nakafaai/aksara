@@ -1,6 +1,5 @@
 import { Effect, Schema } from "effect";
 import type { ReleaseId, Sha256Hash } from "#contracts/ids";
-import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import {
   type ContentReleaseBundle,
@@ -8,6 +7,7 @@ import {
   type RollbackContentReleaseBundle,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
+import { ReleaseHashMismatchFields } from "#contracts/release/mismatch";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import {
   type SignedContentRelease,
@@ -29,11 +29,7 @@ export class ReleaseVerificationDecodeError extends Schema.TaggedError<ReleaseVe
 /** The envelope hash does not identify its complete canonical manifest. */
 export class ReleaseManifestHashMismatchError extends Schema.TaggedError<ReleaseManifestHashMismatchError>()(
   "ReleaseManifestHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseHashMismatchFields }
 ) {}
 
 /** Stored release recovery input does not satisfy its exact bundle contract. */

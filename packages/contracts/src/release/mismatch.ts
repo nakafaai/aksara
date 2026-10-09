@@ -14,3 +14,10 @@ export const ReleaseCountMismatchFields = {
   expectedCount: ReleaseCountSchema,
   releaseId: ReleaseIdSchema,
 };
+
+/** Fields that name one signed release manifest hash and the recomputed hash that failed. */
+export const ReleaseHashMismatchFields = {
+  actualHash: Sha256HashSchema,
+  expectedHash: Sha256HashSchema,
+  releaseId: ReleaseIdSchema,
+};

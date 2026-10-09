@@ -82,14 +82,17 @@ export class ArtifactHashComputationError extends Schema.TaggedError<ArtifactHas
   { contentKey: ContentKeySchema }
 ) {}
 
+/** Fields that name one content hash, its content key, and the hash that failed. */
+const ContentHashMismatchFields = {
+  actualHash: Sha256HashSchema,
+  contentKey: ContentKeySchema,
+  expectedHash: Sha256HashSchema,
+};
+
 /** The signed artifact hash does not identify its canonical payload. */
 export class ArtifactHashMismatchError extends Schema.TaggedError<ArtifactHashMismatchError>()(
   "ArtifactHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    contentKey: ContentKeySchema,
-    expectedHash: Sha256HashSchema,
-  }
+  { ...ContentHashMismatchFields }
 ) {}
 
 /** SHA-256 could not be calculated for the authenticated authored source. */
@@ -101,11 +104,7 @@ export class ArtifactSourceHashComputationError extends Schema.TaggedError<Artif
 /** The authenticated source hash does not identify the complete raw MDX. */
 export class ArtifactSourceHashMismatchError extends Schema.TaggedError<ArtifactSourceHashMismatchError>()(
   "ArtifactSourceHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    contentKey: ContentKeySchema,
-    expectedHash: Sha256HashSchema,
-  }
+  { ...ContentHashMismatchFields }
 ) {}
 
 /** A custom component required by the artifact is absent from the renderer. */
