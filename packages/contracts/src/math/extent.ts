@@ -1,6 +1,6 @@
 import { Array as Arr, BigDecimal, Schema } from "effect";
 
-import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
+import { GEOMETRY_TOLERANCE, SceneAxisSchema } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
 import {
   decimal,
@@ -219,7 +219,7 @@ export function quadraticContained(
 }
 
 const CuboidExtentSchema = Schema.Struct({
-  axis: Schema.Literals(["x", "y", "z"]),
+  axis: SceneAxisSchema,
   center: Schema.Finite,
   dimension: Schema.Literals(["height", "length", "width"]),
   extent: Schema.BigDecimal,

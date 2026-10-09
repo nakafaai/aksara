@@ -1,9 +1,15 @@
 import { Array as Arr, type BigDecimal, Schema } from "effect";
 
-import type { PlanePoint, SpacePoint } from "#contracts/math/base";
+import {
+  type PlanePoint,
+  type SceneAxis,
+  SceneAxisSchema,
+  type SpacePoint,
+} from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
 import {
   AxisTraversalSchema,
+  type InfinitePathKind,
   infinitePathInterval,
 } from "#contracts/math/intersection";
 import type { PlaneMathFrame } from "#contracts/math/plane";
@@ -19,7 +25,6 @@ import {
 } from "#contracts/math/rational";
 import type { SpaceMathFrame } from "#contracts/math/space";
 
-export type SceneAxis = "x" | "y" | "z";
 export const ScenePathSchema = Schema.mutable(
   Schema.Array(Schema.Union([Schema.Finite, Schema.String]))
 );
@@ -27,7 +32,7 @@ export type ScenePath = typeof ScenePathSchema.Type;
 
 /** One ordered exact coordinate projected from a complete visual scene. */
 const SceneCoordinateSchema = Schema.Struct({
-  axis: Schema.Literals(["x", "y", "z"]),
+  axis: SceneAxisSchema,
   error: Schema.optionalKey(Schema.BigDecimal),
   path: ScenePathSchema,
   reportable: Schema.Boolean,
@@ -39,7 +44,7 @@ export type SceneFrame = PlaneMathFrame | SpaceMathFrame;
 
 const SceneAxisTraversalSchema = Schema.Struct({
   ...AxisTraversalSchema.fields,
-  axis: Schema.Literals(["x", "y", "z"]),
+  axis: SceneAxisSchema,
 });
 type SceneAxisTraversal = typeof SceneAxisTraversalSchema.Type;
 
@@ -109,7 +114,7 @@ export function pathAxes(
 /** Projects the canonical exact endpoints of one frame-clipped line or ray. */
 export function clippedPathCoordinates(
   frame: SceneFrame,
-  kind: "line" | "ray",
+  kind: InfinitePathKind,
   from: PlanePoint | SpacePoint,
   through: PlanePoint | SpacePoint,
   path: ScenePath,

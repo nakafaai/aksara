@@ -1,51 +1,42 @@
 import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { routeIdentity } from "#contracts/content";
-import {
-  PublicPathSchema,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { PublicPathSchema } from "#contracts/ids";
+import { ReleaseDigestMismatchFields } from "#contracts/release/mismatch";
 import { digestRoutes } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
-import type { ContentReleaseManifest } from "#contracts/release/spec";
-
-const RouteIndexSchema = Schema.Finite.pipe(
-  Schema.check(Schema.isInt()),
-  Schema.check(Schema.isGreaterThanOrEqualTo(0))
-);
+import {
+  type ContentReleaseManifest,
+  ReleaseCountSchema,
+} from "#contracts/release/spec";
 
 /** One streamed route failed strict wire decoding. */
 export class RouteDecodeError extends Schema.TaggedError<RouteDecodeError>()(
   "RouteDecodeError",
-  { routeOffset: RouteIndexSchema }
+  { routeOffset: ReleaseCountSchema }
 ) {}
 
 /** One route belongs to another release or sequence position. */
 export class RouteIdentityError extends Schema.TaggedError<RouteIdentityError>()(
   "RouteIdentityError",
-  { routeOffset: RouteIndexSchema }
+  { routeOffset: ReleaseCountSchema }
 ) {}
 
 /** Two changes in one release target the same locale-specific route. */
 export class RouteDuplicateError extends Schema.TaggedError<RouteDuplicateError>()(
   "RouteDuplicateError",
-  { firstIndex: RouteIndexSchema, publicPath: PublicPathSchema }
+  { firstIndex: ReleaseCountSchema, publicPath: PublicPathSchema }
 ) {}
 
 /** The streamed route count differs from its signed manifest. */
 export class RouteCountError extends Schema.TaggedError<RouteCountError>()(
   "RouteCountError",
-  { actualCount: RouteIndexSchema, expectedCount: RouteIndexSchema }
+  { actualCount: ReleaseCountSchema, expectedCount: ReleaseCountSchema }
 ) {}
 
 /** The streamed route digest differs from its signed manifest. */
 export class RouteDigestError extends Schema.TaggedError<RouteDigestError>()(
   "RouteDigestError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    releaseId: ReleaseIdSchema,
-  }
+  { ...ReleaseDigestMismatchFields }
 ) {}
 
 /** The item index that first bound each route identity in one stream of routes. */

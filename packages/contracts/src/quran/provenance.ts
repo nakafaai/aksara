@@ -22,7 +22,10 @@ import {
   quranTranslationProvenanceScope,
   quranTranslationSourceForScope,
 } from "#contracts/quran/identity";
-import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
+import {
+  type QuranProvenanceStatus,
+  QuranProvenanceStatusSchema,
+} from "#contracts/quran/snapshot/spec";
 import {
   hasCompleteQuranSourceCopy,
   QuranSourceAttributionSchema,
@@ -136,7 +139,7 @@ function hasCanonicalSourceCoverage(input: {
 /** Checks that the declared gate status matches every reviewed record. */
 function hasCoherentProvenanceStatus(input: {
   readonly records: readonly QuranProvenanceRecord[];
-  readonly status: "approved" | "blocked";
+  readonly status: QuranProvenanceStatus;
 }) {
   const expected = Arr.some(
     input.records,

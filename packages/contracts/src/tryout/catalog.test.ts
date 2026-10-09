@@ -2,6 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Exit, Option, Order, Schema } from "effect";
 import { makeTryoutTestRows } from "#contracts/test/tryout";
 import {
+  countSectionQuestions,
   TryoutCatalogNodeIdentitySchema,
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
@@ -31,6 +32,13 @@ describe("try-out catalog contract", () => {
     expect(Arr.sort(Arr.dedupe(kinds), Order.String)).toEqual(
       Arr.sort(["country", "exam", "track", "set", "section"], Order.String)
     );
+  });
+
+  it("counts every question across one ordered section list", () => {
+    expect(countSectionQuestions([])).toBe(0);
+    expect(
+      countSectionQuestions([{ questionCount: 3 }, { questionCount: 4 }])
+    ).toBe(7);
   });
 
   it("requires exact keys for each pre-read catalog identity", () => {

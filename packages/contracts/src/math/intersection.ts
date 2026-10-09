@@ -18,7 +18,8 @@ export const AxisTraversalSchema = Schema.Struct({
 });
 export type AxisTraversal = typeof AxisTraversalSchema.Type;
 
-type InfinitePathKind = "line" | "ray";
+const InfinitePathKindSchema = Schema.Literals(["line", "ray"]);
+export type InfinitePathKind = typeof InfinitePathKindSchema.Type;
 
 /** Exact finite sides of one clipped infinite path parameter interval. */
 const InfinitePathIntervalSchema = Schema.Struct({

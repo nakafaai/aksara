@@ -33,7 +33,8 @@ export const QuestionResponseKindSchema = Schema.Literals([
 ]);
 export type QuestionResponseKind = typeof QuestionResponseKindSchema.Type;
 
-const QuestionOptionSchema = Schema.Struct({
+/** One option of a single or multiple choice response, keyed by its identity. */
+export const QuestionOptionSchema = Schema.Struct({
   isCorrect: Schema.Boolean,
   label: QuestionResponseLabelSchema,
   optionKey: Schema.String.pipe(
@@ -92,7 +93,8 @@ const MultipleChoiceResponseSchema = Schema.Struct({
   )
 );
 
-const QuestionCategorySchema = Schema.Struct({
+/** One named category of a category response, keyed by its identity. */
+export const QuestionCategorySchema = Schema.Struct({
   categoryKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(CATEGORY_KEY_PATTERN))
   ),
@@ -100,7 +102,8 @@ const QuestionCategorySchema = Schema.Struct({
   order: PositiveOrderSchema,
 });
 
-const QuestionCategoryStatementSchema = Schema.Struct({
+/** One statement classified into one category, keyed by its identity. */
+export const QuestionCategoryStatementSchema = Schema.Struct({
   correctCategoryKey: Schema.String.pipe(
     Schema.check(Schema.isPattern(CATEGORY_KEY_PATTERN))
   ),

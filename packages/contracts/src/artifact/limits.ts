@@ -39,7 +39,7 @@ function enforceSignedWireLimit(artifact: SignedContentArtifact) {
 /** Rejects one authenticated payload field above its shared ceiling. */
 function enforcePayloadFieldLimit(
   payload: CompiledContentPayload,
-  field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
+  field: ArtifactPayloadFieldByteLimitError["field"],
   value: string,
   maxBytes: number
 ) {

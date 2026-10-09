@@ -12,6 +12,7 @@ import {
   StageSnapshotBatchRequestSchema,
   StageSnapshotRequestSchema,
 } from "#contracts/transport/snapshot";
+import { successSchema } from "#contracts/transport/success";
 
 /** One existing safe transaction carried inside an authenticated group. */
 export const StageOperationSchema = Schema.Union([
@@ -79,9 +80,8 @@ export const StageGroupReceiptSchema = Schema.Struct({
 export type StageGroupReceipt = typeof StageGroupReceiptSchema.Type;
 
 /** Returns bounded completion evidence for one authenticated group. */
-export const StageGroupSuccessSchema = Schema.Struct({
-  ok: Schema.Literal(true),
-  operation: Schema.Literal("stageGroup"),
-  value: StageGroupReceiptSchema,
-});
+export const StageGroupSuccessSchema = successSchema(
+  "stageGroup",
+  StageGroupReceiptSchema
+);
 export type StageGroupSuccess = typeof StageGroupSuccessSchema.Type;
