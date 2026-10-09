@@ -1,3 +1,5 @@
+import { Array as Arr } from "effect";
+
 import { compareCodeUnits } from "#contracts/text/order";
 import type {
   TryoutCatalogNodeIdentity,
@@ -7,15 +9,18 @@ import type { TryoutPlacementSource } from "#contracts/tryout/placement";
 
 /** Builds one deterministic current node identity before its row is loaded. */
 export function tryoutCatalogNodeIdentity(input: TryoutCatalogNodeIdentity) {
-  return [
-    input.appLocale,
-    input.kind,
-    input.countryKey,
-    "examKey" in input ? input.examKey : "",
-    "trackKey" in input ? input.trackKey : "",
-    "setKey" in input ? input.setKey : "",
-    "sectionKey" in input ? input.sectionKey : "",
-  ].join("\0");
+  return Arr.join(
+    [
+      input.appLocale,
+      input.kind,
+      input.countryKey,
+      "examKey" in input ? input.examKey : "",
+      "trackKey" in input ? input.trackKey : "",
+      "setKey" in input ? input.setKey : "",
+      "sectionKey" in input ? input.sectionKey : "",
+    ],
+    "\0"
+  );
 }
 
 /** Builds one deterministic current hierarchy identity from its signed row. */
@@ -25,29 +30,41 @@ export function tryoutCatalogIdentity(row: TryoutCatalogRow) {
 
 /** Builds the deterministic placement identity across application locales. */
 export function tryoutPlacementIdentity(row: TryoutPlacementSource) {
-  return [
-    row.countryKey,
-    row.examKey,
-    row.trackKey,
-    row.setKey,
-    row.sectionKey,
-    row.questionOrder,
-    row.questionContentKey,
-    row.appLocale,
-  ].join("\0");
+  return Arr.join(
+    Arr.map(
+      [
+        row.countryKey,
+        row.examKey,
+        row.trackKey,
+        row.setKey,
+        row.sectionKey,
+        row.questionOrder,
+        row.questionContentKey,
+        row.appLocale,
+      ],
+      String
+    ),
+    "\0"
+  );
 }
 
 /** Builds one locale-neutral placement identity for closure checks. */
 export function tryoutPlacementLogicalIdentity(row: TryoutPlacementSource) {
-  return [
-    row.countryKey,
-    row.examKey,
-    row.trackKey,
-    row.setKey,
-    row.sectionKey,
-    row.questionOrder,
-    row.questionContentKey,
-  ].join("\0");
+  return Arr.join(
+    Arr.map(
+      [
+        row.countryKey,
+        row.examKey,
+        row.trackKey,
+        row.setKey,
+        row.sectionKey,
+        row.questionOrder,
+        row.questionContentKey,
+      ],
+      String
+    ),
+    "\0"
+  );
 }
 
 /** Compares placements in the order used by question-head binding. */

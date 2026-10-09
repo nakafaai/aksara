@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
 import { withPublicationDates } from "#contracts/date";
 import { ContentKeySchema } from "#contracts/ids";
@@ -153,7 +153,7 @@ export function canonicalizeQuestionProjection(
     contentKey: projection.contentKey,
     kind: projection.kind,
     metadata: {
-      authors: projection.metadata.authors.map(({ name }) => ({ name })),
+      authors: Arr.map(projection.metadata.authors, ({ name }) => ({ name })),
       ...(projection.metadata.dateModified === undefined
         ? {}
         : { dateModified: projection.metadata.dateModified }),

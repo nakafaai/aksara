@@ -138,7 +138,7 @@ export function polygonAltitudeUnresolved(
   ],
   threshold: RenderThreshold
 ) {
-  const exact = vertices.map((point) => ({
+  const exact = EffectArray.map(vertices, (point) => ({
     x: decimal(point.x),
     y: decimal(point.y),
     z: decimal("z" in point ? point.z : 0),
@@ -175,13 +175,17 @@ export function polygonAltitudeUnresolved(
       ),
     };
     const crossSquared = BigDecimal.sumAll(
-      Rec.values(cross).map((value) => BigDecimal.multiply(value, value))
+      EffectArray.map(Rec.values(cross), (value) =>
+        BigDecimal.multiply(value, value)
+      )
     );
     if (BigDecimal.isZero(crossSquared)) {
       continue;
     }
     const baselineSquared = BigDecimal.sumAll(
-      Rec.values(baseline).map((value) => BigDecimal.multiply(value, value))
+      EffectArray.map(Rec.values(baseline), (value) =>
+        BigDecimal.multiply(value, value)
+      )
     );
     if (
       BigDecimal.isLessThan(

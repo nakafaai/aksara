@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   Layer,
@@ -38,7 +39,7 @@ const writePackageManifest = Effect.fn("ContractEdgeTest.writePackageManifest")(
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
     const exports = Rec.fromEntries(
-      EDGE_CONTRACT_EXPORTS.map((entry) => [
+      Arr.map(EDGE_CONTRACT_EXPORTS, (entry) => [
         `./${entry}`,
         {
           [entry === "release/canonical" ? canonicalCondition : "import"]:
@@ -123,12 +124,15 @@ layer(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))(
           yield* writeModule(
             root,
             "entry",
-            [
-              'import "#contracts/private";',
-              'export * from "./relative.js";',
-              'export * from "./extensionless";',
-              'const loaded = import("#contracts/dynamic");',
-            ].join("\n")
+            Arr.join(
+              [
+                'import "#contracts/private";',
+                'export * from "./relative.js";',
+                'export * from "./extensionless";',
+                'const loaded = import("#contracts/dynamic");',
+              ],
+              "\n"
+            )
           );
           yield* writeModule(
             root,

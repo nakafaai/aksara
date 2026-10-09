@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { CompiledContentPayloadSchema } from "#contracts/content";
 import { ContentKeySchema } from "#contracts/ids";
 import {
@@ -43,10 +43,10 @@ describe("renderer compatibility", () => {
           requiredComponents: ["Mermaid"],
         }),
       ];
-      const errors = yield* Effect.all([
-        ...payloads.map((payload) => verify(payload).pipe(Effect.flip)),
-      ]);
-      expect(errors.map((error) => error._tag)).toEqual([
+      const errors = yield* Effect.all(
+        Arr.map(payloads, (payload) => verify(payload).pipe(Effect.flip))
+      );
+      expect(Arr.map(errors, (error) => error._tag)).toEqual([
         "ArtifactRendererDomainUnpublishedError",
         "ArtifactRendererComponentMissingError",
       ]);

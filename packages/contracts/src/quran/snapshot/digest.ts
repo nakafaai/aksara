@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
@@ -44,24 +44,30 @@ export class QuranRowOrderError extends Schema.TaggedError<QuranRowOrderError>()
   }
 ) {}
 
+/** Joins the parts of one row identity with colons, stringifying each part. */
+function joinIdentity(parts: readonly (number | string)[]) {
+  return Arr.join(Arr.map(parts, String), ":");
+}
+
 /** Resolves one complete stable current row identity. */
 function rowIdentity(payload: QuranRowPayload) {
   if (payload.kind === "quran-attribution") {
-    return `quran-attribution:${payload.activeAppLocales.join(",")}:${payload.sources.map(({ id }) => id).join(":")}`;
+    const sourceIds = Arr.map(payload.sources, ({ id }) => id);
+    return `quran-attribution:${Arr.join(payload.activeAppLocales, ",")}:${Arr.join(sourceIds, ":")}`;
   }
   if (payload.kind === "quran-surah") {
     return `quran-surah:${payload.number}`;
   }
   if (payload.kind === "quran-chunk") {
-    return [
+    return joinIdentity([
       "quran-chunk",
       payload.surahNumber,
       payload.firstVerse,
       payload.lastVerse,
       payload.firstQuranNumber,
-    ].join(":");
+    ]);
   }
-  return [
+  return joinIdentity([
     "quran-search",
     payload.surahNumber,
     payload.appLocale,
@@ -71,7 +77,7 @@ function rowIdentity(payload: QuranRowPayload) {
     payload.graph.conceptId,
     payload.graph.learningObjectId,
     payload.graph.lensId,
-  ].join(":");
+  ]);
 }
 
 /** Keeps current locale closure and digest state private to one replay. */
@@ -101,7 +107,7 @@ class QuranDigestState {
   /** Returns the only row identity valid at the current stream position. */
   expectedIdentity() {
     if (this.attributionCount === 0) {
-      return `quran-attribution:${this.#activeAppLocales.join(",")}:${quranSourceIds(this.#activeAppLocales).join(":")}`;
+      return `quran-attribution:${Arr.join(this.#activeAppLocales, ",")}:${Arr.join(quranSourceIds(this.#activeAppLocales), ":")}`;
     }
     if (this.#nextSurah <= QURAN_SURAH_COUNT) {
       if (this.#nextSurahVerse === 0) {
@@ -111,16 +117,16 @@ class QuranDigestState {
         this.#nextSurahVerse + QURAN_CHUNK_SIZE - 1,
         this.#surahVerseCount
       );
-      return [
+      return joinIdentity([
         "quran-chunk",
         this.#nextSurah,
         this.#nextSurahVerse,
         lastVerse,
         this.#nextQuranNumber,
-      ].join(":");
+      ]);
     }
     if (this.#nextSearchSurah <= QURAN_SURAH_COUNT) {
-      return [
+      return joinIdentity([
         "quran-search",
         this.#nextSearchSurah,
         this.#nextSearchLocale,
@@ -130,7 +136,7 @@ class QuranDigestState {
         `concept:quran:surah:${this.#nextSearchSurah}`,
         `lo:quran-surah:${this.#nextSearchSurah}`,
         "lens:quran",
-      ].join(":");
+      ]);
     }
     return "end";
   }
@@ -145,12 +151,13 @@ class QuranDigestState {
     )
       ? ["id"]
       : [];
-    return payload.verses.every(
+    return Arr.every(
+      payload.verses,
       (verse) =>
         encodeJsonText(
-          verse.translations.map((translation) => translation.appLocale)
+          Arr.map(verse.translations, (translation) => translation.appLocale)
         ) === encodeJsonText(this.#activeAppLocales) &&
-        encodeJsonText(verse.tafsir.map((tafsir) => tafsir.appLocale)) ===
+        encodeJsonText(Arr.map(verse.tafsir, (tafsir) => tafsir.appLocale)) ===
           encodeJsonText(expectedTafsir)
     );
   }

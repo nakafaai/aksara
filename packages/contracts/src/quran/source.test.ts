@@ -1,5 +1,5 @@
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -189,15 +189,17 @@ describe("Quran source contracts", () => {
       "id",
       "de",
     ]);
-    const sources = quranSourceIds(active).map(source);
+    const sources = Arr.map(quranSourceIds(active), source);
     const access = tafsirAccess();
-    const row = Schema.decodeUnknownSync(QuranAttributionRowSchema)({
+    const row = Schema.decodeSync(QuranAttributionRowSchema)({
       activeAppLocales: active,
       kind: "quran-attribution",
       sources,
       tafsirAccess: access,
     });
-    expect(row.sources.map(({ id }) => id)).toEqual(quranSourceIds(active));
+    expect(Arr.map(row.sources, ({ id }) => id)).toEqual(
+      quranSourceIds(active)
+    );
     expect(quranSourceFileCount(active)).toBe(121);
     expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
     expect(hasRequiredQuranSources(row.sources.slice(0, -1), active)).toBe(
@@ -205,10 +207,10 @@ describe("Quran source contracts", () => {
     );
     expect(
       Exit.isFailure(
-        Schema.decodeUnknownExit(QuranAttributionRowSchema)({
+        Schema.decodeExit(QuranAttributionRowSchema)({
           activeAppLocales: active,
           kind: "quran-attribution",
-          sources: [...sources].reverse(),
+          sources: Arr.reverse(sources),
           tafsirAccess: access,
         })
       )
@@ -218,7 +220,7 @@ describe("Quran source contracts", () => {
         Schema.decodeUnknownExit(QuranAttributionRowSchema)({
           activeAppLocales: active,
           kind: "quran-attribution",
-          sources: sources.map((item) => ({
+          sources: Arr.map(sources, (item) => ({
             ...item,
             copy: item.copy.slice(0, -1),
           })),
@@ -228,11 +230,11 @@ describe("Quran source contracts", () => {
     ).toBe(true);
     expect(
       Exit.isFailure(
-        Schema.decodeUnknownExit(QuranAttributionRowSchema)({
+        Schema.decodeExit(QuranAttributionRowSchema)({
           activeAppLocales: active,
           kind: "quran-attribution",
           sources,
-          tafsirAccess: [...access].reverse(),
+          tafsirAccess: Arr.reverse(access),
         })
       )
     ).toBe(true);

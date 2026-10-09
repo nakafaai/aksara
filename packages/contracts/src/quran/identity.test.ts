@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
 
 import {
   ACTIVE_APP_LOCALES,
@@ -18,12 +19,12 @@ import {
 
 describe("Quran source mapping golden identities", () => {
   it("pins the surah-name source and provenance scope of each active locale", () => {
-    expect(ACTIVE_APP_LOCALES.map(quranNameSourceId)).toEqual([
+    expect(Arr.map(ACTIVE_APP_LOCALES, quranNameSourceId)).toEqual([
       "tanzil-metadata",
       "kemenag-names",
       "bubenheim-names",
     ]);
-    expect(ACTIVE_APP_LOCALES.map(quranNameProvenanceScope)).toEqual([
+    expect(Arr.map(ACTIVE_APP_LOCALES, quranNameProvenanceScope)).toEqual([
       "en-surah-name",
       "id-surah-name",
       "de-surah-name",
@@ -32,19 +33,21 @@ describe("Quran source mapping golden identities", () => {
 
   it("pins the translation and surah-name source of each provenance scope", () => {
     expect(
-      (["en-translation", "id-translation", "de-translation"] as const).map(
+      Arr.map(
+        ["en-translation", "id-translation", "de-translation"] as const,
         quranTranslationSourceForScope
       )
     ).toEqual(["quranenc-english", "quranenc-indonesian", "quranenc-german"]);
     expect(
-      (["en-surah-name", "id-surah-name", "de-surah-name"] as const).map(
+      Arr.map(
+        ["en-surah-name", "id-surah-name", "de-surah-name"] as const,
         quranNameSourceForScope
       )
     ).toEqual(["tanzil-metadata", "kemenag-names", "bubenheim-names"]);
   });
 
   it("pins the reading sources of each active locale", () => {
-    expect(ACTIVE_APP_LOCALES.map(quranReadingSourceIds)).toEqual([
+    expect(Arr.map(ACTIVE_APP_LOCALES, quranReadingSourceIds)).toEqual([
       ["tanzil-text", "quranenc-english"],
       ["tanzil-text", "quranenc-indonesian"],
       ["tanzil-text", "quranenc-german"],
@@ -55,7 +58,7 @@ describe("Quran source mapping golden identities", () => {
 describe("Quran source identity", () => {
   it("derives every translation source and provenance scope from one map", () => {
     expect(
-      ACTIVE_APP_LOCALES.map((appLocale) => ({
+      Arr.map(ACTIVE_APP_LOCALES, (appLocale) => ({
         scope: quranTranslationProvenanceScope(appLocale),
         sourceId: quranTranslationSourceId(appLocale),
       }))
@@ -68,13 +71,13 @@ describe("Quran source identity", () => {
       quranReadingSourceIds(makeAppLocale(INDONESIAN_APP_LOCALE_CODE))
     ).toEqual(["tanzil-text", "quranenc-indonesian"]);
     expect(
-      ACTIVE_APP_LOCALES.map((appLocale) =>
+      Arr.map(ACTIVE_APP_LOCALES, (appLocale) =>
         quranTranslationSourceForScope(
           quranTranslationProvenanceScope(appLocale)
         )
       )
     ).toEqual(["quranenc-english", "quranenc-indonesian", "quranenc-german"]);
-    expect(ACTIVE_APP_LOCALES.map(quranTafsirSourceId)).toEqual([
+    expect(Arr.map(ACTIVE_APP_LOCALES, quranTafsirSourceId)).toEqual([
       "mokhtasar-english",
       "quranenc-tafsir",
       "mokhtasar-german",

@@ -1,7 +1,7 @@
 import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, MutableList, Path, Schema } from "effect";
 import { encodeJsonText } from "#scripts/text/json";
 import {
   type InstallVerificationInput,
@@ -117,14 +117,14 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
   effectIt.effect("imports every Node condition and public export", () =>
     Effect.gen(function* () {
       const fixture = yield* createInstallFixture();
-      const imported: string[] = [];
+      const importedList = MutableList.make<string>();
       const write = vi.fn();
 
       yield* verifyInstalledPackage(
         verificationInput(fixture, {
           importModule: (specifier) =>
             Effect.sync(() => {
-              imported.push(specifier);
+              MutableList.append(importedList, specifier);
             }),
           write: (message) =>
             Effect.sync(() => {
@@ -133,6 +133,7 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
         })
       );
 
+      const imported = MutableList.toArray(importedList);
       assert.strictEqual(imported.length, 4);
       assert.ok(imported.includes(packageName));
       assert.ok(imported.includes(`${packageName}/feature`));

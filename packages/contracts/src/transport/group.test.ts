@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Option, Schema } from "effect";
 import { releaseId, requests } from "#contracts/test/request";
 import {
   StageGroupInputSchema,
@@ -8,11 +8,14 @@ import {
 } from "#contracts/transport/group";
 import { MAX_STAGE_GROUP_COUNT } from "#contracts/transport/limits";
 
-const itemRequest = requests.find(
-  (request) => request.operation === "stageItemBatch"
+const itemRequest = Option.getOrUndefined(
+  Arr.findFirst(requests, (request) => request.operation === "stageItemBatch")
 );
-const projectionRequest = requests.find(
-  (request) => request.operation === "stageProjectionBatch"
+const projectionRequest = Option.getOrUndefined(
+  Arr.findFirst(
+    requests,
+    (request) => request.operation === "stageProjectionBatch"
+  )
 );
 
 describe("StageGroupRequestSchema", () => {

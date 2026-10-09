@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import {
   type LearningGraphIdentity,
   LearningGraphIdentitySchema,
@@ -21,7 +21,7 @@ export type LearningGraphSegments = typeof LearningGraphSegmentsSchema.Type;
 
 /** Builds one graph ID from already validated source-owned segments. */
 function graphId(prefix: string, segments: readonly string[]) {
-  return `${prefix}:${segments.join(":")}`;
+  return `${prefix}:${Arr.join(segments, ":")}`;
 }
 
 /** Source segments could not produce valid stable graph identities. */

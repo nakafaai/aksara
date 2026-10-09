@@ -1,5 +1,14 @@
 import { createHash } from "node:crypto";
-import { Effect, MutableHashSet, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashSet,
+  MutableList,
+  Number as Num,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 
 const CONTRACT_NAME = "@nakafa/aksara-contracts";
 const FIRST_VERSION = "0.1.0";
@@ -84,7 +93,7 @@ export const parseVersion = Effect.fn("AksaraContracts.parseVersion")(
     const major = Number(match[1]);
     const minor = Number(match[2]);
     const patch = Number(match[3]);
-    if (![major, minor, patch].every(Number.isSafeInteger)) {
+    if (!Arr.every([major, minor, patch], Number.isSafeInteger)) {
       return yield* releaseError(
         "identity",
         `Contract version ${version} exceeds safe integer bounds`
@@ -135,9 +144,9 @@ export const packageIdentity = Effect.fn("AksaraContracts.packageIdentity")(
 /** Resolves the newest immutable archive without depending on historical tag syntax. */
 export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
   function* (source: string) {
-    const identities: ContractIdentity[] = [];
+    const identities = MutableList.make<ContractIdentity>();
     const versions = MutableHashSet.empty<string>();
-    for (const release of source.split(LINE_PATTERN).filter(Boolean)) {
+    for (const release of Arr.filter(source.split(LINE_PATTERN), Boolean)) {
       const [releaseTag, assetName, ...extra] = release.split("\t");
       if (!(releaseTag && assetName) || extra.length > 0) {
         return yield* releaseError(
@@ -160,9 +169,15 @@ export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
         );
       }
       MutableHashSet.add(versions, version);
-      identities.push(yield* parseVersion(version, releaseTag));
+      MutableList.append(identities, yield* parseVersion(version, releaseTag));
     }
-    return identities.sort(compareVersions).at(-1);
+    const sorted = Arr.sort(
+      MutableList.toArray(identities),
+      Order.make<ContractIdentity>((left, right) =>
+        Num.sign(compareVersions(left, right))
+      )
+    );
+    return Option.getOrUndefined(Arr.last(sorted));
   }
 );
 

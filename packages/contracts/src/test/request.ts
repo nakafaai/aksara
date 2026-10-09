@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
@@ -196,12 +196,19 @@ const snapshotData = await Effect.runPromise(makeSnapshotTestData());
 /** One current try-out manifest used only by transport contract tests. */
 export const snapshotManifest = Schema.decodeUnknownSync(
   ContentSnapshotManifestSchema
-)(snapshotData.manifests.find(({ family }) => family === "tryout"));
+)(
+  Option.getOrUndefined(
+    Arr.findFirst(snapshotData.manifests, ({ family }) => family === "tryout")
+  )
+);
 
 /** One current hierarchy row used only by transport contract tests. */
 export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)(
-  snapshotData.rows.find(
-    (row) => row.family === "tryout" && row.rowKind === "catalog"
+  Option.getOrUndefined(
+    Arr.findFirst(
+      snapshotData.rows,
+      (row) => row.family === "tryout" && row.rowKind === "catalog"
+    )
   )
 );
 export const tryoutRuntimeBundle = makeTestRuntimeBundle({

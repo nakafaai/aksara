@@ -3,7 +3,7 @@ import {
   type BigDecimal,
   MutableHashMap,
   MutableHashSet,
-  Option,
+  Record as Rec,
 } from "effect";
 
 import type {
@@ -33,10 +33,10 @@ export function coordinateCollisionPaths(
 ) {
   const axes: readonly SceneAxis[] = ["x", "y", "z"];
   return uniquePaths(
-    axes.flatMap((axis) => {
-      const entries = coordinates.filter((entry) => entry.axis === axis);
+    Arr.flatMap(axes, (axis) => {
+      const entries = Arr.filter(coordinates, (entry) => entry.axis === axis);
       const unresolved = unresolvedProximityIndexes(entries, threshold);
-      return entries.flatMap((entry, index) =>
+      return Arr.flatMap(entries, (entry, index) =>
         entry.reportable && MutableHashSet.has(unresolved, index)
           ? [entry.path]
           : []
@@ -50,31 +50,26 @@ export function concentricRadiusCollisionPaths(
   objects: readonly PlaneMathObject[],
   threshold: BigDecimal.BigDecimal
 ) {
-  const groups = MutableHashMap.empty<
-    string,
-    Array<{
-      readonly index: number;
-      readonly kind: "arc" | "circle";
-      readonly value: ReturnType<typeof numberRatio>;
-    }>
-  >();
-  for (const [index, object] of objects.entries()) {
-    if (object.kind !== "arc" && object.kind !== "circle") {
-      continue;
-    }
-    const key = `${object.center.x}:${object.center.y}`;
-    const group = Option.getOrUndefined(MutableHashMap.get(groups, key)) ?? [];
-    group.push({ index, kind: object.kind, value: numberRatio(object.radius) });
-    MutableHashMap.set(groups, key, group);
-  }
-  const paths: ScenePath[] = [];
-  for (const group of MutableHashMap.values(groups)) {
+  const radii = Arr.flatMap(objects, (object, index) =>
+    object.kind === "arc" || object.kind === "circle"
+      ? [
+          {
+            center: `${object.center.x}:${object.center.y}`,
+            index,
+            kind: object.kind,
+            value: numberRatio(object.radius),
+          },
+        ]
+      : []
+  );
+  // A center text always holds a colon, so the groups keep first-seen order.
+  const groups = Rec.values(Arr.groupBy(radii, (radius) => radius.center));
+  return Arr.flatMap(groups, (group) => {
     const unresolved = unresolvedProximityIndexes(group, threshold);
-    for (const [entryIndex, entry] of group.entries()) {
-      if (MutableHashSet.has(unresolved, entryIndex)) {
-        paths.push(radialGeometryPath(entry.kind, entry.index));
-      }
-    }
-  }
-  return paths;
+    return Arr.flatMap(group, (entry, entryIndex) =>
+      MutableHashSet.has(unresolved, entryIndex)
+        ? [radialGeometryPath(entry.kind, entry.index)]
+        : []
+    );
+  });
 }

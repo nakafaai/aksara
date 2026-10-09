@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Option, Schema } from "effect";
 import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import {
   hash,
@@ -29,8 +29,11 @@ describe("publication requests", () => {
         for (const request of requests) {
           expect(accepts(PublicationRequestSchema, request)).toBe(true);
         }
-        const stageRelease = requests.find(
-          (request) => request.operation === "stageRelease"
+        const stageRelease = Option.getOrUndefined(
+          Arr.findFirst(
+            requests,
+            (request) => request.operation === "stageRelease"
+          )
         );
         const decoded = yield* decodePublicationRequest(stageRelease);
         expect(decoded.operation).toBe("stageRelease");

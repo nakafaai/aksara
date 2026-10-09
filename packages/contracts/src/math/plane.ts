@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import {
   ArcStartDegreesSchema,
@@ -47,16 +47,18 @@ function normalizedPlaneOffsets(
   vertices: readonly [PlanePoint, PlanePoint, PlanePoint, ...PlanePoint[]]
 ) {
   const [origin] = vertices;
-  let offsets = vertices.map(({ x, y }) => ({
+  let offsets = Arr.map(vertices, ({ x, y }) => ({
     x: x - origin.x,
     y: y - origin.y,
   }));
-  if (offsets.some(({ x, y }) => !(Number.isFinite(x) && Number.isFinite(y)))) {
+  if (
+    Arr.some(offsets, ({ x, y }) => !(Number.isFinite(x) && Number.isFinite(y)))
+  ) {
     let sourceScale = 1;
     for (const { x, y } of vertices) {
       sourceScale = Math.max(sourceScale, Math.abs(x), Math.abs(y));
     }
-    offsets = vertices.map(({ x, y }) => ({
+    offsets = Arr.map(vertices, ({ x, y }) => ({
       x: x / sourceScale - origin.x / sourceScale,
       y: y / sourceScale - origin.y / sourceScale,
     }));
@@ -66,7 +68,7 @@ function normalizedPlaneOffsets(
     extent = Math.max(extent, Math.abs(x), Math.abs(y));
   }
   const divisor = Math.max(extent, Number.MIN_VALUE);
-  return offsets.map(({ x, y }) => ({ x: x / divisor, y: y / divisor }));
+  return Arr.map(offsets, ({ x, y }) => ({ x: x / divisor, y: y / divisor }));
 }
 
 const PlanePointObjectSchema = Schema.Struct({

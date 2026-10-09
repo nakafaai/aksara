@@ -1,3 +1,4 @@
+import { Array as Arr } from "effect";
 import { GEOMETRY_TOLERANCE, type SpacePoint } from "#contracts/math/base";
 
 /** Checks a space polygon is planar and has non-zero area. */
@@ -22,7 +23,8 @@ export function hasCoplanarArea(
     return false;
   }
   const unitNormal = divide(strongestNormal, strongestLength);
-  return offsets.every(
+  return Arr.every(
+    offsets,
     (offset) =>
       Math.abs(dot(unitNormal, offset)) <=
       GEOMETRY_TOLERANCE * Math.max(1, length(offset))
@@ -34,13 +36,14 @@ function normalizedSpaceOffsets(
   vertices: readonly [SpacePoint, SpacePoint, SpacePoint, ...SpacePoint[]]
 ) {
   const [origin] = vertices;
-  let offsets = vertices.map(({ x, y, z }) => ({
+  let offsets = Arr.map(vertices, ({ x, y, z }) => ({
     x: x - origin.x,
     y: y - origin.y,
     z: z - origin.z,
   }));
   if (
-    offsets.some(
+    Arr.some(
+      offsets,
       ({ x, y, z }) =>
         !(Number.isFinite(x) && Number.isFinite(y) && Number.isFinite(z))
     )
@@ -54,7 +57,7 @@ function normalizedSpaceOffsets(
         Math.abs(z)
       );
     }
-    offsets = vertices.map(({ x, y, z }) => ({
+    offsets = Arr.map(vertices, ({ x, y, z }) => ({
       x: x / sourceScale - origin.x / sourceScale,
       y: y / sourceScale - origin.y / sourceScale,
       z: z / sourceScale - origin.z / sourceScale,
@@ -65,7 +68,7 @@ function normalizedSpaceOffsets(
     extent = Math.max(extent, Math.abs(x), Math.abs(y), Math.abs(z));
   }
   const divisor = Math.max(extent, Number.MIN_VALUE);
-  return offsets.map((offset) => divide(offset, divisor));
+  return Arr.map(offsets, (offset) => divide(offset, divisor));
 }
 
 /** Returns the cross product of two space vectors. */

@@ -1,4 +1,4 @@
-import { Effect, MutableHashMap, Option, Schema } from "effect";
+import { Effect, MutableHashMap, MutableList, Option, Schema } from "effect";
 
 import type { AppLocale } from "#contracts/locale";
 import type {
@@ -31,12 +31,12 @@ export class TryoutScoringError extends Schema.TaggedError<TryoutScoringError>()
 /** Creates empty scoring facts for one snapshot verification pass. */
 export function makeTryoutScoringFacts(): {
   readonly exams: MutableHashMap.MutableHashMap<string, TryoutScoring>;
-  readonly sections: TryoutSection[];
+  readonly sections: MutableList.MutableList<TryoutSection>;
   readonly sets: MutableHashMap.MutableHashMap<string, TryoutSet>;
 } {
   return {
     exams: MutableHashMap.empty(),
-    sections: [],
+    sections: MutableList.make<TryoutSection>(),
     sets: MutableHashMap.empty(),
   };
 }
@@ -60,7 +60,7 @@ export function recordTryoutScoringFacts(
     MutableHashMap.set(facts.sets, tryoutCatalogIdentity(row), row);
   }
   if (row.kind === "section") {
-    facts.sections.push(row);
+    MutableList.append(facts.sections, row);
   }
 }
 
@@ -139,7 +139,7 @@ export const validateTryoutScoringFacts = Effect.fn(
     { discard: true }
   );
   yield* Effect.forEach(
-    facts.sections,
+    MutableList.toArray(facts.sections),
     (row) => validateSectionMarks(facts, row),
     { discard: true }
   );

@@ -1,4 +1,11 @@
-import { Effect, FileSystem, Record as Rec, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableList,
+  Record as Rec,
+  Stream,
+} from "effect";
 import { ChildProcess } from "effect/process";
 import {
   type ContractIdentity,
@@ -79,7 +86,7 @@ export const writeOutputs = Effect.fn("AksaraContracts.writeReleaseOutputs")(
     values: Readonly<Record<string, string | number | boolean>>
   ) {
     const fileSystem = yield* FileSystem.FileSystem;
-    const lines: string[] = [];
+    const lines = MutableList.make<string>();
     for (const [key, value] of Rec.toEntries(values)) {
       const text = String(value);
       if (MULTILINE_PATTERN.test(text)) {
@@ -88,10 +95,14 @@ export const writeOutputs = Effect.fn("AksaraContracts.writeReleaseOutputs")(
           `Output ${key} must be one line`
         );
       }
-      lines.push(`${key}=${text}`);
+      MutableList.append(lines, `${key}=${text}`);
     }
     yield* fileSystem
-      .writeFileString(path, `${lines.join("\n")}\n`, { flag: "a" })
+      .writeFileString(
+        path,
+        `${Arr.join(MutableList.toArray(lines), "\n")}\n`,
+        { flag: "a" }
+      )
       .pipe(Effect.mapError(platformError("output write")));
   }
 );

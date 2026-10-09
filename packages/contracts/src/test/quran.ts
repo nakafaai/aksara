@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Array as Arr, Effect, MutableList } from "effect";
 
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
 import {
@@ -39,7 +39,7 @@ function quranSourceAttribution(id: ReturnType<typeof quranSourceIds>[number]) {
         notice: `Technical ${ACTIVE_APP_LOCALES[0]} notice for ${id}.`,
         title: `Technical ${ACTIVE_APP_LOCALES[0]} source ${id}.`,
       },
-      ...ACTIVE_APP_LOCALES.slice(1).map((appLocale) => ({
+      ...Arr.map(ACTIVE_APP_LOCALES.slice(1), (appLocale) => ({
         appLocale,
         notice: `Technical ${appLocale} notice for ${id}.`,
         title: `Technical ${appLocale} source ${id}.`,
@@ -145,7 +145,8 @@ export function quranVerse(inSurah: number, inQuran: number) {
 
 /** Builds the complete technical attribution row in canonical source order. */
 export function quranAttribution() {
-  const sources = quranSourceIds(ACTIVE_APP_LOCALES).map(
+  const sources = Arr.map(
+    quranSourceIds(ACTIVE_APP_LOCALES),
     quranSourceAttribution
   );
   const [first, ...rest] = sources;
@@ -176,11 +177,13 @@ function quranVerseCounts() {
 
 /** Builds a complete technical Quran projection without authored claims. */
 export function quranTestPayloads() {
-  const rows: QuranRowPayload[] = [quranAttribution()];
+  const rows = MutableList.make<QuranRowPayload>();
+  MutableList.append(rows, quranAttribution());
   let inQuran = 1;
   for (const [index, numberOfVerses] of quranVerseCounts().entries()) {
     const surahNumber = index + 1;
-    rows.push(
+    MutableList.append(
+      rows,
       QuranSurahRowSchema.make({
         kind: "quran-surah",
         name: {
@@ -207,7 +210,8 @@ export function quranTestPayloads() {
       if (first === undefined) {
         continue;
       }
-      rows.push(
+      MutableList.append(
+        rows,
         QuranChunkRowSchema.make({
           firstQuranNumber: inQuran,
           firstVerse,
@@ -226,7 +230,8 @@ export function quranTestPayloads() {
     surahNumber += 1
   ) {
     for (const appLocale of ACTIVE_APP_LOCALES) {
-      rows.push(
+      MutableList.append(
+        rows,
         QuranSearchRowSchema.make({
           appLocale,
           graph: {
@@ -245,7 +250,7 @@ export function quranTestPayloads() {
       );
     }
   }
-  return rows;
+  return MutableList.toArray(rows);
 }
 
 /** Returns one small current payload for each Quran row kind. */

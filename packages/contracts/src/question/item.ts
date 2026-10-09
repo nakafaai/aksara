@@ -1,4 +1,4 @@
-import { Effect, Record as Rec, Schema, Struct } from "effect";
+import { Array as Arr, Effect, Record as Rec, Schema, Struct } from "effect";
 
 import {
   AppLocaleCodeSchema,
@@ -39,12 +39,12 @@ function hasAtLeastTwoOptions(options: readonly QuestionOptionSource[]) {
 
 /** Requires exactly one authored option to carry correctness. */
 function hasOneCorrectOption(options: readonly QuestionOptionSource[]) {
-  return options.filter(({ isCorrect }) => isCorrect).length === 1;
+  return Arr.filter(options, ({ isCorrect }) => isCorrect).length === 1;
 }
 
 /** Requires several correct options while retaining at least one distractor. */
 function hasSeveralCorrectOptions(options: readonly QuestionOptionSource[]) {
-  const correct = options.filter(({ isCorrect }) => isCorrect).length;
+  const correct = Arr.filter(options, ({ isCorrect }) => isCorrect).length;
   return correct >= 2 && correct < options.length;
 }
 
@@ -95,7 +95,8 @@ function hasCoherentCategoryResponse(input: {
   return (
     input.categories.length >= 2 &&
     input.statements.length > 0 &&
-    input.statements.every(
+    Arr.every(
+      input.statements,
       ({ correctCategoryOrder }) =>
         correctCategoryOrder <= input.categories.length
     )
@@ -148,7 +149,7 @@ export type QuestionBlueprint = typeof QuestionBlueprintSchema.Type;
 
 /** Derives stable option keys and orders from source-authored array order. */
 function freezeOptions(options: readonly QuestionOptionSource[]) {
-  return options.map(({ isCorrect, label }, index) => ({
+  return Arr.map(options, ({ isCorrect, label }, index) => ({
     isCorrect,
     label,
     optionKey: `option-${index + 1}`,
@@ -171,13 +172,14 @@ function freezeQuestionResponse(
   }
   if (response.kind === "category") {
     return QuestionResponseSchema.make({
-      categories: response.categories.map((label, index) => ({
+      categories: Arr.map(response.categories, (label, index) => ({
         categoryKey: `category-${index + 1}`,
         label,
         order: index + 1,
       })),
       kind: response.kind,
-      statements: response.statements.map(
+      statements: Arr.map(
+        response.statements,
         ({ correctCategoryOrder, label }, index) => ({
           correctCategoryKey: `category-${correctCategoryOrder}`,
           label,
@@ -206,13 +208,15 @@ function hasCoherentLocalizedResponses(input: {
     Record<string, QuestionResponseSource | undefined>
   >;
 }) {
-  const responses = Rec.values(input.responses).filter(
+  const responses = Arr.filter(
+    Rec.values(input.responses),
     (response) => response !== undefined
   );
   const [first] = responses;
   return (
     first !== undefined &&
-    responses.every(
+    Arr.every(
+      responses,
       (response) => responseStructure(response) === responseStructure(first)
     )
   );
@@ -227,7 +231,10 @@ function hasCoherentPoints(input: {
 }) {
   return (
     input.points === undefined ||
-    Rec.values(input.responses).every((response) => response?.kind !== "rubric")
+    Arr.every(
+      Rec.values(input.responses),
+      (response) => response?.kind !== "rubric"
+    )
   );
 }
 

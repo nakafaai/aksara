@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
@@ -28,7 +28,7 @@ export type QuranLocalizedTranslation =
 function hasCanonicalTranslations(
   translations: readonly QuranLocalizedTranslation[]
 ) {
-  return translations.every((translation, index) => {
+  return Arr.every(translations, (translation, index) => {
     const previous = translations[index - 1];
     return (
       previous === undefined ||
@@ -87,7 +87,8 @@ function hasCoherentChunk(input: {
   if (input.lastVerse - input.firstVerse + 1 !== input.verses.length) {
     return false;
   }
-  return input.verses.every(
+  return Arr.every(
+    input.verses,
     (verse, index) =>
       verse.number.inSurah === input.firstVerse + index &&
       verse.number.inQuran === input.firstQuranNumber + index

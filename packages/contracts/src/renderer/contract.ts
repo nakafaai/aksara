@@ -1,4 +1,4 @@
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Option, Order, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type RendererComponents,
@@ -10,7 +10,6 @@ import {
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
 import { encodeJsonText } from "#contracts/text/json";
-import { compareCodeUnits } from "#contracts/text/order";
 
 /** Stable format for the one current domain-scoped renderer manifest. */
 export const RENDERER_MANIFEST_FORMAT = "nakafa-mdx-renderer";
@@ -25,9 +24,10 @@ export type RendererDomainCapability =
 
 /** Checks published route domains are unique and ordered by code unit. */
 function hasCanonicalPublishedDomains(domains: readonly RendererDomain[]) {
-  const canonical = [...domains].sort(compareCodeUnits);
+  const canonical = Arr.sort(domains, Order.String);
 
-  return domains.every(
+  return Arr.every(
+    domains,
     (domain, index) =>
       domain === canonical[index] && domain !== domains[index - 1]
   );
@@ -51,9 +51,7 @@ export type RendererPublishedDomains =
 export function sortRendererDomains<T extends RendererDomainCapability>(
   domains: readonly T[]
 ) {
-  return [...domains].sort((left, right) =>
-    compareCodeUnits(left.name, right.name)
-  );
+  return Arr.sortWith(domains, (domain) => domain.name, Order.String);
 }
 
 /** Complete current domain set shared by published and deployed manifests. */
@@ -63,7 +61,7 @@ export const RendererManifestDomainsSchema = Schema.Array(
   Schema.makeFilter(
     (domains) =>
       domains.length === RENDERER_DOMAINS.length &&
-      domains.every(({ name }, index) => name === RENDERER_DOMAINS[index]),
+      Arr.every(domains, ({ name }, index) => name === RENDERER_DOMAINS[index]),
     {
       message:
         "Expected every renderer domain exactly once in canonical order.",
@@ -117,13 +115,14 @@ export const selectRendererDomainCapability = Effect.fn(
   manifest: RendererManifestEnvelope,
   rendererDomain: RendererDomain
 ) {
-  const capability = manifest.domains.find(
+  const capability = Arr.findFirst(
+    manifest.domains,
     ({ name }) => name === rendererDomain
   );
-  if (!capability) {
+  if (Option.isNone(capability)) {
     return yield* new RendererDomainCapabilityMissingError({ rendererDomain });
   }
-  return capability;
+  return capability.value;
 });
 
 /** SHA-256 could not be calculated for the renderer contract bytes. */
@@ -150,7 +149,7 @@ export function canonicalizeRendererManifestContract(input: {
   return encodeJsonText([
     RENDERER_MANIFEST_FORMAT,
     input.base,
-    sortRendererDomains(input.domains).map(({ name, components }) => ({
+    Arr.map(sortRendererDomains(input.domains), ({ name, components }) => ({
       components,
       name,
     })),

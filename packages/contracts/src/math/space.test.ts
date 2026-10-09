@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 
 import { MathVisualSchema } from "#contracts/math/visual";
 
@@ -244,30 +244,33 @@ describe("space math visual", () => {
           { x: 0, y: 1e-200, z: 0 },
         ],
       },
-      ...[
+      ...Arr.map(
         [
-          { x: -maximum, y: 0, z: 0 },
-          { x: maximum, y: 0, z: 0 },
-          { x: 0, y: maximum, z: 0 },
+          [
+            { x: -maximum, y: 0, z: 0 },
+            { x: maximum, y: 0, z: 0 },
+            { x: 0, y: maximum, z: 0 },
+          ],
+          [
+            { x: 0, y: -maximum, z: 0 },
+            { x: maximum, y: 0, z: 0 },
+            { x: 0, y: maximum, z: 0 },
+          ],
+          [
+            { x: 0, y: 0, z: -maximum },
+            { x: maximum, y: 0, z: 0 },
+            { x: 0, y: 0, z: maximum },
+          ],
         ],
-        [
-          { x: 0, y: -maximum, z: 0 },
-          { x: maximum, y: 0, z: 0 },
-          { x: 0, y: maximum, z: 0 },
-        ],
-        [
-          { x: 0, y: 0, z: -maximum },
-          { x: maximum, y: 0, z: 0 },
-          { x: 0, y: 0, z: maximum },
-        ],
-      ].map((extremeVertices) => ({
-        frame: {
-          x: { max: maximum, min: -maximum },
-          y: { max: maximum, min: -maximum },
-          z: { max: maximum, min: -maximum },
-        },
-        vertices: extremeVertices,
-      })),
+        (extremeVertices) => ({
+          frame: {
+            x: { max: maximum, min: -maximum },
+            y: { max: maximum, min: -maximum },
+            z: { max: maximum, min: -maximum },
+          },
+          vertices: extremeVertices,
+        })
+      ),
     ]) {
       expect(
         Exit.isSuccess(

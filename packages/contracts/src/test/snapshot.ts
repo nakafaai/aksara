@@ -1,4 +1,4 @@
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Number as Num, Order, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
@@ -29,11 +29,11 @@ const provisionalQuranId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 /** Counts hierarchy rows without hardcoding a corpus inventory. */
 function tryoutCounts(rows: ReturnType<typeof makeTryoutTestRows>["catalog"]) {
   return {
-    country: rows.filter(({ row }) => row.kind === "country").length,
-    exam: rows.filter(({ row }) => row.kind === "exam").length,
-    section: rows.filter(({ row }) => row.kind === "section").length,
-    set: rows.filter(({ row }) => row.kind === "set").length,
-    track: rows.filter(({ row }) => row.kind === "track").length,
+    country: Arr.filter(rows, ({ row }) => row.kind === "country").length,
+    exam: Arr.filter(rows, ({ row }) => row.kind === "exam").length,
+    section: Arr.filter(rows, ({ row }) => row.kind === "section").length,
+    set: Arr.filter(rows, ({ row }) => row.kind === "set").length,
+    track: Arr.filter(rows, ({ row }) => row.kind === "track").length,
   };
 }
 
@@ -77,11 +77,17 @@ export const makeSnapshotTestData = Effect.fn(
   );
 
   const tryout = makeTryoutTestRows();
-  const catalog = [...tryout.catalog].sort((left, right) =>
-    compareTryoutCatalog(left.row, right.row)
+  const catalog = Arr.sort(
+    tryout.catalog,
+    Order.make<(typeof tryout.catalog)[number]>((left, right) =>
+      Num.sign(compareTryoutCatalog(left.row, right.row))
+    )
   );
-  const placements = [...tryout.placements].sort((left, right) =>
-    compareTryoutPlacements(left.row, right.row)
+  const placements = Arr.sort(
+    tryout.placements,
+    Order.make<(typeof tryout.placements)[number]>((left, right) =>
+      Num.sign(compareTryoutPlacements(left.row, right.row))
+    )
   );
   const [catalogSummary, placementSummary] = yield* Effect.all([
     digestTryoutCatalog(Stream.fromIterable(catalog)),
@@ -93,7 +99,8 @@ export const makeSnapshotTestData = Effect.fn(
     counts: tryoutCounts(tryout.catalog),
     placementCount: placementSummary.count,
     placementDigest: placementSummary.digest,
-    routeCount: tryout.catalog.filter(
+    routeCount: Arr.filter(
+      tryout.catalog,
       ({ row }) => "publicPath" in row && row.publicPath !== undefined
     ).length,
   });
@@ -104,12 +111,20 @@ export const makeSnapshotTestData = Effect.fn(
     { family: "tryout", manifest: tryoutManifest },
   ];
   const rows: readonly ContentSnapshotRow[] = [
-    ...programRecords.map((record) => ({ family: "program", record }) as const),
-    ...quranRecords.map((record) => ({ family: "quran", record }) as const),
-    ...catalog.map(
+    ...Arr.map(
+      programRecords,
+      (record) => ({ family: "program", record }) as const
+    ),
+    ...Arr.map(
+      quranRecords,
+      (record) => ({ family: "quran", record }) as const
+    ),
+    ...Arr.map(
+      catalog,
       (record) => ({ family: "tryout", record, rowKind: "catalog" }) as const
     ),
-    ...placements.map(
+    ...Arr.map(
+      placements,
       (record) => ({ family: "tryout", record, rowKind: "placement" }) as const
     ),
   ];

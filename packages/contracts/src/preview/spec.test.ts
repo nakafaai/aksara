@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import {
   LOCAL_PREVIEW_FORMAT,
@@ -64,42 +64,33 @@ describe("local preview manifest", () => {
     };
 
     expect(
-      [pending, ready, failed].map((manifest) =>
+      Arr.map([pending, ready, failed], (manifest) =>
         Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
       )
     ).toEqual([pending, ready, failed]);
   });
 
   it("accepts one artifact for article, material, page, and prompt documents", () => {
-    const readyStates = [
-      {
-        artifacts: [articleArtifact],
-        document: testArticleDocument,
-      },
-      {
-        artifacts: [materialArtifact],
-        document: testMaterialDocument,
-      },
-      {
-        artifacts: [pageArtifact],
-        document: testPageDocument,
-      },
-      {
-        artifacts: [promptArtifact],
-        document: testPromptDocument,
-      },
-    ].map(({ artifacts, document }, index) => ({
-      artifacts,
-      document,
-      format: LOCAL_PREVIEW_FORMAT,
-      rendererManifestHash: `sha256:${String(index + 2).repeat(64)}`,
-      repositories: previewRepositories,
-      revision: index + 1,
-      status: "ready",
-    }));
+    const readyStates = Arr.map(
+      [
+        { artifacts: [articleArtifact], document: testArticleDocument },
+        { artifacts: [materialArtifact], document: testMaterialDocument },
+        { artifacts: [pageArtifact], document: testPageDocument },
+        { artifacts: [promptArtifact], document: testPromptDocument },
+      ],
+      ({ artifacts, document }, index) => ({
+        artifacts,
+        document,
+        format: LOCAL_PREVIEW_FORMAT,
+        rendererManifestHash: `sha256:${String(index + 2).repeat(64)}`,
+        repositories: previewRepositories,
+        revision: index + 1,
+        status: "ready",
+      })
+    );
 
     expect(
-      readyStates.map((manifest) =>
+      Arr.map(readyStates, (manifest) =>
         Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
       )
     ).toEqual(readyStates);
@@ -120,11 +111,14 @@ describe("local preview manifest", () => {
       Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
     ).toEqual(manifest);
     expect(
-      [
-        { ...manifest, artifacts: [answerArtifact, promptArtifact] },
-        { ...manifest, artifacts: [answerArtifact] },
-        { ...manifest, artifacts: [promptArtifact] },
-      ].every(rejectsPreviewManifest)
+      Arr.every(
+        [
+          { ...manifest, artifacts: [answerArtifact, promptArtifact] },
+          { ...manifest, artifacts: [answerArtifact] },
+          { ...manifest, artifacts: [promptArtifact] },
+        ],
+        rejectsPreviewManifest
+      )
     ).toBe(true);
   });
 
@@ -183,7 +177,7 @@ describe("local preview manifest", () => {
       },
     ];
 
-    expect(invalid.every(rejectsPreviewManifest)).toBe(true);
+    expect(Arr.every(invalid, rejectsPreviewManifest)).toBe(true);
     expect(
       String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[1]))
     ).toContain("Expected at most two preview artifacts.");
@@ -254,7 +248,7 @@ describe("local preview manifest", () => {
       },
     ];
 
-    const manifests = cases.map(({ artifacts, document }) => ({
+    const manifests = Arr.map(cases, ({ artifacts, document }) => ({
       artifacts,
       document,
       format: LOCAL_PREVIEW_FORMAT,
@@ -264,7 +258,7 @@ describe("local preview manifest", () => {
       status: "ready",
     }));
 
-    expect(manifests.every(rejectsPreviewManifest)).toBe(true);
+    expect(Arr.every(manifests, rejectsPreviewManifest)).toBe(true);
     expect(
       String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(manifests[3]))
     ).toContain(

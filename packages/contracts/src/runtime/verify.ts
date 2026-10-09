@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { hashContentProjection } from "#contracts/projection/hash";
 import type { RoutedContentProjection } from "#contracts/projection/spec";
@@ -26,7 +26,9 @@ function hasArticleSourcePath(
   }
   const sourceRoot = sourcePath.slice(prefix.length, -suffix.length);
   const segments = sourceRoot.split("/");
-  return segments.length === 2 && segments.join("-") === projection.articleSlug;
+  return (
+    segments.length === 2 && Arr.join(segments, "-") === projection.articleSlug
+  );
 }
 
 /** Checks one page path matches its signed source-owned provenance. */

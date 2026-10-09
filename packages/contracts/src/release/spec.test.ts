@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Exit, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
@@ -61,7 +61,7 @@ describe("release spec", () => {
   });
   it("assigns deterministic indexes after content-head sorting", () => {
     expect(
-      items.map(({ change, index }) => [
+      Arr.map(items, ({ change, index }) => [
         change.contentKey,
         change.artifactLocale,
         index,

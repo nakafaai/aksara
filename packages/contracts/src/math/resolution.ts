@@ -160,7 +160,7 @@ function frameIssues(
   }[],
   threshold: RenderThreshold
 ) {
-  return entries.flatMap(({ axis, range }) =>
+  return Arr.flatMap(entries, ({ axis, range }) =>
     spanUnresolved(range, threshold) ? [issue(["frame", axis])] : []
   );
 }
@@ -182,12 +182,15 @@ export function planeResolutionIssues(
       threshold
     ),
     ...measureIssue(view.padding ?? 0, threshold, ["view", "padding"]),
-    ...coordinateCollisionPaths(
-      planeSceneCoordinates(frame, objects, labels, threshold),
-      threshold
-    ).map(issue),
-    ...concentricRadiusCollisionPaths(objects, threshold).map(issue),
-    ...objects.flatMap((object, index) =>
+    ...Arr.map(
+      coordinateCollisionPaths(
+        planeSceneCoordinates(frame, objects, labels, threshold),
+        threshold
+      ),
+      issue
+    ),
+    ...Arr.map(concentricRadiusCollisionPaths(objects, threshold), issue),
+    ...Arr.flatMap(objects, (object, index) =>
       planeObjectIssues(frame, object, index, threshold)
     ),
   ]);
@@ -226,11 +229,14 @@ export function spaceResolutionIssues(
       "view",
       "padding",
     ]),
-    ...coordinateCollisionPaths(
-      spaceSceneCoordinates(frame, objects, labels, view, threshold),
-      threshold
-    ).map(issue),
-    ...objects.flatMap((object, index) =>
+    ...Arr.map(
+      coordinateCollisionPaths(
+        spaceSceneCoordinates(frame, objects, labels, view, threshold),
+        threshold
+      ),
+      issue
+    ),
+    ...Arr.flatMap(objects, (object, index) =>
       objectResolutionIssues(frame, object, index, threshold)
     ),
   ]);

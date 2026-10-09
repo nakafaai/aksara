@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   QuestionAnswerIdentitySchema,
   QuestionBodyIdentitySchema,
@@ -84,7 +84,7 @@ function formatFailure(result: Exit.Exit<unknown, Schema.SchemaError>) {
 describe("question body identity", () => {
   it("decodes exact prompt and answer identities", () => {
     expect(
-      [prompt, answer].map((identity) =>
+      Arr.map([prompt, answer], (identity) =>
         Schema.decodeSync(QuestionBodyIdentitySchema)(identity)
       )
     ).toEqual([prompt, answer]);
@@ -154,7 +154,8 @@ describe("question body identity", () => {
   });
 
   it("rejects malformed question source files through the shared grammar", () => {
-    const longHierarchy = Array.from({ length: 5 }, () => "a".repeat(110)).join(
+    const longHierarchy = Arr.join(
+      Array.from({ length: 5 }, () => "a".repeat(110)),
       "/"
     );
     const invalidPaths = [

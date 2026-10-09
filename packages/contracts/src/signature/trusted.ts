@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import {
   ContentVerificationKeyResolver,
@@ -29,10 +29,11 @@ export const TRUSTED_CONTENT_KEYS = Object.freeze([ACTIVE_CONTENT_KEY]);
 
 /** Builds an immutable exact-ID resolver from code-owned retained entries. */
 export function makeTrustedKeyResolver(entries: readonly TrustedKey[]) {
-  const retained = entries.map((entry) => ({ ...entry }));
+  const retained = Arr.map(entries, (entry) => ({ ...entry }));
   return ContentVerificationKeyResolver.of({
     resolve: (keyId) => {
-      const [match, ...duplicates] = retained.filter(
+      const [match, ...duplicates] = Arr.filter(
+        retained,
         (entry) => entry.keyId === keyId
       );
       if (match === undefined) {

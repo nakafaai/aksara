@@ -1,4 +1,4 @@
-import { HashSet, Schema } from "effect";
+import { Array as Arr, HashSet, Schema } from "effect";
 
 import {
   canonicalQuestionAnswerKey,
@@ -48,10 +48,11 @@ function hasCanonicalOptions(
   options: readonly QuestionOption[],
   kind: "multiple-choice" | "single-choice"
 ) {
-  const correct = options.filter(({ isCorrect }) => isCorrect).length;
+  const correct = Arr.filter(options, ({ isCorrect }) => isCorrect).length;
   return (
     options.length >= 2 &&
-    options.every(
+    Arr.every(
+      options,
       ({ optionKey, order }, index) =>
         order === index + 1 && optionKey === `option-${order}`
     ) &&
@@ -123,16 +124,18 @@ function hasCanonicalCategories(input: {
   }[];
 }) {
   const categoryKeys = HashSet.fromIterable(
-    input.categories.map(({ categoryKey }) => categoryKey)
+    Arr.map(input.categories, ({ categoryKey }) => categoryKey)
   );
   return (
     input.categories.length >= 2 &&
     input.statements.length > 0 &&
-    input.categories.every(
+    Arr.every(
+      input.categories,
       ({ categoryKey, order }, index) =>
         order === index + 1 && categoryKey === `category-${order}`
     ) &&
-    input.statements.every(
+    Arr.every(
+      input.statements,
       ({ correctCategoryKey, order, statementKey }, index) =>
         order === index + 1 &&
         statementKey === `statement-${order}` &&
@@ -188,12 +191,13 @@ export function canonicalQuestionResponseStructure(response: QuestionResponse) {
   }
   if (response.kind === "category") {
     return {
-      categories: response.categories.map(({ categoryKey, order }) => ({
+      categories: Arr.map(response.categories, ({ categoryKey, order }) => ({
         categoryKey,
         order,
       })),
       kind: response.kind,
-      statements: response.statements.map(
+      statements: Arr.map(
+        response.statements,
         ({ correctCategoryKey, order, statementKey }) => ({
           correctCategoryKey,
           order,
@@ -204,7 +208,7 @@ export function canonicalQuestionResponseStructure(response: QuestionResponse) {
   }
   return {
     kind: response.kind,
-    options: response.options.map(({ isCorrect, optionKey, order }) => ({
+    options: Arr.map(response.options, ({ isCorrect, optionKey, order }) => ({
       isCorrect,
       optionKey,
       order,
@@ -225,13 +229,17 @@ export function canonicalQuestionResponse(response: QuestionResponse) {
   }
   if (response.kind === "category") {
     return {
-      categories: response.categories.map(({ categoryKey, label, order }) => ({
-        categoryKey,
-        label,
-        order,
-      })),
+      categories: Arr.map(
+        response.categories,
+        ({ categoryKey, label, order }) => ({
+          categoryKey,
+          label,
+          order,
+        })
+      ),
       kind: response.kind,
-      statements: response.statements.map(
+      statements: Arr.map(
+        response.statements,
         ({ correctCategoryKey, label, order, statementKey }) => ({
           correctCategoryKey,
           label,
@@ -243,11 +251,14 @@ export function canonicalQuestionResponse(response: QuestionResponse) {
   }
   return {
     kind: response.kind,
-    options: response.options.map(({ isCorrect, label, optionKey, order }) => ({
-      isCorrect,
-      label,
-      optionKey,
-      order,
-    })),
+    options: Arr.map(
+      response.options,
+      ({ isCorrect, label, optionKey, order }) => ({
+        isCorrect,
+        label,
+        optionKey,
+        order,
+      })
+    ),
   };
 }

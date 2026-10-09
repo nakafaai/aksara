@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { BigDecimal, Option, Schema } from "effect";
+import { Array as Arr, BigDecimal, Option, Schema } from "effect";
 
 import {
   canonicalQuestionAnswerKey,
@@ -195,8 +195,8 @@ describe("typed learner answer", () => {
 
   it("treats an answer with nothing visible as blank", () => {
     const invisible = " \t\n\u00a0\u2028\u200b\u2060\u00ad\ufeff";
-    expect(["", invisible, ...invisible].every(isBlankAnswer)).toBe(true);
-    expect(["0", "x", `x${invisible}`].some(isBlankAnswer)).toBe(false);
+    expect(Arr.every(["", invisible, ...invisible], isBlankAnswer)).toBe(true);
+    expect(Arr.some(["0", "x", `x${invisible}`], isBlankAnswer)).toBe(false);
   });
 
   it("reads nothing outside the one documented number grammar", () => {
@@ -263,10 +263,10 @@ describe("typed learner answer", () => {
     ] as const;
 
     expect(
-      cases.map(([key, answer, language]) =>
+      Arr.map(cases, ([key, answer, language]) =>
         matchesAnswerKey(key, answer, language)
       )
-    ).toEqual(cases.map(([, , , expected]) => expected));
+    ).toEqual(Arr.map(cases, ([, , , expected]) => expected));
   });
 
   it("grades text through the key's rules after reading it as visible text", () => {
@@ -294,7 +294,7 @@ describe("typed learner answer", () => {
     ] as const;
 
     expect(
-      cases.map(([key, answer]) => matchesAnswerKey(key, answer, "en"))
-    ).toEqual(cases.map(([, , expected]) => expected));
+      Arr.map(cases, ([key, answer]) => matchesAnswerKey(key, answer, "en"))
+    ).toEqual(Arr.map(cases, ([, , expected]) => expected));
   });
 });

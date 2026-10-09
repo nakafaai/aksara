@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   StageArtifactBatchRequestSchema,
@@ -37,7 +37,8 @@ function hasBoundRequests(input: {
   readonly releaseId: typeof ReleaseIdSchema.Type;
   readonly requests: readonly [StageOperation, ...StageOperation[]];
 }) {
-  return input.requests.every(
+  return Arr.every(
+    input.requests,
     (request) => request.releaseId === input.releaseId
   );
 }

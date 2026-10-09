@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
@@ -14,18 +14,19 @@ describe("publication scope", () => {
     });
     expect(canonicalizePublicationScope(scope)).toEqual(scope);
 
-    const failures = [
-      { families: [], snapshots: [] },
-      { families: ["material", "material"], snapshots: [] },
-      { families: ["question", "article"], snapshots: [] },
-      { families: ["unknown"], snapshots: [] },
-      { families: [], snapshots: ["program", "program"] },
-      { families: [], snapshots: ["tryout", "quran"] },
-      { families: [], snapshots: ["unknown"] },
-    ].map((invalid) =>
-      Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
+    const failures = Arr.map(
+      [
+        { families: [], snapshots: [] },
+        { families: ["material", "material"], snapshots: [] },
+        { families: ["question", "article"], snapshots: [] },
+        { families: ["unknown"], snapshots: [] },
+        { families: [], snapshots: ["program", "program"] },
+        { families: [], snapshots: ["tryout", "quran"] },
+        { families: [], snapshots: ["unknown"] },
+      ],
+      (invalid) => Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
     );
-    expect(failures.every(Exit.isFailure)).toBe(true);
+    expect(Arr.every(failures, Exit.isFailure)).toBe(true);
     const [emptyFailure] = failures;
     if (emptyFailure !== undefined && Exit.isFailure(emptyFailure)) {
       expect(String(emptyFailure.cause)).toContain(

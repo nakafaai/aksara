@@ -43,10 +43,10 @@ export function questionArtifactLocaleForPolicy(
 /** Lists unique prompt and response locales required by one section policy. */
 export function questionArtifactLocalesForPolicy(
   policy: AssessmentLanguagePolicy
-) {
+): readonly ArtifactLocale[] {
   return Object.freeze(
     Arr.dedupe(
-      ACTIVE_APP_LOCALES.map((appLocale) =>
+      Arr.map(ACTIVE_APP_LOCALES, (appLocale) =>
         questionArtifactLocaleForPolicy(policy, appLocale)
       )
     )

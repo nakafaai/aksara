@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, MutableList, Option, Schema } from "effect";
 
 import { QuranMeaningfulTextSchema } from "#contracts/quran/text";
 
@@ -78,7 +78,7 @@ function readMarkers(
 ):
   | { readonly _tag: "Failure" }
   | { readonly _tag: "Success"; readonly markers: readonly Marker[] } {
-  const markers: Marker[] = [];
+  const markers = MutableList.make<Marker>();
   for (const match of source.matchAll(/\[(\d+)\]/gu)) {
     const rawNumber = match[0].slice(1, -1);
     const start = match.index;
@@ -89,24 +89,29 @@ function readMarkers(
     ) {
       return { _tag: "Failure" };
     }
-    markers.push({ end: start + match[0].length, number, start });
+    MutableList.append(markers, {
+      end: start + match[0].length,
+      number,
+      start,
+    });
   }
-  return { _tag: "Success", markers };
+  return { _tag: "Success", markers: MutableList.toArray(markers) };
 }
 
 /** Converts the translation body to text and note-reference segments. */
 function segmentTranslation(source: string, markers: readonly Marker[]) {
-  const segments: QuranTranslationDocument["segments"][number][] = [];
+  const segments =
+    MutableList.make<QuranTranslationDocument["segments"][number]>();
   let start = 0;
   for (const marker of markers) {
     if (marker.start > start) {
-      segments.push({
+      MutableList.append(segments, {
         kind: "text",
         offset: start,
         value: source.slice(start, marker.start),
       });
     }
-    segments.push({
+    MutableList.append(segments, {
       kind: "note",
       number: marker.number,
       offset: marker.start,
@@ -114,9 +119,13 @@ function segmentTranslation(source: string, markers: readonly Marker[]) {
     start = marker.end;
   }
   if (start < source.length || segments.length === 0) {
-    segments.push({ kind: "text", offset: start, value: source.slice(start) });
+    MutableList.append(segments, {
+      kind: "text",
+      offset: start,
+      value: source.slice(start),
+    });
   }
-  return segments;
+  return MutableList.toArray(segments);
 }
 
 /** Analyzes one source translation through the canonical note grammar. */
@@ -134,23 +143,29 @@ function analyzeTranslation(
 
   const references = referencesResult.markers;
   const definitions = definitionsResult.markers;
-  const uniqueReferences = references.filter(
-    (reference, index) =>
-      references.findIndex(({ number }) => number === reference.number) ===
+  const uniqueReferences = Arr.filter(references, (reference, index) =>
+    Option.contains(
+      Arr.findFirstIndex(
+        references,
+        ({ number }) => number === reference.number
+      ),
       index
+    )
   );
-  const noteCandidates = definitions.map((definition, index) => ({
+  const noteCandidates = Arr.map(definitions, (definition, index) => ({
     definition,
     referenceOffset: uniqueReferences[index]?.start ?? -1,
   }));
-  const definitionNumbers = definitions.map(({ number }) => number);
-  const hasDuplicateDefinition = definitionNumbers.some(
+  const definitionNumbers = Arr.map(definitions, ({ number }) => number);
+  const hasDuplicateDefinition = Arr.some(
+    definitionNumbers,
     (number, index) => definitionNumbers.indexOf(number) !== index
   );
   const hasMismatchedMarkers =
     hasDuplicateDefinition ||
     uniqueReferences.length !== definitionNumbers.length ||
-    noteCandidates.some(
+    Arr.some(
+      noteCandidates,
       ({ definition, referenceOffset }, index) =>
         referenceOffset < 0 ||
         definition.number !== uniqueReferences[index]?.number
@@ -162,7 +177,8 @@ function analyzeTranslation(
     return { _tag: "Failure", reason: "mismatched-markers" };
   }
 
-  const notes = noteCandidates.map(
+  const notes = Arr.map(
+    noteCandidates,
     ({ definition, referenceOffset }, index) => ({
       number: definition.number,
       referenceOffset,
@@ -171,7 +187,7 @@ function analyzeTranslation(
         .trim(),
     })
   );
-  if (notes.some(({ text }) => text.length === 0)) {
+  if (Arr.some(notes, ({ text }) => text.length === 0)) {
     return { _tag: "Failure", reason: "empty-note" };
   }
 

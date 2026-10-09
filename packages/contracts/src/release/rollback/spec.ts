@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import {
   ContentFamilySchema,
   canonicalizeSignedContentArtifact,
@@ -207,7 +207,8 @@ function hasCoherentRollbackPage(page: {
   if (!(first && last)) {
     return page.done && page.nextIndex === -1 && page.total === 0;
   }
-  const hasContiguousRecords = page.records.every(
+  const hasContiguousRecords = Arr.every(
+    page.records,
     (record, offset) => record.index === first.index + offset
   );
   return (
@@ -264,9 +265,9 @@ export function canonicalizeRollbackRecord(record: RollbackRecord) {
 
 /** Serializes the complete body-bearing page for an exact byte ceiling. */
 export function canonicalizeRollbackPage(page: RollbackPage) {
-  return `{"done":${page.done},"nextIndex":${page.nextIndex},"records":[${page.records
-    .map(canonicalizeRollbackRecord)
-    .join(
-      ","
-    )}],"rollbackOfManifestHash":${encodeJsonText(page.rollbackOfManifestHash)},"rollbackOf":${encodeJsonText(page.rollbackOf)},"total":${page.total}}`;
+  const records = Arr.join(
+    Arr.map(page.records, canonicalizeRollbackRecord),
+    ","
+  );
+  return `{"done":${page.done},"nextIndex":${page.nextIndex},"records":[${records}],"rollbackOfManifestHash":${encodeJsonText(page.rollbackOfManifestHash)},"rollbackOf":${encodeJsonText(page.rollbackOf)},"total":${page.total}}`;
 }

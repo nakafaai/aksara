@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import {
   ArtifactCacheTagSchema,
   ContentCacheChangeSchema,
@@ -84,7 +84,7 @@ describe("content cache contracts", () => {
 describe("pinned content cache tags", () => {
   it("pins each exact mutable scope tag", () => {
     expect(
-      ContentCacheScopeSchema.literals.map((scope) =>
+      Arr.map(ContentCacheScopeSchema.literals, (scope) =>
         makeContentCacheTag(scope)
       )
     ).toEqual([

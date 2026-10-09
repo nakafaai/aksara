@@ -1,4 +1,4 @@
-import { Schema, Struct } from "effect";
+import { Array as Arr, Schema, Struct } from "effect";
 import { PublicPathSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import {
@@ -36,10 +36,11 @@ type TryoutPreviewTargetInput = typeof TryoutPreviewTargetInputSchema.Type;
 function hasCoherentTryoutHierarchy(input: TryoutPreviewTargetInput) {
   const rows = [input.track, input.set, input.section, input.placement];
   return (
-    rows.every(({ countryKey }) => countryKey === input.exam.countryKey) &&
-    rows.every(({ examKey }) => examKey === input.exam.examKey) &&
-    rows.every(({ appLocale }) => appLocale === input.exam.appLocale) &&
-    rows.every(
+    Arr.every(rows, ({ countryKey }) => countryKey === input.exam.countryKey) &&
+    Arr.every(rows, ({ examKey }) => examKey === input.exam.examKey) &&
+    Arr.every(rows, ({ appLocale }) => appLocale === input.exam.appLocale) &&
+    Arr.every(
+      rows,
       ({ sourceRevision }) => sourceRevision === input.exam.sourceRevision
     ) &&
     input.set.trackKey === input.track.trackKey &&

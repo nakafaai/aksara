@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { Effect, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
 import { ChildProcess } from "effect/process";
 import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
 
@@ -60,7 +60,8 @@ export function createCredentialFreeEnvironment(
 ): NodeJS.ProcessEnv {
   return {
     ...Rec.fromEntries(
-      Rec.toEntries(environment).filter(
+      Arr.filter(
+        Rec.toEntries(environment),
         ([name]) =>
           !(
             CREDENTIAL_ENVIRONMENT_PATTERN.test(name) ||
@@ -147,7 +148,7 @@ export const runConsumerCommand = Effect.fn(
 
 /** Requires package tooling to produce exactly one tarball archive. */
 export function selectPackedArchive(paths: readonly string[]): string {
-  const archives = paths.filter((path) => path.endsWith(".tgz"));
+  const archives = Arr.filter(paths, (path) => path.endsWith(".tgz"));
   assert.equal(archives.length, 1, "pnpm must produce exactly one tarball");
   const [archive] = archives;
   assert.ok(archive, "The packed archive must be present");
@@ -181,15 +182,17 @@ export function createConsumerSource(
   packageName: string,
   publicSpecifiers: readonly string[]
 ) {
-  const typeImports = publicSpecifiers.map(
+  const typeImports = Arr.map(
+    publicSpecifiers,
     (specifier, index) =>
       `import type * as Contract${index} from ${encodeJsonText(specifier)};`
   );
-  const typeReferences = publicSpecifiers.map(
+  const typeReferences = Arr.map(
+    publicSpecifiers,
     (_specifier, index) => `typeof Contract${index}`
   );
 
-  return `${typeImports.join("\n")}
+  return `${Arr.join(typeImports, "\n")}
 import { createRendererManifest } from "${packageName}/renderer/manifest";
 import type { RendererManifestHashComputeError } from "${packageName}/renderer/contract";
 import type { RendererDomain } from "${packageName}/renderer/domain";
@@ -228,7 +231,7 @@ export type RendererManifestErrorIncludesHashFailure = Expect<
   RendererManifestHashComputeError extends ManifestError ? true : false
 >;
 
-export type InstalledContractSurface = [${typeReferences.join(", ")}];
+export type InstalledContractSurface = [${Arr.join(typeReferences, ", ")}];
 `;
 }
 

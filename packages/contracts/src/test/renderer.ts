@@ -1,3 +1,5 @@
+import { Array as Arr } from "effect";
+
 import type { RendererComponentName } from "#contracts/renderer/component";
 import {
   RENDERER_DOMAINS,
@@ -10,7 +12,7 @@ export function testRendererDomains(
     Partial<Record<RendererDomain, readonly RendererComponentName[]>>
   >
 ) {
-  return RENDERER_DOMAINS.map((name) => {
+  return Arr.map(RENDERER_DOMAINS, (name) => {
     const selected = components[name] ?? [];
     return { components: selected, name };
   });

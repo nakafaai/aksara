@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   RENDERER_DOMAINS,
   RendererDomainSchema,
@@ -22,7 +22,7 @@ describe("renderer domain", () => {
       "tka-math",
     ]);
     expect(
-      RENDERER_DOMAINS.every((domain) =>
+      Arr.every(RENDERER_DOMAINS, (domain) =>
         Exit.isSuccess(Schema.decodeExit(RendererDomainSchema)(domain))
       )
     ).toBe(true);
