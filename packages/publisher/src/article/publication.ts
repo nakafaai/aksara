@@ -8,10 +8,7 @@ import {
   ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
-import {
-  type ArticleHead,
-  ArticleHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -34,6 +31,11 @@ import {
   type ArticleSourceError,
   mapArticleSourceError,
 } from "#publisher/article/document";
+import {
+  type ArticleHeadOwner,
+  type HeadOrderState,
+  headOwnerKey,
+} from "#publisher/article/head";
 import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
@@ -75,27 +77,6 @@ export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamily
     field: ArticleFamilyFieldSchema,
   }
 ) {}
-
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(ArticleHeadSchema),
-});
-
-/** The previous article head in the streamed order, or undefined before the first one. */
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
-
-const ArticleHeadOwnerSchema = Schema.Struct({
-  publicPath: Schema.String,
-});
-
-type ArticleHeadOwner = typeof ArticleHeadOwnerSchema.Type;
-
-/** Builds the stable key shared by one registry entry and published head. */
-function headOwnerKey(input: {
-  readonly artifactLocale: string;
-  readonly contentKey: string;
-}) {
-  return `${input.artifactLocale}\0${input.contentKey}`;
-}
 
 /** Every failure possible while replaying authoritative article records. */
 export type ArticlePublicationStreamError<E> =
