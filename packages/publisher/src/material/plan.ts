@@ -8,28 +8,20 @@ import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rol
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
-import { type Effect, Schema, type Stream } from "effect";
-import { planFamilyPublication } from "#publisher/family/plan";
+import type { Effect, Stream } from "effect";
+import {
+  familyPublicationPlanSchema,
+  planFamilyPublication,
+} from "#publisher/family/plan";
 import {
   compileMaterialDocument,
   inspectMaterialDocument,
 } from "#publisher/material/document";
-import {
-  PreparedContentTransitionSchema,
-  type PreparedContentUpsert,
-} from "#publisher/preparation/spec";
+import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** One delta transition, desired result head, or both from one material row. */
-export const MaterialPublicationPlanSchema = Schema.Struct({
-  record: Schema.optional(PreparedContentTransitionSchema),
-  result: Schema.optional(MaterialHeadSchema),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      (plan) => plan.record !== undefined || plan.result !== undefined
-    )
-  )
-);
+export const MaterialPublicationPlanSchema =
+  familyPublicationPlanSchema(MaterialHeadSchema);
 export type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
 
 type PlanMaterialPublicationError =

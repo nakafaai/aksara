@@ -11,27 +11,19 @@ import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content"
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { indexQuestionItems } from "@nakafa/aksara-corpus/question-bank/source";
 import { Effect, MutableHashMap, Option, Schema, type Stream } from "effect";
-import { planFamilyPublication } from "#publisher/family/plan";
 import {
-  PreparedContentTransitionSchema,
-  type PreparedContentUpsert,
-} from "#publisher/preparation/spec";
+  familyPublicationPlanSchema,
+  planFamilyPublication,
+} from "#publisher/family/plan";
+import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import {
   compileQuestionDocument,
   inspectQuestionDocument,
 } from "#publisher/question/document";
 
 /** One delta transition, desired result head, or both from one question row. */
-export const QuestionPublicationPlanSchema = Schema.Struct({
-  record: Schema.optional(PreparedContentTransitionSchema),
-  result: Schema.optional(QuestionHeadSchema),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      (plan) => plan.record !== undefined || plan.result !== undefined
-    )
-  )
-);
+export const QuestionPublicationPlanSchema =
+  familyPublicationPlanSchema(QuestionHeadSchema);
 export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
