@@ -12,6 +12,10 @@ export type Tafsir = typeof TafsirSchema.Type;
 
 const SajdaSchema = Schema.Literals(["obligatory", "recommended"]);
 
+/**
+ * Parsed marker numbers stay finite here because the registry decodes every
+ * parsed surah with the exact QuranSurahSchema before accepting it.
+ */
 const VerseMetadataSchema = Schema.Struct({
   hizbQuarter: Schema.Finite,
   juz: Schema.Finite,
