@@ -176,18 +176,12 @@ layer(questionTestLayer)("tryout target", (it) => {
           ...fixture.rows,
           ...matches(kind),
         ];
-        const hierarchyFailures = Arr.map(
-          Arr.flatMap(["exam", "track", "set", "section"] as const, (kind) => [
-            without(kind),
-            duplicate(kind),
-          ]),
-          (rows) =>
-            rejectTarget(
-              rows,
-              fixture.sources,
-              fixture.prompt,
-              fixture.question
-            )
+        const hierarchyRows = Arr.flatMap(
+          ["exam", "track", "set", "section"] as const,
+          (kind) => [without(kind), duplicate(kind)]
+        );
+        const hierarchyFailures = Arr.map(hierarchyRows, (rows) =>
+          rejectTarget(rows, fixture.sources, fixture.prompt, fixture.question)
         );
         const failures = yield* Effect.all(
           [

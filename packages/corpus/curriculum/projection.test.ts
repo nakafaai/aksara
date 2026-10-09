@@ -29,6 +29,13 @@ function materialDisplay(
   });
 }
 
+/** Finds one decoded material by its exact key, or fails when it is absent. */
+function findMaterial(materials: readonly LessonMaterialSource[], key: string) {
+  return Effect.fromOption(
+    Arr.findFirst(materials, (material) => material.key === key)
+  );
+}
+
 /** Decodes one real-identity curriculum leaf for failure-path verification. */
 function merdekaLeaf(
   input: Pick<CurriculumMaterialInput, "displayOverride" | "materialKeys">
@@ -119,9 +126,7 @@ describe("curriculum node projection", () => {
     () =>
       Effect.gen(function* () {
         const materials = yield* decodeMaterialSources();
-        const material = yield* Effect.fromOption(
-          Arr.findFirst(materials, ({ key }) => key === matrixKey)
-        );
+        const material = yield* findMaterial(materials, matrixKey);
         const [english, indonesian] = yield* Effect.all([
           materialDisplay(material, "en"),
           materialDisplay(material, "id"),
@@ -143,17 +148,12 @@ describe("curriculum node projection", () => {
     () =>
       Effect.gen(function* () {
         const materials = yield* decodeMaterialSources();
-        const material = yield* Effect.fromOption(
-          Arr.findFirst(materials, ({ key }) => key === matrixKey)
-        );
-        const [english, indonesian] = yield* Effect.all([
-          Effect.fromNullishOr(material.translations.en),
-          Effect.fromNullishOr(material.translations.id),
-        ]);
-        const mismatched = {
-          ...material,
-          translations: { en: english, id: indonesian },
-        };
+        const material = yield* findMaterial(materials, matrixKey);
+        const translations = yield* Effect.all({
+          en: Effect.fromNullishOr(material.translations.en),
+          id: Effect.fromNullishOr(material.translations.id),
+        });
+        const mismatched = { ...material, translations };
         const curriculum = yield* merdekaLeaf({
           materialKeys: [material.key],
         });
@@ -169,18 +169,13 @@ describe("curriculum node projection", () => {
     Effect.gen(function* () {
       const materials = yield* decodeMaterialSources();
       const [matrix, polynomial] = yield* Effect.all([
-        Effect.fromOption(
-          Arr.findFirst(materials, ({ key }) => key === matrixKey)
-        ),
-        Effect.fromOption(
-          Arr.findFirst(materials, ({ key }) => key === polynomialKey)
-        ),
+        findMaterial(materials, matrixKey),
+        findMaterial(materials, polynomialKey),
       ]);
-      const [english, indonesian] = yield* Effect.all([
-        materialDisplay(matrix, "en"),
-        materialDisplay(matrix, "id"),
-      ]);
-      const displayOverride = { en: english, id: indonesian };
+      const displayOverride = yield* Effect.all({
+        en: materialDisplay(matrix, "en"),
+        id: materialDisplay(matrix, "id"),
+      });
       const curriculum = yield* merdekaLeaf({
         displayOverride,
         materialKeys: [matrix.key, polynomial.key],
@@ -240,9 +235,7 @@ describe("curriculum node projection", () => {
       Effect.gen(function* () {
         const material = earthScienceMaterialSource();
         const materials = yield* decodeMaterialSources();
-        const mathematics = yield* Effect.fromOption(
-          Arr.findFirst(materials, ({ key }) => key === matrixKey)
-        );
+        const mathematics = yield* findMaterial(materials, matrixKey);
         const mixedCurriculum = yield* merdekaLeaf({
           materialKeys: [material.key, mathematics.key],
         });
