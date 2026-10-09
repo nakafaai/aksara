@@ -4,12 +4,12 @@ import {
   publicationFailureStatus,
 } from "@nakafa/aksara-contracts/transport/failure";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import type {
-  PublicationResponse,
-  PublicationSuccess,
+import {
+  PublicationResponseSchema,
+  type PublicationSuccess,
 } from "@nakafa/aksara-contracts/transport/response";
 
-import { Effect, Match } from "effect";
+import { Effect, Match, Schema } from "effect";
 import {
   PublicationStaleBaseError,
   PublicationTargetConflictError,
@@ -22,11 +22,13 @@ import {
 } from "#publisher/target/errors";
 import { hasBoundPublicationSuccess } from "#publisher/target/evidence/response";
 
+const PublicationHttpResultSchema = Schema.Struct({
+  body: PublicationResponseSchema,
+  status: Schema.Finite,
+});
+
 /** Parsed HTTP status and body returned by publication ingress. */
-export interface PublicationHttpResult {
-  readonly body: PublicationResponse;
-  readonly status: number;
-}
+export type PublicationHttpResult = typeof PublicationHttpResultSchema.Type;
 
 type InterpretPublicationResponse = (
   request: PublicationRequest,
