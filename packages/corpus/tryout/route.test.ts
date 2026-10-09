@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import {
@@ -20,12 +20,12 @@ describe("tryout routes", () => {
       Effect.gen(function* () {
         const rows = yield* catalogRows;
         yield* validateTryoutRoutes(rows);
-        const countries = rows.filter((row) => row.kind === "country");
-        const first = yield* Effect.fromNullishOr(
-          countries.find((row) => row.appLocale === "en")
+        const countries = Arr.filter(rows, (row) => row.kind === "country");
+        const first = yield* Effect.fromOption(
+          Arr.findFirst(countries, (row) => row.appLocale === "en")
         );
-        const second = yield* Effect.fromNullishOr(
-          countries.find((row) => row.appLocale === "id")
+        const second = yield* Effect.fromOption(
+          Arr.findFirst(countries, (row) => row.appLocale === "id")
         );
         const duplicate = {
           ...second,
@@ -48,7 +48,7 @@ describe("tryout routes", () => {
   it.effect("spells every public route from the title its page shows", () =>
     Effect.gen(function* () {
       const rows = yield* catalogRows;
-      const paths = rows.flatMap((row) =>
+      const paths = Arr.flatMap(rows, (row) =>
         "publicPath" in row && row.publicPath !== undefined
           ? [row.publicPath]
           : []
@@ -66,8 +66,9 @@ describe("tryout routes", () => {
   it.effect("rejects a route that does not spell its page title", () =>
     Effect.gen(function* () {
       const rows = yield* catalogRows;
-      const section = yield* Effect.fromNullishOr(
-        rows.find(
+      const section = yield* Effect.fromOption(
+        Arr.findFirst(
+          rows,
           (row) =>
             row.kind === "section" &&
             row.appLocale === "en" &&

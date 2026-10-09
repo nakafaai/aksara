@@ -5,7 +5,7 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
 import {
   corpusRoot,
@@ -33,17 +33,20 @@ const loadPlacementFixture = Effect.fn(
     sources,
     promptPath
   ).pipe(Effect.provide([makeQuestionLayer(), Path.layer]));
-  const source = yield* Effect.fromNullishOr(
-    sources.find(({ examKey }) => examKey === "snbt")
+  const source = yield* Effect.fromOption(
+    Arr.findFirst(sources, ({ examKey }) => examKey === "snbt")
   );
-  const track = yield* Effect.fromNullishOr(
-    source.tracks.find(({ key }) => key === "2027")
+  const track = yield* Effect.fromOption(
+    Arr.findFirst(source.tracks, ({ key }) => key === "2027")
   );
-  const set = yield* Effect.fromNullishOr(
-    track.sets.find(({ key }) => key === "set-1")
+  const set = yield* Effect.fromOption(
+    Arr.findFirst(track.sets, ({ key }) => key === "set-1")
   );
-  const section = yield* Effect.fromNullishOr(
-    set.sections.find(({ key }) => key === "reading-comprehension-and-writing")
+  const section = yield* Effect.fromOption(
+    Arr.findFirst(
+      set.sections,
+      ({ key }) => key === "reading-comprehension-and-writing"
+    )
   );
   return {
     context: { section, set, source, track },
