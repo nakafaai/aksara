@@ -3,7 +3,7 @@ import {
   type MaterialHead,
   MaterialHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, HashSet, Layer, Schema } from "effect";
+import { Array as Arr, Context, Effect, HashSet, Layer, Schema } from "effect";
 import {
   collectMaterialRoutes,
   materialTestLayer,
@@ -25,7 +25,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) =>
+            Arr.filter(entries, ({ sourcePath }) =>
               HashSet.has(sourcePaths, sourcePath)
             )
           )
@@ -71,14 +71,16 @@ const makePublicationTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* publishedMaterialHeads();
-    const englishHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const englishHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         (head) =>
           head.contentKey === functionContentKey && head.artifactLocale === "en"
       )
     );
-    const indonesianHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const indonesianHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         (head) =>
           head.contentKey === functionContentKey && head.artifactLocale === "id"
       )

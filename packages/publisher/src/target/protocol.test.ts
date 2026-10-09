@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   interpretPublicationResponse,
   publicationReleaseId,
@@ -27,8 +27,8 @@ const failureTag = Effect.fn("PublicationProtocolTest.failureTag")(
 
 describe("publication target protocol", () => {
   it("maps every operation to its target stage and release identity", () => {
-    expect(transportRequests.map(publicationReleaseId)).toEqual(
-      transportRequests.map((request) => {
+    expect(Arr.map(transportRequests, publicationReleaseId)).toEqual(
+      Arr.map(transportRequests, (request) => {
         if (request.operation === "current") {
           return null;
         }
@@ -48,7 +48,7 @@ describe("publication target protocol", () => {
       })
     );
     expect(
-      transportRequests.map(({ operation }) => targetStage(operation))
+      Arr.map(transportRequests, ({ operation }) => targetStage(operation))
     ).toEqual([
       "current",
       "accept",
@@ -77,13 +77,17 @@ describe("publication target protocol", () => {
 
   it.effect("rejects operation and HTTP contradictions", () =>
     Effect.gen(function* () {
-      const item = yield* Effect.fromNullishOr(
-        transportRequests.find(
+      const item = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
           (request) => request.operation === "stageItemBatch"
         )
       );
-      const status = yield* Effect.fromNullishOr(
-        transportRequests.find((request) => request.operation === "status")
+      const status = yield* Effect.fromOption(
+        Arr.findFirst(
+          transportRequests,
+          (request) => request.operation === "status"
+        )
       );
       const success = transportSuccess(item);
       const contradictions = [
@@ -94,7 +98,7 @@ describe("publication target protocol", () => {
         failureTag(item, result.body, result.status)
       );
       expect(tags).toEqual(
-        contradictions.map(() => "PublicationTargetProtocolError")
+        Arr.map(contradictions, () => "PublicationTargetProtocolError")
       );
     })
   );
@@ -111,8 +115,8 @@ describe("publication target protocol", () => {
           )
         )
       );
-      expect(tags.flat()).toEqual(
-        cases.flatMap(({ statuses, tag }) => statuses.map(() => tag))
+      expect(Arr.flatten(tags)).toEqual(
+        Arr.flatMap(cases, ({ statuses, tag }) => Arr.map(statuses, () => tag))
       );
     })
   );
@@ -121,8 +125,9 @@ describe("publication target protocol", () => {
     "treats transient and contradictory failures as transport errors",
     () =>
       Effect.gen(function* () {
-        const request = yield* Effect.fromNullishOr(
-          transportRequests.find(
+        const request = yield* Effect.fromOption(
+          Arr.findFirst(
+            transportRequests,
             (candidate) => candidate.operation === "stageRelease"
           )
         );
@@ -132,7 +137,7 @@ describe("publication target protocol", () => {
           (status) => failureTag(request, success, status)
         );
         expect(transientTags).toEqual(
-          [408, 429, 500, 599].map(() => "PublicationTargetTransportError")
+          Arr.map([408, 429, 500, 599], () => "PublicationTargetTransportError")
         );
         const invalidStatus = yield* failureTag(request, success, 600);
         expect(invalidStatus).toBe("PublicationTargetProtocolError");
@@ -200,12 +205,10 @@ describe("publication target protocol", () => {
           )
         );
         expect(tags).toEqual(
-          failures.map(() => "PublicationTargetProtocolError")
+          Arr.map(failures, () => "PublicationTargetProtocolError")
         );
-        const contradictoryBases = [
-          null,
-          request.release.manifest.releaseId,
-        ].map(
+        const contradictoryBases = Arr.map(
+          [null, request.release.manifest.releaseId],
           (activeReleaseId) =>
             ({
               failure: {
@@ -223,7 +226,7 @@ describe("publication target protocol", () => {
           failureTag(request, body, 409)
         );
         expect(baseTags).toEqual(
-          contradictoryBases.map(() => "PublicationTargetProtocolError")
+          Arr.map(contradictoryBases, () => "PublicationTargetProtocolError")
         );
       })
   );

@@ -1,6 +1,6 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { Effect, HashSet } from "effect";
+import { Array as Arr, Effect, HashSet } from "effect";
 import {
   changedMaterialSources,
   MaterialPlanTestFixtures,
@@ -47,9 +47,11 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
     decodeMaterialRegistry: (input?: unknown) =>
       original.decodeMaterialRegistry(input).pipe(
         Effect.map((entries) =>
-          entries
-            .filter(({ sourcePath }) => HashSet.has(sourcePaths, sourcePath))
-            .map((entry) =>
+          Arr.map(
+            Arr.filter(entries, ({ sourcePath }) =>
+              HashSet.has(sourcePaths, sourcePath)
+            ),
+            (entry) =>
               registryState.changedOrder &&
               entry.rendererDomain === "mathematics" &&
               entry.route.artifactLocale === "en"
@@ -58,7 +60,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
                     route: { ...entry.route, order: entry.route.order + 1 },
                   }
                 : entry
-            )
+          )
         )
       ),
   };
@@ -193,7 +195,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
 
       expect(records).toHaveLength(4);
       expect(
-        records.every(({ record }) => record.change.operation === "upsert")
+        Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
       expect(compilerState.calls).toBe(4);
     })
@@ -207,7 +209,7 @@ layer(materialPlanTestLayer)("material plan", (it) => {
       });
 
       expect(
-        records.map(({ record }) => [
+        Arr.map(records, ({ record }) => [
           record.change.contentKey,
           record.change.artifactLocale,
         ])

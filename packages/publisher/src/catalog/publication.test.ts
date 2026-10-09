@@ -12,6 +12,7 @@ import type {
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
+  Array as Arr,
   Context,
   Effect,
   HashSet,
@@ -62,7 +63,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) =>
+            Arr.filter(entries, ({ sourcePath }) =>
               HashSet.has(sourcePaths, sourcePath)
             )
           )
@@ -170,19 +171,23 @@ const makeCatalogTestFixtures = Effect.fn(
 
     return {
       ...source,
-      articleHeads: initialHeads.filter(
+      articleHeads: Arr.filter(
+        initialHeads,
         (head): head is ArticleHead => head.family === "article"
       ),
       base,
       initial,
       initialHeads,
-      materialHeads: initialHeads.filter(
+      materialHeads: Arr.filter(
+        initialHeads,
         (head): head is MaterialHead => head.family === "material"
       ),
-      pageHeads: initialHeads.filter(
+      pageHeads: Arr.filter(
+        initialHeads,
         (head): head is PageHead => head.family === "page"
       ),
-      questionHeads: initialHeads.filter(
+      questionHeads: Arr.filter(
+        initialHeads,
         (head): head is QuestionHead => head.family === "question"
       ),
     };
@@ -238,7 +243,7 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
       expect(initial.records).toHaveLength(44);
       expect(initial.routes).toHaveLength(44);
       expect(initialHeads).toHaveLength(44);
-      expect(initialHeads.map(({ family }) => family)).toEqual([
+      expect(Arr.map(initialHeads, ({ family }) => family)).toEqual([
         ...Array.from({ length: 21 }, () => "article"),
         ...Array.from({ length: 4 }, () => "material"),
         ...Array.from({ length: 15 }, () => "page"),

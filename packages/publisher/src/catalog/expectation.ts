@@ -14,7 +14,7 @@ import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry"
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { type RouteTransition, RouteTransitionSchema } from "#publisher/routes";
 
 const ExpectedCatalogHeadSchema = Schema.Struct({
@@ -87,28 +87,32 @@ export const readContentCatalogExpectation: (
       Effect.mapError((cause) => new ContentCatalogExpectationError({ cause }))
     );
     const heads: ExpectedCatalogHead[] = [
-      ...articles.map(
+      ...Arr.map(
+        articles,
         ({ route }): ExpectedCatalogHead => ({
           artifactLocale: route.artifactLocale,
           contentKey: route.contentKey,
           family: "article",
         })
       ),
-      ...materials.map(
+      ...Arr.map(
+        materials,
         ({ route }): ExpectedCatalogHead => ({
           artifactLocale: route.artifactLocale,
           contentKey: route.contentKey,
           family: "material",
         })
       ),
-      ...pages.map(
+      ...Arr.map(
+        pages,
         ({ route }): ExpectedCatalogHead => ({
           artifactLocale: route.artifactLocale,
           contentKey: route.contentKey,
           family: "page",
         })
       ),
-      ...tryout.entries.map(
+      ...Arr.map(
+        tryout.entries,
         ({ contentKey, artifactLocale }): ExpectedCatalogHead => ({
           artifactLocale,
           contentKey,
@@ -117,9 +121,9 @@ export const readContentCatalogExpectation: (
       ),
     ];
     const routes = [
-      ...articles.map(({ route }) => expectedRoute(route)),
-      ...materials.map(({ route }) => expectedRoute(route)),
-      ...pages.map(({ route }) => expectedRoute(route)),
+      ...Arr.map(articles, ({ route }) => expectedRoute(route)),
+      ...Arr.map(materials, ({ route }) => expectedRoute(route)),
+      ...Arr.map(pages, ({ route }) => expectedRoute(route)),
     ];
 
     return {

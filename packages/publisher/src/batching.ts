@@ -22,31 +22,29 @@ import {
   MAX_ROUTE_BATCH_BYTES,
   MAX_ROUTE_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
-import type { Stream } from "effect";
+import { Array as Arr, type Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 import { encodeJsonText } from "#publisher/text/json";
 
 /** Serializes one complete release-item batch in deterministic wire order. */
 export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"items":[${batch.items
-    .map(canonicalizeContentReleaseItem)
-    .join(
-      ","
-    )}],"operation":"stageItemBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
+  return `{"batchIndex":${batch.batchIndex},"items":[${Arr.join(
+    Arr.map(batch.items, canonicalizeContentReleaseItem),
+    ","
+  )}],"operation":"stageItemBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Serializes one complete route batch in deterministic wire order. */
 export function canonicalizeRouteBatch(batch: StageRouteBatchInput) {
-  return `{"batchIndex":${batch.batchIndex},"operation":"stageRouteBatch","releaseId":${encodeJsonText(batch.releaseId)},"routes":[${batch.routes.map(canonicalizeContentRouteItem).join(",")}]}`;
+  return `{"batchIndex":${batch.batchIndex},"operation":"stageRouteBatch","releaseId":${encodeJsonText(batch.releaseId)},"routes":[${Arr.join(Arr.map(batch.routes, canonicalizeContentRouteItem), ",")}]}`;
 }
 
 /** Serializes one complete artifact batch in deterministic wire order. */
 export function canonicalizeArtifactBatch(batch: StageArtifactBatchInput) {
-  return `{"artifacts":[${batch.artifacts
-    .map(canonicalizeSignedContentArtifact)
-    .join(
-      ","
-    )}],"batchIndex":${batch.batchIndex},"operation":"stageArtifactBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
+  return `{"artifacts":[${Arr.join(
+    Arr.map(batch.artifacts, canonicalizeSignedContentArtifact),
+    ","
+  )}],"batchIndex":${batch.batchIndex},"operation":"stageArtifactBatch","releaseId":${encodeJsonText(batch.releaseId)}}`;
 }
 
 /** Streams bounded release-item envelopes with contiguous batch identities. */

@@ -1,6 +1,13 @@
 import { expect, layer } from "@effect/vitest";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, HashMap, MutableHashMap, Option, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  MutableHashMap,
+  Option,
+  Path,
+} from "effect";
 import {
   inspectMaterialDocument,
   loadMaterialDocument,
@@ -18,8 +25,8 @@ const requireEnglishEntry = Effect.fn(
   "MaterialDocumentTest.requireEnglishEntry"
 )(function* () {
   const entries = yield* decodeMaterialRegistry();
-  return yield* Effect.fromNullishOr(
-    entries.find(({ sourcePath }) => sourcePath === englishPath)
+  return yield* Effect.fromOption(
+    Arr.findFirst(entries, ({ sourcePath }) => sourcePath === englishPath)
   );
 });
 
@@ -148,9 +155,7 @@ layer(materialTestLayer)("material document", (it) => {
         ).pipe(
           Effect.provide([
             testFileLayer(
-              withSearchTitle(
-                Array.from({ length: 8 }, () => "Function").join(" ")
-              )
+              withSearchTitle(Arr.join(Arr.replicate("Function", 8), " "))
             ),
             Path.layer,
           ]),

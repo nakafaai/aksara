@@ -3,7 +3,7 @@ import type { ArtifactLocale } from "@nakafa/aksara-contracts/locale";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
-import { HashSet } from "effect";
+import { Array as Arr, HashSet } from "effect";
 
 /** Identifies one localized catalog row without depending on route slugs. */
 function catalogIdentity(row: TryoutCatalogRecord["row"]) {
@@ -34,11 +34,13 @@ export function selectTryoutSlice(
   }[]
 ) {
   const promptKeys = HashSet.fromIterable(
-    prompts.map(
+    Arr.map(
+      prompts,
       ({ contentKey, artifactLocale }) => `${contentKey}\0${artifactLocale}`
     )
   );
-  const placements = projection.placements.filter(
+  const placements = Arr.filter(
+    projection.placements,
     ({ questionArtifactLocale, questionContentKey }) =>
       HashSet.has(
         promptKeys,
@@ -46,7 +48,7 @@ export function selectTryoutSlice(
       )
   );
   const catalogIdentities = HashSet.fromIterable(
-    placements.flatMap((placement) => [
+    Arr.flatMap(placements, (placement) => [
       `${placement.appLocale}\0country\0${placement.countryKey}`,
       `${placement.appLocale}\0exam\0${placement.countryKey}\0${placement.examKey}`,
       `${placement.appLocale}\0track\0${placement.countryKey}\0${placement.examKey}\0${placement.trackKey}`,
@@ -54,14 +56,15 @@ export function selectTryoutSlice(
       `${placement.appLocale}\0section\0${placement.countryKey}\0${placement.examKey}\0${placement.trackKey}\0${placement.setKey}\0${placement.sectionKey}`,
     ])
   );
-  const catalog = projection.catalog.flatMap(({ row }) => {
+  const catalog = Arr.flatMap(projection.catalog, ({ row }) => {
     if (!HashSet.has(catalogIdentities, catalogIdentity(row))) {
       return [];
     }
     if (row.kind !== "section") {
       return [makeTryoutCatalogRecord(row)];
     }
-    const questionCount = placements.filter(
+    const questionCount = Arr.filter(
+      placements,
       (placement) =>
         placement.appLocale === row.appLocale &&
         placement.countryKey === row.countryKey &&

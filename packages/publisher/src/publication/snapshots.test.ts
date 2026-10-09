@@ -8,7 +8,7 @@ import {
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 
 import { prepareContentRelease } from "#publisher/preparation";
 import {
@@ -147,7 +147,10 @@ layer(NodeServices.layer)("publication snapshots", (it) => {
       });
       expect(batches).not.toHaveLength(0);
       expect(
-        batches.every((request) => request.operation === "stageSnapshotBatch")
+        Arr.every(
+          batches,
+          (request) => request.operation === "stageSnapshotBatch"
+        )
       ).toBe(true);
       expect(batches[0]).toEqual(
         expect.objectContaining({
@@ -161,12 +164,10 @@ layer(NodeServices.layer)("publication snapshots", (it) => {
           snapshotId: snapshot.snapshot.manifest.snapshotId,
         })
       );
-      const stagedRows = batches.reduce(
-        (total, request) =>
-          request.operation === "stageSnapshotBatch"
-            ? total + request.rows.length
-            : total,
-        0
+      const stagedRows = Arr.reduce(batches, 0, (total, request) =>
+        request.operation === "stageSnapshotBatch"
+          ? total + request.rows.length
+          : total
       );
       expect(stagedRows).toBe(snapshot.snapshot.manifest.rowCount);
     })

@@ -10,7 +10,7 @@ import {
   ContentSnapshotSetSchema,
   inheritContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect, Path, Stream } from "effect";
+import { Array as Arr, Effect, Path, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 import {
   makeQuranSnapshotFixture,
@@ -167,11 +167,9 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
         const { program, quran } = completeSnapshots;
         const programRowCount = program.manifest.rowCount;
         const quranRowCount = quranFixture.rowCount;
-        expect(changedSnapshots.manifests.map(({ family }) => family)).toEqual([
-          "program",
-          "quran",
-          "tryout",
-        ]);
+        expect(
+          Arr.map(changedSnapshots.manifests, ({ family }) => family)
+        ).toEqual(["program", "quran", "tryout"]);
         const programRows = changedSnapshots.rows.slice(0, programRowCount);
         const quranRows = changedSnapshots.rows.slice(
           programRowCount,
@@ -181,13 +179,15 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
           programRowCount + quranRowCount
         );
         expect(programRows).toHaveLength(program.manifest.rowCount);
-        expect(programRows.every(({ family }) => family === "program")).toBe(
+        expect(
+          Arr.every(programRows, ({ family }) => family === "program")
+        ).toBe(true);
+        expect(quranRows).toHaveLength(quranRowCount);
+        expect(Arr.every(quranRows, ({ family }) => family === "quran")).toBe(
           true
         );
-        expect(quranRows).toHaveLength(quranRowCount);
-        expect(quranRows.every(({ family }) => family === "quran")).toBe(true);
         expect(tryoutRows).toHaveLength(tryoutFixture.rowCount);
-        expect(tryoutRows.every(({ family }) => family === "tryout")).toBe(
+        expect(Arr.every(tryoutRows, ({ family }) => family === "tryout")).toBe(
           true
         );
         expect(quran).toMatchObject({
@@ -293,7 +293,7 @@ layer(NodeServices.layer)("release snapshot preparation", (it) => {
         expect(changedQuran.manifests).toEqual([completeSnapshots.quran]);
         expect(changedQuran.rows).toHaveLength(quranFixture.rowCount);
         expect(
-          changedQuran.rows.every(({ family }) => family === "quran")
+          Arr.every(changedQuran.rows, ({ family }) => family === "quran")
         ).toBe(true);
       })
   );

@@ -12,7 +12,7 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -193,7 +193,7 @@ layer(NodeServices.layer)("catalog snapshots", (it) => {
 
       expect(error).toMatchObject({
         _tag: "CatalogSnapshotSetError",
-        actualFamilies: manifests.map(({ family }) => family),
+        actualFamilies: Arr.map(manifests, ({ family }) => family),
       });
     })
   );

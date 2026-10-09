@@ -4,7 +4,7 @@ import type {
   ReleaseAbortReceipt,
   ReleaseAbortRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   abortContentRelease,
   ReleaseAbortContractError,
@@ -123,7 +123,8 @@ describe("abortContentRelease", () => {
           runAbort({ releaseId }, abort).pipe(Effect.flip)
         );
         expect(errors).toEqual(
-          cases.map(
+          Arr.map(
+            cases,
             () => new ReleaseAbortContractError({ contract: "receipt" })
           )
         );

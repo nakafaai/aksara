@@ -7,7 +7,14 @@ import {
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Effect, FileSystem, MutableHashMap, Path, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  MutableHashMap,
+  Path,
+  Stream,
+} from "effect";
 import { prepareQuestionPublication } from "#publisher/question/publication";
 import { testFileLayer } from "#test/files";
 import { testRendererDomains } from "#test/renderer";
@@ -25,10 +32,12 @@ const completeContent = await Effect.runPromise(
     Effect.provide(NodeServices.layer)
   )
 );
-export const questionEntries = completeContent.entries.filter(
+export const questionEntries = Arr.filter(
+  completeContent.entries,
   (entry) => entry.questionKey === questionKey
 );
-export const questionSources = completeContent.sources.filter(
+export const questionSources = Arr.filter(
+  completeContent.sources,
   (source) => source.questionKey === questionKey
 );
 const [firstEntry] = questionEntries;
@@ -37,7 +46,8 @@ if (!(firstEntry && firstSource)) {
   throw new Error("Expected the real question-bank source and body slice.");
 }
 export const questionItem = firstSource.item;
-export const questionPaths = firstSource.files.map(
+export const questionPaths = Arr.map(
+  firstSource.files,
   (file) => `${firstSource.sourceRoot}/${file}`
 );
 export const sourceByPath = MutableHashMap.fromIterable(
@@ -126,7 +136,7 @@ export function rejectQuestionPublication(heads: readonly QuestionHead[]) {
 /** Derives authoritative compact heads from the selected real question pair. */
 export async function publishedQuestionHeads() {
   const records = await collectQuestionPublication({ heads: [] });
-  return records.flatMap(({ record }) => {
+  return Arr.flatMap(records, ({ record }) => {
     if (!("payload" in record)) {
       return [];
     }

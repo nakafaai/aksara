@@ -7,7 +7,15 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Context,
+  Effect,
+  Layer,
+  Order,
+  Schema,
+  Stream,
+} from "effect";
 import {
   QuestionHeadDuplicateError,
   QuestionHeadFamilyError,
@@ -107,14 +115,16 @@ const makePublicationTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
-    const promptHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const promptHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === `${questionKey}/question` && artifactLocale === "id"
       )
     );
-    const answerHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const answerHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === `${questionKey}/answer` && artifactLocale === "en"
       )
@@ -160,7 +170,8 @@ layer(publicationTestLayer)("question publication", (it) => {
       expect(created).toHaveLength(4);
       expect(retained).toHaveLength(1);
       expect(
-        transitions.every(
+        Arr.every(
+          transitions,
           ({ current, next }) =>
             current.publicPath === undefined && next.publicPath === undefined
         )
@@ -172,54 +183,51 @@ layer(publicationTestLayer)("question publication", (it) => {
   it.effect("accepts every real question renderer grammar", () =>
     Effect.gen(function* () {
       const { promptHead } = yield* QuestionPublicationTestFixtures;
-      const stale = yield* Effect.all([
-        makeStaleHead(
-          promptHead,
-          "snbt/literacy-in-english/set-9/question-1",
-          "snbt-plain"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/general-reasoning/set-9/question-1",
-          "snbt-general"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/mathematical-reasoning/set-9/question-1",
-          "snbt-math"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/quantitative-knowledge/set-99/question-1",
-          "snbt-quant"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/reading-comprehension-and-writing/set-9/question-1",
-          "snbt-plain"
-        ),
-        makeStaleHead(
-          promptHead,
-          "tka/compulsory-mathematics/set-9/question-1",
-          "tka-math"
-        ),
-      ]);
-      stale.sort((left, right) => {
-        if (left.contentKey < right.contentKey) {
-          return -1;
-        }
-        if (left.contentKey > right.contentKey) {
-          return 1;
-        }
-        return 0;
-      });
+      const stale = Arr.sortWith(
+        yield* Effect.all([
+          makeStaleHead(
+            promptHead,
+            "snbt/literacy-in-english/set-9/question-1",
+            "snbt-plain"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/general-reasoning/set-9/question-1",
+            "snbt-general"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/mathematical-reasoning/set-9/question-1",
+            "snbt-math"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/quantitative-knowledge/set-99/question-1",
+            "snbt-quant"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/reading-comprehension-and-writing/set-9/question-1",
+            "snbt-plain"
+          ),
+          makeStaleHead(
+            promptHead,
+            "tka/compulsory-mathematics/set-9/question-1",
+            "tka-math"
+          ),
+        ]),
+        ({ contentKey }) => contentKey,
+        Order.String
+      );
       const records = yield* Effect.promise(() =>
         collectQuestionPublication({ heads: stale })
       );
 
-      expect(
-        records.filter(({ record }) => record.change.operation === "delete")
-      ).toHaveLength(stale.length);
+      const deletions = Arr.filter(
+        records,
+        ({ record }) => record.change.operation === "delete"
+      );
+      expect(deletions).toHaveLength(stale.length);
     })
   );
 
@@ -236,7 +244,8 @@ layer(publicationTestLayer)("question publication", (it) => {
         const records = yield* Effect.promise(() =>
           collectQuestionPublication({ heads: [deletedBank] })
         );
-        const deletions = records.filter(
+        const deletions = Arr.filter(
+          records,
           ({ record }) => record.change.operation === "delete"
         );
 

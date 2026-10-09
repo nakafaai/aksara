@@ -1,4 +1,5 @@
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   MutableHashMap,
@@ -19,9 +20,12 @@ export function testFileLayer(seed: Iterable<readonly [string, string]>) {
       }),
     readDirectory: (root) =>
       Effect.succeed(
-        [...MutableHashMap.keys(files)]
-          .filter((path) => path.startsWith(`${root}/`))
-          .map((path) => path.slice(root.length + 1))
+        Arr.map(
+          Arr.filter(MutableHashMap.keys(files), (path) =>
+            path.startsWith(`${root}/`)
+          ),
+          (path) => path.slice(root.length + 1)
+        )
       ),
     readFileString: (path) => {
       const source = Option.getOrUndefined(MutableHashMap.get(files, path));

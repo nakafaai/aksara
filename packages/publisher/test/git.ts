@@ -16,9 +16,11 @@ import {
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   MutableHashMap,
+  MutableList,
   Option,
   Path,
   Schema,
@@ -70,7 +72,7 @@ export function testBlobId(bytes: Uint8Array) {
 /** Concatenates exact protocol bytes without text normalization. */
 export function joinGitFrames(frames: readonly Uint8Array[]) {
   const result = new Uint8Array(
-    frames.reduce((size, frame) => size + frame.byteLength, 0)
+    Arr.reduce(frames, 0, (size, frame) => size + frame.byteLength)
   );
   let offset = 0;
   for (const frame of frames) {
@@ -94,14 +96,16 @@ const batchOutput = Effect.fn("GitBlobTest.batchOutput")(function* (
 ) {
   const coordinates = new TextDecoder().decode(stdin).trimEnd().split("\n");
   const frames = yield* Effect.forEach(coordinates, (coordinate) => {
-    const found = [...blobs].find(([sourcePath, bytes]) =>
+    const found = Arr.findFirst(blobs, ([sourcePath, bytes]) =>
       body
         ? testBlobId(bytes) === coordinate
         : `${TEST_COMMIT_SHA}:${sourcePath}` === coordinate
     );
-    return found === undefined
-      ? Effect.die(`Unexpected test-only Git coordinate: ${coordinate}`)
-      : Effect.succeed(gitFrame(found[1], body));
+    return Option.match(found, {
+      onNone: () =>
+        Effect.die(`Unexpected test-only Git coordinate: ${coordinate}`),
+      onSome: ([, bytes]) => Effect.succeed(gitFrame(bytes, body)),
+    });
   });
   return joinGitFrames(frames);
 });
@@ -109,7 +113,7 @@ const batchOutput = Effect.fn("GitBlobTest.batchOutput")(function* (
 /** Responds to metadata and body commands using real object identities. */
 export function makeGitProcess(
   overrides: TestGitOverrides = {},
-  commands: ExactProcessInput[] = []
+  commands = MutableList.make<ExactProcessInput>()
 ) {
   const blobs = MutableHashMap.fromIterable(
     overrides.blobs ?? [[TEST_SOURCE_PATH, TEST_RAW_BYTES]]
@@ -120,7 +124,7 @@ export function makeGitProcess(
     /** Returns independently overridable output for each safe Git operation. */
     run: (input) =>
       Effect.gen(function* () {
-        commands.push(input);
+        MutableList.append(commands, input);
         const [, , , operation, mode] = input.args;
         if (overrides.failure) {
           return yield* overrides.failure;

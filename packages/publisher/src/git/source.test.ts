@@ -16,7 +16,14 @@ import {
   ExactProcess,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Deferred, Effect, Fiber, Stream } from "effect";
+import {
+  Array as Arr,
+  Deferred,
+  Effect,
+  Fiber,
+  MutableList,
+  Stream,
+} from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {
@@ -50,7 +57,7 @@ function sources(count: number) {
 
 /** Associates each test source with its signed release-item identity. */
 function itemsFor(input: readonly CompileDocumentSource[]) {
-  return input.map((source, index) =>
+  return Arr.map(input, (source, index) =>
     ContentReleaseItemSchema.make({
       change: {
         artifactHash,
@@ -71,11 +78,11 @@ function itemsFor(input: readonly CompileDocumentSource[]) {
 /** Supplies the exact raw bytes for the selected test-only source paths. */
 function sourceProcess(
   input: readonly CompileDocumentSource[],
-  commands?: ExactProcessInput[]
+  commands?: MutableList.MutableList<ExactProcessInput>
 ) {
   return makeGitProcess(
     {
-      blobs: input.map((source) => [
+      blobs: Arr.map(input, (source) => [
         source.sourcePath,
         new TextEncoder().encode(source.rawMdx),
       ]),
@@ -111,26 +118,29 @@ describe("GitPublicationSourceLive", () => {
     "reads 257 sources in three bounded batches while preserving signed order",
     () =>
       Effect.gen(function* () {
-        const input = sources(257).reverse();
-        const commands: ExactProcessInput[] = [];
+        const input = Arr.reverse(sources(257));
+        const commands = MutableList.make<ExactProcessInput>();
         expect(
           yield* loadSources(
             sourceProcess(input, commands),
             Stream.fromIterable(itemsFor(input))
           )
         ).toEqual(input);
-        expect(commands).toHaveLength(9);
-        const metadata = commands.filter(({ args }) =>
+        expect(MutableList.toArray(commands)).toHaveLength(9);
+        const metadata = Arr.filter(MutableList.toArray(commands), ({ args }) =>
           args.includes("--batch-check")
         );
         expect(
-          metadata.map(
+          Arr.map(
+            metadata,
             ({ stdin }) =>
               new TextDecoder().decode(stdin).trimEnd().split("\n").length
           )
         ).toEqual([128, 128, 1]);
         expect(
-          commands.filter(({ args }) => args.includes("--batch"))
+          Arr.filter(MutableList.toArray(commands), ({ args }) =>
+            args.includes("--batch")
+          )
         ).toHaveLength(3);
       })
   );
@@ -148,16 +158,16 @@ describe("GitPublicationSourceLive", () => {
           contentKey: ContentKeySchema.make("test:git-source-shared"),
         });
         const input = [first, duplicate];
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         expect(
           yield* loadSources(
             sourceProcess(input, commands),
             Stream.fromIterable(itemsFor(input))
           )
         ).toEqual(input);
-        expect(new TextDecoder().decode(commands[1]?.stdin)).toBe(
-          `${TEST_COMMIT_SHA}:${first.sourcePath}\n`
-        );
+        expect(
+          new TextDecoder().decode(MutableList.toArray(commands)[1]?.stdin)
+        ).toBe(`${TEST_COMMIT_SHA}:${first.sourcePath}\n`);
       })
   );
 
@@ -166,7 +176,7 @@ describe("GitPublicationSourceLive", () => {
     () =>
       Effect.gen(function* () {
         const input = sources(257);
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         let pulled = 0;
         const items = Stream.fromIterable(itemsFor(input)).pipe(
           Stream.mapEffect((item) =>
@@ -180,7 +190,7 @@ describe("GitPublicationSourceLive", () => {
           yield* loadSources(sourceProcess(input, commands), items, 1)
         ).toEqual(input.slice(0, 1));
         expect(pulled).toBe(MAX_GIT_BATCH_BLOBS);
-        expect(commands).toHaveLength(3);
+        expect(MutableList.toArray(commands)).toHaveLength(3);
       })
   );
 
@@ -188,7 +198,7 @@ describe("GitPublicationSourceLive", () => {
     "does not start Git for empty input or a failed upstream batch",
     () =>
       Effect.gen(function* () {
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         const process = sourceProcess([], commands);
         expect(yield* loadSources(process, Stream.empty)).toEqual([]);
         const failure = new PublicationSourceError({
@@ -200,7 +210,7 @@ describe("GitPublicationSourceLive", () => {
           Effect.flip
         );
         expect(error).toBe(failure);
-        expect(commands).toEqual([]);
+        expect(MutableList.toArray(commands)).toEqual([]);
       })
   );
 
@@ -208,7 +218,7 @@ describe("GitPublicationSourceLive", () => {
     "rejects a delete item before reading any source in its batch",
     () =>
       Effect.gen(function* () {
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         const deletion = ContentReleaseItemSchema.make({
           change: {
             artifactLocale: ArtifactLocaleSchema.make("en"),
@@ -228,7 +238,7 @@ describe("GitPublicationSourceLive", () => {
           aksaraSha: TEST_COMMIT_SHA,
         });
         expect(error.message).toContain("upsert items only");
-        expect(commands).toEqual([]);
+        expect(MutableList.toArray(commands)).toEqual([]);
       })
   );
 

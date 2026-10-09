@@ -57,7 +57,7 @@ export function replaceMaterialPlanHead(
   publishedHeads: readonly MaterialHead[],
   replacement: MaterialHead
 ) {
-  return publishedHeads.map((head) =>
+  return Arr.map(publishedHeads, (head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
       ? replacement
@@ -69,8 +69,9 @@ export function replaceMaterialPlanHead(
 const makeMaterialPlanTestFixtures = Effect.fn("MaterialPlanTest.makeFixtures")(
   function* () {
     const publishedHeads = yield* publishedMaterialHeads();
-    const englishHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const englishHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === functionContentKey && artifactLocale === "en"
       )

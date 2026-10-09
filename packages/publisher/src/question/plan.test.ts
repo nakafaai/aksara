@@ -4,6 +4,7 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import {
+  Array as Arr,
   Context,
   Effect,
   Layer,
@@ -59,7 +60,7 @@ function replaceHead(
   publishedHeads: readonly QuestionHead[],
   replacement: QuestionHead
 ) {
-  return publishedHeads.map((head) =>
+  return Arr.map(publishedHeads, (head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
       ? replacement
@@ -71,14 +72,16 @@ function replaceHead(
 const makePlanTestFixtures = Effect.fn("QuestionPlanTest.makeFixtures")(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
-    const promptEntry = yield* Effect.fromNullishOr(
-      questionEntries.find(
+    const promptEntry = yield* Effect.fromOption(
+      Arr.findFirst(
+        questionEntries,
         ({ bodyKind, artifactLocale }) =>
           bodyKind === "question" && artifactLocale === "id"
       )
     );
-    const promptHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const promptHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey, artifactLocale }) =>
           contentKey === promptEntry.contentKey && artifactLocale === "id"
       )
@@ -205,7 +208,7 @@ layer(Layer.merge(planTestLayer, Path.layer))("question plan", (it) => {
 
       expect(records).toHaveLength(4);
       expect(
-        records.every(({ record }) => record.change.operation === "upsert")
+        Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
       expect(compilerState.calls).toBe(4);
     })

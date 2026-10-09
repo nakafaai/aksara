@@ -7,7 +7,15 @@ import {
   type ExactProcessInput,
   ExactProcessLive,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem, Layer, MutableHashMap, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Layer,
+  MutableHashMap,
+  MutableList,
+  Option,
+} from "effect";
 import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
@@ -58,11 +66,11 @@ describe("GitBlob", () => {
 
   it.effect("returns an empty batch without starting Git", () =>
     Effect.gen(function* () {
-      const commands: ExactProcessInput[] = [];
+      const commands = MutableList.make<ExactProcessInput>();
       expect(yield* readTestBlobs(makeGitProcess({}, commands), [])).toEqual(
         MutableHashMap.empty()
       );
-      expect(commands).toEqual([]);
+      expect(MutableList.toArray(commands)).toEqual([]);
     })
   );
 
@@ -70,7 +78,7 @@ describe("GitBlob", () => {
     "bounds the input before starting Git and deduplicates shared paths",
     () =>
       Effect.gen(function* () {
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         const oversized = yield* readTestBlobs(
           makeGitProcess({}, commands),
           Array.from(
@@ -79,17 +87,17 @@ describe("GitBlob", () => {
           )
         ).pipe(Effect.flip);
         expect(oversized).toMatchObject({ operation: "resolve-commit" });
-        expect(commands).toEqual([]);
+        expect(MutableList.toArray(commands)).toEqual([]);
         expect(
           yield* readTestBlobs(makeGitProcess({}, commands), [
             TEST_SOURCE_PATH,
             TEST_SOURCE_PATH,
           ])
         ).toEqual(MutableHashMap.make([TEST_SOURCE_PATH, TEST_RAW_MDX]));
-        expect(commands).toHaveLength(3);
-        expect(new TextDecoder().decode(commands[1]?.stdin)).toBe(
-          `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}\n`
-        );
+        expect(MutableList.toArray(commands)).toHaveLength(3);
+        expect(
+          new TextDecoder().decode(MutableList.toArray(commands)[1]?.stdin)
+        ).toBe(`${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH}\n`);
       })
   );
 
@@ -110,11 +118,11 @@ describe("GitBlob", () => {
     "preflights exact paths before requesting immutable object bodies",
     () =>
       Effect.gen(function* () {
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         expect(yield* readTestBlob(makeGitProcess({}, commands))).toBe(
           TEST_RAW_MDX
         );
-        expect(commands).toEqual([
+        expect(MutableList.toArray(commands)).toEqual([
           yield* makeExactGitInput({
             args: [
               "rev-parse",
@@ -155,7 +163,7 @@ describe("GitBlob", () => {
           `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH} missing\n`,
           `${testBlobId(TEST_RAW_BYTES)} tree 4\n`,
         ]) {
-          const commands: ExactProcessInput[] = [];
+          const commands = MutableList.make<ExactProcessInput>();
           const error = yield* readTestBlob(
             makeGitProcess({ metadata }, commands)
           ).pipe(Effect.flip);
@@ -163,10 +171,13 @@ describe("GitBlob", () => {
             _tag: "GitBlobError",
             operation: "size-blob",
           });
-          expect(commands).toHaveLength(2);
-          expect(commands.every(({ args }) => !args.includes("--batch"))).toBe(
-            true
-          );
+          expect(MutableList.toArray(commands)).toHaveLength(2);
+          expect(
+            Arr.every(
+              MutableList.toArray(commands),
+              ({ args }) => !args.includes("--batch")
+            )
+          ).toBe(true);
         }
       })
   );
@@ -193,12 +204,12 @@ describe("GitBlob", () => {
         [{ failure }, { metadataFailure: failure }, { batchFailure: failure }],
         (overrides) => readTestBlob(makeGitProcess(overrides)).pipe(Effect.flip)
       );
-      expect(errors.map(({ operation }) => operation)).toEqual([
+      expect(Arr.map(errors, ({ operation }) => operation)).toEqual([
         "resolve-commit",
         "size-blob",
         "read-blob",
       ]);
-      expect(errors.every(({ cause }) => cause === failure)).toBe(true);
+      expect(Arr.every(errors, ({ cause }) => cause === failure)).toBe(true);
     })
   );
 
