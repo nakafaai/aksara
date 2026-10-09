@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import {
   decodeProgramCatalog,
@@ -43,7 +43,7 @@ const duplicateOwnershipCases = [
       { ...first },
       {
         ...second,
-        translations: second.translations.map((translation) =>
+        translations: Arr.map(second.translations, (translation) =>
           translation.appLocale === "en" ? first.translations[0] : translation
         ),
       },
@@ -61,7 +61,7 @@ describe("learning program catalog", () => {
     Effect.gen(function* () {
       const programs = yield* decodeProgramCatalog();
 
-      expect(programs.map(({ key }) => key)).toEqual([
+      expect(Arr.map(programs, ({ key }) => key)).toEqual([
         "merdeka",
         "cambridge-international",
         "singapore-moe",
@@ -69,15 +69,19 @@ describe("learning program catalog", () => {
         "tka",
         "snbt",
       ]);
-      expect(programs.map(({ displayOrder }) => displayOrder)).toEqual([
+      expect(Arr.map(programs, ({ displayOrder }) => displayOrder)).toEqual([
         10, 20, 30, 40, 50, 60,
       ]);
-      expect(programs.every(({ sources: refs }) => refs.length > 0)).toBe(true);
+      expect(Arr.every(programs, ({ sources: refs }) => refs.length > 0)).toBe(
+        true
+      );
       expect(
-        programs.every(
+        Arr.every(
+          programs,
           ({ translations }) =>
             translations.length === ACTIVE_APP_LOCALES.length &&
-            translations.every(
+            Arr.every(
+              translations,
               ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALES[index]
             )
         )
@@ -115,7 +119,8 @@ describe("learning program catalog", () => {
       const error = yield* reject([
         {
           ...first,
-          translations: first.translations.filter(
+          translations: Arr.filter<ProgramSource["translations"][number]>(
+            first.translations,
             ({ appLocale }) => appLocale !== "id"
           ),
         },
@@ -131,7 +136,7 @@ describe("learning program catalog", () => {
       const error = yield* reject([
         {
           ...first,
-          translations: [...first.translations].reverse(),
+          translations: Arr.reverse(first.translations),
         },
       ]);
 
@@ -143,7 +148,7 @@ describe("learning program catalog", () => {
     "sorts valid source rows instead of trusting authored array order",
     () =>
       Effect.gen(function* () {
-        const programs = yield* decodeProgramCatalog([...sources].reverse());
+        const programs = yield* decodeProgramCatalog(Arr.reverse(sources));
 
         expect(programs.at(0)?.key).toBe("merdeka");
         expect(programs.at(-1)?.key).toBe("snbt");

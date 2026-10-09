@@ -1,5 +1,5 @@
 import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
-import { Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Order, Schema } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { LearningProgramSourceSchema } from "#corpus/program/schema";
 import { schoolProgramSources } from "#corpus/program/school";
@@ -56,8 +56,10 @@ const validateProgramCatalog = Effect.fn("AksaraCorpus.validateProgramCatalog")(
       }
     }
 
-    return [...programs].sort(
-      (left, right) => left.displayOrder - right.displayOrder
+    return Arr.sortWith(
+      programs,
+      (program) => program.displayOrder,
+      Order.Number
     );
   }
 );
