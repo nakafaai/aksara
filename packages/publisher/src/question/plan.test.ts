@@ -1,4 +1,3 @@
-import { resolve } from "node:path";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import {
   type QuestionHead,
@@ -94,7 +93,7 @@ beforeEach(() => {
   compilerState.calls = 0;
 });
 
-layer(planTestLayer)("question plan", (it) => {
+layer(Layer.merge(planTestLayer, Path.layer))("question plan", (it) => {
   it.effect(
     "emits no records and performs no compilation for matching heads",
     () =>
@@ -113,7 +112,8 @@ layer(planTestLayer)("question plan", (it) => {
     Effect.gen(function* () {
       const { promptEntry, publishedHeads } = yield* QuestionPlanTestFixtures;
       const sources = new Map(sourceByPath);
-      const absolutePath = resolve(checkoutRoot, promptEntry.sourcePath);
+      const path = yield* Path.Path;
+      const absolutePath = path.resolve(checkoutRoot, promptEntry.sourcePath);
       const source = yield* Effect.fromNullishOr(sources.get(absolutePath));
       sources.set(absolutePath, `${source}\n`);
 
