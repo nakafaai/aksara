@@ -48,14 +48,8 @@ export class RouteDigestError extends Schema.TaggedError<RouteDigestError>()(
   }
 ) {}
 
-/** Creates the route state that one stream of routes shares while it decodes. */
-function routeState(): {
-  firstIndex: MutableHashMap.MutableHashMap<string, number>;
-} {
-  return { firstIndex: MutableHashMap.empty<string, number>() };
-}
-
-type RouteState = ReturnType<typeof routeState>;
+/** The item index that first bound each route identity in one stream of routes. */
+type FirstRouteIndex = MutableHashMap.MutableHashMap<string, number>;
 
 const VerifiedContentRoutesSchema = Schema.Struct({
   count: Schema.Finite,
@@ -67,7 +61,7 @@ export type VerifiedContentRoutes = typeof VerifiedContentRoutesSchema.Type;
 /** Decodes one route and applies release, index, and uniqueness invariants. */
 function decodeRoute(
   manifest: ContentReleaseManifest,
-  state: RouteState,
+  firstRouteIndex: FirstRouteIndex,
   source: unknown,
   routeOffset: number
 ) {
@@ -83,7 +77,7 @@ function decodeRoute(
     Effect.flatMap((item) => {
       const identity = routeIdentity(item.change);
       const firstIndex = Option.getOrUndefined(
-        MutableHashMap.get(state.firstIndex, identity)
+        MutableHashMap.get(firstRouteIndex, identity)
       );
       if (firstIndex !== undefined) {
         return Effect.fail(
@@ -93,7 +87,7 @@ function decodeRoute(
           })
         );
       }
-      MutableHashMap.set(state.firstIndex, identity, item.index);
+      MutableHashMap.set(firstRouteIndex, identity, item.index);
       return Effect.succeed(item);
     })
   );
@@ -106,11 +100,11 @@ export function decodeContentRoutes<E, R>(input: {
 }) {
   return Stream.unwrap(
     Effect.sync(() => {
-      const state = routeState();
+      const firstRouteIndex = MutableHashMap.empty<string, number>();
       return input.routes.pipe(
         Stream.zipWithIndex,
         Stream.mapEffect(([source, routeOffset]) =>
-          decodeRoute(input.manifest, state, source, routeOffset)
+          decodeRoute(input.manifest, firstRouteIndex, source, routeOffset)
         )
       );
     })

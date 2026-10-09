@@ -4,7 +4,7 @@ import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import { encodeJsonText } from "#contracts/text/json";
 
 /** The app locales seen for each logical row identity. */
-export type LocalesByIdentity = MutableHashMap.MutableHashMap<
+type LocalesByIdentity = MutableHashMap.MutableHashMap<
   string,
   MutableHashSet.MutableHashSet<AppLocale>
 >;

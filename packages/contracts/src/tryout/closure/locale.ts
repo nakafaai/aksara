@@ -10,7 +10,6 @@ import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import {
   addLocale,
-  type LocalesByIdentity,
   TryoutClosureError,
   validateLocales,
 } from "#contracts/tryout/closure/accounting";
@@ -28,18 +27,12 @@ import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
 import {
   makeTryoutScoringFacts,
   recordTryoutScoringFacts,
-  type TryoutScoringFacts,
   validateTryoutPlacementScoring,
   validateTryoutScoringFacts,
 } from "#contracts/tryout/scoring";
 
 /** Creates the catalog facts that one stream of catalog rows shares while it folds. */
-function catalogClosureState(): {
-  factsByIdentity: MutableHashMap.MutableHashMap<string, string>;
-  localesByIdentity: LocalesByIdentity;
-  scoring: TryoutScoringFacts;
-  sections: MutableHashMap.MutableHashMap<string, number>;
-} {
+function catalogClosureState() {
   return {
     factsByIdentity: MutableHashMap.empty<string, string>(),
     localesByIdentity: MutableHashMap.empty<
@@ -54,12 +47,7 @@ function catalogClosureState(): {
 type CatalogClosureState = ReturnType<typeof catalogClosureState>;
 
 /** Creates the placement facts that one stream of placements shares while it folds. */
-function placementClosureState(): {
-  assessedFacts: MutableHashMap.MutableHashMap<string, string>;
-  countsBySectionLocale: MutableHashMap.MutableHashMap<string, number>;
-  factsByIdentity: MutableHashMap.MutableHashMap<string, string>;
-  localesByIdentity: LocalesByIdentity;
-} {
+function placementClosureState() {
   return {
     assessedFacts: MutableHashMap.empty<string, string>(),
     countsBySectionLocale: MutableHashMap.empty<string, number>(),
