@@ -14,58 +14,54 @@ import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
   type ContentReleaseManifest,
+  ReleaseCountSchema,
 } from "#contracts/release/spec";
-
-const ItemCountSchema = Schema.Finite.pipe(
-  Schema.check(Schema.isInt()),
-  Schema.check(Schema.isGreaterThanOrEqualTo(0))
-);
 
 /** One release item failed strict wire decoding. */
 export class ReleaseItemDecodeError extends Schema.TaggedError<ReleaseItemDecodeError>()(
   "ReleaseItemDecodeError",
-  { itemOffset: ItemCountSchema }
+  { itemOffset: ReleaseCountSchema }
 ) {}
 
 /** The separate item stream does not have the signed manifest length. */
 export class ReleaseItemCountMismatchError extends Schema.TaggedError<ReleaseItemCountMismatchError>()(
   "ReleaseItemCountMismatchError",
-  { actualCount: ItemCountSchema, expectedCount: ItemCountSchema }
+  { actualCount: ReleaseCountSchema, expectedCount: ReleaseCountSchema }
 ) {}
 
 /** Upsert and delete totals do not match the counts signed by the manifest. */
 export class ReleaseItemOperationCountMismatchError extends Schema.TaggedError<ReleaseItemOperationCountMismatchError>()(
   "ReleaseItemOperationCountMismatchError",
   {
-    actualDeletes: ItemCountSchema,
-    actualUpserts: ItemCountSchema,
-    expectedDeletes: ItemCountSchema,
-    expectedUpserts: ItemCountSchema,
+    actualDeletes: ReleaseCountSchema,
+    actualUpserts: ReleaseCountSchema,
+    expectedDeletes: ReleaseCountSchema,
+    expectedUpserts: ReleaseCountSchema,
   }
 ) {}
 
 /** An item belongs to another release envelope. */
 export class ReleaseItemReleaseMismatchError extends Schema.TaggedError<ReleaseItemReleaseMismatchError>()(
   "ReleaseItemReleaseMismatchError",
-  { itemOffset: ItemCountSchema, releaseId: ReleaseIdSchema }
+  { itemOffset: ReleaseCountSchema, releaseId: ReleaseIdSchema }
 ) {}
 
 /** An item is missing, duplicated, or out of its signed sequence. */
 export class ReleaseItemIndexMismatchError extends Schema.TaggedError<ReleaseItemIndexMismatchError>()(
   "ReleaseItemIndexMismatchError",
-  { actualIndex: ItemCountSchema, expectedIndex: ItemCountSchema }
+  { actualIndex: ReleaseCountSchema, expectedIndex: ReleaseCountSchema }
 ) {}
 
 /** Item heads are duplicated or not in canonical content-head order. */
 export class ReleaseItemOrderError extends Schema.TaggedError<ReleaseItemOrderError>()(
   "ReleaseItemOrderError",
-  { itemOffset: ItemCountSchema }
+  { itemOffset: ReleaseCountSchema }
 ) {}
 
 /** One signed item falls outside the release's exact publication scope. */
 export class ReleaseItemScopeError extends Schema.TaggedError<ReleaseItemScopeError>()(
   "ReleaseItemScopeError",
-  { itemOffset: ItemCountSchema }
+  { itemOffset: ReleaseCountSchema }
 ) {}
 
 /** The separate ordered items do not match the signed digest. */

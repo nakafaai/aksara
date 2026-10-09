@@ -10,31 +10,29 @@ import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,
 } from "#contracts/release/mismatch";
-import type { ContentReleaseManifest } from "#contracts/release/spec";
-
-const ProjectionIndexSchema = Schema.Finite.pipe(
-  Schema.check(Schema.isInt()),
-  Schema.check(Schema.isGreaterThanOrEqualTo(0))
-);
+import {
+  type ContentReleaseManifest,
+  ReleaseCountSchema,
+} from "#contracts/release/spec";
 
 /** One streamed projection failed strict schema decoding. */
 export class ProjectionDecodeError extends Schema.TaggedError<ProjectionDecodeError>()(
   "ProjectionDecodeError",
-  { projectionIndex: ProjectionIndexSchema }
+  { projectionIndex: ReleaseCountSchema }
 ) {}
 
 /** Projections are duplicated or not in canonical content-head order. */
 export class ProjectionOrderError extends Schema.TaggedError<ProjectionOrderError>()(
   "ProjectionOrderError",
-  { projectionIndex: ProjectionIndexSchema }
+  { projectionIndex: ReleaseCountSchema }
 ) {}
 
 /** Two content projections claim the same locale-specific public route. */
 export class ProjectionRouteError extends Schema.TaggedError<ProjectionRouteError>()(
   "ProjectionRouteError",
   {
-    duplicateIndex: ProjectionIndexSchema,
-    firstIndex: ProjectionIndexSchema,
+    duplicateIndex: ReleaseCountSchema,
+    firstIndex: ReleaseCountSchema,
     publicPath: PublicPathSchema,
   }
 ) {}

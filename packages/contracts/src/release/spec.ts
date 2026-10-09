@@ -218,19 +218,9 @@ function hasCoherentVerificationCounts(input: {
   );
 }
 
-/** Immutable active catalog identity that one release replaces or verifies. */
-export const ActiveCatalogIdentitySchema = Schema.Struct({
-  activeAppLocales: ActiveAppLocaleListSchema,
-  manifestHash: Sha256HashSchema,
-  releaseId: ReleaseIdSchema,
-  resultCount: ReleaseCountSchema,
-  resultDigest: Sha256HashSchema,
-  snapshots: ContentSnapshotSetSchema,
-});
-
 /** Pre-activation evidence proving the fully staged release is coherent. */
 export const ReleaseVerificationEvidenceSchema = Schema.Struct({
-  activeAppLocales: ActiveCatalogIdentitySchema.fields.activeAppLocales,
+  activeAppLocales: ActiveAppLocaleListSchema,
   baseActiveAppLocales: Schema.NullOr(ActiveAppLocaleListSchema),
   baseManifestHash: Schema.NullOr(Sha256HashSchema),
   baseReleaseId: Schema.NullOr(ReleaseIdSchema),
@@ -239,18 +229,18 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   deleteHeads: ReleaseCountSchema,
   itemCount: ReleaseCountSchema,
   itemsDigest: Sha256HashSchema,
-  manifestHash: ActiveCatalogIdentitySchema.fields.manifestHash,
+  manifestHash: Sha256HashSchema,
   projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
-  releaseId: ActiveCatalogIdentitySchema.fields.releaseId,
+  releaseId: ReleaseIdSchema,
   rendererManifestHash: Sha256HashSchema,
-  resultCount: ActiveCatalogIdentitySchema.fields.resultCount,
-  resultDigest: ActiveCatalogIdentitySchema.fields.resultDigest,
+  resultCount: ReleaseCountSchema,
+  resultDigest: Sha256HashSchema,
   rollbackCount: ReleaseCountSchema,
   rollbackDigest: Sha256HashSchema,
   routeCount: ReleaseCountSchema,
   routeDigest: Sha256HashSchema,
-  snapshots: ActiveCatalogIdentitySchema.fields.snapshots,
+  snapshots: ContentSnapshotSetSchema,
   stagedArtifacts: ReleaseCountSchema,
   stagedRoutes: ReleaseCountSchema,
   stagedSnapshotRows: ReleaseCountSchema,
