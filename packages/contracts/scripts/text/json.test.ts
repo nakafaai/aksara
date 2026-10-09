@@ -35,12 +35,14 @@ describe("JSON text codec", () => {
 
   it("writes two-space indented text with the bytes of JSON.stringify(value, null, 2)", () => {
     const nested = {
+      label: "\u{d1}",
       name: "contracts",
       nested: { empty: {}, items: [1, "two", { ok: true }] },
     };
     expect(encodePrettyJsonText(nested)).toBe(
       [
         "{",
+        '  "label": "\u{d1}",',
         '  "name": "contracts",',
         '  "nested": {',
         '    "empty": {},',
