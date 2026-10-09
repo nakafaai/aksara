@@ -1,4 +1,4 @@
-import { Effect, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
 import { ChildProcess, type ChildProcessSpawner } from "effect/process";
 import { collectText } from "#scripts/output";
 
@@ -75,7 +75,7 @@ export function decodeRegistryVersion(output: CommandOutput, registry: string) {
 
 /** Decodes the unresolved dependency names returned by `pnpm outdated`. */
 export function decodeOutdatedDependencies(output: CommandOutput) {
-  if (![0, 1].includes(output.exitCode)) {
+  if (!Arr.contains([0, 1], output.exitCode)) {
     return Effect.fail(
       new DependencyCommandError({
         message: output.stderr.trim() || "pnpm outdated failed.",

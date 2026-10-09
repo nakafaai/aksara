@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 import { importViolations } from "#scripts/imports/boundary";
 import { createManifestReader } from "#scripts/imports/fixture";
 import { createWorkspaceIdentityResolver } from "#scripts/imports/workspace";
@@ -44,7 +44,7 @@ const multiple = require("first", "second");
             source,
             resolveIdentity
           ),
-          (diagnostic) => diagnostic.split(": ").at(-1)
+          (diagnostic) => Option.getOrThrow(Arr.last(diagnostic.split(": ")))
         )
       ).toEqual([
         "private alias owned by another workspace",

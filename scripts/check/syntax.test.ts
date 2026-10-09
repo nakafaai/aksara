@@ -11,7 +11,7 @@ layer(TypeScriptParser.layer)("syntax nodes", (it) => {
       const kinds = yield* parser.inspect(
         { fileName: "order.ts", source: "f(a);\nconst b = 1;" },
         ({ sourceFile }) =>
-          Arr.map(syntaxNodes(sourceFile).slice(0, 3), (node) => node.kind)
+          Arr.map(Arr.take(syntaxNodes(sourceFile), 3), (node) => node.kind)
       );
 
       expect(kinds).toEqual([

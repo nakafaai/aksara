@@ -1,4 +1,4 @@
-import { Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Schema } from "effect";
 import { runEntry } from "#scripts/entry";
 import { SigstoreProvenanceBundleVerifierLive } from "#scripts/provenance/bundle";
 import {
@@ -60,7 +60,7 @@ export const runProvenanceMain = Effect.fn("AksaraProvenance.runMain")(
 
 runEntry(
   import.meta.main,
-  runProvenanceMain(process.argv.slice(2)).pipe(
+  runProvenanceMain(Arr.drop(process.argv, 2)).pipe(
     Effect.provide(SigstoreProvenanceBundleVerifierLive)
   ),
   { failureStream: "stdout" }

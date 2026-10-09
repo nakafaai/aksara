@@ -1,4 +1,4 @@
-import { Array as Arr, Effect, HashSet } from "effect";
+import { Array as Arr, Effect, HashSet, Option } from "effect";
 
 import { enforceViolations, trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
@@ -78,17 +78,20 @@ function isQuestionSource(segments: readonly string[]) {
   }
 
   const questionIndex = segments.length - 2;
-  const hierarchy = segments.slice(QUESTION_BANK_PREFIX.length, questionIndex);
-  const question = segments.at(questionIndex);
-  const source = segments.at(-1);
+  const hierarchy = Arr.take(
+    Arr.drop(segments, QUESTION_BANK_PREFIX.length),
+    questionIndex - QUESTION_BANK_PREFIX.length
+  );
+  const question = Arr.get(segments, questionIndex);
+  const source = Arr.last(segments);
 
   return (
     hierarchy.length >= 4 &&
     Arr.every(hierarchy, (segment) => SOURCE_KEY_PATTERN.test(segment)) &&
-    question !== undefined &&
-    QUESTION_SEGMENT_PATTERN.test(question) &&
-    source !== undefined &&
-    QUESTION_SOURCE_PATTERN.test(source)
+    Option.exists(question, (segment) =>
+      QUESTION_SEGMENT_PATTERN.test(segment)
+    ) &&
+    Option.exists(source, (name) => QUESTION_SOURCE_PATTERN.test(name))
   );
 }
 
@@ -133,7 +136,8 @@ function isConventionalFile(file: string, basename: string) {
 export function pathViolations(files: readonly string[]): readonly string[] {
   const tracked = HashSet.fromIterable(files);
   return Arr.flatMap(files, (file) => {
-    const basename = file.split("/").at(-1);
+    const segments = file.split("/");
+    const basename = Option.getOrThrow(Arr.last(segments));
     const toolchainViolation =
       basename && HashSet.has(FORBIDDEN_FILE_NAMES, basename)
         ? [`${file}: pnpm and package.json own the toolchain contract`]
@@ -151,7 +155,6 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       !FINAL_TEST_FILE_PATTERN.test(file)
         ? [`${file}: final tests must use .test.ts`]
         : [];
-    const segments = file.split("/");
     const nameViolations = Arr.flatMap(segments, (segment, index) => {
       const isFile = index === segments.length - 1;
       if (
