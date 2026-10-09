@@ -29,16 +29,12 @@ export class TryoutScoringError extends Schema.TaggedError<TryoutScoringError>()
 ) {}
 
 /** Creates empty scoring facts for one snapshot verification pass. */
-export function makeTryoutScoringFacts(): {
-  readonly exams: MutableHashMap.MutableHashMap<string, TryoutScoring>;
-  readonly sections: MutableList.MutableList<TryoutSection>;
-  readonly sets: MutableHashMap.MutableHashMap<string, TryoutSet>;
-} {
+export function makeTryoutScoringFacts() {
   return {
-    exams: MutableHashMap.empty(),
+    exams: MutableHashMap.empty<string, TryoutScoring>(),
     sections: MutableList.make<TryoutSection>(),
-    sets: MutableHashMap.empty(),
-  };
+    sets: MutableHashMap.empty<string, TryoutSet>(),
+  } as const;
 }
 
 /** Exam strategies, sets, and sections gathered while a catalog is read. */
