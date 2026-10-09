@@ -26,7 +26,13 @@ export class PreviewWatchError extends Schema.TaggedError<PreviewWatchError>()(
 ) {}
 
 /** Creates the empty watch state of one physical directory. */
-function emptyWatchedDirectory() {
+function emptyWatchedDirectory(): {
+  readonly files: MutableHashMap.MutableHashMap<
+    string,
+    SelectedDocument["files"][number]
+  >;
+  topology: Option.Option<SelectedDirectory>;
+} {
   return {
     files: MutableHashMap.empty<string, SelectedDocument["files"][number]>(),
     topology: Option.none<SelectedDirectory>(),
