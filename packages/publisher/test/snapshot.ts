@@ -66,7 +66,7 @@ type ProgramFixtureError = Effect.Error<
 >;
 type ProgramRows = ProgramPreparation["rows"];
 
-export interface ProgramFixture {
+interface ProgramFixture {
   readonly snapshot: Extract<
     ContentSnapshotManifest,
     { readonly family: "program" }

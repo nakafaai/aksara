@@ -44,7 +44,7 @@ const ContentCatalogBaseSchema = Schema.Struct({
 });
 
 /** Signed identity of the complete active result catalog. */
-export type ContentCatalogBase = typeof ContentCatalogBaseSchema.Type;
+type ContentCatalogBase = typeof ContentCatalogBaseSchema.Type;
 
 /** A genesis publication found active heads without an authenticated base. */
 export class CatalogGenesisError extends Schema.TaggedError<CatalogGenesisError>()(
@@ -71,7 +71,7 @@ export interface ContentCatalogPublication {
 }
 
 /** Exact checkout, renderer, base, and family heads for one fresh release. */
-export interface ContentCatalogPublicationInput<E, R> {
+interface ContentCatalogPublicationInput<E, R> {
   readonly base: ContentCatalogBase | null;
   readonly checkoutRoot: string;
   readonly published: {
@@ -90,7 +90,7 @@ type ResultCatalogError = Effect.Error<
 >;
 
 /** Every expected failure before a replayable whole-catalog plan exists. */
-export type PrepareContentCatalogError<E> =
+type PrepareContentCatalogError<E> =
   | E
   | CatalogGenesisError
   | PrepareArticlePublicationError<ReplaySpoolError>

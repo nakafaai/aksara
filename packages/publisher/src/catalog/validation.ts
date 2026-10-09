@@ -25,7 +25,7 @@ const CountSchema = Schema.Int.pipe(
 );
 
 /** Exact full-corpus evidence returned by a read-only catalog check. */
-export const ContentCatalogValidationSchema = Schema.Struct({
+const ContentCatalogValidationSchema = Schema.Struct({
   articleCount: CountSchema,
   materialCount: CountSchema,
   pageCount: CountSchema,
@@ -38,8 +38,7 @@ export const ContentCatalogValidationSchema = Schema.Struct({
   snapshots: CatalogSnapshotEvidenceSchema,
   totalCount: CountSchema,
 });
-export type ContentCatalogValidation =
-  typeof ContentCatalogValidationSchema.Type;
+type ContentCatalogValidation = typeof ContentCatalogValidationSchema.Type;
 
 /** One prepared count differs from its authoritative source inventory. */
 export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogCountError>()(

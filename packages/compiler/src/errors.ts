@@ -13,7 +13,7 @@ export class MdxCompilationError extends Schema.TaggedError<MdxCompilationError>
 ) {}
 
 /** Redacted location and statement class for unsupported MDX module syntax. */
-export const UnsupportedMdxModuleOccurrenceSchema = Schema.Struct({
+const UnsupportedMdxModuleOccurrenceSchema = Schema.Struct({
   column: Schema.Finite.pipe(
     Schema.check(Schema.isInt()),
     Schema.check(Schema.isGreaterThan(0))
@@ -48,7 +48,7 @@ export class RendererComponentMissingError extends Schema.TaggedError<RendererCo
 ) {}
 
 /** One AST-level executable capability rejected by the trusted-author policy. */
-export const ExecutablePolicyViolationSchema = Schema.Struct({
+const ExecutablePolicyViolationSchema = Schema.Struct({
   identifier: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),
   rule: Schema.Literals([
     "dynamic-import",
@@ -78,7 +78,7 @@ export class ExecutablePolicyError extends Schema.TaggedError<ExecutablePolicyEr
 ) {}
 
 /** Stable source-level causes for rejecting one MathVisual component. */
-export const MathVisualSourceReasonSchema = Schema.Literals([
+const MathVisualSourceReasonSchema = Schema.Literals([
   "attribute-duplicate",
   "attribute-spread",
   "attribute-unexpected",
@@ -131,7 +131,7 @@ const MathVisualSchemaViolationSchema = Schema.Struct({
 });
 
 /** Typed source or schema finding produced by static MathVisual validation. */
-export const MathVisualPolicyViolationSchema = Schema.Union([
+const MathVisualPolicyViolationSchema = Schema.Union([
   MathVisualSourceViolationSchema,
   MathVisualSchemaViolationSchema,
 ]);

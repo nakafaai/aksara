@@ -8,7 +8,7 @@ export type RestartDependencyLookup = (
 ) => ReturnType<typeof restartDependencies>;
 
 /** Converts one static source-module closure into restart dependencies. */
-export const restartDependencies = Effect.fn(
+const restartDependencies = Effect.fn(
   "AksaraCorpus.restartPreviewDependencies"
 )(function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
   const dependencies = yield* discoverSourceDependencies(

@@ -76,7 +76,7 @@ const IncrementalResultSchema = Schema.Union([
 export const IncrementalResultKindSchema = Schema.Union(
   Arr.map(IncrementalResultSchema.members, (member) => member.fields.kind)
 );
-export type IncrementalResult = typeof IncrementalResultSchema.Type;
+type IncrementalResult = typeof IncrementalResultSchema.Type;
 
 /** Serializes identity fields in one stable cross-machine order. */
 function canonicalizeIdentity(identity: CompileIdentity) {

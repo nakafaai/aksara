@@ -40,7 +40,7 @@ export function createMetadataCollector() {
 }
 
 /** Mutable metadata state scoped to one official MDX compilation. */
-export type MetadataCollector = ReturnType<typeof createMetadataCollector>;
+type MetadataCollector = ReturnType<typeof createMetadataCollector>;
 
 /** Exact source and UTF-16 offsets occupied by one validated metadata export. */
 const MetadataSourceRangeSchema = Schema.Struct({

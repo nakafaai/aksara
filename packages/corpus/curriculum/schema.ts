@@ -13,7 +13,7 @@ import { MaterialCardDescriptionSchema } from "#corpus/material/description";
 import { PublicRouteSegmentSchema } from "#corpus/route/schema";
 
 /** Localized title and route segment owned by one curriculum node. */
-export const CurriculumNodeTranslationSchema = Schema.Struct({
+const CurriculumNodeTranslationSchema = Schema.Struct({
   routeSlug: PublicRouteSegmentSchema,
   title: Schema.String,
 });
@@ -24,7 +24,7 @@ export const CurriculumNodeTranslationMapSchema = localizedSourceMapSchema(
 );
 
 /** Complete localized group labels attached to one navigation row. */
-export const CurriculumDisplayGroupSchema = Schema.Struct({
+const CurriculumDisplayGroupSchema = Schema.Struct({
   title: Schema.String,
 });
 export const CurriculumDisplayGroupMapSchema = localizedSourceMapSchema(
@@ -32,7 +32,7 @@ export const CurriculumDisplayGroupMapSchema = localizedSourceMapSchema(
 );
 
 /** Complete localized material-card copy attached to one navigation row. */
-export const CurriculumMaterialCardSchema = Schema.Struct({
+const CurriculumMaterialCardSchema = Schema.Struct({
   description: MaterialCardDescriptionSchema,
   title: Schema.String,
 });
@@ -50,9 +50,7 @@ export interface CurriculumStructureNode extends CurriculumStructureNodeShape {}
 
 export type CurriculumMaterialNode = typeof CurriculumMaterialNodeSchema.Type;
 
-export type CurriculumTreeNode =
-  | CurriculumMaterialNode
-  | CurriculumStructureNode;
+type CurriculumTreeNode = CurriculumMaterialNode | CurriculumStructureNode;
 
 type CurriculumStructureInputShape =
   typeof CurriculumStructureNodeSchema.Encoded;
@@ -67,9 +65,7 @@ export interface CurriculumStructureInput
 export type CurriculumMaterialInput =
   typeof CurriculumMaterialNodeSchema.Encoded;
 
-export type CurriculumTreeInput =
-  | CurriculumMaterialInput
-  | CurriculumStructureInput;
+type CurriculumTreeInput = CurriculumMaterialInput | CurriculumStructureInput;
 
 const CurriculumStructureNodeSchema = Schema.Struct({
   children: Schema.optional(
@@ -110,7 +106,7 @@ export const CurriculumSourceSchema = Schema.Struct({
   tree: Schema.Array(CurriculumTreeNodeSchema),
 });
 export type CurriculumSource = typeof CurriculumSourceSchema.Type;
-export type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
+type CurriculumSourceInput = typeof CurriculumSourceSchema.Encoded;
 /** A structure node before the helper that defines its level adds it. */
 type StructureNodeInput = Omit<
   typeof CurriculumStructureNodeSchema.Encoded,

@@ -47,7 +47,7 @@ export const priorAppLocales = ActiveAppLocaleListSchema.make([
 ]);
 
 /** Canonical material-only scope used by preparation assertions. */
-export const preparationScope = PublicationScopeSchema.make({
+const preparationScope = PublicationScopeSchema.make({
   families: ["material"],
   snapshots: [],
 });

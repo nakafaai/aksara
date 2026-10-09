@@ -140,11 +140,11 @@ export const readPreviewEnvironment = Effect.fn("AksaraCli.readEnvironment")(
 );
 
 /** Target names whose credentials are isolated at the environment boundary. */
-export const PublicationEnvironmentTargetSchema = Schema.Literals([
+const PublicationEnvironmentTargetSchema = Schema.Literals([
   "development",
   "production",
 ]);
-export type PublicationEnvironmentTarget =
+type PublicationEnvironmentTarget =
   typeof PublicationEnvironmentTargetSchema.Type;
 
 /** Loads only the authenticated target shared by publication commands. */

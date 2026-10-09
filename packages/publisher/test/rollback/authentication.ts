@@ -77,7 +77,7 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
 const rollbackAppLocale = AppLocaleSchema.make("en");
 
 /** Signs one compiled payload with the shared rollback test key. */
-export function signRollbackPayload(value: typeof payload) {
+function signRollbackPayload(value: typeof payload) {
   const artifactHash = hashCompiledContentPayload(value);
   const signature = Ed25519SignatureSchema.make(
     signBytes(

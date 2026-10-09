@@ -96,14 +96,10 @@ export type PreparedContentTransitionSource<E, R> = Stream.Stream<
 >;
 
 /** Replay factory for one complete canonically ordered result catalog. */
-export type PreparedResultCatalogSource<E, R> = Stream.Stream<
-  ContentHead,
-  E,
-  R
->;
+type PreparedResultCatalogSource<E, R> = Stream.Stream<ContentHead, E, R>;
 
 /** Replay factory for independent public-route transitions. */
-export type PreparedRouteSource<E, R> = Stream.Stream<RouteTransition, E, R>;
+type PreparedRouteSource<E, R> = Stream.Stream<RouteTransition, E, R>;
 
 /** Exact immutable release identity plus its one authored record source. */
 export interface PrepareContentReleaseInput<E, R>

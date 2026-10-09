@@ -53,7 +53,7 @@ interface FamilyIdentityAdapter<Entry extends FamilyEntry> {
 }
 
 /** One family-local transition, desired head, or both from one diff row. */
-export interface FamilyPublicationPlan<Head extends ContentHead> {
+interface FamilyPublicationPlan<Head extends ContentHead> {
   readonly record?: PreparedContentTransition;
   readonly result?: Head;
 }

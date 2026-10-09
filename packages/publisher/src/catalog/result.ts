@@ -32,7 +32,7 @@ const CatalogHeadIdentitySchema = Schema.Struct({
 });
 
 /** Family counts and digest produced by one complete result-catalog replay. */
-export interface CatalogResultEvidence {
+interface CatalogResultEvidence {
   readonly articleCount: number;
   readonly digest: typeof Sha256HashSchema.Type;
   /** Replays every validated current content head in canonical family order. */

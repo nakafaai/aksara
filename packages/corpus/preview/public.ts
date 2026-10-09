@@ -45,7 +45,7 @@ const selectOne = Effect.fn("AksaraCorpus.selectPublicPreviewSource")(
 );
 
 /** Builds one public page selection from an already validated registry row. */
-export const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
+const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
   function* (corpusRoot: string, entry: PageEntry) {
     const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
     const document = {
@@ -111,12 +111,12 @@ const buildArticleEntry = Effect.fn("AksaraCorpus.buildPreviewArticleEntry")(
 );
 
 /** Builds one public article selection from an already validated registry row. */
-export const selectArticleEntry = Effect.fn(
-  "AksaraCorpus.selectPreviewArticleEntry"
-)(function* (corpusRoot: string, entry: ArticleEntry) {
-  const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
-  return yield* buildArticleEntry(entry, dependenciesFor);
-});
+const selectArticleEntry = Effect.fn("AksaraCorpus.selectPreviewArticleEntry")(
+  function* (corpusRoot: string, entry: ArticleEntry) {
+    const dependenciesFor = yield* makeRestartDependencyLookup(corpusRoot);
+    return yield* buildArticleEntry(entry, dependenciesFor);
+  }
+);
 
 /** Builds a public article batch with one concurrent-safe dependency cache. */
 export const selectArticleEntries = Effect.fn(

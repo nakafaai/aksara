@@ -39,7 +39,7 @@ const CurriculumPathNodeSchema = Schema.Struct({
 });
 
 /** Flat validated curriculum node used to derive localized route rows. */
-export const ProjectedCurriculumNodeSchema = Schema.Struct({
+const ProjectedCurriculumNodeSchema = Schema.Struct({
   curriculumKey: LearningProgramKeySchema,
   displayGroup: Schema.optional(CurriculumDisplayGroupMapSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),

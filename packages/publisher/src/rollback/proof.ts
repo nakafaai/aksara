@@ -35,7 +35,7 @@ const RollbackProofSelectionSchema = Schema.Union([
 export type RollbackProofSelection = typeof RollbackProofSelectionSchema.Type;
 
 export type RollbackProofMode = RollbackProofSelection["kind"];
-export type RollbackRecordSide = "current" | "prior";
+type RollbackRecordSide = "current" | "prior";
 
 /** Selects which transition orientation one signed release authenticates. */
 export function selectRollbackProof(
@@ -71,7 +71,7 @@ export function selectRollbackProof(
 }
 
 /** Selects one authenticated side of a rollback transition. */
-export function selectRollbackState(
+function selectRollbackState(
   record: DerivedRollbackRecord,
   side: RollbackRecordSide
 ) {

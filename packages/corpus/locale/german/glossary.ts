@@ -24,7 +24,7 @@ const GermanGlossaryScopeSchema = Schema.Literals([
 ]);
 
 /** One evidence-backed German product term and its exact usage boundary. */
-export const GermanGlossaryEntrySchema = Schema.Struct({
+const GermanGlossaryEntrySchema = Schema.Struct({
   key: GermanGlossaryKeySchema,
   note: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),
   preferred: Schema.Trimmed.check(Schema.isNonEmpty()),
@@ -32,7 +32,7 @@ export const GermanGlossaryEntrySchema = Schema.Struct({
   scope: GermanGlossaryScopeSchema,
   sourceUrl: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
-export type GermanGlossaryEntry = typeof GermanGlossaryEntrySchema.Type;
+type GermanGlossaryEntry = typeof GermanGlossaryEntrySchema.Type;
 
 /** Glossary entries must stay unique and canonical for stable review evidence. */
 function hasCanonicalKeys(entries: readonly GermanGlossaryEntry[]) {

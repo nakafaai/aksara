@@ -80,7 +80,7 @@ const TestCatalogCountsSchema = Schema.Struct({
 });
 
 /** Compact family counts used by catalog orchestration tests. */
-export type TestCatalogCounts = typeof TestCatalogCountsSchema.Type;
+type TestCatalogCounts = typeof TestCatalogCountsSchema.Type;
 
 const TestCatalogIdentitySchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
@@ -90,7 +90,7 @@ const TestCatalogIdentitySchema = Schema.Struct({
 });
 
 /** Stable source identity used without inventing educational fixture bodies. */
-export type TestCatalogIdentity = typeof TestCatalogIdentitySchema.Type;
+type TestCatalogIdentity = typeof TestCatalogIdentitySchema.Type;
 
 /** Returns one deterministic artifactLocale for compact source identities. */
 function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {

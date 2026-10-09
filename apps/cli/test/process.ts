@@ -177,9 +177,7 @@ const ProcessIdSchema = Schema.FiniteFromString.pipe(
 );
 
 /** Reads the process identifier that a child published in its file. */
-export const readProcessId = Effect.fn("test.readProcessId")(function* (
-  file: string
-) {
+const readProcessId = Effect.fn("test.readProcessId")(function* (file: string) {
   const text = yield* readWrittenFile(file);
   return yield* Schema.decodeEffect(ProcessIdSchema)(text);
 });

@@ -200,11 +200,9 @@ export const rejectPagePublication = Effect.fn("PageTest.reject")(
 );
 
 /** Derives authoritative compact heads from every registered page. */
-export const publishedPageHeads = Effect.fn("PageTest.publishedHeads")(
-  function* () {
-    return derivePageHeads(yield* collectPagePublication({ heads: [] }));
-  }
-);
+const publishedPageHeads = Effect.fn("PageTest.publishedHeads")(function* () {
+  return derivePageHeads(yield* collectPagePublication({ heads: [] }));
+});
 
 /** Loads canonical heads and both privacy-page locales for shared suites. */
 const makePublishedPageTestFixtures = Effect.fn(

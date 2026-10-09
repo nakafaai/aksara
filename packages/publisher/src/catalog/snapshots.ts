@@ -50,7 +50,7 @@ export const CatalogSnapshotEvidenceSchema = Schema.Struct({
     snapshotId: Sha256HashSchema,
   }),
 });
-export type CatalogSnapshotEvidence = typeof CatalogSnapshotEvidenceSchema.Type;
+type CatalogSnapshotEvidence = typeof CatalogSnapshotEvidenceSchema.Type;
 
 /** Structured preparation omitted one required current-model family. */
 export class CatalogSnapshotSetError extends Schema.TaggedError<CatalogSnapshotSetError>()(

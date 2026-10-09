@@ -59,7 +59,7 @@ type PrepareQuranSnapshotError = Effect.Error<
 >;
 type PreparedQuranRowError = Stream.Error<PreparedQuranSnapshot["rows"]>;
 /** Every expected failure before structured release sources are replayable. */
-export type PrepareReleaseSnapshotError<E> =
+type PrepareReleaseSnapshotError<E> =
   | E
   | PrepareQuranSnapshotError
   | PrepareTryoutSnapshotError<never>

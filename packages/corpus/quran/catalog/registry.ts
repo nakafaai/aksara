@@ -36,7 +36,7 @@ import {
   tanzilTextAttribution,
 } from "#corpus/quran/catalog/tanzil";
 
-export const QuranCatalogEntrySchema = Schema.Struct({
+const QuranCatalogEntrySchema = Schema.Struct({
   attribution: QuranSourceAttributionSchema,
   provenance: Schema.NonEmptyArray(
     Schema.Struct({

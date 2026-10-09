@@ -16,7 +16,7 @@ export const NAKAFA_AGENT_IMPLEMENTATION_SHA = GitCommitShaSchema.make(
 );
 
 /** Stable source-owned identity of Nakafa's public developer page. */
-export const DEVELOPER_PAGE_KEY = "developers";
+const DEVELOPER_PAGE_KEY = "developers";
 
 const pageSourceInputs: readonly PageSourceInput[] = [
   {

@@ -22,7 +22,7 @@ import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 /** One delta transition, desired result head, or both from one material row. */
 export const MaterialPublicationPlanSchema =
   familyPublicationPlanSchema(MaterialHeadSchema);
-export type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
+type MaterialPublicationPlan = typeof MaterialPublicationPlanSchema.Type;
 
 type PlanMaterialPublicationError =
   | Effect.Error<ReturnType<typeof compileMaterialDocument>>

@@ -6,7 +6,7 @@ import type { WorkflowSources } from "#scripts/workflow/check";
 import { repositoryTestTargets } from "#scripts/workflow/target";
 
 /** The checked-in workflow texts and repository test targets that policy tests read. */
-export class WorkflowSourceSet extends Context.Service<
+class WorkflowSourceSet extends Context.Service<
   WorkflowSourceSet,
   WorkflowSources
 >()("aksara/scripts/workflow/test/sources/WorkflowSourceSet") {}

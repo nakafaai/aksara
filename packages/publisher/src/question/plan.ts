@@ -24,7 +24,7 @@ import {
 /** One delta transition, desired result head, or both from one question row. */
 export const QuestionPublicationPlanSchema =
   familyPublicationPlanSchema(QuestionHeadSchema);
-export type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
+type QuestionPublicationPlan = typeof QuestionPublicationPlanSchema.Type;
 
 type PlanQuestionPublicationError =
   | Effect.Error<ReturnType<typeof compileQuestionDocument>>

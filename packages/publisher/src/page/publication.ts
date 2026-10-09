@@ -62,7 +62,7 @@ export class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>
 ) {}
 
 /** Every failure possible while replaying authoritative page records. */
-export type PagePublicationStreamError<E> =
+type PagePublicationStreamError<E> =
   | E
   | CompileContentError
   | ContentSourceInspectionError

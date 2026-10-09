@@ -28,7 +28,7 @@ const PublicationHttpResultSchema = Schema.Struct({
 });
 
 /** Parsed HTTP status and body returned by publication ingress. */
-export type PublicationHttpResult = typeof PublicationHttpResultSchema.Type;
+type PublicationHttpResult = typeof PublicationHttpResultSchema.Type;
 
 type InterpretPublicationResponse = (
   request: PublicationRequest,

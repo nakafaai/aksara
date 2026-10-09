@@ -2,7 +2,7 @@ import { Console, Effect, Option, Schema } from "effect";
 
 /** Informational commands that never enter authoring or publication. */
 export const InfoCommandSchema = Schema.Literals(["help", "version"]);
-export type InfoCommand = typeof InfoCommandSchema.Type;
+type InfoCommand = typeof InfoCommandSchema.Type;
 
 /** Informational arguments contain unsupported trailing values. */
 export class InfoArgumentsError extends Schema.TaggedError<InfoArgumentsError>()(

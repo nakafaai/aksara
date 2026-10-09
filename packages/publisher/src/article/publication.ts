@@ -76,7 +76,7 @@ export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamily
 ) {}
 
 /** Every failure possible while replaying authoritative article records. */
-export type ArticlePublicationStreamError<E> =
+type ArticlePublicationStreamError<E> =
   | E
   | ArticleHeadDuplicateError
   | ArticleHeadFamilyError

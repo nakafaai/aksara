@@ -63,7 +63,7 @@ const RollbackActiveCatalogSchema = Schema.Struct({
 });
 
 /** Exact active catalog identity replaced by one rollback release. */
-export type RollbackActiveCatalog = typeof RollbackActiveCatalogSchema.Type;
+type RollbackActiveCatalog = typeof RollbackActiveCatalogSchema.Type;
 
 const RollbackTargetPolicySchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,
@@ -74,7 +74,7 @@ const RollbackTargetPolicySchema = Schema.Struct({
 export type RollbackTargetPolicy = typeof RollbackTargetPolicySchema.Type;
 
 /** Complete inputs for signing one already-authenticated rollback transition. */
-export interface BuildRollbackReleaseInput<E, R> {
+interface BuildRollbackReleaseInput<E, R> {
   readonly active: RollbackActiveCatalog;
   /** Replays authenticated rollback transitions for release derivation. */
   readonly records: Stream.Stream<DerivedRollbackRecord, ReplaySpoolError>;

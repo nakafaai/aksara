@@ -66,7 +66,7 @@ const LessonEvidenceUrlsSchema = Schema.NonEmptyArray(
 );
 
 /** One ordered localized lesson section in a material source. */
-export const LessonMaterialSectionSchema = Schema.Struct({
+const LessonMaterialSectionSchema = Schema.Struct({
   evidenceUrls: Schema.optionalKey(LessonEvidenceUrlsSchema),
   routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
   slug: MaterialSlugSchema,
@@ -85,8 +85,7 @@ export const LessonMaterialSourceSchema = Schema.Struct({
   translations: LocaleDescriptionMapSchema,
 });
 export type LessonMaterialSource = typeof LessonMaterialSourceSchema.Type;
-export type LessonMaterialSourceInput =
-  typeof LessonMaterialSourceSchema.Encoded;
+type LessonMaterialSourceInput = typeof LessonMaterialSourceSchema.Encoded;
 
 /** One authored lesson material failed strict source decoding. */
 export class LessonMaterialError extends Schema.TaggedError<LessonMaterialError>()(
