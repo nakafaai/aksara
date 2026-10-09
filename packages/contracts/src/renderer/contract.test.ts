@@ -71,7 +71,7 @@ describe("renderer contract", () => {
     const decode = Schema.decodeUnknownExit(RendererManifestEnvelopeSchema);
     const incomplete = decode({
       ...manifest,
-      domains: domains.slice(0, -1),
+      domains: Arr.dropRight(domains, 1),
     });
     expect(Exit.isSuccess(decode(manifest))).toBe(true);
     expect(Exit.isFailure(incomplete)).toBe(true);

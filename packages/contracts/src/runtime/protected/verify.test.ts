@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import { verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Result } from "effect";
+import { Array as Arr, Effect, Option, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
 import { verifyProtectedContentRuntimeExchange } from "#contracts/runtime/protected/verify";
 import {
@@ -203,7 +203,7 @@ describe("pinned protected runtime exchange bytes", () => {
     expect(
       verifyRecorded(
         pinnedArtifactMessage,
-        pinnedFound.items.at(0)?.artifact.signature
+        Option.getOrUndefined(Arr.head(pinnedFound.items))?.artifact.signature
       )
     ).toEqual([true, false]);
     expect(

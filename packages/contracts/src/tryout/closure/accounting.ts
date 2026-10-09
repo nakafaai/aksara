@@ -54,7 +54,7 @@ export function addLocale(
   identity: string,
   appLocale: AppLocale
 ) {
-  if (!activeAppLocales.includes(appLocale)) {
+  if (!Arr.contains(activeAppLocales, appLocale)) {
     return Effect.fail(
       new TryoutClosureError({
         actual: appLocale,

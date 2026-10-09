@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 /** Stable locale codes supported by the current Aksara contract. */
 export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de"]);
@@ -70,7 +70,9 @@ export function artifactLocaleCode(artifactLocale: ArtifactLocale) {
 function hasCanonicalActiveAppLocales(locales: readonly AppLocale[]) {
   let previousIndex = -1;
   for (const locale of locales) {
-    const index = APP_LOCALE_CODES.indexOf(locale);
+    const index = Option.getOrThrow(
+      Arr.findFirstIndex(APP_LOCALE_CODES, (code) => code === locale)
+    );
     if (index <= previousIndex) {
       return false;
     }
