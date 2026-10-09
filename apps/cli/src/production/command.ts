@@ -42,7 +42,10 @@ import {
   PUBLICATION_TARGET_TIMEOUT,
   retryPublicationTarget,
 } from "#cli/retry";
-import { type ProductionStateAction, selectProductionAction } from "#cli/state";
+import {
+  type ProductionRebuildAction,
+  selectProductionAction,
+} from "#cli/state";
 import { encodeJsonText } from "#cli/text/json";
 
 type ProductionServices =
@@ -93,7 +96,7 @@ function logPublicationReceipt(receipt: PublicationReceipt) {
 
 /** Authenticates the exact signed release and frozen renderer for rebuilding. */
 function verifyPendingBundle(
-  action: Extract<ProductionStateAction, { readonly kind: "rebuild" }>,
+  action: ProductionRebuildAction,
   resolver: typeof ContentVerificationKeyResolver.Service
 ) {
   return verifyContentReleaseBundle({

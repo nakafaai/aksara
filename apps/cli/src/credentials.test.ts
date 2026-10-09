@@ -1,7 +1,10 @@
 import { createHash, createPublicKey, type KeyObject } from "node:crypto";
-import { describe, expect, it } from "@effect/vitest";
+import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { Effect, HashSet, Redacted } from "effect";
-import { makePreviewCredentials } from "#cli/credentials";
+import {
+  makePreviewCredentials,
+  type PreviewCredentials,
+} from "#cli/credentials";
 
 const cryptoControl = vi.hoisted(() => ({
   generatedPublicKey: undefined as KeyObject | undefined,
@@ -9,6 +12,16 @@ const cryptoControl = vi.hoisted(() => ({
 }));
 type CryptoMode = typeof cryptoControl.mode;
 const LOCAL_KEY_ID_PATTERN = /^local-[a-f0-9]{24}$/u;
+/** Resolves to true only when the two types are identical. */
+type Equals<A, B> =
+  (<X>() => X extends A ? 1 : 2) extends <X>() => X extends B ? 1 : 2
+    ? true
+    : false;
+/** Resolves to true only when the property is declared read-only. */
+type IsReadonly<T, K extends keyof T> = Equals<
+  Pick<T, K>,
+  Readonly<Pick<T, K>>
+>;
 
 vi.mock("node:crypto", async (importOriginal) => {
   const crypto = await importOriginal<typeof import("node:crypto")>();
@@ -49,6 +62,15 @@ const setCryptoMode = Effect.fn("test.credentials.setCryptoMode")(
 );
 
 describe("preview credentials", () => {
+  it("keeps the key identity and the renderer token read-only", () => {
+    expectTypeOf<
+      IsReadonly<PreviewCredentials, "keyId">
+    >().toEqualTypeOf<true>();
+    expectTypeOf<
+      IsReadonly<PreviewCredentials["renderer"], "token">
+    >().toEqualTypeOf<true>();
+  });
+
   it.effect(
     "creates unique identities and independent preview credentials",
     () =>

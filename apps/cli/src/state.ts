@@ -1,18 +1,22 @@
 import {
-  type GitCommitSha,
+  GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 
-import type {
-  ContentReleaseCurrent,
-  StagedContentRelease,
+import {
+  type ContentReleaseCurrent,
+  type StagedContentRelease,
+  StagedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release/current/state";
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import {
+  type ContentReleaseBundle,
+  ContentReleaseBundleSchema,
+} from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   canonicalizePublicationScope,
-  type PublicationScope,
+  PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { encodeJsonText } from "#cli/text/json";
@@ -42,32 +46,41 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
   }
 ) {}
 
-/** Exact production work selected from authoritative durable target state. */
-export type ProductionStateAction =
-  | {
-      readonly baseBundle: ContentReleaseBundle | null;
-      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
-      readonly kind: "new";
-      readonly scope: PublicationScope;
-    }
-  | {
-      readonly baseBundle: ContentReleaseBundle | null;
-      readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
-      readonly kind: "rebuild";
-      readonly candidate: StagedContentRelease;
-      readonly scope: PublicationScope;
-      readonly sha: GitCommitSha;
-    }
-  | {
-      readonly bundle: ContentReleaseBundle;
-      readonly kind: "resume";
-      readonly sha: GitCommitSha;
-    };
+const NewActionSchema = Schema.Struct({
+  baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
+  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
+  kind: Schema.Literal("new"),
+  scope: PublicationScopeSchema,
+});
+const RebuildActionSchema = Schema.Struct({
+  baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
+  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
+  candidate: StagedContentReleaseSchema,
+  kind: Schema.Literal("rebuild"),
+  scope: PublicationScopeSchema,
+  sha: GitCommitShaSchema,
+});
+const ResumeActionSchema = Schema.Struct({
+  bundle: ContentReleaseBundleSchema,
+  kind: Schema.Literal("resume"),
+  sha: GitCommitShaSchema,
+});
+const ProductionStateActionSchema = Schema.Union([
+  NewActionSchema,
+  RebuildActionSchema,
+  ResumeActionSchema,
+]);
 
-interface StoredCommand {
-  readonly scope: PublicationScope;
-  readonly sha: GitCommitSha;
-}
+/** Exact production work selected from authoritative durable target state. */
+type ProductionStateAction = typeof ProductionStateActionSchema.Type;
+/** The rebuild variant of the production work, which restores one exact candidate. */
+export type ProductionRebuildAction = typeof RebuildActionSchema.Type;
+
+const StoredCommandSchema = Schema.Struct({
+  scope: PublicationScopeSchema,
+  sha: GitCommitShaSchema,
+});
+type StoredCommand = typeof StoredCommandSchema.Type;
 type ValidateStoredCommand = (
   args: ReleaseArguments,
   bundle: ContentReleaseBundle
