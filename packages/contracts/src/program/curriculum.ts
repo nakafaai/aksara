@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
 import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
@@ -144,11 +144,14 @@ function hasCoherentMaterialLink(input: {
 }) {
   const ownsMaterial = input.materialKey !== undefined;
   const ownsCanonical = input.canonicalPath !== undefined;
-  const contextCount = [
-    input.materialContextNodeKey,
-    input.materialContextParentPath,
-    input.materialContextPublicPath,
-  ].filter((value) => value !== undefined).length;
+  const contextCount = Arr.filter(
+    [
+      input.materialContextNodeKey,
+      input.materialContextParentPath,
+      input.materialContextPublicPath,
+    ],
+    (value) => value !== undefined
+  ).length;
   if (!ownsMaterial) {
     return !ownsCanonical && contextCount === 0;
   }

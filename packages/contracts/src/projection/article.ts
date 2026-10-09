@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
 import { withPublicationDates } from "#contracts/date";
 import {
@@ -208,7 +208,7 @@ export function makeArticleProjection(input: {
 /** Serializes one article projection with stable signed field order. */
 export function canonicalizeArticleProjection(projection: ArticleProjection) {
   const metadata = {
-    authors: projection.metadata.authors.map(({ name }) => ({ name })),
+    authors: Arr.map(projection.metadata.authors, ({ name }) => ({ name })),
     ...(projection.metadata.dateModified === undefined
       ? {}
       : { dateModified: projection.metadata.dateModified }),
@@ -233,7 +233,7 @@ export function canonicalizeArticleProjection(projection: ArticleProjection) {
     official: projection.official,
     parentPath: projection.parentPath,
     publicPath: projection.publicPath,
-    references: projection.references.map((reference) => ({
+    references: Arr.map(projection.references, (reference) => ({
       authors: reference.authors,
       ...(reference.citation === undefined
         ? {}

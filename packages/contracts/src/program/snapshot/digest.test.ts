@@ -1,6 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
@@ -137,8 +137,8 @@ describe("program aggregate digest", () => {
         activeAppLocales: ACTIVE_APP_LOCALES,
         rows: Stream.fromIterable(records),
       });
-      const firstProgram = yield* Effect.fromNullishOr(
-        records.find((record) => record.kind === "program")
+      const firstProgram = yield* Effect.fromOption(
+        Arr.findFirst(records, (record) => record.kind === "program")
       );
       const nonCurriculum = yield* makeProgramSnapshotRow({
         ...firstProgram.row,
@@ -177,16 +177,19 @@ describe("program aggregate digest", () => {
           ...second.row,
           key: first.row.key,
         });
-        const duplicateSlugRow = yield* Schema.decodeUnknownEffect(
+        const duplicateSlugRow = yield* Schema.decodeEffect(
           LearningProgramSchema
         )({
           ...second.row,
-          translations: second.row.translations.map((translation, index) => ({
-            ...translation,
-            publicSlug:
-              first.row.translations[index]?.publicSlug ??
-              translation.publicSlug,
-          })),
+          translations: Arr.map(
+            second.row.translations,
+            (translation, index) => ({
+              ...translation,
+              publicSlug:
+                first.row.translations[index]?.publicSlug ??
+                translation.publicSlug,
+            })
+          ),
         });
         const duplicateSlug = yield* makeProgramSnapshotRow(duplicateSlugRow);
         const germanLocales = yield* decodeAppLocales(["en", "de"]);
@@ -216,7 +219,7 @@ describe("program aggregate digest", () => {
           }),
         ]);
         expect(
-          errors.map((error) =>
+          Arr.map(errors, (error) =>
             error._tag === "ProgramDigestError" ? error.code : error._tag
           )
         ).toEqual([
@@ -256,7 +259,7 @@ describe("program aggregate digest", () => {
           ]),
         ]);
         expect(
-          errors.map((error) =>
+          Arr.map(errors, (error) =>
             error._tag === "ProgramDigestError" ? error.code : error._tag
           )
         ).toEqual(["program", "program", "root", "parent", "route"]);

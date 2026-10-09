@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 import { CountryCodeSchema } from "#contracts/country";
 import { DateOnlySchema } from "#contracts/date";
@@ -125,7 +125,7 @@ export type ProgramTranslation = typeof ProgramTranslationSchema.Type;
 
 /** Checks translations for unique canonical application-locale order. */
 function hasCanonicalTranslations(translations: readonly ProgramTranslation[]) {
-  return translations.every((translation, index) => {
+  return Arr.every(translations, (translation, index) => {
     const previous = translations[index - 1];
     return (
       previous === undefined ||
@@ -218,7 +218,7 @@ export function canonicalizeLearningProgram(program: LearningProgram) {
     ...(program.recommendedCountry === undefined
       ? {}
       : { recommendedCountry: program.recommendedCountry }),
-    sources: program.sources.map((source) => ({
+    sources: Arr.map(program.sources, (source) => ({
       label: source.label,
       retrievedAt: source.retrievedAt,
       ...(source.reviewAfter === undefined
@@ -227,7 +227,7 @@ export function canonicalizeLearningProgram(program: LearningProgram) {
       type: source.type,
       url: source.url,
     })),
-    translations: program.translations.map((translation) => ({
+    translations: Arr.map(program.translations, (translation) => ({
       appLocale: translation.appLocale,
       publicSlug: translation.publicSlug,
       title: translation.title,

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 
 import {
+  Array as Arr,
   Effect,
   MutableHashMap,
   MutableHashSet,
@@ -51,33 +52,35 @@ export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()
 
 /** Serializes source-derived counts for exact replay comparison. */
 function countIdentity(counts: ProgramCounts) {
-  return [
+  const values = [
     counts.curriculumRowCount,
     counts.programRowCount,
     counts.rowCount,
     counts.sitemapCount,
     counts.slugCount,
-  ].join(":");
+  ];
+  return Arr.join(Arr.map(values, String), ":");
 }
 
 /** Resolves one required localized program identity. */
 function translationFor(program: LearningProgram, appLocale: AppLocale) {
-  return program.translations.find(
+  return Arr.findFirst(
+    program.translations,
     (translation) => translation.appLocale === appLocale
   );
 }
 
 /** Checks that one root is the exact localized route owned by its program. */
 function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
-  const translation = translationFor(program, row.appLocale);
-  return (
-    translation !== undefined &&
-    row.iconKey === program.iconKey &&
-    row.order === program.displayOrder &&
-    row.publicPath ===
-      `${curriculumNamespace(row.appLocale)}/${translation.publicSlug}` &&
-    row.title === translation.title
-  );
+  return Option.match(translationFor(program, row.appLocale), {
+    onNone: () => false,
+    onSome: (translation) =>
+      row.iconKey === program.iconKey &&
+      row.order === program.displayOrder &&
+      row.publicPath ===
+        `${curriculumNamespace(row.appLocale)}/${translation.publicSlug}` &&
+      row.title === translation.title,
+  });
 }
 
 /** Keeps current locale closure, identity, and digest state in one replay. */
@@ -137,7 +140,7 @@ class ProgramDigestState {
       MutableHashSet.size(this.#slugs) ===
         this.programRowCount * this.#activeAppLocales.length &&
       MutableHashSet.size(expectedRoots) === MutableHashSet.size(this.#roots) &&
-      [...expectedRoots].every((root) =>
+      Arr.every([...expectedRoots], (root) =>
         MutableHashSet.has(this.#roots, root)
       ) &&
       countIdentity(counts) === countIdentity(expectedCounts)
@@ -167,7 +170,8 @@ class ProgramDigestState {
   /** Adds one catalog row before any current curriculum records. */
   #addProgram(record: Extract<ProgramSnapshotRow, { kind: "program" }>) {
     const { row } = record;
-    const translationLocales = row.translations.map(
+    const translationLocales = Arr.map(
+      row.translations,
       (translation) => translation.appLocale
     );
     if (

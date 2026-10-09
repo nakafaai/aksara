@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import { ArticleProjectionSchema } from "#contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { PublicPageProjectionSchema } from "#contracts/projection/page";
@@ -107,7 +107,7 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
 describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
     expect(
-      [article, material, page, question].map((value) =>
+      Arr.map([article, material, page, question], (value) =>
         Schema.decodeSync(ContentProjectionSchema)(value)
       )
     ).toEqual([article, material, page, question]);

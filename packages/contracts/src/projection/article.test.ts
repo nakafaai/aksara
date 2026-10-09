@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import {
   ArticleCategorySchema,
   ArticleMetadataSchema,
@@ -244,7 +244,7 @@ describe("article projection", () => {
       title: "Earlier",
     });
 
-    expect([legacy, equal, earlier].every(Exit.isFailure)).toBe(true);
+    expect(Arr.every([legacy, equal, earlier], Exit.isFailure)).toBe(true);
     if (Exit.isFailure(equal)) {
       expect(String(equal.cause)).toContain(
         "Expected dateModified to be later than datePublished."
