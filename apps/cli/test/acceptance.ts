@@ -24,16 +24,16 @@ import {
 /** Observations the acceptance mocks write; the publication test reads and sets them. */
 const AcceptancePublicationCallsSchema = Schema.Struct({
   allowInsecureLoopback: Schema.mutableKey(Schema.Boolean),
-  cacheDrained: Schema.mutableKey(Schema.Number),
+  cacheDrained: Schema.mutableKey(Schema.Finite),
   endpoint: Schema.mutableKey(Schema.String),
   keyMatches: Schema.mutableKey(Schema.Boolean),
-  published: Schema.mutableKey(Schema.Number),
+  published: Schema.mutableKey(Schema.Finite),
   recoveryId: Schema.mutableKey(Schema.String),
-  snapshotAttempts: Schema.mutableKey(Schema.Number),
-  snapshotFailures: Schema.mutableKey(Schema.Number),
+  snapshotAttempts: Schema.mutableKey(Schema.Finite),
+  snapshotFailures: Schema.mutableKey(Schema.Finite),
   snapshotInputs: Schema.mutable(Schema.Array(Schema.String)),
   target: Schema.mutableKey(Schema.Literals(["empty", "active", "candidate"])),
-  targetReads: Schema.mutableKey(Schema.Number),
+  targetReads: Schema.mutableKey(Schema.Finite),
   timeout: Schema.mutableKey(Schema.String),
 });
 type AcceptancePublicationCalls = typeof AcceptancePublicationCallsSchema.Type;
