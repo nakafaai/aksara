@@ -183,40 +183,39 @@ layer(publicationTestLayer)("question publication", (it) => {
   it.effect("accepts every real question renderer grammar", () =>
     Effect.gen(function* () {
       const { promptHead } = yield* QuestionPublicationTestFixtures;
-      const staleHeads = yield* Effect.all([
-        makeStaleHead(
-          promptHead,
-          "snbt/literacy-in-english/set-9/question-1",
-          "snbt-plain"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/general-reasoning/set-9/question-1",
-          "snbt-general"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/mathematical-reasoning/set-9/question-1",
-          "snbt-math"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/quantitative-knowledge/set-99/question-1",
-          "snbt-quant"
-        ),
-        makeStaleHead(
-          promptHead,
-          "snbt/reading-comprehension-and-writing/set-9/question-1",
-          "snbt-plain"
-        ),
-        makeStaleHead(
-          promptHead,
-          "tka/compulsory-mathematics/set-9/question-1",
-          "tka-math"
-        ),
-      ]);
       const stale = Arr.sortWith(
-        staleHeads,
+        yield* Effect.all([
+          makeStaleHead(
+            promptHead,
+            "snbt/literacy-in-english/set-9/question-1",
+            "snbt-plain"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/general-reasoning/set-9/question-1",
+            "snbt-general"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/mathematical-reasoning/set-9/question-1",
+            "snbt-math"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/quantitative-knowledge/set-99/question-1",
+            "snbt-quant"
+          ),
+          makeStaleHead(
+            promptHead,
+            "snbt/reading-comprehension-and-writing/set-9/question-1",
+            "snbt-plain"
+          ),
+          makeStaleHead(
+            promptHead,
+            "tka/compulsory-mathematics/set-9/question-1",
+            "tka-math"
+          ),
+        ]),
         ({ contentKey }) => contentKey,
         Order.String
       );
@@ -224,12 +223,11 @@ layer(publicationTestLayer)("question publication", (it) => {
         collectQuestionPublication({ heads: stale })
       );
 
-      expect(
-        Arr.filter(
-          records,
-          ({ record }) => record.change.operation === "delete"
-        )
-      ).toHaveLength(stale.length);
+      const deletions = Arr.filter(
+        records,
+        ({ record }) => record.change.operation === "delete"
+      );
+      expect(deletions).toHaveLength(stale.length);
     })
   );
 

@@ -6,15 +6,7 @@ import {
   type QuestionHead,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import {
-  Array as Arr,
-  Context,
-  Effect,
-  HashSet,
-  Layer,
-  Option,
-  Stream,
-} from "effect";
+import { Array as Arr, Context, Effect, HashSet, Layer, Stream } from "effect";
 import {
   type BoundTryoutPlacement,
   bindTryoutHeads,
@@ -106,13 +98,11 @@ function placementEntry(
   bodyKind: QuestionBodyKind
 ) {
   const identity = placementBodyIdentity(binding, bodyKind);
-  return Option.getOrUndefined(
-    Arr.findFirst(
-      questionEntries,
-      (entry) =>
-        entry.artifactLocale === identity.artifactLocale &&
-        entry.contentKey === identity.contentKey
-    )
+  return Arr.findFirst(
+    questionEntries,
+    (entry) =>
+      entry.artifactLocale === identity.artifactLocale &&
+      entry.contentKey === identity.contentKey
   );
 }
 
@@ -134,10 +124,10 @@ function entriesWithout(
 const oppositeEntryAt = Effect.fn("TryoutContentTest.oppositeEntryAt")(
   (binding: BoundTryoutPlacement, bodyKind: QuestionBodyKind) =>
     Effect.gen(function* () {
-      const target = yield* Effect.fromNullishOr(
+      const target = yield* Effect.fromOption(
         placementEntry(binding, bodyKind)
       );
-      const replacement = yield* Effect.fromNullishOr(
+      const replacement = yield* Effect.fromOption(
         placementEntry(binding, bodyKind === "answer" ? "question" : "answer")
       );
       const entries = Arr.map(questionEntries, (entry) =>
@@ -204,14 +194,8 @@ contentTests("try-out content binding", (it) => {
         )
       ).toBe(3);
       expect(
-        second === undefined
-          ? undefined
-          : Arr.map(second, ({ record }) => record?.rowHash)
-      ).toEqual(
-        first === undefined
-          ? undefined
-          : Arr.map(first, ({ record }) => record?.rowHash)
-      );
+        second && Arr.map(second, ({ record }) => record?.rowHash)
+      ).toEqual(first && Arr.map(first, ({ record }) => record?.rowHash));
     })
   );
 

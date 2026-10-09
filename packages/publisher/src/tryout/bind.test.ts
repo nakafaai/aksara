@@ -115,6 +115,15 @@ function activePlacements() {
   return [placement("en"), placement("id"), placement("de")];
 }
 
+/** Returns the active heads without the English answer of the question root. */
+function withoutEnglishAnswer() {
+  return Arr.filter(
+    activeHeads(),
+    ({ artifactLocale, contentKey }) =>
+      !(artifactLocale === "en" && contentKey === `${questionRoot}/answer`)
+  );
+}
+
 /** Alters exactly one active-head ownership field for failure coverage. */
 function mismatchedHead(field: "delivery" | "rendererDomain" | "sourcePath") {
   const current = head({ artifactLocale: "en", bodyKind: "answer" });
@@ -196,13 +205,7 @@ describe("try-out head binding", () => {
     Effect.gen(function* () {
       const missing = yield* rejectTryoutHeadBindings(
         activePlacements(),
-        Arr.filter(
-          activeHeads(),
-          ({ artifactLocale, contentKey }) =>
-            !(
-              artifactLocale === "en" && contentKey === `${questionRoot}/answer`
-            )
-        )
+        withoutEnglishAnswer()
       );
       const trailing = QuestionHeadSchema.make({
         ...head({ artifactLocale: "en", bodyKind: "answer" }),
@@ -257,17 +260,7 @@ describe("try-out head binding", () => {
         const error = yield* rejectTryoutHeadBindings(
           activePlacements(),
           Arr.sort(
-            [
-              mismatchedHead(field),
-              ...Arr.filter(
-                activeHeads(),
-                ({ artifactLocale, contentKey }) =>
-                  !(
-                    artifactLocale === "en" &&
-                    contentKey === `${questionRoot}/answer`
-                  )
-              ),
-            ],
+            [mismatchedHead(field), ...withoutEnglishAnswer()],
             Order.make(compareContentHeads)
           )
         );

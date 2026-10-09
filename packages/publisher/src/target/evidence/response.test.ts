@@ -10,6 +10,18 @@ import { completedRecovery } from "#test/recovery";
 import { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 
+/** Returns the one fixture request of an operation; a missing fixture fails the test. */
+function requestOf(operation: (typeof transportRequests)[number]["operation"]) {
+  const request = Option.getOrUndefined(
+    Arr.findFirst(
+      transportRequests,
+      (candidate) => candidate.operation === operation
+    )
+  );
+  expect(request).toBeDefined();
+  return request;
+}
+
 describe("publication success evidence", () => {
   it("binds every successful operation to its exact request", () => {
     expect(
@@ -29,13 +41,7 @@ describe("publication success evidence", () => {
     );
   });
   it("binds completed recovery evidence to the protected active relation", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "recovery"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("recovery");
     if (request?.operation !== "recovery") {
       return;
     }
@@ -50,18 +56,11 @@ describe("publication success evidence", () => {
     ).toBe(false);
   });
   it("binds head pages to the requested cursor and row ceiling", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "headPage"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("headPage");
     if (request?.operation !== "headPage") {
       return;
     }
     const success = transportSuccess(request);
-    expect(success.operation).toBe("headPage");
     if (success.operation !== "headPage") {
       return;
     }
@@ -96,18 +95,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(limited, twoHeads)).toBe(false);
   });
   it("rejects verification evidence from another signed manifest", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "verify"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("verify");
     if (request?.operation !== "verify") {
       return;
     }
     const success = transportSuccess(request);
-    expect(success.operation).toBe("verify");
     if (success.operation !== "verify") {
       return;
     }
@@ -154,13 +146,7 @@ describe("publication success evidence", () => {
     ).toEqual(Arr.map(evidenceCases, () => false));
   });
   it("binds pending verification to the requested release identity", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "verify"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("verify");
     if (request?.operation !== "verify") {
       return;
     }
@@ -192,18 +178,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, foreignHash)).toBe(false);
   });
   it("rejects activation receipts that contradict their signed manifest", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "activate"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("activate");
     if (request?.operation !== "activate") {
       return;
     }
     const success = transportSuccess(request);
-    expect(success.operation).toBe("activate");
     if (success.operation !== "activate") {
       return;
     }
@@ -231,13 +210,7 @@ describe("publication success evidence", () => {
   });
 
   it("binds rollback pages to their requested cursor and limit", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "rollbackPage"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("rollbackPage");
     if (request?.operation !== "rollbackPage") {
       return;
     }
@@ -284,18 +257,11 @@ describe("publication success evidence", () => {
   });
 
   it("binds cumulative cleanup evidence to its requested release", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "cleanup"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("cleanup");
     if (request?.operation !== "cleanup") {
       return;
     }
     const success = transportSuccess(request);
-    expect(success.operation).toBe("cleanup");
     if (success.operation !== "cleanup") {
       return;
     }
@@ -307,18 +273,11 @@ describe("publication success evidence", () => {
     expect(hasBoundPublicationSuccess(request, progressed)).toBe(true);
   });
   it("rejects batch receipts with another index or row count", () => {
-    const request = Option.getOrUndefined(
-      Arr.findFirst(
-        transportRequests,
-        (candidate) => candidate.operation === "stageItemBatch"
-      )
-    );
-    expect(request).toBeDefined();
+    const request = requestOf("stageItemBatch");
     if (request?.operation !== "stageItemBatch") {
       return;
     }
     const success = transportSuccess(request);
-    expect(success.operation).toBe("stageItemBatch");
     if (success.operation !== "stageItemBatch") {
       return;
     }
