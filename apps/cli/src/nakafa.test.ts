@@ -1,10 +1,11 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import {
   computePreviewRendererProof,
   PREVIEW_RENDERER_AUTH_FORMAT,
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
-import { Effect, Redacted } from "effect";
+import { Effect, Layer, Redacted } from "effect";
 import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
@@ -64,7 +65,7 @@ describe("Nakafa app service", () => {
               .pipe(Effect.flip),
           ])
         ),
-        Effect.provide(NakafaAppLive),
+        Effect.provide(NakafaAppLive.pipe(Layer.provide(NodeServices.layer))),
         Effect.provideService(HttpClient.HttpClient, captured.client)
       );
 
