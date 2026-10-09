@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import {
   encodeJsonText,
   encodePrettyJsonText,
@@ -40,22 +40,25 @@ describe("JSON text codec", () => {
       nested: { empty: {}, items: [1, "two", { ok: true }] },
     };
     expect(encodePrettyJsonText(nested)).toBe(
-      [
-        "{",
-        '  "label": "\u{d1}",',
-        '  "name": "contracts",',
-        '  "nested": {',
-        '    "empty": {},',
-        '    "items": [',
-        "      1,",
-        '      "two",',
-        "      {",
-        '        "ok": true',
-        "      }",
-        "    ]",
-        "  }",
-        "}",
-      ].join("\n")
+      Arr.join(
+        [
+          "{",
+          '  "label": "\u{d1}",',
+          '  "name": "contracts",',
+          '  "nested": {',
+          '    "empty": {},',
+          '    "items": [',
+          "      1,",
+          '      "two",',
+          "      {",
+          '        "ok": true',
+          "      }",
+          "    ]",
+          "  }",
+          "}",
+        ],
+        "\n"
+      )
     );
   });
 });
