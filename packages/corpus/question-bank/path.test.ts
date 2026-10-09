@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 import {
   decodeQuestionDocumentPath,
@@ -104,13 +104,16 @@ describe("question path", () => {
   it.effect("fails closed for unknown or conflicting renderer ownership", () =>
     Effect.gen(function* () {
       const { questionBanks, tryoutSources } = yield* questionPathFixtures;
-      const snbt = yield* Effect.fromNullishOr(
-        tryoutSources.find(({ examKey }) => examKey === "snbt")
+      const snbt = yield* Effect.fromOption(
+        Arr.findFirst(tryoutSources, ({ examKey }) => examKey === "snbt")
       );
       const track = yield* Effect.fromNullishOr(snbt.tracks[0]);
       const firstSet = yield* Effect.fromNullishOr(track.sets[0]);
-      const firstSection = yield* Effect.fromNullishOr(
-        firstSet.sections.find(({ key }) => key === "general-reasoning")
+      const firstSection = yield* Effect.fromOption(
+        Arr.findFirst(
+          firstSet.sections,
+          ({ key }) => key === "general-reasoning"
+        )
       );
       const conflictingDomain =
         yield* Schema.decodeEffect(RendererDomainSchema)("snbt-plain");
@@ -122,7 +125,7 @@ describe("question path", () => {
             sets: [
               {
                 ...firstSet,
-                sections: firstSet.sections.map((section) =>
+                sections: Arr.map(firstSet.sections, (section) =>
                   section === firstSection
                     ? { ...section, rendererDomain: conflictingDomain }
                     : section
@@ -141,7 +144,7 @@ describe("question path", () => {
             sets: [
               {
                 ...firstSet,
-                sections: firstSet.sections.map((section) =>
+                sections: Arr.map(firstSet.sections, (section) =>
                   section === firstSection
                     ? {
                         ...section,
@@ -165,11 +168,11 @@ describe("question path", () => {
         ),
         indexQuestionBanks([
           rendererConflict,
-          ...tryoutSources.filter((source) => source !== snbt),
+          ...Arr.filter(tryoutSources, (source) => source !== snbt),
         ]).pipe(Effect.flip),
         indexQuestionBanks([
           languageConflict,
-          ...tryoutSources.filter((source) => source !== snbt),
+          ...Arr.filter(tryoutSources, (source) => source !== snbt),
         ]).pipe(Effect.flip),
       ]);
 
@@ -230,7 +233,9 @@ describe("question path", () => {
         expect.objectContaining({ reason: "grammar" }),
         expect.objectContaining({ reason: "grammar" }),
       ]);
-      expect(malformed.every(({ reason }) => reason === "grammar")).toBe(true);
+      expect(Arr.every(malformed, ({ reason }) => reason === "grammar")).toBe(
+        true
+      );
     })
   );
 });

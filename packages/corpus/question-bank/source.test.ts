@@ -1,6 +1,12 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, HashSet, MutableHashMap, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableHashMap,
+  Option,
+} from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
   indexQuestionItems,
@@ -44,18 +50,23 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
         ).toBe(first.item);
         expect(
           HashSet.size(
-            HashSet.fromIterable(sources.map(({ setKey }) => setKey))
+            HashSet.fromIterable(Arr.map(sources, ({ setKey }) => setKey))
           )
         ).toBe(80);
         for (const { count, rendererDomain } of questionRendererCounts) {
           expect(
-            sources.filter((source) => source.rendererDomain === rendererDomain)
+            Arr.filter(
+              sources,
+              (source) => source.rendererDomain === rendererDomain
+            )
           ).toHaveLength(count);
         }
         expect(
-          sources.find(({ questionKey }) =>
-            questionKey.endsWith(
-              "snbt/reading-comprehension-and-writing/set-1/question-1"
+          Option.getOrUndefined(
+            Arr.findFirst(sources, ({ questionKey }) =>
+              questionKey.endsWith(
+                "snbt/reading-comprehension-and-writing/set-1/question-1"
+              )
             )
           )
         ).toMatchObject({
@@ -155,7 +166,8 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
             rejectSyntheticQuestionSources(
               questionEntries(
                 root,
-                generalQuestionSourceFiles.filter(
+                Arr.filter(
+                  generalQuestionSourceFiles,
                   (file) => file !== "question.id.mdx"
                 )
               ),
@@ -189,7 +201,9 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
         { concurrency: "unbounded" }
       );
 
-      expect(errors.every(({ _tag }) => _tag === "QuestionItemError")).toBe(
+      expect(
+        Arr.every(errors, ({ _tag }) => _tag === "QuestionItemError")
+      ).toBe(
         true
       );
     })

@@ -3,7 +3,7 @@ import {
   makeLearningGraphIdentity,
 } from "@nakafa/aksara-contracts/graph/identity";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
-import { Effect } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
@@ -32,17 +32,22 @@ function localizedFields(input: {
 
 /** Joins canonical route segments without locale or leading slash. */
 function publicPath(...segments: readonly string[]) {
-  return segments.join("/");
+  return Arr.join(segments, "/");
 }
 
 /** Counts every question across one source-owned section list. */
 function questionCount(sections: readonly TryoutSectionSource[]) {
-  return sections.reduce((total, section) => total + section.questionCount, 0);
+  return Arr.reduce(
+    sections,
+    0,
+    (total, section) => total + section.questionCount
+  );
 }
 
 /** Counts only sections that own a physical public route. */
 function visibleCount(sections: readonly TryoutSectionSource[]) {
-  return sections.filter(({ visibility }) => visibility === "visible").length;
+  return Arr.filter(sections, ({ visibility }) => visibility === "visible")
+    .length;
 }
 
 /** Derives a signed graph identity from stable source keys, never route slugs. */
@@ -145,7 +150,8 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
     ["tryout-set", source.countryKey, source.examKey, track.key, set.key],
     examLens
   );
-  const internalEntry = set.sections.find(
+  const internalEntry = Arr.findFirst(
+    set.sections,
     ({ visibility }) => visibility === "internal-entry"
   );
   const sections = yield* Effect.forEach(set.sections, (section) =>
@@ -162,9 +168,9 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
       countryKey: source.countryKey,
       examKey: source.examKey,
       graph,
-      ...(internalEntry === undefined
+      ...(Option.isNone(internalEntry)
         ? {}
-        : { internalEntrySectionKey: internalEntry.key }),
+        : { internalEntrySectionKey: internalEntry.value.key }),
       kind: "set",
       order: set.order,
       publicPath: setPath,
@@ -196,7 +202,7 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
       ],
       { concurrency: 2 }
     );
-    const sections = track.sets.flatMap((set) => set.sections);
+    const sections = Arr.flatMap(track.sets, (set) => set.sections);
     const trackPath = publicPath(examPath, routeSlug);
     const graph = yield* graphIdentity(
       appLocale,
@@ -228,7 +234,7 @@ const projectTrack = Effect.fn("AksaraCorpus.projectTryoutCatalogTrack")(
         trackKind: track.kind,
         visibleSectionCount: visibleCount(sections),
       },
-      ...sets.flat(),
+      ...Arr.flatten(sets),
     ];
   }
 );
@@ -278,6 +284,6 @@ export const projectTryoutExam = Effect.fn(
       publicPath: examPath,
       scoringStrategy: source.scoringStrategy,
     },
-    ...tracks.flat(),
+    ...Arr.flatten(tracks),
   ];
 });

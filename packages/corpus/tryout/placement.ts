@@ -9,7 +9,7 @@ import {
   questionArtifactLocaleForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TryoutPlacementSourceSchema } from "@nakafa/aksara-contracts/tryout/placement";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { QuestionSource } from "#corpus/question-bank/source";
 import {
   TryoutExamSourceSchema,
@@ -48,13 +48,15 @@ export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementErro
 
 /** Checks that the supplied hierarchy is nested in its decoded exam source. */
 function ownsContext(context: TryoutPlacementContext) {
-  return context.source.tracks.some(
+  return Arr.some(
+    context.source.tracks,
     (track) =>
       track === context.track &&
-      track.sets.some(
+      Arr.some(
+        track.sets,
         (set) =>
           set === context.set &&
-          set.sections.some((section) => section === context.section)
+          Arr.some(set.sections, (section) => section === context.section)
       )
   );
 }

@@ -1,5 +1,12 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect, MutableHashMap, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableList,
+  Path,
+  Schema,
+} from "effect";
 import { scanQuestionSimilarity } from "#corpus/question-bank/similarity";
 import {
   absoluteQuestionTestSourceRoot,
@@ -82,12 +89,13 @@ function scan(questions: readonly Question[], target: string, threshold = 0.5) {
     const path = yield* Path.Path;
     const repositoryRoot = yield* corpusRoot;
     const questionRoot = yield* absoluteQuestionTestSourceRoot;
-    const entries: string[] = [];
+    const entries = MutableList.make<string>();
     const items = MutableHashMap.empty<string, string>();
     const files = MutableHashMap.empty<string, string>();
     for (const question of questions) {
-      entries.push(
-        ...questionEntries(question.root, generalQuestionSourceFiles)
+      MutableList.appendAll(
+        entries,
+        questionEntries(question.root, generalQuestionSourceFiles)
       );
       const itemSources = yield* itemForQuestion(question.root, question.item);
       for (const [itemPath, item] of itemSources) {
@@ -99,7 +107,10 @@ function scan(questions: readonly Question[], target: string, threshold = 0.5) {
         `export const metadata = {\n  title: "Soal",\n};\n\n${question.prompt}\n`
       );
     }
-    return yield* discoverSyntheticQuestionSources(entries, items).pipe(
+    return yield* discoverSyntheticQuestionSources(
+      MutableList.toArray(entries),
+      items
+    ).pipe(
       Effect.flatMap((sources) =>
         scanQuestionSimilarity(
           repositoryRoot,
@@ -146,7 +157,9 @@ layer(realQuestionCorpusLayer)("question similarity", (it) => {
         },
         { first: source(root(2, 1)), second: source(root(3, 1)) },
       ]);
-      expect(bank.items.map(({ first, second }) => [first, second])).toEqual([
+      expect(
+        Arr.map(bank.items, ({ first, second }) => [first, second])
+      ).toEqual([
         [source(root(1, 1)), source(root(2, 1))],
         [source(root(1, 1)), source(root(3, 1))],
         [source(root(2, 1)), source(root(3, 1))],

@@ -1,7 +1,13 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, MutableHashMap, Record as Rec, Schema } from "effect";
+import {
+  Effect,
+  MutableHashMap,
+  MutableList,
+  Record as Rec,
+  Schema,
+} from "effect";
 import {
   type Expression,
   isArrayLiteralExpression,
@@ -52,15 +58,15 @@ function readStaticValue(expression: Expression): unknown {
     return Number(expression.text);
   }
   if (isArrayLiteralExpression(expression)) {
-    const values: unknown[] = [];
+    const values = MutableList.make<unknown>();
     for (const element of expression.elements) {
       const value = readStaticValue(element);
       if (value === undefined) {
         return;
       }
-      values.push(value);
+      MutableList.append(values, value);
     }
-    return values;
+    return MutableList.toArray(values);
   }
   if (!isObjectLiteralExpression(expression)) {
     return;

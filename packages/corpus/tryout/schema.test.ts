@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, test } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 import { importCorpusModules } from "#corpus/test/imports";
 import {
   defineTryoutExamSource,
@@ -156,19 +156,26 @@ describe("tryout schema", () => {
       );
       const sources = yield* Effect.all([snbtTryoutSource, tkaTryoutSource]);
 
-      expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
+      expect(Arr.map(sources, ({ examKey }) => examKey)).toEqual([
+        "snbt",
+        "tka",
+      ]);
       expect(
-        sources.every(
+        Arr.every(
+          sources,
           (source) =>
             source.countryRouteSlugs.de !== undefined &&
             source.examRouteSlugs.de !== undefined &&
-            source.tracks.every(
+            Arr.every(
+              source.tracks,
               (track) =>
                 track.routeSlugs.de !== undefined &&
-                track.sets.every(
+                Arr.every(
+                  track.sets,
                   (set) =>
                     set.routeSlugs.de !== undefined &&
-                    set.sections.every(
+                    Arr.every(
+                      set.sections,
                       (entry) => entry.routeSlugs.de !== undefined
                     )
                 )

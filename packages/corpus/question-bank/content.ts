@@ -1,4 +1,4 @@
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   type CorpusSourcePath,
@@ -25,7 +25,15 @@ import {
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, FileSystem, Path, Schema, Struct } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Order,
+  Path,
+  Schema,
+  Struct,
+} from "effect";
 import {
   decodeQuestionDocumentPath,
   decodeQuestionPath,
@@ -151,25 +159,35 @@ export function questionContentForEntry(
   return { entries: [prompt, selected], selected, source };
 }
 
+/** Orders content heads by content key, then by artifact locale. */
+const CONTENT_HEAD_ORDER = Order.combine(
+  Order.mapInput(Order.String, (head: ContentHeadIdentity) => head.contentKey),
+  Order.mapInput(
+    Order.String,
+    (head: ContentHeadIdentity) => head.artifactLocale
+  )
+);
+
 /** Projects discovered question sources into the canonical body registry. */
 function projectQuestionEntries(sources: readonly QuestionSource[]) {
-  return sources
-    .flatMap((source) => {
-      const answers = ACTIVE_APP_LOCALES.map((appLocale) =>
+  return Arr.sort(
+    Arr.flatMap(sources, (source) => {
+      const answers = Arr.map(ACTIVE_APP_LOCALES, (appLocale) =>
         projectQuestionEntry(
           source,
           "answer",
           ArtifactLocaleSchema.make(appLocale)
         )
       );
-      const prompts = questionArtifactLocalesForPolicy(
-        source.languagePolicy
-      ).map((artifactLocale) =>
-        projectQuestionEntry(source, "question", artifactLocale)
+      const prompts = Arr.map(
+        questionArtifactLocalesForPolicy(source.languagePolicy),
+        (artifactLocale) =>
+          projectQuestionEntry(source, "question", artifactLocale)
       );
       return [...answers, ...prompts];
-    })
-    .sort(compareContentHeads);
+    }),
+    CONTENT_HEAD_ORDER
+  );
 }
 
 /** Discovers every unique question once and returns its canonical body registry. */
