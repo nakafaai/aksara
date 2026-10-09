@@ -3,29 +3,42 @@ import {
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Option, Schema } from "effect";
-import { type InfoCommand, parseInfoArguments } from "#cli/about";
+import { InfoCommandSchema, parseInfoArguments } from "#cli/about";
 import {
   isProductionCommand,
   type ProductionArguments,
   parseProductionArguments,
 } from "#cli/production/arguments";
 
+const PreviewArgumentsSchema = Schema.Struct({
+  appLocale: Schema.optionalKey(AppLocaleSchema),
+  document: Schema.String,
+});
+
 /** One exact authored document requested by the local preview command. */
-export interface PreviewArguments {
-  readonly appLocale?: AppLocale;
-  readonly document: string;
-}
+export type PreviewArguments = typeof PreviewArgumentsSchema.Type;
+
+const CheckArgumentsSchema = Schema.Struct({
+  command: Schema.Literal("check"),
+});
 
 /** Read-only whole-catalog validation requested without production inputs. */
-export interface CheckArguments {
-  readonly command: "check";
-}
+export type CheckArguments = typeof CheckArgumentsSchema.Type;
+
+const PreviewCommandArgumentsSchema = Schema.Struct({
+  ...PreviewArgumentsSchema.fields,
+  command: Schema.Literal("preview"),
+});
+
+const InfoCommandArgumentsSchema = Schema.Struct({
+  command: InfoCommandSchema,
+});
 
 /** Current CLI command decoded through its owning strict boundary. */
 export type CliArguments =
-  | ({ readonly command: "preview" } & PreviewArguments)
+  | typeof PreviewCommandArgumentsSchema.Type
   | CheckArguments
-  | { readonly command: InfoCommand }
+  | typeof InfoCommandArgumentsSchema.Type
   | ProductionArguments;
 
 /** Command-line arguments do not describe one unambiguous document. */
