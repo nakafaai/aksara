@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 import {
   ContentKeySchema,
   ReleaseIdSchema,
@@ -54,18 +54,19 @@ function hasCoherentRoutePage(page: {
   readonly records: readonly RouteRollbackRecord[];
   readonly total: number;
 }) {
-  const [first] = page.records;
-  const last = page.records.at(-1);
-  if (!(first && last)) {
+  const first = Arr.head(page.records);
+  const last = Arr.last(page.records);
+  if (Option.isNone(first) || Option.isNone(last)) {
     return page.done && page.nextIndex === -1 && page.total === 0;
   }
   const contiguous = Arr.every(
     page.records,
-    (record, offset) => record.current.index === first.current.index + offset
+    (record, offset) =>
+      record.current.index === first.value.current.index + offset
   );
   return (
     contiguous &&
-    last.current.index === page.nextIndex &&
+    last.value.current.index === page.nextIndex &&
     page.nextIndex < page.total &&
     page.done === (page.nextIndex + 1 === page.total)
   );

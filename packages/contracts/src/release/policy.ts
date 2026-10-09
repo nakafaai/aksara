@@ -101,7 +101,7 @@ export const verifyReleasePolicyTransition = Effect.fn(
 
   if (requiresCompleteReplacement) {
     for (const family of ContentFamilySchema.literals) {
-      if (!input.scope.families.includes(family)) {
+      if (!Arr.contains(input.scope.families, family)) {
         return yield* failClosure({
           actual: "partial",
           expected: "complete-family",
@@ -164,7 +164,7 @@ export const verifyRendererPolicyTransition = Effect.fn(
   }
 
   for (const family of ContentFamilySchema.literals) {
-    if (!input.scope.families.includes(family)) {
+    if (!Arr.contains(input.scope.families, family)) {
       return yield* failClosure({
         actual: "partial",
         expected: "complete-family",
@@ -176,7 +176,7 @@ export const verifyRendererPolicyTransition = Effect.fn(
 
   if (
     input.baseTryoutSnapshotId !== null &&
-    !input.scope.snapshots.includes("tryout")
+    !Arr.contains(input.scope.snapshots, "tryout")
   ) {
     return yield* failClosure({
       actual: "missing",

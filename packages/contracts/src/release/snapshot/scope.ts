@@ -10,30 +10,31 @@ export const ContentSnapshotKindSchema = Schema.Literals([
 ]);
 export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
 
+/** Checks that a list names each literal once, in the schema's canonical order. */
+function hasCanonicalLiteralOrder<A extends string>(
+  literals: readonly A[],
+  values: readonly A[]
+) {
+  const canonical = Arr.filter(literals, (literal) =>
+    Arr.contains(values, literal)
+  );
+  return (
+    canonical.length === values.length &&
+    Arr.every(values, (value, index) => value === canonical[index])
+  );
+}
+
 /** Checks strict canonical ordering for selected content and snapshot families. */
 function hasCanonicalPublicationScope(input: {
   readonly families: readonly ContentFamily[];
   readonly snapshots: readonly ContentSnapshotKind[];
 }) {
-  const snapshotsAreCanonical = Arr.every(input.snapshots, (family, index) => {
-    const previous = input.snapshots[index - 1];
-    return (
-      previous === undefined ||
-      ContentSnapshotKindSchema.literals.indexOf(previous) <
-        ContentSnapshotKindSchema.literals.indexOf(family)
-    );
-  });
-  const familiesAreCanonical = Arr.every(input.families, (family, index) => {
-    const previous = input.families[index - 1];
-    return (
-      previous === undefined ||
-      ContentFamilySchema.literals.indexOf(previous) <
-        ContentFamilySchema.literals.indexOf(family)
-    );
-  });
   return (
-    familiesAreCanonical &&
-    snapshotsAreCanonical &&
+    hasCanonicalLiteralOrder(ContentFamilySchema.literals, input.families) &&
+    hasCanonicalLiteralOrder(
+      ContentSnapshotKindSchema.literals,
+      input.snapshots
+    ) &&
     input.families.length + input.snapshots.length > 0
   );
 }

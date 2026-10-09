@@ -111,7 +111,7 @@ describe("structured snapshot domain verification", () => {
       ) {
         return yield* Effect.die("Expected Quran test values.");
       }
-      const rows = snapshotData.rows.slice();
+      const rows = Arr.copy(snapshotData.rows);
       rows[firstQuranIndex.value] = {
         ...firstQuran,
         record: { ...firstQuran.record, snapshotId: unrelatedHash },

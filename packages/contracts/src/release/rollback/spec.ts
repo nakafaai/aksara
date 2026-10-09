@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 import {
   ContentFamilySchema,
   canonicalizeSignedContentArtifact,
@@ -202,18 +202,18 @@ function hasCoherentRollbackPage(page: {
   readonly records: readonly RollbackRecord[];
   readonly total: number;
 }) {
-  const [first] = page.records;
-  const last = page.records.at(-1);
-  if (!(first && last)) {
+  const first = Arr.head(page.records);
+  const last = Arr.last(page.records);
+  if (Option.isNone(first) || Option.isNone(last)) {
     return page.done && page.nextIndex === -1 && page.total === 0;
   }
   const hasContiguousRecords = Arr.every(
     page.records,
-    (record, offset) => record.index === first.index + offset
+    (record, offset) => record.index === first.value.index + offset
   );
   return (
     hasContiguousRecords &&
-    last.index === page.nextIndex &&
+    last.value.index === page.nextIndex &&
     page.nextIndex < page.total &&
     page.done === (page.nextIndex + 1 === page.total)
   );

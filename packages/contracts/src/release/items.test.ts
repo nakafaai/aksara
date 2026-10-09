@@ -119,7 +119,7 @@ describe("release item integrity", () => {
       }));
       const errors = yield* Effect.all([
         reject(reversed),
-        reject(items.slice(0, 1)),
+        reject(Arr.take(items, 1)),
         reject(replaceItem(0, (item) => ({ ...item, releaseId: "other" }))),
         reject(replaceItem(1, (item) => ({ ...item, index: 0 }))),
         reject(replaceItem(1, (item) => ({ ...item, index: 2 }))),
