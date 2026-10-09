@@ -15,13 +15,15 @@ export const MAX_REPLAY_RECORD_BYTES = MAX_PUBLICATION_RESPONSE_BYTES;
 /** Maximum temporary disk footprint accepted by one publication spool. */
 export const MAX_REPLAY_TOTAL_BYTES = 1024 * 1024 * 1024;
 
+const ReplaySpoolUsageSchema = Schema.Struct({
+  count: Schema.Finite,
+  index: Schema.Finite,
+  recordBytes: Schema.Finite,
+  totalBytes: Schema.Finite,
+});
+
 /** Proposed bounded usage for one replay-spool state transition. */
-export interface ReplaySpoolUsage {
-  readonly count: number;
-  readonly index: number;
-  readonly recordBytes: number;
-  readonly totalBytes: number;
-}
+export type ReplaySpoolUsage = typeof ReplaySpoolUsageSchema.Type;
 
 /** Computes the exact digest persisted beside one encoded record. */
 function hashRecord(value: string) {

@@ -1,11 +1,4 @@
-import {
-  Effect,
-  FileSystem,
-  Path,
-  type Schema,
-  type Scope,
-  Stream,
-} from "effect";
+import { Effect, FileSystem, Path, Schema, type Scope, Stream } from "effect";
 import {
   type ReplaySpoolError,
   replaySpoolFailure,
@@ -28,10 +21,13 @@ export interface ReplaySpool<A> {
   readonly replay: Stream.Stream<A, ReplaySpoolError>;
 }
 
-interface SpoolState {
-  readonly bytes: number;
-  readonly count: number;
-}
+const SpoolStateSchema = Schema.Struct({
+  bytes: Schema.Finite,
+  count: Schema.Finite,
+});
+
+/** Aggregate bytes and record count of one replay spool, before the next record. */
+type SpoolState = typeof SpoolStateSchema.Type;
 
 /** Returns one shard and stable record stem without wide directories. */
 function recordCoordinate(
