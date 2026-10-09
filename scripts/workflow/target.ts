@@ -77,7 +77,7 @@ function isWorkspaceManifest(
   if (path.basename(file) !== MANIFEST_FILE) {
     return false;
   }
-  return directories.includes(path.dirname(path.dirname(file)));
+  return Arr.contains(directories, path.dirname(path.dirname(file)));
 }
 
 /** Lists the root manifest and every workspace manifest that the pnpm workspace names. */

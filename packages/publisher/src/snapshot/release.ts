@@ -17,7 +17,7 @@ import {
 } from "@nakafa/aksara-corpus/quran/snapshot";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
-import { Effect, type Scope, Stream } from "effect";
+import { Array as Arr, Effect, type Scope, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import {
   type PrepareTryoutSnapshotError,
@@ -87,15 +87,15 @@ export const prepareReleaseSnapshots: <E, R>(
 > = Effect.fn("AksaraPublisher.prepareReleaseSnapshots")(function* <E, R>(
   input: ReleaseSnapshotInput<E, R>
 ) {
-  const program = input.families.includes("program")
+  const program = Arr.contains(input.families, "program")
     ? yield* prepareProgramSnapshot()
     : undefined;
-  const quran = input.families.includes("quran")
+  const quran = Arr.contains(input.families, "quran")
     ? yield* prepareQuranSnapshot({
         checkoutRoot: input.checkoutRoot,
       })
     : undefined;
-  const selectsTryout = input.families.includes("tryout");
+  const selectsTryout = Arr.contains(input.families, "tryout");
   const tryout =
     selectsTryout ||
     (input.runtime.kind === "refresh" && input.runtime.snapshot === null)

@@ -1,3 +1,4 @@
+import { assert } from "@effect/vitest";
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import type { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
@@ -219,9 +220,10 @@ export function createLifecycleRows() {
     const records = Arr.map(MutableList.toArray(staged.items), (item) => {
       const { change } = item;
       const head = materialHead(item);
-      if (!(head && change.operation === "upsert")) {
-        throw new TypeError("Expected one staged upsert rollback record.");
-      }
+      assert(
+        head && change.operation === "upsert",
+        "Expected one staged upsert rollback record."
+      );
       const artifact = Option.getOrUndefined(
         MutableHashMap.get(artifacts, change.artifactHash)
       );
@@ -233,9 +235,10 @@ export function createLifecycleRows() {
             value.artifactLocale === change.artifactLocale
         )
       );
-      if (!(artifact && projection)) {
-        throw new TypeError("Expected complete staged rollback state.");
-      }
+      assert(
+        artifact && projection,
+        "Expected complete staged rollback state."
+      );
       return {
         current: { artifact, change, projection },
         index: item.index,

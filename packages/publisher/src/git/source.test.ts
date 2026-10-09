@@ -128,7 +128,7 @@ describe("GitPublicationSourceLive", () => {
         ).toEqual(input);
         expect(MutableList.toArray(commands)).toHaveLength(9);
         const metadata = Arr.filter(MutableList.toArray(commands), ({ args }) =>
-          args.includes("--batch-check")
+          Arr.contains(args, "--batch-check")
         );
         expect(
           Arr.map(
@@ -139,7 +139,7 @@ describe("GitPublicationSourceLive", () => {
         ).toEqual([128, 128, 1]);
         expect(
           Arr.filter(MutableList.toArray(commands), ({ args }) =>
-            args.includes("--batch")
+            Arr.contains(args, "--batch")
           )
         ).toHaveLength(3);
       })
@@ -188,7 +188,7 @@ describe("GitPublicationSourceLive", () => {
         );
         expect(
           yield* loadSources(sourceProcess(input, commands), items, 1)
-        ).toEqual(input.slice(0, 1));
+        ).toEqual(Arr.take(input, 1));
         expect(pulled).toBe(MAX_GIT_BATCH_BLOBS);
         expect(MutableList.toArray(commands)).toHaveLength(3);
       })

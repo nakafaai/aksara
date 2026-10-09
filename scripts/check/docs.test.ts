@@ -4,7 +4,15 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, FileSystem, Layer, Order, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Layer,
+  Option,
+  Order,
+  Path,
+} from "effect";
 import {
   documentationReport,
   documentationViolations,
@@ -101,7 +109,7 @@ const object = { task: Effect.fn("task")(() => Effect.void) };
 
         const names = Arr.map(
           yield* missingDocumentation("missing.ts", source),
-          (diagnostic) => diagnostic.split(" ").at(-1) ?? ""
+          (diagnostic) => Option.getOrThrow(Arr.last(diagnostic.split(" ")))
         );
         expect(Arr.sort(names, Order.String)).toEqual([
           "arrow",

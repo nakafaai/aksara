@@ -116,7 +116,7 @@ function skipsRootTasks(command: string): boolean {
   return (
     Arr.some(tokens, (token) => token.startsWith(TEST_TASK_PREFIX)) &&
     Arr.some(tokens, (token) => token.startsWith(FILTER_PREFIX)) &&
-    !tokens.includes(ROOT_FILTER)
+    !Arr.contains(tokens, ROOT_FILTER)
   );
 }
 
@@ -125,7 +125,7 @@ function hasOnlyKeys(
   mapping: Readonly<Record<string, unknown>>,
   keys: readonly string[]
 ): boolean {
-  return Arr.every(Rec.keys(mapping), (key) => keys.includes(key));
+  return Arr.every(Rec.keys(mapping), (key) => Arr.contains(keys, key));
 }
 
 /** Verifies that the test matrix runs every test target in exactly one group. */
@@ -163,7 +163,7 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
   }
   for (const target of targets) {
     const owners = Arr.filter(legs, (leg) =>
-      legTargets(leg.command).includes(target)
+      Arr.contains(legTargets(leg.command), target)
     );
     assert.equal(
       owners.length,
@@ -174,7 +174,7 @@ function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
   for (const leg of legs) {
     for (const target of legTargets(leg.command)) {
       assert.ok(
-        targets.includes(target),
+        Arr.contains(targets, target),
         "CI test groups must name only repository test targets"
       );
     }
