@@ -29,7 +29,7 @@ const exactProcess = ExactProcess.of({
       exitCode: 0,
       stderr: new Uint8Array(),
       stdout: new TextEncoder().encode(
-        input.args.includes("rev-parse") ? `${"a".repeat(40)}\n` : ""
+        Arr.contains(input.args, "rev-parse") ? `${"a".repeat(40)}\n` : ""
       ),
     }),
 });

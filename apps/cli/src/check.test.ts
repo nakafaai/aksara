@@ -2,24 +2,37 @@ import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { runCheckCommand } from "#cli/check";
 import { unusedExactProcess } from "#test/process";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const control = vi.hoisted(() => ({
-  dirty: false,
-  rendererCalls: 0,
-  revisionCalls: 0,
-  revisionChanged: false,
-  status: "approved" as "approved" | "blocked",
-  validation: undefined as
-    | {
-        readonly checkoutRoot: string;
-        readonly rendererManifest: { readonly hash: string };
-      }
-    | undefined,
-}));
+const ControlStateSchema = Schema.Struct({
+  dirty: Schema.mutableKey(Schema.Boolean),
+  rendererCalls: Schema.mutableKey(Schema.Finite),
+  revisionCalls: Schema.mutableKey(Schema.Finite),
+  revisionChanged: Schema.mutableKey(Schema.Boolean),
+  status: Schema.mutableKey(Schema.Literals(["approved", "blocked"])),
+  validation: Schema.mutableKey(
+    Schema.UndefinedOr(
+      Schema.Struct({
+        checkoutRoot: Schema.String,
+        rendererManifest: Schema.Struct({ hash: Schema.String }),
+      })
+    )
+  ),
+});
+type ControlState = typeof ControlStateSchema.Type;
+const control = vi.hoisted(
+  (): ControlState => ({
+    dirty: false,
+    rendererCalls: 0,
+    revisionCalls: 0,
+    revisionChanged: false,
+    status: "approved",
+    validation: undefined,
+  })
+);
 
 vi.mock("#cli/checkout", async () => {
   const { Effect: TestEffect } = await import("effect");

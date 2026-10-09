@@ -1,15 +1,30 @@
-import { createHash, createPublicKey, type KeyObject } from "node:crypto";
+import { createHash, createPublicKey, KeyObject } from "node:crypto";
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
-import { Array as Arr, Effect, HashSet, Redacted } from "effect";
+import { Array as Arr, Effect, HashSet, Redacted, Schema } from "effect";
 import {
   makePreviewCredentials,
   type PreviewCredentials,
 } from "#cli/credentials";
 
-const cryptoControl = vi.hoisted(() => ({
-  generatedPublicKey: undefined as KeyObject | undefined,
-  mode: "normal" as "generate-failure" | "normal" | "rsa",
-}));
+const CryptoControlSchema = Schema.Struct({
+  generatedPublicKey: Schema.mutableKey(
+    Schema.UndefinedOr(
+      Schema.declare(
+        (input: unknown): input is KeyObject => input instanceof KeyObject
+      )
+    )
+  ),
+  mode: Schema.mutableKey(
+    Schema.Literals(["generate-failure", "normal", "rsa"])
+  ),
+});
+type CryptoControl = typeof CryptoControlSchema.Type;
+const cryptoControl = vi.hoisted(
+  (): CryptoControl => ({
+    generatedPublicKey: undefined,
+    mode: "normal",
+  })
+);
 type CryptoMode = typeof cryptoControl.mode;
 const LOCAL_KEY_ID_PATTERN = /^local-[a-f0-9]{24}$/u;
 /** Resolves to true only when the two types are identical. */
