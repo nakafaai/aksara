@@ -57,4 +57,4 @@ export class ContentVerificationKeyResolver extends Context.Service<
       SigningKeyNotFoundError | SigningKeyResolutionError
     >;
   }
->()("AksaraContentVerificationKeyResolver") {}
+>()("@nakafa/aksara-contracts/signature/spec/ContentVerificationKeyResolver") {}
