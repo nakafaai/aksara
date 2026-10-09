@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 import {
   CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,
@@ -68,12 +68,12 @@ function parseQuestionSetParts(input: string): QuestionSetParts | undefined {
   ) {
     return;
   }
-  return Schema.decodeUnknownSync(QuestionSetPartsSchema)({
-    countryKey: keys.at(0),
-    examKey: keys.at(1),
-    intermediateBankKeys: keys.slice(2, -2),
-    sectionKey: keys.at(-2),
-    setKey: keys.at(-1),
+  return Schema.decodeSync(QuestionSetPartsSchema)({
+    countryKey: Option.getOrThrow(Arr.get(keys, 0)),
+    examKey: Option.getOrThrow(Arr.get(keys, 1)),
+    intermediateBankKeys: Arr.dropRight(Arr.drop(keys, 2), 2),
+    sectionKey: Option.getOrThrow(Arr.get(keys, keys.length - 2)),
+    setKey: Option.getOrThrow(Arr.last(keys)),
   });
 }
 
