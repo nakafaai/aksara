@@ -7,10 +7,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  ACTIVE_APP_LOCALES,
-  ArtifactLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   type QuestionHead,
   QuestionHeadSchema,
@@ -20,16 +17,7 @@ import {
   type TryoutPlacementSource,
   TryoutPlacementSourceSchema,
 } from "@nakafa/aksara-contracts/tryout/placement";
-import {
-  Effect,
-  HashMap,
-  HashSet,
-  MutableHashMap,
-  MutableHashSet,
-  Option,
-  Schema,
-  Stream,
-} from "effect";
+import { Effect, HashMap, HashSet, Option, Schema, Stream } from "effect";
 import {
   TryoutHeadBodySchema,
   TryoutHeadDuplicateError,
@@ -37,6 +25,10 @@ import {
   TryoutHeadMissingError,
   TryoutHeadOrderError,
 } from "#publisher/tryout/error";
+import {
+  questionRoot,
+  validatePlacementPairs,
+} from "#publisher/tryout/placement";
 
 const HeadRequirementSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
@@ -151,60 +143,6 @@ function mismatchedField(requirement: HeadRequirement, head: QuestionHead) {
       return field;
     }
   }
-}
-
-/** Returns the logical question root shared by all body head identities. */
-function questionRoot(contentKey: string) {
-  return contentKey.slice(0, contentKey.lastIndexOf("/"));
-}
-
-/** Rejects incomplete or repeated app-locale placements for one question root. */
-function validatePlacementPairs(placements: readonly TryoutPlacementSource[]) {
-  const localesByRoot = MutableHashMap.empty<
-    string,
-    MutableHashSet.MutableHashSet<string>
-  >();
-  for (const placement of placements) {
-    const root = questionRoot(placement.questionContentKey);
-    const locales =
-      Option.getOrUndefined(MutableHashMap.get(localesByRoot, root)) ??
-      MutableHashSet.empty<string>();
-    if (MutableHashSet.has(locales, placement.appLocale)) {
-      return Effect.fail(
-        new TryoutHeadMismatchError({
-          artifactLocale: placement.answerArtifactLocale,
-          contentKey: placement.questionContentKey,
-          field: "bodyPair",
-        })
-      );
-    }
-    MutableHashSet.add(locales, placement.appLocale);
-    MutableHashMap.set(localesByRoot, root, locales);
-  }
-  for (const placement of placements) {
-    const locales = Option.getOrUndefined(
-      MutableHashMap.get(
-        localesByRoot,
-        questionRoot(placement.questionContentKey)
-      )
-    );
-    if (
-      locales === undefined ||
-      MutableHashSet.size(locales) !== ACTIVE_APP_LOCALES.length ||
-      ACTIVE_APP_LOCALES.some(
-        (appLocale) => !MutableHashSet.has(locales, appLocale)
-      )
-    ) {
-      return Effect.fail(
-        new TryoutHeadMismatchError({
-          artifactLocale: placement.answerArtifactLocale,
-          contentKey: placement.questionContentKey,
-          field: "bodyPair",
-        })
-      );
-    }
-  }
-  return Effect.void;
 }
 
 /** Indexes only exact active compact heads while validating the full stream. */
