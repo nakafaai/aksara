@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   decodeTryoutRegistry,
   TryoutRegistryConflictError,
@@ -33,11 +33,11 @@ function rehomeSource(
       en: { title: "Abitur" },
       id: { title: "Abitur" },
     },
-    tracks: source.tracks.map((track) => ({
+    tracks: Arr.map(source.tracks, (track) => ({
       ...track,
-      sets: track.sets.map((set) => ({
+      sets: Arr.map(track.sets, (set) => ({
         ...set,
-        sections: set.sections.map((section) => ({
+        sections: Arr.map(set.sections, (section) => ({
           ...section,
           questionSourcePath: section.questionSourcePath.replace(
             sourcePrefix,
@@ -55,7 +55,7 @@ describe("tryout registry", () => {
       const sources = yield* decodeTryoutRegistry();
       const first = yield* Effect.fromNullishOr(sources[0]);
       const second = yield* Effect.fromNullishOr(sources[1]);
-      const reversed = yield* decodeTryoutRegistry([...sources].reverse());
+      const reversed = yield* decodeTryoutRegistry(Arr.reverse(sources));
       const orderedCountries = yield* decodeTryoutRegistry([
         rehomeSource(first, "DE"),
         first,
@@ -69,24 +69,35 @@ describe("tryout registry", () => {
         first,
       ]);
 
-      expect(sources.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
+      expect(Arr.map(sources, ({ examKey }) => examKey)).toEqual([
+        "snbt",
+        "tka",
+      ]);
       expect(
-        sources.map(({ countryOrder, examOrder }) => [countryOrder, examOrder])
+        Arr.map(sources, ({ countryOrder, examOrder }) => [
+          countryOrder,
+          examOrder,
+        ])
       ).toEqual([
         [1, 1],
         [1, 2],
       ]);
-      expect(reversed.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
-      expect(orderedCountries.map(({ countryKey }) => countryKey)).toEqual([
-        "indonesia",
-        "germany",
+      expect(Arr.map(reversed, ({ examKey }) => examKey)).toEqual([
+        "snbt",
+        "tka",
       ]);
-      expect(tiedCountries.map(({ countryKey }) => countryKey)).toEqual([
+      expect(Arr.map(orderedCountries, ({ countryKey }) => countryKey)).toEqual(
+        ["indonesia", "germany"]
+      );
+      expect(Arr.map(tiedCountries, ({ countryKey }) => countryKey)).toEqual([
         "germany",
         "indonesia",
       ]);
-      expect(tiedExams.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
-      expect(sources.map(({ sourceRevision }) => sourceRevision)).toEqual([
+      expect(Arr.map(tiedExams, ({ examKey }) => examKey)).toEqual([
+        "snbt",
+        "tka",
+      ]);
+      expect(Arr.map(sources, ({ sourceRevision }) => sourceRevision)).toEqual([
         "2026-10-02",
         "2026-09-27",
       ]);

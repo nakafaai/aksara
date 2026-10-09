@@ -1,5 +1,13 @@
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
-import { Effect, MutableHashMap, MutableHashSet, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableHashSet,
+  Option,
+  Order,
+  Schema,
+} from "effect";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import {
@@ -35,6 +43,21 @@ function countrySignature(source: TryoutExamSource) {
     countryTranslations: source.countryTranslations,
   });
 }
+
+const codeUnitOrder = Order.make(compareCodeUnits);
+/** Orders sources by country, then by exam, with the source-owned keys. */
+const tryoutSourceOrder = Order.combineAll([
+  Order.mapInput(
+    Order.Number,
+    (source: TryoutExamSource) => source.countryOrder
+  ),
+  Order.mapInput(
+    codeUnitOrder,
+    (source: TryoutExamSource) => source.countryKey
+  ),
+  Order.mapInput(Order.Number, (source: TryoutExamSource) => source.examOrder),
+  Order.mapInput(codeUnitOrder, (source: TryoutExamSource) => source.examKey),
+]);
 
 /** Rejects duplicate exams and conflicting shared-country source facts. */
 const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
@@ -80,17 +103,7 @@ const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
       MutableHashSet.add(exams, exam);
     }
 
-    return [...sources].sort((left, right) => {
-      const countryOrder = left.countryOrder - right.countryOrder;
-      const countryKey = compareCodeUnits(left.countryKey, right.countryKey);
-      const examOrder = left.examOrder - right.examOrder;
-      return (
-        countryOrder ||
-        countryKey ||
-        examOrder ||
-        compareCodeUnits(left.examKey, right.examKey)
-      );
-    });
+    return Arr.sort(sources, tryoutSourceOrder);
   }
 );
 
