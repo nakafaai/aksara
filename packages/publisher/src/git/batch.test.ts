@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Option, Schema } from "effect";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
@@ -148,8 +148,12 @@ describe("Git batch protocol", () => {
         joinGitFrames([gitFrame(empty, true), gitFrame(full, true)]),
         blobs
       );
-      expect(decoded.get(TEST_SOURCE_PATH)).toEqual(empty);
-      expect(decoded.get(secondPath)).toEqual(full);
+      expect(
+        Option.getOrUndefined(MutableHashMap.get(decoded, TEST_SOURCE_PATH))
+      ).toEqual(empty);
+      expect(
+        Option.getOrUndefined(MutableHashMap.get(decoded, secondPath))
+      ).toEqual(full);
     })
   );
 });

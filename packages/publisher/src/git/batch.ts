@@ -4,7 +4,7 @@ import type {
 } from "@nakafa/aksara-contracts/ids";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { Effect, Schema } from "effect";
+import { Effect, MutableHashMap, Schema } from "effect";
 
 export const MAX_GIT_BATCH_BLOBS = 128;
 const MAX_BATCH_HEADER_BYTES = 96;
@@ -134,7 +134,7 @@ export const decodeGitBatchMetadata = Effect.fn(
 export const decodeGitBatchResponse = Effect.fn(
   "AksaraPublisher.decodeGitBatchResponse"
 )(function* (output: Uint8Array, blobs: readonly GitBlobMetadata[]) {
-  const decoded = new Map<CorpusSourcePath, Uint8Array>();
+  const decoded = MutableHashMap.empty<CorpusSourcePath, Uint8Array>();
   let offset = 0;
   for (const expected of blobs) {
     const { blob, nextOffset } = yield* readHeader(
@@ -163,7 +163,11 @@ export const decodeGitBatchResponse = Effect.fn(
         sourcePath: expected.sourcePath,
       });
     }
-    decoded.set(expected.sourcePath, output.slice(nextOffset, bodyEnd));
+    MutableHashMap.set(
+      decoded,
+      expected.sourcePath,
+      output.slice(nextOffset, bodyEnd)
+    );
     offset = bodyEnd + 1;
   }
   yield* verifyEnd(output, offset);

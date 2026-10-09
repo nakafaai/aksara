@@ -75,12 +75,10 @@ function sourceProcess(
 ) {
   return makeGitProcess(
     {
-      blobs: new Map(
-        input.map((source) => [
-          source.sourcePath,
-          new TextEncoder().encode(source.rawMdx),
-        ])
-      ),
+      blobs: input.map((source) => [
+        source.sourcePath,
+        new TextEncoder().encode(source.rawMdx),
+      ]),
     },
     commands
   );
