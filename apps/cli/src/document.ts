@@ -1,5 +1,6 @@
 import {
   compileIncremental,
+  IncrementalResultKindSchema,
   type LocalCache,
 } from "@nakafa/aksara-compiler/incremental";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
@@ -27,7 +28,7 @@ type PreviewCache = HashMap.HashMap<PreviewBody["sourcePath"], LocalCache>;
 /** One signed current body and the renderer projection paired with it. */
 const PreviewCompileResultSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
-  compileKind: Schema.Literals(["compiled", "unchanged"]),
+  compileKind: IncrementalResultKindSchema,
   projection: ContentProjectionSchema,
 });
 export type PreviewCompileResult = typeof PreviewCompileResultSchema.Type;
