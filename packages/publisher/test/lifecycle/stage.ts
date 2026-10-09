@@ -1,6 +1,6 @@
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
-import { Effect } from "effect";
+import { Effect, MutableList } from "effect";
 import type { createLifecycleRows } from "#test/lifecycle/state";
 
 /** Builds the observable staging writers of the durable target mock over its rows. */
@@ -10,22 +10,31 @@ export function makeStageWriters(rows: ReturnType<typeof createLifecycleRows>) {
   );
   const stageItemBatch = vi.fn((batch) =>
     Effect.sync(() =>
-      rows.forRelease(batch.releaseId).items.push(...batch.items)
+      MutableList.appendAll(rows.forRelease(batch.releaseId).items, batch.items)
     )
   );
   const stageProjectionBatch = vi.fn((batch) =>
     Effect.sync(() =>
-      rows.forRelease(batch.releaseId).projections.push(...batch.projections)
+      MutableList.appendAll(
+        rows.forRelease(batch.releaseId).projections,
+        batch.projections
+      )
     )
   );
   const stageSnapshot = vi.fn((input) =>
     Effect.sync(() =>
-      rows.forRelease(input.releaseId).snapshots.push(input.snapshot)
+      MutableList.append(
+        rows.forRelease(input.releaseId).snapshots,
+        input.snapshot
+      )
     )
   );
   const stageSnapshotBatch = vi.fn((batch) =>
     Effect.sync(() =>
-      rows.forRelease(batch.releaseId).snapshotRows.push(...batch.rows)
+      MutableList.appendAll(
+        rows.forRelease(batch.releaseId).snapshotRows,
+        batch.rows
+      )
     )
   );
   const stageTryoutRuntimeBundle = vi.fn(
@@ -33,7 +42,10 @@ export function makeStageWriters(rows: ReturnType<typeof createLifecycleRows>) {
   );
   const stageRouteBatch = vi.fn((batch) =>
     Effect.sync(() =>
-      rows.forRelease(batch.releaseId).routes.push(...batch.routes)
+      MutableList.appendAll(
+        rows.forRelease(batch.releaseId).routes,
+        batch.routes
+      )
     )
   );
   /** Applies one grouped operation to the observable transaction mock. */

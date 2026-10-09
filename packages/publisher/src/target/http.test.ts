@@ -4,7 +4,14 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
-import { Array as Arr, Effect, Fiber, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Fiber,
+  MutableList,
+  Option,
+  Schema,
+} from "effect";
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
 import { encodeJsonText } from "#publisher/text/json";
@@ -35,8 +42,8 @@ describe("HTTP publication target", () => {
             concurrency: 1,
           }
         );
-        expect(captured.requests).toHaveLength(22);
-        for (const request of captured.requests) {
+        expect(MutableList.toArray(captured.requests)).toHaveLength(22);
+        for (const request of MutableList.toArray(captured.requests)) {
           expect(request.method).toBe("POST");
           expect(request.url).toBe(endpoint.toString());
           expect(request.headers.authorization).toBe(
@@ -89,7 +96,7 @@ describe("HTTP publication target", () => {
         _tag: "PublicationTargetRejectedError",
         rejection: { code: "CONTENT_RELEASE_SIZE" },
       });
-      expect(captured.requests).toHaveLength(0);
+      expect(MutableList.toArray(captured.requests)).toHaveLength(0);
     })
   );
 
@@ -116,7 +123,7 @@ describe("HTTP publication target", () => {
             releaseId: null,
           },
         });
-        expect(captured.requests).toHaveLength(0);
+        expect(MutableList.toArray(captured.requests)).toHaveLength(0);
       })
   );
 
@@ -143,7 +150,7 @@ describe("HTTP publication target", () => {
           reason: "request-encoding",
           stage: "release",
         });
-        expect(captured.requests).toHaveLength(0);
+        expect(MutableList.toArray(captured.requests)).toHaveLength(0);
       })
   );
 

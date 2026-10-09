@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
-import { Effect, HashSet, Stream } from "effect";
+import { Array as Arr, Effect, HashSet, MutableList, Stream } from "effect";
 import {
   PublicationActivation,
   PublicationActivationError,
@@ -24,7 +24,7 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
         .decodeMaterialRegistry(input)
         .pipe(
           Effect.map((entries) =>
-            entries.filter(({ sourcePath }) =>
+            Arr.filter(entries, ({ sourcePath }) =>
               HashSet.has(sourcePaths, sourcePath)
             )
           )
@@ -108,7 +108,7 @@ describe("content publication", () => {
       expect(state.snapshot().active?.release.manifest.releaseId).toBe(
         release.manifest.releaseId
       );
-      expect(state.abortOrder).toEqual([]);
+      expect(MutableList.toArray(state.abortOrder)).toEqual([]);
       expect(
         yield* publish(release, state.target, recoveryId, activation)
       ).toMatchObject({ releaseId: release.manifest.releaseId });
