@@ -11,9 +11,9 @@ import {
   MaterialHeadSchema,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, Layer, Redacted, Stream } from "effect";
+import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";
 
@@ -50,56 +50,75 @@ const QUESTION_HEAD = QuestionHeadSchema.make({
   ),
 });
 
+const TargetCallsSchema = Schema.Struct({
+  catalogCalls: Schema.mutableKey(Schema.Finite),
+  catalogRebuild: Schema.mutableKey(Schema.UndefinedOr(Schema.Boolean)),
+  checkoutRoot: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  cleanReads: Schema.mutableKey(Schema.Finite),
+  current: Schema.mutableKey(Schema.Unknown),
+  derivedPublicKeyPem: Schema.mutableKey(Schema.String),
+  environmentKeyId: Schema.String,
+  finalSha: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  headManifestHash: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  headReleaseId: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  publicationConfig: Schema.mutableKey(
+    Schema.UndefinedOr(
+      Schema.Struct({
+        allowInsecureLoopback: Schema.Boolean,
+        endpoint: Schema.String,
+        timeout: Schema.Unknown,
+      })
+    )
+  ),
+  rendererCalls: Schema.mutableKey(Schema.Finite),
+  rendererManifestOverride: Schema.mutableKey(Schema.Unknown),
+  rootReads: Schema.mutableKey(Schema.Finite),
+  runtimeBundleRefreshes: Schema.mutableKey(Schema.Finite),
+  runtimeResultSnapshotId: Schema.mutableKey(
+    Schema.UndefinedOr(Schema.NullOr(Schema.String))
+  ),
+  signingSecretReads: Schema.mutableKey(Schema.Finite),
+  snapshotCalls: Schema.mutableKey(Schema.Finite),
+  sourceLayers: Schema.mutableKey(Schema.Finite),
+  targetCalls: Schema.mutableKey(Schema.Finite),
+});
+
 /** Observable fields shared by focused production mock implementations. */
-export interface TargetCalls {
-  catalogCalls: number;
-  catalogRebuild: boolean | undefined;
-  checkoutRoot: string | undefined;
-  cleanReads: number;
-  current: unknown;
-  derivedPublicKeyPem: string;
-  environmentKeyId: string;
-  finalSha: string | undefined;
-  headManifestHash: string | undefined;
-  headReleaseId: string | undefined;
-  publicationConfig:
-    | {
-        readonly allowInsecureLoopback: boolean;
-        readonly endpoint: string;
-        readonly timeout: unknown;
-      }
-    | undefined;
-  rendererCalls: number;
-  rendererManifestOverride: unknown | undefined;
-  rootReads: number;
-  runtimeBundleRefreshes: number;
-  runtimeResultSnapshotId: string | null | undefined;
-  signingSecretReads: number;
-  snapshotCalls: number;
-  sourceLayers: number;
-  targetCalls: number;
-}
+export type TargetCalls = typeof TargetCallsSchema.Type;
+
+const ProductionCallsSchema = Schema.Struct({
+  ...TargetCallsSchema.fields,
+  baseManifestHash: Schema.mutableKey(
+    Schema.UndefinedOr(Schema.NullOr(Schema.String))
+  ),
+  baseReleaseId: Schema.mutableKey(
+    Schema.UndefinedOr(Schema.NullOr(Schema.String))
+  ),
+  baseResultCount: Schema.mutableKey(Schema.UndefinedOr(Schema.Finite)),
+  baseResultDigest: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  bundleVerifyCalls: Schema.mutableKey(Schema.Finite),
+  keyId: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  manifestMismatch: Schema.mutableKey(Schema.Boolean),
+  privateKeyMatches: Schema.mutableKey(Schema.Boolean),
+  publishCalls: Schema.mutableKey(Schema.Finite),
+  publishKind: Schema.mutableKey(Schema.UndefinedOr(Schema.Literal("git"))),
+  releaseId: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  resumeBundle: Schema.mutableKey(
+    Schema.UndefinedOr(ContentReleaseBundleSchema)
+  ),
+  resumeCalls: Schema.mutableKey(Schema.Finite),
+  sha: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
+  storedRelease: Schema.mutableKey(
+    Schema.UndefinedOr(Schema.NullOr(ContentReleaseBundleSchema.fields.release))
+  ),
+  targetServiceReads: Schema.mutableKey(Schema.Finite),
+  verifiedBundle: Schema.mutableKey(
+    Schema.UndefinedOr(ContentReleaseBundleSchema)
+  ),
+});
 
 /** Complete observable state owned by the production command harness. */
-export interface ProductionCalls extends TargetCalls {
-  baseManifestHash: string | null | undefined;
-  baseReleaseId: string | null | undefined;
-  baseResultCount: number | undefined;
-  baseResultDigest: string | undefined;
-  bundleVerifyCalls: number;
-  keyId: string | undefined;
-  manifestMismatch: boolean;
-  privateKeyMatches: boolean;
-  publishCalls: number;
-  publishKind: "git" | undefined;
-  releaseId: string | undefined;
-  resumeBundle: ContentReleaseBundle | undefined;
-  resumeCalls: number;
-  sha: string | undefined;
-  storedRelease: ContentReleaseBundle["release"] | null | undefined;
-  targetServiceReads: number;
-  verifiedBundle: ContentReleaseBundle | undefined;
-}
+export type ProductionCalls = typeof ProductionCallsSchema.Type;
 
 /** Supplies isolated production configuration without process variables. */
 export function environmentMock(calls: TargetCalls) {
