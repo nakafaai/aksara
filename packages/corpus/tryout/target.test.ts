@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
@@ -10,7 +10,7 @@ import {
   type TryoutCatalogRow,
   TryoutCatalogRowSchema,
 } from "@nakafa/aksara-contracts/tryout/catalog";
-import { Effect, Path, Schema } from "effect";
+import { Effect, Schema } from "effect";
 import {
   type QuestionEntry,
   QuestionEntrySchema,
@@ -20,7 +20,7 @@ import {
   type QuestionSource,
   QuestionSourceSchema,
 } from "#corpus/question-bank/source";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
+import { corpusRoot, questionTestLayer } from "#corpus/test/question";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import {
@@ -51,9 +51,9 @@ const loadFixture = Effect.fn("AksaraCorpus.test.loadTryoutTargetFixture")(
   function* () {
     const sources = yield* decodeTryoutRegistry();
     const [answer, prompt] = yield* Effect.all([
-      selectQuestionContent(corpusRoot, sources, answerPath),
-      selectQuestionContent(corpusRoot, sources, promptPath),
-    ]).pipe(Effect.provide([makeQuestionLayer(), Path.layer]));
+      selectQuestionContent(yield* corpusRoot, sources, answerPath),
+      selectQuestionContent(yield* corpusRoot, sources, promptPath),
+    ]);
     const rows = yield* projectTryoutCatalog(sources);
     return {
       answer: answer.selected,
@@ -99,7 +99,7 @@ function findSelectedTrack(rows: readonly TryoutCatalogRow[]) {
   }
 }
 
-describe("tryout target", () => {
+layer(questionTestLayer)("tryout target", (it) => {
   it.effect(
     "resolves real prompt and answer targets without duplicating responses",
     () =>

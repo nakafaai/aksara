@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { Effect, MutableHashMap, Option } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
@@ -10,6 +10,7 @@ import {
   corpusRoot,
   physicalQuestionBankTestTimeout,
   questionLayer,
+  realQuestionCorpusLayer,
 } from "#corpus/test/question";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
@@ -27,7 +28,8 @@ const loadReadinessRegistry = Effect.fn(
 )(function* () {
   const sources = yield* decodeTryoutRegistry();
   const banks = yield* indexQuestionBanks(sources);
-  const questions = yield* discoverQuestionSources(corpusRoot, banks).pipe(
+  const repositoryRoot = yield* corpusRoot;
+  const questions = yield* discoverQuestionSources(repositoryRoot, banks).pipe(
     Effect.provide(questionLayer)
   );
   const readiness = yield* Effect.all([
@@ -39,7 +41,7 @@ const loadReadinessRegistry = Effect.fn(
   return { questions, readiness, sources };
 });
 
-describe("assessment readiness registry", () => {
+layer(realQuestionCorpusLayer)("assessment readiness registry", (it) => {
   it.effect(
     "owns one complete gate for every active assessment",
     () =>

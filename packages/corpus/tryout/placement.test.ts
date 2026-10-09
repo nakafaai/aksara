@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ActiveAppLocaleSchema,
@@ -7,7 +7,11 @@ import {
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import { Effect, Path } from "effect";
 import { selectQuestionContent } from "#corpus/question-bank/content";
-import { corpusRoot, makeQuestionLayer } from "#corpus/test/question";
+import {
+  corpusRoot,
+  makeQuestionLayer,
+  realQuestionCorpusLayer,
+} from "#corpus/test/question";
 import {
   makeTryoutPlacement,
   TryoutPlacementError,
@@ -23,8 +27,9 @@ const loadPlacementFixture = Effect.fn(
   "AksaraCorpus.test.loadPlacementFixture"
 )(function* () {
   const sources = yield* decodeTryoutRegistry();
+  const repositoryRoot = yield* corpusRoot;
   const content = yield* selectQuestionContent(
-    corpusRoot,
+    repositoryRoot,
     sources,
     promptPath
   ).pipe(Effect.provide([makeQuestionLayer(), Path.layer]));
@@ -46,7 +51,7 @@ const loadPlacementFixture = Effect.fn(
   };
 });
 
-describe("tryout placement", () => {
+layer(realQuestionCorpusLayer)("tryout placement", (it) => {
   it.effect("builds the canonical placement from one owned hierarchy", () =>
     Effect.gen(function* () {
       const fixture = yield* loadPlacementFixture();

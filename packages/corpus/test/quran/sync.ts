@@ -4,9 +4,12 @@ import {
   Deferred,
   Effect,
   FileSystem,
+  HashMap,
   Layer,
+  Option,
   Path,
   PlatformError,
+  Schema,
 } from "effect";
 import { HttpClient, HttpClientResponse } from "effect/http";
 
@@ -18,13 +21,14 @@ import {
 } from "#corpus/quran/source/policy";
 import { syncGermanQuranSources } from "#corpus/quran/source/sync";
 
-interface QuranSyncFixtureValue {
-  readonly edition: Uint8Array;
-  readonly publication: Uint8Array;
-  readonly sources: ReadonlyMap<string, Uint8Array>;
-  readonly terms: Uint8Array;
-  readonly translation: Uint8Array;
-}
+const QuranSyncFixtureValueSchema = Schema.Struct({
+  edition: Schema.Uint8Array,
+  publication: Schema.Uint8Array,
+  sources: Schema.HashMap(Schema.String, Schema.Uint8Array),
+  terms: Schema.Uint8Array,
+  translation: Schema.Uint8Array,
+});
+type QuranSyncFixtureValue = typeof QuranSyncFixtureValueSchema.Type;
 
 /** Loads the exact checked-in artifacts through Effect platform services. */
 const loadQuranSyncFixture = Effect.fn(
@@ -51,7 +55,7 @@ const loadQuranSyncFixture = Effect.fn(
 
   return {
     ...fixture,
-    sources: new Map([
+    sources: HashMap.fromIterable([
       [GERMAN_QURAN_EDITION_URL, fixture.edition],
       [GERMAN_QURAN_PUBLICATION_URL, fixture.publication],
       [GERMAN_QURAN_TERMS_URL, fixture.terms],
@@ -84,7 +88,7 @@ export function makePriorQuranSyncSources() {
 
 /** Creates one deterministic HTTP adapter for every official artifact. */
 function sourceClient(
-  sources: ReadonlyMap<string, Uint8Array>,
+  sources: HashMap.HashMap<string, Uint8Array>,
   options: QuranSyncTestOptions
 ) {
   return HttpClient.make((request) => {
@@ -96,7 +100,7 @@ function sourceClient(
         Effect.andThen(Effect.never)
       );
     }
-    const bytes = sources.get(request.url);
+    const bytes = Option.getOrUndefined(HashMap.get(sources, request.url));
     if (bytes === undefined) {
       return Effect.die(`Unexpected source request: ${request.url}`);
     }
@@ -120,11 +124,11 @@ export function quranSyncFileFailure(method: string) {
 
 /** Replaces one exact response without mutating the shared fixture. */
 export function replaceQuranSyncSource(
-  sources: ReadonlyMap<string, Uint8Array>,
+  sources: HashMap.HashMap<string, Uint8Array>,
   url: string,
   bytes: Uint8Array
 ) {
-  return new Map([...sources, [url, bytes]]);
+  return HashMap.set(sources, url, bytes);
 }
 
 interface QuranSyncTestOptions {
@@ -147,7 +151,7 @@ interface QuranSyncTestOptions {
 /** Runs one source sync against isolated targets and injected boundaries. */
 export const quranSyncTestProgram = Effect.fn("AksaraCorpus.test.quranSync")(
   function* (
-    sources: ReadonlyMap<string, Uint8Array>,
+    sources: HashMap.HashMap<string, Uint8Array>,
     options: QuranSyncTestOptions = {}
   ) {
     return yield* Effect.scoped(
