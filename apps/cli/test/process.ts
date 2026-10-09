@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import {
+  ConfigProvider,
   Effect,
   FileSystem,
   Option,
@@ -19,7 +20,6 @@ import { startNakafa } from "#cli/child/session";
 import { makePreviewCredentials } from "#cli/credentials";
 import type { NakafaAppError } from "#cli/error";
 import type { PreviewProvider } from "#cli/provider";
-import { inheritedProcessEnvironment } from "#test/environment";
 
 /** Fails if a mocked CLI flow unexpectedly reaches the operating system. */
 export const unusedExactProcess = ExactProcess.of({
@@ -73,7 +73,11 @@ export function captureInheritedStart(path: string) {
     );
     return capture.input;
   }).pipe(
-    Effect.provide(inheritedProcessEnvironment(inheritedVariables(path)))
+    Effect.provide(
+      ConfigProvider.layer(
+        ConfigProvider.fromEnv({ env: inheritedVariables(path) })
+      )
+    )
   );
 }
 
@@ -89,7 +93,11 @@ export function failInheritedStart(path: string | undefined) {
       startNakafa(input).pipe(Effect.provideService(NakafaProcess, processes))
     ).pipe(Effect.flip);
   }).pipe(
-    Effect.provide(inheritedProcessEnvironment(inheritedVariables(path)))
+    Effect.provide(
+      ConfigProvider.layer(
+        ConfigProvider.fromEnv({ env: inheritedVariables(path) })
+      )
+    )
   );
 }
 
