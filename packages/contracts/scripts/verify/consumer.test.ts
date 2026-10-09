@@ -1,7 +1,7 @@
 import { inspect } from "node:util";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path, Schedule } from "effect";
+import { ConfigProvider, Effect, FileSystem, Path, Schedule } from "effect";
 import { TestClock } from "effect/testing";
 import {
   preserveTarball,
@@ -12,10 +12,19 @@ import {
 /** Supplies the exact live boundary inputs for direct program verification. */
 const input = (args: readonly string[] = []) => ({
   args,
-  environment: process.env,
   executable: process.execPath,
   platform: process.platform,
 });
+
+/** Supplies the verifier's configuration explicitly, so no failure test reads the host environment. */
+const configuration = (home: string, variables: Record<string, string> = {}) =>
+  ConfigProvider.layer(
+    ConfigProvider.fromEnvRecord({
+      HOME: home,
+      PATH: "/usr/bin:/bin",
+      ...variables,
+    })
+  );
 
 /** Imports the CLI with exact arguments and always restores process state. */
 const runConsumerCommand = Effect.fn(
@@ -99,7 +108,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
         ...input(),
         temporaryDirectory: workspace,
         tools: { pnpm: process.execPath },
-      }).pipe(Effect.scoped, Effect.flip);
+      }).pipe(Effect.scoped, Effect.provide(configuration(root)), Effect.flip);
       expect(processError).toMatchObject({ reason: "process" });
       expect(processError.detail).toContain("Contract package creation");
       expect(processError.detail).toContain("code 1");
@@ -109,10 +118,13 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       const credential = "must-not-appear-in-consumer-errors";
       const startError = yield* verifyConsumer({
         ...input(),
-        environment: { ...process.env, NPM_TOKEN: credential },
         temporaryDirectory: workspace,
         tools: { pnpm: path.join(root, "missing-command") },
-      }).pipe(Effect.scoped, Effect.flip);
+      }).pipe(
+        Effect.scoped,
+        Effect.provide(configuration(root, { NPM_TOKEN: credential })),
+        Effect.flip
+      );
       expect(startError).toMatchObject({ reason: "process" });
       expect(startError.detail).toContain("Contract package creation");
       expect(startError.detail).toContain("missing-command");

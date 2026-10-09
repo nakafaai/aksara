@@ -4,37 +4,13 @@ import {
   createConsumerManifest,
   createConsumerSource,
   createConsumerTsconfig,
-  createCredentialFreeEnvironment,
   createInstallRunner,
-  executablePath,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
 import { JsonTextSchema } from "#scripts/text/json";
 
 describe("consumer tooling", () => {
-  it("removes npm credentials and pins empty configuration", () => {
-    expect(
-      createCredentialFreeEnvironment(
-        {
-          HOME: "/home/test",
-          NODE_AUTH_TOKEN: "secret",
-          NPM_TOKEN: "secret",
-          npm_config_registry: "private",
-          PNPM_CONFIG_STORE_DIR: "private",
-        },
-        "/tmp/global",
-        "/tmp/user"
-      )
-    ).toEqual({
-      HOME: "/home/test",
-      NPM_CONFIG_GLOBALCONFIG: "/tmp/global",
-      NPM_CONFIG_USERCONFIG: "/tmp/user",
-    });
-  });
-
-  it("selects platform executables and exactly one tarball", () => {
-    expect(executablePath("pnpm", "darwin")).toBe("pnpm");
-    expect(executablePath("pnpm", "win32")).toBe("pnpm.cmd");
+  it("selects exactly one tarball", () => {
     expect(selectPackedArchive(["readme.txt", "package.tgz"])).toBe(
       "package.tgz"
     );

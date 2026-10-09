@@ -8,6 +8,7 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
+import { runConsumerCommand } from "#scripts/consumer/command";
 import { stageConsumerPackage } from "#scripts/consumer/package";
 import {
   ConsumerPackageInputSchema,
@@ -17,7 +18,6 @@ import {
   createConsumerSource,
   createConsumerTsconfig,
   createInstallRunner,
-  runConsumerCommand,
 } from "#scripts/consumer/tools";
 
 const ConsumerVerificationInputSchema = Schema.Struct({

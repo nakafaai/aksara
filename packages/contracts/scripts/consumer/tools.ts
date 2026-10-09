@@ -1,10 +1,6 @@
 import assert from "node:assert/strict";
-import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
-import { ChildProcess } from "effect/process";
+import { Array as Arr, Schema } from "effect";
 import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
-
-const CONFIG_ENVIRONMENT_PATTERN = /^(?:NPM|PNPM)_CONFIG_/iu;
-const CREDENTIAL_ENVIRONMENT_PATTERN = /^(?:NODE_AUTH_TOKEN|NPM_TOKEN)$/iu;
 
 const ConsumerManifestInputSchema = Schema.Struct({
   effectVersion: Schema.String,
@@ -26,7 +22,6 @@ export type ConsumerTools = typeof ConsumerToolsSchema.Type;
 
 /** Host inputs required to stage one isolated consumer package. */
 export const ConsumerPackageInputSchema = Schema.Struct({
-  environment: Schema.Record(Schema.String, Schema.UndefinedOr(Schema.String)),
   platform: Schema.Literals([
     "aix",
     "android",
@@ -51,33 +46,6 @@ export const ConsumerPackageInputSchema = Schema.Struct({
 
 /** Host inputs required to stage one isolated consumer package. */
 export type ConsumerPackageInput = typeof ConsumerPackageInputSchema.Type;
-
-/** Removes registry credentials and pins empty package-manager configuration. */
-export function createCredentialFreeEnvironment(
-  environment: NodeJS.ProcessEnv,
-  globalConfig: string,
-  userConfig: string
-): NodeJS.ProcessEnv {
-  return {
-    ...Rec.fromEntries(
-      Arr.filter(
-        Rec.toEntries(environment),
-        ([name]) =>
-          !(
-            CREDENTIAL_ENVIRONMENT_PATTERN.test(name) ||
-            CONFIG_ENVIRONMENT_PATTERN.test(name)
-          )
-      )
-    ),
-    NPM_CONFIG_GLOBALCONFIG: globalConfig,
-    NPM_CONFIG_USERCONFIG: userConfig,
-  };
-}
-
-/** Resolves the platform-specific executable name without invoking a shell. */
-export function executablePath(executable: string, platform: NodeJS.Platform) {
-  return platform === "win32" ? `${executable}.cmd` : executable;
-}
 
 /** One expected isolated-consumer verification failure. */
 export class ConsumerVerificationError extends Schema.TaggedError<ConsumerVerificationError>()(
@@ -106,45 +74,6 @@ export function consumerFailure(
   return (cause: unknown) =>
     consumerError(reason, `${detail}: ${String(cause)}`, cause);
 }
-
-/** Executes one child command without a shell and verifies its exact exit code. */
-export const runConsumerCommand = Effect.fn(
-  "AksaraContracts.runConsumerCommand"
-)(
-  (
-    executable: string,
-    args: readonly string[],
-    environment: NodeJS.ProcessEnv,
-    platform: NodeJS.Platform,
-    stage: string,
-    cwd?: string
-  ) =>
-    Effect.gen(function* () {
-      const exitCode = yield* ChildProcess.make(
-        executablePath(executable, platform),
-        args,
-        {
-          cwd,
-          env: environment,
-          extendEnv: false,
-          stderr: "inherit",
-          stdin: "inherit",
-          stdout: "inherit",
-        }
-      ).pipe(
-        Effect.flatMap((child) => child.exitCode),
-        Effect.mapError(consumerFailure("process", `${stage} command failed`)),
-        Effect.scoped
-      );
-      if (exitCode !== 0) {
-        return yield* consumerError(
-          "process",
-          `${stage} exited unsuccessfully with code ${exitCode}`,
-          { exitCode }
-        );
-      }
-    })
-);
 
 /** Requires package tooling to produce exactly one tarball archive. */
 export function selectPackedArchive(paths: readonly string[]): string {
