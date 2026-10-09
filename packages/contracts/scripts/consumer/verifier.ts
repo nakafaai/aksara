@@ -8,7 +8,10 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import { runConsumerCommand } from "#scripts/consumer/command";
+import {
+  readConsumerCommand,
+  runConsumerCommand,
+} from "#scripts/consumer/command";
 import { stageConsumerPackage } from "#scripts/consumer/package";
 import {
   ConsumerPackageInputSchema,
@@ -19,6 +22,11 @@ import {
   createConsumerTsconfig,
   createInstallRunner,
 } from "#scripts/consumer/tools";
+import { encodeJsonText } from "#scripts/text/json";
+import {
+  type InstallInspection,
+  verifyInstalledPackage,
+} from "#scripts/verify/install";
 
 const ConsumerVerificationInputSchema = Schema.Struct({
   ...ConsumerPackageInputSchema.fields,
@@ -29,6 +37,13 @@ const ConsumerVerificationInputSchema = Schema.Struct({
 /** Inputs supplied by the Node CLI boundary. */
 export type ConsumerVerificationInput =
   typeof ConsumerVerificationInputSchema.Type;
+
+/** The one JSON document that the install runner writes to standard output. */
+const InstallInspectionOutputSchema = Schema.fromJsonString(
+  Schema.Struct({
+    resolved: Schema.Record(Schema.String, Schema.URLFromString),
+  })
+);
 
 /** Converts one exact export subpath into its public package specifier. */
 export function publicSpecifier(packageName: string, subpath: string): string {
@@ -83,6 +98,39 @@ const parseConsumerArguments = Effect.fn(
   return parsed.values.output;
 });
 
+/** Runs the install runner inside the isolated consumer, and decodes the URLs that it resolved. */
+const inspectInstalledPackage = Effect.fn(
+  "AksaraContracts.inspectInstalledPackage"
+)(function* (command: {
+  readonly consumerDirectory: string;
+  readonly environment: NodeJS.ProcessEnv;
+  readonly executable: string;
+  readonly inspection: InstallInspection;
+  readonly platform: NodeJS.Platform;
+  readonly runner: string;
+}) {
+  const output = yield* readConsumerCommand({
+    args: [command.runner],
+    cwd: command.consumerDirectory,
+    environment: command.environment,
+    executable: command.executable,
+    input: encodeJsonText(command.inspection),
+    platform: command.platform,
+    stage: "Installed package verification",
+  });
+  const answer = yield* Schema.decodeEffect(InstallInspectionOutputSchema)(
+    output
+  ).pipe(
+    Effect.mapError(
+      consumerFailure(
+        "process",
+        "Installed package verification returned malformed output"
+      )
+    )
+  );
+  return answer.resolved;
+});
+
 /** Builds and verifies one exact release archive in an isolated pnpm consumer. */
 export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
   function* (input: ConsumerVerificationInput) {
@@ -94,11 +142,6 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
     const write = (file: string, contents: string, detail: string) =>
       fileSystem
         .writeFileString(file, contents)
-        .pipe(Effect.mapError(consumerFailure("filesystem", detail)));
-    /** Copies one verifier-owned file through the platform service. */
-    const copy = (source: string, target: string, detail: string) =>
-      fileSystem
-        .copyFile(source, target)
         .pipe(Effect.mapError(consumerFailure("filesystem", detail)));
     /** Runs one consumer command with the exact scoped environment. */
     const run = (
@@ -154,52 +197,28 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       staged.consumerDirectory
     );
     const installedRunner = path.join(staged.verifierDirectory, "run.ts");
-    yield* fileSystem
-      .makeDirectory(path.join(staged.verifierDirectory, "verify"), {
-        recursive: true,
-      })
-      .pipe(
-        Effect.mapError(
-          consumerFailure("filesystem", "Install verifier staging failed")
-        )
-      );
-    yield* fileSystem
-      .makeDirectory(path.join(staged.verifierDirectory, "text"), {
-        recursive: true,
-      })
-      .pipe(
-        Effect.mapError(
-          consumerFailure("filesystem", "Install verifier staging failed")
-        )
-      );
-    yield* Effect.all([
-      copy(
-        path.join(staged.scriptDirectory, "manifest.ts"),
-        path.join(staged.verifierDirectory, "manifest.ts"),
-        "Verifier manifest staging failed"
-      ),
-      copy(
-        path.join(staged.scriptDirectory, "text", "json.ts"),
-        path.join(staged.verifierDirectory, "text", "json.ts"),
-        "JSON text staging failed"
-      ),
-      copy(
-        path.join(staged.scriptDirectory, "verify", "install.ts"),
-        path.join(staged.verifierDirectory, "verify", "install.ts"),
-        "Install verifier staging failed"
-      ),
-      write(
-        installedRunner,
-        createInstallRunner(),
-        "Install runner staging failed"
-      ),
-    ]);
-    yield* run(
-      input.executable,
-      [installedRunner, staged.packageName],
-      "Installed package verification",
-      staged.consumerDirectory
+    yield* write(
+      installedRunner,
+      createInstallRunner(),
+      "Install runner staging failed"
     );
+    yield* verifyInstalledPackage({
+      consumerRoot: staged.consumerDirectory,
+      inspect: (inspection) =>
+        inspectInstalledPackage({
+          consumerDirectory: staged.consumerDirectory,
+          environment: staged.childEnvironment,
+          executable: input.executable,
+          inspection,
+          platform: input.platform,
+          runner: installedRunner,
+        }),
+      packageName: staged.packageName,
+      write: (message) =>
+        Effect.sync(() => {
+          process.stdout.write(message);
+        }),
+    });
     yield* preserveTarball(output, staged.tarballPath);
     yield* Console.log(
       `Verified ${staged.packageName} as an isolated pnpm release consumer.`

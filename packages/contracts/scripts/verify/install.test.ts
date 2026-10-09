@@ -1,32 +1,24 @@
 import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
-import { assert, describe, it, layer } from "@effect/vitest";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  MutableList,
-  Path,
-  Schema,
-} from "effect";
+import { assert, layer } from "@effect/vitest";
+import { Effect, FileSystem, Path, Schema } from "effect";
 import { encodeJsonText } from "#scripts/text/json";
 import {
+  type InstallInspection,
   type InstallVerificationInput,
   isInstalledPath,
   verifyInstalledPackage,
 } from "#scripts/verify/install";
 
 const packageName = "@nakafa/test-package";
+const packageSubpath = `${packageName}/feature`;
 const defaultExports = {
   ".": {
     browser: "./dist/index.js",
     import: "./dist/index.js",
     types: "./dist/index.d.ts",
   },
-  "./feature": {
-    node: "./dist/feature.js",
-    types: "./dist/feature.d.ts",
-  },
+  "./feature": { node: "./dist/feature.js", types: "./dist/feature.d.ts" },
 } satisfies Readonly<Record<string, unknown>>;
 
 const InstallFixtureSchema = Schema.Struct({
@@ -35,6 +27,10 @@ const InstallFixtureSchema = Schema.Struct({
 });
 
 type InstallFixture = typeof InstallFixtureSchema.Type;
+
+type Seams<E, R> = Partial<
+  Pick<InstallVerificationInput<E, R>, "inspect" | "write">
+>;
 
 class TestBoundaryError extends Schema.TaggedError<TestBoundaryError>()(
   "TestBoundaryError",
@@ -52,15 +48,9 @@ const createInstallFixture = Effect.fn("InstallVerificationTest.createFixture")(
     const consumerRoot = yield* fileSystem.makeTempDirectoryScoped({
       prefix: "aksara-install-test-",
     });
-    const packageRoot = path.join(
-      consumerRoot,
-      "node_modules",
-      "@nakafa",
-      "test-package"
-    );
-    yield* fileSystem.makeDirectory(path.join(packageRoot, "dist"), {
-      recursive: true,
-    });
+    const packageRoot = path.join(consumerRoot, "node_modules", packageName);
+    const distRoot = path.join(packageRoot, "dist");
+    yield* fileSystem.makeDirectory(distRoot, { recursive: true });
     yield* fileSystem.writeFileString(
       path.join(packageRoot, "package.json"),
       encodeJsonText({ exports, name: installedName })
@@ -68,38 +58,37 @@ const createInstallFixture = Effect.fn("InstallVerificationTest.createFixture")(
     yield* Effect.forEach(
       ["index.js", "index.d.ts", "feature.js", "feature.d.ts"],
       (file) =>
-        fileSystem.writeFileString(
-          path.join(packageRoot, "dist", file),
-          "export {};\n"
-        ),
+        fileSystem.writeFileString(path.join(distRoot, file), "export {};\n"),
       { discard: true }
     );
     return { consumerRoot, packageRoot } satisfies InstallFixture;
   }
 );
 
+/** Returns the file URL of one file in the dist directory of an installed package. */
+function distUrl(packageRoot: string, file: string): URL {
+  return pathToFileURL(`${packageRoot}/dist/${file}`);
+}
+
+/** Answers an inspection the way Node does: each public specifier resolves to its target. */
+function defaultAnswers(
+  fixture: InstallFixture
+): Readonly<Record<string, URL>> {
+  return {
+    [packageName]: distUrl(fixture.packageRoot, "index.js"),
+    [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+  };
+}
+
 /** Builds one successful verification input with independently replaceable seams. */
 function verificationInput<E = never, R = never>(
   fixture: InstallFixture,
-  overrides: Partial<
-    Pick<
-      InstallVerificationInput<E, R>,
-      "importModule" | "resolveSpecifier" | "write"
-    >
-  > = {}
+  overrides: Seams<E, R> = {}
 ): InstallVerificationInput<E, R> {
   return {
     consumerRoot: fixture.consumerRoot,
-    importModule: () => Effect.void,
+    inspect: () => Effect.succeed(defaultAnswers(fixture)),
     packageName,
-    resolveSpecifier: (specifier) =>
-      Effect.succeed(
-        pathToFileURL(
-          specifier === packageName
-            ? `${fixture.packageRoot}/dist/index.js`
-            : `${fixture.packageRoot}/dist/feature.js`
-        ).href
-      ),
     write: () => Effect.void,
     ...overrides,
   };
@@ -111,39 +100,61 @@ const verificationFailure = Effect.fn("InstallVerificationTest.failure")(
     verifyInstalledPackage(input).pipe(Effect.flip)
 );
 
-describe("installed package verification paths", () => {
-  it("recognizes only paths inside node_modules", () => {
-    assert.strictEqual(isInstalledPath(""), false);
-    assert.strictEqual(isInstalledPath("../outside"), false);
-    assert.strictEqual(isInstalledPath("/absolute"), false);
-    assert.strictEqual(isInstalledPath("@nakafa/test-package"), true);
-  });
-});
+/** Fails verification of one fixture with the answers that one inspection gives. */
+const failureWithAnswers = (
+  fixture: InstallFixture,
+  answers: Readonly<Record<string, URL>>
+) =>
+  verificationFailure(
+    verificationInput(fixture, { inspect: () => Effect.succeed(answers) })
+  );
+
+/** Asserts that one typed failure names the expected text. */
+const assertMessage = (error: { readonly message: string }, text: string) => {
+  assert.ok(error.message.includes(text));
+};
 
 layer(NodeServices.layer)("installed package verification", (effectIt) => {
+  effectIt.effect("recognizes only paths inside node_modules", () =>
+    Effect.gen(function* () {
+      const path = yield* Path.Path;
+      assert.strictEqual(isInstalledPath(path, ""), false);
+      assert.strictEqual(isInstalledPath(path, "../outside"), false);
+      assert.strictEqual(isInstalledPath(path, "/absolute"), false);
+      assert.strictEqual(isInstalledPath(path, "@nakafa/test-package"), true);
+    })
+  );
+
   effectIt.effect("imports every Node condition and public export", () =>
     Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
       const fixture = yield* createInstallFixture();
-      const importedList = MutableList.make<string>();
+      const inspect = vi.fn((_inspection: InstallInspection) =>
+        Effect.succeed(defaultAnswers(fixture))
+      );
       const write = vi.fn();
 
       yield* verifyInstalledPackage(
         verificationInput(fixture, {
-          importModule: (specifier) =>
-            Effect.sync(() => {
-              MutableList.append(importedList, specifier);
-            }),
-          write: (message) =>
-            Effect.sync(() => {
-              write(message);
-            }),
+          inspect,
+          write: (message) => Effect.sync(() => write(message)),
         })
       );
 
-      const imported = MutableList.toArray(importedList);
-      assert.strictEqual(imported.length, 4);
-      assert.ok(Arr.contains(imported, packageName));
-      assert.ok(Arr.contains(imported, `${packageName}/feature`));
+      const realRoot = yield* fileSystem.realPath(fixture.packageRoot);
+      assert.deepStrictEqual(inspect.mock.calls, [
+        [
+          {
+            imports: [
+              distUrl(realRoot, "index.js").href,
+              distUrl(realRoot, "feature.js").href,
+              packageName,
+              packageSubpath,
+            ],
+            resolutions: [packageName, packageSubpath],
+          },
+        ],
+      ]);
       assert.deepStrictEqual(write.mock.calls, [
         [
           "Verified 2 exact exports and 2 Node-importable conditions from the installed tarball.\n",
@@ -152,67 +163,45 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
     })
   );
 
-  effectIt.effect(
-    "rejects wildcard exports and missing required conditions",
-    () =>
-      Effect.gen(function* () {
-        const wildcard = yield* createInstallFixture({
-          "./*": {
-            import: "./dist/index.js",
-            types: "./dist/index.d.ts",
-          },
-        });
-        const missingTypes = yield* createInstallFixture({
-          ".": { import: "./dist/index.js" },
-        });
-        const missingNode = yield* createInstallFixture({
-          ".": {
-            browser: "./dist/index.js",
-            types: "./dist/index.d.ts",
-          },
-        });
-        const errors = yield* Effect.all([
-          verificationFailure(verificationInput(wildcard)),
-          verificationFailure(verificationInput(missingTypes)),
-          verificationFailure(verificationInput(missingNode)),
-        ]);
+  effectIt.effect("rejects wildcard exports and missing conditions", () =>
+    Effect.gen(function* () {
+      const wildcard = yield* createInstallFixture({
+        "./*": { import: "./dist/index.js", types: "./dist/index.d.ts" },
+      });
+      const missingTypes = yield* createInstallFixture({
+        ".": { import: "./dist/index.js" },
+      });
+      const missingNode = yield* createInstallFixture({
+        ".": { browser: "./dist/index.js", types: "./dist/index.d.ts" },
+      });
+      const [wildcardError, typesError, nodeError] = yield* Effect.all([
+        verificationFailure(verificationInput(wildcard)),
+        verificationFailure(verificationInput(missingTypes)),
+        verificationFailure(verificationInput(missingNode)),
+      ]);
 
-        assert.ok(
-          errors[0].message.includes("Only exact package exports are supported")
-        );
-        assert.ok(errors[1].message.includes("must declare a types condition"));
-        assert.ok(
-          errors[2].message.includes("must declare a Node-importable condition")
-        );
-      })
+      assertMessage(wildcardError, "Only exact package exports are supported");
+      assertMessage(typesError, "must declare a types condition");
+      assertMessage(nodeError, "must declare a Node-importable condition");
+    })
   );
 
-  effectIt.effect(
-    "rejects targets outside dist or absent from the tarball",
-    () =>
-      Effect.gen(function* () {
-        const outside = yield* createInstallFixture({
-          ".": {
-            import: "./dist/index.js",
-            types: "./src/index.d.ts",
-          },
-        });
-        const missing = yield* createInstallFixture({
-          ".": {
-            import: "./dist/missing.js",
-            types: "./dist/index.d.ts",
-          },
-        });
-        const [outsideError, missingError] = yield* Effect.all([
-          verificationFailure(verificationInput(outside)),
-          verificationFailure(verificationInput(missing)),
-        ]);
+  effectIt.effect("rejects targets outside dist or missing", () =>
+    Effect.gen(function* () {
+      const outside = yield* createInstallFixture({
+        ".": { import: "./dist/index.js", types: "./src/index.d.ts" },
+      });
+      const missing = yield* createInstallFixture({
+        ".": { import: "./dist/missing.js", types: "./dist/index.d.ts" },
+      });
+      const [outsideError, missingError] = yield* Effect.all([
+        verificationFailure(verificationInput(outside)),
+        verificationFailure(verificationInput(missing)),
+      ]);
 
-        assert.ok(outsideError.message.includes("must target dist"));
-        assert.ok(
-          missingError.message.includes("is missing ./dist/missing.js")
-        );
-      })
+      assertMessage(outsideError, "must target dist");
+      assertMessage(missingError, "is missing ./dist/missing.js");
+    })
   );
 
   effectIt.effect("rejects changed identity and wrong public resolution", () =>
@@ -224,18 +213,69 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
       const wrong = yield* createInstallFixture();
       const [changedError, wrongError] = yield* Effect.all([
         verificationFailure(verificationInput(changed)),
-        verificationFailure(
-          verificationInput(wrong, {
-            resolveSpecifier: () =>
-              Effect.succeed(
-                pathToFileURL(`${wrong.packageRoot}/dist/feature.js`).href
-              ),
-          })
-        ),
+        failureWithAnswers(wrong, {
+          [packageName]: distUrl(wrong.packageRoot, "feature.js"),
+          [packageSubpath]: distUrl(wrong.packageRoot, "feature.js"),
+        }),
       ]);
 
-      assert.ok(changedError.message.includes("packed package name changed"));
-      assert.ok(wrongError.message.includes("selected the wrong condition"));
+      assertMessage(changedError, "packed package name changed");
+      assertMessage(wrongError, "selected the wrong condition");
+    })
+  );
+
+  effectIt.effect("rejects a missing package or unreadable manifest", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const fixture = yield* createInstallFixture();
+      const manifest = path.join(fixture.packageRoot, "package.json");
+
+      yield* fileSystem.remove(manifest);
+      const missingFile = yield* verificationFailure(
+        verificationInput(fixture)
+      );
+      yield* fileSystem.writeFileString(manifest, "{");
+      const invalidFile = yield* verificationFailure(
+        verificationInput(fixture)
+      );
+      yield* fileSystem.remove(fixture.packageRoot, { recursive: true });
+      const missingPackage = yield* verificationFailure(
+        verificationInput(fixture)
+      );
+
+      assertMessage(missingFile, "Unable to read the installed manifest");
+      assertMessage(invalidFile, "Unable to read the installed manifest");
+      assertMessage(
+        missingPackage,
+        `Unable to resolve the installed ${packageName} directory.`
+      );
+    })
+  );
+
+  effectIt.effect("rejects unusable or unanswered resolutions", () =>
+    Effect.gen(function* () {
+      const fixture = yield* createInstallFixture();
+      const errors = yield* Effect.all([
+        failureWithAnswers(fixture, {
+          [packageName]: new URL("node:fs"),
+          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+        }),
+        failureWithAnswers(fixture, {
+          [packageName]: distUrl(fixture.packageRoot, "missing.js"),
+          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+        }),
+        failureWithAnswers(fixture, {
+          [packageSubpath]: distUrl(fixture.packageRoot, "feature.js"),
+        }),
+      ]);
+
+      for (const error of errors) {
+        assertMessage(
+          error,
+          `Unable to inspect Node resolution for ${packageName}.`
+        );
+      }
     })
   );
 
@@ -246,16 +286,10 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
         ...verificationInput(fixture),
         consumerRoot: `${fixture.consumerRoot}/missing`,
       });
-      const resolveFailure = yield* verifyInstalledPackage(
+      const inspectFailure = yield* verifyInstalledPackage(
         verificationInput(fixture, {
-          resolveSpecifier: () =>
-            Effect.fail(new TestBoundaryError({ operation: "resolve" })),
-        })
-      ).pipe(Effect.flip);
-      const importFailure = yield* verifyInstalledPackage(
-        verificationInput(fixture, {
-          importModule: () =>
-            Effect.fail(new TestBoundaryError({ operation: "import" })),
+          inspect: () =>
+            Effect.fail(new TestBoundaryError({ operation: "inspect" })),
         })
       ).pipe(Effect.flip);
       const writeFailure = yield* verifyInstalledPackage(
@@ -266,8 +300,7 @@ layer(NodeServices.layer)("installed package verification", (effectIt) => {
       ).pipe(Effect.flip);
 
       assert.strictEqual(missingRoot._tag, "InstallVerificationError");
-      assert.strictEqual(resolveFailure._tag, "TestBoundaryError");
-      assert.strictEqual(importFailure._tag, "TestBoundaryError");
+      assert.strictEqual(inspectFailure._tag, "TestBoundaryError");
       assert.strictEqual(writeFailure._tag, "TestBoundaryError");
     })
   );

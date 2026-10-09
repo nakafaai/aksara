@@ -202,7 +202,6 @@ export const stageConsumerPackage = Effect.fn(
     packageName: sourceManifest.name,
     packedManifest,
     pnpm: tools.pnpm,
-    scriptDirectory,
     tarballPath,
     verifierDirectory,
     workspaceRoot,

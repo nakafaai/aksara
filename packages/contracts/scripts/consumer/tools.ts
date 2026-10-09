@@ -96,9 +96,6 @@ export function createConsumerManifest({
       [packageName]: `file:${tarballPath}`,
       effect: effectVersion,
     },
-    imports: {
-      "#scripts/*": "./verify/*.ts",
-    },
     name: "aksara-contracts-external-consumer",
     packageManager,
     private: true,
@@ -180,42 +177,48 @@ export function createConsumerTsconfig() {
   })}\n`;
 }
 
-/** Serializes the external Node runtime verifier for the installed tarball. */
+/**
+ * Serializes the plain Node script that the verifier runs inside the isolated
+ * consumer. It reads one JSON request from standard input, resolves each public
+ * specifier with import.meta.resolve, imports each specifier or file URL, and
+ * writes the resolved URLs as one JSON document to standard output. It imports
+ * nothing from the repository, so only the consumer's own packages are used.
+ */
 export function createInstallRunner() {
-  return `import { Effect } from "effect";
-import {
-  InstallVerificationError,
-  verifyInstalledPackage,
-} from "#scripts/verify/install";
-import { textField } from "#scripts/manifest";
+  return `const chunks = [];
+for await (const chunk of process.stdin) {
+  chunks.push(chunk);
+}
+const request = JSON.parse(Buffer.concat(chunks).toString("utf8"));
 
-const packageName = textField(
-  process.argv[2],
-  "The installed package name is required"
-);
+function resolveSpecifier(specifier) {
+  try {
+    return import.meta.resolve(specifier);
+  } catch (cause) {
+    throw new Error("Unable to resolve " + specifier + ": " + String(cause));
+  }
+}
 
-const installError = (message: string) => (cause: unknown) =>
-  new InstallVerificationError({ cause, message });
+async function importSpecifier(specifier) {
+  try {
+    await import(specifier);
+  } catch (cause) {
+    throw new Error("Unable to import " + specifier + ": " + String(cause));
+  }
+}
 
-await Effect.runPromise(
-  verifyInstalledPackage({
-    consumerRoot: process.cwd(),
-    importModule: (specifier) =>
-      Effect.tryPromise({
-        catch: installError(\`Unable to import \${specifier}.\`),
-        try: () => import(specifier),
-      }),
-    packageName,
-    resolveSpecifier: (specifier) =>
-      Effect.try({
-        catch: installError(\`Unable to resolve \${specifier}.\`),
-        try: () => import.meta.resolve(specifier),
-      }),
-    write: (message) =>
-      Effect.sync(() => {
-        process.stdout.write(message);
-      }),
-  })
-);
+try {
+  const resolved = {};
+  for (const specifier of request.resolutions) {
+    resolved[specifier] = resolveSpecifier(specifier);
+  }
+  for (const specifier of request.imports) {
+    await importSpecifier(specifier);
+  }
+  process.stdout.write(JSON.stringify({ resolved }) + "\\n");
+} catch (error) {
+  process.stderr.write(error.message + "\\n");
+  process.exitCode = 1;
+}
 `;
 }
