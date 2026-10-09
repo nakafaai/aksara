@@ -1,6 +1,6 @@
 import { Server } from "node:net";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
-import { Effect, Record as Rec, Redacted } from "effect";
+import { Array as Arr, Effect, Order, Record as Rec, Redacted } from "effect";
 import { NakafaProcess, type NakafaProcessInput } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
 import { makeNakafaAppError } from "#cli/error";
@@ -61,7 +61,7 @@ describe("Nakafa child process", () => {
           `http://localhost:${result.child.origin.port}/`
         );
         expect(started.root).toBe(input.root);
-        expect(Rec.keys(started.environment).sort()).toEqual([
+        expect(Arr.sort(Rec.keys(started.environment), Order.String)).toEqual([
           "AKSARA_PREVIEW_EVENTS_PATH",
           "AKSARA_PREVIEW_KEY_ID",
           "AKSARA_PREVIEW_MANIFEST_PATH",

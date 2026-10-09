@@ -1,11 +1,10 @@
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
-import {
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
-  type PublicationReceipt,
-  type SignedContentRelease,
+import type { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import type {
+  ContentReleaseItem,
+  PublicationReceipt,
+  SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
 import type {
   HeadPage,
@@ -20,23 +19,26 @@ import type {
   RoutePage,
   RoutePageRequest,
 } from "@nakafa/aksara-contracts/release/route/page";
-import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
-import {
+import type { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
+import type {
   ContentSnapshotManifestSchema,
   ContentSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { MutableHashMap, Option, Schema } from "effect";
+import { Array as Arr, MutableHashMap, MutableList, Option } from "effect";
 
-const StagedRowsSchema = Schema.Struct({
-  items: Schema.mutable(Schema.Array(ContentReleaseItemSchema)),
-  projections: Schema.mutable(Schema.Array(MaterialLessonProjectionSchema)),
-  routes: Schema.mutable(Schema.Array(ContentRouteItemSchema)),
-  snapshotRows: Schema.mutable(Schema.Array(ContentSnapshotRowSchema)),
-  snapshots: Schema.mutable(Schema.Array(ContentSnapshotManifestSchema)),
-});
+/** Creates the empty lists that one release fills in stage order. */
+function emptyStagedRows() {
+  return {
+    items: MutableList.make<ContentReleaseItem>(),
+    projections: MutableList.make<typeof MaterialLessonProjectionSchema.Type>(),
+    routes: MutableList.make<typeof ContentRouteItemSchema.Type>(),
+    snapshotRows: MutableList.make<typeof ContentSnapshotRowSchema.Type>(),
+    snapshots: MutableList.make<typeof ContentSnapshotManifestSchema.Type>(),
+  };
+}
 
-type StagedRows = typeof StagedRowsSchema.Type;
+type StagedRows = ReturnType<typeof emptyStagedRows>;
 
 /** Builds terminal publication evidence from one exact signed release. */
 export function releaseReceipt(
@@ -115,20 +117,15 @@ export function createLifecycleRows() {
     if (existing) {
       return existing;
     }
-    const created: StagedRows = {
-      items: [],
-      projections: [],
-      routes: [],
-      snapshotRows: [],
-      snapshots: [],
-    };
+    const created = emptyStagedRows();
     MutableHashMap.set(rows, releaseId, created);
     return created;
   };
 
   /** Confirms every release upsert still has its immutable artifact body. */
   const hasRetainedArtifacts = (releaseId: string) =>
-    forRelease(releaseId).items.every(
+    Arr.every(
+      MutableList.toArray(forRelease(releaseId).items),
       ({ change }) =>
         change.operation === "delete" ||
         MutableHashMap.has(artifacts, change.artifactHash)
@@ -144,10 +141,13 @@ export function createLifecycleRows() {
     const artifact = Option.getOrUndefined(
       MutableHashMap.get(artifacts, change.artifactHash)
     );
-    const projection = staged.projections.find(
-      (value) =>
-        value.contentKey === change.contentKey &&
-        value.artifactLocale === change.artifactLocale
+    const projection = Option.getOrUndefined(
+      Arr.findFirst(
+        MutableList.toArray(staged.projections),
+        (value) =>
+          value.contentKey === change.contentKey &&
+          value.artifactLocale === change.artifactLocale
+      )
     );
     if (!(artifact && projection)) {
       return null;
@@ -196,9 +196,13 @@ export function createLifecycleRows() {
         nextCursor: null,
       };
     }
-    const heads = forRelease(request.activeReleaseId)
-      .items.map(materialHead)
-      .filter((head) => head !== null);
+    const heads = Arr.filter(
+      Arr.map(
+        MutableList.toArray(forRelease(request.activeReleaseId).items),
+        materialHead
+      ),
+      (head) => head !== null
+    );
     return {
       ...request,
       done: true,
@@ -211,7 +215,8 @@ export function createLifecycleRows() {
   /** Reconstructs exact current and prior states from one staged release. */
   const rollbackPage = (request: RollbackPageRequest): RollbackPage => {
     const staged = forRelease(request.rollbackOf);
-    const records = staged.items.map((item) => {
+    const projections = MutableList.toArray(staged.projections);
+    const records = Arr.map(MutableList.toArray(staged.items), (item) => {
       const { change } = item;
       const head = materialHead(item);
       if (!(head && change.operation === "upsert")) {
@@ -220,10 +225,13 @@ export function createLifecycleRows() {
       const artifact = Option.getOrUndefined(
         MutableHashMap.get(artifacts, change.artifactHash)
       );
-      const projection = staged.projections.find(
-        (value) =>
-          value.contentKey === change.contentKey &&
-          value.artifactLocale === change.artifactLocale
+      const projection = Option.getOrUndefined(
+        Arr.findFirst(
+          projections,
+          (value) =>
+            value.contentKey === change.contentKey &&
+            value.artifactLocale === change.artifactLocale
+        )
       );
       if (!(artifact && projection)) {
         throw new TypeError("Expected complete staged rollback state.");
@@ -253,10 +261,13 @@ export function createLifecycleRows() {
 
   /** Pairs staged routes with the empty prior owner used by this target. */
   const routePage = (request: RoutePageRequest): RoutePage => {
-    const records = forRelease(request.rollbackOf).routes.map((route) => ({
-      current: route,
-      priorContentKey: null,
-    }));
+    const records = Arr.map(
+      MutableList.toArray(forRelease(request.rollbackOf).routes),
+      (route) => ({
+        current: route,
+        priorContentKey: null,
+      })
+    );
     return {
       done: true,
       nextIndex: records.length - 1,

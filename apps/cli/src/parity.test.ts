@@ -9,6 +9,7 @@ import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/cur
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import {
+  Array as Arr,
   ConfigProvider,
   Effect,
   MutableHashMap,
@@ -206,9 +207,9 @@ describe("authenticated parity command", () => {
         );
         expect(evidence).toMatchObject({ releaseId: "paired" });
         expect(
-          captured.requests.map((request) => request.headers.authorization)
+          Arr.map(captured.requests, (request) => request.headers.authorization)
         ).toEqual(["Bearer development-token", "Bearer production-token"]);
-        expect(captured.requests.map(requestJson)).toEqual([
+        expect(Arr.map(captured.requests, requestJson)).toEqual([
           { operation: "current" },
           { operation: "current" },
         ]);

@@ -20,7 +20,7 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Record as Rec, Stream } from "effect";
+import { Array as Arr, Effect, Record as Rec, Stream } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 import { derivePreparedRecords } from "#publisher/preparation/stream";
 import { materialGraph } from "#test/graph";
@@ -273,7 +273,7 @@ describe("derivePreparedRecords", () => {
         derive(Stream.make(record)).pipe(Effect.flip)
       );
       expect(errors).toMatchObject(
-        records.map(() => ({
+        Arr.map(records, () => ({
           _tag: "PreparedContentCoherenceError",
           field: "priorState",
         }))

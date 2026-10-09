@@ -4,6 +4,7 @@ import {
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import {
+  Array as Arr,
   Effect,
   FileSystem,
   HashMap,
@@ -89,7 +90,7 @@ export function runWatch(
   invalidate: Effect.Effect<number, PreviewProviderError> = Effect.succeed(1)
 ) {
   const selectedFiles = HashMap.fromIterable(
-    selected.directories.map((directory) => [
+    Arr.map(selected.directories, (directory) => [
       directory.absolutePath,
       directory.files,
     ])

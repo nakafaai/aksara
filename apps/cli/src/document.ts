@@ -13,7 +13,7 @@ import {
 } from "@nakafa/aksara-publisher/preview/source";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import type { FileSystem, Path } from "effect";
-import { Effect, HashMap, Option, Ref, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Option, Ref, Schema } from "effect";
 import {
   fingerprintSelectedDocument,
   type SelectedDocument,
@@ -138,14 +138,13 @@ export const makePreviewDocumentCompiler: (input: {
       );
       yield* verifySelectedFingerprint(input.selected, fingerprint);
       const compiled = [first, ...remaining];
-      const nextCache = compiled.reduce(
-        (state, item) => HashMap.set(state, item.sourcePath, item.cache),
-        currentCache
+      const nextCache = Arr.reduce(compiled, currentCache, (state, item) =>
+        HashMap.set(state, item.sourcePath, item.cache)
       );
       yield* Ref.set(cache, nextCache);
       return {
         fingerprint,
-        results: [first.result, ...remaining.map(({ result }) => result)],
+        results: [first.result, ...Arr.map(remaining, ({ result }) => result)],
       } satisfies PreviewDocumentResult;
     }).pipe(Effect.withSpan("AksaraCli.compileSelectedDocument")),
     /** Revalidates that repository evidence still describes compiled sources. */

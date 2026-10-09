@@ -1,5 +1,5 @@
 import { expect, layer } from "@effect/vitest";
-import { Effect, Path } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
 import {
   compilePageDocument,
   inspectPageDocument,
@@ -22,8 +22,9 @@ const requireEnglishEntry = Effect.fn("PageDocumentTest.requireEnglishEntry")(
   () =>
     Effect.gen(function* () {
       const fixture = yield* PageTestFixtures;
-      const entry = yield* Effect.fromNullishOr(
-        fixture.entries.find(
+      const entry = yield* Effect.fromOption(
+        Arr.findFirst(
+          fixture.entries,
           ({ route }) =>
             route.pageKey === "privacy-policy" && route.artifactLocale === "en"
         )

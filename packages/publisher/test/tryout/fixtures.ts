@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   checkoutRoot,
   publishedQuestionHeads,
@@ -8,7 +8,8 @@ import {
 } from "#test/question/spec";
 import { selectTryoutSlice } from "#test/tryout/slice";
 
-const tryoutPrompts = questionEntries.filter(
+const tryoutPrompts = Arr.filter(
+  questionEntries,
   ({ bodyKind }) => bodyKind === "question"
 );
 

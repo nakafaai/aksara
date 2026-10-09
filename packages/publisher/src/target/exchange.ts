@@ -15,7 +15,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 
-import { Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import {
@@ -93,7 +93,8 @@ function exchangeTimeout(
 function validateRequestBytes(request: PublicationRequest, bytes: number) {
   const hasOversizedChild =
     request.operation === "stageGroup" &&
-    request.requests.some(
+    Arr.some(
+      request.requests,
       (child) =>
         Buffer.byteLength(encodeJsonText(child), "utf8") >
         REQUEST_BYTE_LIMITS[child.operation]

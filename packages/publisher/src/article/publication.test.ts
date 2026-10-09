@@ -1,6 +1,6 @@
 import { expect, layer } from "@effect/vitest";
 import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
-import { Context, Effect, Layer, Schema } from "effect";
+import { Array as Arr, Context, Effect, Layer, Schema } from "effect";
 import {
   articleTestLayer,
   collectArticleRoutes,
@@ -49,13 +49,15 @@ const makePublicationTestFixtures = Effect.fn(
 )(() =>
   Effect.gen(function* () {
     const publishedHeads = yield* publishedArticleHeads();
-    const englishHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const englishHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         (head) => head.contentKey === contentKey && head.artifactLocale === "en"
       )
     );
-    const indonesianHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const indonesianHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         (head) => head.contentKey === contentKey && head.artifactLocale === "id"
       )
     );

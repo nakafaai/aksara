@@ -3,7 +3,7 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, Stream } from "effect";
+import { Array as Arr, Effect, Stream } from "effect";
 import { incompleteRendererManifest } from "#test/renderer";
 import {
   prepareRollbackFixture,
@@ -43,7 +43,10 @@ describe("prepareRollback", () => {
           });
           expect([...artifacts]).toEqual([]);
           expect(
-            [...items].map(({ change: itemChange }) => itemChange.operation)
+            Arr.map(
+              Arr.fromIterable(items),
+              ({ change: itemChange }) => itemChange.operation
+            )
           ).toEqual(["delete"]);
           expect([...projections]).toEqual([]);
           expect(loadPage).toHaveBeenCalledTimes(1);

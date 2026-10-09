@@ -5,7 +5,7 @@ import {
   headIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, HashSet, Stream } from "effect";
+import { Array as Arr, Effect, HashSet, Order, Stream } from "effect";
 import { prepareAcceptanceCatalog } from "#publisher/acceptance/catalog";
 import {
   AcceptanceSourceError,
@@ -86,15 +86,17 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
         expect(routes).toHaveLength(count);
         expect(repeatedRecords).toEqual(records);
         expect(repeatedResult).toEqual(result);
-        expect(result).toEqual([...result].sort(compareContentHeads));
+        expect(result).toEqual(
+          Arr.sort(result, Order.make(compareContentHeads))
+        );
         expect(
-          HashSet.size(HashSet.fromIterable(result.map(headIdentity)))
+          HashSet.size(HashSet.fromIterable(Arr.map(result, headIdentity)))
         ).toBe(count);
-        expect(result.map(({ family }) => family)).toEqual([
-          ...fixture.sources.article.map(() => "article"),
-          ...fixture.sources.material.map(() => "material"),
-          ...fixture.sources.page.map(() => "page"),
-          ...fixture.sources.tryout.entries.map(() => "question"),
+        expect(Arr.map(result, ({ family }) => family)).toEqual([
+          ...Arr.map(fixture.sources.article, () => "article"),
+          ...Arr.map(fixture.sources.material, () => "material"),
+          ...Arr.map(fixture.sources.page, () => "page"),
+          ...Arr.map(fixture.sources.tryout.entries, () => "question"),
         ]);
         expect(compiler.calls).toBe(count);
         expect(catalog.tryout).toBe(fixture.sources.tryout);

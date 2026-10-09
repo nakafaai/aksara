@@ -4,7 +4,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
 import { createHeadingPolicy } from "#compiler/policy/heading";
@@ -108,7 +108,7 @@ describe("authored heading depth", () => {
         const error = yield* Effect.flip(validateHeadings(rawMdx, sourcePath));
         assert.strictEqual(error._tag, "AuthoredHeadingDepthError");
         assert.strictEqual(error.occurrences.length, 1);
-        assert.isTrue(error.occurrences.every(({ depth }) => depth > 3));
+        assert.isTrue(Arr.every(error.occurrences, ({ depth }) => depth > 3));
       }
     })
   );

@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import {
   BodyError,
@@ -93,7 +93,7 @@ describe("HTTP response utilities", () => {
         );
 
         assert.deepStrictEqual(
-          errors.map(({ reason }) => reason),
+          Arr.map(errors, ({ reason }) => reason),
           [
             "length",
             "length",
@@ -107,7 +107,7 @@ describe("HTTP response utilities", () => {
             "encoding",
           ]
         );
-        assert.ok(errors.every((error) => Schema.is(BodyError)(error)));
+        assert.ok(Arr.every(errors, (error) => Schema.is(BodyError)(error)));
       })
   );
 });

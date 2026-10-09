@@ -4,7 +4,7 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import { compileContent } from "#compiler/compile";
 import { createTestRendererManifest } from "#compiler/test/content";
 import { sceneEndingAt } from "#compiler/test/math";
@@ -226,7 +226,8 @@ describe("compileContent", () => {
       assert.strictEqual(error._tag, "ExecutablePolicyError");
       if (error._tag === "ExecutablePolicyError") {
         assert.ok(
-          error.violations.some(
+          Arr.some(
+            error.violations,
             (violation) =>
               violation.identifier === identifier && violation.rule === rule
           )
@@ -245,7 +246,8 @@ describe("compileContent", () => {
       assert.strictEqual(error._tag, "ExecutablePolicyError");
       if (error._tag === "ExecutablePolicyError") {
         assert.ok(
-          error.violations.some(
+          Arr.some(
+            error.violations,
             (violation) => violation.rule === "dynamic-property-access"
           )
         );

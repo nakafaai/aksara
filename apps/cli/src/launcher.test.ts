@@ -1,7 +1,14 @@
 import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Console, Effect, FileSystem, Path, Result } from "effect";
+import {
+  Array as Arr,
+  Console,
+  Effect,
+  FileSystem,
+  Path,
+  Result,
+} from "effect";
 import {
   makeLaunchCommand,
   makeLauncherProgram,
@@ -158,16 +165,28 @@ describe("CLI launcher", () => {
         });
         const manifest = path.join(root, "package.json");
         yield* fileSystem.writeFileString(manifest, '{"version":"9.8.7"}');
-        const output: string[] = [];
-        const errors: string[] = [];
+        let output: string[] = [];
+        let errors: string[] = [];
         const testConsole: Console.Console = Object.assign(
           Object.create(console),
           {
             error: (...values: readonly unknown[]) => {
-              errors.push(values.join(" "));
+              errors = Arr.append(
+                errors,
+                Arr.join(
+                  Arr.map(values, (value) => String(value ?? "")),
+                  " "
+                )
+              );
             },
             log: (...values: readonly unknown[]) => {
-              output.push(values.join(" "));
+              output = Arr.append(
+                output,
+                Arr.join(
+                  Arr.map(values, (value) => String(value ?? "")),
+                  " "
+                )
+              );
             },
           }
         );
@@ -204,7 +223,7 @@ describe("CLI launcher", () => {
           "The --help and --version options do not accept additional arguments.",
           "The installed Aksara CLI package metadata is unavailable or invalid. Reinstall @nakafa/aksara-cli.",
         ]);
-        expect([...output, ...errors].join("\n")).not.toContain("Error:");
+        expect(Arr.join([...output, ...errors], "\n")).not.toContain("Error:");
       }).pipe(Effect.provide(NodeServices.layer)),
     { timeout: 20_000 }
   );
@@ -224,12 +243,18 @@ describe("CLI launcher", () => {
         path.join(checkout, "package.json"),
         '{"name":"aksara","private":true}'
       );
-      const errors: string[] = [];
+      let errors: string[] = [];
       const testConsole: Console.Console = Object.assign(
         Object.create(console),
         {
           error: (...values: readonly unknown[]) => {
-            errors.push(values.join(" "));
+            errors = Arr.append(
+              errors,
+              Arr.join(
+                Arr.map(values, (value) => String(value ?? "")),
+                " "
+              )
+            );
           },
         }
       );
@@ -267,7 +292,7 @@ describe("CLI launcher", () => {
       expect(errors[0]).toContain("inside a complete Aksara checkout");
       expect(errors[1]).toContain("Aksara CLI source is missing");
       expect(errors[2]).toContain("Aksara CLI could not start");
-      expect(errors.join("\n")).not.toContain("CliLaunchError");
+      expect(Arr.join(errors, "\n")).not.toContain("CliLaunchError");
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });

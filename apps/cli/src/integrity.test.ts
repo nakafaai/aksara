@@ -1,7 +1,14 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { Effect, FileSystem, HashSet, Path, PlatformError } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashSet,
+  Path,
+  PlatformError,
+} from "effect";
 import {
   captureSelectedFiles,
   fingerprintSelectedDocument,
@@ -146,12 +153,12 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
             })
           )
         );
-        expect(fingerprint.files.map(({ sourcePath }) => sourcePath)).toEqual(
-          selected.files.map(({ sourcePath }) => sourcePath)
-        );
+        expect(
+          Arr.map(fingerprint.files, ({ sourcePath }) => sourcePath)
+        ).toEqual(Arr.map(selected.files, ({ sourcePath }) => sourcePath));
         expect(
           HashSet.size(
-            HashSet.fromIterable(fingerprint.files.map(({ hash }) => hash))
+            HashSet.fromIterable(Arr.map(fingerprint.files, ({ hash }) => hash))
           )
         ).toBe(selected.files.length);
       })
@@ -172,7 +179,7 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
         if (directory === undefined) {
           return;
         }
-        const reversed = [...directory.files].reverse();
+        const reversed = Arr.reverse(directory.files);
         yield* verifySelectedDirectory(directory).pipe(
           Effect.provide(
             FileSystem.layerNoop({

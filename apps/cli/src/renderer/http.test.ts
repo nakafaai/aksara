@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
-import { Effect, Redacted } from "effect";
+import { Array as Arr, Effect, MutableList, Redacted } from "effect";
 import {
   FetchHttpClient,
   HttpClient,
@@ -147,14 +147,12 @@ describe("renderer HTTP", () => {
       );
       const network = yield* rejectRenderer(networkClient);
       const statuses = [404, 408, 429, 500, 400, 401, 302];
-      const statusResponses = [...statuses];
-      const statusClient = captureClient((request) =>
-        Effect.succeed(
-          rendererResponse(request, null, {
-            status: statusResponses.shift() ?? 200,
-          })
-        )
-      );
+      const statusResponses = MutableList.make<number>();
+      MutableList.appendAll(statusResponses, statuses);
+      const statusClient = captureClient((request) => {
+        const [status = 200] = MutableList.takeN(statusResponses, 1);
+        return Effect.succeed(rendererResponse(request, null, { status }));
+      });
       const statusErrors = yield* Effect.forEach(
         statuses,
         () =>
@@ -187,7 +185,7 @@ describe("renderer HTTP", () => {
 
       expect(network).toMatchObject({ reason: "network", retryable: true });
       expect(
-        statusErrors.map(({ reason, retryable }) => [reason, retryable])
+        Arr.map(statusErrors, ({ reason, retryable }) => [reason, retryable])
       ).toEqual([
         ["status", true],
         ["status", true],
@@ -229,9 +227,10 @@ describe("renderer HTTP", () => {
           ["{}", { headers: { "content-type": "text/plain" } }],
           [null, {}],
         ];
-        const responses = [...bodies];
+        const responses = MutableList.make<(typeof bodies)[number]>();
+        MutableList.appendAll(responses, bodies);
         const client = captureClient((request) => {
-          const [body, init] = responses.shift() ?? [null, {}];
+          const [[body, init] = [null, {}]] = MutableList.takeN(responses, 1);
           return Effect.succeed(rendererResponse(request, body, init));
         });
         const errors = yield* Effect.forEach(
@@ -244,7 +243,7 @@ describe("renderer HTTP", () => {
           { concurrency: 1 }
         ).pipe(Effect.provideService(HttpClient.HttpClient, client.client));
 
-        expect(errors.map(({ reason }) => reason)).toEqual([
+        expect(Arr.map(errors, ({ reason }) => reason)).toEqual([
           "body",
           "body",
           "body",

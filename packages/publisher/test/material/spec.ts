@@ -13,6 +13,7 @@ import {
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
+  Array as Arr,
   Context,
   Effect,
   FileSystem,
@@ -171,7 +172,7 @@ const rejectMaterialPublicationFrom = Effect.fn("MaterialTest.rejectFrom")(
 function deriveMaterialHeads(
   records: Effect.Success<ReturnType<typeof collectMaterialPublicationFrom>>
 ) {
-  return records.flatMap((transition) => {
+  return Arr.flatMap(records, (transition) => {
     const { record } = transition;
     if (!("payload" in record)) {
       return [];
@@ -213,9 +214,13 @@ const makeMaterialTestFixtures = Effect.fn("MaterialTest.makeFixtures")(() =>
       }
     );
     const absolutePaths = HashMap.fromIterable<string, string>(
-      sourceRows.map(([sourcePath, absolutePath]) => [sourcePath, absolutePath])
+      Arr.map(sourceRows, ([sourcePath, absolutePath]) => [
+        sourcePath,
+        absolutePath,
+      ])
     );
-    const sources = sourceRows.map(
+    const sources = Arr.map(
+      sourceRows,
       ([, absolutePath, source]) => [absolutePath, source] as const
     );
     const rendererManifest = yield* materialManifest();

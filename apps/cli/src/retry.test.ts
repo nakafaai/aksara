@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { Data, Effect, Fiber } from "effect";
+import { Array as Arr, Data, Effect, Fiber } from "effect";
 import { TestClock } from "effect/testing";
 import { retryPublicationTarget, retryTransport } from "#cli/retry";
 
@@ -164,7 +164,8 @@ describe("publication transport retry", () => {
         });
         expect(attempts).toBe(2);
         expect(
-          operationPairs.every(
+          Arr.every(
+            operationPairs,
             ([decorated, original]) => decorated !== original
           )
         ).toBe(true);

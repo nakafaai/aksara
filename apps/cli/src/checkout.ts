@@ -1,4 +1,12 @@
-import { Effect, FileSystem, Option, Path, Predicate, Schema } from "effect";
+import {
+  Effect,
+  FileSystem,
+  MutableList,
+  Option,
+  Path,
+  Predicate,
+  Schema,
+} from "effect";
 import { JsonTextSchema } from "#cli/text/json";
 
 /** A required Aksara or Nakafa checkout failed exact identity validation. */
@@ -37,14 +45,15 @@ export const findAksaraRoot = Effect.fn("AksaraCli.findAksaraRoot")(function* (
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   let current = path.resolve(start);
-  const ancestors = [current];
+  const ancestors = MutableList.make<string>();
+  MutableList.append(ancestors, current);
   let parent = path.dirname(current);
   while (parent !== current) {
-    ancestors.push(parent);
+    MutableList.append(ancestors, parent);
     current = parent;
     parent = path.dirname(current);
   }
-  for (const candidate of ancestors) {
+  for (const candidate of MutableList.toArray(ancestors)) {
     const manifest = path.join(candidate, "package.json");
     if (yield* fileSystem.exists(manifest)) {
       const name = yield* readPackageName(candidate);

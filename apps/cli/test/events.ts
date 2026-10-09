@@ -1,5 +1,5 @@
 import { ServerResponse } from "node:http";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { PREVIEW_EVENTS_PATH } from "#cli/provider/http";
 import {
   openPreviewHttpReader,
@@ -65,7 +65,7 @@ export const keepAliveLineCounter = Effect.acquireRelease(
 ).pipe(
   Effect.map(
     (spy) => () =>
-      spy.mock.calls.filter(([chunk]) => chunk === KEEP_ALIVE_LINE).length
+      Arr.filter(spy.mock.calls, ([chunk]) => chunk === KEEP_ALIVE_LINE).length
   )
 );
 

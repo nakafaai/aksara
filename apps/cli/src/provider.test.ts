@@ -2,7 +2,7 @@ import { Server } from "node:http";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
@@ -137,7 +137,7 @@ describe("local preview provider", () => {
             { concurrency: "unbounded" }
           );
           expect(errors).toMatchObject(
-            mismatches.map(() => ({
+            Arr.map(mismatches, () => ({
               _tag: "PreviewProviderError",
               stage: "coherence",
             }))

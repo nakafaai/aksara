@@ -54,7 +54,7 @@ function replaceHead(
   publishedHeads: readonly ArticleHead[],
   replacement: ArticleHead
 ) {
-  return publishedHeads.map((head) =>
+  return Arr.map(publishedHeads, (head) =>
     head.contentKey === replacement.contentKey &&
     head.artifactLocale === replacement.artifactLocale
       ? replacement
@@ -67,14 +67,16 @@ const makePlanTestFixtures = Effect.fn("ArticlePlanTest.makeFixtures")(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
     const publishedHeads = yield* publishedArticleHeads();
-    const englishEntry = yield* Effect.fromNullishOr(
-      article.entries.find(
+    const englishEntry = yield* Effect.fromOption(
+      Arr.findFirst(
+        article.entries,
         ({ route }) =>
           route.contentKey === contentKey && route.artifactLocale === "en"
       )
     );
-    const englishHead = yield* Effect.fromNullishOr(
-      publishedHeads.find(
+    const englishHead = yield* Effect.fromOption(
+      Arr.findFirst(
+        publishedHeads,
         ({ contentKey: key, artifactLocale }) =>
           key === englishEntry.route.contentKey && artifactLocale === "en"
       )
@@ -195,7 +197,7 @@ layer(planTestLayer)("article plan", (it) => {
 
       expect(records).toHaveLength(21);
       expect(
-        records.every(({ record }) => record.change.operation === "upsert")
+        Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
       expect(compilerState.calls).toBe(21);
     })

@@ -14,7 +14,7 @@ import {
   inheritContentSnapshots,
   replaceContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   selectRecoveryBase,
   selectSourceBase,
@@ -170,7 +170,7 @@ describe("production base identity", () => {
         }).pipe(Effect.flip),
       ]);
 
-      expect(resultFailures.map(({ field }) => field)).toEqual([
+      expect(Arr.map(resultFailures, ({ field }) => field)).toEqual([
         "presence",
         "presence",
         "activeAppLocales",

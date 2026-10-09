@@ -11,7 +11,14 @@ import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { selectQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
-import { Array as Arr, Effect, HashSet, MutableHashMap, Path } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashSet,
+  MutableHashMap,
+  Order,
+  Path,
+} from "effect";
 import type { AcceptanceSources } from "#publisher/acceptance/source";
 import { materialSlicePaths } from "#test/material/slice";
 import { testRendererDomains } from "#test/renderer";
@@ -26,15 +33,17 @@ const questionKey =
 function selectTestHierarchy(
   registry: Effect.Success<ReturnType<typeof decodeTryoutRegistry>>
 ) {
-  return registry.flatMap((source) => {
-    const tracks = source.tracks.flatMap((track) => {
-      const sets = track.sets.flatMap((set) => {
-        const sections = set.sections
-          .filter(
+  return Arr.flatMap(registry, (source) => {
+    const tracks = Arr.flatMap(source.tracks, (track) => {
+      const sets = Arr.flatMap(track.sets, (set) => {
+        const sections = Arr.map(
+          Arr.filter(
+            set.sections,
             (section) =>
               questionKey === `${section.questionSourcePath}/question-1`
-          )
-          .map((section) => ({ ...section, questionCount: 1 }));
+          ),
+          (section) => ({ ...section, questionCount: 1 })
+        );
         return sections.length > 0 ? [{ ...set, sections }] : [];
       });
       return sets.length > 0 ? [{ ...track, sets }] : [];
@@ -78,30 +87,35 @@ export const makeAcceptanceTestSources: Effect.Effect<
       )
     )
   );
-  const questionEntries = [
-    ...MutableHashMap.values(
+  const questionEntries = Arr.sort(
+    MutableHashMap.values(
       MutableHashMap.fromIterable(
-        questions.flatMap(({ entries }) =>
-          entries.map((entry) => [headIdentity(entry), entry] as const)
+        Arr.flatMap(questions, ({ entries }) =>
+          Arr.map(entries, (entry) => [headIdentity(entry), entry] as const)
         )
       )
     ),
-  ].sort(compareContentHeads);
+    Order.make(compareContentHeads)
+  );
   const questionSources = [
     ...MutableHashMap.values(
       MutableHashMap.fromIterable(
-        questions.map(({ source }) => [source.questionKey, source] as const)
+        Arr.map(
+          questions,
+          ({ source }) => [source.questionKey, source] as const
+        )
       )
     ),
   ];
   const projection = yield* projectTryoutSources(registry, questionSources);
   const materialPaths = HashSet.fromIterable<string>(materialSlicePaths);
   const sources = {
-    article: articles.filter(
+    article: Arr.filter(
+      articles,
       ({ route }) =>
         route.contentKey === "articles/politics/regional-elections-turmoil"
     ),
-    material: materials.filter(({ sourcePath }) =>
+    material: Arr.filter(materials, ({ sourcePath }) =>
       HashSet.has(materialPaths, sourcePath)
     ),
     page,
@@ -141,7 +155,7 @@ export const makeAcceptanceTestSources: Effect.Effect<
       "politics",
       "site",
       ...Arr.dedupe(
-        questionEntries.map(({ rendererDomain }) => rendererDomain)
+        Arr.map(questionEntries, ({ rendererDomain }) => rendererDomain)
       ),
     ],
   });

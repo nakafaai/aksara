@@ -1,4 +1,4 @@
-import { HashSet, Predicate } from "effect";
+import { Array as Arr, HashSet, Predicate } from "effect";
 import type {
   Expression,
   JSXAttribute,
@@ -159,10 +159,11 @@ function inspectMath(element: JSXElement): RichAttributeState | undefined {
     return;
   }
   const { attributes } = element.openingElement;
-  if (attributes.some(({ type }) => type === "JSXSpreadAttribute")) {
+  if (Arr.some(attributes, ({ type }) => type === "JSXSpreadAttribute")) {
     return "dynamic";
   }
-  const sources = attributes.filter(
+  const sources = Arr.filter(
+    attributes,
     (attribute): attribute is JSXAttribute =>
       attribute.type === "JSXAttribute" &&
       attribute.name.type === "JSXIdentifier" &&
@@ -196,7 +197,7 @@ function inspectChild(
     case "JSXElement":
       return inspectElement(child);
     case "JSXFragment":
-      return combineStates(child.children.map(inspectChild));
+      return combineStates(Arr.map(child.children, inspectChild));
     /* istanbul ignore next -- the MDX parser rejects JSX spread children. */
     default:
       return "dynamic";
@@ -216,7 +217,7 @@ function inspectElement(element: JSXElement): RichAttributeState {
   ) {
     return "dynamic";
   }
-  return combineStates(element.children.map(inspectChild));
+  return combineStates(Arr.map(element.children, inspectChild));
 }
 
 /** Inspects the static expression forms allowed in visible rich metadata. */
@@ -233,7 +234,7 @@ function inspectExpression(
     return inspectElement(expression);
   }
   if ("openingFragment" in expression) {
-    return combineStates(expression.children.map(inspectChild));
+    return combineStates(Arr.map(expression.children, inspectChild));
   }
   return expression.type === "JSXEmptyExpression" ? "empty" : "dynamic";
 }

@@ -3,7 +3,15 @@ import {
   MathVisualSchema,
   mathVisualLabelKeys,
 } from "@nakafa/aksara-contracts/math/visual";
-import { Effect, Predicate, Result, Schema, SchemaIssue } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableList,
+  Predicate,
+  Result,
+  Schema,
+  SchemaIssue,
+} from "effect";
 import type { Root } from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
@@ -25,7 +33,7 @@ import {
 export function normalizeSchemaPath(
   path: readonly (PropertyKey | { readonly key: PropertyKey })[] | undefined
 ): readonly StaticLiteralPathSegment[] {
-  return (path ?? []).map((segment) => {
+  return Arr.map(path ?? [], (segment) => {
     const key = Predicate.hasProperty(segment, "key") ? segment.key : segment;
     return Predicate.isString(key) || Predicate.isNumber(key)
       ? key
@@ -36,7 +44,8 @@ export function normalizeSchemaPath(
 /** Compares two label-key collections as exact unordered sets. */
 function hasSameKeys(left: readonly string[], right: readonly string[]) {
   return (
-    left.length === right.length && left.every((key) => right.includes(key))
+    left.length === right.length &&
+    Arr.every(left, (key) => right.includes(key))
   );
 }
 
@@ -46,7 +55,7 @@ function sceneSchemaViolations(
   error: Schema.SchemaError
 ): readonly MathVisualPolicyViolation[] {
   const formatted = SchemaIssue.makeFormatterStandardSchemaV1()(error.issue);
-  return formatted.issues.map((issue) => {
+  return Arr.map(formatted.issues, (issue) => {
     const path = normalizeSchemaPath(issue.path);
     const node = staticLiteralNodeAtPath(candidate.sceneNode, path);
     return {
@@ -60,8 +69,8 @@ function sceneSchemaViolations(
 
 /** Creates compiler-owned static validation for exact MathVisual MDX nodes. */
 export function createMathVisualPolicy(contentKey: ContentKey) {
-  const candidates: MathVisualCandidate[] = [];
-  const violations: MathVisualPolicyViolation[] = [];
+  const candidates = MutableList.make<MathVisualCandidate>();
+  const violations = MutableList.make<MathVisualPolicyViolation>();
   /** Records exact MathVisual nodes during the remark traversal. */
   const remarkPlugin: Plugin<[], Root> = () => (tree) => {
     visit(tree, (node) => {
@@ -75,9 +84,9 @@ export function createMathVisualPolicy(contentKey: ContentKey) {
         return;
       }
       const inspection = inspectMathVisual(node);
-      violations.push(...inspection.violations);
+      MutableList.appendAll(violations, inspection.violations);
       if (inspection.candidate) {
-        candidates.push(inspection.candidate);
+        MutableList.append(candidates, inspection.candidate);
       }
     });
   };
@@ -85,16 +94,17 @@ export function createMathVisualPolicy(contentKey: ContentKey) {
   /** Decodes every static scene and checks its rich-label key contract. */
   const validate = Effect.fn("AksaraCompiler.validateMathVisualPolicy")(
     function* () {
-      const semanticViolations: MathVisualPolicyViolation[] = [];
-      for (const candidate of candidates) {
+      const semanticViolations = MutableList.make<MathVisualPolicyViolation>();
+      for (const candidate of MutableList.toArray(candidates)) {
         const decoded = yield* Effect.result(
           Schema.decodeUnknownEffect(MathVisualSchema)(candidate.scene, {
             onExcessProperty: "error",
           })
         );
         if (Result.isFailure(decoded)) {
-          semanticViolations.push(
-            ...sceneSchemaViolations(candidate, decoded.failure)
+          MutableList.appendAll(
+            semanticViolations,
+            sceneSchemaViolations(candidate, decoded.failure)
           );
           continue;
         }
@@ -104,13 +114,16 @@ export function createMathVisualPolicy(contentKey: ContentKey) {
             candidate.labelKeys
           )
         ) {
-          semanticViolations.push({
+          MutableList.append(semanticViolations, {
             ...candidate.labelLocation,
             reason: "label-keys-mismatch",
           });
         }
       }
-      const findings = [...violations, ...semanticViolations];
+      const findings = [
+        ...MutableList.toArray(violations),
+        ...MutableList.toArray(semanticViolations),
+      ];
       if (findings.length > 0) {
         return yield* new MathVisualPolicyError({
           contentKey,

@@ -6,7 +6,7 @@ import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect, Layer } from "effect";
+import { Array as Arr, Effect, Layer, Option } from "effect";
 import {
   loadPreviewSources,
   projectPreviewSource,
@@ -28,20 +28,32 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
     const material = yield* MaterialTestFixtures;
     const page = yield* PageTestFixtures;
     const questionRenderer = yield* questionManifest();
-    const articleEntry = article.entries.find(
-      ({ route }) => route.artifactLocale === "en"
+    const articleEntry = Option.getOrUndefined(
+      Arr.findFirst(
+        article.entries,
+        ({ route }) => route.artifactLocale === "en"
+      )
     );
-    const promptEntry = questionEntries.find(
-      ({ bodyKind, artifactLocale }) =>
-        bodyKind === "question" && artifactLocale === "id"
+    const promptEntry = Option.getOrUndefined(
+      Arr.findFirst(
+        questionEntries,
+        ({ bodyKind, artifactLocale }) =>
+          bodyKind === "question" && artifactLocale === "id"
+      )
     );
-    const answerEntry = questionEntries.find(
-      ({ bodyKind, artifactLocale }) =>
-        bodyKind === "answer" && artifactLocale === "en"
+    const answerEntry = Option.getOrUndefined(
+      Arr.findFirst(
+        questionEntries,
+        ({ bodyKind, artifactLocale }) =>
+          bodyKind === "answer" && artifactLocale === "en"
+      )
     );
-    const pageEntry = page.entries.find(
-      ({ route }) =>
-        route.pageKey === "privacy-policy" && route.artifactLocale === "en"
+    const pageEntry = Option.getOrUndefined(
+      Arr.findFirst(
+        page.entries,
+        ({ route }) =>
+          route.pageKey === "privacy-policy" && route.artifactLocale === "en"
+      )
     );
     if (!(articleEntry && pageEntry && promptEntry && answerEntry)) {
       return yield* Effect.die(
@@ -208,7 +220,7 @@ layer(previewTestLayer)("preview source", (it) => {
       }
 
       expect(loaded).toHaveLength(2);
-      expect(loaded.map(({ source }) => source.sourcePath)).toEqual([
+      expect(Arr.map(loaded, ({ source }) => source.sourcePath)).toEqual([
         fixture.answerPromptSource.entry.sourcePath,
         fixture.answerSource.entry.sourcePath,
       ]);

@@ -7,7 +7,14 @@ import {
 } from "@nakafa/aksara-contracts/question/item";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { Effect, MutableHashMap, Option, Path, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  Option,
+  Path,
+  Stream,
+} from "effect";
 import { inspectQuestionDocument } from "#publisher/question/document";
 import type { BoundTryoutPlacement } from "#publisher/tryout/bind";
 import { bindTryoutContent } from "#publisher/tryout/content";
@@ -78,9 +85,13 @@ function placementEntry(
     bodyKind === "answer"
       ? binding.placement.answerArtifactLocale
       : binding.placement.questionArtifactLocale;
-  return questionEntries.find(
-    (entry) =>
-      entry.artifactLocale === artifactLocale && entry.contentKey === contentKey
+  return Option.getOrUndefined(
+    Arr.findFirst(
+      questionEntries,
+      (entry) =>
+        entry.artifactLocale === artifactLocale &&
+        entry.contentKey === contentKey
+    )
   );
 }
 

@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { validateContentCatalog } from "#publisher/catalog/validation";
 import {
   catalogHeads,
@@ -40,7 +40,9 @@ vi.mock("#publisher/catalog/expectation", async () => {
       if (control.registryFailure) {
         return TestEffect.fail("registry");
       }
-      const heads = catalogHeads(control.source).map((head) => ({ ...head }));
+      const heads = Arr.map(catalogHeads(control.source), (head) => ({
+        ...head,
+      }));
       if (control.identityMismatch !== "none") {
         const [first] = heads;
         if (first !== undefined) {

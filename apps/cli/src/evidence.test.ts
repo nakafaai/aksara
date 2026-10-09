@@ -7,7 +7,7 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Schema } from "effect";
+import { Effect, MutableList, Schema } from "effect";
 import {
   readCleanAksaraRevision,
   readRepositoryEvidence,
@@ -42,13 +42,15 @@ function outputBytes(value: string | Uint8Array | undefined) {
 /** Responds independently to exact SHA and dirty-state Git commands. */
 function makeEvidenceProcess(
   overrides: EvidenceOverrides = {},
-  commands?: ExactProcessInput[]
+  commands?: MutableList.MutableList<ExactProcessInput>
 ) {
   let shaRead = 0;
   return ExactProcess.of({
     /** Runs one deterministic Git evidence response. */
     run: (input) => {
-      commands?.push(input);
+      if (commands !== undefined) {
+        MutableList.append(commands, input);
+      }
       if (overrides.failure) {
         return Effect.fail(overrides.failure);
       }
@@ -71,7 +73,7 @@ function makeEvidenceProcess(
 /** Reads repository evidence through one explicit exact process service. */
 function readEvidence(
   overrides?: EvidenceOverrides,
-  commands?: ExactProcessInput[]
+  commands?: MutableList.MutableList<ExactProcessInput>
 ) {
   return readRepositoryEvidence("aksara", "/code/aksara").pipe(
     Effect.provideService(
@@ -111,10 +113,10 @@ layer(NodeServices.layer)("repository evidence", (it) => {
     "uses explicit repository coordinates and the canonical Git policy",
     () =>
       Effect.gen(function* () {
-        const commands: ExactProcessInput[] = [];
+        const commands = MutableList.make<ExactProcessInput>();
         yield* readEvidence(undefined, commands);
 
-        expect(commands).toEqual([
+        expect(MutableList.toArray(commands)).toEqual([
           yield* makeExactGitInput({
             args: ["rev-parse", "--verify", "HEAD"],
             root: "/code/aksara",

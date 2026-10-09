@@ -1,12 +1,12 @@
 import { assert, describe, it } from "@effect/vitest";
 import { compile, createProcessor } from "@mdx-js/mdx";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect, MutableList } from "effect";
 import type { Root } from "mdast";
 import { unified } from "unified";
 import {
+  createMetadataCollector,
   extractMetadata,
-  type MetadataCollector,
   readMetadataDocument,
   validateMetadata,
 } from "#compiler/metadata";
@@ -18,10 +18,7 @@ const contentKey = ContentKeySchema.make("test:metadata");
 const collectMetadata = Effect.fn("MetadataTest.collectMetadata")(function* (
   rawMdx: string
 ) {
-  const collector: MetadataCollector = {
-    candidates: [],
-    syntaxReasons: [],
-  };
+  const collector = createMetadataCollector();
   const output = yield* Effect.promise(() =>
     compile(rawMdx, {
       outputFormat: "function-body",
@@ -43,10 +40,7 @@ const rejectMetadata = Effect.fn("MetadataTest.rejectMetadata")(function* (
 const collectTree = Effect.fn("MetadataTest.collectTree")(function* (
   tree: Root
 ) {
-  const collector: MetadataCollector = {
-    candidates: [],
-    syntaxReasons: [],
-  };
+  const collector = createMetadataCollector();
   const output = yield* Effect.promise(() =>
     unified().use(extractMetadata(collector)).run(tree)
   );
@@ -102,7 +96,10 @@ describe("authored metadata", () => {
       const tree = yield* parseMdx(VALID_METADATA);
       const document = yield* readMetadataDocument(contentKey, {
         ...tree,
-        children: tree.children.map(({ position: _position, ...node }) => node),
+        children: Arr.map(
+          tree.children,
+          ({ position: _position, ...node }) => node
+        ),
       });
       assert.deepStrictEqual(document.metadata, {});
       assert.strictEqual(document.sourceRange, undefined);
@@ -168,14 +165,20 @@ describe("authored metadata", () => {
         ],
         type: "root",
       });
-      assert.deepStrictEqual(missingProgram.collector, {
-        candidates: [],
-        syntaxReasons: [],
-      });
+      assert.deepStrictEqual(
+        {
+          candidates: MutableList.toArray(missingProgram.collector.candidates),
+          syntaxReasons: MutableList.toArray(
+            missingProgram.collector.syntaxReasons
+          ),
+        },
+        { candidates: [], syntaxReasons: [] }
+      );
       assert.strictEqual(missingProgram.output.children.length, 1);
-      assert.deepStrictEqual(missingInitializer.collector.syntaxReasons, [
-        "invalid-declaration",
-      ]);
+      assert.deepStrictEqual(
+        MutableList.toArray(missingInitializer.collector.syntaxReasons),
+        ["invalid-declaration"]
+      );
       assert.strictEqual(missingInitializer.output.children.length, 0);
     })
   );

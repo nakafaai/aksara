@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { compile } from "@mdx-js/mdx";
-import { Effect } from "effect";
+import { Array as Arr, Effect, MutableList } from "effect";
 import type { Program } from "estree-jsx";
 import type { Paragraph, Root } from "mdast";
 import type { Plugin } from "unified";
@@ -12,20 +12,20 @@ import { inspectPropertyProgram } from "#compiler/policy/property";
 /** Runs direct property-policy inspection against each attached MDX program. */
 const inspectProperties = Effect.fn("PropertyPolicyTest.inspectProperties")(
   function* (rawMdx: string) {
-    const violations: ExecutablePolicyViolation[] = [];
+    const violations = MutableList.make<ExecutablePolicyViolation>();
     /** Captures property findings from every ESTree program attached by MDX. */
     const inspectPlugin: Plugin<[], Root> = () => (tree) => {
       visit(tree, (node) => {
         const program = readNodeProgram(node);
         if (program) {
-          violations.push(...inspectPropertyProgram(program));
+          MutableList.appendAll(violations, inspectPropertyProgram(program));
         }
       });
     };
     yield* Effect.promise(() =>
       compile(rawMdx, { remarkPlugins: [inspectPlugin] })
     );
-    return violations;
+    return MutableList.toArray(violations);
   }
 );
 
@@ -39,7 +39,7 @@ describe("inspectPropertyProgram", () => {
     ["constructor", '{({})["constructor"]}'],
     ["constructor", '{({})["con" + "structor"]}'],
     ["constructor", '{({ "constructor": 1 })}'],
-    ["constructor", ["{({})[`con$", '{"str"}uctor`]}'].join("")],
+    ["constructor", Arr.join(["{({})[`con$", '{"str"}uctor`]}'], "")],
     ["constructor", "{(({ constructor }) => constructor)({})}"],
     ["constructor", '{(({ ["con" + "structor"]: value }) => value)({})}'],
     [
@@ -59,7 +59,7 @@ describe("inspectPropertyProgram", () => {
   it.effect.each([
     '{((value) => ({})[value + "safe"])("key")}',
     '{((value) => ({})["safe" + value])("key")}',
-    ["{((value) => ({})[`safe$", '{value}`])("key")}'].join(""),
+    Arr.join(["{((value) => ({})[`safe$", '{value}`])("key")}'], ""),
     '{((key) => ({})[key])("constructor")}',
     "{({})[String.fromCharCode(99, 111, 110, 115, 116, 114, 117, 99, 116, 111, 114)]}",
     '{((key) => (({ [key]: value }) => value)({}))("constructor")}',

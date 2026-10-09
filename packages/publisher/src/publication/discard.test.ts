@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { Cause, Effect, Exit } from "effect";
+import { Array as Arr, Cause, Effect, Exit, MutableList } from "effect";
 import {
   discardFailedCandidate,
   discardOnFailure,
@@ -43,7 +43,7 @@ describe("publication discard", () => {
         candidate.release.manifest.releaseId,
         recovery.release.manifest.releaseId
       );
-      expect(state.abortOrder).toEqual([
+      expect(MutableList.toArray(state.abortOrder)).toEqual([
         recovery.release.manifest.releaseId,
         candidate.release.manifest.releaseId,
       ]);
@@ -64,7 +64,7 @@ describe("publication discard", () => {
         _tag: "PublicationRecoveryIdentityError",
         recoveryId,
       });
-      expect(state.abortOrder).toEqual([]);
+      expect(MutableList.toArray(state.abortOrder)).toEqual([]);
     })
   );
 
@@ -80,7 +80,7 @@ describe("publication discard", () => {
         candidate.release.manifest.releaseId,
         ReleaseIdSchema.make("test-discard-empty-recovery")
       );
-      expect(state.abortOrder).toEqual([]);
+      expect(MutableList.toArray(state.abortOrder)).toEqual([]);
     })
   );
 
@@ -103,9 +103,10 @@ describe("publication discard", () => {
       expect(Exit.isFailure(exit)).toBe(true);
       if (Exit.isFailure(exit)) {
         expect(
-          exit.cause.reasons
-            .filter(Cause.isFailReason)
-            .map(({ error }) => error._tag)
+          Arr.map(
+            Arr.filter(exit.cause.reasons, Cause.isFailReason),
+            ({ error }) => error._tag
+          )
         ).toEqual([
           "PublicationActivationError",
           "PublicationRecoveryIdentityError",

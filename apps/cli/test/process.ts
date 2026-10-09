@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import {
+  Array as Arr,
   ConfigProvider,
   Effect,
   FileSystem,
@@ -205,25 +206,45 @@ export const signalReaches = (id: number) =>
   );
 
 /** Child source that publishes its process identifier and then waits to be signalled. */
-export const WAITING_CHILD = [
-  'import { writeFileSync } from "node:fs";',
-  "writeFileSync(process.argv[1], String(process.pid));",
-  "setInterval(() => undefined, 1_000);",
-].join("\n");
+export const WAITING_CHILD = Arr.join(
+  [
+    'import { writeFileSync } from "node:fs";',
+    "writeFileSync(process.argv[1], String(process.pid));",
+    "setInterval(() => undefined, 1_000);",
+  ],
+  "\n"
+);
 
 /** Child source that ignores SIGTERM, publishes its process identifier, then waits to be killed. */
-export const TERMINATION_IGNORING_CHILD = [
-  'import { writeFileSync } from "node:fs";',
-  'process.on("SIGTERM", () => undefined);',
-  "writeFileSync(process.argv[1], String(process.pid));",
-  "setInterval(() => undefined, 1_000);",
-].join("\n");
+export const TERMINATION_IGNORING_CHILD = Arr.join(
+  [
+    'import { writeFileSync } from "node:fs";',
+    'process.on("SIGTERM", () => undefined);',
+    "writeFileSync(process.argv[1], String(process.pid));",
+    "setInterval(() => undefined, 1_000);",
+  ],
+  "\n"
+);
 
 /** Child source that reports its environment to the file named by its first argument, then exits. */
-export const REPORTING_CHILD = [
-  'import { writeFileSync } from "node:fs";',
-  "writeFileSync(process.argv[1], JSON.stringify({ environment: process.env }));",
-].join("\n");
+export const REPORTING_CHILD = Arr.join(
+  [
+    'import { writeFileSync } from "node:fs";',
+    "writeFileSync(process.argv[1], JSON.stringify({ environment: process.env }));",
+  ],
+  "\n"
+);
+
+/** Child source that exits 0 only when the parent secret is absent and the allowed variable is visible. */
+export const ISOLATION_CHILD = Arr.join(
+  [
+    "const isolated =",
+    "  process.env.AKSARA_TEST_PARENT_SECRET === undefined;",
+    'const allowed = process.env.AKSARA_TEST_ALLOWED === "visible";',
+    "process.exit(isolated && allowed ? 0 : 23);",
+  ],
+  "\n"
+);
 
 /** The libuv handle that keeps the event loop alive while a child runs. */
 const CHILD_HANDLE = "ProcessWrap";

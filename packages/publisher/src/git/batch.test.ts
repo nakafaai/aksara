@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
-import { Effect, MutableHashMap, Option, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
@@ -76,10 +76,10 @@ describe("Git batch protocol", () => {
             TEST_SOURCE_PATH,
           ]).pipe(Effect.flip)
         );
-        expect(errors.every((error) => Schema.is(GitBatchError)(error))).toBe(
-          true
-        );
-        expect(errors.map(({ reason }) => reason)).toEqual([
+        expect(
+          Arr.every(errors, (error) => Schema.is(GitBatchError)(error))
+        ).toBe(true);
+        expect(Arr.map(errors, ({ reason }) => reason)).toEqual([
           "protocol",
           "protocol",
           "protocol",
@@ -129,7 +129,7 @@ describe("Git batch protocol", () => {
           ],
           (output) => decodeGitBatchResponse(output, blobs).pipe(Effect.flip)
         );
-        expect(errors.map(({ reason }) => reason)).toEqual(
+        expect(Arr.map(errors, ({ reason }) => reason)).toEqual(
           Array.from({ length: 5 }, () => "protocol")
         );
         expect(errors[4]?.sourcePath).toBeNull();

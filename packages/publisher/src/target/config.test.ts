@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Duration, Effect, Redacted, Result } from "effect";
+import { Array as Arr, Duration, Effect, Redacted, Result } from "effect";
 import {
   type HttpPublicationTargetConfig,
   validateHttpConfig,
@@ -46,7 +46,7 @@ describe("HTTP publication configuration", () => {
             })
           )
       );
-      expect(loopbacks.every(Result.isSuccess)).toBe(true);
+      expect(Arr.every(loopbacks, Result.isSuccess)).toBe(true);
     })
   );
 

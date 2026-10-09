@@ -20,7 +20,7 @@ import {
   PageHeadSchema,
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 
 const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
@@ -165,7 +165,7 @@ export function catalogTotal(counts: TestCatalogCounts) {
 
 /** Builds prepared identities in canonical result-catalog order. */
 export function catalogResult(counts: TestCatalogCounts) {
-  return catalogHeads(counts).map((identity): ContentHead => {
+  return Arr.map(catalogHeads(counts), (identity): ContentHead => {
     const sourcePath = (() => {
       if (identity.family === "question") {
         return `packages/corpus/${identity.contentKey}.${identity.artifactLocale}.mdx`;
@@ -202,14 +202,15 @@ export function catalogRoutes(
   rows: readonly TestCatalogIdentity[],
   replaceLast: boolean
 ) {
-  const publicRows = rows.filter(
+  const publicRows = Arr.filter(
+    rows,
     (
       row
     ): row is TestCatalogIdentity & {
       readonly publicPath: string;
     } => row.publicPath !== undefined
   );
-  return publicRows.map((row, index) => ({
+  return Arr.map(publicRows, (row, index) => ({
     current: {
       appLocale: AppLocaleSchema.make(row.artifactLocale),
       contentKey: row.contentKey,

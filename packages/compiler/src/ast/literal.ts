@@ -1,4 +1,12 @@
-import { MutableHashSet, Predicate, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  MutableHashSet,
+  MutableList,
+  Option,
+  Predicate,
+  Record as Rec,
+  Schema,
+} from "effect";
 import type {
   Expression,
   ObjectExpression,
@@ -78,17 +86,18 @@ export function staticLiteralNodeAtPath(
     if (value.type !== "ObjectExpression") {
       return current;
     }
-    const property = value.properties.find(
+    const property = Arr.findFirst(
+      value.properties,
       (candidate): candidate is Property =>
         candidate.type === "Property" &&
         !candidate.computed &&
         staticPropertyName(candidate) === segment
     );
-    if (!property) {
+    if (Option.isNone(property)) {
       return current;
     }
-    const { value: propertyValue } = property;
-    current = property;
+    const { value: propertyValue } = property.value;
+    current = property.value;
     value = propertyValue;
   }
   return current;
@@ -123,7 +132,7 @@ function decodeArray(
   node: Extract<Expression, { readonly type: "ArrayExpression" }>,
   readNumber: NumberReader
 ): StaticLiteralResult {
-  const values: StaticLiteral[] = [];
+  const values = MutableList.make<StaticLiteral>();
   for (const element of node.elements) {
     if (element === null) {
       return failed("array-hole", node);
@@ -135,9 +144,9 @@ function decodeArray(
     if (!decoded.success) {
       return decoded;
     }
-    values.push(decoded.value);
+    MutableList.append(values, decoded.value);
   }
-  return { success: true, value: values };
+  return { success: true, value: MutableList.toArray(values) };
 }
 
 /** Decodes a static object while rejecting ambiguous property syntax. */
@@ -145,7 +154,7 @@ function decodeObject(
   node: ObjectExpression,
   readNumber: NumberReader
 ): StaticLiteralResult {
-  const entries: [string, StaticLiteral][] = [];
+  const entries = MutableList.make<[string, StaticLiteral]>();
   const names = MutableHashSet.empty<string>();
   for (const property of node.properties) {
     if (property.type === "SpreadElement") {
@@ -169,9 +178,13 @@ function decodeObject(
       return decoded;
     }
     MutableHashSet.add(names, name);
-    entries.push([name, decoded.value]);
+    const entry: [string, StaticLiteral] = [name, decoded.value];
+    MutableList.append(entries, entry);
   }
-  return { success: true, value: Rec.fromEntries(entries) };
+  return {
+    success: true,
+    value: Rec.fromEntries(MutableList.toArray(entries)),
+  };
 }
 
 /** Reads a number that is written directly, with an optional sign. */

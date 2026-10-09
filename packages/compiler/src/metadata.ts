@@ -1,5 +1,12 @@
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
-import { Array as Arr, Effect, Option, Predicate, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableList,
+  Option,
+  Predicate,
+  Schema,
+} from "effect";
 import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
@@ -14,7 +21,7 @@ import {
   AuthoredMetadataDuplicateError,
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
-  AuthoredMetadataSyntaxReasonSchema,
+  type AuthoredMetadataSyntaxReasonSchema,
 } from "#compiler/errors";
 
 export type AuthoredMetadataValue = StaticLiteral;
@@ -26,14 +33,17 @@ export const AuthoredMetadataSchema = Schema.Record(
 );
 export type AuthoredMetadata = typeof AuthoredMetadataSchema.Type;
 
+/** Creates the empty metadata state of one official MDX compilation. */
+export function createMetadataCollector() {
+  return {
+    candidates: MutableList.make<AuthoredMetadataValue>(),
+    syntaxReasons:
+      MutableList.make<typeof AuthoredMetadataSyntaxReasonSchema.Type>(),
+  };
+}
+
 /** Mutable metadata state scoped to one official MDX compilation. */
-const MetadataCollectorSchema = Schema.Struct({
-  candidates: Schema.mutable(Schema.Array(StaticLiteralSchema)),
-  syntaxReasons: Schema.mutable(
-    Schema.Array(AuthoredMetadataSyntaxReasonSchema)
-  ),
-});
-export type MetadataCollector = typeof MetadataCollectorSchema.Type;
+export type MetadataCollector = ReturnType<typeof createMetadataCollector>;
 
 /** Exact source and UTF-16 offsets occupied by one validated metadata export. */
 const MetadataSourceRangeSchema = Schema.Struct({
@@ -57,7 +67,8 @@ function inspectStatement(
   if (declaration?.type !== "VariableDeclaration") {
     return Option.none();
   }
-  const metadata = declaration.declarations.filter(
+  const metadata = Arr.filter(
+    declaration.declarations,
     ({ id }) => id.type === "Identifier" && id.name === "metadata"
   );
   if (metadata.length === 0) {
@@ -89,20 +100,21 @@ function collectMetadata(
   if (!program) {
     return true;
   }
-  const results = program.body.map(inspectStatement);
+  const results = Arr.map(program.body, inspectStatement);
   const metadata = Arr.getSomes(results);
   if (metadata.length === 0) {
     return true;
   }
   if (metadata.length !== results.length) {
-    collector.syntaxReasons.push("mixed-metadata-module");
+    MutableList.append(collector.syntaxReasons, "mixed-metadata-module");
     return false;
   }
   for (const result of metadata) {
     if (result.success) {
-      collector.candidates.push(result.value);
+      MutableList.append(collector.candidates, result.value);
     } else {
-      collector.syntaxReasons.push(
+      MutableList.append(
+        collector.syntaxReasons,
         "reason" in result ? result.reason : result.failure.reason
       );
     }
@@ -115,7 +127,7 @@ export function extractMetadata(
   collector: MetadataCollector
 ): Plugin<[], Root> {
   return () => (tree) => {
-    tree.children = tree.children.filter((node) =>
+    tree.children = Arr.filter(tree.children, (node) =>
       collectMetadata(node, collector)
     );
   };
@@ -127,10 +139,10 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
     if (collector.syntaxReasons.length > 0) {
       return yield* new AuthoredMetadataSyntaxError({
         contentKey,
-        reasons: collector.syntaxReasons,
+        reasons: MutableList.toArray(collector.syntaxReasons),
       });
     }
-    const [metadata] = collector.candidates;
+    const [metadata] = MutableList.toArray(collector.candidates);
     if (metadata === undefined) {
       return yield* new AuthoredMetadataMissingError({ contentKey });
     }
@@ -154,19 +166,16 @@ export const validateMetadata = Effect.fn("AksaraCompiler.validateMetadata")(
 export const readMetadataDocument = Effect.fn(
   "AksaraCompiler.readMetadataDocument"
 )(function* (contentKey: ContentKey, tree: Root) {
-  const collector: MetadataCollector = {
-    candidates: [],
-    syntaxReasons: [],
-  };
-  const bodyChildren: RootContent[] = [];
+  const collector = createMetadataCollector();
+  const bodyChildren = MutableList.make<RootContent>();
   let sourceRange: MetadataSourceRange | undefined;
   for (const node of tree.children) {
     if (node.type !== "mdxjsEsm") {
-      bodyChildren.push(node);
+      MutableList.append(bodyChildren, node);
       continue;
     }
     if (collectMetadata(node, collector)) {
-      bodyChildren.push(node);
+      MutableList.append(bodyChildren, node);
       continue;
     }
     const start = node.position?.start.offset;
@@ -176,6 +185,9 @@ export const readMetadataDocument = Effect.fn(
     }
   }
   const metadata = yield* validateMetadata(contentKey, collector);
-  const bodyTree: Root = { ...tree, children: bodyChildren };
+  const bodyTree: Root = {
+    ...tree,
+    children: MutableList.toArray(bodyChildren),
+  };
   return { bodyTree, metadata, sourceRange };
 });

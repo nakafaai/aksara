@@ -19,7 +19,7 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeSnapshotBatch,
   makeSnapshotBatches,
@@ -148,13 +148,14 @@ describe("snapshot batching", () => {
       );
       const batches = yield* collect(Stream.fromIterable(rows));
 
-      expect(batches.map(({ batchIndex }) => batchIndex)).toEqual([0, 1]);
-      expect(batches.map(({ rows: values }) => values.length)).toEqual([
+      expect(Arr.map(batches, ({ batchIndex }) => batchIndex)).toEqual([0, 1]);
+      expect(Arr.map(batches, ({ rows: values }) => values.length)).toEqual([
         MAX_SNAPSHOT_BATCH_COUNT,
         1,
       ]);
       expect(
-        batches.every(
+        Arr.every(
+          batches,
           (batch) =>
             Buffer.byteLength(canonicalizeSnapshotBatch(batch), "utf8") <=
             MAX_SNAPSHOT_BATCH_BYTES
@@ -174,7 +175,7 @@ describe("snapshot batching", () => {
         )
       );
 
-      expect(batches.map(({ rows }) => rows.length)).toEqual([1, 1, 1]);
+      expect(Arr.map(batches, ({ rows }) => rows.length)).toEqual([1, 1, 1]);
     })
   );
 

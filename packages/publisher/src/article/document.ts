@@ -20,7 +20,7 @@ import {
 } from "@nakafa/aksara-corpus/articles/source";
 import { teams } from "@nakafa/aksara-corpus/team/source";
 import type { FileSystem, Path } from "effect";
-import { Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored article metadata does not satisfy Nakafa's exact page contract. */
@@ -72,7 +72,7 @@ export const makeArticleProjectionFromSource: (
   return makeArticleProjection({
     categoryTitle: source.categoryTitle,
     metadata: decoded,
-    official: decoded.authors.some(({ name }) =>
+    official: Arr.some(decoded.authors, ({ name }) =>
       MutableHashSet.has(teams, name)
     ),
     references: source.references,

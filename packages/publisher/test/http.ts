@@ -1,6 +1,6 @@
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
-import { Effect, Match, Redacted, Schema } from "effect";
+import { Effect, Match, MutableList, Redacted, Schema } from "effect";
 import {
   HttpClient,
   type HttpClientRequest,
@@ -59,10 +59,10 @@ function webResponse(
 
 /** Creates a captured client whose responses derive from strict requests. */
 export function capturedClient() {
-  const requests: HttpClientRequest.HttpClientRequest[] = [];
+  const requests = MutableList.make<HttpClientRequest.HttpClientRequest>();
   const client = HttpClient.make((request) =>
     Effect.gen(function* () {
-      requests.push(request);
+      MutableList.append(requests, request);
       const decoded = yield* decodeRequest(request).pipe(Effect.orDie);
       return webResponse(request, transportSuccess(decoded));
     })

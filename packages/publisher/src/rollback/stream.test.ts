@@ -27,7 +27,7 @@ import {
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
@@ -162,9 +162,11 @@ describe("streamRollbackRecords", () => {
     });
     return replay(makePublicationTarget({ rollbackPage })).pipe(
       Effect.map((records) => {
-        expect([...records].map(({ index }) => index)).toEqual([0, 1, 2]);
         expect(
-          rollbackPage.mock.calls.map(([request]) => request.afterIndex)
+          Arr.map(Arr.fromIterable(records), ({ index }) => index)
+        ).toEqual([0, 1, 2]);
+        expect(
+          Arr.map(rollbackPage.mock.calls, ([request]) => request.afterIndex)
         ).toEqual([-1, 0, 1]);
         return expect(rollbackPage.mock.calls[0]?.[0]).toEqual({
           afterIndex: -1,
