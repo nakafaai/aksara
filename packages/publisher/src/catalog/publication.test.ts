@@ -197,7 +197,7 @@ const makeCatalogTestFixtures = Effect.fn(
 class CatalogTestFixtures extends Context.Service<
   CatalogTestFixtures,
   Effect.Success<ReturnType<typeof makeCatalogTestFixtures>>
->()("AksaraPublisherCatalogTestFixtures") {}
+>()("@nakafa/aksara-publisher/catalog/publication.test/CatalogTestFixtures") {}
 
 const catalogTestLayer = Layer.effect(
   CatalogTestFixtures,

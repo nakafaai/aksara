@@ -47,9 +47,7 @@ const familyCases = [
   [
     "sourcePath",
     "question",
-    {
-      sourcePath: "packages/corpus/material/lesson/test/en.mdx",
-    },
+    { sourcePath: "packages/corpus/material/lesson/test/en.mdx" },
   ],
   [
     "sourcePath",
@@ -137,7 +135,9 @@ const makePublicationTestFixtures = Effect.fn(
 class QuestionPublicationTestFixtures extends Context.Service<
   QuestionPublicationTestFixtures,
   Effect.Success<ReturnType<typeof makePublicationTestFixtures>>
->()("AksaraPublisherQuestionPublicationTestFixtures") {}
+>()(
+  "@nakafa/aksara-publisher/question/publication.test/QuestionPublicationTestFixtures"
+) {}
 
 const publicationTestLayer = Layer.effect(
   QuestionPublicationTestFixtures,

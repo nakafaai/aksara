@@ -88,7 +88,9 @@ const makeSnapshotTestFixtures = Effect.fn("TryoutSnapshotTest.makeFixtures")(
 class TryoutSnapshotTestFixtures extends Context.Service<
   TryoutSnapshotTestFixtures,
   Effect.Success<ReturnType<typeof makeSnapshotTestFixtures>>
->()("AksaraPublisherTryoutSnapshotTestFixtures") {}
+>()(
+  "@nakafa/aksara-publisher/tryout/snapshot.test/TryoutSnapshotTestFixtures"
+) {}
 
 const snapshotTestLayer = Layer.effect(
   TryoutSnapshotTestFixtures,

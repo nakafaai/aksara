@@ -51,7 +51,7 @@ const makeContentTestFixtures = Effect.fn("TryoutContentTest.makeFixtures")(
 class TryoutContentTestFixtures extends Context.Service<
   TryoutContentTestFixtures,
   Effect.Success<ReturnType<typeof makeContentTestFixtures>>
->()("AksaraPublisherTryoutContentTestFixtures") {}
+>()("@nakafa/aksara-publisher/tryout/content.test/TryoutContentTestFixtures") {}
 
 const contentTestLayer = Layer.effect(
   TryoutContentTestFixtures,

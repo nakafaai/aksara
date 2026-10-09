@@ -129,7 +129,7 @@ const makePageTestFixtures = Effect.fn("PageTest.makeFixtures")(() =>
 export class PageTestFixtures extends Context.Service<
   PageTestFixtures,
   Effect.Success<ReturnType<typeof makePageTestFixtures>>
->()("AksaraPublisherTestPageFixtures") {}
+>()("@nakafa/aksara-publisher/test/page/spec/PageTestFixtures") {}
 
 export const pageTestLayer: Layer.Layer<PageTestFixtures> = Layer.effect(
   PageTestFixtures,

@@ -193,7 +193,7 @@ const makeArticleTestFixtures = Effect.fn("ArticleTest.makeFixtures")(() =>
 export class ArticleTestFixtures extends Context.Service<
   ArticleTestFixtures,
   Effect.Success<ReturnType<typeof makeArticleTestFixtures>>
->()("AksaraPublisherTestArticleFixtures") {}
+>()("@nakafa/aksara-publisher/test/article/ArticleTestFixtures") {}
 
 export const articleTestLayer: Layer.Layer<ArticleTestFixtures> = Layer.effect(
   ArticleTestFixtures,
