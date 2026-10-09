@@ -1,3 +1,4 @@
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -47,10 +48,7 @@ export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogC
     actualCount: CountSchema,
     expectedCount: CountSchema,
     kind: Schema.Literals([
-      "article",
-      "material",
-      "page",
-      "question",
+      ...ContentFamilySchema.literals,
       "records",
       "routes",
     ]),
