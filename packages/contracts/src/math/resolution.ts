@@ -152,15 +152,15 @@ function planeObjectIssues(
   return objectResolutionIssues(frame, object, index, threshold);
 }
 
-/** Reports every frame axis whose non-zero span collapses in the envelope. */
+/**
+ * Reports every frame axis whose non-zero span collapses in the envelope. Each
+ * entry pairs one axis with its range.
+ */
 function frameIssues(
-  entries: readonly {
-    readonly axis: SceneAxis;
-    readonly range: PlaneMathFrame["x"];
-  }[],
+  entries: readonly (readonly [SceneAxis, PlaneMathFrame["x"]])[],
   threshold: RenderThreshold
 ) {
-  return Arr.flatMap(entries, ({ axis, range }) =>
+  return Arr.flatMap(entries, ([axis, range]) =>
     spanUnresolved(range, threshold) ? [issue(["frame", axis])] : []
   );
 }
@@ -176,8 +176,8 @@ export function planeResolutionIssues(
   return uniqueIssues([
     ...frameIssues(
       [
-        { axis: "x", range: frame.x },
-        { axis: "y", range: frame.y },
+        ["x", frame.x],
+        ["y", frame.y],
       ],
       threshold
     ),
@@ -219,9 +219,9 @@ export function spaceResolutionIssues(
   return uniqueIssues([
     ...frameIssues(
       [
-        { axis: "x", range: frame.x },
-        { axis: "y", range: frame.y },
-        { axis: "z", range: frame.z },
+        ["x", frame.x],
+        ["y", frame.y],
+        ["z", frame.z],
       ],
       threshold
     ),
