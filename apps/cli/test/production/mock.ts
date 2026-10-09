@@ -15,6 +15,7 @@ import {
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
+import type { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";
@@ -236,7 +237,10 @@ export function snapshotMock(calls: TargetCalls) {
     prepareReleaseSnapshots: (input: {
       /** Replays the catalog narrowed by production preparation. */
       readonly questionHeads: Stream.Stream<unknown>;
-      readonly runtime: { readonly kind: "refresh" | "stable" };
+      readonly runtime: Pick<
+        Parameters<typeof prepareReleaseSnapshots>[0]["runtime"],
+        "kind"
+      >;
     }) => {
       calls.snapshotCalls += 1;
       if (input.runtime.kind === "refresh") {
