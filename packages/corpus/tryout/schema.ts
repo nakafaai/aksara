@@ -181,9 +181,15 @@ export class TryoutDuplicateError extends Schema.TaggedError<TryoutDuplicateErro
   }
 ) {}
 
+/** An authored try-out source that carries a stable key: a track, a set, or a section. */
+type TryoutKeyedSource =
+  | typeof TryoutTrackSourceSchema.Type
+  | typeof TryoutSetSourceSchema.Type
+  | typeof TryoutSectionSourceSchema.Type;
+
 /** Returns the first duplicated key in one ordered authored scope. */
 function findDuplicateKey(
-  entries: readonly { readonly key: string }[]
+  entries: readonly Pick<TryoutKeyedSource, "key">[]
 ): string | undefined {
   const keys = MutableHashSet.empty<string>();
   for (const entry of entries) {
@@ -196,7 +202,7 @@ function findDuplicateKey(
 
 /** Rejects duplicate stable keys within one authored try-out scope. */
 function validateUniqueKeys(
-  entries: readonly { readonly key: string }[],
+  entries: readonly Pick<TryoutKeyedSource, "key">[],
   scope: string
 ) {
   const duplicate = findDuplicateKey(entries);
