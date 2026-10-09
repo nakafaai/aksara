@@ -53,7 +53,7 @@ const importViolation = Effect.fn("AksaraPolicy.importViolation")(function* (
   if (!specifier.startsWith("@nakafa/")) {
     return;
   }
-  const packageName = Arr.join(specifier.split("/").slice(0, 2), "/");
+  const packageName = Arr.join(Arr.take(specifier.split("/"), 2), "/");
   if (
     WORKSPACE_SCRIPT_PATTERN.test(file) &&
     HashSet.has(identity.developmentDependencies, packageName)

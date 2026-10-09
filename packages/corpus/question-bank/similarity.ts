@@ -181,7 +181,7 @@ function pairs<Item>(
 ) {
   return Arr.flatMap(group, (left, index) =>
     pipe(
-      group.slice(index + 1),
+      Arr.drop(group, index + 1),
       Arr.filter((right) => isTarget(left) || isTarget(right)),
       Arr.map((right) => ({ left, right }))
     )

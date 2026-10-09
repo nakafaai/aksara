@@ -89,7 +89,7 @@ const validateTopicBlueprints = Effect.fn(
       ({ topic: actual }) => actual === topic.key
     )) {
       yield* validateReadinessField(
-        topic.contentDomains.includes(blueprint.contentDomain)
+        Arr.contains(topic.contentDomains, blueprint.contentDomain)
           ? "allowed"
           : blueprint.contentDomain,
         "allowed",
@@ -97,7 +97,7 @@ const validateTopicBlueprints = Effect.fn(
         scope
       );
       yield* validateReadinessField(
-        topic.cognitiveLevels.includes(blueprint.cognitiveLevel)
+        Arr.contains(topic.cognitiveLevels, blueprint.cognitiveLevel)
           ? "allowed"
           : blueprint.cognitiveLevel,
         "allowed",
@@ -209,24 +209,29 @@ export const validateAssessmentQuestionReadiness = Effect.fn(
   const track = yield* requireReadinessTrack(source, readiness);
   for (const set of track.sets) {
     const setScope = `${source.examKey}:${track.key}:${set.key}`;
-    for (const [index, expected] of readiness.sections.entries()) {
-      const section = yield* requireReadinessSection(
-        set.sections,
-        expected,
-        index,
-        setScope
-      );
-      if (expected.blueprint === undefined) {
-        continue;
-      }
-      const scope = `${source.examKey}:${track.key}:${set.key}:${section.key}`;
-      yield* validateSectionQuestionReadiness(
-        section,
-        expected.blueprint,
-        questions,
-        scope
-      );
-    }
+    yield* Effect.forEach(
+      readiness.sections,
+      (expected, index) =>
+        Effect.gen(function* () {
+          const section = yield* requireReadinessSection(
+            set.sections,
+            expected,
+            index,
+            setScope
+          );
+          if (expected.blueprint === undefined) {
+            return;
+          }
+          const scope = `${source.examKey}:${track.key}:${set.key}:${section.key}`;
+          yield* validateSectionQuestionReadiness(
+            section,
+            expected.blueprint,
+            questions,
+            scope
+          );
+        }),
+      { discard: true }
+    );
   }
   return source;
 });

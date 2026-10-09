@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, HashSet, Option, Schema } from "effect";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
 import { projectCurriculumNodes } from "#corpus/curriculum/projection";
@@ -96,7 +96,7 @@ describe("curriculum node projection", () => {
           ({ materialKeys }) => materialKeys
         );
         expect(HashSet.size(HashSet.fromIterable(allMaterialKeys))).toBe(34);
-        expect(nodes.at(0)).toMatchObject({
+        expect(Option.getOrThrow(Arr.head(nodes))).toMatchObject({
           curriculumKey: "cambridge-international",
           key: "early-years",
           parentKey: undefined,

@@ -123,7 +123,7 @@ vi.mock("#publisher/catalog/publication", async () => {
         routes: control.routeFailure
           ? Stream.fail("routes")
           : Stream.fromIterable(
-              control.routeMode === "drop" ? routes.slice(0, -1) : routes
+              control.routeMode === "drop" ? Arr.dropRight(routes, 1) : routes
             ),
       });
     },

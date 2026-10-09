@@ -206,7 +206,7 @@ describe("authored metadata", () => {
       const error = yield* rejectMetadata(rawMdx);
       assert.strictEqual(error._tag, "AuthoredMetadataSyntaxError");
       if (error._tag === "AuthoredMetadataSyntaxError") {
-        assert.ok(error.reasons.includes(reason));
+        assert.ok(Arr.contains(error.reasons, reason));
       }
     })
   );

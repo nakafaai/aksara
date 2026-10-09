@@ -1,6 +1,7 @@
 import {
   Array as Arr,
   HashSet,
+  Match,
   MutableHashSet,
   MutableList,
   Option,
@@ -96,20 +97,16 @@ function failedLabel<Value>(
 function sceneReason(
   reason: StaticLiteralSyntaxReason
 ): MathVisualSourceReason {
-  switch (reason) {
-    case "array-hole":
-      return "scene-array-hole";
-    case "computed-property":
-      return "scene-computed-property";
-    case "duplicate-property":
-      return "scene-duplicate-property";
-    case "spread":
-      return "scene-spread";
-    case "unsupported-property":
-      return "scene-property";
-    default:
-      return "scene-dynamic-value";
-  }
+  return Match.value(reason).pipe(
+    Match.withReturnType<MathVisualSourceReason>(),
+    Match.when("array-hole", () => "scene-array-hole"),
+    Match.when("computed-property", () => "scene-computed-property"),
+    Match.when("duplicate-property", () => "scene-duplicate-property"),
+    Match.when("dynamic-value", () => "scene-dynamic-value"),
+    Match.when("spread", () => "scene-spread"),
+    Match.when("unsupported-property", () => "scene-property"),
+    Match.exhaustive
+  );
 }
 
 /** Enumerates rich-label keys without interpreting their React values. */
@@ -157,10 +154,10 @@ function recordDuplicates(
   reason: MathVisualSourceReason,
   violations: MutableList.MutableList<MathVisualPolicyViolation>
 ) {
-  const duplicates = Arr.filter(
-    attributes,
-    (attribute) => attribute.name === name
-  ).slice(1);
+  const duplicates = Arr.drop(
+    Arr.filter(attributes, (attribute) => attribute.name === name),
+    1
+  );
   for (const duplicate of duplicates) {
     MutableList.append(violations, { ...mdxLocation(duplicate), reason });
   }

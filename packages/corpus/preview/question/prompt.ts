@@ -30,7 +30,7 @@ const resolvePreviewAppLocale = Effect.fn(
       )
     );
   });
-  if (requested !== undefined && compatible.includes(requested)) {
+  if (requested !== undefined && Arr.contains(compatible, requested)) {
     return requested;
   }
   const [only] = compatible;

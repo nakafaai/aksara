@@ -97,7 +97,7 @@ describe("curriculum route projection", () => {
     Effect.gen(function* () {
       const { curricula, materials, programs } = yield* loadRouteInputs();
       const error = yield* projectCurriculumRoutes({
-        curricula: curricula.slice(1),
+        curricula: Arr.drop(curricula, 1),
         materials,
         programs,
       }).pipe(Effect.flip);

@@ -242,7 +242,7 @@ describe("try-out head binding", () => {
     Effect.gen(function* () {
       const error = yield* rejectTryoutHeadBindings(
         activePlacements(),
-        activeHeads().slice(0, -1)
+        Arr.dropRight(activeHeads(), 1)
       );
 
       expect(error).toBeInstanceOf(TryoutHeadMissingError);

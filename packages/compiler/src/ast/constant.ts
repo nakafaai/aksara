@@ -1,4 +1,4 @@
-import { Array as Arr, HashMap, Option, Predicate } from "effect";
+import { Array as Arr, HashMap, Match, Option, Predicate } from "effect";
 import type { Node } from "estree-jsx";
 
 type Operation = (...values: number[]) => number;
@@ -105,28 +105,26 @@ function operate(
 }
 
 /** Evaluates one node to a number, or to nothing when it is not constant. */
-function evaluate(node: Node): number | undefined {
-  switch (node.type) {
-    case "Literal":
-      return Predicate.isNumber(node.value) ? node.value : undefined;
-    case "UnaryExpression":
-      return operate(
-        Option.getOrUndefined(HashMap.get(UNARY_OPERATORS, node.operator)),
-        [node.argument]
-      );
-    case "BinaryExpression":
-      return operate(
+const evaluate: (node: Node) => number | undefined = Match.type<Node>().pipe(
+  Match.discriminators("type")({
+    BinaryExpression: (node) =>
+      operate(
         Option.getOrUndefined(HashMap.get(BINARY_OPERATORS, node.operator)),
         [node.left, node.right]
-      );
-    case "MemberExpression":
-      return mathMember(node, MATH_CONSTANTS);
-    case "CallExpression":
-      return operate(mathMember(node.callee, MATH_FUNCTIONS), node.arguments);
-    default:
-      return undefined;
-  }
-}
+      ),
+    CallExpression: (node) =>
+      operate(mathMember(node.callee, MATH_FUNCTIONS), node.arguments),
+    Literal: (node): number | undefined =>
+      Predicate.isNumber(node.value) ? node.value : undefined,
+    MemberExpression: (node) => mathMember(node, MATH_CONSTANTS),
+    UnaryExpression: (node) =>
+      operate(
+        Option.getOrUndefined(HashMap.get(UNARY_OPERATORS, node.operator)),
+        [node.argument]
+      ),
+  }),
+  Match.orElse(() => undefined)
+);
 
 /**
  * Folds one constant numeric expression into the finite number it denotes.

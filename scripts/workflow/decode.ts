@@ -96,6 +96,6 @@ export function exactNeeds(job: WorkflowJob, expected: readonly string[]) {
     : Arr.filter([job.needs], (need) => need !== undefined);
   return (
     needs.length === expected.length &&
-    Arr.every(expected, (need) => needs.includes(need))
+    Arr.every(expected, (need) => Arr.contains(needs, need))
   );
 }

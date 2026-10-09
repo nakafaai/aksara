@@ -80,17 +80,17 @@ export function questionSourceFiles(languagePolicy: AssessmentLanguagePolicy) {
 export function locateQuestionEntry(entry: string, separator: string) {
   const segments = entry.split(separator);
   let questionIndex = -1;
-  for (const [index, segment] of segments.entries()) {
+  Arr.forEach(segments, (segment, index) => {
     if (isQuestionSegment(segment)) {
       questionIndex = index;
     }
-  }
+  });
   if (questionIndex === -1) {
     return;
   }
   return {
-    file: Arr.join(segments.slice(questionIndex + 1), "/"),
-    root: Arr.join(segments.slice(0, questionIndex + 1), "/"),
+    file: Arr.join(Arr.drop(segments, questionIndex + 1), "/"),
+    root: Arr.join(Arr.take(segments, questionIndex + 1), "/"),
   };
 }
 
