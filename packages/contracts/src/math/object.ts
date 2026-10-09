@@ -22,7 +22,7 @@ export function mathLabelAnchorFields<Point extends Schema.Top>(at: Point) {
     key: MathVisualKeySchema,
     objectId: MathVisualKeySchema,
     placement: Schema.optionalKey(MathLabelPlacementSchema),
-  };
+  } as const;
 }
 
 /** Message for a line whose two authored positions coincide. */
