@@ -11,6 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Schema, Stream } from "effect";
+import { withTrailingAbsence } from "#publisher/publication/order";
 import {
   ReleaseArtifactMismatchError,
   validateCompiledPayloadForItem,
@@ -35,12 +36,24 @@ const SourcePairSchema = Schema.Union([
 /** One stream position: a release item, a source, or both, told apart by kind. */
 type SourcePair = typeof SourcePairSchema.Type;
 
-/** Extends a finite stream with explicit absence for a constant-space full zip. */
-function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
-  return stream.pipe(
-    Stream.map(Option.some),
-    Stream.concat(Stream.fromEffectRepeat(Effect.succeed(Option.none<A>())))
-  );
+/**
+ * Creates the exact authored body that every compiler mode receives: the text
+ * of one document and the identity of the route that owns it.
+ */
+export function makeCompileSource(
+  source: Pick<
+    CompileDocumentSource,
+    "rawMdx" | "rendererDomain" | "sourcePath"
+  >,
+  route: Pick<CompileDocumentSource, "artifactLocale" | "contentKey">
+): CompileDocumentSource {
+  return {
+    artifactLocale: route.artifactLocale,
+    contentKey: route.contentKey,
+    rawMdx: source.rawMdx,
+    rendererDomain: source.rendererDomain,
+    sourcePath: source.sourcePath,
+  };
 }
 
 /** Strict disk-replay contract for one exact-Git compilation result. */

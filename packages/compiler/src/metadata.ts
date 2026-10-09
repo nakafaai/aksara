@@ -31,8 +31,6 @@ export const AuthoredMetadataSchema = Schema.Record(
   Schema.String,
   StaticLiteralSchema
 );
-export type AuthoredMetadata = typeof AuthoredMetadataSchema.Type;
-
 /** Creates the empty metadata state of one official MDX compilation. */
 export function createMetadataCollector() {
   return {

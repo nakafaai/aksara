@@ -8,6 +8,7 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
+import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import {
   type ProgramRowError,
@@ -104,7 +105,7 @@ export const prepareAcceptanceRelease: (input: {
     routes: catalog.routes,
     scope: {
       families: ["article", "material", "page", "question"],
-      snapshots: ["program", "quran", "tryout"],
+      snapshots: ContentSnapshotKindSchema.literals,
     },
     snapshotManifests: Stream.fromIterable(manifests),
     snapshotRows: rows,

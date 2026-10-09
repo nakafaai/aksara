@@ -180,9 +180,6 @@ export const AuthoredMetadataSyntaxReasonSchema = Schema.Union([
     "metadata-not-object",
   ]),
 ]);
-export type AuthoredMetadataSyntaxReason =
-  typeof AuthoredMetadataSyntaxReasonSchema.Type;
-
 /** Every authored MDX document must declare exactly one metadata export. */
 export class AuthoredMetadataMissingError extends Schema.TaggedError<AuthoredMetadataMissingError>()(
   "AuthoredMetadataMissingError",

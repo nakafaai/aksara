@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { readBytes } from "@nakafa/aksara-utilities/http/response";
 import { Duration, Effect, FileSystem, Path, Result, Schema } from "effect";
 import { HttpClient } from "effect/http";
@@ -10,6 +9,7 @@ import {
   GERMAN_QURAN_TERMS_URL,
   type PinnedQuranFile,
   QURAN_SOURCE_POLICY,
+  sha256Hex,
 } from "#corpus/quran/source/policy";
 
 const SOURCE_DOWNLOAD_TIMEOUT = Duration.seconds(60);
@@ -30,11 +30,6 @@ export class GermanQuranSourceSyncError extends Schema.TaggedError<GermanQuranSo
     source: Schema.Trimmed.check(Schema.isNonEmpty()),
   }
 ) {}
-
-/** Returns one lowercase SHA-256 digest for exact official bytes. */
-function digest(bytes: Uint8Array) {
-  return createHash("sha256").update(bytes).digest("hex");
-}
 
 /** Replaces the complete source bundle and restores its prior tree on failure. */
 const replaceGermanSourceBundle = Effect.fn(
@@ -113,7 +108,7 @@ const downloadSource = Effect.fn("AksaraCorpus.downloadGermanQuranSource")(
       );
       if (
         bytes.byteLength !== source.artifact.byteCount ||
-        digest(bytes) !== source.artifact.digest.slice("sha256:".length)
+        sha256Hex(bytes) !== source.artifact.digest.slice("sha256:".length)
       ) {
         return yield* new GermanQuranSourceSyncError({
           cause:

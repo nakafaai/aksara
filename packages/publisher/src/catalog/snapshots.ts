@@ -1,4 +1,5 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { QuranProvenanceStatusSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -33,7 +34,7 @@ export const CatalogSnapshotEvidenceSchema = Schema.Struct({
     projectionCount: CountSchema,
     projectionDigest: Sha256HashSchema,
     provenanceDigest: Sha256HashSchema,
-    provenanceStatus: Schema.Literals(["approved", "blocked"]),
+    provenanceStatus: QuranProvenanceStatusSchema,
     runtimeCount: CountSchema,
     searchCount: CountSchema,
     snapshotId: Sha256HashSchema,
@@ -125,7 +126,7 @@ export const validateCatalogSnapshots: <E, R>(
 ) {
   const prepared = yield* prepareReleaseSnapshots({
     checkoutRoot: input.checkoutRoot,
-    families: ["program", "quran", "tryout"],
+    families: ContentSnapshotKindSchema.literals,
     previousSnapshots: null,
     questionHeads: input.questionHeads,
     rendererManifest: input.rendererManifest,

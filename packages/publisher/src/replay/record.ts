@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { createHash } from "node:crypto";
+import { hashUtf8 } from "@nakafa/aksara-compiler/hash";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
@@ -24,12 +24,6 @@ const ReplaySpoolUsageSchema = Schema.Struct({
 
 /** Proposed bounded usage for one replay-spool state transition. */
 export type ReplaySpoolUsage = typeof ReplaySpoolUsageSchema.Type;
-
-/** Computes the exact digest persisted beside one encoded record. */
-function hashRecord(value: string) {
-  const digest = createHash("sha256").update(value).digest("hex");
-  return Sha256HashSchema.make(`sha256:${digest}`);
-}
 
 /** Rejects proposed disk usage before any replay file is written. */
 export function validateReplaySpoolUsage(usage: ReplaySpoolUsage) {
@@ -91,7 +85,7 @@ export function encodeReplayRecord<A>(value: A, index: number) {
           )
         );
       }
-      const hash = hashRecord(data);
+      const hash = hashUtf8(data);
       const bytes = Buffer.byteLength(data) + Buffer.byteLength(hash);
       return validateReplaySpoolUsage({
         count: 1,
@@ -126,7 +120,7 @@ export function decodeReplayRecord<A, I>(input: {
       )
     ),
     Effect.flatMap((expectedHash) => {
-      const actualHash = hashRecord(input.data);
+      const actualHash = hashUtf8(input.data);
       if (actualHash !== expectedHash) {
         return Effect.fail(
           replaySpoolFailure("hash", { actualHash, expectedHash }, input.index)

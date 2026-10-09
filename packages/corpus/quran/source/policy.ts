@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranSourceArtifactSchema } from "@nakafa/aksara-contracts/quran/source";
 import { Schema } from "effect";
@@ -9,6 +10,11 @@ export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle";
 
 /** Domain that authenticates the 114 ordered QuranEnc Tafsir responses. */
 export const QURAN_TAFSIR_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle";
+
+/** Returns one lowercase SHA-256 digest without a wire prefix for exact official bytes. */
+export function sha256Hex(bytes: Uint8Array) {
+  return createHash("sha256").update(bytes).digest("hex");
+}
 
 /** Builds one exact source artifact identity from pinned official bytes. */
 function artifact(byteCount: number, digest: string, fileCount = 1) {

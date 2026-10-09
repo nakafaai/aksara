@@ -1,20 +1,15 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
-import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
-import {
-  type PageHead,
-  PageHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { PageHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import type { FileSystem, Path } from "effect";
-import { Effect, Result, Schema, type Scope, Stream, Tuple } from "effect";
+import { Effect, Result, Schema, type Scope, Stream } from "effect";
 import { constUndefined } from "effect/Function";
 import {
   mapPageSourceError,
@@ -26,6 +21,11 @@ import {
   planPagePublication,
 } from "#publisher/page/plan";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import {
+  type HeadOrderState,
+  orderPublishedHeads,
+  validateHeadOrder,
+} from "#publisher/publication/order";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import {
@@ -43,31 +43,23 @@ const PageFamilyFieldSchema = Schema.Literals([
 /** A target returned the same public page identity more than once. */
 export class PageHeadDuplicateError extends Schema.TaggedError<PageHeadDuplicateError>()(
   "PageHeadDuplicateError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned public page heads outside canonical content-head order. */
 export class PageHeadOrderError extends Schema.TaggedError<PageHeadOrderError>()(
   "PageHeadOrderError",
-  { artifactLocale: ArtifactLocaleSchema, contentKey: ContentKeySchema }
+  ContentHeadIdentitySchema.fields
 ) {}
 
 /** A public page-head response contained a row owned by another family. */
 export class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>()(
   "PageHeadFamilyError",
   {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
+    ...ContentHeadIdentitySchema.fields,
     field: PageFamilyFieldSchema,
   }
 ) {}
-
-const HeadOrderStateSchema = Schema.Struct({
-  previous: Schema.UndefinedOr(PageHeadSchema),
-});
-
-/** The previous page head in the streamed order, or undefined before the first one. */
-type HeadOrderState = typeof HeadOrderStateSchema.Type;
 
 /** Every failure possible while replaying authoritative page records. */
 export type PagePublicationStreamError<E> =
@@ -145,54 +137,25 @@ function mismatchedFamilyField(
 }
 
 /** Validates family ownership and strict ordering before diffing one head. */
-function validatePublishedHead(
-  state: HeadOrderState,
-  head: PageHead
-): Effect.Effect<
-  readonly [HeadOrderState, readonly PageHead[]],
-  PageHeadDuplicateError | PageHeadFamilyError | PageHeadOrderError
-> {
-  const field = mismatchedFamilyField(head);
-  if (field !== undefined) {
-    return Effect.fail(
+function validatePublishedHead(state: HeadOrderState, head: PageHead) {
+  return validateHeadOrder(state, head, mismatchedFamilyField, {
+    duplicate: (candidate) =>
+      new PageHeadDuplicateError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+    family: (candidate, field) =>
       new PageHeadFamilyError({
-        artifactLocale: head.artifactLocale,
-        contentKey: head.contentKey,
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
         field,
-      })
-    );
-  }
-  const { previous } = state;
-  if (previous !== undefined) {
-    const comparison = compareContentHeads(previous, head);
-    if (comparison === 0) {
-      return Effect.fail(
-        new PageHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (comparison > 0) {
-      return Effect.fail(
-        new PageHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed(Tuple.make({ previous: head }, [head]));
-}
-
-/** Proves every published public page head before the constant-space merge. */
-function validatePublishedHeads<E, R>(
-  published: Stream.Stream<PageHead, E, R>
-) {
-  const initial: HeadOrderState = { previous: undefined };
-  return published.pipe(
-    Stream.mapAccumEffect(() => initial, validatePublishedHead)
-  );
+      }),
+    order: (candidate) =>
+      new PageHeadOrderError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+  });
 }
 
 /** Plans one page-family delta from exact Git sources and active heads. */
@@ -212,7 +175,7 @@ export const preparePagePublication: <E, R>(
   const plans = planPagePublication({
     checkoutRoot: input.checkoutRoot,
     entries,
-    published: validatePublishedHeads(input.published),
+    published: orderPublishedHeads(input.published, validatePublishedHead),
     rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,

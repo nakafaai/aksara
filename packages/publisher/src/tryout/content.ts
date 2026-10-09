@@ -1,3 +1,4 @@
+import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { hashTryoutContent } from "@nakafa/aksara-contracts/tryout/hash/content";
@@ -22,7 +23,6 @@ import {
 import type { BoundTryoutPlacement } from "#publisher/tryout/bind";
 import {
   TryoutContentMissingError,
-  type TryoutHeadBodySchema,
   TryoutHeadMismatchError,
 } from "#publisher/tryout/error";
 
@@ -38,7 +38,7 @@ function entryIdentity(input: {
 function requiredEntry(
   entries: HashMap.HashMap<string, QuestionEntry>,
   binding: BoundTryoutPlacement,
-  bodyKind: typeof TryoutHeadBodySchema.Type
+  bodyKind: QuestionBodyKind
 ) {
   const contentKey =
     bodyKind === "answer"

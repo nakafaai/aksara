@@ -1,5 +1,14 @@
 import { Schema } from "effect";
 
+/** One named production option that a command accepts or rejects. */
+export const ProductionOptionSchema = Schema.Literals([
+  "--rebuild",
+  "--recovery-id",
+  "--release-id",
+  "--scope",
+]);
+export type ProductionOption = typeof ProductionOptionSchema.Type;
+
 /** Production arguments do not describe one unambiguous release operation. */
 export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgumentsError>()(
   "ProductionArgumentsError",
@@ -13,13 +22,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
       "release",
       "status",
     ]),
-    option: Schema.Literals([
-      "--rebuild",
-      "--recovery-id",
-      "--release-id",
-      "--scope",
-      "command",
-    ]),
+    option: Schema.Literals([...ProductionOptionSchema.literals, "command"]),
     reason: Schema.Literals([
       "duplicate",
       "identity",
