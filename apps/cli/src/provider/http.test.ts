@@ -1,4 +1,4 @@
-import { ServerResponse } from "node:http";
+import type { ServerResponse } from "node:http";
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { localPreviewArtifactPath } from "@nakafa/aksara-contracts/preview/artifact";
@@ -17,11 +17,18 @@ import {
 } from "#cli/provider/http";
 import { encodeJsonText } from "#cli/text/json";
 import {
+  KEEP_ALIVE_LINE,
+  keepAliveLineCounter,
+  makeEventReader,
+  openEventStream,
+  readBodyChunk,
+  waitFor,
+} from "#test/events";
+import {
   cancelProviderEvent,
   openPreviewHttpReader,
   openPreviewHttpServer,
   PREVIEW_PROVIDER_TEST_TOKEN,
-  PreviewProviderTestError,
   readProviderEvent,
   requestPreviewHttp,
   responseText,
@@ -73,73 +80,6 @@ const responseManifest = Effect.fn("AksaraCliTest.decodePreviewHttpManifest")(
         Schema.decodeEffect(Schema.fromJsonString(LocalPreviewManifestSchema))
       )
     )
-);
-
-/** Reads one mandatory body chunk and rejects an early stream close. */
-const readBodyChunk = Effect.fn("AksaraCliTest.readPreviewHttpBodyChunk")(
-  (reader: ReadableStreamDefaultReader<Uint8Array>) =>
-    readProviderEvent(reader).pipe(
-      Effect.flatMap((result) =>
-        result.done
-          ? Effect.fail(new PreviewProviderTestError({ stage: "stream" }))
-          : Effect.succeed(result.value)
-      )
-    )
-);
-
-/** Reads exactly one complete SSE block without assuming network chunking. */
-function makeEventReader(reader: ReadableStreamDefaultReader<Uint8Array>) {
-  const decoder = new TextDecoder();
-  let buffered = "";
-
-  /** Reads the next complete block and retains any following bytes. */
-  return Effect.fn("AksaraCliTest.readPreviewHttpEvent")(() =>
-    Effect.gen(function* () {
-      let boundary = buffered.indexOf("\n\n");
-      while (boundary < 0) {
-        buffered += decoder.decode(yield* readBodyChunk(reader), {
-          stream: true,
-        });
-        boundary = buffered.indexOf("\n\n");
-      }
-      const event = buffered.slice(0, boundary + 2);
-      buffered = buffered.slice(boundary + 2);
-      return event;
-    })
-  );
-}
-
-/** Waits for one asynchronous Vitest assertion through a typed Effect seam. */
-const waitFor = Effect.fn("AksaraCliTest.waitForPreviewHttpAssertion")(
-  (assertion: () => void) =>
-    Effect.tryPromise({
-      catch: (cause) => new PreviewProviderTestError({ cause, stage: "wait" }),
-      try: () => vi.waitFor(assertion),
-    })
-);
-
-const KEEP_ALIVE_LINE = ": keep-alive\n\n";
-
-/** Counts keep-alive lines written to any response until its scope closes. */
-const keepAliveLineCounter = Effect.acquireRelease(
-  Effect.sync(() => vi.spyOn(ServerResponse.prototype, "write")),
-  (spy) => Effect.sync(() => spy.mockRestore())
-).pipe(
-  Effect.map(
-    (spy) => () =>
-      spy.mock.calls.filter(([chunk]) => chunk === KEEP_ALIVE_LINE).length
-  )
-);
-
-/** Opens one authenticated event stream and returns its raw body reader. */
-const openEventStream = Effect.fn("AksaraCliTest.openPreviewEventStream")(
-  function* (origin: URL) {
-    const events = yield* requestPreviewHttp(
-      new URL(PREVIEW_EVENTS_PATH, origin),
-      { headers: { authorization: `Bearer ${PREVIEW_PROVIDER_TEST_TOKEN}` } }
-    );
-    return yield* openPreviewHttpReader(events);
-  }
 );
 
 describe("preview HTTP transport", () => {
@@ -292,5 +232,18 @@ describe("preview HTTP transport", () => {
         expect(countLines()).toBe(2);
       }),
     30_000
+  );
+
+  it.live("sends a keep-alive on the real clock", () =>
+    Effect.gen(function* () {
+      const state = yield* makeState();
+      const { origin } = yield* openPreviewHttpServer(state, 20);
+      const reader = yield* openEventStream(origin);
+      const readEvent = makeEventReader(reader);
+
+      expect(yield* readEvent()).toContain("event: update\n");
+      expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
+      yield* cancelProviderEvent(reader);
+    })
   );
 });

@@ -107,7 +107,11 @@ function eventJson(manifest: LocalPreviewManifest) {
   );
 }
 
-/** Writes one keep-alive line after each full interval until its fiber is interrupted. */
+/**
+ * Writes one keep-alive line after each full interval until its fiber is
+ * interrupted. A write to a peer that is gone does not throw: Node destroys the
+ * response and emits `close`, and the `close` handler interrupts this fiber.
+ */
 const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
   (response: ServerResponse, intervalMs: number) => {
     const interval = Duration.millis(intervalMs);
@@ -120,11 +124,11 @@ const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
 
 /** Creates the authenticated request transport around scoped provider state. */
 export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<number>>();
+  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<unknown>>();
   /** Forks one fiber with the services of the fiber that opened the provider. */
   const runFork = Effect.runForkWith(input.context);
   /** Interrupts one heartbeat from a Node callback, before its response ends. */
-  const stopHeartbeat = (heartbeat: Fiber.Fiber<number>) => {
+  const stopHeartbeat = (heartbeat: Fiber.Fiber<unknown>) => {
     runFork(Fiber.interrupt(heartbeat));
   };
 
