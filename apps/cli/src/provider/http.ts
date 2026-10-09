@@ -107,24 +107,29 @@ function eventJson(manifest: LocalPreviewManifest) {
   );
 }
 
-/** Writes one keep-alive line after each full interval until its fiber is interrupted. */
+/** Writes one keep-alive line after each full interval until interruption; a failed write is logged. */
 const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
   (response: ServerResponse, intervalMs: number) => {
     const interval = Duration.millis(intervalMs);
     return Effect.sync(() => response.write(PREVIEW_HEARTBEAT)).pipe(
       Effect.repeat(Schedule.spaced(interval)),
-      Effect.delay(interval)
+      Effect.delay(interval),
+      Effect.catchDefect((defect) =>
+        Effect.logWarning(
+          `Preview keep-alive stopped after a failed write: ${String(defect)}`
+        )
+      )
     );
   }
 );
 
 /** Creates the authenticated request transport around scoped provider state. */
 export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<number>>();
+  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<unknown>>();
   /** Forks one fiber with the services of the fiber that opened the provider. */
   const runFork = Effect.runForkWith(input.context);
   /** Interrupts one heartbeat from a Node callback, before its response ends. */
-  const stopHeartbeat = (heartbeat: Fiber.Fiber<number>) => {
+  const stopHeartbeat = (heartbeat: Fiber.Fiber<unknown>) => {
     runFork(Fiber.interrupt(heartbeat));
   };
 
