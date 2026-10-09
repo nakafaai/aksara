@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import {
   ACTIVE_APP_LOCALES,
@@ -141,8 +141,8 @@ export const routeRejectionInputs = Effect.fn(
 )(function* (records: readonly ProgramSnapshotRow[]) {
   const programs = programCatalogRows(records);
   const curricula = curriculumRows(records);
-  const firstRoot = yield* Effect.fromNullishOr(
-    curricula.find((record) => record.row.parentPath === undefined)
+  const firstRoot = yield* Effect.fromOption(
+    Arr.findFirst(curricula, (record) => record.row.parentPath === undefined)
   );
   const firstRootIndex = curricula.indexOf(firstRoot);
   const firstChild = yield* Effect.fromNullishOr(curricula[firstRootIndex + 1]);
@@ -163,7 +163,8 @@ export const routeRejectionInputs = Effect.fn(
     LearningProgramSchema
   )({
     ...firstProgram.row,
-    translations: firstProgram.row.translations.filter(
+    translations: Arr.filter(
+      firstProgram.row.translations,
       ({ appLocale }) => appLocale !== "de"
     ),
   });
