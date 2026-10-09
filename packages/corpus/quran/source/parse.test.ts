@@ -25,7 +25,7 @@ type QuranParseFixtureValue = typeof QuranParseFixtureValueSchema.Type;
 class QuranParseFixture extends Context.Service<
   QuranParseFixture,
   QuranParseFixtureValue
->()("AksaraCorpus.test.QuranParseFixture") {}
+>()("@nakafa/aksara-corpus/quran/source/parse.test/QuranParseFixture") {}
 
 /** Loads and authenticates the parser fixtures through production Effect seams. */
 const loadParseFixture = Effect.fn("AksaraCorpus.test.loadQuranParseFixture")(

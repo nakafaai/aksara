@@ -23,7 +23,7 @@ export interface QuranSourceFixtureValue {
 export class QuranSourceFixture extends Context.Service<
   QuranSourceFixture,
   QuranSourceFixtureValue
->()("AksaraCorpus.test.QuranSourceFixture") {}
+>()("@nakafa/aksara-corpus/test/quran/pinned/QuranSourceFixture") {}
 
 const pinnedSourcePaths = [
   QURAN_SOURCE_POLICY.data.arabic.path,

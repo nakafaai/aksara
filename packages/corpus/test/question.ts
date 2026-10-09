@@ -77,7 +77,7 @@ class RealQuestionCorpus extends Context.Service<
     /** The question-bank index of the decoded real try-out registry. */
     readonly banks: QuestionBankIndex;
   }
->()("AksaraCorpus.test.RealQuestionCorpus") {}
+>()("@nakafa/aksara-corpus/test/question/RealQuestionCorpus") {}
 
 /** Tells whether a path lies inside installed dependencies, whose symlinked folders a recursive read would follow. */
 const isInstalledFile = (file: string) =>

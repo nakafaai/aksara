@@ -10,7 +10,7 @@ import { parseQuranSources } from "#corpus/quran/source/parse";
 class QuranTestSources extends Context.Service<
   QuranTestSources,
   { readonly sources: Effect.Success<ReturnType<typeof parseQuranSources>> }
->()("AksaraCorpus.test.QuranTestSources") {}
+>()("@nakafa/aksara-corpus/test/quran/sources/QuranTestSources") {}
 
 /** Loads the pinned official Quran values from the repository root. */
 const loadQuranTestSources = Effect.gen(function* () {

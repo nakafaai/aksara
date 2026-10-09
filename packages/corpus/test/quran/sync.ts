@@ -68,7 +68,7 @@ const loadQuranSyncFixture = Effect.fn(
 export class QuranSyncFixture extends Context.Service<
   QuranSyncFixture,
   QuranSyncFixtureValue
->()("AksaraCorpus.test.QuranSyncFixture") {}
+>()("@nakafa/aksara-corpus/test/quran/sync/QuranSyncFixture") {}
 
 /** Shares one authenticated fixture load across the sync test suite. */
 export const quranSyncFixtureLayer = Layer.effect(
