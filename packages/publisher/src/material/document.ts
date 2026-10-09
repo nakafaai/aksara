@@ -88,7 +88,7 @@ export const inspectMaterialDocument = Effect.fn(
 ) {
   const source = yield* loadMaterialDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makeCompileSource(source),
+    ...makeCompileSource(source, source.route),
     rendererManifest,
   });
   const projection = yield* makeMaterialProjection(source, inspection.metadata);
@@ -143,7 +143,7 @@ export const compileMaterialDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeCompileSource(document.source),
+    ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
   return makeMaterialRecord(document.source, result, document.projection);

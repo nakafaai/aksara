@@ -89,7 +89,7 @@ export const inspectPageDocument = Effect.fn(
 ) {
   const source = yield* loadPageDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makeCompileSource(source),
+    ...makeCompileSource(source, source.route),
     rendererManifest,
   });
   const projection = yield* makePageProjectionFromSource(
@@ -147,7 +147,7 @@ export const compilePageDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeCompileSource(document.source),
+    ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
   return makePageRecord(document.source, result, document.projection);

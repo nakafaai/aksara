@@ -36,21 +36,20 @@ const SourcePairSchema = Schema.Union([
 /** One stream position: a release item, a source, or both, told apart by kind. */
 type SourcePair = typeof SourcePairSchema.Type;
 
-/** Creates the exact authored body that every compiler mode receives for one routed document. */
+/**
+ * Creates the exact authored body that every compiler mode receives: the text
+ * of one document and the identity of the route that owns it.
+ */
 export function makeCompileSource(
   source: Pick<
     CompileDocumentSource,
     "rawMdx" | "rendererDomain" | "sourcePath"
-  > & {
-    readonly route: Pick<
-      CompileDocumentSource,
-      "artifactLocale" | "contentKey"
-    >;
-  }
+  >,
+  route: Pick<CompileDocumentSource, "artifactLocale" | "contentKey">
 ): CompileDocumentSource {
   return {
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
+    artifactLocale: route.artifactLocale,
+    contentKey: route.contentKey,
     rawMdx: source.rawMdx,
     rendererDomain: source.rendererDomain,
     sourcePath: source.sourcePath,

@@ -97,7 +97,7 @@ export const inspectArticleDocument = Effect.fn(
 ) {
   const source = yield* loadArticleDocument(checkoutRoot, entry);
   const inspection = yield* inspectContentSource({
-    ...makeCompileSource(source),
+    ...makeCompileSource(source, source.route),
     rendererManifest,
   });
   const projection = yield* makeArticleProjectionFromSource(
@@ -155,7 +155,7 @@ export const compileArticleDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeCompileSource(document.source),
+    ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
   return makeArticleRecord(document.source, result, document.projection);

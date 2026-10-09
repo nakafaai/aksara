@@ -122,7 +122,7 @@ const inspectQuestionSource = Effect.fn(
 ) {
   const source = yield* loadQuestionDocument(checkoutRoot, entry, item);
   const inspection = yield* inspectContentSource({
-    ...makeCompileSource({ ...source, route: source }),
+    ...makeCompileSource(source, source),
     rendererManifest,
   });
   const metadata = yield* decodeQuestionMetadata(source, inspection.metadata);
@@ -253,7 +253,7 @@ export const compileQuestionDocument = Effect.fn(
   rendererManifest: RendererManifestEnvelope
 ) {
   const result = yield* compileContent({
-    ...makeCompileSource({ ...document.source, route: document.source }),
+    ...makeCompileSource(document.source, document.source),
     rendererManifest,
   });
   return makeQuestionRecord(document.source, result, document.projection);

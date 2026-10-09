@@ -28,7 +28,10 @@ import {
   Schema,
   Stream,
 } from "effect";
-import type { HeadOrderState } from "#publisher/publication/order";
+import {
+  advanceHeadOrder,
+  type HeadOrderState,
+} from "#publisher/publication/order";
 import {
   TryoutHeadDuplicateError,
   TryoutHeadMismatchError,
@@ -61,34 +64,19 @@ const BoundTryoutPlacementSchema = Schema.Struct({
 export type BoundTryoutPlacement = typeof BoundTryoutPlacementSchema.Type;
 
 /** Advances one canonical desired-head stream or reports its exact disorder. */
-function validateHeadOrder(
-  state: HeadOrderState,
-  head: QuestionHead
-): Effect.Effect<
-  readonly [HeadOrderState, readonly QuestionHead[]],
-  TryoutHeadDuplicateError | TryoutHeadOrderError
-> {
-  const { previous } = state;
-  if (previous !== undefined) {
-    const order = compareContentHeads(previous, head);
-    if (order === 0) {
-      return Effect.fail(
-        new TryoutHeadDuplicateError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-    if (order > 0) {
-      return Effect.fail(
-        new TryoutHeadOrderError({
-          artifactLocale: head.artifactLocale,
-          contentKey: head.contentKey,
-        })
-      );
-    }
-  }
-  return Effect.succeed([{ previous: head }, [head]]);
+function validateHeadOrder(state: HeadOrderState, head: QuestionHead) {
+  return advanceHeadOrder(state, head, {
+    duplicate: (candidate) =>
+      new TryoutHeadDuplicateError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+    order: (candidate) =>
+      new TryoutHeadOrderError({
+        artifactLocale: candidate.artifactLocale,
+        contentKey: candidate.contentKey,
+      }),
+  });
 }
 
 /** Derives both delivery-specific head requirements from one placement. */
