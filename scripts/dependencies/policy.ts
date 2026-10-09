@@ -23,31 +23,31 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "effect",
     reason:
       "The contracts and both consumers share one exact Effect v4 peer cohort.",
     registry: "effect@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason: "All Effect ecosystem packages must use one exact cohort.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.1",
+    approvedCurrent: "4.0.2",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason: "The test adapter must match the installed Effect cohort.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.0.1",
+    reviewedLatest: "4.0.2",
     source: "catalog",
   },
   {
@@ -69,13 +69,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.48.1",
+    approvedCurrent: "0.51.1",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.48 ships the standard libraries beside the compiler and adds per-export allow lists for unstable APIs.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, and 0.50 adds the apiStabilityLeak diagnostic, which is off by default.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.48.1",
+    reviewedLatest: "0.51.1",
     source: "root-dev-dependency",
   },
   {
