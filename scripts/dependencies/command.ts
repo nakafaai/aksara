@@ -1,6 +1,5 @@
-import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Record as Rec, Schema, Stream } from "effect";
 import { ChildProcess, type ChildProcessSpawner } from "effect/process";
-import { collectText } from "#scripts/output";
 
 const CommandOutputSchema = Schema.Struct({
   exitCode: Schema.Finite,
@@ -40,8 +39,8 @@ export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
         const [exitCode, stdout, stderr] = yield* Effect.all(
           [
             command.exitCode,
-            collectText(command.stdout),
-            collectText(command.stderr),
+            command.stdout.pipe(Stream.decodeText(), Stream.mkString),
+            command.stderr.pipe(Stream.decodeText(), Stream.mkString),
           ],
           { concurrency: 3 }
         );

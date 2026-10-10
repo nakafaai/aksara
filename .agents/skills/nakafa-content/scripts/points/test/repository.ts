@@ -1,19 +1,7 @@
 import { dirname, join } from "node:path";
 import { assert } from "@effect/vitest";
 import { Effect, FileSystem, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/process";
-
-/** Collects one child-process byte stream as UTF-8 text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
 
 /** Runs Git in one fixture repository and returns its trimmed output. */
 export const git = Effect.fn("PointsFixture.git")(
@@ -24,8 +12,8 @@ export const git = Effect.fn("PointsFixture.git")(
         const [exitCode, stdout, stderr] = yield* Effect.all(
           [
             command.exitCode,
-            collectText(command.stdout),
-            collectText(command.stderr),
+            command.stdout.pipe(Stream.decodeText(), Stream.mkString),
+            command.stderr.pipe(Stream.decodeText(), Stream.mkString),
           ],
           { concurrency: 3 }
         );

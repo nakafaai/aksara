@@ -1,6 +1,5 @@
-import { Effect } from "effect";
+import { Effect, Stream } from "effect";
 import { ChildProcess } from "effect/process";
-import { collectText } from "#scripts/output";
 
 /**
  * Runs one Git command, in the working directory unless `cwd` names another,
@@ -16,8 +15,8 @@ export const runGit = Effect.fn("AksaraGit.run")(function* (
       const [exitCode, stdout, stderr] = yield* Effect.all(
         [
           command.exitCode,
-          collectText(command.stdout),
-          collectText(command.stderr),
+          command.stdout.pipe(Stream.decodeText(), Stream.mkString),
+          command.stderr.pipe(Stream.decodeText(), Stream.mkString),
         ],
         { concurrency: 3 }
       );
