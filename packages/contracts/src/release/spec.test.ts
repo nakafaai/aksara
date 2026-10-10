@@ -1,5 +1,12 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Exit, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Exit,
+  Record as Rec,
+  Schema,
+  Stream,
+} from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
@@ -221,5 +228,63 @@ describe("release spec", () => {
     expect(
       Schema.decodeSync(ReleaseVerificationEvidenceSchema)(encoded)
     ).toEqual(evidence);
+  });
+
+  it("decodes the receipt and the evidence with their stored key order", () => {
+    // nakafa.com compares a stored receipt with a rebuilt one as JSON text, so
+    // the order of these keys is part of the stored format. A spread of another
+    // Schema's fields into either struct moves keys and breaks that comparison.
+    expect(
+      Rec.keys(Schema.decodeUnknownSync(PublicationReceiptSchema)(receipt))
+    ).toEqual([
+      "activatedHeads",
+      "activeAppLocales",
+      "deletedHeads",
+      "manifestHash",
+      "projectionDigest",
+      "releaseId",
+      "resultCount",
+      "resultDigest",
+      "routeDigest",
+      "snapshots",
+      "stagedArtifacts",
+      "stagedItems",
+      "stagedProjections",
+      "stagedRoutes",
+      "stagedSnapshotRows",
+    ]);
+    expect(
+      Rec.keys(
+        Schema.decodeSync(ReleaseVerificationEvidenceSchema)(
+          Schema.encodeSync(ReleaseVerificationEvidenceSchema)(evidence)
+        )
+      )
+    ).toEqual([
+      "activeAppLocales",
+      "baseActiveAppLocales",
+      "baseManifestHash",
+      "baseReleaseId",
+      "baseResultCount",
+      "baseResultDigest",
+      "deleteHeads",
+      "itemCount",
+      "itemsDigest",
+      "manifestHash",
+      "projectionCount",
+      "projectionDigest",
+      "releaseId",
+      "rendererManifestHash",
+      "resultCount",
+      "resultDigest",
+      "rollbackCount",
+      "rollbackDigest",
+      "routeCount",
+      "routeDigest",
+      "snapshots",
+      "stagedArtifacts",
+      "stagedRoutes",
+      "stagedSnapshotRows",
+      "upsertHeads",
+    ]);
   });
 });
