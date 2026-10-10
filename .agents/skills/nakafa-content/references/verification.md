@@ -177,6 +177,12 @@ boundary before widening a rule. Preserve the following verification boundaries:
   fixtures also reject an explicit answer H2 immediately after its exercise H2,
   preserve the exercise H2 and solution H3, and retain conceptual solution
   headings and independent article structure.
+- `heading-symbol` fixtures keep the Indonesian reduplication hyphen and the
+  German or English compound that joins one letter to a word, such as
+  `y-Achse` or `x-axis`, in page titles and headings. They reject a hyphen
+  after a longer word, a single letter on both sides such as `x-y`, a dangling
+  hyphen, a digit, and the one-letter compound in Indonesian, whose axis names
+  put the letter after the noun, as in `sumbu y`.
 - `duplicated-list-ordinal` fixtures cover `1. Pertama,`, `1. First,`,
   `1. Zuerst,`, and `3. **Zunächst:**`, and must keep `1. Pertama kali`,
   `1. First die 3, second die 4`, `1. First ionization energy`,
