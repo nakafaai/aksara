@@ -13,11 +13,14 @@ import {
 import {
   ContentChangeSchema,
   ContentReleaseManifestSchema,
+  PublicationReceiptSchema,
+  ReleaseVerificationEvidenceSchema,
   RollbackSignedContentReleaseSchema,
   releaseActivatesAppLocale,
 } from "#contracts/release/spec";
 import { makeReleaseItems } from "#contracts/test/items";
 import { release as gitRelease } from "#contracts/test/request";
+import { evidence, receipt } from "#contracts/test/response";
 
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release");
 
@@ -203,4 +206,20 @@ describe("release spec", () => {
         }
       })
   );
+
+  it("keeps the publication receipt shape through an encode and decode round trip", () => {
+    const decoded = Schema.decodeUnknownSync(PublicationReceiptSchema)(receipt);
+    expect(Schema.encodeSync(PublicationReceiptSchema)(decoded)).toEqual(
+      receipt
+    );
+  });
+
+  it("keeps the verification evidence shape through an encode and decode round trip", () => {
+    const encoded = Schema.encodeSync(ReleaseVerificationEvidenceSchema)(
+      evidence
+    );
+    expect(
+      Schema.decodeSync(ReleaseVerificationEvidenceSchema)(encoded)
+    ).toEqual(evidence);
+  });
 });

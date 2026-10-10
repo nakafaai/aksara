@@ -1,4 +1,5 @@
 import { Array as Arr, Effect, HashSet, Option, Order, Schema } from "effect";
+import { Sha256MismatchFields } from "#contracts/errors";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type RendererComponents,
@@ -134,10 +135,7 @@ export class RendererManifestHashComputeError extends Schema.TaggedError<Rendere
 /** The renderer envelope hash does not authenticate its canonical tuple. */
 export class RendererManifestHashMismatchError extends Schema.TaggedError<RendererManifestHashMismatchError>()(
   "RendererManifestHashMismatchError",
-  {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
-  }
+  { ...Sha256MismatchFields }
 ) {}
 
 /** Serializes the exact domain-scoped renderer tuple covered by SHA-256. */

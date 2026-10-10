@@ -1,12 +1,10 @@
 import { headIdentity, routeIdentity } from "@nakafa/aksara-contracts/content";
-import {
-  ContentKeySchema,
-  PublicPathSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import { PublicRouteFields } from "@nakafa/aksara-contracts/preview/target";
 import {
   type ContentHead,
   ContentHeadSchema,
@@ -57,7 +55,7 @@ export class RollbackCatalogStateMismatchError extends Schema.TaggedError<Rollba
 /** A restored route collides with an untouched structurally shared head. */
 export class RollbackCatalogRouteError extends Schema.TaggedError<RollbackCatalogRouteError>()(
   "RollbackCatalogRouteError",
-  { appLocale: AppLocaleSchema, publicPath: PublicPathSchema }
+  { ...PublicRouteFields }
 ) {}
 
 /** Emits the prior compact state after proving the active current state. */

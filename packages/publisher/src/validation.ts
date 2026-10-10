@@ -2,11 +2,8 @@ import type {
   CompiledContentPayload,
   SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
-import {
-  ReleaseIdSchema,
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { Sha256MismatchFields } from "@nakafa/aksara-contracts/errors";
+import { ReleaseIdSchema, type Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,
@@ -47,8 +44,7 @@ export class ReleaseVerificationMismatchError extends Schema.TaggedError<Release
 export class ReleaseRendererManifestMismatchError extends Schema.TaggedError<ReleaseRendererManifestMismatchError>()(
   "ReleaseRendererManifestMismatchError",
   {
-    actualHash: Sha256HashSchema,
-    expectedHash: Sha256HashSchema,
+    ...Sha256MismatchFields,
     releaseId: ReleaseIdSchema,
   }
 ) {}
