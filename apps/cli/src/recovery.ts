@@ -3,7 +3,7 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema } from "effect";
 
 /** Checked-out Git source differs from the immutable candidate provenance. */
-export class RecoveryRevisionMismatchError extends Schema.TaggedError<RecoveryRevisionMismatchError>()(
+class RecoveryRevisionMismatchError extends Schema.TaggedError<RecoveryRevisionMismatchError>()(
   "RecoveryRevisionMismatchError",
   { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
 ) {}

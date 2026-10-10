@@ -55,19 +55,19 @@ const ArticleFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same article identity more than once. */
-export class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
+class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
   "ArticleHeadDuplicateError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned article heads outside canonical content-head order. */
-export class ArticleHeadOrderError extends Schema.TaggedError<ArticleHeadOrderError>()(
+class ArticleHeadOrderError extends Schema.TaggedError<ArticleHeadOrderError>()(
   "ArticleHeadOrderError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** An article-head page contained a route or source owned by another family. */
-export class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamilyError>()(
+class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamilyError>()(
   "ArticleHeadFamilyError",
   {
     ...ContentHeadIdentitySchema.fields,
@@ -97,7 +97,7 @@ export interface ArticlePublication {
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and article-head stream. */
-export interface ArticlePublicationInput<E, R> {
+interface ArticlePublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<ArticleHead, E, R>;
   readonly rebuild?: boolean | undefined;

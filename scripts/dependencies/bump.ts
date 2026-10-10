@@ -42,7 +42,7 @@ const WorkspaceSchema = Schema.Struct({
 const parseJson = Schema.decodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** A held cohort differs from its explicit repository review decision. */
-export class DependencyPolicyError extends Schema.TaggedError<DependencyPolicyError>()(
+class DependencyPolicyError extends Schema.TaggedError<DependencyPolicyError>()(
   "DependencyPolicyError",
   { message: Schema.String }
 ) {}

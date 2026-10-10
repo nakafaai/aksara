@@ -11,7 +11,7 @@ declare module "mdast" {
   }
 }
 
-export interface SourcePosition {
+interface SourcePosition {
   column?: number;
   line?: number;
   offset?: number;

@@ -29,7 +29,7 @@ import {
 import { type CliPackageError, readPackageVersion } from "#cli/package";
 
 /** The installed launcher could not execute the checkout-owned CLI source. */
-export class CliLaunchError extends Schema.TaggedError<CliLaunchError>()(
+class CliLaunchError extends Schema.TaggedError<CliLaunchError>()(
   "CliLaunchError",
   {
     cause: Schema.Unknown,

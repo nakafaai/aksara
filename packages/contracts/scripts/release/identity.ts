@@ -44,7 +44,7 @@ const IdentityPlanSchema = Schema.Struct({
 });
 
 /** Current package identity and the newest released contract, when one exists. */
-export type IdentityPlan = typeof IdentityPlanSchema.Type;
+type IdentityPlan = typeof IdentityPlanSchema.Type;
 
 /** Exact archive facts and whether publication is required. */
 const ArchiveDecisionSchema = Schema.Struct({
@@ -55,7 +55,7 @@ const ArchiveDecisionSchema = Schema.Struct({
 });
 
 /** Exact archive facts and whether publication is required. */
-export type ArchiveDecision = typeof ArchiveDecisionSchema.Type;
+type ArchiveDecision = typeof ArchiveDecisionSchema.Type;
 
 /** One expected contract release validation or identity failure. */
 export class ContractReleaseError extends Schema.TaggedError<ContractReleaseError>()(

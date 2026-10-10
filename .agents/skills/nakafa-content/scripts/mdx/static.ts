@@ -9,7 +9,7 @@ import {
 
 const MAX_STATIC_CANDIDATES = 32;
 
-export interface StaticStringPart {
+interface StaticStringPart {
   quoted: boolean;
   range: ReturnType<typeof estreeRange>;
   raw: string;

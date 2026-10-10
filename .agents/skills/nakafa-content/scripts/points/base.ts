@@ -1,21 +1,9 @@
 import { Effect, Schema, Stream } from "effect";
-import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/process";
 import {
   PointsCheckError,
   type PointsFailureReason,
 } from "#nakafa-content/points/error";
-
-/** Collects one child-process byte stream as UTF-8 text. */
-function collectText(stream: Stream.Stream<Uint8Array, PlatformError>) {
-  return stream.pipe(
-    Stream.decodeText(),
-    Stream.runFold(
-      () => "",
-      (output, chunk) => output + chunk
-    )
-  );
-}
 
 /** Runs Git in the repository and returns stdout or a typed failure. */
 const runGit = Effect.fn("PointsCheck.runGit")(function* (
@@ -29,8 +17,8 @@ const runGit = Effect.fn("PointsCheck.runGit")(function* (
       const [code, output, errors] = yield* Effect.all(
         [
           command.exitCode,
-          collectText(command.stdout),
-          collectText(command.stderr),
+          command.stdout.pipe(Stream.decodeText(), Stream.mkString),
+          command.stderr.pipe(Stream.decodeText(), Stream.mkString),
         ],
         { concurrency: 3 }
       );

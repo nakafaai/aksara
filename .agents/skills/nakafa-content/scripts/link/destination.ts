@@ -28,7 +28,7 @@ const NATIVE_DESTINATION_ATTRIBUTES = new Map([
 ]);
 const DESTINATION_ATTRIBUTE_SUFFIXES = ["uri", "url"] as const;
 
-export interface ExternalMatch {
+interface ExternalMatch {
   index: number;
   value: string;
 }

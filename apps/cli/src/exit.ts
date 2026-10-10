@@ -57,7 +57,7 @@ const SignalTerminationSchema = Schema.TaggedStruct("SignalTermination", {
 });
 
 /** A validated delegated signal termination. */
-export type SignalTermination = typeof SignalTerminationSchema.Type;
+type SignalTermination = typeof SignalTerminationSchema.Type;
 
 const signalMessage =
   /^Process interrupted due to receipt of signal: '(SIG[A-Z0-9]+)'$/u;

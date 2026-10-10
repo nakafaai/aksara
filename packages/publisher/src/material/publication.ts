@@ -38,19 +38,19 @@ const MaterialFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same material identity more than once. */
-export class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
+class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
   "MaterialHeadDuplicateError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** A target returned material heads outside canonical content-head order. */
-export class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
+class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
   "MaterialHeadOrderError",
   ContentHeadIdentitySchema.fields
 ) {}
 
 /** A material-head page contained a row owned by another content family. */
-export class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
+class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
   "MaterialHeadFamilyError",
   {
     ...ContentHeadIdentitySchema.fields,
@@ -80,7 +80,7 @@ export interface MaterialPublication {
 }
 
 /** Fresh-CI inputs pinned to one checkout, renderer, and active-head stream. */
-export interface MaterialPublicationInput<E, R> {
+interface MaterialPublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<MaterialHead, E, R>;
   readonly rebuild?: boolean | undefined;

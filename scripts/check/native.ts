@@ -1,8 +1,7 @@
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, Path, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 
 import { runEntry } from "#scripts/entry";
-import { collectText } from "#scripts/output";
 
 /** The public nakafa.com repository that owns the Effect-native source check. */
 const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
@@ -53,9 +52,15 @@ const runCommand = Effect.fn("AksaraNative.runCommand")(function* (
   const [exitCode, stderr] = yield* Effect.scoped(
     Effect.gen(function* () {
       const handle = yield* command;
-      return yield* Effect.all([handle.exitCode, collectText(handle.stderr)], {
-        concurrency: 2,
-      });
+      return yield* Effect.all(
+        [
+          handle.exitCode,
+          handle.stderr.pipe(Stream.decodeText(), Stream.mkString),
+        ],
+        {
+          concurrency: 2,
+        }
+      );
     })
   ).pipe(
     Effect.mapError(

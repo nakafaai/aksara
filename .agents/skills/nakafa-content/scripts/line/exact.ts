@@ -17,7 +17,7 @@ import {
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 
-export interface ExactPointExpressionInspection {
+interface ExactPointExpressionInspection {
   exactSegment: boolean;
   pointCount?: number;
 }
