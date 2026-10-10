@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Pembahasan Soal 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Lihat panel dari samping. Sisi miring panel, proyeksinya pada atap, dan ruas tegak dari tepi atas ke atap membentuk segitiga siku-siku dengan sisi miring <InlineMath math="2{,}5\text{ m}" /> dan sudut <InlineMath math="\theta" /> di tepi bawah. **Proyeksi mendatar memakai kosinus**, sedangkan **tinggi memakai sinus**. Sudut <InlineMath math="\theta" /> lancip, jadi <InlineMath math="\sin\theta" /> positif.
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\sqrt{1-\cos^2\theta}=\sqrt{1-0{,}9216}=\sqrt{0{,}0784}=0{,}28 \\
+p&=2{,}5\cos\theta=2{,}5\cdot0{,}96=2{,}4\text{ m} \\
+t&=2{,}5\sin\theta=2{,}5\cdot0{,}28=0{,}7\text{ m}
+\end{aligned}" />
+
+Di sini <InlineMath math="p" /> adalah proyeksi mendatar panel dan <InlineMath math="t" /> adalah tinggi tepi atas panel dari atap. Celah mendatar terkecil dari tepi atas suatu panel ke tepi bawah panel berikutnya adalah <InlineMath math="c=3t" />. Jarak antara tepi bawah dua barisan berurutan terdiri atas proyeksi panel ditambah celah itu.
+
+<BlockMath math="\begin{aligned}
+c&=3t=3\cdot0{,}7=2{,}1\text{ m} \\
+d&=p+c=2{,}4+2{,}1=4{,}5\text{ m}
+\end{aligned}" />
+
+<LineEquation
+  title="Dua barisan panel yang berurutan"
+  description={<>Jarak antara tepi bawah kedua panel terdiri atas proyeksi panel <InlineMath math="2{,}4\text{ m}" /> dan celah <InlineMath math="2{,}1\text{ m}" />, yaitu tiga kali tinggi <InlineMath math="0{,}7\text{ m}" />.</>}
+  cameraPosition={[9.5, 6, 9]}
+  cameraTarget={[9.5, 6, 0]}
+  showZAxis={false}
+  data={(() => {
+    const cosTheta = 0.96;
+    const sinTheta = Math.sqrt(1 - cosTheta ** 2);
+    const run = 2.5 * cosTheta;
+    const height = 2.5 * sinTheta;
+    const gap = 3 * height;
+    const pitch = run + gap;
+    return [
+      {
+        points: [{ x: 5.6, y: 6, z: 0 }, { x: 6.4 + pitch + run, y: 6, z: 0 }],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}5\text{ m}" />, at: 1, offset: [-0.08, 0.16, 0], anchorX: "right" }],
+      },
+      {
+        points: [0, 1].map((k) => ({ x: 6 + pitch + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [1, 0.5, 0].map((k) => ({ x: 6 + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="0{,}7\text{ m}" />, at: 1, offset: [0.1, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: [1, 0].map((k) => ({ x: 6 + pitch + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 5.7, z: 0 })),
+        color: "#7c3aed",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}4\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + run + k * gap, y: 5.7, z: 0 })),
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}1\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * pitch, y: 5.05, z: 0 })),
+        color: "#c026d3",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="4{,}5\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+    ];
+  })()}
+/>
+
+Periksa segitiga sampingnya dengan teorema Pythagoras: <InlineMath math="2{,}4^2+0{,}7^2=5{,}76+0{,}49=6{,}25=2{,}5^2" />. Segitiga itu adalah segitiga <InlineMath math="7" />, <InlineMath math="24" />, <InlineMath math="25" /> yang diperkecil sepuluh kali.
+
+Jadi, jarak mendatar terkecil antara tepi bawah dua barisan panel yang berurutan adalah <InlineMath math="4{,}5\text{ m}" />.
+
+- <InlineMath math="2{,}1\text{ m}" /> hanya celah antara tepi atas panel depan dan tepi bawah panel belakang, tanpa proyeksi panel itu sendiri.
+- <InlineMath math="3{,}1\text{ m}" /> adalah proyeksi ditambah tinggi, <InlineMath math="2{,}4+0{,}7" />, sehingga faktor tiga pada syarat celah terlupakan.
+- <InlineMath math="4{,}6\text{ m}" /> muncul jika panjang panel <InlineMath math="2{,}5\text{ m}" /> langsung dipakai sebagai proyeksi mendatar, padahal panel miring sehingga proyeksinya <InlineMath math="2{,}5\cos\theta" />.
+- <InlineMath math="7{,}9\text{ m}" /> muncul jika sinus dan kosinus tertukar, sehingga tinggi dianggap <InlineMath math="2{,}4\text{ m}" /> dan proyeksinya <InlineMath math="0{,}7\text{ m}" />.

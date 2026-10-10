@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Soal 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Pada sebuah peta dengan satuan kilometer, kantor desa terletak di titik <InlineMath math="O(0,0)" />. Sebuah jalan raya lurus melalui titik <InlineMath math="A(12,0)" /> dan <InlineMath math="B(0,9)" />. Pemerintah desa akan membangun jalan lurus baru dari kantor desa ke jalan raya tersebut dengan panjang sependek mungkin.
+
+<MathVisual
+  title="Kantor desa dan jalan raya"
+  description={<>Jalan raya digambarkan sebagai garis yang melalui <InlineMath math="A(12,0)" /> dan <InlineMath math="B(0,9)" />. Kantor desa berada di titik asal <InlineMath math="O" />.</>}
+  labels={{
+    "name-o": <InlineMath math="O(0,0)" />,
+    "name-a": <InlineMath math="A(12,0)" />,
+    "name-b": <InlineMath math="B(0,9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "highway", kind: "line", appearance: "primary", through: [{ x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "office-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 12, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 0, y: 9 } },
+    ],
+    labels: [
+      { key: "name-o", objectId: "office-o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-a", objectId: "point-a", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "name-b", objectId: "point-b", at: { x: 0, y: 9 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Panjang jalan baru tersebut adalah ....

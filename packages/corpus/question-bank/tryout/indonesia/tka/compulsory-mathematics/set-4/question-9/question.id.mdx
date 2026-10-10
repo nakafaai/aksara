@@ -1,0 +1,55 @@
+export const metadata = {
+  title: "Soal 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Sebuah pola dibentuk secara bertahap dengan aturan berikut.
+
+- Tahap ke-<InlineMath math="0" /> adalah sebuah segitiga siku-siku sama kaki berwarna dengan panjang setiap kaki <InlineMath math="8\text{ cm}" />.
+- Untuk membentuk tahap berikutnya, setiap segitiga berwarna dibagi menjadi empat segitiga kongruen oleh ruas-ruas garis yang menghubungkan titik-titik tengah sisinya. Setelah itu, warna segitiga yang berada di tengah dihapus, sedangkan tiga segitiga lainnya tetap berwarna.
+
+<MathVisual
+  title="Tiga tahap pertama pola"
+  description={<>Segitiga berwarna tampak terisi warna, sedangkan segitiga yang warnanya sudah dihapus tampak kosong. Setiap kaki segitiga pada tahap ke-<InlineMath math="0" /> panjangnya <InlineMath math="8\text{ cm}" />.</>}
+  labels={{
+    "name-stage-0": <>Tahap ke-<InlineMath math="0" /></>,
+    "name-stage-1": <>Tahap ke-<InlineMath math="1" /></>,
+    "name-stage-2": <>Tahap ke-<InlineMath math="2" /></>,
+    "leg-bottom": <InlineMath math="8\text{ cm}" />,
+    "leg-left": <InlineMath math="8\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 20 },
+      y: { min: -3, max: 21 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "stage-0", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 10 }, { x: 8, y: 10 }, { x: 0, y: 18 }] },
+      { id: "stage-1-part-1", kind: "polygon", appearance: "primary", vertices: [{ x: 10, y: 10 }, { x: 14, y: 10 }, { x: 10, y: 14 }] },
+      { id: "stage-1-part-2", kind: "polygon", appearance: "primary", vertices: [{ x: 14, y: 10 }, { x: 18, y: 10 }, { x: 14, y: 14 }] },
+      { id: "stage-1-part-3", kind: "polygon", appearance: "primary", vertices: [{ x: 10, y: 14 }, { x: 14, y: 14 }, { x: 10, y: 18 }] },
+      { id: "stage-2-part-1", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 8, y: 0 }, { x: 6, y: 2 }] },
+      { id: "stage-2-part-2", kind: "polygon", appearance: "primary", vertices: [{ x: 8, y: 0 }, { x: 10, y: 0 }, { x: 8, y: 2 }] },
+      { id: "stage-2-part-3", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 2 }, { x: 8, y: 2 }, { x: 6, y: 4 }] },
+      { id: "stage-2-part-4", kind: "polygon", appearance: "primary", vertices: [{ x: 10, y: 0 }, { x: 12, y: 0 }, { x: 10, y: 2 }] },
+      { id: "stage-2-part-5", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 0 }, { x: 14, y: 0 }, { x: 12, y: 2 }] },
+      { id: "stage-2-part-6", kind: "polygon", appearance: "primary", vertices: [{ x: 10, y: 2 }, { x: 12, y: 2 }, { x: 10, y: 4 }] },
+      { id: "stage-2-part-7", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 4 }, { x: 8, y: 4 }, { x: 6, y: 6 }] },
+      { id: "stage-2-part-8", kind: "polygon", appearance: "primary", vertices: [{ x: 8, y: 4 }, { x: 10, y: 4 }, { x: 8, y: 6 }] },
+      { id: "stage-2-part-9", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 6 }, { x: 8, y: 6 }, { x: 6, y: 8 }] },
+    ],
+    labels: [
+      { key: "name-stage-0", objectId: "stage-0", at: { x: 0, y: 18 }, placement: "above-right" },
+      { key: "name-stage-1", objectId: "stage-1-part-3", at: { x: 10, y: 18 }, placement: "above-right" },
+      { key: "name-stage-2", objectId: "stage-2-part-9", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "leg-bottom", objectId: "stage-0", at: { x: 4, y: 10 }, placement: "below" },
+      { key: "leg-left", objectId: "stage-0", at: { x: 0, y: 14 }, placement: "left" },
+    ],
+  }}
+/>
+
+Pilih semua pernyataan yang benar.

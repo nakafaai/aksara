@@ -1,0 +1,31 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 1",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Gesucht ist die Anzahl der Zellen, die auf eine <InlineMath math="3\text{ mm}" /> lange Reihe passen, wenn jede Zelle <InlineMath math="2\times10^{-6}\text{ m}" /> lang ist. Die Zellen liegen lückenlos hintereinander, also ist die Länge der Reihe gleich der Anzahl der Zellen mal der Länge einer Zelle. Die Anzahl erhältst du, indem du die Länge der Reihe durch die Länge einer Zelle teilst. Vorher müssen aber **beide Längen in derselben Einheit** stehen.
+
+| Größe | Angegebene Länge | In Metern |
+| --- | --- | --- |
+| Reihe der Zellen | <InlineMath math="3\text{ mm}" /> | <InlineMath math="3\times10^{-3}\text{ m}" /> |
+| Eine Zelle | <InlineMath math="2\times10^{-6}\text{ m}" /> | <InlineMath math="2\times10^{-6}\text{ m}" /> |
+
+Ein Millimeter sind <InlineMath math="10^{-3}" /> Meter, also gilt <InlineMath math="3\text{ mm}=3\times10^{-3}\text{ m}" />. Es sei <InlineMath math="n" /> die Anzahl der Zellen. Teile zuerst die Vorfaktoren, also <InlineMath math="3" /> durch <InlineMath math="2" />, und danach die Zehnerpotenzen. Bei einem Quotienten wird **der Exponent des Nenners abgezogen**: <InlineMath math="\frac{10^{a}}{10^{b}}=10^{a-b}" />.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{3\times10^{-3}\text{ m}}{2\times10^{-6}\text{ m}} \\
+&=\frac{3}{2}\times10^{-3-(-6)} \\
+&=1{,}5\times10^{3}
+\end{aligned}" />
+
+Die Meter im Zähler und im Nenner kürzen sich, also ist das Ergebnis eine reine Zahl, wie es für eine Anzahl von Zellen sein muss. Zur Probe multiplizierst du die Anzahl der Zellen mit der Länge einer Zelle. Das Produkt muss wieder die Länge der Reihe ergeben.
+
+<BlockMath math="1{.}500\times2\times10^{-6}\text{ m}=3\times10^{-3}\text{ m}=3\text{ mm}" />
+
+Die <InlineMath math="3\text{ mm}" /> lange Reihe besteht also aus <InlineMath math="1{,}5\times10^{3}" />, das heißt <InlineMath math="1{.}500" />, Bakterienzellen.
+
+- <InlineMath math="1{,}5\times10^{-9}" /> entsteht, wenn du die Exponenten addierst, obwohl beim Teilen der Exponent des Nenners abgezogen wird.
+- <InlineMath math="6\times10^{-9}" /> ist das Produkt der beiden Längen und nicht die Länge der Reihe geteilt durch die Länge einer Zelle.
+- <InlineMath math="1{,}5\times10^{4}" /> entsteht, wenn du <InlineMath math="3\text{ mm}" /> als <InlineMath math="3\times10^{-2}\text{ m}" /> schreibst und damit Millimeter mit Zentimetern verwechselst.
+- <InlineMath math="1{,}5\times10^{6}" /> entsteht, wenn du die <InlineMath math="3" /> aus den Millimetern direkt durch die Zelllänge in Metern teilst, ohne die Einheit umzurechnen.

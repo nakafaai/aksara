@@ -1,0 +1,118 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 3",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Ein Blatt im Format A<InlineMath math="n" /> habe die lange Seite <InlineMath math="a_n" /> und die kurze Seite <InlineMath math="b_n" />, beide in Metern. Alle Aussagen lassen sich bewerten, sobald du weißt, wie sich **Seiten und Fläche** von einem Format zum nächsten ändern.
+
+#### Die Schnittregel
+
+Ein Schnitt parallel zur kurzen Seite **halbiert die lange Seite**. Das neue Blatt misst <InlineMath math="b_n" /> mal <InlineMath math="\frac{a_n}{2}" />. Wegen <InlineMath math="a_n=\sqrt2\,b_n" /> ist <InlineMath math="\frac{a_n}{2}=\frac{b_n}{\sqrt2}" /> kleiner als <InlineMath math="b_n" />. Die lange Seite des neuen Blatts ist also die kurze Seite des alten.
+
+<BlockMath math="\begin{aligned}
+a_{n+1}&=b_n=\frac{a_n}{\sqrt2} \\
+b_{n+1}&=\frac{a_n}{2}=\frac{b_n}{\sqrt2}
+\end{aligned}" />
+
+Jeder Schnitt halbiert die Fläche und multipliziert jede Seite mit <InlineMath math="\frac{1}{\sqrt2}" />. Deshalb sind alle Formate der A-Reihe ähnliche Rechtecke.
+
+#### Ausgangsformat und ganze Reihe
+
+Für A0 ist das Produkt der Seiten <InlineMath math="1" />, und die lange Seite ist <InlineMath math="\sqrt2" />-mal so lang wie die kurze. Setze die zweite Beziehung in die erste Gleichung ein.
+
+<BlockMath math="\begin{aligned}
+a_0\,b_0&=1 \\
+\sqrt2\,b_0^2&=1 \\
+b_0^2&=2^{-\frac12} \\
+b_0&=2^{-\frac14} \\
+a_0&=\sqrt2\,b_0=2^{\frac12}\cdot2^{-\frac14}=2^{\frac14}
+\end{aligned}" />
+
+Nach der Schnittregel **sinkt der Exponent der Zweierpotenz bei jedem Schritt um <InlineMath math="\frac12" />**, und zwar bei beiden Seiten, und die Fläche wird durch <InlineMath math="2" /> geteilt.
+
+| Format | Fläche <InlineMath math="(\text{m}^2)" /> | Lange Seite <InlineMath math="(\text{m})" /> | Kurze Seite <InlineMath math="(\text{m})" /> |
+| --- | ---: | ---: | ---: |
+| A0 | <InlineMath math="1" /> | <InlineMath math="2^{\frac14}" /> | <InlineMath math="2^{-\frac14}" /> |
+| A1 | <InlineMath math="\frac12" /> | <InlineMath math="2^{-\frac14}" /> | <InlineMath math="2^{-\frac34}" /> |
+| A2 | <InlineMath math="\frac14" /> | <InlineMath math="2^{-\frac34}" /> | <InlineMath math="2^{-\frac54}" /> |
+| A3 | <InlineMath math="\frac18" /> | <InlineMath math="2^{-\frac54}" /> | <InlineMath math="2^{-\frac74}" /> |
+| A4 | <InlineMath math="\frac1{16}" /> | <InlineMath math="2^{-\frac74}" /> | <InlineMath math="2^{-\frac94}" /> |
+
+<LineEquation
+  title="Ein A0-Blatt, immer wieder geteilt"
+  description={<>Jeder Schnitt halbiert die lange Seite des vorherigen Stücks. Von A1, A2 und A3 bleibt je ein Blatt übrig, und der letzte Schnitt liefert zwei A4-Blätter. Jedes Blatt hat die halbe Fläche des vorherigen.</>}
+  cameraPosition={[16.6, 10 + 5 * 2 ** -0.25, 20]}
+  cameraTarget={[16.6, 10 + 5 * 2 ** -0.25, 0]}
+  showZAxis={false}
+  data={(() => {
+    const a = 10 * 2 ** 0.25;
+    const b = 10 * 2 ** -0.25;
+    const at = (u, v) => ({ x: 14 + u * a, y: 10 + v * b, z: 0 });
+    return [
+      {
+        points: [at(0, 0), at(1, 0), at(1, 1), at(0, 1), at(0, 0)],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [at(1 / 2, 0), at(1 / 2, 1)],
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A1", at: 0, offset: [-a / 4, b / 2, 0] }],
+      },
+      {
+        points: [at(1 / 2, 1 / 2), at(1, 1 / 2)],
+        color: "#7c3aed",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A2", at: 0, offset: [a / 4, b / 4, 0] }],
+      },
+      {
+        points: [at(3 / 4, 0), at(3 / 4, 1 / 2)],
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: "A3", at: 0, offset: [-a / 8, b / 4, 0] }],
+      },
+      {
+        points: [at(3 / 4, 1 / 4), at(1, 1 / 4)],
+        color: "#c026d3",
+        smooth: false,
+        showPoints: false,
+        labels: [
+          { text: "A4", at: 0, offset: [a / 8, b / 8, 0] },
+          { text: "A4", at: 0, offset: [a / 8, -b / 8, 0] },
+        ],
+      },
+      {
+        points: [0, 1 / 2, 1].map((u) => ({ x: 14 + u * a, y: 9.2, z: 0 })),
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="a_0=2^{\frac14}\text{ m}" />, at: 1, offset: [0, -1, 0] }],
+      },
+      {
+        points: [0, 1 / 2, 1].map((v) => ({ x: 13.2, y: 10 + v * b, z: 0 })),
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="b_0=2^{-\frac14}\text{ m}" />, at: 1, offset: [-0.5, 0, 0], anchorX: "right" }],
+      },
+    ];
+  })()}
+/>
+
+Zur Probe: <InlineMath math="a_4=2^{-\frac74}\approx0{,}297\text{ m}" /> und <InlineMath math="b_4=2^{-\frac94}\approx0{,}210\text{ m}" />. Das passt zum bekannten A4-Papier mit etwa <InlineMath math="297\text{ mm}" /> mal <InlineMath math="210\text{ mm}" />.
+
+#### Bewertung der Aussagen
+
+1. Die Fläche von A4 beträgt <InlineMath math="\frac1{16}\text{ m}^2" />, die Aussage ist also wahr. Von A0 bis A4 sind es vier Schnitte, also ist die Fläche <InlineMath math="1\times\left(\frac12\right)^4=\frac1{16}\text{ m}^2" />.
+2. Die Aussage, dass die lange Seite von A3 gleich der kurzen Seite von A2 ist, ist wahr. Die Schnittregel liefert <InlineMath math="a_3=b_2" />, und in der Tabelle steht bei beiden <InlineMath math="2^{-\frac54}\text{ m}" />.
+3. Die Aussage, dass jede Länge mit <InlineMath math="2" /> multipliziert wird, ist falsch. Die Bilder auf A4 und A3 sind ähnlich, und der Vergrößerungsfaktor ist das Verhältnis entsprechender Seiten, <InlineMath math="\frac{a_3}{a_4}=\frac{2^{-5/4}}{2^{-7/4}}=2^{\frac12}=\sqrt2" />. Die Zahl <InlineMath math="2" /> ist das **Verhältnis der Flächen**, denn die Fläche ändert sich mit dem Quadrat des Längenfaktors, <InlineMath math="(\sqrt2)^2=2" />.
+4. Die Aussage über den Umfang ist wahr. Von A4 bis A2 sind es zwei Schritte, also wird jede Seite mit <InlineMath math="\sqrt2\times\sqrt2=2" /> multipliziert. Der Umfang von A2 ist <InlineMath math="2(a_2+b_2)=2(2a_4+2b_4)=2\times2(a_4+b_4)" />, also das Doppelte des Umfangs von A4.
+5. Die Aussage, dass die lange Seite von A1 <InlineMath math="\sqrt[4]{2}\text{ m}" /> beträgt, ist falsch. Die lange Seite von A1 ist die kurze Seite von A0, also <InlineMath math="a_1=b_0=2^{-\frac14}\text{ m}\approx0{,}84\text{ m}" />. Der Wert <InlineMath math="\sqrt[4]{2}\text{ m}=2^{\frac14}\text{ m}\approx1{,}19\text{ m}" /> ist die lange Seite von A0.
+
+Wahr sind also die Aussagen über die Fläche von A4, über die lange Seite von A3, die der kurzen Seite von A2 entspricht, und über den Umfang von A2.

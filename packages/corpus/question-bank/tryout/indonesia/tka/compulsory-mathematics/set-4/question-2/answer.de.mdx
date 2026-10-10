@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 2",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+In der Aufgabe kommen zwei Kurse vor. Der Verkaufskurs (*kurs jual*) von <InlineMath math="\text{Rp}17{.}500" /> gilt, wenn die Bank dem Schüler Euro verkauft. Der Ankaufskurs (*kurs beli*) von <InlineMath math="\text{Rp}17{.}000" /> gilt, wenn die Bank die übrigen Euro zurückkauft. Tatsächlich trägt der Schüler die **Nettokosten**, also die gezahlten Rupiah minus die zurückerhaltenen Rupiah. Diese Kosten teilst du durch die **tatsächlich ausgegebenen Euro**, also durch <InlineMath math="600" /> Euro und nicht durch <InlineMath math="750" /> Euro.
+
+| Schritt | Änderung in Euro | Änderung in Rupiah |
+| --- | ---: | ---: |
+| Euro zum Verkaufskurs kaufen | <InlineMath math="+750" /> | <InlineMath math="-13{.}125{.}000" /> |
+| Euro in Deutschland ausgeben | <InlineMath math="-600" /> | <InlineMath math="0" /> |
+| Übrige Euro zum Ankaufskurs verkaufen | <InlineMath math="-150" /> | <InlineMath math="+2{.}550{.}000" /> |
+| Summe | <InlineMath math="0" /> | <InlineMath math="-10{.}575{.}000" /> |
+
+Die Tabelle zeigt, dass alle Euro verbraucht sind und das Geld des Schülers um <InlineMath math="\text{Rp}10{.}575{.}000" /> abgenommen hat. Es seien <InlineMath math="B" /> die Nettokosten in Rupiah und <InlineMath math="r" /> die durchschnittlichen Kosten je ausgegebenem Euro.
+
+<BlockMath math="\begin{aligned}
+B&=750\times17{.}500-150\times17{.}000 \\
+&=13{.}125{.}000-2{.}550{.}000 \\
+&=10{.}575{.}000 \\
+r&=\frac{B}{600}=\frac{10{.}575{.}000}{600}=17{.}625
+\end{aligned}" />
+
+Prüfe das Ergebnis auf einem zweiten Weg. Jeder zurückverkaufte Euro bringt <InlineMath math="17{.}500-17{.}000=500" /> Rupiah Verlust, die <InlineMath math="150" /> übrigen Euro also <InlineMath math="75{.}000" /> Rupiah. Diesen Verlust tragen die <InlineMath math="600" /> ausgegebenen Euro mit.
+
+<BlockMath math="17{.}500+\frac{150\times500}{600}=17{.}500+125=17{.}625" />
+
+Jeder tatsächlich ausgegebene Euro hat den Schüler also durchschnittlich <InlineMath math="\text{Rp}17{.}625" /> gekostet.
+
+- <InlineMath math="\text{Rp}14{.}100" /> erhältst du, wenn du die Nettokosten durch <InlineMath math="750" /> Euro teilst, obwohl <InlineMath math="150" /> davon nicht ausgegeben wurden.
+- <InlineMath math="\text{Rp}16{.}875" /> entsteht, wenn du Verkaufskurs und Ankaufskurs vertauschst, als hätte der Schüler die Euro für <InlineMath math="\text{Rp}17{.}000" /> gekauft und für <InlineMath math="\text{Rp}17{.}500" /> zurückverkauft.
+- <InlineMath math="\text{Rp}17{.}500" /> ist nur der Verkaufskurs, als würden die übrigen Euro zum selben Preis zurückgekauft und die Kursdifferenz nichts kosten.
+- <InlineMath math="\text{Rp}21{.}875" /> erhältst du, wenn du die gesamten Kaufkosten durch <InlineMath math="600" /> Euro teilst, ohne das Geld aus dem Rückverkauf abzuziehen.

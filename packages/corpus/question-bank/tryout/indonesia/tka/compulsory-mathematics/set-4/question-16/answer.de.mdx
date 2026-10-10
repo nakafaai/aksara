@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 16",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Es sei <InlineMath math="O" /> der Schnittpunkt der beiden Diagonalen der Grundfläche. Bei einer regelmäßigen quadratischen Pyramide liegt die Spitze <InlineMath math="T" /> genau über <InlineMath math="O" />, also steht <InlineMath math="TO=3\text{ m}" /> senkrecht auf der Grundfläche. Das Dreieck <InlineMath math="TOA" /> hat damit bei <InlineMath math="O" /> einen rechten Winkel, und **die Seitenkante <InlineMath math="TA" /> ist die Hypotenuse des Dreiecks <InlineMath math="TOA" />**. Seine Katheten sind <InlineMath math="TO" /> und <InlineMath math="OA" />, die halbe Diagonale der Grundfläche.
+
+<BlockMath math="\begin{aligned}
+AC&=\sqrt{8^2+8^2}=8\sqrt2 \\
+OA&=\frac12\,AC=4\sqrt2 \\
+TA^2&=TO^2+OA^2=3^2+\left(4\sqrt2\right)^2=9+32=41 \\
+TA&=\sqrt{41}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Das rechtwinklige Dreieck <InlineMath math="TOA" /> im Dach</>}
+  description={<>Das Dreieck <InlineMath math="TOA" /> steht senkrecht in der Pyramide, mit dem rechten Winkel im Mittelpunkt der Grundfläche <InlineMath math="O" />. Seine Katheten sind die Höhe <InlineMath math="3\text{ m}" /> und die halbe Diagonale <InlineMath math="4\sqrt2\text{ m}" />. Drehe die Figur, um den rechten Winkel zu sehen.</>}
+  labels={{
+    "vertex-t": <InlineMath math="T" />,
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-d": <InlineMath math="D" />,
+    "length-ab": <InlineMath math="8\text{ m}" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
+    "name-o": <InlineMath math="O" />,
+    "length-oa": <InlineMath math="4\sqrt2\text{ m}" />,
+    "length-ta": <InlineMath math="\sqrt{41}\text{ m}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 4 },
+      z: { min: -5, max: 5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
+      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
+      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
+      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "triangle-toa", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: -4, y: 0, z: 4 }] },
+      { id: "half-diagonal-oa", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: -4, y: 0, z: 4 } },
+      { id: "edge-ta", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: -4, y: 0, z: 4 } },
+      { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
+      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
+      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "length-ab", objectId: "base-abcd", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "right" },
+      { key: "length-oa", objectId: "half-diagonal-oa", at: { x: -2, y: 0, z: 2 }, placement: "below" },
+      { key: "length-ta", objectId: "edge-ta", at: { x: -2, y: 1.5, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Das Ergebnis ist plausibel. Der Wert <InlineMath math="\sqrt{41}\approx6{,}4" /> ist größer als beide Katheten, <InlineMath math="3" /> und <InlineMath math="4\sqrt2\approx5{,}66" />, denn die Hypotenuse ist immer die längste Seite. Er ist auch kleiner als die Summe der Katheten, wie es die Dreiecksungleichung verlangt.
+
+Die Seitenkante <InlineMath math="TA" /> ist also <InlineMath math="\sqrt{41}\text{ m}" /> lang.
+
+- <InlineMath math="5\text{ m}" /> ist die Höhe einer Seitenfläche, also der Abstand von <InlineMath math="T" /> zur Mitte von <InlineMath math="AB" />. Dieser Wert entsteht aus der Kathete <InlineMath math="4\text{ m}" />, der halben Grundseite, und nicht aus <InlineMath math="OA" />.
+- <InlineMath math="\sqrt{73}\text{ m}" /> entsteht, wenn du die Grundseite <InlineMath math="8\text{ m}" /> als Kathete verwendest, obwohl der Abstand von <InlineMath math="O" /> zu <InlineMath math="A" /> die halbe Diagonale ist.
+- <InlineMath math="\left(3+4\sqrt2\right)\text{ m}" /> ist die Summe der beiden Katheten. Die Hypotenuse ergibt sich aus dem Satz des Pythagoras und nicht durch Addieren der Katheten.
+- <InlineMath math="\sqrt{137}\text{ m}" /> entsteht, wenn du die ganze Diagonale <InlineMath math="8\sqrt2\text{ m}" /> als Kathete verwendest, obwohl <InlineMath math="O" /> in der Mitte der Diagonale liegt.

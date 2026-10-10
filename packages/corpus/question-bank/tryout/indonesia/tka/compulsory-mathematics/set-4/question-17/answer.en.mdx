@@ -1,0 +1,77 @@
+export const metadata = {
+  title: "Solution to Question 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The cost depends on the area of the four lateral faces of the roof. Each lateral face is an isosceles triangle with base <InlineMath math="8\text{ m}" />. **The height of that triangle is the distance from <InlineMath math="T" /> to the midpoint of its base**, not the <InlineMath math="3\text{ m}" /> height of the pyramid.
+
+Let <InlineMath math="O" /> be the center of the base and <InlineMath math="M" /> the midpoint of <InlineMath math="AB" />. Triangle <InlineMath math="TOM" /> has a right angle at <InlineMath math="O" />, with <InlineMath math="TO=3\text{ m}" /> and <InlineMath math="OM=4\text{ m}" />, half of a base side. Let <InlineMath math="L" /> be the area of the four lateral faces and <InlineMath math="K" /> the cost in rupiah.
+
+<BlockMath math="\begin{aligned}
+TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
+L_{\triangle TAB}&=\frac12\cdot AB\cdot TM=\frac12\cdot8\cdot5=20 \\
+L&=4\cdot20=80 \\
+K&=80\cdot85{,}000=6{,}800{,}000
+\end{aligned}" />
+
+<MathVisual
+  title={<>The slant height <InlineMath math="TM" /></>}
+  description={<>Segment <InlineMath math="TM" /> joins the apex to the midpoint of side <InlineMath math="AB" /> and is <InlineMath math="5\text{ m}" /> long. It is the hypotenuse of the right triangle <InlineMath math="TOM" /> with legs <InlineMath math="3\text{ m}" /> and <InlineMath math="4\text{ m}" />.</>}
+  labels={{
+    "vertex-t": <InlineMath math="T" />,
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-d": <InlineMath math="D" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
+    "name-o": <InlineMath math="O" />,
+    "name-m": <InlineMath math="M" />,
+    "length-om": <InlineMath math="4\text{ m}" />,
+    "length-tm": <InlineMath math="5\text{ m}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 4 },
+      z: { min: -5, max: 5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
+      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
+      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
+      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
+      { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
+      { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
+      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
+      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
+      { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
+      { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Check by computing the cost per face. One lateral face of <InlineMath math="20\text{ m}^2" /> costs <InlineMath math="20\cdot\text{Rp}85{,}000=\text{Rp}1{,}700{,}000" />, so four faces cost <InlineMath math="4\cdot\text{Rp}1{,}700{,}000=\text{Rp}6{,}800{,}000" />.
+
+The metal roofing for the four lateral faces therefore costs <InlineMath math="\text{Rp}6{,}800{,}000" />.
+
+- <InlineMath math="\text{Rp}1{,}700{,}000" /> is the cost of only one lateral face, although the roof has four.
+- <InlineMath math="\text{Rp}3{,}400{,}000" /> appears when the base of each triangle is taken as <InlineMath math="4\text{ m}" />, the half side used to find <InlineMath math="TM" />, so that each lateral face seems to have an area of <InlineMath math="10\text{ m}^2" />.
+- <InlineMath math="\text{Rp}4{,}080{,}000" /> appears when the <InlineMath math="3\text{ m}" /> height of the pyramid is used as the height of each face, which gives <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
+- <InlineMath math="\text{Rp}5{,}440{,}000" /> is the cost for the base area <InlineMath math="8\cdot8=64\text{ m}^2" />, although the lateral faces are covered, not the base.

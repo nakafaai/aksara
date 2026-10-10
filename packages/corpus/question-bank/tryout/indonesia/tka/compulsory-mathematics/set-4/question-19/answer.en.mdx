@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Solution to Question 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+One turn of the pedals turns the chainring (*gir depan*) once, so the chain passes <InlineMath math="48" /> teeth. The same <InlineMath math="48" /> teeth must pass the sprocket (*gir belakang*), which has only <InlineMath math="16" /> teeth per turn. So **the sprocket turns <InlineMath math="\frac{48}{16}=3" /> times** for each pedal turn. The rear wheel turns with it <InlineMath math="3" /> times, and each turn of the wheel moves the bicycle forward by the circumference of the wheel.
+
+<MathVisual
+  title="Chainring, sprocket, and chain"
+  description={<>The radii of the two gears are drawn in proportion to their numbers of teeth, <InlineMath math="48:16=3:1" />. When the chainring turns once, the same length of chain makes the sprocket turn <InlineMath math="3" /> times.</>}
+  labels={{
+    "teeth-front": <><InlineMath math="48" /> teeth</>,
+    "teeth-rear": <><InlineMath math="16" /> teeth</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "chainring", kind: "circle", appearance: "primary", center: { x: 3.5, y: 3.5 }, radius: 2.1 },
+      { id: "sprocket", kind: "circle", appearance: "secondary", center: { x: 8.5, y: 3.5 }, radius: 0.7 },
+      { id: "chain-top", kind: "segment", appearance: "reference", from: { x: 4.088, y: 5.516 }, to: { x: 8.696, y: 4.172 } },
+      { id: "chain-bottom", kind: "segment", appearance: "reference", from: { x: 4.088, y: 1.484 }, to: { x: 8.696, y: 2.828 } },
+      { id: "hub-front", kind: "point", appearance: "primary", at: { x: 3.5, y: 3.5 } },
+      { id: "hub-rear", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.5 } },
+    ],
+    labels: [
+      { key: "teeth-front", objectId: "chainring", at: { x: 3.5, y: 1.4 }, placement: "below" },
+      { key: "teeth-rear", objectId: "sprocket", at: { x: 9.2, y: 3.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Let <InlineMath math="K" /> be the circumference of the wheel and <InlineMath math="s" /> the distance the bicycle travels for one pedal turn.
+
+<BlockMath math="\begin{aligned}
+K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
+s&=3\cdot220=660\text{ cm}=6.6\text{ m}
+\end{aligned}" />
+
+| Part | Motion for one pedal turn |
+| --- | --- |
+| Pedals and chainring | <InlineMath math="1" /> turn, the chain passes <InlineMath math="48" /> teeth |
+| Sprocket | <InlineMath math="\frac{48}{16}=3" /> turns |
+| Rear wheel | <InlineMath math="3" /> turns, together with the sprocket |
+| Bicycle | <InlineMath math="3\cdot220\text{ cm}=660\text{ cm}" /> |
+
+1. The statement that one pedal turn moves the bicycle <InlineMath math="6.6\text{ m}" /> is true, as the computation <InlineMath math="s=660\text{ cm}" /> shows.
+2. The statement about <InlineMath math="600" /> pedal turns is false. The distance <InlineMath math="1.32\text{ km}=1{,}320\text{ m}" /> needs only <InlineMath math="\frac{1{,}320}{6.6}=200" /> pedal turns. The number <InlineMath math="600" /> is the number of wheel turns, <InlineMath math="200\cdot3" />, not pedal turns.
+3. The statement about a <InlineMath math="24" />-tooth sprocket is false. With that sprocket the wheel turns <InlineMath math="\frac{48}{24}=2" /> times, so the bicycle moves <InlineMath math="2\cdot220=440\text{ cm}=4.4\text{ m}" />. So **a larger sprocket shortens the distance** per pedal turn. The value <InlineMath math="9.9\text{ m}" /> appears when <InlineMath math="6.6" /> is multiplied by <InlineMath math="\frac{24}{16}" />, which turns the ratio upside down.
+4. The statement about a speed of <InlineMath math="23.76\text{ km/h}" /> is true. In one minute the bicycle travels <InlineMath math="60\cdot6.6=396\text{ m}" />, and one hour has <InlineMath math="60" /> minutes.
+
+<BlockMath math="\begin{aligned}
+v&=60\cdot6.6\text{ m/min}=396\text{ m/min} \\
+&=396\cdot60\text{ m/h}=23{,}760\text{ m/h}=23.76\text{ km/h}
+\end{aligned}" />
+
+So the statements about the distance of <InlineMath math="6.6\text{ m}" /> and about the speed of <InlineMath math="23.76\text{ km/h}" /> are true, while the statements about <InlineMath math="600" /> turns and about a distance of <InlineMath math="9.9\text{ m}" /> are false.

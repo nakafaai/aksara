@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Solution to Question 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Mass equals density times volume, so you need **the volume of concrete in the wall only**, not the volume of the whole cylinder. The cross section of the concrete culvert (*gorong-gorong*) is a ring between an outer circle of radius <InlineMath math="R=35\text{ cm}" /> and an inner circle of radius <InlineMath math="r=35-7=28\text{ cm}" />. The density is in <InlineMath math="\text{g/cm}^3" />, so the length must also be in centimeters, <InlineMath math="\ell=1\text{ m}=100\text{ cm}" />.
+
+<MathVisual
+  title="Cross section of the culvert"
+  description={<>Concrete fills only the ring between the outer circle of radius <InlineMath math="35\text{ cm}" /> and the inner circle of radius <InlineMath math="28\text{ cm}" />. The width of the ring is the wall thickness, <InlineMath math="7\text{ cm}" />.</>}
+  labels={{
+    "length-outer": <InlineMath math="35\text{ cm}" />,
+    "length-inner": <InlineMath math="28\text{ cm}" />,
+    "length-wall": <InlineMath math="7\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 82 },
+      y: { min: -2, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-wall", kind: "circle", appearance: "primary", center: { x: 40, y: 40 }, radius: 35 },
+      { id: "inner-wall", kind: "circle", appearance: "secondary", center: { x: 40, y: 40 }, radius: 28 },
+      { id: "radius-outer", kind: "segment", appearance: "primary", from: { x: 40, y: 40 }, to: { x: 40, y: 75 } },
+      { id: "radius-inner", kind: "segment", appearance: "secondary", from: { x: 40, y: 40 }, to: { x: 12, y: 40 } },
+      { id: "wall-thickness", kind: "segment", appearance: "highlight", from: { x: 68, y: 40 }, to: { x: 75, y: 40 } },
+    ],
+    labels: [
+      { key: "length-outer", objectId: "radius-outer", at: { x: 40, y: 57.5 }, placement: "right" },
+      { key: "length-inner", objectId: "radius-inner", at: { x: 26, y: 40 }, placement: "above" },
+      { key: "length-wall", objectId: "wall-thickness", at: { x: 75, y: 40 }, placement: "right" },
+    ],
+  }}
+/>
+
+The area of the ring is the area of the outer circle minus the area of the inner circle. The difference of squares is easiest to find by factoring, <InlineMath math="35^2-28^2=(35-28)(35+28)=7\cdot63=441" />. The density of concrete is written <InlineMath math="\rho=2.5\text{ g/cm}^3" />.
+
+<BlockMath math="\begin{aligned}
+V&=\pi\left(R^2-r^2\right)\ell \\
+&=\frac{22}{7}\cdot441\cdot100 \\
+&=138{,}600\text{ cm}^3 \\
+m&=\rho V=2.5\cdot138{,}600=346{,}500\text{ g}=346.5\text{ kg}
+\end{aligned}" />
+
+Check with a second method. If you unroll the wall into a slab, its length is the circumference of the middle circle of radius <InlineMath math="\frac{35+28}{2}=31.5\text{ cm}" />, its width is <InlineMath math="100\text{ cm}" />, and its thickness is <InlineMath math="7\text{ cm}" />. This is exact because <InlineMath math="R^2-r^2=(R-r)(R+r)" />.
+
+<BlockMath math="2\cdot\frac{22}{7}\cdot31.5\cdot7\cdot100=138{,}600\text{ cm}^3" />
+
+One culvert therefore has a mass of <InlineMath math="346.5\text{ kg}" />.
+
+- <InlineMath math="3.465\text{ kg}" /> appears when the length <InlineMath math="1\text{ m}" /> is not converted to <InlineMath math="100\text{ cm}" />, which leaves a volume of only <InlineMath math="1{,}386\text{ cm}^3" />.
+- <InlineMath math="38.5\text{ kg}" /> appears when the ring area is computed as <InlineMath math="\pi\cdot7^2" />, squaring the wall thickness, although the ring area is <InlineMath math="\pi\left(R^2-r^2\right)" />.
+- <InlineMath math="138.6\text{ kg}" /> appears when the volume <InlineMath math="138{,}600\text{ cm}^3=138.6" /> liters is read directly as <InlineMath math="138.6\text{ kg}" />, as if concrete had the density of water, <InlineMath math="1\text{ g/cm}^3" />.
+- <InlineMath math="962.5\text{ kg}" /> is the mass of a solid cylinder of radius <InlineMath math="35\text{ cm}" /> with the hollow inside not subtracted.

@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 19",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Eine Pedalumdrehung dreht das Kettenblatt (*gir depan*) einmal, also läuft die Kette über <InlineMath math="48" /> Zähne. Dieselben <InlineMath math="48" /> Zähne müssen am Ritzel (*gir belakang*) vorbei, das pro Umdrehung nur <InlineMath math="16" /> Zähne hat. Deshalb **dreht sich das Ritzel <InlineMath math="\frac{48}{16}=3" />-mal** pro Pedalumdrehung. Das Hinterrad dreht sich mit, also ebenfalls <InlineMath math="3" />-mal, und jede Radumdrehung bewegt das Fahrrad um den Radumfang weiter.
+
+<MathVisual
+  title="Kettenblatt, Ritzel und Kette"
+  description={<>Die Radien der beiden Zahnräder sind im Verhältnis ihrer Zähnezahlen gezeichnet, <InlineMath math="48:16=3:1" />. Wenn sich das Kettenblatt einmal dreht, lässt dieselbe Kettenlänge das Ritzel <InlineMath math="3" />-mal drehen.</>}
+  labels={{
+    "teeth-front": <><InlineMath math="48" /> Zähne</>,
+    "teeth-rear": <><InlineMath math="16" /> Zähne</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 11 },
+      y: { min: -0.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "chainring", kind: "circle", appearance: "primary", center: { x: 3.5, y: 3.5 }, radius: 2.1 },
+      { id: "sprocket", kind: "circle", appearance: "secondary", center: { x: 8.5, y: 3.5 }, radius: 0.7 },
+      { id: "chain-top", kind: "segment", appearance: "reference", from: { x: 4.088, y: 5.516 }, to: { x: 8.696, y: 4.172 } },
+      { id: "chain-bottom", kind: "segment", appearance: "reference", from: { x: 4.088, y: 1.484 }, to: { x: 8.696, y: 2.828 } },
+      { id: "hub-front", kind: "point", appearance: "primary", at: { x: 3.5, y: 3.5 } },
+      { id: "hub-rear", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.5 } },
+    ],
+    labels: [
+      { key: "teeth-front", objectId: "chainring", at: { x: 3.5, y: 1.4 }, placement: "below" },
+      { key: "teeth-rear", objectId: "sprocket", at: { x: 9.2, y: 3.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Es seien <InlineMath math="K" /> der Radumfang und <InlineMath math="s" /> die Strecke, die das Fahrrad bei einer Pedalumdrehung zurücklegt.
+
+<BlockMath math="\begin{aligned}
+K&=\pi d=\frac{22}{7}\cdot70=220\text{ cm} \\
+s&=3\cdot220=660\text{ cm}=6{,}6\text{ m}
+\end{aligned}" />
+
+| Teil | Bewegung bei einer Pedalumdrehung |
+| --- | --- |
+| Pedale und Kettenblatt | <InlineMath math="1" /> Umdrehung, die Kette läuft über <InlineMath math="48" /> Zähne |
+| Ritzel | <InlineMath math="\frac{48}{16}=3" /> Umdrehungen |
+| Hinterrad | <InlineMath math="3" /> Umdrehungen, zusammen mit dem Ritzel |
+| Fahrrad | <InlineMath math="3\cdot220\text{ cm}=660\text{ cm}" /> |
+
+1. Die Aussage, dass eine Pedalumdrehung das Fahrrad <InlineMath math="6{,}6\text{ m}" /> weit bewegt, ist wahr, wie die Rechnung <InlineMath math="s=660\text{ cm}" /> zeigt.
+2. Die Aussage über <InlineMath math="600" /> Pedalumdrehungen ist falsch. Für <InlineMath math="1{,}32\text{ km}=1{.}320\text{ m}" /> braucht man nur <InlineMath math="\frac{1{.}320}{6{,}6}=200" /> Pedalumdrehungen. Die Zahl <InlineMath math="600" /> ist die Anzahl der Radumdrehungen, <InlineMath math="200\cdot3" />, nicht die der Pedalumdrehungen.
+3. Die Aussage über ein Ritzel mit <InlineMath math="24" /> Zähnen ist falsch. Mit diesem Ritzel dreht sich das Rad <InlineMath math="\frac{48}{24}=2" />-mal, also fährt das Fahrrad <InlineMath math="2\cdot220=440\text{ cm}=4{,}4\text{ m}" />. Ein größeres Ritzel **verkürzt also die Strecke** pro Pedalumdrehung. Der Wert <InlineMath math="9{,}9\text{ m}" /> entsteht, wenn du <InlineMath math="6{,}6" /> mit <InlineMath math="\frac{24}{16}" /> multiplizierst und damit das Verhältnis umdrehst.
+4. Die Aussage über die Geschwindigkeit <InlineMath math="23{,}76\text{ km/h}" /> ist wahr. In einer Minute fährt das Fahrrad <InlineMath math="60\cdot6{,}6=396\text{ m}" />, und eine Stunde hat <InlineMath math="60" /> Minuten.
+
+<BlockMath math="\begin{aligned}
+v&=60\cdot6{,}6\text{ m/min}=396\text{ m/min} \\
+&=396\cdot60\text{ m/h}=23{.}760\text{ m/h}=23{,}76\text{ km/h}
+\end{aligned}" />
+
+Wahr sind also die Aussagen über die Strecke <InlineMath math="6{,}6\text{ m}" /> und über die Geschwindigkeit <InlineMath math="23{,}76\text{ km/h}" />, falsch sind die Aussagen über <InlineMath math="600" /> Umdrehungen und über die Strecke <InlineMath math="9{,}9\text{ m}" />.
