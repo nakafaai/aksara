@@ -1,23 +1,15 @@
 import assert from "node:assert/strict";
-import { Array as Arr } from "effect";
-import { isSeq, parseDocument } from "yaml";
+import { Array as Arr, Option, Schema } from "effect";
+import { type Document, isSeq, parseDocument } from "yaml";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
 const SHARED_VALIDATION_PATTERN =
   /verify:[\s\S]*needs: contracts[\s\S]*Verify full publication revision[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build[\s\S]*operate:[\s\S]*needs\.verify\.result == 'success'/u;
-const TARGET_IDENTITY_PATTERN =
-  /case "\$TARGET" in\s+both\|development\|production\) ;;[\s\S]*Unknown publication target[\s\S]*exit 1/u;
-const PAIRED_TARGET_PATTERN =
-  /if \[\[ "\$OPERATION" == "release" \|\| "\$OPERATION" == "accept" \]\]; then\s+if \[\[ "\$TARGET" != "both" \]\]; then[\s\S]*exit 1/u;
-
-const TERMINAL_TARGET_PATTERN =
-  /elif \[\[ "\$TARGET" == "both" \]\]; then\s+echo "Recovery, abort, and cleanup require one explicit target\." >&2\s+exit 1/u;
-
 const PARITY_PREFLIGHT_PATTERN =
-  /Verify paired acceptance[\s\S]*if: inputs\.operation == 'accept'[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
+  /Verify paired acceptance[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
 const PARITY_RESULT_PATTERN =
-  /parity:\n[\s\S]*needs: operate[\s\S]*needs\.operate\.result == 'success'[\s\S]*inputs\.operation == 'release' \|\| inputs\.operation == 'accept'[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*pnpm parity --/u;
+  /parity:\n[\s\S]*needs: operate[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*pnpm parity --/u;
 const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
 const ISOLATED_OPERATION_PATTERN =
   /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
@@ -30,7 +22,74 @@ const CONTENT_CONTRACT_PATTERN =
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 
-/** Verifies paired publication, isolated credentials, and recovery controls. */
+/** Acceptance compares the two deployments only when both hold the release. */
+const PAIRED_ACCEPTANCE_CONDITION =
+  "inputs.operation == 'accept' && inputs.target == 'both'";
+
+/** The final parity job follows a release or acceptance of both targets only. */
+const PARITY_CONDITION = [
+  "github.ref == 'refs/heads/main'",
+  "github.repository == 'nakafaai/aksara'",
+  "needs.operate.result == 'success'",
+  "inputs.target == 'both'",
+  "(inputs.operation == 'release' || inputs.operation == 'accept')",
+].join(" && ");
+
+/** The target choice of a dispatch: production by default, or either one, or both. */
+const TargetInputSchema = Schema.Struct({
+  default: Schema.Literal("production"),
+  options: Schema.Tuple([
+    Schema.Literal("production"),
+    Schema.Literal("development"),
+    Schema.Literal("both"),
+  ]),
+  required: Schema.Literal(true),
+  type: Schema.Literal("choice"),
+});
+
+/** The part of a workflow that declares the target choice. */
+const TargetDispatchSchema = Schema.Struct({
+  on: Schema.Struct({
+    workflow_dispatch: Schema.Struct({
+      inputs: Schema.Struct({ target: TargetInputSchema }),
+    }),
+  }),
+});
+
+/**
+ * Verifies that a dispatch selects production, development, or both, that the
+ * matrix plans one leg or two to match, and that the choice is validated first.
+ */
+function verifyTargetChoice(document: Document): void {
+  assert.ok(
+    Option.isSome(
+      Schema.decodeUnknownOption(TargetDispatchSchema)(document.toJS())
+    ),
+    "The target input must offer exactly production, development, and both in that order, with production as the default"
+  );
+  assert.equal(
+    document.getIn(["jobs", "operate", "strategy", "matrix", "target"]),
+    `\${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}`,
+    "Publication matrix must plan both legs for both targets and one leg for each single target"
+  );
+  assert.equal(
+    document.getIn(["jobs", "operate", "steps", 0, "name"]),
+    "Validate target",
+    "The target must be validated before any checkout or credential use"
+  );
+  for (const [name, input] of [
+    ["OPERATION", "operation"],
+    ["TARGET", "target"],
+  ]) {
+    assert.equal(
+      document.getIn(["jobs", "operate", "steps", 0, "env", name]),
+      `\${{ inputs.${input} }}`,
+      "Target validation must read the dispatched operation and target"
+    );
+  }
+}
+
+/** Verifies the target choice, isolated credentials, and recovery controls. */
 export function verifyPublicationWorkflow(
   release: string,
   all: readonly string[]
@@ -93,39 +152,15 @@ export function verifyPublicationWorkflow(
     "Paired operations must serialize without cancellation"
   );
   assert.equal(
-    document.getIn(["on", "workflow_dispatch", "inputs", "target", "default"]),
-    "both",
-    "Publication must default to both targets"
-  );
-  assert.equal(
     document.getIn(["jobs", "operate", "strategy", "fail-fast"]),
     false,
     "One target failure must not interrupt its peer"
   );
-  assert.equal(
-    document.getIn(["jobs", "operate", "strategy", "matrix", "target"]),
-    `\${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}`,
-    "Publication matrix must cover both targets or an explicit recovery target"
-  );
+  verifyTargetChoice(document);
   assert.match(
     release,
     SHARED_VALIDATION_PATTERN,
     "Shared validation must finish before either target operates"
-  );
-  assert.match(
-    release,
-    TARGET_IDENTITY_PATTERN,
-    "Publication must reject unknown target identities"
-  );
-  assert.match(
-    release,
-    PAIRED_TARGET_PATTERN,
-    "Release and acceptance must require both targets"
-  );
-  assert.match(
-    release,
-    TERMINAL_TARGET_PATTERN,
-    "Recovery, abort, and cleanup must require one explicit target"
   );
   assert.match(
     release,
@@ -137,6 +172,11 @@ export function verifyPublicationWorkflow(
     PARITY_RESULT_PATTERN,
     "Paired release and acceptance must finish with an authenticated parity gate"
   );
+  assert.equal(
+    document.getIn(["jobs", "parity", "if"]),
+    PARITY_CONDITION,
+    "Final parity must run only when both targets are published"
+  );
   const steps = document.getIn(["jobs", "operate", "steps"]);
   assert.ok(isSeq(steps), "Publication must declare operation steps");
   for (let index = 0; index < steps.items.length; index += 1) {
@@ -147,6 +187,11 @@ export function verifyPublicationWorkflow(
     }
     const stepName = document.getIn([...base, "name"]);
     if (stepName === "Verify paired acceptance") {
+      assert.equal(
+        document.getIn([...base, "if"]),
+        PAIRED_ACCEPTANCE_CONDITION,
+        "Paired acceptance must run only when both targets are published"
+      );
       for (const [key, namespace] of [
         ["ENDPOINT", "vars"],
         ["TOKEN", "secrets"],

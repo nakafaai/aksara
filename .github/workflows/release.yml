@@ -15,14 +15,14 @@ on:
           - recover
           - release
       target:
-        description: Release and accept require both; select one target only for recovery, abort, or cleanup
+        description: Production by default. Development publishes a catch-up of a release that production already has. Both publishes the two together and proves that they match. Recovery, abort, and cleanup take one target.
         required: true
-        default: both
+        default: production
         type: choice
         options:
-          - both
-          - development
           - production
+          - development
+          - both
       release_id:
         description: Exact release ID for the requested operation. For release, a fresh <slug>-YYYYMMDD identity that must differ from the recovery ID. For accept, recover, abort, or cleanup, the existing release that operation targets.
         required: true
@@ -166,6 +166,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # One leg for production or development alone, two legs for both.
         target: ${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}
     if: >-
       github.ref == 'refs/heads/main'
@@ -180,28 +181,28 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Validate operation
+      - name: Validate target
         env:
           OPERATION: ${{ inputs.operation }}
           TARGET: ${{ inputs.target }}
+        run: |
+          case "$TARGET" in
+            production|development|both) ;;
+            *) echo "Unknown publication target." >&2; exit 1 ;;
+          esac
+          if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
+            echo "Recovery, abort, and cleanup take one target, not both." >&2
+            exit 1
+          fi
+
+      - name: Validate operation
+        env:
+          OPERATION: ${{ inputs.operation }}
           REBUILD: ${{ inputs.rebuild }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
         run: |
-          case "$TARGET" in
-            both|development|production) ;;
-            *) echo "Unknown publication target." >&2; exit 1 ;;
-          esac
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" ]]; then
-            if [[ "$TARGET" != "both" ]]; then
-              echo "Release and acceptance must cover development and production together." >&2
-              exit 1
-            fi
-          elif [[ "$TARGET" == "both" ]]; then
-            echo "Recovery, abort, and cleanup require one explicit target." >&2
-            exit 1
-          fi
           if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
             if [[ -z "$RECOVERY_ID" ]]; then
               echo "The operation must name its exact retained inverse." >&2
@@ -298,8 +299,10 @@ jobs:
           pnpm release -- --release-id "$RELEASE_ID" \
             --recovery-id "$RECOVERY_ID" "${scope_args[@]}" "${rebuild_args[@]}"
 
+      # Only an acceptance of both targets compares them. One target accepts
+      # alone, because the other deployment may not hold the release yet.
       - name: Verify paired acceptance
-        if: inputs.operation == 'accept'
+        if: inputs.operation == 'accept' && inputs.target == 'both'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_DEV_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_DEV_PUBLICATION_ENDPOINT }}
@@ -357,12 +360,15 @@ jobs:
           RELEASE_ID: ${{ inputs.release_id }}
         run: pnpm abort -- --release-id "$RELEASE_ID"
 
+  # Runs only when both targets were published together. A release to one
+  # target has no peer to compare, so nothing waits for the other deployment.
   parity:
     needs: operate
     if: >-
       github.ref == 'refs/heads/main'
       && github.repository == 'nakafaai/aksara'
       && needs.operate.result == 'success'
+      && inputs.target == 'both'
       && (inputs.operation == 'release' || inputs.operation == 'accept')
     environment: content-production
     runs-on: ubuntu-latest
