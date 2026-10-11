@@ -223,27 +223,40 @@ source repository is public.
 - Treating a result digest as a row inclusion proof.
 - Claiming signed artifacts protect against arbitrary trusted-database writes.
 
-## Development and production parity
+## Development and production publication
 
 One protected workflow owns publication for both environments. It runs shared
-repository and contract verification before a two-target matrix, with independent
-credentials selected by key and matrix cancellation disabled. Release and
-acceptance require both targets. Terminal repair operations may select one target
-because a failed or recovered target need not share its peer's current state.
-The standalone development publisher is removed.
+repository and contract verification before a matrix of one or two targets, with
+independent credentials selected by key and matrix cancellation disabled. Its
+`target` input is `production` (the default), `development`, or `both`.
+
+Production alone is a complete release: publish, verify, and accept never wait
+for development. Development alone publishes the same release identity later, as
+a catch-up. `both` runs the two side by side and adds the parity gate below.
+Terminal repair operations take exactly one target because a failed or recovered
+target need not share its peer's current state. The standalone development
+publisher is removed.
+
+A publication reads every head of its target's active release even when it
+changes little, so a second target adds that cost to every release. Development
+therefore publishes on demand instead of with each release.
 
 Each target retains the existing signed release protocol and its own base history.
-The workflow does not create a distributed transaction. Its read-only parity
-command authenticates both active signed bundles and compares source revision,
-locales, frozen renderer, complete result catalog digest, and every snapshot result
-identity. The catalog digest covers artifact, source, projection, route and delivery
-identities, including content outside the selected scope. The gate runs after
-paired publication and before either acceptance mutation. It compares current
-content identities and hashes, not manifest hashes,
-which legitimately include different prior histories. A rerun keeps the same
-release identity and exact Git revision; the CLI checks clean checkout provenance
-before resuming an active receipt. A partial failure remains a failed release until
-both authoritative states converge and rendered acceptance passes.
+The workflow does not create a distributed transaction. When both targets are
+selected, its read-only parity command authenticates both active signed bundles
+and compares source revision, locales, frozen renderer, complete result catalog
+digest, and every snapshot result identity. The catalog digest covers artifact,
+source, projection, route and delivery identities, including content outside the
+selected scope. The gate runs after paired publication and before either
+acceptance mutation. It compares current content identities and hashes, not
+manifest hashes, which legitimately include different prior histories. A release
+to one target has no peer to compare, so neither gate runs for it. A catch-up
+keeps the release identity, so the same command proves parity when run by hand
+afterwards, provided the catch-up was dispatched from the same Git revision. A
+rerun keeps the same release identity and exact Git revision; the CLI checks
+clean checkout provenance before resuming an active receipt. A partial failure
+remains a failed release until both authoritative states converge and rendered
+acceptance passes.
 
 A retry after a lost acceptance response may find one expected inverse already
 cleared. Parity permits this idempotent state only while both active catalogs still
