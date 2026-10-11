@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { Array as Arr, Option, Record as Rec, Schema } from "effect";
-import { type Document, isSeq, parseDocument } from "yaml";
+import { Array as Arr } from "effect";
+import { isSeq, parseDocument } from "yaml";
+import { verifyDispatch } from "#scripts/workflow/dispatch";
 import {
   ACCEPTED_DISPATCHES,
   intendedPlan,
@@ -38,48 +39,6 @@ const PARITY_BLOCKERS = [
   ["outside the Aksara repository", { repository: "someone/aksara" }],
 ] as const;
 
-/** The target choice of a dispatch: production by default, or either one, or both. */
-const TargetInputSchema = Schema.Struct({
-  default: Schema.Literal("production"),
-  options: Schema.Tuple([
-    Schema.Literal("production"),
-    Schema.Literal("development"),
-    Schema.Literal("both"),
-  ]),
-  required: Schema.Literal(true),
-  type: Schema.Literal("choice"),
-});
-
-/** The part of a workflow that declares the target choice. */
-const TargetDispatchSchema = Schema.Struct({
-  on: Schema.Struct({
-    workflow_dispatch: Schema.Struct({
-      inputs: Schema.Struct({ target: TargetInputSchema }),
-    }),
-  }),
-});
-
-/**
- * The steps that refuse a bad dispatch, in the order they run, each with the
- * dispatch input that every environment variable of the step must read.
- */
-const DISPATCH_GUARDS: ReadonlyArray<
-  readonly [string, Readonly<Record<string, string>>]
-> = [
-  ["Validate target", { OPERATION: "operation", TARGET: "target" }],
-  ["Validate operation", {}],
-];
-
-/** Verifies that a dispatch selects production, development, or both. */
-function verifyTargetChoice(document: Document): void {
-  assert.ok(
-    Option.isSome(
-      Schema.decodeUnknownOption(TargetDispatchSchema)(document.toJS())
-    ),
-    "The target input must offer exactly production, development, and both in that order, with production as the default"
-  );
-}
-
 /**
  * Verifies, by evaluating the workflow expressions, that every dispatch starts
  * the legs, the paired acceptance, and the final parity its target calls for.
@@ -101,39 +60,7 @@ function verifyPlans(release: string): void {
   }
 }
 
-/**
- * Verifies that the guards come first, run unconditionally, and stop the job
- * when they fail, so no dispatch reaches a checkout or a credential unchecked.
- */
-function verifyDispatchGuards(document: Document): void {
-  Arr.forEach(DISPATCH_GUARDS, ([name, env], index) => {
-    const step = ["jobs", "operate", "steps", index];
-    assert.equal(
-      document.getIn([...step, "name"]),
-      name,
-      `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
-    );
-    assert.equal(
-      document.getIn([...step, "if"]),
-      undefined,
-      `${name} must run unconditionally`
-    );
-    assert.equal(
-      document.getIn([...step, "continue-on-error"]),
-      undefined,
-      `${name} must stop the job when it fails`
-    );
-    for (const [variable, input] of Rec.toEntries(env)) {
-      assert.equal(
-        document.getIn([...step, "env", variable]),
-        `\${{ inputs.${input} }}`,
-        `${name} must read the dispatched ${input}`
-      );
-    }
-  });
-}
-
-/** Verifies the target choice, isolated credentials, and recovery controls. */
+/** Verifies the dispatch choices, the plan each starts, isolated credentials, and recovery controls. */
 export function verifyPublicationWorkflow(
   release: string,
   all: readonly string[]
@@ -200,8 +127,7 @@ export function verifyPublicationWorkflow(
     false,
     "One target failure must not interrupt its peer"
   );
-  verifyTargetChoice(document);
-  verifyDispatchGuards(document);
+  verifyDispatch(document);
   assert.match(
     release,
     SHARED_VALIDATION_PATTERN,
