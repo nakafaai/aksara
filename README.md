@@ -177,14 +177,18 @@ rejects a different revision. Recovery, abort, and cleanup take exactly one
 target. Development has no deployed cache surface; production invalidates its
 deployed surface. Credentials are selected by target key with no value fallback.
 
-A catch-up publishes the revision of `main` that the workflow is dispatched
-from, so dispatch it while `main` is still at the revision of the production
-release when the two must match. Select every family and snapshot in which
-development still differs from production, because a release keeps the base
-state of each family and snapshot it does not select. Accept the retained
-inverse of any earlier development release first, because a retained inverse
-blocks a new candidate. Accept a release to one target with a dispatch for that
-same target.
+A development release names its commit in the `revision` input. For a catch-up
+that is the full SHA of the commit that production released. The run stops
+before it publishes unless `main` is still at that commit, so a catch-up cannot
+publish the same release identity from another commit. Once `main` has moved
+past it, this workflow can no longer catch that release up: publish development
+from the current commit with a fresh release identity, or release both targets.
+Any other run may name a `revision` too, and it then stops in the same way.
+Select every family and snapshot in which development still differs from
+production, because a release keeps the base state of each family and snapshot
+it does not select. Accept the retained inverse of any earlier development
+release first, because a retained inverse blocks a new candidate. Accept a
+release to one target with a dispatch for that same target.
 
 The read-only `pnpm parity -- --release-id <id> --recovery-id <id>` command
 verifies both active signatures, source revision, locales, frozen renderer,
