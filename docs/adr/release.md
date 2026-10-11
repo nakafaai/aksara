@@ -250,7 +250,10 @@ source, projection, route and delivery identities, including content outside the
 selected scope. The gate runs after paired publication and before either
 acceptance mutation. It compares current content identities and hashes, not
 manifest hashes, which legitimately include different prior histories. A release
-to one target has no peer to compare, so neither gate runs for it. A catch-up
+to one target has no peer to compare, so neither gate runs for it. An acceptance
+follows the target it names, not the target of the release: accepting one target
+of a paired release compares nothing and releases only that target's inverse, so
+accept `both` when the two deployments must be proven equal first. A catch-up
 keeps the release identity, so the same command proves parity when run by hand
 afterwards, provided the catch-up was dispatched from the same Git revision. A
 rerun keeps the same release identity and exact Git revision; the CLI checks
