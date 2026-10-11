@@ -15,7 +15,7 @@ on:
           - recover
           - release
       target:
-        description: Production by default. Development publishes a catch-up of a release that production already has. Both publishes the two together and proves that they match. Recovery, abort, and cleanup take one target.
+        description: Production by default. Development alone publishes the commit this run is dispatched from to development, and nothing compares it with production. Both publishes the two together and proves that they match. Recovery, abort, and cleanup take one target.
         required: true
         default: production
         type: choice
