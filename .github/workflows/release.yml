@@ -31,10 +31,6 @@ on:
         description: Retained-inverse identity for release, accept, or recover. For release, a fresh identity, conventionally <release-id>-inverse, that must differ from both the release ID and the active base release. For accept or recover, the exact retained inverse staged alongside the candidate.
         required: false
         type: string
-      revision:
-        description: Full commit SHA of main that this run publishes. A development release requires it and names the commit that production released, because development catches up a release that production already has. The run stops when main is at another commit. Any other run may name one to the same effect.
-        required: false
-        type: string
       rebuild:
         description: Recompile every authored item in the selected families
         required: false
@@ -196,21 +192,6 @@ jobs:
           esac
           if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
             echo "Recovery, abort, and cleanup take one target, not both." >&2
-            exit 1
-          fi
-
-      - name: Validate revision
-        env:
-          OPERATION: ${{ inputs.operation }}
-          REVISION: ${{ inputs.revision }}
-          TARGET: ${{ inputs.target }}
-        run: |
-          if [[ "$OPERATION" == "release" && "$TARGET" == "development" && -z "$REVISION" ]]; then
-            echo "A development release must name the commit it publishes in the revision input." >&2
-            exit 1
-          fi
-          if [[ -n "$REVISION" && "$REVISION" != "$GITHUB_SHA" ]]; then
-            echo "The revision input must be the commit this run was dispatched from ($GITHUB_SHA). Dispatch the run while main is at the commit to publish." >&2
             exit 1
           fi
 
