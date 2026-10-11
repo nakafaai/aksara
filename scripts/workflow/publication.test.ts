@@ -2,7 +2,9 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
 import { readSource } from "#scripts/source";
+import { ACCEPTED_DISPATCHES } from "#scripts/workflow/plan";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { mutateJob } from "#scripts/workflow/test/mutation";
 import {
   sourceTestsOf,
   workflowSourcesLayer,
@@ -61,12 +63,12 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     '["development","production"]',
     '["production"]',
-    "Publication matrix must plan both legs for both targets",
+    "The release on both must start only the legs",
   ],
   [
     "format('[\"{0}\"]', inputs.target)",
     "'[\"production\"]'",
-    "Publication matrix must plan both legs for both targets and one leg for each single target",
+    "The release on development must start only the legs",
   ],
   ["needs.verify.result == 'success'", "true", "Shared validation must finish"],
   [
@@ -87,12 +89,12 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     "if: inputs.operation == 'accept' && inputs.target == 'both'",
     "if: inputs.operation == 'accept'",
-    "Paired acceptance must run only when both targets are published",
+    "The accept on production must start only the legs",
   ],
   [
     "      && inputs.target == 'both'\n",
     "",
-    "Final parity must run only when both targets are published",
+    "The release on production must start only the legs",
   ],
   [
     "vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT']",
@@ -111,11 +113,24 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   ],
 ];
 
+/** Conditions of the final parity job whose removal would let it run when it must not, with the refusal each must meet. */
+const PARITY_GUARDS: ReadonlyArray<readonly [string, string]> = [
+  [
+    "needs.operate.result == 'success'",
+    "The final parity must not run after a failed publication",
+  ],
+  ["github.ref == 'refs/heads/main'", "The final parity must not run off main"],
+  [
+    "github.repository == 'nakafaai/aksara'",
+    "The final parity must not run outside the Aksara repository",
+  ],
+];
+
 /** The steps that refuse a bad dispatch. */
 const GUARD_STEPS = ["Validate target", "Validate operation"];
 
 /** Step keys that would let a dispatch past a failed guard, with the refusal each must meet. */
-const GUARD_BYPASSES = [
+const GUARD_BYPASSES: ReadonlyArray<readonly [string, string]> = [
   ["if: inputs.operation == 'release'", "must run unconditionally"],
   ["continue-on-error: true", "must stop the job when it fails"],
 ];
@@ -173,10 +188,16 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
       });
     }
   }
+
+  for (const [condition, error] of PARITY_GUARDS) {
+    it(`rejects a final parity job without '${condition}'`, ({ release }) => {
+      const source = mutateJob(release, "parity", condition, "true");
+      expect(source).not.toEqual(release);
+      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
+    });
+  }
 });
 
-const ANY_TARGET = ["production", "development", "both"];
-const ONE_TARGET = ["production", "development"];
 const UNKNOWN_TARGETS = ["staging", "Production", "both,production", ""];
 const TERMINAL_OPERATIONS = ["recover", "abort", "cleanup"];
 
@@ -203,14 +224,13 @@ const validateTarget = Effect.fn("WorkflowTest.validateTarget")(function* (
 });
 
 layer(NodeServices.layer)("publication target validation", (test) => {
-  test.effect.each([
-    ...combinations(["release", "accept"], ANY_TARGET),
-    ...combinations(TERMINAL_OPERATIONS, ONE_TARGET),
-  ])("accepts $operation on $target", ({ operation, target }) =>
-    Effect.gen(function* () {
-      const result = yield* validateTarget(operation, target);
-      expect(result).toEqual({ exitCode: 0, stderr: "" });
-    })
+  test.effect.each(ACCEPTED_DISPATCHES)(
+    "accepts $operation on $target",
+    ({ operation, target }) =>
+      Effect.gen(function* () {
+        const result = yield* validateTarget(operation, target);
+        expect(result).toEqual({ exitCode: 0, stderr: "" });
+      })
   );
 
   test.effect.each(TERMINAL_OPERATIONS)(

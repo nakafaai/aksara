@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import { Array as Arr, Option, Record as Rec, Schema } from "effect";
 import { type Document, isSeq, parseDocument } from "yaml";
+import {
+  ACCEPTED_DISPATCHES,
+  intendedPlan,
+  mainRun,
+  workflowPlan,
+} from "#scripts/workflow/plan";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
@@ -22,18 +28,15 @@ const CONTENT_CONTRACT_PATTERN =
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 
-/** Acceptance compares the two deployments only when both hold the release. */
-const PAIRED_ACCEPTANCE_CONDITION =
-  "inputs.operation == 'accept' && inputs.target == 'both'";
+/** The dispatch whose final parity job the blockers below must stop. */
+const PAIRED_RELEASE = { operation: "release", target: "both" };
 
-/** The final parity job follows a release or acceptance of both targets only. */
-const PARITY_CONDITION = [
-  "github.ref == 'refs/heads/main'",
-  "github.repository == 'nakafaai/aksara'",
-  "needs.operate.result == 'success'",
-  "inputs.target == 'both'",
-  "(inputs.operation == 'release' || inputs.operation == 'accept')",
-].join(" && ");
+/** What must keep the final parity job from running, with the run facts that cause it. */
+const PARITY_BLOCKERS = [
+  ["after a failed publication", { operateResult: "failure" }],
+  ["off main", { ref: "refs/heads/topic" }],
+  ["outside the Aksara repository", { repository: "someone/aksara" }],
+] as const;
 
 /** The target choice of a dispatch: production by default, or either one, or both. */
 const TargetInputSchema = Schema.Struct({
@@ -67,10 +70,7 @@ const DISPATCH_GUARDS: ReadonlyArray<
   ["Validate operation", {}],
 ];
 
-/**
- * Verifies that a dispatch selects production, development, or both, and that
- * the matrix plans one leg or two to match.
- */
+/** Verifies that a dispatch selects production, development, or both. */
 function verifyTargetChoice(document: Document): void {
   assert.ok(
     Option.isSome(
@@ -78,11 +78,27 @@ function verifyTargetChoice(document: Document): void {
     ),
     "The target input must offer exactly production, development, and both in that order, with production as the default"
   );
-  assert.equal(
-    document.getIn(["jobs", "operate", "strategy", "matrix", "target"]),
-    `\${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}`,
-    "Publication matrix must plan both legs for both targets and one leg for each single target"
-  );
+}
+
+/**
+ * Verifies, by evaluating the workflow expressions, that every dispatch starts
+ * the legs, the paired acceptance, and the final parity its target calls for.
+ */
+function verifyPlans(release: string): void {
+  for (const dispatch of ACCEPTED_DISPATCHES) {
+    assert.deepEqual(
+      workflowPlan(release, mainRun(dispatch)),
+      intendedPlan(dispatch),
+      `The ${dispatch.operation} on ${dispatch.target} must start only the legs, the paired acceptance, and the final parity that its target calls for`
+    );
+  }
+  for (const [reason, change] of PARITY_BLOCKERS) {
+    assert.equal(
+      workflowPlan(release, { ...mainRun(PAIRED_RELEASE), ...change }).parity,
+      false,
+      `The final parity must not run ${reason}`
+    );
+  }
 }
 
 /**
@@ -201,11 +217,7 @@ export function verifyPublicationWorkflow(
     PARITY_RESULT_PATTERN,
     "Paired release and acceptance must finish with an authenticated parity gate"
   );
-  assert.equal(
-    document.getIn(["jobs", "parity", "if"]),
-    PARITY_CONDITION,
-    "Final parity must run only when both targets are published"
-  );
+  verifyPlans(release);
   const steps = document.getIn(["jobs", "operate", "steps"]);
   assert.ok(isSeq(steps), "Publication must declare operation steps");
   for (let index = 0; index < steps.items.length; index += 1) {
@@ -216,11 +228,6 @@ export function verifyPublicationWorkflow(
     }
     const stepName = document.getIn([...base, "name"]);
     if (stepName === "Verify paired acceptance") {
-      assert.equal(
-        document.getIn([...base, "if"]),
-        PAIRED_ACCEPTANCE_CONDITION,
-        "Paired acceptance must run only when both targets are published"
-      );
       for (const [key, namespace] of [
         ["ENDPOINT", "vars"],
         ["TOKEN", "secrets"],
