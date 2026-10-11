@@ -72,12 +72,17 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     "- name: Validate target",
     "- name: Check target",
-    "The target must be validated before any checkout or credential use",
+    "Validate target must be step 1 of the publication job",
+  ],
+  [
+    "- name: Validate operation",
+    "- name: Check operation",
+    "Validate operation must be step 2 of the publication job",
   ],
   [
     "TARGET:",
     "FIXED_TARGET:",
-    "Target validation must read the dispatched operation and target",
+    "Validate target must read the dispatched target",
   ],
   [
     "if: inputs.operation == 'accept' && inputs.target == 'both'",
@@ -104,6 +109,15 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     "deployed",
     "Release and recovery must invalidate only their deployed cache surface",
   ],
+];
+
+/** The steps that refuse a bad dispatch. */
+const GUARD_STEPS = ["Validate target", "Validate operation"];
+
+/** Step keys that would let a dispatch past a failed guard, with the refusal each must meet. */
+const GUARD_BYPASSES = [
+  ["if: inputs.operation == 'release'", "must run unconditionally"],
+  ["continue-on-error: true", "must stop the job when it fails"],
 ];
 
 layer(workflowSourcesLayer)("publication target policy", (layered) => {
@@ -145,6 +159,19 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
       expect(source).not.toEqual(release);
       expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
     });
+  }
+
+  for (const name of GUARD_STEPS) {
+    for (const [bypass, error] of GUARD_BYPASSES) {
+      it(`rejects '${bypass}' on ${name}`, ({ release }) => {
+        const header = `      - name: ${name}\n`;
+        const source = release.replace(header, `${header}        ${bypass}\n`);
+        expect(source).not.toEqual(release);
+        expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
+          `${name} ${error}`
+        );
+      });
+    }
   }
 });
 

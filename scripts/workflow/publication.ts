@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { Array as Arr, Option, Schema } from "effect";
+import { Array as Arr, Option, Record as Rec, Schema } from "effect";
 import { type Document, isSeq, parseDocument } from "yaml";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
@@ -57,8 +57,19 @@ const TargetDispatchSchema = Schema.Struct({
 });
 
 /**
- * Verifies that a dispatch selects production, development, or both, that the
- * matrix plans one leg or two to match, and that the choice is validated first.
+ * The steps that refuse a bad dispatch, in the order they run, each with the
+ * dispatch input that every environment variable of the step must read.
+ */
+const DISPATCH_GUARDS: ReadonlyArray<
+  readonly [string, Readonly<Record<string, string>>]
+> = [
+  ["Validate target", { OPERATION: "operation", TARGET: "target" }],
+  ["Validate operation", {}],
+];
+
+/**
+ * Verifies that a dispatch selects production, development, or both, and that
+ * the matrix plans one leg or two to match.
  */
 function verifyTargetChoice(document: Document): void {
   assert.ok(
@@ -72,21 +83,38 @@ function verifyTargetChoice(document: Document): void {
     `\${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}`,
     "Publication matrix must plan both legs for both targets and one leg for each single target"
   );
-  assert.equal(
-    document.getIn(["jobs", "operate", "steps", 0, "name"]),
-    "Validate target",
-    "The target must be validated before any checkout or credential use"
-  );
-  for (const [name, input] of [
-    ["OPERATION", "operation"],
-    ["TARGET", "target"],
-  ]) {
+}
+
+/**
+ * Verifies that the guards come first, run unconditionally, and stop the job
+ * when they fail, so no dispatch reaches a checkout or a credential unchecked.
+ */
+function verifyDispatchGuards(document: Document): void {
+  Arr.forEach(DISPATCH_GUARDS, ([name, env], index) => {
+    const step = ["jobs", "operate", "steps", index];
     assert.equal(
-      document.getIn(["jobs", "operate", "steps", 0, "env", name]),
-      `\${{ inputs.${input} }}`,
-      "Target validation must read the dispatched operation and target"
+      document.getIn([...step, "name"]),
+      name,
+      `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
     );
-  }
+    assert.equal(
+      document.getIn([...step, "if"]),
+      undefined,
+      `${name} must run unconditionally`
+    );
+    assert.equal(
+      document.getIn([...step, "continue-on-error"]),
+      undefined,
+      `${name} must stop the job when it fails`
+    );
+    for (const [variable, input] of Rec.toEntries(env)) {
+      assert.equal(
+        document.getIn([...step, "env", variable]),
+        `\${{ inputs.${input} }}`,
+        `${name} must read the dispatched ${input}`
+      );
+    }
+  });
 }
 
 /** Verifies the target choice, isolated credentials, and recovery controls. */
@@ -157,6 +185,7 @@ export function verifyPublicationWorkflow(
     "One target failure must not interrupt its peer"
   );
   verifyTargetChoice(document);
+  verifyDispatchGuards(document);
   assert.match(
     release,
     SHARED_VALIDATION_PATTERN,
