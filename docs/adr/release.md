@@ -232,11 +232,10 @@ independent credentials selected by key and matrix cancellation disabled. Its
 
 Production alone is a complete release: publish, verify, and accept never wait
 for development. Development alone publishes the same release identity later, as
-a catch-up, from the same commit: it names that commit in the `revision` input,
-and the run stops unless `main` is still at it. `both` runs the two side by side
-and adds the parity gate below. Terminal repair operations take exactly one
-target because a failed or recovered target need not share its peer's current
-state. The standalone development publisher is removed.
+a catch-up. `both` runs the two side by side and adds the parity gate below.
+Terminal repair operations take exactly one target because a failed or recovered
+target need not share its peer's current state. The standalone development
+publisher is removed.
 
 A publication reads every head of its target's active release even when it
 changes little, so a second target adds that cost to every release. Development
@@ -252,11 +251,12 @@ selected scope. The gate runs after paired publication and before either
 acceptance mutation. It compares current content identities and hashes, not
 manifest hashes, which legitimately include different prior histories. A release
 to one target has no peer to compare, so neither gate runs for it. A catch-up
-keeps the release identity and the Git revision, so the same command proves
-parity when run by hand afterwards. A rerun keeps the same release identity and
-exact Git revision; the CLI checks clean checkout provenance before resuming an
-active receipt. A partial failure remains a failed release until both
-authoritative states converge and rendered acceptance passes.
+keeps the release identity, so the same command proves parity when run by hand
+afterwards, provided the catch-up was dispatched from the same Git revision. A
+rerun keeps the same release identity and exact Git revision; the CLI checks
+clean checkout provenance before resuming an active receipt. A partial failure
+remains a failed release until both authoritative states converge and rendered
+acceptance passes.
 
 A retry after a lost acceptance response may find one expected inverse already
 cleared. Parity permits this idempotent state only while both active catalogs still
