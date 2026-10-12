@@ -53,10 +53,13 @@ the closure it failed to prove. The required `accept`, `abort`, or `cleanup`
 command therefore follows from the failure line.
 
 Protected content publication is owned by `.github/workflows/release.yml`.
-Release and acceptance always cover both development and production. Only
-recovery, abort, and cleanup may select a single target. An active release resume
-requires a clean checkout at the exact immutable source revision recorded in its
-manifest; a same-name receipt from another revision is rejected before reuse.
+Release and acceptance take a `target` of `production` (the default),
+`development`, or `both`. Production alone is a complete release. Development
+alone publishes a later catch-up, and only `both` adds the parity gate between
+the two deployments. Recovery, abort, and cleanup take exactly one target. An
+active release resume requires a clean checkout at the exact immutable source
+revision recorded in its manifest; a same-name receipt from another revision is
+rejected before reuse.
 
 ## License
 

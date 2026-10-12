@@ -164,25 +164,40 @@ Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does
 not compile mutable working-tree bytes.
 
-The protected `release.yml` workflow publishes and accepts development and
-production together from that revision. Its default target is `both`; release
-and acceptance reject a single target. One shared verification job finishes
-before either publication job receives credentials. A failed target does not
-cancel its peer. Inspect both durable states before rerunning the same release
-identity at its exact original revision. Resume rejects a different revision.
-Recovery, abort, and cleanup may select one explicit target to repair a partial
-failure. Development has no deployed cache surface; production invalidates its
+The protected `release.yml` workflow publishes and accepts from that revision.
+Its `target` input is `production` (the default), `development`, or `both`.
+Production alone is a complete release: it publishes, verifies, and is accepted
+without waiting for development. Development alone is a catch-up that publishes
+the same release identity to the development deployment later. `both` runs the
+two targets side by side and adds the parity gate described below. One shared
+verification job finishes before any publication job receives credentials. A
+failed target does not cancel its peer. Inspect each durable state before
+rerunning the same release identity at its exact original revision. Resume
+rejects a different revision. Recovery, abort, and cleanup take exactly one
+target. Development has no deployed cache surface; production invalidates its
 deployed surface. Credentials are selected by target key with no value fallback.
+
+A catch-up publishes the revision of `main` that the workflow is dispatched
+from, so dispatch it while `main` is still at the revision of the production
+release when the two must match. Select every family and snapshot in which
+development still differs from production, because a release keeps the base
+state of each family and snapshot it does not select. Accept the retained
+inverse of any earlier development release first, because a retained inverse
+blocks a new candidate. Accept a release to one target with a dispatch for that
+same target.
 
 The read-only `pnpm parity -- --release-id <id> --recovery-id <id>` command
 verifies both active signatures, source revision, locales, frozen renderer,
 complete result catalog digest, and every snapshot result identity. The workflow
-runs it after paired release and acceptance, and before either acceptance mutation.
-A partial-scope release with inherited drift therefore fails the workflow. Signed
-manifest hashes may differ because each manifest binds its own base history.
-Accept both only after rendered acceptance is verified; the workflow enforces
-content parity before releasing either inverse. The targets activate independently;
-a failed workflow is not evidence of cross-target atomicity or completed parity.
+runs it only when `both` is selected: after the paired release and acceptance,
+and before either acceptance mutation. A partial-scope release with inherited
+drift therefore fails the workflow. Signed manifest hashes may differ because
+each manifest binds its own base history. Accept both only after rendered
+acceptance is verified; the workflow enforces content parity before releasing
+either inverse. The targets activate independently; a failed workflow is not
+evidence of cross-target atomicity or completed parity. After a catch-up, run
+the same command by hand with the same identities to prove that the two
+deployments hold the same content.
 
 Concurrent backend verification uses a task-owned Nakafa deployment through
 [Convex Agent Mode](https://docs.convex.dev/cli/agent-mode), never a shared

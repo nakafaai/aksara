@@ -1,23 +1,21 @@
 import assert from "node:assert/strict";
-import { Array as Arr } from "effect";
-import { isSeq, parseDocument } from "yaml";
+import { Array as Arr, Option, Record as Rec, Schema } from "effect";
+import { type Document, isSeq, parseDocument } from "yaml";
+import {
+  ACCEPTED_DISPATCHES,
+  intendedPlan,
+  mainRun,
+  workflowPlan,
+} from "#scripts/workflow/plan";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
 const SHARED_VALIDATION_PATTERN =
   /verify:[\s\S]*needs: contracts[\s\S]*Verify full publication revision[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build[\s\S]*operate:[\s\S]*needs\.verify\.result == 'success'/u;
-const TARGET_IDENTITY_PATTERN =
-  /case "\$TARGET" in\s+both\|development\|production\) ;;[\s\S]*Unknown publication target[\s\S]*exit 1/u;
-const PAIRED_TARGET_PATTERN =
-  /if \[\[ "\$OPERATION" == "release" \|\| "\$OPERATION" == "accept" \]\]; then\s+if \[\[ "\$TARGET" != "both" \]\]; then[\s\S]*exit 1/u;
-
-const TERMINAL_TARGET_PATTERN =
-  /elif \[\[ "\$TARGET" == "both" \]\]; then\s+echo "Recovery, abort, and cleanup require one explicit target\." >&2\s+exit 1/u;
-
 const PARITY_PREFLIGHT_PATTERN =
-  /Verify paired acceptance[\s\S]*if: inputs\.operation == 'accept'[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
+  /Verify paired acceptance[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
 const PARITY_RESULT_PATTERN =
-  /parity:\n[\s\S]*needs: operate[\s\S]*needs\.operate\.result == 'success'[\s\S]*inputs\.operation == 'release' \|\| inputs\.operation == 'accept'[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*pnpm parity --/u;
+  /parity:\n[\s\S]*needs: operate[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*pnpm parity --/u;
 const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
 const ISOLATED_OPERATION_PATTERN =
   /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
@@ -30,7 +28,112 @@ const CONTENT_CONTRACT_PATTERN =
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 
-/** Verifies paired publication, isolated credentials, and recovery controls. */
+/** The dispatch whose final parity job the blockers below must stop. */
+const PAIRED_RELEASE = { operation: "release", target: "both" };
+
+/** What must keep the final parity job from running, with the run facts that cause it. */
+const PARITY_BLOCKERS = [
+  ["after a failed publication", { operateResult: "failure" }],
+  ["off main", { ref: "refs/heads/topic" }],
+  ["outside the Aksara repository", { repository: "someone/aksara" }],
+] as const;
+
+/** The target choice of a dispatch: production by default, or either one, or both. */
+const TargetInputSchema = Schema.Struct({
+  default: Schema.Literal("production"),
+  options: Schema.Tuple([
+    Schema.Literal("production"),
+    Schema.Literal("development"),
+    Schema.Literal("both"),
+  ]),
+  required: Schema.Literal(true),
+  type: Schema.Literal("choice"),
+});
+
+/** The part of a workflow that declares the target choice. */
+const TargetDispatchSchema = Schema.Struct({
+  on: Schema.Struct({
+    workflow_dispatch: Schema.Struct({
+      inputs: Schema.Struct({ target: TargetInputSchema }),
+    }),
+  }),
+});
+
+/**
+ * The steps that refuse a bad dispatch, in the order they run, each with the
+ * dispatch input that every environment variable of the step must read.
+ */
+const DISPATCH_GUARDS: ReadonlyArray<
+  readonly [string, Readonly<Record<string, string>>]
+> = [
+  ["Validate target", { OPERATION: "operation", TARGET: "target" }],
+  ["Validate operation", {}],
+];
+
+/** Verifies that a dispatch selects production, development, or both. */
+function verifyTargetChoice(document: Document): void {
+  assert.ok(
+    Option.isSome(
+      Schema.decodeUnknownOption(TargetDispatchSchema)(document.toJS())
+    ),
+    "The target input must offer exactly production, development, and both in that order, with production as the default"
+  );
+}
+
+/**
+ * Verifies, by evaluating the workflow expressions, that every dispatch starts
+ * the legs, the paired acceptance, and the final parity its target calls for.
+ */
+function verifyPlans(release: string): void {
+  for (const dispatch of ACCEPTED_DISPATCHES) {
+    assert.deepEqual(
+      workflowPlan(release, mainRun(dispatch)),
+      intendedPlan(dispatch),
+      `The ${dispatch.operation} on ${dispatch.target} must start only the legs, the paired acceptance, and the final parity that its target calls for`
+    );
+  }
+  for (const [reason, change] of PARITY_BLOCKERS) {
+    assert.equal(
+      workflowPlan(release, { ...mainRun(PAIRED_RELEASE), ...change }).parity,
+      false,
+      `The final parity must not run ${reason}`
+    );
+  }
+}
+
+/**
+ * Verifies that the guards come first, run unconditionally, and stop the job
+ * when they fail, so no dispatch reaches a checkout or a credential unchecked.
+ */
+function verifyDispatchGuards(document: Document): void {
+  Arr.forEach(DISPATCH_GUARDS, ([name, env], index) => {
+    const step = ["jobs", "operate", "steps", index];
+    assert.equal(
+      document.getIn([...step, "name"]),
+      name,
+      `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
+    );
+    assert.equal(
+      document.getIn([...step, "if"]),
+      undefined,
+      `${name} must run unconditionally`
+    );
+    assert.equal(
+      document.getIn([...step, "continue-on-error"]),
+      undefined,
+      `${name} must stop the job when it fails`
+    );
+    for (const [variable, input] of Rec.toEntries(env)) {
+      assert.equal(
+        document.getIn([...step, "env", variable]),
+        `\${{ inputs.${input} }}`,
+        `${name} must read the dispatched ${input}`
+      );
+    }
+  });
+}
+
+/** Verifies the target choice, isolated credentials, and recovery controls. */
 export function verifyPublicationWorkflow(
   release: string,
   all: readonly string[]
@@ -93,39 +196,16 @@ export function verifyPublicationWorkflow(
     "Paired operations must serialize without cancellation"
   );
   assert.equal(
-    document.getIn(["on", "workflow_dispatch", "inputs", "target", "default"]),
-    "both",
-    "Publication must default to both targets"
-  );
-  assert.equal(
     document.getIn(["jobs", "operate", "strategy", "fail-fast"]),
     false,
     "One target failure must not interrupt its peer"
   );
-  assert.equal(
-    document.getIn(["jobs", "operate", "strategy", "matrix", "target"]),
-    `\${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}`,
-    "Publication matrix must cover both targets or an explicit recovery target"
-  );
+  verifyTargetChoice(document);
+  verifyDispatchGuards(document);
   assert.match(
     release,
     SHARED_VALIDATION_PATTERN,
     "Shared validation must finish before either target operates"
-  );
-  assert.match(
-    release,
-    TARGET_IDENTITY_PATTERN,
-    "Publication must reject unknown target identities"
-  );
-  assert.match(
-    release,
-    PAIRED_TARGET_PATTERN,
-    "Release and acceptance must require both targets"
-  );
-  assert.match(
-    release,
-    TERMINAL_TARGET_PATTERN,
-    "Recovery, abort, and cleanup must require one explicit target"
   );
   assert.match(
     release,
@@ -137,6 +217,7 @@ export function verifyPublicationWorkflow(
     PARITY_RESULT_PATTERN,
     "Paired release and acceptance must finish with an authenticated parity gate"
   );
+  verifyPlans(release);
   const steps = document.getIn(["jobs", "operate", "steps"]);
   assert.ok(isSeq(steps), "Publication must declare operation steps");
   for (let index = 0; index < steps.items.length; index += 1) {

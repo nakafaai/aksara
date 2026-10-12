@@ -1,9 +1,15 @@
+import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
+import { Array as Arr, Effect } from "effect";
+import { readSource } from "#scripts/source";
+import { ACCEPTED_DISPATCHES } from "#scripts/workflow/plan";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { mutateJob } from "#scripts/workflow/test/mutation";
 import {
   sourceTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
+import { operateStepProgram, runProgram } from "#scripts/workflow/test/step";
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
@@ -35,9 +41,19 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     "Paired operations must serialize",
   ],
   [
-    "default: both",
     "default: production",
-    "Publication must default to both targets",
+    "default: both",
+    "The target input must offer exactly production, development, and both",
+  ],
+  [
+    "- both",
+    "- staging",
+    "The target input must offer exactly production, development, and both",
+  ],
+  [
+    "- development",
+    "- development\n          - staging",
+    "The target input must offer exactly production, development, and both",
   ],
   [
     "fail-fast: false",
@@ -47,23 +63,38 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     '["development","production"]',
     '["production"]',
-    "Publication matrix must cover both targets",
+    "The release on both must start only the legs",
+  ],
+  [
+    "format('[\"{0}\"]', inputs.target)",
+    "'[\"production\"]'",
+    "The release on development must start only the legs",
   ],
   ["needs.verify.result == 'success'", "true", "Shared validation must finish"],
   [
-    "both|development|production) ;;",
-    "*) ;;",
-    "Publication must reject unknown target identities",
+    "- name: Validate target",
+    "- name: Check target",
+    "Validate target must be step 1 of the publication job",
   ],
   [
-    'if [[ "$TARGET" != "both" ]]; then',
-    "if false; then",
-    "Release and acceptance must require both targets",
+    "- name: Validate operation",
+    "- name: Check operation",
+    "Validate operation must be step 2 of the publication job",
   ],
   [
-    'elif [[ "$TARGET" == "both" ]]; then',
-    "elif false; then",
-    "Recovery, abort, and cleanup must require one explicit target",
+    "TARGET:",
+    "FIXED_TARGET:",
+    "Validate target must read the dispatched target",
+  ],
+  [
+    "if: inputs.operation == 'accept' && inputs.target == 'both'",
+    "if: inputs.operation == 'accept'",
+    "The accept on production must start only the legs",
+  ],
+  [
+    "      && inputs.target == 'both'\n",
+    "",
+    "The release on production must start only the legs",
   ],
   [
     "vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT']",
@@ -82,10 +113,32 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   ],
 ];
 
-layer(workflowSourcesLayer)("paired publication policy", (layered) => {
+/** Conditions of the final parity job whose removal would let it run when it must not, with the refusal each must meet. */
+const PARITY_GUARDS: ReadonlyArray<readonly [string, string]> = [
+  [
+    "needs.operate.result == 'success'",
+    "The final parity must not run after a failed publication",
+  ],
+  ["github.ref == 'refs/heads/main'", "The final parity must not run off main"],
+  [
+    "github.repository == 'nakafaai/aksara'",
+    "The final parity must not run outside the Aksara repository",
+  ],
+];
+
+/** The steps that refuse a bad dispatch. */
+const GUARD_STEPS = ["Validate target", "Validate operation"];
+
+/** Step keys that would let a dispatch past a failed guard, with the refusal each must meet. */
+const GUARD_BYPASSES: ReadonlyArray<readonly [string, string]> = [
+  ["if: inputs.operation == 'release'", "must run unconditionally"],
+  ["continue-on-error: true", "must stop the job when it fails"],
+];
+
+layer(workflowSourcesLayer)("publication target policy", (layered) => {
   const it = sourceTestsOf(layered);
 
-  it("accepts the protected paired release and target-specific recovery path", ({
+  it("accepts the protected release with production by default and target-specific parity", ({
     release,
   }) => {
     expect(() => verifyPublicationWorkflow(release, [release])).not.toThrow();
@@ -102,11 +155,105 @@ layer(workflowSourcesLayer)("paired publication policy", (layered) => {
     ).toThrow("Only one workflow may own content publication");
   });
 
+  it("requires the target input to offer production first", ({ release }) => {
+    const source = release.replace(
+      "- production\n          - development",
+      "- development\n          - production"
+    );
+    expect(source).not.toEqual(release);
+    expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
+      "in that order"
+    );
+  });
+
   for (const [before, after, error] of UNSAFE_PUBLICATION_CHANGES) {
-    it(`rejects unsafe publication change to ${before}`, ({ release }) => {
+    it(`rejects unsafe publication change to ${before.trim()}`, ({
+      release,
+    }) => {
       const source = release.replaceAll(before, after);
       expect(source).not.toEqual(release);
       expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
     });
   }
+
+  for (const name of GUARD_STEPS) {
+    for (const [bypass, error] of GUARD_BYPASSES) {
+      it(`rejects '${bypass}' on ${name}`, ({ release }) => {
+        const header = `      - name: ${name}\n`;
+        const source = release.replace(header, `${header}        ${bypass}\n`);
+        expect(source).not.toEqual(release);
+        expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
+          `${name} ${error}`
+        );
+      });
+    }
+  }
+
+  for (const [condition, error] of PARITY_GUARDS) {
+    it(`rejects a final parity job without '${condition}'`, ({ release }) => {
+      const source = mutateJob(release, "parity", condition, "true");
+      expect(source).not.toEqual(release);
+      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
+    });
+  }
+});
+
+const UNKNOWN_TARGETS = ["staging", "Production", "both,production", ""];
+const TERMINAL_OPERATIONS = ["recover", "abort", "cleanup"];
+
+/** Pairs every operation with every target. */
+function combinations(
+  operations: readonly string[],
+  targets: readonly string[]
+) {
+  return Arr.flatMap(operations, (operation) =>
+    Arr.map(targets, (target) => ({ operation, target }))
+  );
+}
+
+/** Runs the real target validation step of the release workflow. */
+const validateTarget = Effect.fn("WorkflowTest.validateTarget")(function* (
+  operation: string,
+  target: string
+) {
+  const release = yield* readSource(".github/workflows/release.yml");
+  return yield* runProgram(operateStepProgram(release, "Validate target"), {
+    OPERATION: operation,
+    TARGET: target,
+  });
+});
+
+layer(NodeServices.layer)("publication target validation", (test) => {
+  test.effect.each(ACCEPTED_DISPATCHES)(
+    "accepts $operation on $target",
+    ({ operation, target }) =>
+      Effect.gen(function* () {
+        const result = yield* validateTarget(operation, target);
+        expect(result).toEqual({ exitCode: 0, stderr: "" });
+      })
+  );
+
+  test.effect.each(TERMINAL_OPERATIONS)(
+    "refuses to %s both targets at once",
+    (operation) =>
+      Effect.gen(function* () {
+        const result = yield* validateTarget(operation, "both");
+        expect(result.exitCode).toBe(1);
+        expect(result.stderr).toBe(
+          "Recovery, abort, and cleanup take one target, not both.\n"
+        );
+      })
+  );
+
+  test.effect.each(
+    combinations(["release", "accept", ...TERMINAL_OPERATIONS], UNKNOWN_TARGETS)
+  )(
+    "refuses $operation on the unknown target '$target'",
+    ({ operation, target }) =>
+      Effect.gen(function* () {
+        const result = yield* validateTarget(operation, target);
+        expect(result.exitCode).toBe(1);
+        expect(result.stderr).toBe("Unknown publication target.\n");
+      })
+  );
 });
