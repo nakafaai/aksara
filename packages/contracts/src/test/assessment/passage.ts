@@ -14,7 +14,11 @@ const SET_10 =
 /** The namespaced identifier of the first passage of SNBT general knowledge set 10. */
 export const PASSAGE_ID = `${SET_10}/passage-1`;
 
-/** The passage that questions 10, 11, and 12 of that set share, in Indonesian. */
+/**
+ * The passage that questions 10, 11, and 12 of that set share, in Indonesian,
+ * word for word as `question.id.mdx` of question 10 writes it above its
+ * question.
+ */
 export const passageDocument = doc(
   paragraph(
     text(
@@ -23,7 +27,12 @@ export const passageDocument = doc(
   ),
   paragraph(
     text(
-      "Pedagang meminta label singkat karena ruang kemasan terbatas. Kelompok konsumen meminta informasi yang dapat diperiksa ketika muncul masalah mutu. Tim lalu membedakan asal bahan, tempat pengolahan, dan pihak yang menangani setiap tahap."
+      "Pedagang meminta label singkat karena ruang kemasan terbatas. Kelompok konsumen meminta informasi yang dapat diperiksa ketika muncul masalah mutu. Tim lalu membedakan asal bahan, tempat pengolahan, dan pihak yang menangani setiap tahap. Kode pada kemasan mengarah ke catatan yang lebih lengkap, sedangkan bagian depan hanya menampilkan dua informasi yang paling relevan bagi produk."
+    )
+  ),
+  paragraph(
+    text(
+      "Sistem itu diuji melalui penarikan simulasi. Ketika satu batch minyak goreng diberi tanda bermasalah, catatan berlapis mempersempit produk yang perlu ditarik. Label satu lokasi justru mencampurkan produk dari bahan dan masa produksi berbeda. Namun, tim juga menemukan kode yang tidak berguna jika catatan pemasok tidak diperbarui."
     )
   ),
   paragraph(

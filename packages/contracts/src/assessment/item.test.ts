@@ -15,6 +15,7 @@ import {
   placeInline,
   text,
 } from "#contracts/test/assessment/document";
+import { passageReference } from "#contracts/test/assessment/exam";
 import {
   hotspotInteraction,
   numericEntryInteraction,
@@ -35,7 +36,6 @@ import {
   tkaMultipleEnglish,
   tkaMultipleFamily,
 } from "#contracts/test/assessment/tka";
-import { encodeJsonText } from "#contracts/text/json";
 
 const FAMILY = tkaMultipleFamily;
 
@@ -60,15 +60,14 @@ describe("item versions of today's corpus", () => {
     }
   });
 
-  it("keeps the shared passage out of the prompt of each of three questions", () => {
+  it("refers to the shared passage by identifier and hash from each of three questions", () => {
     const versions = [snbtQuestion10, snbtQuestion11, snbtQuestion12];
 
     expect(passageFamilies).toHaveLength(3);
     for (const version of versions) {
-      const decoded = decodeStrict(ItemVersionSchema, version);
-
-      expect(decoded.stimulus?.id).toBe(PASSAGE_ID);
-      expect(encodeJsonText(decoded.prompt)).not.toContain("Pasar kota");
+      expect(decodeStrict(ItemVersionSchema, version).stimulus).toEqual(
+        passageReference
+      );
     }
     for (const family of passageFamilies) {
       expect(decodeStrict(ItemFamilySchema, family).stimulus).toBe(PASSAGE_ID);
@@ -121,7 +120,7 @@ describe("a family has one structure in every language", () => {
     const [option] = options;
 
     for (const changed of [
-      { ...tkaChoice, options: Arr.take(options, 4) },
+      { ...tkaChoice, maxChoices: 4, options: Arr.take(options, 4) },
       {
         ...tkaChoice,
         options: Arr.append(options, plainPart("option-6", "x")),
@@ -138,20 +137,21 @@ describe("a family has one structure in every language", () => {
       { ...tkaChoice, shuffle: true },
       { ...tkaChoice, id: "other" },
     ]) {
+      const english = {
+        ...tkaMultipleEnglish,
+        interactions: [changed],
+        prompt: doc(
+          paragraph(text("Test-only prompt (en).")),
+          place(changed.id)
+        ),
+      };
+
+      // Each version is valid on its own, so only the structure can reject the pair.
+      expect(failsStrict(ItemVersionSchema, english)).toBe(false);
       expect(
         failsStrict(ItemSchema, {
           family: FAMILY,
-          versions: [
-            tkaMultiple,
-            {
-              ...tkaMultipleEnglish,
-              interactions: [changed],
-              prompt: doc(
-                paragraph(text("Test-only prompt (en).")),
-                place(changed.id)
-              ),
-            },
-          ],
+          versions: [tkaMultiple, english],
         })
       ).toBe(true);
     }
