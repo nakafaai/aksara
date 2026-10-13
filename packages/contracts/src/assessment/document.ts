@@ -236,7 +236,8 @@ const BoundedInputSchema = Schema.Unknown.check(
  * It holds the prompt of an item, so it may place interactions. A document is
  * at most `MAX_DOCUMENT_DEPTH` levels deep and `MAX_DOCUMENT_BYTES` bytes long.
  * The depth is checked before the nodes are read, and the size after, when the
- * depth is known to be small.
+ * depth is known to be small. Its encoded type is `unknown` for that reason:
+ * the input is bounded as it arrives, before it is read as nodes.
  */
 export const AssessmentDocumentSchema = BoundedInputSchema.pipe(
   Schema.decodeTo(

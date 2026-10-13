@@ -87,6 +87,9 @@ describe("canonical JSON", () => {
     "fails with a schema error on a value that is not JSON, instead of a defect or of one text for two values",
     () =>
       Effect.gen(function* () {
+        const cycle: Record<string, unknown> = {};
+        cycle.self = cycle;
+
         for (const value of [
           undefined,
           { explanation: undefined },
@@ -95,6 +98,7 @@ describe("canonical JSON", () => {
           DateTime.makeUnsafe(1000),
           Number.NaN,
           Number.POSITIVE_INFINITY,
+          cycle,
         ]) {
           const error = yield* canonicalJson(value).pipe(Effect.flip);
 
