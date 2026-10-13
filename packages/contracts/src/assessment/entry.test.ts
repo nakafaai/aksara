@@ -51,20 +51,19 @@ describe("entry interactions", () => {
     ).toBe(true);
   });
 
-  it("takes the equivalence policy of a math entry as data", () => {
-    for (const equivalence of ["proof", "proofOrSample"]) {
+  it("holds no policy for a sampled verdict, which is a rule of the exam profile", () => {
+    expect(failsStrict(MathEntryInteractionSchema, mathEntryInteraction)).toBe(
+      false
+    );
+    for (const policy of [
+      { equivalence: "proof" },
+      { equivalence: "proofOrSample" },
+      { sampledMath: "score" },
+    ]) {
       expect(
         failsStrict(MathEntryInteractionSchema, {
           ...mathEntryInteraction,
-          equivalence,
-        })
-      ).toBe(false);
-    }
-    for (const equivalence of ["sample", "", undefined]) {
-      expect(
-        failsStrict(MathEntryInteractionSchema, {
-          ...mathEntryInteraction,
-          equivalence,
+          ...policy,
         })
       ).toBe(true);
     }

@@ -206,6 +206,46 @@ describe("exam profiles", () => {
     ).toBe(true);
   });
 
+  it("decides what a sampled math verdict does: it scores, or it goes to the teacher", () => {
+    const { sampledMath: _sampledMath, ...undecided } = schoolProfile;
+
+    expect(decodeStrict(ExamProfileSchema, snbtProfile).sampledMath).toBe(
+      "score"
+    );
+    expect(decodeStrict(ExamProfileSchema, schoolProfile).sampledMath).toBe(
+      "review"
+    );
+    expect(failsStrict(ExamProfileSchema, undecided)).toBe(true);
+    for (const sampledMath of ["sample", "proof", "proofOrSample", "", null]) {
+      expect(
+        failsStrict(ExamProfileSchema, { ...schoolProfile, sampledMath })
+      ).toBe(true);
+    }
+  });
+
+  it("sets the write allowance and the grace period for every deadline, in whole seconds above zero", () => {
+    const { graceSeconds: _grace, ...withoutGrace } = schoolProfile;
+    const { writeAllowanceSeconds: _allowance, ...withoutAllowance } =
+      schoolProfile;
+
+    expect(decodeStrict(ExamProfileSchema, snbtProfile)).toMatchObject({
+      graceSeconds: 120,
+      writeAllowanceSeconds: 5,
+    });
+    expect(failsStrict(ExamProfileSchema, withoutGrace)).toBe(true);
+    expect(failsStrict(ExamProfileSchema, withoutAllowance)).toBe(true);
+    for (const field of ["graceSeconds", "writeAllowanceSeconds"]) {
+      expect(
+        failsStrict(ExamProfileSchema, { ...schoolProfile, [field]: 1 })
+      ).toBe(false);
+      for (const seconds of [0, -1, 1.5, "5", null]) {
+        expect(
+          failsStrict(ExamProfileSchema, { ...schoolProfile, [field]: seconds })
+        ).toBe(true);
+      }
+    }
+  });
+
   it("accepts a penalized exam with its marks", () => {
     expect(
       failsStrict(ExamProfileSchema, {

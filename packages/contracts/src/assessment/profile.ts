@@ -114,9 +114,23 @@ const ProfileFieldsSchema = Schema.Struct({
   accommodations: AccommodationCatalogSchema,
   breaks: Schema.Array(BreakSchema),
   defaults: Schema.Array(DefaultSchema),
+  /**
+   * The reconciliation grace period, in seconds: how long after a deadline an
+   * attempt that is reconciling keeps the queued records that arrive, before it
+   * is submitted without the rest (Nakafa ADR 0013). It applies at every
+   * section deadline and at the deadline of the attempt.
+   */
+  graceSeconds: PositiveIntSchema,
   id: ExamProfileIdSchema,
   names: LocalizedTextSchema,
   report: ReportFormSchema,
+  /**
+   * What a sampled verdict on a math entry does. A sample is not a proof, and
+   * the exam decides what it is worth: `score` lets it score the answer, as in
+   * practice and consumer try-outs, and `review` sends it to the teacher, as in
+   * a school exam, so a sample never grades a student on its own.
+   */
+  sampledMath: Schema.Literals(["score", "review"]),
   scale: Schema.optionalKey(ScoreScaleSchema),
   scoring: ScoringStrategySchema,
   sections: Schema.NonEmptyArray(SectionTemplateSchema).check(
@@ -126,6 +140,14 @@ const ProfileFieldsSchema = Schema.Struct({
     )
   ),
   totalSeconds: PositiveIntSchema,
+  /**
+   * The write allowance, in seconds: how long after a deadline a write that was
+   * already in flight still counts as on time (Nakafa ADR 0013). It applies at
+   * every section deadline and at the deadline of the attempt. The contract
+   * bounds it to whole seconds above zero, and Nakafa checks it against its
+   * presence lease when it loads the profile.
+   */
+  writeAllowanceSeconds: PositiveIntSchema,
 });
 
 /** Checks that the total is the sum of the sections. */
@@ -185,8 +207,9 @@ function hasCoherentReport(profile: typeof ProfileFieldsSchema.Type) {
  * An exam profile: signed data that a country profile carries, not code. Try-outs
  * and school exams use the same profile. It holds the official names, the
  * sections, the total time, the breaks, the default scoring rules for every
- * interaction kind, the scoring strategy and its scale, the accommodations, and
- * the form of the report.
+ * interaction kind, the scoring strategy and its scale, the accommodations, the
+ * form of the report, the write allowance and the grace period that apply at
+ * every deadline, and what a sampled math verdict does.
  */
 export const ExamProfileSchema = ProfileFieldsSchema.check(
   Schema.makeFilter(hasSectionTotal, {

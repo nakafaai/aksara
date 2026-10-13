@@ -88,9 +88,8 @@ export const numericEntryInteraction = {
   unit: "dm3",
 };
 
-/** A typed expression, accepted on proof only. */
+/** A typed expression. The interaction holds no policy for a sampled verdict. */
 export const mathEntryInteraction = {
-  equivalence: "proof",
   id: "expression",
   kind: "mathEntry",
   label: NAME,

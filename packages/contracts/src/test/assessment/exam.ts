@@ -82,20 +82,24 @@ export const accommodations = {
 
 /**
  * The profile of UTBK-SNBT: seven subtests, 160 items, 195 minutes, no break,
- * and an IRT score. The scale is a test-only range, because no official scale
- * is verified.
+ * and an IRT score. The scale, the write allowance, and the grace period are
+ * test-only values, neither official nor measured; a sampled math verdict
+ * scores, as it does in a try-out.
  */
 export const snbtProfile = {
   accommodations,
   breaks: [],
   defaults: [{ interaction: "choice", rule: allOrNothing }],
+  graceSeconds: 120,
   id: "indonesia/snbt",
   names: { de: "SNBT", en: "SNBT", id: "SNBT" },
   report: { sections: true, standardError: true, total: true },
+  sampledMath: "score",
   scale: { maximum: 1000, minimum: 0 },
   scoring: { kind: "irt" },
   sections: SNBT_SECTIONS,
   totalSeconds: 11_700,
+  writeAllowanceSeconds: 5,
 };
 
 /** The first section of the school exam: a calculator, a formula sheet, and mark for review. */
@@ -131,18 +135,23 @@ export const textEntryDefault = {
 
 /**
  * A test-only school exam: a raw score, two sections that allow several
- * interactions and enable tools, and a break between the sections.
+ * interactions and enable tools, and a break between the sections. A sampled
+ * math verdict goes to the teacher, and the write allowance and the grace
+ * period are test-only values, neither official nor measured.
  */
 export const schoolProfile = {
   accommodations: { assigned: [], recorded: [], universal: ["zoom"] },
   breaks: [{ after: "part-one", seconds: 300 }],
   defaults: [choiceDefault, textEntryDefault],
+  graceSeconds: 60,
   id: "school/test-exam",
   names: { de: "Testpruefung", en: "Test exam", id: "Ujian uji" },
   report: { sections: false, standardError: false, total: true },
+  sampledMath: "review",
   scoring: { kind: "raw" },
   sections: [partOne, partTwo],
   totalSeconds: 3000,
+  writeAllowanceSeconds: 3,
 };
 
 /** The profile that the paper of the passage set follows, by identifier and hash. */

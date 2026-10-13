@@ -30,17 +30,17 @@ export const NumericEntryInteractionSchema = Schema.Struct({
 });
 
 /**
- * An expression typed as LaTeX. The equivalence policy is data. `proof` accepts
- * a deterministic proof only: Compute Engine canonical simplification then
- * `isSame`, or `isEqual` returning true. `proofOrSample` also accepts
- * `isIdenticallyEqual` returning true without a proof, which is a sample at up
- * to 50 points, not a proof, and which the grader records as sampled. QTI has
- * no interaction for a typed expression, so it maps to
- * `qti-portable-custom-interaction`, the way QTI adds a kind of its own.
+ * An expression typed as LaTeX. The expression to match is in the key, and the
+ * interaction holds no policy. A proof is the same canonical form under
+ * `isSame`, or `isEqual` returning true for expressions without free
+ * variables. Any other true about expressions with free variables is a sample,
+ * not a proof. What a sample does is a rule of the exam, not of the item: the
+ * exam profile says it in `sampledMath`. QTI has no interaction for a typed
+ * expression, so it maps to `qti-portable-custom-interaction`, the way QTI adds
+ * a kind of its own.
  */
 export const MathEntryInteractionSchema = Schema.Struct({
   ...InteractionFields,
-  equivalence: Schema.Literals(["proof", "proofOrSample"]),
   kind: Schema.Literal("mathEntry"),
 });
 
