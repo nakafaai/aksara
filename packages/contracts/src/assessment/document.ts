@@ -27,9 +27,9 @@ export const MAX_DOCUMENT_DEPTH = 16;
 
 /**
  * Largest encoded document in UTF-8 bytes: 1 MiB, the size that Convex allows
- * for one stored document (same page, read 13 October 2026). Convex measures a
- * stored row with its own calculation, so a store that adds fields around the
- * text keeps its own, lower ceiling.
+ * for one stored document (same page, read 13 October 2026). That limit covers
+ * the whole stored document, so a store that adds fields around the text keeps
+ * its own, lower ceiling.
  */
 export const MAX_DOCUMENT_BYTES = 1024 * 1024;
 

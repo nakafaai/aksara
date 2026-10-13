@@ -15,8 +15,9 @@ const KEY_MAX_LENGTH = 128;
 
 /**
  * Identifier of one part inside one item version: an interaction, an option, a
- * statement, a column, a gap, an area, a criterion, or a level. It starts with
- * a letter, as QTI identifiers do, and is lower kebab case, such as `option-1`.
+ * statement, a column, a gap, an area, a criterion, or a level. It is lower
+ * kebab case, such as `option-1`, and starts with a letter, so it is also a
+ * valid XML name for a later QTI export.
  */
 export const LocalIdSchema = Schema.String.pipe(
   Schema.check(Schema.isPattern(LOCAL_ID_PATTERN)),

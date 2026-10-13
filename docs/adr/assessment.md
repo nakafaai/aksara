@@ -208,7 +208,7 @@ The Convex numbers are from https://docs.convex.dev/production/state/limits,
 read on 13 October 2026. Convex counts the nesting of objects and arrays, and a
 node is an object that holds an array, so a document of 16 levels is about 32
 Convex levels deep. A document is therefore stored as encoded JSON text, not as
-a Convex object. Convex measures a stored row by its own calculation, so a store
+a Convex object. The 1 MiB limit covers the whole stored document, so a store
 that adds fields around the text keeps a lower ceiling of its own.
 
 ## What the later work does
