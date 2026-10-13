@@ -1,16 +1,31 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
-import { PaperSchema } from "#contracts/assessment/paper";
+import {
+  ItemVersionSchema,
+  StimulusReferenceSchema,
+} from "#contracts/assessment/item";
+import {
+  PaperSchema,
+  PaperStimuliMismatchError,
+  verifyPaperStimuli,
+} from "#contracts/assessment/paper";
 import { decodeStrict, failsStrict } from "#contracts/test/assessment/document";
 import {
   firstPlacement,
   passageReference,
   passageSection,
   snbtPaper,
+  tkaPaper,
   tkaSection,
 } from "#contracts/test/assessment/exam";
 import { hash } from "#contracts/test/assessment/item";
+import {
+  snbtQuestion10,
+  snbtQuestion11,
+  snbtQuestion12,
+} from "#contracts/test/assessment/passage";
+import { tkaMatrix, tkaMultiple } from "#contracts/test/assessment/tka";
 
 describe("papers", () => {
   it("freezes a manuscript: a profile, sections of places, and the stimuli it uses", () => {
@@ -96,6 +111,73 @@ describe("papers", () => {
         stimuli: [passageReference, { ...passageReference, hash: hash("b") }],
       })
     ).toBe(false);
-    expect(failsStrict(PaperSchema, { ...snbtPaper, stimuli: [] })).toBe(false);
   });
+
+  it("lists no stimulus version when its items share no reading", () => {
+    expect(failsStrict(PaperSchema, tkaPaper)).toBe(false);
+  });
+});
+
+describe("the stimuli a paper lists", () => {
+  const passagePaper = decodeStrict(PaperSchema, snbtPaper);
+  const decodedTkaPaper = decodeStrict(PaperSchema, tkaPaper);
+  const passageVersions = Arr.map(
+    [snbtQuestion10, snbtQuestion11, snbtQuestion12],
+    (version) => decodeStrict(ItemVersionSchema, version)
+  );
+  const tkaVersions = Arr.map([tkaMultiple, tkaMatrix], (version) =>
+    decodeStrict(ItemVersionSchema, version)
+  );
+
+  it.effect("are the stimulus versions that its items use, each once", () =>
+    Effect.gen(function* () {
+      yield* verifyPaperStimuli(passagePaper, [
+        ...passageVersions,
+        ...tkaVersions,
+      ]);
+      yield* verifyPaperStimuli(decodedTkaPaper, tkaVersions);
+    })
+  );
+
+  it.effect("must include a stimulus version that its items use", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyPaperStimuli(
+        { ...passagePaper, stimuli: [] },
+        [...passageVersions, ...tkaVersions]
+      ).pipe(Effect.flip);
+
+      expect(error).toBeInstanceOf(PaperStimuliMismatchError);
+      expect(error).toMatchObject({ missing: [passageReference], unused: [] });
+    })
+  );
+
+  it.effect("must not include a stimulus version that no item uses", () =>
+    Effect.gen(function* () {
+      const error = yield* verifyPaperStimuli(
+        { ...decodedTkaPaper, stimuli: passagePaper.stimuli },
+        tkaVersions
+      ).pipe(Effect.flip);
+
+      expect(error).toBeInstanceOf(PaperStimuliMismatchError);
+      expect(error).toMatchObject({ missing: [], unused: [passageReference] });
+    })
+  );
+
+  it.effect("name a stimulus version by identifier and hash", () =>
+    Effect.gen(function* () {
+      const other = { ...passageReference, hash: hash("b") };
+      const error = yield* verifyPaperStimuli(
+        {
+          ...passagePaper,
+          stimuli: [decodeStrict(StimulusReferenceSchema, other)],
+        },
+        [...passageVersions, ...tkaVersions]
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        missing: [passageReference],
+        unused: [other],
+      });
+    })
+  );
 });

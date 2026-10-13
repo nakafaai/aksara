@@ -46,6 +46,7 @@ export const StimulusReferenceSchema = Schema.Struct({
   hash: Sha256HashSchema,
   id: StimulusIdSchema,
 });
+export type StimulusReference = typeof StimulusReferenceSchema.Type;
 
 /** The fields of an item version except its hash, which covers all of them. */
 const VersionFields = {

@@ -187,3 +187,14 @@ export const snbtPaper = {
   sections: [passageSection, tkaSection],
   stimuli: [passageReference],
 };
+
+/**
+ * The two TKA questions alone as a test-only paper, with the same profile
+ * reference: no item shares a reading, so it lists no stimulus version.
+ */
+export const tkaPaper = {
+  id: "indonesia/tka/2027/set-1",
+  profile: profileReference,
+  sections: [tkaSection],
+  stimuli: [],
+};
