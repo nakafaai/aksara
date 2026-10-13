@@ -74,11 +74,12 @@ are not part of this decision.
   key. A proof is the same canonical form under `isSame`, or `isEqual` returning
   true for expressions without free variables (both are methods of Cortex
   Compute Engine). Any other true about expressions with free variables is a
-  sample and not a proof, and the grader records it as sampled. What a sample
-  does is a rule of the exam, not of the item: the exam profile says it in
-  `sampledMath` (see Profiles, papers, and tools). The engine, and the test that
-  pins its behavior on `(x+1)^2` against `x^2+2x+1`, belong to Nakafa's grading
-  module (Nakafa ADR 0031, section 3). This package has no engine and tests
+  sample and not a proof, and it is recorded as sampled. What a sample does is a
+  rule of the exam, not of the item: the exam profile says it in `sampledMath`
+  (see Profiles, papers, and tools). The engine, and the test that pins its
+  behavior on `(x+1)^2` against `x^2+2x+1`, belong to Nakafa, not to this
+  package: Nakafa ADR 0031 decides them in section 3 and gives answer evaluation
+  to its `response` module in section 9. This package has no engine and tests
   none.
 - A field may sit inside a line of text only when its kind allows it: an inline
   choice, a text entry, a numeric entry, or a math entry. A gap match sits in the
@@ -172,20 +173,19 @@ interaction.
   write allowance against its presence lease when it loads the profile, so the
   lease is not restated here.
 - The profile decides sampled math, not the interaction. `sampledMath` is
-  `score` or `review`: a sampled verdict scores the answer, as in practice and
-  consumer try-outs, or it goes to the teacher, as in a school exam, so a sample
-  never grades a student on its own. The same item therefore needs no change to
-  sit in a try-out and in a school exam.
+  `score` or `review`. Under `score`, a sampled verdict scores the answer, as in
+  practice and consumer try-outs. Under `review`, it goes to the teacher, as in a
+  school exam, so there a sample never grades a student on its own. The same
+  item therefore needs no change to sit in a try-out and in a school exam.
 - A paper is a frozen manuscript: the profile it follows by identifier and hash,
   sections with ordered places, each place an item version by family and hash,
   and the stimulus versions it uses by identifier and hash. A paper is frozen and
-  named by its content hash. Signing belongs to Aksara publications: the paper
-  of a school is frozen and hashed but not signed (Nakafa decides this in its
-  ADR 0031). A paper bundle carries prompts and stimuli only, never a key and
-  never an explanation. The schema of a paper cannot see the item versions its
-  places name, so `verifyPaperStimuli` checks that the stimulus versions a paper
-  lists are exactly the ones those item versions use, each once; the publisher
-  runs it before it signs a paper.
+  named by its content hash. A paper bundle carries prompts and stimuli only,
+  never a key and never an explanation. The schema of a paper cannot see the
+  item versions its places name, so `verifyPaperStimuli` checks that the
+  stimulus versions a paper lists are exactly the ones those item versions use,
+  each once. Whoever freezes a paper runs it first, because the hash fixes the
+  content.
 - The tool registry has twelve identifiers: three calculators (`basic`,
   `scientific`, `graphing`; no calculator is the absence of all three), a formula
   sheet, an option eliminator, a highlighter, mark for review, notes, a line
@@ -294,7 +294,7 @@ compatibility layer.
 2. The corpus migration rewrites today's question bank and try-out sets as item
    families, versions, stimuli, profiles, and papers.
 3. The publisher signs and stages those records and delivers each key only to an
-   entitled reader and each explanation only after release. Before it signs a
+   entitled reader and each explanation only after release. Before it freezes a
    paper it checks the stimulus versions the paper lists with
    `verifyPaperStimuli`, and it checks each key against its item version.
 4. Nakafa's consumer renders the document, plays the interactions, grades with

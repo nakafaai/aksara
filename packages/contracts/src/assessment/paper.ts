@@ -47,13 +47,11 @@ function hasOnePlaceEach(paper: {
  * A frozen paper: the profile it follows, by identifier and hash; the sections
  * with their places in order, each place an item version by family and hash;
  * and the stimulus versions that the items use, by identifier and hash. A
- * paper is frozen and named by its content hash. Signing belongs to Aksara
- * publications: the paper of a school is frozen and hashed but not signed
- * (Nakafa decides this in its ADR 0031). A paper bundle carries prompts and
- * stimuli only, never an answer key and never an explanation. A paper whose
- * items use no shared reading lists none. The schema cannot see the item
- * versions, so `verifyPaperStimuli` checks that the list is the one the items
- * use.
+ * paper is frozen and named by its content hash. A paper bundle carries
+ * prompts and stimuli only, never an answer key and never an explanation. A
+ * paper whose items use no shared reading lists none. The schema cannot see the
+ * item versions, so `verifyPaperStimuli` checks that the list is the one the
+ * items use.
  */
 export const PaperSchema = Schema.Struct({
   id: PaperIdSchema,
@@ -95,7 +93,8 @@ export class PaperStimuliMismatchError extends Schema.TaggedError<PaperStimuliMi
  * Requires a paper to list the stimulus versions that its item versions use,
  * each once, and no other: the paper names the readings it uses and its items
  * name theirs, and the two must agree. `versions` are the item versions that
- * the places of the paper name, one for each place.
+ * the places of the paper name, one for each place. Run it before the paper is
+ * frozen.
  */
 export const verifyPaperStimuli = Effect.fn(
   "AksaraContracts.verifyPaperStimuli"

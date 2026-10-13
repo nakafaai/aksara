@@ -126,9 +126,9 @@ const ProfileFieldsSchema = Schema.Struct({
   report: ReportFormSchema,
   /**
    * What a sampled verdict on a math entry does. A sample is not a proof, and
-   * the exam decides what it is worth: `score` lets it score the answer, as in
-   * practice and consumer try-outs, and `review` sends it to the teacher, as in
-   * a school exam, so a sample never grades a student on its own.
+   * the exam decides what it is worth. `score` lets it score the answer, as in
+   * practice and consumer try-outs. `review` sends it to the teacher, as in a
+   * school exam, so there a sample never grades a student on its own.
    */
   sampledMath: Schema.Literals(["score", "review"]),
   scale: Schema.optionalKey(ScoreScaleSchema),
