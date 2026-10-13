@@ -128,7 +128,9 @@ are the ones of `question/answer`, so there is one grammar for them.
 - A stimulus is a shared reading or figure with a namespaced identifier
   (`<namespace>/passage-1`), so `passage-1` in two sets are two stimuli. It has a
   version for each delivery language. Items and papers use it by identifier and
-  hash and never copy its document.
+  hash and never copy its document. The contract cannot detect a copy of a
+  reading inside a prompt, because an item version holds only the identifier and
+  the hash of its reading.
 
 ### Profiles, papers, and tools
 
