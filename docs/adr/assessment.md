@@ -70,11 +70,16 @@ are not part of this decision.
 
 - Every interaction has an identifier and a label for screen readers, and none
   holds an answer key.
-- `mathEntry` has an equivalence policy that is data. `proof` accepts only a
-  deterministic proof: canonical simplification followed by `isSame`, or
-  `isEqual` returning true. `proofOrSample` also accepts `isIdenticallyEqual`
-  returning true, which is a sample at up to 50 points and not a proof, and which
-  the grader records as sampled (Compute Engine 0.152.0 semantics).
+- `mathEntry` holds no equivalence policy. The expression to match is in the
+  key. A proof is the same canonical form under `isSame`, or `isEqual` returning
+  true for expressions without free variables (both are methods of Cortex
+  Compute Engine). Any other true about expressions with free variables is a
+  sample and not a proof, and the grader records it as sampled. What a sample
+  does is a rule of the exam, not of the item: the exam profile says it in
+  `sampledMath` (see Profiles, papers, and tools). The engine, and the test that
+  pins its behavior on `(x+1)^2` against `x^2+2x+1`, belong to Nakafa's grading
+  module (Nakafa ADR 0031, section 3). This package has no engine and tests
+  none.
 - A field may sit inside a line of text only when its kind allows it: an inline
   choice, a text entry, a numeric entry, or a math entry. A gap match sits in the
   text once for each of its gaps. Every other kind sits as a block of its own.
@@ -104,13 +109,25 @@ it. A prompt, an interaction, a paper, and a stimulus carry no key. The accepted
 texts of `textEntry`, and the decimal value and the tolerance of `numericEntry`,
 are the ones of `question/answer`, so there is one grammar for them.
 
+### Explanations
+
+The explanation of an item version is its own schema and its own artifact too,
+and, like the key, it names the hash of the item version it explains. An item
+version holds no explanation, so its hash covers the prompt, the interactions,
+the scoring, and the stimulus reference only, with its family and delivery
+language. A paper bundle carries prompts and stimuli only, never a key and never
+an explanation, so an explanation reaches a learner after release, under the
+release policy that Nakafa applies, from its own record. A version without an
+explanation has no record, and the document of an explanation places no
+interaction.
+
 ### Items, stimuli, and versions
 
 - An item family has a language-neutral identifier, its blueprint facts
   (competency, topic, cognitive level), and an optional stimulus. An item
   version is one family in one delivery language: prompt, interactions, scoring
-  overrides, explanation, the stimulus version it was written against, and a
-  `hash`.
+  overrides, the stimulus version it was written against, and a `hash`. Its
+  answer key and its explanation are records of their own.
 - A version is immutable once published: a change is a new version. Its `hash`
   is SHA-256 over the canonical JSON of every other field (keys in code-unit
   order), under the domain `nakafa.aksara.assessment-item`. A stimulus version
@@ -140,13 +157,32 @@ are the ones of `question/answer`, so there is one grammar for them.
   time, the breaks, one default rule for each allowed kind, the scoring strategy
   and its scale, the accommodation catalog in three tiers (tools for all, support
   that someone assigns, accommodations recorded with evidence and frozen when an
-  attempt starts), and the form of the report. Try-outs and School exams use the
-  same profile. A scale belongs to `irt` and `composite` only, a standard error to
-  `irt` only, and the total time is the sum of the section times.
+  attempt starts), the form of the report, the write allowance and the grace
+  period, and what a sampled math verdict does. Try-outs and School exams use
+  the same profile. A scale belongs to `irt` and `composite` only, a standard
+  error to `irt` only, and the total time is the sum of the section times.
+- The profile owns the two numbers that Nakafa's attempt gate reads at a
+  deadline (Nakafa ADR 0013). `writeAllowanceSeconds` is how long after a
+  deadline a write that was already in flight still counts as on time.
+  `graceSeconds`, the reconciliation grace period, is how long after a deadline
+  an attempt that is reconciling keeps the queued records that arrive, before it
+  is submitted without the rest. Each is a whole number of seconds above zero,
+  and each applies at every section deadline and at the deadline of the
+  attempt. The contract bounds them to that and no further: Nakafa checks the
+  write allowance against its presence lease when it loads the profile, so the
+  lease is not restated here.
+- The profile decides sampled math, not the interaction. `sampledMath` is
+  `score` or `review`: a sampled verdict scores the answer, as in practice and
+  consumer try-outs, or it goes to the teacher, as in a school exam, so a sample
+  never grades a student on its own. The same item therefore needs no change to
+  sit in a try-out and in a school exam.
 - A paper is a frozen manuscript: the profile it follows by identifier and hash,
   sections with ordered places, each place an item version by family and hash,
-  and the stimulus versions it uses by identifier and hash. The signed paper
-  bundle carries no key. The schema of a paper cannot see the item versions its
+  and the stimulus versions it uses by identifier and hash. A paper is frozen and
+  named by its content hash. Signing belongs to Aksara publications: the paper
+  of a school is frozen and hashed but not signed (Nakafa decides this in its
+  ADR 0031). A paper bundle carries prompts and stimuli only, never a key and
+  never an explanation. The schema of a paper cannot see the item versions its
   places name, so `verifyPaperStimuli` checks that the stimulus versions a paper
   lists are exactly the ones those item versions use, each once; the publisher
   runs it before it signs a paper.
@@ -163,13 +199,14 @@ are the ones of `question/answer`, so there is one grammar for them.
 | `document`, `inline`, `figure` | the Assessment Document, its inline nodes, the five figures and the image |
 | `interaction`, `choice`, `entry`, `graphic` | the twelve interactions |
 | `scoring` | rules, strategies, scales, and the score ceiling of a rule |
-| `key` | the answer key of an item version |
+| `key`, `explanation` | the answer key and the explanation of an item version, each a record of its own |
 | `item`, `stimulus`, `hash` | families, versions, shared readings, and their hashes |
 | `profile`, `paper`, `tools` | exam profiles, frozen papers, and the tool registry |
-| `identity`, `scalar`, `part`, `fit`, `structure` | identifiers, shared scalars, and the checks that the other modules share |
+| `identity`, `scalar`, `part`, `fit`, `structure`, `record` | identifiers, shared scalars, and the checks that the other modules share, such as the size limit of a record |
 
 Every module has its own `./assessment/<module>` export except `scalar`,
-`part`, `fit`, and `structure`, which stay internal, as `question/label` does.
+`part`, `fit`, `structure`, and `record`, which stay internal, as
+`question/label` does.
 
 ## QTI mapping
 
@@ -215,8 +252,8 @@ Sources:
 
 | Bound | Value | Source |
 | --- | --- | --- |
-| Nesting of a document | 16 levels, `doc` being level 1 and a text node a level | Convex limits, row "Nesting depth": 16 |
-| Encoded document | 1 MiB (1,048,576 bytes) of UTF-8 JSON text | Convex limits, row "Size": 1 MiB |
+| Nesting of a document | 16 levels, `doc` being level 1 and a text node a level | Convex limits, section "Documents", row "Nesting depth": 16 |
+| Encoded record | 1 MiB (1,048,576 bytes) of UTF-8 JSON text | Convex limits, section "Documents", row "Size": 1 MiB |
 | Local identifier and kebab key | 128 characters | `tryout/key.ts`, the limit that try-out keys already use |
 | Family, profile, paper, stimulus, and asset identifier | 512 characters | `CONTENT_KEY_MAX_LENGTH` in `ids.ts` |
 
@@ -224,14 +261,26 @@ The Convex numbers are from https://docs.convex.dev/production/state/limits,
 read on 13 October 2026. Convex counts the nesting of objects and arrays, and a
 node is an object that holds an array, so a document of 16 levels is about 32
 Convex levels deep. A document is therefore stored as encoded JSON text, not as
-a Convex object. The 1 MiB limit covers the whole stored document, so a store
-that adds fields around the text keeps a lower ceiling of its own.
+a Convex object.
+
+The 1 MiB limit is a limit on one stored document of Convex, which is one row. It
+belongs to each record that Nakafa stores as one row: an item version, a
+stimulus version, an answer key, and an explanation. A document is only a part
+of such a row, so it has no size limit of its own, and a version whose prompt and
+options each fit can still pass the limit together. Each of those four schemas
+carries the one check of `assessment/record`, which measures the whole record,
+its hash included, as the UTF-8 bytes of its encoded JSON text. The page does
+not say how Convex counts the size of a document, so this is the measure of the
+contract and not of Convex: a store that adds fields around the record, or keeps
+a document in another form, has a lower or a different ceiling of its own. The
+aggregates `ItemSchema` and `StimulusSchema` hold versions that are rows of their
+own, so they carry no limit.
 
 The schema checks the depth on the input, before it reads any node, with a walk
 that stops at the limit. Reading nodes uses the stack once or more for each
 level, so a document that is deep enough would overflow it, and that is a defect,
-not a failure of the schema. The size is checked after the nodes are read, when
-the depth is known to be small.
+not a failure of the schema. A record is measured after its documents are read,
+when their depth is known to be small.
 
 ## What the later work does
 
@@ -240,14 +289,14 @@ breaking signed contract change needs a complete current-format republish and no
 compatibility layer.
 
 1. The compiler turns authored source into documents, interactions, scoring,
-   keys, and hashed item and stimulus versions. Authors keep writing MDX; the
-   compiler makes the document.
+   keys, explanations, and hashed item and stimulus versions. Authors keep
+   writing MDX; the compiler makes the document.
 2. The corpus migration rewrites today's question bank and try-out sets as item
    families, versions, stimuli, profiles, and papers.
 3. The publisher signs and stages those records and delivers each key only to an
-   entitled reader. Before it signs a paper it checks the stimulus versions the
-   paper lists with `verifyPaperStimuli`, and it checks each key against its item
-   version.
+   entitled reader and each explanation only after release. Before it signs a
+   paper it checks the stimulus versions the paper lists with
+   `verifyPaperStimuli`, and it checks each key against its item version.
 4. Nakafa's consumer renders the document, plays the interactions, grades with
    the keys, and reads profiles and papers.
 5. The release that switches the readers deletes `question/` and `tryout/` and
@@ -257,7 +306,7 @@ compatibility layer.
 
 ## Consequences
 
-- The package grows by sixteen subpath exports and one minor version, 0.49.0.
+- The package grows by seventeen subpath exports and one minor version, 0.49.0.
   It changes no existing export.
 - `assessment/key` imports the text key, the decimal, and the tolerance from
   `question/answer`. That module keeps those primitives, or moves them, when the
@@ -284,3 +333,11 @@ compatibility layer.
   an edit would have to find all of them.
 - `Schema.Unknown` or free JSON for figure props. A figure that no schema
   describes cannot be checked, edited, or exported.
+- An equivalence policy on the math entry. Whether a sample may score is a rule
+  of the exam, not of the item: the same item scores a sample in a try-out and
+  sends it to the teacher in a school exam.
+- An explanation inside the item version. A paper bundle would carry it before
+  release, and a correction to an explanation would make a new version with a new
+  hash.
+- A size limit on the document alone. Convex limits a whole stored document, so
+  a document that fits can still sit in a record that does not.

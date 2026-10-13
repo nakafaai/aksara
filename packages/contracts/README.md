@@ -63,11 +63,12 @@ Current consumers use unversioned semantic Interfaces:
   axis-aligned cuboid dimension mapping.
 - `assessment/*` owns the assessment contract: a ProseMirror JSON `document`
   with typed `figure` props, twelve `interaction` kinds that hold no answer
-  key, `scoring` as data, the `key` of an item version as its own record,
-  `item` and `stimulus` versions named by a content hash, and the exam
-  `profile`, the frozen `paper`, and the `tools` registry. It sits beside the
-  `question/` and `tryout/` contracts until the release that switches their
-  readers deletes them. [ADR 0005](https://github.com/nakafaai/aksara/blob/main/docs/adr/assessment.md)
+  key, `scoring` as data, the `key` and the `explanation` of an item version as
+  records of their own, `item` and `stimulus` versions named by a content hash,
+  and the exam `profile`, the frozen `paper`, and the `tools` registry. It sits
+  beside the `question/` and `tryout/` contracts until the release that
+  switches their readers deletes them.
+  [ADR 0005](https://github.com/nakafaai/aksara/blob/main/docs/adr/assessment.md)
   records the decisions.
 
 ## Publication dates

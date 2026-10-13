@@ -46,10 +46,14 @@ function hasOnePlaceEach(paper: {
 /**
  * A frozen paper: the profile it follows, by identifier and hash; the sections
  * with their places in order, each place an item version by family and hash;
- * and the stimulus versions that the items use, by identifier and hash. The
- * signed paper bundle carries no answer key. A paper whose items use no shared
- * reading lists none. The schema cannot see the item versions, so
- * `verifyPaperStimuli` checks that the list is the one the items use.
+ * and the stimulus versions that the items use, by identifier and hash. A
+ * paper is frozen and named by its content hash. Signing belongs to Aksara
+ * publications: the paper of a school is frozen and hashed but not signed
+ * (Nakafa decides this in its ADR 0031). A paper bundle carries prompts and
+ * stimuli only, never an answer key and never an explanation. A paper whose
+ * items use no shared reading lists none. The schema cannot see the item
+ * versions, so `verifyPaperStimuli` checks that the list is the one the items
+ * use.
  */
 export const PaperSchema = Schema.Struct({
   id: PaperIdSchema,

@@ -25,7 +25,11 @@ import {
   snbtQuestion11,
   snbtQuestion12,
 } from "#contracts/test/assessment/passage";
-import { tkaMatrix, tkaMultiple } from "#contracts/test/assessment/tka";
+import {
+  tkaMatrix,
+  tkaMultiple,
+  tkaMultipleExplanation,
+} from "#contracts/test/assessment/tka";
 
 describe("papers", () => {
   it("freezes a manuscript: a profile, sections of places, and the stimuli it uses", () => {
@@ -35,10 +39,11 @@ describe("papers", () => {
     expect(Schema.encodeSync(PaperSchema)(decoded)).toEqual(snbtPaper);
   });
 
-  it("points at each item version by family and hash, and carries no answer key", () => {
+  it("points at each item version by family and hash, and carries no answer key and no explanation", () => {
     for (const placement of [
       { ...firstPlacement, hash: "abc" },
       { ...firstPlacement, correct: ["option-5"] },
+      { ...firstPlacement, explanation: tkaMultipleExplanation.document },
     ]) {
       expect(
         failsStrict(PaperSchema, {
@@ -52,6 +57,12 @@ describe("papers", () => {
     }
     expect(
       failsStrict(PaperSchema, { ...snbtPaper, key: { answers: [] } })
+    ).toBe(true);
+    expect(
+      failsStrict(PaperSchema, {
+        ...snbtPaper,
+        explanation: tkaMultipleExplanation,
+      })
     ).toBe(true);
   });
 
