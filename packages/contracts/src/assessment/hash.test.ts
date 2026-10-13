@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Record as Rec } from "effect";
+import { DateTime, Effect, Record as Rec, Schema } from "effect";
 
 import {
   canonicalJson,
@@ -47,29 +47,61 @@ const stimulusBody = decodeStrict(StimulusVersionBodySchema, {
 });
 
 describe("canonical JSON", () => {
-  it("writes the keys of every object in order, whatever order they were built in", () => {
-    const ascending = Rec.fromEntries([
-      ["a", 1],
-      ["b", 2],
-    ]);
-    const descending = Rec.fromEntries([
-      ["b", 2],
-      ["a", 1],
-    ]);
+  it.effect(
+    "writes the keys of every object in order, whatever order they were built in",
+    () =>
+      Effect.gen(function* () {
+        const ascending = Rec.fromEntries([
+          ["a", 1],
+          ["b", 2],
+        ]);
+        const descending = Rec.fromEntries([
+          ["b", 2],
+          ["a", 1],
+        ]);
 
-    expect(Rec.keys(descending)).toEqual(["b", "a"]);
-    expect(canonicalJson(descending)).toBe(canonicalJson(ascending));
-    expect(canonicalJson(descending)).toBe('{"a":1,"b":2}');
-    expect(
-      canonicalJson({ "": "z", a: 1.5, b: [{ c: 'x"y', d: null }, true] })
-    ).toBe('{"":"z","a":1.5,"b":[{"c":"x\\"y","d":null},true]}');
-  });
+        expect(Rec.keys(descending)).toEqual(["b", "a"]);
+        expect(yield* canonicalJson(descending)).toBe(
+          yield* canonicalJson(ascending)
+        );
+        expect(yield* canonicalJson(descending)).toBe('{"a":1,"b":2}');
+        expect(
+          yield* canonicalJson({
+            "": "z",
+            a: 1.5,
+            b: [{ c: 'x"y', d: null }, true],
+          })
+        ).toBe('{"":"z","a":1.5,"b":[{"c":"x\\"y","d":null},true]}');
+      })
+  );
 
-  it("keeps the order of an array and writes a lone value as JSON", () => {
-    expect(canonicalJson([2, 1])).toBe("[2,1]");
-    expect(canonicalJson("é")).toBe('"é"');
-    expect(canonicalJson(null)).toBe("null");
-  });
+  it.effect("keeps the order of an array and writes a lone value as JSON", () =>
+    Effect.gen(function* () {
+      expect(yield* canonicalJson([2, 1])).toBe("[2,1]");
+      expect(yield* canonicalJson("é")).toBe('"é"');
+      expect(yield* canonicalJson(null)).toBe("null");
+    })
+  );
+
+  it.effect(
+    "fails with a schema error on a value that is not JSON, instead of a defect or of one text for two values",
+    () =>
+      Effect.gen(function* () {
+        for (const value of [
+          undefined,
+          { explanation: undefined },
+          [undefined],
+          DateTime.makeUnsafe(0),
+          DateTime.makeUnsafe(1000),
+          Number.NaN,
+          Number.POSITIVE_INFINITY,
+        ]) {
+          const error = yield* canonicalJson(value).pipe(Effect.flip);
+
+          expect(Schema.isSchemaError(error)).toBe(true);
+        }
+      })
+  );
 });
 
 describe("item version hash", () => {

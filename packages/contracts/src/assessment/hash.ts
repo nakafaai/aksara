@@ -20,26 +20,41 @@ const ITEM_DOMAIN = "nakafa.aksara.assessment-item";
 const STIMULUS_DOMAIN = "nakafa.aksara.assessment-stimulus";
 
 /**
- * Writes a JSON value as text with the keys of every object in code-unit
- * order, so equal content always has the same bytes whatever order the keys
- * were built in.
+ * Writes a value that is already known to be JSON as text, with the keys of
+ * every object in code-unit order. Every leaf is a string, a finite number, a
+ * boolean, or null, so writing it cannot fail.
  */
-export function canonicalJson(value: unknown): string {
+function writeCanonical(value: unknown): string {
   if (Arr.isArray(value)) {
     return `[${Arr.join(
-      Arr.map(value, (part) => canonicalJson(part)),
+      Arr.map(value, (part) => writeCanonical(part)),
       ","
     )}]`;
   }
   if (Predicate.isObject(value)) {
     const members = Arr.map(
       Arr.sort(Rec.keys(value), Order.String),
-      (key) => `${encodeJsonText(key)}:${canonicalJson(value[key])}`
+      (key) => `${encodeJsonText(key)}:${writeCanonical(value[key])}`
     );
     return `{${Arr.join(members, ",")}}`;
   }
   return encodeJsonText(value);
 }
+
+/**
+ * Writes a JSON value as text with the keys of every object in code-unit
+ * order, so equal content always has the same bytes whatever order the keys
+ * were built in. A value that is not JSON has no canonical text and fails with
+ * a schema error: a member that is `undefined`, a date, a number that is not
+ * finite, a class instance, or a cycle. Writing any of them as something else
+ * would give two different values one text, and so one hash.
+ */
+export const canonicalJson = Effect.fn("AksaraContracts.canonicalJson")(
+  function* (value: unknown) {
+    const json = yield* Schema.decodeUnknownEffect(Schema.Json)(value);
+    return writeCanonical(json);
+  }
+);
 
 /** A stored hash is not the hash of the content that carries it. */
 export class VersionHashMismatchError extends Schema.TaggedError<VersionHashMismatchError>()(
@@ -49,7 +64,9 @@ export class VersionHashMismatchError extends Schema.TaggedError<VersionHashMism
 
 /** Hashes the canonical encoding of one record under the domain of its kind. */
 const hashRecord = (domain: string, record: unknown) =>
-  hashText(`${domain}\n${canonicalJson(record)}`);
+  canonicalJson(record).pipe(
+    Effect.flatMap((canonical) => hashText(`${domain}\n${canonical}`))
+  );
 
 /** Computes the hash that an item version carries, from all of its other fields. */
 export const hashItemVersion = Effect.fn("AksaraContracts.hashItemVersion")(
