@@ -1,3 +1,5 @@
+import { Array as Arr } from "effect";
+
 import { math, text } from "#contracts/test/assessment/document";
 
 /** Builds a figure node of one component, as a document stores it. */
@@ -175,6 +177,22 @@ export const lineFigure = figure(
   "A triangle with base 2 and height 1, and its image with base 4 and height 2.",
   lineProps
 );
+
+/**
+ * The series of TKA compulsory mathematics set 3, question 8, that marks the
+ * two fixed points of the function, the roots of x^2 - 3x - 5 = 0 on the line
+ * y = x. Its line width is zero, so it draws the two points and no line.
+ */
+export const fixedPointsLine = {
+  color: "#d97706",
+  lineWidth: 0,
+  points: Arr.map([-1, 1], (sign) => {
+    const x = (3 + sign * Math.sqrt(29)) / 2;
+    return { x, y: x, z: 0 };
+  }),
+  showPoints: true,
+  smooth: false,
+};
 
 /** Props of the flow chart of SNBT general knowledge set 10, question 13. */
 export const diagramProps = {

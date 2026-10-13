@@ -34,6 +34,13 @@ const TripleSchema = Schema.Tuple([
   Schema.Finite,
 ]);
 
+/**
+ * The width of a line on screen. Zero is a width: the renderer draws no stroke,
+ * so a series with `showPoints` shows its points alone, as the answer to TKA
+ * compulsory mathematics set 3, question 8, shows its two fixed points.
+ */
+const LineWidthSchema = Schema.Finite.check(Schema.isGreaterThanOrEqualTo(0));
+
 /** The header every figure card shows: a title and a description. */
 const CardFields = {
   description: RichTextSchema,
@@ -159,7 +166,7 @@ const LineFieldsSchema = Schema.Struct({
     })
   ),
   labels: Schema.optionalKey(Schema.NonEmptyArray(LineLabelSchema)),
-  lineWidth: Schema.optionalKey(PositiveMeasureSchema),
+  lineWidth: Schema.optionalKey(LineWidthSchema),
   pointIndices: Schema.optionalKey(Schema.NonEmptyArray(NonNegativeIntSchema)),
   points: Schema.NonEmptyArray(SpacePointSchema),
   showPoints: Schema.optionalKey(Schema.Boolean),
@@ -183,18 +190,54 @@ const LineSchema = LineFieldsSchema.check(
 );
 
 /**
- * Props of `LineEquation`: lines in three dimensions, as the question bank uses
- * them. Lessons also draw circle shapes (`kind` set to `circle-arc`,
- * `circle-chord`, `circle-outline`, `circle-radius`, or `circle-segment`); no
- * item uses one, so they are not part of this contract.
+ * Where the `LineEquation` card puts the camera when `cameraPosition` is left
+ * out: `DEFAULT_CAMERA_POSITION_X`, `_Y`, and `_Z` in
+ * `components/contents/mathematics/line/equation.tsx` of Nakafa's design system
+ * (read on 13 October 2026).
  */
-export const LineEquationPropsSchema = Schema.Struct({
+const DEFAULT_CAMERA_POSITION: typeof TripleSchema.Type = [10, 6, 10];
+
+/**
+ * Where the scene looks when `cameraTarget` is left out: the origin, as
+ * `DEFAULT_CAMERA_TARGET` in `components/three/camera-controls.tsx` of the
+ * same package says (read on 13 October 2026).
+ */
+const DEFAULT_CAMERA_TARGET: typeof TripleSchema.Type = [0, 0, 0];
+
+const LineEquationFieldsSchema = Schema.Struct({
   ...CardFields,
   cameraPosition: Schema.optionalKey(TripleSchema),
   cameraTarget: Schema.optionalKey(TripleSchema),
   data: Schema.NonEmptyArray(LineSchema),
   showZAxis: Schema.optionalKey(Schema.Boolean),
 });
+
+/**
+ * Checks that the camera sits away from the point it looks at, with the
+ * renderer's defaults for a pose that is left out. A camera on its target has
+ * no direction to look in, and the renderer measures its zoom and its distance
+ * limits from that distance, which is then zero.
+ */
+function hasCameraDistance({
+  cameraPosition = DEFAULT_CAMERA_POSITION,
+  cameraTarget = DEFAULT_CAMERA_TARGET,
+}: typeof LineEquationFieldsSchema.Type) {
+  const [x, y, z] = cameraPosition;
+  const [targetX, targetY, targetZ] = cameraTarget;
+  return x !== targetX || y !== targetY || z !== targetZ;
+}
+
+/**
+ * Props of `LineEquation`: lines in three dimensions, as the question bank uses
+ * them. Lessons also draw circle shapes (`kind` set to `circle-arc`,
+ * `circle-chord`, `circle-outline`, `circle-radius`, or `circle-segment`); no
+ * item uses one, so they are not part of this contract.
+ */
+export const LineEquationPropsSchema = LineEquationFieldsSchema.check(
+  Schema.makeFilter(hasCameraDistance, {
+    message: "Expected a camera that sits away from the point it looks at.",
+  })
+);
 
 /** The exact sine, cosine, and tangent of the angle, each as LaTeX, such as `5/13`. */
 const TrigValuesSchema = Schema.Struct({

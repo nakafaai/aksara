@@ -16,6 +16,7 @@ import {
 import {
   circleFigure,
   diagramFigure,
+  fixedPointsLine,
   lineFigure,
   lineProps,
   numberLineFigure,
@@ -193,46 +194,69 @@ describe("NumberLine props", () => {
 
 describe("LineEquation props", () => {
   const [first, second] = lineProps.data;
+  const {
+    cameraPosition: _position,
+    cameraTarget: _target,
+    ...withoutCamera
+  } = lineProps;
+
+  /** Tells whether the props fail when the given fields replace those of a base. */
+  const fails = (fields: object, base: object = lineProps) =>
+    failsStrict(LineEquationPropsSchema, { ...base, ...fields });
 
   it("needs every point index and label place to name a point", () => {
-    expect(failsStrict(LineEquationPropsSchema, lineProps)).toBe(false);
+    expect(fails({})).toBe(false);
     for (const line of [
       { ...second, pointIndices: [0, 4] },
       { ...first, labels: [{ at: 4, text: [text("D")] }] },
     ]) {
-      expect(
-        failsStrict(LineEquationPropsSchema, { ...lineProps, data: [line] })
-      ).toBe(true);
+      expect(fails({ data: [line] })).toBe(true);
     }
-    expect(
-      failsStrict(LineEquationPropsSchema, {
-        ...lineProps,
-        data: [{ ...first, labels: [{ text: [text("D")] }] }],
-      })
-    ).toBe(false);
-    expect(
-      failsStrict(LineEquationPropsSchema, {
-        ...lineProps,
-        data: [{ color: "#9333ea", points: [{ x: 0, y: 0, z: 0 }] }],
-      })
-    ).toBe(false);
+    for (const line of [
+      { ...first, labels: [{ text: [text("D")] }] },
+      { color: "#9333ea", points: [{ x: 0, y: 0, z: 0 }] },
+    ]) {
+      expect(fails({ data: [line] })).toBe(false);
+    }
+  });
+
+  it("draws a series of width zero as its points alone, and never a negative width", () => {
+    for (const lineWidth of [0, 1, 4]) {
+      expect(fails({ data: [{ ...fixedPointsLine, lineWidth }] })).toBe(false);
+    }
+    expect(fails({ data: [{ ...fixedPointsLine, lineWidth: -1 }] })).toBe(true);
+  });
+
+  it("keeps the camera away from its target, whether or not the pose is written out", () => {
+    // The scene looks at the origin when no target is given, and the card puts
+    // the camera at (10, 6, 10) when no position is given.
+    for (const camera of [
+      { cameraPosition: [0.5, 3, 0], cameraTarget: [0.5, 3, 0] },
+      { cameraPosition: [0, 0, 0] },
+      { cameraTarget: [10, 6, 10] },
+    ]) {
+      expect(fails(camera, withoutCamera)).toBe(true);
+    }
+    for (const camera of [
+      {},
+      { cameraPosition: [0, 0, 20] },
+      { cameraTarget: [0, 2, 5] },
+      { cameraPosition: [1, 2, 20], cameraTarget: [1, 2, 0] },
+    ]) {
+      expect(fails(camera, withoutCamera)).toBe(false);
+    }
   });
 
   it("leaves out the circle shapes that only lessons draw", () => {
-    expect(
-      failsStrict(LineEquationPropsSchema, {
-        ...lineProps,
-        data: [
-          {
-            color: "#9333ea",
-            kind: "circle-arc",
-            radius: 1,
-            startDegrees: 0,
-            sweepDegrees: 90,
-          },
-        ],
-      })
-    ).toBe(true);
+    const arc = {
+      color: "#9333ea",
+      kind: "circle-arc",
+      radius: 1,
+      startDegrees: 0,
+      sweepDegrees: 90,
+    };
+
+    expect(fails({ data: [arc] })).toBe(true);
   });
 });
 
