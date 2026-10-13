@@ -62,19 +62,17 @@ export function note(value: string) {
   return doc(paragraph(text(value)));
 }
 
-/** Wraps a paragraph of text in the given number of block quotes. */
-function quoted(quotes: number): unknown {
-  return quotes === 0
-    ? paragraph(text("deep"))
-    : { content: [quoted(quotes - 1)], type: "blockquote" };
-}
-
 /**
  * Nests a paragraph inside the given number of block quotes. The document is
  * the `doc` level, the quotes, the paragraph, and its text: `quotes + 3` levels.
+ * The quotes are built in a loop, so a test can make a document of any depth.
  */
 export function nested(quotes: number) {
-  return doc(quoted(quotes));
+  let inner: unknown = paragraph(text("deep"));
+  for (let level = 0; level < quotes; level += 1) {
+    inner = { content: [inner], type: "blockquote" };
+  }
+  return doc(inner);
 }
 
 /** The prompt of TKA compulsory mathematics set 1, question 15, in Indonesian. */

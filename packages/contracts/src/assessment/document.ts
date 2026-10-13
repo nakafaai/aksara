@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Predicate, Schema, SchemaTransformation } from "effect";
 
 import { FigureNodeSchema, ImageSchema } from "#contracts/assessment/figure";
 import { LocalIdSchema } from "#contracts/assessment/identity";
@@ -109,19 +109,6 @@ export type BlockNode =
       readonly content: readonly [TableRowNode, ...TableRowNode[]];
       readonly type: "table";
     };
-export type BulletListNode = Extract<
-  BlockNode,
-  { readonly type: "bulletList" }
->;
-export type OrderedListNode = Extract<
-  BlockNode,
-  { readonly type: "orderedList" }
->;
-export type BlockquoteNode = Extract<
-  BlockNode,
-  { readonly type: "blockquote" }
->;
-export type TableNode = Extract<BlockNode, { readonly type: "table" }>;
 export type ListItemNode = typeof ListItemSchema.Type;
 export type TableRowNode = typeof TableRowSchema.Type;
 export type TableCellNode = typeof TableCellSchema.Type;
@@ -204,19 +191,22 @@ function childrenOf(node: DocumentNode): readonly DocumentNode[] {
   return "content" in node && node.content !== undefined ? node.content : [];
 }
 
-/** Counts the levels from one node down to its deepest descendant. */
-function levelsOf(node: DocumentNode): number {
+/**
+ * Checks that a value, read as a node, has at most `levels` levels from it
+ * down: the node is one level, and the nodes of its `content` are the levels
+ * below. It reads input that no schema has checked yet, so it assumes no shape,
+ * and it stops at the limit: it never calls itself more than `levels` times in
+ * a row, whatever the input.
+ */
+function fitsLevels(value: unknown, levels: number): boolean {
+  if (levels < 1) {
+    return false;
+  }
+  const content = Predicate.isObject(value) ? value.content : undefined;
   return (
-    1 +
-    Arr.reduce(childrenOf(node), 0, (deepest, child) =>
-      Math.max(deepest, levelsOf(child))
-    )
+    !Arr.isArray(content) ||
+    Arr.every(content, (child) => fitsLevels(child, levels - 1))
   );
-}
-
-/** Checks that a document is no deeper than `MAX_DOCUMENT_DEPTH`. */
-function hasLimitedDepth(document: DocumentNode) {
-  return levelsOf(document) <= MAX_DOCUMENT_DEPTH;
 }
 
 /** Checks that the encoded JSON text of a document fits `MAX_DOCUMENT_BYTES`. */
@@ -228,18 +218,36 @@ function fitsEncodedLimit(document: DocumentNode) {
 }
 
 /**
+ * A document as it arrives, before any node is read. Reading the nodes calls
+ * itself once or more for each level, so a document that is deep enough
+ * overflows the stack before any check on the decoded tree can run, and the
+ * overflow is a defect, not a failure. The depth is bounded here first, on the
+ * input, by a walk that stops at the limit.
+ */
+const BoundedInputSchema = Schema.Unknown.check(
+  Schema.makeFilter((input) => fitsLevels(input, MAX_DOCUMENT_DEPTH), {
+    message: `Expected a document at most ${MAX_DOCUMENT_DEPTH} levels deep.`,
+  })
+);
+
+/**
  * The Assessment Document: a ProseMirror JSON tree that Tiptap edits as it is.
  * Its nodes and marks are the ones of this module, each with typed attributes.
  * It holds the prompt of an item, so it may place interactions. A document is
  * at most `MAX_DOCUMENT_DEPTH` levels deep and `MAX_DOCUMENT_BYTES` bytes long.
+ * The depth is checked before the nodes are read, and the size after, when the
+ * depth is known to be small.
  */
-export const AssessmentDocumentSchema = DocumentRootSchema.check(
-  Schema.makeFilter(hasLimitedDepth, {
-    message: `Expected a document at most ${MAX_DOCUMENT_DEPTH} levels deep.`,
-  }),
-  Schema.makeFilter(fitsEncodedLimit, {
-    message: `Expected a document of at most ${MAX_DOCUMENT_BYTES} encoded bytes.`,
-  })
+export const AssessmentDocumentSchema = BoundedInputSchema.pipe(
+  Schema.decodeTo(
+    DocumentRootSchema,
+    SchemaTransformation.passthroughSupertype()
+  ),
+  Schema.check(
+    Schema.makeFilter(fitsEncodedLimit, {
+      message: `Expected a document of at most ${MAX_DOCUMENT_BYTES} encoded bytes.`,
+    })
+  )
 );
 export type AssessmentDocument = typeof AssessmentDocumentSchema.Type;
 
@@ -268,4 +276,3 @@ export const ContentDocumentSchema = AssessmentDocumentSchema.check(
     message: "Expected a document without interaction places.",
   })
 );
-export type ContentDocument = typeof ContentDocumentSchema.Type;

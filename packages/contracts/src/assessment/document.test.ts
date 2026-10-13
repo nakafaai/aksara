@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Cause, Exit, Schema } from "effect";
 
 import {
   AssessmentDocumentSchema,
@@ -30,6 +30,24 @@ function encodedBytes(value: unknown) {
   return new TextEncoder().encode(encodeJsonText(value)).byteLength;
 }
 
+/**
+ * Decodes one value as a document and tells whether it failed, and whether the
+ * failure was a defect, such as a stack overflow, instead of a typed failure.
+ */
+function failureOf(input: unknown) {
+  const exit = Schema.decodeUnknownExit(AssessmentDocumentSchema)(input, {
+    onExcessProperty: "error",
+  });
+  if (!Exit.isFailure(exit)) {
+    return { defect: false, failed: false, message: "" };
+  }
+  return {
+    defect: Cause.hasDies(exit.cause),
+    failed: true,
+    message: String(Cause.squash(exit.cause)),
+  };
+}
+
 describe("assessment document nodes", () => {
   it("decodes a prompt and every node kind, and encodes them back unchanged", () => {
     for (const input of [tkaPrompt, richDocument]) {
@@ -44,13 +62,19 @@ describe("assessment document nodes", () => {
   it("stores LaTeX once and never accepts MathML beside it", () => {
     const mathml = "<math><mi>x</mi></math>";
 
-    for (const node of [
-      { attrs: { latex: "x", mathml }, type: "mathInline" },
-      { attrs: { latex: "x", mathml }, type: "mathBlock" },
+    // Each node sits where its kind belongs, and decodes without the MathML.
+    for (const [alone, withMathml] of [
+      [
+        doc(paragraph(math("x"))),
+        doc(paragraph({ attrs: { latex: "x", mathml }, type: "mathInline" })),
+      ],
+      [
+        doc(blockMath("x")),
+        doc({ attrs: { latex: "x", mathml }, type: "mathBlock" }),
+      ],
     ]) {
-      expect(failsStrict(AssessmentDocumentSchema, doc(paragraph(node)))).toBe(
-        true
-      );
+      expect(failsStrict(AssessmentDocumentSchema, alone)).toBe(false);
+      expect(failsStrict(AssessmentDocumentSchema, withMathml)).toBe(true);
     }
     expect(failsStrict(AssessmentDocumentSchema, doc(blockMath("")))).toBe(
       true
@@ -113,6 +137,27 @@ describe("assessment document nodes", () => {
   });
 });
 
+describe("input that is not a document", () => {
+  it("fails with a typed failure, whatever its shape, and never with a defect", () => {
+    for (const input of [
+      undefined,
+      null,
+      "doc",
+      42,
+      [],
+      [doc()],
+      {},
+      { type: "doc" },
+      { content: "x", type: "doc" },
+      doc("x"),
+      doc(null),
+      doc(paragraph("x")),
+    ]) {
+      expect(failureOf(input)).toMatchObject({ defect: false, failed: true });
+    }
+  });
+});
+
 describe("assessment document bounds", () => {
   it("accepts the deepest document and rejects one level more", () => {
     expect(MAX_DOCUMENT_DEPTH).toBe(16);
@@ -122,6 +167,19 @@ describe("assessment document bounds", () => {
     expect(
       failsStrict(AssessmentDocumentSchema, nested(MAX_DOCUMENT_DEPTH - 2))
     ).toBe(true);
+  });
+
+  it("fails a document of hundreds or thousands of levels with the depth error, never with a defect", () => {
+    for (const quotes of [400, 3000, 100_000]) {
+      expect(failureOf(nested(quotes))).toMatchObject({
+        defect: false,
+        failed: true,
+        message: expect.stringContaining(
+          `at most ${MAX_DOCUMENT_DEPTH} levels deep`
+        ),
+      });
+    }
+    expect(failureOf(nested(MAX_DOCUMENT_DEPTH - 3)).failed).toBe(false);
   });
 
   it("accepts a document of exactly 1 MiB of encoded JSON and rejects one byte more", () => {
