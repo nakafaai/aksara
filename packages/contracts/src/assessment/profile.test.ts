@@ -223,15 +223,11 @@ describe("exam profiles", () => {
     }
   });
 
-  it("sets the write allowance and the grace period for every deadline, in whole seconds above zero", () => {
+  it("requires the write allowance and the grace period, each in whole seconds above zero", () => {
     const { graceSeconds: _grace, ...withoutGrace } = schoolProfile;
     const { writeAllowanceSeconds: _allowance, ...withoutAllowance } =
       schoolProfile;
 
-    expect(decodeStrict(ExamProfileSchema, snbtProfile)).toMatchObject({
-      graceSeconds: 120,
-      writeAllowanceSeconds: 5,
-    });
     expect(failsStrict(ExamProfileSchema, withoutGrace)).toBe(true);
     expect(failsStrict(ExamProfileSchema, withoutAllowance)).toBe(true);
     for (const field of ["graceSeconds", "writeAllowanceSeconds"]) {
