@@ -2,6 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
 
 import { InteractionKeySchema, ItemKeySchema } from "#contracts/assessment/key";
+import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
 import { decodeStrict, failsStrict } from "#contracts/test/assessment/document";
 import { hash } from "#contracts/test/assessment/item";
 import {
@@ -21,6 +22,7 @@ import {
   resultKey,
   textEntryKey,
 } from "#contracts/test/assessment/key";
+import { recordOfBytes } from "#contracts/test/assessment/record";
 
 describe("answer keys", () => {
   it("decodes one key of each of the twelve kinds and encodes it back", () => {
@@ -41,6 +43,21 @@ describe("answer keys", () => {
     for (const version of ["1", "sha256:abc", hash("A")]) {
       expect(failsStrict(ItemKeySchema, { ...itemKey, version })).toBe(true);
     }
+  });
+
+  it("is a record that Convex stores as one row, so it fits 1 MiB with its version", () => {
+    /** Builds a key whose one answer holds the given expression. */
+    const keying = (filler: string) => ({
+      answers: [{ ...mathEntryKey, expression: filler }],
+      version: hash("1"),
+    });
+
+    expect(
+      failsStrict(ItemKeySchema, recordOfBytes(keying, MAX_RECORD_BYTES))
+    ).toBe(false);
+    expect(
+      failsStrict(ItemKeySchema, recordOfBytes(keying, MAX_RECORD_BYTES + 1))
+    ).toBe(true);
   });
 
   it("gives one answer to each interaction", () => {

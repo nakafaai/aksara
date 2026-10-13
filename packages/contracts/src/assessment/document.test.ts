@@ -5,9 +5,9 @@ import {
   AssessmentDocumentSchema,
   ContentDocumentSchema,
   documentPlacements,
-  MAX_DOCUMENT_BYTES,
   MAX_DOCUMENT_DEPTH,
 } from "#contracts/assessment/document";
+import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
 import {
   blockMath,
   decodeStrict,
@@ -23,12 +23,6 @@ import {
   text,
   tkaPrompt,
 } from "#contracts/test/assessment/document";
-import { encodeJsonText } from "#contracts/text/json";
-
-/** Counts the UTF-8 bytes of the JSON text of one value. */
-function encodedBytes(value: unknown) {
-  return new TextEncoder().encode(encodeJsonText(value)).byteLength;
-}
 
 /**
  * Decodes one value as a document and tells whether it failed, and whether the
@@ -182,30 +176,12 @@ describe("assessment document bounds", () => {
     expect(failureOf(nested(MAX_DOCUMENT_DEPTH - 3)).failed).toBe(false);
   });
 
-  it("accepts a document of exactly 1 MiB of encoded JSON and rejects one byte more", () => {
-    const overhead = encodedBytes(note("a")) - 1;
-    const largest = note("a".repeat(MAX_DOCUMENT_BYTES - overhead));
+  it("has no size limit of its own, because Convex limits the whole record that holds it", () => {
+    // A document is only a part of a stored row, so the records measure the size.
+    const large = note("a".repeat(MAX_RECORD_BYTES));
 
-    expect(MAX_DOCUMENT_BYTES).toBe(1_048_576);
-    expect(encodedBytes(largest)).toBe(MAX_DOCUMENT_BYTES);
-    expect(failsStrict(AssessmentDocumentSchema, largest)).toBe(false);
-    expect(
-      failsStrict(
-        AssessmentDocumentSchema,
-        note("a".repeat(MAX_DOCUMENT_BYTES - overhead + 1))
-      )
-    ).toBe(true);
-  });
-
-  it("counts bytes, not characters", () => {
-    const overhead = encodedBytes(note("a")) - 1;
-
-    expect(
-      failsStrict(
-        AssessmentDocumentSchema,
-        note("é".repeat((MAX_DOCUMENT_BYTES - overhead) / 2 + 1))
-      )
-    ).toBe(true);
+    expect(failsStrict(AssessmentDocumentSchema, large)).toBe(false);
+    expect(failsStrict(ContentDocumentSchema, large)).toBe(false);
   });
 });
 

@@ -141,21 +141,6 @@ describe("an item version places its interactions in its prompt", () => {
       })
     ).toBe(true);
   });
-
-  it("keeps the explanation free of interactions", () => {
-    expect(
-      failsStrict(ItemVersionSchema, {
-        ...versionOf(choiceInteraction, ANSWER_ONLY),
-        explanation: doc(paragraph(text("Karena itu.")), place("answer")),
-      })
-    ).toBe(true);
-    expect(
-      failsStrict(ItemVersionSchema, {
-        ...versionOf(choiceInteraction, ANSWER_ONLY),
-        explanation: doc(paragraph(text("Karena itu."))),
-      })
-    ).toBe(false);
-  });
 });
 
 describe("an item version scores its interactions with rules that fit", () => {

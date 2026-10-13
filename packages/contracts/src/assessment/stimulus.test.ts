@@ -2,6 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
 
 import { StimulusIdSchema } from "#contracts/assessment/identity";
+import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
 import {
   StimulusSchema,
   StimulusVersionSchema,
@@ -17,6 +18,7 @@ import {
 } from "#contracts/test/assessment/document";
 import { hash } from "#contracts/test/assessment/item";
 import { PASSAGE_ID, passageVersion } from "#contracts/test/assessment/passage";
+import { recordOfBytes } from "#contracts/test/assessment/record";
 
 describe("stimuli", () => {
   it("decodes the shared passage of SNBT general knowledge set 10 in Indonesian", () => {
@@ -86,6 +88,27 @@ describe("stimuli", () => {
     expect(failsStrict(StimulusVersionSchema, unhashed)).toBe(true);
     expect(
       failsStrict(StimulusVersionSchema, { ...passageVersion, hash: "abc" })
+    ).toBe(true);
+  });
+
+  it("is a record that Convex stores as one row, so it fits 1 MiB with its hash", () => {
+    /** Builds a stimulus version whose document holds the given text. */
+    const reading = (filler: string) => ({
+      ...passageVersion,
+      document: note(filler),
+    });
+
+    expect(
+      failsStrict(
+        StimulusVersionSchema,
+        recordOfBytes(reading, MAX_RECORD_BYTES)
+      )
+    ).toBe(false);
+    expect(
+      failsStrict(
+        StimulusVersionSchema,
+        recordOfBytes(reading, MAX_RECORD_BYTES + 1)
+      )
     ).toBe(true);
   });
 });

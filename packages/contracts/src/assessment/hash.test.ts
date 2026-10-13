@@ -21,12 +21,20 @@ import {
   text,
 } from "#contracts/test/assessment/document";
 
-/** SHA-256 of the domain, a newline, and the canonical text, from `shasum -a 256`. */
-const ITEM_DIGEST = Sha256HashSchema.make(
-  "sha256:812566f633c343caa5d319782a6254f66347c8ded9a9321ebda3b47977c2e57f"
-);
+/**
+ * SHA-256 of the domain, a newline, and the canonical text, from `shasum -a 256`
+ * over canonical text written by hand, never from the implementation.
+ */
 const STIMULUS_DIGEST = Sha256HashSchema.make(
   "sha256:ee80e67ae1a373b035ed215b11915bcc2c3c944625dd5be0b42b627559a99b41"
+);
+/**
+ * The digest of an item version with every field its hash covers: the
+ * language, the family, the interactions, the prompt, a scoring rule, and the
+ * stimulus reference. The version holds no explanation and no key.
+ */
+const ITEM_DIGEST = Sha256HashSchema.make(
+  "sha256:5a727f861309b80584e2a967bb646e7c688f39437d56e8b200b0d712a730f10e"
 );
 const OTHER_DIGEST = Sha256HashSchema.make(`sha256:${"0".repeat(64)}`);
 
@@ -37,7 +45,8 @@ const itemBody = decodeStrict(ItemVersionBodySchema, {
   prompt: doc(
     paragraph(text("Name the capital of Indonesia."), placeInline("answer"))
   ),
-  scoring: [],
+  scoring: [{ interaction: "answer", rule: { kind: "allOrNothing" } }],
+  stimulus: { hash: STIMULUS_DIGEST, id: "test/passage-1" },
 });
 
 const stimulusBody = decodeStrict(StimulusVersionBodySchema, {

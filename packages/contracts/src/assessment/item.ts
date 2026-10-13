@@ -1,9 +1,6 @@
 import { Array as Arr, Schema } from "effect";
 
-import {
-  AssessmentDocumentSchema,
-  ContentDocumentSchema,
-} from "#contracts/assessment/document";
+import { AssessmentDocumentSchema } from "#contracts/assessment/document";
 import {
   hasFittingRules,
   hasPlacedInteractions,
@@ -15,6 +12,7 @@ import {
   StimulusIdSchema,
 } from "#contracts/assessment/identity";
 import { InteractionSchema } from "#contracts/assessment/interaction";
+import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { ScoringOverrideSchema } from "#contracts/assessment/scoring";
 import { hasSameStructure } from "#contracts/assessment/structure";
 import { Sha256HashSchema } from "#contracts/ids";
@@ -51,7 +49,6 @@ export type StimulusReference = typeof StimulusReferenceSchema.Type;
 /** The fields of an item version except its hash, which covers all of them. */
 const VersionFields = {
   deliveryLanguage: DeliveryLanguageSchema,
-  explanation: Schema.optionalKey(ContentDocumentSchema),
   family: ItemFamilyIdSchema,
   interactions: Schema.NonEmptyArray(InteractionSchema),
   prompt: AssessmentDocumentSchema,
@@ -62,7 +59,9 @@ const VersionFields = {
 /**
  * One item in one delivery language, without its hash: the prompt document,
  * its interactions, the scoring rules that override the exam profile, and the
- * explanation. The prompt carries no answer key.
+ * shared reading it was written against, if it has one. The prompt carries no
+ * answer key, and the version holds no explanation: the key and the explanation
+ * are records of their own (`assessment/key`, `assessment/explanation`).
  */
 export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   Schema.makeFilter(hasPlacedInteractions, {
@@ -78,12 +77,14 @@ export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
 /**
  * An item version is immutable once published: a change is a new version. Its
  * `hash` is the SHA-256 of the canonical encoding of the body (see
- * `assessment/hash`), so the hash names the exact content.
+ * `assessment/hash`), so the hash names the exact content. Nakafa stores a
+ * version as one row, so it carries the size check of a record
+ * (`assessment/record`), which measures the whole version with its hash.
  */
 export const ItemVersionSchema = ItemVersionBodySchema.mapFields(
   (fields) => ({ ...fields, hash: Sha256HashSchema }),
   { unsafePreserveChecks: true }
-);
+).check(isWithinRecordLimit);
 export type ItemVersion = typeof ItemVersionSchema.Type;
 
 const ItemFieldsSchema = Schema.Struct({

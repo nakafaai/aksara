@@ -2,7 +2,6 @@ import {
   blockMath,
   doc,
   math,
-  note,
   paragraph,
   place,
   text,
@@ -38,23 +37,6 @@ export const tkaChoice = {
 /** TKA compulsory mathematics set 1, question 15: select all true statements. */
 export const tkaMultiple = {
   deliveryLanguage: "id",
-  explanation: doc(
-    paragraph(
-      text("Dilatasi mengalikan kedua koordinat dengan "),
-      math("2"),
-      text(". Rotasi berikutnya mengubah "),
-      math("(x,y)"),
-      text(" menjadi "),
-      math("(-y,x)"),
-      text(".")
-    ),
-    blockMath("T(x,y)=(-2y,2x)"),
-    paragraph(
-      text("Dilatasi positif dan rotasi sama-sama "),
-      text("mempertahankan orientasi", "bold"),
-      text(".")
-    )
-  ),
   family: `${TKA_SET_1}/question-15`,
   hash: hash("4"),
   interactions: [tkaChoice],
@@ -75,6 +57,28 @@ export const tkaMultiple = {
     place("statements")
   ),
   scoring: [],
+};
+
+/** The explanation of the multiple-choice question, a record of its own. */
+export const tkaMultipleExplanation = {
+  document: doc(
+    paragraph(
+      text("Dilatasi mengalikan kedua koordinat dengan "),
+      math("2"),
+      text(". Rotasi berikutnya mengubah "),
+      math("(x,y)"),
+      text(" menjadi "),
+      math("(-y,x)"),
+      text(".")
+    ),
+    blockMath("T(x,y)=(-2y,2x)"),
+    paragraph(
+      text("Dilatasi positif dan rotasi sama-sama "),
+      text("mempertahankan orientasi", "bold"),
+      text(".")
+    )
+  ),
+  version: tkaMultiple.hash,
 };
 
 /** The family of the multiple-choice question. */
@@ -153,7 +157,6 @@ export const tkaMatrix = {
 export const tkaMultipleEnglish = {
   ...tkaMultiple,
   deliveryLanguage: "en",
-  explanation: note("Test-only explanation (en)."),
   hash: hash("6"),
   interactions: [
     {

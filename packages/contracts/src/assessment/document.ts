@@ -12,26 +12,17 @@ import {
   PlainTextSchema,
   PositiveIntSchema,
 } from "#contracts/assessment/scalar";
-import { encodeJsonText } from "#contracts/text/json";
 
 /**
  * Deepest nesting a document may have, counting `doc` as level 1 and a text
  * node as a level. Sixteen is the nesting that Convex allows in one stored
- * document (https://docs.convex.dev/production/state/limits, read 13 October
- * 2026), and this contract applies the same number to levels of nodes. A node
- * is an object that holds an array, so Convex counts about two of its levels
- * for each level here: a document this deep is stored as encoded JSON text and
- * not as a Convex object.
+ * document (https://docs.convex.dev/production/state/limits, section
+ * "Documents", row "Nesting depth", read 13 October 2026), and this contract
+ * applies the same number to levels of nodes. A node is an object that holds an
+ * array, so Convex counts about two of its levels for each level here: a
+ * document this deep is stored as encoded JSON text and not as a Convex object.
  */
 export const MAX_DOCUMENT_DEPTH = 16;
-
-/**
- * Largest encoded document in UTF-8 bytes: 1 MiB, the size that Convex allows
- * for one stored document (same page, read 13 October 2026). That limit covers
- * the whole stored document, so a store that adds fields around the text keeps
- * its own, lower ceiling.
- */
-export const MAX_DOCUMENT_BYTES = 1024 * 1024;
 
 const ParagraphSchema = Schema.Struct({
   content: Schema.optionalKey(InlineContentSchema),
@@ -209,14 +200,6 @@ function fitsLevels(value: unknown, levels: number): boolean {
   );
 }
 
-/** Checks that the encoded JSON text of a document fits `MAX_DOCUMENT_BYTES`. */
-function fitsEncodedLimit(document: DocumentNode) {
-  return (
-    new TextEncoder().encode(encodeJsonText(document)).byteLength <=
-    MAX_DOCUMENT_BYTES
-  );
-}
-
 /**
  * A document as it arrives, before any node is read. Reading the nodes calls
  * itself once or more for each level, so a document that is deep enough
@@ -234,20 +217,16 @@ const BoundedInputSchema = Schema.Unknown.check(
  * The Assessment Document: a ProseMirror JSON tree that Tiptap edits as it is.
  * Its nodes and marks are the ones of this module, each with typed attributes.
  * It holds the prompt of an item, so it may place interactions. A document is
- * at most `MAX_DOCUMENT_DEPTH` levels deep and `MAX_DOCUMENT_BYTES` bytes long.
- * The depth is checked before the nodes are read, and the size after, when the
- * depth is known to be small. Its encoded type is `unknown` for that reason:
- * the input is bounded as it arrives, before it is read as nodes.
+ * at most `MAX_DOCUMENT_DEPTH` levels deep, checked before the nodes are read.
+ * Its encoded type is `unknown` for that reason: the input is bounded as it
+ * arrives, before it is read as nodes. A document has no size limit of its own,
+ * because Convex limits a whole stored document and a document is only a part
+ * of one: the record that holds it measures its size (`assessment/record`).
  */
 export const AssessmentDocumentSchema = BoundedInputSchema.pipe(
   Schema.decodeTo(
     DocumentRootSchema,
     SchemaTransformation.passthroughSupertype()
-  ),
-  Schema.check(
-    Schema.makeFilter(fitsEncodedLimit, {
-      message: `Expected a document of at most ${MAX_DOCUMENT_BYTES} encoded bytes.`,
-    })
   )
 );
 export type AssessmentDocument = typeof AssessmentDocumentSchema.Type;

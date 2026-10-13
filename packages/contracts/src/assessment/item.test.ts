@@ -6,6 +6,7 @@ import {
   ItemSchema,
   ItemVersionSchema,
 } from "#contracts/assessment/item";
+import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
 import {
   decodeStrict,
   doc,
@@ -17,6 +18,7 @@ import {
 } from "#contracts/test/assessment/document";
 import { passageReference } from "#contracts/test/assessment/exam";
 import {
+  choiceInteraction,
   hotspotInteraction,
   numericEntryInteraction,
 } from "#contracts/test/assessment/interaction";
@@ -28,12 +30,14 @@ import {
   snbtQuestion11,
   snbtQuestion12,
 } from "#contracts/test/assessment/passage";
+import { recordOfBytes } from "#contracts/test/assessment/record";
 import { perPart } from "#contracts/test/assessment/scoring";
 import {
   tkaChoice,
   tkaMatrix,
   tkaMultiple,
   tkaMultipleEnglish,
+  tkaMultipleExplanation,
   tkaMultipleFamily,
 } from "#contracts/test/assessment/tka";
 
@@ -89,7 +93,7 @@ describe("item versions of today's corpus", () => {
     ).toBe(true);
   });
 
-  it("is a record of its own: a hash, a language, and no answer key", () => {
+  it("is a record of its own: a hash, a language, no answer key, and no explanation", () => {
     const { hash: _hash, ...unhashed } = tkaMultiple;
 
     expect(failsStrict(ItemVersionSchema, unhashed)).toBe(true);
@@ -97,11 +101,35 @@ describe("item versions of today's corpus", () => {
       { hash: "abc" },
       { deliveryLanguage: "fr" },
       { correct: ["option-2"] },
+      // The explanation is a record of its own, named by the hash of the version.
+      { explanation: tkaMultipleExplanation.document },
     ]) {
       expect(
         failsStrict(ItemVersionSchema, { ...tkaMultiple, ...change })
       ).toBe(true);
     }
+  });
+});
+
+describe("an item version is one row in Convex", () => {
+  it("fits 1 MiB with its hash, to the byte", () => {
+    /** Builds a version of a choice whose prompt holds the given text. */
+    const prompting = (filler: string) =>
+      versionOf(
+        choiceInteraction,
+        doc(paragraph(text(filler)), place("answer")),
+        "id"
+      );
+
+    expect(
+      failsStrict(ItemVersionSchema, recordOfBytes(prompting, MAX_RECORD_BYTES))
+    ).toBe(false);
+    expect(
+      failsStrict(
+        ItemVersionSchema,
+        recordOfBytes(prompting, MAX_RECORD_BYTES + 1)
+      )
+    ).toBe(true);
   });
 });
 

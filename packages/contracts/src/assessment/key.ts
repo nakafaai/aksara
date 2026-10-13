@@ -1,6 +1,7 @@
 import { Array as Arr, Schema } from "effect";
 
 import { hasDistinctIds, LocalIdSchema } from "#contracts/assessment/identity";
+import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { LatexSchema, PlainTextSchema } from "#contracts/assessment/scalar";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -207,6 +208,8 @@ export type InteractionKey = typeof InteractionKeySchema.Type;
  * The answer key of one item version: its own schema and its own artifact,
  * delivered only to a reader who is entitled to it. The prompt of the item
  * carries no key. `version` is the hash of the item version it belongs to.
+ * Nakafa stores a key as one row, so it carries the size check of a record
+ * (`assessment/record`).
  */
 export const ItemKeySchema = Schema.Struct({
   answers: Schema.NonEmptyArray(InteractionKeySchema).check(
@@ -217,5 +220,5 @@ export const ItemKeySchema = Schema.Struct({
     )
   ),
   version: Sha256HashSchema,
-});
+}).check(isWithinRecordLimit);
 export type ItemKey = typeof ItemKeySchema.Type;
