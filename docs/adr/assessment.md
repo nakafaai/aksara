@@ -49,7 +49,11 @@ marks are `bold`, `italic`, `underline`, `code`, `subscript`, `superscript`, and
   `MathVisual` scene is the `MathVisualSchema` that already exists in
   `math/visual`, and its rich labels must match the label anchors of the scene.
   The circle shapes that lessons draw with `LineEquation` are left out, because
-  no item uses one.
+  no item uses one. A `LineEquation` series may have a line width of zero, which
+  draws its points alone, as the answer to TKA compulsory mathematics set 3,
+  question 8, does. Its camera sits away from the point it looks at, counting the
+  defaults of the renderer for a pose that is left out: the card puts the camera
+  at (10, 6, 10), and the scene looks at the origin.
 - An `image` carries an asset identifier, a required text alternative, and its
   pixel width and height, so a page can reserve the space before the file loads.
 - An `interaction` block or an `inlineInteraction` node names an interaction of
@@ -82,11 +86,15 @@ for each correct part, an optional penalty for each wrong part, and a floor), or
 `rubric` (criteria with ordered levels and points). The outcome of an
 interaction is a score category from 0 to k, where k is the most points its rule
 can award, so a partial score can enter an IRT model through GPCM later. The
-exam profile sets a default rule for every interaction kind, and an item may
-override it for one interaction. A rubric is never a default, so an extended text
-always carries its own. An exam scores its outcomes with one strategy: `irt`,
-`raw`, `penalized` (whole marks for a correct, a wrong, and a blank answer), or
-`composite` (a formula written out in every language).
+floor of a per-part rule is therefore at most k. A field has one part, worth the
+points of its rule, so an item version and an exam profile check the floor of a
+rule for a field themselves. The key counts the parts of every other kind, so
+the check of those belongs to the key-fit check below. The exam profile sets a
+default rule for every interaction kind, and an item may override it for one
+interaction. A rubric is never a default, so an extended text always carries its
+own. An exam scores its outcomes with one strategy: `irt`, `raw`, `penalized`
+(whole marks for a correct, a wrong, and a blank answer), or `composite` (a
+formula written out in every language).
 
 ### Keys
 
@@ -107,7 +115,10 @@ are the ones of `question/answer`, so there is one grammar for them.
   is SHA-256 over the canonical JSON of every other field (keys in code-unit
   order), under the domain `nakafa.aksara.assessment-item`. A stimulus version
   uses `nakafa.aksara.assessment-stimulus`. Equal content has one hash whatever
-  order its keys were built in.
+  order its keys were built in. A value that is not JSON (a member that is
+  `undefined`, a date, a number that is not finite) has no canonical text and
+  fails with a schema error, because writing it as something else would give two
+  values one hash.
 - Every version of a family has the same interaction structure, checked by the
   `ItemSchema` refinement. The old contract already required translations to keep
   their format, structure, and key. If the structure could differ, one answer key,
@@ -133,7 +144,10 @@ are the ones of `question/answer`, so there is one grammar for them.
 - A paper is a frozen manuscript: the profile it follows by identifier and hash,
   sections with ordered places, each place an item version by family and hash,
   and the stimulus versions it uses by identifier and hash. The signed paper
-  bundle carries no key.
+  bundle carries no key. The schema of a paper cannot see the item versions its
+  places name, so `verifyPaperStimuli` checks that the stimulus versions a paper
+  lists are exactly the ones those item versions use, each once; the publisher
+  runs it before it signs a paper.
 - The tool registry has twelve identifiers: three calculators (`basic`,
   `scientific`, `graphing`; no calculator is the absence of all three), a formula
   sheet, an option eliminator, a highlighter, mark for review, notes, a line
@@ -211,6 +225,12 @@ Convex levels deep. A document is therefore stored as encoded JSON text, not as
 a Convex object. The 1 MiB limit covers the whole stored document, so a store
 that adds fields around the text keeps a lower ceiling of its own.
 
+The schema checks the depth on the input, before it reads any node, with a walk
+that stops at the limit. Reading nodes uses the stack once or more for each
+level, so a document that is deep enough would overflow it, and that is a defect,
+not a failure of the schema. The size is checked after the nodes are read, when
+the depth is known to be small.
+
 ## What the later work does
 
 Each step below is a separate change. They land in one release train, because a
@@ -223,7 +243,9 @@ compatibility layer.
 2. The corpus migration rewrites today's question bank and try-out sets as item
    families, versions, stimuli, profiles, and papers.
 3. The publisher signs and stages those records and delivers each key only to an
-   entitled reader.
+   entitled reader. Before it signs a paper it checks the stimulus versions the
+   paper lists with `verifyPaperStimuli`, and it checks each key against its item
+   version.
 4. Nakafa's consumer renders the document, plays the interactions, grades with
    the keys, and reads profiles and papers.
 5. The release that switches the readers deletes `question/` and `tryout/` and
@@ -242,11 +264,13 @@ compatibility layer.
   the compiler that writes a hash and the consumer that checks it share one
   encoding.
 - This contract leaves out upload and audio interactions, adaptive sections, and
-  a check that a key fits the item version it names (the publisher owns it). The
-  accommodation vocabulary is the one in the blueprint's table of accommodations:
-  assigned support is text to speech, high contrast, and a separate room;
-  recorded accommodations are extra time, an extra break, a reader, a scribe, and
-  an alternate format. Adding a name is a change to this contract.
+  a check that a key fits the item version it names. The publisher owns that
+  check, and it includes the floor of a per-part rule against the points that the
+  parts counted by the key allow. The accommodation vocabulary is the one in the
+  blueprint's table of accommodations: assigned support is text to speech, high
+  contrast, and a separate room; recorded accommodations are extra time, an extra
+  break, a reader, a scribe, and an alternate format. Adding a name is a change
+  to this contract.
 
 ## Rejected
 
