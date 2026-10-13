@@ -14,6 +14,7 @@ import {
   DefaultRuleSchema,
   ScoreScaleSchema,
   ScoringStrategySchema,
+  supportsRule,
 } from "#contracts/assessment/scoring";
 import { ToolSetSchema } from "#contracts/assessment/tools";
 
@@ -93,11 +94,21 @@ export const ReportFormSchema = Schema.Struct({
   total: Schema.Boolean,
 });
 
-/** The rule an exam sets for every interaction of one kind. */
+/**
+ * The rule an exam sets for every interaction of one kind. The rule fits the
+ * kind, as the rule of an item fits its interaction.
+ */
 const DefaultSchema = Schema.Struct({
   interaction: InteractionKindSchema,
   rule: DefaultRuleSchema,
-});
+}).check(
+  Schema.makeFilter(
+    ({ interaction, rule }) => supportsRule(interaction, rule),
+    {
+      message: "Expected a default rule that fits its interaction kind.",
+    }
+  )
+);
 
 const ProfileFieldsSchema = Schema.Struct({
   accommodations: AccommodationCatalogSchema,

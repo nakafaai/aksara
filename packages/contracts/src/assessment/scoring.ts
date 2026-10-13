@@ -1,7 +1,10 @@
 import { Array as Arr, Match, Schema } from "effect";
 
 import { hasUniqueIds, LocalIdSchema } from "#contracts/assessment/identity";
-import type { Interaction } from "#contracts/assessment/interaction";
+import {
+  canSitInText,
+  type InteractionKind,
+} from "#contracts/assessment/interaction";
 import {
   LocalizedTextSchema,
   NonNegativeIntSchema,
@@ -24,8 +27,11 @@ export const AllOrNothingRuleSchema = Schema.Struct({
 /**
  * Points for each correct part, an optional penalty for each wrong part, and a
  * floor that the score never falls below. Because an outcome is a category
- * from 0, the floor is zero or more. It is `map_response` of QTI response
- * processing: a `qti-mapping` whose map entries are the correct parts, whose
+ * from 0 to k, the floor is zero or more and at most k. A field has one part,
+ * so an item version and an exam profile check the floor of a field themselves
+ * (`supportsRule`); the key counts the parts of every other kind, so the check
+ * of those waits for the key. It is `map_response` of QTI response processing:
+ * a `qti-mapping` whose map entries are the correct parts, whose
  * `default-value` is the negative of the penalty, and whose `lower-bound` is
  * the floor.
  */
@@ -133,12 +139,26 @@ export function scoreCeiling(rule: ScoringRule, parts: number) {
 }
 
 /**
- * Checks that a rule can score an interaction. A rubric scores an extended
- * text and nothing else, and an extended text takes no other rule. A field with
- * one part is the single case of a per-part rule: one part is one point.
+ * Checks that the floor of a per-part rule is at most the points of a field.
+ * A field has one part, so the points of the part are the most it can score.
  */
-export function supportsRule(interaction: Interaction, rule: ScoringRule) {
-  return (interaction.kind === "extendedText") === (rule.kind === "rubric");
+function hasFieldFloor(rule: ScoringRule) {
+  return rule.kind !== "perPart" || rule.floor <= scoreCeiling(rule, 1);
+}
+
+/**
+ * Checks that a rule can score an interaction of this kind. A rubric scores an
+ * extended text and nothing else, and an extended text takes no other rule. A
+ * field has one part, worth the points of its rule: one point, or more when
+ * the item is worth more. The floor of a rule per part is at most those
+ * points. Every other kind has the parts that its key counts, so the key checks
+ * the floor of a rule for those.
+ */
+export function supportsRule(kind: InteractionKind, rule: ScoringRule) {
+  return (
+    (kind === "extendedText") === (rule.kind === "rubric") &&
+    (!canSitInText(kind) || hasFieldFloor(rule))
+  );
 }
 
 /**

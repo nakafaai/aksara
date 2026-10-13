@@ -73,8 +73,8 @@ export function hasPlacedInteractions(version: {
 
 /**
  * Checks the scoring rules that a version sets itself: each names one of its
- * interactions once, and fits it. An extended text has no default, so it must
- * carry its rubric.
+ * interactions once, and fits its kind. An extended text has no default, so it
+ * must carry its rubric.
  */
 export function hasFittingRules(version: {
   readonly interactions: readonly Interaction[];
@@ -88,7 +88,7 @@ export function hasFittingRules(version: {
       Arr.some(
         version.interactions,
         (candidate) =>
-          candidate.id === interaction && supportsRule(candidate, rule)
+          candidate.id === interaction && supportsRule(candidate.kind, rule)
       )
     ) &&
     Arr.every(

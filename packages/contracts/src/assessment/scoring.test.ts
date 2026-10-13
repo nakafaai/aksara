@@ -1,7 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
 
-import { InteractionSchema } from "#contracts/assessment/interaction";
+import {
+  InteractionKindSchema,
+  InteractionSchema,
+} from "#contracts/assessment/interaction";
 import {
   DefaultRuleSchema,
   MarksSchema,
@@ -148,7 +151,7 @@ describe("which rule scores which interaction", () => {
     /** Tells which of the three rules can score the given interaction. */
     const fits = (input: unknown) =>
       Arr.map(rules, (rule) =>
-        supportsRule(decodeStrict(InteractionSchema, input), rule)
+        supportsRule(decodeStrict(InteractionSchema, input).kind, rule)
       );
 
     expect(fits(extendedTextInteraction)).toEqual([false, false, true]);
@@ -156,6 +159,27 @@ describe("which rule scores which interaction", () => {
     for (const interaction of ALL_INTERACTIONS) {
       expect(fits(interaction)[2]).toBe(interaction.kind === "extendedText");
     }
+  });
+
+  it("keeps the floor of a rule per part within the points of a field, whose one part is worth them", () => {
+    /** Builds a rule per part that is worth 2 points for a part. */
+    const withFloor = (floor: number) =>
+      decodeStrict(ScoringRuleSchema, { ...perPart, floor, pointsPerPart: 2 });
+    /** Decodes the kind of one interaction. */
+    const kindOf = (kind: string) => decodeStrict(InteractionKindSchema, kind);
+
+    for (const field of [
+      "inlineChoice",
+      "textEntry",
+      "numericEntry",
+      "mathEntry",
+    ]) {
+      expect(supportsRule(kindOf(field), withFloor(2))).toBe(true);
+      expect(supportsRule(kindOf(field), withFloor(3))).toBe(false);
+    }
+    // The key counts the parts of every other kind, so the key checks the floor.
+    expect(supportsRule(kindOf("choice"), withFloor(3))).toBe(true);
+    expect(supportsRule(kindOf("matrix"), withFloor(3))).toBe(true);
   });
 });
 

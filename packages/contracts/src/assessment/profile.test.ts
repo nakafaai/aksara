@@ -125,6 +125,29 @@ describe("exam profiles", () => {
     }
   });
 
+  it("keeps the floor of a default rule per part within the points of a field", () => {
+    /** Builds the default of a text entry, a field with one part worth 2 points. */
+    const fieldDefault = (floor: number) => ({
+      interaction: "textEntry",
+      rule: { floor, kind: "perPart", pointsPerPart: 2 },
+    });
+
+    for (const floor of [0, 2]) {
+      expect(
+        failsStrict(ExamProfileSchema, {
+          ...schoolProfile,
+          defaults: [choiceDefault, fieldDefault(floor)],
+        })
+      ).toBe(false);
+    }
+    expect(
+      failsStrict(ExamProfileSchema, {
+        ...schoolProfile,
+        defaults: [choiceDefault, fieldDefault(3)],
+      })
+    ).toBe(true);
+  });
+
   it("has a scale for an IRT or composite score only", () => {
     const { scale: _scale, ...unscaled } = snbtProfile;
 

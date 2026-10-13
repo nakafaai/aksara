@@ -185,6 +185,43 @@ describe("an item version scores its interactions with rules that fit", () => {
     ).toBe(true);
   });
 
+  it("keeps the floor of a rule per part within the points of a field, which has one part", () => {
+    /** Builds a text entry that a rule per part with the given floor and points scores. */
+    const scoredField = (floor: number, pointsPerPart: number) => ({
+      ...versionOf(
+        textEntryInteraction,
+        doc(paragraph(text("Ibu kota "), placeInline("capital")))
+      ),
+      scoring: [
+        {
+          interaction: "capital",
+          rule: { ...perPart, floor, pointsPerPart },
+        },
+      ],
+    });
+
+    // One part is worth the points of its rule, so a field can be worth 3.
+    for (const { floor, points } of [
+      { floor: 0, points: 1 },
+      { floor: 1, points: 1 },
+      { floor: 0, points: 3 },
+      { floor: 3, points: 3 },
+    ]) {
+      expect(failsStrict(ItemVersionSchema, scoredField(floor, points))).toBe(
+        false
+      );
+    }
+    for (const { floor, points } of [
+      { floor: 2, points: 1 },
+      { floor: 5, points: 1 },
+      { floor: 4, points: 3 },
+    ]) {
+      expect(failsStrict(ItemVersionSchema, scoredField(floor, points))).toBe(
+        true
+      );
+    }
+  });
+
   it("rejects a rule for an interaction the item does not have, and a rubric for a choice", () => {
     for (const scoring of [
       [{ interaction: "other", rule: allOrNothing }],
