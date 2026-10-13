@@ -207,9 +207,8 @@ export type InteractionKey = typeof InteractionKeySchema.Type;
 /**
  * The answer key of one item version: its own schema and its own artifact,
  * delivered only to a reader who is entitled to it. The prompt of the item
- * carries no key. `version` is the hash of the item version it belongs to.
- * Nakafa stores a key as one row, so it carries the size check of a record
- * (`assessment/record`).
+ * carries no key. `version` is the hash of the item version it belongs to. Its
+ * size is limited by `assessment/record`.
  */
 export const ItemKeySchema = Schema.Struct({
   answers: Schema.NonEmptyArray(InteractionKeySchema).check(

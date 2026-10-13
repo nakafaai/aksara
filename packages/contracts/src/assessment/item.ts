@@ -77,9 +77,8 @@ export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
 /**
  * An item version is immutable once published: a change is a new version. Its
  * `hash` is the SHA-256 of the canonical encoding of the body (see
- * `assessment/hash`), so the hash names the exact content. Nakafa stores a
- * version as one row, so it carries the size check of a record
- * (`assessment/record`), which measures the whole version with its hash.
+ * `assessment/hash`), so the hash names the exact content. Its size is limited
+ * by `assessment/record`.
  */
 export const ItemVersionSchema = ItemVersionBodySchema.mapFields(
   (fields) => ({ ...fields, hash: Sha256HashSchema }),

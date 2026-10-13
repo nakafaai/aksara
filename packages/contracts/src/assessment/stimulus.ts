@@ -26,9 +26,8 @@ export const StimulusVersionBodySchema = Schema.Struct(VersionFields);
  * A stimulus version is immutable once published: a change is a new version.
  * Its `hash` is the SHA-256 of the canonical encoding of the body (see
  * `assessment/hash`). Items use the version by identifier and hash and never
- * copy its document into their prompts. Nakafa stores a version as one row, so
- * it carries the size check of a record (`assessment/record`), which measures
- * the whole version with its hash.
+ * copy its document into their prompts. Its size is limited by
+ * `assessment/record`.
  */
 export const StimulusVersionSchema = StimulusVersionBodySchema.mapFields(
   (fields) => ({ ...fields, hash: Sha256HashSchema }),

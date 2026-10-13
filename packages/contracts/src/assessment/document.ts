@@ -219,9 +219,8 @@ const BoundedInputSchema = Schema.Unknown.check(
  * It holds the prompt of an item, so it may place interactions. A document is
  * at most `MAX_DOCUMENT_DEPTH` levels deep, checked before the nodes are read.
  * Its encoded type is `unknown` for that reason: the input is bounded as it
- * arrives, before it is read as nodes. A document has no size limit of its own,
- * because Convex limits a whole stored document and a document is only a part
- * of one: the record that holds it measures its size (`assessment/record`).
+ * arrives, before it is read as nodes. A document has no size limit of its own:
+ * `assessment/record` limits the record that holds it.
  */
 export const AssessmentDocumentSchema = BoundedInputSchema.pipe(
   Schema.decodeTo(
