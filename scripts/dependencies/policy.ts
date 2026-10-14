@@ -51,21 +51,21 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "5.0.3",
+    approvedCurrent: "5.0.4",
     cohort: "Effect testing",
     dependency: "vitest",
     reason: "The Effect 4 test adapter requires Vitest version 5.",
     registry: "vitest@latest",
-    reviewedLatest: "5.0.3",
+    reviewedLatest: "5.0.4",
     source: "catalog",
   },
   {
-    approvedCurrent: "5.0.3",
+    approvedCurrent: "5.0.4",
     cohort: "Effect testing",
     dependency: "@vitest/coverage-istanbul",
     reason: "Coverage instrumentation must match the supported Vitest runner.",
     registry: "@vitest/coverage-istanbul@latest",
-    reviewedLatest: "5.0.3",
+    reviewedLatest: "5.0.4",
     source: "catalog",
   },
   {
@@ -97,12 +97,12 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "node-runtime",
   },
   {
-    approvedCurrent: "24.19.1",
+    approvedCurrent: "24.19.2",
     cohort: "Node 24",
     dependency: "@types/node",
     reason: "Node declarations must stay on the supported runtime major.",
     registry: "@types/node@24",
-    reviewedLatest: "24.19.1",
+    reviewedLatest: "24.19.2",
     source: "root-dev-dependency",
   },
   {
@@ -124,7 +124,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "11.28.4",
+    approvedCurrent: "11.28.5",
     cohort: "pnpm",
     dependency: "pnpm",
     reason:
