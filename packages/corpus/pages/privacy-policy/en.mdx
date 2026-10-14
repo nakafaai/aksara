@@ -2,12 +2,12 @@ export const metadata = {
   title: "Privacy Policy",
   description: "Learn how Nakafa collects, uses, and protects your personal data and privacy when using our learning platform.",
   datePublished: "2025-10-18",
-  dateModified: "2026-10-13",
+  dateModified: "2026-10-14",
 };
 
 # Privacy Policy
 
-Last updated: October 13, 2026
+Last updated: October 14, 2026
 
 This Privacy Policy explains how PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") collects, uses, and discloses Personal Data when you access or use our websites, applications, and related services, including Nakafa School (collectively, the "Services").
 
@@ -62,7 +62,7 @@ The table below summarizes categories of Personal Data we collect, why we collec
 
 ### Implementation evidence for this revision
 
-We checked the data-flow statements for the features available today against Nakafa commit [`28b3e2927cb6f02dbceda7ed01d2dd46b94eef97`](https://github.com/nakafaai/nakafa.com/commit/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97). Nakafa School under a written agreement with a School, accounts a School creates, Guardian sign-in, exam integrity signals, learning estimates, School integrations, Google connectors, account mascots, and web push notifications are not part of that commit yet. The statements about those features describe how they will process data, and they apply from the day each feature becomes available. Before each of these features becomes available, we check these statements against its implementation and update this Policy where they differ.
+We checked the data-flow statements for the features available today against Nakafa commit [`28b3e2927cb6f02dbceda7ed01d2dd46b94eef97`](https://github.com/nakafaai/nakafa.com/commit/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97). Nakafa School under a written agreement with a School, accounts a School creates, Guardian sign-in, exam integrity signals, learning estimates, School integrations, Google connectors, account mascots, and web push notifications are not available to users yet. The statements about those features describe how they will process data, and they apply from the day each feature becomes available. Before each of these features becomes available, we check these statements against its implementation and update this Policy where they differ.
 
 At that commit, [`packages/backend/confect/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/auth/client.ts) stores and synchronizes account profile data in Convex and schedules the Polar customer synchronization, which sends the name, email address, and account identifiers through [`packages/backend/confect/customers/sync/impl.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/customers/sync/impl.ts). Google sign-in is configured in [`packages/backend/confect/auth/runtime.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/auth/runtime.ts), which also has Better Auth encrypt the access and refresh tokens that Google issues before it stores them, and the authentication schema in [`packages/backend/components/betterAuth/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/components/betterAuth/schema.ts) keeps sessions with the request IP address and user agent, and Google-issued tokens with the linked account. The authentication boundary is exposed in [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/apps/www/app/api/auth/%5B...all%5D/route.ts). [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/apps/www/vercel.ts) runs the web app's Vercel functions in the United States region `iad1`, beside the Convex production deployment in US East. The welcome message goes through Resend to the recipient email address in [`packages/backend/confect/emails/welcome/internal.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/emails/welcome/internal.ts).
 

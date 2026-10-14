@@ -2,12 +2,12 @@ export const metadata = {
   title: "Kebijakan Privasi",
   description: "Pelajari bagaimana Nakafa mengumpulkan, menggunakan, dan melindungi data pribadi dan privasi kamu saat menggunakan platform belajar kami.",
   datePublished: "2025-10-18",
-  dateModified: "2026-10-13",
+  dateModified: "2026-10-14",
 };
 
 # Kebijakan Privasi
 
-Terakhir diperbarui: 13 Oktober 2026
+Terakhir diperbarui: 14 Oktober 2026
 
 Kebijakan Privasi ini menjelaskan bagaimana PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") mengumpulkan, menggunakan, dan mengungkapkan Data Pribadi ketika Anda mengakses atau menggunakan situs web, aplikasi, dan layanan terkait kami, termasuk Nakafa School (secara kolektif, "Layanan").
 
@@ -62,7 +62,7 @@ Tabel berikut merangkum kategori Data Pribadi yang kami kumpulkan, tujuan pengum
 
 ### Bukti implementasi untuk revisi ini
 
-Kami memeriksa pernyataan aliran data untuk fitur yang tersedia saat ini terhadap commit Nakafa [`28b3e2927cb6f02dbceda7ed01d2dd46b94eef97`](https://github.com/nakafaai/nakafa.com/commit/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97). Nakafa School berdasarkan perjanjian tertulis dengan Sekolah, akun yang dibuat Sekolah, cara masuk Wali, sinyal integritas ujian, perkiraan penguasaan belajar, integrasi Sekolah, konektor Google, maskot akun, dan notifikasi push web belum ada di commit tersebut. Pernyataan tentang fitur-fitur tersebut menjelaskan cara fitur itu akan memproses data, dan berlaku sejak hari setiap fitur tersedia. Sebelum setiap fitur tersebut tersedia, kami memeriksa pernyataan ini terhadap implementasinya dan memperbarui Kebijakan ini jika ada perbedaan.
+Kami memeriksa pernyataan aliran data untuk fitur yang tersedia saat ini terhadap commit Nakafa [`28b3e2927cb6f02dbceda7ed01d2dd46b94eef97`](https://github.com/nakafaai/nakafa.com/commit/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97). Nakafa School berdasarkan perjanjian tertulis dengan Sekolah, akun yang dibuat Sekolah, cara masuk Wali, sinyal integritas ujian, perkiraan penguasaan belajar, integrasi Sekolah, konektor Google, maskot akun, dan notifikasi push web belum tersedia bagi pengguna. Pernyataan tentang fitur-fitur tersebut menjelaskan cara fitur itu akan memproses data, dan berlaku sejak hari setiap fitur tersedia. Sebelum setiap fitur tersebut tersedia, kami memeriksa pernyataan ini terhadap implementasinya dan memperbarui Kebijakan ini jika ada perbedaan.
 
 Pada commit tersebut, [`packages/backend/confect/auth/client.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/auth/client.ts) menyimpan dan menyinkronkan data profil akun di Convex serta menjadwalkan sinkronisasi pelanggan Polar, yang mengirim nama, alamat email, dan pengenal akun melalui [`packages/backend/confect/customers/sync/impl.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/customers/sync/impl.ts). Masuk dengan Google dikonfigurasi dalam [`packages/backend/confect/auth/runtime.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/auth/runtime.ts), yang juga membuat Better Auth mengenkripsi token akses dan token refresh yang diterbitkan Google sebelum menyimpannya, dan skema autentikasi dalam [`packages/backend/components/betterAuth/schema.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/components/betterAuth/schema.ts) menyimpan sesi beserta alamat IP dan user agent dari permintaan, serta token yang diterbitkan Google bersama akun yang ditautkan. Batas autentikasi dibuka dalam [`apps/www/app/api/auth/[...all]/route.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/apps/www/app/api/auth/%5B...all%5D/route.ts). [`apps/www/vercel.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/apps/www/vercel.ts) menjalankan fungsi Vercel aplikasi web di region Amerika Serikat `iad1`, berdekatan dengan deployment produksi Convex di US East. Pesan selamat datang dikirim melalui Resend ke alamat email penerima dalam [`packages/backend/confect/emails/welcome/internal.ts`](https://github.com/nakafaai/nakafa.com/blob/28b3e2927cb6f02dbceda7ed01d2dd46b94eef97/packages/backend/confect/emails/welcome/internal.ts).
 
