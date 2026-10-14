@@ -193,7 +193,12 @@ layer(Path.layer)("public page source", (it) => {
       Effect.gen(function* () {
         const corpusRoot = yield* resolveCorpusRoot;
         const registry = yield* decodePageRegistry();
-        for (const pageKey of ["privacy-policy", "terms-of-service"]) {
+        for (const pageKey of [
+          "imprint",
+          "privacy-policy",
+          "security-policy",
+          "terms-of-service",
+        ]) {
           const documents = yield* Effect.forEach(
             Arr.filter(registry, ({ route }) => route.pageKey === pageKey),
             (entry) => readPageDocument(corpusRoot, entry)
