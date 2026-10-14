@@ -78,9 +78,9 @@ We may suspend or terminate access if we believe you have violated these Terms o
 
 ### How AI features work
 
-If you use AI features that generate content, such as Nina, you submit prompts or messages and the Services generate outputs. Nakafa routes Nina's prompts and related context through the Convex AI gateway to Gemini 3.8 Flash. The same gateway also serves a decision model, which Nina uses to decide what to remember, and an embedding model, which Nina uses to find lessons. Gemini 3.8 Flash is the only language model that Nakafa uses for Nina. Convex selects how each request is served and states that it routes only to providers under a zero data retention agreement. Research features also use Firecrawl to search the web and read pages.
+If you use AI features that generate content, such as Nina, you submit prompts or messages and the Services generate outputs. Nakafa routes Nina's prompts and related context through the Convex AI gateway to Claude Haiku 5.5, a model that Anthropic makes. The same gateway also serves a decision model, which Nina uses to decide what to remember, and an embedding model, which Nina uses to find lessons. Claude Haiku 5.5 is the only language model that Nakafa uses for Nina. Convex selects how each request is served and states that it routes only to providers under a zero data retention agreement. Research features also use Firecrawl to search the web and read pages.
 
-Our use of these services is subject to the [Convex Terms of Service](https://www.convex.dev/legal/tos), the [Gemini API Additional Terms](https://ai.google.dev/gemini-api/terms), and the [Google Cloud Terms](https://cloud.google.com/terms), as applicable to the route Convex selects.
+Our use of these services is subject to the [Convex Terms of Service](https://www.convex.dev/legal/tos), [Anthropic's Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), the [Gemini API Additional Terms](https://ai.google.dev/gemini-api/terms), and the terms of the cloud that serves a request, such as the [Google Cloud Terms](https://cloud.google.com/terms), the [AWS Service Terms](https://aws.amazon.com/service-terms/), or the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/), as applicable to the route Convex selects.
 
 ### AI limitations and your responsibility
 
@@ -98,11 +98,11 @@ A School uses Nakafa School under a written agreement with Nakafa. That agreemen
 
 The School decides who joins its space in Nakafa School and with which role, such as administrator, teacher, student, or Guardian. The School is responsible for the people it invites or creates accounts for, the roles it assigns, the content it uploads, and the instructions it gives Nakafa about School Data. Teachers and staff use Nakafa School on the School's behalf.
 
-The following features of Nakafa School are not available yet: accounts that a School creates for students, assignments, assessments, grades, and report cards, exam misconduct flags, labels that mark a question as public, AI drafts for report cards and progress summaries, the narratives Guardians see, and the Guardian consent flow. The statements about them apply from the day each feature becomes available.
+Nakafa School and the following of its features are not available yet: accounts that a School creates for students, assignments, assessments, grades, and report cards, exam misconduct flags, labels that mark a question as public, AI drafts for report cards and progress summaries, the narratives Guardians see, and the Guardian consent flow. The statements about them apply from the day each feature becomes available.
 
 A School can create username accounts for its students. The School manages these accounts and their credentials, and a student uses such an account for the School's learning and assessments.
 
-Nakafa content, including lessons, articles, and try-out questions, is licensed under the [Nakafa Content License](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/CONTENT_LICENSE.md), which allows personal, non-commercial learning without written permission. Using that content in a school program, a learning management system, or a question bank requires Nakafa's prior written permission, so a School may use Nakafa content in Nakafa School only as its written agreement licenses it. Questions from Nakafa's public question bank are open to everyone, so students may have seen them before. Nakafa School labels these questions as public, and the School decides whether to use them in an exam.
+Nakafa content, including lessons, articles, and try-out questions, is licensed under the [Nakafa Content License](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/CONTENT_LICENSE.md), which allows personal, non-commercial learning without written permission. Using that content in a school program, a learning management system, or a question bank requires Nakafa's prior written permission, so a School may use Nakafa content in Nakafa School only as its written agreement licenses it. Questions from Nakafa's public question bank are open to everyone, so students may have seen them before. Nakafa School labels these questions as public, and the School decides whether to use them in an exam.
 
 In Nakafa School, AI output is a suggestion. Other AI features can draft report card descriptions and summarize progress, but a teacher reviews and decides every exam grade before it is released, and teachers approve report cards and the narratives Guardians see.
 
@@ -134,7 +134,7 @@ We may change pricing or plans over time. If changes apply to your Subscription,
 
 ## Emails and communications
 
-When a new account is created, the account workflow [prepares a welcome email](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/backend/confect/auth/client.ts), and after you complete onboarding, Nakafa [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/backend/confect/emails/welcome/internal.ts). In Nakafa School, Nakafa also sends invitations by email. Sign-in codes for Guardians and notifications about School activity are not available yet. Nakafa does not send messages through WhatsApp.
+When a new account is created, the account workflow [prepares a welcome email](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/client.ts), and after you complete onboarding, Nakafa [sends it through Resend](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/emails/welcome/internal.ts). In Nakafa School, Nakafa also sends invitations by email. Sign-in codes for Guardians and notifications about School activity are not available yet. Nakafa does not send messages through WhatsApp.
 
 ## Intellectual property
 
@@ -169,7 +169,10 @@ The Services rely on third-party services to operate. These may include:
 - PostHog (pseudonymous usage counting plus, after consent, product analytics; identity-free operational error reporting) - [Privacy Compliance](https://posthog.com/docs/privacy)
 - Resend (email delivery) - [Privacy Policy](https://resend.com/legal/privacy-policy)
 - OpenRouter (AI model routing as Convex's subprocessor) - [Privacy Policy](https://openrouter.ai/privacy)
-- Google (Gemini API model processing, Google sign-in, the Google services you connect, and the icons of web sources) - [Privacy Policy](https://policies.google.com/privacy)
+- Anthropic (Claude model processing for Nina) - [Privacy Policy](https://www.anthropic.com/legal/privacy)
+- Amazon Web Services (Amazon Bedrock model processing) - [Privacy Notice](https://aws.amazon.com/privacy/)
+- Microsoft (Azure model processing) - [Privacy Statement](https://privacy.microsoft.com/privacystatement)
+- Google (embedding model processing through the Gemini API, Google sign-in, the Google services you connect, and the icons of web sources) - [Privacy Policy](https://policies.google.com/privacy)
 - Google Cloud (Vertex AI model processing) - [Cloud Terms](https://cloud.google.com/terms)
 - Firecrawl (web search and page retrieval for research features) - [Privacy Policy](https://www.firecrawl.dev/privacy-policy)
 - OpenWeather (weather data) - [Privacy Policy](https://openweather.co.uk/privacy-policy)

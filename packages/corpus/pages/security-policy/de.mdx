@@ -50,21 +50,21 @@ Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktan
 
 ### Sichere Entwicklung und Änderungsverwaltung
 
-Laut der unten genannten Revision prüft der Nakafa-Repository-Workflow Abhängigkeiten und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe für die Hauptbranch erstellen zusätzlich die Produktionsanwendung, außer eine Änderung bearbeitet nur Dokumentation oder bestehende Testdateien. Der Workflow ist derzeit deaktiviert, daher laufen diese Prüfungen nicht. Wenn sie laufen, verringern sie Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
+Laut der unten genannten Revision prüft der Nakafa-Repository-Workflow Abhängigkeiten und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe für die Hauptbranch erstellen zusätzlich die Produktionsanwendung, außer eine Änderung bearbeitet nur Dokumentation oder bestehende Testdateien. Der Workflow ist seit dem 14. Oktober 2026 deaktiviert, daher laufen diese Prüfungen dort nicht, und Änderungen werden vor dem Zusammenführen lokal geprüft. Wenn sie laufen, verringern sie Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
 
 ### Implementierungsnachweise für diese Fassung
 
 Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierungsrevision und die Anbieterdokumentation begrenzt:
 
-- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/next-config/index.ts)
-- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/backend/confect/auth/session.ts)
-- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/apps/www/lib/content/internal/authorization.ts)
-- [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/analytics/posthog/browser.ts)
-- [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/analytics/posthog/exception.ts)
-- [Erfassung von Next.js-Anfragefehlern über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/apps/www/instrumentation.ts)
-- [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/packages/backend/confect/analytics/capture.ts)
-- [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/.github/workflows/ci.yml)
-- [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/55bc369c3cb2dd435437bc86575f529f1696b6e4/.github/workflows/ci.yml)
+- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
+- [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
+- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
+- [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
+- [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
+- [Erfassung von Next.js-Anfragefehlern über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/instrumentation.ts)
+- [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
+- [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
+- [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
 
 ## Sicherheit externer Dienstleister
@@ -77,7 +77,10 @@ Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und
 - Resend (E-Mail-Versand)
 - PostHog (einwilligungsbasierte Produktanalyse und betriebsbezogene Fehlerberichte ohne Nutzeridentität)
 - OpenRouter (Weiterleitung an KI-Modelle als Unterauftragsverarbeiter von Convex)
-- Google (Modellverarbeitung über die Gemini API)
+- Anthropic (Verarbeitung durch das Claude-Modell)
+- Amazon Web Services (Modellverarbeitung über Amazon Bedrock)
+- Microsoft (Modellverarbeitung über Azure)
+- Google (Verarbeitung durch das Embedding-Modell über die Gemini API)
 - Google Cloud (Modellverarbeitung über Vertex AI)
 
 Jeder dieser Anbieter kann im Rahmen der Bereitstellung der Dienste Daten verarbeiten. Einzelheiten zu Datenkategorien und Verarbeitungszwecken finden Sie in unserer [Datenschutzerklärung](/de/privacy-policy).
