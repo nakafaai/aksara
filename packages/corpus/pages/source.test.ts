@@ -13,6 +13,9 @@ import {
   Path,
   PlatformError,
 } from "effect";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import { unified } from "unified";
 import { decodePageRegistry } from "#corpus/pages/registry";
 import {
   decodePageSources,
@@ -41,6 +44,18 @@ const makePageEntry = Effect.fn("CorpusTest.makePageEntry")(function* () {
   }
   return entry;
 });
+
+const markdown = unified().use(remarkParse).use(remarkGfm).freeze();
+
+/**
+ * The top-level Markdown blocks of one page in order, each named by its type,
+ * and a heading by its depth as well.
+ */
+function blockKinds(rawMdx: string) {
+  return Arr.map(markdown.parse(rawMdx).children, (block) =>
+    block.type === "heading" ? `heading ${block.depth}` : block.type
+  );
+}
 
 /** Provides one deterministic reviewed page body through Effect Platform. */
 function fileLayer(source: string | undefined) {
@@ -168,6 +183,36 @@ layer(Path.layer)("public page source", (it) => {
           expect(expectedTitle).toBeDefined();
           expect(rawMdx).toContain(`title: "${expectedTitle}"`);
           expect(rawMdx).toContain(`# ${expectedTitle}`);
+        }
+      })
+  );
+
+  it.effect(
+    "keeps every locale of each legal page in the English block order",
+    () =>
+      Effect.gen(function* () {
+        const corpusRoot = yield* resolveCorpusRoot;
+        const registry = yield* decodePageRegistry();
+        for (const pageKey of ["privacy-policy", "terms-of-service"]) {
+          const documents = yield* Effect.forEach(
+            Arr.filter(registry, ({ route }) => route.pageKey === pageKey),
+            (entry) => readPageDocument(corpusRoot, entry)
+          ).pipe(Effect.provide(NodeServices.layer));
+          const locales = Arr.map(documents, ({ route, rawMdx }) => ({
+            appLocale: route.appLocale,
+            blocks: blockKinds(rawMdx),
+          }));
+          const english = Arr.findFirst(
+            locales,
+            ({ appLocale }) => appLocale === "en"
+          );
+          if (Option.isNone(english)) {
+            return yield* Effect.die("Expected an English legal page.");
+          }
+          expect(locales).toHaveLength(3);
+          for (const locale of locales) {
+            expect(locale.blocks).toEqual(english.value.blocks);
+          }
         }
       })
   );
