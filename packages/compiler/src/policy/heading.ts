@@ -37,27 +37,27 @@ type AuthoredListHeadingOccurrence =
   typeof AuthoredListHeadingOccurrenceSchema.Type;
 
 /** Authored headings must name concepts instead of encoding list items. */
-export class AuthoredListHeadingError extends Schema.TaggedError<AuthoredListHeadingError>()(
-  "AuthoredListHeadingError",
-  {
-    contentKey: ContentKeySchema,
-    occurrences: Schema.Array(AuthoredListHeadingOccurrenceSchema).pipe(
-      Schema.check(Schema.isMinLength(1))
-    ),
-  }
-) {}
+export class AuthoredListHeadingError extends Schema.TaggedError<
+  AuthoredListHeadingError,
+  { readonly brand: unique symbol }
+>()("AuthoredListHeadingError", {
+  contentKey: ContentKeySchema,
+  occurrences: Schema.Array(AuthoredListHeadingOccurrenceSchema).pipe(
+    Schema.check(Schema.isMinLength(1))
+  ),
+}) {}
 
 /** Authored lesson and article headings cannot exceed the third level. */
-export class AuthoredHeadingDepthError extends Schema.TaggedError<AuthoredHeadingDepthError>()(
-  "AuthoredHeadingDepthError",
-  {
-    contentKey: ContentKeySchema,
-    maximumDepth: Schema.Literal(3),
-    occurrences: Schema.Array(
-      AuthoredListHeadingOccurrenceSchema.mapFields(Struct.omit(["marker"]))
-    ).pipe(Schema.check(Schema.isMinLength(1))),
-  }
-) {}
+export class AuthoredHeadingDepthError extends Schema.TaggedError<
+  AuthoredHeadingDepthError,
+  { readonly brand: unique symbol }
+>()("AuthoredHeadingDepthError", {
+  contentKey: ContentKeySchema,
+  maximumDepth: Schema.Literal(3),
+  occurrences: Schema.Array(
+    AuthoredListHeadingOccurrenceSchema.mapFields(Struct.omit(["marker"]))
+  ).pipe(Schema.check(Schema.isMinLength(1))),
+}) {}
 
 /** Returns the level of an explicit HTML heading, excluding component names. */
 function htmlHeadingDepth(name: string | null) {

@@ -10,14 +10,14 @@ import {
 import { JsonTextSchema } from "#cli/text/json";
 
 /** A required Aksara or Nakafa checkout failed exact identity validation. */
-export class PreviewCheckoutError extends Schema.TaggedError<PreviewCheckoutError>()(
-  "PreviewCheckoutError",
-  {
-    kind: Schema.Literals(["aksara", "nakafa"]),
-    path: Schema.String,
-    reason: Schema.Literals(["identity", "missing", "symlink"]),
-  }
-) {}
+export class PreviewCheckoutError extends Schema.TaggedError<
+  PreviewCheckoutError,
+  { readonly brand: unique symbol }
+>()("PreviewCheckoutError", {
+  kind: Schema.Literals(["aksara", "nakafa"]),
+  path: Schema.String,
+  reason: Schema.Literals(["identity", "missing", "symlink"]),
+}) {}
 
 /** Reads one package identity without accepting malformed JSON as evidence. */
 const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (

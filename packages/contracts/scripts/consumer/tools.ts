@@ -39,14 +39,14 @@ export const ConsumerPackageInputSchema = Schema.Struct({
 export type ConsumerPackageInput = typeof ConsumerPackageInputSchema.Type;
 
 /** One expected isolated-consumer verification failure. */
-export class ConsumerVerificationError extends Schema.TaggedError<ConsumerVerificationError>()(
-  "ConsumerVerificationError",
-  {
-    cause: Schema.Unknown,
-    detail: Schema.String,
-    reason: Schema.Literals(["argument", "filesystem", "manifest", "process"]),
-  }
-) {}
+export class ConsumerVerificationError extends Schema.TaggedError<
+  ConsumerVerificationError,
+  { readonly brand: unique symbol }
+>()("ConsumerVerificationError", {
+  cause: Schema.Unknown,
+  detail: Schema.String,
+  reason: Schema.Literals(["argument", "filesystem", "manifest", "process"]),
+}) {}
 
 /** Creates one stable consumer verification failure. */
 export function consumerError(

@@ -7,13 +7,13 @@ import type {
 import { Effect, Schema } from "effect";
 
 /** Operator identities do not select the exact retained inverse state. */
-class RetainedRecoveryStateError extends Schema.TaggedError<RetainedRecoveryStateError>()(
-  "RetainedRecoveryStateError",
-  {
-    reason: Schema.Literals(["active", "missing", "phase", "recovery"]),
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+class RetainedRecoveryStateError extends Schema.TaggedError<
+  RetainedRecoveryStateError,
+  { readonly brand: unique symbol }
+>()("RetainedRecoveryStateError", {
+  reason: Schema.Literals(["active", "missing", "phase", "recovery"]),
+  releaseId: ReleaseIdSchema,
+}) {}
 
 const RetainedRecoveryInputSchema = Schema.Struct({
   recoveryId: ReleaseIdSchema,

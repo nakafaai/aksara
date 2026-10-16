@@ -17,23 +17,23 @@ type LocalesByIdentity = MutableHashMap.MutableHashMap<
 >;
 
 /** A try-out snapshot is incomplete or inconsistent across app locales. */
-export class TryoutClosureError extends Schema.TaggedError<TryoutClosureError>()(
-  "TryoutClosureError",
-  {
-    actual: Schema.String,
-    code: Schema.Literals([
-      "assessed-language",
-      "duplicate-locale",
-      "fact-mismatch",
-      "inactive-locale",
-      "missing-locale",
-      "missing-section",
-      "question-count",
-    ]),
-    expected: Schema.String,
-    identity: Schema.String,
-  }
-) {}
+export class TryoutClosureError extends Schema.TaggedError<
+  TryoutClosureError,
+  { readonly brand: unique symbol }
+>()("TryoutClosureError", {
+  actual: Schema.String,
+  code: Schema.Literals([
+    "assessed-language",
+    "duplicate-locale",
+    "fact-mismatch",
+    "inactive-locale",
+    "missing-locale",
+    "missing-section",
+    "question-count",
+  ]),
+  expected: Schema.String,
+  identity: Schema.String,
+}) {}
 
 /** Serializes locale sets through the active list's signed canonical order. */
 function localeSetIdentity(

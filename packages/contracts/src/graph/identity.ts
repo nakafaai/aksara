@@ -25,10 +25,10 @@ function graphId(prefix: string, segments: readonly string[]) {
 }
 
 /** Source segments could not produce valid stable graph identities. */
-export class LearningGraphIdentityError extends Schema.TaggedError<LearningGraphIdentityError>()(
-  "LearningGraphIdentityError",
-  { cause: Schema.Unknown }
-) {}
+export class LearningGraphIdentityError extends Schema.TaggedError<
+  LearningGraphIdentityError,
+  { readonly brand: unique symbol }
+>()("LearningGraphIdentityError", { cause: Schema.Unknown }) {}
 
 /** Derives all product identities from one signed route projection source. */
 export const makeLearningGraphIdentity: (

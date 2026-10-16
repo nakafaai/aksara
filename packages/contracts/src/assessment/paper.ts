@@ -81,13 +81,13 @@ function sameReference(left: StimulusReference, right: StimulusReference) {
  * `missing` are the ones the items use and the paper leaves out, and `unused`
  * are the ones the paper lists and no item uses.
  */
-export class PaperStimuliMismatchError extends Schema.TaggedError<PaperStimuliMismatchError>()(
-  "PaperStimuliMismatchError",
-  {
-    missing: Schema.Array(StimulusReferenceSchema),
-    unused: Schema.Array(StimulusReferenceSchema),
-  }
-) {}
+export class PaperStimuliMismatchError extends Schema.TaggedError<
+  PaperStimuliMismatchError,
+  { readonly brand: unique symbol }
+>()("PaperStimuliMismatchError", {
+  missing: Schema.Array(StimulusReferenceSchema),
+  unused: Schema.Array(StimulusReferenceSchema),
+}) {}
 
 /**
  * Requires a paper to list the stimulus versions that its item versions use,

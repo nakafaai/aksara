@@ -42,18 +42,18 @@ type CliArguments =
   | ProductionArguments;
 
 /** Command-line arguments do not describe one unambiguous document. */
-export class PreviewArgumentsError extends Schema.TaggedError<PreviewArgumentsError>()(
-  "PreviewArgumentsError",
-  {
-    reason: Schema.Literals(["duplicate", "missing", "unknown", "value"]),
-  }
-) {}
+export class PreviewArgumentsError extends Schema.TaggedError<
+  PreviewArgumentsError,
+  { readonly brand: unique symbol }
+>()("PreviewArgumentsError", {
+  reason: Schema.Literals(["duplicate", "missing", "unknown", "value"]),
+}) {}
 
 /** Check arguments contain unsupported positional or named values. */
-export class CheckArgumentsError extends Schema.TaggedError<CheckArgumentsError>()(
-  "CheckArgumentsError",
-  { reason: Schema.Literal("unknown") }
-) {}
+export class CheckArgumentsError extends Schema.TaggedError<
+  CheckArgumentsError,
+  { readonly brand: unique symbol }
+>()("CheckArgumentsError", { reason: Schema.Literal("unknown") }) {}
 
 const isAppLocale = Schema.is(AppLocaleSchema);
 

@@ -33,27 +33,27 @@ type ProductionStage = typeof ProductionStageSchema.Type;
 const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 
 /** Sanitized production failure emitted by the outer CLI boundary. */
-export class ProductionError extends Schema.TaggedError<ProductionError>()(
-  "ProductionError",
-  {
-    activeReleaseId: Schema.optional(ReleaseIdSchema),
-    appReason: Schema.optional(NakafaAppError.fields.reason),
-    appStatus: NakafaAppError.fields.status,
-    candidateReleaseId: Schema.optional(ReleaseIdSchema),
-    environmentVariable: Schema.optional(
-      ProductionEnvironmentError.fields.variable
-    ),
-    failure: Schema.Trimmed.check(Schema.isNonEmpty()),
-    phase: Schema.optional(PublicationActivationPhaseSchema),
-    recoveryReleaseId: Schema.optional(ReleaseIdSchema),
-    rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
-    stage: ProductionStageSchema,
-    stateReason: Schema.optional(ProductionStateError.fields.reason),
-    targetOperation: Schema.optional(PublicationOperationSchema),
-    targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
-    transport: Schema.optional(PublicationTransportDetailSchema),
-  }
-) {
+export class ProductionError extends Schema.TaggedError<
+  ProductionError,
+  { readonly brand: unique symbol }
+>()("ProductionError", {
+  activeReleaseId: Schema.optional(ReleaseIdSchema),
+  appReason: Schema.optional(NakafaAppError.fields.reason),
+  appStatus: NakafaAppError.fields.status,
+  candidateReleaseId: Schema.optional(ReleaseIdSchema),
+  environmentVariable: Schema.optional(
+    ProductionEnvironmentError.fields.variable
+  ),
+  failure: Schema.Trimmed.check(Schema.isNonEmpty()),
+  phase: Schema.optional(PublicationActivationPhaseSchema),
+  recoveryReleaseId: Schema.optional(ReleaseIdSchema),
+  rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
+  stage: ProductionStageSchema,
+  stateReason: Schema.optional(ProductionStateError.fields.reason),
+  targetOperation: Schema.optional(PublicationOperationSchema),
+  targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
+  transport: Schema.optional(PublicationTransportDetailSchema),
+}) {
   /** Exposes the complete secret-free production evidence at the CLI boundary. */
   get message() {
     return `Production ${this.stage} failed with ${this.failure}: ${encodeJsonText(this)}`;

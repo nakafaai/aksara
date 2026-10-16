@@ -13,10 +13,12 @@ const RendererCredentialsSchema = Schema.Struct({
 export type RendererCredentials = typeof RendererCredentialsSchema.Type;
 
 /** Local Ed25519 key or bearer-token generation failed before serving. */
-export class PreviewCredentialError extends Schema.TaggedError<PreviewCredentialError>()(
-  "PreviewCredentialError",
-  { stage: Schema.Literals(["generate", "signer"]) }
-) {}
+export class PreviewCredentialError extends Schema.TaggedError<
+  PreviewCredentialError,
+  { readonly brand: unique symbol }
+>()("PreviewCredentialError", {
+  stage: Schema.Literals(["generate", "signer"]),
+}) {}
 
 /** Generates one process-local signer and independent preview credentials. */
 export const makePreviewCredentials = Effect.fn(

@@ -16,10 +16,10 @@ import { encodeJsonText } from "#contracts/text/json";
 const ROW_DOMAIN = "nakafa.aksara.quran-row";
 
 /** Node could not compute a deterministic Quran row identity. */
-export class QuranRowHashError extends Schema.TaggedError<QuranRowHashError>()(
-  "QuranRowHashError",
-  { scope: Schema.Literals(["digest", "row"]) }
-) {}
+export class QuranRowHashError extends Schema.TaggedError<
+  QuranRowHashError,
+  { readonly brand: unique symbol }
+>()("QuranRowHashError", { scope: Schema.Literals(["digest", "row"]) }) {}
 
 /** Serializes one published translation list in signed field order. */
 function canonicalizeTranslations(

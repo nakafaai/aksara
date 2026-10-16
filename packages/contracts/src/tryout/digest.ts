@@ -6,13 +6,13 @@ import { Sha256HashSchema } from "#contracts/ids";
 import { compareCodeUnits } from "#contracts/text/order";
 
 /** A snapshot stream is duplicated, unsorted, or tampered. */
-export class TryoutDigestError extends Schema.TaggedError<TryoutDigestError>()(
-  "TryoutDigestError",
-  {
-    code: Schema.Literals(["integrity", "order"]),
-    identity: Schema.String,
-  }
-) {}
+export class TryoutDigestError extends Schema.TaggedError<
+  TryoutDigestError,
+  { readonly brand: unique symbol }
+>()("TryoutDigestError", {
+  code: Schema.Literals(["integrity", "order"]),
+  identity: Schema.String,
+}) {}
 
 interface DigestRecord<Row> {
   readonly row: Row;

@@ -31,10 +31,12 @@ const RecoveryEnvironmentSchema = Schema.Struct({
 });
 
 /** The process environment does not satisfy the narrow preview contract. */
-export class PreviewEnvironmentError extends Schema.TaggedError<PreviewEnvironmentError>()(
-  "PreviewEnvironmentError",
-  { variable: Schema.Literal("NAKAFA_APP_DIR") }
-) {}
+export class PreviewEnvironmentError extends Schema.TaggedError<
+  PreviewEnvironmentError,
+  { readonly brand: unique symbol }
+>()("PreviewEnvironmentError", {
+  variable: Schema.Literal("NAKAFA_APP_DIR"),
+}) {}
 
 /** Creates a sanitized configuration failure naming only its variable. */
 function productionError(variable: ProductionVariable) {

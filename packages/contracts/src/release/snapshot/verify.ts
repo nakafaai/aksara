@@ -24,51 +24,51 @@ const StreamIndexSchema = Schema.Int.pipe(
 );
 
 /** One replacement manifest failed strict wire decoding. */
-export class SnapshotManifestDecodeError extends Schema.TaggedError<SnapshotManifestDecodeError>()(
-  "SnapshotManifestDecodeError",
-  { manifestIndex: StreamIndexSchema }
-) {}
+export class SnapshotManifestDecodeError extends Schema.TaggedError<
+  SnapshotManifestDecodeError,
+  { readonly brand: unique symbol }
+>()("SnapshotManifestDecodeError", { manifestIndex: StreamIndexSchema }) {}
 
 /** Replacement manifests are duplicated or outside canonical family order. */
-export class SnapshotManifestOrderError extends Schema.TaggedError<SnapshotManifestOrderError>()(
-  "SnapshotManifestOrderError",
-  {
-    actualFamily: ContentSnapshotKindSchema,
-    manifestIndex: StreamIndexSchema,
-    previousFamily: ContentSnapshotKindSchema,
-  }
-) {}
+export class SnapshotManifestOrderError extends Schema.TaggedError<
+  SnapshotManifestOrderError,
+  { readonly brand: unique symbol }
+>()("SnapshotManifestOrderError", {
+  actualFamily: ContentSnapshotKindSchema,
+  manifestIndex: StreamIndexSchema,
+  previousFamily: ContentSnapshotKindSchema,
+}) {}
 
 /** One structured snapshot row failed strict wire decoding. */
-export class SnapshotRowDecodeError extends Schema.TaggedError<SnapshotRowDecodeError>()(
-  "SnapshotRowDecodeError",
-  { rowIndex: StreamIndexSchema }
-) {}
+export class SnapshotRowDecodeError extends Schema.TaggedError<
+  SnapshotRowDecodeError,
+  { readonly brand: unique symbol }
+>()("SnapshotRowDecodeError", { rowIndex: StreamIndexSchema }) {}
 
 /** A staged row belongs to a family this release does not replace. */
-export class SnapshotRowFamilyError extends Schema.TaggedError<SnapshotRowFamilyError>()(
-  "SnapshotRowFamilyError",
-  {
-    family: ContentSnapshotKindSchema,
-    rowIndex: StreamIndexSchema,
-  }
-) {}
+export class SnapshotRowFamilyError extends Schema.TaggedError<
+  SnapshotRowFamilyError,
+  { readonly brand: unique symbol }
+>()("SnapshotRowFamilyError", {
+  family: ContentSnapshotKindSchema,
+  rowIndex: StreamIndexSchema,
+}) {}
 
 /** A replacement manifest cannot form a coherent forward transition. */
-export class SnapshotTransitionError extends Schema.TaggedError<SnapshotTransitionError>()(
-  "SnapshotTransitionError",
-  { family: ContentSnapshotKindSchema }
-) {}
+export class SnapshotTransitionError extends Schema.TaggedError<
+  SnapshotTransitionError,
+  { readonly brand: unique symbol }
+>()("SnapshotTransitionError", { family: ContentSnapshotKindSchema }) {}
 
 /** The staged row stream count differs from all signed family evidence. */
-export class SnapshotStagedCountError extends Schema.TaggedError<SnapshotStagedCountError>()(
-  "SnapshotStagedCountError",
-  {
-    actualCount: StreamIndexSchema,
-    expectedCount: StreamIndexSchema,
-    verifiedCount: StreamIndexSchema,
-  }
-) {}
+export class SnapshotStagedCountError extends Schema.TaggedError<
+  SnapshotStagedCountError,
+  { readonly brand: unique symbol }
+>()("SnapshotStagedCountError", {
+  actualCount: StreamIndexSchema,
+  expectedCount: StreamIndexSchema,
+  verifiedCount: StreamIndexSchema,
+}) {}
 
 const VerifiedContentSnapshotsSchema = Schema.Struct({
   snapshots: ContentSnapshotSetSchema,

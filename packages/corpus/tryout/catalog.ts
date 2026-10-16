@@ -14,10 +14,10 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 const TRYOUT_PATH = "try-out";
 
 /** Source-derived hierarchy rows failed their strict publication contract. */
-export class TryoutCatalogDecodeError extends Schema.TaggedError<TryoutCatalogDecodeError>()(
-  "TryoutCatalogDecodeError",
-  { cause: Schema.Unknown }
-) {}
+export class TryoutCatalogDecodeError extends Schema.TaggedError<
+  TryoutCatalogDecodeError,
+  { readonly brand: unique symbol }
+>()("TryoutCatalogDecodeError", { cause: Schema.Unknown }) {}
 
 /** Projects one shared country once per locale from country-owned facts. */
 const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(

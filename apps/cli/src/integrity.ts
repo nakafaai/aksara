@@ -19,27 +19,27 @@ import {
 } from "effect";
 
 /** A requested document failed exact source validation. */
-export class PreviewRepositoryError extends Schema.TaggedError<PreviewRepositoryError>()(
-  "PreviewRepositoryError",
-  {
-    kind: Schema.Literal("document"),
-    path: Schema.String,
-    reason: Schema.Literals([
-      "changed",
-      "app-locale",
-      "identity",
-      "missing",
-      "registry",
-      "symlink",
-    ]),
-  }
-) {}
+export class PreviewRepositoryError extends Schema.TaggedError<
+  PreviewRepositoryError,
+  { readonly brand: unique symbol }
+>()("PreviewRepositoryError", {
+  kind: Schema.Literal("document"),
+  path: Schema.String,
+  reason: Schema.Literals([
+    "changed",
+    "app-locale",
+    "identity",
+    "missing",
+    "registry",
+    "symlink",
+  ]),
+}) {}
 
 /** Startup-scoped registry topology changed and requires a fresh session. */
-export class PreviewRestartError extends Schema.TaggedError<PreviewRestartError>()(
-  "PreviewRestartError",
-  { sourcePath: CorpusSourcePathSchema }
-) {}
+export class PreviewRestartError extends Schema.TaggedError<
+  PreviewRestartError,
+  { readonly brand: unique symbol }
+>()("PreviewRestartError", { sourcePath: CorpusSourcePathSchema }) {}
 
 const SelectedFileBaseSchema = Schema.Struct({
   absolutePath: Schema.String,

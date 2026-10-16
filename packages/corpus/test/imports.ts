@@ -1,10 +1,10 @@
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
 
 /** Test-only corpus module discovery or loading failed. */
-class CorpusImportError extends Schema.TaggedError<CorpusImportError>()(
-  "CorpusImportError",
-  { cause: Schema.Unknown, file: Schema.String }
-) {}
+class CorpusImportError extends Schema.TaggedError<
+  CorpusImportError,
+  { readonly brand: unique symbol }
+>()("CorpusImportError", { cause: Schema.Unknown, file: Schema.String }) {}
 
 /** Escapes every character that has a meaning inside a regular expression. */
 const escapeRegExp = (text: string) =>

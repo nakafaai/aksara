@@ -172,18 +172,18 @@ export const QuranProvenanceManifestSchema = Schema.Struct({
 export type QuranProvenanceManifest = typeof QuranProvenanceManifestSchema.Type;
 
 /** Quran provenance omitted or misordered an active-locale scope. */
-export class QuranProvenanceCoverageError extends Schema.TaggedError<QuranProvenanceCoverageError>()(
-  "QuranProvenanceCoverageError",
-  {
-    actualScopes: Schema.Array(QuranProvenanceScopeSchema),
-  }
-) {}
+export class QuranProvenanceCoverageError extends Schema.TaggedError<
+  QuranProvenanceCoverageError,
+  { readonly brand: unique symbol }
+>()("QuranProvenanceCoverageError", {
+  actualScopes: Schema.Array(QuranProvenanceScopeSchema),
+}) {}
 
 /** Node could not compute the deterministic provenance digest. */
-export class QuranProvenanceHashError extends Schema.TaggedError<QuranProvenanceHashError>()(
-  "QuranProvenanceHashError",
-  {}
-) {}
+export class QuranProvenanceHashError extends Schema.TaggedError<
+  QuranProvenanceHashError,
+  { readonly brand: unique symbol }
+>()("QuranProvenanceHashError", {}) {}
 
 const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance";
 

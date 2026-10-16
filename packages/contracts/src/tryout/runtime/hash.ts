@@ -6,10 +6,12 @@ import { canonicalizeTryoutRuntimeBundlePayload } from "#contracts/tryout/runtim
 import type { TryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/spec";
 
 /** SHA-256 computation failed before bundle authenticity was established. */
-export class TryoutRuntimeBundleHashComputationError extends Schema.TaggedError<TryoutRuntimeBundleHashComputationError>()(
-  "TryoutRuntimeBundleHashComputationError",
-  { sourceReleaseId: ReleaseIdSchema }
-) {}
+export class TryoutRuntimeBundleHashComputationError extends Schema.TaggedError<
+  TryoutRuntimeBundleHashComputationError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleHashComputationError", {
+  sourceReleaseId: ReleaseIdSchema,
+}) {}
 
 /** Computes the immutable identity of one canonical runtime bundle payload. */
 export const hashTryoutRuntimeBundlePayload = Effect.fn(

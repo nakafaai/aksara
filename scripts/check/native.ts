@@ -16,14 +16,14 @@ export const NAKAFA_COMMIT = "e491e4112a8fb87870f44e1645c759c3ce1296ea";
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
 
 /** One step of the native check that failed, or whose command could not start. */
-export class NativeCheckError extends Schema.TaggedError<NativeCheckError>()(
-  "NativeCheckError",
-  {
-    exitCode: Schema.optionalKey(Schema.Finite),
-    message: Schema.String,
-    step: NativeStepSchema,
-  }
-) {}
+export class NativeCheckError extends Schema.TaggedError<
+  NativeCheckError,
+  { readonly brand: unique symbol }
+>()("NativeCheckError", {
+  exitCode: Schema.optionalKey(Schema.Finite),
+  message: Schema.String,
+  step: NativeStepSchema,
+}) {}
 
 /** One step of the native check. */
 type NativeStep = typeof NativeStepSchema.Type;

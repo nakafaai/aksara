@@ -32,10 +32,10 @@ type Seams<E, R> = Partial<
   Pick<InstallVerificationInput<E, R>, "inspect" | "write">
 >;
 
-class TestBoundaryError extends Schema.TaggedError<TestBoundaryError>()(
-  "TestBoundaryError",
-  { operation: Schema.String }
-) {}
+class TestBoundaryError extends Schema.TaggedError<
+  TestBoundaryError,
+  { readonly brand: unique symbol }
+>()("TestBoundaryError", { operation: Schema.String }) {}
 
 /** Creates one isolated installed package tree with exact export files. */
 const createInstallFixture = Effect.fn("InstallVerificationTest.createFixture")(

@@ -53,19 +53,21 @@ export const CatalogSnapshotEvidenceSchema = Schema.Struct({
 type CatalogSnapshotEvidence = typeof CatalogSnapshotEvidenceSchema.Type;
 
 /** Structured preparation omitted one required current-model family. */
-export class CatalogSnapshotSetError extends Schema.TaggedError<CatalogSnapshotSetError>()(
-  "CatalogSnapshotSetError",
-  { actualFamilies: Schema.Array(ContentSnapshotKindSchema) }
-) {}
+export class CatalogSnapshotSetError extends Schema.TaggedError<
+  CatalogSnapshotSetError,
+  { readonly brand: unique symbol }
+>()("CatalogSnapshotSetError", {
+  actualFamilies: Schema.Array(ContentSnapshotKindSchema),
+}) {}
 
 /** Structured catalog preparation, decoding, or verification failed. */
-export class ContentCatalogSnapshotError extends Schema.TaggedError<ContentCatalogSnapshotError>()(
-  "ContentCatalogSnapshotError",
-  {
-    cause: Schema.Unknown,
-    stage: Schema.Literals(["decode", "prepare", "verify"]),
-  }
-) {}
+export class ContentCatalogSnapshotError extends Schema.TaggedError<
+  ContentCatalogSnapshotError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogSnapshotError", {
+  cause: Schema.Unknown,
+  stage: Schema.Literals(["decode", "prepare", "verify"]),
+}) {}
 
 /** Sources required to validate every current structured snapshot family. */
 interface CatalogSnapshotInput<E, R> {

@@ -53,14 +53,14 @@ interface CatalogResultInput<E, R> {
 }
 
 /** A result replay differs from its independently source-owned identity. */
-export class CatalogResultIdentityError extends Schema.TaggedError<CatalogResultIdentityError>()(
-  "CatalogResultIdentityError",
-  {
-    actual: Schema.NullOr(CatalogHeadIdentitySchema),
-    expected: Schema.NullOr(CatalogHeadIdentitySchema),
-    index: CountSchema,
-  }
-) {}
+export class CatalogResultIdentityError extends Schema.TaggedError<
+  CatalogResultIdentityError,
+  { readonly brand: unique symbol }
+>()("CatalogResultIdentityError", {
+  actual: Schema.NullOr(CatalogHeadIdentitySchema),
+  expected: Schema.NullOr(CatalogHeadIdentitySchema),
+  index: CountSchema,
+}) {}
 
 const CatalogResultStateSchema = Schema.Struct({
   articleCount: Schema.Finite,

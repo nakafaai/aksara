@@ -5,10 +5,10 @@ export const InfoCommandSchema = Schema.Literals(["help", "version"]);
 type InfoCommand = typeof InfoCommandSchema.Type;
 
 /** Informational arguments contain unsupported trailing values. */
-export class InfoArgumentsError extends Schema.TaggedError<InfoArgumentsError>()(
-  "InfoArgumentsError",
-  { reason: Schema.Literal("unknown") }
-) {}
+export class InfoArgumentsError extends Schema.TaggedError<
+  InfoArgumentsError,
+  { readonly brand: unique symbol }
+>()("InfoArgumentsError", { reason: Schema.Literal("unknown") }) {}
 
 const HELP = `Aksara CLI
 

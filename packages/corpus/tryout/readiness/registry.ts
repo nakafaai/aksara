@@ -24,13 +24,13 @@ function readinessIdentity(
 }
 
 /** An active exam lacks one unique source-backed readiness gate. */
-export class AssessmentReadinessRegistryError extends Schema.TaggedError<AssessmentReadinessRegistryError>()(
-  "AssessmentReadinessRegistryError",
-  {
-    count: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
-    identity: Schema.String,
-  }
-) {}
+export class AssessmentReadinessRegistryError extends Schema.TaggedError<
+  AssessmentReadinessRegistryError,
+  { readonly brand: unique symbol }
+>()("AssessmentReadinessRegistryError", {
+  count: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
+  identity: Schema.String,
+}) {}
 
 /** Indexes one unique readiness owner for every declared assessment. */
 const indexAssessmentReadiness = Effect.fn(

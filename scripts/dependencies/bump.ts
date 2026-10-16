@@ -42,10 +42,10 @@ const WorkspaceSchema = Schema.Struct({
 const parseJson = Schema.decodeSync(Schema.fromJsonString(Schema.Unknown));
 
 /** A held cohort differs from its explicit repository review decision. */
-class DependencyPolicyError extends Schema.TaggedError<DependencyPolicyError>()(
-  "DependencyPolicyError",
-  { message: Schema.String }
-) {}
+class DependencyPolicyError extends Schema.TaggedError<
+  DependencyPolicyError,
+  { readonly brand: unique symbol }
+>()("DependencyPolicyError", { message: Schema.String }) {}
 
 /** Reads one structured repository file through its runtime schema. */
 const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(

@@ -32,21 +32,21 @@ const CODE_MATH_VARIABLE = /^[A-Za-z]$/u;
 const BACKTICK_MATH_FENCE = /^`{3,}math/u;
 
 /** An authored response would display broken or block-level mathematics. */
-export class QuestionLabelError extends Schema.TaggedError<QuestionLabelError>()(
-  "QuestionLabelError",
-  {
-    labelPath: Schema.String,
-    reason: Schema.Literals([
-      "control",
-      "dollar",
-      "display",
-      "spacing",
-      "comment",
-      "syntax",
-    ]),
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class QuestionLabelError extends Schema.TaggedError<
+  QuestionLabelError,
+  { readonly brand: unique symbol }
+>()("QuestionLabelError", {
+  labelPath: Schema.String,
+  reason: Schema.Literals([
+    "control",
+    "dollar",
+    "display",
+    "spacing",
+    "comment",
+    "syntax",
+  ]),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Finds mathematical dollar markup embedded inside a code example. */
 function hasEmbeddedCodeMath(code: string) {

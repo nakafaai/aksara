@@ -8,13 +8,13 @@ import { createTestRendererManifest } from "#compiler/test/content";
 const PackageManifestSchema = Schema.Struct({ version: Schema.String });
 
 /** Installed package metadata must remain readable by compiler contract tests. */
-class PackageManifestReadError extends Schema.TaggedError<PackageManifestReadError>()(
-  "PackageManifestReadError",
-  {
-    cause: Schema.String,
-    packageName: Schema.String,
-  }
-) {}
+class PackageManifestReadError extends Schema.TaggedError<
+  PackageManifestReadError,
+  { readonly brand: unique symbol }
+>()("PackageManifestReadError", {
+  cause: Schema.String,
+  packageName: Schema.String,
+}) {}
 
 /** Reads an installed package version through the Effect error channel. */
 const installedVersion = Effect.fn("CompilerConfigTest.installedVersion")(

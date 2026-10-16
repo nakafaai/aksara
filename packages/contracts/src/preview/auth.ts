@@ -36,10 +36,12 @@ export const PreviewRendererResponseSchema = Schema.Struct({
 export type PreviewRendererResponse = typeof PreviewRendererResponseSchema.Type;
 
 /** Renderer authentication could not be computed or did not match. */
-export class PreviewRendererAuthError extends Schema.TaggedError<PreviewRendererAuthError>()(
-  "PreviewRendererAuthError",
-  { reason: Schema.Literals(["compute", "invalid"]) }
-) {}
+export class PreviewRendererAuthError extends Schema.TaggedError<
+  PreviewRendererAuthError,
+  { readonly brand: unique symbol }
+>()("PreviewRendererAuthError", {
+  reason: Schema.Literals(["compute", "invalid"]),
+}) {}
 
 /** Canonicalizes one challenge and exact validated renderer identity. */
 export function canonicalizePreviewRendererAuth(input: {

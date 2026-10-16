@@ -161,10 +161,10 @@ export const AssessmentReadinessSchema = AssessmentReadinessFieldsSchema.pipe(
 type AssessmentReadinessInput = typeof AssessmentReadinessSchema.Encoded;
 export type AssessmentReadiness = typeof AssessmentReadinessSchema.Type;
 
-export class AssessmentReadinessDecodeError extends Schema.TaggedError<AssessmentReadinessDecodeError>()(
-  "AssessmentReadinessDecodeError",
-  { cause: Schema.Unknown }
-) {}
+export class AssessmentReadinessDecodeError extends Schema.TaggedError<
+  AssessmentReadinessDecodeError,
+  { readonly brand: unique symbol }
+>()("AssessmentReadinessDecodeError", { cause: Schema.Unknown }) {}
 
 /** Strictly decodes one source-backed readiness gate. */
 export const defineAssessmentReadiness = Effect.fn(

@@ -18,57 +18,66 @@ import {
 } from "#contracts/release/spec";
 
 /** One release item failed strict wire decoding. */
-export class ReleaseItemDecodeError extends Schema.TaggedError<ReleaseItemDecodeError>()(
-  "ReleaseItemDecodeError",
-  { itemOffset: ReleaseCountSchema }
-) {}
+export class ReleaseItemDecodeError extends Schema.TaggedError<
+  ReleaseItemDecodeError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemDecodeError", { itemOffset: ReleaseCountSchema }) {}
 
 /** The separate item stream does not have the signed manifest length. */
-export class ReleaseItemCountMismatchError extends Schema.TaggedError<ReleaseItemCountMismatchError>()(
-  "ReleaseItemCountMismatchError",
-  { actualCount: ReleaseCountSchema, expectedCount: ReleaseCountSchema }
-) {}
+export class ReleaseItemCountMismatchError extends Schema.TaggedError<
+  ReleaseItemCountMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemCountMismatchError", {
+  actualCount: ReleaseCountSchema,
+  expectedCount: ReleaseCountSchema,
+}) {}
 
 /** Upsert and delete totals do not match the counts signed by the manifest. */
-export class ReleaseItemOperationCountMismatchError extends Schema.TaggedError<ReleaseItemOperationCountMismatchError>()(
-  "ReleaseItemOperationCountMismatchError",
-  {
-    actualDeletes: ReleaseCountSchema,
-    actualUpserts: ReleaseCountSchema,
-    expectedDeletes: ReleaseCountSchema,
-    expectedUpserts: ReleaseCountSchema,
-  }
-) {}
+export class ReleaseItemOperationCountMismatchError extends Schema.TaggedError<
+  ReleaseItemOperationCountMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemOperationCountMismatchError", {
+  actualDeletes: ReleaseCountSchema,
+  actualUpserts: ReleaseCountSchema,
+  expectedDeletes: ReleaseCountSchema,
+  expectedUpserts: ReleaseCountSchema,
+}) {}
 
 /** An item belongs to another release envelope. */
-export class ReleaseItemReleaseMismatchError extends Schema.TaggedError<ReleaseItemReleaseMismatchError>()(
-  "ReleaseItemReleaseMismatchError",
-  { itemOffset: ReleaseCountSchema, releaseId: ReleaseIdSchema }
-) {}
+export class ReleaseItemReleaseMismatchError extends Schema.TaggedError<
+  ReleaseItemReleaseMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemReleaseMismatchError", {
+  itemOffset: ReleaseCountSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** An item is missing, duplicated, or out of its signed sequence. */
-export class ReleaseItemIndexMismatchError extends Schema.TaggedError<ReleaseItemIndexMismatchError>()(
-  "ReleaseItemIndexMismatchError",
-  { actualIndex: ReleaseCountSchema, expectedIndex: ReleaseCountSchema }
-) {}
+export class ReleaseItemIndexMismatchError extends Schema.TaggedError<
+  ReleaseItemIndexMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemIndexMismatchError", {
+  actualIndex: ReleaseCountSchema,
+  expectedIndex: ReleaseCountSchema,
+}) {}
 
 /** Item heads are duplicated or not in canonical content-head order. */
-export class ReleaseItemOrderError extends Schema.TaggedError<ReleaseItemOrderError>()(
-  "ReleaseItemOrderError",
-  { itemOffset: ReleaseCountSchema }
-) {}
+export class ReleaseItemOrderError extends Schema.TaggedError<
+  ReleaseItemOrderError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemOrderError", { itemOffset: ReleaseCountSchema }) {}
 
 /** One signed item falls outside the release's exact publication scope. */
-export class ReleaseItemScopeError extends Schema.TaggedError<ReleaseItemScopeError>()(
-  "ReleaseItemScopeError",
-  { itemOffset: ReleaseCountSchema }
-) {}
+export class ReleaseItemScopeError extends Schema.TaggedError<
+  ReleaseItemScopeError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemScopeError", { itemOffset: ReleaseCountSchema }) {}
 
 /** The separate ordered items do not match the signed digest. */
-export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<ReleaseItemsDigestMismatchError>()(
-  "ReleaseItemsDigestMismatchError",
-  { ...ReleaseDigestMismatchFields }
-) {}
+export class ReleaseItemsDigestMismatchError extends Schema.TaggedError<
+  ReleaseItemsDigestMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemsDigestMismatchError", { ...ReleaseDigestMismatchFields }) {}
 
 const VerifiedContentReleaseItemsSchema = Schema.Struct({
   deleteCount: Schema.Finite,

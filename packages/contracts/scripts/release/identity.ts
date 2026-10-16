@@ -58,19 +58,19 @@ const ArchiveDecisionSchema = Schema.Struct({
 type ArchiveDecision = typeof ArchiveDecisionSchema.Type;
 
 /** One expected contract release validation or identity failure. */
-export class ContractReleaseError extends Schema.TaggedError<ContractReleaseError>()(
-  "ContractReleaseError",
-  {
-    detail: Schema.String,
-    reason: Schema.Literals([
-      "archive",
-      "argument",
-      "identity",
-      "platform",
-      "release",
-    ]),
-  }
-) {}
+export class ContractReleaseError extends Schema.TaggedError<
+  ContractReleaseError,
+  { readonly brand: unique symbol }
+>()("ContractReleaseError", {
+  detail: Schema.String,
+  reason: Schema.Literals([
+    "archive",
+    "argument",
+    "identity",
+    "platform",
+    "release",
+  ]),
+}) {}
 
 /** Creates one stable typed contract release failure. */
 export function releaseError(

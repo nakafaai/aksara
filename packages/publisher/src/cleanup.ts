@@ -15,36 +15,38 @@ const CleanupCountSchema = Schema.Finite.pipe(
 );
 
 /** Cleanup input or target evidence failed its exact shared contract. */
-export class ReleaseCleanupContractError extends Schema.TaggedError<ReleaseCleanupContractError>()(
-  "ReleaseCleanupContractError",
-  { contract: Schema.Literals(["request", "receipt"]) }
-) {}
+export class ReleaseCleanupContractError extends Schema.TaggedError<
+  ReleaseCleanupContractError,
+  { readonly brand: unique symbol }
+>()("ReleaseCleanupContractError", {
+  contract: Schema.Literals(["request", "receipt"]),
+}) {}
 
 /** Durable retention prevents cleanup from advancing before this timestamp. */
-export class ReleaseCleanupDeferredError extends Schema.TaggedError<ReleaseCleanupDeferredError>()(
-  "ReleaseCleanupDeferredError",
-  {
-    releaseId: ReleaseIdSchema,
-    retryAt: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0)),
-      Schema.check(Schema.isFinite())
-    ),
-  }
-) {}
+export class ReleaseCleanupDeferredError extends Schema.TaggedError<
+  ReleaseCleanupDeferredError,
+  { readonly brand: unique symbol }
+>()("ReleaseCleanupDeferredError", {
+  releaseId: ReleaseIdSchema,
+  retryAt: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0)),
+    Schema.check(Schema.isFinite())
+  ),
+}) {}
 
 /** Cleanup remains resumable after one bounded CLI invocation exhausts its calls. */
-export class ReleaseCleanupIncompleteError extends Schema.TaggedError<ReleaseCleanupIncompleteError>()(
-  "ReleaseCleanupIncompleteError",
-  {
-    attempts: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-    deletedArtifacts: CleanupCountSchema,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class ReleaseCleanupIncompleteError extends Schema.TaggedError<
+  ReleaseCleanupIncompleteError,
+  { readonly brand: unique symbol }
+>()("ReleaseCleanupIncompleteError", {
+  attempts: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+  deletedArtifacts: CleanupCountSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** Requires one cumulative receipt to preserve identity and monotonic totals. */
 function validateReceipt(

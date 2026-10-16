@@ -45,13 +45,13 @@ export const PublicationTransportDetailSchema = Schema.Union([
 ]);
 
 /** A target transport failed transiently and may be retried idempotently. */
-export class PublicationTargetTransportError extends Schema.TaggedError<PublicationTargetTransportError>()(
-  "PublicationTargetTransportError",
-  {
-    detail: PublicationTransportDetailSchema,
-    stage: PublicationTargetStageSchema,
-  }
-) {}
+export class PublicationTargetTransportError extends Schema.TaggedError<
+  PublicationTargetTransportError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetTransportError", {
+  detail: PublicationTransportDetailSchema,
+  stage: PublicationTargetStageSchema,
+}) {}
 
 /** Creates one sanitized retryable network failure for a target capability. */
 export function publicationNetworkError(stage: PublicationTargetStage) {
@@ -62,47 +62,53 @@ export function publicationNetworkError(stage: PublicationTargetStage) {
 }
 
 /** A permanent local or remote protocol contradiction must not be retried. */
-export class PublicationTargetProtocolError extends Schema.TaggedError<PublicationTargetProtocolError>()(
-  "PublicationTargetProtocolError",
-  {
-    reason: Schema.Literals([
-      "request-encoding",
-      "response-decoding",
-      "response-evidence",
-    ]),
-    stage: PublicationTargetStageSchema,
-  }
-) {}
+export class PublicationTargetProtocolError extends Schema.TaggedError<
+  PublicationTargetProtocolError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetProtocolError", {
+  reason: Schema.Literals([
+    "request-encoding",
+    "response-decoding",
+    "response-evidence",
+  ]),
+  stage: PublicationTargetStageSchema,
+}) {}
 
 /** Publication transport configuration is unsafe before any request is sent. */
-export class PublicationTargetConfigurationError extends Schema.TaggedError<PublicationTargetConfigurationError>()(
-  "PublicationTargetConfigurationError",
-  { reason: Schema.Literals(["endpoint", "timeout", "token"]) }
-) {}
+export class PublicationTargetConfigurationError extends Schema.TaggedError<
+  PublicationTargetConfigurationError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetConfigurationError", {
+  reason: Schema.Literals(["endpoint", "timeout", "token"]),
+}) {}
 
 /** Publication ingress rejected credentials before invoking a capability. */
-export class PublicationTargetUnauthorizedError extends Schema.TaggedError<PublicationTargetUnauthorizedError>()(
-  "PublicationTargetUnauthorizedError",
-  {}
-) {}
+export class PublicationTargetUnauthorizedError extends Schema.TaggedError<
+  PublicationTargetUnauthorizedError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetUnauthorizedError", {}) {}
 
 /** A stable target rule rejected an otherwise authenticated request. */
-export class PublicationTargetRejectedError extends Schema.TaggedError<PublicationTargetRejectedError>()(
-  "PublicationTargetRejectedError",
-  { rejection: PublicationRejectedSchema }
-) {}
+export class PublicationTargetRejectedError extends Schema.TaggedError<
+  PublicationTargetRejectedError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetRejectedError", {
+  rejection: PublicationRejectedSchema,
+}) {}
 
 /** A release or batch identity was reused with different immutable content. */
-export class PublicationTargetConflictError extends Schema.TaggedError<PublicationTargetConflictError>()(
-  "PublicationTargetConflictError",
-  { conflict: PublicationConflictSchema }
-) {}
+export class PublicationTargetConflictError extends Schema.TaggedError<
+  PublicationTargetConflictError,
+  { readonly brand: unique symbol }
+>()("PublicationTargetConflictError", {
+  conflict: PublicationConflictSchema,
+}) {}
 
 /** Release staging or activation found a different active signed base. */
-export class PublicationStaleBaseError extends Schema.TaggedError<PublicationStaleBaseError>()(
-  "PublicationStaleBaseError",
-  { failure: PublicationStaleBaseSchema }
-) {}
+export class PublicationStaleBaseError extends Schema.TaggedError<
+  PublicationStaleBaseError,
+  { readonly brand: unique symbol }
+>()("PublicationStaleBaseError", { failure: PublicationStaleBaseSchema }) {}
 
 /** Complete target failure channel with explicit retry semantics by tag. */
 export type PublicationTargetFailure =

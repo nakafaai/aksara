@@ -26,15 +26,15 @@ export const ReleasePolicySchema = Schema.Struct({
 export type ReleasePolicy = typeof ReleasePolicySchema.Type;
 
 /** One structured scope does not close over the current release policy. */
-export class ReleasePolicyClosureError extends Schema.TaggedError<ReleasePolicyClosureError>()(
-  "ReleasePolicyClosureError",
-  {
-    actual: Schema.String,
-    expected: Schema.String,
-    family: Schema.Union([ContentSnapshotKindSchema, ContentFamilySchema]),
-    field: ClosureFieldSchema,
-  }
-) {}
+export class ReleasePolicyClosureError extends Schema.TaggedError<
+  ReleasePolicyClosureError,
+  { readonly brand: unique symbol }
+>()("ReleasePolicyClosureError", {
+  actual: Schema.String,
+  expected: Schema.String,
+  family: Schema.Union([ContentSnapshotKindSchema, ContentFamilySchema]),
+  field: ClosureFieldSchema,
+}) {}
 
 /** Returns whether two release policies have the same signed identity. */
 function hasSamePolicy(left: ReleasePolicy, right: ReleasePolicy) {

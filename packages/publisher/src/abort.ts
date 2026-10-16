@@ -9,10 +9,12 @@ import { decodeContract } from "#publisher/contract/decode";
 import { PublicationTarget } from "#publisher/publication/spec";
 
 /** Abort input or target evidence failed its exact shared contract. */
-export class ReleaseAbortContractError extends Schema.TaggedError<ReleaseAbortContractError>()(
-  "ReleaseAbortContractError",
-  { contract: Schema.Literals(["request", "receipt"]) }
-) {}
+export class ReleaseAbortContractError extends Schema.TaggedError<
+  ReleaseAbortContractError,
+  { readonly brand: unique symbol }
+>()("ReleaseAbortContractError", {
+  contract: Schema.Literals(["request", "receipt"]),
+}) {}
 
 /** Requires one cumulative receipt to preserve identity, total, and progress. */
 function validateReceipt(

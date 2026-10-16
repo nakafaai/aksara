@@ -20,13 +20,13 @@ const PackageMetadataSchema = Schema.fromJsonString(
 );
 
 /** Installed npm metadata is missing or does not satisfy the CLI contract. */
-export class CliPackageError extends Schema.TaggedError<CliPackageError>()(
-  "CliPackageError",
-  {
-    cause: Schema.Unknown,
-    reason: Schema.Literals(["invalid", "missing"]),
-  }
-) {}
+export class CliPackageError extends Schema.TaggedError<
+  CliPackageError,
+  { readonly brand: unique symbol }
+>()("CliPackageError", {
+  cause: Schema.Unknown,
+  reason: Schema.Literals(["invalid", "missing"]),
+}) {}
 
 /** Reads and validates the version bundled with the installed CLI package. */
 export const readPackageVersion = Effect.fn("AksaraCli.readPackageVersion")(

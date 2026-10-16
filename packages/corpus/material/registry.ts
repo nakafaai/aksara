@@ -57,40 +57,42 @@ const MaterialSourceBindingSchema = Schema.Struct({
 type MaterialSourceBinding = typeof MaterialSourceBindingSchema.Type;
 
 /** A decoded material source catalog repeats one stable material key. */
-export class MaterialKeyError extends Schema.TaggedError<MaterialKeyError>()(
-  "MaterialKeyError",
-  { materialKey: MaterialKeySchema }
-) {}
+export class MaterialKeyError extends Schema.TaggedError<
+  MaterialKeyError,
+  { readonly brand: unique symbol }
+>()("MaterialKeyError", { materialKey: MaterialKeySchema }) {}
 
 /** A decoded material source catalog repeats one authored asset root. */
-export class MaterialRootError extends Schema.TaggedError<MaterialRootError>()(
-  "MaterialRootError",
-  { assetRoot: LessonMaterialSourceSchema.fields.assetRoot }
-) {}
+export class MaterialRootError extends Schema.TaggedError<
+  MaterialRootError,
+  { readonly brand: unique symbol }
+>()("MaterialRootError", {
+  assetRoot: LessonMaterialSourceSchema.fields.assetRoot,
+}) {}
 
 /** A projected material registry failed strict entry decoding. */
-export class MaterialRegistryError extends Schema.TaggedError<MaterialRegistryError>()(
-  "MaterialRegistryError",
-  { cause: Schema.Unknown }
-) {}
+export class MaterialRegistryError extends Schema.TaggedError<
+  MaterialRegistryError,
+  { readonly brand: unique symbol }
+>()("MaterialRegistryError", { cause: Schema.Unknown }) {}
 
 /** Two lesson bodies claim the same stable locale-specific content head. */
-export class MaterialIdentityError extends Schema.TaggedError<MaterialIdentityError>()(
-  "MaterialIdentityError",
-  {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
-  }
-) {}
+export class MaterialIdentityError extends Schema.TaggedError<
+  MaterialIdentityError,
+  { readonly brand: unique symbol }
+>()("MaterialIdentityError", {
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+}) {}
 
 /** Two lesson bodies claim the same locale-specific public route. */
-export class MaterialRouteError extends Schema.TaggedError<MaterialRouteError>()(
-  "MaterialRouteError",
-  {
-    appLocale: AppLocaleSchema,
-    publicPath: PublicPathSchema,
-  }
-) {}
+export class MaterialRouteError extends Schema.TaggedError<
+  MaterialRouteError,
+  { readonly brand: unique symbol }
+>()("MaterialRouteError", {
+  appLocale: AppLocaleSchema,
+  publicPath: PublicPathSchema,
+}) {}
 
 /** Projects one decoded material section into one exact app locale. */
 export const projectMaterial = Effect.fn("AksaraCorpus.projectMaterial")(

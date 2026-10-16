@@ -15,10 +15,10 @@ import {
 import { validateManifestReceipt } from "#publisher/validation";
 
 /** A legacy retained inverse has no permanent runtime pair to restore safely. */
-export class RecoveryRuntimeMissingError extends Schema.TaggedError<RecoveryRuntimeMissingError>()(
-  "RecoveryRuntimeMissingError",
-  { recoveryId: ReleaseIdSchema }
-) {}
+export class RecoveryRuntimeMissingError extends Schema.TaggedError<
+  RecoveryRuntimeMissingError,
+  { readonly brand: unique symbol }
+>()("RecoveryRuntimeMissingError", { recoveryId: ReleaseIdSchema }) {}
 
 type RecoverContentRelease = (
   input: RetainedRecoveryInput

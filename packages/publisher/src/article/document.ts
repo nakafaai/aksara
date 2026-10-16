@@ -25,16 +25,22 @@ import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored article metadata does not satisfy Nakafa's exact page contract. */
-export class ArticleMetadataError extends Schema.TaggedError<ArticleMetadataError>()(
-  "ArticleMetadataError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class ArticleMetadataError extends Schema.TaggedError<
+  ArticleMetadataError,
+  { readonly brand: unique symbol }
+>()("ArticleMetadataError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The checkout could not provide its canonical reviewed article source. */
-export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()(
-  "ArticleSourceError",
-  { cause: Schema.Unknown, checkoutRoot: Schema.String }
-) {}
+export class ArticleSourceError extends Schema.TaggedError<
+  ArticleSourceError,
+  { readonly brand: unique symbol }
+>()("ArticleSourceError", {
+  cause: Schema.Unknown,
+  checkoutRoot: Schema.String,
+}) {}
 
 /** Binds one checkout root to the shared article-source error adapter. */
 export function mapArticleSourceError(checkoutRoot: string) {

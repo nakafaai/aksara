@@ -149,15 +149,15 @@ export function jsxComponentName(node: EstreeNode): string | undefined {
 }
 
 /** Typed failure for an authored MDX document the parser rejects. */
-export class MdxParseError extends Schema.TaggedError<MdxParseError>()(
-  "MdxParseError",
-  {
-    cause: Schema.Unknown,
-    detail: Schema.String,
-    message: Schema.String,
-    sourcePath: Schema.String,
-  }
-) {}
+export class MdxParseError extends Schema.TaggedError<
+  MdxParseError,
+  { readonly brand: unique symbol }
+>()("MdxParseError", {
+  cause: Schema.Unknown,
+  detail: Schema.String,
+  message: Schema.String,
+  sourcePath: Schema.String,
+}) {}
 
 /** Parses authored MDX and includes the source path in parser failures. */
 export function parseLessonMdx(

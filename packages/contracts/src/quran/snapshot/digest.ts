@@ -27,22 +27,22 @@ const SEARCH_DOMAIN = "nakafa.aksara.quran-search";
 const PROJECTION_DOMAIN = "nakafa.aksara.quran-projection";
 
 /** A current row hash does not authenticate its structured payload. */
-export class QuranRowIntegrityError extends Schema.TaggedError<QuranRowIntegrityError>()(
-  "QuranRowIntegrityError",
-  {
-    actual: Sha256HashSchema,
-    expected: Sha256HashSchema,
-  }
-) {}
+export class QuranRowIntegrityError extends Schema.TaggedError<
+  QuranRowIntegrityError,
+  { readonly brand: unique symbol }
+>()("QuranRowIntegrityError", {
+  actual: Sha256HashSchema,
+  expected: Sha256HashSchema,
+}) {}
 
 /** A current row does not match the next deterministic snapshot identity. */
-export class QuranRowOrderError extends Schema.TaggedError<QuranRowOrderError>()(
-  "QuranRowOrderError",
-  {
-    actual: Schema.String,
-    expected: Schema.String,
-  }
-) {}
+export class QuranRowOrderError extends Schema.TaggedError<
+  QuranRowOrderError,
+  { readonly brand: unique symbol }
+>()("QuranRowOrderError", {
+  actual: Schema.String,
+  expected: Schema.String,
+}) {}
 
 /** Joins the parts of one row identity with colons, stringifying each part. */
 function joinIdentity(parts: readonly (number | string)[]) {

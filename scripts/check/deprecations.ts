@@ -22,10 +22,13 @@ export function projectConfigPaths(files: readonly string[]) {
 }
 
 /** Native project loading or diagnostic collection failed. */
-export class TypeScriptProjectError extends Schema.TaggedError<TypeScriptProjectError>()(
-  "TypeScriptProjectError",
-  { cause: Schema.Unknown, configPath: Schema.String }
-) {}
+export class TypeScriptProjectError extends Schema.TaggedError<
+  TypeScriptProjectError,
+  { readonly brand: unique symbol }
+>()("TypeScriptProjectError", {
+  cause: Schema.Unknown,
+  configPath: Schema.String,
+}) {}
 
 /** Renders one native diagnostic as a repository-relative policy violation. */
 const diagnosticViolation = Effect.fn("AksaraPolicy.diagnosticViolation")(

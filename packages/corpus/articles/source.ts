@@ -22,10 +22,10 @@ const articleSourcePrograms = [
 ];
 
 /** An injected article source catalog failed strict decoding. */
-export class ArticleCatalogError extends Schema.TaggedError<ArticleCatalogError>()(
-  "ArticleCatalogError",
-  { cause: Schema.Unknown }
-) {}
+export class ArticleCatalogError extends Schema.TaggedError<
+  ArticleCatalogError,
+  { readonly brand: unique symbol }
+>()("ArticleCatalogError", { cause: Schema.Unknown }) {}
 
 /** Composes every reviewed source program into one article catalog. */
 export const decodeArticleSources = Effect.fn(
@@ -49,10 +49,13 @@ export const decodeArticleSources = Effect.fn(
 });
 
 /** Reading one reviewed article body failed through Effect Platform. */
-export class ArticleReadError extends Schema.TaggedError<ArticleReadError>()(
-  "ArticleReadError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class ArticleReadError extends Schema.TaggedError<
+  ArticleReadError,
+  { readonly brand: unique symbol }
+>()("ArticleReadError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The authored MDX body that an article document adds to its registry entry. */
 const ArticleDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });

@@ -14,23 +14,23 @@ import { retryPublicationTarget } from "#cli/retry";
 import { encodeJsonText } from "#cli/text/json";
 
 /** Paired targets cannot be accepted while their current content differs. */
-export class PublicationParityError extends Schema.TaggedError<PublicationParityError>()(
-  "PublicationParityError",
-  {
-    reason: Schema.Literals([
-      "target",
-      "active",
-      "candidate",
-      "recovery",
-      "source",
-      "renderer",
-      "locales",
-      "catalog",
-      "snapshots",
-    ]),
-    releaseId: ReleaseIdSchema,
-  }
-) {
+export class PublicationParityError extends Schema.TaggedError<
+  PublicationParityError,
+  { readonly brand: unique symbol }
+>()("PublicationParityError", {
+  reason: Schema.Literals([
+    "target",
+    "active",
+    "candidate",
+    "recovery",
+    "source",
+    "renderer",
+    "locales",
+    "catalog",
+    "snapshots",
+  ]),
+  releaseId: ReleaseIdSchema,
+}) {
   /** Explains the failed invariant without exposing target credentials. */
   get message() {
     return `Publication parity failed for ${this.releaseId}: ${this.reason}. Inspect both publication states and converge the complete release before acceptance.`;

@@ -32,23 +32,23 @@ import { compareCodeUnits } from "#contracts/text/order";
 const DIGEST_DOMAIN = "nakafa.aksara.program-rows";
 
 /** An aggregate program stream is incomplete, duplicated, or tampered. */
-export class ProgramDigestError extends Schema.TaggedError<ProgramDigestError>()(
-  "ProgramDigestError",
-  {
-    code: Schema.Literals([
-      "count",
-      "integrity",
-      "key",
-      "order",
-      "parent",
-      "program",
-      "route",
-      "root",
-      "slug",
-    ]),
-    identity: Schema.String,
-  }
-) {}
+export class ProgramDigestError extends Schema.TaggedError<
+  ProgramDigestError,
+  { readonly brand: unique symbol }
+>()("ProgramDigestError", {
+  code: Schema.Literals([
+    "count",
+    "integrity",
+    "key",
+    "order",
+    "parent",
+    "program",
+    "route",
+    "root",
+    "slug",
+  ]),
+  identity: Schema.String,
+}) {}
 
 /** Serializes source-derived counts for exact replay comparison. */
 function countIdentity(counts: ProgramCounts) {

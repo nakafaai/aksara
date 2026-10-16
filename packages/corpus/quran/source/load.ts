@@ -29,20 +29,20 @@ import {
 } from "#corpus/quran/source/policy";
 
 /** One exact official source file or bundle could not be authenticated. */
-export class QuranSourceFileError extends Schema.TaggedError<QuranSourceFileError>()(
-  "QuranSourceFileError",
-  {
-    detail: Schema.String,
-  }
-) {}
+export class QuranSourceFileError extends Schema.TaggedError<
+  QuranSourceFileError,
+  { readonly brand: unique symbol }
+>()("QuranSourceFileError", {
+  detail: Schema.String,
+}) {}
 
 /** A source load requested a locale subset that has no honest physical bundle. */
-export class QuranSourceLocaleError extends Schema.TaggedError<QuranSourceLocaleError>()(
-  "QuranSourceLocaleError",
-  {
-    appLocales: Schema.Array(AppLocaleSchema),
-  }
-) {}
+export class QuranSourceLocaleError extends Schema.TaggedError<
+  QuranSourceLocaleError,
+  { readonly brand: unique symbol }
+>()("QuranSourceLocaleError", {
+  appLocales: Schema.Array(AppLocaleSchema),
+}) {}
 
 const LoadedQuranSourcesSchema = Schema.Struct({
   sources: RawSourcesSchema,

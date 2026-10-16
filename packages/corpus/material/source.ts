@@ -80,10 +80,10 @@ const materialSourcePrograms = [
 ];
 
 /** An injected material source catalog failed strict decoding. */
-export class MaterialCatalogError extends Schema.TaggedError<MaterialCatalogError>()(
-  "MaterialCatalogError",
-  { cause: Schema.Unknown }
-) {}
+export class MaterialCatalogError extends Schema.TaggedError<
+  MaterialCatalogError,
+  { readonly brand: unique symbol }
+>()("MaterialCatalogError", { cause: Schema.Unknown }) {}
 
 /** Composes every real source program into one canonical material catalog. */
 export const decodeMaterialSources = Effect.fn(
@@ -106,10 +106,13 @@ export const decodeMaterialSources = Effect.fn(
 });
 
 /** Reading one reviewed corpus source failed through Effect Platform. */
-export class MaterialReadError extends Schema.TaggedError<MaterialReadError>()(
-  "MaterialReadError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class MaterialReadError extends Schema.TaggedError<
+  MaterialReadError,
+  { readonly brand: unique symbol }
+>()("MaterialReadError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The authored MDX body that a material document adds to its registry entry. */
 const MaterialDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });

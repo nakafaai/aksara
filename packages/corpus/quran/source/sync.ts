@@ -22,14 +22,14 @@ const GermanSourceReplacementSchema = Schema.Struct({
 type GermanSourceReplacement = typeof GermanSourceReplacementSchema.Type;
 
 /** Download, integrity, or atomic installation of one German source failed. */
-export class GermanQuranSourceSyncError extends Schema.TaggedError<GermanQuranSourceSyncError>()(
-  "GermanQuranSourceSyncError",
-  {
-    cause: Schema.Unknown,
-    phase: Schema.Literals(["download", "integrity", "write"]),
-    source: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class GermanQuranSourceSyncError extends Schema.TaggedError<
+  GermanQuranSourceSyncError,
+  { readonly brand: unique symbol }
+>()("GermanQuranSourceSyncError", {
+  cause: Schema.Unknown,
+  phase: Schema.Literals(["download", "integrity", "write"]),
+  source: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Replaces the complete source bundle and restores its prior tree on failure. */
 const replaceGermanSourceBundle = Effect.fn(

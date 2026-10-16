@@ -39,21 +39,21 @@ const ExactProcessOutputSchema = Schema.Struct({
 type ExactProcessOutput = typeof ExactProcessOutputSchema.Type;
 
 /** An exact process could not start, stream bounded output, or exit normally. */
-export class ExactProcessError extends Schema.TaggedError<ExactProcessError>()(
-  "ExactProcessError",
-  {
-    reason: Schema.Literals([
-      "executable",
-      "root",
-      "limit",
-      "spawn",
-      "stdin",
-      "stdout",
-      "stderr",
-      "signal",
-    ]),
-  }
-) {}
+export class ExactProcessError extends Schema.TaggedError<
+  ExactProcessError,
+  { readonly brand: unique symbol }
+>()("ExactProcessError", {
+  reason: Schema.Literals([
+    "executable",
+    "root",
+    "limit",
+    "spawn",
+    "stdin",
+    "stdout",
+    "stderr",
+    "signal",
+  ]),
+}) {}
 
 /** Infrastructure boundary for environment-isolated, bounded child processes. */
 export class ExactProcess extends Context.Service<

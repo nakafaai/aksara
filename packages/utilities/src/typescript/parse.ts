@@ -21,16 +21,19 @@ const TypeScriptSource = Schema.Struct({
 });
 
 /** Native compiler startup failed before any source could be inspected. */
-export class TypeScriptCompilerError extends Schema.TaggedError<TypeScriptCompilerError>()(
-  "TypeScriptCompilerError",
-  { cause: Schema.Unknown }
-) {}
+export class TypeScriptCompilerError extends Schema.TaggedError<
+  TypeScriptCompilerError,
+  { readonly brand: unique symbol }
+>()("TypeScriptCompilerError", { cause: Schema.Unknown }) {}
 
 /** The native compiler could not return one requested source snapshot. */
-export class TypeScriptSourceError extends Schema.TaggedError<TypeScriptSourceError>()(
-  "TypeScriptSourceError",
-  { cause: Schema.Unknown, fileName: Schema.String }
-) {}
+export class TypeScriptSourceError extends Schema.TaggedError<
+  TypeScriptSourceError,
+  { readonly brand: unique symbol }
+>()("TypeScriptSourceError", {
+  cause: Schema.Unknown,
+  fileName: Schema.String,
+}) {}
 
 /** Builds the parsed view of one native source that inspection callers receive. */
 function parsedView(

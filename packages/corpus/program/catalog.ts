@@ -10,19 +10,19 @@ const programSources: readonly unknown[] = [
 ];
 
 /** One learning program source row failed its exact public contract. */
-export class ProgramCatalogError extends Schema.TaggedError<ProgramCatalogError>()(
-  "ProgramCatalogError",
-  { cause: Schema.Unknown }
-) {}
+export class ProgramCatalogError extends Schema.TaggedError<
+  ProgramCatalogError,
+  { readonly brand: unique symbol }
+>()("ProgramCatalogError", { cause: Schema.Unknown }) {}
 
 /** Two program rows claim one stable key, order, or localized route slug. */
-export class ProgramIdentityError extends Schema.TaggedError<ProgramIdentityError>()(
-  "ProgramIdentityError",
-  {
-    scope: Schema.Literals(["key", "order", "slug"]),
-    value: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class ProgramIdentityError extends Schema.TaggedError<
+  ProgramIdentityError,
+  { readonly brand: unique symbol }
+>()("ProgramIdentityError", {
+  scope: Schema.Literals(["key", "order", "slug"]),
+  value: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Rejects duplicate identity inside one exact program catalog. */
 function addIdentity(

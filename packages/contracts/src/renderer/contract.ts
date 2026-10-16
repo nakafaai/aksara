@@ -104,10 +104,12 @@ export type RendererManifestEnvelope =
   typeof RendererManifestEnvelopeSchema.Type;
 
 /** A persisted renderer envelope does not carry the requested domain. */
-export class RendererDomainCapabilityMissingError extends Schema.TaggedError<RendererDomainCapabilityMissingError>()(
-  "RendererDomainCapabilityMissingError",
-  { rendererDomain: RendererDomainSchema }
-) {}
+export class RendererDomainCapabilityMissingError extends Schema.TaggedError<
+  RendererDomainCapabilityMissingError,
+  { readonly brand: unique symbol }
+>()("RendererDomainCapabilityMissingError", {
+  rendererDomain: RendererDomainSchema,
+}) {}
 
 /** Selects the one physical route registry authorized for a document. */
 export const selectRendererDomainCapability = Effect.fn(
@@ -127,16 +129,16 @@ export const selectRendererDomainCapability = Effect.fn(
 });
 
 /** SHA-256 could not be calculated for the renderer contract bytes. */
-export class RendererManifestHashComputeError extends Schema.TaggedError<RendererManifestHashComputeError>()(
-  "RendererManifestHashComputeError",
-  { cause: Schema.Unknown }
-) {}
+export class RendererManifestHashComputeError extends Schema.TaggedError<
+  RendererManifestHashComputeError,
+  { readonly brand: unique symbol }
+>()("RendererManifestHashComputeError", { cause: Schema.Unknown }) {}
 
 /** The renderer envelope hash does not authenticate its canonical tuple. */
-export class RendererManifestHashMismatchError extends Schema.TaggedError<RendererManifestHashMismatchError>()(
-  "RendererManifestHashMismatchError",
-  { ...Sha256MismatchFields }
-) {}
+export class RendererManifestHashMismatchError extends Schema.TaggedError<
+  RendererManifestHashMismatchError,
+  { readonly brand: unique symbol }
+>()("RendererManifestHashMismatchError", { ...Sha256MismatchFields }) {}
 
 /** Serializes the exact domain-scoped renderer tuple covered by SHA-256. */
 export function canonicalizeRendererManifestContract(input: {

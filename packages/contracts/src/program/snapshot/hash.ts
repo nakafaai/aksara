@@ -24,16 +24,16 @@ const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-program-snapshot";
 const ROW_DOMAIN = "nakafa.aksara.program-row";
 
 /** Node could not compute a deterministic program snapshot identity. */
-export class ProgramSnapshotHashError extends Schema.TaggedError<ProgramSnapshotHashError>()(
-  "ProgramSnapshotHashError",
-  {}
-) {}
+export class ProgramSnapshotHashError extends Schema.TaggedError<
+  ProgramSnapshotHashError,
+  { readonly brand: unique symbol }
+>()("ProgramSnapshotHashError", {}) {}
 
 /** Node could not compute one deterministic program row identity. */
-export class ProgramRowHashError extends Schema.TaggedError<ProgramRowHashError>()(
-  "ProgramRowHashError",
-  { scope: Schema.Literals(["digest", "row"]) }
-) {}
+export class ProgramRowHashError extends Schema.TaggedError<
+  ProgramRowHashError,
+  { readonly brand: unique symbol }
+>()("ProgramRowHashError", { scope: Schema.Literals(["digest", "row"]) }) {}
 
 /** Serializes current program facts in stable signed field order. */
 export function canonicalizeProgramSnapshot(input: ProgramSnapshotFacts) {

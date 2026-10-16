@@ -46,16 +46,16 @@ export const LearningGraphAssetOwnerSchema = Schema.Struct({
 export type LearningGraphAssetOwner = typeof LearningGraphAssetOwnerSchema.Type;
 
 /** One asset ID cannot address a supported current semantic content family. */
-export class LearningGraphAssetFamilyError extends Schema.TaggedError<LearningGraphAssetFamilyError>()(
-  "LearningGraphAssetFamilyError",
-  { assetId: Schema.String }
-) {}
+export class LearningGraphAssetFamilyError extends Schema.TaggedError<
+  LearningGraphAssetFamilyError,
+  { readonly brand: unique symbol }
+>()("LearningGraphAssetFamilyError", { assetId: Schema.String }) {}
 
 /** One graph identity does not coherently belong to a current semantic family. */
-export class LearningGraphFamilyError extends Schema.TaggedError<LearningGraphFamilyError>()(
-  "LearningGraphFamilyError",
-  { identity: LearningGraphIdentitySchema }
-) {}
+export class LearningGraphFamilyError extends Schema.TaggedError<
+  LearningGraphFamilyError,
+  { readonly brand: unique symbol }
+>()("LearningGraphFamilyError", { identity: LearningGraphIdentitySchema }) {}
 
 /** Returns whether an identity body belongs to one exact domain token. */
 function hasOwner(body: string, owner: string) {

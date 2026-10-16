@@ -63,14 +63,14 @@ export type LoadedPreviewSource = Readonly<
 >;
 
 /** Reading the current item failed at the trusted preview source seam. */
-export class PreviewItemSourceError extends Schema.TaggedError<PreviewItemSourceError>()(
-  "PreviewItemSourceError",
-  {
-    cause: Schema.Unknown,
-    checkoutRoot: Schema.String,
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class PreviewItemSourceError extends Schema.TaggedError<
+  PreviewItemSourceError,
+  { readonly brand: unique symbol }
+>()("PreviewItemSourceError", {
+  cause: Schema.Unknown,
+  checkoutRoot: Schema.String,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Reads one item source once for every selected preview closure. */
 const loadQuestionItem = Effect.fn("AksaraPublisher.loadPreviewItem")(

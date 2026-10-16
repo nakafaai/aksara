@@ -5,17 +5,17 @@ import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout
 import { Effect, Schema } from "effect";
 
 /** Current permanent runtime bundle does not identify the active try-out base. */
-export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<BaseTryoutRuntimeBundleMismatchError>()(
-  "BaseTryoutRuntimeBundleMismatchError",
-  {
-    reason: Schema.Literals([
-      "missing-base",
-      "missing-recovery",
-      "missing-runtime",
-      "snapshot",
-    ]),
-  }
-) {}
+export class BaseTryoutRuntimeBundleMismatchError extends Schema.TaggedError<
+  BaseTryoutRuntimeBundleMismatchError,
+  { readonly brand: unique symbol }
+>()("BaseTryoutRuntimeBundleMismatchError", {
+  reason: Schema.Literals([
+    "missing-base",
+    "missing-recovery",
+    "missing-runtime",
+    "snapshot",
+  ]),
+}) {}
 
 /** Authenticates the optional permanent bundle and binds it to the active base. */
 export const verifyBaseTryoutRuntimeBundle = Effect.fn(

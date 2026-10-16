@@ -6,16 +6,16 @@ import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signatu
 import { Effect, Schema } from "effect";
 
 /** A retained verification key is not authorized to sign a new release. */
-class SigningKeyInactiveError extends Schema.TaggedError<SigningKeyInactiveError>()(
-  "SigningKeyInactiveError",
-  { keyId: SigningKeyIdSchema }
-) {}
+class SigningKeyInactiveError extends Schema.TaggedError<
+  SigningKeyInactiveError,
+  { readonly brand: unique symbol }
+>()("SigningKeyInactiveError", { keyId: SigningKeyIdSchema }) {}
 
 /** The configured private key does not match its code-owned public SPKI. */
-class SigningKeyMismatchError extends Schema.TaggedError<SigningKeyMismatchError>()(
-  "SigningKeyMismatchError",
-  { keyId: SigningKeyIdSchema }
-) {}
+class SigningKeyMismatchError extends Schema.TaggedError<
+  SigningKeyMismatchError,
+  { readonly brand: unique symbol }
+>()("SigningKeyMismatchError", { keyId: SigningKeyIdSchema }) {}
 
 /**
  * Proves the configured signer is active and matches its retained public key.

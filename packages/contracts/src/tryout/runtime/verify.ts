@@ -13,38 +13,38 @@ import {
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 /** Unknown input did not exactly satisfy the signed runtime-bundle contract. */
-export class TryoutRuntimeBundleVerificationDecodeError extends Schema.TaggedError<TryoutRuntimeBundleVerificationDecodeError>()(
-  "TryoutRuntimeBundleVerificationDecodeError",
-  {
-    message: Schema.Literal(
-      "Try-out runtime bundle verification input does not satisfy its exact wire contract."
-    ),
-  }
-) {}
+export class TryoutRuntimeBundleVerificationDecodeError extends Schema.TaggedError<
+  TryoutRuntimeBundleVerificationDecodeError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleVerificationDecodeError", {
+  message: Schema.Literal(
+    "Try-out runtime bundle verification input does not satisfy its exact wire contract."
+  ),
+}) {}
 
 /** The envelope hash does not identify its complete canonical payload. */
-export class TryoutRuntimeBundleHashMismatchError extends Schema.TaggedError<TryoutRuntimeBundleHashMismatchError>()(
-  "TryoutRuntimeBundleHashMismatchError",
-  { ...Sha256MismatchFields }
-) {}
+export class TryoutRuntimeBundleHashMismatchError extends Schema.TaggedError<
+  TryoutRuntimeBundleHashMismatchError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleHashMismatchError", { ...Sha256MismatchFields }) {}
 
 /** The embedded snapshot identity does not match its semantic facts. */
-export class TryoutRuntimeBundleSnapshotMismatchError extends Schema.TaggedError<TryoutRuntimeBundleSnapshotMismatchError>()(
-  "TryoutRuntimeBundleSnapshotMismatchError",
-  {
-    actualSnapshotId: Sha256HashSchema,
-    expectedSnapshotId: Sha256HashSchema,
-  }
-) {}
+export class TryoutRuntimeBundleSnapshotMismatchError extends Schema.TaggedError<
+  TryoutRuntimeBundleSnapshotMismatchError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleSnapshotMismatchError", {
+  actualSnapshotId: Sha256HashSchema,
+  expectedSnapshotId: Sha256HashSchema,
+}) {}
 
 /** The supplied renderer is not the renderer authenticated by the bundle. */
-export class TryoutRuntimeBundleRendererMismatchError extends Schema.TaggedError<TryoutRuntimeBundleRendererMismatchError>()(
-  "TryoutRuntimeBundleRendererMismatchError",
-  {
-    actualRendererManifestHash: Sha256HashSchema,
-    expectedRendererManifestHash: Sha256HashSchema,
-  }
-) {}
+export class TryoutRuntimeBundleRendererMismatchError extends Schema.TaggedError<
+  TryoutRuntimeBundleRendererMismatchError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleRendererMismatchError", {
+  actualRendererManifestHash: Sha256HashSchema,
+  expectedRendererManifestHash: Sha256HashSchema,
+}) {}
 
 /** Authenticates one already decoded permanent try-out runtime bundle. */
 const authenticateTryoutRuntimeBundle = Effect.fn(

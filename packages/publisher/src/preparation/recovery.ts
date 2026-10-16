@@ -10,13 +10,13 @@ import type {
 } from "#publisher/preparation/prepared";
 
 /** A rebuilt prepared manifest differs from its exact stored candidate envelope. */
-export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<PreparedStoredReleaseMismatchError>()(
-  "PreparedStoredReleaseMismatchError",
-  {
-    ...Sha256MismatchFields,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class PreparedStoredReleaseMismatchError extends Schema.TaggedError<
+  PreparedStoredReleaseMismatchError,
+  { readonly brand: unique symbol }
+>()("PreparedStoredReleaseMismatchError", {
+  ...Sha256MismatchFields,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 type ReuseStoredReleaseError =
   | Effect.Error<ReturnType<typeof hashContentReleaseManifest>>

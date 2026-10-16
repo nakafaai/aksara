@@ -14,7 +14,7 @@ const ProductionVariableSchema = Schema.Literals([
 export type ProductionVariable = typeof ProductionVariableSchema.Type;
 
 /** One required production variable is absent, malformed, or unsafe. */
-export class ProductionEnvironmentError extends Schema.TaggedError<ProductionEnvironmentError>()(
-  "ProductionEnvironmentError",
-  { variable: ProductionVariableSchema }
-) {}
+export class ProductionEnvironmentError extends Schema.TaggedError<
+  ProductionEnvironmentError,
+  { readonly brand: unique symbol }
+>()("ProductionEnvironmentError", { variable: ProductionVariableSchema }) {}

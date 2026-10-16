@@ -274,10 +274,12 @@ export function canonicalQuestionBlueprint(blueprint: QuestionBlueprint) {
 }
 
 /** One item does not contain the exact artifact locale it must assess. */
-export class QuestionResponseLocaleMissingError extends Schema.TaggedError<QuestionResponseLocaleMissingError>()(
-  "QuestionResponseLocaleMissingError",
-  { artifactLocale: ArtifactLocaleSchema }
-) {}
+export class QuestionResponseLocaleMissingError extends Schema.TaggedError<
+  QuestionResponseLocaleMissingError,
+  { readonly brand: unique symbol }
+>()("QuestionResponseLocaleMissingError", {
+  artifactLocale: ArtifactLocaleSchema,
+}) {}
 
 /** Resolves and freezes one exact-locale response from an authored item. */
 export const questionResponseFor = Effect.fn(

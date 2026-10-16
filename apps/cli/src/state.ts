@@ -29,22 +29,22 @@ import { encodeJsonText } from "#cli/text/json";
  * durable release that owns that slot, so `activeReleaseId` and
  * `recoveryReleaseId` form the pair an operator passes to `accept`.
  */
-export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
-  "ProductionStateError",
-  {
-    activeReleaseId: Schema.optional(ReleaseIdSchema),
-    candidateReleaseId: Schema.optional(ReleaseIdSchema),
-    reason: Schema.Literals([
-      "aborting",
-      "mode-mismatch",
-      "candidate-conflict",
-      "recovery-conflict",
-      "recovery-retained",
-      "scope-mismatch",
-    ]),
-    recoveryReleaseId: Schema.optional(ReleaseIdSchema),
-  }
-) {}
+export class ProductionStateError extends Schema.TaggedError<
+  ProductionStateError,
+  { readonly brand: unique symbol }
+>()("ProductionStateError", {
+  activeReleaseId: Schema.optional(ReleaseIdSchema),
+  candidateReleaseId: Schema.optional(ReleaseIdSchema),
+  reason: Schema.Literals([
+    "aborting",
+    "mode-mismatch",
+    "candidate-conflict",
+    "recovery-conflict",
+    "recovery-retained",
+    "scope-mismatch",
+  ]),
+  recoveryReleaseId: Schema.optional(ReleaseIdSchema),
+}) {}
 
 const NewActionSchema = Schema.Struct({
   baseBundle: Schema.NullOr(ContentReleaseBundleSchema),

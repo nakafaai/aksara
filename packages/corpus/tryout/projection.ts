@@ -24,26 +24,26 @@ import {
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 /** One active catalog references a reviewed question that does not exist. */
-export class TryoutQuestionMissingError extends Schema.TaggedError<TryoutQuestionMissingError>()(
-  "TryoutQuestionMissingError",
-  { questionKey: QuestionKeySchema }
-) {}
+export class TryoutQuestionMissingError extends Schema.TaggedError<
+  TryoutQuestionMissingError,
+  { readonly brand: unique symbol }
+>()("TryoutQuestionMissingError", { questionKey: QuestionKeySchema }) {}
 
 /** One projected identity is repeated before a snapshot can be signed. */
-export class TryoutQuestionDuplicateError extends Schema.TaggedError<TryoutQuestionDuplicateError>()(
-  "TryoutQuestionDuplicateError",
-  { questionKey: QuestionKeySchema }
-) {}
+export class TryoutQuestionDuplicateError extends Schema.TaggedError<
+  TryoutQuestionDuplicateError,
+  { readonly brand: unique symbol }
+>()("TryoutQuestionDuplicateError", { questionKey: QuestionKeySchema }) {}
 
 /** One grouped stimulus is isolated or interrupted inside its active section. */
-export class TryoutStimulusGroupError extends Schema.TaggedError<TryoutStimulusGroupError>()(
-  "TryoutStimulusGroupError",
-  {
-    questionKey: QuestionKeySchema,
-    reason: Schema.Literals(["isolated", "noncontiguous"]),
-    stimulusKey: TryoutKeySchema,
-  }
-) {}
+export class TryoutStimulusGroupError extends Schema.TaggedError<
+  TryoutStimulusGroupError,
+  { readonly brand: unique symbol }
+>()("TryoutStimulusGroupError", {
+  questionKey: QuestionKeySchema,
+  reason: Schema.Literals(["isolated", "noncontiguous"]),
+  stimulusKey: TryoutKeySchema,
+}) {}
 
 /** Indexes physical question sources and rejects repeated logical identities. */
 const indexQuestions = Effect.fn("AksaraCorpus.indexTryoutQuestions")(

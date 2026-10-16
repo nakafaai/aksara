@@ -34,16 +34,22 @@ import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored question metadata does not satisfy its exact publication contract. */
-export class QuestionMetadataError extends Schema.TaggedError<QuestionMetadataError>()(
-  "QuestionMetadataError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class QuestionMetadataError extends Schema.TaggedError<
+  QuestionMetadataError,
+  { readonly brand: unique symbol }
+>()("QuestionMetadataError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The checkout could not provide its canonical reviewed question body. */
-export class QuestionSourceError extends Schema.TaggedError<QuestionSourceError>()(
-  "QuestionSourceError",
-  { cause: Schema.Unknown, checkoutRoot: Schema.String }
-) {}
+export class QuestionSourceError extends Schema.TaggedError<
+  QuestionSourceError,
+  { readonly brand: unique symbol }
+>()("QuestionSourceError", {
+  cause: Schema.Unknown,
+  checkoutRoot: Schema.String,
+}) {}
 
 /** Lightweight question facts sufficient to decide whether compilation is needed. */
 export interface InspectedQuestionDocument<

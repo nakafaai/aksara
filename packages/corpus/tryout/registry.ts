@@ -18,19 +18,19 @@ import {
 const tryoutPrograms = [snbtTryoutSource, tkaTryoutSource];
 
 /** An injected try-out registry failed strict source-contract decoding. */
-export class TryoutRegistryDecodeError extends Schema.TaggedError<TryoutRegistryDecodeError>()(
-  "TryoutRegistryDecodeError",
-  { cause: Schema.Unknown }
-) {}
+export class TryoutRegistryDecodeError extends Schema.TaggedError<
+  TryoutRegistryDecodeError,
+  { readonly brand: unique symbol }
+>()("TryoutRegistryDecodeError", { cause: Schema.Unknown }) {}
 
 /** Two exam sources claim one stable identity with conflicting ownership. */
-export class TryoutRegistryConflictError extends Schema.TaggedError<TryoutRegistryConflictError>()(
-  "TryoutRegistryConflictError",
-  {
-    key: Schema.String,
-    kind: Schema.Literals(["country", "exam"]),
-  }
-) {}
+export class TryoutRegistryConflictError extends Schema.TaggedError<
+  TryoutRegistryConflictError,
+  { readonly brand: unique symbol }
+>()("TryoutRegistryConflictError", {
+  key: Schema.String,
+  kind: Schema.Literals(["country", "exam"]),
+}) {}
 
 /** Serializes the shared country facts that every exam must agree on. */
 function countrySignature(source: TryoutExamSource) {

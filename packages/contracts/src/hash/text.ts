@@ -2,10 +2,10 @@ import { Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 
 /** Web Crypto could not hash one UTF-8 contract value. */
-export class TextHashError extends Schema.TaggedError<TextHashError>()(
-  "TextHashError",
-  { cause: Schema.Unknown }
-) {}
+export class TextHashError extends Schema.TaggedError<
+  TextHashError,
+  { readonly brand: unique symbol }
+>()("TextHashError", { cause: Schema.Unknown }) {}
 
 /** Encodes one SHA-256 digest without depending on a Node runtime. */
 function encodeDigest(value: ArrayBuffer) {

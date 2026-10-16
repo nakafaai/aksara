@@ -26,15 +26,15 @@ import {
 import type { LessonMaterialSource } from "#corpus/material/schema";
 
 /** One curriculum material mapping conflicts with reviewed source ownership. */
-export class CurriculumProjectionError extends Schema.TaggedError<CurriculumProjectionError>()(
-  "CurriculumProjectionError",
-  {
-    code: Schema.Literals(["display", "domain", "material", "multi-material"]),
-    nodeKey: CurriculumNodeKeySchema,
-    programKey: LearningProgramKeySchema,
-    value: Schema.String,
-  }
-) {}
+export class CurriculumProjectionError extends Schema.TaggedError<
+  CurriculumProjectionError,
+  { readonly brand: unique symbol }
+>()("CurriculumProjectionError", {
+  code: Schema.Literals(["display", "domain", "material", "multi-material"]),
+  nodeKey: CurriculumNodeKeySchema,
+  programKey: LearningProgramKeySchema,
+  value: Schema.String,
+}) {}
 
 /** Reads source-owned translations for one validated material reference. */
 const materialTranslations = Effect.fn("AksaraCorpus.materialTranslations")(

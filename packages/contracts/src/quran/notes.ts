@@ -37,17 +37,17 @@ export type QuranTranslationDocument =
   typeof QuranTranslationDocumentSchema.Type;
 
 /** The translation and note markers do not form one exact projection. */
-export class QuranTranslationNotesError extends Schema.TaggedError<QuranTranslationNotesError>()(
-  "QuranTranslationNotesError",
-  {
-    reason: Schema.Literals([
-      "empty-note",
-      "invalid-marker",
-      "invalid-source",
-      "mismatched-markers",
-    ]),
-  }
-) {}
+export class QuranTranslationNotesError extends Schema.TaggedError<
+  QuranTranslationNotesError,
+  { readonly brand: unique symbol }
+>()("QuranTranslationNotesError", {
+  reason: Schema.Literals([
+    "empty-note",
+    "invalid-marker",
+    "invalid-source",
+    "mismatched-markers",
+  ]),
+}) {}
 
 const MarkerSchema = Schema.Struct({
   end: Schema.Finite,

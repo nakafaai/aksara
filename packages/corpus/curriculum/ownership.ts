@@ -7,14 +7,14 @@ import {
 import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
 
 /** Curriculum routes cannot be derived from the supplied source ownership. */
-export class CurriculumRouteError extends Schema.TaggedError<CurriculumRouteError>()(
-  "CurriculumRouteError",
-  {
-    code: Schema.Literals(["curriculum", "program", "translation"]),
-    programKey: LearningProgramKeySchema,
-    value: Schema.String,
-  }
-) {}
+export class CurriculumRouteError extends Schema.TaggedError<
+  CurriculumRouteError,
+  { readonly brand: unique symbol }
+>()("CurriculumRouteError", {
+  code: Schema.Literals(["curriculum", "program", "translation"]),
+  programKey: LearningProgramKeySchema,
+  value: Schema.String,
+}) {}
 
 /** Finds a curriculum-tree program or fails with its missing ownership. */
 export const requireCurriculumProgram = Effect.fn(

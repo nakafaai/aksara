@@ -35,14 +35,14 @@ export const EDGE_CONTRACT_EXPORTS = [
 const PRIVATE_PREFIX = "#contracts/";
 
 /** One expected Edge contract verification failure. */
-export class EdgeVerificationError extends Schema.TaggedError<EdgeVerificationError>()(
-  "EdgeVerificationError",
-  {
-    cause: Schema.Unknown,
-    detail: Schema.String,
-    reason: Schema.Literals(["filesystem", "manifest", "module"]),
-  }
-) {}
+export class EdgeVerificationError extends Schema.TaggedError<
+  EdgeVerificationError,
+  { readonly brand: unique symbol }
+>()("EdgeVerificationError", {
+  cause: Schema.Unknown,
+  detail: Schema.String,
+  reason: Schema.Literals(["filesystem", "manifest", "module"]),
+}) {}
 
 /** Creates one stable Edge verification failure. */
 function edgeError(

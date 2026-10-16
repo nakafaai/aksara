@@ -8,7 +8,10 @@ const EMPTY_BODY = {
 };
 
 /** A bounded HTTP response body could not be read safely. */
-export class BodyError extends Schema.TaggedError<BodyError>()("BodyError", {
+export class BodyError extends Schema.TaggedError<
+  BodyError,
+  { readonly brand: unique symbol }
+>()("BodyError", {
   reason: Schema.Literals(["empty", "encoding", "length", "limit", "stream"]),
 }) {}
 

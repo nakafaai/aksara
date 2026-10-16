@@ -45,13 +45,13 @@ const ManifestSchema = Schema.fromJsonString(
 );
 
 /** A package manifest, bundle, or output permission blocked CLI packaging. */
-class CliBuildError extends Schema.TaggedError<CliBuildError>()(
-  "CliBuildError",
-  {
-    cause: Schema.Unknown,
-    stage: Schema.Literals(["bundle", "manifest", "notice", "permissions"]),
-  }
-) {}
+class CliBuildError extends Schema.TaggedError<
+  CliBuildError,
+  { readonly brand: unique symbol }
+>()("CliBuildError", {
+  cause: Schema.Unknown,
+  stage: Schema.Literals(["bundle", "manifest", "notice", "permissions"]),
+}) {}
 
 const packageRoot = fileURLToPath(new URL("../", import.meta.url));
 const manifestPath = fileURLToPath(new URL("../package.json", import.meta.url));

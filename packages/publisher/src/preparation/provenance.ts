@@ -3,10 +3,10 @@ import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/s
 import { Effect, Schema } from "effect";
 
 /** A Git release attempted to replace Quran with unapproved source provenance. */
-export class QuranProvenanceBlockedError extends Schema.TaggedError<QuranProvenanceBlockedError>()(
-  "QuranProvenanceBlockedError",
-  { provenanceDigest: Sha256HashSchema }
-) {}
+export class QuranProvenanceBlockedError extends Schema.TaggedError<
+  QuranProvenanceBlockedError,
+  { readonly brand: unique symbol }
+>()("QuranProvenanceBlockedError", { provenanceDigest: Sha256HashSchema }) {}
 
 /** Rejects Quran replacement until every source scope has approved provenance. */
 export function requireSnapshotProvenance(

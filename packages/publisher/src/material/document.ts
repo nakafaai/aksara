@@ -24,16 +24,22 @@ import { makeCompileSource } from "#publisher/compilation";
 import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored material metadata does not satisfy Nakafa's exact page contract. */
-export class MaterialMetadataError extends Schema.TaggedError<MaterialMetadataError>()(
-  "MaterialMetadataError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class MaterialMetadataError extends Schema.TaggedError<
+  MaterialMetadataError,
+  { readonly brand: unique symbol }
+>()("MaterialMetadataError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The checkout could not provide its canonical reviewed material source. */
-export class MaterialSourceError extends Schema.TaggedError<MaterialSourceError>()(
-  "MaterialSourceError",
-  { cause: Schema.Unknown, checkoutRoot: Schema.String }
-) {}
+export class MaterialSourceError extends Schema.TaggedError<
+  MaterialSourceError,
+  { readonly brand: unique symbol }
+>()("MaterialSourceError", {
+  cause: Schema.Unknown,
+  checkoutRoot: Schema.String,
+}) {}
 
 /** Wraps every registry and filesystem failure at the checkout source seam. */
 export function mapMaterialSourceError(checkoutRoot: string) {

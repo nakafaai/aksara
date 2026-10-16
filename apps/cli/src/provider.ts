@@ -28,13 +28,13 @@ import {
 import { encodeJsonText } from "#cli/text/json";
 
 /** Loopback provider startup or state encoding failed safely. */
-export class PreviewProviderError extends Schema.TaggedError<PreviewProviderError>()(
-  "PreviewProviderError",
-  {
-    cause: Schema.optional(Schema.Unknown),
-    stage: Schema.Literals(["coherence", "encode", "listen"]),
-  }
-) {}
+export class PreviewProviderError extends Schema.TaggedError<
+  PreviewProviderError,
+  { readonly brand: unique symbol }
+>()("PreviewProviderError", {
+  cause: Schema.optional(Schema.Unknown),
+  stage: Schema.Literals(["coherence", "encode", "listen"]),
+}) {}
 
 type PreviewRepositories = LocalPreviewManifest["repositories"];
 type PreviewFailure = Extract<

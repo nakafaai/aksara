@@ -14,10 +14,10 @@ import { encodeJsonText } from "#contracts/text/json";
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-quran-snapshot";
 
 /** Node could not compute a deterministic Quran snapshot identity. */
-export class QuranSnapshotHashError extends Schema.TaggedError<QuranSnapshotHashError>()(
-  "QuranSnapshotHashError",
-  {}
-) {}
+export class QuranSnapshotHashError extends Schema.TaggedError<
+  QuranSnapshotHashError,
+  { readonly brand: unique symbol }
+>()("QuranSnapshotHashError", {}) {}
 
 /** Serializes Quran snapshot facts in stable signed field order. */
 export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {

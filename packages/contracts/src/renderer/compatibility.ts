@@ -21,19 +21,21 @@ const RendererCapabilityScopeSchema = Schema.Union([
 ]);
 
 /** A live renderer no longer publishes one domain frozen by a signed release. */
-export class RendererManifestDomainUnpublishedError extends Schema.TaggedError<RendererManifestDomainUnpublishedError>()(
-  "RendererManifestDomainUnpublishedError",
-  { rendererDomain: RendererDomainSchema }
-) {}
+export class RendererManifestDomainUnpublishedError extends Schema.TaggedError<
+  RendererManifestDomainUnpublishedError,
+  { readonly brand: unique symbol }
+>()("RendererManifestDomainUnpublishedError", {
+  rendererDomain: RendererDomainSchema,
+}) {}
 
 /** A live renderer no longer supports one required frozen renderer name. */
-export class RendererManifestComponentUnsupportedError extends Schema.TaggedError<RendererManifestComponentUnsupportedError>()(
-  "RendererManifestComponentUnsupportedError",
-  {
-    componentName: RendererComponentNameSchema,
-    rendererScope: RendererCapabilityScopeSchema,
-  }
-) {}
+export class RendererManifestComponentUnsupportedError extends Schema.TaggedError<
+  RendererManifestComponentUnsupportedError,
+  { readonly brand: unique symbol }
+>()("RendererManifestComponentUnsupportedError", {
+  componentName: RendererComponentNameSchema,
+  rendererScope: RendererCapabilityScopeSchema,
+}) {}
 
 /** Requires every frozen renderer name from one physical registry. */
 const verifyCapabilitySuperset = Effect.fn(

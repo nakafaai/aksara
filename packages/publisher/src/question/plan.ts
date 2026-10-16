@@ -35,10 +35,10 @@ type PlanQuestionPublicationContext =
   | Effect.Services<ReturnType<typeof inspectQuestionDocument>>;
 
 /** A question body cannot join its canonical source-owned item. */
-export class QuestionItemJoinError extends Schema.TaggedError<QuestionItemJoinError>()(
-  "QuestionItemJoinError",
-  { sourceRoot: CorpusSourcePathSchema }
-) {}
+export class QuestionItemJoinError extends Schema.TaggedError<
+  QuestionItemJoinError,
+  { readonly brand: unique symbol }
+>()("QuestionItemJoinError", { sourceRoot: CorpusSourcePathSchema }) {}
 
 /** Derives one complete question head from a newly compiled upsert. */
 function makeQuestionHead(record: PreparedContentUpsert): QuestionHead {

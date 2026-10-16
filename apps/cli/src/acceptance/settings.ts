@@ -10,19 +10,19 @@ import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
 import { JsonTextSchema } from "#cli/text/json";
 
 /** Acceptance publication cannot escape its exact isolated source and target. */
-export class AcceptanceEnvironmentError extends Schema.TaggedError<AcceptanceEnvironmentError>()(
-  "AcceptanceEnvironmentError",
-  {
-    reason: Schema.Literals([
-      "checkout",
-      "endpoint",
-      "signer",
-      "renderer",
-      "revision",
-      "target",
-    ]),
-  }
-) {}
+export class AcceptanceEnvironmentError extends Schema.TaggedError<
+  AcceptanceEnvironmentError,
+  { readonly brand: unique symbol }
+>()("AcceptanceEnvironmentError", {
+  reason: Schema.Literals([
+    "checkout",
+    "endpoint",
+    "signer",
+    "renderer",
+    "revision",
+    "target",
+  ]),
+}) {}
 
 /** Rejects every remote, credential-bearing, redirected, or ambiguous ingress URL. */
 export const decodeAcceptanceEndpoint = Effect.fn(

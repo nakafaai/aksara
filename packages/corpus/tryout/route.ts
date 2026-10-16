@@ -3,19 +3,19 @@ import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect, MutableHashSet, Schema } from "effect";
 
 /** Two source-derived nodes claim one locale-specific public route. */
-export class TryoutRouteDuplicateError extends Schema.TaggedError<TryoutRouteDuplicateError>()(
-  "TryoutRouteDuplicateError",
-  { ...PublicRouteFields }
-) {}
+export class TryoutRouteDuplicateError extends Schema.TaggedError<
+  TryoutRouteDuplicateError,
+  { readonly brand: unique symbol }
+>()("TryoutRouteDuplicateError", { ...PublicRouteFields }) {}
 
 /** A public route does not spell the title of the page it opens. */
-export class TryoutRouteTitleError extends Schema.TaggedError<TryoutRouteTitleError>()(
-  "TryoutRouteTitleError",
-  {
-    ...PublicRouteFields,
-    title: Schema.String,
-  }
-) {}
+export class TryoutRouteTitleError extends Schema.TaggedError<
+  TryoutRouteTitleError,
+  { readonly brand: unique symbol }
+>()("TryoutRouteTitleError", {
+  ...PublicRouteFields,
+  title: Schema.String,
+}) {}
 
 /**
  * Spells one localized title as the route segment of the page that shows it,

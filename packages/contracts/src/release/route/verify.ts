@@ -8,34 +8,40 @@ import { ContentRouteItemSchema } from "#contracts/release/route/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 /** One streamed route failed strict wire decoding. */
-export class RouteDecodeError extends Schema.TaggedError<RouteDecodeError>()(
-  "RouteDecodeError",
-  { routeOffset: ReleaseCountSchema }
-) {}
+export class RouteDecodeError extends Schema.TaggedError<
+  RouteDecodeError,
+  { readonly brand: unique symbol }
+>()("RouteDecodeError", { routeOffset: ReleaseCountSchema }) {}
 
 /** One route belongs to another release or sequence position. */
-export class RouteIdentityError extends Schema.TaggedError<RouteIdentityError>()(
-  "RouteIdentityError",
-  { routeOffset: ReleaseCountSchema }
-) {}
+export class RouteIdentityError extends Schema.TaggedError<
+  RouteIdentityError,
+  { readonly brand: unique symbol }
+>()("RouteIdentityError", { routeOffset: ReleaseCountSchema }) {}
 
 /** Two changes in one release target the same locale-specific route. */
-export class RouteDuplicateError extends Schema.TaggedError<RouteDuplicateError>()(
-  "RouteDuplicateError",
-  { firstIndex: ReleaseCountSchema, publicPath: PublicPathSchema }
-) {}
+export class RouteDuplicateError extends Schema.TaggedError<
+  RouteDuplicateError,
+  { readonly brand: unique symbol }
+>()("RouteDuplicateError", {
+  firstIndex: ReleaseCountSchema,
+  publicPath: PublicPathSchema,
+}) {}
 
 /** The streamed route count differs from its signed manifest. */
-export class RouteCountError extends Schema.TaggedError<RouteCountError>()(
-  "RouteCountError",
-  { actualCount: ReleaseCountSchema, expectedCount: ReleaseCountSchema }
-) {}
+export class RouteCountError extends Schema.TaggedError<
+  RouteCountError,
+  { readonly brand: unique symbol }
+>()("RouteCountError", {
+  actualCount: ReleaseCountSchema,
+  expectedCount: ReleaseCountSchema,
+}) {}
 
 /** The streamed route digest differs from its signed manifest. */
-export class RouteDigestError extends Schema.TaggedError<RouteDigestError>()(
-  "RouteDigestError",
-  { ...ReleaseDigestMismatchFields }
-) {}
+export class RouteDigestError extends Schema.TaggedError<
+  RouteDigestError,
+  { readonly brand: unique symbol }
+>()("RouteDigestError", { ...ReleaseDigestMismatchFields }) {}
 
 /** The item index that first bound each route identity in one stream of routes. */
 type FirstRouteIndex = MutableHashMap.MutableHashMap<string, number>;

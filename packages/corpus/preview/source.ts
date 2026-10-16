@@ -97,10 +97,10 @@ export const PreviewSelectionSchema = Schema.Union([
 export type PreviewSelection = typeof PreviewSelectionSchema.Type;
 
 /** One requested preview path cannot resolve to an exact registered document. */
-export class PreviewSelectionError extends Schema.TaggedError<PreviewSelectionError>()(
-  "PreviewSelectionError",
-  {
-    reason: Schema.Literals(["locale", "missing", "path"]),
-    sourcePath: Schema.String,
-  }
-) {}
+export class PreviewSelectionError extends Schema.TaggedError<
+  PreviewSelectionError,
+  { readonly brand: unique symbol }
+>()("PreviewSelectionError", {
+  reason: Schema.Literals(["locale", "missing", "path"]),
+  sourcePath: Schema.String,
+}) {}

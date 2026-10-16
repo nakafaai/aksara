@@ -55,25 +55,25 @@ const ArticleFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same article identity more than once. */
-class ArticleHeadDuplicateError extends Schema.TaggedError<ArticleHeadDuplicateError>()(
-  "ArticleHeadDuplicateError",
-  ContentHeadIdentitySchema.fields
-) {}
+class ArticleHeadDuplicateError extends Schema.TaggedError<
+  ArticleHeadDuplicateError,
+  { readonly brand: unique symbol }
+>()("ArticleHeadDuplicateError", ContentHeadIdentitySchema.fields) {}
 
 /** A target returned article heads outside canonical content-head order. */
-class ArticleHeadOrderError extends Schema.TaggedError<ArticleHeadOrderError>()(
-  "ArticleHeadOrderError",
-  ContentHeadIdentitySchema.fields
-) {}
+class ArticleHeadOrderError extends Schema.TaggedError<
+  ArticleHeadOrderError,
+  { readonly brand: unique symbol }
+>()("ArticleHeadOrderError", ContentHeadIdentitySchema.fields) {}
 
 /** An article-head page contained a route or source owned by another family. */
-class ArticleHeadFamilyError extends Schema.TaggedError<ArticleHeadFamilyError>()(
-  "ArticleHeadFamilyError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    field: ArticleFamilyFieldSchema,
-  }
-) {}
+class ArticleHeadFamilyError extends Schema.TaggedError<
+  ArticleHeadFamilyError,
+  { readonly brand: unique symbol }
+>()("ArticleHeadFamilyError", {
+  ...ContentHeadIdentitySchema.fields,
+  field: ArticleFamilyFieldSchema,
+}) {}
 
 /** Every failure possible while replaying authoritative article records. */
 type ArticlePublicationStreamError<E> =

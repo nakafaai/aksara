@@ -15,10 +15,10 @@ const curriculumSourcePrograms = [
 ];
 
 /** Two curriculum trees claim the same stable learning-program identity. */
-export class CurriculumCatalogError extends Schema.TaggedError<CurriculumCatalogError>()(
-  "CurriculumCatalogError",
-  { programKey: LearningProgramKeySchema }
-) {}
+export class CurriculumCatalogError extends Schema.TaggedError<
+  CurriculumCatalogError,
+  { readonly brand: unique symbol }
+>()("CurriculumCatalogError", { programKey: LearningProgramKeySchema }) {}
 
 /** Rejects duplicate program ownership and returns canonical key order. */
 export const validateCurriculumCatalog = Effect.fn(
