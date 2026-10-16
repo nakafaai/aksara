@@ -28,6 +28,13 @@ describe("a joint rule scores the answers of an item together", () => {
     readonly joint?: unknown;
   }) => version;
 
+  /** Test-only Indonesian version of the two-tier item, with the same joint rule. */
+  const indonesian = {
+    ...twoTierVersion,
+    deliveryLanguage: "id",
+    hash: hash("f"),
+  };
+
   it("accepts a two-tier item, whose ceiling is the points of its first level", () => {
     expect(failsStrict(ItemVersionSchema, twoTierVersion)).toBe(false);
     expect(
@@ -86,12 +93,42 @@ describe("a joint rule scores the answers of an item together", () => {
         { correct: ["answer"], points: 1 },
         { correct: ["answer", "reason"], points: 2 },
       ],
+      [
+        { correct: ["answer", "reason"], points: 1 },
+        { correct: ["answer"], points: 1 },
+      ],
       [{ correct: ["answer", "answer"], points: 2 }],
       [{ correct: [], points: 2 }],
       [{ correct: ["answer"], points: 0 }],
     ]) {
       expect(failsStrict(JointRuleSchema, { levels })).toBe(true);
     }
+  });
+
+  it("refuses a level that can never score, because every answer that earns it also earns an earlier level", () => {
+    for (const levels of [
+      [
+        { correct: ["answer"], points: 2 },
+        { correct: ["answer", "reason"], points: 1 },
+      ],
+      [
+        { correct: ["answer", "reason"], points: 2 },
+        { correct: ["reason", "answer"], points: 1 },
+      ],
+    ]) {
+      expect(failsStrict(JointRuleSchema, { levels })).toBe(true);
+    }
+  });
+
+  it("keeps a later level that names an interaction its earlier level does not", () => {
+    expect(
+      failsStrict(JointRuleSchema, {
+        levels: [
+          { correct: ["answer", "reason"], points: 2 },
+          { correct: ["reason"], points: 1 },
+        ],
+      })
+    ).toBe(false);
   });
 
   it("leaves the scoring of a joint item to its one rule, so it sets no scoring override", () => {
@@ -104,11 +141,6 @@ describe("a joint rule scores the answers of an item together", () => {
   });
 
   it("gives every language of a family the same joint rule", () => {
-    const indonesian = {
-      ...twoTierVersion,
-      deliveryLanguage: "id",
-      hash: hash("f"),
-    };
     const otherLevels = {
       ...indonesian,
       joint: {
@@ -129,6 +161,40 @@ describe("a joint rule scores the answers of an item together", () => {
       failsStrict(ItemSchema, {
         family: { id: twoTierVersion.family },
         versions: [twoTierVersion, otherLevels],
+      })
+    ).toBe(true);
+  });
+
+  it("lets a language list the interactions of a level in another order, because a level is a set", () => {
+    const listedBackwards = {
+      ...indonesian,
+      joint: {
+        levels: [
+          { correct: ["reason", "answer"], points: 2 },
+          { correct: ["answer"], points: 1 },
+        ],
+      },
+    };
+    const otherSet = {
+      ...indonesian,
+      joint: {
+        levels: [
+          { correct: ["answer", "reason"], points: 2 },
+          { correct: ["reason"], points: 1 },
+        ],
+      },
+    };
+
+    expect(
+      failsStrict(ItemSchema, {
+        family: { id: twoTierVersion.family },
+        versions: [twoTierVersion, listedBackwards],
+      })
+    ).toBe(false);
+    expect(
+      failsStrict(ItemSchema, {
+        family: { id: twoTierVersion.family },
+        versions: [twoTierVersion, otherSet],
       })
     ).toBe(true);
   });

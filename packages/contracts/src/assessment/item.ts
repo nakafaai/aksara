@@ -16,6 +16,7 @@ import {
   hasJointParts,
   hasOneItemRule,
   JointRuleSchema,
+  sortedJoint,
 } from "#contracts/assessment/joint";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { ScoringOverrideSchema } from "#contracts/assessment/scoring";
@@ -114,13 +115,14 @@ const ItemFieldsSchema = Schema.Struct({
  * rule, and one calibrated difficulty could not serve every language of an
  * item. The identifiers, counts, bounds, joint rule, and scoring rules must
  * agree; the labels, the text alternatives, and the units are the words of a
- * language.
+ * language. The interactions of a joint level are a set, so a language may list
+ * them in another order.
  */
 function hasOneStructure(item: typeof ItemFieldsSchema.Type) {
   return hasSameStructure(
     Arr.map(item.versions, ({ interactions, joint, scoring }) => ({
       interactions,
-      joint,
+      joint: joint === undefined ? undefined : sortedJoint(joint),
       scoring,
     }))
   );
