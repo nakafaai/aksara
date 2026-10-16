@@ -138,10 +138,15 @@ interaction.
   reason. It lists levels in order of points, each naming the interactions that
   must all be correct and the points that they earn. The item scores the points
   of the first level whose interactions are all correct, and 0 when none is. A
-  joint item names at least two of its interactions and sets no scoring
-  override, so one rule scores it. An extended text cannot join, because it
-  needs a rubric override and a joint item has none. Its ceiling is the points
-  of its first level (`jointCeiling`), not the sum of its interactions.
+  later level may not name every interaction of an earlier level, because each
+  answer that earns it also earns the earlier level, which comes first, so the
+  later level could never score. A level names a set, so the order of its listing
+  is not part of the task: the structure check of a family compares the sets, and
+  the hash keeps the exact listing. A joint item names at least two of its
+  interactions and sets no scoring override, so one rule scores it. An extended
+  text cannot join, because it needs a rubric override and a joint item has none.
+  Its ceiling is the points of its first level (`jointCeiling`), not the sum of
+  its interactions.
 - A version is immutable once published: a change is a new version. Its `hash`
   is SHA-256 over the canonical JSON of every other field (keys in code-unit
   order), under the domain `nakafa.aksara.assessment-item`. A stimulus version
@@ -155,7 +160,8 @@ interaction.
   their format, structure, and key. If the structure could differ, one answer key,
   one scoring rule, and one calibrated difficulty could not serve every language
   of an item. Labels, text alternatives, and units are the words of a language;
-  identifiers, counts, bounds, flags, and scoring rules are structure.
+  identifiers, counts, bounds, flags, and scoring rules are structure. The
+  interactions of a joint level are a set, so their order is not structure.
 - A stimulus is a shared reading or figure with a namespaced identifier
   (`<namespace>/passage-1`), so `passage-1` in two sets are two stimuli. It has a
   version for each content language. Items and papers use it by identifier and
@@ -368,11 +374,12 @@ path that first decodes them must refuse one there, with its own test.
 ### Wrong parts
 
 A `wrongParts` rule holds bands `{ wrong, points }`, ascending in `wrong` and
-descending in `points`. An answer keeps the points of the first band whose `wrong`
-is at least its number of wrong parts, and 0 when no band holds it. The parts are
-the ones that the per-part rule counts, as the key defines them. The AKM rule of a
-complex multiple choice with more than five statements is `[{ wrong: 0, points: 2 },
-{ wrong: 2, points: 1 }]`, which gives 2, 1, 1, and 0 for 0 to 3 wrong parts.
+descending in `points`. An answer keeps the points of the first band whose
+`wrong` is at least its number of wrong parts, and 0 when no band holds it. The
+parts are the ones that the per-part rule counts, as the key defines them. The
+AKM rule of a complex multiple choice with more than five statements and more
+than two options is `[{ wrong: 0, points: 2 }, { wrong: 2, points: 1 }]`, which
+gives 2, 1, 1, and 0 for 0 to 3 wrong parts.
 `pointsForWrongParts` reads the table alone: grading an answer stays with
 Nakafa's engine.
 
