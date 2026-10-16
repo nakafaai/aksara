@@ -6,9 +6,9 @@ const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
 const PNPM_SELECTOR_PATTERN =
   /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
 const TOOLCHAIN_SETUP_PREFIX = "pnpm/setup@";
-/** The reviewed pnpm/setup v3.0.0 commit. A newer release needs a new review. */
+/** The reviewed pnpm/setup v3.1.1 commit. A newer release needs a new review. */
 export const TOOLCHAIN_SETUP_ACTION =
-  "pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024";
+  "pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4";
 /** Setup inputs that would replace the toolchain the root package.json owns. */
 const PACKAGE_JSON_INPUTS = [
   ["version", "Workflows must derive the pnpm version from package.json"],

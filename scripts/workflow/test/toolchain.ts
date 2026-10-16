@@ -3,7 +3,7 @@ import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
 
 /** The setup step header that toolchain tests append to or replace in the checked-in workflow. */
 export const SETUP_HEADER = `      - name: Setup toolchain
-        uses: ${TOOLCHAIN_SETUP_ACTION} # v3.0.0`;
+        uses: ${TOOLCHAIN_SETUP_ACTION} # v3.1.1`;
 
 /** A complete setup step with the cache input and the explicit frozen install the policy requires. */
 export const TOOLCHAIN_STEP = `${SETUP_HEADER}
