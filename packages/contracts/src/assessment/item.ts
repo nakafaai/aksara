@@ -9,11 +9,19 @@ import {
   hasDistinctIds,
   ItemFamilyIdSchema,
   KebabKeySchema,
+  LocalIdSchema,
   StimulusIdSchema,
 } from "#contracts/assessment/identity";
-import { InteractionSchema } from "#contracts/assessment/interaction";
+import {
+  type Interaction,
+  InteractionSchema,
+} from "#contracts/assessment/interaction";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
-import { ScoringOverrideSchema } from "#contracts/assessment/scoring";
+import { PositiveIntSchema } from "#contracts/assessment/scalar";
+import {
+  type ScoringOverride,
+  ScoringOverrideSchema,
+} from "#contracts/assessment/scoring";
 import { hasSameStructure } from "#contracts/assessment/structure";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentLanguageSchema } from "#contracts/locale";
@@ -46,22 +54,102 @@ export const StimulusReferenceSchema = Schema.Struct({
 });
 export type StimulusReference = typeof StimulusReferenceSchema.Type;
 
+/**
+ * One level of a joint rule: the interactions that must all be correct for an
+ * item to earn the points of the level. An interaction is correct when its key
+ * matches it completely.
+ */
+export const JointLevelSchema = Schema.Struct({
+  correct: Schema.NonEmptyArray(LocalIdSchema).check(
+    Schema.makeFilter(hasDistinctIds, {
+      message: "Expected each interaction of a level once.",
+    })
+  ),
+  points: PositiveIntSchema,
+});
+
+/** Checks that each level is worth fewer points than the level above it. */
+function hasDescendingPoints(
+  levels: readonly (typeof JointLevelSchema.Type)[]
+) {
+  return Arr.every(
+    Arr.zip(levels, Arr.drop(levels, 1)),
+    ([higher, lower]) => higher.points > lower.points
+  );
+}
+
+/**
+ * One rule for the whole item, for answers that depend on each other, such as an
+ * answer and its reason. The item scores the points of the first level whose
+ * interactions are all correct, and 0 when none is. Interactions scored together
+ * make a composite item, which QTI 3 scores by general response processing, not
+ * by a standard template (Best Practices and Implementation Guide, section 3.4.2).
+ */
+export const JointRuleSchema = Schema.Struct({
+  levels: Schema.NonEmptyArray(JointLevelSchema).check(
+    Schema.makeFilter(hasDescendingPoints, {
+      message: "Expected the points of the levels to descend.",
+    })
+  ),
+});
+export type JointRule = typeof JointRuleSchema.Type;
+
+/** Returns the most points that a joint rule can award: the points of its first level. */
+export function jointCeiling(joint: JointRule) {
+  return Arr.headNonEmpty(joint.levels).points;
+}
+
 /** The fields of an item version except its hash, which covers all of them. */
 const VersionFields = {
   deliveryLanguage: ContentLanguageSchema,
   family: ItemFamilyIdSchema,
   interactions: Schema.NonEmptyArray(InteractionSchema),
+  joint: Schema.optionalKey(JointRuleSchema),
   prompt: AssessmentDocumentSchema,
   scoring: Schema.Array(ScoringOverrideSchema),
   stimulus: Schema.optionalKey(StimulusReferenceSchema),
 };
 
 /**
+ * Checks that a joint rule has interactions to join: at least two in the
+ * version, and each level names only interactions of the version.
+ */
+function hasJointParts(version: {
+  readonly interactions: readonly Interaction[];
+  readonly joint?: JointRule;
+}) {
+  if (version.joint === undefined) {
+    return true;
+  }
+  const ids = Arr.map(version.interactions, ({ id }) => id);
+  return (
+    version.interactions.length >= 2 &&
+    Arr.every(version.joint.levels, ({ correct }) =>
+      Arr.every(correct, (id) => Arr.contains(ids, id))
+    )
+  );
+}
+
+/**
+ * Checks that a version with a joint rule sets no scoring override: one rule
+ * scores the item. This also refuses an extended text in a joint item, because
+ * an extended text needs a rubric override (`fit`), and a joint item has none. A
+ * person judges an extended text, so no key can say that it is correct.
+ */
+function hasOneItemRule(version: {
+  readonly joint?: JointRule;
+  readonly scoring: readonly ScoringOverride[];
+}) {
+  return version.joint === undefined || version.scoring.length === 0;
+}
+
+/**
  * One item in one delivery language, without its hash: the prompt document,
- * its interactions, the scoring rules that override the exam profile, and the
- * shared reading it was written against, if it has one. The prompt carries no
- * answer key, and the version holds no explanation: the key and the explanation
- * are records of their own (`assessment/key`, `assessment/explanation`).
+ * its interactions, the scoring rules that override the exam profile, the joint
+ * rule when its answers depend on each other, and the shared reading it was
+ * written against, if it has one. The prompt carries no answer key, and the
+ * version holds no explanation: the key and the explanation are records of their
+ * own (`assessment/key`, `assessment/explanation`).
  */
 export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   Schema.makeFilter(hasPlacedInteractions, {
@@ -71,6 +159,14 @@ export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   Schema.makeFilter(hasFittingRules, {
     message:
       "Expected each scoring rule to fit its interaction, and each extended text to carry a rubric.",
+  }),
+  Schema.makeFilter(hasJointParts, {
+    message:
+      "Expected a joint rule to name at least two interactions of the version, each level naming only those.",
+  }),
+  Schema.makeFilter(hasOneItemRule, {
+    message:
+      "Expected a joint rule to leave the scoring overrides empty, because one rule scores the item.",
   })
 );
 
@@ -97,13 +193,15 @@ const ItemFieldsSchema = Schema.Struct({
  * and answer key, and it still holds: a translation may change words, never
  * the task. If the structure were free to differ, one answer key, one scoring
  * rule, and one calibrated difficulty could not serve every language of an
- * item. The identifiers, counts, bounds, and scoring rules must agree; the
- * labels, the text alternatives, and the units are the words of a language.
+ * item. The identifiers, counts, bounds, joint rule, and scoring rules must
+ * agree; the labels, the text alternatives, and the units are the words of a
+ * language.
  */
 function hasOneStructure(item: typeof ItemFieldsSchema.Type) {
   return hasSameStructure(
-    Arr.map(item.versions, ({ interactions, scoring }) => ({
+    Arr.map(item.versions, ({ interactions, joint, scoring }) => ({
       interactions,
+      joint,
       scoring,
     }))
   );
