@@ -1,4 +1,4 @@
-import { Array as Arr, Match, Schema } from "effect";
+import { Array as Arr, Match, Option, Schema } from "effect";
 
 import { hasUniqueIds, LocalIdSchema } from "#contracts/assessment/identity";
 import {
@@ -41,6 +41,52 @@ export const PerPartRuleSchema = Schema.Struct({
   penaltyPerWrongPart: Schema.optionalKey(PositiveIntSchema),
   pointsPerPart: PositiveIntSchema,
 });
+
+/** One band of a wrong-parts table: the points that an answer keeps with up to `wrong` wrong parts. */
+const WrongPartsBandSchema = Schema.Struct({
+  points: PositiveIntSchema,
+  wrong: NonNegativeIntSchema,
+});
+
+/** Checks that the bands rise in wrong parts and fall in points, so each band is a step. */
+function hasWrongPartsSteps(
+  bands: readonly (typeof WrongPartsBandSchema.Type)[]
+) {
+  return Arr.every(
+    Arr.zip(bands, Arr.drop(bands, 1)),
+    ([lower, higher]) =>
+      lower.wrong < higher.wrong && lower.points > higher.points
+  );
+}
+
+/**
+ * Points by the number of wrong parts, such as the AKM rule of a complex
+ * multiple choice with more than five statements and more than two options: 2
+ * points with no wrong part, 1 point with one or two, and 0 with more. An answer
+ * scores the points of the first band whose `wrong` is at least its number of
+ * wrong parts, and 0 when no band holds it. The parts are the ones the per-part
+ * rule counts, as the key defines them for each kind.
+ *
+ * It corresponds to no standard response processing template of QTI 3.
+ * `match_correct` gives 1 or 0 for the whole interaction. `map_response` maps
+ * each response value and sums the results. With one value for the correct parts
+ * and one for the wrong parts, each wrong part moves the score by the same step,
+ * and clamping the sum to its bounds flattens only its two ends. The table 2, 1,
+ * 1, 0 for 0 to 3 wrong parts has a flat step in the middle, so no sum over the
+ * parts gives it. Section 3.4.2 of the QTI 3 Best Practices and Implementation
+ * Guide says that a composite item needs general response processing, not a
+ * standard template. A table over the wrong parts is that kind of score, so it
+ * corresponds to the general response processing of that section.
+ */
+export const WrongPartsRuleSchema = Schema.Struct({
+  bands: Schema.NonEmptyArray(WrongPartsBandSchema).check(
+    Schema.makeFilter(hasWrongPartsSteps, {
+      message: "Expected the bands to rise in wrong parts and fall in points.",
+    })
+  ),
+  kind: Schema.Literal("wrongParts"),
+});
+export type WrongPartsRule = typeof WrongPartsRuleSchema.Type;
 
 const RubricLevelSchema = Schema.Struct({
   id: LocalIdSchema,
@@ -91,6 +137,7 @@ export const RubricRuleSchema = Schema.Struct({
 export const ScoringRuleSchema = Schema.Union([
   AllOrNothingRuleSchema,
   PerPartRuleSchema,
+  WrongPartsRuleSchema,
   RubricRuleSchema,
 ]);
 export type ScoringRule = typeof ScoringRuleSchema.Type;
@@ -102,6 +149,7 @@ export type ScoringRule = typeof ScoringRuleSchema.Type;
 export const DefaultRuleSchema = Schema.Union([
   AllOrNothingRuleSchema,
   PerPartRuleSchema,
+  WrongPartsRuleSchema,
 ]);
 
 /** A rule that one item sets for one of its interactions, instead of the default. */
@@ -134,16 +182,38 @@ export function scoreCeiling(rule: ScoringRule, parts: number) {
           0,
           (total, criterion) => total + highestPoints(criterion)
         ),
+      wrongParts: ({ bands }) => Arr.headNonEmpty(bands).points,
     })
   );
 }
 
 /**
- * Checks that the floor of a per-part rule is at most the points of a field.
- * A field has one part, so the points of the part are the most it can score.
+ * Returns the points that a wrong-parts table gives an answer with this many
+ * wrong parts: the points of the first band that holds it, or 0 when none does.
+ * It reads the table alone, never a learner's answer: grading an answer is the
+ * work of Nakafa's engine.
  */
-function hasFieldFloor(rule: ScoringRule) {
-  return rule.kind !== "perPart" || rule.floor <= scoreCeiling(rule, 1);
+export function pointsForWrongParts(rule: WrongPartsRule, wrongParts: number) {
+  return Arr.findFirst(rule.bands, ({ wrong }) => wrong >= wrongParts).pipe(
+    Option.map(({ points }) => points),
+    Option.getOrElse(() => 0)
+  );
+}
+
+/**
+ * Checks that a rule can score a field, which has one part. The floor of a
+ * per-part rule is at most the points of that part. A wrong-parts table has one
+ * band, for no wrong part, because a field has one part: any other band would
+ * award points for a wrong answer.
+ */
+function fitsField(rule: ScoringRule) {
+  if (rule.kind === "perPart") {
+    return rule.floor <= scoreCeiling(rule, 1);
+  }
+  if (rule.kind === "wrongParts") {
+    return rule.bands.length === 1 && Arr.headNonEmpty(rule.bands).wrong === 0;
+  }
+  return true;
 }
 
 /**
@@ -151,13 +221,14 @@ function hasFieldFloor(rule: ScoringRule) {
  * extended text and nothing else, and an extended text takes no other rule. A
  * field has one part, worth the points of its rule: one point, or more when
  * the item is worth more. The floor of a rule per part is at most those
- * points. Every other kind has the parts that its key counts, so the key checks
- * the floor of a rule for those.
+ * points, and a wrong-parts table has one band for no wrong part. Every other
+ * kind has the parts that its key counts, so the key checks the floor of a rule
+ * for those.
  */
 export function supportsRule(kind: InteractionKind, rule: ScoringRule) {
   return (
     (kind === "extendedText") === (rule.kind === "rubric") &&
-    (!canSitInText(kind) || hasFieldFloor(rule))
+    (!canSitInText(kind) || fitsField(rule))
   );
 }
 

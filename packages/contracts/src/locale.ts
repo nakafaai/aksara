@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 
 import { hasCanonicalOrder } from "#contracts/canonical";
 
@@ -35,6 +35,41 @@ export const DeliveryLanguageSchema = AppLocaleCodeSchema.pipe(
   Schema.brand("@NakafaAI/AksaraDeliveryLanguage")
 );
 export type DeliveryLanguage = typeof DeliveryLanguageSchema.Type;
+
+const CONTENT_LANGUAGE_BRAND = "@NakafaAI/AksaraContentLanguage";
+
+/** Intl's canonical form of one language tag, or nothing when Intl rejects the tag. */
+const canonicalLanguageTag = Option.liftThrowable((tag: string) =>
+  Intl.getCanonicalLocales(tag)
+);
+
+/**
+ * Explains why a string is not a content language. Intl must accept it, and it
+ * must already be the one canonical form that Intl writes for it. A tag that
+ * Intl rewrites names that form, so the author can correct it.
+ */
+function contentLanguageIssue(tag: string) {
+  return Option.match(Option.flatMap(canonicalLanguageTag(tag), Arr.head), {
+    onNone: () => "Expected a well-formed BCP 47 language tag.",
+    onSome: (canonical) =>
+      canonical === tag
+        ? undefined
+        : `Expected the canonical language tag "${canonical}".`,
+  });
+}
+
+/**
+ * A language of one assessment text, as a BCP 47 tag in its canonical form, such
+ * as `ar`, `de-CH`, or `zh-Hant-TW`. Unlike `DeliveryLanguageSchema`, it is not
+ * limited to the app locales, so a school can write in any language. The
+ * direction of a text is not stored: the renderer takes it from the script of
+ * each text.
+ */
+export const ContentLanguageSchema = Schema.String.pipe(
+  Schema.check(Schema.makeFilter(contentLanguageIssue)),
+  Schema.brand(CONTENT_LANGUAGE_BRAND)
+);
+export type ContentLanguage = typeof ContentLanguageSchema.Type;
 
 /** Locale identity of one immutable compiled content artifact. */
 export const ArtifactLocaleSchema = AppLocaleCodeSchema.pipe(

@@ -7,11 +7,11 @@ import {
 } from "#contracts/assessment/identity";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { Sha256HashSchema } from "#contracts/ids";
-import { DeliveryLanguageSchema } from "#contracts/locale";
+import { ContentLanguageSchema } from "#contracts/locale";
 
 /** The fields of a stimulus version except its hash, which covers all of them. */
 const VersionFields = {
-  deliveryLanguage: DeliveryLanguageSchema,
+  deliveryLanguage: ContentLanguageSchema,
   document: ContentDocumentSchema,
   id: StimulusIdSchema,
 };

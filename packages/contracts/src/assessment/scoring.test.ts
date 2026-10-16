@@ -1,14 +1,15 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
-
 import {
   InteractionKindSchema,
   InteractionSchema,
 } from "#contracts/assessment/interaction";
+import { ItemVersionSchema } from "#contracts/assessment/item";
 import {
   DefaultRuleSchema,
   MarksSchema,
   PerPartRuleSchema,
+  pointsForWrongParts,
   RubricRuleSchema,
   ScoreScaleSchema,
   ScoringOverrideSchema,
@@ -16,7 +17,9 @@ import {
   ScoringStrategySchema,
   scoreCeiling,
   supportsRule,
+  WrongPartsRuleSchema,
 } from "#contracts/assessment/scoring";
+import { akmRule, akmVersion } from "#contracts/test/assessment/akm";
 import { decodeStrict, failsStrict } from "#contracts/test/assessment/document";
 import {
   ALL_INTERACTIONS,
@@ -97,24 +100,19 @@ describe("scoring rules", () => {
     }
   });
 
-  it("lets an exam default to all or nothing or to a rule per part, never to a rubric", () => {
+  it("lets an exam default to all or nothing, a rule per part, or a wrong-parts table, never to a rubric", () => {
     expect(failsStrict(DefaultRuleSchema, allOrNothing)).toBe(false);
     expect(failsStrict(DefaultRuleSchema, perPart)).toBe(false);
+    expect(failsStrict(DefaultRuleSchema, akmRule)).toBe(false);
     expect(failsStrict(DefaultRuleSchema, rubricRule)).toBe(true);
   });
 
   it("lets an item set a rule for one of its interactions", () => {
+    const override = { interaction: "answer", rule: perPart };
+
+    expect(failsStrict(ScoringOverrideSchema, override)).toBe(false);
     expect(
-      failsStrict(ScoringOverrideSchema, {
-        interaction: "answer",
-        rule: perPart,
-      })
-    ).toBe(false);
-    expect(
-      failsStrict(ScoringOverrideSchema, {
-        interaction: "Answer",
-        rule: perPart,
-      })
+      failsStrict(ScoringOverrideSchema, { ...override, interaction: "Answer" })
     ).toBe(true);
   });
 });
@@ -180,6 +178,72 @@ describe("which rule scores which interaction", () => {
     // The key counts the parts of every other kind, so the key checks the floor.
     expect(supportsRule(kindOf("choice"), withFloor(3))).toBe(true);
     expect(supportsRule(kindOf("matrix"), withFloor(3))).toBe(true);
+  });
+});
+
+describe("wrong-parts tables", () => {
+  /** Builds the raw wrong-parts rule of the given bands, which a decoder may refuse. */
+  const tableOf = (...bands: readonly { points: number; wrong: number }[]) => ({
+    bands,
+    kind: "wrongParts",
+  });
+
+  it("refuses a table without a band, and bands that do not step down", () => {
+    for (const rule of [
+      tableOf(),
+      tableOf({ points: 1, wrong: -1 }),
+      tableOf({ points: 0, wrong: 0 }),
+      tableOf({ points: 2, wrong: 2 }, { points: 1, wrong: 0 }),
+      tableOf({ points: 1, wrong: 0 }, { points: 1, wrong: 2 }),
+      tableOf({ points: 2, wrong: 0 }, { points: 3, wrong: 2 }),
+      tableOf({ points: 2, wrong: 1 }, { points: 1, wrong: 1 }),
+    ]) {
+      expect(failsStrict(WrongPartsRuleSchema, rule)).toBe(true);
+    }
+  });
+
+  it("scores an answer by the first band that holds its wrong parts, and has that band as its ceiling", () => {
+    const rule = decodeStrict(WrongPartsRuleSchema, akmRule);
+
+    expect(
+      Arr.map([0, 1, 2, 3], (wrong) => pointsForWrongParts(rule, wrong))
+    ).toEqual([2, 1, 1, 0]);
+    expect(scoreCeiling(rule, 6)).toBe(2);
+  });
+
+  it("fits every kind but an extended text and a field, and a field only with one band for no wrong part", () => {
+    const table = decodeStrict(ScoringRuleSchema, akmRule);
+    const fieldTable = decodeStrict(
+      ScoringRuleSchema,
+      tableOf({ points: 1, wrong: 0 })
+    );
+    const stepsOnAWrongPart = decodeStrict(
+      ScoringRuleSchema,
+      tableOf({ points: 2, wrong: 0 }, { points: 1, wrong: 1 })
+    );
+    const pointForAWrongPart = decodeStrict(
+      ScoringRuleSchema,
+      tableOf({ points: 1, wrong: 1 })
+    );
+    /** The kinds that sit inside a line of text, each a field with one part. */
+    const fields = ["inlineChoice", "textEntry", "numericEntry", "mathEntry"];
+
+    for (const interaction of ALL_INTERACTIONS) {
+      const { kind } = decodeStrict(InteractionSchema, interaction);
+      expect(supportsRule(kind, table)).toBe(
+        kind !== "extendedText" && !Arr.contains(fields, kind)
+      );
+    }
+    for (const field of fields) {
+      const kind = decodeStrict(InteractionKindSchema, field);
+      expect(supportsRule(kind, fieldTable)).toBe(true);
+      expect(supportsRule(kind, stepsOnAWrongPart)).toBe(false);
+      expect(supportsRule(kind, pointForAWrongPart)).toBe(false);
+    }
+  });
+
+  it("accepts an item of six statements that the table scores as its one override", () => {
+    expect(failsStrict(ItemVersionSchema, akmVersion)).toBe(false);
   });
 });
 

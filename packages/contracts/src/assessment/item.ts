@@ -12,11 +12,17 @@ import {
   StimulusIdSchema,
 } from "#contracts/assessment/identity";
 import { InteractionSchema } from "#contracts/assessment/interaction";
+import {
+  hasJointParts,
+  hasOneItemRule,
+  JointRuleSchema,
+  sortedJoint,
+} from "#contracts/assessment/joint";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { ScoringOverrideSchema } from "#contracts/assessment/scoring";
 import { hasSameStructure } from "#contracts/assessment/structure";
 import { Sha256HashSchema } from "#contracts/ids";
-import { DeliveryLanguageSchema } from "#contracts/locale";
+import { ContentLanguageSchema } from "#contracts/locale";
 
 /** The editorial facts that place an item in a blueprint. */
 export const ItemBlueprintSchema = Schema.Struct({
@@ -48,9 +54,10 @@ export type StimulusReference = typeof StimulusReferenceSchema.Type;
 
 /** The fields of an item version except its hash, which covers all of them. */
 const VersionFields = {
-  deliveryLanguage: DeliveryLanguageSchema,
+  deliveryLanguage: ContentLanguageSchema,
   family: ItemFamilyIdSchema,
   interactions: Schema.NonEmptyArray(InteractionSchema),
+  joint: Schema.optionalKey(JointRuleSchema),
   prompt: AssessmentDocumentSchema,
   scoring: Schema.Array(ScoringOverrideSchema),
   stimulus: Schema.optionalKey(StimulusReferenceSchema),
@@ -58,10 +65,11 @@ const VersionFields = {
 
 /**
  * One item in one delivery language, without its hash: the prompt document,
- * its interactions, the scoring rules that override the exam profile, and the
- * shared reading it was written against, if it has one. The prompt carries no
- * answer key, and the version holds no explanation: the key and the explanation
- * are records of their own (`assessment/key`, `assessment/explanation`).
+ * its interactions, the scoring rules that override the exam profile, the joint
+ * rule when its answers depend on each other, and the shared reading it was
+ * written against, if it has one. The prompt carries no answer key, and the
+ * version holds no explanation: the key and the explanation are records of their
+ * own (`assessment/key`, `assessment/explanation`).
  */
 export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   Schema.makeFilter(hasPlacedInteractions, {
@@ -71,6 +79,14 @@ export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   Schema.makeFilter(hasFittingRules, {
     message:
       "Expected each scoring rule to fit its interaction, and each extended text to carry a rubric.",
+  }),
+  Schema.makeFilter(hasJointParts, {
+    message:
+      "Expected a joint rule to name at least two interactions of the version, each level naming only those.",
+  }),
+  Schema.makeFilter(hasOneItemRule, {
+    message:
+      "Expected a joint rule to leave the scoring overrides empty, because one rule scores the item.",
   })
 );
 
@@ -97,13 +113,16 @@ const ItemFieldsSchema = Schema.Struct({
  * and answer key, and it still holds: a translation may change words, never
  * the task. If the structure were free to differ, one answer key, one scoring
  * rule, and one calibrated difficulty could not serve every language of an
- * item. The identifiers, counts, bounds, and scoring rules must agree; the
- * labels, the text alternatives, and the units are the words of a language.
+ * item. The identifiers, counts, bounds, joint rule, and scoring rules must
+ * agree; the labels, the text alternatives, and the units are the words of a
+ * language. The interactions of a joint level are a set, so a language may list
+ * them in another order.
  */
 function hasOneStructure(item: typeof ItemFieldsSchema.Type) {
   return hasSameStructure(
-    Arr.map(item.versions, ({ interactions, scoring }) => ({
+    Arr.map(item.versions, ({ interactions, joint, scoring }) => ({
       interactions,
+      joint: joint === undefined ? undefined : sortedJoint(joint),
       scoring,
     }))
   );
