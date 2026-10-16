@@ -7,6 +7,7 @@ import {
   ItemVersionSchema,
 } from "#contracts/assessment/item";
 import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
+import { arabicFamily, arabicVersion } from "#contracts/test/assessment/arabic";
 import {
   decodeStrict,
   doc,
@@ -99,13 +100,29 @@ describe("item versions of today's corpus", () => {
     expect(failsStrict(ItemVersionSchema, unhashed)).toBe(true);
     for (const change of [
       { hash: "abc" },
-      { deliveryLanguage: "fr" },
+      { deliveryLanguage: "en_US" },
       { correct: ["option-2"] },
       // The explanation is a record of its own, named by the hash of the version.
       { explanation: tkaMultipleExplanation.document },
     ]) {
       expect(
         failsStrict(ItemVersionSchema, { ...tkaMultiple, ...change })
+      ).toBe(true);
+    }
+  });
+});
+
+describe("an item version is written in any content language", () => {
+  it("accepts an Arabic version, and refuses a language that is not a canonical tag", () => {
+    expect(
+      failsStrict(ItemSchema, {
+        family: arabicFamily,
+        versions: [arabicVersion],
+      })
+    ).toBe(false);
+    for (const deliveryLanguage of ["AR", "en_US", "iw", "", "x"]) {
+      expect(
+        failsStrict(ItemVersionSchema, { ...arabicVersion, deliveryLanguage })
       ).toBe(true);
     }
   });

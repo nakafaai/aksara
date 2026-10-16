@@ -45,6 +45,23 @@ describe("stimuli", () => {
     }
   });
 
+  it("takes a reading in any canonical content language, and refuses one that is not a tag", () => {
+    expect(
+      failsStrict(StimulusVersionSchema, {
+        ...passageVersion,
+        deliveryLanguage: "ar",
+      })
+    ).toBe(false);
+    for (const deliveryLanguage of ["AR", "en_US", ""]) {
+      expect(
+        failsStrict(StimulusVersionSchema, {
+          ...passageVersion,
+          deliveryLanguage,
+        })
+      ).toBe(true);
+    }
+  });
+
   it("has one version for each delivery language, and the identifier of the stimulus", () => {
     const english = {
       ...passageVersion,

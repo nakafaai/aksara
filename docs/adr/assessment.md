@@ -2,6 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-10-13
+- Widened: 2026-10-16, version 0.50.0 (see Widenings in 0.50.0)
 
 ## Context
 
@@ -88,19 +89,21 @@ are not part of this decision.
 ### Scoring
 
 Scoring is data. Each interaction has a rule: `allOrNothing`, `perPart` (points
-for each correct part, an optional penalty for each wrong part, and a floor), or
-`rubric` (criteria with ordered levels and points). The outcome of an
-interaction is a score category from 0 to k, where k is the most points its rule
-can award, so a partial score can enter an IRT model through GPCM later. The
-floor of a per-part rule is therefore at most k. A field has one part, worth the
-points of its rule, so an item version and an exam profile check the floor of a
-rule for a field themselves. The key counts the parts of every other kind, so
-the check of those belongs to the key-fit check below. The exam profile sets a
-default rule for every interaction kind, and an item may override it for one
-interaction. A rubric is never a default, so an extended text always carries its
-own. An exam scores its outcomes with one strategy: `irt`, `raw`, `penalized`
-(whole marks for a correct, a wrong, and a blank answer), or `composite` (a
-formula written out in every language).
+for each correct part, an optional penalty for each wrong part, and a floor),
+`wrongParts` (points by the number of wrong parts, in bands), or `rubric`
+(criteria with ordered levels and points). The outcome of an interaction is a
+score category from 0 to k, where k is the most points its rule can award, so a
+partial score can enter an IRT model through GPCM later. The floor of a per-part
+rule is therefore at most k. A field has one part, worth the points of its rule,
+so an item version and an exam profile check the floor of a rule for a field
+themselves, and a field takes a wrong-parts table of one band for no wrong part.
+The key counts the parts of every other kind, so the check of those belongs to
+the key-fit check below. The exam profile sets a default rule for every
+interaction kind, and an item may override it for one interaction. A default is
+`allOrNothing`, `perPart`, or `wrongParts`, never a rubric, so an extended text
+always carries its own. An exam scores its outcomes with one strategy: `irt`,
+`raw`, `penalized` (whole marks for a correct, a wrong, and a blank answer), or
+`composite` (a formula written out in every language).
 
 ### Keys
 
@@ -126,9 +129,24 @@ interaction.
 
 - An item family has a language-neutral identifier, its blueprint facts
   (competency, topic, cognitive level), and an optional stimulus. An item
-  version is one family in one delivery language: prompt, interactions, scoring
-  overrides, the stimulus version it was written against, and a `hash`. Its
-  answer key and its explanation are records of their own.
+  version is one family in one content language (a canonical BCP 47 tag, see
+  Widenings in 0.50.0): prompt, interactions, scoring overrides, the joint rule
+  when its answers depend on each other, the stimulus version it was written
+  against, and a `hash`. Its answer key and its explanation are records of their
+  own.
+- A joint rule scores several answers together, such as an answer and its
+  reason. It lists levels in order of points, each naming the interactions that
+  must all be correct and the points that they earn. The item scores the points
+  of the first level whose interactions are all correct, and 0 when none is. A
+  later level may not name every interaction of an earlier level, because each
+  answer that earns it also earns the earlier level, which comes first, so the
+  later level could never score. A level names a set, so the order of its listing
+  is not part of the task: the structure check of a family compares the sets, and
+  the hash keeps the exact listing. A joint item names at least two of its
+  interactions and sets no scoring override, so one rule scores it. An extended
+  text cannot join, because it needs a rubric override and a joint item has none.
+  Its ceiling is the points of its first level (`jointCeiling`), not the sum of
+  its interactions.
 - A version is immutable once published: a change is a new version. Its `hash`
   is SHA-256 over the canonical JSON of every other field (keys in code-unit
   order), under the domain `nakafa.aksara.assessment-item`. A stimulus version
@@ -142,10 +160,11 @@ interaction.
   their format, structure, and key. If the structure could differ, one answer key,
   one scoring rule, and one calibrated difficulty could not serve every language
   of an item. Labels, text alternatives, and units are the words of a language;
-  identifiers, counts, bounds, flags, and scoring rules are structure.
+  identifiers, counts, bounds, flags, and scoring rules are structure. The
+  interactions of a joint level are a set, so their order is not structure.
 - A stimulus is a shared reading or figure with a namespaced identifier
   (`<namespace>/passage-1`), so `passage-1` in two sets are two stimuli. It has a
-  version for each delivery language. Items and papers use it by identifier and
+  version for each content language. Items and papers use it by identifier and
   hash and never copy its document. The contract cannot detect a copy of a
   reading inside a prompt, because an item version holds only the identifier and
   the hash of its reading.
@@ -198,9 +217,10 @@ interaction.
 | --- | --- |
 | `document`, `inline`, `figure` | the Assessment Document, its inline nodes, the five figures and the image |
 | `interaction`, `choice`, `entry`, `graphic` | the twelve interactions |
-| `scoring` | rules, strategies, scales, and the score ceiling of a rule |
+| `scoring` | rules, strategies, scales, the score ceiling of a rule, and the points of a wrong-parts table |
 | `key`, `explanation` | the answer key and the explanation of an item version, each a record of its own |
 | `item`, `stimulus`, `hash` | families, versions, shared readings, and their hashes |
+| `joint` | the joint rule of an item version: its levels, its ceiling, and the checks that it fits the version |
 | `profile`, `paper`, `tools` | exam profiles, frozen papers, and the tool registry |
 | `identity`, `scalar`, `part`, `fit`, `structure`, `record` | identifiers, shared scalars, and the checks that the other modules share, such as the size limit of a record |
 
@@ -233,6 +253,8 @@ so every attribute name below needs an XSD check before any QTI XML is written.
 | `extendedText` | `qti-extended-text-interaction` (`expected-lines`); QTI leaves its scoring to a person |
 | `allOrNothing` | the `match_correct` response processing template |
 | `perPart` | the `map_response` template with a `qti-mapping` (`qti-map-entry`, `default-value`, `lower-bound`) |
+| `wrongParts` | no standard template holds a table over the wrong parts: general response processing (Best Practices and Implementation Guide, section 3.4.2) |
+| `joint` | a composite item, which section 3.4.2 scores by general response processing, not by a standard template |
 | `rubric` | `qti-rubric-block` with `use="scoring"` and a float `SCORE` that a person sets |
 | score ceiling k | the float outcomes `SCORE` and `MAXSCORE` |
 | stimulus | `qti-assessment-stimulus` and `qti-assessment-stimulus-ref` |
@@ -306,8 +328,9 @@ compatibility layer.
 
 ## Consequences
 
-- The package grows by seventeen subpath exports and one minor version, 0.49.0.
-  It changes no existing export.
+- The package grows by seventeen subpath exports in 0.49.0, and by one more,
+  `./assessment/joint`, and one minor version, 0.50.0. Version 0.50.0 changes no
+  existing export and no value that 0.49.0 accepts.
 - `assessment/key` imports the text key, the decimal, and the tolerance from
   `question/answer`. That module keeps those primitives, or moves them, when the
   old shapes are deleted.
@@ -316,12 +339,76 @@ compatibility layer.
   encoding.
 - This contract leaves out upload and audio interactions, adaptive sections, and
   a check that a key fits the item version it names. The publisher owns that
-  check, and it includes the floor of a per-part rule against the points that the
-  parts counted by the key allow. The accommodation vocabulary is the one in the
+  check, and it includes the floor of a per-part rule and the bands of a
+  wrong-parts table against the parts that the key counts. The accommodation
+  vocabulary is the one in the
   blueprint's table of accommodations: assigned support is text to speech, high
   contrast, and a separate room; recorded accommodations are extra time, an extra
   break, a reader, a scribe, and an alternate format. Adding a name is a change
   to this contract.
+
+## Widenings in 0.50.0
+
+Three widenings let a pilot school write its own exams (blueprint K23 and K24).
+Each adds a member or a field, and none changes a value that 0.49.0 accepts, so
+every 0.49.0 value decodes unchanged.
+
+### Content language
+
+`ContentLanguageSchema` in `locale` is a string that `Intl.getCanonicalLocales`
+returns unchanged, branded as a content language. It accepts `ar`, `id`, `de-CH`,
+`zh-Hant-TW`, and `sr-Latn`. It refuses `AR` and `iw`, which name the canonical
+tags `ar` and `he`, and it refuses `en_US`, the empty string, and `x`, which Intl
+rejects. An item version and a stimulus version take it. The try-out contract
+keeps `DeliveryLanguageSchema`, which still holds the three app locales.
+
+The direction of a text is not stored: the renderer follows the script of each
+text. Every reader of the language was traced. `hasFamilyVersions` keeps one
+version per language of an item, `hasOwnVersions` keeps one version per language
+of a stimulus, and a paper holds no language. No check compares the language of a
+stimulus reference with the language of its item, because a reference holds only
+an identifier and a hash. No publication path of Aksara decodes assessment items
+at this version, so none refuses a language outside the app locales yet. The
+path that first decodes them must refuse one there, with its own test.
+
+### Wrong parts
+
+A `wrongParts` rule holds bands `{ wrong, points }`, ascending in `wrong` and
+descending in `points`. An answer keeps the points of the first band whose
+`wrong` is at least its number of wrong parts, and 0 when no band holds it. The
+parts are the ones that the per-part rule counts, as the key defines them. The
+AKM rule of a complex multiple choice with more than five statements and more
+than two options is `[{ wrong: 0, points: 2 }, { wrong: 2, points: 1 }]`, which
+gives 2, 1, 1, and 0 for 0 to 3 wrong parts.
+`pointsForWrongParts` reads the table alone: grading an answer stays with
+Nakafa's engine.
+
+The AKM rule is the secondary source that the research names: the
+komunitasbelajar.id post by Mulyana, 2020
+(https://www.komunitasbelajar.id/2020/09/buku-desain-pengembangan-soal-asesmen.html),
+read as a fetched summary. The post gives the rule for more than five statements
+with more than two options: 2 points when all are correct, 1 point for one or two
+wrong, and 0 for more. It states the rule as conditional. The PDF that it links
+could not be read, so no primary source confirms the rule. The QTI mapping is in
+the table above.
+
+### Joint rule
+
+The joint rule scores a two-tier item, an answer and then its reason, with
+`[{ correct: [answer, reason], points: 2 }, { correct: [answer], points: 1 }]`.
+
+The contract follows the first variant: 2 points when both tiers are correct, 1
+point when only the first is correct, and 0 otherwise. Its source is a
+BRIN-hosted paper dated 2022 by its file name. The research found it only in a
+search result that it did not open, and its notes do not record the link, so the
+link that a search returned is a lead to check, not a confirmed source:
+https://karya.brin.go.id/23916/1/2541-2612_7_2_2022-2.pdf. A second variant,
+which credits an item only when both tiers are right, comes from an Unnes 2021
+article that the research did not open and whose link its notes do not record.
+A UPI 2019 note calls the format rare, and the official format lists that the
+research read (TKA, AKM, AKMI, and SNBT) do not name it. These sources are
+leads, not verified sources, so the rule must be confirmed against a primary
+source before a school exam uses it.
 
 ## Rejected
 
