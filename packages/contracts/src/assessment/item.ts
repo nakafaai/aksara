@@ -16,7 +16,7 @@ import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { ScoringOverrideSchema } from "#contracts/assessment/scoring";
 import { hasSameStructure } from "#contracts/assessment/structure";
 import { Sha256HashSchema } from "#contracts/ids";
-import { DeliveryLanguageSchema } from "#contracts/locale";
+import { ContentLanguageSchema } from "#contracts/locale";
 
 /** The editorial facts that place an item in a blueprint. */
 export const ItemBlueprintSchema = Schema.Struct({
@@ -48,7 +48,7 @@ export type StimulusReference = typeof StimulusReferenceSchema.Type;
 
 /** The fields of an item version except its hash, which covers all of them. */
 const VersionFields = {
-  deliveryLanguage: DeliveryLanguageSchema,
+  deliveryLanguage: ContentLanguageSchema,
   family: ItemFamilyIdSchema,
   interactions: Schema.NonEmptyArray(InteractionSchema),
   prompt: AssessmentDocumentSchema,

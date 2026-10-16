@@ -7,6 +7,7 @@ import {
   ItemVersionSchema,
 } from "#contracts/assessment/item";
 import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
+import { arabicFamily, arabicVersion } from "#contracts/test/assessment/arabic";
 import {
   decodeStrict,
   doc,
@@ -99,7 +100,7 @@ describe("item versions of today's corpus", () => {
     expect(failsStrict(ItemVersionSchema, unhashed)).toBe(true);
     for (const change of [
       { hash: "abc" },
-      { deliveryLanguage: "fr" },
+      { deliveryLanguage: "en_US" },
       { correct: ["option-2"] },
       // The explanation is a record of its own, named by the hash of the version.
       { explanation: tkaMultipleExplanation.document },
@@ -108,6 +109,37 @@ describe("item versions of today's corpus", () => {
         failsStrict(ItemVersionSchema, { ...tkaMultiple, ...change })
       ).toBe(true);
     }
+  });
+});
+
+describe("an item version is written in any content language", () => {
+  it("accepts an Arabic version, which the app locales do not include", () => {
+    expect(
+      decodeStrict(ItemVersionSchema, arabicVersion).deliveryLanguage
+    ).toBe("ar");
+    expect(
+      failsStrict(ItemSchema, {
+        family: arabicFamily,
+        versions: [arabicVersion],
+      })
+    ).toBe(false);
+  });
+
+  it("refuses a language that is not a canonical tag", () => {
+    for (const deliveryLanguage of ["AR", "en_US", "iw", "", "x"]) {
+      expect(
+        failsStrict(ItemVersionSchema, { ...arabicVersion, deliveryLanguage })
+      ).toBe(true);
+    }
+  });
+
+  it("rejects two versions of one family in one canonical language", () => {
+    expect(
+      failsStrict(ItemSchema, {
+        family: arabicFamily,
+        versions: [arabicVersion, { ...arabicVersion, hash: hash("c") }],
+      })
+    ).toBe(true);
   });
 });
 
