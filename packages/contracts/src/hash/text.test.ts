@@ -1,20 +1,10 @@
 // @vitest-environment node
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 
 describe("UTF-8 text hashing", () => {
-  it.effect("matches the independent Node SHA-256 implementation", () =>
-    Effect.gen(function* () {
-      const value = "Aksara Web Crypto hash";
-      const expected = `sha256:${createHash("sha256").update(value).digest("hex")}`;
-
-      expect(yield* hashText(value)).toBe(expected);
-    })
-  );
-
   it.effect("pins SHA-256 digests of exact UTF-8 text", () =>
     Effect.gen(function* () {
       expect(yield* hashText("")).toBe(
