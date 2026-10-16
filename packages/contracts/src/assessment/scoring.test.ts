@@ -9,6 +9,7 @@ import {
   DefaultRuleSchema,
   MarksSchema,
   PerPartRuleSchema,
+  pointsForWrongParts,
   RubricRuleSchema,
   ScoreScaleSchema,
   ScoringOverrideSchema,
@@ -16,7 +17,9 @@ import {
   ScoringStrategySchema,
   scoreCeiling,
   supportsRule,
+  WrongPartsRuleSchema,
 } from "#contracts/assessment/scoring";
+import { akmRule } from "#contracts/test/assessment/akm";
 import { decodeStrict, failsStrict } from "#contracts/test/assessment/document";
 import {
   ALL_INTERACTIONS,
@@ -97,9 +100,10 @@ describe("scoring rules", () => {
     }
   });
 
-  it("lets an exam default to all or nothing or to a rule per part, never to a rubric", () => {
+  it("lets an exam default to all or nothing, a rule per part, or a wrong-parts table, never to a rubric", () => {
     expect(failsStrict(DefaultRuleSchema, allOrNothing)).toBe(false);
     expect(failsStrict(DefaultRuleSchema, perPart)).toBe(false);
+    expect(failsStrict(DefaultRuleSchema, akmRule)).toBe(false);
     expect(failsStrict(DefaultRuleSchema, rubricRule)).toBe(true);
   });
 
@@ -180,6 +184,95 @@ describe("which rule scores which interaction", () => {
     // The key counts the parts of every other kind, so the key checks the floor.
     expect(supportsRule(kindOf("choice"), withFloor(3))).toBe(true);
     expect(supportsRule(kindOf("matrix"), withFloor(3))).toBe(true);
+  });
+});
+
+describe("wrong-parts tables", () => {
+  it("accepts bands that rise in wrong parts and fall in points, with at least one band", () => {
+    expect(failsStrict(WrongPartsRuleSchema, akmRule)).toBe(false);
+    expect(
+      failsStrict(WrongPartsRuleSchema, {
+        bands: [{ points: 1, wrong: 0 }],
+        kind: "wrongParts",
+      })
+    ).toBe(false);
+  });
+
+  it("rejects a table without a band, and bands that do not step down", () => {
+    for (const bands of [
+      [],
+      [{ points: 1, wrong: -1 }],
+      [{ points: 0, wrong: 0 }],
+      [{ points: 1, wrong: 0.5 }],
+      [
+        { points: 2, wrong: 2 },
+        { points: 1, wrong: 0 },
+      ],
+      [
+        { points: 1, wrong: 0 },
+        { points: 1, wrong: 2 },
+      ],
+      [
+        { points: 2, wrong: 0 },
+        { points: 3, wrong: 2 },
+      ],
+      [
+        { points: 2, wrong: 0 },
+        { points: 1, wrong: 0 },
+      ],
+    ]) {
+      expect(
+        failsStrict(WrongPartsRuleSchema, { bands, kind: "wrongParts" })
+      ).toBe(true);
+    }
+  });
+
+  it("scores an answer by the first band that holds its wrong parts, and 0 when none does", () => {
+    const rule = decodeStrict(WrongPartsRuleSchema, akmRule);
+
+    expect(
+      Arr.map([0, 1, 2, 3], (wrong) => pointsForWrongParts(rule, wrong))
+    ).toEqual([2, 1, 1, 0]);
+  });
+
+  it("has the points of its first band as its ceiling, whatever the number of parts", () => {
+    expect(scoreCeiling(decodeStrict(ScoringRuleSchema, akmRule), 6)).toBe(2);
+    expect(scoreCeiling(decodeStrict(ScoringRuleSchema, akmRule), 0)).toBe(2);
+  });
+
+  it("fits every kind but an extended text and a field, and a field only with one band for no wrong part", () => {
+    const table = decodeStrict(ScoringRuleSchema, akmRule);
+    const fieldTable = decodeStrict(ScoringRuleSchema, {
+      bands: [{ points: 1, wrong: 0 }],
+      kind: "wrongParts",
+    });
+    const stepsOnAWrongPart = decodeStrict(ScoringRuleSchema, {
+      bands: [
+        { points: 2, wrong: 0 },
+        { points: 1, wrong: 1 },
+      ],
+      kind: "wrongParts",
+    });
+    const pointForAWrongPart = decodeStrict(ScoringRuleSchema, {
+      bands: [{ points: 1, wrong: 1 }],
+      kind: "wrongParts",
+    });
+    /** The kinds that sit inside a line of text, each a field with one part. */
+    const fields = ["inlineChoice", "textEntry", "numericEntry", "mathEntry"];
+    /** Decodes the kind of one interaction. */
+    const kindOf = (kind: string) => decodeStrict(InteractionKindSchema, kind);
+
+    for (const interaction of ALL_INTERACTIONS) {
+      const { kind } = decodeStrict(InteractionSchema, interaction);
+      expect(supportsRule(kind, table)).toBe(
+        kind !== "extendedText" && !Arr.contains(fields, kind)
+      );
+    }
+    for (const field of fields) {
+      expect(supportsRule(kindOf(field), fieldTable)).toBe(true);
+      expect(supportsRule(kindOf(field), stepsOnAWrongPart)).toBe(false);
+      expect(supportsRule(kindOf(field), pointForAWrongPart)).toBe(false);
+    }
   });
 });
 
