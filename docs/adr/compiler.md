@@ -20,8 +20,8 @@ classes take that brand, so a value with the same shape cannot pass for an
 instance of one of them. One class is the exception: `ProvenanceVerificationError`
 in `scripts/provenance/schema.ts`. That file is shared with nakafa.com and must
 stay byte-identical to nakafa.com's copy. nakafa.com does not enable the rule
-yet, because its `@effect/tsgo` pin is 0.51.1, so the brand for that class
-starts in nakafa.com and this copy follows it.
+yet: its compiler rule block has no entry for it, and its `@effect/tsgo` pin is
+0.51.1. The brand for that class starts in nakafa.com, and this copy follows it.
 
 ## Consequences
 
