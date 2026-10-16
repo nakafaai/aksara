@@ -108,17 +108,11 @@ describe("scoring rules", () => {
   });
 
   it("lets an item set a rule for one of its interactions", () => {
+    const override = { interaction: "answer", rule: perPart };
+
+    expect(failsStrict(ScoringOverrideSchema, override)).toBe(false);
     expect(
-      failsStrict(ScoringOverrideSchema, {
-        interaction: "answer",
-        rule: perPart,
-      })
-    ).toBe(false);
-    expect(
-      failsStrict(ScoringOverrideSchema, {
-        interaction: "Answer",
-        rule: perPart,
-      })
+      failsStrict(ScoringOverrideSchema, { ...override, interaction: "Answer" })
     ).toBe(true);
   });
 });
@@ -202,6 +196,7 @@ describe("wrong-parts tables", () => {
       tableOf({ points: 2, wrong: 2 }, { points: 1, wrong: 0 }),
       tableOf({ points: 1, wrong: 0 }, { points: 1, wrong: 2 }),
       tableOf({ points: 2, wrong: 0 }, { points: 3, wrong: 2 }),
+      tableOf({ points: 2, wrong: 1 }, { points: 1, wrong: 1 }),
     ]) {
       expect(failsStrict(WrongPartsRuleSchema, rule)).toBe(true);
     }

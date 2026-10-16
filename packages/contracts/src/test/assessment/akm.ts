@@ -7,8 +7,9 @@ import {
 import { hash, NAME, plainPart } from "#contracts/test/assessment/item";
 
 /**
- * Test-only wrong-parts rule of a complex item with more than five statements:
- * 2 points with no wrong statement, 1 point with one or two, and 0 with more.
+ * Test-only wrong-parts rule of a complex item with more than five statements
+ * and more than two options: 2 points with no wrong statement, 1 point with one
+ * or two, and 0 with more.
  */
 export const akmRule = {
   bands: [

@@ -61,19 +61,22 @@ function hasWrongPartsSteps(
 
 /**
  * Points by the number of wrong parts, such as the AKM rule of a complex
- * multiple choice with more than five statements: 2 points with no wrong part,
- * 1 point with one or two, and 0 with more. An answer scores the points of the
- * first band whose `wrong` is at least its number of wrong parts, and 0 when no
- * band holds it. The parts are the ones the per-part rule counts, as the key
- * defines them for each kind.
+ * multiple choice with more than five statements and more than two options: 2
+ * points with no wrong part, 1 point with one or two, and 0 with more. An answer
+ * scores the points of the first band whose `wrong` is at least its number of
+ * wrong parts, and 0 when no band holds it. The parts are the ones the per-part
+ * rule counts, as the key defines them for each kind.
  *
  * It corresponds to no standard response processing template of QTI 3.
- * `match_correct` gives 1 or 0 for the whole interaction, and `map_response`
- * adds the points of the correct parts, so neither counts the wrong parts.
- * Section 3.4.2 of the QTI 3 Best Practices and Implementation Guide says that
- * a composite item needs general response processing, not a standard template.
- * A table over the wrong parts is that kind of score, so it corresponds to the
- * general response processing of that section.
+ * `match_correct` gives 1 or 0 for the whole interaction. `map_response` maps
+ * each response value and sums the results. With one value for the correct parts
+ * and one for the wrong parts, each wrong part moves the score by the same step,
+ * and clamping the sum to its bounds flattens only its two ends. The table 2, 1,
+ * 1, 0 for 0 to 3 wrong parts has a flat step in the middle, so no sum over the
+ * parts gives it. Section 3.4.2 of the QTI 3 Best Practices and Implementation
+ * Guide says that a composite item needs general response processing, not a
+ * standard template. A table over the wrong parts is that kind of score, so it
+ * corresponds to the general response processing of that section.
  */
 export const WrongPartsRuleSchema = Schema.Struct({
   bands: Schema.NonEmptyArray(WrongPartsBandSchema).check(
