@@ -12,7 +12,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * Effect cohort pins and the compiler rule block move with the pin, in the same
  * change, because `pnpm native` compares them with nakafa.com.
  */
-export const NAKAFA_COMMIT = "24cb1ada5162b4d35983fb9312a0b0c8c25ab065";
+export const NAKAFA_COMMIT = "a9c9be2e307bef8fc709a35cdcf0d0bdf9ab296c";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
