@@ -129,4 +129,12 @@ describe("command option parsing", () => {
       expect(parsed).toEqual({ positionals: ["-"], values: {} });
     })
   );
+
+  it.effect("accepts a lone dash as the value of a declared option", () =>
+    Effect.gen(function* () {
+      const parsed = yield* parseOptions(["--output", "-"], DECLARED, true);
+
+      expect(parsed).toEqual({ positionals: [], values: { output: "-" } });
+    })
+  );
 });

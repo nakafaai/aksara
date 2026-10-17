@@ -45,8 +45,9 @@ const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* <
  * Parses `--name value` and `--name=value` options whose names the command declares
  * as a Schema of literal names, with the same rules as Node's `util.parseArgs` in
  * strict mode: a bare `--` ends the options, an undeclared or single-dash option is
- * refused, and a value may not start with a dash unless it follows `=`. Each value is
- * a string, and the returned values are typed by the declared names.
+ * refused, and a value may not be an option unless it follows `=`. A lone dash is an
+ * operand or a value, as in Node. Each value is a string, and the returned values are
+ * typed by the declared names.
  */
 export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
   function* <Name extends string>(
@@ -81,7 +82,7 @@ export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
         continue;
       }
       const [value] = later;
-      if (value === undefined || value.startsWith("-")) {
+      if (value === undefined || isOptionToken(value)) {
         return yield* new OptionArgumentError({
           argument,
           detail: `Option '--${name}' requires a value`,
