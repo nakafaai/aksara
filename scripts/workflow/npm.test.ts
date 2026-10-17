@@ -7,6 +7,7 @@ import {
   verifyNpmWorkflow,
 } from "#scripts/workflow/npm";
 import { workflowFailure } from "#scripts/workflow/test/failure";
+import { mutateJob } from "#scripts/workflow/test/mutation";
 
 const contract: NpmWorkflowContract = {
   packageArtifact: "cli-package",
@@ -46,6 +47,42 @@ describe("npm trusted publication digest", () => {
         _tag: "WorkflowError",
         message: "npm publication must match the exact trusted job",
       });
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect("refuses a publish job that cannot be encoded as JSON text", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const cyclic = mutateJob(
+        source,
+        "publish",
+        "        with:\n          name: cli-package\n",
+        "        with: &cycle\n          name: cli-package\n          self: *cycle\n"
+      );
+      expect(cyclic).not.toEqual(source);
+
+      expect(yield* workflowFailure(verifyNpmWorkflow(cyclic, contract))).toBe(
+        "npm publication could not be hashed"
+      );
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect("refuses a publish job whose digest cannot be computed", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const refusal = yield* Effect.acquireUseRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only publish digest failure.")
+            )
+        ),
+        () => workflowFailure(verifyNpmWorkflow(source, contract)),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      expect(refusal).toBe("npm publication could not be hashed");
     }).pipe(Effect.provide(NodeServices.layer))
   );
 

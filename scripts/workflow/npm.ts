@@ -86,14 +86,17 @@ const requirePublicationWindow = Effect.fn(
   );
 });
 
-/** Hashes the exact JSON text of one trusted publish job with the Web Crypto digest. */
-const publishSha256Of = Effect.fn("AksaraScripts.publishSha256")(function* (
-  publish: unknown
-) {
-  const publishJson = yield* Schema.encodeEffect(JsonTextSchema)(publish);
-  const digest = yield* digestSha256(new TextEncoder().encode(publishJson));
-  return Hex.encode(digest);
-}, Effect.orDie);
+/** Hashes the exact JSON text of one trusted publish job. A job that cannot be hashed is refused. */
+const publishSha256Of = Effect.fn("AksaraScripts.publishSha256")(
+  function* (publish: unknown) {
+    const publishJson = yield* Schema.encodeEffect(JsonTextSchema)(publish);
+    const digest = yield* digestSha256(new TextEncoder().encode(publishJson));
+    return Hex.encode(digest);
+  },
+  Effect.mapError(
+    () => new WorkflowError({ message: "npm publication could not be hashed" })
+  )
+);
 
 /** Verifies the shared trusted npm publication and provenance boundary. */
 export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
