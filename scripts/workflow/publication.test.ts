@@ -16,6 +16,11 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
 > = [
   [
+    "- name: Prove immutable contract release",
+    "- name: Prove contract release",
+    "Contract proof must finish before production credentials are approved",
+  ],
+  [
     "Verify paired acceptance",
     "Skip paired acceptance",
     "Acceptance must prove authenticated complete-result parity",

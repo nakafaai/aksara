@@ -126,6 +126,17 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
       "Contract archives must be attested before crossing into the publish job"
     ));
 
+  for (const name of ["Attest verified archive", "Create draft release"]) {
+    it(`requires the contract release to declare the ${name} step`, (sources) =>
+      refusedReplacement(
+        sources,
+        "contracts",
+        `- name: ${name}`,
+        "- name: Renamed release step",
+        `Contract releases must declare the ${name} step`
+      ));
+  }
+
   it("binds GitHub attestation to one exact source", (sources) =>
     refused(
       sources,

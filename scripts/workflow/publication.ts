@@ -147,6 +147,17 @@ const verifyDispatchGuards = Effect.fn("AksaraScripts.verifyDispatchGuards")(
   }
 );
 
+/** Reports whether the contract proof step exists and finishes before production approval. */
+function proofPrecedesProduction(release: string): boolean {
+  const proofIndex = release.indexOf(
+    "- name: Prove immutable contract release"
+  );
+  return (
+    proofIndex >= 0 &&
+    proofIndex < release.indexOf("environment: content-production")
+  );
+}
+
 /** Verifies the target choice, isolated credentials, and recovery controls. */
 export const verifyPublicationWorkflow = Effect.fn(
   "AksaraScripts.verifyPublicationWorkflow"
@@ -168,8 +179,7 @@ export const verifyPublicationWorkflow = Effect.fn(
     "Production content operations must preserve complete Git history"
   );
   yield* ensure(
-    release.indexOf("- name: Prove immutable contract release") <
-      release.indexOf("environment: content-production"),
+    proofPrecedesProduction(release),
     "Contract proof must finish before production credentials are approved"
   );
   yield* ensure(

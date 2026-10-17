@@ -64,6 +64,18 @@ const WorkflowSourcesSchema = Schema.Struct({
 /** Workflow sources and the repository test targets that the CI policy names. */
 export type WorkflowSources = typeof WorkflowSourcesSchema.Type;
 
+/** Returns where one named contract release step starts, and refuses a workflow that does not declare it. */
+const contractStepStart = Effect.fn("AksaraWorkflow.contractStepStart")(
+  function* (contracts: string, name: string) {
+    const start = contracts.indexOf(`- name: ${name}`);
+    yield* ensure(
+      start >= 0,
+      `Contract releases must declare the ${name} step`
+    );
+    return start;
+  }
+);
+
 /** Verifies one source-only contract archive and one content release path. */
 export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
   function* ({
@@ -157,11 +169,26 @@ export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
       ARCHIVE_IDENTITY_PATTERN.test(contracts),
       "Contract releases must compare exact verified archive bytes"
     );
-    const attestIndex = contracts.indexOf("- name: Attest verified archive");
-    const transferIndex = contracts.indexOf("- name: Upload verified package");
-    const draftIndex = contracts.indexOf("- name: Create draft release");
-    const uploadIndex = contracts.indexOf("- name: Attach verified archive");
-    const publishIndex = contracts.indexOf("- name: Publish immutable release");
+    const attestIndex = yield* contractStepStart(
+      contracts,
+      "Attest verified archive"
+    );
+    const transferIndex = yield* contractStepStart(
+      contracts,
+      "Upload verified package"
+    );
+    const draftIndex = yield* contractStepStart(
+      contracts,
+      "Create draft release"
+    );
+    const uploadIndex = yield* contractStepStart(
+      contracts,
+      "Attach verified archive"
+    );
+    const publishIndex = yield* contractStepStart(
+      contracts,
+      "Publish immutable release"
+    );
     yield* ensure(
       attestIndex < transferIndex,
       "Contract archives must be attested before crossing into the publish job"
