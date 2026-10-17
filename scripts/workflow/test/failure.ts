@@ -1,10 +1,11 @@
 import { expect } from "@effect/vitest";
-import { Cause, Effect, Exit, Predicate } from "effect";
+import { Cause, Effect, Exit, Option, Schema } from "effect";
+import { WorkflowError } from "#scripts/workflow/requirement";
 
 /**
- * Runs one workflow verifier and returns the message of its rejection, or a
- * fixed sentence when it accepts. A typed rejection carries its message, and a
- * thrown defect reports its own text.
+ * Runs one workflow verifier and returns the message of its typed refusal, or a
+ * fixed sentence when it accepts. A defect or any other failure stops the test,
+ * because a verifier must refuse with its WorkflowError and never throw.
  */
 export const workflowFailure = Effect.fn("AksaraWorkflowTest.failure")(
   function* <A, E>(verification: Effect.Effect<A, E>) {
@@ -12,10 +13,13 @@ export const workflowFailure = Effect.fn("AksaraWorkflowTest.failure")(
     if (Exit.isSuccess(exit)) {
       return "The workflow verifier accepted the workflow.";
     }
-    const error = Cause.squash(exit.cause);
-    return Predicate.hasProperty(error, "message")
-      ? String(error.message)
-      : String(error);
+    const refusal = Option.getOrUndefined(Cause.findErrorOption(exit.cause));
+    if (!Schema.is(WorkflowError)(refusal)) {
+      return yield* Effect.die(
+        `The workflow verifier did not refuse with a WorkflowError: ${Cause.pretty(exit.cause)}`
+      );
+    }
+    return refusal.message;
   }
 );
 

@@ -1,6 +1,13 @@
-import assert from "node:assert/strict";
-import { Array as Arr, Option, pipe, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Option,
+  pipe,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { parseDocument } from "yaml";
+import { ensure, WorkflowError, yamlData } from "#scripts/workflow/requirement";
 
 const StepSchema = Schema.StructWithRest(
   Schema.Struct({
@@ -77,17 +84,23 @@ export function jobSource(job: WorkflowJob) {
 }
 
 /** Decodes one exact workflow while preserving security-relevant properties. */
-export function decodeWorkflow(source: string) {
-  const document = parseDocument(source);
-  assert.equal(
-    document.errors.length,
-    0,
-    document.errors[0]?.message ?? "Workflow YAML must parse"
-  );
-  const decoded = Schema.decodeUnknownOption(WorkflowSchema)(document.toJS());
-  assert.ok(Option.isSome(decoded), "Workflow must contain decodable jobs");
-  return decoded.value;
-}
+export const decodeWorkflow = Effect.fn("AksaraScripts.decodeWorkflow")(
+  function* (source: string) {
+    const document = parseDocument(source);
+    yield* ensure(
+      document.errors.length === 0,
+      document.errors[0]?.message ?? "Workflow YAML must parse"
+    );
+    const value = yield* yamlData(document);
+    const decoded = Schema.decodeUnknownOption(WorkflowSchema)(value);
+    if (Option.isNone(decoded)) {
+      return yield* new WorkflowError({
+        message: "Workflow must contain decodable jobs",
+      });
+    }
+    return decoded.value;
+  }
+);
 
 /** Reports whether one job owns exactly the expected dependencies. */
 export function exactNeeds(job: WorkflowJob, expected: readonly string[]) {

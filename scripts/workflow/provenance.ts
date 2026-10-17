@@ -1,7 +1,7 @@
-import assert from "node:assert/strict";
 import { Effect } from "effect";
 import { decodeWorkflow, exactNeeds } from "#scripts/workflow/decode";
 import { verifyNpmWorkflow } from "#scripts/workflow/npm";
+import { ensure, WorkflowError } from "#scripts/workflow/requirement";
 
 const CONTRACT_WORKFLOW = {
   packageArtifact: "contract-package",
@@ -18,54 +18,48 @@ const DISPATCHED_RELEASE =
 export const verifyProvenanceWorkflow = Effect.fn(
   "AksaraScripts.verifyProvenanceWorkflow"
 )(function* (source: string) {
-  const { jobs } = decodeWorkflow(source);
+  const { jobs } = yield* decodeWorkflow(source);
   const { build, finalize, publish } = jobs;
-  assert.ok(
-    build && finalize && publish,
-    "Contract publication requires a finalize job"
-  );
-  assert.equal(
-    publish.if,
-    DISPATCHED_RELEASE,
+  if (build === undefined || finalize === undefined || publish === undefined) {
+    return yield* new WorkflowError({
+      message: "Contract publication requires a finalize job",
+    });
+  }
+  yield* ensure(
+    publish.if === DISPATCHED_RELEASE,
     "Contract publication must run only in a dispatched release"
   );
-  assert.equal(
-    finalize.if,
-    `always() && needs.build.result == 'success' && ${DISPATCHED_RELEASE}`,
+  yield* ensure(
+    finalize.if ===
+      `always() && needs.build.result == 'success' && ${DISPATCHED_RELEASE}`,
     "Contract finalization must run only in a dispatched release"
   );
-  assert.ok(
+  yield* ensure(
     exactNeeds(finalize, ["build", "publish", "verify"]),
     "Contract finalization must consume every release gate"
   );
-  assert.equal(
-    finalize.permissions?.["id-token"],
-    undefined,
+  yield* ensure(
+    finalize.permissions?.["id-token"] === undefined,
     "Contract finalization must not receive npm OIDC identity"
   );
-  assert.equal(
-    finalize.permissions?.attestations,
-    "read",
+  yield* ensure(
+    finalize.permissions?.attestations === "read",
     "Contract finalization must read archive attestations"
   );
-  assert.equal(
-    finalize.permissions?.contents,
-    "write",
+  yield* ensure(
+    finalize.permissions?.contents === "write",
     "Contract finalization must publish the immutable release"
   );
-  assert.equal(
-    build.permissions?.attestations,
-    "write",
+  yield* ensure(
+    build.permissions?.attestations === "write",
     "Contract builds must attest exact archive bytes"
   );
-  assert.equal(
-    publish.permissions?.attestations,
-    "read",
+  yield* ensure(
+    publish.permissions?.attestations === "read",
     "Contract publication must verify archive attestations"
   );
-  assert.equal(
-    publish.permissions?.contents,
-    "write",
+  yield* ensure(
+    publish.permissions?.contents === "write",
     "Contract publication must stage the draft release"
   );
   yield* verifyNpmWorkflow(source, CONTRACT_WORKFLOW);

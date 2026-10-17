@@ -102,10 +102,7 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
       !FORBIDDEN_CREDENTIAL.test(source),
       "npm workflow must not contain registry credentials"
     );
-    const decoded = yield* Effect.try({
-      catch: (cause) => new WorkflowError({ message: String(cause) }),
-      try: () => decodeWorkflow(source),
-    });
+    const decoded = yield* decodeWorkflow(source);
     const { defaults, env, jobs, permissions } = decoded;
     yield* ensure(
       Rec.isEmptyRecord(permissions),

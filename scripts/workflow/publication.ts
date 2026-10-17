@@ -1,12 +1,13 @@
-import assert from "node:assert/strict";
-import { Array as Arr, Option, Record as Rec, Schema } from "effect";
-import { type Document, isSeq, parseDocument } from "yaml";
+import { Array as Arr, Effect, Option, Record as Rec, Schema } from "effect";
+import { type Document, parseDocument } from "yaml";
 import {
   ACCEPTED_DISPATCHES,
   intendedPlan,
   mainRun,
+  samePlan,
   workflowPlan,
 } from "#scripts/workflow/plan";
+import { ensure, requireSeq, yamlData } from "#scripts/workflow/requirement";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
@@ -71,155 +72,155 @@ const DISPATCH_GUARDS: ReadonlyArray<
 ];
 
 /** Verifies that a dispatch selects production, development, or both. */
-function verifyTargetChoice(document: Document): void {
-  assert.ok(
-    Option.isSome(
-      Schema.decodeUnknownOption(TargetDispatchSchema)(document.toJS())
-    ),
-    "The target input must offer exactly production, development, and both in that order, with production as the default"
-  );
-}
+const verifyTargetChoice = Effect.fn("AksaraScripts.verifyTargetChoice")(
+  function* (document: Document) {
+    const value = yield* yamlData(document);
+    yield* ensure(
+      Option.isSome(Schema.decodeUnknownOption(TargetDispatchSchema)(value)),
+      "The target input must offer exactly production, development, and both in that order, with production as the default"
+    );
+  }
+);
 
 /**
  * Verifies, by evaluating the workflow expressions, that every dispatch starts
  * the legs, the paired acceptance, and the final parity its target calls for.
  */
-function verifyPlans(release: string): void {
-  for (const dispatch of ACCEPTED_DISPATCHES) {
-    assert.deepEqual(
-      workflowPlan(release, mainRun(dispatch)),
-      intendedPlan(dispatch),
-      `The ${dispatch.operation} on ${dispatch.target} must start only the legs, the paired acceptance, and the final parity that its target calls for`
-    );
+const verifyPlans = Effect.fn("AksaraScripts.verifyPublicationPlans")(
+  function* (release: string) {
+    for (const dispatch of ACCEPTED_DISPATCHES) {
+      const plan = yield* workflowPlan(release, mainRun(dispatch));
+      yield* ensure(
+        samePlan(plan, intendedPlan(dispatch)),
+        `The ${dispatch.operation} on ${dispatch.target} must start only the legs, the paired acceptance, and the final parity that its target calls for`
+      );
+    }
+    for (const [reason, change] of PARITY_BLOCKERS) {
+      const plan = yield* workflowPlan(release, {
+        ...mainRun(PAIRED_RELEASE),
+        ...change,
+      });
+      yield* ensure(
+        plan.parity === false,
+        `The final parity must not run ${reason}`
+      );
+    }
   }
-  for (const [reason, change] of PARITY_BLOCKERS) {
-    assert.equal(
-      workflowPlan(release, { ...mainRun(PAIRED_RELEASE), ...change }).parity,
-      false,
-      `The final parity must not run ${reason}`
-    );
-  }
-}
+);
 
 /**
  * Verifies that the guards come first, run unconditionally, and stop the job
  * when they fail, so no dispatch reaches a checkout or a credential unchecked.
  */
-function verifyDispatchGuards(document: Document): void {
-  Arr.forEach(DISPATCH_GUARDS, ([name, env], index) => {
-    const step = ["jobs", "operate", "steps", index];
-    assert.equal(
-      document.getIn([...step, "name"]),
-      name,
-      `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
+const verifyDispatchGuards = Effect.fn("AksaraScripts.verifyDispatchGuards")(
+  function* (document: Document) {
+    yield* Effect.forEach(
+      DISPATCH_GUARDS,
+      ([name, env], index) =>
+        Effect.gen(function* () {
+          const step = ["jobs", "operate", "steps", index];
+          yield* ensure(
+            document.getIn([...step, "name"]) === name,
+            `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
+          );
+          yield* ensure(
+            document.getIn([...step, "if"]) === undefined,
+            `${name} must run unconditionally`
+          );
+          yield* ensure(
+            document.getIn([...step, "continue-on-error"]) === undefined,
+            `${name} must stop the job when it fails`
+          );
+          yield* Effect.forEach(
+            Rec.toEntries(env),
+            ([variable, input]) =>
+              ensure(
+                document.getIn([...step, "env", variable]) ===
+                  `\${{ inputs.${input} }}`,
+                `${name} must read the dispatched ${input}`
+              ),
+            { discard: true }
+          );
+        }),
+      { discard: true }
     );
-    assert.equal(
-      document.getIn([...step, "if"]),
-      undefined,
-      `${name} must run unconditionally`
-    );
-    assert.equal(
-      document.getIn([...step, "continue-on-error"]),
-      undefined,
-      `${name} must stop the job when it fails`
-    );
-    for (const [variable, input] of Rec.toEntries(env)) {
-      assert.equal(
-        document.getIn([...step, "env", variable]),
-        `\${{ inputs.${input} }}`,
-        `${name} must read the dispatched ${input}`
-      );
-    }
-  });
-}
+  }
+);
 
 /** Verifies the target choice, isolated credentials, and recovery controls. */
-export function verifyPublicationWorkflow(
-  release: string,
-  all: readonly string[]
-): void {
-  assert.match(
-    release,
-    PRODUCTION_ENV_PATTERN,
+export const verifyPublicationWorkflow = Effect.fn(
+  "AksaraScripts.verifyPublicationWorkflow"
+)(function* (release: string, all: readonly string[]) {
+  yield* ensure(
+    PRODUCTION_ENV_PATTERN.test(release),
     "Content operations must require production environment approval"
   );
-  assert.match(
-    release,
-    CONSUMER_PATTERN,
+  yield* ensure(
+    CONSUMER_PATTERN.test(release),
     "Full content operations must prove the contracts release archive"
   );
-  assert.match(
-    release,
-    CONTENT_CONTRACT_PATTERN,
+  yield* ensure(
+    CONTENT_CONTRACT_PATTERN.test(release),
     "Every content operation must depend on the exact immutable contract proof"
   );
-  assert.match(
-    release,
-    OPERATION_HISTORY_PATTERN,
+  yield* ensure(
+    OPERATION_HISTORY_PATTERN.test(release),
     "Production content operations must preserve complete Git history"
   );
-  assert.ok(
+  yield* ensure(
     release.indexOf("- name: Prove immutable contract release") <
       release.indexOf("environment: content-production"),
     "Contract proof must finish before production credentials are approved"
   );
-  assert.match(
-    release,
-    ISOLATED_OPERATION_PATTERN,
+  yield* ensure(
+    ISOLATED_OPERATION_PATTERN.test(release),
     "Content operations must run from one clean exact-revision checkout"
   );
-  assert.match(
-    release,
-    TERMINAL_GATE_PATTERN,
+  yield* ensure(
+    TERMINAL_GATE_PATTERN.test(release),
     "Terminal content operations must retain scoped recovery gates"
   );
-  assert.match(
-    release,
-    PUBLICATION_SCOPE_PATTERN,
+  yield* ensure(
+    PUBLICATION_SCOPE_PATTERN.test(release),
     "Content releases must validate and pass one explicit scalable scope"
   );
-  assert.equal(
-    Arr.filter(all, (source) => OPERATION_PATTERN.test(source)).length,
-    1,
+  yield* ensure(
+    Arr.filter(all, (source) => OPERATION_PATTERN.test(source)).length === 1,
     "Only one workflow may own content publication"
   );
   const document = parseDocument(release);
-  assert.equal(document.errors.length, 0, "Publication YAML must parse");
-  assert.equal(
-    document.getIn(["concurrency", "group"]),
-    "content-publication",
+  yield* ensure(document.errors.length === 0, "Publication YAML must parse");
+  yield* ensure(
+    document.getIn(["concurrency", "group"]) === "content-publication",
     "Paired operations must serialize without cancellation"
   );
-  assert.equal(
-    document.getIn(["concurrency", "cancel-in-progress"]),
-    false,
+  yield* ensure(
+    document.getIn(["concurrency", "cancel-in-progress"]) === false,
     "Paired operations must serialize without cancellation"
   );
-  assert.equal(
-    document.getIn(["jobs", "operate", "strategy", "fail-fast"]),
-    false,
+  yield* ensure(
+    document.getIn(["jobs", "operate", "strategy", "fail-fast"]) === false,
     "One target failure must not interrupt its peer"
   );
-  verifyTargetChoice(document);
-  verifyDispatchGuards(document);
-  assert.match(
-    release,
-    SHARED_VALIDATION_PATTERN,
+  yield* verifyTargetChoice(document);
+  yield* verifyDispatchGuards(document);
+  yield* ensure(
+    SHARED_VALIDATION_PATTERN.test(release),
     "Shared validation must finish before either target operates"
   );
-  assert.match(
-    release,
-    PARITY_PREFLIGHT_PATTERN,
+  yield* ensure(
+    PARITY_PREFLIGHT_PATTERN.test(release),
     "Acceptance must prove authenticated complete-result parity before mutation"
   );
-  assert.match(
-    release,
-    PARITY_RESULT_PATTERN,
+  yield* ensure(
+    PARITY_RESULT_PATTERN.test(release),
     "Paired release and acceptance must finish with an authenticated parity gate"
   );
-  verifyPlans(release);
-  const steps = document.getIn(["jobs", "operate", "steps"]);
-  assert.ok(isSeq(steps), "Publication must declare operation steps");
+  yield* verifyPlans(release);
+  const steps = yield* requireSeq(
+    document.getIn(["jobs", "operate", "steps"]),
+    "Publication must declare operation steps"
+  );
   for (let index = 0; index < steps.items.length; index += 1) {
     const base = ["jobs", "operate", "steps", index];
     const workingDirectory = document.getIn([...base, "working-directory"]);
@@ -233,9 +234,9 @@ export function verifyPublicationWorkflow(
         ["TOKEN", "secrets"],
       ]) {
         for (const prefix of ["AKSARA_DEV", "AKSARA"]) {
-          assert.equal(
-            document.getIn([...base, "env", `${prefix}_PUBLICATION_${key}`]),
-            `\${{ ${namespace}.${prefix}_PUBLICATION_${key} }}`,
+          yield* ensure(
+            document.getIn([...base, "env", `${prefix}_PUBLICATION_${key}`]) ===
+              `\${{ ${namespace}.${prefix}_PUBLICATION_${key} }}`,
             "Parity must authenticate both exact target credentials"
           );
         }
@@ -246,9 +247,9 @@ export function verifyPublicationWorkflow(
       ["ENDPOINT", "vars"],
       ["TOKEN", "secrets"],
     ]) {
-      assert.equal(
-        document.getIn([...base, "env", `AKSARA_PUBLICATION_${key}`]),
-        `\${{ ${namespace}[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_${key}' || 'AKSARA_PUBLICATION_${key}'] }}`,
+      yield* ensure(
+        document.getIn([...base, "env", `AKSARA_PUBLICATION_${key}`]) ===
+          `\${{ ${namespace}[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_${key}' || 'AKSARA_PUBLICATION_${key}'] }}`,
         "Each operation must select credential keys without production value fallbacks"
       );
     }
@@ -257,9 +258,9 @@ export function verifyPublicationWorkflow(
       condition === "inputs.operation == 'release'" ||
       condition === "inputs.operation == 'recover'"
     ) {
-      assert.equal(
-        document.getIn([...base, "env", "AKSARA_CACHE_SURFACE"]),
-        `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
+      yield* ensure(
+        document.getIn([...base, "env", "AKSARA_CACHE_SURFACE"]) ===
+          `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
         "Release and recovery must invalidate only their deployed cache surface"
       );
     }
@@ -270,7 +271,7 @@ export function verifyPublicationWorkflow(
     ["TOKEN", "secrets"],
   ]) {
     for (const prefix of ["AKSARA_DEV", "AKSARA"]) {
-      assert.equal(
+      yield* ensure(
         document.getIn([
           "jobs",
           "parity",
@@ -278,10 +279,9 @@ export function verifyPublicationWorkflow(
           3,
           "env",
           `${prefix}_PUBLICATION_${key}`,
-        ]),
-        `\${{ ${namespace}.${prefix}_PUBLICATION_${key} }}`,
+        ]) === `\${{ ${namespace}.${prefix}_PUBLICATION_${key} }}`,
         "Final parity must authenticate both exact target credentials"
       );
     }
   }
-}
+});

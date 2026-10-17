@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
 import { Effect } from "effect";
 import { verifyNpmWorkflow } from "#scripts/workflow/npm";
+import { ensure } from "#scripts/workflow/requirement";
 
 const DOLLAR = "$";
 const CLI_WORKFLOW = {
@@ -21,37 +21,31 @@ export const verifyCliWorkflow = Effect.fn("AksaraScripts.verifyCliWorkflow")(
   function* (source: string) {
     const { build, buildSource, publishSource, verifySource } =
       yield* verifyNpmWorkflow(source, CLI_WORKFLOW);
-    assert.match(
-      buildSource,
-      CLI_GATE_PATTERN,
+    yield* ensure(
+      CLI_GATE_PATTERN.test(buildSource),
       "CLI builds must run every package gate"
     );
-    assert.equal(
-      build.permissions?.["id-token"],
-      undefined,
+    yield* ensure(
+      build.permissions?.["id-token"] === undefined,
       "CLI builds must not receive npm OIDC identity"
     );
-    assert.match(
-      source,
-      STABLE_VERSION_PATTERN,
+    yield* ensure(
+      STABLE_VERSION_PATTERN.test(source),
       "CLI production publication must reject prerelease versions"
     );
-    assert.equal(
-      build.outputs?.archive,
-      `${DOLLAR}{{ steps.archive.outputs.archive }}`,
+    yield* ensure(
+      build.outputs?.archive === `${DOLLAR}{{ steps.archive.outputs.archive }}`,
       "CLI builds must export the exact archive name"
     );
-    assert.equal(
-      build.outputs?.sha256,
-      `${DOLLAR}{{ steps.archive.outputs.sha256 }}`,
+    yield* ensure(
+      build.outputs?.sha256 === `${DOLLAR}{{ steps.archive.outputs.sha256 }}`,
       "CLI builds must export the exact archive digest"
     );
-    assert.equal(
-      build.outputs?.size,
-      `${DOLLAR}{{ steps.archive.outputs.size }}`,
+    yield* ensure(
+      build.outputs?.size === `${DOLLAR}{{ steps.archive.outputs.size }}`,
       "CLI builds must export the exact archive size"
     );
-    assert.ok(
+    yield* ensure(
       publishSource.includes("@nakafa/aksara-cli") &&
         verifySource.includes("@nakafa/aksara-cli"),
       "CLI publication must bind the official package identity"

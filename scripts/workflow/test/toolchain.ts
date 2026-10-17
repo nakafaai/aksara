@@ -42,8 +42,7 @@ export const PNPM_JOB_ENV = Arr.join(
 );
 
 /** Workflow sources that the structure policy rejects, each with the message it must report. */
-export const INVALID_WORKFLOW_STRUCTURES: [string, string | undefined][] = [
-  ["jobs: [", undefined],
+export const INVALID_WORKFLOW_STRUCTURES: [string, string][] = [
   ["name: Empty", "Workflow must define jobs"],
   ["jobs: {}", "Workflow must define at least one job"],
   ["jobs:\n  verify: []", "Every workflow job must be a mapping"],

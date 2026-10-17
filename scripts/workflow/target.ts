@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import {
   Array as Arr,
   Effect,
@@ -10,6 +9,7 @@ import {
 import { parseDocument } from "yaml";
 import { trackedFiles } from "#scripts/check/files";
 import { readSource } from "#scripts/source";
+import { ensure, WorkflowError, yamlData } from "#scripts/workflow/requirement";
 
 export const TEST_TASK_PREFIX = "test:";
 const TEST_SCRIPT = "test";
@@ -28,14 +28,17 @@ const WorkspaceSchema = Schema.Struct({
 });
 
 /** Lists the test targets that one package manifest declares. */
-export function manifestTestTargets(
-  path: string,
-  source: string
-): readonly string[] {
+export const manifestTestTargets = Effect.fn(
+  "WorkflowTarget.manifestTestTargets"
+)(function* (path: string, source: string) {
   const manifest = Schema.decodeOption(Schema.fromJsonString(ManifestSchema))(
     source
   );
-  assert.ok(Option.isSome(manifest), `${path} must be a package manifest`);
+  if (Option.isNone(manifest)) {
+    return yield* new WorkflowError({
+      message: `${path} must be a package manifest`,
+    });
+  }
   const scripts = manifest.value.scripts ?? {};
   if (path === MANIFEST_FILE) {
     return Arr.filter(Rec.keys(scripts), (script) =>
@@ -43,30 +46,31 @@ export function manifestTestTargets(
     );
   }
   return Object.hasOwn(scripts, TEST_SCRIPT) ? [manifest.value.name] : [];
-}
+});
 
 /** Lists the directories that the pnpm workspace globs name as `<directory>/*`. */
-function workspaceDirectories(workspace: string): readonly string[] {
-  const document = parseDocument(workspace);
-  assert.equal(
-    document.errors.length,
-    0,
-    "pnpm-workspace.yaml must be valid YAML"
-  );
-  const decoded = Schema.decodeUnknownOption(WorkspaceSchema)(document.toJS());
-  assert.ok(
-    Option.isSome(decoded),
-    "pnpm-workspace.yaml must declare its packages"
-  );
-  return Arr.map(decoded.value.packages, (glob) => {
-    assert.match(
-      glob,
-      DIRECTORY_GLOB_PATTERN,
-      `Workspace glob ${glob} must be a plain directory followed by /*, such as apps/*`
+const workspaceDirectories = Effect.fn("WorkflowTarget.workspaceDirectories")(
+  function* (workspace: string) {
+    const document = parseDocument(workspace);
+    yield* ensure(
+      document.errors.length === 0,
+      "pnpm-workspace.yaml must be valid YAML"
     );
-    return glob.slice(0, -DIRECTORY_GLOB_SUFFIX.length);
-  });
-}
+    const value = yield* yamlData(document);
+    const decoded = Schema.decodeUnknownOption(WorkspaceSchema)(value);
+    if (Option.isNone(decoded)) {
+      return yield* new WorkflowError({
+        message: "pnpm-workspace.yaml must declare its packages",
+      });
+    }
+    return yield* Effect.forEach(decoded.value.packages, (glob) =>
+      ensure(
+        DIRECTORY_GLOB_PATTERN.test(glob),
+        `Workspace glob ${glob} must be a plain directory followed by /*, such as apps/*`
+      ).pipe(Effect.as(glob.slice(0, -DIRECTORY_GLOB_SUFFIX.length)))
+    );
+  }
+);
 
 /** Reports whether one tracked path is the manifest of a workspace that a glob names. */
 function isWorkspaceManifest(
@@ -84,7 +88,7 @@ function isWorkspaceManifest(
 export const manifestPaths = Effect.fn("WorkflowTarget.manifestPaths")(
   function* (workspace: string, trackedPaths: readonly string[]) {
     const path = yield* Path.Path;
-    const directories = workspaceDirectories(workspace);
+    const directories = yield* workspaceDirectories(workspace);
     return Arr.filter(
       trackedPaths,
       (file) =>
@@ -102,7 +106,7 @@ export const repositoryTestTargets = Effect.fn(
   const manifests = yield* manifestPaths(workspace, trackedPaths);
   const targets = yield* Effect.forEach(manifests, (path) =>
     readSource(path).pipe(
-      Effect.map((source) => manifestTestTargets(path, source))
+      Effect.flatMap((source) => manifestTestTargets(path, source))
     )
   );
   return Arr.flatten(targets);
