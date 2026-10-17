@@ -23,6 +23,7 @@ import {
   rendererManifest,
 } from "#contracts/test/request";
 import { makeTestRuntimeBundle } from "#contracts/test/runtime/bundle";
+import { sourceTryoutSnapshots } from "#contracts/test/source";
 import {
   TryoutRuntimeBundleSourceError,
   verifyTryoutRuntimeBundleSource,
@@ -31,34 +32,15 @@ import {
   type SignedTryoutRuntimeBundle,
   SignedTryoutRuntimeBundleSchema,
 } from "#contracts/tryout/runtime/spec";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 import type { TryoutSnapshot } from "#contracts/tryout/snapshot/spec";
 
 const sourceGitSha = GitCommitShaSchema.make("a".repeat(40));
-const baseSnapshot = makeTryoutSnapshot({
-  activeAppLocales: release.manifest.activeAppLocales,
-  catalogDigest: hash,
-  counts: { country: 1, exam: 0, section: 0, set: 0, track: 0 },
-  placementCount: 0,
-  placementDigest: hash,
-  routeCount: 1,
-});
-const resultSnapshot = makeTryoutSnapshot({
-  activeAppLocales: release.manifest.activeAppLocales,
-  catalogDigest: hash,
-  counts: { country: 1, exam: 1, section: 0, set: 0, track: 0 },
-  placementCount: 0,
-  placementDigest: hash,
-  routeCount: 2,
-});
-const unrelatedSnapshot = makeTryoutSnapshot({
-  activeAppLocales: release.manifest.activeAppLocales,
-  catalogDigest: hash,
-  counts: { country: 1, exam: 1, section: 1, set: 0, track: 0 },
-  placementCount: 0,
-  placementDigest: hash,
-  routeCount: 3,
-});
+
+const {
+  base: baseSnapshot,
+  result: resultSnapshot,
+  unrelated: unrelatedSnapshot,
+} = sourceTryoutSnapshots;
 
 /** Builds one signed Git envelope with an exact try-out transition. */
 function makeSourceRelease(

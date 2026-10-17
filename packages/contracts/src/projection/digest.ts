@@ -1,10 +1,6 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   type ContentProjection,
   canonicalizeContentProjection,
@@ -18,76 +14,67 @@ export class ProjectionHashError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("ProjectionHashError", { releaseId: ReleaseIdSchema }) {}
 
-/** Keeps Node hash state private while exposing only canonical counters. */
+/** Keeps the digest stream private while exposing only canonical counters. */
 class ProjectionDigestState {
-  readonly #hash = createHash("sha256");
+  readonly #stream = new DigestStream();
   count = 0;
 
-  /** Initializes a domain-separated incremental projection hash. */
+  /** Starts one domain-separated projection digest. */
   constructor() {
-    this.#hash.update(CONTENT_PROJECTION_DIGEST_DOMAIN);
-    this.#hash.update("\n");
+    this.#stream.add(CONTENT_PROJECTION_DIGEST_DOMAIN);
+    this.#stream.add("\n");
   }
 
   /** Adds one canonical projection to this invocation-owned digest. */
   update(projection: ContentProjection): void {
-    this.#hash.update(canonicalizeContentProjection(projection));
-    this.#hash.update("\n");
+    this.#stream.add(canonicalizeContentProjection(projection));
+    this.#stream.add("\n");
     this.count += 1;
   }
 
-  /** Consumes the hash and returns its branded immutable identity. */
+  /** Digests the complete stream once and returns its branded immutable identity. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
 /** Creates a fresh domain-separated projection digest state. */
-export function createProjectionDigest(releaseId: typeof ReleaseIdSchema.Type) {
-  return Effect.try({
-    catch: () => new ProjectionHashError({ releaseId }),
-    try: () => new ProjectionDigestState(),
-  });
-}
+export const createProjectionDigest = Effect.sync(
+  () => new ProjectionDigestState()
+);
 
 /** Adds one canonical content projection to an incremental digest. */
 export function updateProjectionDigest(
-  releaseId: typeof ReleaseIdSchema.Type,
   state: ProjectionDigestState,
   projection: ContentProjection
 ) {
-  return Effect.try({
-    catch: () => new ProjectionHashError({ releaseId }),
-    try: () => {
-      state.update(projection);
-      return state;
-    },
+  return Effect.sync(() => {
+    state.update(projection);
+    return state;
   });
 }
 
-/** Finalizes one incremental projection digest with typed hash failures. */
+/** Finalizes one projection digest with a typed hash failure. */
 export function finalizeProjectionDigest(
   releaseId: typeof ReleaseIdSchema.Type,
   state: ProjectionDigestState
 ) {
-  return Effect.try({
-    catch: () => new ProjectionHashError({ releaseId }),
-    try: () => state.digest(),
-  });
+  return state
+    .digest()
+    .pipe(Effect.mapError(() => new ProjectionHashError({ releaseId })));
 }
 
-/** Digests a projection stream without retaining its content bodies. */
+/** Digests a projection stream. Its canonical bytes are held until one Web Crypto digest runs. */
 export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
   function* <E, R>(
     releaseId: ReleaseId,
     projections: Stream.Stream<ContentProjection, E, R>
   ) {
-    const initial = yield* createProjectionDigest(releaseId);
+    const initial = yield* createProjectionDigest;
     const state = yield* projections.pipe(
       Stream.runFoldEffect(
         () => initial,
-        (current, projection) =>
-          updateProjectionDigest(releaseId, current, projection)
+        (current, projection) => updateProjectionDigest(current, projection)
       )
     );
     const digest = yield* finalizeProjectionDigest(releaseId, state);

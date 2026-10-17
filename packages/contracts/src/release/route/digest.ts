@@ -1,10 +1,6 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,
@@ -18,50 +14,41 @@ export class RouteHashError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("RouteHashError", { releaseId: ReleaseIdSchema }) {}
 
-/** Keeps incremental route hash state private to one release preparation. */
+/** Keeps incremental route digest state private to one release preparation. */
 class RouteDigestState {
-  readonly #hash = createHash("sha256");
+  readonly #stream = new DigestStream();
   count = 0;
 
-  /** Initializes a domain-separated incremental route hash. */
+  /** Starts a domain-separated route digest. */
   constructor() {
-    this.#hash.update(CONTENT_ROUTE_DIGEST_DOMAIN);
-    this.#hash.update("\n");
+    this.#stream.add(CONTENT_ROUTE_DIGEST_DOMAIN);
+    this.#stream.add("\n");
   }
 
   /** Adds one canonical route item to this invocation-owned digest. */
   update(item: ContentRouteItem): void {
-    this.#hash.update(canonicalizeContentRouteItem(item));
-    this.#hash.update("\n");
+    this.#stream.add(canonicalizeContentRouteItem(item));
+    this.#stream.add("\n");
     this.count += 1;
   }
 
-  /** Consumes the route hash and returns its branded identity. */
+  /** Digests the complete route stream once and returns its branded identity. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
 /** Creates fresh domain-separated route digest state. */
-export function createRouteDigest(releaseId: ReleaseId) {
-  return Effect.try({
-    catch: () => new RouteHashError({ releaseId }),
-    try: () => new RouteDigestState(),
-  });
-}
+export const createRouteDigest = Effect.sync(() => new RouteDigestState());
 
 /** Adds one canonical route item to an incremental digest. */
 export function updateRouteDigest(
-  releaseId: ReleaseId,
   state: RouteDigestState,
   item: ContentRouteItem
 ) {
-  return Effect.try({
-    catch: () => new RouteHashError({ releaseId }),
-    try: () => {
-      state.update(item);
-      return state;
-    },
+  return Effect.sync(() => {
+    state.update(item);
+    return state;
   });
 }
 
@@ -70,23 +57,22 @@ export function completeRouteDigest(
   releaseId: ReleaseId,
   state: RouteDigestState
 ) {
-  return Effect.try({
-    catch: () => new RouteHashError({ releaseId }),
-    try: () => state.digest(),
-  });
+  return state
+    .digest()
+    .pipe(Effect.mapError(() => new RouteHashError({ releaseId })));
 }
 
-/** Digests a canonical route stream without retaining its rows. */
+/** Digests a canonical route stream. Its canonical bytes are held until one Web Crypto digest runs. */
 export const digestRoutes = Effect.fn("AksaraContracts.digestRoutes")(
   function* <E, R>(
     releaseId: ReleaseId,
     routes: Stream.Stream<ContentRouteItem, E, R>
   ) {
-    const initial = yield* createRouteDigest(releaseId);
+    const initial = yield* createRouteDigest;
     const state = yield* routes.pipe(
       Stream.runFoldEffect(
         () => initial,
-        (current, route) => updateRouteDigest(releaseId, current, route)
+        (current, route) => updateRouteDigest(current, route)
       )
     );
     const digest = yield* completeRouteDigest(releaseId, state);

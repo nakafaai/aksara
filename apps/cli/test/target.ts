@@ -45,22 +45,27 @@ const HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const OTHER_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
 /** Signs a structurally valid test manifest with its exact canonical hash. */
-function bundleFromManifest(
-  manifest: ContentReleaseManifest,
-  keyId = SigningKeyIdSchema.make("content-2026-07-23"),
-  rendererManifest: RendererManifestEnvelope = RENDERER_MANIFEST
-): ContentReleaseBundle {
-  const release = SignedContentReleaseSchema.make({
-    keyId,
-    manifest,
-    manifestHash: Effect.runSync(hashContentReleaseManifest(manifest)),
-    signature: Ed25519SignatureSchema.make(`${"A".repeat(85)}A`),
-  });
-  return ContentReleaseBundleSchema.make({
-    release,
-    rendererManifest,
-  });
-}
+const bundleFromManifest = Effect.fn("AksaraCliTest.bundleFromManifest")(
+  function* (
+    manifest: ContentReleaseManifest,
+    keyId = SigningKeyIdSchema.make("content-2026-07-23"),
+    rendererManifest: RendererManifestEnvelope = RENDERER_MANIFEST
+  ) {
+    const manifestHash = yield* hashContentReleaseManifest(manifest).pipe(
+      Effect.orDie
+    );
+    const release = SignedContentReleaseSchema.make({
+      keyId,
+      manifest,
+      manifestHash,
+      signature: Ed25519SignatureSchema.make(`${"A".repeat(85)}A`),
+    });
+    return ContentReleaseBundleSchema.make({
+      release,
+      rendererManifest,
+    });
+  }
+);
 
 /** Creates one contract-owned release identity for production assertions. */
 export function releaseId(value: string) {
@@ -68,7 +73,7 @@ export function releaseId(value: string) {
 }
 
 /** Creates one exact Git release bundle for recovery orchestration tests. */
-export function gitBundle(
+export const gitBundle = Effect.fn("AksaraCliTest.gitBundle")(function* (
   id: string,
   input: {
     readonly baseManifestHash?: typeof Sha256HashSchema.Type;
@@ -82,7 +87,7 @@ export function gitBundle(
   } = {}
 ) {
   const baseReleaseId = input.baseReleaseId ?? null;
-  return bundleFromManifest(
+  return yield* bundleFromManifest(
     ContentReleaseManifestSchema.make({
       activeAppLocales: ACTIVE_APP_LOCALES,
       baseActiveAppLocales: baseReleaseId === null ? null : ACTIVE_APP_LOCALES,
@@ -120,13 +125,18 @@ export function gitBundle(
     input.keyId,
     input.rendererManifest
   );
-}
+});
+
+/** The next Git release bundle that the cache and activation suites share, hashed once for the process. */
+export const NEXT_RELEASE_BUNDLE = await Effect.runPromise(
+  gitBundle("release-next")
+);
 
 /** Creates the exact verified inverse retained for one candidate or active bundle. */
-export function recoveryBundle(id: string, target: ContentReleaseBundle) {
-  const targetManifest = target.release.manifest;
-  return {
-    ...bundleFromManifest(
+export const recoveryBundle = Effect.fn("AksaraCliTest.recoveryBundle")(
+  function* (id: string, target: ContentReleaseBundle) {
+    const targetManifest = target.release.manifest;
+    const bundle = yield* bundleFromManifest(
       ContentReleaseManifestSchema.make({
         activeAppLocales:
           targetManifest.baseActiveAppLocales ?? ACTIVE_APP_LOCALES,
@@ -155,17 +165,19 @@ export function recoveryBundle(id: string, target: ContentReleaseBundle) {
         snapshots: invertContentSnapshots(targetManifest.snapshots),
         upsertCount: 0,
       })
-    ),
-    phase: "verified" as const,
-  };
-}
+    );
+    return { ...bundle, phase: "verified" as const };
+  }
+);
 
 /** Adds terminal receipt evidence to one immutable release bundle. */
-export function completedBundle(
-  bundle: ContentReleaseBundle
-): ActiveContentRelease {
-  return { ...bundle, receipt: receiptFor(bundle.release.manifest) };
-}
+export const completedBundle = Effect.fn("AksaraCliTest.completedBundle")(
+  function* (bundle: ContentReleaseBundle) {
+    const receipt = yield* receiptFor(bundle.release.manifest);
+    const completed: ActiveContentRelease = { ...bundle, receipt };
+    return completed;
+  }
+);
 
 /** Creates one structurally valid permanent runtime bundle for CLI state tests. */
 export function runtimeBundleFor(
@@ -197,14 +209,17 @@ export function runtimeBundleFor(
 }
 
 /** Creates terminal publication evidence bound to one exact manifest. */
-export function receiptFor(
+export const receiptFor = Effect.fn("AksaraCliTest.receiptFor")(function* (
   manifest: ContentReleaseManifest
-): PublicationReceipt {
-  return {
+) {
+  const manifestHash = yield* hashContentReleaseManifest(manifest).pipe(
+    Effect.orDie
+  );
+  const receipt: PublicationReceipt = {
     activatedHeads: manifest.upsertCount,
     activeAppLocales: manifest.activeAppLocales,
     deletedHeads: manifest.deleteCount,
-    manifestHash: Effect.runSync(hashContentReleaseManifest(manifest)),
+    manifestHash,
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
     resultCount: manifest.resultCount,
@@ -217,7 +232,8 @@ export function receiptFor(
     stagedRoutes: manifest.routeCount,
     stagedSnapshotRows: snapshotRowCount(manifest.snapshots),
   };
-}
+  return receipt;
+});
 
 /** Decodes authoritative current state through its exact public contract. */
 export function currentState(input: {

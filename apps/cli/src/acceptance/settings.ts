@@ -1,10 +1,10 @@
-import { createPublicKey } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { TrustedKeySchema } from "@nakafa/aksara-contracts/signature/trusted";
 import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
 import { JsonTextSchema } from "#cli/text/json";
@@ -100,13 +100,11 @@ export const readAcceptanceSettings = Effect.fn(
   const privateKeyPem = yield* fs
     .readFileString(privateKeyPath)
     .pipe(Effect.map(Redacted.make));
-  const publicKeyPem = yield* Effect.try({
-    catch: () => new AcceptanceEnvironmentError({ reason: "signer" }),
-    try: () =>
-      createPublicKey(Redacted.value(privateKeyPem))
-        .export({ format: "pem", type: "spki" })
-        .toString(),
-  });
+  const publicKeyPem = yield* ed25519PublicKeyPem(
+    Redacted.value(privateKeyPem)
+  ).pipe(
+    Effect.mapError(() => new AcceptanceEnvironmentError({ reason: "signer" }))
+  );
   const key = yield* Schema.decodeEffect(TrustedKeySchema)({
     keyId: yield* Config.NonEmptyString("AKSARA_AGENT_SIGNING_KEY_ID"),
     publicKeyPem,

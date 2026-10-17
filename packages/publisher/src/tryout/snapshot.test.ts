@@ -62,12 +62,12 @@ function countCatalogRoutes(records: readonly TryoutCatalogRecord[]) {
 const makeSnapshotTestFixtures = Effect.fn("TryoutSnapshotTest.makeFixtures")(
   () =>
     Effect.gen(function* () {
-      const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
+      const tryoutHeads = yield* publishedQuestionHeads();
       const completeTryoutContent = yield* loadTryoutContent(checkoutRoot).pipe(
         Effect.provide(NodeServices.layer)
       );
       const { catalog: tryoutCatalog, placements: tryoutPlacements } =
-        selectTryoutSlice(
+        yield* selectTryoutSlice(
           completeTryoutContent.projection,
           Arr.filter(questionEntries, ({ bodyKind }) => bodyKind === "question")
         );
@@ -232,7 +232,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
         Effect.gen(function* () {
           const fixture = yield* TryoutSnapshotTestFixtures;
           const error = yield* reject(fixture, {
-            renderer: incompleteRendererManifest(rendererManifest),
+            renderer: yield* incompleteRendererManifest(rendererManifest),
           });
           expect(error).toBeInstanceOf(ContractDecodeError);
         })

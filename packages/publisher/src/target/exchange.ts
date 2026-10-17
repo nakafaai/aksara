@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
@@ -96,7 +95,7 @@ function validateRequestBytes(request: PublicationRequest, bytes: number) {
     Arr.some(
       request.requests,
       (child) =>
-        Buffer.byteLength(encodeJsonText(child), "utf8") >
+        new TextEncoder().encode(encodeJsonText(child)).byteLength >
         REQUEST_BYTE_LIMITS[child.operation]
     );
   if (bytes <= REQUEST_BYTE_LIMITS[request.operation] && !hasOversizedChild) {
@@ -139,7 +138,10 @@ export function sendPublicationRequest(
     )(request).pipe(
       Effect.mapError(() => protocolError(request, "request-encoding"))
     );
-    yield* validateRequestBytes(request, Buffer.byteLength(body, "utf8"));
+    yield* validateRequestBytes(
+      request,
+      new TextEncoder().encode(body).byteLength
+    );
     const outgoing = HttpClientRequest.post(config.endpoint).pipe(
       HttpClientRequest.acceptJson,
       HttpClientRequest.bearerToken(config.token),

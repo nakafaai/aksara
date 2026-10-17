@@ -22,7 +22,6 @@ import { teams } from "@nakafa/aksara-corpus/team/source";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";
-import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored article metadata does not satisfy Nakafa's exact page contract. */
 export class ArticleMetadataError extends Schema.TaggedError<
@@ -113,7 +112,7 @@ export const inspectArticleDocument = Effect.fn(
   return {
     inspection,
     projection,
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     source,
   };
 });
@@ -124,34 +123,36 @@ export type InspectedArticleDocument = Readonly<
 >;
 
 /** Binds compiled output to its registry-owned article change and projection. */
-function makeArticleRecord(
-  source: ArticleDocumentSource,
-  result: CompiledContentResult,
-  projection: ArticleProjection
-): PreparedContentUpsert {
-  const change = ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(result.payload),
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
-    delivery: source.delivery,
-    family: "article",
-    operation: "upsert",
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  });
-  return {
-    change,
-    payload: result.payload,
-    projection,
-    source: {
+const makeArticleRecord = Effect.fn("AksaraPublisher.makeArticleRecord")(
+  function* (
+    source: ArticleDocumentSource,
+    result: CompiledContentResult,
+    projection: ArticleProjection
+  ) {
+    const change = ContentUpsertSchema.make({
+      artifactHash: yield* hashCompiledContentPayload(result.payload),
       artifactLocale: source.route.artifactLocale,
       contentKey: source.route.contentKey,
-      rawMdx: source.rawMdx,
+      delivery: source.delivery,
+      family: "article",
+      operation: "upsert",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
-    },
-  };
-}
+    });
+    return {
+      change,
+      payload: result.payload,
+      projection,
+      source: {
+        artifactLocale: source.route.artifactLocale,
+        contentKey: source.route.contentKey,
+        rawMdx: source.rawMdx,
+        rendererDomain: source.rendererDomain,
+        sourcePath: source.sourcePath,
+      },
+    };
+  }
+);
 
 /** Generates executable MDX only after inspection proves publication changed. */
 export const compileArticleDocument = Effect.fn(
@@ -164,5 +165,5 @@ export const compileArticleDocument = Effect.fn(
     ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
-  return makeArticleRecord(document.source, result, document.projection);
+  return yield* makeArticleRecord(document.source, result, document.projection);
 });

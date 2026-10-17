@@ -127,31 +127,32 @@ const rejectArticlePublicationFrom = Effect.fn(
 );
 
 /** Derives compact heads from authoritative article transitions. */
-function deriveArticleHeads(
+const deriveArticleHeads = Effect.fn("ArticleTest.deriveHeads")(function* (
   records: Effect.Success<ReturnType<typeof collectArticlePublicationFrom>>
 ) {
-  return Arr.flatMap(records, (transition) => {
-    const { record } = transition;
-    if (!("payload" in record)) {
-      return [];
-    }
-    return [
-      ArticleHeadSchema.make({
-        artifactHash: record.change.artifactHash,
-        artifactLocale: record.change.artifactLocale,
-        compilerConfigHash: record.payload.compilerConfigHash,
-        contentKey: record.change.contentKey,
-        delivery: record.change.delivery,
-        family: "article",
-        projectionHash: hashContentProjection(record.projection),
-        publicPath: projectionPublicPath(record.projection),
-        rendererDomain: record.change.rendererDomain,
-        sourceHash: record.payload.sourceHash,
-        sourcePath: record.change.sourcePath,
-      }),
-    ];
-  });
-}
+  const upserts = Arr.flatMap(records, ({ record }) =>
+    "payload" in record ? [record] : []
+  );
+  return yield* Effect.forEach(upserts, (record) =>
+    hashContentProjection(record.projection).pipe(
+      Effect.map((projectionHash) =>
+        ArticleHeadSchema.make({
+          artifactHash: record.change.artifactHash,
+          artifactLocale: record.change.artifactLocale,
+          compilerConfigHash: record.payload.compilerConfigHash,
+          contentKey: record.change.contentKey,
+          delivery: record.change.delivery,
+          family: "article",
+          projectionHash,
+          publicPath: projectionPublicPath(record.projection),
+          rendererDomain: record.change.rendererDomain,
+          sourceHash: record.payload.sourceHash,
+          sourcePath: record.change.sourcePath,
+        })
+      )
+    )
+  );
+});
 
 /** Loads the real article source fixture and memoizes its first publication. */
 const makeArticleTestFixtures = Effect.fn("ArticleTest.makeFixtures")(() =>
@@ -231,6 +232,6 @@ export const publishedArticleHeads = Effect.fn("ArticleTest.publishedHeads")(
   () =>
     Effect.gen(function* () {
       const fixture = yield* ArticleTestFixtures;
-      return deriveArticleHeads(yield* fixture.initialRecords);
+      return yield* deriveArticleHeads(yield* fixture.initialRecords);
     })
 );

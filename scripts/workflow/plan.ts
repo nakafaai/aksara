@@ -1,8 +1,15 @@
-import assert from "node:assert/strict";
 import { data, Evaluator, Lexer, Parser } from "@actions/expressions";
 import { truthy } from "@actions/expressions/result";
-import { Array as Arr, Option, Order, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Option,
+  Order,
+  Record as Rec,
+  Schema,
+} from "effect";
 import { parseDocument } from "yaml";
+import { WorkflowError, yamlData } from "#scripts/workflow/requirement";
 
 const EXPRESSION_PATTERN = /^\$\{\{\s*([\s\S]*?)\s*\}\}$/u;
 const PLAN_CONTEXTS = ["github", "inputs", "needs"];
@@ -76,6 +83,9 @@ export function intendedPlan({ operation, target }: Dispatch): Plan {
   };
 }
 
+/** Compares two plans by value, leg by leg and flag by flag. */
+export const samePlan = Schema.toEquivalence(PlanSchema);
+
 /** Describes a dispatch that runs on main of the Aksara repository after a successful publication. */
 export function mainRun(dispatch: Dispatch): Run {
   return {
@@ -99,57 +109,84 @@ function context(fields: Readonly<Record<string, data.ExpressionData>>) {
 }
 
 /** Evaluates one workflow expression with the evaluator that GitHub publishes. */
-function evaluate(value: string, run: Run) {
-  const expression = EXPRESSION_PATTERN.exec(value)?.[1] ?? value;
-  const { tokens } = new Lexer(expression).lex();
-  const parsed = new Parser(tokens, PLAN_CONTEXTS, []).parse();
-  const contexts = context({
-    github: context({ ref: text(run.ref), repository: text(run.repository) }),
-    inputs: context({
-      operation: text(run.operation),
-      target: text(run.target),
-    }),
-    needs: context({ operate: context({ result: text(run.operateResult) }) }),
+const evaluate = Effect.fn("AksaraScripts.evaluatePlanExpression")(function* (
+  value: string,
+  run: Run
+) {
+  return yield* Effect.try({
+    catch: (cause) => new WorkflowError({ message: String(cause) }),
+    try: () => {
+      const expression = EXPRESSION_PATTERN.exec(value)?.[1] ?? value;
+      const { tokens } = new Lexer(expression).lex();
+      const parsed = new Parser(tokens, PLAN_CONTEXTS, []).parse();
+      const contexts = context({
+        github: context({
+          ref: text(run.ref),
+          repository: text(run.repository),
+        }),
+        inputs: context({
+          operation: text(run.operation),
+          target: text(run.target),
+        }),
+        needs: context({
+          operate: context({ result: text(run.operateResult) }),
+        }),
+      });
+      return new Evaluator(parsed, contexts).evaluate();
+    },
   });
-  return new Evaluator(parsed, contexts).evaluate();
-}
+});
 
 /** Lists the targets that a matrix expression evaluated to, in a fixed order. */
-function legsOf(result: data.ExpressionData) {
-  assert.ok(
-    result.kind === data.Kind.Array,
-    "The matrix must evaluate to a list of targets"
-  );
+const legsOf = Effect.fn("AksaraScripts.planLegs")(function* (
+  result: data.ExpressionData
+) {
+  if (result.kind !== data.Kind.Array) {
+    return yield* new WorkflowError({
+      message: "The matrix must evaluate to a list of targets",
+    });
+  }
   return Arr.sort(
     Arr.map(result.values(), (leg) => leg.coerceString()),
     Order.String
   );
-}
+});
 
 /**
  * Evaluates the expressions that the release workflow declares for the matrix,
  * the paired acceptance, and the final parity job, as GitHub Actions would.
  */
-export function workflowPlan(release: string, run: Run): Plan {
-  const decoded = Schema.decodeUnknownOption(PlannedWorkflowSchema)(
-    parseDocument(release).toJS()
-  );
-  assert.ok(
-    Option.isSome(decoded),
-    "The release workflow must declare the matrix, the paired acceptance, and the parity job"
-  );
+export const workflowPlan = Effect.fn("AksaraScripts.workflowPlan")(function* (
+  release: string,
+  run: Run
+) {
+  const document = yield* yamlData(parseDocument(release));
+  const decoded = Schema.decodeUnknownOption(PlannedWorkflowSchema)(document);
+  if (Option.isNone(decoded)) {
+    return yield* new WorkflowError({
+      message:
+        "The release workflow must declare the matrix, the paired acceptance, and the parity job",
+    });
+  }
   const { operate, parity } = decoded.value.jobs;
   const pairedAcceptance = Arr.findFirst(
     operate.steps,
     (step) => step.name === PAIRED_ACCEPTANCE_STEP
   );
-  assert.ok(
-    Option.isSome(pairedAcceptance) && pairedAcceptance.value.if !== undefined,
-    `${PAIRED_ACCEPTANCE_STEP} must declare when it runs`
-  );
+  if (
+    Option.isNone(pairedAcceptance) ||
+    pairedAcceptance.value.if === undefined
+  ) {
+    return yield* new WorkflowError({
+      message: `${PAIRED_ACCEPTANCE_STEP} must declare when it runs`,
+    });
+  }
+  const legs = yield* evaluate(operate.strategy.matrix.target, run);
+  const paired = yield* evaluate(pairedAcceptance.value.if, run);
+  const parityValue = yield* evaluate(parity.if, run);
   return {
-    legs: legsOf(evaluate(operate.strategy.matrix.target, run)),
-    pairedAcceptance: truthy(evaluate(pairedAcceptance.value.if, run)),
-    parity: truthy(evaluate(parity.if, run)),
+    legs: yield* legsOf(legs),
+    pairedAcceptance: truthy(paired),
+    parity: truthy(parityValue),
   };
-}
+});

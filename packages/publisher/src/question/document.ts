@@ -31,7 +31,6 @@ import {
 } from "@nakafa/aksara-corpus/question-bank/content";
 import { Effect, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";
-import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored question metadata does not satisfy its exact publication contract. */
 export class QuestionMetadataError extends Schema.TaggedError<
@@ -57,7 +56,9 @@ export interface InspectedQuestionDocument<
 > {
   readonly inspection: ContentSourceInspection;
   readonly projection: Projection;
-  readonly projectionHash: ReturnType<typeof hashContentProjection>;
+  readonly projectionHash: Effect.Success<
+    ReturnType<typeof hashContentProjection>
+  >;
   readonly source: QuestionDocumentSource;
 }
 
@@ -136,7 +137,9 @@ const inspectQuestionSource = Effect.fn(
 });
 
 /** Joins one inspected source to its typed projection and exact hash. */
-function inspectedDocument<Projection extends QuestionBodyProjection>(
+const inspectedDocument = Effect.fn(
+  "AksaraPublisher.inspectedQuestionDocument"
+)(function* <Projection extends QuestionBodyProjection>(
   inspection: ContentSourceInspection,
   source: QuestionDocumentSource,
   projection: Projection
@@ -144,10 +147,10 @@ function inspectedDocument<Projection extends QuestionBodyProjection>(
   return {
     inspection,
     projection,
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     source,
   } satisfies InspectedQuestionDocument<Projection>;
-}
+});
 
 /** Inspects one prompt and preserves its prompt projection type. */
 export const inspectQuestionPromptDocument = Effect.fn(
@@ -170,7 +173,11 @@ export const inspectQuestionPromptDocument = Effect.fn(
       bodyKind: "question",
       metadata: document.metadata,
     });
-  return inspectedDocument(document.inspection, document.source, projection);
+  return yield* inspectedDocument(
+    document.inspection,
+    document.source,
+    projection
+  );
 });
 
 /** Inspects one answer and preserves its answer projection type. */
@@ -193,7 +200,11 @@ export const inspectQuestionAnswerDocument = Effect.fn(
     bodyKind: "answer",
     metadata: document.metadata,
   });
-  return inspectedDocument(document.inspection, document.source, projection);
+  return yield* inspectedDocument(
+    document.inspection,
+    document.source,
+    projection
+  );
 });
 
 /** Inspects one question source without generating its executable MDX body. */
@@ -222,34 +233,36 @@ export const inspectQuestionDocument = Effect.fn(
 });
 
 /** Binds compiled output to its registry-owned question change and projection. */
-function makeQuestionRecord(
-  source: QuestionDocumentSource,
-  result: CompiledContentResult,
-  projection: QuestionBodyProjection
-): PreparedContentUpsert {
-  const change = ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(result.payload),
-    artifactLocale: source.artifactLocale,
-    contentKey: source.contentKey,
-    delivery: source.delivery,
-    family: "question",
-    operation: "upsert",
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  });
-  return {
-    change,
-    payload: result.payload,
-    projection,
-    source: {
+const makeQuestionRecord = Effect.fn("AksaraPublisher.makeQuestionRecord")(
+  function* (
+    source: QuestionDocumentSource,
+    result: CompiledContentResult,
+    projection: QuestionBodyProjection
+  ) {
+    const change = ContentUpsertSchema.make({
+      artifactHash: yield* hashCompiledContentPayload(result.payload),
       artifactLocale: source.artifactLocale,
       contentKey: source.contentKey,
-      rawMdx: source.rawMdx,
+      delivery: source.delivery,
+      family: "question",
+      operation: "upsert",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
-    },
-  };
-}
+    });
+    return {
+      change,
+      payload: result.payload,
+      projection,
+      source: {
+        artifactLocale: source.artifactLocale,
+        contentKey: source.contentKey,
+        rawMdx: source.rawMdx,
+        rendererDomain: source.rendererDomain,
+        sourcePath: source.sourcePath,
+      },
+    };
+  }
+);
 
 /** Generates executable MDX only after inspection proves publication changed. */
 export const compileQuestionDocument = Effect.fn(
@@ -262,5 +275,9 @@ export const compileQuestionDocument = Effect.fn(
     ...makeCompileSource(document.source, document.source),
     rendererManifest,
   });
-  return makeQuestionRecord(document.source, result, document.projection);
+  return yield* makeQuestionRecord(
+    document.source,
+    result,
+    document.projection
+  );
 });

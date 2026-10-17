@@ -1,39 +1,17 @@
-import { type BinaryLike, createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import { CompiledContentPayloadSchema } from "#contracts/content";
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic authored-source hashing failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves hash methods while intercepting one source marker. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data) === "hash-source") {
-                throw new TypeError("injected source hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
+import { hashText } from "#contracts/hash/text";
+import { withDigestFailureFor } from "#contracts/test/digest";
 
 /** Builds one compiled payload with an authenticated raw source hash. */
-function payload(rawMdx: string, sourceHash?: string) {
-  return Schema.decodeSync(CompiledContentPayloadSchema)({
+const payload = Effect.fn("AksaraContracts.test.sourcePayload")(function* (
+  rawMdx: string,
+  sourceHash?: string
+) {
+  const hash = sourceHash ?? (yield* hashText(rawMdx));
+  return yield* Schema.decodeEffect(CompiledContentPayloadSchema)({
     artifactLocale: "en",
     byteLength: 10,
     compiledCode: "return {};",
@@ -46,17 +24,15 @@ function payload(rawMdx: string, sourceHash?: string) {
     rawMdx,
     rendererDomain: "mathematics",
     requiredComponents: [],
-    sourceHash:
-      sourceHash ??
-      `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
+    sourceHash: hash,
   });
-}
+});
 
 describe("artifact source", () => {
   it.effect("accepts an exact authored source hash", () =>
     Effect.gen(function* () {
       expect(
-        yield* verifyCompiledContentSourceHash(payload("## Source"))
+        yield* verifyCompiledContentSourceHash(yield* payload("## Source"))
       ).toBeUndefined();
     })
   );
@@ -65,14 +41,14 @@ describe("artifact source", () => {
     Effect.gen(function* () {
       expect(
         yield* verifyCompiledContentSourceHash(
-          payload(
+          yield* payload(
             "## Pecahan Ñandú café 😀",
             "sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"
           )
         )
       ).toBeUndefined();
       const mismatch = yield* verifyCompiledContentSourceHash(
-        payload(
+        yield* payload(
           "## Pecahan Ñandú café 😀",
           "sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b116"
         )
@@ -83,13 +59,20 @@ describe("artifact source", () => {
 
   it.effect("maps mismatch and computation failures to typed errors", () =>
     Effect.gen(function* () {
+      const mismatchPayload = yield* payload(
+        "## Source",
+        `sha256:${"f".repeat(64)}`
+      );
+      const failingPayload = yield* payload(
+        "hash-source",
+        `sha256:${"f".repeat(64)}`
+      );
       const [mismatch, computation] = yield* Effect.all([
-        verifyCompiledContentSourceHash(
-          payload("## Source", `sha256:${"f".repeat(64)}`)
-        ).pipe(Effect.flip),
-        verifyCompiledContentSourceHash(
-          payload("hash-source", `sha256:${"f".repeat(64)}`)
-        ).pipe(Effect.flip),
+        verifyCompiledContentSourceHash(mismatchPayload).pipe(Effect.flip),
+        withDigestFailureFor(
+          "hash-source",
+          verifyCompiledContentSourceHash(failingPayload).pipe(Effect.flip)
+        ),
       ]);
       expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
       expect(computation._tag).toBe("ArtifactSourceHashComputationError");

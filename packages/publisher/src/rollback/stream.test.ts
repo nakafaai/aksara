@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import {
   CompiledContentPayloadSchema,
@@ -82,7 +81,7 @@ function oversizedPage() {
   const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
   const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
     artifactLocale: "en",
-    byteLength: Buffer.byteLength(compiledCode, "utf8"),
+    byteLength: new TextEncoder().encode(compiledCode).byteLength,
     compiledCode,
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
     compilerVersion: "0.1.0",

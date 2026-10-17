@@ -1,5 +1,6 @@
 import { createProcessor } from "@mdx-js/mdx";
 import type { CompileDocumentRequest } from "@nakafa/aksara-contracts/content";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import {
   ContentKeySchema,
@@ -19,7 +20,6 @@ import {
   validateCompileRequest,
 } from "#compiler/engine";
 import { MdxCompilationError } from "#compiler/errors";
-import { hashUtf8 } from "#compiler/hash";
 import {
   AuthoredMetadataSchema,
   type MetadataSourceRange,
@@ -143,7 +143,7 @@ export const inspectHistoricalContentSource = Effect.fn(
           bodyMdx,
           contentKey: request.contentKey,
           metadata: document.metadata,
-          sourceHash: hashUtf8(request.rawMdx),
+          sourceHash: yield* hashText(request.rawMdx),
         };
       })
     )
@@ -207,7 +207,7 @@ const inspectValidatedContentSource = Effect.fn(
     contentKey: request.contentKey,
     metadata: document.metadata,
     rendererDomain: request.rendererDomain,
-    sourceHash: hashUtf8(request.rawMdx),
+    sourceHash: yield* hashText(request.rawMdx),
     sourcePath: request.sourcePath,
   } satisfies ContentSourceInspection;
 });

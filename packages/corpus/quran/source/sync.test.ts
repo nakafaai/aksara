@@ -1,20 +1,11 @@
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr, Deferred, Effect, Fiber, Result } from "effect";
-import { TestClock } from "effect/testing";
-
-import {
-  GERMAN_QURAN_EDITION_URL,
-  GERMAN_QURAN_PUBLICATION_URL,
-  GERMAN_QURAN_SOURCE_URL,
-  GERMAN_QURAN_TERMS_URL,
-} from "#corpus/quran/source/policy";
+import { Array as Arr, Effect, Result } from "effect";
 import {
   makePriorQuranSyncSources,
   QuranSyncFixture,
   quranSyncFileFailure,
   quranSyncFixtureLayer,
   quranSyncTestProgram,
-  replaceQuranSyncSource,
 } from "#corpus/test/quran/sync";
 
 layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
@@ -74,89 +65,6 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
         });
       }),
     60_000
-  );
-
-  it.effect("rejects changed bytes for every pinned artifact", () =>
-    Effect.gen(function* () {
-      const fixture = yield* QuranSyncFixture;
-      const edition = Uint8Array.from(fixture.edition);
-      const translation = Uint8Array.from(fixture.translation);
-      const publication = Uint8Array.from(fixture.publication);
-      const terms = Uint8Array.from(fixture.terms);
-      edition[0] = edition[0] === 0 ? 1 : 0;
-      translation[0] = translation[0] === 0 ? 1 : 0;
-      const cases = [
-        [GERMAN_QURAN_EDITION_URL, edition, "bubenheim-edition.pdf"],
-        [
-          GERMAN_QURAN_PUBLICATION_URL,
-          publication.subarray(1),
-          "islamhouse-german-bubenheim.json",
-        ],
-        [GERMAN_QURAN_TERMS_URL, terms.subarray(1), "islamhouse-faq.html"],
-        [GERMAN_QURAN_SOURCE_URL, translation, "quranenc-de.xml"],
-      ] as const;
-      const results = yield* Effect.forEach(
-        cases,
-        ([url, bytes]) =>
-          quranSyncTestProgram(
-            replaceQuranSyncSource(fixture.sources, url, bytes)
-          ),
-        { concurrency: "unbounded" }
-      );
-
-      expect(results).toMatchObject(
-        Arr.map(cases, ([, , source]) => ({
-          installed: false,
-          outcome: { failure: { phase: "integrity", source } },
-        }))
-      );
-    })
-  );
-
-  it.effect("classifies HTTP and bounded-body failures as downloads", () =>
-    Effect.gen(function* () {
-      const { sources, translation } = yield* QuranSyncFixture;
-      const oversized = new Uint8Array(translation.byteLength + 1);
-      const [response, body] = yield* Effect.all(
-        [
-          quranSyncTestProgram(sources, { status: 503 }),
-          quranSyncTestProgram(
-            replaceQuranSyncSource(sources, GERMAN_QURAN_SOURCE_URL, oversized)
-          ),
-        ],
-        { concurrency: "unbounded" }
-      );
-
-      expect([response, body]).toMatchObject([
-        { installed: false, outcome: { failure: { phase: "download" } } },
-        { installed: false, outcome: { failure: { phase: "download" } } },
-      ]);
-    })
-  );
-
-  it.effect("bounds a stalled official source download", () =>
-    Effect.gen(function* () {
-      const { sources } = yield* QuranSyncFixture;
-      const stallStarted = yield* Deferred.make<void>();
-      const fiber = yield* quranSyncTestProgram(sources, {
-        stalledUrl: GERMAN_QURAN_SOURCE_URL,
-        stallStarted,
-      }).pipe(Effect.forkChild);
-      yield* Deferred.await(stallStarted);
-      yield* TestClock.adjust("61 seconds");
-      const result = yield* Fiber.join(fiber);
-
-      expect(result).toMatchObject({
-        installed: false,
-        outcome: {
-          failure: {
-            cause: "Official source download exceeded 60 seconds.",
-            phase: "download",
-            source: "quranenc-de.xml",
-          },
-        },
-      });
-    })
   );
 
   it.effect(

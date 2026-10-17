@@ -1,8 +1,11 @@
-import { createHash, generateKeyPairSync, randomBytes } from "node:crypto";
+import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PreviewRendererSecretSchema } from "@nakafa/aksara-contracts/preview/auth";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { makeEd25519PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import { Effect, Redacted, Schema } from "effect";
+import { Base64Url } from "effect/encoding";
 
 const RendererCredentialsSchema = Schema.Struct({
   secret: Schema.Redacted(PreviewRendererSecretSchema),
@@ -20,47 +23,39 @@ export class PreviewCredentialError extends Schema.TaggedError<
   stage: Schema.Literals(["generate", "signer"]),
 }) {}
 
+/** Creates one unpredictable 32-byte token in unpadded base64url form. */
+const randomToken = Effect.fn("AksaraCli.randomToken")(function* () {
+  const bytes = yield* webCryptoService.randomBytes(32).pipe(Effect.orDie);
+  return Base64Url.encode(bytes);
+});
+
 /** Generates one process-local signer and independent preview credentials. */
 export const makePreviewCredentials = Effect.fn(
   "AksaraCli.makePreviewCredentials"
 )(function* () {
-  const generated = yield* Effect.try({
-    catch: () => new PreviewCredentialError({ stage: "generate" }),
-    try: () => {
-      const { privateKey, publicKey } = generateKeyPairSync("ed25519");
-      const privateKeyPem = privateKey
-        .export({
-          format: "pem",
-          type: "pkcs8",
-        })
-        .toString();
-      const publicKeyPem = publicKey
-        .export({ format: "pem", type: "spki" })
-        .toString();
-      const digest = createHash("sha256").update(publicKeyPem).digest("hex");
-      const renderer: RendererCredentials = {
-        secret: Redacted.make(
-          PreviewRendererSecretSchema.make(
-            randomBytes(32).toString("base64url")
-          )
-        ),
-        token: Redacted.make(randomBytes(32).toString("base64url")),
-      };
-      return {
-        contentRuntimeToken: Redacted.make(
-          randomBytes(32).toString("base64url")
-        ),
-        internalContentToken: Redacted.make(
-          randomBytes(32).toString("base64url")
-        ),
-        keyId: SigningKeyIdSchema.make(`local-${digest.slice(0, 24)}`),
-        privateKeyPem,
-        providerToken: Redacted.make(randomBytes(32).toString("base64url")),
-        publicKeyPem,
-        renderer,
-      };
-    },
-  });
+  const { privateKeyPem, publicKeyPem } = yield* generateEd25519KeyPem().pipe(
+    Effect.mapError(() => new PreviewCredentialError({ stage: "generate" }))
+  );
+  const digest = yield* hashText(publicKeyPem).pipe(
+    Effect.mapError(() => new PreviewCredentialError({ stage: "generate" }))
+  );
+  const renderer: RendererCredentials = {
+    secret: Redacted.make(
+      PreviewRendererSecretSchema.make(yield* randomToken())
+    ),
+    token: Redacted.make(yield* randomToken()),
+  };
+  const generated = {
+    contentRuntimeToken: Redacted.make(yield* randomToken()),
+    internalContentToken: Redacted.make(yield* randomToken()),
+    keyId: SigningKeyIdSchema.make(
+      `local-${digest.slice("sha256:".length, "sha256:".length + 24)}`
+    ),
+    privateKeyPem,
+    providerToken: Redacted.make(yield* randomToken()),
+    publicKeyPem,
+    renderer,
+  };
   const signer = yield* makeEd25519PublicationSigner(generated).pipe(
     Effect.mapError(() => new PreviewCredentialError({ stage: "signer" }))
   );

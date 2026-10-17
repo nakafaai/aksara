@@ -1,4 +1,6 @@
 import { canonicalizeCompiledContentPayload } from "@nakafa/aksara-contracts/content";
+import type { TextHashError } from "@nakafa/aksara-contracts/hash/text";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -21,7 +23,6 @@ import {
   CompiledContentResultSchema,
   compileContent,
 } from "#compiler/compile";
-import { hashUtf8 } from "#compiler/hash";
 import {
   type ContentSourceInspection,
   inspectContentSource,
@@ -110,7 +111,7 @@ function canonicalizeMetadata(value: AuthoredMetadataValue): string {
 
 /** Hashes every cached compiler result field, including static metadata. */
 function hashResult(result: CompiledContentResult) {
-  return hashUtf8(
+  return hashText(
     `${canonicalizeMetadata(result.metadata)}\n${canonicalizeCompiledContentPayload(result.payload)}`
   );
 }
@@ -128,30 +129,33 @@ function makeIdentity(inspection: ContentSourceInspection) {
 }
 
 /** Creates one unsigned local-only cache value from fresh compiler output. */
-function makeCache(
-  identity: CompileIdentity,
-  result: CompiledContentResult
-): LocalCache {
-  return LocalCacheSchema.make({
-    format: CACHE_FORMAT,
-    identity,
-    identityHash: hashUtf8(canonicalizeIdentity(identity)),
-    result,
-    resultHash: hashResult(result),
+function makeCache(identity: CompileIdentity, result: CompiledContentResult) {
+  return Effect.gen(function* () {
+    const identityHash = yield* hashText(canonicalizeIdentity(identity));
+    const resultHash = yield* hashResult(result);
+    return LocalCacheSchema.make({
+      format: CACHE_FORMAT,
+      identity,
+      identityHash,
+      result,
+      resultHash,
+    });
   });
 }
 
 /** Checks that cached payload fields agree with their complete source identity. */
 function payloadIdentity(entry: LocalCache) {
   const { payload } = entry.result;
-  return encodeJson([
-    payload.contentKey,
-    payload.artifactLocale,
-    payload.rendererDomain,
-    payload.sourceHash,
-    payload.compilerConfigHash,
-    hashUtf8(payload.rawMdx),
-  ]);
+  return Effect.map(hashText(payload.rawMdx), (rawMdxHash) =>
+    encodeJson([
+      payload.contentKey,
+      payload.artifactLocale,
+      payload.rendererDomain,
+      payload.sourceHash,
+      payload.compilerConfigHash,
+      rawMdxHash,
+    ])
+  );
 }
 
 /** Rejects malformed or internally inconsistent cache values as corruption. */
@@ -165,35 +169,35 @@ function isIntact(entry: LocalCache) {
     identity.compilerConfigHash,
     identity.sourceHash,
   ]);
-  return (
-    encodeJson([
-      entry.identityHash,
-      entry.resultHash,
-      payloadIdentity(entry),
-    ]) ===
-    encodeJson([
-      hashUtf8(canonicalizeIdentity(identity)),
-      hashResult(entry.result),
-      expectedPayloadIdentity,
-    ])
-  );
+  return Effect.gen(function* () {
+    const payloadId = yield* payloadIdentity(entry);
+    const identityHash = yield* hashText(canonicalizeIdentity(identity));
+    const resultHash = yield* hashResult(entry.result);
+    return (
+      encodeJson([entry.identityHash, entry.resultHash, payloadId]) ===
+      encodeJson([identityHash, resultHash, expectedPayloadIdentity])
+    );
+  });
 }
 
 /** Decodes unknown local state and classifies every non-hit for recompilation. */
 function lookupCache(input: unknown, identity: CompileIdentity) {
-  if (input === undefined) {
-    return { kind: "miss", reason: "missing" } as const;
-  }
-  const decoded = Schema.decodeUnknownExit(LocalCacheSchema)(input, {
-    onExcessProperty: "error",
+  return Effect.gen(function* () {
+    if (input === undefined) {
+      return { kind: "miss", reason: "missing" } as const;
+    }
+    const decoded = Schema.decodeUnknownExit(LocalCacheSchema)(input, {
+      onExcessProperty: "error",
+    });
+    if (Exit.isFailure(decoded) || !(yield* isIntact(decoded.value))) {
+      return { kind: "miss", reason: "corrupt" } as const;
+    }
+    const identityHash = yield* hashText(canonicalizeIdentity(identity));
+    if (decoded.value.identityHash !== identityHash) {
+      return { kind: "miss", reason: "changed" } as const;
+    }
+    return { entry: decoded.value, kind: "hit" } as const;
   });
-  if (Exit.isFailure(decoded) || !isIntact(decoded.value)) {
-    return { kind: "miss", reason: "corrupt" } as const;
-  }
-  if (decoded.value.identityHash !== hashUtf8(canonicalizeIdentity(identity))) {
-    return { kind: "miss", reason: "changed" } as const;
-  }
-  return { entry: decoded.value, kind: "hit" } as const;
 }
 
 /**
@@ -203,30 +207,37 @@ function lookupCache(input: unknown, identity: CompileIdentity) {
 export const compileIncremental: (
   request: unknown,
   cache?: unknown
-) => Effect.Effect<IncrementalResult, CompileContentError> = Effect.fn(
-  "AksaraCompiler.compileIncremental"
-)((request: unknown, cache?: unknown) =>
-  inspectContentSource(request).pipe(
-    Effect.flatMap((inspection) => {
-      const identity = makeIdentity(inspection);
-      const lookup = lookupCache(cache, identity);
-      if (lookup.kind === "hit") {
-        return Effect.succeed<IncrementalResult>({
-          cache: lookup.entry,
-          kind: "unchanged",
-          result: lookup.entry.result,
-        });
-      }
-      return compileContent(request).pipe(
-        Effect.map(
-          (result): IncrementalResult => ({
-            cache: makeCache(identity, result),
-            kind: "compiled",
-            reason: lookup.reason,
-            result,
-          })
-        )
-      );
-    })
-  )
-);
+) => Effect.Effect<IncrementalResult, CompileContentError | TextHashError> =
+  Effect.fn("AksaraCompiler.compileIncremental")(
+    (request: unknown, cache?: unknown) =>
+      inspectContentSource(request).pipe(
+        Effect.flatMap((inspection) => {
+          const identity = makeIdentity(inspection);
+          return lookupCache(cache, identity).pipe(
+            Effect.flatMap((lookup) => {
+              if (lookup.kind === "hit") {
+                return Effect.succeed<IncrementalResult>({
+                  cache: lookup.entry,
+                  kind: "unchanged",
+                  result: lookup.entry.result,
+                });
+              }
+              return compileContent(request).pipe(
+                Effect.flatMap((result) =>
+                  makeCache(identity, result).pipe(
+                    Effect.map(
+                      (cacheValue): IncrementalResult => ({
+                        cache: cacheValue,
+                        kind: "compiled",
+                        reason: lookup.reason,
+                        result,
+                      })
+                    )
+                  )
+                )
+              );
+            })
+          );
+        })
+      )
+  );

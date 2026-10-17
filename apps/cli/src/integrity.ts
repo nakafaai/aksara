@@ -1,4 +1,4 @@
-import { hashUtf8 } from "@nakafa/aksara-compiler/hash";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import {
   CorpusSourcePathSchema,
   Sha256HashSchema,
@@ -135,7 +135,7 @@ const readSelectedHash = Effect.fn("AksaraCli.readSelectedHash")(function* (
       )
     );
   return {
-    hash: hashUtf8(source),
+    hash: yield* hashText(source).pipe(Effect.orDie),
     sourcePath: selectedFile.sourcePath,
   };
 });

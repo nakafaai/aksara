@@ -58,9 +58,9 @@ const authenticateTryoutRuntimeBundle = Effect.fn(
       expectedHash: bundle.bundleHash,
     });
   }
-  const expectedSnapshotId = makeTryoutSnapshot(
+  const expectedSnapshotId = (yield* makeTryoutSnapshot(
     bundle.payload.snapshot
-  ).snapshotId;
+  )).snapshotId;
   if (expectedSnapshotId !== bundle.payload.snapshot.snapshotId) {
     return yield* new TryoutRuntimeBundleSnapshotMismatchError({
       actualSnapshotId: bundle.payload.snapshot.snapshotId,

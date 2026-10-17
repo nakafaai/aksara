@@ -11,9 +11,9 @@ import {
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Array as Arr, Effect, MutableRef, Stream } from "effect";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
+import { catalogTryoutManifest } from "#test/snapshot";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranChunkCount = 1;
@@ -53,18 +53,10 @@ const quranManifest = QuranSnapshotSchema.make({
   tafsirLocales: ["id"],
   verseCount: QURAN_VERSE_COUNT,
 });
-const tryoutManifest = makeTryoutSnapshot({
-  activeAppLocales: ACTIVE_APP_LOCALES,
-  catalogDigest: hash,
-  counts: { country: 2, exam: 2, section: 4, set: 2, track: 2 },
-  placementCount: 8,
-  placementDigest: hash,
-  routeCount: 10,
-});
 const completeManifests: readonly ContentSnapshotManifest[] = [
   { family: "program", manifest: programManifest },
   { family: "quran", manifest: quranManifest },
-  { family: "tryout", manifest: tryoutManifest },
+  { family: "tryout", manifest: catalogTryoutManifest },
 ];
 
 /** Scenario switches that the mocked release and verification modules read when they are called. */
@@ -169,7 +161,7 @@ layer(NodeServices.layer)("catalog snapshots", (it) => {
           placementCount: 8,
           placementDigest: hash,
           routeCount: 10,
-          snapshotId: tryoutManifest.snapshotId,
+          snapshotId: catalogTryoutManifest.snapshotId,
         },
       });
     })

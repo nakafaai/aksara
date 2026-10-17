@@ -108,7 +108,7 @@ function compileSource(
     const source = yield* decodeCompileDocumentSource(pair.source);
     yield* validateSourceIdentity(pair.item, source);
     const { payload } = yield* compileContent({ ...source, rendererManifest });
-    const artifactHash = hashCompiledContentPayload(payload);
+    const artifactHash = yield* hashCompiledContentPayload(payload);
     yield* validateCompiledPayloadForItem(pair.item, artifactHash, payload);
     return { item: pair.item, payload };
   });

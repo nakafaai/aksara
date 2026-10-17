@@ -15,6 +15,7 @@ import {
 } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
+import { withNextSourceDigestFailure } from "#corpus/test/digest";
 import {
   fixtureLayer,
   QuranSourceFixture,
@@ -139,6 +140,20 @@ layer(fixtureLayer)("Quran source loading", (it) => {
           appLocales: ["de"],
         });
       })
+  );
+
+  it.effect("maps a failed pinned digest into a source file error", () =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranSourceFixture;
+      const error = yield* reject(fixture.sourceBytes).pipe(
+        withNextSourceDigestFailure
+      );
+
+      expect(error).toMatchObject({
+        _tag: "QuranSourceFileError",
+        detail: expect.stringContaining("Could not digest pinned source"),
+      });
+    })
   );
 
   it.effect("rejects missing data, legal, and Tafsir source files", () =>

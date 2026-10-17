@@ -1,6 +1,5 @@
-import { createServer, type Server } from "node:http";
-import type { AddressInfo } from "node:net";
-import { NodeServices } from "@effect/platform-node";
+import { createServer } from "node:http";
+import { NodeHttpServer, NodeServices } from "@effect/platform-node";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import {
   Array as Arr,
@@ -16,7 +15,7 @@ import {
   HttpClientRequest,
   type HttpClientResponse,
 } from "effect/http";
-import { isAddressInfo } from "#cli/address";
+import { isInetAddress } from "effect/net/NetAddress";
 import { openPreviewProvider, type PreviewProvider } from "#cli/provider";
 import { makePreviewHttp, type PreviewHttpState } from "#cli/provider/http";
 import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
@@ -43,56 +42,6 @@ export class PreviewProviderTestError extends Schema.TaggedError<
     "wait",
   ]),
 }) {}
-
-/** Starts one test-owned loopback server around the HTTP-only transport. */
-const listenPreviewHttp = Effect.fn("AksaraCliTest.listenPreviewHttp")(
-  (server: Server) =>
-    Effect.callback<AddressInfo, PreviewProviderTestError>((resume) => {
-      /** Reports a listener failure through the typed test error channel. */
-      const onError = (cause: unknown) =>
-        resume(
-          Effect.fail(new PreviewProviderTestError({ cause, stage: "listen" }))
-        );
-      server.once("error", onError);
-      server.listen({ host: "127.0.0.1", port: 0 }, () => {
-        server.off("error", onError);
-        const address = server.address();
-        if (isAddressInfo(address)) {
-          resume(Effect.succeed(address));
-          return;
-        }
-        server.close(() =>
-          resume(Effect.fail(new PreviewProviderTestError({ stage: "listen" })))
-        );
-      });
-      return Effect.sync(() => {
-        server.off("error", onError);
-        if (server.listening) {
-          server.close();
-        }
-      });
-    })
-);
-
-/** Stops one test-owned server after every transport assertion finishes. */
-const closePreviewHttp = Effect.fn("AksaraCliTest.closePreviewHttp")(
-  (server: Server) =>
-    Effect.callback<void, PreviewProviderTestError>((resume) => {
-      if (!server.listening) {
-        resume(Effect.void);
-        return;
-      }
-      server.close((cause) => {
-        resume(
-          cause
-            ? Effect.fail(
-                new PreviewProviderTestError({ cause, stage: "close" })
-              )
-            : Effect.void
-        );
-      });
-    })
-);
 
 /** Acquires one compiled real document and removes its repository on release. */
 function acquirePreviewReady() {
@@ -258,31 +207,27 @@ export const openPreviewHttpReader = Effect.fn(
   )
 );
 
-/** Acquires one loopback provider and releases every server-owned resource. */
+/**
+ * Serves one loopback transport inside the caller's scope. Its release ends
+ * every event stream before the listener closes.
+ */
 export const openPreviewHttpServer = Effect.fn(
   "AksaraCliTest.openPreviewHttpServer"
-)((state: PreviewHttpState, heartbeatIntervalMs?: number) =>
-  Effect.acquireRelease(
-    Effect.gen(function* () {
-      const context = yield* Effect.context<never>();
-      const http = makePreviewHttp({
-        ...(heartbeatIntervalMs === undefined ? {} : { heartbeatIntervalMs }),
-        context,
-        readState: () => state,
-        token: PREVIEW_PROVIDER_TEST_TOKEN,
-      });
-      const server = createServer(http.handle);
-      const address = yield* listenPreviewHttp(server);
-      return {
-        http,
-        origin: new URL(`http://127.0.0.1:${address.port}`),
-        server,
-      };
-    }),
-    ({ http, server }) =>
-      Effect.sync(() => http.close()).pipe(
-        Effect.andThen(closePreviewHttp(server)),
-        Effect.orDie
-      )
-  )
-);
+)(function* (state: PreviewHttpState, heartbeatIntervalMs?: number) {
+  const http = yield* makePreviewHttp({
+    ...(heartbeatIntervalMs === undefined ? {} : { heartbeatIntervalMs }),
+    readState: () => state,
+    token: PREVIEW_PROVIDER_TEST_TOKEN,
+  });
+  const server = yield* NodeHttpServer.make(createServer, {
+    host: "127.0.0.1",
+    port: 0,
+  });
+  yield* server.serve(http.handle);
+  yield* Effect.addFinalizer(() => http.close);
+  const { address } = server;
+  if (!isInetAddress(address)) {
+    return yield* new PreviewProviderTestError({ stage: "listen" });
+  }
+  return { http, origin: new URL(`http://127.0.0.1:${address.port}`) };
+});

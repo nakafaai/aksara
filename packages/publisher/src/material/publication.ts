@@ -1,6 +1,8 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -97,7 +99,9 @@ export type PrepareMaterialPublicationError<E> =
   | E
   | MaterialPublicationStreamError<never>
   | ReplaySpoolError
-  | RendererManifestError;
+  | RendererManifestError
+  | ArtifactHashComputationError
+  | ContentProjectionHashError;
 
 /** Finds the first field proving a head does not belong to material lessons. */
 function mismatchedFamilyField(

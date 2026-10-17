@@ -67,7 +67,7 @@ const makeFixture = Effect.fn("PublisherTest.makePreparedRecord")(function* () {
   const { payload } = yield* compileContent({ ...source, rendererManifest });
   const baseRecord: PreparedContentUpsert = {
     change: ContentUpsertSchema.make({
-      artifactHash: hashCompiledContentPayload(payload),
+      artifactHash: yield* hashCompiledContentPayload(payload),
       artifactLocale: source.artifactLocale,
       contentKey: source.contentKey,
       delivery: "public",
@@ -110,7 +110,7 @@ function derive<E, R>(records: Stream.Stream<unknown, E, R>) {
 }
 
 /** Moves one complete record while preserving every bound identity. */
-function relocateRecord(
+const relocateRecord = Effect.fn("PublisherTest.relocateRecord")(function* (
   fixture: Effect.Success<ReturnType<typeof makeFixture>>,
   contentKey: string,
   publicPath: string
@@ -124,7 +124,7 @@ function relocateRecord(
   return {
     change: ContentUpsertSchema.make({
       ...baseRecord.change,
-      artifactHash: hashCompiledContentPayload(nextPayload),
+      artifactHash: yield* hashCompiledContentPayload(nextPayload),
       contentKey: nextKey,
     }),
     payload: nextPayload,
@@ -136,7 +136,7 @@ function relocateRecord(
     },
     source: { ...source, contentKey: nextKey },
   };
-}
+});
 
 /** Replaces one source field while preserving the complete prepared record. */
 function modifySource(
@@ -204,7 +204,7 @@ describe("derivePreparedRecords", () => {
         ...baseRecord,
         change: {
           ...baseRecord.change,
-          artifactHash: hashCompiledContentPayload(badPayload),
+          artifactHash: yield* hashCompiledContentPayload(badPayload),
         },
         payload: badPayload,
       };
@@ -218,12 +218,12 @@ describe("derivePreparedRecords", () => {
   it.effect("rejects malformed and out-of-order records", () =>
     Effect.gen(function* () {
       const fixture = yield* makeFixture();
-      const first = relocateRecord(
+      const first = yield* relocateRecord(
         fixture,
         "test:stream:a",
         "subjects/test/shared"
       );
-      const second = relocateRecord(
+      const second = yield* relocateRecord(
         fixture,
         "test:stream:b",
         "subjects/test/shared"

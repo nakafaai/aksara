@@ -23,13 +23,20 @@ import {
   Schema,
 } from "effect";
 
+// The Nakafa home page's lesson window reads parabolic-movement, atom-shell,
+// bacteria and trigonometric-comparison-three-primary in every locale, so the
+// acceptance release must hold them.
 const materialKeys = [
+  "material/lesson/biology/biodiversity/bacteria",
+  "material/lesson/chemistry/structure-matter/atom-shell",
   "material/lesson/mathematics/analytic-geometry/hyperbola",
   "material/lesson/mathematics/exponential-logarithm/exponential-growth",
   "material/lesson/mathematics/function-composition-inverse-function/function-concept",
   "material/lesson/mathematics/linear-equation-inequality/system-linear-equation",
   "material/lesson/mathematics/trigonometry/right-triangle-naming",
+  "material/lesson/mathematics/trigonometry/trigonometric-comparison-three-primary",
   "material/lesson/mathematics/trigonometry/trigonometry-concept",
+  "material/lesson/physics/kinematics/parabolic-movement",
 ];
 const articleKeys = [
   "articles/politics/merah-putih-cabinet-analysis",

@@ -2,7 +2,7 @@ import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalo
 import { makeTryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/hash/catalog";
 import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import { Array as Arr, HashSet } from "effect";
+import { Array as Arr, Effect, HashSet } from "effect";
 
 /** Identifies one localized catalog row without depending on route slugs. */
 function catalogIdentity(row: TryoutCatalogRecord["row"]) {
@@ -22,7 +22,7 @@ function catalogIdentity(row: TryoutCatalogRecord["row"]) {
 }
 
 /** Selects one locale-closed hierarchy and placement slice for real prompts. */
-export function selectTryoutSlice(
+export const selectTryoutSlice = Effect.fn("TryoutTest.selectSlice")(function* (
   projection: {
     readonly catalog: readonly TryoutCatalogRecord[];
     readonly placements: readonly TryoutPlacementSource[];
@@ -52,12 +52,12 @@ export function selectTryoutSlice(
       `${placement.appLocale}\0section\0${placement.countryKey}\0${placement.examKey}\0${placement.trackKey}\0${placement.setKey}\0${placement.sectionKey}`,
     ])
   );
-  const catalog = Arr.flatMap(projection.catalog, ({ row }) => {
-    if (!HashSet.has(catalogIdentities, catalogIdentity(row))) {
-      return [];
-    }
+  const selected = Arr.filter(projection.catalog, ({ row }) =>
+    HashSet.has(catalogIdentities, catalogIdentity(row))
+  );
+  const catalog = yield* Effect.forEach(selected, ({ row }) => {
     if (row.kind !== "section") {
-      return [makeTryoutCatalogRecord(row)];
+      return makeTryoutCatalogRecord(row);
     }
     const questionCount = Arr.filter(
       placements,
@@ -69,7 +69,7 @@ export function selectTryoutSlice(
         placement.setKey === row.setKey &&
         placement.sectionKey === row.sectionKey
     ).length;
-    return [makeTryoutCatalogRecord({ ...row, questionCount })];
+    return makeTryoutCatalogRecord({ ...row, questionCount });
   });
   return { catalog, placements };
-}
+});

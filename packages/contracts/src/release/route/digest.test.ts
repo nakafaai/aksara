@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
@@ -6,48 +5,12 @@ import {
   completeRouteDigest,
   createRouteDigest,
   digestRoutes,
-  RouteHashError,
   updateRouteDigest,
 } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
+import { withNextDigestFailure } from "#contracts/test/digest";
 
-const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-route-digest");
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic route digest failures. */
-    createHash(algorithm: string) {
-      if (failures.create) {
-        throw new TypeError("injected route digest creation failure");
-      }
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves hash methods while intercepting explicit test markers. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data).includes('"contentKey":"hash:failure"')) {
-                throw new TypeError("injected route digest update failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          if (property === "digest" && failures.digest) {
-            return () => {
-              throw new TypeError("injected route digest completion failure");
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 /** Builds one ordered route binding for digest tests. */
 function route(contentKey = "test:route") {
@@ -67,8 +30,8 @@ describe("route digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
     Effect.gen(function* () {
       const value = route();
-      const initial = yield* createRouteDigest(releaseId);
-      const updated = yield* updateRouteDigest(releaseId, initial, value);
+      const initial = yield* createRouteDigest;
+      const updated = yield* updateRouteDigest(initial, value);
       const digest = yield* completeRouteDigest(releaseId, updated);
       const summary = yield* digestRoutes(releaseId, Stream.make(value));
 
@@ -77,39 +40,14 @@ describe("route digest", () => {
     })
   );
 
-  it.effect("maps creation, update, and completion failures", () =>
+  it.effect("maps a rejected Web Crypto digest to a route hash error", () =>
     Effect.gen(function* () {
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.create = false;
-          failures.digest = false;
-        })
-      );
-      yield* Effect.sync(() => {
-        failures.create = true;
-      });
-      const creation = yield* createRouteDigest(releaseId).pipe(Effect.flip);
-      yield* Effect.sync(() => {
-        failures.create = false;
-      });
-      const initial = yield* createRouteDigest(releaseId);
-      const update = yield* updateRouteDigest(
-        releaseId,
-        initial,
-        route("hash:failure")
+      const state = yield* createRouteDigest;
+      const failure = yield* withNextDigestFailure(
+        completeRouteDigest(releaseId, state)
       ).pipe(Effect.flip);
-      yield* Effect.sync(() => {
-        failures.digest = true;
-      });
-      const completion = yield* completeRouteDigest(releaseId, initial).pipe(
-        Effect.flip
-      );
 
-      expect([creation, update, completion]).toEqual([
-        new RouteHashError({ releaseId }),
-        new RouteHashError({ releaseId }),
-        new RouteHashError({ releaseId }),
-      ]);
+      expect(failure).toMatchObject({ _tag: "RouteHashError", releaseId });
     })
   );
 
@@ -135,13 +73,9 @@ describe("route digest", () => {
           releaseId,
           Stream.make(bind, deletion).pipe(Stream.rechunk(1))
         );
-        const initial = yield* createRouteDigest(releaseId);
-        const withBind = yield* updateRouteDigest(releaseId, initial, bind);
-        const withDelete = yield* updateRouteDigest(
-          releaseId,
-          withBind,
-          deletion
-        );
+        const initial = yield* createRouteDigest;
+        const withBind = yield* updateRouteDigest(initial, bind);
+        const withDelete = yield* updateRouteDigest(withBind, deletion);
         const incremental = yield* completeRouteDigest(releaseId, withDelete);
 
         expect(whole).toEqual({

@@ -1,6 +1,7 @@
-import { createHash } from "node:crypto";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
+import { Hex } from "effect/encoding";
 import { type DateOnly, withPublicationDates } from "#contracts/date";
+import { digestSha256 } from "#contracts/hash/digest";
 import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
@@ -101,10 +102,21 @@ export function canonicalizeTryoutContent(input: TryoutContentInput) {
   });
 }
 
+/** Web Crypto could not hash one canonical try-out content identity. */
+export class TryoutContentHashError extends Schema.TaggedError<
+  TryoutContentHashError,
+  { readonly brand: unique symbol }
+>()(
+  "TryoutContentHashError",
+  {}
+) {}
+
 /** Hashes one complete current question pair through its canonical identity. */
-export function hashTryoutContent(input: TryoutContentInput) {
-  const digest = createHash("sha256")
-    .update(canonicalizeTryoutContent(input), "utf8")
-    .digest("hex");
-  return TryoutContentHashSchema.make(digest);
-}
+export const hashTryoutContent = Effect.fn("AksaraContracts.hashTryoutContent")(
+  function* (input: TryoutContentInput) {
+    const digest = yield* digestSha256(
+      new TextEncoder().encode(canonicalizeTryoutContent(input))
+    ).pipe(Effect.mapError(() => new TryoutContentHashError()));
+    return TryoutContentHashSchema.make(Hex.encode(digest));
+  }
+);

@@ -124,7 +124,8 @@ vi.mock("@nakafa/aksara-publisher/recover", async () => {
             releaseId: ReleaseIdSchema.make(input.recoveryId),
           });
         }
-        return receiptFor(gitBundle(input.recoveryId).release.manifest);
+        const recovered = yield* gitBundle(input.recoveryId);
+        return yield* receiptFor(recovered.release.manifest);
       }),
   };
 });

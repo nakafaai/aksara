@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Effect, Array as EffectArray, Option, Schema, Stream } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
@@ -48,7 +47,7 @@ export class PublicationBatchLimitError extends Schema.TaggedError<
 
 /** Measures one canonical string using its transmitted UTF-8 representation. */
 function utf8Bytes(value: string) {
-  return Buffer.byteLength(value, "utf8");
+  return new TextEncoder().encode(value).byteLength;
 }
 
 /** Verifies one formed batch against complete envelope count and bytes. */

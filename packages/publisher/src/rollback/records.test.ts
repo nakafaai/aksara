@@ -192,7 +192,7 @@ describe("deriveRollbackRecords", () => {
             },
           },
         };
-        expect(snapshotRollbackState(state)).toMatchObject({
+        expect(yield* snapshotRollbackState(state)).toMatchObject({
           head: { family: "article" },
           state: "article",
         });
@@ -209,8 +209,8 @@ describe("deriveRollbackRecords", () => {
         if (!(transition && "payload" in transition.record)) {
           return yield* Effect.die("Expected one question publication upsert.");
         }
-        const state = makeDerivedRollbackUpsert(transition.record);
-        expect(snapshotRollbackState(state)).toMatchObject({
+        const state = yield* makeDerivedRollbackUpsert(transition.record);
+        expect(yield* snapshotRollbackState(state)).toMatchObject({
           head: { family: "question", publicPath: undefined },
           state: "question",
         });
@@ -225,8 +225,8 @@ describe("deriveRollbackRecords", () => {
       if (!(transition && "payload" in transition.record)) {
         return yield* Effect.die("Expected one page publication upsert.");
       }
-      const state = makeDerivedRollbackUpsert(transition.record);
-      expect(snapshotRollbackState(state)).toMatchObject({
+      const state = yield* makeDerivedRollbackUpsert(transition.record);
+      expect(yield* snapshotRollbackState(state)).toMatchObject({
         head: { family: "page" },
         state: "page",
       });

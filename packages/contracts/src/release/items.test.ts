@@ -16,18 +16,16 @@ import {
 import { encodeJsonText } from "#contracts/text/json";
 
 describe("release item integrity", () => {
-  it.effect(
-    "authenticates items without retaining the complete collection",
-    () =>
-      Effect.gen(function* () {
-        const manifest = yield* makeManifest();
-        const verified = yield* verifyContentReleaseItems({
-          items: Stream.fromIterable(items),
-          manifest,
-        });
-        expect(verified).toEqual({ deleteCount: 1, upsertCount: 1 });
-        expect(verified).not.toHaveProperty("items");
-      })
+  it.effect("authenticates items and returns only their counts", () =>
+    Effect.gen(function* () {
+      const manifest = yield* makeManifest();
+      const verified = yield* verifyContentReleaseItems({
+        items: Stream.fromIterable(items),
+        manifest,
+      });
+      expect(verified).toEqual({ deleteCount: 1, upsertCount: 1 });
+      expect(verified).not.toHaveProperty("items");
+    })
   );
   it.effect(
     "rejects operation totals that differ from the signed manifest",

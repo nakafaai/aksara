@@ -39,7 +39,7 @@ describe("publication response body", () => {
         request,
         response(body, {
           headers: {
-            "content-length": String(Buffer.byteLength(body, "utf8")),
+            "content-length": String(new TextEncoder().encode(body).byteLength),
             "content-type": "application/json; charset=utf-8",
           },
         })

@@ -25,11 +25,11 @@ import { gitBundle, releaseId } from "#test/target";
 const HASH_B = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 const SNAPSHOT_A = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 const SNAPSHOT_B = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
-const ACTIVE = gitBundle("release-active", {
+/** The active release that every base test selects its source base from. */
+const activeBundle = gitBundle("release-active", {
   baseReleaseId: releaseId("release-parent"),
   tryoutSnapshotId: SNAPSHOT_A,
 });
-const BASE = selectSourceBase(ACTIVE);
 
 /** Replaces signed manifest fields only for isolated recovery-identity tests. */
 function withManifest(
@@ -46,34 +46,39 @@ function withManifest(
 }
 
 describe("production base identity", () => {
-  it("selects source and complete recovery identities", () => {
-    const candidate = gitBundle("release-candidate", {
-      baseManifestHash: ACTIVE.release.manifestHash,
-      baseReleaseId: ACTIVE.release.manifest.releaseId,
-      tryoutSnapshotId: SNAPSHOT_A,
-    });
+  it.effect("selects source and complete recovery identities", () =>
+    Effect.gen(function* () {
+      const ACTIVE = yield* activeBundle;
+      const BASE = selectSourceBase(ACTIVE);
+      const candidate = yield* gitBundle("release-candidate", {
+        baseManifestHash: ACTIVE.release.manifestHash,
+        baseReleaseId: ACTIVE.release.manifest.releaseId,
+        tryoutSnapshotId: SNAPSHOT_A,
+      });
 
-    expect(selectSourceBase(null)).toBeNull();
-    expect(BASE).toEqual({
-      activeAppLocales: ACTIVE.release.manifest.activeAppLocales,
-      manifestHash: ACTIVE.release.manifestHash,
-      releaseId: ACTIVE.release.manifest.releaseId,
-      resultCount: ACTIVE.release.manifest.resultCount,
-      resultDigest: ACTIVE.release.manifest.resultDigest,
-      snapshots: inheritContentSnapshots(ACTIVE.release.manifest.snapshots),
-    });
-    expect(selectRecoveryBase(candidate)).toEqual({
-      activeAppLocales: candidate.release.manifest.baseActiveAppLocales,
-      manifestHash: candidate.release.manifest.baseManifestHash,
-      releaseId: candidate.release.manifest.baseReleaseId,
-      resultCount: candidate.release.manifest.baseResultCount,
-      resultDigest: candidate.release.manifest.baseResultDigest,
-      snapshots: baseContentSnapshots(candidate.release.manifest.snapshots),
-    });
-  });
+      expect(selectSourceBase(null)).toBeNull();
+      expect(BASE).toEqual({
+        activeAppLocales: ACTIVE.release.manifest.activeAppLocales,
+        manifestHash: ACTIVE.release.manifestHash,
+        releaseId: ACTIVE.release.manifest.releaseId,
+        resultCount: ACTIVE.release.manifest.resultCount,
+        resultDigest: ACTIVE.release.manifest.resultDigest,
+        snapshots: inheritContentSnapshots(ACTIVE.release.manifest.snapshots),
+      });
+      expect(selectRecoveryBase(candidate)).toEqual({
+        activeAppLocales: candidate.release.manifest.baseActiveAppLocales,
+        manifestHash: candidate.release.manifest.baseManifestHash,
+        releaseId: candidate.release.manifest.baseReleaseId,
+        resultCount: candidate.release.manifest.baseResultCount,
+        resultDigest: candidate.release.manifest.baseResultDigest,
+        snapshots: baseContentSnapshots(candidate.release.manifest.snapshots),
+      });
+    })
+  );
 
   it.effect("compares recovered bases by current snapshot identity", () =>
     Effect.gen(function* () {
+      const ACTIVE = yield* activeBundle;
       const active = withManifest(ACTIVE, {
         snapshots: {
           ...ACTIVE.release.manifest.snapshots,
@@ -86,7 +91,7 @@ describe("production base identity", () => {
         },
       });
       const candidate = withManifest(
-        gitBundle("release-replacement-candidate", {
+        yield* gitBundle("release-replacement-candidate", {
           baseManifestHash: active.release.manifestHash,
           baseReleaseId: active.release.manifest.releaseId,
         }),
@@ -115,26 +120,30 @@ describe("production base identity", () => {
     })
   );
 
-  it("rejects every incomplete recovery identity", () => {
-    const candidate = gitBundle("release-candidate", {
-      baseManifestHash: ACTIVE.release.manifestHash,
-      baseReleaseId: ACTIVE.release.manifest.releaseId,
-    });
-    expect(
-      selectRecoveryBase(
-        withManifest(candidate, { baseActiveAppLocales: null })
-      )
-    ).toBeNull();
-    expect(
-      selectRecoveryBase(withManifest(candidate, { baseReleaseId: null }))
-    ).toBeNull();
-    expect(
-      selectRecoveryBase(withManifest(candidate, { baseManifestHash: null }))
-    ).toBeNull();
-  });
+  it.effect("rejects every incomplete recovery identity", () =>
+    Effect.gen(function* () {
+      const ACTIVE = yield* activeBundle;
+      const candidate = yield* gitBundle("release-candidate", {
+        baseManifestHash: ACTIVE.release.manifestHash,
+        baseReleaseId: ACTIVE.release.manifest.releaseId,
+      });
+      expect(
+        selectRecoveryBase(
+          withManifest(candidate, { baseActiveAppLocales: null })
+        )
+      ).toBeNull();
+      expect(
+        selectRecoveryBase(withManifest(candidate, { baseReleaseId: null }))
+      ).toBeNull();
+      expect(
+        selectRecoveryBase(withManifest(candidate, { baseManifestHash: null }))
+      ).toBeNull();
+    })
+  );
 
   it.effect("names the first immutable recovery mismatch", () =>
     Effect.gen(function* () {
+      const BASE = selectSourceBase(yield* activeBundle);
       const oneLocale = ActiveAppLocaleListSchema.make([
         AppLocaleSchema.make("en"),
       ]);

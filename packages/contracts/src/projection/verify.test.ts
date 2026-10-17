@@ -124,7 +124,7 @@ function reject(
 
 describe("projection integrity", () => {
   it.effect(
-    "authenticates replayable projections without retaining bodies",
+    "authenticates replayable projections and returns only their count",
     () =>
       Effect.gen(function* () {
         const manifest = yield* makeManifest();

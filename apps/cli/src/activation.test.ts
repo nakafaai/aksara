@@ -25,8 +25,6 @@ const calls = vi.hoisted(
     token: "",
   })
 );
-const BUNDLE = gitBundle("release-next");
-
 vi.mock("#cli/production/renderer", async (importOriginal) => {
   const original =
     await importOriginal<typeof import("#cli/production/renderer")>();
@@ -91,6 +89,7 @@ describe("production activation", () => {
     "fetches and validates the live renderer immediately before commit",
     () =>
       Effect.gen(function* () {
+        const BUNDLE = yield* gitBundle("release-next");
         const activation = yield* makeActivation;
         expect(yield* activation.verify(BUNDLE, "exact")).toBeUndefined();
         expect(calls).toMatchObject({
@@ -105,6 +104,7 @@ describe("production activation", () => {
     "declines cache convergence for a target with no cache surface",
     () =>
       Effect.gen(function* () {
+        const BUNDLE = yield* gitBundle("release-next");
         const activation = yield* makeAbsentActivation;
         expect(
           yield* activation.invalidate({
@@ -117,6 +117,7 @@ describe("production activation", () => {
 
   it.effect("accepts a compatible additive renderer deployment", () =>
     Effect.gen(function* () {
+      const BUNDLE = yield* gitBundle("release-next");
       const activation = yield* makeActivation;
       calls.renderer = yield* additiveRenderer();
 
@@ -127,6 +128,7 @@ describe("production activation", () => {
 
   it.effect("rejects renderer drift for an exact preflight", () =>
     Effect.gen(function* () {
+      const BUNDLE = yield* gitBundle("release-next");
       const activation = yield* makeActivation;
       calls.renderer = yield* additiveRenderer();
 
@@ -143,6 +145,7 @@ describe("production activation", () => {
 
   it.effect("fails closed without exposing incompatibility details", () =>
     Effect.gen(function* () {
+      const BUNDLE = yield* gitBundle("release-next");
       const activation = yield* makeActivation;
       calls.renderer = yield* createRendererManifest({
         base: Arr.drop(RENDERER_MANIFEST.base, 1),

@@ -21,7 +21,6 @@ import {
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";
-import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored material metadata does not satisfy Nakafa's exact page contract. */
 export class MaterialMetadataError extends Schema.TaggedError<
@@ -101,7 +100,7 @@ export const inspectMaterialDocument = Effect.fn(
   return {
     inspection,
     projection,
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     source,
   };
 });
@@ -112,34 +111,36 @@ export type InspectedMaterialDocument = Readonly<
 >;
 
 /** Binds compiled output to its registry-owned change and projection. */
-function makeMaterialRecord(
-  source: MaterialDocumentSource,
-  result: CompiledContentResult,
-  projection: MaterialLessonProjection
-): PreparedContentUpsert {
-  const change = ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(result.payload),
-    artifactLocale: source.route.artifactLocale,
-    contentKey: source.route.contentKey,
-    delivery: source.delivery,
-    family: "material",
-    operation: "upsert",
-    rendererDomain: source.rendererDomain,
-    sourcePath: source.sourcePath,
-  });
-  return {
-    change,
-    payload: result.payload,
-    projection,
-    source: {
+const makeMaterialRecord = Effect.fn("AksaraPublisher.makeMaterialRecord")(
+  function* (
+    source: MaterialDocumentSource,
+    result: CompiledContentResult,
+    projection: MaterialLessonProjection
+  ) {
+    const change = ContentUpsertSchema.make({
+      artifactHash: yield* hashCompiledContentPayload(result.payload),
       artifactLocale: source.route.artifactLocale,
       contentKey: source.route.contentKey,
-      rawMdx: source.rawMdx,
+      delivery: source.delivery,
+      family: "material",
+      operation: "upsert",
       rendererDomain: source.rendererDomain,
       sourcePath: source.sourcePath,
-    },
-  };
-}
+    });
+    return {
+      change,
+      payload: result.payload,
+      projection,
+      source: {
+        artifactLocale: source.route.artifactLocale,
+        contentKey: source.route.contentKey,
+        rawMdx: source.rawMdx,
+        rendererDomain: source.rendererDomain,
+        sourcePath: source.sourcePath,
+      },
+    };
+  }
+);
 
 /** Generates executable MDX only after inspection proves publication changed. */
 export const compileMaterialDocument = Effect.fn(
@@ -152,5 +153,9 @@ export const compileMaterialDocument = Effect.fn(
     ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
-  return makeMaterialRecord(document.source, result, document.projection);
+  return yield* makeMaterialRecord(
+    document.source,
+    result,
+    document.projection
+  );
 });

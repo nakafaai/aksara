@@ -136,7 +136,7 @@ export function makeQuranSnapshotFixture(): QuranFixture {
 
 /** Builds one internally consistent technical try-out dependency fixture. */
 export const tryoutSnapshotFixture = Effect.gen(function* () {
-  const record = makeTryoutCatalogRecord(
+  const record = yield* makeTryoutCatalogRecord(
     TryoutCountrySchema.make({
       appLocale: AppLocaleSchema.make("en"),
       countryCode: "ID",
@@ -159,7 +159,7 @@ export const tryoutSnapshotFixture = Effect.gen(function* () {
     "publicPath" in record.row && record.row.publicPath !== undefined ? 1 : 0;
   const manifest = {
     family: "tryout",
-    manifest: makeTryoutSnapshot({
+    manifest: yield* makeTryoutSnapshot({
       activeAppLocales: ACTIVE_APP_LOCALES,
       catalogDigest: catalog.digest,
       counts,
@@ -179,6 +179,18 @@ export const tryoutSnapshotFixture = Effect.gen(function* () {
     rows: Stream.make(row),
   };
 });
+
+/** Try-out manifest whose counts and digests the catalog validation tests pin. */
+export const catalogTryoutManifest = await Effect.runPromise(
+  makeTryoutSnapshot({
+    activeAppLocales: ACTIVE_APP_LOCALES,
+    catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+    counts: { country: 2, exam: 2, section: 4, set: 2, track: 2 },
+    placementCount: 8,
+    placementDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+    routeCount: 10,
+  })
+);
 
 /** Builds one exact active policy for an incremental test release. */
 export function snapshotPolicyBase(releaseId = "test-snapshot-policy-base") {

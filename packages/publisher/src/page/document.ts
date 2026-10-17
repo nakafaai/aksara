@@ -21,7 +21,6 @@ import {
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";
-import type { PreparedContentUpsert } from "#publisher/preparation/spec";
 
 /** Authored page metadata does not satisfy Nakafa's exact public contract. */
 export class PageMetadataError extends Schema.TaggedError<
@@ -105,7 +104,7 @@ export const inspectPageDocument = Effect.fn(
   return {
     inspection,
     projection,
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     source,
   };
 });
@@ -116,13 +115,13 @@ export type InspectedPageDocument = Readonly<
 >;
 
 /** Binds compiled output to its registry-owned page change and projection. */
-function makePageRecord(
+const makePageRecord = Effect.fn("AksaraPublisher.makePageRecord")(function* (
   source: PageDocumentSource,
   result: CompiledContentResult,
   projection: PublicPageProjection
-): PreparedContentUpsert {
+) {
   const change = ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(result.payload),
+    artifactHash: yield* hashCompiledContentPayload(result.payload),
     artifactLocale: source.route.artifactLocale,
     contentKey: source.route.contentKey,
     delivery: source.delivery,
@@ -143,7 +142,7 @@ function makePageRecord(
       sourcePath: source.sourcePath,
     },
   };
-}
+});
 
 /** Generates executable MDX only after inspection proves publication changed. */
 export const compilePageDocument = Effect.fn(
@@ -156,5 +155,5 @@ export const compilePageDocument = Effect.fn(
     ...makeCompileSource(document.source, document.source.route),
     rendererManifest,
   });
-  return makePageRecord(document.source, result, document.projection);
+  return yield* makePageRecord(document.source, result, document.projection);
 });

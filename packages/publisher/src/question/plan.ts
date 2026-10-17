@@ -41,21 +41,23 @@ export class QuestionItemJoinError extends Schema.TaggedError<
 >()("QuestionItemJoinError", { sourceRoot: CorpusSourcePathSchema }) {}
 
 /** Derives one complete question head from a newly compiled upsert. */
-function makeQuestionHead(record: PreparedContentUpsert): QuestionHead {
-  const { change, payload, projection } = record;
-  return QuestionHeadSchema.make({
-    artifactHash: change.artifactHash,
-    artifactLocale: change.artifactLocale,
-    compilerConfigHash: payload.compilerConfigHash,
-    contentKey: change.contentKey,
-    delivery: change.delivery,
-    family: "question",
-    projectionHash: hashContentProjection(projection),
-    rendererDomain: change.rendererDomain,
-    sourceHash: payload.sourceHash,
-    sourcePath: change.sourcePath,
-  });
-}
+const makeQuestionHead = Effect.fn("AksaraPublisher.makeQuestionHead")(
+  function* (record: PreparedContentUpsert) {
+    const { change, payload, projection } = record;
+    return QuestionHeadSchema.make({
+      artifactHash: change.artifactHash,
+      artifactLocale: change.artifactLocale,
+      compilerConfigHash: payload.compilerConfigHash,
+      contentKey: change.contentKey,
+      delivery: change.delivery,
+      family: "question",
+      projectionHash: yield* hashContentProjection(projection),
+      rendererDomain: change.rendererDomain,
+      sourceHash: payload.sourceHash,
+      sourcePath: change.sourcePath,
+    });
+  }
+);
 
 /** Preserves one existing question head for authenticated rollback. */
 function priorQuestion(head: QuestionHead): RollbackSnapshotState {

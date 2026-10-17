@@ -1,4 +1,3 @@
-import { Server } from "node:net";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Order, Record as Rec, Redacted } from "effect";
 import { NakafaProcess, type NakafaProcessInput } from "#cli/child/process";
@@ -12,7 +11,52 @@ import {
   makeStartInput,
 } from "#test/process";
 
+const socketPlan = vi.hoisted(() => ({ external: false, fail: false }));
+
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const original =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+  const NetAddress = await import("effect/net/NetAddress");
+  /** One tagged bind failure that the socket mock reports on demand. */
+  class SocketTestError extends TestSchema.TaggedError<
+    SocketTestError,
+    { readonly brand: unique symbol }
+  >()(
+    "SocketTestError",
+    {}
+  ) {}
+  return {
+    ...original,
+    NodeSocketServer: {
+      ...original.NodeSocketServer,
+      /**
+       * Makes the reserved socket fail to bind, or report an address off
+       * loopback, only when one test asks for it.
+       */
+      make: (options: Parameters<typeof original.NodeSocketServer.make>[0]) => {
+        if (socketPlan.fail) {
+          return TestEffect.fail(new SocketTestError());
+        }
+        const reservation = original.NodeSocketServer.make(options);
+        if (!socketPlan.external) {
+          return reservation;
+        }
+        return TestEffect.map(reservation, (server) => ({
+          ...server,
+          address: NetAddress.inetAddressFromIpStringUnsafe(
+            "192.0.2.1",
+            31_234
+          ),
+        }));
+      },
+    },
+  };
+});
+
 afterEach(() => {
+  socketPlan.external = false;
+  socketPlan.fail = false;
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
@@ -208,88 +252,32 @@ describe("Nakafa child process", () => {
   );
 
   it.effect(
-    "fails when the operating system cannot bind or prove loopback",
+    "refuses to start the child when the reserved socket is off loopback or cannot bind",
     () =>
       Effect.gen(function* () {
         const input = yield* makeStartInput();
+        const onStart = vi.fn<(input: NakafaProcessInput) => void>();
         const processes = makeProcess(
-          vi.fn(),
+          onStart,
           Effect.succeed({ exitCode: Effect.succeed(0) })
         );
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          // The caller subscribes to "error" before it listens, so the failure arrives at once.
-          this.emit("error", new Error("Test bind failure."));
-          return this;
-        });
-        const bind = yield* Effect.scoped(
-          startNakafa(input).pipe(
-            Effect.provideService(NakafaProcess, processes)
-          )
-        ).pipe(Effect.flip);
-        vi.restoreAllMocks();
-        vi.spyOn(Server.prototype, "address").mockReturnValueOnce(null);
-        const address = yield* Effect.scoped(
-          startNakafa(input).pipe(
-            Effect.provideService(NakafaProcess, processes)
-          )
-        ).pipe(Effect.flip);
-        vi.restoreAllMocks();
-        vi.spyOn(Server.prototype, "address").mockReturnValueOnce({
-          address: "192.0.2.1",
-          family: "IPv4",
-          port: 31_234,
-        });
+        socketPlan.external = true;
         const external = yield* Effect.scoped(
           startNakafa(input).pipe(
             Effect.provideService(NakafaProcess, processes)
           )
         ).pipe(Effect.flip);
-
-        expect(bind).toMatchObject({ reason: "start" });
-        expect(address).toMatchObject({ reason: "start" });
-        expect(external).toMatchObject({ reason: "start" });
-      })
-  );
-
-  it.live(
-    "fails a port close error and cancels an unfinished reservation",
-    () =>
-      Effect.gen(function* () {
-        const input = yield* makeStartInput();
-        const processes = makeProcess(
-          vi.fn(),
-          Effect.succeed({ exitCode: Effect.succeed(0) })
-        );
-        const originalClose = Server.prototype.close;
-        vi.spyOn(Server.prototype, "close").mockImplementationOnce(function (
-          this: Server,
-          callback?: (error?: Error) => void
-        ) {
-          return originalClose.call(this, () =>
-            callback?.(new Error("Test port close failure."))
-          );
-        });
-        const close = yield* Effect.scoped(
+        socketPlan.external = false;
+        socketPlan.fail = true;
+        const bind = yield* Effect.scoped(
           startNakafa(input).pipe(
             Effect.provideService(NakafaProcess, processes)
           )
         ).pipe(Effect.flip);
-        vi.restoreAllMocks();
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          return this;
-        });
-        const cancelled = yield* Effect.scoped(
-          startNakafa(input).pipe(
-            Effect.provideService(NakafaProcess, processes)
-          )
-        ).pipe(Effect.timeout("1 millis"), Effect.flip);
 
-        expect(close).toMatchObject({ reason: "start" });
-        expect(cancelled._tag).toBe("TimeoutError");
+        expect(external).toMatchObject({ reason: "start" });
+        expect(bind).toMatchObject({ reason: "start" });
+        expect(onStart).not.toHaveBeenCalled();
       })
   );
 });

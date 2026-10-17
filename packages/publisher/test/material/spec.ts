@@ -169,31 +169,32 @@ const rejectMaterialPublicationFrom = Effect.fn("MaterialTest.rejectFrom")(
 );
 
 /** Derives authoritative compact heads from material publication records. */
-function deriveMaterialHeads(
+const deriveMaterialHeads = Effect.fn("MaterialTest.deriveHeads")(function* (
   records: Effect.Success<ReturnType<typeof collectMaterialPublicationFrom>>
 ) {
-  return Arr.flatMap(records, (transition) => {
-    const { record } = transition;
-    if (!("payload" in record)) {
-      return [];
-    }
-    return [
-      MaterialHeadSchema.make({
-        artifactHash: record.change.artifactHash,
-        artifactLocale: record.change.artifactLocale,
-        compilerConfigHash: record.payload.compilerConfigHash,
-        contentKey: record.change.contentKey,
-        delivery: record.change.delivery,
-        family: "material",
-        projectionHash: hashContentProjection(record.projection),
-        publicPath: projectionPublicPath(record.projection),
-        rendererDomain: record.change.rendererDomain,
-        sourceHash: record.payload.sourceHash,
-        sourcePath: record.change.sourcePath,
-      }),
-    ];
-  });
-}
+  const upserts = Arr.flatMap(records, ({ record }) =>
+    "payload" in record ? [record] : []
+  );
+  return yield* Effect.forEach(upserts, (record) =>
+    hashContentProjection(record.projection).pipe(
+      Effect.map((projectionHash) =>
+        MaterialHeadSchema.make({
+          artifactHash: record.change.artifactHash,
+          artifactLocale: record.change.artifactLocale,
+          compilerConfigHash: record.payload.compilerConfigHash,
+          contentKey: record.change.contentKey,
+          delivery: record.change.delivery,
+          family: "material",
+          projectionHash,
+          publicPath: projectionPublicPath(record.projection),
+          rendererDomain: record.change.rendererDomain,
+          sourceHash: record.payload.sourceHash,
+          sourcePath: record.change.sourcePath,
+        })
+      )
+    )
+  );
+});
 
 /** Loads the real material slice and memoizes its first publication. */
 const makeMaterialTestFixtures = Effect.fn("MaterialTest.makeFixtures")(() =>
@@ -285,6 +286,6 @@ export const rejectMaterialPublication = Effect.fn("MaterialTest.reject")(
 export const publishedMaterialHeads = Effect.fn("MaterialTest.publishedHeads")(
   function* () {
     const fixture = yield* MaterialTestFixtures;
-    return deriveMaterialHeads(yield* fixture.initialRecords);
+    return yield* deriveMaterialHeads(yield* fixture.initialRecords);
   }
 );

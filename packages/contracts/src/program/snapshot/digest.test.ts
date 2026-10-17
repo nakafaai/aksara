@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 
@@ -13,60 +12,12 @@ import {
   reject,
   routeRejectionInputs,
 } from "#contracts/test/closure";
+import { withDigestFailureFor } from "#contracts/test/digest";
 import {
   curriculumRows,
   makeProgramTestRecords,
   programCatalogRows,
 } from "#contracts/test/program";
-
-const failures = vi.hoisted(() => ({
-  construct: vi.fn<() => boolean>(() => false),
-  stage: vi.fn<() => "digest" | "update" | null>(() => null),
-}));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic failures into the current aggregate digest. */
-    createHash(algorithm: string) {
-      if (failures.construct()) {
-        throw new TypeError("injected current digest construction failure");
-      }
-      const hash = crypto.createHash(algorithm);
-      let aggregate = false;
-      return new Proxy(hash, {
-        /** Preserves native binding while intercepting selected operations. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data).startsWith("nakafa.aksara.program-rows\n")) {
-                aggregate = true;
-              } else if (aggregate && failures.stage() === "update") {
-                throw new TypeError("injected current digest update failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          if (
-            property === "digest" &&
-            aggregate &&
-            failures.stage() === "digest"
-          ) {
-            return () => {
-              throw new TypeError(
-                "injected current digest finalization failure"
-              );
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 describe("program aggregate digest golden vectors", () => {
   it.effect(
@@ -264,34 +215,20 @@ describe("program aggregate digest", () => {
       })
   );
 
-  it.effect("maps digest construction, update, and finalization failures", () =>
-    Effect.gen(function* () {
-      const records = yield* makeProgramTestRecords();
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.construct.mockReturnValue(false);
-          failures.stage.mockReturnValue(null);
-        })
-      );
-      yield* Effect.sync(() => {
-        failures.construct.mockReturnValue(true);
-      });
-      const constructError = yield* reject([]);
-      yield* Effect.sync(() => {
-        failures.construct.mockReturnValue(false);
-        failures.stage.mockReturnValue("update");
-      });
-      const updateError = yield* reject(Arr.take(records, 1));
-      yield* Effect.sync(() => {
-        failures.stage.mockReturnValue("digest");
-      });
-      const digestError = yield* reject(records);
-      for (const error of [constructError, updateError, digestError]) {
+  it.effect(
+    "maps a rejected aggregate digest to a program row hash error",
+    () =>
+      Effect.gen(function* () {
+        const records = yield* makeProgramTestRecords();
+        const error = yield* withDigestFailureFor(
+          "nakafa.aksara.program-rows",
+          reject(records)
+        );
+
         expect(error).toMatchObject({
           _tag: "ProgramRowHashError",
           scope: "digest",
         });
-      }
-    })
+      })
   );
 });

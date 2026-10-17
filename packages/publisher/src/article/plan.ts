@@ -8,7 +8,7 @@ import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rol
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { ArticleEntry } from "@nakafa/aksara-corpus/articles/registry";
-import type { Effect, Stream } from "effect";
+import { Effect, type Stream } from "effect";
 import {
   compileArticleDocument,
   inspectArticleDocument,
@@ -33,7 +33,9 @@ type PlanArticlePublicationContext =
   | Effect.Services<ReturnType<typeof inspectArticleDocument>>;
 
 /** Derives one complete article head from a newly compiled upsert. */
-function makeArticleHead(record: PreparedContentUpsert): ArticleHead {
+const makeArticleHead = Effect.fn("AksaraPublisher.makeArticleHead")(function* (
+  record: PreparedContentUpsert
+) {
   const { change, payload, projection } = record;
   return ArticleHeadSchema.make({
     artifactHash: change.artifactHash,
@@ -42,13 +44,13 @@ function makeArticleHead(record: PreparedContentUpsert): ArticleHead {
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "article",
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     publicPath: projectionPublicPath(projection),
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,
   });
-}
+});
 
 /** Preserves one existing article head for authenticated rollback. */
 function priorArticle(head: ArticleHead): RollbackSnapshotState {

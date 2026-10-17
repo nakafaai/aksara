@@ -1,5 +1,3 @@
-import { Buffer } from "node:buffer";
-import { verify } from "node:crypto";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
@@ -25,6 +23,7 @@ import {
 } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
+import { Base64, Base64Url } from "effect/encoding";
 
 import { testRendererDomains } from "#test/renderer";
 
@@ -64,11 +63,14 @@ function makeItems(release: ReleaseId, changes: readonly ContentChange[]) {
   );
 }
 
+const signingArtifactHash = await Effect.runPromise(
+  hashCompiledContentPayload(signingPayload)
+);
 const items = makeItems(
   releaseId,
   Schema.decodeSync(Schema.Array(ContentChangeSchema))([
     {
-      artifactHash: hashCompiledContentPayload(signingPayload),
+      artifactHash: signingArtifactHash,
       artifactLocale: signingPayload.artifactLocale,
       contentKey: signingPayload.contentKey,
       delivery: "public",
@@ -113,14 +115,13 @@ export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
 });
 
 /** Builds the try-out runtime bundle payload that signing tests pin. */
-export function signingRuntimeBundle(
-  release: SignedContentRelease,
-  sourceGitSha: GitCommitSha
-): TryoutRuntimeBundlePayload {
+export const signingRuntimeBundle = Effect.fn(
+  "PublisherTest.signingRuntimeBundle"
+)(function* (release: SignedContentRelease, sourceGitSha: GitCommitSha) {
   return {
     format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
     rendererManifestHash: signingManifest.rendererManifestHash,
-    snapshot: makeTryoutSnapshot({
+    snapshot: yield* makeTryoutSnapshot({
       activeAppLocales: signingManifest.activeAppLocales,
       catalogDigest: signingManifest.itemsDigest,
       counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
@@ -131,8 +132,8 @@ export function signingRuntimeBundle(
     sourceGitSha,
     sourceManifestHash: release.manifestHash,
     sourceReleaseId: signingManifest.releaseId,
-  };
-}
+  } satisfies TryoutRuntimeBundlePayload;
+});
 
 /** Test-only Ed25519 public key that verifies every recorded publication signature below. */
 export const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
@@ -149,15 +150,68 @@ export const TEST_RELEASE_SIGNATURE =
 export const TEST_RUNTIME_BUNDLE_SIGNATURE =
   "-Rb6vFnC-1vsq5t5AxnYn7txzUVjsA6wbWX14X7p_Sk4Jc5PCWnv0IX1dgZ9TwCLzOgagmaKLDwJz9mVeBYyBg";
 
-/** Verifies one recorded signature over exact canonical bytes with the recorded public key. */
-export function verifyRecorded(input: string, signature: string) {
-  return verify(
-    null,
-    Buffer.from(input, "utf8"),
-    TEST_PUBLIC_KEY_PEM,
-    Buffer.from(signature, "base64url")
+/** Imports one Ed25519 SPKI public key from its PEM text for Web Crypto verification. */
+export const importEd25519PublicKeyPem = Effect.fn(
+  "PublisherTest.importEd25519PublicKeyPem"
+)(function* (publicKeyPem: string) {
+  const der = yield* Effect.fromResult(
+    Base64.decode(publicKeyPem.replace(/-----[^-]+-----|\s/gu, ""))
   );
-}
+  return yield* Effect.promise(() =>
+    globalThis.crypto.subtle.importKey(
+      "spki",
+      der,
+      { name: "Ed25519" },
+      false,
+      ["verify"]
+    )
+  );
+});
+
+/** Verifies one unpadded base64url Ed25519 signature over the UTF-8 bytes of one exact input. */
+export const verifyWithPublicKeyPem = Effect.fn(
+  "PublisherTest.verifyWithPublicKeyPem"
+)(function* (publicKeyPem: string, input: string, signature: string) {
+  const publicKey = yield* importEd25519PublicKeyPem(publicKeyPem);
+  const signatureBytes = yield* Effect.fromResult(Base64Url.decode(signature));
+  return yield* Effect.promise(() =>
+    globalThis.crypto.subtle.verify(
+      "Ed25519",
+      publicKey,
+      signatureBytes,
+      new TextEncoder().encode(input)
+    )
+  );
+});
+
+/** Verifies one recorded signature over exact canonical bytes with the recorded public key. */
+export const verifyRecorded = Effect.fn("PublisherTest.verifyRecorded")(
+  function* (input: string, signature: string) {
+    return yield* verifyWithPublicKeyPem(TEST_PUBLIC_KEY_PEM, input, signature);
+  }
+);
+
+/** Generates one RSA private key as PKCS#8 PEM, a key kind that the Ed25519 signer must refuse. */
+export const generateRsaPrivateKeyPem = Effect.fn(
+  "PublisherTest.generateRsaPrivateKeyPem"
+)(function* () {
+  const pair = yield* Effect.promise(() =>
+    globalThis.crypto.subtle.generateKey(
+      {
+        hash: "SHA-256",
+        modulusLength: 2048,
+        name: "RSASSA-PKCS1-v1_5",
+        publicExponent: Uint8Array.of(1, 0, 1),
+      },
+      true,
+      ["sign", "verify"]
+    )
+  );
+  const der = yield* Effect.promise(() =>
+    globalThis.crypto.subtle.exportKey("pkcs8", pair.privateKey)
+  );
+  return `-----BEGIN PRIVATE KEY-----\n${Base64.encode(new Uint8Array(der))}\n-----END PRIVATE KEY-----\n`;
+});
 
 /** Changes one ASCII byte in the domain prefix of a canonical signing input. */
 export function changeOneByte(input: string) {

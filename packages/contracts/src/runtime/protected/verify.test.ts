@@ -1,5 +1,3 @@
-import { Buffer } from "node:buffer";
-import { verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Option, Result } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
@@ -25,6 +23,7 @@ import {
   protectedSelector,
   verifyProtectedExchange,
 } from "#contracts/test/runtime/protected";
+import { verifyEd25519Pem } from "#contracts/test/signature";
 
 describe("protected content runtime verification", () => {
   it.effect("binds ordered bodies to one frozen snapshot request", () =>
@@ -185,29 +184,35 @@ describe("pinned protected runtime exchange bytes", () => {
     })
   );
   /** Verifies one recorded signature over its exact bytes, then over the same bytes with one changed byte. */
-  function verifyRecorded(message: string, signature: string | undefined) {
-    return Arr.map(
-      [message, message.replace("nakafa", "makafa")],
-      (text) =>
-        signature !== undefined &&
-        verifyBytes(
-          null,
-          new TextEncoder().encode(text),
-          pinnedPublicKey,
-          Buffer.from(signature, "base64url")
-        )
-    );
-  }
+  const verifyRecorded = Effect.fn("ProtectedVerifyTest.verifyRecorded")(
+    function* (message: string, signature: string | undefined) {
+      if (signature === undefined) {
+        return [false, false];
+      }
+      return yield* Effect.forEach(
+        [message, message.replace("nakafa", "makafa")],
+        (text) => verifyEd25519Pem(pinnedPublicKey, text, signature)
+      );
+    }
+  );
 
-  it("verifies the pinned artifact and bundle signatures over exact bytes", () => {
-    expect(
-      verifyRecorded(
-        pinnedArtifactMessage,
-        Option.getOrUndefined(Arr.head(pinnedFound.items))?.artifact.signature
-      )
-    ).toEqual([true, false]);
-    expect(
-      verifyRecorded(pinnedBundleMessage, pinnedFound.bundle.signature)
-    ).toEqual([true, false]);
-  });
+  it.effect(
+    "verifies the pinned artifact and bundle signatures over exact bytes",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyRecorded(
+            pinnedArtifactMessage,
+            Option.getOrUndefined(Arr.head(pinnedFound.items))?.artifact
+              .signature
+          )
+        ).toEqual([true, false]);
+        expect(
+          yield* verifyRecorded(
+            pinnedBundleMessage,
+            pinnedFound.bundle.signature
+          )
+        ).toEqual([true, false]);
+      })
+  );
 });

@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
+import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
@@ -17,6 +17,7 @@ import {
 } from "@nakafa/aksara-utilities/process/exact";
 import {
   Array as Arr,
+  Crypto,
   Effect,
   FileSystem,
   MutableHashMap,
@@ -25,6 +26,7 @@ import {
   Path,
   Schema,
 } from "effect";
+import { Hex } from "effect/encoding";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 
 export const TEST_COMMIT_SHA = GitCommitShaSchema.make("b".repeat(40));
@@ -61,13 +63,17 @@ function outputBytes(value: string | Uint8Array | undefined) {
     : (value ?? new Uint8Array());
 }
 
-/** Derives the real Git object identity of test-only bytes. */
-export function testBlobId(bytes: Uint8Array) {
-  return createHash("sha1")
-    .update(`blob ${bytes.byteLength}\0`)
-    .update(bytes)
-    .digest("hex");
-}
+/** Derives the real Git object identity of test-only bytes through the SHA-1 digest. */
+export const testBlobId = Effect.fn("GitTest.blobId")(
+  function* (bytes: Uint8Array) {
+    const crypto = yield* Crypto.Crypto;
+    const header = new TextEncoder().encode(`blob ${bytes.byteLength}\0`);
+    const object = joinGitFrames([header, bytes]);
+    const digest = yield* crypto.digest("SHA-1", object).pipe(Effect.orDie);
+    return Hex.encode(digest);
+  },
+  Effect.provideService(Crypto.Crypto, webCryptoService)
+);
 
 /** Concatenates exact protocol bytes without text normalization. */
 export function joinGitFrames(frames: readonly Uint8Array[]) {
@@ -83,10 +89,14 @@ export function joinGitFrames(frames: readonly Uint8Array[]) {
 }
 
 /** Encodes metadata and optional exact body bytes for one test-only blob. */
-export function gitFrame(bytes: Uint8Array, body: boolean) {
-  const header = outputBytes(`${testBlobId(bytes)} blob ${bytes.byteLength}\n`);
+export const gitFrame = Effect.fn("GitTest.gitFrame")(function* (
+  bytes: Uint8Array,
+  body: boolean
+) {
+  const blobId = yield* testBlobId(bytes);
+  const header = outputBytes(`${blobId} blob ${bytes.byteLength}\n`);
   return body ? joinGitFrames([header, bytes, Uint8Array.of(0x0a)]) : header;
-}
+});
 
 /** Resolves requested coordinates and emits their ordered protocol frames. */
 const batchOutput = Effect.fn("GitBlobTest.batchOutput")(function* (
@@ -95,16 +105,25 @@ const batchOutput = Effect.fn("GitBlobTest.batchOutput")(function* (
   body: boolean
 ) {
   const coordinates = new TextDecoder().decode(stdin).trimEnd().split("\n");
+  const candidates = yield* Effect.forEach(
+    Arr.fromIterable(blobs),
+    ([sourcePath, bytes]) =>
+      Effect.map(
+        body
+          ? testBlobId(bytes)
+          : Effect.succeed(`${TEST_COMMIT_SHA}:${sourcePath}`),
+        (key) => ({ bytes, key })
+      )
+  );
   const frames = yield* Effect.forEach(coordinates, (coordinate) => {
-    const found = Arr.findFirst(blobs, ([sourcePath, bytes]) =>
-      body
-        ? testBlobId(bytes) === coordinate
-        : `${TEST_COMMIT_SHA}:${sourcePath}` === coordinate
+    const found = Arr.findFirst(
+      candidates,
+      (candidate) => candidate.key === coordinate
     );
     return Option.match(found, {
       onNone: () =>
         Effect.die(`Unexpected test-only Git coordinate: ${coordinate}`),
-      onSome: ([, bytes]) => Effect.succeed(gitFrame(bytes, body)),
+      onSome: ({ bytes }) => gitFrame(bytes, body),
     });
   });
   return joinGitFrames(frames);
@@ -247,7 +266,7 @@ export const makeTestGitRepository = Effect.fn("GitBlobTest.makeRepository")(
     );
     yield* runTestGit(root, [
       "replace",
-      testBlobId(new TextEncoder().encode(rawMdx)),
+      yield* testBlobId(new TextEncoder().encode(rawMdx)),
       replacement,
     ]);
     yield* fileSystem.writeFileString(

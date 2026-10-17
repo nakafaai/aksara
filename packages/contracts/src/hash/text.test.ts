@@ -1,20 +1,11 @@
 // @vitest-environment node
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
+import { withNextDigestFailure } from "#contracts/test/digest";
 
 describe("UTF-8 text hashing", () => {
-  it.effect("matches the independent Node SHA-256 implementation", () =>
-    Effect.gen(function* () {
-      const value = "Aksara Web Crypto hash";
-      const expected = `sha256:${createHash("sha256").update(value).digest("hex")}`;
-
-      expect(yield* hashText(value)).toBe(expected);
-    })
-  );
-
   it.effect("pins SHA-256 digests of exact UTF-8 text", () =>
     Effect.gen(function* () {
       expect(yield* hashText("")).toBe(
@@ -29,18 +20,22 @@ describe("UTF-8 text hashing", () => {
     })
   );
 
+  it.effect("pins the digest of ASCII and multi-line non-ASCII text", () =>
+    Effect.gen(function* () {
+      expect(yield* hashText("aksara")).toBe(
+        "sha256:10d512e0d0ea808078e6e773ca22d06dda9c8255f557674eba033830a07a8732"
+      );
+      expect(yield* hashText("Pelajaran é ✓ 数学\n\n- satu\n- dua")).toBe(
+        "sha256:4f6d1d56c579dfce19f0c186e79bd9dd9ed504ccf9ec1b6048b936489a396583"
+      );
+    })
+  );
+
   it.effect("maps Web Crypto failures into the typed error channel", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(crypto.subtle, "digest")
-            .mockRejectedValueOnce(new TypeError("injected digest failure"))
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* withNextDigestFailure(
+        hashText("failure").pipe(Effect.flip)
       );
-
-      const error = yield* hashText("failure").pipe(Effect.flip);
 
       expect(error._tag).toBe("TextHashError");
     })

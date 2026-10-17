@@ -1,6 +1,5 @@
 // @vitest-environment node
 
-import { createHash, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import {
@@ -22,6 +21,7 @@ import {
   invertContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
 import { makeRollbackArtifacts } from "#publisher/publication/artifacts";
@@ -29,8 +29,9 @@ import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { testRendererDomains } from "#test/renderer";
 
 const rawMdx = "Protocol body";
+/** SHA-256 identity of the raw body above, recorded from the exact UTF-8 bytes. */
 const sourceHash = Sha256HashSchema.make(
-  `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
+  "sha256:01b2034e356d0f7ec18f6438960f2572a8e1993281f0e645cae452e33004ae2b"
 );
 const payload = CompiledContentPayloadSchema.make({
   artifactLocale: ArtifactLocaleSchema.make("en"),
@@ -60,14 +61,10 @@ const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
     }),
     publishedDomains: ["mathematics"],
   });
-  const { privateKey, publicKey } = yield* Effect.sync(() =>
-    generateKeyPairSync("ed25519")
-  );
+  const keyPair = yield* generateEd25519KeyPem();
   const signer = yield* makeEd25519PublicationSigner({
     keyId: "test-rollback-key",
-    privateKeyPem: privateKey
-      .export({ format: "pem", type: "pkcs8" })
-      .toString(),
+    privateKeyPem: keyPair.privateKeyPem,
   });
   const artifact = yield* signer.signArtifact(payload);
   const item = ContentReleaseItemSchema.make({
@@ -117,10 +114,7 @@ const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
     upsertCount: 1,
   });
   const resolver = ContentVerificationKeyResolver.of({
-    resolve: () =>
-      Effect.succeed(
-        publicKey.export({ format: "pem", type: "spki" }).toString()
-      ),
+    resolve: () => Effect.succeed(keyPair.publicKeyPem),
   });
   return { artifact, item, manifest, rendererManifest, resolver };
 });

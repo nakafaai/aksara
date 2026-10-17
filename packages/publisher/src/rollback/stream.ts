@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
@@ -35,7 +34,9 @@ function decodePage(source: unknown, afterIndex: number) {
 
 /** Requires the decoded page to stay below the complete wire ceiling. */
 function validatePageBytes(page: RollbackPage, afterIndex: number) {
-  const actualBytes = Buffer.byteLength(canonicalizeRollbackPage(page), "utf8");
+  const actualBytes = new TextEncoder().encode(
+    canonicalizeRollbackPage(page)
+  ).byteLength;
   if (actualBytes <= MAX_ROLLBACK_PAGE_BYTES) {
     return Effect.void;
   }

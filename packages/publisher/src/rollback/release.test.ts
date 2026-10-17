@@ -25,13 +25,13 @@ describe("buildRollbackRelease", () => {
       Effect.gen(function* () {
         const releaseId = ReleaseIdSchema.make("test-build-rollback-chunks");
         /** Builds one retained prior state and its rollback record for the release. */
-        const restored = (
+        const restored = Effect.fn("RollbackReleaseTest.restored")(function* (
           contentKey: string,
           index: number,
           hashCharacter: string,
           publicPath: string
-        ) => {
-          const prior = makeDerivedMaterial({
+        ) {
+          const prior = yield* makeDerivedMaterial({
             contentKey,
             hashCharacter,
             index,
@@ -43,14 +43,14 @@ describe("buildRollbackRelease", () => {
             head: prior.head,
             record: makeDerivedTransition(current, prior.state),
           };
-        };
-        const first = restored(
+        });
+        const first = yield* restored(
           "test:build-rollback-chunks",
           0,
           "d",
           "subjects/test/build-rollback-chunks"
         );
-        const second = restored(
+        const second = yield* restored(
           "test:build-rollback-chunks-b",
           1,
           "e",
@@ -125,7 +125,7 @@ describe("buildRollbackRelease", () => {
     () =>
       Effect.gen(function* () {
         const releaseId = ReleaseIdSchema.make("test-build-rollback");
-        const prior = makeDerivedMaterial({
+        const prior = yield* makeDerivedMaterial({
           contentKey: "test:build-rollback",
           hashCharacter: "d",
           index: 0,

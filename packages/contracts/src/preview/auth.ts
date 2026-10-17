@@ -1,6 +1,5 @@
-import { Buffer } from "node:buffer";
-import { createHmac, timingSafeEqual } from "node:crypto";
 import { Effect, Schema } from "effect";
+import { Base64Url } from "effect/encoding";
 import type { Sha256HashSchema } from "#contracts/ids";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { encodeJsonText } from "#contracts/text/json";
@@ -55,6 +54,26 @@ export function canonicalizePreviewRendererAuth(input: {
   ]);
 }
 
+/** Imports the process-local secret as one HMAC-SHA256 key through Web Crypto. */
+const importPreviewRendererKey = Effect.fn(
+  "AksaraContracts.importPreviewRendererKey"
+)(function* (secret: PreviewRendererSecret) {
+  const raw = yield* Effect.fromResult(Base64Url.decode(secret)).pipe(
+    Effect.orDie
+  );
+  return yield* Effect.tryPromise({
+    catch: () => new PreviewRendererAuthError({ reason: "compute" }),
+    try: () =>
+      globalThis.crypto.subtle.importKey(
+        "raw",
+        raw,
+        { hash: "SHA-256", name: "HMAC" },
+        false,
+        ["sign", "verify"]
+      ),
+  });
+});
+
 /** Computes one renderer response proof from a process-local secret. */
 export const computePreviewRendererProof = Effect.fn(
   "AksaraContracts.computePreviewRendererProof"
@@ -63,18 +82,18 @@ export const computePreviewRendererProof = Effect.fn(
   readonly nonce: PreviewRendererNonce;
   readonly secret: PreviewRendererSecret;
 }) {
-  return yield* Effect.try({
+  const key = yield* importPreviewRendererKey(input.secret);
+  const message = new TextEncoder().encode(
+    canonicalizePreviewRendererAuth(input)
+  );
+  const tag = yield* Effect.tryPromise({
     catch: () => new PreviewRendererAuthError({ reason: "compute" }),
-    try: () =>
-      PreviewRendererProofSchema.make(
-        createHmac("sha256", Buffer.from(input.secret, "base64url"))
-          .update(canonicalizePreviewRendererAuth(input))
-          .digest("base64url")
-      ),
+    try: () => globalThis.crypto.subtle.sign("HMAC", key, message),
   });
+  return PreviewRendererProofSchema.make(Base64Url.encode(new Uint8Array(tag)));
 });
 
-/** Verifies one proof without exposing timing-sensitive string comparison. */
+/** Verifies one proof with the HMAC verification of Web Crypto, which compares in constant time. */
 export const verifyPreviewRendererProof = Effect.fn(
   "AksaraContracts.verifyPreviewRendererProof"
 )(function* (input: {
@@ -83,10 +102,18 @@ export const verifyPreviewRendererProof = Effect.fn(
   readonly proof: PreviewRendererProof;
   readonly secret: PreviewRendererSecret;
 }) {
-  const expected = yield* computePreviewRendererProof(input);
-  const actualBytes = Buffer.from(input.proof, "base64url");
-  const expectedBytes = Buffer.from(expected, "base64url");
-  if (timingSafeEqual(actualBytes, expectedBytes)) {
+  const key = yield* importPreviewRendererKey(input.secret);
+  const message = new TextEncoder().encode(
+    canonicalizePreviewRendererAuth(input)
+  );
+  const tag = yield* Effect.fromResult(Base64Url.decode(input.proof)).pipe(
+    Effect.orDie
+  );
+  const valid = yield* Effect.tryPromise({
+    catch: () => new PreviewRendererAuthError({ reason: "compute" }),
+    try: () => globalThis.crypto.subtle.verify("HMAC", key, tag, message),
+  });
+  if (valid) {
     return;
   }
   return yield* new PreviewRendererAuthError({ reason: "invalid" });

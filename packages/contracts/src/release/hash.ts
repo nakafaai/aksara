@@ -1,8 +1,7 @@
-import { createHash } from "node:crypto";
-
 import { Effect, Schema } from "effect";
 
-import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
+import { ReleaseIdSchema } from "#contracts/ids";
 import { canonicalizeContentReleaseManifest } from "#contracts/release/signing";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
@@ -16,14 +15,9 @@ export class ReleaseHashComputationError extends Schema.TaggedError<
 export const hashContentReleaseManifest = Effect.fn(
   "AksaraContracts.hashContentReleaseManifest"
 )((manifest: ContentReleaseManifest) =>
-  Effect.try({
-    catch: () =>
-      new ReleaseHashComputationError({ releaseId: manifest.releaseId }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(canonicalizeContentReleaseManifest(manifest))
-          .digest("hex")}`
-      ),
-  })
+  hashText(canonicalizeContentReleaseManifest(manifest)).pipe(
+    Effect.mapError(
+      () => new ReleaseHashComputationError({ releaseId: manifest.releaseId })
+    )
+  )
 );

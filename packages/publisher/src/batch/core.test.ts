@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Array as Arr, Effect, Ref, Stream } from "effect";
@@ -47,12 +46,11 @@ describe("streamBatches", () => {
       const values = Array.from({ length: 10 }, (_, index) =>
         index.toString().padStart(2, "0")
       );
-      const maxBytes = Buffer.byteLength(
+      const maxBytes = new TextEncoder().encode(
         serializeBatch(
           buildBatch(Arr.take(values, 3), Number.MAX_SAFE_INTEGER, releaseId)
-        ),
-        "utf8"
-      );
+        )
+      ).byteLength;
       const batches = yield* streamBatches({
         build: buildBatch,
         count: (batch) => batch.values.length,
@@ -80,7 +78,8 @@ describe("streamBatches", () => {
         Arr.every(
           batches,
           (batch) =>
-            Buffer.byteLength(serializeBatch(batch), "utf8") <= maxBytes
+            new TextEncoder().encode(serializeBatch(batch)).byteLength <=
+            maxBytes
         )
       ).toBe(true);
     })
@@ -93,12 +92,11 @@ describe("streamBatches", () => {
         const values = Array.from({ length: 64 }, (_, index) =>
           `${index}`.padEnd(32, "x")
         );
-        const maxBytes = Buffer.byteLength(
+        const maxBytes = new TextEncoder().encode(
           serializeBatch(
             buildBatch(Arr.take(values, 1), Number.MAX_SAFE_INTEGER, releaseId)
-          ),
-          "utf8"
-        );
+          )
+        ).byteLength;
         const consumption = yield* Ref.make(0);
         const batches = yield* streamBatches({
           build: buildBatch,

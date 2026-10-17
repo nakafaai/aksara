@@ -7,7 +7,11 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/re
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
-import { productionCalls, productionProgram } from "#test/production/harness";
+import {
+  ACTIVE_PRODUCTION_STATE,
+  productionCalls,
+  productionProgram,
+} from "#test/production/harness";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import {
   completedBundle,
@@ -37,19 +41,13 @@ const refreshedRendererManifest = createRendererManifest({
 
 beforeEach(() => {
   calls.reset();
-  const active = gitBundle("release-active");
-  calls.current = currentState({
-    active: completedBundle(active),
-    candidate: null,
-    recovery: null,
-    tryoutRuntimeBundle: null,
-  });
+  calls.current = ACTIVE_PRODUCTION_STATE;
 });
 
 describe("production preparation", () => {
   it.effect("binds a Git delta to exact authoritative catalog evidence", () =>
     Effect.gen(function* () {
-      const active = gitBundle("release-active");
+      const active = yield* gitBundle("release-active");
       const receipt = yield* productionProgram({
         command: "release",
         recoveryId: releaseId("recovery-next"),
@@ -151,17 +149,17 @@ describe("production preparation", () => {
 
   it.effect("reuses a producer pair through two Git successors", () =>
     Effect.gen(function* () {
-      const producer = gitBundle("release-runtime-producer", {
+      const producer = yield* gitBundle("release-runtime-producer", {
         baseReleaseId: releaseId("release-runtime-parent"),
         tryoutSnapshotId: inheritedTryoutSnapshot,
       });
-      const active = gitBundle("release-runtime-active", {
+      const active = yield* gitBundle("release-runtime-active", {
         baseManifestHash: producer.release.manifestHash,
         baseReleaseId: producer.release.manifest.releaseId,
         tryoutSnapshotId: inheritedTryoutSnapshot,
       });
       calls.current = currentState({
-        active: completedBundle(active),
+        active: yield* completedBundle(active),
         candidate: null,
         recovery: null,
         tryoutRuntimeBundle: runtimeBundleFor(
@@ -191,14 +189,15 @@ describe("production preparation", () => {
     "adopts a new renderer only with complete retained-artifact proof",
     () =>
       Effect.gen(function* () {
-        const active = gitBundle("release-renderer-base", {
+        const active = yield* gitBundle("release-renderer-base", {
           baseReleaseId: releaseId("release-renderer-parent"),
           tryoutSnapshotId: inheritedTryoutSnapshot,
         });
+        const activeCompleted = yield* completedBundle(active);
         /** Restores the exact active runtime before each assertion path. */
         const activate = () => {
           calls.current = currentState({
-            active: completedBundle(active),
+            active: activeCompleted,
             candidate: null,
             recovery: null,
             tryoutRuntimeBundle: runtimeBundleFor(
@@ -240,14 +239,14 @@ describe("production preparation", () => {
 
   it.effect("reuses the exact candidate Git envelope after key rotation", () =>
     Effect.gen(function* () {
-      const active = gitBundle("release-active");
-      const candidate = gitBundle("release-candidate", {
+      const active = yield* gitBundle("release-active");
+      const candidate = yield* gitBundle("release-candidate", {
         baseManifestHash: active.release.manifestHash,
         baseReleaseId: releaseId("release-active"),
         keyId: SigningKeyIdSchema.make("content-2026-01"),
       });
       calls.current = currentState({
-        active: completedBundle(active),
+        active: yield* completedBundle(active),
         candidate: { ...candidate, phase: "staging" },
         recovery: null,
         tryoutRuntimeBundle: null,

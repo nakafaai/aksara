@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 
@@ -15,62 +14,8 @@ import {
 import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import { QuranSurahRowSchema } from "#contracts/quran/spec";
+import { withDigestFailureFor } from "#contracts/test/digest";
 import { makeQuranTestRecords } from "#contracts/test/quran";
-
-const failures = vi.hoisted(() => ({
-  construct: vi.fn<() => boolean>(() => false),
-  stage: vi.fn<() => "digest" | "update" | null>(() => null),
-}));
-const QURAN_DIGEST_DOMAIN_PATTERN =
-  /^nakafa\.aksara\.quran-(?:projection|runtime|search)\n/u;
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic failures into current Quran aggregate digests. */
-    createHash(algorithm: string) {
-      if (failures.construct()) {
-        throw new TypeError(
-          "injected current Quran digest construction failure"
-        );
-      }
-      const hash = crypto.createHash(algorithm);
-      let aggregate = false;
-      return new Proxy(hash, {
-        /** Preserves native binding while intercepting selected operations. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (QURAN_DIGEST_DOMAIN_PATTERN.test(String(data))) {
-                aggregate = true;
-              } else if (aggregate && failures.stage() === "update") {
-                throw new TypeError(
-                  "injected current Quran digest update failure"
-                );
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          if (
-            property === "digest" &&
-            aggregate &&
-            failures.stage() === "digest"
-          ) {
-            return () => {
-              throw new TypeError(
-                "injected current Quran digest finalization failure"
-              );
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 const activeAppLocales = ACTIVE_APP_LOCALES;
 const enDeLocales = Schema.decodeSync(ActiveAppLocaleListSchema)(["en", "de"]);
@@ -260,38 +205,15 @@ describe("Quran aggregate digest", () => {
     })
   );
 
-  it.effect("maps digest construction, update, and finalization failures", () =>
+  it.effect("maps a rejected aggregate digest to a Quran row hash error", () =>
     Effect.gen(function* () {
       const records = yield* makeQuranTestRecords();
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.construct.mockReturnValue(false);
-          failures.stage.mockReturnValue(null);
-        })
+      const error = yield* withDigestFailureFor(
+        "nakafa.aksara.quran-projection",
+        reject(records)
       );
-      yield* Effect.sync(() => {
-        failures.construct.mockReturnValue(true);
-      });
-      const constructError = yield* reject([]);
-      yield* Effect.sync(() => {
-        failures.construct.mockReturnValue(false);
-        failures.stage.mockReturnValue("update");
-      });
-      const updateError = yield* reject(Arr.take(records, 1));
-      yield* Effect.sync(() => {
-        failures.stage.mockReturnValue("digest");
-      });
-      const digestError = yield* reject(records);
 
-      expect(constructError).toMatchObject({
-        _tag: "QuranRowHashError",
-        scope: "row",
-      });
-      expect(updateError).toMatchObject({
-        _tag: "QuranRowHashError",
-        scope: "row",
-      });
-      expect(digestError).toMatchObject({
+      expect(error).toMatchObject({
         _tag: "QuranRowHashError",
         scope: "row",
       });

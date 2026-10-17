@@ -1,5 +1,5 @@
-import { parseArgs } from "node:util";
 import { Effect, FileSystem, Schema } from "effect";
+import { parseOptions } from "#scripts/options";
 import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import {
   decideArchive,
@@ -10,6 +10,17 @@ import { proveContractRelease } from "#scripts/release/proof";
 
 /** Release identity subcommands available only to protected workflows. */
 const ReleaseCommandSchema = Schema.Literals(["decide", "describe", "prove"]);
+
+/** Options that the release command declares, each taking exactly one value. */
+const ReleaseOptionSchema = Schema.Literals([
+  "archive",
+  "output",
+  "package",
+  "previous",
+  "releases",
+  "repository",
+  "source-sha",
+]);
 
 const ReleaseArgumentsSchema = Schema.Struct({
   archive: Schema.UndefinedOr(Schema.String),
@@ -28,28 +39,11 @@ type ReleaseArguments = typeof ReleaseArgumentsSchema.Type;
 const parseReleaseArguments = Effect.fn(
   "AksaraContracts.parseReleaseArguments"
 )(function* (args: readonly string[]) {
-  const parsed = yield* Effect.try({
-    catch: () =>
-      releaseError("argument", "Contract release arguments are malformed"),
-    try: () =>
-      parseArgs({
-        allowPositionals: true,
-        args: [...args],
-        options: {
-          archive: { type: "string" },
-          output: { type: "string" },
-          package: {
-            default: "packages/contracts/package.json",
-            type: "string",
-          },
-          previous: { type: "string" },
-          releases: { type: "string" },
-          repository: { type: "string" },
-          "source-sha": { type: "string" },
-        },
-        strict: true,
-      }),
-  });
+  const parsed = yield* parseOptions([...args], ReleaseOptionSchema, true).pipe(
+    Effect.mapError(() =>
+      releaseError("argument", "Contract release arguments are malformed")
+    )
+  );
   const [command, ...extra] = parsed.positionals;
   if (
     extra.length > 0 ||
@@ -64,7 +58,7 @@ const parseReleaseArguments = Effect.fn(
     archive: parsed.values.archive,
     command,
     output: parsed.values.output,
-    packagePath: parsed.values.package,
+    packagePath: parsed.values.package ?? "packages/contracts/package.json",
     previous: parsed.values.previous,
     releases: parsed.values.releases,
     repository: parsed.values.repository,

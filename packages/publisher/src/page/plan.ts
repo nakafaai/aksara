@@ -8,7 +8,7 @@ import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rol
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { PageEntry } from "@nakafa/aksara-corpus/pages/registry";
-import type { Effect, Stream } from "effect";
+import { Effect, type Stream } from "effect";
 import {
   familyPublicationPlanSchema,
   planFamilyPublication,
@@ -33,7 +33,9 @@ type PlanPagePublicationContext =
   | Effect.Services<ReturnType<typeof inspectPageDocument>>;
 
 /** Derives one complete page head from a newly compiled upsert. */
-function makePageHead(record: PreparedContentUpsert): PageHead {
+const makePageHead = Effect.fn("AksaraPublisher.makePageHead")(function* (
+  record: PreparedContentUpsert
+) {
   const { change, payload, projection } = record;
   return PageHeadSchema.make({
     artifactHash: change.artifactHash,
@@ -42,13 +44,13 @@ function makePageHead(record: PreparedContentUpsert): PageHead {
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "page",
-    projectionHash: hashContentProjection(projection),
+    projectionHash: yield* hashContentProjection(projection),
     publicPath: projectionPublicPath(projection),
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,
   });
-}
+});
 
 /** Preserves one existing public page head for authenticated rollback. */
 function priorPage(head: PageHead): RollbackSnapshotState {

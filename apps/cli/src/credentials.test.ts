@@ -1,32 +1,15 @@
-import { createHash, createPublicKey, KeyObject } from "node:crypto";
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
-import { Array as Arr, Effect, HashSet, Redacted, Schema } from "effect";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
+import { Array as Arr, Effect, HashSet, Redacted } from "effect";
+import { Base64, Hex } from "effect/encoding";
 import {
   makePreviewCredentials,
   type PreviewCredentials,
 } from "#cli/credentials";
 
-const CryptoControlSchema = Schema.Struct({
-  generatedPublicKey: Schema.mutableKey(
-    Schema.UndefinedOr(
-      Schema.declare(
-        (input: unknown): input is KeyObject => input instanceof KeyObject
-      )
-    )
-  ),
-  mode: Schema.mutableKey(
-    Schema.Literals(["generate-failure", "normal", "rsa"])
-  ),
-});
-type CryptoControl = typeof CryptoControlSchema.Type;
-const cryptoControl = vi.hoisted(
-  (): CryptoControl => ({
-    generatedPublicKey: undefined,
-    mode: "normal",
-  })
-);
-type CryptoMode = typeof cryptoControl.mode;
 const LOCAL_KEY_ID_PATTERN = /^local-[a-f0-9]{24}$/u;
+/** Ed25519 SubjectPublicKeyInfo DER prefix, which precedes the 32 key bytes. */
+const ED25519_SPKI_PREFIX = "302a300506032b6570032100";
 /** Resolves to true only when the two types are identical. */
 type Equals<A, B> =
   (<X>() => X extends A ? 1 : 2) extends <X>() => X extends B ? 1 : 2
@@ -38,42 +21,36 @@ type IsReadonly<T, K extends keyof T> = Equals<
   Readonly<Pick<T, K>>
 >;
 
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects generation and wrong-key failures at the real crypto boundary. */
-    generateKeyPairSync(algorithm: string) {
-      if (cryptoControl.mode === "generate-failure") {
-        throw new TypeError("Test-only key generation failure.");
-      }
-      if (cryptoControl.mode === "rsa") {
-        return crypto.generateKeyPairSync("rsa", { modulusLength: 1024 });
-      }
-      if (algorithm !== "ed25519") {
-        throw new TypeError("Test requested an unexpected key algorithm.");
-      }
-      const keyPair = crypto.generateKeyPairSync("ed25519");
-      cryptoControl.generatedPublicKey = keyPair.publicKey;
-      return keyPair;
-    },
-  };
-});
+/** Scopes one rejected importKey call, which the first key import of credential creation makes. */
+const failFirstImport = Effect.acquireRelease(
+  Effect.sync(() =>
+    vi
+      .spyOn(globalThis.crypto.subtle, "importKey")
+      .mockRejectedValueOnce(new TypeError("Test-only key generation failure."))
+  ),
+  () => Effect.sync(() => vi.restoreAllMocks())
+);
 
-/** Scopes one crypto fault mode and restores the preceding mode on every exit. */
-const setCryptoMode = Effect.fn("test.credentials.setCryptoMode")(
-  (mode: CryptoMode) =>
-    Effect.acquireRelease(
-      Effect.sync(() => {
-        const previous = cryptoControl.mode;
-        cryptoControl.mode = mode;
-        return previous;
-      }),
-      (previous) =>
-        Effect.sync(() => {
-          cryptoControl.mode = previous;
-        })
-    )
+/** Scopes one importKey fault so the second key import of credential creation fails. */
+const failSignerImport = Effect.acquireRelease(
+  Effect.sync(() => {
+    let imports = 0;
+    const realImportKey = globalThis.crypto.subtle.importKey.bind(
+      globalThis.crypto.subtle
+    );
+    return vi
+      .spyOn(globalThis.crypto.subtle, "importKey")
+      .mockImplementation((...parameters) => {
+        imports += 1;
+        if (imports === 2) {
+          return Promise.reject(
+            new TypeError("Test-only signer import failure.")
+          );
+        }
+        return realImportKey(...parameters);
+      });
+  }),
+  () => Effect.sync(() => vi.restoreAllMocks())
 );
 
 describe("preview credentials", () => {
@@ -122,39 +99,67 @@ describe("preview credentials", () => {
         expect(Arr.every(firstSecrets, (value) => value.length === 43)).toBe(
           true
         );
-        expect(createPublicKey(first.publicKeyPem).asymmetricKeyType).toBe(
-          "ed25519"
+        const spki = yield* Effect.fromResult(
+          Base64.decode(first.publicKeyPem.replace(/-----[^-]+-----|\s/gu, ""))
         );
+        expect(Hex.encode(spki.slice(0, 12))).toBe(ED25519_SPKI_PREFIX);
         expect(first.publicKeyPem).not.toContain("PRIVATE KEY");
       })
+  );
+
+  it.effect("maps a rejected public key digest to the generate stage", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only public key digest failure.")
+            )
+        ),
+        () => Effect.sync(() => vi.restoreAllMocks())
+      );
+      const error = yield* makePreviewCredentials().pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "PreviewCredentialError",
+        stage: "generate",
+      });
+    })
   );
 
   it.effect("derives the key identity from the generated public key", () =>
     Effect.gen(function* () {
       const credentials = yield* makePreviewCredentials();
-      const { generatedPublicKey } = cryptoControl;
+      const digest = yield* hashText(credentials.publicKeyPem);
 
-      expect(credentials.publicKeyPem).toBe(
-        generatedPublicKey?.export({ format: "pem", type: "spki" }).toString()
-      );
       // The documented derivation: "local-" plus the first 24 hex digits of the SHA-256 of the SPKI PEM text.
       expect(credentials.keyId).toBe(
-        `local-${createHash("sha256").update(credentials.publicKeyPem).digest("hex").slice(0, 24)}`
+        `local-${digest.slice("sha256:".length, "sha256:".length + 24)}`
       );
     })
   );
 
-  it.effect.each([
-    ["generate-failure", "generate"],
-    ["rsa", "signer"],
-  ] as const)("maps %s to a typed credential stage", ([mode, stage]) =>
+  it.effect("maps a rejected key import to the generate stage", () =>
     Effect.gen(function* () {
-      yield* setCryptoMode(mode);
+      yield* failFirstImport;
       const error = yield* makePreviewCredentials().pipe(Effect.flip);
 
       expect(error).toMatchObject({
         _tag: "PreviewCredentialError",
-        stage,
+        stage: "generate",
+      });
+    })
+  );
+
+  it.effect("maps a rejected signer import to the signer stage", () =>
+    Effect.gen(function* () {
+      yield* failSignerImport;
+      const error = yield* makePreviewCredentials().pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "PreviewCredentialError",
+        stage: "signer",
       });
     })
   );

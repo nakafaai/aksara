@@ -1,9 +1,8 @@
-import { createHash } from "node:crypto";
-
 import { Array as Arr, Effect, Schema } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
-import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
+import type { Sha256Hash } from "#contracts/ids";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import {
   type QuranRowPayload,
@@ -123,15 +122,9 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
 /** Computes one current row's domain-separated identity. */
 export const hashQuranRow = Effect.fn("AksaraContracts.hashQuranRow")(
   (payload: QuranRowPayload) =>
-    Effect.try({
-      catch: () => new QuranRowHashError({ scope: "row" }),
-      try: () =>
-        Sha256HashSchema.make(
-          `sha256:${createHash("sha256")
-            .update(`${ROW_DOMAIN}\n${canonicalizeQuranRow(payload)}`)
-            .digest("hex")}`
-        ),
-    })
+    hashText(`${ROW_DOMAIN}\n${canonicalizeQuranRow(payload)}`).pipe(
+      Effect.mapError(() => new QuranRowHashError({ scope: "row" }))
+    )
 );
 
 /** Creates one snapshot-bound current row. */

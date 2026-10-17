@@ -1,13 +1,20 @@
-import { createHash } from "node:crypto";
+import { Effect, Schema } from "effect";
+import { hashText } from "#contracts/hash/text";
 
-import { Sha256HashSchema } from "#contracts/ids";
+/** Web Crypto could not hash one domain-separated try-out identity. */
+export class TryoutCanonicalHashError extends Schema.TaggedError<
+  TryoutCanonicalHashError,
+  { readonly brand: unique symbol }
+>()(
+  "TryoutCanonicalHashError",
+  { domain: Schema.String }
+) {}
 
 /** Computes one domain-separated canonical try-out SHA-256 identity. */
-export function hashTryoutCanonical(domain: string, canonical: string) {
-  const digest = createHash("sha256")
-    .update(domain)
-    .update("\n")
-    .update(canonical)
-    .digest("hex");
-  return Sha256HashSchema.make(`sha256:${digest}`);
-}
+export const hashTryoutCanonical = Effect.fn(
+  "AksaraContracts.hashTryoutCanonical"
+)((domain: string, canonical: string) =>
+  hashText(`${domain}\n${canonical}`).pipe(
+    Effect.mapError(() => new TryoutCanonicalHashError({ domain }))
+  )
+);

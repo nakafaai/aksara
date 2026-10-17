@@ -19,16 +19,18 @@ const tryoutPrompts = Arr.filter(
  */
 export const tryoutFixtures: Effect.Effect<
   readonly [
-    Awaited<ReturnType<typeof publishedQuestionHeads>>,
-    ReturnType<typeof selectTryoutSlice>["placements"],
+    Effect.Success<ReturnType<typeof publishedQuestionHeads>>,
+    Effect.Success<ReturnType<typeof selectTryoutSlice>>["placements"],
   ],
-  Effect.Error<ReturnType<typeof loadTryoutContent>>
+  | Effect.Error<ReturnType<typeof loadTryoutContent>>
+  | Effect.Error<ReturnType<typeof publishedQuestionHeads>>
+  | Effect.Error<ReturnType<typeof selectTryoutSlice>>
 > = Effect.gen(function* () {
-  const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
+  const tryoutHeads = yield* publishedQuestionHeads();
   const tryoutContent = yield* loadTryoutContent(checkoutRoot).pipe(
     Effect.provide(NodeServices.layer)
   );
-  const { placements: tryoutPlacements } = selectTryoutSlice(
+  const { placements: tryoutPlacements } = yield* selectTryoutSlice(
     tryoutContent.projection,
     tryoutPrompts
   );

@@ -1,7 +1,6 @@
-import { createHash, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Result } from "effect";
-import { Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import {
   verifyContentRuntimeEvidenceExchange,
@@ -28,6 +27,7 @@ import {
   routedSourceCases,
   tamperedFoundResponses,
 } from "#contracts/test/runtime/public";
+import { verifyEd25519Pem } from "#contracts/test/signature";
 
 /** Supplies the trusted fixture resolver to one runtime verification effect. */
 const provideFixtureKey = Effect.provideService(
@@ -156,14 +156,12 @@ describe("content runtime verification", () => {
       };
       const incompleteRenderer = {
         ...incompleteContract,
-        hash: Sha256HashSchema.make(
-          `sha256:${createHash("sha256")
-            .update(canonicalizeRendererManifestContract(incompleteContract))
-            .digest("hex")}`
+        hash: yield* hashText(
+          canonicalizeRendererManifestContract(incompleteContract)
         ),
       };
-      const incompleteRelease = yield* Effect.promise(() =>
-        createSignedRuntimeRelease(incompleteRenderer.hash)
+      const incompleteRelease = yield* createSignedRuntimeRelease(
+        incompleteRenderer.hash
       );
       const response = {
         ...found,
@@ -241,24 +239,32 @@ describe("pinned public runtime exchange bytes", () => {
     })
   );
   /** Verifies one recorded signature over its exact bytes, then over the same bytes with one changed byte. */
-  function verifyRecorded(message: string, signature: string) {
-    return Arr.map([message, message.replace("nakafa", "makafa")], (text) =>
-      verifyBytes(
-        null,
-        new TextEncoder().encode(text),
-        pinnedPublicKey,
-        Buffer.from(signature, "base64url")
-      )
-    );
-  }
-  it("verifies the pinned artifact and release signatures over exact bytes", () => {
-    expect(
-      verifyRecorded(pinnedArtifactMessage, pinnedResponse.artifact.signature)
-    ).toEqual([true, false]);
-    expect(
-      verifyRecorded(pinnedReleaseMessage, pinnedResponse.release.signature)
-    ).toEqual([true, false]);
-  });
+  const verifyRecorded = Effect.fn("RuntimeVerifyTest.verifyRecorded")(
+    function* (message: string, signature: string) {
+      return yield* Effect.forEach(
+        [message, message.replace("nakafa", "makafa")],
+        (text) => verifyEd25519Pem(pinnedPublicKey, text, signature)
+      );
+    }
+  );
+  it.effect(
+    "verifies the pinned artifact and release signatures over exact bytes",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyRecorded(
+            pinnedArtifactMessage,
+            pinnedResponse.artifact.signature
+          )
+        ).toEqual([true, false]);
+        expect(
+          yield* verifyRecorded(
+            pinnedReleaseMessage,
+            pinnedResponse.release.signature
+          )
+        ).toEqual([true, false]);
+      })
+  );
   it.effect("rejects one changed signature or projection hash character", () =>
     Effect.gen(function* () {
       const signatureError = yield* verifyContentRuntimeExchange({

@@ -1,7 +1,9 @@
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
+import { WorkflowError } from "#scripts/workflow/requirement";
+import { expectRefusal } from "#scripts/workflow/test/failure";
 import {
-  sourceTestsOf,
+  sourceEffectTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
 import {
@@ -19,261 +21,282 @@ import {
   verifyWorkflowToolchains,
 } from "#scripts/workflow/toolchain";
 
+/** Expects the toolchain policy to refuse one workflow text with the given message. */
+const refuses = (source: string, message: string) =>
+  expectRefusal(verifyWorkflowToolchains([source]), message);
+
+/** Accepts one workflow text under the toolchain policy. */
+const accepts = (source: string) => verifyWorkflowToolchains([source]);
+
 layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
-  const it = sourceTestsOf(layered);
+  const it = sourceEffectTestsOf(layered);
 
   it("accepts package.json-owned toolchains and every YAML job identifier", ({
     all: sources,
     ci,
-  }) => {
-    const quotedUppercaseJob = ci.replace("  checks:\n", '  "Checks_Main":\n');
+  }) =>
+    Effect.gen(function* () {
+      const quotedUppercaseJob = ci.replace(
+        "  checks:\n",
+        '  "Checks_Main":\n'
+      );
 
-    expect(() => verifyWorkflowToolchains(sources)).not.toThrow();
-    expect(() => verifyWorkflowToolchains([quotedUppercaseJob])).not.toThrow();
+      yield* verifyWorkflowToolchains(sources);
+      yield* accepts(quotedUppercaseJob);
+    }));
+
+  Arr.forEach(INVALID_WORKFLOW_STRUCTURES, ([source, message], index) => {
+    layered.effect(`rejects invalid workflow structure ${index}`, () =>
+      refuses(source, message)
+    );
   });
 
-  layered.each(INVALID_WORKFLOW_STRUCTURES)(
-    "rejects invalid workflow structure %#",
-    (source, message) => {
-      expect(() => verifyWorkflowToolchains([source])).toThrow(message);
-    }
+  layered.effect("rejects malformed YAML as a typed workflow refusal", () =>
+    Effect.gen(function* () {
+      const refusal = yield* verifyWorkflowToolchains(["jobs: ["]).pipe(
+        Effect.flip
+      );
+
+      expect(Schema.is(WorkflowError)(refusal)).toBe(true);
+    })
   );
 
-  layered("ignores jobs that do not execute pnpm", () => {
-    expect(() =>
-      verifyWorkflowToolchains([
-        "jobs:\n  reusable:\n    uses: nakafaai/workflows/.github/workflows/check.yml@main",
-      ])
-    ).not.toThrow();
-  });
+  layered.effect("ignores jobs that do not execute pnpm", () =>
+    accepts(
+      "jobs:\n  reusable:\n    uses: nakafaai/workflows/.github/workflows/check.yml@main"
+    )
+  );
+
+  layered.effect("refuses job steps that are not a sequence", () =>
+    refuses(
+      "jobs:\n  checks:\n    steps: {}\n",
+      "Workflow job steps must be a sequence"
+    )
+  );
+
+  layered.effect("refuses an environment name that is not text", () =>
+    refuses(
+      "jobs:\n  checks:\n    env:\n      1: value\n    steps:\n      - run: echo ok\n",
+      "Workflow environment names must be strings"
+    )
+  );
 
   it("rejects duplicated environment versions at every workflow scope", ({
     ci,
-  }) => {
-    const workflowEnvironment = ci.replace(
-      "permissions:\n",
-      "env:\n  NODE_VERSION: 24\n\npermissions:\n"
-    );
-    expect(() => verifyWorkflowToolchains([workflowEnvironment])).toThrow(
-      "Workflows must not duplicate Node or pnpm versions"
-    );
+  }) =>
+    Effect.gen(function* () {
+      yield* refuses(
+        ci.replace(
+          "permissions:\n",
+          "env:\n  NODE_VERSION: 24\n\npermissions:\n"
+        ),
+        "Workflows must not duplicate Node or pnpm versions"
+      );
+      yield* refuses(
+        ci.replace(
+          "  checks:\n",
+          '  checks:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
+        ),
+        "Workflows must not duplicate Node or pnpm versions"
+      );
+      yield* refuses(
+        ci.replace(
+          "      - name: Install dependencies",
+          '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
+        ),
+        "Workflows must not duplicate Node or pnpm versions"
+      );
+      yield* refuses(
+        ci.replace(
+          "      - name: Audit dependencies",
+          '      - name: Audit dependencies\n        env:\n          "PNPM_VERSION" : 11.15.1'
+        ),
+        "Workflows must not duplicate Node or pnpm versions"
+      );
+    }));
 
-    const jobEnvironment = ci.replace(
-      "  checks:\n",
-      '  checks:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
-    );
-    expect(() => verifyWorkflowToolchains([jobEnvironment])).toThrow(
-      "Workflows must not duplicate Node or pnpm versions"
-    );
-
-    const stepEnvironment = ci.replace(
-      "      - name: Install dependencies",
-      '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
-    );
-    expect(() => verifyWorkflowToolchains([stepEnvironment])).toThrow(
-      "Workflows must not duplicate Node or pnpm versions"
-    );
-  });
-
-  layered(
+  layered.effect(
     "keeps a job environment value over the workflow value of the same name",
-    () => {
-      expect(() => verifyWorkflowToolchains([NPM_JOB_ENV])).not.toThrow();
-    }
+    () => accepts(NPM_JOB_ENV)
   );
 
-  layered(
+  layered.effect(
     "requires toolchain setup when a job environment value makes it run pnpm",
-    () => {
-      expect(() => verifyWorkflowToolchains([PNPM_JOB_ENV])).toThrow(
+    () => refuses(PNPM_JOB_ENV, "Every pnpm job must set up the toolchain once")
+  );
+
+  it("requires exactly one toolchain setup 0", ({ ci }) =>
+    refuses(
+      ci.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
+      "Every pnpm job must set up the toolchain once"
+    ));
+
+  it("requires exactly one toolchain setup 1", ({ ci }) =>
+    refuses(
+      ci.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`),
+      "Every pnpm job must set up the toolchain once"
+    ));
+
+  it("rejects legacy, competing, and unreviewed setup actions", ({ ci }) =>
+    Effect.gen(function* () {
+      yield* refuses(
+        ci.replace(
+          TOOLCHAIN_SETUP_ACTION,
+          "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
+        ),
+        "Workflows must not use legacy pnpm/action-setup"
+      );
+      yield* refuses(
+        ci.replace(
+          TOOLCHAIN_STEP,
+          `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
+        ),
+        "Workflows must not use a second Node.js setup action"
+      );
+      yield* refuses(
+        ci.replace(
+          TOOLCHAIN_SETUP_ACTION,
+          "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b"
+        ),
+        "The toolchain setup must use the reviewed pnpm/setup release"
+      );
+    }));
+
+  it("detects pnpm invoked through a workflow environment alias", ({ ci }) =>
+    Effect.gen(function* () {
+      const aliasedPnpm = ci
+        .replace("  checks:\n", "  checks:\n    env:\n      PM: pnpm\n")
+        .replace("run: pnpm install", "run: $PM install");
+      const actionsAlias = aliasedPnpm.replace(
+        "run: $PM install",
+        Arr.join(["run: $", "{{ env.PM }} install"], "")
+      );
+
+      yield* accepts(aliasedPnpm);
+      yield* accepts(actionsAlias);
+      yield* accepts(
+        ci.replace("  checks:\n", "  checks:\n    env:\n      RETRIES: 3\n")
+      );
+
+      yield* refuses(
+        aliasedPnpm.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
         "Every pnpm job must set up the toolchain once"
       );
-    }
-  );
+      yield* refuses(
+        actionsAlias.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
+        "Every pnpm job must set up the toolchain once"
+      );
+    }));
 
-  it("requires exactly one toolchain setup 0", ({ ci }) => {
-    const source = ci.replace(`${TOOLCHAIN_STEP}\n\n`, "");
-    expect(() => verifyWorkflowToolchains([source])).toThrow(
-      "Every pnpm job must set up the toolchain once"
-    );
-  });
-
-  it("requires exactly one toolchain setup 1", ({ ci }) => {
-    const source = ci.replace(
-      TOOLCHAIN_STEP,
-      `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`
-    );
-    expect(() => verifyWorkflowToolchains([source])).toThrow(
-      "Every pnpm job must set up the toolchain once"
-    );
-  });
-
-  it("rejects legacy, competing, and unreviewed setup actions", ({ ci }) => {
-    const legacyPnpm = ci.replace(
-      TOOLCHAIN_SETUP_ACTION,
-      "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
-    );
-    const competingNode = ci.replace(
-      TOOLCHAIN_STEP,
-      `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
-    );
-    const unreviewed = ci.replace(
-      TOOLCHAIN_SETUP_ACTION,
-      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b"
-    );
-
-    expect(() => verifyWorkflowToolchains([legacyPnpm])).toThrow(
-      "Workflows must not use legacy pnpm/action-setup"
-    );
-    expect(() => verifyWorkflowToolchains([competingNode])).toThrow(
-      "Workflows must not use a second Node.js setup action"
-    );
-    expect(() => verifyWorkflowToolchains([unreviewed])).toThrow(
-      "The toolchain setup must use the reviewed pnpm/setup release"
-    );
-  });
-
-  it("detects pnpm invoked through a workflow environment alias", ({ ci }) => {
-    const aliasedPnpm = ci
-      .replace("  checks:\n", "  checks:\n    env:\n      PM: pnpm\n")
-      .replace("run: pnpm install", "run: $PM install");
-    const actionsAlias = aliasedPnpm.replace(
-      "run: $PM install",
-      Arr.join(["run: $", "{{ env.PM }} install"], "")
-    );
-    const numericEnvironment = ci.replace(
-      "  checks:\n",
-      "  checks:\n    env:\n      RETRIES: 3\n"
-    );
-
-    expect(() => verifyWorkflowToolchains([aliasedPnpm])).not.toThrow();
-    expect(() => verifyWorkflowToolchains([actionsAlias])).not.toThrow();
-    expect(() => verifyWorkflowToolchains([numericEnvironment])).not.toThrow();
-
-    const missingSetups = aliasedPnpm.replace(`${TOOLCHAIN_STEP}\n\n`, "");
-    expect(() => verifyWorkflowToolchains([missingSetups])).toThrow(
-      "Every pnpm job must set up the toolchain once"
-    );
-    const expressionWithoutSetups = actionsAlias.replace(
-      `${TOOLCHAIN_STEP}\n\n`,
-      ""
-    );
-    expect(() => verifyWorkflowToolchains([expressionWithoutSetups])).toThrow(
-      "Every pnpm job must set up the toolchain once"
-    );
-  });
-
-  it("requires setup before the first pnpm command", ({ ci }) => {
-    const commandBeforeSetup = ci.replace(
-      TOOLCHAIN_STEP,
-      `      - name: Premature command
+  it("requires setup before the first pnpm command", ({ ci }) =>
+    refuses(
+      ci.replace(
+        TOOLCHAIN_STEP,
+        `      - name: Premature command
         run: pnpm --version
 
 ${TOOLCHAIN_STEP}`
-    );
-    expect(() => verifyWorkflowToolchains([commandBeforeSetup])).toThrow(
+      ),
       "Every pnpm job must set up the toolchain before running pnpm"
-    );
-  });
+    ));
 
-  it("rejects toolchain versions declared by setup inputs", ({ ci }) => {
-    const variants = setupInputVariants(ci);
+  it("rejects toolchain versions declared by setup inputs", ({ ci }) =>
+    Effect.gen(function* () {
+      const variants = setupInputVariants(ci);
 
-    expect(() => verifyWorkflowToolchains([variants.inlinePnpm])).toThrow(
-      "Workflows must derive the pnpm version from package.json"
-    );
-    expect(() =>
-      verifyWorkflowToolchains([variants.alternateManifest])
-    ).toThrow("Workflows must derive the toolchain from the root package.json");
-    expect(() => verifyWorkflowToolchains([variants.inlineRuntime])).toThrow(
-      "Workflows must derive the runtime from package.json"
-    );
-    expect(() => verifyWorkflowToolchains([variants.noInputs])).toThrow(
-      "The toolchain setup step must define inputs"
-    );
-    expect(() => verifyWorkflowToolchains([variants.noCache])).toThrow(
-      "The toolchain setup must cache the root pnpm store"
-    );
-    expect(() => verifyWorkflowToolchains([variants.hiddenInstall])).toThrow(
-      "The toolchain setup must leave the frozen install explicit"
-    );
-  });
+      yield* refuses(
+        variants.inlinePnpm,
+        "Workflows must derive the pnpm version from package.json"
+      );
+      yield* refuses(
+        variants.alternateManifest,
+        "Workflows must derive the toolchain from the root package.json"
+      );
+      yield* refuses(
+        variants.inlineRuntime,
+        "Workflows must derive the runtime from package.json"
+      );
+      yield* refuses(
+        variants.noInputs,
+        "The toolchain setup step must define inputs"
+      );
+      yield* refuses(
+        variants.noCache,
+        "The toolchain setup must cache the root pnpm store"
+      );
+      yield* refuses(
+        variants.hiddenInstall,
+        "The toolchain setup must leave the frozen install explicit"
+      );
+    }));
 
   for (const command of REPLACEMENT_COMMANDS) {
-    it(`rejects pnpm replacement command ${command}`, ({ ci }) => {
-      const replacement = ci.replace(
-        "      - name: Install dependencies",
-        `      - name: Replace pnpm\n        run: ${command}\n\n      - name: Install dependencies`
-      );
-
-      expect(() => verifyWorkflowToolchains([replacement])).toThrow(
+    it(`rejects pnpm replacement command ${command}`, ({ ci }) =>
+      refuses(
+        ci.replace(
+          "      - name: Install dependencies",
+          `      - name: Replace pnpm\n        run: ${command}\n\n      - name: Install dependencies`
+        ),
         "Workflows must not replace the package.json-selected pnpm version"
-      );
-    });
+      ));
   }
 
-  it("requires every toolchain setup step to run unconditionally", ({ ci }) => {
-    const conditionalSetup = ci.replace(
-      TOOLCHAIN_STEP,
-      `${TOOLCHAIN_STEP}\n        if: false`
-    );
-    expect(() => verifyWorkflowToolchains([conditionalSetup])).toThrow(
+  it("requires every toolchain setup step to run unconditionally", ({ ci }) =>
+    refuses(
+      ci.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n        if: false`),
       "The toolchain setup step must run unconditionally"
-    );
-  });
+    ));
 
-  it("requires every toolchain setup step to stop on failure", ({ ci }) => {
-    const ignoredFailure = ci.replace(
-      TOOLCHAIN_STEP,
-      `${TOOLCHAIN_STEP}\n        continue-on-error: true`
-    );
-    expect(() => verifyWorkflowToolchains([ignoredFailure])).toThrow(
-      "The toolchain setup step must stop on failure"
-    );
-
-    const explicitFailureStop = ci.replace(
-      TOOLCHAIN_STEP,
-      `${TOOLCHAIN_STEP}\n        continue-on-error: false`
-    );
-    expect(() => verifyWorkflowToolchains([explicitFailureStop])).not.toThrow();
-  });
+  it("requires every toolchain setup step to stop on failure", ({ ci }) =>
+    Effect.gen(function* () {
+      yield* refuses(
+        ci.replace(
+          TOOLCHAIN_STEP,
+          `${TOOLCHAIN_STEP}\n        continue-on-error: true`
+        ),
+        "The toolchain setup step must stop on failure"
+      );
+      yield* accepts(
+        ci.replace(
+          TOOLCHAIN_STEP,
+          `${TOOLCHAIN_STEP}\n        continue-on-error: false`
+        )
+      );
+    }));
 
   it("rejects malformed action inputs without matching unrelated values", ({
     ci,
-  }) => {
-    const malformedInputs = ci.replace(
-      TOOLCHAIN_STEP,
-      `${SETUP_HEADER}\n        with: invalid`
-    );
-    expect(() => verifyWorkflowToolchains([malformedInputs])).toThrow(
-      "Workflow action inputs must be a mapping"
-    );
-
-    const unrelatedVersion = ci.replace(
-      "          persist-credentials: false",
-      "          persist-credentials: false\n          version: stable"
-    );
-    expect(() => verifyWorkflowToolchains([unrelatedVersion])).not.toThrow();
-  });
+  }) =>
+    Effect.gen(function* () {
+      yield* refuses(
+        ci.replace(TOOLCHAIN_STEP, `${SETUP_HEADER}\n        with: invalid`),
+        "Workflow action inputs must be a mapping"
+      );
+      yield* accepts(
+        ci.replace(
+          "          persist-credentials: false",
+          "          persist-credentials: false\n          version: stable"
+        )
+      );
+    }));
 
   for (const [input, message] of PNPM_INPUT_CASES) {
-    it(`normalizes pnpm input ${input}`, ({ ci }) => {
-      const uppercaseInput = ci.replace(
-        "          cache: true",
-        `          ${input}\n          cache: true`
-      );
-
-      expect(() => verifyWorkflowToolchains([uppercaseInput])).toThrow(message);
-    });
+    it(`normalizes pnpm input ${input}`, ({ ci }) =>
+      refuses(
+        ci.replace(
+          "          cache: true",
+          `          ${input}\n          cache: true`
+        ),
+        message
+      ));
   }
 
-  it("normalizes and rejects duplicated input names", ({ ci }) => {
-    const duplicateInput = ci.replace(
-      "          cache: true",
-      "          CACHE: true\n          cache: true"
-    );
-    expect(() => verifyWorkflowToolchains([duplicateInput])).toThrow(
+  it("normalizes and rejects duplicated input names", ({ ci }) =>
+    refuses(
+      ci.replace(
+        "          cache: true",
+        "          CACHE: true\n          cache: true"
+      ),
       "Workflow action input cache must not be duplicated case-insensitively"
-    );
-  });
+    ));
 });

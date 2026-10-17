@@ -1,11 +1,13 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
 import {
   ArticleCategorySchema,
   ArticleRouteSlugSchema,
   ArticleSlugSchema,
 } from "@nakafa/aksara-contracts/projection/article";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
@@ -114,7 +116,9 @@ export type PrepareArticlePublicationError<E> =
   | E
   | ArticlePublicationStreamError<never>
   | ReplaySpoolError
-  | RendererManifestError;
+  | RendererManifestError
+  | ArtifactHashComputationError
+  | ContentProjectionHashError;
 
 /** Finds the first field proving a head does not own its article source. */
 function mismatchedFamilyField(

@@ -1,6 +1,7 @@
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, HashSet, Schema } from "effect";
+import { Hex } from "effect/encoding";
+import { digestSha256 } from "#contracts/hash/digest";
 
 import {
   ContentSnapshotManifestSchema,
@@ -188,7 +189,9 @@ describe("structured snapshot data", () => {
         );
 
         expect(quranRows.length).toBe(1542);
-        expect(createHash("sha256").update(canonical).digest("hex")).toBe(
+        expect(
+          Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
+        ).toBe(
           "db50217860f1291996b6d4cd956d50fa42e0ec7892b9a360a83eb5ca72fdefdd"
         );
       }),

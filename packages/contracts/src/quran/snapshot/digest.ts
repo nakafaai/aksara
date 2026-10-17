@@ -1,7 +1,6 @@
-import { createHash, type Hash } from "node:crypto";
-
 import { Array as Arr, Effect, Option, Schema, Stream } from "effect";
 
+import { DigestStream } from "#contracts/hash/stream";
 import { Sha256HashSchema } from "#contracts/ids";
 import type { ActiveAppLocaleList, AppLocale } from "#contracts/locale";
 import { AppLocaleSchema } from "#contracts/locale";
@@ -49,11 +48,6 @@ function joinIdentity(parts: readonly (number | string)[]) {
   return Arr.join(Arr.map(parts, String), ":");
 }
 
-/** Formats one finished digest as the signed sha256 hash of a Quran domain. */
-function sha256Digest(hash: Hash) {
-  return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-}
-
 /** Resolves one complete stable current row identity. */
 function rowIdentity(payload: QuranRowPayload) {
   if (payload.kind === "quran-attribution") {
@@ -88,9 +82,9 @@ function rowIdentity(payload: QuranRowPayload) {
 /** Keeps current locale closure and digest state private to one replay. */
 class QuranDigestState {
   readonly #activeAppLocales: ActiveAppLocaleList;
-  readonly #runtime = createHash("sha256").update(`${RUNTIME_DOMAIN}\n`);
-  readonly #search = createHash("sha256").update(`${SEARCH_DOMAIN}\n`);
-  readonly #projection = createHash("sha256").update(`${PROJECTION_DOMAIN}\n`);
+  readonly #runtime = new DigestStream();
+  readonly #search = new DigestStream();
+  readonly #projection = new DigestStream();
   #nextQuranNumber = 1;
   #nextSearchLocale: AppLocale;
   #nextSearchSurah = 1;
@@ -103,10 +97,13 @@ class QuranDigestState {
   runtimeCount = 0;
   searchCount = 0;
 
-  /** Initializes one isolated replay under the signed active locale set. */
+  /** Starts one isolated replay under the signed active locale set. */
   constructor(activeAppLocales: ActiveAppLocaleList) {
     this.#activeAppLocales = activeAppLocales;
     this.#nextSearchLocale = activeAppLocales[0];
+    this.#runtime.add(`${RUNTIME_DOMAIN}\n`);
+    this.#search.add(`${SEARCH_DOMAIN}\n`);
+    this.#projection.add(`${PROJECTION_DOMAIN}\n`);
   }
 
   /** Returns the only row identity valid at the current stream position. */
@@ -212,25 +209,22 @@ class QuranDigestState {
     }
     this.advance(row.payload);
     const canonical = `${row.payload.kind}\n${row.rowHash}\n`;
-    return Effect.try({
-      catch: () => new QuranRowHashError({ scope: "row" }),
-      try: () => {
-        this.#projection.update(canonical);
-        this.projectionCount += 1;
-        if (row.payload.kind === "quran-search") {
-          this.#search.update(canonical);
-          this.searchCount += 1;
-          return;
-        }
-        this.#runtime.update(canonical);
-        this.runtimeCount += 1;
-        if (row.payload.kind === "quran-attribution") {
-          this.attributionCount += 1;
-        }
-        if (row.payload.kind === "quran-chunk") {
-          this.chunkCount += 1;
-        }
-      },
+    return Effect.sync(() => {
+      this.#projection.add(canonical);
+      this.projectionCount += 1;
+      if (row.payload.kind === "quran-search") {
+        this.#search.add(canonical);
+        this.searchCount += 1;
+        return;
+      }
+      this.#runtime.add(canonical);
+      this.runtimeCount += 1;
+      if (row.payload.kind === "quran-attribution") {
+        this.attributionCount += 1;
+      }
+      if (row.payload.kind === "quran-chunk") {
+        this.chunkCount += 1;
+      }
     });
   }
 
@@ -259,16 +253,21 @@ class QuranDigestState {
 
   /** Finalizes all ordered current Quran digest domains. */
   digest() {
-    return {
-      attributionCount: this.attributionCount,
-      chunkCount: this.chunkCount,
-      projectionCount: this.projectionCount,
-      projectionDigest: sha256Digest(this.#projection),
-      runtimeCount: this.runtimeCount,
-      runtimeDigest: sha256Digest(this.#runtime),
-      searchCount: this.searchCount,
-      searchDigest: sha256Digest(this.#search),
-    };
+    return Effect.all({
+      projectionDigest: this.#projection.digest(),
+      runtimeDigest: this.#runtime.digest(),
+      searchDigest: this.#search.digest(),
+    }).pipe(
+      Effect.map((digests) => ({
+        attributionCount: this.attributionCount,
+        chunkCount: this.chunkCount,
+        projectionCount: this.projectionCount,
+        runtimeCount: this.runtimeCount,
+        searchCount: this.searchCount,
+        ...digests,
+      })),
+      Effect.mapError(() => new QuranRowHashError({ scope: "row" }))
+    );
   }
 }
 
@@ -299,17 +298,11 @@ export const digestQuranRows = Effect.fn("AksaraContracts.digestQuranRows")(
       R
     >;
   }) {
-    const state = yield* Effect.try({
-      catch: () => new QuranRowHashError({ scope: "row" }),
-      try: () => new QuranDigestState(input.activeAppLocales),
-    });
+    const state = new QuranDigestState(input.activeAppLocales);
     yield* input.rows.pipe(
       Stream.runForEach((row) => updateQuranDigest(state, row))
     );
     yield* state.validateComplete();
-    return yield* Effect.try({
-      catch: () => new QuranRowHashError({ scope: "row" }),
-      try: () => state.digest(),
-    });
+    return yield* state.digest();
   }
 );

@@ -1,7 +1,8 @@
-import { createHash } from "node:crypto";
+import { digestSha256 } from "@nakafa/aksara-contracts/hash/digest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranSourceArtifactSchema } from "@nakafa/aksara-contracts/quran/source";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
+import { Hex } from "effect/encoding";
 
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 
@@ -12,9 +13,11 @@ export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle";
 export const QURAN_TAFSIR_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle";
 
 /** Returns one lowercase SHA-256 digest without a wire prefix for exact official bytes. */
-export function sha256Hex(bytes: Uint8Array) {
-  return createHash("sha256").update(bytes).digest("hex");
-}
+export const sha256Hex = Effect.fn("AksaraCorpus.sha256Hex")(function* (
+  bytes: Uint8Array
+) {
+  return Hex.encode(yield* digestSha256(bytes));
+});
 
 /** Builds one exact source artifact identity from pinned official bytes. */
 function artifact(byteCount: number, digest: string, fileCount = 1) {

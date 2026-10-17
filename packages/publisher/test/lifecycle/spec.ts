@@ -191,7 +191,7 @@ export function makeTarget(release: {
     cleanup: ({ releaseId }) =>
       Effect.succeed({ complete: true, deletedArtifacts: 0, releaseId }),
     current: Effect.suspend(current),
-    headPage: (request) => Effect.succeed(rows.headPage(request)),
+    headPage: (request) => rows.headPage(request).pipe(Effect.orDie),
     recovery: ({ recoveryId }) => {
       const value = Option.getOrUndefined(
         MutableHashMap.get(completed, recoveryId)
@@ -204,7 +204,7 @@ export function makeTarget(release: {
         value: Schema.decodeSync(ActiveRollbackContentReleaseSchema)(value),
       });
     },
-    rollbackPage: (request) => Effect.succeed(rows.rollbackPage(request)),
+    rollbackPage: (request) => rows.rollbackPage(request).pipe(Effect.orDie),
     routePage: (request) => Effect.succeed(rows.routePage(request)),
     stageArtifactBatch,
     stageGroup,

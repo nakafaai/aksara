@@ -36,7 +36,7 @@ function decodeRequest(request: HttpClientRequest.HttpClientRequest) {
   if (request.body._tag !== "Uint8Array") {
     return Effect.die("Expected one encoded JSON request body.");
   }
-  const source = Buffer.from(request.body.body).toString("utf8");
+  const source = new TextDecoder().decode(request.body.body);
   return Schema.decodeEffect(Schema.fromJsonString(PublicationRequestSchema))(
     source
   );

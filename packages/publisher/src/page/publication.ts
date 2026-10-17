@@ -1,6 +1,8 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import type { PageHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -100,7 +102,9 @@ export type PreparePagePublicationError<E> =
   | E
   | PagePublicationStreamError<never>
   | ReplaySpoolError
-  | RendererManifestError;
+  | RendererManifestError
+  | ArtifactHashComputationError
+  | ContentProjectionHashError;
 
 /** Finds the first field proving a head does not own its public page source. */
 function mismatchedFamilyField(

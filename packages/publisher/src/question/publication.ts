@@ -1,6 +1,8 @@
 import type { CompileContentError } from "@nakafa/aksara-compiler/compile";
 import type { ContentSourceInspectionError } from "@nakafa/aksara-compiler/inspect";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import { ContentHeadIdentitySchema } from "@nakafa/aksara-contracts/content";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import {
   QuestionKeySchema,
   QuestionSourcePathSchema,
@@ -123,7 +125,9 @@ export type PrepareQuestionPublicationError<E> =
   | QuestionPublicationStreamError<never>
   | ReplaySpoolError
   | RendererManifestError
-  | TryoutRegistryError;
+  | TryoutRegistryError
+  | ArtifactHashComputationError
+  | ContentProjectionHashError;
 
 /** Finds the first field proving a head does not own its question source. */
 function mismatchedFamilyField(

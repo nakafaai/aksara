@@ -224,17 +224,15 @@ export function canonicalizeTryoutCatalog(row: TryoutCatalogRow) {
 }
 
 /** Creates one authenticated current hierarchy record. */
-export function makeTryoutCatalogRecord(
-  row: TryoutCatalogRow
-): TryoutCatalogRecord {
-  return TryoutCatalogRecordSchema.make({
-    row,
-    rowHash: hashTryoutCanonical(
-      CATALOG_DOMAIN,
-      canonicalizeTryoutCatalog(row)
-    ),
-  });
-}
+export const makeTryoutCatalogRecord = Effect.fn(
+  "AksaraContracts.makeTryoutCatalogRecord"
+)(function* (row: TryoutCatalogRow) {
+  const rowHash = yield* hashTryoutCanonical(
+    CATALOG_DOMAIN,
+    canonicalizeTryoutCatalog(row)
+  );
+  return TryoutCatalogRecordSchema.make({ row, rowHash });
+});
 
 /** Digests canonically ordered current hierarchy records. */
 export const digestTryoutCatalog = Effect.fn(
@@ -245,6 +243,7 @@ export const digestTryoutCatalog = Effect.fn(
     domain: CATALOG_DOMAIN,
     identity: tryoutCatalogIdentity,
     records,
-    rowHash: (row) => makeTryoutCatalogRecord(row).rowHash,
+    rowHash: (row) =>
+      makeTryoutCatalogRecord(row).pipe(Effect.map((record) => record.rowHash)),
   });
 });

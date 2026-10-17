@@ -80,90 +80,105 @@ function placement(appLocale: AppLocaleCode, order: number) {
 }
 
 describe("try-out placement hashing", () => {
-  it("binds separate application and artifact language identities", () => {
-    const english = placement("en", 1);
-    const german = placement("de", 1);
-    const changed = TryoutPlacementSchema.make({
-      ...english,
-      contentHash: hashes.tamperedContent,
-    });
+  it.effect("binds separate application and artifact language identities", () =>
+    Effect.gen(function* () {
+      const english = placement("en", 1);
+      const german = placement("de", 1);
+      const changed = TryoutPlacementSchema.make({
+        ...english,
+        contentHash: hashes.tamperedContent,
+      });
 
-    expect(canonicalizeTryoutPlacement(english)).toBe(
-      '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"en","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"en","contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"en","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"en","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Test-only correct option","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Test-only distractor","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","trackKey":"2027"}'
-    );
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutPlacement(english))
-    ).toEqual(english);
-    expect(canonicalizeTryoutPlacement(german)).toBe(
-      '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"de","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"de","contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"de","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"de","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Test-only correct option","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Test-only distractor","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","trackKey":"2027"}'
-    );
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutPlacement(german))
-    ).toEqual(german);
-    expect(makeTryoutPlacementRecord(english).rowHash).not.toBe(
-      makeTryoutPlacementRecord(changed).rowHash
-    );
-    expect(makeTryoutPlacementRecord(english).rowHash).not.toBe(
-      makeTryoutPlacementRecord(german).rowHash
-    );
-  });
+      expect(canonicalizeTryoutPlacement(english)).toBe(
+        '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"en","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"en","contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"en","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"en","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Test-only correct option","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Test-only distractor","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","trackKey":"2027"}'
+      );
+      expect(
+        yield* Schema.decodeEffect(JsonTextSchema)(
+          canonicalizeTryoutPlacement(english)
+        )
+      ).toEqual(english);
+      expect(canonicalizeTryoutPlacement(german)).toBe(
+        '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"de","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"de","contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"de","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"de","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Test-only correct option","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Test-only distractor","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","trackKey":"2027"}'
+      );
+      expect(
+        yield* Schema.decodeEffect(JsonTextSchema)(
+          canonicalizeTryoutPlacement(german)
+        )
+      ).toEqual(german);
+      const englishHash = (yield* makeTryoutPlacementRecord(english)).rowHash;
+      expect(englishHash).not.toBe(
+        (yield* makeTryoutPlacementRecord(changed)).rowHash
+      );
+      expect(englishHash).not.toBe(
+        (yield* makeTryoutPlacementRecord(german)).rowHash
+      );
+    })
+  );
 
-  it("pins the canonical bytes and row hash of a documented placement, round-trips the bytes, and separates its row hash from the base placement's", () => {
-    const base = placement("en", 1);
-    const documented = Schema.decodeSync(TryoutPlacementSchema)({
-      ...base,
-      blueprint: {
-        cognitiveLevel: "reasoning",
-        contentDomain: "algebra",
-        topic: "functions",
-      },
-      points: 2,
-      response: {
-        kind: "single-choice",
-        options: [
-          {
-            isCorrect: true,
-            label: "Jawaban é",
-            optionKey: "option-1",
-            order: 1,
+  it.effect(
+    "pins the canonical bytes and row hash of a documented placement, round-trips the bytes, and separates its row hash from the base placement's",
+    () =>
+      Effect.gen(function* () {
+        const base = placement("en", 1);
+        const documented = yield* Schema.decodeEffect(TryoutPlacementSchema)({
+          ...base,
+          blueprint: {
+            cognitiveLevel: "reasoning",
+            contentDomain: "algebra",
+            topic: "functions",
           },
-          {
-            isCorrect: false,
-            label: "Pengecoh",
-            optionKey: "option-2",
-            order: 2,
+          points: 2,
+          response: {
+            kind: "single-choice",
+            options: [
+              {
+                isCorrect: true,
+                label: "Jawaban é",
+                optionKey: "option-1",
+                order: 1,
+              },
+              {
+                isCorrect: false,
+                label: "Pengecoh",
+                optionKey: "option-2",
+                order: 2,
+              },
+            ],
           },
-        ],
-      },
-      stimulusKey: "shared-table",
-    });
+          stimulusKey: "shared-table",
+        });
 
-    expect(canonicalizeTryoutPlacement(documented)).toBe(
-      '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"en","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"en","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"en","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"points":2,"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"en","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Jawaban é","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pengecoh","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","stimulusKey":"shared-table","trackKey":"2027"}'
-    );
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutPlacement(documented))
-    ).toEqual(documented);
-    expect(makeTryoutPlacementRecord(documented).rowHash).toBe(
-      "sha256:bad7c8fb135a8486d443cd91ad04d28b98d9bd1ad32c11e48ab7ba23a58c7853"
-    );
-    expect(makeTryoutPlacementRecord(documented).rowHash).not.toBe(
-      makeTryoutPlacementRecord(base).rowHash
-    );
-  });
+        expect(canonicalizeTryoutPlacement(documented)).toBe(
+          '{"answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","answerArtifactLocale":"en","answerContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/answer","appLocale":"en","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","countryKey":"indonesia","deliveryLanguage":"en","examKey":"snbt","languagePolicy":{"kind":"app-locale"},"points":2,"questionArtifactHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","questionArtifactLocale":"en","questionContentKey":"question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Jawaban é","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pengecoh","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"quantitative-knowledge","setKey":"set-1","sourceRevision":"2026-08-12","stimulusKey":"shared-table","trackKey":"2027"}'
+        );
+        expect(
+          yield* Schema.decodeEffect(JsonTextSchema)(
+            canonicalizeTryoutPlacement(documented)
+          )
+        ).toEqual(documented);
+        expect((yield* makeTryoutPlacementRecord(documented)).rowHash).toBe(
+          "sha256:bad7c8fb135a8486d443cd91ad04d28b98d9bd1ad32c11e48ab7ba23a58c7853"
+        );
+        expect((yield* makeTryoutPlacementRecord(documented)).rowHash).not.toBe(
+          (yield* makeTryoutPlacementRecord(base)).rowHash
+        );
+      })
+  );
 
   it.effect(
     "digests shuffled placements in identity order under two chunkings",
     () =>
       Effect.gen(function* () {
+        const records = yield* Effect.forEach(
+          [placement("en", 2), placement("id", 1), placement("en", 1)],
+          makeTryoutPlacementRecord
+        );
         const rows = Arr.sort(
-          Arr.map(
-            [placement("en", 2), placement("id", 1), placement("en", 1)],
-            makeTryoutPlacementRecord
-          ),
-          Order.make<ReturnType<typeof makeTryoutPlacementRecord>>(
-            (left, right) =>
-              Num.sign(compareTryoutPlacements(left.row, right.row))
+          records,
+          Order.make<
+            Effect.Success<ReturnType<typeof makeTryoutPlacementRecord>>
+          >((left, right) =>
+            Num.sign(compareTryoutPlacements(left.row, right.row))
           )
         );
         const single = yield* digestTryoutPlacements(
@@ -191,7 +206,7 @@ describe("try-out placement hashing", () => {
 
   it.effect("rejects tampered and repeated placement records", () =>
     Effect.gen(function* () {
-      const record = makeTryoutPlacementRecord(placement("en", 1));
+      const record = yield* makeTryoutPlacementRecord(placement("en", 1));
       const errors = yield* Effect.forEach(
         [
           digestTryoutPlacements(
@@ -202,10 +217,9 @@ describe("try-out placement hashing", () => {
         (failure) => failure.pipe(Effect.flip)
       );
 
-      expect(Arr.map(errors, ({ code }) => code)).toEqual([
-        "integrity",
-        "order",
-      ]);
+      expect(
+        Arr.map(errors, (error) => ("code" in error ? error.code : error._tag))
+      ).toEqual(["integrity", "order"]);
     })
   );
 
@@ -220,11 +234,9 @@ describe("try-out placement hashing", () => {
     "keeps default-point bytes and binds authored points after the policy",
     () =>
       Effect.gen(function* () {
+        const fixture = yield* makeTryoutTestRows();
         const record = yield* Effect.fromOption(
-          Arr.findFirst(
-            makeTryoutTestRows().placements,
-            ({ row }) => row.appLocale === "en"
-          )
+          Arr.findFirst(fixture.placements, ({ row }) => row.appLocale === "en")
         );
         const weighted: TryoutPlacement = { ...record.row, points: 2 };
 
@@ -239,7 +251,7 @@ describe("try-out placement hashing", () => {
             canonicalizeTryoutPlacement(weighted)
           )
         ).toEqual(weighted);
-        expect(makeTryoutPlacementRecord(weighted).rowHash).not.toBe(
+        expect((yield* makeTryoutPlacementRecord(weighted)).rowHash).not.toBe(
           record.rowHash
         );
       })

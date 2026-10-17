@@ -1,9 +1,3 @@
-import { Buffer } from "node:buffer";
-import {
-  createHash,
-  generateKeyPairSync,
-  sign as signBytes,
-} from "node:crypto";
 import { Effect, Exit, Schema } from "effect";
 import {
   type CompiledContentPayload,
@@ -12,12 +6,11 @@ import {
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,
 } from "#contracts/content";
+import { hashText } from "#contracts/hash/text";
 import {
   type ContentKey,
-  Ed25519SignatureSchema,
   GitCommitShaSchema,
   type Sha256Hash,
-  Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
@@ -25,6 +18,10 @@ import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signi
 import { replaceContentSnapshot } from "#contracts/release/snapshot/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { createRendererManifest } from "#contracts/renderer/manifest";
+import {
+  generateEd25519KeyPem,
+  signEd25519Message,
+} from "#contracts/signature/key";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
@@ -44,26 +41,20 @@ import {
 import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const keyId = SigningKeyIdSchema.make("test-runtime-key");
-const signingKeys = generateKeyPairSync("ed25519");
-const publicKeyPem = signingKeys.publicKey
-  .export({ format: "pem", type: "spki" })
-  .toString();
-
-/** Hashes one canonical runtime fixture value with the production algorithm. */
-function hashRuntimeValue(value: string) {
-  const digest = createHash("sha256").update(value).digest("hex");
-  return Sha256HashSchema.make(`sha256:${digest}`);
-}
+const signingKeys = await Effect.runPromise(generateEd25519KeyPem());
+const { publicKeyPem } = signingKeys;
 
 /** Signs one canonical runtime fixture value with the fixture identity. */
-function signRuntimeValue(value: string) {
-  const payload = Buffer.from(value, "utf8");
-  const signature = signBytes(null, payload, signingKeys.privateKey);
-  return Ed25519SignatureSchema.make(signature.toString("base64url"));
-}
+const signRuntimeValue = Effect.fn("AksaraContractsTest.signRuntimeValue")(
+  function* (value: string) {
+    return yield* signEd25519Message(signingKeys.privateKeyPem, value);
+  }
+);
 
 /** Produces one canonical, signed runtime artifact for one exact content key. */
-export function createSignedArtifact(
+export const createSignedArtifact = Effect.fn(
+  "AksaraContractsTest.createSignedArtifact"
+)(function* (
   contentKey: ContentKey,
   requiredComponents: CompiledContentPayload["requiredComponents"] = [
     "BlockMath",
@@ -73,12 +64,12 @@ export function createSignedArtifact(
     ...unsignedArtifact.payload,
     contentKey,
     requiredComponents,
-    sourceHash: hashRuntimeValue(unsignedArtifact.payload.rawMdx),
+    sourceHash: yield* hashText(unsignedArtifact.payload.rawMdx),
   });
-  const artifactHash = hashRuntimeValue(
+  const artifactHash = yield* hashText(
     canonicalizeCompiledContentPayload(payload)
   );
-  const signature = signRuntimeValue(
+  const signature = yield* signRuntimeValue(
     canonicalizeContentArtifactSigningInput(artifactHash, payload)
   );
   return SignedContentArtifactSchema.make({
@@ -87,21 +78,29 @@ export function createSignedArtifact(
     payload,
     signature,
   });
-}
-
-export const protectedSnapshot = makeTryoutSnapshot({
-  activeAppLocales: unsignedRelease.manifest.activeAppLocales,
-  catalogDigest: hashRuntimeValue("protected-catalog"),
-  counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-  placementCount: 1,
-  placementDigest: hashRuntimeValue("protected-placement"),
-  routeCount: 5,
 });
+
+const protectedCatalogDigest = await Effect.runPromise(
+  hashText("protected-catalog")
+);
+const protectedPlacementDigest = await Effect.runPromise(
+  hashText("protected-placement")
+);
+export const protectedSnapshot = await Effect.runPromise(
+  makeTryoutSnapshot({
+    activeAppLocales: unsignedRelease.manifest.activeAppLocales,
+    catalogDigest: protectedCatalogDigest,
+    counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+    placementCount: 1,
+    placementDigest: protectedPlacementDigest,
+    routeCount: 5,
+  })
+);
 export const protectedSnapshotId = protectedSnapshot.snapshotId;
 /** Signs one runtime release against its exact frozen renderer manifest. */
-export async function createSignedRuntimeRelease(
-  rendererManifestHash: Sha256Hash
-) {
+export const createSignedRuntimeRelease = Effect.fn(
+  "AksaraContractsTest.createSignedRuntimeRelease"
+)(function* (rendererManifestHash: Sha256Hash) {
   const manifest = {
     ...unsignedRelease.manifest,
     rendererManifestHash,
@@ -119,21 +118,19 @@ export async function createSignedRuntimeRelease(
       }),
     },
   } as const;
-  const manifestHash = await Effect.runPromise(
-    hashContentReleaseManifest(manifest)
-  );
+  const manifestHash = yield* hashContentReleaseManifest(manifest);
   return SignedContentReleaseSchema.make({
     keyId,
     manifest,
     manifestHash,
-    signature: signRuntimeValue(
+    signature: yield* signRuntimeValue(
       canonicalizeContentReleaseSigningInput(manifestHash, manifest)
     ),
   });
-}
+});
 
-export const release = await createSignedRuntimeRelease(
-  unsignedRelease.manifest.rendererManifestHash
+export const release = await Effect.runPromise(
+  createSignedRuntimeRelease(unsignedRelease.manifest.rendererManifestHash)
 );
 
 const runtimeBundlePayload = {
@@ -151,10 +148,12 @@ export const runtimeBundle = SignedTryoutRuntimeBundleSchema.make({
   bundleHash: runtimeBundleHash,
   keyId,
   payload: runtimeBundlePayload,
-  signature: signRuntimeValue(
-    canonicalizeTryoutRuntimeBundleSigningInput(
-      runtimeBundleHash,
-      runtimeBundlePayload
+  signature: await Effect.runPromise(
+    signRuntimeValue(
+      canonicalizeTryoutRuntimeBundleSigningInput(
+        runtimeBundleHash,
+        runtimeBundlePayload
+      )
     )
   ),
 });

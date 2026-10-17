@@ -1,16 +1,16 @@
-import { createHash } from "node:crypto";
 import { Effect, MutableHashSet, Schema, Stream } from "effect";
 import {
   ContentHeadIdentitySchema,
   compareContentHeads,
   routeIdentity,
 } from "#contracts/content";
+import { DigestStream } from "#contracts/hash/stream";
 import {
   type PublicPath,
   PublicPathSchema,
   type ReleaseId,
   ReleaseIdSchema,
-  Sha256HashSchema,
+  type Sha256HashSchema,
 } from "#contracts/ids";
 import { AppLocaleSchema, type ArtifactLocale } from "#contracts/locale";
 import {
@@ -60,17 +60,17 @@ export class ResultCatalogDigestMismatchError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("ResultCatalogDigestMismatchError", { ...ReleaseDigestMismatchFields }) {}
 
-/** Keeps mutable hash and ordering state private to one catalog replay. */
+/** Keeps mutable digest and ordering state private to one catalog replay. */
 class ResultCatalogDigestState {
-  readonly #hash = createHash("sha256");
+  readonly #stream = new DigestStream();
   readonly #routes = MutableHashSet.empty<string>();
   count = 0;
   previous: ContentHead | undefined;
 
-  /** Initializes one domain-separated result-catalog hash. */
+  /** Starts one domain-separated result-catalog digest. */
   constructor() {
-    this.#hash.update(RESULT_CATALOG_DIGEST_DOMAIN);
-    this.#hash.update("\n");
+    this.#stream.add(RESULT_CATALOG_DIGEST_DOMAIN);
+    this.#stream.add("\n");
   }
 
   /** Claims one public route and reports whether it was globally unique. */
@@ -88,25 +88,22 @@ class ResultCatalogDigestState {
 
   /** Adds one canonical compact head and advances ordering evidence. */
   update(head: ContentHead): void {
-    this.#hash.update(canonicalizeContentHead(head));
-    this.#hash.update("\n");
+    this.#stream.add(canonicalizeContentHead(head));
+    this.#stream.add("\n");
     this.count += 1;
     this.previous = head;
   }
 
-  /** Consumes the hash and returns its branded immutable identity. */
+  /** Digests the complete stream once and returns its branded immutable identity. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
 /** Creates a fresh domain-separated digest state for one result catalog. */
-export function createResultCatalogDigest(releaseId: ReleaseId) {
-  return Effect.try({
-    catch: () => new ResultCatalogHashError({ releaseId }),
-    try: () => new ResultCatalogDigestState(),
-  });
-}
+export const createResultCatalogDigest = Effect.sync(
+  () => new ResultCatalogDigestState()
+);
 
 /** Adds one canonically ordered compact head to a result digest. */
 export function updateResultCatalogDigest(
@@ -115,7 +112,7 @@ export function updateResultCatalogDigest(
   head: ContentHead
 ): Effect.Effect<
   ResultCatalogDigestState,
-  ResultCatalogHashError | ResultCatalogOrderError | ResultCatalogRouteError
+  ResultCatalogOrderError | ResultCatalogRouteError
 > {
   if (state.previous && compareContentHeads(state.previous, head) >= 0) {
     return Effect.fail(
@@ -139,12 +136,9 @@ export function updateResultCatalogDigest(
       })
     );
   }
-  return Effect.try({
-    catch: () => new ResultCatalogHashError({ releaseId }),
-    try: () => {
-      state.update(head);
-      return state;
-    },
+  return Effect.sync(() => {
+    state.update(head);
+    return state;
   });
 }
 
@@ -153,20 +147,19 @@ export function finalizeResultCatalogDigest(
   releaseId: ReleaseId,
   state: ResultCatalogDigestState
 ) {
-  return Effect.try({
-    catch: () => new ResultCatalogHashError({ releaseId }),
-    try: () => state.digest(),
-  });
+  return state
+    .digest()
+    .pipe(Effect.mapError(() => new ResultCatalogHashError({ releaseId })));
 }
 
-/** Digests one complete compact-head stream without retaining the catalog. */
+/** Digests one complete compact-head stream. Its canonical bytes are held until one Web Crypto digest runs. */
 export const digestResultCatalog = Effect.fn(
   "AksaraContracts.digestResultCatalog"
 )(function* <E, R>(
   releaseId: ReleaseId,
   heads: Stream.Stream<ContentHead, E, R>
 ) {
-  const initial = yield* createResultCatalogDigest(releaseId);
+  const initial = yield* createResultCatalogDigest;
   const state = yield* heads.pipe(
     Stream.runFoldEffect(
       () => initial,
