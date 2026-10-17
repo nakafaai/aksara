@@ -1,13 +1,13 @@
 import { expect, layer } from "@effect/vitest";
 import { Array as Arr, Deferred, Effect, Fiber, Result } from "effect";
 import { TestClock } from "effect/testing";
-
 import {
   GERMAN_QURAN_EDITION_URL,
   GERMAN_QURAN_PUBLICATION_URL,
   GERMAN_QURAN_SOURCE_URL,
   GERMAN_QURAN_TERMS_URL,
 } from "#corpus/quran/source/policy";
+import { withNextSourceDigestFailure } from "#corpus/test/digest";
 import {
   makePriorQuranSyncSources,
   QuranSyncFixture,
@@ -116,18 +116,9 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
   it.effect("reports a failed source digest as an integrity failure", () =>
     Effect.gen(function* () {
       const fixture = yield* QuranSyncFixture;
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only source digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const result = yield* quranSyncTestProgram(fixture.sources).pipe(
+        withNextSourceDigestFailure
       );
-
-      const result = yield* quranSyncTestProgram(fixture.sources);
 
       expect(result).toMatchObject({
         installed: false,
