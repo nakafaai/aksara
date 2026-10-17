@@ -64,5 +64,5 @@ This guide is a map. It states each Aksara decision once and names the command o
 - Run `pnpm security:audit` after changing dependencies or the lockfile; known advisories are release blockers. `pnpm security:audit` reads live OSV advisories, so a new advisory can fail it with no code change: pin the patched version with an override in `pnpm-workspace.yaml` in its own change, then update waiting pull requests from `main`.
 - pnpm checks every lockfile entry against its one-day `minimumReleaseAge`, even in frozen installs. List a reviewed version that must land sooner in `minimumReleaseAgeExclude`, and remove the entry once that version is a day old or leaves the lockfile.
 - Unresolved review threads, automated reviewers' included, block merging: fix each verified finding or reply with evidence, then resolve the thread.
-- A pull request merges by squash once its exact head passed the local quality gate in `README.md`: `gh pr merge <number> --squash --match-head-commit <sha>`.
+- A pull request merges by squash once its exact head, with the latest `main` merged in, passed the local quality gate in `README.md`: `gh pr merge <number> --squash --match-head-commit <sha>`.
 - Do not use U+2014 in authored content, metadata, documentation, or code.
