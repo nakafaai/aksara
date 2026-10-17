@@ -22,6 +22,16 @@ const checkoutRoot = Effect.map(Path.Path, (path) =>
   path.resolve(process.cwd(), "..", "..")
 );
 const firstSetSuffix = /:set-1$/;
+// Lessons the Nakafa home page reads in every locale, so the release must hold them.
+const homeLessonKeys = [
+  "material/lesson/physics/kinematics/parabolic-movement",
+  "material/lesson/chemistry/structure-matter/atom-shell",
+  "material/lesson/biology/biodiversity/bacteria",
+  "material/lesson/mathematics/trigonometry/trigonometric-comparison-three-primary",
+];
+const homeLessonIdentities = Arr.flatMap(homeLessonKeys, (key) =>
+  Arr.map(ACTIVE_APP_LOCALES, (locale) => `${key}:${locale}`)
+);
 const state = vi.hoisted(() => ({ missing: "" }));
 type ArticleEntry = Effect.Success<
   ReturnType<typeof decodeArticleRegistry>
@@ -110,11 +120,14 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           Arr.map(selected.material, ({ route }) => route.materialKey)
         );
         expect(Arr.sort(groups, Order.String)).toEqual([
+          "lesson.biology.biodiversity",
+          "lesson.chemistry.structure-matter",
           "lesson.mathematics.analytic-geometry",
           "lesson.mathematics.exponential-logarithm",
           "lesson.mathematics.function-composition-inverse-function",
           "lesson.mathematics.linear-equation-inequality",
           "lesson.mathematics.trigonometry",
+          "lesson.physics.kinematics",
         ]);
         expect(selected.material).toEqual(
           Arr.filter(materials, ({ route }) =>
@@ -220,11 +233,27 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
       })
   );
 
+  it.effect(
+    "keeps every locale of the lessons the Nakafa home page reads",
+    () =>
+      Effect.gen(function* () {
+        const selected = yield* loadAcceptanceSources(yield* checkoutRoot);
+        const identities = Arr.map(
+          selected.material,
+          ({ route }) => `${route.contentKey}:${route.artifactLocale}`
+        );
+        for (const identity of homeLessonIdentities) {
+          expect(identities).toContain(identity);
+        }
+      })
+  );
+
   it.effect.each([
     "articles/politics/merah-putih-cabinet-analysis:en",
     "articles/politics/regional-elections-turmoil:id",
     "material/lesson/mathematics/analytic-geometry/hyperbola:de",
     "material/lesson/mathematics/exponential-logarithm/exponential-growth:id",
+    ...homeLessonIdentities,
   ])(
     "rejects a required authored locale instead of shrinking the sample: %s",
     (identity) =>
