@@ -1,5 +1,3 @@
-import { Buffer } from "node:buffer";
-import { timingSafeEqual } from "node:crypto";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
@@ -72,11 +70,24 @@ function writeJson(response: ServerResponse, status: number, body: string) {
   response.end(body);
 }
 
+/** Compares two byte sequences by visiting every byte, so the result does not reveal where they first differ. */
+function sameBytes(left: Uint8Array, right: Uint8Array) {
+  if (left.byteLength !== right.byteLength) {
+    return false;
+  }
+  let difference = 0;
+  for (let index = 0; index < left.byteLength; index += 1) {
+    difference += Math.abs(Number(left[index]) - Number(right[index]));
+  }
+  return difference === 0;
+}
+
 /** Compares one bearer header without data-dependent token comparison. */
 function hasValidToken(header: string | undefined, token: string) {
-  const expected = Buffer.from(`Bearer ${token}`, "utf8");
-  const actual = Buffer.from(header ?? "", "utf8");
-  return actual.length === expected.length && timingSafeEqual(actual, expected);
+  return sameBytes(
+    new TextEncoder().encode(header ?? ""),
+    new TextEncoder().encode(`Bearer ${token}`)
+  );
 }
 
 /** Returns the exact request path without normalizing traversal segments. */

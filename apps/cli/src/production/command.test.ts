@@ -1,7 +1,11 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect } from "effect";
-import { productionCalls, productionProgram } from "#test/production/harness";
+import {
+  ACTIVE_PRODUCTION_STATE,
+  productionCalls,
+  productionProgram,
+} from "#test/production/harness";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
@@ -15,23 +19,17 @@ import {
 const calls = productionCalls();
 beforeEach(() => {
   calls.reset();
-  const active = gitBundle("release-active");
-  calls.current = currentState({
-    active: completedBundle(active),
-    candidate: null,
-    recovery: null,
-    tryoutRuntimeBundle: null,
-  });
+  calls.current = ACTIVE_PRODUCTION_STATE;
 });
 describe("production command", () => {
   it.effect("resumes an active release without reading the signer secret", () =>
     Effect.gen(function* () {
-      const active = gitBundle("release-active");
+      const active = yield* gitBundle("release-active");
       calls.derivedPublicKeyPem = "unavailable-production-signing-key";
       calls.current = currentState({
-        active: completedBundle(active),
+        active: yield* completedBundle(active),
         candidate: null,
-        recovery: recoveryBundle("recovery-active", active),
+        recovery: yield* recoveryBundle("recovery-active", active),
         tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
@@ -58,9 +56,9 @@ describe("production command", () => {
 
   it.effect("resumes a completed release after a lost response", () =>
     Effect.gen(function* () {
-      const completed = gitBundle("release-completed");
+      const completed = yield* gitBundle("release-completed");
       calls.current = currentState({
-        active: completedBundle(completed),
+        active: yield* completedBundle(completed),
         candidate: null,
         recovery: null,
         tryoutRuntimeBundle: null,
@@ -71,7 +69,8 @@ describe("production command", () => {
         releaseId: releaseId("release-completed"),
         scope: FUNCTION_SCOPE,
       });
-      expect(receipt).toEqual(receiptFor(completed.release.manifest));
+      const expectedReceipt = yield* receiptFor(completed.release.manifest);
+      expect(receipt).toEqual(expectedReceipt);
       expect(calls).toMatchObject({
         catalogCalls: 0,
         cleanReads: 1,
@@ -87,11 +86,11 @@ describe("production command", () => {
 
   it.effect("rejects an active receipt from another source revision", () =>
     Effect.gen(function* () {
-      const active = gitBundle("release-active", {
+      const active = yield* gitBundle("release-active", {
         sha: GitCommitShaSchema.make("b".repeat(40)),
       });
       calls.current = currentState({
-        active: completedBundle(active),
+        active: yield* completedBundle(active),
         candidate: null,
         recovery: null,
         tryoutRuntimeBundle: null,
@@ -143,7 +142,7 @@ describe("production command", () => {
     "rejects a conflicting candidate release before any content read",
     () =>
       Effect.gen(function* () {
-        const candidate = gitBundle("release-candidate");
+        const candidate = yield* gitBundle("release-candidate");
         calls.current = currentState({
           active: null,
           candidate: { ...candidate, phase: "staging" },
@@ -173,7 +172,7 @@ describe("production command", () => {
 
   it.effect("rejects recovery from a different checkout revision", () =>
     Effect.gen(function* () {
-      const candidate = gitBundle("release-candidate", {
+      const candidate = yield* gitBundle("release-candidate", {
         sha: GitCommitShaSchema.make("b".repeat(40)),
       });
       calls.current = currentState({
@@ -227,7 +226,7 @@ describe("production command", () => {
 
   it.effect("rejects a rebuild that differs from signed candidate state", () =>
     Effect.gen(function* () {
-      const candidate = gitBundle("release-candidate");
+      const candidate = yield* gitBundle("release-candidate");
       calls.current = currentState({
         active: null,
         candidate: { ...candidate, phase: "verifying" },

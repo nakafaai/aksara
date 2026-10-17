@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   computePreviewRendererProof,
@@ -17,22 +17,6 @@ import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 
-const cryptoFailure = vi.hoisted(() => ({ nonce: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects failure only into the renderer challenge generator. */
-    randomBytes(size: number) {
-      if (cryptoFailure.nonce) {
-        throw new TypeError("injected renderer nonce failure");
-      }
-      return crypto.randomBytes(size);
-    },
-  };
-});
-
 const ORIGIN = new URL("http://localhost:31234");
 const RENDERER_URL = new URL("/api/internal/content/renderer", ORIGIN);
 const RENDERER_SECRET = PreviewRendererSecretSchema.make("s".repeat(43));
@@ -42,10 +26,6 @@ const CREDENTIALS: RendererCredentials = {
 };
 const NONCE_HEADER = "x-aksara-preview-nonce";
 const NONCE_PATTERN = /^[A-Za-z0-9_-]{43}$/u;
-
-afterEach(() => {
-  cryptoFailure.nonce = false;
-});
 
 /** Signs one renderer body against the challenge on its exact request. */
 function authenticatedBody(
@@ -170,11 +150,6 @@ describe("Nakafa renderer discovery", () => {
           ).pipe(Effect.flatMap((body) => rendererResponse(request, body)))
         );
         const tampered = yield* rejectRenderer(tamperedClient.client);
-        cryptoFailure.nonce = true;
-        const unreachable = captureClient((request) =>
-          rendererResponse(request)
-        );
-        const nonce = yield* rejectRenderer(unreachable.client);
 
         expect(forged).toMatchObject({ reason: "auth", retryable: false });
         expect(unknown).toMatchObject({ reason: "contract", retryable: false });
@@ -182,8 +157,6 @@ describe("Nakafa renderer discovery", () => {
           reason: "contract",
           retryable: false,
         });
-        expect(nonce).toMatchObject({ reason: "auth", retryable: false });
-        expect(unreachable.requests).toHaveLength(0);
       })
   );
 

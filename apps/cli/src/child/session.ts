@@ -1,13 +1,11 @@
-import { createServer } from "node:net";
-import { Config, Effect, HashSet, Option, Redacted, Schema } from "effect";
-import { isAddressInfo } from "#cli/address";
+import { NodeSocketServer } from "@effect/platform-node";
+import { Config, Effect, Option, Redacted, Schema } from "effect";
 import { NakafaProcess } from "#cli/child/process";
 import type { PreviewCredentials } from "#cli/credentials";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
 import type { PreviewProvider } from "#cli/provider";
 
-const LOOPBACK_ADDRESSES = HashSet.fromIterable(["127.0.0.1", "::1"]);
 const ChildUrlSchema = Schema.String.pipe(
   Schema.check(Schema.isPattern(/^http:\/\/localhost:\d+(?:\/.*)?$/u))
 );
@@ -53,36 +51,25 @@ export interface RunningNakafa {
   readonly origin: URL;
 }
 
+/** The port of the loopback socket that the reservation reports, the only part of its address it uses. */
+const LoopbackPortSchema = Schema.Struct({ port: Schema.Finite });
+
+/** The app child could not start on a reserved loopback port. */
+const startFailure = () => makeNakafaAppError("start", false);
+
 /** Allocates one currently free localhost port for the actual app child. */
-const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(() =>
-  Effect.callback<number, NakafaAppError>((resume) => {
-    const server = createServer();
-    server.once("error", () =>
-      resume(Effect.fail(makeNakafaAppError("start", false)))
+const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(
+  function* () {
+    const address = yield* Effect.scoped(
+      NodeSocketServer.make({ host: NAKAFA_LOOPBACK_HOST, port: 0 }).pipe(
+        Effect.map((server) => server.address)
+      )
     );
-    server.listen({ host: NAKAFA_LOOPBACK_HOST, port: 0 }, () => {
-      const address = server.address();
-      if (
-        !(
-          isAddressInfo(address) &&
-          HashSet.has(LOOPBACK_ADDRESSES, address.address)
-        )
-      ) {
-        server.close(() =>
-          resume(Effect.fail(makeNakafaAppError("start", false)))
-        );
-        return;
-      }
-      server.close((error) =>
-        resume(
-          error
-            ? Effect.fail(makeNakafaAppError("start", false))
-            : Effect.succeed(address.port)
-        )
-      );
-    });
-    return Effect.sync(() => server.close());
-  })
+    const { port } =
+      yield* Schema.decodeUnknownEffect(LoopbackPortSchema)(address);
+    return port;
+  },
+  Effect.mapError(startFailure)
 );
 
 /** Reports every failure to build the child environment as one typed start failure. */
@@ -182,7 +169,7 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
         environment,
         root: input.root,
       })
-      .pipe(Effect.mapError(() => makeNakafaAppError("start", false)));
+      .pipe(Effect.mapError(startFailure));
     return {
       awaitExit: process.exitCode.pipe(
         Effect.mapError(() => makeNakafaAppError("exit", false)),

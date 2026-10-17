@@ -1,5 +1,5 @@
-import { createServer, type Server } from "node:http";
-import type { AddressInfo } from "node:net";
+import { createServer } from "node:http";
+import { NodeHttpServer } from "@effect/platform-node";
 import {
   canonicalizeSignedContentArtifact,
   SignedContentArtifactSchema,
@@ -17,12 +17,10 @@ import {
 } from "@nakafa/aksara-contracts/preview/spec";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import { Array as Arr, Effect, HashMap, Redacted, Schema } from "effect";
-import { isAddressInfo } from "#cli/address";
 import {
   makePreviewHttp,
   PREVIEW_EVENTS_PATH,
   PREVIEW_MANIFEST_PATH,
-  type PreviewHttp,
   type PreviewHttpState,
 } from "#cli/provider/http";
 import { encodeJsonText } from "#cli/text/json";
@@ -48,6 +46,12 @@ const PreviewReadyResultSchema = Schema.Struct({
   projection: ContentProjectionSchema,
 });
 type PreviewReadyResult = typeof PreviewReadyResultSchema.Type;
+
+/** The port that the loopback listener reports, the only part of its address the provider uses. */
+const LoopbackPortSchema = Schema.Struct({ port: Schema.Finite });
+
+/** The loopback listener could not start, so no provider state is ever served. */
+const listenFailure = () => new PreviewProviderError({ stage: "listen" });
 
 /** Scoped provider controls used by the authoring workflow. */
 export interface PreviewProvider {
@@ -91,40 +95,6 @@ const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
       }))
     )
 );
-
-/** Starts one HTTP server and proves it bound only to IPv4 loopback. */
-function listenLoopback(server: Server) {
-  return Effect.callback<AddressInfo, PreviewProviderError>((resume) => {
-    server.once("error", () =>
-      resume(Effect.fail(new PreviewProviderError({ stage: "listen" })))
-    );
-    server.listen({ host: "127.0.0.1", port: 0 }, () => {
-      const address = server.address();
-      if (
-        isAddressInfo(address) &&
-        address.address === "127.0.0.1" &&
-        address.family === "IPv4"
-      ) {
-        resume(Effect.succeed(address));
-      } else {
-        server.close(() =>
-          resume(Effect.fail(new PreviewProviderError({ stage: "listen" })))
-        );
-      }
-    });
-    return Effect.sync(() => {
-      server.close();
-    });
-  });
-}
-
-/** Closes event streams before stopping the scoped loopback server. */
-function closeServer(server: Server, http: PreviewHttp) {
-  return Effect.callback<void>((resume) => {
-    http.close();
-    server.close(() => resume(Effect.void));
-  });
-}
 
 /** Converts one ordered result into its content-addressed manifest entry. */
 function artifactReference(result: PreviewReadyResult): PreviewArtifact {
@@ -196,12 +166,14 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
     const token = Redacted.value(input.token);
     const context = yield* Effect.context<never>();
     const http = makePreviewHttp({ context, readState: () => state, token });
-    const server = createServer(http.handle);
-    const address = yield* Effect.uninterruptibleMask((restore) =>
-      restore(listenLoopback(server)).pipe(
-        Effect.tap(() => Effect.addFinalizer(() => closeServer(server, http)))
-      )
-    );
+    const server = yield* NodeHttpServer.make(() => createServer(http.handle), {
+      host: "127.0.0.1",
+      port: 0,
+    }).pipe(Effect.mapError(listenFailure));
+    const { port } = yield* Schema.decodeUnknownEffect(LoopbackPortSchema)(
+      server.address
+    ).pipe(Effect.mapError(listenFailure));
+    yield* Effect.addFinalizer(() => Effect.sync(() => http.close()));
     /** Replaces the complete served state before notifying connected clients. */
     const update = Effect.fn("AksaraCli.updatePreviewProvider")(
       (
@@ -240,7 +212,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
           status: "failed",
         }),
       manifestPath: PREVIEW_MANIFEST_PATH,
-      origin: new URL(`http://127.0.0.1:${address.port}`),
+      origin: new URL(`http://127.0.0.1:${port}`),
       pending: (repositories) =>
         Effect.suspend(() => {
           generation += 1;

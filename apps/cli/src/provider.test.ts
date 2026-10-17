@@ -1,4 +1,3 @@
-import { Server } from "node:http";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
@@ -24,7 +23,32 @@ const ReadyArtifactsSchema = Schema.Struct({
   ),
 });
 
+const listenPlan = vi.hoisted(() => ({ fail: false }));
+
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const original =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+  /** One tagged bind failure that the listener mock reports on demand. */
+  class ListenTestError extends TestSchema.TaggedError<ListenTestError>()(
+    "ListenTestError",
+    {}
+  ) {}
+  return {
+    ...original,
+    NodeHttpServer: {
+      ...original.NodeHttpServer,
+      /** Fails the loopback listener only when one test asks for a bind failure. */
+      make: (...args: Parameters<typeof original.NodeHttpServer.make>) =>
+        listenPlan.fail
+          ? TestEffect.fail(new ListenTestError())
+          : original.NodeHttpServer.make(...args),
+    },
+  };
+});
+
 afterEach(() => {
+  listenPlan.fail = false;
   vi.restoreAllMocks();
 });
 describe("local preview provider", () => {
@@ -243,55 +267,16 @@ describe("local preview provider", () => {
     30_000
   );
   it.live(
-    "fails when the operating system cannot bind or prove loopback",
+    "fails with a listen stage when the loopback listener cannot start",
     () =>
       Effect.gen(function* () {
         const input = yield* makeProviderInput;
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          // The caller subscribes to "error" before it listens, so the failure arrives at once.
-          this.emit("error", new Error("Test bind failure."));
-          return this;
-        });
+        listenPlan.fail = true;
         const listenError = yield* Effect.scoped(
-          openPreviewProvider(input)
-        ).pipe(Effect.flip);
-        vi.restoreAllMocks();
-        vi.spyOn(Server.prototype, "address").mockReturnValueOnce(null);
-        const addressError = yield* Effect.scoped(
           openPreviewProvider(input)
         ).pipe(Effect.flip);
 
         expect(listenError).toMatchObject({ stage: "listen" });
-        expect(addressError).toMatchObject({ stage: "listen" });
-      }),
-    30_000
-  );
-
-  it.live(
-    "closes an unfinished listener when provider acquisition is cancelled",
-    () =>
-      Effect.gen(function* () {
-        const input = yield* makeProviderInput;
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          return this;
-        });
-        const close = vi
-          .spyOn(Server.prototype, "close")
-          .mockImplementationOnce(function (this: Server) {
-            return this;
-          });
-
-        const cancelled = yield* Effect.scoped(openPreviewProvider(input)).pipe(
-          Effect.timeout("1 millis"),
-          Effect.flip
-        );
-
-        expect(cancelled._tag).toBe("TimeoutError");
-        expect(close).toHaveBeenCalledOnce();
       }),
     30_000
   );

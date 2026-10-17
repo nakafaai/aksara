@@ -1,7 +1,10 @@
-import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ed25519PublicKeyPem,
+  generateEd25519KeyPem,
+} from "@nakafa/aksara-contracts/signature/key";
 import {
   Array as Arr,
   ConfigProvider,
@@ -29,11 +32,7 @@ const makeFixture = Effect.fn("AcceptanceSettingsTest.makeFixture")(
     const directory = yield* fs.makeTempDirectoryScoped({
       prefix: "aksara-acceptance-settings-test-",
     });
-    const privateKeyPem = yield* Effect.sync(() =>
-      generateKeyPairSync("ed25519")
-        .privateKey.export({ format: "pem", type: "pkcs8" })
-        .toString()
-    );
+    const { privateKeyPem } = yield* generateEd25519KeyPem();
     const privateKeyPath = path.join(directory, "signer.pem");
     const rendererPath = path.join(directory, "renderer.json");
     yield* fs.writeFileString(privateKeyPath, privateKeyPem);
@@ -113,9 +112,7 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
         expect(settings.endpoint.href).toBe(endpoint);
         expect(settings.key).toEqual({
           keyId: "test-acceptance-key",
-          publicKeyPem: createPublicKey(fixture.privateKeyPem)
-            .export({ format: "pem", type: "spki" })
-            .toString(),
+          publicKeyPem: yield* ed25519PublicKeyPem(fixture.privateKeyPem),
         });
         expect(Redacted.value(settings.privateKeyPem)).toBe(
           fixture.privateKeyPem

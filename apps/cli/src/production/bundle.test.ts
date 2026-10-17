@@ -38,7 +38,7 @@ layer(Layer.succeed(ContentVerificationKeyResolver, resolver))(
   (it) => {
     it.effect("accepts one authenticated pair across release successors", () =>
       Effect.gen(function* () {
-        const active = gitBundle("release-runtime-base", {
+        const active = yield* gitBundle("release-runtime-base", {
           baseReleaseId: releaseId("release-runtime-parent"),
           tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
         });
@@ -69,7 +69,10 @@ layer(Layer.succeed(ContentVerificationKeyResolver, resolver))(
           runtimeBundle
         );
 
-        const recovered = recoveryBundle("release-runtime-recovered", active);
+        const recovered = yield* recoveryBundle(
+          "release-runtime-recovered",
+          active
+        );
         assert.deepStrictEqual(
           yield* verifyBaseTryoutRuntimeBundle(
             runtimeBundle,
@@ -79,12 +82,12 @@ layer(Layer.succeed(ContentVerificationKeyResolver, resolver))(
           runtimeBundle
         );
 
-        const successor = gitBundle("release-runtime-successor", {
+        const successor = yield* gitBundle("release-runtime-successor", {
           baseManifestHash: active.release.manifestHash,
           baseReleaseId: active.release.manifest.releaseId,
           tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
         });
-        const nextSuccessor = gitBundle("release-runtime-next", {
+        const nextSuccessor = yield* gitBundle("release-runtime-next", {
           baseManifestHash: successor.release.manifestHash,
           baseReleaseId: successor.release.manifest.releaseId,
           tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,

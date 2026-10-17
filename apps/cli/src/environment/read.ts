@@ -1,5 +1,5 @@
-import { createPrivateKey, createPublicKey } from "node:crypto";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
+import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
 import { type CacheSurface, CacheSurfaceSchema } from "#cli/cache/activation";
 import {
@@ -82,21 +82,12 @@ const validatePrivateKey = Effect.fn("AksaraCli.validatePrivateKey")(
     ) {
       return Effect.fail(productionError("AKSARA_SIGNING_PRIVATE_KEY"));
     }
-    return Effect.try({
-      catch: () => productionError("AKSARA_SIGNING_PRIVATE_KEY"),
-      try: () => {
-        const privateKey = createPrivateKey(pem);
-        const derivedPublicKeyPem = createPublicKey(privateKey)
-          .export({ format: "pem", type: "spki" })
-          .toString();
-        return { derivedPublicKeyPem, privateKey };
-      },
-    }).pipe(
-      Effect.flatMap(({ derivedPublicKeyPem, privateKey }) =>
-        privateKey.asymmetricKeyType === "ed25519"
-          ? Effect.succeed({ derivedPublicKeyPem, privateKeyPem })
-          : Effect.fail(productionError("AKSARA_SIGNING_PRIVATE_KEY"))
-      )
+    return ed25519PublicKeyPem(pem).pipe(
+      Effect.mapError(() => productionError("AKSARA_SIGNING_PRIVATE_KEY")),
+      Effect.map((derivedPublicKeyPem) => ({
+        derivedPublicKeyPem,
+        privateKeyPem,
+      }))
     );
   }
 );

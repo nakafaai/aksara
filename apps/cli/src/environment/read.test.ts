@@ -1,5 +1,5 @@
-import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
+import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import {
   ConfigProvider,
   Effect,
@@ -7,6 +7,7 @@ import {
   Redacted,
   Schema,
 } from "effect";
+import { Base64 } from "effect/encoding";
 import {
   decodePreviewEnvironment,
   readPreviewEnvironment,
@@ -21,6 +22,28 @@ import {
   rejectProduction,
   rejectPublication,
 } from "#test/environment";
+
+/** Generates one RSA PKCS#8 private key as PEM, which the Ed25519 check must refuse. */
+const rsaPrivateKeyPemOf = Effect.fn("AksaraCliTest.rsaPrivateKeyPem")(
+  function* () {
+    const pair = yield* Effect.promise(() =>
+      globalThis.crypto.subtle.generateKey(
+        {
+          hash: "SHA-256",
+          modulusLength: 1024,
+          name: "RSASSA-PKCS1-v1_5",
+          publicExponent: Uint8Array.of(1, 0, 1),
+        },
+        true,
+        ["sign", "verify"]
+      )
+    );
+    const der = yield* Effect.promise(() =>
+      globalThis.crypto.subtle.exportKey("pkcs8", pair.privateKey)
+    );
+    return `-----BEGIN PRIVATE KEY-----\n${Base64.encode(new Uint8Array(der))}\n-----END PRIVATE KEY-----\n`;
+  }
+);
 
 describe("preview environment", () => {
   it.effect("decodes absent and explicit Nakafa checkout paths", () =>
@@ -144,11 +167,7 @@ describe("production environment", () => {
         }),
         productionValues
       );
-      const derivedPublicKeyPem = yield* Effect.sync(() =>
-        createPublicKey(privateKeyPem)
-          .export({ format: "pem", type: "spki" })
-          .toString()
-      );
+      const derivedPublicKeyPem = yield* ed25519PublicKeyPem(privateKeyPem);
 
       expect(environment.publicationEndpoint.href).toBe(
         "https://content.example.test/api/publish"
@@ -245,11 +264,7 @@ describe("production environment", () => {
   it.effect("rejects a non-Ed25519 signing key", () =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture;
-      const rsaPrivateKeyPem = yield* Effect.sync(() =>
-        generateKeyPairSync("rsa", { modulusLength: 1024 })
-          .privateKey.export({ format: "pem", type: "pkcs8" })
-          .toString()
-      );
+      const rsaPrivateKeyPem = yield* rsaPrivateKeyPemOf();
       const values = MutableHashMap.fromIterable(productionValues);
       MutableHashMap.set(
         values,
