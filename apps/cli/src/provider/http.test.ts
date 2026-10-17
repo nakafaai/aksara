@@ -7,7 +7,7 @@ import {
   LocalPreviewManifestSchema,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { Array as Arr, Effect, Fiber, HashMap, Schema } from "effect";
+import { Array as Arr, Deferred, Effect, HashMap, Schema } from "effect";
 import { TestClock } from "effect/testing";
 import {
   PREVIEW_EVENTS_PATH,
@@ -78,6 +78,25 @@ const responseManifest = Effect.fn("AksaraCliTest.decodePreviewHttpManifest")(
       )
     )
 );
+
+/**
+ * Waits real time while the test clock stands still, so socket bytes that the
+ * server already wrote reach the client before a negative timing check.
+ */
+const settleSocket = TestClock.withLive(Effect.sleep("50 millis"));
+
+/** Starts one read of the next event, and returns a deferred that holds its exact outcome. */
+const forkNextEvent = Effect.fn("AksaraCliTest.forkNextEvent")(function* <E>(
+  read: Effect.Effect<string, E>
+) {
+  const next = yield* Deferred.make<string, E>();
+  yield* read.pipe(
+    Effect.exit,
+    Effect.flatMap((exit) => Deferred.done(next, exit)),
+    Effect.forkChild
+  );
+  return next;
+});
 
 describe("preview HTTP transport", () => {
   it.live(
@@ -182,12 +201,19 @@ describe("preview HTTP transport", () => {
           const readEvent = makeEventReader(reader);
 
           expect(yield* readEvent()).toContain("event: update\n");
-          const firstHeartbeat = yield* Effect.forkChild(readEvent());
-          yield* TestClock.adjust(10);
-          expect(yield* Fiber.join(firstHeartbeat)).toBe(KEEP_ALIVE_LINE);
-          const secondHeartbeat = yield* Effect.forkChild(readEvent());
-          yield* TestClock.adjust(10);
-          expect(yield* Fiber.join(secondHeartbeat)).toBe(KEEP_ALIVE_LINE);
+          const firstHeartbeat = yield* forkNextEvent(readEvent());
+          yield* TestClock.adjust(9);
+          yield* settleSocket;
+          expect(yield* Deferred.isDone(firstHeartbeat)).toBe(false);
+          yield* TestClock.adjust(1);
+          expect(yield* Deferred.await(firstHeartbeat)).toBe(KEEP_ALIVE_LINE);
+          yield* settleSocket;
+          const secondHeartbeat = yield* forkNextEvent(readEvent());
+          yield* TestClock.adjust(9);
+          yield* settleSocket;
+          expect(yield* Deferred.isDone(secondHeartbeat)).toBe(false);
+          yield* TestClock.adjust(1);
+          expect(yield* Deferred.await(secondHeartbeat)).toBe(KEEP_ALIVE_LINE);
           yield* cancelProviderEvent(reader);
         })
       ),
