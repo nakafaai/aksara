@@ -2,7 +2,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 
 import { ACTIVE_APP_LOCALES, DeliveryLanguageSchema } from "#contracts/locale";
-import { makeTryoutTestRows, responseText } from "#contracts/test/tryout";
+import { responseText, tryoutTestRows } from "#contracts/test/tryout";
 import { verifyTryoutLocaleClosure } from "#contracts/tryout/closure/locale";
 import {
   canonicalizeAssessedLanguagePlacementFacts,
@@ -15,7 +15,7 @@ import {
 } from "#contracts/tryout/placement";
 
 const activeAppLocales = ACTIVE_APP_LOCALES;
-const { catalog, placements } = makeTryoutTestRows();
+const { catalog, placements } = tryoutTestRows;
 
 /** Rebuilds one valid placement record after a test-owned field change. */
 const updatePlacement = Effect.fn("AksaraContracts.test.updateTryoutPlacement")(
@@ -27,7 +27,7 @@ const updatePlacement = Effect.fn("AksaraContracts.test.updateTryoutPlacement")(
       ...record.row,
       ...fields,
     });
-    return makeTryoutPlacementRecord(row);
+    return yield* makeTryoutPlacementRecord(row);
   }
 );
 

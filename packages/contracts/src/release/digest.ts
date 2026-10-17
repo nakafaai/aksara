@@ -1,10 +1,6 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import { canonicalizeContentReleaseItem } from "#contracts/release/canonical";
 import type { ContentReleaseItem } from "#contracts/release/spec";
 
@@ -17,23 +13,23 @@ export class ReleaseItemsHashComputationError extends Schema.TaggedError<Release
   { releaseId: ReleaseIdSchema }
 ) {}
 
-/** Keeps Node hash state private while exposing canonical operation counts. */
+/** Keeps the digest stream private while exposing canonical operation counts. */
 class ReleaseItemsDigestState {
-  readonly #hash = createHash("sha256");
+  readonly #stream = new DigestStream();
   count = 0;
   deleteCount = 0;
   upsertCount = 0;
 
-  /** Initializes a domain-separated incremental release-item hash. */
+  /** Starts one domain-separated release-item digest. */
   constructor() {
-    this.#hash.update(CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN);
-    this.#hash.update("\n");
+    this.#stream.add(CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN);
+    this.#stream.add("\n");
   }
 
   /** Adds one canonical release item and updates operation counts. */
   update(item: ContentReleaseItem): void {
-    this.#hash.update(canonicalizeContentReleaseItem(item));
-    this.#hash.update("\n");
+    this.#stream.add(canonicalizeContentReleaseItem(item));
+    this.#stream.add("\n");
     this.count += 1;
     if (item.change.operation === "delete") {
       this.deleteCount += 1;
@@ -42,32 +38,25 @@ class ReleaseItemsDigestState {
     this.upsertCount += 1;
   }
 
-  /** Consumes the hash and returns its branded immutable identity. */
+  /** Digests the complete stream once and returns its branded identity. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
 /** Creates a fresh domain-separated digest state for one release stream. */
-export function createReleaseItemsDigest(releaseId: ReleaseId) {
-  return Effect.try({
-    catch: () => new ReleaseItemsHashComputationError({ releaseId }),
-    try: () => new ReleaseItemsDigestState(),
-  });
-}
+export const createReleaseItemsDigest = Effect.sync(
+  () => new ReleaseItemsDigestState()
+);
 
 /** Adds one canonical release item to its incremental digest and counts. */
 export function updateReleaseItemsDigest(
-  releaseId: ReleaseId,
   state: ReleaseItemsDigestState,
   item: ContentReleaseItem
 ) {
-  return Effect.try({
-    catch: () => new ReleaseItemsHashComputationError({ releaseId }),
-    try: () => {
-      state.update(item);
-      return state;
-    },
+  return Effect.sync(() => {
+    state.update(item);
+    return state;
   });
 }
 
@@ -76,22 +65,23 @@ export function finalizeReleaseItemsDigest(
   releaseId: ReleaseId,
   state: ReleaseItemsDigestState
 ) {
-  return Effect.try({
-    catch: () => new ReleaseItemsHashComputationError({ releaseId }),
-    try: () => state.digest(),
-  });
+  return state
+    .digest()
+    .pipe(
+      Effect.mapError(() => new ReleaseItemsHashComputationError({ releaseId }))
+    );
 }
 
-/** Digests a release-item stream without retaining its content changes. */
+/** Digests a release-item stream. Its canonical bytes are held until one Web Crypto digest runs. */
 export const digestItems = Effect.fn("AksaraContracts.digestItems")(function* <
   E,
   R,
 >(releaseId: ReleaseId, items: Stream.Stream<ContentReleaseItem, E, R>) {
-  const initial = yield* createReleaseItemsDigest(releaseId);
+  const initial = yield* createReleaseItemsDigest;
   const state = yield* items.pipe(
     Stream.runFoldEffect(
       () => initial,
-      (current, item) => updateReleaseItemsDigest(releaseId, current, item)
+      (current, item) => updateReleaseItemsDigest(current, item)
     )
   );
   const digest = yield* finalizeReleaseItemsDigest(releaseId, state);

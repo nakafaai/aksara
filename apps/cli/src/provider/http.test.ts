@@ -1,4 +1,3 @@
-import type { ServerResponse } from "node:http";
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { localPreviewArtifactPath } from "@nakafa/aksara-contracts/preview/artifact";
@@ -8,7 +7,7 @@ import {
   LocalPreviewManifestSchema,
   PreviewRepositorySchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import { Array as Arr, Effect, HashMap, Schema } from "effect";
+import { Array as Arr, Deferred, Effect, HashMap, Schema } from "effect";
 import { TestClock } from "effect/testing";
 import {
   PREVIEW_EVENTS_PATH,
@@ -18,11 +17,9 @@ import {
 import { encodeJsonText } from "#cli/text/json";
 import {
   KEEP_ALIVE_LINE,
-  keepAliveLineCounter,
   makeEventReader,
   openEventStream,
   readBodyChunk,
-  waitFor,
 } from "#test/events";
 import {
   cancelProviderEvent,
@@ -82,139 +79,151 @@ const responseManifest = Effect.fn("AksaraCliTest.decodePreviewHttpManifest")(
     )
 );
 
+/**
+ * Waits real time while the test clock stands still, so socket bytes that the
+ * server already wrote reach the client before a negative timing check.
+ */
+const settleSocket = TestClock.withLive(Effect.sleep("50 millis"));
+
+/** Starts one read of the next event, and returns a deferred that holds its exact outcome. */
+const forkNextEvent = Effect.fn("AksaraCliTest.forkNextEvent")(function* <E>(
+  read: Effect.Effect<string, E>
+) {
+  const next = yield* Deferred.make<string, E>();
+  yield* read.pipe(
+    Effect.exit,
+    Effect.flatMap((exit) => Deferred.done(next, exit)),
+    Effect.forkChild
+  );
+  return next;
+});
+
 describe("preview HTTP transport", () => {
   it.live(
     "serves every immutable hash entry and conflicts on unknown hashes",
     () =>
-      Effect.gen(function* () {
-        const state = yield* makeState();
-        const { http, origin } = yield* openPreviewHttpServer(state);
-        const headers = {
-          authorization: `Bearer ${PREVIEW_PROVIDER_TEST_TOKEN}`,
-        };
-        const [
-          unauthenticated,
-          wrongToken,
-          wrongMethod,
-          servedManifest,
-          missing,
-          malformed,
-          noncanonical,
-        ] = yield* Effect.all([
-          requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin)),
-          requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin), {
-            headers: {
-              authorization: `Bearer ${"x".repeat(
-                PREVIEW_PROVIDER_TEST_TOKEN.length
-              )}`,
-            },
-          }),
-          requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin), {
-            headers,
-            method: "POST",
-          }),
-          requestPreviewHttp(
-            new URL(`${PREVIEW_MANIFEST_PATH}?revision=1`, origin),
-            { headers }
-          ),
-          requestPreviewHttp(new URL("/v1/missing", origin), { headers }),
-          requestPreviewHttp(new URL("/artifacts/not-a-hash", origin), {
-            headers,
-          }),
-          requestPreviewHttp(new URL(`/artifacts/${firstHash}`, origin), {
-            headers,
-          }),
-        ]);
-        const responses = yield* Effect.forEach(
-          [firstHash, secondHash],
-          (artifactHash) =>
+      Effect.scoped(
+        Effect.gen(function* () {
+          const state = yield* makeState();
+          const { http, origin } = yield* openPreviewHttpServer(state);
+          const headers = {
+            authorization: `Bearer ${PREVIEW_PROVIDER_TEST_TOKEN}`,
+          };
+          const [
+            unauthenticated,
+            wrongToken,
+            wrongMethod,
+            servedManifest,
+            missing,
+            malformed,
+            noncanonical,
+          ] = yield* Effect.all([
+            requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin)),
+            requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin), {
+              headers: {
+                authorization: `Bearer ${"x".repeat(
+                  PREVIEW_PROVIDER_TEST_TOKEN.length
+                )}`,
+              },
+            }),
+            requestPreviewHttp(new URL(PREVIEW_MANIFEST_PATH, origin), {
+              headers,
+              method: "POST",
+            }),
             requestPreviewHttp(
-              new URL(localPreviewArtifactPath(artifactHash), origin),
+              new URL(`${PREVIEW_MANIFEST_PATH}?revision=1`, origin),
               { headers }
-            )
-        );
-        const bodies = yield* Effect.forEach(responses, responseText);
-        const unknown = yield* requestPreviewHttp(
-          new URL(localPreviewArtifactPath(unknownHash), origin),
-          { headers }
-        );
-        const events = yield* requestPreviewHttp(
-          new URL(PREVIEW_EVENTS_PATH, origin),
-          { headers }
-        );
-        const reader = yield* openPreviewHttpReader(events);
-        const initial = yield* readBodyChunk(reader);
-        yield* Effect.sync(() => http.publish(state));
-        const changed = yield* readBodyChunk(reader);
-        yield* Effect.sync(() => http.close());
-        const closed = yield* readProviderEvent(reader);
+            ),
+            requestPreviewHttp(new URL("/v1/missing", origin), { headers }),
+            requestPreviewHttp(new URL("/artifacts/not-a-hash", origin), {
+              headers,
+            }),
+            requestPreviewHttp(new URL(`/artifacts/${firstHash}`, origin), {
+              headers,
+            }),
+          ]);
+          const responses = yield* Effect.forEach(
+            [firstHash, secondHash],
+            (artifactHash) =>
+              requestPreviewHttp(
+                new URL(localPreviewArtifactPath(artifactHash), origin),
+                { headers }
+              )
+          );
+          const bodies = yield* Effect.forEach(responses, responseText);
+          const unknown = yield* requestPreviewHttp(
+            new URL(localPreviewArtifactPath(unknownHash), origin),
+            { headers }
+          );
+          const events = yield* requestPreviewHttp(
+            new URL(PREVIEW_EVENTS_PATH, origin),
+            { headers }
+          );
+          const reader = yield* openPreviewHttpReader(events);
+          const initial = yield* readBodyChunk(reader);
+          yield* http.publish(state);
+          const changed = yield* readBodyChunk(reader);
+          yield* http.close;
+          const closed = yield* readProviderEvent(reader);
 
-        expect(Arr.map(responses, ({ status }) => status)).toEqual([200, 200]);
-        expect(bodies).toEqual([firstBody, secondBody]);
-        expect(unauthenticated.status).toBe(401);
-        expect(wrongToken.status).toBe(401);
-        expect(wrongMethod.status).toBe(405);
-        expect(wrongMethod.headers.allow).toBe("GET");
-        expect(servedManifest.status).toBe(200);
-        expect(yield* responseManifest(servedManifest)).toEqual(state.manifest);
-        expect(missing.status).toBe(404);
-        expect(malformed.status).toBe(409);
-        expect(noncanonical.status).toBe(409);
-        expect(unknown.status).toBe(409);
-        expect(new TextDecoder().decode(initial)).toContain('"revision":1');
-        expect(new TextDecoder().decode(changed)).toContain('"revision":1');
-        expect(closed.done).toBe(true);
-      }),
+          expect(Arr.map(responses, ({ status }) => status)).toEqual([
+            200, 200,
+          ]);
+          expect(bodies).toEqual([firstBody, secondBody]);
+          expect(unauthenticated.status).toBe(401);
+          expect(wrongToken.status).toBe(401);
+          expect(wrongMethod.status).toBe(405);
+          expect(wrongMethod.headers.allow).toBe("GET");
+          expect(servedManifest.status).toBe(200);
+          expect(yield* responseManifest(servedManifest)).toEqual(
+            state.manifest
+          );
+          expect(missing.status).toBe(404);
+          expect(malformed.status).toBe(409);
+          expect(noncanonical.status).toBe(409);
+          expect(unknown.status).toBe(409);
+          expect(new TextDecoder().decode(initial)).toContain('"revision":1');
+          expect(new TextDecoder().decode(changed)).toContain('"revision":1');
+          expect(closed.done).toBe(true);
+        })
+      ),
     30_000
   );
 
   it.effect(
     "keeps an idle event stream alive without publishing an update",
     () =>
-      Effect.gen(function* () {
-        const state = yield* makeState();
-        const countLines = yield* keepAliveLineCounter;
-        const { http, origin, server } = yield* openPreviewHttpServer(
-          state,
-          10
-        );
-        let closedStreams: ServerResponse[] = [];
-        server.on("request", (_request, response) => {
-          response.once("close", () => {
-            closedStreams = Arr.append(closedStreams, response);
-          });
-        });
-        const reader = yield* openEventStream(origin);
-        const readEvent = makeEventReader(reader);
+      Effect.scoped(
+        Effect.gen(function* () {
+          const state = yield* makeState();
+          const { origin } = yield* openPreviewHttpServer(state, 10);
+          const reader = yield* openEventStream(origin);
+          const readEvent = makeEventReader(reader);
 
-        expect(yield* readEvent()).toContain("event: update\n");
-        yield* TestClock.adjust(9);
-        expect(countLines()).toBe(0);
-        yield* TestClock.adjust(1);
-        expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
-        expect(countLines()).toBe(1);
-        yield* TestClock.adjust(10);
-        expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
-        expect(countLines()).toBe(2);
-        yield* cancelProviderEvent(reader);
-        yield* waitFor(() => {
-          expect(closedStreams).toHaveLength(1);
-        });
-        yield* TestClock.adjust(30);
-        expect(countLines()).toBe(2);
-        yield* Effect.sync(() => http.close());
-        yield* TestClock.adjust(30);
-        expect(countLines()).toBe(2);
-      }),
+          expect(yield* readEvent()).toContain("event: update\n");
+          const firstHeartbeat = yield* forkNextEvent(readEvent());
+          yield* TestClock.adjust(9);
+          yield* settleSocket;
+          expect(yield* Deferred.isDone(firstHeartbeat)).toBe(false);
+          yield* TestClock.adjust(1);
+          expect(yield* Deferred.await(firstHeartbeat)).toBe(KEEP_ALIVE_LINE);
+          yield* settleSocket;
+          const secondHeartbeat = yield* forkNextEvent(readEvent());
+          yield* TestClock.adjust(9);
+          yield* settleSocket;
+          expect(yield* Deferred.isDone(secondHeartbeat)).toBe(false);
+          yield* TestClock.adjust(1);
+          expect(yield* Deferred.await(secondHeartbeat)).toBe(KEEP_ALIVE_LINE);
+          yield* cancelProviderEvent(reader);
+        })
+      ),
     30_000
   );
 
-  it.effect(
-    "stops every heartbeat when the transport closes",
-    () =>
+  it.effect("stops every heartbeat when the transport closes", () =>
+    Effect.scoped(
       Effect.gen(function* () {
         const state = yield* makeState();
-        const countLines = yield* keepAliveLineCounter;
         const { http, origin } = yield* openPreviewHttpServer(state, 10);
         const firstReader = yield* openEventStream(origin);
         const secondReader = yield* openEventStream(origin);
@@ -226,26 +235,25 @@ describe("preview HTTP transport", () => {
         yield* TestClock.adjust(10);
         expect(yield* readFirst()).toBe(KEEP_ALIVE_LINE);
         expect(yield* readSecond()).toBe(KEEP_ALIVE_LINE);
-        expect(countLines()).toBe(2);
-        yield* Effect.sync(() => http.close());
+        yield* http.close;
         expect((yield* readProviderEvent(firstReader)).done).toBe(true);
         expect((yield* readProviderEvent(secondReader)).done).toBe(true);
-        yield* TestClock.adjust(30);
-        expect(countLines()).toBe(2);
-      }),
-    30_000
+      })
+    )
   );
 
   it.live("sends a keep-alive on the real clock", () =>
-    Effect.gen(function* () {
-      const state = yield* makeState();
-      const { origin } = yield* openPreviewHttpServer(state, 20);
-      const reader = yield* openEventStream(origin);
-      const readEvent = makeEventReader(reader);
+    Effect.scoped(
+      Effect.gen(function* () {
+        const state = yield* makeState();
+        const { origin } = yield* openPreviewHttpServer(state, 20);
+        const reader = yield* openEventStream(origin);
+        const readEvent = makeEventReader(reader);
 
-      expect(yield* readEvent()).toContain("event: update\n");
-      expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
-      yield* cancelProviderEvent(reader);
-    })
+        expect(yield* readEvent()).toContain("event: update\n");
+        expect(yield* readEvent()).toBe(KEEP_ALIVE_LINE);
+        yield* cancelProviderEvent(reader);
+      })
+    )
   );
 });

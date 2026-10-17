@@ -27,7 +27,9 @@ const sourceDigest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const provisionalQuranId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
 
 /** Counts hierarchy rows without hardcoding a corpus inventory. */
-function tryoutCounts(rows: ReturnType<typeof makeTryoutTestRows>["catalog"]) {
+function tryoutCounts(
+  rows: Effect.Success<ReturnType<typeof makeTryoutTestRows>>["catalog"]
+) {
   return {
     country: Arr.filter(rows, ({ row }) => row.kind === "country").length,
     exam: Arr.filter(rows, ({ row }) => row.kind === "exam").length,
@@ -76,7 +78,7 @@ export const makeSnapshotTestData = Effect.fn(
     bindQuranRow(quranManifest.snapshotId, payload)
   );
 
-  const tryout = makeTryoutTestRows();
+  const tryout = yield* makeTryoutTestRows();
   const catalog = Arr.sort(
     tryout.catalog,
     Order.make<(typeof tryout.catalog)[number]>((left, right) =>
@@ -93,7 +95,7 @@ export const makeSnapshotTestData = Effect.fn(
     digestTryoutCatalog(Stream.fromIterable(catalog)),
     digestTryoutPlacements(Stream.fromIterable(placements)),
   ]);
-  const tryoutManifest = makeTryoutSnapshot({
+  const tryoutManifest = yield* makeTryoutSnapshot({
     activeAppLocales: ACTIVE_APP_LOCALES,
     catalogDigest: catalogSummary.digest,
     counts: tryoutCounts(tryout.catalog),

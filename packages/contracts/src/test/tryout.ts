@@ -1,4 +1,4 @@
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import {
@@ -9,16 +9,12 @@ import {
   DeliveryLanguageSchema,
 } from "#contracts/locale";
 import { materialGraph } from "#contracts/test/graph";
-import {
-  type TryoutCatalogRecord,
-  TryoutCatalogRowSchema,
-} from "#contracts/tryout/catalog";
+import { TryoutCatalogRowSchema } from "#contracts/tryout/catalog";
 import { makeTryoutCatalogRecord } from "#contracts/tryout/hash/catalog";
 import { makeTryoutPlacementRecord } from "#contracts/tryout/hash/placement";
-import {
-  type TryoutPlacementRecord,
-  TryoutPlacementSchema,
-} from "#contracts/tryout/placement";
+import { TryoutPlacementSchema } from "#contracts/tryout/placement";
+import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
+import { TryoutSnapshotFactsSchema } from "#contracts/tryout/snapshot/spec";
 
 const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
@@ -28,7 +24,7 @@ export function responseText(text: string) {
 }
 
 /** Builds all five current hierarchy kinds for one app locale. */
-function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
+function catalogRows(appLocale: AppLocale) {
   const common = {
     appLocale,
     sourceRevision: "2026-08-12",
@@ -102,11 +98,11 @@ function catalogRows(appLocale: AppLocale): TryoutCatalogRecord[] {
       visibility: "internal-entry",
     },
   ]);
-  return Arr.map(rows, makeTryoutCatalogRecord);
+  return Effect.forEach(rows, makeTryoutCatalogRecord);
 }
 
 /** Builds one locale-closed placement pair for a non-language section. */
-function placement(appLocale: AppLocale): TryoutPlacementRecord {
+function placement(appLocale: AppLocale) {
   const localeCode = Schema.decodeUnknownSync(AppLocaleCodeSchema)(
     String(appLocale)
   );
@@ -156,11 +152,29 @@ function placement(appLocale: AppLocale): TryoutPlacementRecord {
 }
 
 /** Returns a small hierarchy fixture closed over the requested app locales. */
-export function makeTryoutTestRows(
-  appLocales: readonly AppLocale[] = ACTIVE_APP_LOCALES
-) {
+export const makeTryoutTestRows = Effect.fn(
+  "AksaraContracts.makeTryoutTestRows"
+)(function* (appLocales: readonly AppLocale[] = ACTIVE_APP_LOCALES) {
+  const catalogs = yield* Effect.forEach(appLocales, catalogRows);
   return {
-    catalog: Arr.flatMap(appLocales, catalogRows),
-    placements: Arr.map(appLocales, placement),
+    catalog: Arr.flatten(catalogs),
+    placements: yield* Effect.forEach(appLocales, placement),
   };
-}
+});
+
+/** Try-out test rows built once per test process, for suites that only read them. */
+export const tryoutTestRows = await Effect.runPromise(makeTryoutTestRows());
+
+/** Try-out runtime snapshot whose exact facts the canonical and hash suites pin. */
+export const factsRuntimeSnapshot = await Effect.runPromise(
+  makeTryoutSnapshot(
+    Schema.decodeSync(TryoutSnapshotFactsSchema)({
+      activeAppLocales: ["en", "id", "de"],
+      catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
+      counts: { country: 2, exam: 4, section: 34, set: 10, track: 4 },
+      placementCount: 840,
+      placementDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
+      routeCount: 48,
+    })
+  )
+);

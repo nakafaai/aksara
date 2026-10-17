@@ -1,31 +1,30 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
-import { generateKeyPairSync, sign, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { Ed25519SignatureSchema, SigningKeyIdSchema } from "#contracts/ids";
+import {
+  generateEd25519KeyPem,
+  signEd25519Message,
+} from "#contracts/signature/key";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
+import {
+  generateRsaPublicKeyPem,
+  verifyEd25519Pem,
+} from "#contracts/test/signature";
 import { encodeJsonText } from "#contracts/text/json";
 
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 const message = "nakafa.aksara.signature.test";
-const makeSigningFixture = Effect.sync(() => {
-  const keys = generateKeyPairSync("ed25519");
-  const publicKey = keys.publicKey
-    .export({ format: "pem", type: "spki" })
-    .toString();
-  const signature = Ed25519SignatureSchema.make(
-    sign(null, Buffer.from(message, "utf8"), keys.privateKey).toString(
-      "base64url"
-    )
-  );
+const makeSigningFixture = Effect.gen(function* () {
+  const keys = yield* generateEd25519KeyPem();
+  const signature = yield* signEd25519Message(keys.privateKeyPem, message);
 
-  return { keys, publicKey, signature };
+  return { keys, publicKey: keys.publicKeyPem, signature };
 });
 
 /** Builds signature verification with an injected key resolver. */
@@ -91,11 +90,8 @@ describe("verifyEd25519Signature", () => {
   it.effect("rejects private key material at the public-key boundary", () =>
     Effect.gen(function* () {
       const fixture = yield* makeSigningFixture;
-      const privateKey = fixture.keys.privateKey
-        .export({ format: "pem", type: "pkcs8" })
-        .toString();
       const resolver = ContentVerificationKeyResolver.of({
-        resolve: () => Effect.succeed(privateKey),
+        resolve: () => Effect.succeed(fixture.keys.privateKeyPem),
       });
 
       expect(yield* reject(resolver, fixture.signature)).toMatchObject({
@@ -156,11 +152,7 @@ describe("verifyEd25519Signature", () => {
   it.effect("rejects non-Ed25519 keys and altered messages", () =>
     Effect.gen(function* () {
       const fixture = yield* makeSigningFixture;
-      const rsaKey = yield* Effect.sync(() =>
-        generateKeyPairSync("rsa", { modulusLength: 2048 })
-          .publicKey.export({ format: "pem", type: "spki" })
-          .toString()
-      );
+      const rsaKey = yield* generateRsaPublicKeyPem();
       const rsaResolver = ContentVerificationKeyResolver.of({
         resolve: () => Effect.succeed(rsaKey),
       });
@@ -267,24 +259,26 @@ describe("pinned Ed25519 signature bytes", () => {
     })
   );
 
-  it("verifies the pinned signature over exact bytes and rejects one changed byte", () => {
-    const pinnedMessage =
-      "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😀";
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(pinnedMessage, "utf8"),
-        pinnedPublicKeyPem,
-        Buffer.from(pinnedSignature, "base64url")
-      )
-    ).toBe(true);
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(pinnedMessage.replace("nakafa", "makafa"), "utf8"),
-        pinnedPublicKeyPem,
-        Buffer.from(pinnedSignature, "base64url")
-      )
-    ).toBe(false);
-  });
+  it.effect(
+    "verifies the pinned signature over exact bytes and rejects one changed byte",
+    () =>
+      Effect.gen(function* () {
+        const pinnedMessage =
+          "nakafa.aksara.signature.pinned\nPecahan Ñandú café 😀";
+        expect(
+          yield* verifyEd25519Pem(
+            pinnedPublicKeyPem,
+            pinnedMessage,
+            pinnedSignature
+          )
+        ).toBe(true);
+        expect(
+          yield* verifyEd25519Pem(
+            pinnedPublicKeyPem,
+            pinnedMessage.replace("nakafa", "makafa"),
+            pinnedSignature
+          )
+        ).toBe(false);
+      })
+  );
 });

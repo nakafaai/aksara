@@ -1,7 +1,6 @@
-import { createHash } from "node:crypto";
-
 import { Array as Arr, Effect, MutableList, Schema } from "effect";
 
+import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   type ActiveAppLocaleList,
@@ -200,26 +199,18 @@ export function canonicalizeQuranProvenance(record: QuranProvenanceRecord) {
 /** Digests exact ordered provenance records under their active locale set. */
 export const hashQuranProvenance = Effect.fn(
   "AksaraContracts.hashQuranProvenance"
-)(
-  (input: {
-    readonly activeAppLocales: ActiveAppLocaleList;
-    readonly records: readonly QuranProvenanceRecord[];
-  }) =>
-    Effect.try({
-      catch: () => new QuranProvenanceHashError(),
-      try: () => {
-        const hash = createHash("sha256")
-          .update(`${PROVENANCE_DOMAIN}\n`)
-          .update(encodeJsonText(input.activeAppLocales))
-          .update("\n");
-        for (const record of input.records) {
-          hash.update(canonicalizeQuranProvenance(record));
-          hash.update("\n");
-        }
-        return Sha256HashSchema.make(`sha256:${hash.digest("hex")}`);
-      },
-    })
-);
+)(function* (input: {
+  readonly activeAppLocales: ActiveAppLocaleList;
+  readonly records: readonly QuranProvenanceRecord[];
+}) {
+  let canonical = `${PROVENANCE_DOMAIN}\n${encodeJsonText(input.activeAppLocales)}\n`;
+  for (const record of input.records) {
+    canonical += `${canonicalizeQuranProvenance(record)}\n`;
+  }
+  return yield* hashText(canonical).pipe(
+    Effect.mapError(() => new QuranProvenanceHashError())
+  );
+});
 
 /** Builds a snapshot provenance gate from exact reviewed source records. */
 export const makeQuranProvenanceManifest = Effect.fn(

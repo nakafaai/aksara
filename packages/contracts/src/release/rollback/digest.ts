@@ -1,10 +1,6 @@
-import { createHash } from "node:crypto";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type ReleaseId,
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
+import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,
@@ -35,50 +31,43 @@ export class RollbackSnapshotDigestMismatchError extends Schema.TaggedError<Roll
   { ...ReleaseDigestMismatchFields }
 ) {}
 
-/** Keeps mutable Node hash state private behind the incremental digest seam. */
+/** Keeps the digest stream private behind the incremental digest seam. */
 class RollbackSnapshotDigestState {
-  readonly #hash = createHash("sha256");
+  readonly #stream = new DigestStream();
   count = 0;
 
-  /** Initializes one domain-separated rollback snapshot hash. */
+  /** Starts one domain-separated rollback snapshot digest. */
   constructor() {
-    this.#hash.update(ROLLBACK_SNAPSHOT_DIGEST_DOMAIN);
-    this.#hash.update("\n");
+    this.#stream.add(ROLLBACK_SNAPSHOT_DIGEST_DOMAIN);
+    this.#stream.add("\n");
   }
 
   /** Adds one canonical prior state to the snapshot digest. */
   update(entry: RollbackSnapshotEntry): void {
-    this.#hash.update(canonicalizeRollbackSnapshotEntry(entry));
-    this.#hash.update("\n");
+    this.#stream.add(canonicalizeRollbackSnapshotEntry(entry));
+    this.#stream.add("\n");
     this.count += 1;
   }
 
-  /** Consumes the hash and returns its branded immutable identity. */
+  /** Digests the complete stream once and returns its branded immutable identity. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
 /** Creates a fresh domain-separated digest state for one rollback snapshot. */
-export function createRollbackSnapshotDigest(releaseId: ReleaseId) {
-  return Effect.try({
-    catch: () => new RollbackSnapshotHashError({ releaseId }),
-    try: () => new RollbackSnapshotDigestState(),
-  });
-}
+export const createRollbackSnapshotDigest = Effect.sync(
+  () => new RollbackSnapshotDigestState()
+);
 
 /** Adds one canonical prior state to an incremental rollback digest. */
 export function updateRollbackSnapshotDigest(
-  releaseId: ReleaseId,
   state: RollbackSnapshotDigestState,
   entry: RollbackSnapshotEntry
 ) {
-  return Effect.try({
-    catch: () => new RollbackSnapshotHashError({ releaseId }),
-    try: () => {
-      state.update(entry);
-      return state;
-    },
+  return Effect.sync(() => {
+    state.update(entry);
+    return state;
   });
 }
 
@@ -87,25 +76,23 @@ export function finalizeRollbackSnapshotDigest(
   releaseId: ReleaseId,
   state: RollbackSnapshotDigestState
 ) {
-  return Effect.try({
-    catch: () => new RollbackSnapshotHashError({ releaseId }),
-    try: () => state.digest(),
-  });
+  return state
+    .digest()
+    .pipe(Effect.mapError(() => new RollbackSnapshotHashError({ releaseId })));
 }
 
-/** Digests one rollback snapshot stream without retaining prior state bodies. */
+/** Digests one rollback snapshot stream. Its canonical bytes are held until one Web Crypto digest runs. */
 export const digestRollbackSnapshot = Effect.fn(
   "AksaraContracts.digestRollbackSnapshot"
 )(function* <E, R>(
   releaseId: ReleaseId,
   entries: Stream.Stream<RollbackSnapshotEntry, E, R>
 ) {
-  const initial = yield* createRollbackSnapshotDigest(releaseId);
+  const initial = yield* createRollbackSnapshotDigest;
   const state = yield* entries.pipe(
     Stream.runFoldEffect(
       () => initial,
-      (current, entry) =>
-        updateRollbackSnapshotDigest(releaseId, current, entry)
+      (current, entry) => updateRollbackSnapshotDigest(current, entry)
     )
   );
   const digest = yield* finalizeRollbackSnapshotDigest(releaseId, state);

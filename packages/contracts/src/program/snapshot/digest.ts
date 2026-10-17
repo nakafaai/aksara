@@ -1,5 +1,3 @@
-import { createHash } from "node:crypto";
-
 import {
   Array as Arr,
   Effect,
@@ -10,7 +8,7 @@ import {
   Stream,
 } from "effect";
 
-import { Sha256HashSchema } from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
 import type { ActiveAppLocaleList } from "#contracts/locale";
 import {
   type CurriculumRoute,
@@ -83,7 +81,7 @@ function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
 /** Keeps current locale closure, identity, and digest state in one replay. */
 class ProgramDigestState {
   readonly #activeAppLocales: ActiveAppLocaleList;
-  readonly #hash = createHash("sha256").update(`${DIGEST_DOMAIN}\n`);
+  readonly #stream = new DigestStream();
   readonly #nodes = MutableHashSet.empty<string>();
   readonly #paths = MutableHashSet.empty<string>();
   readonly #programs = MutableHashMap.empty<string, LearningProgram>();
@@ -96,9 +94,10 @@ class ProgramDigestState {
   programRowCount = 0;
   sitemapCount = 0;
 
-  /** Initializes one isolated replay under the signed active locale set. */
+  /** Starts one isolated replay under the signed active locale set. */
   constructor(activeAppLocales: ActiveAppLocaleList) {
     this.#activeAppLocales = activeAppLocales;
+    this.#stream.add(`${DIGEST_DOMAIN}\n`);
   }
 
   /** Returns source-independent count evidence collected from accepted rows. */
@@ -156,12 +155,13 @@ class ProgramDigestState {
     );
   }
 
-  /** Consumes the complete canonical stream digest. */
+  /** Digests the complete canonical stream once. */
   digest() {
-    return Effect.try({
-      catch: () => new ProgramRowHashError({ scope: "digest" }),
-      try: () => Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`),
-    });
+    return this.#stream
+      .digest()
+      .pipe(
+        Effect.mapError(() => new ProgramRowHashError({ scope: "digest" }))
+      );
   }
 
   /** Adds one catalog row before any current curriculum records. */
@@ -267,15 +267,11 @@ class ProgramDigestState {
 
   /** Adds canonical current record bytes and their authenticated row hash. */
   #updateDigest(record: ProgramSnapshotRow) {
-    return Effect.try({
-      catch: () => new ProgramRowHashError({ scope: "digest" }),
-      try: () => {
-        this.#hash
-          .update(canonicalizeProgramSnapshotRow(record))
-          .update("\0")
-          .update(record.rowHash)
-          .update("\n");
-      },
+    return Effect.sync(() => {
+      this.#stream.add(canonicalizeProgramSnapshotRow(record));
+      this.#stream.add("\0");
+      this.#stream.add(record.rowHash);
+      this.#stream.add("\n");
     });
   }
 }
@@ -302,10 +298,7 @@ export const digestProgramRows = Effect.fn("AksaraContracts.digestProgramRows")(
     readonly expected?: ProgramCounts;
     readonly rows: Stream.Stream<ProgramSnapshotRow, E, R>;
   }) {
-    const state = yield* Effect.try({
-      catch: () => new ProgramRowHashError({ scope: "digest" }),
-      try: () => new ProgramDigestState(input.activeAppLocales),
-    });
+    const state = new ProgramDigestState(input.activeAppLocales);
     yield* input.rows.pipe(
       Stream.runForEach((record) => updateProgramDigest(state, record))
     );

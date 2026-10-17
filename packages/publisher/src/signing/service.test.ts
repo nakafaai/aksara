@@ -1,8 +1,6 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
-import { generateKeyPairSync, verify } from "node:crypto";
-import { describe, expect, it } from "@effect/vitest";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import {
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
@@ -10,12 +8,14 @@ import {
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { encodeJsonText } from "#publisher/text/json";
 import {
   changeOneByte,
+  generateRsaPrivateKeyPem,
   signingManifest as manifest,
   signingPayload as payload,
   signingRuntimeBundle,
@@ -23,42 +23,29 @@ import {
   TEST_RELEASE_SIGNATURE,
   TEST_RUNTIME_BUNDLE_SIGNATURE,
   verifyRecorded,
+  verifyWithPublicKeyPem,
 } from "#test/signing";
-
-const cryptoFailure = vi.hoisted(() => ({ failNextSign: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    sign: (...parameters: Parameters<typeof crypto.sign>) => {
-      if (cryptoFailure.failNextSign) {
-        cryptoFailure.failNextSign = false;
-        throw new Error("Test-controlled signing failure.");
-      }
-      return crypto.sign(...parameters);
-    },
-  };
-});
 
 /** Builds one Ed25519 key pair and its publication signer. */
 const makeSigner = Effect.fn("PublicationSigningTest.makeSigner")(function* () {
-  const keyPair = yield* Effect.sync(() => generateKeyPairSync("ed25519"));
+  const keyPair = yield* generateEd25519KeyPem();
   const signer = yield* makeEd25519PublicationSigner({
     keyId: "test-signing-key",
-    privateKeyPem: keyPair.privateKey
-      .export({ format: "pem", type: "pkcs8" })
-      .toString(),
+    privateKeyPem: keyPair.privateKeyPem,
   });
-  return { ...keyPair, signer };
+  return { publicKeyPem: keyPair.publicKeyPem, signer };
 });
 
 describe("Ed25519 publication signing", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it.effect(
     "signs every publication object with one domain-separated key",
     () =>
       Effect.gen(function* () {
-        const { publicKey, signer } = yield* makeSigner();
+        const { publicKeyPem, signer } = yield* makeSigner();
         const artifact = yield* signer.signArtifact(payload);
         const release = yield* signer.signRelease(manifest);
         expect(manifest.origin.kind).toBe("git");
@@ -66,74 +53,50 @@ describe("Ed25519 publication signing", () => {
           return;
         }
         const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
-          signingRuntimeBundle(release, manifest.origin.sha)
+          yield* signingRuntimeBundle(release, manifest.origin.sha)
         );
 
         expect(artifact.keyId).toBe("test-signing-key");
         expect(
-          yield* Effect.sync(() =>
-            verify(
-              null,
-              Buffer.from(
-                canonicalizeContentArtifactSigningInput(
-                  artifact.artifactHash,
-                  artifact.payload
-                ),
-                "utf8"
-              ),
-              publicKey,
-              Buffer.from(artifact.signature, "base64url")
-            )
+          yield* verifyWithPublicKeyPem(
+            publicKeyPem,
+            canonicalizeContentArtifactSigningInput(
+              artifact.artifactHash,
+              artifact.payload
+            ),
+            artifact.signature
           )
         ).toBe(true);
         expect(release.keyId).toBe(artifact.keyId);
         expect(
-          yield* Effect.sync(() =>
-            verify(
-              null,
-              Buffer.from(
-                canonicalizeContentReleaseSigningInput(
-                  release.manifestHash,
-                  release.manifest
-                ),
-                "utf8"
-              ),
-              publicKey,
-              Buffer.from(release.signature, "base64url")
-            )
+          yield* verifyWithPublicKeyPem(
+            publicKeyPem,
+            canonicalizeContentReleaseSigningInput(
+              release.manifestHash,
+              release.manifest
+            ),
+            release.signature
           )
         ).toBe(true);
         expect(runtimeBundle.keyId).toBe(release.keyId);
         expect(
-          yield* Effect.sync(() =>
-            verify(
-              null,
-              Buffer.from(
-                canonicalizeTryoutRuntimeBundleSigningInput(
-                  runtimeBundle.bundleHash,
-                  runtimeBundle.payload
-                ),
-                "utf8"
-              ),
-              publicKey,
-              Buffer.from(runtimeBundle.signature, "base64url")
-            )
+          yield* verifyWithPublicKeyPem(
+            publicKeyPem,
+            canonicalizeTryoutRuntimeBundleSigningInput(
+              runtimeBundle.bundleHash,
+              runtimeBundle.payload
+            ),
+            runtimeBundle.signature
           )
         ).toBe(true);
         expect(
-          yield* Effect.sync(() =>
-            verify(
-              null,
-              Buffer.from(
-                canonicalizeContentReleaseSigningInput(
-                  release.manifestHash,
-                  release.manifest
-                ),
-                "utf8"
-              ),
-              publicKey,
-              Buffer.from(artifact.signature, "base64url")
-            )
+          yield* verifyWithPublicKeyPem(
+            publicKeyPem,
+            canonicalizeContentReleaseSigningInput(
+              release.manifestHash,
+              release.manifest
+            ),
+            artifact.signature
           )
         ).toBe(false);
       })
@@ -141,14 +104,10 @@ describe("Ed25519 publication signing", () => {
 
   it.effect("rejects a non-Ed25519 private key", () =>
     Effect.gen(function* () {
-      const { privateKey } = yield* Effect.sync(() =>
-        generateKeyPairSync("rsa", { modulusLength: 2048 })
-      );
+      const privateKeyPem = yield* generateRsaPrivateKeyPem();
       const error = yield* makeEd25519PublicationSigner({
         keyId: "test-signing-key",
-        privateKeyPem: privateKey
-          .export({ format: "pem", type: "pkcs8" })
-          .toString(),
+        privateKeyPem,
       }).pipe(Effect.flip);
 
       expect(error._tag).toBe("ContentSigningError");
@@ -158,14 +117,10 @@ describe("Ed25519 publication signing", () => {
 
   it.effect("rejects an invalid signing key identifier", () =>
     Effect.gen(function* () {
-      const { privateKey } = yield* Effect.sync(() =>
-        generateKeyPairSync("ed25519")
-      );
+      const { privateKeyPem } = yield* generateEd25519KeyPem();
       const error = yield* makeEd25519PublicationSigner({
         keyId: "INVALID KEY",
-        privateKeyPem: privateKey
-          .export({ format: "pem", type: "pkcs8" })
-          .toString(),
+        privateKeyPem,
       }).pipe(Effect.flip);
 
       expect(error._tag).toBe("ContentSigningError");
@@ -188,9 +143,9 @@ describe("Ed25519 publication signing", () => {
   it.effect("maps an Ed25519 signing failure to the typed error channel", () =>
     Effect.gen(function* () {
       const { signer } = yield* makeSigner();
-      yield* Effect.sync(() => {
-        cryptoFailure.failNextSign = true;
-      });
+      vi.spyOn(globalThis.crypto.subtle, "sign").mockRejectedValueOnce(
+        new Error("Test-controlled signing failure.")
+      );
       const error = yield* signer.signRelease(manifest).pipe(Effect.flip);
 
       expect(error).toMatchObject({
@@ -206,7 +161,7 @@ describe("Ed25519 publication signing", () => {
       const compiledCode = "x".repeat(MAX_SIGNED_ARTIFACT_BYTES);
       const oversizedPayload = CompiledContentPayloadSchema.make({
         ...payload,
-        byteLength: Buffer.byteLength(compiledCode, "utf8"),
+        byteLength: new TextEncoder().encode(compiledCode).byteLength,
         compiledCode,
       });
       const error = yield* signer
@@ -249,7 +204,7 @@ describe("Ed25519 publication signature vectors", () => {
         return;
       }
       const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
-        signingRuntimeBundle(release, manifest.origin.sha)
+        yield* signingRuntimeBundle(release, manifest.origin.sha)
       );
       expect([
         artifact.artifactHash,
@@ -273,14 +228,23 @@ describe("Ed25519 publication signature vectors", () => {
         runtimeBundle.payload
       );
       expect([
-        verifyRecorded(artifactInput, TEST_ARTIFACT_SIGNATURE),
-        verifyRecorded(releaseInput, TEST_RELEASE_SIGNATURE),
-        verifyRecorded(runtimeBundleInput, TEST_RUNTIME_BUNDLE_SIGNATURE),
+        yield* verifyRecorded(artifactInput, TEST_ARTIFACT_SIGNATURE),
+        yield* verifyRecorded(releaseInput, TEST_RELEASE_SIGNATURE),
+        yield* verifyRecorded(
+          runtimeBundleInput,
+          TEST_RUNTIME_BUNDLE_SIGNATURE
+        ),
       ]).toEqual([true, true, true]);
       expect([
-        verifyRecorded(changeOneByte(artifactInput), TEST_ARTIFACT_SIGNATURE),
-        verifyRecorded(changeOneByte(releaseInput), TEST_RELEASE_SIGNATURE),
-        verifyRecorded(
+        yield* verifyRecorded(
+          changeOneByte(artifactInput),
+          TEST_ARTIFACT_SIGNATURE
+        ),
+        yield* verifyRecorded(
+          changeOneByte(releaseInput),
+          TEST_RELEASE_SIGNATURE
+        ),
+        yield* verifyRecorded(
           changeOneByte(runtimeBundleInput),
           TEST_RUNTIME_BUNDLE_SIGNATURE
         ),

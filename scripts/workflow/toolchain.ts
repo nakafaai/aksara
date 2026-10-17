@@ -1,10 +1,31 @@
-import assert from "node:assert/strict";
-import { Array as Arr, HashMap, HashSet, Option } from "effect";
-import { isMap, isScalar, isSeq, parseDocument, type YAMLMap } from "yaml";
+import { Array as Arr, Effect, type HashMap, Option } from "effect";
+import { isScalar, parseDocument, type YAMLMap } from "yaml";
+import {
+  environmentValues,
+  mergeEnvironment,
+  usesPnpmAlias,
+} from "#scripts/workflow/environment";
+import {
+  ensure,
+  mapValue,
+  requireMap,
+  requireSeq,
+  requireText,
+  scalarText,
+  WorkflowError,
+} from "#scripts/workflow/requirement";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
-const PNPM_SELECTOR_PATTERN =
-  /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
+/** Command shapes that replace the pnpm release which package.json selects, through corepack, pnpm, npx, dlx, or npm. */
+const PNPM_SELECTOR_PATTERNS = [
+  /\bcorepack\s+up\b/u,
+  /\bcorepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)/u,
+  /\bpnpm\s+env\s+use\b/u,
+  /\bpnpm\s+self-update\b/u,
+  /\bpnpm@/u,
+  /\b(?:npx|dlx)\b[^\n]*\bpnpm\b/u,
+  /\bnpm\s+(?:install|i|add)\b[^\n]*\s(?:-g|--global)\b[^\n]*\bpnpm\b/u,
+];
 const TOOLCHAIN_SETUP_PREFIX = "pnpm/setup@";
 /** The reviewed pnpm/setup v3.0.0 commit. A newer release needs a new review. */
 export const TOOLCHAIN_SETUP_ACTION =
@@ -25,172 +46,114 @@ const PACKAGE_JSON_INPUTS = [
 ] as const;
 const LEGACY_PNPM_SETUP_PREFIX = "pnpm/action-setup@";
 const NODE_SETUP_PREFIX = "actions/setup-node@";
-const TOOLCHAIN_ENV_NAMES = HashSet.make("NODE_VERSION", "PNPM_VERSION");
-const ENVIRONMENT_ALIAS_PATTERNS = [
-  /\$\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
-  /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
-] as const;
-
-/** Returns a string scalar or `undefined` for another YAML node kind. */
-function scalarText(node: unknown): string | undefined {
-  if (!isScalar(node) || typeof node.value !== "string") {
-    return;
-  }
-
-  return node.value;
-}
-
-/** Returns one named value from a YAML mapping. */
-function mapValue(map: YAMLMap, key: string): unknown {
-  for (const item of map.items) {
-    if (scalarText(item.key) === key) {
-      return item.value;
-    }
-  }
-}
 
 /** Returns every step mapping declared by one workflow job. */
-function jobSteps(job: YAMLMap): readonly YAMLMap[] {
+const jobSteps = Effect.fn("AksaraScripts.workflowJobSteps")(function* (
+  job: YAMLMap
+) {
   const steps = mapValue(job, "steps");
   if (steps === undefined) {
     return [];
   }
 
-  assert.ok(isSeq(steps), "Workflow job steps must be a sequence");
-
-  return Arr.map(steps.items, (step) => {
-    assert.ok(isMap(step), "Every workflow step must be a mapping");
-    return step;
-  });
-}
+  const sequence = yield* requireSeq(
+    steps,
+    "Workflow job steps must be a sequence"
+  );
+  return yield* Effect.forEach(sequence.items, (step) =>
+    requireMap(step, "Every workflow step must be a mapping")
+  );
+});
 
 /** Parses one workflow and every top-level job mapping it owns. */
-function parseWorkflow(workflow: string) {
+const parseWorkflow = Effect.fn("AksaraScripts.parseWorkflow")(function* (
+  workflow: string
+) {
   const document = parseDocument(workflow);
-  assert.equal(
-    document.errors.length,
-    0,
+  yield* ensure(
+    document.errors.length === 0,
     document.errors[0]?.message ?? "Workflow YAML must parse"
   );
-  assert.ok(isMap(document.contents), "Workflow must be a mapping");
-
-  const jobs = mapValue(document.contents, "jobs");
-  assert.ok(isMap(jobs), "Workflow must define jobs");
-  assert.ok(jobs.items.length > 0, "Workflow must define at least one job");
-
-  const jobMaps = Arr.map(jobs.items, (item) => {
-    assert.ok(
-      scalarText(item.key) !== undefined,
-      "Workflow job identifiers must be strings"
-    );
-    assert.ok(isMap(item.value), "Every workflow job must be a mapping");
-    return item.value;
-  });
-
-  return { jobs: jobMaps, root: document.contents };
-}
-
-/** Returns environment values declared by one workflow scope. */
-function environmentValues(scope: YAMLMap): HashMap.HashMap<string, string> {
-  const environment = mapValue(scope, "env");
-  if (environment === undefined) {
-    return HashMap.empty();
-  }
-
-  assert.ok(isMap(environment), "Workflow environment must be a mapping");
-
-  return HashMap.fromIterable(
-    Arr.flatMap(
-      environment.items,
-      (item): ReadonlyArray<readonly [string, string]> => {
-        const name = scalarText(item.key);
-        assert.ok(
-          name !== undefined,
-          "Workflow environment names must be strings"
-        );
-        assert.equal(
-          HashSet.has(TOOLCHAIN_ENV_NAMES, name),
-          false,
-          "Workflows must not duplicate Node or pnpm versions"
-        );
-
-        const value = scalarText(item.value);
-        return value === undefined ? [] : [[name, value]];
-      }
-    )
+  const root = yield* requireMap(
+    document.contents,
+    "Workflow must be a mapping"
   );
-}
 
-/** Merges inherited and local workflow environment values. */
-function mergeEnvironment(
-  inherited: HashMap.HashMap<string, string>,
-  local: HashMap.HashMap<string, string>
-): HashMap.HashMap<string, string> {
-  return HashMap.union(inherited, local);
-}
+  const jobs = yield* requireMap(
+    mapValue(root, "jobs"),
+    "Workflow must define jobs"
+  );
+  yield* ensure(jobs.items.length > 0, "Workflow must define at least one job");
 
-/** Reports whether one shell command executes pnpm through an environment alias. */
-function usesPnpmAlias(
-  command: string,
-  environment: HashMap.HashMap<string, string>
-): boolean {
-  for (const pattern of ENVIRONMENT_ALIAS_PATTERNS) {
-    for (const match of command.matchAll(pattern)) {
-      const name = match[1] ?? match[2];
-      if (
-        name !== undefined &&
-        Option.contains(HashMap.get(environment, name), "pnpm")
-      ) {
-        return true;
-      }
-    }
-  }
+  const jobMaps = yield* Effect.forEach(jobs.items, (item) =>
+    Effect.gen(function* () {
+      yield* requireText(item.key, "Workflow job identifiers must be strings");
+      return yield* requireMap(
+        item.value,
+        "Every workflow job must be a mapping"
+      );
+    })
+  );
 
-  return false;
-}
+  return { jobs: jobMaps, root };
+});
 
-/** Returns the first step index that executes pnpm. */
-function firstPnpmCommand(
+/** Reports whether one step executes pnpm, directly or through an environment alias. */
+const runsPnpm = Effect.fn("AksaraScripts.stepRunsPnpm")(function* (
+  step: YAMLMap,
+  inheritedEnvironment: HashMap.HashMap<string, string>
+) {
+  const command = scalarText(mapValue(step, "run"));
+  const environment = mergeEnvironment(
+    inheritedEnvironment,
+    yield* environmentValues(step)
+  );
+  return (
+    command !== undefined &&
+    (PNPM_COMMAND_PATTERN.test(command) || usesPnpmAlias(command, environment))
+  );
+});
+
+/** Returns the first step index that executes pnpm. Every step's environment is read, so a duplicated version is refused in any step. */
+const firstPnpmCommand = Effect.fn("AksaraScripts.firstPnpmCommand")(function* (
   steps: readonly YAMLMap[],
   inheritedEnvironment: HashMap.HashMap<string, string>
-): Option.Option<number> {
-  return Arr.findFirstIndex(steps, (step) => {
-    const command = scalarText(mapValue(step, "run"));
-    const environment = mergeEnvironment(
-      inheritedEnvironment,
-      environmentValues(step)
-    );
-    return (
-      command !== undefined &&
-      (PNPM_COMMAND_PATTERN.test(command) ||
-        usesPnpmAlias(command, environment))
-    );
-  });
-}
+) {
+  const runs = yield* Effect.forEach(steps, (step) =>
+    runsPnpm(step, inheritedEnvironment)
+  );
+  return Arr.findFirstIndex(runs, (run) => run);
+});
 
 /** Returns the action input mapping for one setup step. */
-function setupInputs(step: YAMLMap): YAMLMap | undefined {
+const setupInputs = Effect.fn("AksaraScripts.setupInputs")(function* (
+  step: YAMLMap
+) {
   const inputs = mapValue(step, "with");
   if (inputs === undefined) {
-    return;
+    return yield* new WorkflowError({
+      message: "The toolchain setup step must define inputs",
+    });
   }
 
-  assert.ok(isMap(inputs), "Workflow action inputs must be a mapping");
-  return inputs;
-}
+  return yield* requireMap(inputs, "Workflow action inputs must be a mapping");
+});
 
 /** Returns one case-insensitive action input value. */
-function actionInput(inputs: YAMLMap, key: string): unknown {
+const actionInput = Effect.fn("AksaraScripts.actionInput")(function* (
+  inputs: YAMLMap,
+  key: string
+) {
   const matches = Arr.filter(
     inputs.items,
     (item) => scalarText(item.key)?.toLowerCase() === key
   );
-  assert.ok(
+  yield* ensure(
     matches.length <= 1,
     `Workflow action input ${key} must not be duplicated case-insensitively`
   );
   return matches[0]?.value;
-}
+});
 
 /** Reports whether one setup action must stop the job when it fails. */
 function stopsOnFailure(step: YAMLMap): boolean {
@@ -198,108 +161,104 @@ function stopsOnFailure(step: YAMLMap): boolean {
   return value === undefined || (isScalar(value) && value.value === false);
 }
 
-/** Rejects alternate or legacy toolchain owners. */
-function verifyPnpmSelectors(
-  steps: readonly YAMLMap[],
-  hasPnpmCommand: boolean
-): void {
-  for (const step of steps) {
-    const command = scalarText(mapValue(step, "run"));
-    assert.equal(
-      command !== undefined && PNPM_SELECTOR_PATTERN.test(command),
-      false,
-      "Workflows must not replace the package.json-selected pnpm version"
-    );
-
-    const uses = scalarText(mapValue(step, "uses")) ?? "";
-    assert.equal(
-      uses.startsWith(LEGACY_PNPM_SETUP_PREFIX),
-      false,
-      "Workflows must not use legacy pnpm/action-setup"
-    );
-    assert.equal(
-      hasPnpmCommand && uses.startsWith(NODE_SETUP_PREFIX),
-      false,
-      "Workflows must not use a second Node.js setup action"
-    );
-  }
+/** Reports whether one shell command selects or installs a pnpm release by itself. */
+function selectsPnpm(command: string): boolean {
+  return Arr.some(PNPM_SELECTOR_PATTERNS, (pattern) => pattern.test(command));
 }
 
+/** Rejects alternate or legacy toolchain owners. */
+const verifyPnpmSelectors = Effect.fn("AksaraScripts.verifyPnpmSelectors")(
+  function* (steps: readonly YAMLMap[], hasPnpmCommand: boolean) {
+    for (const step of steps) {
+      const command = scalarText(mapValue(step, "run"));
+      yield* ensure(
+        !(command !== undefined && selectsPnpm(command)),
+        "Workflows must not replace the package.json-selected pnpm version"
+      );
+
+      const uses = scalarText(mapValue(step, "uses")) ?? "";
+      yield* ensure(
+        !uses.startsWith(LEGACY_PNPM_SETUP_PREFIX),
+        "Workflows must not use legacy pnpm/action-setup"
+      );
+      yield* ensure(
+        !(hasPnpmCommand && uses.startsWith(NODE_SETUP_PREFIX)),
+        "Workflows must not use a second Node.js setup action"
+      );
+    }
+  }
+);
+
 /** Verifies package.json-owned toolchain setup for one pnpm job. */
-function verifyPnpmJob(
+const verifyPnpmJob = Effect.fn("AksaraScripts.verifyPnpmJob")(function* (
   job: YAMLMap,
   environment: HashMap.HashMap<string, string>
-): void {
-  const steps = jobSteps(job);
-  const commandIndex = firstPnpmCommand(steps, environment);
-  verifyPnpmSelectors(steps, Option.isSome(commandIndex));
+) {
+  const steps = yield* jobSteps(job);
+  const commandIndex = yield* firstPnpmCommand(steps, environment);
+  yield* verifyPnpmSelectors(steps, Option.isSome(commandIndex));
   if (Option.isNone(commandIndex)) {
     return;
   }
 
-  const setupSteps = Arr.flatMap(steps, (step, index) => {
+  const setups = Arr.flatMap(steps, (step, index) => {
     const uses = scalarText(mapValue(step, "uses"));
-    return uses?.startsWith(TOOLCHAIN_SETUP_PREFIX) ? [index] : [];
+    return uses?.startsWith(TOOLCHAIN_SETUP_PREFIX) ? [{ index, step }] : [];
   });
-  assert.equal(
-    setupSteps.length,
-    1,
+  yield* ensure(
+    setups.length === 1,
     "Every pnpm job must set up the toolchain once"
   );
-
-  const [setupIndex] = setupSteps;
-  assert.ok(setupIndex !== undefined, "The toolchain setup step must exist");
-  assert.ok(
-    setupIndex < commandIndex.value,
+  const setup = yield* Effect.fromOption(Arr.head(setups)).pipe(Effect.orDie);
+  yield* ensure(
+    setup.index < commandIndex.value,
     "Every pnpm job must set up the toolchain before running pnpm"
   );
 
-  const setupStep = steps[setupIndex];
-  assert.ok(setupStep, "The toolchain setup step must exist");
-  assert.equal(
-    scalarText(mapValue(setupStep, "uses")),
-    TOOLCHAIN_SETUP_ACTION,
+  const setupStep = setup.step;
+  yield* ensure(
+    scalarText(mapValue(setupStep, "uses")) === TOOLCHAIN_SETUP_ACTION,
     "The toolchain setup must use the reviewed pnpm/setup release"
   );
-  assert.equal(
-    mapValue(setupStep, "if"),
-    undefined,
+  yield* ensure(
+    mapValue(setupStep, "if") === undefined,
     "The toolchain setup step must run unconditionally"
   );
-  assert.ok(
+  yield* ensure(
     stopsOnFailure(setupStep),
     "The toolchain setup step must stop on failure"
   );
 
-  const inputs = setupInputs(setupStep);
-  assert.ok(inputs, "The toolchain setup step must define inputs");
+  const inputs = yield* setupInputs(setupStep);
   for (const [input, message] of PACKAGE_JSON_INPUTS) {
-    assert.equal(actionInput(inputs, input), undefined, message);
+    yield* ensure((yield* actionInput(inputs, input)) === undefined, message);
   }
-  const cache = actionInput(inputs, "cache");
-  assert.ok(
+  const cache = yield* actionInput(inputs, "cache");
+  yield* ensure(
     isScalar(cache) && cache.value === true,
     "The toolchain setup must cache the root pnpm store"
   );
-  const install = actionInput(inputs, "install");
-  assert.ok(
+  const install = yield* actionInput(inputs, "install");
+  yield* ensure(
     isScalar(install) && install.value === false,
     "The toolchain setup must leave the frozen install explicit"
   );
-}
+});
 
 /** Verifies package.json-owned runtime and pnpm setup within every pnpm job. */
-export function verifyWorkflowToolchains(workflows: readonly string[]): void {
+export const verifyWorkflowToolchains = Effect.fn(
+  "AksaraScripts.verifyWorkflowToolchains"
+)(function* (workflows: readonly string[]) {
   for (const source of workflows) {
-    const workflow = parseWorkflow(source);
-    const rootEnvironment = environmentValues(workflow.root);
+    const workflow = yield* parseWorkflow(source);
+    const rootEnvironment = yield* environmentValues(workflow.root);
 
     for (const job of workflow.jobs) {
-      const jobEnvironment = mergeEnvironment(
-        rootEnvironment,
-        environmentValues(job)
+      const localEnvironment = yield* environmentValues(job);
+      yield* verifyPnpmJob(
+        job,
+        mergeEnvironment(rootEnvironment, localEnvironment)
       );
-      verifyPnpmJob(job, jobEnvironment);
     }
   }
-}
+});

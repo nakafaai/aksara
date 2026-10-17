@@ -10,6 +10,7 @@ import {
   CorpusSourcePathSchema,
   type ReleaseId,
   ReleaseIdSchema,
+  type Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
@@ -39,9 +40,7 @@ function makeItems(releaseId: ReleaseId, changes: readonly ContentChange[]) {
 }
 
 /** Builds the source upsert authenticated by a selected artifact hash. */
-function upsertWithArtifactHash(
-  artifactHash: ReturnType<typeof hashCompiledContentPayload>
-) {
+function upsertWithArtifactHash(artifactHash: Sha256Hash) {
   return {
     artifactHash,
     artifactLocale: source.artifactLocale,
@@ -88,7 +87,9 @@ const makeFixture = Effect.fn("SourceCompilationTest.makeFixture")(
       rendererManifest,
     });
     const items = makeItems(ReleaseIdSchema.make("test-release-source"), [
-      upsertWithArtifactHash(hashCompiledContentPayload(expectedPayload)),
+      upsertWithArtifactHash(
+        yield* hashCompiledContentPayload(expectedPayload)
+      ),
     ]);
     return { expectedPayload, items, rendererManifest };
   }
@@ -140,7 +141,11 @@ describe("compileReleaseSources", () => {
       };
       const maliciousItems = makeItems(
         ReleaseIdSchema.make("test-release-bad"),
-        [upsertWithArtifactHash(hashCompiledContentPayload(maliciousPayload))]
+        [
+          upsertWithArtifactHash(
+            yield* hashCompiledContentPayload(maliciousPayload)
+          ),
+        ]
       );
       const error = yield* compileReleaseSources({
         items: Stream.fromIterable(maliciousItems),

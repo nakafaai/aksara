@@ -26,7 +26,13 @@ import type {
   ContentSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { Array as Arr, MutableHashMap, MutableList, Option } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableHashMap,
+  MutableList,
+  Option,
+} from "effect";
 
 /** Creates the empty lists that one release fills in stage order. */
 function emptyStagedRows() {
@@ -133,7 +139,9 @@ export function createLifecycleRows() {
     );
 
   /** Returns one material head reconstructed from exact staged rows. */
-  const materialHead = (item: ContentReleaseItem): MaterialHead | null => {
+  const materialHead = Effect.fn("LifecycleTest.materialHead")(function* (
+    item: ContentReleaseItem
+  ) {
     if (item.change.operation === "delete") {
       return null;
     }
@@ -153,6 +161,7 @@ export function createLifecycleRows() {
     if (!(artifact && projection)) {
       return null;
     }
+    const projectionHash = yield* hashContentProjection(projection);
     return {
       artifactHash: artifact.artifactHash,
       artifactLocale: change.artifactLocale,
@@ -160,16 +169,18 @@ export function createLifecycleRows() {
       contentKey: change.contentKey,
       delivery: change.delivery,
       family: "material",
-      projectionHash: hashContentProjection(projection),
+      projectionHash,
       publicPath: projection.publicPath,
       rendererDomain: change.rendererDomain,
       sourceHash: artifact.payload.sourceHash,
       sourcePath: change.sourcePath,
-    };
-  };
+    } satisfies MaterialHead;
+  });
 
   /** Derives one complete family-owned head page from staged target rows. */
-  const headPage = (request: HeadPageRequest): HeadPage => {
+  const headPage = Effect.fn("LifecycleTest.headPage")(function* (
+    request: HeadPageRequest
+  ) {
     if (request.family === "article") {
       return {
         ...request,
@@ -177,7 +188,7 @@ export function createLifecycleRows() {
         family: "article",
         heads: [],
         nextCursor: null,
-      };
+      } satisfies HeadPage;
     }
     if (request.family === "page") {
       return {
@@ -186,7 +197,7 @@ export function createLifecycleRows() {
         family: "page",
         heads: [],
         nextCursor: null,
-      };
+      } satisfies HeadPage;
     }
     if (request.family === "question") {
       return {
@@ -195,63 +206,65 @@ export function createLifecycleRows() {
         family: "question",
         heads: [],
         nextCursor: null,
-      };
+      } satisfies HeadPage;
     }
-    const heads = Arr.filter(
-      Arr.map(
-        MutableList.toArray(forRelease(request.activeReleaseId).items),
-        materialHead
-      ),
-      (head) => head !== null
+    const heads = yield* Effect.forEach(
+      MutableList.toArray(forRelease(request.activeReleaseId).items),
+      materialHead
     );
     return {
       ...request,
       done: true,
       family: "material",
-      heads,
+      heads: Arr.filter(heads, (head) => head !== null),
       nextCursor: null,
-    };
-  };
+    } satisfies HeadPage;
+  });
 
   /** Reconstructs exact current and prior states from one staged release. */
-  const rollbackPage = (request: RollbackPageRequest): RollbackPage => {
+  const rollbackPage = Effect.fn("LifecycleTest.rollbackPage")(function* (
+    request: RollbackPageRequest
+  ) {
     const staged = forRelease(request.rollbackOf);
     const projections = MutableList.toArray(staged.projections);
-    const records = Arr.map(MutableList.toArray(staged.items), (item) => {
-      const { change } = item;
-      const head = materialHead(item);
-      assert(
-        head && change.operation === "upsert",
-        "Expected one staged upsert rollback record."
-      );
-      const artifact = Option.getOrUndefined(
-        MutableHashMap.get(artifacts, change.artifactHash)
-      );
-      const projection = Option.getOrUndefined(
-        Arr.findFirst(
-          projections,
-          (value) =>
-            value.contentKey === change.contentKey &&
-            value.artifactLocale === change.artifactLocale
-        )
-      );
-      assert(
-        artifact && projection,
-        "Expected complete staged rollback state."
-      );
-      return {
-        current: { artifact, change, projection },
-        index: item.index,
-        prior: {
-          change: {
-            artifactLocale: change.artifactLocale,
-            contentKey: change.contentKey,
-            family: change.family,
-            operation: "delete" as const,
-          },
-        },
-      };
-    });
+    const records = yield* Effect.forEach(
+      MutableList.toArray(staged.items),
+      (item) =>
+        Effect.map(materialHead(item), (head) => {
+          const { change } = item;
+          assert(
+            head && change.operation === "upsert",
+            "Expected one staged upsert rollback record."
+          );
+          const artifact = Option.getOrUndefined(
+            MutableHashMap.get(artifacts, change.artifactHash)
+          );
+          const projection = Option.getOrUndefined(
+            Arr.findFirst(
+              projections,
+              (value) =>
+                value.contentKey === change.contentKey &&
+                value.artifactLocale === change.artifactLocale
+            )
+          );
+          assert(
+            artifact && projection,
+            "Expected complete staged rollback state."
+          );
+          return {
+            current: { artifact, change, projection },
+            index: item.index,
+            prior: {
+              change: {
+                artifactLocale: change.artifactLocale,
+                contentKey: change.contentKey,
+                family: change.family,
+                operation: "delete" as const,
+              },
+            },
+          };
+        })
+    );
     return {
       done: true,
       nextIndex: records.length - 1,
@@ -259,8 +272,8 @@ export function createLifecycleRows() {
       rollbackOf: request.rollbackOf,
       rollbackOfManifestHash: request.rollbackOfManifestHash,
       total: records.length,
-    };
-  };
+    } satisfies RollbackPage;
+  });
 
   /** Pairs staged routes with the empty prior owner used by this target. */
   const routePage = (request: RoutePageRequest): RoutePage => {

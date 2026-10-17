@@ -1,4 +1,8 @@
-import { Array as Arr } from "effect";
+import { Array as Arr, type Effect } from "effect";
+import { verifyCiWorkflow } from "#scripts/workflow/ci";
+import type { WorkflowError } from "#scripts/workflow/requirement";
+import { expectRefusal } from "#scripts/workflow/test/failure";
+import { sourceEffectTestsOf } from "#scripts/workflow/test/sources";
 
 const DOLLAR = "$";
 
@@ -53,6 +57,34 @@ export const SILENT_PASS_EDITS = [
     to: `shell: "true {0}"\n        ${MATRIX_COMMAND_STEP}`,
   },
 ];
+
+/** Declares one CI policy test whose refusals are checked against the given test targets. */
+export function ciPolicyTestsOf(
+  layered: Parameters<typeof sourceEffectTestsOf>[0]
+) {
+  const sourceTest = sourceEffectTestsOf(layered);
+  return (
+    name: string,
+    check: (policy: {
+      readonly rejects: ReturnType<typeof rejectionFor>;
+      readonly source: string;
+      readonly targets: readonly string[];
+    }) => Effect.Effect<void, WorkflowError>
+  ) =>
+    sourceTest(name, ({ ci, testTargets }) =>
+      check({
+        rejects: rejectionFor(testTargets),
+        source: ci,
+        targets: testTargets,
+      })
+    );
+}
+
+/** Returns the assertion that one CI workflow is refused, by default against the repository test targets. */
+function rejectionFor(repositoryTargets: readonly string[]) {
+  return (ci: string, message: string, testTargets = repositoryTargets) =>
+    expectRefusal(verifyCiWorkflow(ci, testTargets), message);
+}
 
 /** Edits that each add one matrix key or leg key beyond the four test groups. */
 export const MATRIX_KEY_EDITS = [

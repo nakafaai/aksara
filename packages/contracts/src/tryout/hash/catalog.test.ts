@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 
 import { materialGraph } from "#contracts/test/graph";
-import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { tryoutTestRows } from "#contracts/test/tryout";
 import { JsonTextSchema } from "#contracts/text/json";
 import {
   type TryoutCatalogRecord,
@@ -19,8 +19,9 @@ import {
 } from "#contracts/tryout/hash/catalog";
 import { tryoutCatalogIdentity } from "#contracts/tryout/identity";
 
+const fixture = tryoutTestRows;
 const rows: readonly TryoutCatalogRow[] = Arr.map(
-  makeTryoutTestRows().catalog,
+  fixture.catalog,
   ({ row }) => row
 );
 
@@ -144,8 +145,9 @@ const markedSectionRow = Schema.decodeSync(TryoutCatalogRowSchema)({
 describe("try-out catalog identity and hashing", () => {
   it.effect("canonicalizes and digests signed catalog rows", () =>
     Effect.gen(function* () {
+      const built = yield* Effect.forEach(rows, makeTryoutCatalogRecord);
       const records = Arr.sort(
-        Arr.reverse(Arr.map(rows, makeTryoutCatalogRecord)),
+        Arr.reverse(built),
         Order.make<TryoutCatalogRecord>((left, right) =>
           compareTryoutCatalog(left.row, right.row)
         )
@@ -200,7 +202,7 @@ describe("try-out catalog identity and hashing", () => {
       };
       const marks = '"marks":{"blank":0,"correct":4,"wrong":-1}';
 
-      expect(makeTryoutCatalogRecord(section).rowHash).toBe(
+      expect((yield* makeTryoutCatalogRecord(section)).rowHash).toBe(
         "sha256:334369fe2e8fd6bd39a069c89d88a1c1b6dbbc389c9a907073a7f6ba23f0ea3a"
       );
       expect(canonicalizeTryoutCatalog(marked)).toContain(
@@ -212,8 +214,8 @@ describe("try-out catalog identity and hashing", () => {
       expect(canonicalizeTryoutCatalogFacts(marked)).toContain(
         `"examKey":"snbt",${marks},"questionCount":1`
       );
-      expect(makeTryoutCatalogRecord(marked).rowHash).not.toBe(
-        makeTryoutCatalogRecord(section).rowHash
+      expect((yield* makeTryoutCatalogRecord(marked)).rowHash).not.toBe(
+        (yield* makeTryoutCatalogRecord(section)).rowHash
       );
     })
   );
@@ -248,19 +250,20 @@ describe("try-out catalog identity and hashing", () => {
     "sorts shuffled literal rows by identity and pins the digest under two chunkings",
     () =>
       Effect.gen(function* () {
+        const built = yield* Effect.forEach(
+          [
+            markedSectionRow,
+            trackRow,
+            countryRow,
+            openSetRow,
+            examRow,
+            entrySectionRow,
+            entrySetRow,
+          ],
+          makeTryoutCatalogRecord
+        );
         const records = Arr.sort(
-          Arr.map(
-            [
-              markedSectionRow,
-              trackRow,
-              countryRow,
-              openSetRow,
-              examRow,
-              entrySectionRow,
-              entrySetRow,
-            ],
-            makeTryoutCatalogRecord
-          ),
+          built,
           Order.make<TryoutCatalogRecord>((left, right) =>
             compareTryoutCatalog(left.row, right.row)
           )

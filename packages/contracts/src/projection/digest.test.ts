@@ -1,6 +1,5 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createProjectionDigest,
@@ -9,45 +8,10 @@ import {
   updateProjectionDigest,
 } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { materialGraph } from "#contracts/test/graph";
 
-const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-projection");
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic projection digest failures. */
-    createHash(algorithm: string) {
-      if (failures.create) {
-        throw new TypeError("injected projection digest creation failure");
-      }
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves real methods while intercepting explicit test markers. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data).includes('"contentKey":"hash:failure"')) {
-                throw new TypeError("injected projection update failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          if (property === "digest" && failures.digest) {
-            return () => {
-              throw new TypeError("injected projection finalization failure");
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 /** Builds one unmistakably test-only material projection. */
 function projection(contentKey = "test:projection") {
@@ -76,8 +40,8 @@ describe("projection digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
     Effect.gen(function* () {
       const value = projection();
-      const initial = yield* createProjectionDigest(releaseId);
-      const updated = yield* updateProjectionDigest(releaseId, initial, value);
+      const initial = yield* createProjectionDigest;
+      const updated = yield* updateProjectionDigest(initial, value);
       const digest = yield* finalizeProjectionDigest(releaseId, updated);
       const summary = yield* digestProjections(releaseId, Stream.make(value));
 
@@ -86,45 +50,24 @@ describe("projection digest", () => {
     })
   );
 
-  it.effect("maps creation, update, and finalization failures", () =>
-    Effect.gen(function* () {
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.create = false;
-          failures.digest = false;
-        })
-      );
-      yield* Effect.sync(() => {
-        failures.create = true;
-      });
-      const creation = yield* createProjectionDigest(releaseId).pipe(
-        Effect.flip
-      );
-      yield* Effect.sync(() => {
-        failures.create = false;
-      });
-      const initial = yield* createProjectionDigest(releaseId);
-      const update = yield* updateProjectionDigest(
-        releaseId,
-        initial,
-        projection("hash:failure")
-      ).pipe(Effect.flip);
-      yield* Effect.sync(() => {
-        failures.digest = true;
-      });
-      const finalization = yield* finalizeProjectionDigest(
-        releaseId,
-        initial
-      ).pipe(Effect.flip);
+  it.effect(
+    "maps a rejected Web Crypto digest to a projection hash error",
+    () =>
+      Effect.gen(function* () {
+        const state = yield* updateProjectionDigest(
+          yield* createProjectionDigest,
+          projection()
+        );
 
-      expect(
-        Arr.map([creation, update, finalization], ({ _tag }) => _tag)
-      ).toEqual([
-        "ProjectionHashError",
-        "ProjectionHashError",
-        "ProjectionHashError",
-      ]);
-    })
+        const failure = yield* withNextDigestFailure(
+          finalizeProjectionDigest(releaseId, state)
+        ).pipe(Effect.flip);
+
+        expect(failure).toMatchObject({
+          _tag: "ProjectionHashError",
+          releaseId,
+        });
+      })
   );
 });
 
@@ -178,17 +121,9 @@ describe("pinned projection digest", () => {
           releaseId,
           Stream.make(first).pipe(Stream.concat(Stream.make(second)))
         );
-        const initial = yield* createProjectionDigest(releaseId);
-        const afterFirst = yield* updateProjectionDigest(
-          releaseId,
-          initial,
-          first
-        );
-        const afterSecond = yield* updateProjectionDigest(
-          releaseId,
-          afterFirst,
-          second
-        );
+        const initial = yield* createProjectionDigest;
+        const afterFirst = yield* updateProjectionDigest(initial, first);
+        const afterSecond = yield* updateProjectionDigest(afterFirst, second);
         const incremental = yield* finalizeProjectionDigest(
           releaseId,
           afterSecond

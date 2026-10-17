@@ -1,21 +1,14 @@
-import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Option,
-  Path,
-  Schema,
-  Sink,
-  Stream,
-} from "effect";
+import { Array as Arr, Effect, FileSystem, Option, Path, Schema } from "effect";
+import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
+import { makeProcessHandle } from "#scripts/test/process";
 import { encodeJsonText } from "#scripts/text/json";
 
 const SOURCE_SHA = "b".repeat(40);
@@ -63,25 +56,6 @@ function fakeCommands(
   return { downloadArchive, release, tag: releaseTag, ...overrides };
 }
 
-/** Creates one completed process handle with deterministic output and status. */
-function makeProcessHandle(output: string, exitCode = 0) {
-  const bytes = new TextEncoder().encode(output);
-  const stdout = output.length === 0 ? Stream.empty : Stream.make(bytes);
-  return ChildProcessSpawner.makeHandle({
-    all: stdout,
-    exitCode: Effect.succeed(ChildProcessSpawner.ExitCode(exitCode)),
-    getInputFd: () => Sink.drain,
-    getOutputFd: () => Stream.empty,
-    isRunning: Effect.succeed(false),
-    kill: () => Effect.void,
-    pid: ChildProcessSpawner.ProcessId(12_345),
-    stderr: Stream.empty,
-    stdin: Sink.drain,
-    stdout,
-    unref: Effect.succeed(Effect.void),
-  });
-}
-
 /** Creates one minimal contract archive with distinguishable bytes. */
 const createArchive = Effect.fn("ReleaseProofTest.createArchive")(function* (
   root: string,
@@ -119,7 +93,7 @@ const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
   const archive = path.join(root, "current.tgz");
   yield* fileSystem.writeFile(
     archive,
-    Buffer.from(PINNED_ARCHIVE_BASE64, "base64")
+    yield* Effect.fromResult(Base64.decode(PINNED_ARCHIVE_BASE64))
   );
   const packagePath = path.join(root, "package.json");
   yield* fileSystem.writeFileString(
@@ -218,6 +192,23 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
           size: 383,
         });
       })
+  );
+
+  it.effect("maps a failed archive digest into a release error", () =>
+    Effect.gen(function* () {
+      const fixture = yield* proofFixture("aksara-proof-digest-");
+      const error = yield* withNextDigestFailure(
+        proveWithCommands(
+          fixture.input,
+          fakeCommands(fixture.archive, fixture.release)
+        )
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        detail: "The current contract archive cannot be hashed.",
+        reason: "release",
+      });
+    })
   );
 
   it.effect("rejects malformed proof inputs and remote metadata", () =>

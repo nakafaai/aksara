@@ -167,7 +167,7 @@ export const signedActiveState = Effect.fn("StateTest.signedActiveState")(
       Ed25519SignatureSchema.make(
         sign(
           null,
-          Buffer.from(
+          new TextEncoder().encode(
             canonicalizeContentReleaseSigningInput(
               manifestHash,
               active.release.manifest

@@ -1,8 +1,6 @@
-import { createHash } from "node:crypto";
-
 import { Effect, Schema } from "effect";
 
-import { Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
 import type { CurriculumRoute } from "#contracts/program/curriculum";
 import {
   CurriculumRouteRecordSchema,
@@ -52,23 +50,16 @@ export function canonicalizeProgramSnapshot(input: ProgramSnapshotFacts) {
 /** Creates the content-addressed identity of one complete program snapshot. */
 export const makeProgramSnapshot = Effect.fn(
   "AksaraContracts.makeProgramSnapshot"
-)((input: ProgramSnapshotFacts) =>
-  Effect.try({
-    catch: () => new ProgramSnapshotHashError(),
-    try: () => {
-      const snapshotId = Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(`${SNAPSHOT_DOMAIN}\n${canonicalizeProgramSnapshot(input)}`)
-          .digest("hex")}`
-      );
-      return ProgramSnapshotSchema.make({
-        ...input,
-        format: PROGRAM_SNAPSHOT_FORMAT,
-        snapshotId,
-      });
-    },
-  })
-);
+)(function* (input: ProgramSnapshotFacts) {
+  const snapshotId = yield* hashText(
+    `${SNAPSHOT_DOMAIN}\n${canonicalizeProgramSnapshot(input)}`
+  ).pipe(Effect.mapError(() => new ProgramSnapshotHashError()));
+  return ProgramSnapshotSchema.make({
+    ...input,
+    format: PROGRAM_SNAPSHOT_FORMAT,
+    snapshotId,
+  });
+});
 
 /** Recomputes the content identity of one stored current snapshot. */
 export function verifyProgramSnapshotHash(snapshot: ProgramSnapshot) {
@@ -80,15 +71,9 @@ export function verifyProgramSnapshotHash(snapshot: ProgramSnapshot) {
 
 /** Hashes one current program or curriculum row. */
 function hashProgramRow(record: ProgramSnapshotRowInput) {
-  return Effect.try({
-    catch: () => new ProgramRowHashError({ scope: "row" }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256")
-          .update(`${ROW_DOMAIN}\n${canonicalizeProgramSnapshotRow(record)}`)
-          .digest("hex")}`
-      ),
-  });
+  return hashText(
+    `${ROW_DOMAIN}\n${canonicalizeProgramSnapshotRow(record)}`
+  ).pipe(Effect.mapError(() => new ProgramRowHashError({ scope: "row" })));
 }
 
 /** Creates one authenticated current program record. */

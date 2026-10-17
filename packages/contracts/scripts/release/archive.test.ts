@@ -1,9 +1,9 @@
-import { Buffer } from "node:buffer";
-import { createHash } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Record as Rec } from "effect";
+import { Base64, Hex } from "effect/encoding";
 import { ChildProcess } from "effect/process";
+import { digestSha256 } from "#contracts/hash/digest";
 import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import { parseVersion } from "#scripts/release/identity";
 
@@ -59,13 +59,13 @@ layer(NodeServices.layer)("contract release archive", (it) => {
       const archive = path.join(root, "current.tgz");
       yield* fileSystem.writeFile(
         archive,
-        Buffer.from(PINNED_ARCHIVE_BASE64, "base64")
+        yield* Effect.fromResult(Base64.decode(PINNED_ARCHIVE_BASE64))
       );
       const identity = yield* parseVersion("0.1.0");
 
       const bytes = yield* verifyArchive(archive, identity);
       expect(bytes.byteLength).toBe(383);
-      expect(createHash("sha256").update(bytes).digest("hex")).toBe(
+      expect(Hex.encode(yield* digestSha256(bytes))).toBe(
         "d5a82a8990560cd5015657ebfa51032b272546852c9360062eee5069608306b1"
       );
       const wrongVersion = yield* verifyArchive(

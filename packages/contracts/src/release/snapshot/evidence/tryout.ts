@@ -120,7 +120,7 @@ export const verifyTryoutSnapshotRows = Effect.fn(
     field: "routeCount",
   });
   const { format: _format, snapshotId, ...facts } = snapshot.manifest;
-  const actualId = makeTryoutSnapshot(facts).snapshotId;
+  const actualId = (yield* makeTryoutSnapshot(facts)).snapshotId;
   yield* requireSnapshotEvidence({
     actual: actualId,
     expected: snapshotId,

@@ -45,7 +45,7 @@ export function captureClient(
 export function requestJson(request: HttpClientRequest.HttpClientRequest) {
   assert(request.body._tag === "Uint8Array", "Expected a JSON request body.");
   const parsed: unknown = Schema.decodeSync(JsonTextSchema)(
-    Buffer.from(request.body.body).toString("utf8")
+    new TextDecoder().decode(request.body.body)
   );
   return parsed;
 }

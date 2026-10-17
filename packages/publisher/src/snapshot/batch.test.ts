@@ -1,6 +1,5 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import {
   PublicPathSchema,
@@ -129,8 +128,8 @@ describe("snapshot batching", () => {
 
     expect(Schema.decodeSync(JsonTextSchema)(canonical)).toEqual(request);
     expect(Schema.decodeSync(JsonTextSchema)(encoded)).toEqual(request);
-    expect(Buffer.byteLength(canonical, "utf8")).toBe(
-      Buffer.byteLength(encoded, "utf8")
+    expect(new TextEncoder().encode(canonical).byteLength).toBe(
+      new TextEncoder().encode(encoded).byteLength
     );
   });
 
@@ -157,8 +156,8 @@ describe("snapshot batching", () => {
         Arr.every(
           batches,
           (batch) =>
-            Buffer.byteLength(canonicalizeSnapshotBatch(batch), "utf8") <=
-            MAX_SNAPSHOT_BATCH_BYTES
+            new TextEncoder().encode(canonicalizeSnapshotBatch(batch))
+              .byteLength <= MAX_SNAPSHOT_BATCH_BYTES
         )
       ).toBe(true);
     })

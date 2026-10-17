@@ -42,8 +42,7 @@ export const PNPM_JOB_ENV = Arr.join(
 );
 
 /** Workflow sources that the structure policy rejects, each with the message it must report. */
-export const INVALID_WORKFLOW_STRUCTURES: [string, string | undefined][] = [
-  ["jobs: [", undefined],
+export const INVALID_WORKFLOW_STRUCTURES: [string, string][] = [
   ["name: Empty", "Workflow must define jobs"],
   ["jobs: {}", "Workflow must define at least one job"],
   ["jobs:\n  verify: []", "Every workflow job must be a mapping"],
@@ -77,11 +76,17 @@ export const PNPM_INPUT_CASES: [string, string][] = [
   ],
 ];
 
-/** Commands that replace the pnpm version which package.json selects. */
+/** Commands that replace the pnpm version which package.json selects, through corepack, npx, dlx, npm, or pnpm itself. */
 export const REPLACEMENT_COMMANDS = [
   "corepack use pnpm@10",
   "corepack up",
   "corepack use pnpm",
+  "npx pnpm@9 --version",
+  "npx --yes pnpm@9.15.0 install",
+  "pnpm dlx pnpm@9 --version",
+  "npm install -g pnpm@9",
+  "npm install --global pnpm",
+  "pnpm self-update",
 ];
 
 /** Returns the checked-in workflow with each invalid setup input that the policy must reject. */

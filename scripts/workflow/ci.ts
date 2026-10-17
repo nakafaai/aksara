@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
 import {
   Array as Arr,
+  Effect,
   Option,
   Order,
   pipe,
@@ -13,6 +13,11 @@ import {
   jobSource,
   type WorkflowJob,
 } from "#scripts/workflow/decode";
+import {
+  ensure,
+  sameNames,
+  WorkflowError,
+} from "#scripts/workflow/requirement";
 import { TEST_TASK_PREFIX } from "#scripts/workflow/target";
 
 const DOLLAR = "$";
@@ -49,6 +54,11 @@ const FILTER_PREFIX = "--filter=";
 const ROOT_FILTER = "--filter=//";
 const WHITESPACE_PATTERN = /\s+/u;
 
+/** Compares two maps from a group name to its test targets, key by key. */
+const sameGroups = Schema.toEquivalence(
+  Schema.Record(Schema.String, Schema.Array(Schema.String))
+);
+
 /** The four test groups. They partition every test target, one matrix leg each. */
 const TEST_GROUPS: Readonly<Record<string, readonly string[]>> = {
   corpus: [
@@ -83,15 +93,18 @@ const decodeTestStrategy = Schema.decodeUnknownOption(TestStrategySchema, {
   onExcessProperty: "error",
 });
 
-/** Returns one CI job that the exact job list already requires. */
-function requireJob(
+/**
+ * Returns one CI job that the exact job list already requires. The verifier
+ * checks that list first, so a missing name cannot reach this function.
+ */
+const requireJob = Effect.fn("AksaraScripts.requireCiJob")(function* (
   jobs: Readonly<Record<string, WorkflowJob>>,
   name: string
-): WorkflowJob {
-  const job = jobs[name];
-  assert.ok(job, `CI must define the ${name} job`);
-  return job;
-}
+) {
+  return yield* Effect.fromOption(Option.fromUndefinedOr(jobs[name])).pipe(
+    Effect.orDie
+  );
+});
 
 /** Lists the sorted test targets that one matrix command runs. */
 function legTargets(command: string): readonly string[] {
@@ -129,125 +142,129 @@ function hasOnlyKeys(
 }
 
 /** Verifies that the test matrix runs every test target in exactly one group. */
-function verifyTestGroups(job: WorkflowJob, targets: readonly string[]): void {
-  assert.ok(
-    hasOnlyKeys(job, TEST_JOB_KEYS) &&
-      Arr.every(job.steps, (step) => hasOnlyKeys(step, TEST_STEP_KEYS)),
-    "The test job may carry only the keys that run each test group"
-  );
-  const strategy = decodeTestStrategy(job.strategy);
-  assert.ok(
-    Option.isSome(strategy),
-    "The test job must run one matrix leg per test group"
-  );
-  assert.equal(
-    strategy.value["fail-fast"],
-    false,
-    "Test groups must not cancel one another"
-  );
-  const legs = strategy.value.matrix.include;
-  assert.deepEqual(
-    Arr.sort(
-      Arr.map(legs, (leg) => leg.group),
-      Order.String
-    ),
-    Arr.sort(Rec.keys(TEST_GROUPS), Order.String),
-    "CI must run the four test groups, one matrix leg each"
-  );
-  for (const leg of legs) {
-    assert.match(
-      leg.command,
-      TURBO_COMMAND_PATTERN,
-      "Each CI test group must run through Turbo with --concurrency=1"
+const verifyTestGroups = Effect.fn("AksaraScripts.verifyCiTestGroups")(
+  function* (job: WorkflowJob, targets: readonly string[]) {
+    yield* ensure(
+      hasOnlyKeys(job, TEST_JOB_KEYS) &&
+        Arr.every(job.steps, (step) => hasOnlyKeys(step, TEST_STEP_KEYS)),
+      "The test job may carry only the keys that run each test group"
     );
-  }
-  for (const target of targets) {
-    const owners = Arr.filter(legs, (leg) =>
-      Arr.contains(legTargets(leg.command), target)
+    const strategy = decodeTestStrategy(job.strategy);
+    if (Option.isNone(strategy)) {
+      return yield* new WorkflowError({
+        message: "The test job must run one matrix leg per test group",
+      });
+    }
+    yield* ensure(
+      strategy.value["fail-fast"] === false,
+      "Test groups must not cancel one another"
     );
-    assert.equal(
-      owners.length,
-      1,
-      `Test target ${target} must belong to exactly one CI test group`
+    const legs = strategy.value.matrix.include;
+    yield* ensure(
+      sameNames(
+        Arr.sort(
+          Arr.map(legs, (leg) => leg.group),
+          Order.String
+        ),
+        Arr.sort(Rec.keys(TEST_GROUPS), Order.String)
+      ),
+      "CI must run the four test groups, one matrix leg each"
     );
-  }
-  for (const leg of legs) {
-    for (const target of legTargets(leg.command)) {
-      assert.ok(
-        Arr.contains(targets, target),
-        "CI test groups must name only repository test targets"
+    for (const leg of legs) {
+      yield* ensure(
+        TURBO_COMMAND_PATTERN.test(leg.command),
+        "Each CI test group must run through Turbo with --concurrency=1"
       );
     }
-  }
-  assert.deepEqual(
-    Rec.fromEntries(
-      Arr.map(legs, (leg): readonly [string, readonly string[]] => [
-        leg.group,
-        legTargets(leg.command),
-      ])
-    ),
-    Rec.fromEntries(
-      Arr.map(
-        Rec.toEntries(TEST_GROUPS),
-        ([group, members]): readonly [string, readonly string[]] => [
-          group,
-          Arr.sort(members, Order.String),
-        ]
-      )
-    ),
-    "Each CI test group must run exactly its own test targets"
-  );
-  for (const leg of legs) {
-    assert.ok(
-      !skipsRootTasks(leg.command),
-      "A CI test group that selects root test tasks with package filters must include --filter=//"
+    for (const target of targets) {
+      const owners = Arr.filter(legs, (leg) =>
+        Arr.contains(legTargets(leg.command), target)
+      );
+      yield* ensure(
+        owners.length === 1,
+        `Test target ${target} must belong to exactly one CI test group`
+      );
+    }
+    for (const leg of legs) {
+      for (const target of legTargets(leg.command)) {
+        yield* ensure(
+          Arr.contains(targets, target),
+          "CI test groups must name only repository test targets"
+        );
+      }
+    }
+    yield* ensure(
+      sameGroups(
+        Rec.fromEntries(
+          Arr.map(legs, (leg): readonly [string, readonly string[]] => [
+            leg.group,
+            legTargets(leg.command),
+          ])
+        ),
+        Rec.fromEntries(
+          Arr.map(
+            Rec.toEntries(TEST_GROUPS),
+            ([group, members]): readonly [string, readonly string[]] => [
+              group,
+              Arr.sort(members, Order.String),
+            ]
+          )
+        )
+      ),
+      "Each CI test group must run exactly its own test targets"
+    );
+    for (const leg of legs) {
+      yield* ensure(
+        !skipsRootTasks(leg.command),
+        "A CI test group that selects root test tasks with package filters must include --filter=//"
+      );
+    }
+    yield* ensure(
+      sameNames(
+        Arr.flatMap(job.steps, (step) =>
+          step.run === undefined ? [] : [step.run]
+        ),
+        [INSTALL_COMMAND, TEST_COMMAND]
+      ),
+      "Each CI test group must run only its matrix command"
     );
   }
-  assert.deepEqual(
-    Arr.flatMap(job.steps, (step) =>
-      step.run === undefined ? [] : [step.run]
-    ),
-    [INSTALL_COMMAND, TEST_COMMAND],
-    "Each CI test group must run only its matrix command"
-  );
-}
+);
 
 /** Verifies that CI runs its checks and test groups in parallel behind one verify job. */
-export function verifyCiWorkflow(
-  source: string,
-  targets: readonly string[]
-): void {
-  assert.match(
-    source,
-    TRIGGER_PATTERN,
-    "CI must run only for pull requests and merge queue groups"
-  );
-  const { jobs } = decodeWorkflow(source);
-  assert.deepEqual(
-    Rec.keys(jobs),
-    JOBS,
-    "CI must run checks and tests in parallel behind one verify job"
-  );
-  const checks = jobSource(requireJob(jobs, "checks"));
-  assert.match(checks, CHECKS_PATTERN, "CI must run every repository gate");
-  assert.ok(
-    checks.includes(POINTS_STEP),
-    "CI must compare lesson visuals with the base of the pull request or merge group"
-  );
-  verifyTestGroups(requireJob(jobs, "test"), targets);
-  const verify = requireJob(jobs, "verify");
-  assert.ok(
-    exactNeeds(verify, ["checks", "test"]),
-    "The verify check must wait for every CI job"
-  );
-  assert.equal(
-    verify.if,
-    `${DOLLAR}{{ !cancelled() }}`,
-    "The verify check must report when a CI job fails"
-  );
-  assert.equal(
-    jobSource(verify),
-    RESULT_SOURCE,
-    "The verify check must fail unless every CI job succeeds"
-  );
-}
+export const verifyCiWorkflow = Effect.fn("AksaraScripts.verifyCiWorkflow")(
+  function* (source: string, targets: readonly string[]) {
+    yield* ensure(
+      TRIGGER_PATTERN.test(source),
+      "CI must run only for pull requests and merge queue groups"
+    );
+    const { jobs } = yield* decodeWorkflow(source);
+    yield* ensure(
+      sameNames(Rec.keys(jobs), JOBS),
+      "CI must run checks and tests in parallel behind one verify job"
+    );
+    const checks = jobSource(yield* requireJob(jobs, "checks"));
+    yield* ensure(
+      CHECKS_PATTERN.test(checks),
+      "CI must run every repository gate"
+    );
+    yield* ensure(
+      checks.includes(POINTS_STEP),
+      "CI must compare lesson visuals with the base of the pull request or merge group"
+    );
+    yield* verifyTestGroups(yield* requireJob(jobs, "test"), targets);
+    const verify = yield* requireJob(jobs, "verify");
+    yield* ensure(
+      exactNeeds(verify, ["checks", "test"]),
+      "The verify check must wait for every CI job"
+    );
+    yield* ensure(
+      verify.if === `${DOLLAR}{{ !cancelled() }}`,
+      "The verify check must report when a CI job fails"
+    );
+    yield* ensure(
+      jobSource(verify) === RESULT_SOURCE,
+      "The verify check must fail unless every CI job succeeds"
+    );
+  }
+);

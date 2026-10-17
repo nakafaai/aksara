@@ -1,6 +1,5 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import {
   CompiledContentPayloadSchema,
@@ -110,8 +109,8 @@ describe("publication batching", () => {
         Arr.every(
           batches,
           (batch) =>
-            Buffer.byteLength(canonicalizeReleaseItemBatch(batch), "utf8") <=
-            MAX_ITEM_BATCH_BYTES
+            new TextEncoder().encode(canonicalizeReleaseItemBatch(batch))
+              .byteLength <= MAX_ITEM_BATCH_BYTES
         )
       ).toBe(true);
     })
@@ -135,8 +134,8 @@ describe("publication batching", () => {
         Arr.every(
           batches,
           (batch) =>
-            Buffer.byteLength(canonicalizeArtifactBatch(batch), "utf8") <=
-            MAX_ARTIFACT_BATCH_BYTES
+            new TextEncoder().encode(canonicalizeArtifactBatch(batch))
+              .byteLength <= MAX_ARTIFACT_BATCH_BYTES
         )
       ).toBe(true);
     })

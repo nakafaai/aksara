@@ -22,7 +22,7 @@ const tryoutScope = PublicationScopeSchema.make({
 describe("production runtime bundle preparation", () => {
   it.effect("refreshes runtime bundles only inside explicit tryout scope", () =>
     Effect.gen(function* () {
-      const active = gitBundle("release-runtime-selection", {
+      const active = yield* gitBundle("release-runtime-selection", {
         baseReleaseId: releaseId("release-runtime-parent"),
         tryoutSnapshotId: TRYOUT_SNAPSHOT_ID,
       });
@@ -30,7 +30,7 @@ describe("production runtime bundle preparation", () => {
       const bundle = runtimeBundleFor(active, TRYOUT_SNAPSHOT_ID);
       const refreshedRenderer = yield* refreshedRendererManifest;
       const noTryoutBase = selectSourceBase(
-        gitBundle("release-without-tryout", {
+        yield* gitBundle("release-without-tryout", {
           baseReleaseId: releaseId("release-runtime-parent"),
         })
       );

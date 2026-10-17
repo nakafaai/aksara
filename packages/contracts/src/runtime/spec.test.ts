@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 import {
@@ -41,9 +40,9 @@ describe("content runtime contract", () => {
 
   it.effect("accepts found, missing, and sanitized failure responses", () =>
     Effect.gen(function* () {
-      expect(Buffer.byteLength(encodeJsonText(found), "utf8")).toBeLessThan(
-        MAX_PUBLIC_RUNTIME_RESPONSE_BYTES
-      );
+      expect(
+        new TextEncoder().encode(encodeJsonText(found)).byteLength
+      ).toBeLessThan(MAX_PUBLIC_RUNTIME_RESPONSE_BYTES);
       for (const response of [
         found,
         articleFound,

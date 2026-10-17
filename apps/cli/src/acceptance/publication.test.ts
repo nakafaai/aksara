@@ -37,7 +37,6 @@ const state: AcceptancePublicationCalls = vi.hoisted(() => ({
 vi.mock("#cli/acceptance/settings", async (importOriginal) => {
   const original =
     await importOriginal<typeof import("#cli/acceptance/settings")>();
-  const { generateKeyPairSync } = await import("node:crypto");
   const {
     GitCommitShaSchema: Sha,
     ReleaseIdSchema: Id,
@@ -45,7 +44,7 @@ vi.mock("#cli/acceptance/settings", async (importOriginal) => {
   } = await import("@nakafa/aksara-contracts/ids");
   const { Effect: Runtime, Redacted } = await import("effect");
   const { RENDERER_MANIFEST: renderer } = await import("#test/real");
-  const pair = generateKeyPairSync("ed25519");
+  const { acceptanceKeyPair: pair } = await import("#test/keys");
   return {
     ...original,
     readAcceptanceRenderer: vi.fn(() => Runtime.succeed(renderer)),
@@ -55,13 +54,9 @@ vi.mock("#cli/acceptance/settings", async (importOriginal) => {
         endpoint: new URL("http://127.0.0.1:3210/internal/content/releases"),
         key: {
           keyId: Key.make("test-acceptance-key"),
-          publicKeyPem: pair.publicKey
-            .export({ format: "pem", type: "spki" })
-            .toString(),
+          publicKeyPem: pair.publicKeyPem,
         },
-        privateKeyPem: Redacted.make(
-          pair.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
-        ),
+        privateKeyPem: Redacted.make(pair.privateKeyPem),
         recoveryId: Id.make("test-acceptance-inverse"),
         releaseId: Id.make("test-acceptance-release"),
         rendererPath: "/test/renderer.json",
@@ -84,10 +79,12 @@ vi.mock("@nakafa/aksara-publisher/acceptance/preparation", async () => {
   const { gitBundle: bundle } = await import("#test/target");
   return {
     prepareAcceptanceRelease: vi.fn((input: { readonly releaseId: string }) =>
-      Runtime.succeed({
-        kind: "git",
-        manifest: bundle(input.releaseId).release.manifest,
-      })
+      bundle(input.releaseId).pipe(
+        Runtime.map((gitRelease) => ({
+          kind: "git",
+          manifest: gitRelease.release.manifest,
+        }))
+      )
     ),
   };
 });

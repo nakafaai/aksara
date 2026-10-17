@@ -36,7 +36,7 @@ function digestStream<E, R>(
     domain: "nakafa.aksara.test.tryout-digest",
     identity: (row) => row.identity,
     records: stream,
-    rowHash: (row) => Sha256HashSchema.make(row.hash),
+    rowHash: (row) => Effect.succeed(Sha256HashSchema.make(row.hash)),
   });
 }
 
@@ -98,7 +98,10 @@ describe("try-out streaming digest golden vectors", () => {
         Stream.make(secondRecord, firstRecord)
       ).pipe(Effect.flip);
 
-      expect([repeated.code, unsorted.code]).toEqual(["order", "order"]);
+      expect([repeated, unsorted]).toMatchObject([
+        { _tag: "TryoutDigestError", code: "order" },
+        { _tag: "TryoutDigestError", code: "order" },
+      ]);
     })
   );
 });

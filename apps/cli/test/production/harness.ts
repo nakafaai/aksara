@@ -8,6 +8,20 @@ import type { ReleaseArguments } from "#cli/production/arguments";
 import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";
 import type { ProductionCalls } from "#test/production/mock";
+import { completedBundle, currentState, gitBundle } from "#test/target";
+
+/** The active production state that each command test starts from, built once for the test process. */
+export const ACTIVE_PRODUCTION_STATE = await Effect.runPromise(
+  Effect.gen(function* () {
+    const active = yield* gitBundle("release-active");
+    return currentState({
+      active: yield* completedBundle(active),
+      candidate: null,
+      recovery: null,
+      tryoutRuntimeBundle: null,
+    });
+  })
+);
 
 type PrepareContentReleaseInput<E, R> = Parameters<
   typeof prepareContentRelease<E, R>
@@ -106,7 +120,7 @@ vi.mock("@nakafa/aksara-publisher/git/source", async () =>
 vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   const { Sha256HashSchema } = await import("@nakafa/aksara-contracts/ids");
   const { Effect: TestEffect, Stream: TestStream } = await import("effect");
-  const { gitBundle, releaseId } = await import("#test/target");
+  const target = await import("#test/target");
   return {
     prepareContentRelease: <E, R>(input: PrepareContentReleaseInput<E, R>) => {
       calls.baseReleaseId = input.baseReleaseId;
@@ -117,27 +131,29 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
       calls.runtimeResultSnapshotId =
         input.tryoutRuntime?.result.snapshotId ?? null;
       calls.sha = input.aksaraSha;
-      const bundle = gitBundle(input.releaseId, {
-        ...(input.baseManifestHash === null
-          ? {}
-          : { baseManifestHash: input.baseManifestHash }),
-        baseReleaseId: releaseId(input.baseReleaseId ?? "release-placeholder"),
-        ...(input.baseReleaseId === null ? { baseReleaseId: null } : {}),
-        ...(calls.manifestMismatch
-          ? {
-              projectionDigest: Sha256HashSchema.make(
-                `sha256:${"f".repeat(64)}`
-              ),
-            }
-          : {}),
-        scope: input.scope,
-      });
       return TestEffect.gen(function* () {
+        const gitRelease = yield* target.gitBundle(input.releaseId, {
+          ...(input.baseManifestHash === null
+            ? {}
+            : { baseManifestHash: input.baseManifestHash }),
+          baseReleaseId: target.releaseId(
+            input.baseReleaseId ?? "release-placeholder"
+          ),
+          ...(input.baseReleaseId === null ? { baseReleaseId: null } : {}),
+          ...(calls.manifestMismatch
+            ? {
+                projectionDigest: Sha256HashSchema.make(
+                  `sha256:${"f".repeat(64)}`
+                ),
+              }
+            : {}),
+          scope: input.scope,
+        });
         yield* input.snapshotManifests.pipe(TestStream.runDrain);
         yield* input.snapshotRows.pipe(TestStream.runDrain);
         return {
           kind: "git" as const,
-          manifest: bundle.release.manifest,
+          manifest: gitRelease.release.manifest,
           releaseId: input.releaseId,
           storedRelease: null,
         };
@@ -246,7 +262,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
         TestRedacted.value(signingKey.privateKeyPem) === "test-private-key";
       calls.publishKind = prepared.kind;
       calls.storedRelease = prepared.storedRelease;
-      return receiptFor(prepared.manifest);
+      return yield* receiptFor(prepared.manifest);
     });
   };
   return { publishGitRelease: publish };
@@ -272,7 +288,7 @@ vi.mock("@nakafa/aksara-publisher/resume", async () => {
         yield* PublicationTarget;
         calls.targetServiceReads += 1;
         yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07-23"));
-        return receiptFor(bundle.release.manifest);
+        return yield* receiptFor(bundle.release.manifest);
       });
     },
   };

@@ -137,31 +137,32 @@ const rejectPagePublicationFrom = Effect.fn("PageTest.rejectFrom")(
 );
 
 /** Derives authoritative compact heads from page publication records. */
-function derivePageHeads(
+const derivePageHeads = Effect.fn("PageTest.deriveHeads")(function* (
   records: Effect.Success<ReturnType<typeof collectPagePublicationFrom>>
 ) {
-  return Arr.flatMap(records, (transition) => {
-    const { record } = transition;
-    if (!("payload" in record)) {
-      return [];
-    }
-    return [
-      PageHeadSchema.make({
-        artifactHash: record.change.artifactHash,
-        artifactLocale: record.change.artifactLocale,
-        compilerConfigHash: record.payload.compilerConfigHash,
-        contentKey: record.change.contentKey,
-        delivery: record.change.delivery,
-        family: "page",
-        projectionHash: hashContentProjection(record.projection),
-        publicPath: projectionPublicPath(record.projection),
-        rendererDomain: record.change.rendererDomain,
-        sourceHash: record.payload.sourceHash,
-        sourcePath: record.change.sourcePath,
-      }),
-    ];
-  });
-}
+  const upserts = Arr.flatMap(records, ({ record }) =>
+    "payload" in record ? [record] : []
+  );
+  return yield* Effect.forEach(upserts, (record) =>
+    hashContentProjection(record.projection).pipe(
+      Effect.map((projectionHash) =>
+        PageHeadSchema.make({
+          artifactHash: record.change.artifactHash,
+          artifactLocale: record.change.artifactLocale,
+          compilerConfigHash: record.payload.compilerConfigHash,
+          contentKey: record.change.contentKey,
+          delivery: record.change.delivery,
+          family: "page",
+          projectionHash,
+          publicPath: projectionPublicPath(record.projection),
+          rendererDomain: record.change.rendererDomain,
+          sourceHash: record.payload.sourceHash,
+          sourcePath: record.change.sourcePath,
+        })
+      )
+    )
+  );
+});
 
 /** Collects page transitions through the authoritative publication path. */
 export const collectPagePublication = Effect.fn("PageTest.collect")(
@@ -201,7 +202,7 @@ export const rejectPagePublication = Effect.fn("PageTest.reject")(
 
 /** Derives authoritative compact heads from every registered page. */
 const publishedPageHeads = Effect.fn("PageTest.publishedHeads")(function* () {
-  return derivePageHeads(yield* collectPagePublication({ heads: [] }));
+  return yield* derivePageHeads(yield* collectPagePublication({ heads: [] }));
 });
 
 /** Loads canonical heads and both privacy-page locales for shared suites. */

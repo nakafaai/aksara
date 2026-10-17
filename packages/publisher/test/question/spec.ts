@@ -136,25 +136,31 @@ export function rejectQuestionPublication(heads: readonly QuestionHead[]) {
 }
 
 /** Derives authoritative compact heads from the selected real question pair. */
-export async function publishedQuestionHeads() {
-  const records = await collectQuestionPublication({ heads: [] });
-  return Arr.flatMap(records, ({ record }) => {
-    if (!("payload" in record)) {
-      return [];
-    }
-    return [
-      QuestionHeadSchema.make({
-        artifactHash: record.change.artifactHash,
-        artifactLocale: record.change.artifactLocale,
-        compilerConfigHash: record.payload.compilerConfigHash,
-        contentKey: record.change.contentKey,
-        delivery: record.change.delivery,
-        family: "question",
-        projectionHash: hashContentProjection(record.projection),
-        rendererDomain: record.change.rendererDomain,
-        sourceHash: record.payload.sourceHash,
-        sourcePath: record.change.sourcePath,
-      }),
-    ];
-  });
-}
+export const publishedQuestionHeads = Effect.fn("QuestionTest.publishedHeads")(
+  function* () {
+    const records = yield* Effect.promise(() =>
+      collectQuestionPublication({ heads: [] })
+    );
+    const upserts = Arr.flatMap(records, ({ record }) =>
+      "payload" in record ? [record] : []
+    );
+    return yield* Effect.forEach(upserts, (record) =>
+      hashContentProjection(record.projection).pipe(
+        Effect.map((projectionHash) =>
+          QuestionHeadSchema.make({
+            artifactHash: record.change.artifactHash,
+            artifactLocale: record.change.artifactLocale,
+            compilerConfigHash: record.payload.compilerConfigHash,
+            contentKey: record.change.contentKey,
+            delivery: record.change.delivery,
+            family: "question",
+            projectionHash,
+            rendererDomain: record.change.rendererDomain,
+            sourceHash: record.payload.sourceHash,
+            sourcePath: record.change.sourcePath,
+          })
+        )
+      )
+    );
+  }
+);

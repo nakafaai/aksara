@@ -71,7 +71,7 @@ function replaceHead(
 /** Loads real question heads before per-test compiler accounting begins. */
 const makePlanTestFixtures = Effect.fn("QuestionPlanTest.makeFixtures")(() =>
   Effect.gen(function* () {
-    const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
+    const publishedHeads = yield* publishedQuestionHeads();
     const promptEntry = yield* Effect.fromOption(
       Arr.findFirst(
         questionEntries,

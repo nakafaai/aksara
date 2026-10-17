@@ -6,7 +6,7 @@ import {
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
 } from "#contracts/locale";
-import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { makeTryoutTestRows, tryoutTestRows } from "#contracts/test/tryout";
 import {
   type TryoutCatalogRecord,
   TryoutCatalogRowSchema,
@@ -21,7 +21,7 @@ import {
 } from "#contracts/tryout/placement";
 
 const activeAppLocales = ACTIVE_APP_LOCALES;
-const { catalog, placements } = makeTryoutTestRows();
+const { catalog, placements } = tryoutTestRows;
 
 /** Rebuilds one valid catalog record after a test-owned field change. */
 const updateCatalog = Effect.fn("AksaraContracts.test.updateTryoutCatalog")(
@@ -33,7 +33,7 @@ const updateCatalog = Effect.fn("AksaraContracts.test.updateTryoutCatalog")(
       ...record.row,
       ...fields,
     });
-    return makeTryoutCatalogRecord(row);
+    return yield* makeTryoutCatalogRecord(row);
   }
 );
 
@@ -53,7 +53,7 @@ const englishPlacement = Effect.fn(
     questionSourcePath: `packages/corpus/${root}`,
     sectionKey: "literacy-in-english",
   });
-  return makeTryoutPlacementRecord(row);
+  return yield* makeTryoutPlacementRecord(row);
 });
 
 /** Returns one typed current try-out locale closure failure. */
@@ -91,7 +91,7 @@ describe("try-out locale closure", () => {
         const germanAppLocales = yield* Schema.decodeEffect(
           ActiveAppLocaleListSchema
         )(["en", "id", "de"]);
-        const germanRows = makeTryoutTestRows([
+        const germanRows = yield* makeTryoutTestRows([
           AppLocaleSchema.make("de"),
           AppLocaleSchema.make("en"),
           AppLocaleSchema.make("id"),
@@ -227,7 +227,7 @@ describe("try-out locale closure", () => {
           ? Schema.decodeEffect(TryoutPlacementSchema)({
               ...record.row,
               questionArtifactHash: `sha256:${"b".repeat(64)}`,
-            }).pipe(Effect.map(makeTryoutPlacementRecord))
+            }).pipe(Effect.flatMap(makeTryoutPlacementRecord))
           : Effect.succeed(record)
       );
       const error = yield* rejectClosure({

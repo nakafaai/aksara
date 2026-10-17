@@ -147,7 +147,9 @@ describe("GitBlob", () => {
             args: ["cat-file", "--batch"],
             root: TEST_REPOSITORY_ROOT,
             stderrLimit: 16 * 1024,
-            stdin: new TextEncoder().encode(`${testBlobId(TEST_RAW_BYTES)}\n`),
+            stdin: new TextEncoder().encode(
+              `${yield* testBlobId(TEST_RAW_BYTES)}\n`
+            ),
             stdoutLimit: TEST_RAW_BYTES.byteLength + 97,
           }),
         ]);
@@ -159,9 +161,9 @@ describe("GitBlob", () => {
     () =>
       Effect.gen(function* () {
         for (const metadata of [
-          `${testBlobId(TEST_RAW_BYTES)} blob ${MAX_RAW_MDX_BYTES + 1}\n`,
+          `${yield* testBlobId(TEST_RAW_BYTES)} blob ${MAX_RAW_MDX_BYTES + 1}\n`,
           `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH} missing\n`,
-          `${testBlobId(TEST_RAW_BYTES)} tree 4\n`,
+          `${yield* testBlobId(TEST_RAW_BYTES)} tree 4\n`,
         ]) {
           const commands = MutableList.make<ExactProcessInput>();
           const error = yield* readTestBlob(

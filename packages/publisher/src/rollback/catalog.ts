@@ -63,8 +63,22 @@ function resolveMerge(merge: CatalogMerge) {
   if (merge.kind === "active") {
     return Effect.succeedSome(merge.active);
   }
-  const current = snapshotRollbackState(merge.transition.current);
-  const prior = snapshotRollbackState(merge.transition.prior);
+  return Effect.all([
+    snapshotRollbackState(merge.transition.current),
+    snapshotRollbackState(merge.transition.prior),
+  ]).pipe(
+    Effect.flatMap(([current, prior]) =>
+      resolveTransitionMerge(merge, current, prior)
+    )
+  );
+}
+
+/** Proves one transition merge against the exact compact current and prior states. */
+function resolveTransitionMerge(
+  merge: Exclude<CatalogMerge, { readonly kind: "active" }>,
+  current: RollbackSnapshotState,
+  prior: RollbackSnapshotState
+) {
   const identity = merge.transition.current.item.change;
   if (merge.kind === "transition") {
     if (current.state !== "absent") {

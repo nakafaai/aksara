@@ -87,7 +87,7 @@ export function makePriorQuranSyncSources() {
 }
 
 /** Creates one deterministic HTTP adapter for every official artifact. */
-function sourceClient(
+export function sourceClient(
   sources: HashMap.HashMap<string, Uint8Array>,
   options: QuranSyncTestOptions
 ) {
@@ -131,7 +131,7 @@ export function replaceQuranSyncSource(
   return HashMap.set(sources, url, bytes);
 }
 
-interface QuranSyncTestOptions {
+export interface QuranSyncTestOptions {
   /** Overrides one filesystem operation for typed failure coverage. */
   readonly configureFileSystem?: (
     fileSystem: FileSystem.FileSystem

@@ -1,24 +1,21 @@
-import { createHash } from "node:crypto";
 import { Effect } from "effect";
 import {
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
 } from "#contracts/artifact/spec";
 import type { CompiledContentPayload } from "#contracts/content";
-import { Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
 
 /** Computes the authenticated hash of the complete authored MDX source. */
 function hashAuthoredSource(payload: CompiledContentPayload) {
-  return Effect.try({
-    catch: () =>
-      new ArtifactSourceHashComputationError({
-        contentKey: payload.contentKey,
-      }),
-    try: () =>
-      Sha256HashSchema.make(
-        `sha256:${createHash("sha256").update(payload.rawMdx).digest("hex")}`
-      ),
-  });
+  return hashText(payload.rawMdx).pipe(
+    Effect.mapError(
+      () =>
+        new ArtifactSourceHashComputationError({
+          contentKey: payload.contentKey,
+        })
+    )
+  );
 }
 
 /** Verifies that sourceHash identifies the complete authenticated raw MDX. */

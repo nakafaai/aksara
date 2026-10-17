@@ -1,6 +1,6 @@
-import { createPublicKey } from "node:crypto";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
+import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { StageSnapshotBatchInputSchema } from "@nakafa/aksara-contracts/transport/snapshot";
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
@@ -42,6 +42,15 @@ const AcceptancePublicationCallsSchema = Schema.Struct({
 export type AcceptancePublicationCalls =
   typeof AcceptancePublicationCallsSchema.Type;
 
+/** The pre-existing release that the acceptance target reports, hashed once for the process. */
+const PREEXISTING_BUNDLE = await Effect.runPromise(
+  gitBundle("test-preexisting-release")
+);
+/** The same pre-existing release as the terminal active record of the target. */
+const PREEXISTING_ACTIVE = await Effect.runPromise(
+  completedBundle(PREEXISTING_BUNDLE)
+);
+
 /** Supplies native target failures after one exact, real snapshot row is staged. */
 export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {
   return {
@@ -56,12 +65,11 @@ export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {
       calls.timeout = input.timeout;
       const target = makeProductionTarget(() => {
         calls.targetReads += 1;
-        const bundle = gitBundle("test-preexisting-release");
         return {
-          active: calls.target === "active" ? completedBundle(bundle) : null,
+          active: calls.target === "active" ? PREEXISTING_ACTIVE : null,
           candidate:
             calls.target === "candidate"
-              ? { ...bundle, phase: "staging" }
+              ? { ...PREEXISTING_BUNDLE, phase: "staging" }
               : null,
           recovery: null,
           tryoutRuntimeBundle: null,
@@ -110,10 +118,10 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
         );
         calls.keyMatches =
           resolved ===
-          createPublicKey(Redacted.value(signingKey.privateKeyPem))
-            .export({ format: "pem", type: "spki" })
-            .toString();
-        const frozen = gitBundle(prepared.manifest.releaseId);
+          (yield* ed25519PublicKeyPem(
+            Redacted.value(signingKey.privateKeyPem)
+          ));
+        const frozen = yield* gitBundle(prepared.manifest.releaseId);
         const snapshot = yield* prepareProgramSnapshot().pipe(Effect.orDie);
         const rows = yield* snapshot.rows.pipe(
           Stream.take(1),
@@ -138,7 +146,7 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
           }),
           release: frozen.release,
         });
-        return receiptFor(prepared.manifest);
+        return yield* receiptFor(prepared.manifest);
       }
     ),
   };

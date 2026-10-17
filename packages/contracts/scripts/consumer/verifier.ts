@@ -1,4 +1,3 @@
-import { parseArgs } from "node:util";
 import {
   Array as Arr,
   Console,
@@ -22,6 +21,7 @@ import {
   createConsumerTsconfig,
   createInstallRunner,
 } from "#scripts/consumer/tools";
+import { parseOptions } from "#scripts/options";
 import { encodeJsonText } from "#scripts/text/json";
 import {
   type InstallInspection,
@@ -80,20 +80,19 @@ export const preserveTarball = Effect.fn(
 const parseConsumerArguments = Effect.fn(
   "AksaraContracts.parseConsumerArguments"
 )(function* (args: readonly string[]) {
-  const parsed = yield* Effect.try({
-    catch: (cause) =>
+  const parsed = yield* parseOptions(
+    [...args],
+    Schema.Literals(["output"]),
+    false
+  ).pipe(
+    Effect.mapError((cause) =>
       consumerError(
         "argument",
-        `Consumer verification arguments are malformed: ${String(cause)}`,
+        `Consumer verification arguments are malformed: ${cause.detail}`,
         cause
-      ),
-    try: () =>
-      parseArgs({
-        args: [...args],
-        options: { output: { type: "string" } },
-        strict: true,
-      }),
-  });
+      )
+    )
+  );
   return parsed.values.output;
 });
 

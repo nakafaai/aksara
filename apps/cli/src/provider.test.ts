@@ -1,10 +1,10 @@
-import { Server } from "node:http";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, MutableRef, Schema, Stream } from "effect";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
+import { listenPlan } from "#test/listen";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
 import {
   makeIncoherentResults,
@@ -24,8 +24,23 @@ const ReadyArtifactsSchema = Schema.Struct({
   ),
 });
 
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const original =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  const { mockListen } = await import("#test/listen");
+  return {
+    ...original,
+    NodeHttpServer: {
+      ...original.NodeHttpServer,
+      make: mockListen(original.NodeHttpServer.make),
+    },
+  };
+});
+
 afterEach(() => {
-  vi.restoreAllMocks();
+  MutableRef.set(listenPlan.fail, false);
+  MutableRef.set(listenPlan.unix, false);
+  listenPlan.servers = [];
 });
 describe("local preview provider", () => {
   it.live(
@@ -243,55 +258,43 @@ describe("local preview provider", () => {
     30_000
   );
   it.live(
-    "fails when the operating system cannot bind or prove loopback",
+    "fails with a listen stage when the listener cannot bind or has no inet address",
     () =>
       Effect.gen(function* () {
         const input = yield* makeProviderInput;
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          // The caller subscribes to "error" before it listens, so the failure arrives at once.
-          this.emit("error", new Error("Test bind failure."));
-          return this;
-        });
-        const listenError = yield* Effect.scoped(
-          openPreviewProvider(input)
-        ).pipe(Effect.flip);
-        vi.restoreAllMocks();
-        vi.spyOn(Server.prototype, "address").mockReturnValueOnce(null);
+        MutableRef.set(listenPlan.fail, true);
+        const bindError = yield* Effect.scoped(openPreviewProvider(input)).pipe(
+          Effect.flip
+        );
+        MutableRef.set(listenPlan.fail, false);
+        MutableRef.set(listenPlan.unix, true);
         const addressError = yield* Effect.scoped(
           openPreviewProvider(input)
         ).pipe(Effect.flip);
 
-        expect(listenError).toMatchObject({ stage: "listen" });
-        expect(addressError).toMatchObject({ stage: "listen" });
+        expect([bindError, addressError]).toMatchObject([
+          { stage: "listen" },
+          { stage: "listen" },
+        ]);
       }),
     30_000
   );
 
   it.live(
-    "closes an unfinished listener when provider acquisition is cancelled",
+    "closes a listener whose bind completes after its acquisition is interrupted",
     () =>
       Effect.gen(function* () {
         const input = yield* makeProviderInput;
-        vi.spyOn(Server.prototype, "listen").mockImplementationOnce(function (
-          this: Server
-        ) {
-          return this;
-        });
-        const close = vi
-          .spyOn(Server.prototype, "close")
-          .mockImplementationOnce(function (this: Server) {
-            return this;
-          });
-
-        const cancelled = yield* Effect.scoped(openPreviewProvider(input)).pipe(
-          Effect.timeout("1 millis"),
-          Effect.flip
+        yield* Effect.scoped(
+          Effect.raceFirst(openPreviewProvider(input), Effect.void)
         );
+        yield* Effect.sleep("50 millis");
 
-        expect(cancelled._tag).toBe("TimeoutError");
-        expect(close).toHaveBeenCalledOnce();
+        const listening = Arr.map(
+          listenPlan.servers,
+          (server) => server.listening
+        );
+        expect(listening).toEqual([false]);
       }),
     30_000
   );

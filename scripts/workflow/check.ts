@@ -1,4 +1,3 @@
-import assert from "node:assert/strict";
 import { Array as Arr, Console, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
@@ -7,6 +6,7 @@ import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { ensure, sameNames } from "#scripts/workflow/requirement";
 import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
@@ -64,179 +64,195 @@ const WorkflowSourcesSchema = Schema.Struct({
 /** Workflow sources and the repository test targets that the CI policy names. */
 export type WorkflowSources = typeof WorkflowSourcesSchema.Type;
 
+/** Returns where one named contract release step starts, and refuses a workflow that does not declare it. */
+const contractStepStart = Effect.fn("AksaraWorkflow.contractStepStart")(
+  function* (contracts: string, name: string) {
+    const start = contracts.indexOf(`- name: ${name}`);
+    yield* ensure(
+      start >= 0,
+      `Contract releases must declare the ${name} step`
+    );
+    return start;
+  }
+);
+
 /** Verifies one source-only contract archive and one content release path. */
-export function verifyWorkflows({
-  all,
-  ci,
-  cli,
-  contracts,
-  release,
-  testTargets,
-}: WorkflowSources): void {
-  const releaseCombined = `${ci}\n${contracts}\n${release}`;
-  const combined = `${releaseCombined}\n${cli}`;
-  assert.doesNotMatch(
-    releaseCombined,
-    FORBIDDEN_REGISTRY_PATTERN,
-    "Workflows must not retain registry or Changesets publication machinery"
-  );
-  assert.deepEqual(
-    Arr.dedupe(
-      Arr.map(
-        [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)],
-        ([url]) => url
-      )
-    ),
-    [NPM_REGISTRY, NPM_ATTESTATION_URL],
-    "Registry reads must use only the exact npm attestation endpoint"
-  );
-  assert.doesNotMatch(
-    combined,
-    SWALLOWED_CLI_OUTPUT_PATTERN,
-    "Workflow probes must clear failed CLI output instead of treating error bodies as state"
-  );
-  verifyWorkflowToolchains(Arr.dedupe([ci, cli, contracts, release, ...all]));
-  verifyCiWorkflow(ci, testTargets);
-  verifyCliWorkflow(cli);
-  assert.match(
+export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
+  function* ({
+    all,
     ci,
-    FROZEN_INSTALL_PATTERN,
-    "CI must install the exact pnpm lockfile"
-  );
-  assert.match(
-    ci,
-    RELEASE_IDENTITY_PATTERN,
-    "CI must derive release necessity from the tested identity tool"
-  );
-  assert.doesNotMatch(
-    ci,
-    SHELL_VERSION_PATTERN,
-    "CI must not parse contract versions in shell"
-  );
-  assert.match(
-    ci,
-    VERIFY_CONSUMER_PATTERN,
-    "CI must prove the release archive in an isolated consumer"
-  );
-  assert.match(
+    cli,
     contracts,
-    CONTRACT_TRIGGER_PATTERN,
-    "Contract release checks must run for every main source revision"
-  );
-  const contractTrigger = contracts.slice(0, contracts.indexOf("permissions:"));
-  assert.doesNotMatch(
-    contractTrigger,
-    CONTRACT_PATH_TRIGGER_PATTERN,
-    "Contract release triggers must not guess archive input paths"
-  );
-  assert.match(
-    contracts,
-    FROZEN_INSTALL_PATTERN,
-    "Contract releases must install the exact pnpm lockfile"
-  );
-  assert.match(
-    contracts,
-    RELEASE_IDENTITY_PATTERN,
-    "Contract releases must derive release necessity from the tested identity tool"
-  );
-  assert.doesNotMatch(
-    contracts,
-    SHELL_VERSION_PATTERN,
-    "Contract releases must not parse contract versions in shell"
-  );
-  assert.match(
-    contracts,
-    FULL_GATE_PATTERN,
-    "Contract releases must run every repository gate"
-  );
-  assert.match(
-    contracts,
-    CONDITIONAL_GATE_PATTERN,
-    "Unchanged contract archives must skip full release gates"
-  );
-  assert.match(
-    contracts,
-    ARCHIVE_BUILD_PATTERN,
-    "Contract releases must upload the archive proven by the consumer"
-  );
-  assert.match(
-    contracts,
-    ARCHIVE_IDENTITY_PATTERN,
-    "Contract releases must compare exact verified archive bytes"
-  );
-  const attestIndex = contracts.indexOf("- name: Attest verified archive");
-  const transferIndex = contracts.indexOf("- name: Upload verified package");
-  const draftIndex = contracts.indexOf("- name: Create draft release");
-  const uploadIndex = contracts.indexOf("- name: Attach verified archive");
-  const publishIndex = contracts.indexOf("- name: Publish immutable release");
-  assert.ok(
-    attestIndex < transferIndex,
-    "Contract archives must be attested before crossing into the publish job"
-  );
-  assert.ok(
-    draftIndex < uploadIndex && uploadIndex < publishIndex,
-    "Contract releases must draft, attach, then publish"
-  );
-  assert.match(
-    contracts,
-    ATTESTATION_PATTERN,
-    "Contract attestation must bind workflow, source revision, and main"
-  );
-  assert.doesNotMatch(
-    contracts,
-    IMMUTABLE_SETTING_PATTERN,
-    "Contract workflows cannot query repository settings with GITHUB_TOKEN"
-  );
-  assert.match(
-    contracts,
-    IDEMPOTENT_RELEASE_PATTERN,
-    "Contract reruns may recover only their same-SHA mutable release"
-  );
-  assert.match(
-    contracts,
-    PUBLISHED_RELEASE_PATTERN,
-    "Published releases must match the verified asset and source tag"
-  );
-  const recoveries = [
-    ...contracts.matchAll(/- name: Remove failed mutable release/gu),
-  ];
-  assert.equal(
-    recoveries.length,
-    2,
-    "Every failed release boundary must own one mutable cleanup"
-  );
-  for (const recovery of recoveries) {
-    const tail = contracts.slice(recovery.index);
-    const nextJob = tail.slice(1).search(TOP_LEVEL_JOB_PATTERN);
-    const step = nextJob < 0 ? tail : tail.slice(0, nextJob + 1);
-    assert.match(
-      step,
-      MUTABLE_RECOVERY_PATTERN,
-      "Failed publication must remove only its same-SHA mutable release"
+    release,
+    testTargets,
+  }: WorkflowSources) {
+    const releaseCombined = `${ci}\n${contracts}\n${release}`;
+    const combined = `${releaseCombined}\n${cli}`;
+    yield* ensure(
+      !FORBIDDEN_REGISTRY_PATTERN.test(releaseCombined),
+      "Workflows must not retain registry or Changesets publication machinery"
     );
-  }
-  verifyProvenanceWorkflow(contracts);
-  assert.match(
-    contracts,
-    RELEASE_JOB_PATTERN,
-    "Contract release privileges must remain separated by capability"
-  );
-
-  const actionReferences = Arr.map(
-    [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)],
-    (match) => match[0]
-  );
-  assert.ok(actionReferences.length > 0, "Workflows must use pinned actions");
-  for (const reference of actionReferences) {
-    assert.match(
-      reference,
-      PINNED_ACTION_PATTERN,
-      `Workflow action ${reference} must use an exact commit`
+    yield* ensure(
+      sameNames(
+        Arr.dedupe(
+          Arr.map(
+            [...combined.matchAll(REGISTRY_REFERENCE_PATTERN)],
+            ([url]) => url
+          )
+        ),
+        [NPM_REGISTRY, NPM_ATTESTATION_URL]
+      ),
+      "Registry reads must use only the exact npm attestation endpoint"
     );
-  }
+    yield* ensure(
+      !SWALLOWED_CLI_OUTPUT_PATTERN.test(combined),
+      "Workflow probes must clear failed CLI output instead of treating error bodies as state"
+    );
+    yield* verifyWorkflowToolchains(
+      Arr.dedupe([ci, cli, contracts, release, ...all])
+    );
+    yield* verifyCiWorkflow(ci, testTargets);
+    yield* verifyCliWorkflow(cli);
+    yield* ensure(
+      FROZEN_INSTALL_PATTERN.test(ci),
+      "CI must install the exact pnpm lockfile"
+    );
+    yield* ensure(
+      RELEASE_IDENTITY_PATTERN.test(ci),
+      "CI must derive release necessity from the tested identity tool"
+    );
+    yield* ensure(
+      !SHELL_VERSION_PATTERN.test(ci),
+      "CI must not parse contract versions in shell"
+    );
+    yield* ensure(
+      VERIFY_CONSUMER_PATTERN.test(ci),
+      "CI must prove the release archive in an isolated consumer"
+    );
+    yield* ensure(
+      CONTRACT_TRIGGER_PATTERN.test(contracts),
+      "Contract release checks must run for every main source revision"
+    );
+    const contractTrigger = contracts.slice(
+      0,
+      contracts.indexOf("permissions:")
+    );
+    yield* ensure(
+      !CONTRACT_PATH_TRIGGER_PATTERN.test(contractTrigger),
+      "Contract release triggers must not guess archive input paths"
+    );
+    yield* ensure(
+      FROZEN_INSTALL_PATTERN.test(contracts),
+      "Contract releases must install the exact pnpm lockfile"
+    );
+    yield* ensure(
+      RELEASE_IDENTITY_PATTERN.test(contracts),
+      "Contract releases must derive release necessity from the tested identity tool"
+    );
+    yield* ensure(
+      !SHELL_VERSION_PATTERN.test(contracts),
+      "Contract releases must not parse contract versions in shell"
+    );
+    yield* ensure(
+      FULL_GATE_PATTERN.test(contracts),
+      "Contract releases must run every repository gate"
+    );
+    yield* ensure(
+      CONDITIONAL_GATE_PATTERN.test(contracts),
+      "Unchanged contract archives must skip full release gates"
+    );
+    yield* ensure(
+      ARCHIVE_BUILD_PATTERN.test(contracts),
+      "Contract releases must upload the archive proven by the consumer"
+    );
+    yield* ensure(
+      ARCHIVE_IDENTITY_PATTERN.test(contracts),
+      "Contract releases must compare exact verified archive bytes"
+    );
+    const attestIndex = yield* contractStepStart(
+      contracts,
+      "Attest verified archive"
+    );
+    const transferIndex = yield* contractStepStart(
+      contracts,
+      "Upload verified package"
+    );
+    const draftIndex = yield* contractStepStart(
+      contracts,
+      "Create draft release"
+    );
+    const uploadIndex = yield* contractStepStart(
+      contracts,
+      "Attach verified archive"
+    );
+    const publishIndex = yield* contractStepStart(
+      contracts,
+      "Publish immutable release"
+    );
+    yield* ensure(
+      attestIndex < transferIndex,
+      "Contract archives must be attested before crossing into the publish job"
+    );
+    yield* ensure(
+      draftIndex < uploadIndex && uploadIndex < publishIndex,
+      "Contract releases must draft, attach, then publish"
+    );
+    yield* ensure(
+      ATTESTATION_PATTERN.test(contracts),
+      "Contract attestation must bind workflow, source revision, and main"
+    );
+    yield* ensure(
+      !IMMUTABLE_SETTING_PATTERN.test(contracts),
+      "Contract workflows cannot query repository settings with GITHUB_TOKEN"
+    );
+    yield* ensure(
+      IDEMPOTENT_RELEASE_PATTERN.test(contracts),
+      "Contract reruns may recover only their same-SHA mutable release"
+    );
+    yield* ensure(
+      PUBLISHED_RELEASE_PATTERN.test(contracts),
+      "Published releases must match the verified asset and source tag"
+    );
+    const recoveries = [
+      ...contracts.matchAll(/- name: Remove failed mutable release/gu),
+    ];
+    yield* ensure(
+      recoveries.length === 2,
+      "Every failed release boundary must own one mutable cleanup"
+    );
+    for (const recovery of recoveries) {
+      const tail = contracts.slice(recovery.index);
+      const nextJob = tail.slice(1).search(TOP_LEVEL_JOB_PATTERN);
+      const step = nextJob < 0 ? tail : tail.slice(0, nextJob + 1);
+      yield* ensure(
+        MUTABLE_RECOVERY_PATTERN.test(step),
+        "Failed publication must remove only its same-SHA mutable release"
+      );
+    }
+    yield* verifyProvenanceWorkflow(contracts);
+    yield* ensure(
+      RELEASE_JOB_PATTERN.test(contracts),
+      "Contract release privileges must remain separated by capability"
+    );
 
-  verifyPublicationWorkflow(release, all);
-}
+    const actionReferences = Arr.map(
+      [...combined.matchAll(/(?<=uses: )[^ #\n]+/gu)],
+      (match) => match[0]
+    );
+    yield* ensure(
+      actionReferences.length > 0,
+      "Workflows must use pinned actions"
+    );
+    for (const reference of actionReferences) {
+      yield* ensure(
+        PINNED_ACTION_PATTERN.test(reference),
+        `Workflow action ${reference} must use an exact commit`
+      );
+    }
+
+    yield* verifyPublicationWorkflow(release, all);
+  }
+);
 
 /** Reads every tracked workflow and the release workflows that the policy verifies. */
 const readWorkflowSources = Effect.fn("WorkflowCheck.readSources")(
@@ -259,7 +275,7 @@ const readWorkflowSources = Effect.fn("WorkflowCheck.readSources")(
 export const verifyRepositoryWorkflows = Effect.fn(
   "AksaraWorkflow.verifyRepository"
 )(function* () {
-  verifyWorkflows(yield* readWorkflowSources());
+  yield* verifyWorkflows(yield* readWorkflowSources());
   yield* Console.log("Verified immutable contract and content workflows.");
 });
 

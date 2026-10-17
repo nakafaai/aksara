@@ -2,6 +2,7 @@ import {
   AKSARA_COMPILER_VERSION,
   MDX_COMPILER_VERSION,
 } from "@nakafa/aksara-contracts/content";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { sortRendererComponents } from "@nakafa/aksara-contracts/renderer/component";
 import {
   type RendererManifestEnvelope,
@@ -9,7 +10,6 @@ import {
 } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
-import { hashUtf8 } from "#compiler/hash";
 
 /** Stable provider identifier used by the server-owned MDX registry. */
 export const MDX_PROVIDER_SOURCE = "nakafa-static-renderer-registry";
@@ -44,5 +44,5 @@ export const createCompilerConfigHash = Effect.fn(
     ...domain.components,
   ]);
   const selection = encodeJson(components);
-  return hashUtf8(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
+  return yield* hashText(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
 });

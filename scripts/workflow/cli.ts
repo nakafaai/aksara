@@ -1,5 +1,6 @@
-import assert from "node:assert/strict";
+import { Effect } from "effect";
 import { verifyNpmWorkflow } from "#scripts/workflow/npm";
+import { ensure } from "#scripts/workflow/requirement";
 
 const DOLLAR = "$";
 const CLI_WORKFLOW = {
@@ -16,44 +17,38 @@ const STABLE_VERSION_PATTERN =
   /^ {6}- name: Verify stable package version\n^ {8}run: \|\n[\s\S]*^ {10}version=\$\(jq -er '\.version' apps\/cli\/dist\/package\/package\.json\)$[\s\S]*^ {10}if \[\[ ! "\$version" =~ \^\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\$ \]\]; then$/mu;
 
 /** Verifies the public CLI build identity and shared npm trust boundary. */
-export function verifyCliWorkflow(source: string): void {
-  const { build, buildSource, publishSource, verifySource } = verifyNpmWorkflow(
-    source,
-    CLI_WORKFLOW
-  );
-  assert.match(
-    buildSource,
-    CLI_GATE_PATTERN,
-    "CLI builds must run every package gate"
-  );
-  assert.equal(
-    build.permissions?.["id-token"],
-    undefined,
-    "CLI builds must not receive npm OIDC identity"
-  );
-  assert.match(
-    source,
-    STABLE_VERSION_PATTERN,
-    "CLI production publication must reject prerelease versions"
-  );
-  assert.equal(
-    build.outputs?.archive,
-    `${DOLLAR}{{ steps.archive.outputs.archive }}`,
-    "CLI builds must export the exact archive name"
-  );
-  assert.equal(
-    build.outputs?.sha256,
-    `${DOLLAR}{{ steps.archive.outputs.sha256 }}`,
-    "CLI builds must export the exact archive digest"
-  );
-  assert.equal(
-    build.outputs?.size,
-    `${DOLLAR}{{ steps.archive.outputs.size }}`,
-    "CLI builds must export the exact archive size"
-  );
-  assert.ok(
-    publishSource.includes("@nakafa/aksara-cli") &&
-      verifySource.includes("@nakafa/aksara-cli"),
-    "CLI publication must bind the official package identity"
-  );
-}
+export const verifyCliWorkflow = Effect.fn("AksaraScripts.verifyCliWorkflow")(
+  function* (source: string) {
+    const { build, buildSource, publishSource, verifySource } =
+      yield* verifyNpmWorkflow(source, CLI_WORKFLOW);
+    yield* ensure(
+      CLI_GATE_PATTERN.test(buildSource),
+      "CLI builds must run every package gate"
+    );
+    yield* ensure(
+      build.permissions?.["id-token"] === undefined,
+      "CLI builds must not receive npm OIDC identity"
+    );
+    yield* ensure(
+      STABLE_VERSION_PATTERN.test(source),
+      "CLI production publication must reject prerelease versions"
+    );
+    yield* ensure(
+      build.outputs?.archive === `${DOLLAR}{{ steps.archive.outputs.archive }}`,
+      "CLI builds must export the exact archive name"
+    );
+    yield* ensure(
+      build.outputs?.sha256 === `${DOLLAR}{{ steps.archive.outputs.sha256 }}`,
+      "CLI builds must export the exact archive digest"
+    );
+    yield* ensure(
+      build.outputs?.size === `${DOLLAR}{{ steps.archive.outputs.size }}`,
+      "CLI builds must export the exact archive size"
+    );
+    yield* ensure(
+      publishSource.includes("@nakafa/aksara-cli") &&
+        verifySource.includes("@nakafa/aksara-cli"),
+      "CLI publication must bind the official package identity"
+    );
+  }
+);

@@ -1,4 +1,3 @@
-import { generateKeyPairSync } from "node:crypto";
 import {
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -26,6 +25,7 @@ import {
 } from "#publisher/publication/spec";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { testFileLayer } from "#test/files";
+import { testSigningKeyPair } from "#test/keys";
 import {
   makeRelease,
   publicationPayload,
@@ -34,18 +34,12 @@ import {
 } from "#test/publication";
 import { emptySnapshotSources } from "#test/snapshot";
 
-const { privateKey, publicKey } = generateKeyPairSync("ed25519");
 const signingKey = PublicationSigningKey.of({
   keyId: "test-signing-key",
-  privateKeyPem: Redacted.make(
-    privateKey.export({ format: "pem", type: "pkcs8" }).toString()
-  ),
+  privateKeyPem: Redacted.make(testSigningKeyPair.privateKeyPem),
 });
 const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
+  resolve: () => Effect.succeed(testSigningKeyPair.publicKeyPem),
 });
 const activation = PublicationActivation.of({
   invalidate: () => Effect.void,
@@ -60,9 +54,7 @@ function makeTestSigner() {
   return Effect.runPromise(
     makeEd25519PublicationSigner({
       keyId: signingKey.keyId,
-      privateKeyPem: privateKey
-        .export({ format: "pem", type: "pkcs8" })
-        .toString(),
+      privateKeyPem: testSigningKeyPair.privateKeyPem,
     })
   );
 }

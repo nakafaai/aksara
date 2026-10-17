@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
 import {
@@ -46,10 +45,9 @@ describe("makeStageGroups", () => {
             groups,
             (group) =>
               group.requests.length <= MAX_STAGE_GROUP_COUNT &&
-              Buffer.byteLength(
-                encodeJsonText({ ...group, operation: "stageGroup" }),
-                "utf8"
-              ) <= MAX_STAGE_GROUP_BYTES
+              new TextEncoder().encode(
+                encodeJsonText({ ...group, operation: "stageGroup" })
+              ).byteLength <= MAX_STAGE_GROUP_BYTES
           )
         ).toBe(true);
       })

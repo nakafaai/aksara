@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { Effect } from "effect";
 import {
   ArtifactCompiledByteLengthMismatchError,
@@ -21,10 +20,9 @@ import {
 
 /** Rejects a complete signed artifact envelope above its wire ceiling. */
 function enforceSignedWireLimit(artifact: SignedContentArtifact) {
-  const actualBytes = Buffer.byteLength(
-    canonicalizeSignedContentArtifact(artifact),
-    "utf8"
-  );
+  const actualBytes = new TextEncoder().encode(
+    canonicalizeSignedContentArtifact(artifact)
+  ).byteLength;
   if (actualBytes <= MAX_SIGNED_ARTIFACT_BYTES) {
     return Effect.void;
   }
@@ -43,7 +41,7 @@ function enforcePayloadFieldLimit(
   value: string,
   maxBytes: number
 ) {
-  const actualBytes = Buffer.byteLength(value, "utf8");
+  const actualBytes = new TextEncoder().encode(value).byteLength;
   if (actualBytes <= maxBytes) {
     return Effect.void;
   }
@@ -63,7 +61,9 @@ export const validateArtifactByteIntegrity = Effect.fn(
 )(function* (artifact: SignedContentArtifact) {
   yield* enforceSignedWireLimit(artifact);
   const { payload } = artifact;
-  const compiledBytes = Buffer.byteLength(payload.compiledCode, "utf8");
+  const compiledBytes = new TextEncoder().encode(
+    payload.compiledCode
+  ).byteLength;
   if (payload.byteLength !== compiledBytes) {
     return yield* new ArtifactCompiledByteLengthMismatchError({
       actualBytes: compiledBytes,

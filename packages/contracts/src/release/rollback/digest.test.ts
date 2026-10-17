@@ -1,6 +1,5 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
@@ -13,50 +12,13 @@ import {
 import { RollbackSnapshotEntrySchema } from "#contracts/release/rollback/spec";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   digestMaterialEntry,
   digestQuestionEntry,
 } from "#contracts/test/rollback";
 
-const failures = vi.hoisted(() => ({ create: false, digest: false }));
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-rollback-digest");
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic rollback snapshot hash failures. */
-    createHash(algorithm: string) {
-      if (failures.create) {
-        throw new TypeError("injected rollback digest creation failure");
-      }
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves real methods while intercepting explicit test markers. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (String(data).includes('"contentKey":"hash:failure"')) {
-                throw new TypeError("injected rollback digest update failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          if (property === "digest" && failures.digest) {
-            return () => {
-              throw new TypeError(
-                "injected rollback digest finalization failure"
-              );
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 /** Builds one absent prior-state entry for rollback snapshot tests. */
 function entry(contentKey = "test:rollback") {
@@ -114,12 +76,8 @@ describe("rollback snapshot digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
     Effect.gen(function* () {
       const value = entry();
-      const initial = yield* createRollbackSnapshotDigest(releaseId);
-      const updated = yield* updateRollbackSnapshotDigest(
-        releaseId,
-        initial,
-        value
-      );
+      const initial = yield* createRollbackSnapshotDigest;
+      const updated = yield* updateRollbackSnapshotDigest(initial, value);
       const digest = yield* finalizeRollbackSnapshotDigest(releaseId, updated);
       const summary = yield* digestRollbackSnapshot(
         releaseId,
@@ -158,45 +116,20 @@ describe("rollback snapshot digest", () => {
     })
   );
 
-  it.effect("maps creation, update, and finalization failures", () =>
-    Effect.gen(function* () {
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.create = false;
-          failures.digest = false;
-        })
-      );
-      yield* Effect.sync(() => {
-        failures.create = true;
-      });
-      const creation = yield* createRollbackSnapshotDigest(releaseId).pipe(
-        Effect.flip
-      );
-      yield* Effect.sync(() => {
-        failures.create = false;
-      });
-      const initial = yield* createRollbackSnapshotDigest(releaseId);
-      const update = yield* updateRollbackSnapshotDigest(
-        releaseId,
-        initial,
-        entry("hash:failure")
-      ).pipe(Effect.flip);
-      yield* Effect.sync(() => {
-        failures.digest = true;
-      });
-      const finalization = yield* finalizeRollbackSnapshotDigest(
-        releaseId,
-        initial
-      ).pipe(Effect.flip);
+  it.effect(
+    "maps a rejected Web Crypto digest to a rollback snapshot hash error",
+    () =>
+      Effect.gen(function* () {
+        const state = yield* createRollbackSnapshotDigest;
+        const failure = yield* withNextDigestFailure(
+          finalizeRollbackSnapshotDigest(releaseId, state)
+        ).pipe(Effect.flip);
 
-      expect(
-        Arr.map([creation, update, finalization], ({ _tag }) => _tag)
-      ).toEqual([
-        "RollbackSnapshotHashError",
-        "RollbackSnapshotHashError",
-        "RollbackSnapshotHashError",
-      ]);
-    })
+        expect(failure).toMatchObject({
+          _tag: "RollbackSnapshotHashError",
+          releaseId,
+        });
+      })
   );
 
   it.effect(
@@ -211,12 +144,11 @@ describe("rollback snapshot digest", () => {
           releaseId,
           Stream.fromIterable(rollbackEntries).pipe(Stream.rechunk(1))
         );
-        const initial = yield* createRollbackSnapshotDigest(releaseId);
+        const initial = yield* createRollbackSnapshotDigest;
         const updated = yield* Effect.reduce(
           rollbackEntries,
           () => initial,
-          (state, value) =>
-            updateRollbackSnapshotDigest(releaseId, state, value)
+          (state, value) => updateRollbackSnapshotDigest(state, value)
         );
         const incremental = yield* finalizeRollbackSnapshotDigest(
           releaseId,

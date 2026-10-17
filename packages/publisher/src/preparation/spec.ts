@@ -1,4 +1,5 @@
 import type { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
@@ -19,7 +20,6 @@ import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
 import type { verifyReleasePolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type {
-  createResultCatalogDigest,
   finalizeResultCatalogDigest,
   updateResultCatalogDigest,
   verifyResultCatalog,
@@ -128,6 +128,7 @@ type SourceHashError = Effect.Error<
 
 /** Failures possible on every replay of the one authored record source. */
 export type PreparedContentStreamError<E> =
+  | ArtifactHashComputationError
   | E
   | PreparedContentCoherenceError
   | PreparedContentDecodeError
@@ -173,7 +174,6 @@ type ResultVerificationError<E, R> = Effect.Error<
 >;
 
 type ResultDigestError =
-  | Effect.Error<ReturnType<typeof createResultCatalogDigest>>
   | Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
   | Effect.Error<ReturnType<typeof updateResultCatalogDigest>>;
 

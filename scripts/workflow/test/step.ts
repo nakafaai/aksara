@@ -1,19 +1,27 @@
-import assert from "node:assert/strict";
 import { Array as Arr, Effect, Option, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import { decodeWorkflow } from "#scripts/workflow/decode";
+import { WorkflowError } from "#scripts/workflow/requirement";
 
 /** Reads the shell program of one named step of the publication job. */
-export function operateStepProgram(release: string, name: string): string {
-  const job = decodeWorkflow(release).jobs.operate;
-  assert.ok(job, "The publication job must exist");
+export const operateStepProgram = Effect.fn(
+  "WorkflowTestStep.operateStepProgram"
+)(function* (release: string, name: string) {
+  const { jobs } = yield* decodeWorkflow(release);
+  const job = jobs.operate;
+  if (job === undefined) {
+    return yield* new WorkflowError({
+      message: "The publication job must exist",
+    });
+  }
   const step = Arr.findFirst(job.steps, (candidate) => candidate.name === name);
-  assert.ok(
-    Option.isSome(step) && step.value.run !== undefined,
-    `The publication step ${name} must run a shell program`
-  );
+  if (Option.isNone(step) || step.value.run === undefined) {
+    return yield* new WorkflowError({
+      message: `The publication step ${name} must run a shell program`,
+    });
+  }
   return step.value.run;
-}
+});
 
 /** Runs one shell program the way the runner does and reports how it ended. */
 export const runProgram = Effect.fn("WorkflowTestStep.run")(function* (

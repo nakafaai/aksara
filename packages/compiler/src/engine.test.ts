@@ -1,9 +1,10 @@
-import { createHash } from "node:crypto";
 import { assert, describe, expect, it } from "@effect/vitest";
 import { canonicalizeCompiledContentPayload } from "@nakafa/aksara-contracts/content";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { digestSha256 } from "@nakafa/aksara-contracts/hash/digest";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { Array as Arr, Effect } from "effect";
+import { Hex } from "effect/encoding";
 import {
   compileValidatedContent,
   validateCompileRequest,
@@ -25,11 +26,7 @@ describe("validateCompileRequest", () => {
       const incomplete = {
         ...live,
         domains,
-        hash: Sha256HashSchema.make(
-          `sha256:${createHash("sha256")
-            .update(canonicalizeRendererManifestContract(contract))
-            .digest("hex")}`
-        ),
+        hash: yield* hashText(canonicalizeRendererManifestContract(contract)),
       };
       const error = yield* validateCompileRequest({
         artifactLocale: "en",
@@ -95,9 +92,13 @@ describe("compileValidatedContent", () => {
         `);
         expect(payload.plainText).toMatchInlineSnapshot(`"Pelajaran é ✓ 数学"`);
         expect(
-          createHash("sha256")
-            .update(canonicalizeCompiledContentPayload(payload))
-            .digest("hex")
+          Hex.encode(
+            yield* digestSha256(
+              new TextEncoder().encode(
+                canonicalizeCompiledContentPayload(payload)
+              )
+            )
+          )
         ).toMatchInlineSnapshot(
           `"6a1f63ff3e942fc5a7e350644f4afd2c6e0a20a68703fa8b83a0985e796ed8f6"`
         );

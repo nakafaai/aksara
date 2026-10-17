@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Number as Num, Order, Schema } from "effect";
 import {
@@ -14,6 +13,7 @@ import {
   routeIdentity,
   SignedContentArtifactSchema,
 } from "#contracts/content";
+import { hashText } from "#contracts/hash/text";
 import {
   ContentKeySchema,
   PublicPathSchema,
@@ -156,50 +156,50 @@ describe("content", () => {
       })
   );
 
-  it("matches exact canonical artifact bytes and hashes", () => {
-    const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
-      artifactLocale: "en",
-      byteLength: 10,
-      compiledCode: "return {};",
-      compilerConfigHash: `sha256:${"c".repeat(64)}`,
-      compilerVersion: "0.1.0",
-      contentKey: "test:content",
-      format: "mdx-function-body",
-      mdxCompilerVersion: "3.1.1",
-      plainText: TEST_HEADING,
-      rawMdx: `## ${TEST_HEADING}`,
-      rendererDomain: "mathematics",
-      requiredComponents: ["BlockMath", "FunctionMachine"],
-      sourceHash:
-        "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
-    });
-    const canonicalPayload =
-      '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine"],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
-    const artifactHash = `sha256:${createHash("sha256")
-      .update(canonicalPayload)
-      .digest("hex")}`;
-    const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
-      artifactHash,
-      keyId: "test-signing-key",
-      payload,
-      signature: "A".repeat(86),
-    });
-    const canonicalArtifact = `{"artifactHash":"${artifactHash}","keyId":"test-signing-key","payload":${canonicalPayload},"signature":"${"A".repeat(86)}"}`;
+  it.effect("matches exact canonical artifact bytes and hashes", () =>
+    Effect.gen(function* () {
+      const payload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)({
+        artifactLocale: "en",
+        byteLength: 10,
+        compiledCode: "return {};",
+        compilerConfigHash: `sha256:${"c".repeat(64)}`,
+        compilerVersion: "0.1.0",
+        contentKey: "test:content",
+        format: "mdx-function-body",
+        mdxCompilerVersion: "3.1.1",
+        plainText: TEST_HEADING,
+        rawMdx: `## ${TEST_HEADING}`,
+        rendererDomain: "mathematics",
+        requiredComponents: ["BlockMath", "FunctionMachine"],
+        sourceHash:
+          "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
+      });
+      const canonicalPayload =
+        '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine"],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
+      const artifactHash = yield* hashText(canonicalPayload);
+      const artifact = yield* Schema.decodeEffect(SignedContentArtifactSchema)({
+        artifactHash,
+        keyId: "test-signing-key",
+        payload,
+        signature: "A".repeat(86),
+      });
+      const canonicalArtifact = `{"artifactHash":"${artifactHash}","keyId":"test-signing-key","payload":${canonicalPayload},"signature":"${"A".repeat(86)}"}`;
 
-    expect(canonicalizeCompiledContentPayload(payload)).toBe(canonicalPayload);
-    expect(
-      `sha256:${createHash("sha256").update(canonicalPayload).digest("hex")}`
-    ).toBe(artifactHash);
-    expect(
-      canonicalizeContentArtifactSigningInput(artifact.artifactHash, payload)
-    ).toBe(
-      `nakafa.aksara.content-artifact\n${artifactHash}\n${canonicalPayload}`
-    );
-    expect(canonicalizeSignedContentArtifact(artifact)).toBe(canonicalArtifact);
-    expect(
-      `sha256:${createHash("sha256").update(canonicalArtifact).digest("hex")}`
-    ).toMatch(SHA256_PATTERN);
-  });
+      expect(canonicalizeCompiledContentPayload(payload)).toBe(
+        canonicalPayload
+      );
+      expect(yield* hashText(canonicalPayload)).toBe(artifactHash);
+      expect(
+        canonicalizeContentArtifactSigningInput(artifact.artifactHash, payload)
+      ).toBe(
+        `nakafa.aksara.content-artifact\n${artifactHash}\n${canonicalPayload}`
+      );
+      expect(canonicalizeSignedContentArtifact(artifact)).toBe(
+        canonicalArtifact
+      );
+      expect(yield* hashText(canonicalArtifact)).toMatch(SHA256_PATTERN);
+    })
+  );
 
   it("pins canonical payload bytes for non-ASCII content and a component list", () => {
     expect(canonicalizeCompiledContentPayload(nonAsciiPayload)).toBe(

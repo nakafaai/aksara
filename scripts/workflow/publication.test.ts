@@ -4,9 +4,10 @@ import { Array as Arr, Effect } from "effect";
 import { readSource } from "#scripts/source";
 import { ACCEPTED_DISPATCHES } from "#scripts/workflow/plan";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
+import { expectRefusal } from "#scripts/workflow/test/failure";
 import { mutateJob } from "#scripts/workflow/test/mutation";
 import {
-  sourceTestsOf,
+  sourceEffectTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
 import { operateStepProgram, runProgram } from "#scripts/workflow/test/step";
@@ -14,6 +15,11 @@ import { operateStepProgram, runProgram } from "#scripts/workflow/test/step";
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
 > = [
+  [
+    "- name: Prove immutable contract release",
+    "- name: Prove contract release",
+    "Contract proof must finish before production credentials are approved",
+  ],
   [
     "Verify paired acceptance",
     "Skip paired acceptance",
@@ -136,65 +142,76 @@ const GUARD_BYPASSES: ReadonlyArray<readonly [string, string]> = [
 ];
 
 layer(workflowSourcesLayer)("publication target policy", (layered) => {
-  const it = sourceTestsOf(layered);
+  const it = sourceEffectTestsOf(layered);
 
   it("accepts the protected release with production by default and target-specific parity", ({
     release,
-  }) => {
-    expect(() => verifyPublicationWorkflow(release, [release])).not.toThrow();
-  });
+  }) => verifyPublicationWorkflow(release, [release]));
 
   it("rejects a second workflow that can independently publish content", ({
     release,
-  }) => {
-    expect(() =>
+  }) =>
+    expectRefusal(
       verifyPublicationWorkflow(release, [
         release,
         "run: pnpm release -- --release-id drift",
-      ])
-    ).toThrow("Only one workflow may own content publication");
-  });
+      ]),
+      "Only one workflow may own content publication"
+    ));
 
-  it("requires the target input to offer production first", ({ release }) => {
-    const source = release.replace(
-      "- production\n          - development",
-      "- development\n          - production"
-    );
-    expect(source).not.toEqual(release);
-    expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
-      "in that order"
-    );
-  });
+  it("requires the target input to offer production first", ({ release }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        "- production\n          - development",
+        "- development\n          - production"
+      );
+      expect(source).not.toEqual(release);
+      yield* expectRefusal(
+        verifyPublicationWorkflow(source, [source]),
+        "in that order"
+      );
+    }));
 
   for (const [before, after, error] of UNSAFE_PUBLICATION_CHANGES) {
-    it(`rejects unsafe publication change to ${before.trim()}`, ({
-      release,
-    }) => {
-      const source = release.replaceAll(before, after);
-      expect(source).not.toEqual(release);
-      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
-    });
+    it(`rejects unsafe publication change to ${before.trim()}`, ({ release }) =>
+      Effect.gen(function* () {
+        const source = release.replaceAll(before, after);
+        expect(source).not.toEqual(release);
+        yield* expectRefusal(
+          verifyPublicationWorkflow(source, [source]),
+          error
+        );
+      }));
   }
 
   for (const name of GUARD_STEPS) {
     for (const [bypass, error] of GUARD_BYPASSES) {
-      it(`rejects '${bypass}' on ${name}`, ({ release }) => {
-        const header = `      - name: ${name}\n`;
-        const source = release.replace(header, `${header}        ${bypass}\n`);
-        expect(source).not.toEqual(release);
-        expect(() => verifyPublicationWorkflow(source, [source])).toThrow(
-          `${name} ${error}`
-        );
-      });
+      it(`rejects '${bypass}' on ${name}`, ({ release }) =>
+        Effect.gen(function* () {
+          const header = `      - name: ${name}\n`;
+          const source = release.replace(
+            header,
+            `${header}        ${bypass}\n`
+          );
+          expect(source).not.toEqual(release);
+          yield* expectRefusal(
+            verifyPublicationWorkflow(source, [source]),
+            `${name} ${error}`
+          );
+        }));
     }
   }
 
   for (const [condition, error] of PARITY_GUARDS) {
-    it(`rejects a final parity job without '${condition}'`, ({ release }) => {
-      const source = mutateJob(release, "parity", condition, "true");
-      expect(source).not.toEqual(release);
-      expect(() => verifyPublicationWorkflow(source, [source])).toThrow(error);
-    });
+    it(`rejects a final parity job without '${condition}'`, ({ release }) =>
+      Effect.gen(function* () {
+        const source = mutateJob(release, "parity", condition, "true");
+        expect(source).not.toEqual(release);
+        yield* expectRefusal(
+          verifyPublicationWorkflow(source, [source]),
+          error
+        );
+      }));
   }
 });
 
@@ -217,10 +234,13 @@ const validateTarget = Effect.fn("WorkflowTest.validateTarget")(function* (
   target: string
 ) {
   const release = yield* readSource(".github/workflows/release.yml");
-  return yield* runProgram(operateStepProgram(release, "Validate target"), {
-    OPERATION: operation,
-    TARGET: target,
-  });
+  return yield* runProgram(
+    yield* operateStepProgram(release, "Validate target"),
+    {
+      OPERATION: operation,
+      TARGET: target,
+    }
+  );
 });
 
 layer(NodeServices.layer)("publication target validation", (test) => {

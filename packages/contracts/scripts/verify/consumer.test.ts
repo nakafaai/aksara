@@ -1,13 +1,14 @@
-import { inspect } from "node:util";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { ConfigProvider, Effect, FileSystem, Path, Schedule } from "effect";
 import { TestClock } from "effect/testing";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   preserveTarball,
   publicSpecifier,
   verifyConsumer,
 } from "#scripts/consumer/verifier";
+import { OptionArgumentError } from "#scripts/options";
 
 /** Supplies the exact live boundary inputs for direct program verification. */
 const input = (args: readonly string[] = []) => ({
@@ -106,7 +107,8 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       expect(argumentError).toMatchObject({
         detail: expect.stringContaining("Unknown option '--unknown'"),
       });
-      expect(argumentError.cause).toBeInstanceOf(TypeError);
+      expect(argumentError.cause).toBeInstanceOf(OptionArgumentError);
+      expect(argumentError.cause).toMatchObject({ argument: "--unknown" });
 
       const processError = yield* verifyConsumer({
         ...input(),
@@ -147,9 +149,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
         _tag: "PlatformError",
         reason: { _tag: "NotFound" },
       });
-      expect(inspect(startError.cause, { depth: null })).not.toContain(
-        credential
-      );
+      expect(encodeJsonText(startError.cause)).not.toContain(credential);
       expect(yield* fileSystem.readDirectory(workspace)).toEqual([]);
 
       const file = path.join(root, "not-a-directory");

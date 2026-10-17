@@ -1,13 +1,14 @@
 import { describe, expect, it, layer } from "@effect/vitest";
-import { Array as Arr } from "effect";
+import { Array as Arr, Effect } from "effect";
 import {
   ACCEPTED_DISPATCHES,
   intendedPlan,
   mainRun,
   workflowPlan,
 } from "#scripts/workflow/plan";
+import { WorkflowError } from "#scripts/workflow/requirement";
 import {
-  sourceTestsOf,
+  sourceEffectTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
 
@@ -97,113 +98,156 @@ describe("decided plan", () => {
 });
 
 layer(workflowSourcesLayer)("workflow plan", (layered) => {
-  const test = sourceTestsOf(layered);
+  const test = sourceEffectTestsOf(layered);
 
   for (const dispatch of ACCEPTED_DISPATCHES) {
     test(`starts what was decided for ${dispatch.operation} on ${dispatch.target}`, ({
       release,
-    }) => {
-      expect(workflowPlan(release, mainRun(dispatch))).toEqual(
-        intendedPlan(dispatch)
-      );
-    });
+    }) =>
+      Effect.gen(function* () {
+        expect(yield* workflowPlan(release, mainRun(dispatch))).toEqual(
+          intendedPlan(dispatch)
+        );
+      }));
   }
 
-  test("plans the legs from the matrix expression it is given", ({
-    release,
-  }) => {
-    const source = release.replace(
-      '\'["development","production"]\'',
-      "'[\"production\"]'"
-    );
-    expect(source).not.toEqual(release);
-    expect(
-      workflowPlan(source, mainRun({ operation: "release", target: "both" }))
-        .legs
-    ).toEqual(PRODUCTION);
-  });
+  test("plans the legs from the matrix expression it is given", ({ release }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        '\'["development","production"]\'',
+        "'[\"production\"]'"
+      );
+      expect(source).not.toEqual(release);
+      expect(
+        (yield* workflowPlan(
+          source,
+          mainRun({ operation: "release", target: "both" })
+        )).legs
+      ).toEqual(PRODUCTION);
+    }));
 
   test("plans the final parity from the job condition it is given", ({
     release,
-  }) => {
-    const source = release.replace("      && inputs.target == 'both'\n", "");
-    expect(source).not.toEqual(release);
-    expect(
-      workflowPlan(
-        source,
-        mainRun({ operation: "release", target: "production" })
-      ).parity
-    ).toBe(true);
-  });
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace("      && inputs.target == 'both'\n", "");
+      expect(source).not.toEqual(release);
+      expect(
+        (yield* workflowPlan(
+          source,
+          mainRun({ operation: "release", target: "production" })
+        )).parity
+      ).toBe(true);
+    }));
 
   test("plans the paired acceptance from the step condition it is given", ({
     release,
-  }) => {
-    const source = release.replace(
-      "if: inputs.operation == 'accept' && inputs.target == 'both'",
-      "if: inputs.operation == 'accept'"
-    );
-    expect(source).not.toEqual(release);
-    expect(
-      workflowPlan(
-        source,
-        mainRun({ operation: "accept", target: "production" })
-      ).pairedAcceptance
-    ).toBe(true);
-  });
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        "if: inputs.operation == 'accept' && inputs.target == 'both'",
+        "if: inputs.operation == 'accept'"
+      );
+      expect(source).not.toEqual(release);
+      expect(
+        (yield* workflowPlan(
+          source,
+          mainRun({ operation: "accept", target: "production" })
+        )).pairedAcceptance
+      ).toBe(true);
+    }));
 
   test("keeps the final parity from running after a failed publication", ({
     release,
-  }) => {
-    const run = mainRun({ operation: "release", target: "both" });
-    expect(workflowPlan(release, run).parity).toBe(true);
-    expect(
-      workflowPlan(release, { ...run, operateResult: "failure" }).parity
-    ).toBe(false);
-  });
+  }) =>
+    Effect.gen(function* () {
+      const run = mainRun({ operation: "release", target: "both" });
+      expect((yield* workflowPlan(release, run)).parity).toBe(true);
+      expect(
+        (yield* workflowPlan(release, { ...run, operateResult: "failure" }))
+          .parity
+      ).toBe(false);
+    }));
 
-  test("refuses a workflow without the parts that decide the plan", () => {
-    expect(() =>
-      workflowPlan(
+  test("refuses a workflow without the parts that decide the plan", () =>
+    Effect.gen(function* () {
+      const refusal = yield* workflowPlan(
         "permissions: {}\njobs: {}\n",
         mainRun({ operation: "release", target: "both" })
-      )
-    ).toThrow("must declare the matrix, the paired acceptance, and the parity");
-  });
+      ).pipe(Effect.flip);
 
-  test("refuses a workflow whose paired acceptance is missing", ({
-    release,
-  }) => {
-    const source = release.replace(
-      "- name: Verify paired acceptance",
-      "- name: Compare targets"
-    );
-    expect(source).not.toEqual(release);
-    expect(() =>
-      workflowPlan(source, mainRun({ operation: "accept", target: "both" }))
-    ).toThrow("Verify paired acceptance must declare when it runs");
-  });
+      expect(refusal).toBeInstanceOf(WorkflowError);
+      expect(refusal.message).toContain(
+        "must declare the matrix, the paired acceptance, and the parity"
+      );
+    }));
+
+  test("refuses a workflow whose paired acceptance is missing", ({ release }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        "- name: Verify paired acceptance",
+        "- name: Compare targets"
+      );
+      expect(source).not.toEqual(release);
+      const refusal = yield* workflowPlan(
+        source,
+        mainRun({ operation: "accept", target: "both" })
+      ).pipe(Effect.flip);
+
+      expect(refusal).toBeInstanceOf(WorkflowError);
+      expect(refusal.message).toContain(
+        "Verify paired acceptance must declare when it runs"
+      );
+    }));
 
   test("refuses a workflow whose paired acceptance has no condition", ({
     release,
-  }) => {
-    const source = release.replace(
-      "        if: inputs.operation == 'accept' && inputs.target == 'both'\n",
-      ""
-    );
-    expect(source).not.toEqual(release);
-    expect(() =>
-      workflowPlan(source, mainRun({ operation: "accept", target: "both" }))
-    ).toThrow("Verify paired acceptance must declare when it runs");
-  });
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        "        if: inputs.operation == 'accept' && inputs.target == 'both'\n",
+        ""
+      );
+      expect(source).not.toEqual(release);
+      const refusal = yield* workflowPlan(
+        source,
+        mainRun({ operation: "accept", target: "both" })
+      ).pipe(Effect.flip);
+
+      expect(refusal).toBeInstanceOf(WorkflowError);
+      expect(refusal.message).toContain(
+        "Verify paired acceptance must declare when it runs"
+      );
+    }));
 
   test("refuses a matrix that does not evaluate to a list of targets", ({
     release,
-  }) => {
-    const source = release.replace("fromJSON(", "format(");
-    expect(source).not.toEqual(release);
-    expect(() =>
-      workflowPlan(source, mainRun({ operation: "release", target: "both" }))
-    ).toThrow("The matrix must evaluate to a list of targets");
-  });
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace("fromJSON(", "format(");
+      expect(source).not.toEqual(release);
+      const refusal = yield* workflowPlan(
+        source,
+        mainRun({ operation: "release", target: "both" })
+      ).pipe(Effect.flip);
+
+      expect(refusal).toBeInstanceOf(WorkflowError);
+      expect(refusal.message).toContain(
+        "The matrix must evaluate to a list of targets"
+      );
+    }));
+
+  test("refuses a matrix expression that the expression parser cannot read", ({
+    release,
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace("fromJSON(", "fromJSON((");
+      expect(source).not.toEqual(release);
+      const refusal = yield* workflowPlan(
+        source,
+        mainRun({ operation: "release", target: "both" })
+      ).pipe(Effect.flip);
+
+      expect(refusal).toBeInstanceOf(WorkflowError);
+    }));
 });

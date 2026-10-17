@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { assert, describe, expect, it } from "@effect/vitest";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
 import { Array as Arr, Effect, MutableList, Redacted, Result } from "effect";
@@ -23,7 +23,7 @@ const NONCE_HEADER = "x-aksara-preview-nonce";
 
 /** Builds one correctly hashed incomplete current manifest. */
 function makeIncompleteRendererManifest() {
-  return Effect.sync(() => {
+  return Effect.gen(function* () {
     const domains = Arr.dropRight(RENDERER_MANIFEST.domains, 1);
     const contract = {
       base: RENDERER_MANIFEST.base,
@@ -33,9 +33,7 @@ function makeIncompleteRendererManifest() {
     return {
       ...RENDERER_MANIFEST,
       domains,
-      hash: `sha256:${createHash("sha256")
-        .update(canonicalizeRendererManifestContract(contract))
-        .digest("hex")}`,
+      hash: yield* hashText(canonicalizeRendererManifestContract(contract)),
     };
   });
 }
