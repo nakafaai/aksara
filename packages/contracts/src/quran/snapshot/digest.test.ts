@@ -209,7 +209,7 @@ describe("Quran aggregate digest", () => {
     Effect.gen(function* () {
       const records = yield* makeQuranTestRecords();
       const error = yield* withDigestFailureFor(
-        "nakafa.aksara.quran-",
+        "nakafa.aksara.quran-projection",
         reject(records)
       );
 

@@ -26,7 +26,6 @@ import { testRendererDomains } from "#contracts/test/renderer";
 import { makeTestRuntimeBundle } from "#contracts/test/runtime/bundle";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { StageOperationSchema } from "#contracts/transport/group";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 export const releaseId = "test-transport";
 export const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
@@ -218,36 +217,6 @@ export const tryoutRuntimeBundle = makeTestRuntimeBundle({
   snapshot: snapshotManifest.manifest,
   sourceGitSha: "a".repeat(40),
 });
-
-/** Base, result, and unrelated try-out snapshots of the Git source suite, hashed once per process. */
-export const sourceTryoutSnapshots = await Effect.runPromise(
-  Effect.all({
-    base: makeTryoutSnapshot({
-      activeAppLocales: release.manifest.activeAppLocales,
-      catalogDigest: hash,
-      counts: { country: 1, exam: 0, section: 0, set: 0, track: 0 },
-      placementCount: 0,
-      placementDigest: hash,
-      routeCount: 1,
-    }),
-    result: makeTryoutSnapshot({
-      activeAppLocales: release.manifest.activeAppLocales,
-      catalogDigest: hash,
-      counts: { country: 1, exam: 1, section: 0, set: 0, track: 0 },
-      placementCount: 0,
-      placementDigest: hash,
-      routeCount: 2,
-    }),
-    unrelated: makeTryoutSnapshot({
-      activeAppLocales: release.manifest.activeAppLocales,
-      catalogDigest: hash,
-      counts: { country: 1, exam: 1, section: 1, set: 0, track: 0 },
-      placementCount: 0,
-      placementDigest: hash,
-      routeCount: 3,
-    }),
-  })
-);
 
 const stageOperations = Schema.decodeSync(
   Schema.NonEmptyArray(StageOperationSchema)

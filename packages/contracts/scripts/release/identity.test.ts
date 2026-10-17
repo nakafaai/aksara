@@ -15,6 +15,15 @@ function release(tag: string, version: string) {
   return `${tag}\tnakafa-aksara-contracts-${version}.tgz\n`;
 }
 
+/** Expects one identity computation to fail with a detail that contains the given text. */
+const expectDetail = Effect.fn("ContractReleaseIdentityTest.expectDetail")(
+  function* <A, E>(computation: Effect.Effect<A, E>, detail: string) {
+    expect(yield* Effect.flip(computation)).toMatchObject({
+      detail: expect.stringContaining(detail),
+    });
+  }
+);
+
 describe("contract release identity", () => {
   it.effect(
     "decodes package identity and orders every semantic version field",
@@ -43,14 +52,11 @@ describe("contract release identity", () => {
 
   it.effect("rejects malformed, unsafe, or contradictory identities", () =>
     Effect.gen(function* () {
-      expect(yield* Effect.flip(parseVersion("1.0"))).toMatchObject({
-        detail: expect.stringContaining("stable semantic version"),
-      });
-      expect(
-        yield* Effect.flip(parseVersion("9007199254740992.0.0"))
-      ).toMatchObject({
-        detail: expect.stringContaining("safe integer bounds"),
-      });
+      yield* expectDetail(parseVersion("1.0"), "stable semantic version");
+      yield* expectDetail(
+        parseVersion("9007199254740992.0.0"),
+        "safe integer bounds"
+      );
       expect(yield* Effect.flip(packageIdentity("[]"))).toMatchObject({
         reason: "identity",
       });
@@ -64,63 +70,46 @@ describe("contract release identity", () => {
           packageIdentity('{"name":"@nakafa/aksara-contracts","version":1}')
         )
       ).toMatchObject({ reason: "identity" });
-      expect(
-        yield* Effect.flip(latestIdentity("contracts-vnext\n"))
-      ).toMatchObject({
-        detail: expect.stringContaining("pair one tag"),
-      });
-      expect(
-        yield* Effect.flip(
-          latestIdentity(
-            "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\textra\n"
-          )
-        )
-      ).toMatchObject({
-        detail: expect.stringContaining("pair one tag"),
-      });
-      expect(
-        yield* Effect.flip(latestIdentity("contracts-v0.1.0\twrong.tgz\n"))
-      ).toMatchObject({
-        detail: expect.stringContaining("stable package archive"),
-      });
-      expect(
-        yield* Effect.flip(
-          latestIdentity(
-            `${release("contracts-v0.1.0", "0.1.0")}${release(
-              "@nakafa/aksara-contracts@0.1.0",
-              "0.1.0"
-            )}`
-          )
-        )
-      ).toMatchObject({
-        detail: expect.stringContaining("multiple immutable releases"),
-      });
+      yield* expectDetail(latestIdentity("contracts-vnext\n"), "pair one tag");
+      yield* expectDetail(
+        latestIdentity(
+          "contracts-v0.1.0\tnakafa-aksara-contracts-0.1.0.tgz\textra\n"
+        ),
+        "pair one tag"
+      );
+      yield* expectDetail(
+        latestIdentity("contracts-v0.1.0\twrong.tgz\n"),
+        "stable package archive"
+      );
+      yield* expectDetail(
+        latestIdentity(
+          `${release("contracts-v0.1.0", "0.1.0")}${release(
+            "@nakafa/aksara-contracts@0.1.0",
+            "0.1.0"
+          )}`
+        ),
+        "multiple immutable releases"
+      );
       expect(
         yield* resolveIdentity(
           '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
           ""
         )
       ).toMatchObject({ latest: undefined });
-      expect(
-        yield* Effect.flip(
-          resolveIdentity(
-            '{"name":"@nakafa/aksara-contracts","version":"0.2.0"}',
-            ""
-          )
-        )
-      ).toMatchObject({
-        detail: expect.stringContaining("first contract release"),
-      });
-      expect(
-        yield* Effect.flip(
-          resolveIdentity(
-            '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
-            release("contracts-v0.2.0", "0.2.0")
-          )
-        )
-      ).toMatchObject({
-        detail: expect.stringContaining("older than"),
-      });
+      yield* expectDetail(
+        resolveIdentity(
+          '{"name":"@nakafa/aksara-contracts","version":"0.2.0"}',
+          ""
+        ),
+        "first contract release"
+      );
+      yield* expectDetail(
+        resolveIdentity(
+          '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
+          release("contracts-v0.2.0", "0.2.0")
+        ),
+        "older than"
+      );
     })
   );
 
@@ -138,11 +127,10 @@ describe("contract release identity", () => {
           mode: "create",
           size: 7,
         });
-        expect(
-          yield* Effect.flip(decideArchive(first, current, current))
-        ).toMatchObject({
-          detail: expect.stringContaining("cannot have a previous archive"),
-        });
+        yield* expectDetail(
+          decideArchive(first, current, current),
+          "cannot have a previous archive"
+        );
 
         const unchanged = yield* resolveIdentity(
           '{"name":"@nakafa/aksara-contracts","version":"0.1.0"}',
@@ -153,24 +141,18 @@ describe("contract release identity", () => {
             mode: "unchanged",
           }
         );
-        expect(
-          yield* Effect.flip(decideArchive(unchanged, current, undefined))
-        ).toMatchObject({
-          detail: expect.stringContaining("must be downloaded"),
-        });
-        expect(
-          yield* Effect.flip(
-            decideArchive(
-              unchanged,
-              current,
-              new TextEncoder().encode("previous")
-            )
-          )
-        ).toMatchObject({
-          detail: expect.stringContaining(
-            "changed without a package version bump"
+        yield* expectDetail(
+          decideArchive(unchanged, current, undefined),
+          "must be downloaded"
+        );
+        yield* expectDetail(
+          decideArchive(
+            unchanged,
+            current,
+            new TextEncoder().encode("previous")
           ),
-        });
+          "changed without a package version bump"
+        );
 
         const changed = yield* resolveIdentity(
           '{"name":"@nakafa/aksara-contracts","version":"0.2.0"}',

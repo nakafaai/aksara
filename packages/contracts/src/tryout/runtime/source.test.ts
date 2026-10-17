@@ -21,9 +21,9 @@ import {
   recoveryRelease,
   release,
   rendererManifest,
-  sourceTryoutSnapshots,
 } from "#contracts/test/request";
 import { makeTestRuntimeBundle } from "#contracts/test/runtime/bundle";
+import { sourceTryoutSnapshots } from "#contracts/test/source";
 import {
   TryoutRuntimeBundleSourceError,
   verifyTryoutRuntimeBundleSource,
@@ -35,6 +35,7 @@ import {
 import type { TryoutSnapshot } from "#contracts/tryout/snapshot/spec";
 
 const sourceGitSha = GitCommitShaSchema.make("a".repeat(40));
+
 const {
   base: baseSnapshot,
   result: resultSnapshot,
