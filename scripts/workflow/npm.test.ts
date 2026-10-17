@@ -6,6 +6,7 @@ import {
   type NpmWorkflowContract,
   verifyNpmWorkflow,
 } from "#scripts/workflow/npm";
+import { workflowFailure } from "#scripts/workflow/test/failure";
 
 const contract: NpmWorkflowContract = {
   packageArtifact: "cli-package",
@@ -20,13 +21,15 @@ describe("npm trusted publication digest", () => {
   it.effect("rejects a publish digest that differs by one character", () =>
     Effect.gen(function* () {
       const source = yield* readSource(".github/workflows/cli.yml");
-      expect(() =>
-        verifyNpmWorkflow(source, {
-          ...contract,
-          publishSha256:
-            "5209d8ab9e2fa3a1d24f8eccae20d5c695e4576147e4fcbefd1e1725ffa9b0d8",
-        })
-      ).toThrow("npm publication must match the exact trusted job");
+      expect(
+        yield* workflowFailure(
+          verifyNpmWorkflow(source, {
+            ...contract,
+            publishSha256:
+              "5209d8ab9e2fa3a1d24f8eccae20d5c695e4576147e4fcbefd1e1725ffa9b0d8",
+          })
+        )
+      ).toContain("npm publication must match the exact trusted job");
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });

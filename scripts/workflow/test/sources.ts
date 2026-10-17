@@ -38,3 +38,13 @@ export function sourceTestsOf(it: Vitest.MethodsNonLive<WorkflowSourceSet>) {
   return (name: string, check: (sources: WorkflowSources) => void) =>
     it.effect(name, () => WorkflowSourceSet.pipe(Effect.map(check)));
 }
+
+/** Declares one policy test whose check is an Effect, such as a verifier that reads hashes. */
+export function sourceEffectTestsOf(
+  it: Vitest.MethodsNonLive<WorkflowSourceSet>
+) {
+  return (
+    name: string,
+    check: (sources: WorkflowSources) => Effect.Effect<void>
+  ) => it.effect(name, () => WorkflowSourceSet.pipe(Effect.flatMap(check)));
+}

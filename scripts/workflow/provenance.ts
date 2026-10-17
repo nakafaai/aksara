@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Effect } from "effect";
 import { decodeWorkflow, exactNeeds } from "#scripts/workflow/decode";
 import { verifyNpmWorkflow } from "#scripts/workflow/npm";
 
@@ -14,7 +15,9 @@ const DISPATCHED_RELEASE =
   "github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'";
 
 /** Verifies contract-specific staging and immutable release finalization. */
-export function verifyProvenanceWorkflow(source: string): void {
+export const verifyProvenanceWorkflow = Effect.fn(
+  "AksaraScripts.verifyProvenanceWorkflow"
+)(function* (source: string) {
   const { jobs } = decodeWorkflow(source);
   const { build, finalize, publish } = jobs;
   assert.ok(
@@ -65,5 +68,5 @@ export function verifyProvenanceWorkflow(source: string): void {
     "write",
     "Contract publication must stage the draft release"
   );
-  verifyNpmWorkflow(source, CONTRACT_WORKFLOW);
-}
+  yield* verifyNpmWorkflow(source, CONTRACT_WORKFLOW);
+});
