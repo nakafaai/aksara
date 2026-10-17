@@ -183,7 +183,9 @@ describe("which rule scores which interaction", () => {
 
 describe("wrong-parts tables", () => {
   /** Builds the raw wrong-parts rule of the given bands, which a decoder may refuse. */
-  const tableOf = (...bands: readonly { points: number; wrong: number }[]) => ({
+  const tableOf = (
+    ...bands: readonly (typeof WrongPartsRuleSchema.Encoded)["bands"][number][]
+  ) => ({
     bands,
     kind: "wrongParts",
   });
