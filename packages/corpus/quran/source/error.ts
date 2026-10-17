@@ -10,3 +10,13 @@ export class QuranGenerationError extends Schema.TaggedError<QuranGenerationErro
 export function quranGenerationFailure(detail: string) {
   return new QuranGenerationError({ detail });
 }
+
+/** Download, integrity, or atomic installation of one German source failed. */
+export class GermanQuranSourceSyncError extends Schema.TaggedError<GermanQuranSourceSyncError>()(
+  "GermanQuranSourceSyncError",
+  {
+    cause: Schema.Unknown,
+    phase: Schema.Literals(["download", "integrity", "write"]),
+    source: Schema.Trimmed.check(Schema.isNonEmpty()),
+  }
+) {}
