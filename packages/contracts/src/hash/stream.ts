@@ -1,3 +1,4 @@
+import { MutableList } from "effect";
 import { hashBytes } from "#contracts/hash/digest";
 
 /**
@@ -6,13 +7,13 @@ import { hashBytes } from "#contracts/hash/digest";
  * hash encoded it, so a lone surrogate keeps the bytes it always had.
  */
 export class DigestStream {
-  readonly #pieces: Uint8Array[] = [];
+  readonly #pieces = MutableList.make<Uint8Array>();
   #length = 0;
 
   /** Appends one piece of text in the order the stream was built. */
   add(text: string): void {
     const bytes = new TextEncoder().encode(text);
-    this.#pieces.push(bytes);
+    MutableList.append(this.#pieces, bytes);
     this.#length += bytes.byteLength;
   }
 
@@ -20,7 +21,7 @@ export class DigestStream {
   digest() {
     const bytes = new Uint8Array(this.#length);
     let offset = 0;
-    for (const piece of this.#pieces) {
+    for (const piece of MutableList.toArray(this.#pieces)) {
       bytes.set(piece, offset);
       offset += piece.byteLength;
     }

@@ -8,6 +8,7 @@ import {
   parseVersion,
   resolveIdentity,
 } from "#scripts/release/identity";
+import { withArchiveDigestFailure } from "#scripts/test/digest";
 
 /** Encodes one immutable release row from its real tag and package version. */
 function release(tag: string, version: string) {
@@ -267,21 +268,12 @@ describe("pinned release identities", () => {
 
   it.effect("maps a failed archive digest into an archive error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only archive digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
-      );
-
-      const error = yield* decideArchive(
-        { current: yield* parseVersion("0.1.0"), latest: undefined },
-        new TextEncoder().encode("Arsip"),
-        undefined
+      const error = yield* withArchiveDigestFailure(
+        decideArchive(
+          { current: yield* parseVersion("0.1.0"), latest: undefined },
+          new TextEncoder().encode("Arsip"),
+          undefined
+        )
       ).pipe(Effect.flip);
 
       expect(error).toMatchObject({

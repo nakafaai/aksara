@@ -134,6 +134,19 @@ describe("Ed25519 keys from PEM", () => {
     })
   );
 
+  it.effect(
+    "refuses a key with text before its BEGIN line, as the production key check does",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* signEd25519Message(
+          `\n${seedPrivateKeyPem()}`,
+          MESSAGE_TEXT
+        ).pipe(Effect.flip);
+
+        expect(error).toMatchObject({ stage: "import" });
+      })
+  );
+
   it.effect("rejects a PEM body that is not base64", () =>
     Effect.gen(function* () {
       const error = yield* signEd25519Message(

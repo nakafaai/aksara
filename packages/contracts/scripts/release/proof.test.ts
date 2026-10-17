@@ -16,6 +16,7 @@ import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
+import { withArchiveDigestFailure } from "#scripts/test/digest";
 import { encodeJsonText } from "#scripts/text/json";
 
 const SOURCE_SHA = "b".repeat(40);
@@ -223,20 +224,11 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
   it.effect("maps a failed archive digest into a release error", () =>
     Effect.gen(function* () {
       const fixture = yield* proofFixture("aksara-proof-digest-");
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only archive digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
-      );
-
-      const error = yield* proveWithCommands(
-        fixture.input,
-        fakeCommands(fixture.archive, fixture.release)
+      const error = yield* withArchiveDigestFailure(
+        proveWithCommands(
+          fixture.input,
+          fakeCommands(fixture.archive, fixture.release)
+        )
       ).pipe(Effect.flip);
 
       expect(error).toMatchObject({

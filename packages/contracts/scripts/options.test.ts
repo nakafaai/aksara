@@ -80,4 +80,53 @@ describe("command option parsing", () => {
       });
     })
   );
+
+  it.effect(
+    "ends option parsing at a bare double dash, as util.parseArgs does",
+    () =>
+      Effect.gen(function* () {
+        const parsed = yield* parseOptions(
+          ["--", "describe", "--output", "x"],
+          DECLARED,
+          true
+        );
+
+        expect(parsed).toEqual({
+          positionals: ["describe", "--output", "x"],
+          values: {},
+        });
+      })
+  );
+
+  it.effect(
+    "refuses a single-dash option and a value that starts with a dash",
+    () =>
+      Effect.gen(function* () {
+        const single = yield* parseOptions(["-x"], DECLARED, true).pipe(
+          Effect.flip
+        );
+        const dashValue = yield* parseOptions(
+          ["--output", "-x"],
+          DECLARED,
+          true
+        ).pipe(Effect.flip);
+
+        expect(single).toMatchObject({
+          argument: "-x",
+          detail: "Unknown option '-x'",
+        });
+        expect(dashValue).toMatchObject({
+          argument: "--output",
+          detail: "Option '--output' requires a value",
+        });
+      })
+  );
+
+  it.effect("keeps a lone dash as a positional operand", () =>
+    Effect.gen(function* () {
+      const parsed = yield* parseOptions(["-"], DECLARED, true);
+
+      expect(parsed).toEqual({ positionals: ["-"], values: {} });
+    })
+  );
 });

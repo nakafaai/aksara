@@ -6,7 +6,48 @@ export class OptionArgumentError extends Schema.TaggedError<OptionArgumentError>
   { argument: Schema.String, detail: Schema.String }
 ) {}
 
-/** Parses `--name value` and `--name=value` options whose names the command declares. */
+/**
+ * Whether one token is an option. A lone dash is a positional operand, as
+ * Node's argument parser reads it, and every other dash-led token is an option.
+ */
+function isOptionToken(argument: string) {
+  return argument.startsWith("-") && argument !== "-";
+}
+
+/**
+ * Reads the declared name of one long option and the value that follows its
+ * `=`, when it has one. Every other option token is refused.
+ */
+const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* (
+  argument: string,
+  declared: readonly string[]
+) {
+  if (!argument.startsWith("--")) {
+    return yield* new OptionArgumentError({
+      argument,
+      detail: `Unknown option '${argument}'`,
+    });
+  }
+  const equals = argument.indexOf("=");
+  const name = equals === -1 ? argument.slice(2) : argument.slice(2, equals);
+  if (!Arr.contains(declared, name)) {
+    return yield* new OptionArgumentError({
+      argument,
+      detail: `Unknown option '--${name}'`,
+    });
+  }
+  return {
+    inline: equals === -1 ? undefined : argument.slice(equals + 1),
+    name,
+  };
+});
+
+/**
+ * Parses `--name value` and `--name=value` options whose names the command declares,
+ * with the same rules as Node's `util.parseArgs` in strict mode: a bare `--` ends the
+ * options, an undeclared or single-dash option is refused, and a value may not start
+ * with a dash unless it follows `=`.
+ */
 export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
   function* (
     args: readonly string[],
@@ -15,11 +56,16 @@ export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
   ) {
     const values: Record<string, string> = {};
     let positionals: readonly string[] = [];
+    let endOfOptions = false;
     let remaining = args;
     while (Arr.isReadonlyArrayNonEmpty(remaining)) {
       const [argument, ...later] = remaining;
       remaining = later;
-      if (!argument.startsWith("--")) {
+      if (!endOfOptions && argument === "--") {
+        endOfOptions = true;
+        continue;
+      }
+      if (endOfOptions || !isOptionToken(argument)) {
         if (!allowPositionals) {
           return yield* new OptionArgumentError({
             argument,
@@ -29,21 +75,13 @@ export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
         positionals = Arr.append(positionals, argument);
         continue;
       }
-      const equals = argument.indexOf("=");
-      const name =
-        equals === -1 ? argument.slice(2) : argument.slice(2, equals);
-      if (!Arr.contains(declared, name)) {
-        return yield* new OptionArgumentError({
-          argument,
-          detail: `Unknown option '--${name}'`,
-        });
-      }
-      if (equals !== -1) {
-        values[name] = argument.slice(equals + 1);
+      const { inline, name } = yield* readLongOption(argument, declared);
+      if (inline !== undefined) {
+        values[name] = inline;
         continue;
       }
       const [value] = later;
-      if (value === undefined || value.startsWith("--")) {
+      if (value === undefined || value.startsWith("-")) {
         return yield* new OptionArgumentError({
           argument,
           detail: `Option '--${name}' requires a value`,
