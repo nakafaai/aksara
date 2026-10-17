@@ -69,13 +69,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.53.1",
+    approvedCurrent: "0.53.2",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json sets to error, with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. Every rule is decided in packages/typescript-config/base.json.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. Every rule is decided in packages/typescript-config/base.json.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.53.1",
+    reviewedLatest: "0.53.2",
     source: "root-dev-dependency",
   },
   {

@@ -8,9 +8,11 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
 
 /**
  * The nakafa.com commit whose source check runs here. Move this pin on purpose,
- * in a pull request of its own, after the new engine reports zero findings here.
+ * only after the source check reports zero findings here at that commit. The
+ * Effect cohort pins and the compiler rule block move with the pin, in the same
+ * change, because `pnpm native` compares them with nakafa.com.
  */
-export const NAKAFA_COMMIT = "e491e4112a8fb87870f44e1645c759c3ce1296ea";
+export const NAKAFA_COMMIT = "24cb1ada5162b4d35983fb9312a0b0c8c25ab065";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
