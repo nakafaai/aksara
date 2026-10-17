@@ -77,16 +77,12 @@ interface BuildRollbackReleaseInput<E, R> {
 type BuildRollbackReleaseError<E, R> =
   | E
   | ContentProjectionHashError
-  | Effect.Error<ReturnType<typeof createProjectionDigest>>
   | Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
   | Effect.Error<ReturnType<typeof updateProjectionDigest>>
-  | Effect.Error<ReturnType<typeof createReleaseItemsDigest>>
   | Effect.Error<ReturnType<typeof finalizeReleaseItemsDigest>>
   | Effect.Error<ReturnType<typeof updateReleaseItemsDigest>>
-  | Effect.Error<ReturnType<typeof createResultCatalogDigest>>
   | Effect.Error<ReturnType<typeof finalizeResultCatalogDigest>>
   | Effect.Error<ReturnType<typeof updateResultCatalogDigest>>
-  | Effect.Error<ReturnType<typeof createRollbackSnapshotDigest>>
   | Effect.Error<ReturnType<typeof finalizeRollbackSnapshotDigest>>
   | Effect.Error<ReturnType<typeof updateRollbackSnapshotDigest>>
   | Effect.Error<ReturnType<typeof digestRoutes<ReplaySpoolError, never>>>
@@ -134,32 +130,23 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     Stream.filter(isDerivedRollbackUpsert),
     Stream.map((state) => state.artifact)
   );
-  const itemState = yield* createReleaseItemsDigest(input.releaseId);
-  const projectionState = yield* createProjectionDigest(input.releaseId);
-  const resultState = yield* createResultCatalogDigest(input.releaseId);
-  const rollbackState = yield* createRollbackSnapshotDigest(input.releaseId);
+  const itemState = yield* createReleaseItemsDigest;
+  const projectionState = yield* createProjectionDigest;
+  const resultState = yield* createResultCatalogDigest;
+  const rollbackState = yield* createRollbackSnapshotDigest;
   yield* input.records.pipe(
     Stream.runForEach((record) => {
       const { prior } = record;
-      return updateReleaseItemsDigest(
-        input.releaseId,
-        itemState,
-        prior.item
-      ).pipe(
+      return updateReleaseItemsDigest(itemState, prior.item).pipe(
         Effect.andThen(
           isDerivedRollbackUpsert(prior)
-            ? updateProjectionDigest(
-                input.releaseId,
-                projectionState,
-                prior.projection
-              )
+            ? updateProjectionDigest(projectionState, prior.projection)
             : Effect.void
         ),
         Effect.andThen(
           snapshotRollbackState(record.current).pipe(
             Effect.flatMap((snapshot) =>
               updateRollbackSnapshotDigest(
-                input.releaseId,
                 rollbackState,
                 RollbackSnapshotEntrySchema.make({
                   index: record.current.item.index,

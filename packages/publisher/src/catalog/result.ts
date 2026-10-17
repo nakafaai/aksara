@@ -159,7 +159,7 @@ export const validateCatalogResult = Effect.fn(
   "AksaraPublisher.validateCatalogResult"
 )(function* <E, R>(input: CatalogResultInput<E, R>) {
   const counts = yield* Ref.make(EMPTY_RESULT_STATE);
-  const digest = yield* createResultCatalogDigest(CHECK_RELEASE_ID);
+  const digest = yield* createResultCatalogDigest;
   const validated = input.result.pipe(
     Stream.mapEffect((head) =>
       Effect.gen(function* () {

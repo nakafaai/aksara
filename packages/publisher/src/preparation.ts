@@ -136,13 +136,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   const routes = makeRouteItems(input.releaseId, input.routes);
   /** Replays exact prior states from the same proven transition records. */
   const rollback = records.pipe(Stream.map((record) => record.rollback));
-  const itemState = yield* createReleaseItemsDigest(input.releaseId);
-  const projectionState = yield* createProjectionDigest(input.releaseId);
-  const rollbackState = yield* createRollbackSnapshotDigest(input.releaseId);
-  const resultState = yield* createResultCatalogDigest(input.releaseId);
+  const itemState = yield* createReleaseItemsDigest;
+  const projectionState = yield* createProjectionDigest;
+  const rollbackState = yield* createRollbackSnapshotDigest;
+  const resultState = yield* createResultCatalogDigest;
   yield* records.pipe(
     Stream.runForEach((record) =>
-      updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
+      updateReleaseItemsDigest(itemState, record.item).pipe(
         Effect.andThen(
           isDerivedUpsert(record)
             ? verifyContentRendererCompatibility({
@@ -150,21 +150,13 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
                 rendererManifest,
               }).pipe(
                 Effect.andThen(
-                  updateProjectionDigest(
-                    input.releaseId,
-                    projectionState,
-                    record.projection
-                  )
+                  updateProjectionDigest(projectionState, record.projection)
                 )
               )
             : Effect.void
         ),
         Effect.andThen(
-          updateRollbackSnapshotDigest(
-            input.releaseId,
-            rollbackState,
-            record.rollback
-          )
+          updateRollbackSnapshotDigest(rollbackState, record.rollback)
         )
       )
     )
