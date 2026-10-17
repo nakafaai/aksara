@@ -80,7 +80,11 @@ export const preserveTarball = Effect.fn(
 const parseConsumerArguments = Effect.fn(
   "AksaraContracts.parseConsumerArguments"
 )(function* (args: readonly string[]) {
-  const parsed = yield* parseOptions([...args], ["output"], false).pipe(
+  const parsed = yield* parseOptions(
+    [...args],
+    Schema.Literals(["output"]),
+    false
+  ).pipe(
     Effect.mapError((cause) =>
       consumerError(
         "argument",

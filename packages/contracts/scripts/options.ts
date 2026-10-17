@@ -18,10 +18,9 @@ function isOptionToken(argument: string) {
  * Reads the declared name of one long option and the value that follows its
  * `=`, when it has one. Every other option token is refused.
  */
-const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* (
-  argument: string,
-  declared: readonly string[]
-) {
+const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* <
+  Name extends string,
+>(argument: string, declared: Schema.Schema<Name>) {
   if (!argument.startsWith("--")) {
     return yield* new OptionArgumentError({
       argument,
@@ -30,7 +29,7 @@ const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* (
   }
   const equals = argument.indexOf("=");
   const name = equals === -1 ? argument.slice(2) : argument.slice(2, equals);
-  if (!Arr.contains(declared, name)) {
+  if (!Schema.is(declared)(name)) {
     return yield* new OptionArgumentError({
       argument,
       detail: `Unknown option '--${name}'`,
@@ -43,18 +42,19 @@ const readLongOption = Effect.fn("AksaraContracts.readLongOption")(function* (
 });
 
 /**
- * Parses `--name value` and `--name=value` options whose names the command declares,
- * with the same rules as Node's `util.parseArgs` in strict mode: a bare `--` ends the
- * options, an undeclared or single-dash option is refused, and a value may not start
- * with a dash unless it follows `=`.
+ * Parses `--name value` and `--name=value` options whose names the command declares
+ * as a Schema of literal names, with the same rules as Node's `util.parseArgs` in
+ * strict mode: a bare `--` ends the options, an undeclared or single-dash option is
+ * refused, and a value may not start with a dash unless it follows `=`. Each value is
+ * a string, and the returned values are typed by the declared names.
  */
 export const parseOptions = Effect.fn("AksaraContracts.parseOptions")(
-  function* (
+  function* <Name extends string>(
     args: readonly string[],
-    declared: readonly string[],
+    declared: Schema.Schema<Name>,
     allowPositionals: boolean
   ) {
-    const values: Record<string, string> = {};
+    const values: Partial<Record<Name, string>> = {};
     let positionals: readonly string[] = [];
     let endOfOptions = false;
     let remaining = args;

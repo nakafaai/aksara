@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { OptionArgumentError, parseOptions } from "#scripts/options";
 
-const DECLARED = ["output", "package"];
+const DECLARED = Schema.Literals(["output", "package"]);
 
 describe("command option parsing", () => {
   it.effect(

@@ -11,6 +11,17 @@ import { proveContractRelease } from "#scripts/release/proof";
 /** Release identity subcommands available only to protected workflows. */
 const ReleaseCommandSchema = Schema.Literals(["decide", "describe", "prove"]);
 
+/** Options that the release command declares, each taking exactly one value. */
+const ReleaseOptionSchema = Schema.Literals([
+  "archive",
+  "output",
+  "package",
+  "previous",
+  "releases",
+  "repository",
+  "source-sha",
+]);
+
 const ReleaseArgumentsSchema = Schema.Struct({
   archive: Schema.UndefinedOr(Schema.String),
   command: ReleaseCommandSchema,
@@ -28,19 +39,7 @@ type ReleaseArguments = typeof ReleaseArgumentsSchema.Type;
 const parseReleaseArguments = Effect.fn(
   "AksaraContracts.parseReleaseArguments"
 )(function* (args: readonly string[]) {
-  const parsed = yield* parseOptions(
-    [...args],
-    [
-      "archive",
-      "output",
-      "package",
-      "previous",
-      "releases",
-      "repository",
-      "source-sha",
-    ],
-    true
-  ).pipe(
+  const parsed = yield* parseOptions([...args], ReleaseOptionSchema, true).pipe(
     Effect.mapError(() =>
       releaseError("argument", "Contract release arguments are malformed")
     )
