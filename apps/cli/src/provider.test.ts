@@ -1,10 +1,10 @@
-import type { Server } from "node:http";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, MutableRef, Schema, Stream } from "effect";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
+import { listenPlan } from "#test/listen";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
 import {
   makeIncoherentResults,
@@ -24,44 +24,22 @@ const ReadyArtifactsSchema = Schema.Struct({
   ),
 });
 
-const listenPlan = vi.hoisted(() => ({
-  fail: false,
-  servers: [] as Server[],
-}));
-
 vi.mock("@effect/platform-node", async (importOriginal) => {
   const original =
     await importOriginal<typeof import("@effect/platform-node")>();
-  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
-  /** One tagged bind failure that the listener mock reports on demand. */
-  class ListenTestError extends TestSchema.TaggedError<ListenTestError>()(
-    "ListenTestError",
-    {}
-  ) {}
+  const { mockListen } = await import("#test/listen");
   return {
     ...original,
     NodeHttpServer: {
       ...original.NodeHttpServer,
-      /**
-       * Fails the loopback listener only when one test asks for a bind failure,
-       * and records every Node server that the provider creates.
-       */
-      make: (
-        ...[evaluate, options]: Parameters<typeof original.NodeHttpServer.make>
-      ) =>
-        listenPlan.fail
-          ? TestEffect.fail(new ListenTestError())
-          : original.NodeHttpServer.make(() => {
-              const server = evaluate();
-              listenPlan.servers = Arr.append(listenPlan.servers, server);
-              return server;
-            }, options),
+      make: mockListen(original.NodeHttpServer.make),
     },
   };
 });
 
 afterEach(() => {
-  listenPlan.fail = false;
+  MutableRef.set(listenPlan.fail, false);
+  MutableRef.set(listenPlan.unix, false);
   listenPlan.servers = [];
 });
 describe("local preview provider", () => {
@@ -280,16 +258,24 @@ describe("local preview provider", () => {
     30_000
   );
   it.live(
-    "fails with a listen stage when the loopback listener cannot start",
+    "fails with a listen stage when the listener cannot bind or has no inet address",
     () =>
       Effect.gen(function* () {
         const input = yield* makeProviderInput;
-        listenPlan.fail = true;
-        const listenError = yield* Effect.scoped(
+        MutableRef.set(listenPlan.fail, true);
+        const bindError = yield* Effect.scoped(openPreviewProvider(input)).pipe(
+          Effect.flip
+        );
+        MutableRef.set(listenPlan.fail, false);
+        MutableRef.set(listenPlan.unix, true);
+        const addressError = yield* Effect.scoped(
           openPreviewProvider(input)
         ).pipe(Effect.flip);
 
-        expect(listenError).toMatchObject({ stage: "listen" });
+        expect([bindError, addressError]).toMatchObject([
+          { stage: "listen" },
+          { stage: "listen" },
+        ]);
       }),
     30_000
   );
