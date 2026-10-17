@@ -16,8 +16,16 @@ import {
 } from "#scripts/workflow/requirement";
 
 const PNPM_COMMAND_PATTERN = /\bpnpm\b/u;
-const PNPM_SELECTOR_PATTERN =
-  /\b(?:corepack\s+up\b|corepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)|pnpm\s+env\s+use)\b/u;
+/** Command shapes that replace the pnpm release which package.json selects, through corepack, pnpm, npx, dlx, or npm. */
+const PNPM_SELECTOR_PATTERNS = [
+  /\bcorepack\s+up\b/u,
+  /\bcorepack\s+(?:install\s+--global|prepare|use)\s+pnpm(?:@|\b)/u,
+  /\bpnpm\s+env\s+use\b/u,
+  /\bpnpm\s+self-update\b/u,
+  /\bpnpm@/u,
+  /\b(?:npx|dlx)\b[^\n]*\bpnpm\b/u,
+  /\bnpm\s+(?:install|i|add)\b[^\n]*\s(?:-g|--global)\b[^\n]*\bpnpm\b/u,
+];
 const TOOLCHAIN_SETUP_PREFIX = "pnpm/setup@";
 /** The reviewed pnpm/setup v3.0.0 commit. A newer release needs a new review. */
 export const TOOLCHAIN_SETUP_ACTION =
@@ -106,16 +114,15 @@ const runsPnpm = Effect.fn("AksaraScripts.stepRunsPnpm")(function* (
   );
 });
 
-/** Returns the first step index that executes pnpm, reading each step's environment in order. */
+/** Returns the first step index that executes pnpm. Every step's environment is read, so a duplicated version is refused in any step. */
 const firstPnpmCommand = Effect.fn("AksaraScripts.firstPnpmCommand")(function* (
   steps: readonly YAMLMap[],
   inheritedEnvironment: HashMap.HashMap<string, string>
 ) {
-  const indexed = Arr.map(steps, (step, index) => ({ index, step }));
-  const first = yield* Effect.findFirst(indexed, ({ step }) =>
+  const runs = yield* Effect.forEach(steps, (step) =>
     runsPnpm(step, inheritedEnvironment)
   );
-  return Option.map(first, ({ index }) => index);
+  return Arr.findFirstIndex(runs, (run) => run);
 });
 
 /** Returns the action input mapping for one setup step. */
@@ -154,13 +161,18 @@ function stopsOnFailure(step: YAMLMap): boolean {
   return value === undefined || (isScalar(value) && value.value === false);
 }
 
+/** Reports whether one shell command selects or installs a pnpm release by itself. */
+function selectsPnpm(command: string): boolean {
+  return Arr.some(PNPM_SELECTOR_PATTERNS, (pattern) => pattern.test(command));
+}
+
 /** Rejects alternate or legacy toolchain owners. */
 const verifyPnpmSelectors = Effect.fn("AksaraScripts.verifyPnpmSelectors")(
   function* (steps: readonly YAMLMap[], hasPnpmCommand: boolean) {
     for (const step of steps) {
       const command = scalarText(mapValue(step, "run"));
       yield* ensure(
-        !(command !== undefined && PNPM_SELECTOR_PATTERN.test(command)),
+        !(command !== undefined && selectsPnpm(command)),
         "Workflows must not replace the package.json-selected pnpm version"
       );
 

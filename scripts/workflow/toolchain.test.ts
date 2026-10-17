@@ -106,6 +106,13 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
         ),
         "Workflows must not duplicate Node or pnpm versions"
       );
+      yield* refuses(
+        ci.replace(
+          "      - name: Audit dependencies",
+          '      - name: Audit dependencies\n        env:\n          "PNPM_VERSION" : 11.15.1'
+        ),
+        "Workflows must not duplicate Node or pnpm versions"
+      );
     }));
 
   layered.effect(
