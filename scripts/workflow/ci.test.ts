@@ -1,8 +1,8 @@
 import { layer } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
 import { verifyCiWorkflow } from "#scripts/workflow/ci";
-import type { WorkflowError } from "#scripts/workflow/requirement";
 import {
+  ciPolicyTestsOf,
   MATRIX_COMMAND_STEP,
   MATRIX_KEY_EDITS,
   NATIVE_STEP_EDITS,
@@ -10,43 +10,10 @@ import {
   SILENT_PASS_EDITS,
   STRATEGY_BLOCK_PATTERN,
 } from "#scripts/workflow/test/ci";
-import { expectRefusal } from "#scripts/workflow/test/failure";
-import {
-  sourceEffectTestsOf,
-  workflowSourcesLayer,
-} from "#scripts/workflow/test/sources";
-
-type Rejects = (
-  ci: string,
-  message: string,
-  testTargets?: readonly string[]
-) => Effect.Effect<void>;
-
-/** Returns the assertion that one CI workflow is refused, by default against the repository test targets. */
-function rejectionFor(repositoryTargets: readonly string[]): Rejects {
-  return (ci, message, testTargets = repositoryTargets) =>
-    expectRefusal(verifyCiWorkflow(ci, testTargets), message);
-}
+import { workflowSourcesLayer } from "#scripts/workflow/test/sources";
 
 layer(workflowSourcesLayer)("CI workflow policy", (layered) => {
-  const sourceTest = sourceEffectTestsOf(layered);
-
-  /** Declares one CI policy test over the checked-in CI workflow and its test targets. */
-  const it = (
-    name: string,
-    check: (policy: {
-      readonly source: string;
-      readonly rejects: Rejects;
-      readonly targets: readonly string[];
-    }) => Effect.Effect<void, WorkflowError>
-  ) =>
-    sourceTest(name, ({ ci, testTargets }) =>
-      check({
-        rejects: rejectionFor(testTargets),
-        source: ci,
-        targets: testTargets,
-      })
-    );
+  const it = ciPolicyTestsOf(layered);
 
   it("accepts parallel checks and four test groups behind one verify job", ({
     source,

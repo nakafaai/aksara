@@ -1,5 +1,5 @@
 import { Effect, Schema } from "effect";
-import { type Document, isMap, isScalar, isSeq } from "yaml";
+import { type Document, isMap, isScalar, isSeq, type YAMLMap } from "yaml";
 
 /** A fact that a workflow verifier requires does not hold, so the workflow is refused with its reason. */
 export class WorkflowError extends Schema.TaggedError<WorkflowError>()(
@@ -24,6 +24,15 @@ export function scalarText(node: unknown): string | undefined {
   }
 
   return node.value;
+}
+
+/** Returns one named value from a YAML mapping. */
+export function mapValue(map: YAMLMap, key: string): unknown {
+  for (const item of map.items) {
+    if (scalarText(item.key) === key) {
+      return item.value;
+    }
+  }
 }
 
 /** Reads one parsed YAML document as plain data, and refuses a document that the parser cannot read as data. */
