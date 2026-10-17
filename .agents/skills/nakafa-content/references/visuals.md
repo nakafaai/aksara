@@ -194,8 +194,8 @@ graph teaches the wrong mathematics on an education platform.
   observations are data. It reads coordinates and typed lists, so a printed
   constant that code turns into a coordinate, such as
   `parameters.push(1.9700042649107503)`, and the density of a computed series
-  stay review items. CI runs the gate on both corpus roots against the base of
-  every pull request and merge group.
+  stay review items. The local verification runs the gate on both corpus roots
+  against `origin/main`, its default base, before a pull request merges.
 
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already

@@ -232,11 +232,11 @@ it came from when the two are at least half alike, so a slug change that keeps
 the lesson recognizable never hides a lost visual. A revision that removes one
 fails even when the lesson is otherwise better, so replace a visual with an
 equal or better one instead of deleting it. Exit code `1` means findings, and
-exit code `2` means a typed failure such as an unknown base. CI and the content
-release check out the full history, so the merge base is always available. The
-release repeats the gate on the exact `main` revision it publishes, where the
-merge base is the revision itself, so it enforces the literal rules over both
-corpus roots.
+exit code `2` means a typed failure such as an unknown base. The content release
+checks out the full history, and a local checkout needs the same history, so the
+merge base is always available. The release repeats the gate on the exact `main`
+revision it publishes, where the merge base is the revision itself, so it
+enforces the literal rules over both corpus roots.
 
 No Aksara module lists the renderer component names: the contracts package
 defines only the manifest schema, and the live renderer supplies the names when

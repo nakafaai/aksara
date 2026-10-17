@@ -22,8 +22,8 @@ URL or Git source.
 ## Release identity
 
 The source version lives only in `packages/contracts/package.json`. It must be a
-stable semantic version. CI builds the exact package archive and compares its
-bytes with the newest final immutable release asset:
+stable semantic version. The contracts workflow builds the exact package archive
+and compares its bytes with the newest final immutable release asset:
 
 - identical bytes keep the current version and publish nothing;
 - different bytes require a strictly greater version;
@@ -80,12 +80,9 @@ workflow follows the npm trusted-publisher requirements documented in
 It does not use an npm access token.
 
 A push to `main` runs only `build`, so every merged revision is built and
-verified without reaching the `npm-production` gate. Every `main` revision
-lands through the merge queue, which makes `github-merge-queue[bot]` the actor
-of its push run, and GitHub refuses environment reviews in runs that actor
-triggers. To publish, dispatch the workflow from `main`. Only a dispatched run
-continues to `publish`, `verify`, and `finalize`, and the repository owner
-approves its `npm-production` gate.
+verified without reaching the `npm-production` gate. To publish, dispatch the
+workflow from `main`. Only a dispatched run continues to `publish`, `verify`,
+and `finalize`, and the repository owner approves its `npm-production` gate.
 
 1. `build` checks out the exact source revision, installs the frozen lockfile,
    builds and verifies the package, runs every repository gate when bytes

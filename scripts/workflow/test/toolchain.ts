@@ -90,25 +90,28 @@ export const REPLACEMENT_COMMANDS = [
 ];
 
 /** Returns the checked-in workflow with each invalid setup input that the policy must reject. */
-export function setupInputVariants(ci: string) {
+export function setupInputVariants(workflow: string) {
   return {
-    alternateManifest: ci.replace(
+    alternateManifest: workflow.replace(
       "          cache: true",
       "          package-json-file: test/package.json\n          cache: true"
     ),
-    hiddenInstall: ci.replace(
+    hiddenInstall: workflow.replace(
       "          install: false",
       "          install: true"
     ),
-    inlinePnpm: ci.replace(
+    inlinePnpm: workflow.replace(
       "          cache: true",
       "          version: 11.20.0\n          cache: true"
     ),
-    inlineRuntime: ci.replace(
+    inlineRuntime: workflow.replace(
       "          cache: true",
       "          runtime: node@24.20.0\n          cache: true"
     ),
-    noCache: ci.replace("          cache: true", "          cache: false"),
-    noInputs: ci.replace(`${TOOLCHAIN_STEP}\n`, `${SETUP_HEADER}\n`),
+    noCache: workflow.replace(
+      "          cache: true",
+      "          cache: false"
+    ),
+    noInputs: workflow.replace(`${TOOLCHAIN_STEP}\n`, `${SETUP_HEADER}\n`),
   };
 }

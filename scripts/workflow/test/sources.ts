@@ -3,27 +3,22 @@ import type { Vitest } from "@effect/vitest";
 import { Context, Effect, Layer } from "effect";
 import { readSource } from "#scripts/source";
 import type { WorkflowSources } from "#scripts/workflow/check";
-import { repositoryTestTargets } from "#scripts/workflow/target";
 
-/** The checked-in workflow texts and repository test targets that policy tests read. */
+/** The checked-in workflow texts that policy tests read. */
 class WorkflowSourceSet extends Context.Service<
   WorkflowSourceSet,
   WorkflowSources
 >()("aksara/scripts/workflow/test/sources/WorkflowSourceSet") {}
 
 const readWorkflowSources = Effect.gen(function* () {
-  const ci = yield* readSource(".github/workflows/ci.yml");
   const cli = yield* readSource(".github/workflows/cli.yml");
   const contracts = yield* readSource(".github/workflows/contracts.yml");
   const release = yield* readSource(".github/workflows/release.yml");
-  const testTargets = yield* repositoryTestTargets();
   return {
-    all: [ci, cli, contracts, release],
-    ci,
+    all: [cli, contracts, release],
     cli,
     contracts,
     release,
-    testTargets,
   };
 });
 
