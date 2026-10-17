@@ -1,367 +1,286 @@
 export const metadata = {
-  title: "Horizontale Verschiebung",
-  description: "Verschiebe Funktionsgraphen nach links oder rechts, leite die Vorzeichenregel her und verfolge Definitions- und Wertebereich.",
+  title: "Horizontale Verschiebung von Funktionen",
+  description: "Verschiebe Graphen nach links oder rechts, verstehe, warum das Minus in der Klammer nach rechts schiebt, und bestimme neue Punkte und Definitionsbereich.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-01",
   subject: "Funktionstransformation",
 };
 
-## Den Graphen nach links oder rechts verschieben
+## Graphen nach links oder rechts verschieben
 
-Eine horizontale Verschiebung bewegt den Graphen einer Funktion entlang der <InlineMath math="x" />-Achse nach links oder rechts, ohne seine Form zu verändern. Wie bei einem Gegenstand, der über einen Tisch geschoben wird, <Highlight>ändert sich nur die Position</Highlight>.
+Eine horizontale Verschiebung schiebt den ganzen Graphen einer Funktion nach links oder rechts, ohne seine Form zu ändern. Eine Verschiebung um <InlineMath math="h" /> ändert die Funktionsgleichung und jeden Punkt des Graphen so:
 
-Aus der Funktion <InlineMath math="f(x)" /> entsteht die verschobene Funktion <InlineMath math="g(x) = f(x - h)" />. Die Zahl <InlineMath math="h" /> gibt Richtung und Länge der Verschiebung an.
+<BlockMath math="y = f(x) \longrightarrow y = f(x - h), \qquad (x_0, y_0) \longrightarrow (x_0 + h, y_0)" />
 
-### Die Vorzeichenregel lesen
+Also wächst **jede <InlineMath math="x" />-Koordinate um <InlineMath math="h" />**, und **die Höhe jedes Punktes bleibt gleich**. Für <InlineMath math="h > 0" /> wandert der Graph nach rechts, für <InlineMath math="h < 0" /> nach links. Die interaktive Funktionsmaschine berechnet den Funktionswert von <InlineMath math="f" /> zu der Zahl, die du eintippst. Damit prüfst du selbst, an welcher Stelle der neue Graph denselben Funktionswert erreicht.
 
-Sieh dir an, wo <InlineMath math="h" /> in der folgenden Gleichung steht. Die Zahl steht in der Klammer zusammen mit <InlineMath math="x" />, denn sie verändert die Eingabe, bevor die Funktion arbeitet.
+Zum Beispiel ist <InlineMath math="y = f(x - 3)" /> der Graph von <InlineMath math="f" />, um <InlineMath math="3 \text{ Einheiten}" /> nach rechts verschoben. Bei <InlineMath math="y = f(x + 3)" /> wandert der Graph dagegen um <InlineMath math="3 \text{ Einheiten}" /> nach links, weil <InlineMath math="x + 3 = x - (-3)" /> gilt. Warum wandert <InlineMath math="y = f(x - 3)" /> nach rechts, obwohl in der Klammer ein Minus steht? Die neue Funktion **liefert den Funktionswert <InlineMath math="f(x_0)" /> erst an der Stelle <InlineMath math="x_0 + 3" />**, also <InlineMath math="3 \text{ Einheiten}" /> weiter rechts. Der Definitionsbereich verschiebt sich um <InlineMath math="h" />, der Wertebereich bleibt gleich, weil kein Punkt seine Höhe ändert.
 
-<BlockMath math="g(x) = f(x - h)" />
+## Warum das Minus nach rechts verschiebt
 
-Für die **gleiche Ausgabe** wie bei der alten Eingabe <InlineMath math="a" /> muss die neue Eingabe <InlineMath math="x-h=a" /> erfüllen. Also gilt <InlineMath math="x=a+h" />. Das erklärt die Richtung ohne auswendig gelernte Vorzeichenregeln.
+Die Funktion <InlineMath math="g(x) = f(x - 3)" /> arbeitet in zwei Schritten: Zuerst **zieht sie <InlineMath math="3" /> von der Eingabe ab**, dann wendet sie die Vorschrift <InlineMath math="f" /> an. In diesem Beispiel rechnet die Maschine mit <InlineMath math="f(x) = 2x + 1" />. Die Zahl, die du eintippst, ist die Zahl, die in die Maschine geht, und die Karte zeigt sie als <InlineMath math="x" /> an.
 
-<BlockMath math="g(a+h)=f((a+h)-h)=f(a)" />
-
-Weil <InlineMath math="h" /> in der Klammer steht, wirkt sein Vorzeichen <Highlight>umgekehrt zur Leserichtung</Highlight>. Ziehst du eine positive Zahl von <InlineMath math="x" /> ab, verschiebt sich der Graph nach rechts. Addierst du eine positive Zahl, verschiebt er sich nach links.
-
-| Wert von <InlineMath math="h" /> | Verschiebung des Graphen | Beispiel am Scheitelpunkt |
-| --- | --- | --- |
-| <InlineMath math="h > 0" /> | Um <InlineMath math="h \text{ Einheiten}" /> nach rechts | <InlineMath math="(0,0)" /> wird zu <InlineMath math="(h,0)" /> |
-| <InlineMath math="h < 0" /> | Um <InlineMath math="\lvert h \rvert \text{ Einheiten}" /> nach links | <InlineMath math="(0,0)" /> wird zu <InlineMath math="(h,0)" /> |
-| <InlineMath math="h = 0" /> | Der Graph verschiebt sich nicht | <InlineMath math="(0,0)" /> bleibt an seinem Platz |
-
-Alle drei Zeilen nutzen den Scheitelpunkt <InlineMath math="(0,0)" /> als Bezugspunkt, damit sich die Richtung leicht vergleichen lässt. Bei einer Funktion mit einem anderen Bezugspunkt wandert jeder Punkt um dieselbe Strecke in dieselbe Richtung.
-
-## Die Regel am Parabelgraphen prüfen
-
-Stell dir drei Parabeln in derselben Ebene vor. Sie haben genau dieselbe Form, ihre Scheitelpunkte liegen aber an unterschiedlichen horizontalen Positionen.
-
-<LineEquation
-  title={<>Horizontale Verschiebung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
-  description="Die Parabelform bleibt erhalten, während sich der Scheitelpunkt horizontal verschiebt."
-  cameraPosition={[0.5, 3, 16]}
-  cameraTarget={[0.5, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [0.5, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 193 }, (_, pointIndex) => {
-        const i = pointIndex / 4 + 0;
-        const x = (i - 20) * 0.25;
-        return { x, y: (x - 3) * (x - 3), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(x-3)^2" />, offset: [0.5, 1, 0], at: 80 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 173 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 3;
-        const x = (i - 20) * 0.25;
-        return { x, y: (x + 2) * (x + 2), z: 0 };
-      }),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=(x+2)^2" />, offset: [0.5, 1, 0], at: 92 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
+<FunctionMachine
+  title={<>Maschine für <InlineMath math="f(x) = 2x + 1" /></>}
+  description={<>Tippe <InlineMath math="0" />, <InlineMath math="2" /> und dann <InlineMath math="5" /> ein. Die Funktion <InlineMath math="g(x) = f(x - 3)" /> liefert denselben Funktionswert bei einer Eingabe, die um <InlineMath math="3" /> größer ist.</>}
+  inputLabel="Eingabe der Maschine"
 />
 
-Die Scheitelpunkte liegen auf **derselben Höhe**. Vergleiche deshalb ihre waagerechten Koordinaten, um die Verschiebung abzulesen.
+Bei <InlineMath math="g" /> kommt in der Maschine die Zahl <InlineMath math="x - 3" /> an. Zeigt die Karte die Eingabe <InlineMath math="5" /> und die Ausgabe <InlineMath math="11" />, dann ist <InlineMath math="8" /> der <InlineMath math="x" />-Wert von <InlineMath math="g" />, bei dem die Maschine die <InlineMath math="5" /> erhält, denn <InlineMath math="8 - 3 = 5" />. Also gilt <InlineMath math="g(8) = 11" />. Die Eingaben <InlineMath math="0" /> und <InlineMath math="2" /> liefern zwei weitere Paare.
 
-| Funktion | Scheitelpunkt | Verschiebung |
+| Eingabe von <InlineMath math="g" /> | Zahl, die in die Maschine geht | Funktionswert <InlineMath math="g(x)" /> |
 | --- | --- | --- |
-| <InlineMath math="x^2" /> | <InlineMath math="(0,0)" /> | <InlineMath math="0" /> |
-| <InlineMath math="(x-3)^2" /> | <InlineMath math="(3,0)" /> | <InlineMath math="+3" /> |
-| <InlineMath math="(x+2)^2" /> | <InlineMath math="(-2,0)" /> | <InlineMath math="-2" /> |
+| <InlineMath math="3" /> | <InlineMath math="3 - 3 = 0" /> | <InlineMath math="1" /> |
+| <InlineMath math="5" /> | <InlineMath math="5 - 3 = 2" /> | <InlineMath math="5" /> |
+| <InlineMath math="8" /> | <InlineMath math="8 - 3 = 5" /> | <InlineMath math="11" /> |
 
-## Die Regel am Geradengraphen prüfen
+Die Funktion <InlineMath math="f" /> liefert <InlineMath math="1" />, <InlineMath math="5" /> und <InlineMath math="11" /> schon bei den Eingaben <InlineMath math="0" />, <InlineMath math="2" /> und <InlineMath math="5" />. Dieselben Werte liefert <InlineMath math="g" /> **bei Eingaben, die um <InlineMath math="3" /> größer sind**, also bei <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="8" />. Derselbe Zusammenhang gilt für jede Funktion und jede Verschiebung <InlineMath math="h" />:
 
-**Dieselbe Regel** gilt für die lineare Funktion <InlineMath math="f(x) = 2x + 1" />. Bei einer Geraden ändert eine horizontale Verschiebung die Steigung nicht. Das Vorzeichen lässt sich deshalb noch leichter prüfen als bei einer Parabel.
+<BlockMath math="g(x_0 + h) = f\big((x_0 + h) - h\big) = f(x_0)" />
+
+Diese Gleichung bedeutet: Zu jedem Punkt <InlineMath math="(x_0, f(x_0))" /> auf dem Graphen von <InlineMath math="f" /> gehört ein Partnerpunkt <InlineMath math="(x_0 + h, f(x_0))" /> auf dem Graphen von <InlineMath math="g" />, auf derselben Höhe und mit einer um <InlineMath math="h" /> größeren <InlineMath math="x" />-Koordinate.
 
 <LineEquation
-  title={<>Horizontale Verschiebung der linearen Funktion <InlineMath math="f(x) = 2x + 1" /></>}
-  description="Alle drei Geraden haben dieselbe Steigung, liegen aber an unterschiedlichen Positionen."
-  cameraPosition={[1, 1, 16]}
-  cameraTarget={[1, 1, 0]}
+  title={<>Geraden <InlineMath math="f(x) = 2x + 1" /> und <InlineMath math="g(x) = 2(x - 3) + 1" /></>}
+  description={<>Jeder Pfeil verbindet zwei Punkte mit demselben Funktionswert, von <InlineMath math="f" /> nach <InlineMath math="g" />. Jeder Pfeil ist <InlineMath math="3 \text{ Einheiten}" /> lang.</>}
+  cameraPosition={[2.5, 3, 18]}
+  cameraTarget={[2.5, 3, 0]}
   data={[
     {
-      points: Array.from({ length: 39 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 1, z: 0 };
-      }),
+      points: [
+        { x: -2, y: -3, z: 0 },
+        { x: 0, y: 1, z: 0 },
+        { x: 2, y: 5, z: 0 },
+        { x: 4, y: 9, z: 0 },
+      ],
+      pointIndices: [1, 2],
+      showPoints: true,
+      smooth: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="f(x) = 2x + 1" />, at: 3, anchorX: "right", offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: -3, z: 0 },
+        { x: 3, y: 1, z: 0 },
+        { x: 5, y: 5, z: 0 },
+        { x: 7, y: 9, z: 0 },
+      ],
+      pointIndices: [1, 2],
+      showPoints: true,
       smooth: false,
       color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0], at: 28 }],
-      showPoints: false,
+      labels: [{ text: <InlineMath math="g(x) = 2(x - 3) + 1" />, at: 0, anchorX: "left", offset: [0.3, 0, 0] }],
     },
     {
-      points: Array.from({ length: 34 }, (_, pointIndex) => {
-        const i = pointIndex - 5;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * (x - 4) + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0], at: 15 }],
+      points: [
+        { x: 0, y: 1, z: 0 },
+        { x: 3, y: 1, z: 0 },
+      ],
+      cone: { position: "end", size: 0.4 },
       showPoints: false,
+      smooth: false,
+      color: "#64748b",
     },
     {
-      points: Array.from({ length: 62 }, (_, pointIndex) => {
-        const i = pointIndex - 41;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * (x + 3) + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [-0.7, -2.3, 0], at: 51 }],
+      points: [
+        { x: 2, y: 5, z: 0 },
+        { x: 5, y: 5, z: 0 },
+      ],
+      cone: { position: "end", size: 0.4 },
       showPoints: false,
+      smooth: false,
+      color: "#64748b",
     },
   ]}
   showZAxis={false}
 />
 
-Die violette Gerade ist die ursprüngliche Gerade mit der Steigung <InlineMath math="2" />. Die orange Gerade gehört zu <InlineMath math="g(x) = 2(x-4)+1" /> und ist um <InlineMath math="4 \text{ Einheiten}" /> nach rechts verschoben. Die blaue Gerade gehört zu <InlineMath math="h(x) = 2(x+3)+1" /> und ist um <InlineMath math="3 \text{ Einheiten}" /> nach links verschoben. Alle drei Geraden bleiben parallel, weil sich die Steigung nicht ändert.
+Bei einer Geraden reicht die Form allein nicht aus, um die Richtung der Verschiebung zu erkennen. Weil <InlineMath math="2(x - 3) + 1 = (2x + 1) - 6" /> gilt, ist die Gerade <InlineMath math="g" /> auch die um <InlineMath math="6 \text{ Einheiten}" /> nach unten verschobene Gerade <InlineMath math="f" />. Die horizontale Richtung erkennst du an **Punktepaaren mit demselben Funktionswert**, etwa <InlineMath math="(2, 5)" /> und <InlineMath math="(5, 5)" />. Eine Parabel hat genau einen Scheitelpunkt, deshalb liest du bei einer Parabel die Richtung direkt daran ab, wohin der Scheitelpunkt wandert.
 
-In beiden Beispielen kommt die Richtung der Verschiebung immer aus dem Vorzeichen in der Klammer. Das ist das Gegenteil einer vertikalen Verschiebung, die ihre Konstante außerhalb der Funktion addiert.
+## Eine Parabel samt Scheitelpunkt verschieben
 
-## Was die horizontale Verschiebung mitnimmt
+Die Funktion <InlineMath math="f(x) = x^2 - 2x - 3" /> lässt sich durch [quadratische Ergänzung](/de/faecher/mathematik/quadratische-funktionen/quadratische-ergaenzung-und-scheitelpunktform) als <InlineMath math="f(x) = (x - 1)^2 - 4" /> schreiben. An dieser Form liest du den Scheitelpunkt <InlineMath math="(1, -4)" /> direkt ab. Die Faktorisierung <InlineMath math="(x + 1)(x - 3)" /> liefert die Nullstellen <InlineMath math="-1" /> und <InlineMath math="3" />, also die <InlineMath math="x" />-Werte mit <InlineMath math="f(x) = 0" />.
 
-Wenn du die Richtung kennst, bleibt noch die Frage, welche Teile der Funktion mitwandern. Eine horizontale Verschiebung greift an der Eingabe an. Alles, was von der Lage von <InlineMath math="x" /> abhängt, bewegt sich also mit, während die Ausgabewerte gleich bleiben.
+Verschiebe den Graphen von <InlineMath math="f" /> nun um <InlineMath math="2 \text{ Einheiten}" /> nach links. Nach links heißt <InlineMath math="h = -2" />, also <InlineMath math="g(x) = f(x - (-2)) = f(x + 2)" />. **Ersetze jedes <InlineMath math="x" /> in der Vorschrift von <InlineMath math="f" /> durch <InlineMath math="x + 2" />**, auch das <InlineMath math="x" /> im Term <InlineMath math="-2x" />:
 
-Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Nach einer Verschiebung um <InlineMath math="h" /> liegt dieser Punkt als <InlineMath math="(a + h, b)" /> auf dem Graphen von <InlineMath math="f(x - h)" />. Der <InlineMath math="y" />-Wert bleibt gleich, nur die <InlineMath math="x" />-Koordinate wandert.
+<BlockMath math="\begin{aligned} g(x) &amp;= (x + 2)^2 - 2(x + 2) - 3 \\ &amp;= x^2 + 4x + 4 - 2x - 4 - 3 \\ &amp;= x^2 + 2x - 3 \end{aligned}" />
 
-| Teil der Funktion | Vor der Verschiebung | Nach der Verschiebung um <InlineMath math="h" /> |
-| --- | --- | --- |
-| Form des Graphen | Die ursprüngliche Form | Dieselbe Form, nur horizontal verschoben |
-| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(a + h, b)" /> |
-| Definitionsbereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[c + h, d + h]" /> |
-| Wertebereich | Die ursprünglichen Ausgabewerte | Dieselben Werte wie vorher |
-
-Der Definitionsbereich wandert mit, weil er die erlaubten Werte von <InlineMath math="x" /> beschreibt. Der Wertebereich bleibt gleich, weil die Höhe des Graphen an jeder Stelle unverändert ist. Bei einer vertikalen Verschiebung tauschen die beiden Bereiche ihre Rollen.
-
-Die **Ausgabehöhe bleibt gleich** am verschobenen Punkt, nicht bei unveränderter Eingabe. Beispielsweise gilt <InlineMath math="g(a+h)=f(a)" />, obwohl <InlineMath math="g(a)" /> im Allgemeinen von <InlineMath math="f(a)" /> abweicht.
-
-## Die Regel am Exponentialgraphen prüfen
-
-Bei der Exponentialkurve bleibt die **waagerechte Asymptote unverändert**. Den senkrechten Achsenabschnitt berechnest du bei der Eingabe null neu.
+Prüfe das Ergebnis an Punkten, die du schon kennst. Die Form <InlineMath math="x^2 + 2x - 3 = (x + 1)^2 - 4" /> liefert den Scheitelpunkt <InlineMath math="(-1, -4)" />, genau <InlineMath math="2 \text{ Einheiten}" /> links von <InlineMath math="(1, -4)" />. Die Faktorisierung <InlineMath math="(x + 3)(x - 1)" /> liefert die Nullstellen <InlineMath math="-3" /> und <InlineMath math="1" />, also ist **jede alte Nullstelle um <InlineMath math="2" /> kleiner geworden**.
 
 <LineEquation
-  title={<>Horizontale Verschiebung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
-  description="Die Exponentialkurve behält ihre Eigenschaften nach der horizontalen Verschiebung bei."
-  cameraPosition={[1, 3, 12]}
-  cameraTarget={[1, 3, 0]}
+  title={<>Parabeln <InlineMath math="f(x) = x^2 - 2x - 3" /> und <InlineMath math="g(x) = f(x + 2)" /></>}
+  description={<>Der Pfeil verbindet den Scheitelpunkt <InlineMath math="(1, -4)" /> mit <InlineMath math="(-1, -4)" />. Die markierten Punkte auf der <InlineMath math="x" />-Achse sind die Nullstellen <InlineMath math="-1" /> und <InlineMath math="3" /> vor der Verschiebung sowie <InlineMath math="-3" /> und <InlineMath math="1" /> danach.</>}
+  cameraPosition={[0, 0.5, 17]}
+  cameraTarget={[0, 0.5, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 960) * 8;
-        return { x, y: Math.pow(2, x), z: 0 };
+      points: Array.from({ length: 121 }, (_, i) => {
+        const x = -2 + i / 20;
+        return { x, y: x * x - 2 * x - 3, z: 0 };
       }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 480 }],
-      showPoints: false,
+      pointIndices: [20, 60, 100],
+      showPoints: true,
+      smooth: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="f(x) = x^2 - 2x - 3" />, at: 120, anchorX: "left", offset: [0.3, 0, 0] }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 969 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 968) * 8;
-        return { x, y: Math.pow(2, x - 2), z: 0 };
+      points: Array.from({ length: 121 }, (_, i) => {
+        const x = -4 + i / 20;
+        return { x, y: x * x + 2 * x - 3, z: 0 };
       }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{x-2}" />, offset: [0.5, 1, 0], at: 480 }],
-      showPoints: false,
+      pointIndices: [20, 60, 100],
+      showPoints: true,
+      smooth: false,
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x) = x^2 + 2x - 3" />, at: 0, anchorX: "right", offset: [-0.3, 0, 0] }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 480) * 8;
-        return { x, y: Math.pow(2, x + 1), z: 0 };
-      }),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^{x+1}" />, offset: [0.5, 1, 0], at: 240 }],
+      points: [
+        { x: 1, y: -4, z: 0 },
+        { x: -1, y: -4, z: 0 },
+      ],
+      cone: { position: "end", size: 0.4 },
       showPoints: false,
+      smooth: false,
+      color: "#64748b",
     },
   ]}
   showZAxis={false}
 />
 
-Die horizontale Asymptote bleibt bei <InlineMath math="y = 0" />, weil eine horizontale Verschiebung das Verhalten der Kurve für sehr große und sehr kleine <InlineMath math="x" /> nicht ändert. Die Funktion <InlineMath math="g(x) = 2^{x-2}" /> verschiebt sich um <InlineMath math="2 \text{ Einheiten}" /> nach rechts, während <InlineMath math="h(x) = 2^{x+1}" /> um <InlineMath math="1 \text{ Einheit}" /> nach links wandert.
+Beide Parabeln sind gleich breit, weil eine Verschiebung die Form des Graphen nicht ändert. Nur die Lage ändert sich: Jeder Punkt wandert auf derselben Höhe um <InlineMath math="2 \text{ Einheiten}" /> nach links.
 
-Berechne den senkrechten Achsenabschnitt neu mit der **Eingabe null**. Der alte Punkt <InlineMath math="(0,f(0))" /> wandert nach <InlineMath math="(h,f(0))" /> und liegt im Allgemeinen nicht mehr auf der senkrechten Achse. Der neue Achsenabschnitt lautet <InlineMath math="(0,f(-h))" />, sofern <InlineMath math="-h" /> im Definitionsbereich liegt.
+## Definitionsbereich und Achsenschnittpunkte nach der Verschiebung
 
-<BlockMath math="f(0)=1,\qquad g(0)=2^{-2}=\frac14,\qquad h(0)=2^1=2" />
+Der Graph der [Quadratwurzelfunktion](/de/faecher/mathematik/funktionen-und-modelle/quadratwurzelfunktion) <InlineMath math="f(x) = \sqrt{x}" /> beginnt bei <InlineMath math="(0, 0)" />, weil <InlineMath math="\sqrt{x}" /> nur für <InlineMath math="x \geq 0" /> definiert ist. Verschiebe diesen Graphen um <InlineMath math="4 \text{ Einheiten}" /> nach links, dann ist <InlineMath math="g(x) = f(x + 4) = \sqrt{x + 4}" />. Der neue Definitionsbereich ergibt sich aus der Bedingung für den Term unter der Wurzel:
 
-## Horizontale und vertikale Verschiebung unterscheiden
+<BlockMath math="x + 4 \geq 0 \iff x \geq -4" />
 
-Die horizontale und die [vertikale Verschiebung](/de/faecher/mathematik/funktionstransformationen/vertikale-verschiebung) bewegen beide einen Graphen, greifen aber an unterschiedlichen Stellen der Vorschrift an. Dieser Unterschied entscheidet, welche Koordinate sich ändert.
+Der Definitionsbereich von <InlineMath math="g" /> ist <InlineMath math="[-4, \infty)" />: Der alte Definitionsbereich <InlineMath math="[0, \infty)" /> ist **mit dem Graphen um <InlineMath math="4 \text{ Einheiten}" /> nach links gewandert**. Der Wertebereich bleibt <InlineMath math="[0, \infty)" />, weil sich keine Höhe ändert. Der Startpunkt <InlineMath math="(0, 0)" /> wandert nach <InlineMath math="(-4, 0)" />, der Punkt <InlineMath math="(4, 2)" /> nach <InlineMath math="(0, 2)" />. Prüfe den zweiten Punkt: <InlineMath math="g(0) = \sqrt{0 + 4} = 2" />.
 
-| Merkmal | Horizontale Verschiebung | Vertikale Verschiebung |
+Den <InlineMath math="y" />-Achsenabschnitt musst du neu berechnen. Der alte Punkt <InlineMath math="(0, f(0))" /> wandert nach <InlineMath math="(h, f(0))" /> und liegt deshalb für <InlineMath math="h \neq 0" /> nicht mehr auf der <InlineMath math="y" />-Achse. **Der neue Schnittpunkt ergibt sich immer aus der Eingabe null**: Er ist <InlineMath math="(0, g(0))" /> mit <InlineMath math="g(0) = f(-h)" />.
+
+Nimm <InlineMath math="f(x) = 2^x" /> und verschiebe den Graphen um <InlineMath math="2 \text{ Einheiten}" /> nach rechts, also <InlineMath math="g(x) = 2^{x - 2}" />. Der Punkt <InlineMath math="(0, 1)" /> von <InlineMath math="f" /> wandert nach <InlineMath math="(2, 1)" />, und den neuen Schnittpunkt berechnest du mit der Eingabe null:
+
+<BlockMath math="g(0) = 2^{0 - 2} = 2^{-2} = \frac{1}{4}" />
+
+Der Graph von <InlineMath math="g" /> schneidet die <InlineMath math="y" />-Achse in <InlineMath math="\left(0, \tfrac{1}{4}\right)" />, wie es die allgemeine Regel <InlineMath math="g(0) = f(-h)" /> vorhersagt: Mit <InlineMath math="h = 2" /> ist <InlineMath math="f(-2) = 2^{-2} = \tfrac{1}{4}" />. Die waagerechte Asymptote <InlineMath math="y = 0" />, also die waagerechte Gerade, der sich die Kurve immer weiter nähert, bleibt an ihrem Platz, weil sich eine waagerechte Gerade beim Verschieben nach links oder rechts nicht ändert. Beide Kurven nähern sich der <InlineMath math="x" />-Achse, wenn <InlineMath math="x" /> immer kleiner wird.
+
+<LineEquation
+  title={<>Kurven <InlineMath math="f(x) = 2^x" /> und <InlineMath math="g(x) = 2^{x - 2}" /></>}
+  description={<>Der Pfeil zeigt, wie der Punkt <InlineMath math="(0, 1)" /> nach <InlineMath math="(2, 1)" /> wandert. Die Kurve <InlineMath math="g" /> schneidet die <InlineMath math="y" />-Achse in <InlineMath math="\left(0, \tfrac{1}{4}\right)" />.</>}
+  cameraPosition={[0.5, 3.5, 16]}
+  cameraTarget={[0.5, 3.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 141 }, (_, i) => {
+        const x = -4 + i / 20;
+        return { x, y: Math.pow(2, x), z: 0 };
+      }),
+      pointIndices: [80],
+      showPoints: true,
+      smooth: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="f(x) = 2^x" />, at: 140, anchorX: "right", offset: [-0.3, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 141 }, (_, i) => {
+        const x = -2 + i / 20;
+        return { x, y: Math.pow(2, x - 2), z: 0 };
+      }),
+      pointIndices: [40, 80],
+      showPoints: true,
+      smooth: false,
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x) = 2^{x - 2}" />, at: 140, anchorX: "left", offset: [0.3, 0, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 1, z: 0 },
+        { x: 2, y: 1, z: 0 },
+      ],
+      cone: { position: "end", size: 0.3 },
+      showPoints: false,
+      smooth: false,
+      color: "#64748b",
+    },
+  ]}
+  showZAxis={false}
+/>
+
+## Innerhalb oder außerhalb der Klammer
+
+Eine Konstante in der Klammer wirkt auf die Eingabe, bevor <InlineMath math="f" /> ausgewertet wird. Steht die Konstante außerhalb der Klammer, wirkt sie auf den Funktionswert, nachdem <InlineMath math="f" /> ausgewertet wurde. Genau diese Stelle unterscheidet die horizontale von der [vertikalen Verschiebung](/de/faecher/mathematik/funktionstransformationen/vertikale-verschiebung).
+
+| Merkmal | Konstante in der Klammer | Konstante außerhalb der Klammer |
 | --- | --- | --- |
-| Vorschrift | <InlineMath math="g(x) = f(x - h)" /> | <InlineMath math="g(x) = f(x) + k" /> |
-| Veränderter Teil | Die Funktionseingabe | Die Funktionsausgabe |
-| Richtung der Verschiebung | Entlang der <InlineMath math="x" />-Koordinate | Entlang der <InlineMath math="y" />-Koordinate |
-| Vorzeichen der Konstanten | Umgekehrt zur Leserichtung | Wie das Vorzeichen von <InlineMath math="k" /> |
-| **Definitionsbereich** und Wertebereich | Der Definitionsbereich wandert, der Wertebereich bleibt | Der Definitionsbereich bleibt, der Wertebereich wandert |
+| Form der Vorschrift | <InlineMath math="y = f(x - h)" /> | <InlineMath math="y = f(x) + k" /> |
+| Was sich ändert | Die Eingabe, bevor <InlineMath math="f" /> wirkt | Der Funktionswert, nachdem <InlineMath math="f" /> wirkt |
+| Wie ein Punkt wandert | <InlineMath math="(x_0, y_0) \to (x_0 + h, y_0)" /> | <InlineMath math="(x_0, y_0) \to (x_0, y_0 + k)" /> |
+| Beispiel mit der Zahl <InlineMath math="3" /> | <InlineMath math="f(x - 3)" /> nach rechts, <InlineMath math="f(x + 3)" /> nach links | <InlineMath math="f(x) + 3" /> nach oben, <InlineMath math="f(x) - 3" /> nach unten |
+| Definitionsbereich | Verschiebt sich um <InlineMath math="h" /> | Bleibt gleich |
+| Wertebereich | Bleibt gleich | Verschiebt sich um <InlineMath math="k" /> |
+| Waagerechte Asymptote | Bleibt gleich | Verschiebt sich um <InlineMath math="k" /> |
 
-Der wichtigste Unterschied ist die Lage der Konstanten. Eine Konstante in der Klammer verändert die Eingabe. Die Verschiebung läuft deshalb horizontal, und ihr Vorzeichen wirkt umgekehrt. Eine Konstante außerhalb der Klammer verändert die Ausgabe. Die Verschiebung läuft deshalb vertikal, und ihr Vorzeichen wirkt wie geschrieben.
+In der Klammer läuft die Verschiebung entgegen dem geschriebenen Vorzeichen, weil die Eingabe den Abzug ausgleichen muss. Damit <InlineMath math="x - 3" /> den Wert <InlineMath math="x_0" /> hat, muss <InlineMath math="x = x_0 + 3" /> sein. Eine Konstante außerhalb der Klammer muss nichts ausgleichen, deshalb **zeigt das Vorzeichen von <InlineMath math="k" /> die Richtung direkt an**.
 
-Eine [horizontale Streckung und Stauchung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung) verändert die Breite des Graphen, eine [vertikale Streckung und Stauchung](/de/faecher/mathematik/funktionstransformationen/vertikale-streckung-und-stauchung) den Abstand zur waagerechten Achse. Eine Verschiebung addiert dagegen einen festen Abstand. Bei [kombinierten Funktionstransformationen](/de/faecher/mathematik/funktionstransformationen/kombinierte-funktionstransformationen) kann Verschieben vor dem Skalieren eine andere Endlage ergeben als Verschieben danach.
+Multiplizierst du die Eingabe wie bei <InlineMath math="f(2x)" />, entsteht eine [horizontale Streckung oder Stauchung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung), die die Breite des Graphen ändert. Addieren oder Subtrahieren in der Eingabe verschiebt den Graphen nur. Treten Faktor und Verschiebung zusammen auf, wie bei [kombinierten Funktionstransformationen](/de/faecher/mathematik/funktionstransformationen/kombinierte-funktionstransformationen), klammerst du zuerst den Faktor aus: <InlineMath math="f(2x - 6) = f(2(x - 3))" />. Für <InlineMath math="f(x) = x^2" /> liegt der Scheitelpunkt von <InlineMath math="y = (2x - 6)^2" /> bei <InlineMath math="x = 3" /> und nicht bei <InlineMath math="x = 6" />.
+
+## Fehler beim waagerechten Verschieben
+
+Fehler bei der horizontalen Verschiebung findest du, indem du **einen Punkt prüfst**, dessen Funktionswert du schon kennst, etwa den Scheitelpunkt oder den Startpunkt des Graphen.
+
+| Fehler | Warum er falsch ist | So findest du ihn |
+| --- | --- | --- |
+| <InlineMath math="f(x - 3)" /> als Verschiebung nach links lesen | Die Eingabe muss um <InlineMath math="3" /> größer sein, damit ein alter Funktionswert entsteht | Für <InlineMath math="f(x) = x^2" /> hat der Graph von <InlineMath math="y = (x - 3)^2" /> den Scheitelpunkt <InlineMath math="(3, 0)" />, rechts von <InlineMath math="(0, 0)" /> |
+| Nur das erste <InlineMath math="x" /> ersetzen, etwa <InlineMath math="(x + 2)^2 - 2x - 3" /> | Jedes <InlineMath math="x" /> in der Vorschrift steht für dieselbe Eingabe | Der alte Scheitelpunkt bei <InlineMath math="x = 1" /> verlangt <InlineMath math="g(-1) = -4" />, diese Vorschrift liefert aber <InlineMath math="0" /> |
+| <InlineMath math="f(x) - 3" /> für eine Verschiebung nach rechts schreiben | Eine Konstante außerhalb der Klammer ändert den Funktionswert, der Graph liegt also tiefer | Prüfe einen Punkt: <InlineMath math="(x_0, y_0)" /> muss nach <InlineMath math="(x_0 + 3, y_0)" /> wandern, <InlineMath math="f(x) - 3" /> verschiebt ihn aber nach <InlineMath math="(x_0, y_0 - 3)" /> |
+| Die Richtung an der Form einer Geraden ablesen | Die Gerade <InlineMath math="2(x - 3) + 1" /> ist auch <InlineMath math="(2x + 1) - 6" /> | Vergleiche zwei Punkte mit demselben Funktionswert |
+| Den Definitionsbereich für unverändert halten | Der Definitionsbereich folgt den verschobenen <InlineMath math="x" />-Koordinaten | Löse die Bedingung der neuen Funktion neu, etwa <InlineMath math="x + 4 \geq 0" /> |
 
 ## Übungen
 
-Die drei Aufgaben nutzen die Vorzeichenregel, die du gerade gelernt hast. Rechne sie zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+Bestimme in jeder Aufgabe zuerst <InlineMath math="h" />, also die Änderung der <InlineMath math="x" />-Koordinate jedes Punktes, und ersetze dann jedes <InlineMath math="x" /> in der Vorschrift von <InlineMath math="f" /> durch <InlineMath math="x - h" />. Rechne selbst und **prüfe einen Punkt**, bevor du deine Antwort mit den Lösungen vergleichst.
 
-1. Gegeben ist die Funktion <InlineMath math="f(x) = x^2 + 2x + 1" />. Bestimme die Gleichung nach einer horizontalen Verschiebung um <InlineMath math="3 \text{ Einheiten}" /> nach rechts.
+1. Bestimme die Gleichung des Graphen von <InlineMath math="f(x) = x^2 + 2x + 1" /> nach einer Verschiebung um <InlineMath math="3 \text{ Einheiten}" /> nach rechts.
 
-2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird horizontal um <InlineMath math="4 \text{ Einheiten}" /> nach links verschoben. Bestimme die Gleichung der verschobenen Funktion und danach den **Definitionsbereich** nach der Verschiebung.
+2. Der Graph von <InlineMath math="f(x) = \sqrt{x - 2}" /> wird um <InlineMath math="5 \text{ Einheiten}" /> nach links verschoben. Wie lauten die Gleichung des neuen Graphen und sein Definitionsbereich?
 
-3. Die Funktion <InlineMath math="h(x) = 3^x" /> wird so verschoben, dass der Punkt <InlineMath math="(0, 1)" /> auf <InlineMath math="(2, 1)" /> abgebildet wird. Bestimme die Verschiebungskonstante und die Gleichung der verschobenen Funktion.
+3. Verschiebe den Graphen von <InlineMath math="f(x) = 3^x" /> waagerecht so, dass der Punkt <InlineMath math="(0, 1)" /> nach <InlineMath math="(-2, 1)" /> wandert. Gib die Gleichung des neuen Graphen und seinen Schnittpunkt mit der <InlineMath math="y" />-Achse an.
+
+4. Der Scheitelpunkt des Graphen von <InlineMath math="f(x) = x^2 - 4x + 3" /> wird waagerecht nach <InlineMath math="(-3, -1)" /> verschoben. Bestimme die Gleichung des neuen Graphen in der Form <InlineMath math="ax^2 + bx + c" /> und seine Nullstellen.
 
 ### Lösungen
 
-**Aufgabe 1**. Ersetze **jedes Vorkommen der Eingabe**:
+**Aufgabe 1**. Eine Verschiebung um <InlineMath math="3 \text{ Einheiten}" /> nach rechts bedeutet <InlineMath math="h = 3" />, der neue Graph gehört also zu <InlineMath math="g(x) = f(x - 3)" />. Ersetze jedes <InlineMath math="x" /> durch <InlineMath math="x - 3" />:
 
-Horizontale Verschiebung nach rechts um <InlineMath math="3 \text{ Einheiten}" />:
+<BlockMath math="\begin{aligned} g(x) &amp;= (x - 3)^2 + 2(x - 3) + 1 \\ &amp;= x^2 - 6x + 9 + 2x - 6 + 1 \\ &amp;= x^2 - 4x + 4 \end{aligned}" />
 
-<BlockMath math="F(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
+Prüfe am Scheitelpunkt. Wegen <InlineMath math="f(x) = (x + 1)^2" /> liegt der alte Scheitelpunkt bei <InlineMath math="(-1, 0)" />. Das Ergebnis <InlineMath math="g(x) = (x - 2)^2" /> hat den Scheitelpunkt <InlineMath math="(2, 0)" />, **genau <InlineMath math="3 \text{ Einheiten}" /> rechts vom alten Scheitelpunkt**. Die Gleichung des neuen Graphen lautet also <InlineMath math="y = x^2 - 4x + 4" />.
 
-<LineEquation
-  title={<>Funktion <InlineMath math="f(x) = x^2 + 2x + 1" /> und verschobener Graph</>}
-  description={
-    <>
-      Ursprüngliche quadratische Funktion und Verschiebung um
-      <InlineMath math="3 \text{ Einheiten}" /> nach rechts.
-    </>
-  }
-  cameraPosition={[0.5, 3, 16]}
-  cameraTarget={[0.5, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 2 * x + 1, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+2x+1" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 4 * x + 4, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2-4x+4" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Aufgabe 2**. Eine Verschiebung um <InlineMath math="5 \text{ Einheiten}" /> nach links bedeutet <InlineMath math="h = -5" />, also <InlineMath math="g(x) = f(x + 5)" />. Ersetze das <InlineMath math="x" /> unter der Wurzel durch <InlineMath math="x + 5" /> und bestimme den Definitionsbereich aus der **Bedingung für den Term unter der Wurzel**:
 
-**Aufgabe 2**. Für die Verschiebung um vier Einheiten nach links addierst du vier zum Argument der Funktion. Die Wurzelbedingung bestimmt den neuen Definitionsbereich.
+<MathContainer>
+<BlockMath math="g(x) = \sqrt{(x + 5) - 2} = \sqrt{x + 3}" />
+<BlockMath math="x + 3 \geq 0 \iff x \geq -3" />
+</MathContainer>
 
-- Verschiebung nach links um <InlineMath math="4 \text{ Einheiten}" />: <InlineMath math="G(x) = g(x + 4) = \sqrt{x + 4}" />
-- **Definitionsbereich** nach der Verschiebung: <InlineMath math="x + 4 \geq 0" />, also <InlineMath math="x \geq -4" /> oder <InlineMath math="[-4, \infty)" />
+Prüfe am Startpunkt. Der Graph von <InlineMath math="f" /> beginnt bei <InlineMath math="(2, 0)" />, und <InlineMath math="g(-3) = \sqrt{0} = 0" />, also wandert der Startpunkt nach <InlineMath math="(-3, 0)" />, genau <InlineMath math="5 \text{ Einheiten}" /> nach links. Auch der Punkt <InlineMath math="(6, 2)" /> wandert nach <InlineMath math="(1, 2)" />, denn <InlineMath math="g(1) = \sqrt{4} = 2" />. Der neue Graph gehört also zu <InlineMath math="y = \sqrt{x + 3}" /> mit dem Definitionsbereich <InlineMath math="[-3, \infty)" />.
 
-Visualisierung:
+**Aufgabe 3**. Der Punkt <InlineMath math="(0, 1)" /> wandert nach <InlineMath math="(-2, 1)" />, die <InlineMath math="x" />-Koordinate ändert sich also um <InlineMath math="h = -2 - 0 = -2" />. Die Höhe bleibt <InlineMath math="1" />, es handelt sich also wirklich um eine horizontale Verschiebung. Setze <InlineMath math="h = -2" /> in <InlineMath math="g(x) = f(x - h)" /> ein und berechne dann **den Schnittpunkt mit der Eingabe null**:
 
-<LineEquation
-  title={<>Funktion <InlineMath math="g(x) = \sqrt{x}" /> und verschobener Graph</>}
-  description={
-    <>
-      Ursprüngliche Quadratwurzelfunktion und Verschiebung um
-      <InlineMath math="4 \text{ Einheiten}" /> nach links.
-    </>
-  }
-  cameraPosition={[3, 2, 14]}
-  cameraTarget={[3, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t + -4;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+<MathContainer>
+<BlockMath math="g(x) = 3^{x - (-2)} = 3^{x + 2}" />
+<BlockMath math="g(0) = 3^{0 + 2} = 9" />
+</MathContainer>
 
-**Aufgabe 3**. Punkt <InlineMath math="(0, 1)" /> auf <InlineMath math="h(x) = 3^x" /> wird zu <InlineMath math="(2, 1)" />, was eine **horizontale Verschiebung** um <InlineMath math="h = 2 \text{ Einheiten}" /> nach rechts bedeutet.
-Die verschobene Funktion lautet <InlineMath math="H(x) = 3^{x-2}" />.
+Prüfe den Punkt aus der Aufgabe: <InlineMath math="g(-2) = 3^0 = 1" />, der neue Graph verläuft also tatsächlich durch <InlineMath math="(-2, 1)" />. Die Gleichung des neuen Graphen lautet <InlineMath math="y = 3^{x + 2}" />, und er schneidet die <InlineMath math="y" />-Achse in <InlineMath math="(0, 9)" />.
 
-<LineEquation
-  title={<>Funktion <InlineMath math="h(x) = 3^x" /> und verschobener Graph</>}
-  description={
-    <>
-      Ursprüngliche Exponentialfunktion und Verschiebung um
-      <InlineMath math="2 \text{ Einheiten}" /> nach rechts.
-    </>
-  }
-  cameraPosition={[1, 2, 10]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 285 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 284) * 8;
-        return { x, y: Math.pow(3, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=3^x" />, offset: [-1.3, 2, 0], at: 142 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 317 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 316) * 8;
-        return { x, y: Math.pow(3, x - 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=3^{x-2}" />, offset: [3.2, 0.988889, 0], at: 142 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Aufgabe 4**. Die Form <InlineMath math="f(x) = (x - 2)^2 - 1" /> liefert den Scheitelpunkt <InlineMath math="(2, -1)" />. Der Scheitelpunkt wandert nach <InlineMath math="(-3, -1)" />, also ist <InlineMath math="h = -3 - 2 = -5" />, eine Verschiebung um <InlineMath math="5 \text{ Einheiten}" /> nach links. Setze in die Scheitelpunktform ein, weil sie nur ein <InlineMath math="x" /> enthält, das du ersetzen musst:
+
+<BlockMath math="\begin{aligned} g(x) &amp;= f(x + 5) = \big((x + 5) - 2\big)^2 - 1 \\ &amp;= (x + 3)^2 - 1 \\ &amp;= x^2 + 6x + 8 \end{aligned}" />
+
+Die Faktorisierung <InlineMath math="x^2 + 6x + 8 = (x + 2)(x + 4)" /> liefert die Nullstellen <InlineMath math="-2" /> und <InlineMath math="-4" />. Prüfe mit den alten Nullstellen: <InlineMath math="f" /> ist bei <InlineMath math="1" /> und <InlineMath math="3" /> null, und **jede alte Nullstelle minus <InlineMath math="5" />** ergibt <InlineMath math="-4" /> und <InlineMath math="-2" />. Die Gleichung des neuen Graphen lautet also <InlineMath math="y = x^2 + 6x + 8" /> mit den Nullstellen <InlineMath math="-4" /> und <InlineMath math="-2" />.

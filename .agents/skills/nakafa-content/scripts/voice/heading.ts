@@ -1,3 +1,4 @@
+import { isRequiredHeadingHyphen } from "#nakafa-content/heading/hyphen";
 import type {
   LessonVoiceGenre,
   LessonVoiceIssue,
@@ -136,31 +137,9 @@ export const HEADING_VOICE_RULES = [
 const HEADING_PATTERN = /^#{2,6}\s+.+$/u;
 const METADATA_TITLE_PATTERN = /^\s*title:\s*"[^"]+".*$/u;
 const ALLOWED_HEADING_CHARACTER = /[\p{L} ]/u;
-const LEADING_LETTERS_PATTERN = /^\p{L}+/u;
 const NON_ORDINARY_SPACE_PATTERN = /[^ ]/u;
 const HEADING_SEPARATOR_PATTERN = /\s/u;
 const HEADING_TEXT_PATTERN = /\S/u;
-const TRAILING_LETTERS_PATTERN = /\p{L}+$/u;
-
-/** Allows the ordinary repeated-word hyphen in Indonesian headings. */
-function isIndonesianReduplicationHyphen(
-  heading: string,
-  index: number,
-  locale: LessonVoiceLocale
-): boolean {
-  if (locale !== "id" || heading[index] !== "-") {
-    return false;
-  }
-  const left = heading.slice(0, index).match(TRAILING_LETTERS_PATTERN)?.[0];
-  const right = heading.slice(index + 1).match(LEADING_LETTERS_PATTERN)?.[0];
-  return Boolean(
-    left &&
-      right &&
-      left.localeCompare(right, "id", {
-        sensitivity: "base",
-      }) === 0
-  );
-}
 
 /** Recognizes forbidden ASCII control bytes. */
 function isForbiddenControlCharacter(code: number): boolean {
@@ -197,7 +176,7 @@ function findForbiddenHeadingCharacter(
     if (
       !(
         ALLOWED_HEADING_CHARACTER.test(character) ||
-        isIndonesianReduplicationHyphen(heading, index, locale)
+        isRequiredHeadingHyphen(heading, index, locale)
       )
     ) {
       return index;
