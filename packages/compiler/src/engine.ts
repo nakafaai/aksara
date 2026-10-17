@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { compile } from "@mdx-js/mdx";
 import {
   AKSARA_COMPILER_VERSION,
@@ -8,6 +7,7 @@ import {
   decodeCompileDocumentRequest,
   MDX_COMPILER_VERSION,
 } from "@nakafa/aksara-contracts/content";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,
@@ -43,7 +43,6 @@ import {
   MdxCompilationError,
   RendererComponentMissingError,
 } from "#compiler/errors";
-import { hashUtf8 } from "#compiler/hash";
 import {
   createMetadataCollector,
   extractMetadata,
@@ -71,7 +70,7 @@ export function enforceContentByteLimit(
   value: string,
   maxBytes: number
 ) {
-  const actualBytes = Buffer.byteLength(value, "utf8");
+  const actualBytes = new TextEncoder().encode(value).byteLength;
   if (actualBytes <= maxBytes) {
     return Effect.succeed(actualBytes);
   }
@@ -232,7 +231,7 @@ export const compileValidatedContent = Effect.fn(
     rawMdx: request.rawMdx,
     rendererDomain: request.rendererDomain,
     requiredComponents,
-    sourceHash: hashUtf8(request.rawMdx),
+    sourceHash: yield* hashText(request.rawMdx),
   });
   yield* enforceContentByteLimit(
     request.contentKey,

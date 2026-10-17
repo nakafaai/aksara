@@ -106,9 +106,19 @@ const downloadSource = Effect.fn("AksaraCorpus.downloadGermanQuranSource")(
             })
         )
       );
+      const digest = yield* sha256Hex(bytes).pipe(
+        Effect.mapError(
+          (cause) =>
+            new GermanQuranSourceSyncError({
+              cause,
+              phase: "integrity",
+              source: source.name,
+            })
+        )
+      );
       if (
         bytes.byteLength !== source.artifact.byteCount ||
-        sha256Hex(bytes) !== source.artifact.digest.slice("sha256:".length)
+        digest !== source.artifact.digest.slice("sha256:".length)
       ) {
         return yield* new GermanQuranSourceSyncError({
           cause:

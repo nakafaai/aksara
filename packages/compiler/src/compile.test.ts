@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { assert, describe, it } from "@effect/vitest";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
@@ -78,10 +78,7 @@ describe("compileContent", () => {
         assert.ok(payload.plainText.includes("Compiler test"));
         assert.ok(!payload.compiledCode.includes("metadata"));
         assert.strictEqual(payload.rawMdx, rawMdx);
-        assert.strictEqual(
-          payload.sourceHash,
-          `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
-        );
+        assert.strictEqual(payload.sourceHash, yield* hashText(rawMdx));
         assert.ok(payload.byteLength > 0);
         assert.strictEqual(payload.compilerVersion, "0.1.0");
         assert.strictEqual(payload.mdxCompilerVersion, "3.1.1");

@@ -215,7 +215,7 @@ export const projectTryoutSources = Effect.fn(
 ) {
   const catalogRows = yield* projectTryoutCatalog(sources);
   const placementRows = yield* projectPlacements(sources, questionSources);
-  const catalog = Arr.map(
+  const catalog = yield* Effect.forEach(
     Arr.sort(catalogRows, Order.make(compareTryoutCatalog)),
     makeTryoutCatalogRecord
   );

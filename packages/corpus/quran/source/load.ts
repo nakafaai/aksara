@@ -1,4 +1,4 @@
-import { createHash, type Hash } from "node:crypto";
+import { digestSha256 } from "@nakafa/aksara-contracts/hash/digest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
@@ -18,6 +18,7 @@ import {
   Record,
   Schema,
 } from "effect";
+import { Hex } from "effect/encoding";
 import { mapLocalizedSource } from "#corpus/locale/source";
 import { RawSourcesSchema } from "#corpus/quran/source/model";
 import {
@@ -100,12 +101,22 @@ const readSourceFile = Effect.fn("AksaraCorpus.readQuranSourceFile")(function* (
   );
 });
 
+/** Maps one failed digest of pinned Quran source bytes to a source error that names what failed. */
+function digestFailure(detail: string) {
+  return () => new QuranSourceFileError({ detail });
+}
+
 /** Authenticates one source-controlled artifact against its pinned identity. */
 const authenticateSource = Effect.fn("AksaraCorpus.authenticateQuranSource")(
   function* (source: PinnedQuranFile, bytes: Uint8Array) {
+    const digest = yield* sha256Hex(bytes).pipe(
+      Effect.mapError(
+        digestFailure(`Could not digest pinned source ${source.name}.`)
+      )
+    );
     if (
       bytes.byteLength !== source.artifact.byteCount ||
-      sha256Hex(bytes) !== source.artifact.digest.slice("sha256:".length)
+      digest !== source.artifact.digest.slice("sha256:".length)
     ) {
       return yield* new QuranSourceFileError({
         detail: `Pinned source drifted: ${source.name}.`,
@@ -139,12 +150,39 @@ const readPinnedText = Effect.fn("AksaraCorpus.readPinnedQuranText")(function* (
   return { bytes, text };
 });
 
-/** Adds one named source to a domain-separated ordered bundle digest. */
-function updateBundle(hash: Hash, name: string, bytes: Uint8Array) {
-  hash.update(`${name}\n${bytes.byteLength}\n`);
-  hash.update(bytes);
-  hash.update("\n");
+/** Encodes one named source as the exact parts that a domain-separated bundle digest covers. */
+function bundleParts(name: string, bytes: Uint8Array) {
+  return [
+    new TextEncoder().encode(`${name}\n${bytes.byteLength}\n`),
+    bytes,
+    new TextEncoder().encode("\n"),
+  ];
 }
+
+/** Joins byte parts, in order, into one buffer that a single digest can cover. */
+function concatBytes(parts: readonly Uint8Array[]) {
+  const joined = new Uint8Array(
+    Arr.reduce(parts, 0, (size, part) => size + part.byteLength)
+  );
+  let offset = 0;
+  for (const part of parts) {
+    joined.set(part, offset);
+    offset += part.byteLength;
+  }
+  return joined;
+}
+
+/** Digests the ordered parts of one bundle, which the loader already holds in memory. */
+const digestBundle = Effect.fn("AksaraCorpus.digestQuranBundle")(function* (
+  parts: readonly Uint8Array[]
+) {
+  const digest = yield* digestSha256(concatBytes(parts)).pipe(
+    Effect.mapError(
+      digestFailure("Could not digest a pinned Quran source bundle.")
+    )
+  );
+  return Hex.encode(digest);
+});
 
 /** Reads the exact 114 QuranEnc responses and authenticates their bundle. */
 const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
@@ -153,7 +191,11 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
     path: Path.Path,
     sourceRoot: string
   ) {
-    const hash = createHash("sha256").update(`${QURAN_TAFSIR_BUNDLE_DOMAIN}\n`);
+    const parts = MutableList.make<Uint8Array>();
+    MutableList.append(
+      parts,
+      new TextEncoder().encode(`${QURAN_TAFSIR_BUNDLE_DOMAIN}\n`)
+    );
     const sourceBytes = MutableList.make<Uint8Array>();
     const sources = MutableList.make<string>();
     let byteCount = 0;
@@ -169,15 +211,18 @@ const readTafsirSources = Effect.fn("AksaraCorpus.readPinnedQuranTafsir")(
           })
       );
       const text = yield* decodeSource(name, bytes);
-      updateBundle(hash, name, bytes);
+      for (const part of bundleParts(name, bytes)) {
+        MutableList.append(parts, part);
+      }
       byteCount += bytes.byteLength;
       MutableList.append(sourceBytes, bytes);
       MutableList.append(sources, text);
     }
     const expected = QURAN_SOURCE_POLICY.tafsir.artifact;
+    const digest = yield* digestBundle(MutableList.toArray(parts));
     if (
       byteCount !== expected.byteCount ||
-      hash.digest("hex") !== expected.digest.slice("sha256:".length)
+      digest !== expected.digest.slice("sha256:".length)
     ) {
       return yield* new QuranSourceFileError({
         detail: "Pinned QuranEnc Tafsir bundle drifted.",
@@ -270,7 +315,11 @@ export const loadPinnedQuranSources = Effect.fn(
   );
   const tafsir = yield* readTafsirSources(fileSystem, path, sourceRoot);
 
-  const bundle = createHash("sha256").update(`${QURAN_SOURCE_BUNDLE_DOMAIN}\n`);
+  const bundle = MutableList.make<Uint8Array>();
+  MutableList.append(
+    bundle,
+    new TextEncoder().encode(`${QURAN_SOURCE_BUNDLE_DOMAIN}\n`)
+  );
   let byteCount = 0;
   const canonicalData: (readonly [string, Uint8Array])[] = [
     [QURAN_SOURCE_POLICY.data.arabic.name, dataBytes.arabic.bytes],
@@ -282,20 +331,24 @@ export const loadPinnedQuranSources = Effect.fn(
     [QURAN_SOURCE_POLICY.data.translations.de.name, translations.de.bytes],
   ];
   for (const [name, bytes] of canonicalData) {
-    updateBundle(bundle, name, bytes);
+    for (const part of bundleParts(name, bytes)) {
+      MutableList.append(bundle, part);
+    }
     byteCount += bytes.byteLength;
   }
   Arr.forEach(tafsir.sourceBytes, (bytes, index) => {
-    updateBundle(
-      bundle,
+    for (const part of bundleParts(
       `${QURAN_SOURCE_POLICY.tafsir.name}/${index + 1}.json`,
       bytes
-    );
+    )) {
+      MutableList.append(bundle, part);
+    }
     byteCount += bytes.byteLength;
   });
+  const digest = yield* digestBundle(MutableList.toArray(bundle));
   const summary = QuranSourceArtifactSchema.make({
     byteCount,
-    digest: Sha256HashSchema.make(`sha256:${bundle.digest("hex")}`),
+    digest: Sha256HashSchema.make(`sha256:${digest}`),
     fileCount: quranSourceFileCount(appLocales),
   });
   return {

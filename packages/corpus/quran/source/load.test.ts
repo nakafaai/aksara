@@ -141,6 +141,29 @@ layer(fixtureLayer)("Quran source loading", (it) => {
       })
   );
 
+  it.effect("maps a failed pinned digest into a source file error", () =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranSourceFixture;
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only pinned source digest failure.")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* reject(fixture.sourceBytes);
+
+      expect(error).toMatchObject({
+        _tag: "QuranSourceFileError",
+        detail: expect.stringContaining("Could not digest pinned source"),
+      });
+    })
+  );
+
   it.effect("rejects missing data, legal, and Tafsir source files", () =>
     Effect.gen(function* () {
       const fixture = yield* QuranSourceFixture;

@@ -113,6 +113,29 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
     })
   );
 
+  it.effect("reports a failed source digest as an integrity failure", () =>
+    Effect.gen(function* () {
+      const fixture = yield* QuranSyncFixture;
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only source digest failure.")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const result = yield* quranSyncTestProgram(fixture.sources);
+
+      expect(result).toMatchObject({
+        installed: false,
+        outcome: { failure: { phase: "integrity" } },
+      });
+    })
+  );
+
   it.effect("classifies HTTP and bounded-body failures as downloads", () =>
     Effect.gen(function* () {
       const { sources, translation } = yield* QuranSyncFixture;
