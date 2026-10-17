@@ -44,7 +44,7 @@ const VerifiedContentRoutesSchema = Schema.Struct({
   count: Schema.Finite,
 });
 
-/** Count authenticated without retaining complete route rows. */
+/** Count authenticated against the signed manifest. The digest holds every canonical byte until its one final call, so its memory grows with the stream. */
 export type VerifiedContentRoutes = typeof VerifiedContentRoutesSchema.Type;
 
 /** Decodes one route and applies release, index, and uniqueness invariants. */

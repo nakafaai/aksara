@@ -63,7 +63,7 @@ function bindRows<E, R>(
   );
 }
 
-/** Prepares one complete structured Quran snapshot without retaining bodies. */
+/** Prepares one complete structured Quran snapshot. Its digests hold every canonical row byte until their one final call, so their memory grows with the corpus. */
 export const prepareQuranSnapshot = Effect.fn(
   "AksaraCorpus.prepareQuranSnapshot"
 )(function* (input: { readonly checkoutRoot: string }) {

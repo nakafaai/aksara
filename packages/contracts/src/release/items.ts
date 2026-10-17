@@ -75,7 +75,7 @@ const VerifiedContentReleaseItemsSchema = Schema.Struct({
   upsertCount: Schema.Finite,
 });
 
-/** Counts derived without retaining a complete release-item collection. */
+/** Counts derived from one authenticated item stream. The digest holds every canonical byte until its one final call, so its memory grows with the stream. */
 export type VerifiedContentReleaseItems =
   typeof VerifiedContentReleaseItemsSchema.Type;
 

@@ -61,7 +61,7 @@ const VerifiedContentProjectionsSchema = Schema.Struct({
   count: Schema.Finite,
 });
 
-/** Count authenticated without retaining complete projection bodies. */
+/** Count authenticated against the signed manifest. The digest holds every canonical byte until its one final call, so its memory grows with the stream. */
 export type VerifiedContentProjections =
   typeof VerifiedContentProjectionsSchema.Type;
 
