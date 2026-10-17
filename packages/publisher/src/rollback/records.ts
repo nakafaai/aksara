@@ -172,9 +172,9 @@ export function isDerivedRollbackUpsert(
 }
 
 /** Reconstructs the exact compact state protected by a rollback digest. */
-export function snapshotRollbackState(
-  state: DerivedRollbackState
-): RollbackSnapshotState {
+export const snapshotRollbackState = Effect.fn(
+  "AksaraPublisher.snapshotRollbackState"
+)(function* (state: DerivedRollbackState) {
   if (!isDerivedRollbackUpsert(state)) {
     const { change } = state.item;
     return {
@@ -182,7 +182,7 @@ export function snapshotRollbackState(
       contentKey: change.contentKey,
       family: change.family,
       state: "absent",
-    };
+    } satisfies RollbackSnapshotState;
   }
   const { change } = state.item;
   const { payload } = state.artifact;
@@ -192,21 +192,33 @@ export function snapshotRollbackState(
     compilerConfigHash: payload.compilerConfigHash,
     contentKey: change.contentKey,
     delivery: change.delivery,
-    projectionHash: hashContentProjection(state.projection),
+    projectionHash: yield* hashContentProjection(state.projection),
     publicPath: projectionPublicPath(state.projection),
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,
   };
   if (change.family === "article") {
-    return { head: { ...head, family: "article" }, state: "article" };
+    return {
+      head: { ...head, family: "article" },
+      state: "article",
+    } satisfies RollbackSnapshotState;
   }
   if (change.family === "material") {
-    return { head: { ...head, family: "material" }, state: "material" };
+    return {
+      head: { ...head, family: "material" },
+      state: "material",
+    } satisfies RollbackSnapshotState;
   }
   if (change.family === "page") {
-    return { head: { ...head, family: "page" }, state: "page" };
+    return {
+      head: { ...head, family: "page" },
+      state: "page",
+    } satisfies RollbackSnapshotState;
   }
   const questionFamily: "question" = change.family;
-  return { head: { ...head, family: questionFamily }, state: questionFamily };
-}
+  return {
+    head: { ...head, family: questionFamily },
+    state: questionFamily,
+  } satisfies RollbackSnapshotState;
+});

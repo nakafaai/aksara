@@ -1,10 +1,14 @@
-import { Buffer } from "node:buffer";
-import { hashUtf8 } from "@nakafa/aksara-compiler/hash";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import { replaySpoolFailure } from "#publisher/replay/error";
 import { encodeJsonText, JsonTextSchema } from "#publisher/text/json";
+
+/** Counts the UTF-8 bytes that one text occupies in the spool. */
+function utf8Length(value: string) {
+  return new TextEncoder().encode(value).byteLength;
+}
 
 /** Maximum records accepted by one bounded publication replay spool. */
 export const MAX_REPLAY_RECORDS = 100_000;
@@ -85,14 +89,18 @@ export function encodeReplayRecord<A>(value: A, index: number) {
           )
         );
       }
-      const hash = hashUtf8(data);
-      const bytes = Buffer.byteLength(data) + Buffer.byteLength(hash);
-      return validateReplaySpoolUsage({
-        count: 1,
-        index,
-        recordBytes: bytes,
-        totalBytes: bytes,
-      }).pipe(Effect.as({ bytes, data, hash }));
+      return hashText(data).pipe(
+        Effect.mapError((cause) => replaySpoolFailure("hash", cause, index)),
+        Effect.flatMap((hash) => {
+          const bytes = utf8Length(data) + utf8Length(hash);
+          return validateReplaySpoolUsage({
+            count: 1,
+            index,
+            recordBytes: bytes,
+            totalBytes: bytes,
+          }).pipe(Effect.as({ bytes, data, hash }));
+        })
+      );
     })
   );
 }
@@ -104,8 +112,7 @@ export function decodeReplayRecord<A, I>(input: {
   readonly index: number;
   readonly schema: Schema.Codec<A, I, never>;
 }) {
-  const recordBytes =
-    Buffer.byteLength(input.data) + Buffer.byteLength(input.hash);
+  const recordBytes = utf8Length(input.data) + utf8Length(input.hash);
   return validateReplaySpoolUsage({
     count: 1,
     index: input.index,
@@ -119,14 +126,24 @@ export function decodeReplayRecord<A, I>(input: {
         )
       )
     ),
-    Effect.flatMap((expectedHash) => {
-      const actualHash = hashUtf8(input.data);
-      if (actualHash !== expectedHash) {
-        return Effect.fail(
-          replaySpoolFailure("hash", { actualHash, expectedHash }, input.index)
-        );
-      }
-      return Schema.decodeEffect(JsonTextSchema)(input.data).pipe(
+    Effect.flatMap((expectedHash) =>
+      hashText(input.data).pipe(
+        Effect.mapError((cause) =>
+          replaySpoolFailure("hash", cause, input.index)
+        ),
+        Effect.filterOrFail(
+          (actualHash) => actualHash === expectedHash,
+          (actualHash) =>
+            replaySpoolFailure(
+              "hash",
+              { actualHash, expectedHash },
+              input.index
+            )
+        )
+      )
+    ),
+    Effect.flatMap(() =>
+      Schema.decodeEffect(JsonTextSchema)(input.data).pipe(
         Effect.mapError((cause) =>
           replaySpoolFailure("decode", cause, input.index)
         ),
@@ -139,7 +156,7 @@ export function decodeReplayRecord<A, I>(input: {
             )
           )
         )
-      );
-    })
+      )
+    )
   );
 }

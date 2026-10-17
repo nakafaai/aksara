@@ -1,4 +1,3 @@
-import { generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
@@ -27,6 +26,7 @@ import {
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { testFileLayer } from "#test/files";
+import { testSigningKeyPair } from "#test/keys";
 import {
   contentRecord,
   head,
@@ -41,18 +41,12 @@ import {
 } from "#test/snapshot";
 import { makePublicationTarget } from "#test/target";
 
-const keys = generateKeyPairSync("ed25519");
 const signingKey = PublicationSigningKey.of({
   keyId: "test-plan-key",
-  privateKeyPem: Redacted.make(
-    keys.privateKey.export({ format: "pem", type: "pkcs8" }).toString()
-  ),
+  privateKeyPem: Redacted.make(testSigningKeyPair.privateKeyPem),
 });
 const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
+  resolve: () => Effect.succeed(testSigningKeyPair.publicKeyPem),
 });
 type SnapshotSources<E> = Pick<
   PrepareContentReleaseInput<E, never>,

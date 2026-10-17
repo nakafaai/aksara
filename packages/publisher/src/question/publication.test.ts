@@ -112,7 +112,7 @@ const makePublicationTestFixtures = Effect.fn(
   "QuestionPublicationTest.makeFixtures"
 )(() =>
   Effect.gen(function* () {
-    const publishedHeads = yield* Effect.promise(publishedQuestionHeads);
+    const publishedHeads = yield* publishedQuestionHeads();
     const promptHead = yield* Effect.fromOption(
       Arr.findFirst(
         publishedHeads,

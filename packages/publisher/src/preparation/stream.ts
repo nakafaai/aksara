@@ -1,5 +1,6 @@
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
+import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import {
   CompiledContentPayloadSchema,
   compareContentHeads,
@@ -102,16 +103,15 @@ function findCoherenceMismatch(
 
 /** Fails with the first field that breaks one authored upsert binding. */
 function validateUpsert(record: PreparedContentUpsert, recordIndex: number) {
-  const artifactHash = hashCompiledContentPayload(record.payload);
-  const field = findCoherenceMismatch(record, artifactHash);
-  if (field !== undefined) {
-    return Effect.fail(
-      new PreparedContentCoherenceError({ field, recordIndex })
-    );
-  }
-  return verifyCompiledContentSourceHash(record.payload).pipe(
-    Effect.as<PreparedContentRecord>(record)
-  );
+  return Effect.gen(function* () {
+    const artifactHash = yield* hashCompiledContentPayload(record.payload);
+    const field = findCoherenceMismatch(record, artifactHash);
+    if (field !== undefined) {
+      return yield* new PreparedContentCoherenceError({ field, recordIndex });
+    }
+    yield* verifyCompiledContentSourceHash(record.payload);
+    return record satisfies PreparedContentRecord;
+  });
 }
 
 /** Proves one decoded record without narrowing the stream's union output. */
@@ -120,6 +120,7 @@ function validateRecordCoherence(
   recordIndex: number
 ): Effect.Effect<
   PreparedContentRecord,
+  | ArtifactHashComputationError
   | Effect.Error<ReturnType<typeof verifyCompiledContentSourceHash>>
   | PreparedContentCoherenceError
 > {

@@ -163,34 +163,35 @@ const inspectPlacement = Effect.fn("AksaraPublisher.inspectTryoutPlacement")(
       verifyFingerprint(binding.answerHead, answerDocument),
       verifyFingerprint(binding.questionHead, questionDocument),
     ]);
-    return makeTryoutPlacementRecord(
+    const contentHash = yield* hashTryoutContent({
+      answerArtifactLocale: binding.placement.answerArtifactLocale,
+      answerBody: answerDocument.inspection.bodyMdx,
+      appLocale: binding.placement.appLocale,
+      ...(binding.placement.blueprint === undefined
+        ? {}
+        : { blueprint: binding.placement.blueprint }),
+      ...(questionDocument.projection.metadata.dateModified === undefined
+        ? {}
+        : {
+            dateModified: questionDocument.projection.metadata.dateModified,
+          }),
+      datePublished: questionDocument.projection.metadata.datePublished,
+      deliveryLanguage: binding.placement.deliveryLanguage,
+      languagePolicy: binding.placement.languagePolicy,
+      questionArtifactLocale: binding.placement.questionArtifactLocale,
+      questionBody: questionDocument.inspection.bodyMdx,
+      response: questionDocument.projection.response,
+      sourcePath: questionDocument.projection.questionKey,
+      sourceRevision: binding.placement.sourceRevision,
+      ...(binding.placement.stimulusKey === undefined
+        ? {}
+        : { stimulusKey: binding.placement.stimulusKey }),
+    });
+    return yield* makeTryoutPlacementRecord(
       TryoutPlacementSchema.make({
         ...binding.placement,
         answerArtifactHash: binding.answerHead.artifactHash,
-        contentHash: hashTryoutContent({
-          answerArtifactLocale: binding.placement.answerArtifactLocale,
-          answerBody: answerDocument.inspection.bodyMdx,
-          appLocale: binding.placement.appLocale,
-          ...(binding.placement.blueprint === undefined
-            ? {}
-            : { blueprint: binding.placement.blueprint }),
-          ...(questionDocument.projection.metadata.dateModified === undefined
-            ? {}
-            : {
-                dateModified: questionDocument.projection.metadata.dateModified,
-              }),
-          datePublished: questionDocument.projection.metadata.datePublished,
-          deliveryLanguage: binding.placement.deliveryLanguage,
-          languagePolicy: binding.placement.languagePolicy,
-          questionArtifactLocale: binding.placement.questionArtifactLocale,
-          questionBody: questionDocument.inspection.bodyMdx,
-          response: questionDocument.projection.response,
-          sourcePath: questionDocument.projection.questionKey,
-          sourceRevision: binding.placement.sourceRevision,
-          ...(binding.placement.stimulusKey === undefined
-            ? {}
-            : { stimulusKey: binding.placement.stimulusKey }),
-        }),
+        contentHash,
         questionArtifactHash: binding.questionHead.artifactHash,
       })
     );

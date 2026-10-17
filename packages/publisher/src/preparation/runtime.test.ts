@@ -14,28 +14,30 @@ import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import { prepareTestRelease } from "#test/preparation";
 
 /** Builds one small runtime snapshot with a stable identity seed. */
-function makeRuntimeSnapshot(seed: string, routeCount: number) {
-  const digest = Sha256HashSchema.make(`sha256:${seed.repeat(64)}`);
-  return makeTryoutSnapshot({
-    activeAppLocales: ACTIVE_APP_LOCALES,
-    catalogDigest: digest,
-    counts: {
-      country: 1,
-      exam: routeCount > 1 ? 1 : 0,
-      section: 0,
-      set: 0,
-      track: 0,
-    },
-    placementCount: 0,
-    placementDigest: digest,
-    routeCount,
-  });
-}
+const makeRuntimeSnapshot = Effect.fn("PreparationTest.makeRuntimeSnapshot")(
+  function* (seed: string, routeCount: number) {
+    const digest = Sha256HashSchema.make(`sha256:${seed.repeat(64)}`);
+    return yield* makeTryoutSnapshot({
+      activeAppLocales: ACTIVE_APP_LOCALES,
+      catalogDigest: digest,
+      counts: {
+        country: 1,
+        exam: routeCount > 1 ? 1 : 0,
+        section: 0,
+        set: 0,
+        track: 0,
+      },
+      placementCount: 0,
+      placementDigest: digest,
+      routeCount,
+    });
+  }
+);
 
 layer(NodeServices.layer)("try-out runtime preparation", (it) => {
   it.effect("accepts a replacement pair without a predecessor", () =>
     Effect.gen(function* () {
-      const snapshot = makeRuntimeSnapshot("7", 1);
+      const snapshot = yield* makeRuntimeSnapshot("7", 1);
       const snapshots = inheritContentSnapshots(null);
 
       expect(
@@ -58,7 +60,7 @@ layer(NodeServices.layer)("try-out runtime preparation", (it) => {
 
   it.effect("rejects a replacement without its permanent runtime pair", () =>
     Effect.gen(function* () {
-      const snapshot = makeRuntimeSnapshot("8", 1);
+      const snapshot = yield* makeRuntimeSnapshot("8", 1);
       const previousSnapshots = inheritContentSnapshots(null);
       const error = yield* validatePreparedTryoutRuntime({
         previousSnapshots,
@@ -82,7 +84,7 @@ layer(NodeServices.layer)("try-out runtime preparation", (it) => {
 
   it.effect("rejects a pair outside the resulting release state", () =>
     Effect.gen(function* () {
-      const runtimeSnapshot = makeRuntimeSnapshot("8", 0);
+      const runtimeSnapshot = yield* makeRuntimeSnapshot("8", 0);
       const error = yield* prepareTestRelease({
         tryoutRuntime: { recovery: null, result: runtimeSnapshot },
       }).pipe(Effect.flip);
@@ -97,8 +99,8 @@ layer(NodeServices.layer)("try-out runtime preparation", (it) => {
 
   it.effect("requires the distinct predecessor pair for a replacement", () =>
     Effect.gen(function* () {
-      const previous = makeRuntimeSnapshot("8", 1);
-      const result = makeRuntimeSnapshot("9", 2);
+      const previous = yield* makeRuntimeSnapshot("8", 1);
+      const result = yield* makeRuntimeSnapshot("9", 2);
       const previousSnapshots = {
         ...inheritContentSnapshots(null),
         tryout: inheritContentSnapshot(previous.snapshotId),
@@ -123,8 +125,8 @@ layer(NodeServices.layer)("try-out runtime preparation", (it) => {
 
   it.effect("rejects mismatched or duplicate retained pairs", () =>
     Effect.gen(function* () {
-      const current = makeRuntimeSnapshot("8", 1);
-      const other = makeRuntimeSnapshot("9", 2);
+      const current = yield* makeRuntimeSnapshot("8", 1);
+      const other = yield* makeRuntimeSnapshot("9", 2);
       const previousSnapshots = {
         ...inheritContentSnapshots(null),
         tryout: inheritContentSnapshot(current.snapshotId),

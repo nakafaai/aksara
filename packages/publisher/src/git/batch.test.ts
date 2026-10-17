@@ -31,12 +31,18 @@ describe("Git batch protocol", () => {
       Effect.gen(function* () {
         const metadataRequest = makeGitMetadataRequest(TEST_COMMIT_SHA, paths);
         const blobs = yield* decodeGitBatchMetadata(
-          joinGitFrames([gitFrame(first, false), gitFrame(second, false)]),
+          joinGitFrames([
+            yield* gitFrame(first, false),
+            yield* gitFrame(second, false),
+          ]),
           paths
         );
         const bodyRequest = makeGitBatchRequest(blobs);
         const decoded = yield* decodeGitBatchResponse(
-          joinGitFrames([gitFrame(first, true), gitFrame(second, true)]),
+          joinGitFrames([
+            yield* gitFrame(first, true),
+            yield* gitFrame(second, true),
+          ]),
           blobs
         );
 
@@ -45,7 +51,7 @@ describe("Git batch protocol", () => {
         );
         expect(metadataRequest.stdoutLimit).toBe(192);
         expect(new TextDecoder().decode(bodyRequest.stdin)).toBe(
-          `${testBlobId(first)}\n${testBlobId(second)}\n`
+          `${yield* testBlobId(first)}\n${yield* testBlobId(second)}\n`
         );
         expect(bodyRequest.stdoutLimit).toBe(
           first.byteLength + second.byteLength + 194
@@ -63,11 +69,11 @@ describe("Git batch protocol", () => {
       Effect.gen(function* () {
         const headers = [
           `${TEST_COMMIT_SHA}:${TEST_SOURCE_PATH} missing\n`,
-          `${testBlobId(first)} tree 4\n`,
-          `${testBlobId(first)} blob 9007199254740992\n`,
-          `${testBlobId(first)} blob -1\n`,
-          `${testBlobId(first)} blob 01\n`,
-          `${testBlobId(first)} blob ${MAX_RAW_MDX_BYTES + 1}\n`,
+          `${yield* testBlobId(first)} tree 4\n`,
+          `${yield* testBlobId(first)} blob 9007199254740992\n`,
+          `${yield* testBlobId(first)} blob -1\n`,
+          `${yield* testBlobId(first)} blob 01\n`,
+          `${yield* testBlobId(first)} blob ${MAX_RAW_MDX_BYTES + 1}\n`,
           "missing",
           `${"x".repeat(96)}\n`,
         ];
@@ -95,7 +101,10 @@ describe("Git batch protocol", () => {
         ).pipe(Effect.flip);
         expect(invalidUtf8.reason).toBe("protocol");
         const trailing = yield* decodeGitBatchMetadata(
-          joinGitFrames([gitFrame(first, false), gitFrame(second, false)]),
+          joinGitFrames([
+            yield* gitFrame(first, false),
+            yield* gitFrame(second, false),
+          ]),
           [TEST_SOURCE_PATH]
         ).pipe(Effect.flip);
         expect(trailing).toMatchObject({
@@ -109,13 +118,17 @@ describe("Git batch protocol", () => {
     "rejects changed identities and sizes, truncation, and trailing bytes",
     () =>
       Effect.gen(function* () {
-        const blobs = yield* decodeGitBatchMetadata(gitFrame(first, false), [
-          TEST_SOURCE_PATH,
-        ]);
-        const frame = gitFrame(first, true);
-        const sameSize = gitFrame(Uint8Array.of(0x61, 0x62, 0x63, 0x64), true);
+        const blobs = yield* decodeGitBatchMetadata(
+          yield* gitFrame(first, false),
+          [TEST_SOURCE_PATH]
+        );
+        const frame = yield* gitFrame(first, true);
+        const sameSize = yield* gitFrame(
+          Uint8Array.of(0x61, 0x62, 0x63, 0x64),
+          true
+        );
         const changedSize = new TextEncoder().encode(
-          `${testBlobId(first)} blob 3\nabc\n`
+          `${yield* testBlobId(first)} blob 3\nabc\n`
         );
         const wrongTerminator = frame.slice();
         wrongTerminator[wrongTerminator.length - 1] = 0;
@@ -141,11 +154,17 @@ describe("Git batch protocol", () => {
       const full = new Uint8Array(MAX_RAW_MDX_BYTES);
       const empty = new Uint8Array();
       const blobs = yield* decodeGitBatchMetadata(
-        joinGitFrames([gitFrame(empty, false), gitFrame(full, false)]),
+        joinGitFrames([
+          yield* gitFrame(empty, false),
+          yield* gitFrame(full, false),
+        ]),
         paths
       );
       const decoded = yield* decodeGitBatchResponse(
-        joinGitFrames([gitFrame(empty, true), gitFrame(full, true)]),
+        joinGitFrames([
+          yield* gitFrame(empty, true),
+          yield* gitFrame(full, true),
+        ]),
         blobs
       );
       expect(

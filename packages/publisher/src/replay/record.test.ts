@@ -1,5 +1,5 @@
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import {
@@ -17,12 +17,6 @@ const ReplayEntrySchema = Schema.Struct({
   value: Schema.String,
 });
 const entry = { sequence: 1, value: "test-record" };
-
-/** Creates the contract-shaped digest for exact test bytes. */
-function hashData(data: string) {
-  const digest = createHash("sha256").update(data).digest("hex");
-  return `sha256:${digest}`;
-}
 
 /** Returns one typed record-codec failure without a FiberFailure wrapper. */
 const reject = Effect.fn("ReplayRecordTest.reject")(
@@ -42,7 +36,7 @@ describe("replay record", () => {
 
       expect(decoded).toEqual(entry);
       expect(encoded.bytes).toBeGreaterThan(encoded.data.length);
-      expect(encoded.hash).toBe(hashData(encoded.data));
+      expect(encoded.hash).toBe(yield* hashText(encoded.data));
     })
   );
 
@@ -93,7 +87,7 @@ describe("replay record", () => {
         yield* reject(
           decodeReplayRecord({
             data: "x".repeat(MAX_REPLAY_RECORD_BYTES),
-            hash: hashData("x"),
+            hash: yield* hashText("x"),
             index: 5,
             schema: ReplayEntrySchema,
           })
@@ -112,13 +106,69 @@ describe("replay record", () => {
     })
   );
 
+  it.effect("maps a failed record digest into a hash spool failure", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only record digest failure.")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* reject(encodeReplayRecord(entry, 3));
+
+      expect(error).toMatchObject({
+        _tag: "ReplaySpoolError",
+        index: 3,
+        operation: "hash",
+      });
+    })
+  );
+
+  it.effect(
+    "maps a failed record digest during decoding into a hash spool failure",
+    () =>
+      Effect.gen(function* () {
+        const encoded = yield* encodeReplayRecord(entry, 5);
+        yield* Effect.acquireRelease(
+          Effect.sync(() =>
+            vi
+              .spyOn(globalThis.crypto.subtle, "digest")
+              .mockRejectedValueOnce(
+                new TypeError("Test-only record digest failure.")
+              )
+          ),
+          (mock) => Effect.sync(() => mock.mockRestore())
+        );
+
+        const error = yield* reject(
+          decodeReplayRecord({
+            data: encoded.data,
+            hash: encoded.hash,
+            index: 5,
+            schema: ReplayEntrySchema,
+          })
+        );
+
+        expect(error).toMatchObject({
+          _tag: "ReplaySpoolError",
+          index: 5,
+          operation: "hash",
+        });
+      })
+  );
+
   it.effect("rejects digest tampering before parsing", () =>
     Effect.gen(function* () {
       const data = encodeJsonText(entry);
       const error = yield* reject(
         decodeReplayRecord({
           data: `${data} `,
-          hash: hashData(data),
+          hash: yield* hashText(data),
           index: 7,
           schema: ReplayEntrySchema,
         })
@@ -128,23 +178,21 @@ describe("replay record", () => {
   );
 
   it.effect.each([
-    ["invalid JSON", "{", hashData("{")],
-    [
-      "invalid schema",
-      encodeJsonText({ sequence: "one", value: "test-record" }),
-      hashData(encodeJsonText({ sequence: "one", value: "test-record" })),
-    ],
-    [
-      "excess properties",
-      encodeJsonText({ ...entry, unexpected: true }),
-      hashData(encodeJsonText({ ...entry, unexpected: true })),
-    ],
-  ] as const)("rejects %s after digest verification", ([_label, data, hash]) =>
+    { data: "{", label: "invalid JSON" },
+    {
+      data: encodeJsonText({ sequence: "one", value: "test-record" }),
+      label: "invalid schema",
+    },
+    {
+      data: encodeJsonText({ ...entry, unexpected: true }),
+      label: "excess properties",
+    },
+  ])("rejects $label after digest verification", ({ data }) =>
     Effect.gen(function* () {
       const error = yield* reject(
         decodeReplayRecord({
           data,
-          hash,
+          hash: yield* hashText(data),
           index: 9,
           schema: ReplayEntrySchema,
         })

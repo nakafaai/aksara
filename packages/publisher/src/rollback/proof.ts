@@ -4,6 +4,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseManifest,
@@ -107,13 +108,17 @@ export function rollbackSnapshotStream(
   side: RollbackRecordSide
 ) {
   return records.pipe(
-    Stream.map((record) => {
+    Stream.mapEffect((record) => {
       const state = selectRollbackState(record, side);
-      return RollbackSnapshotEntrySchema.make({
-        index: state.item.index,
-        releaseId,
-        snapshot: snapshotRollbackState(state),
-      });
+      return snapshotRollbackState(state).pipe(
+        Effect.map((snapshot) =>
+          RollbackSnapshotEntrySchema.make({
+            index: state.item.index,
+            releaseId,
+            snapshot,
+          })
+        )
+      );
     })
   );
 }
@@ -127,7 +132,8 @@ type VerifyRollbackProofError =
     >
   | Effect.Error<
       ReturnType<typeof verifyRollbackSnapshot<ReplaySpoolError, never>>
-    >;
+    >
+  | ContentProjectionHashError;
 
 type VerifyRollbackProof = (input: {
   readonly manifest: ContentReleaseManifest;

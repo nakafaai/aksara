@@ -4,6 +4,7 @@ import {
   finalizeProjectionDigest,
   updateProjectionDigest,
 } from "@nakafa/aksara-contracts/projection/digest";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import {
@@ -75,6 +76,7 @@ interface BuildRollbackReleaseInput<E, R> {
 
 type BuildRollbackReleaseError<E, R> =
   | E
+  | ContentProjectionHashError
   | Effect.Error<ReturnType<typeof createProjectionDigest>>
   | Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
   | Effect.Error<ReturnType<typeof updateProjectionDigest>>
@@ -154,14 +156,18 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
             : Effect.void
         ),
         Effect.andThen(
-          updateRollbackSnapshotDigest(
-            input.releaseId,
-            rollbackState,
-            RollbackSnapshotEntrySchema.make({
-              index: record.current.item.index,
-              releaseId: input.releaseId,
-              snapshot: snapshotRollbackState(record.current),
-            })
+          snapshotRollbackState(record.current).pipe(
+            Effect.flatMap((snapshot) =>
+              updateRollbackSnapshotDigest(
+                input.releaseId,
+                rollbackState,
+                RollbackSnapshotEntrySchema.make({
+                  index: record.current.item.index,
+                  releaseId: input.releaseId,
+                  snapshot,
+                })
+              )
+            )
           )
         )
       );

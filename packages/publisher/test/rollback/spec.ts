@@ -19,6 +19,7 @@ import {
   MaterialSectionSchema,
 } from "@nakafa/aksara-contracts/projection/material";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import { Effect } from "effect";
 import {
   DerivedRollbackRecordSchema,
   type DerivedRollbackState,
@@ -30,7 +31,9 @@ import { projection as baseProjection, contentRecord } from "#test/publication";
 const rollbackFixtureReleaseId = ReleaseIdSchema.make("test-derived-rollback");
 
 /** Builds one internally coherent derived material state and compact head. */
-export function makeDerivedMaterial(input: {
+export const makeDerivedMaterial = Effect.fn(
+  "RollbackTest.makeDerivedMaterial"
+)(function* (input: {
   readonly contentKey: string;
   readonly hashCharacter: string;
   readonly index: number;
@@ -91,7 +94,8 @@ export function makeDerivedMaterial(input: {
     kind: "upsert",
     projection,
   } satisfies DerivedRollbackState;
-  const snapshot = snapshotRollbackState(state);
+  const snapshot = yield* snapshotRollbackState(state);
+  const projectionHash = yield* hashContentProjection(projection);
   const head = MaterialHeadSchema.make({
     artifactHash: change.artifactHash,
     artifactLocale: change.artifactLocale,
@@ -99,7 +103,7 @@ export function makeDerivedMaterial(input: {
     contentKey: change.contentKey,
     delivery: change.delivery,
     family: "material",
-    projectionHash: hashContentProjection(projection),
+    projectionHash,
     publicPath: projection.publicPath,
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
@@ -110,7 +114,7 @@ export function makeDerivedMaterial(input: {
     snapshot,
     state,
   };
-}
+});
 
 /** Builds one body-free derived absence state for a known material identity. */
 export function makeDerivedDelete(input: {

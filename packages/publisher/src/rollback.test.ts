@@ -62,7 +62,7 @@ describe("prepareRollback", () => {
         const error = yield* Effect.scoped(
           prepareRollbackFixture(
             rollbackTarget(loadPage),
-            incompleteRendererManifest(rendererManifest)
+            yield* incompleteRendererManifest(rendererManifest)
           )
         ).pipe(Effect.flip);
         expect(error._tag).toBe("ContractDecodeError");

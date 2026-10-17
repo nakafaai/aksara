@@ -1,9 +1,9 @@
-import { createPrivateKey, type KeyObject } from "node:crypto";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import type {
   ArtifactCompiledByteLengthMismatchError,
+  ArtifactHashComputationError,
   ArtifactPayloadFieldByteLimitError,
   ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
@@ -26,6 +26,7 @@ import {
   type ReleaseHashComputationError,
 } from "@nakafa/aksara-contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
+import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import {
   hashTryoutRuntimeBundlePayload,
@@ -47,6 +48,7 @@ export interface PublicationSigner {
     payload: CompiledContentPayload
   ) => Effect.Effect<
     SignedContentArtifact,
+    | ArtifactHashComputationError
     | ArtifactSourceHashComputationError
     | ArtifactSourceHashMismatchError
     | ArtifactCompiledByteLengthMismatchError
@@ -78,18 +80,18 @@ type PublicationSignerFactory = (input: {
 /** Verifies and signs one compiled artifact under the configured key. */
 function signArtifact(
   keyId: typeof SigningKeyIdSchema.Type,
-  privateKey: KeyObject,
+  privateKeyPem: string,
   payload: CompiledContentPayload
 ) {
   return verifyCompiledContentSourceHash(payload).pipe(
-    Effect.flatMap(() => {
-      const artifactHash = hashCompiledContentPayload(payload);
-      return signCanonicalInput(
-        privateKey,
+    Effect.flatMap(() => hashCompiledContentPayload(payload)),
+    Effect.flatMap((artifactHash) =>
+      signCanonicalInput(
+        privateKeyPem,
         canonicalizeContentArtifactSigningInput(artifactHash, payload),
         "artifact"
-      ).pipe(Effect.map((signature) => ({ artifactHash, signature })));
-    }),
+      ).pipe(Effect.map((signature) => ({ artifactHash, signature })))
+    ),
     Effect.flatMap(({ artifactHash, signature }) => {
       const artifact = SignedContentArtifactSchema.make({
         artifactHash,
@@ -105,13 +107,13 @@ function signArtifact(
 /** Hashes and signs one complete release manifest. */
 function signRelease(
   keyId: typeof SigningKeyIdSchema.Type,
-  privateKey: KeyObject,
+  privateKeyPem: string,
   manifest: ContentReleaseManifest
 ) {
   return hashContentReleaseManifest(manifest).pipe(
     Effect.flatMap((manifestHash) =>
       signCanonicalInput(
-        privateKey,
+        privateKeyPem,
         canonicalizeContentReleaseSigningInput(manifestHash, manifest),
         "release"
       ).pipe(
@@ -131,13 +133,13 @@ function signRelease(
 /** Hashes and signs one permanent try-out runtime bundle payload. */
 function signTryoutRuntimeBundle(
   keyId: typeof SigningKeyIdSchema.Type,
-  privateKey: KeyObject,
+  privateKeyPem: string,
   payload: TryoutRuntimeBundlePayload
 ) {
   return hashTryoutRuntimeBundlePayload(payload).pipe(
     Effect.flatMap((bundleHash) =>
       signCanonicalInput(
-        privateKey,
+        privateKeyPem,
         canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, payload),
         "tryout-runtime-bundle"
       ).pipe(
@@ -170,34 +172,31 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
           })
       )
     );
-    const privateKey = yield* Effect.try({
-      catch: () =>
-        new ContentSigningError({
-          message: "The Ed25519 private key could not be parsed.",
-          stage: "configuration",
-        }),
-      try: () => createPrivateKey(input.privateKeyPem),
-    });
-    if (privateKey.asymmetricKeyType !== "ed25519") {
-      return yield* new ContentSigningError({
-        message: "The configured private key is not Ed25519.",
-        stage: "configuration",
-      });
-    }
+    yield* ed25519PublicKeyPem(input.privateKeyPem).pipe(
+      Effect.mapError(
+        () =>
+          new ContentSigningError({
+            message: "The Ed25519 private key could not be parsed.",
+            stage: "configuration",
+          })
+      )
+    );
 
     return {
       /** Signs one source-verified artifact with the configured key. */
       signArtifact: Effect.fn("AksaraPublisher.signArtifact")((payload) =>
-        signArtifact(keyId, privateKey, payload)
+        signArtifact(keyId, input.privateKeyPem, payload)
       ),
       /** Signs one canonical release manifest with the configured key. */
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
-        signRelease(keyId, privateKey, manifest)
+        signRelease(keyId, input.privateKeyPem, manifest)
       ),
       /** Signs one renderer-bound try-out snapshot with the configured key. */
       signTryoutRuntimeBundle: Effect.fn(
         "AksaraPublisher.signTryoutRuntimeBundle"
-      )((payload) => signTryoutRuntimeBundle(keyId, privateKey, payload)),
+      )((payload) =>
+        signTryoutRuntimeBundle(keyId, input.privateKeyPem, payload)
+      ),
     } satisfies PublicationSigner;
   })
 );

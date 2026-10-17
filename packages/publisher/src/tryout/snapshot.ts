@@ -1,4 +1,5 @@
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
@@ -7,8 +8,10 @@ import type {
 import { ContentSnapshotRowSchema } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { TryoutCanonicalHashError } from "@nakafa/aksara-contracts/tryout/canonical";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
 import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/hash/catalog";
+import type { TryoutContentHashError } from "@nakafa/aksara-contracts/tryout/hash/content";
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/hash/placement";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
@@ -64,10 +67,13 @@ type SnapshotVerificationError = Effect.Error<
 /** Every expected failure before a try-out snapshot can enter a release. */
 export type PrepareTryoutSnapshotError<E> =
   | E
+  | ContentProjectionHashError
   | QuestionInspectionError
   | RendererManifestError
   | ReplaySpoolError
   | SnapshotVerificationError
+  | TryoutCanonicalHashError
+  | TryoutContentHashError
   | TryoutHeadBindingError<never>
   | TryoutContentMissingError;
 
@@ -169,7 +175,7 @@ export const prepareTryoutSnapshot: <E, R>(
   ]);
   const manifest = {
     family: "tryout",
-    manifest: makeTryoutSnapshot({
+    manifest: yield* makeTryoutSnapshot({
       activeAppLocales: ACTIVE_APP_LOCALES,
       catalogDigest: catalog.digest,
       counts: countCatalogKinds(projection.catalog),

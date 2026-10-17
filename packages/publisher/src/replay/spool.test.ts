@@ -1,16 +1,18 @@
-import { randomUUID } from "node:crypto";
-import { tmpdir } from "node:os";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { describe, expect, layer } from "@effect/vitest";
+import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import {
   Array as Arr,
+  Crypto,
   Effect,
   FileSystem,
   Layer,
+  Path,
   PlatformError,
   Schema,
   Stream,
 } from "effect";
+import { Hex } from "effect/encoding";
 import { createReplaySpool } from "#publisher/replay/spool";
 
 const ReplayEntrySchema = Schema.Struct({
@@ -22,15 +24,36 @@ const secondEntry = { sequence: 2, value: "test-second" };
 const entries = [firstEntry, secondEntry];
 const nodeLayer = Layer.merge(NodeFileSystem.layer, NodePath.layer);
 
+/** Returns one unique temporary-name prefix drawn from the Effect Crypto service. */
+const uniquePrefix = Effect.fn("ReplaySpoolTest.uniquePrefix")(
+  function* (label: string) {
+    const crypto = yield* Crypto.Crypto;
+    const bytes = yield* crypto.randomBytes(16);
+    return `${label}-${Hex.encode(bytes)}-`;
+  },
+  Effect.provideService(Crypto.Crypto, webCryptoService)
+);
+
+/** Finds the platform temporary root as the parent of one probe directory it creates. */
+const temporaryRoot = Effect.fn("ReplaySpoolTest.temporaryRoot")(function* (
+  fileSystem: typeof FileSystem.FileSystem.Service
+) {
+  const path = yield* Path.Path;
+  const probe = yield* Effect.scoped(
+    fileSystem.makeTempDirectoryScoped({ prefix: "aksara-probe-" })
+  );
+  return path.dirname(probe);
+});
+
 /** Lists only temporary roots owned by one unique test prefix. */
 const listRoots = Effect.fn("ReplaySpoolTest.listRoots")(
   (fileSystem: typeof FileSystem.FileSystem.Service, prefix: string) =>
     Effect.gen(function* () {
-      const temporaryRoot = yield* Effect.sync(tmpdir);
-      const names = yield* fileSystem.readDirectory(temporaryRoot);
+      const root = yield* temporaryRoot(fileSystem);
+      const names = yield* fileSystem.readDirectory(root);
       return Arr.map(
         Arr.filter(names, (name) => name.startsWith(prefix)),
-        (name) => `${temporaryRoot}/${name}`
+        (name) => `${root}/${name}`
       );
     })
 );
@@ -65,9 +88,7 @@ describe("replay spool", () => {
       "replays private records exactly and removes its scoped directory",
       () =>
         Effect.gen(function* () {
-          const prefix = yield* Effect.sync(
-            () => `aksara-spool-${randomUUID()}-`
-          );
+          const prefix = yield* uniquePrefix("aksara-spool");
           const fileSystem = yield* FileSystem.FileSystem;
           const scoped = yield* Effect.scoped(
             Effect.gen(function* () {
@@ -115,7 +136,7 @@ describe("replay spool", () => {
       Effect.scoped(
         Effect.gen(function* () {
           const spool = yield* createReplaySpool({
-            prefix: yield* Effect.sync(() => `aksara-index-${randomUUID()}-`),
+            prefix: yield* uniquePrefix("aksara-index"),
             schema: ReplayEntrySchema,
             stream: Stream.make(firstEntry),
           });
@@ -134,7 +155,7 @@ describe("replay spool", () => {
       Effect.scoped(
         Effect.gen(function* () {
           const spool = yield* createReplaySpool({
-            prefix: yield* Effect.sync(() => `aksara-empty-${randomUUID()}-`),
+            prefix: yield* uniquePrefix("aksara-empty"),
             schema: ReplayEntrySchema,
             stream: Stream.empty,
           });
@@ -150,9 +171,7 @@ describe("replay spool", () => {
 
     it.effect("preserves a source failure and still removes scoped files", () =>
       Effect.gen(function* () {
-        const prefix = yield* Effect.sync(
-          () => `aksara-source-${randomUUID()}-`
-        );
+        const prefix = yield* uniquePrefix("aksara-source");
         const fileSystem = yield* FileSystem.FileSystem;
         const error = yield* Effect.scoped(
           createReplaySpool({
@@ -223,9 +242,7 @@ describe("replay spool", () => {
       () =>
         Effect.scoped(
           Effect.gen(function* () {
-            const prefix = yield* Effect.sync(
-              () => `aksara-read-${randomUUID()}-`
-            );
+            const prefix = yield* uniquePrefix("aksara-read");
             const fileSystem = yield* FileSystem.FileSystem;
             const spool = yield* createReplaySpool({
               prefix,

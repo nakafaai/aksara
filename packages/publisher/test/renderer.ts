@@ -1,5 +1,4 @@
-import { createHash } from "node:crypto";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import {
   canonicalizeRendererManifestContract,
@@ -9,7 +8,7 @@ import {
   RENDERER_DOMAINS,
   type RendererDomain,
 } from "@nakafa/aksara-contracts/renderer/domain";
-import { Array as Arr } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 /** Expands sparse publisher fixtures into every canonical renderer domain. */
 export function testRendererDomains(
@@ -24,9 +23,9 @@ export function testRendererDomains(
 }
 
 /** Builds a correctly hashed incomplete envelope to test ingress rejection. */
-export function incompleteRendererManifest(
-  manifest: RendererManifestEnvelope
-): RendererManifestEnvelope {
+export const incompleteRendererManifest = Effect.fn(
+  "PublisherTest.incompleteRendererManifest"
+)(function* (manifest: RendererManifestEnvelope) {
   const domains = Arr.dropRight(manifest.domains, 1);
   const contract = {
     base: manifest.base,
@@ -36,10 +35,6 @@ export function incompleteRendererManifest(
   return {
     ...manifest,
     domains,
-    hash: Sha256HashSchema.make(
-      `sha256:${createHash("sha256")
-        .update(canonicalizeRendererManifestContract(contract))
-        .digest("hex")}`
-    ),
-  };
-}
+    hash: yield* hashText(canonicalizeRendererManifestContract(contract)),
+  } satisfies RendererManifestEnvelope;
+});

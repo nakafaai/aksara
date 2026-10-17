@@ -8,7 +8,7 @@ import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rol
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
-import type { Effect, Stream } from "effect";
+import { Effect, type Stream } from "effect";
 import {
   familyPublicationPlanSchema,
   planFamilyPublication,
@@ -33,22 +33,24 @@ type PlanMaterialPublicationContext =
   | Effect.Services<ReturnType<typeof inspectMaterialDocument>>;
 
 /** Derives one complete material head from a newly compiled upsert. */
-function makeMaterialHead(record: PreparedContentUpsert): MaterialHead {
-  const { change, payload, projection } = record;
-  return MaterialHeadSchema.make({
-    artifactHash: change.artifactHash,
-    artifactLocale: change.artifactLocale,
-    compilerConfigHash: payload.compilerConfigHash,
-    contentKey: change.contentKey,
-    delivery: change.delivery,
-    family: "material",
-    projectionHash: hashContentProjection(projection),
-    publicPath: projectionPublicPath(projection),
-    rendererDomain: change.rendererDomain,
-    sourceHash: payload.sourceHash,
-    sourcePath: change.sourcePath,
-  });
-}
+const makeMaterialHead = Effect.fn("AksaraPublisher.makeMaterialHead")(
+  function* (record: PreparedContentUpsert) {
+    const { change, payload, projection } = record;
+    return MaterialHeadSchema.make({
+      artifactHash: change.artifactHash,
+      artifactLocale: change.artifactLocale,
+      compilerConfigHash: payload.compilerConfigHash,
+      contentKey: change.contentKey,
+      delivery: change.delivery,
+      family: "material",
+      projectionHash: yield* hashContentProjection(projection),
+      publicPath: projectionPublicPath(projection),
+      rendererDomain: change.rendererDomain,
+      sourceHash: payload.sourceHash,
+      sourcePath: change.sourcePath,
+    });
+  }
+);
 
 /** Preserves one existing material head for authenticated rollback. */
 function priorMaterial(head: MaterialHead): RollbackSnapshotState {

@@ -1,11 +1,10 @@
-import { Buffer } from "node:buffer";
-import { createHash, generateKeyPairSync } from "node:crypto";
 import { NodeServices } from "@effect/platform-node";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
 } from "@nakafa/aksara-contracts/content";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import {
   CorpusSourcePathSchema,
   GitCommitShaSchema,
@@ -24,6 +23,7 @@ import {
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Path, Schema, Stream } from "effect";
 import { prepareContentRelease } from "#publisher/preparation";
@@ -40,7 +40,7 @@ export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
 export const releaseId = ReleaseIdSchema.make("test-rollback-forward");
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
-const keys = generateKeyPairSync("ed25519");
+const keys = await Effect.runPromise(generateEd25519KeyPem());
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
     base: ["TestBase"],
@@ -64,9 +64,10 @@ const sourceRendererManifest = await Effect.runPromise(
 const sourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/test/rollback/forward.mdx"
 );
+const rawMdxSourceHash = await Effect.runPromise(hashText(rawMdx));
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: Buffer.byteLength(compiledCode, "utf8"),
+  byteLength: new TextEncoder().encode(compiledCode).byteLength,
   compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
   compilerVersion: "0.1.0",
@@ -77,7 +78,7 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   rawMdx,
   rendererDomain: "mathematics",
   requiredComponents: ["CurrentOnly"],
-  sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
+  sourceHash: rawMdxSourceHash,
 });
 const rollbackAppLocale = AppLocaleSchema.make("en");
 const source = CompileDocumentSourceSchema.make({
@@ -106,7 +107,12 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   sitemap: true,
   topicTitle: "Test Rollback Topic",
 });
-const artifactHash = hashCompiledContentPayload(payload);
+const artifactHash = await Effect.runPromise(
+  hashCompiledContentPayload(payload)
+);
+const projectionHash = await Effect.runPromise(
+  hashContentProjection(projection)
+);
 const change = {
   artifactHash,
   artifactLocale: payload.artifactLocale,
@@ -124,7 +130,7 @@ const head = MaterialHeadSchema.make({
   contentKey: payload.contentKey,
   delivery: change.delivery,
   family: "material",
-  projectionHash: hashContentProjection(projection),
+  projectionHash,
   publicPath: projection.publicPath,
   rendererDomain: payload.rendererDomain,
   sourceHash: payload.sourceHash,
@@ -133,9 +139,7 @@ const head = MaterialHeadSchema.make({
 export const signer = await Effect.runPromise(
   makeEd25519PublicationSigner({
     keyId: "test-rollback-key",
-    privateKeyPem: keys.privateKey
-      .export({ format: "pem", type: "pkcs8" })
-      .toString(),
+    privateKeyPem: keys.privateKeyPem,
   })
 );
 const artifact = await Effect.runPromise(signer.signArtifact(payload));
@@ -201,10 +205,7 @@ export const rollbackPage = RollbackPageSchema.make({
   total: 1,
 });
 const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
+  resolve: () => Effect.succeed(keys.publicKeyPem),
 });
 
 /** Builds the complete target around observable rollback and active-head reads. */

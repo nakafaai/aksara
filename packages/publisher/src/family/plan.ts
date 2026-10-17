@@ -8,6 +8,7 @@ import {
   type PublicPath,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
@@ -91,7 +92,9 @@ interface FamilyPlanAdapter<
     rendererManifest: RendererManifestEnvelope
   ) => Effect.Effect<PreparedContentUpsert, CompileError, CompileContext>;
   /** Derives the desired published head from one compiled upsert. */
-  readonly head: (record: PreparedContentUpsert) => Head;
+  readonly head: (
+    record: PreparedContentUpsert
+  ) => Effect.Effect<Head, ContentProjectionHashError>;
   /** Reads and validates one authored document before compilation. */
   readonly inspect: (
     checkoutRoot: string,
@@ -187,7 +190,7 @@ const prepareFamilyDiff = Effect.fn("AksaraPublisher.prepareFamilyDiff")(
             : adapter.absent(diff.entry),
         record,
       },
-      result: adapter.head(record),
+      result: yield* adapter.head(record),
     } satisfies FamilyPublicationPlan<Head>;
   }
 );
@@ -222,7 +225,7 @@ export function planFamilyPublication<
   readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<
   FamilyPublicationPlan<Head>,
-  CompileError | InspectError | PublishedError,
+  CompileError | ContentProjectionHashError | InspectError | PublishedError,
   CompileContext | InspectContext | PublishedContext
 > {
   return diffScopedFamilyHeads({

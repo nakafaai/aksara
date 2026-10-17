@@ -10,17 +10,19 @@ import {
   makeDerivedTransition,
 } from "#test/rollback/spec";
 
-const current = makeDerivedMaterial({
-  contentKey: "test:catalog:a",
-  hashCharacter: "a",
-  index: 0,
-  publicPath: "subjects/test/catalog/a",
-});
-const restored = makeDerivedMaterial({
-  contentKey: "test:catalog:a",
-  hashCharacter: "b",
-  index: 0,
-  publicPath: "subjects/test/catalog/restored",
+const fixtures = Effect.all({
+  current: makeDerivedMaterial({
+    contentKey: "test:catalog:a",
+    hashCharacter: "a",
+    index: 0,
+    publicPath: "subjects/test/catalog/a",
+  }),
+  restored: makeDerivedMaterial({
+    contentKey: "test:catalog:a",
+    hashCharacter: "b",
+    index: 0,
+    publicPath: "subjects/test/catalog/restored",
+  }),
 });
 const deleted = makeDerivedDelete({ contentKey: "test:catalog:a", index: 0 });
 
@@ -49,6 +51,7 @@ describe("mergeRollbackResult", () => {
     "keeps untouched heads, including body-only heads without routes",
     () =>
       Effect.gen(function* () {
+        const { current } = yield* fixtures;
         const { publicPath: _publicPath, ...bodyOnlyFields } = current.head;
         const bodyOnly = MaterialHeadSchema.make(bodyOnlyFields);
 
@@ -65,6 +68,7 @@ describe("mergeRollbackResult", () => {
     "restores a prior material head when the current head is absent",
     () =>
       Effect.gen(function* () {
+        const { restored } = yield* fixtures;
         expect(
           yield* collect({
             active: Stream.empty,
@@ -80,6 +84,7 @@ describe("mergeRollbackResult", () => {
     "removes a matching active head when the prior state is absent",
     () =>
       Effect.gen(function* () {
+        const { current } = yield* fixtures;
         expect(
           yield* collect({
             active: Stream.make(current.head),
@@ -91,44 +96,51 @@ describe("mergeRollbackResult", () => {
       })
   );
 
-  it.effect.each([
-    {
-      active: Stream.empty,
-      reason: "missing",
-      transition: makeDerivedTransition(current.state, deleted),
-    },
-    {
-      active: Stream.make(current.head),
-      reason: "unexpected",
-      transition: makeDerivedTransition(deleted, restored.state),
-    },
-    {
-      active: Stream.make(
-        MaterialHeadSchema.make({
-          ...current.head,
-          artifactHash: restored.head.artifactHash,
-        })
-      ),
-      reason: "different",
-      transition: makeDerivedTransition(current.state, deleted),
-    },
-  ] as const)("rejects a $reason active-state contradiction", (input) =>
+  it.effect("rejects every active-state contradiction", () =>
     Effect.gen(function* () {
-      expect(
-        yield* reject({
-          active: input.active,
-          transitions: Stream.make(input.transition),
+      const { current, restored } = yield* fixtures;
+      const contradictions = [
+        {
+          active: Stream.empty,
+          reason: "missing",
+          transition: makeDerivedTransition(current.state, deleted),
+        },
+        {
+          active: Stream.make(current.head),
+          reason: "unexpected",
+          transition: makeDerivedTransition(deleted, restored.state),
+        },
+        {
+          active: Stream.make(
+            MaterialHeadSchema.make({
+              ...current.head,
+              artifactHash: restored.head.artifactHash,
+            })
+          ),
+          reason: "different",
+          transition: makeDerivedTransition(current.state, deleted),
+        },
+      ];
+      yield* Effect.forEach(contradictions, (input) =>
+        Effect.gen(function* () {
+          expect(
+            yield* reject({
+              active: input.active,
+              transitions: Stream.make(input.transition),
+            })
+          ).toMatchObject({
+            _tag: "RollbackCatalogStateMismatchError",
+            reason: input.reason,
+          });
         })
-      ).toMatchObject({
-        _tag: "RollbackCatalogStateMismatchError",
-        reason: input.reason,
-      });
+      );
     })
   );
 
   it.effect("rejects a restored route colliding with an untouched head", () =>
     Effect.gen(function* () {
-      const untouched = makeDerivedMaterial({
+      const { restored } = yield* fixtures;
+      const untouched = yield* makeDerivedMaterial({
         contentKey: "test:catalog:b",
         hashCharacter: "c",
         index: 1,

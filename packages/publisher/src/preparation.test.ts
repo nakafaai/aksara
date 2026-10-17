@@ -128,7 +128,7 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
           invoked = true;
           return Stream.make(baseTransition);
         }),
-        rendererManifest: incompleteRendererManifest(rendererManifest),
+        rendererManifest: yield* incompleteRendererManifest(rendererManifest),
       }).pipe(Effect.flip);
       expect(error._tag).toBe("ContractDecodeError");
       expect(invoked).toBe(false);

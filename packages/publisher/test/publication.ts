@@ -76,9 +76,16 @@ export const projection = MaterialLessonProjectionSchema.make({
   sitemap: true,
   topicTitle: "Test Material",
 });
+const publicationArtifactHash = await Effect.runPromise(
+  hashCompiledContentPayload(publicationPayload)
+);
+const publicationProjectionHash = await Effect.runPromise(
+  hashContentProjection(projection)
+);
+
 export const contentRecord = {
   change: ContentUpsertSchema.make({
-    artifactHash: hashCompiledContentPayload(publicationPayload),
+    artifactHash: publicationArtifactHash,
     artifactLocale: publicationPayload.artifactLocale,
     contentKey: publicationPayload.contentKey,
     delivery: "public",
@@ -102,7 +109,7 @@ export const head = MaterialHeadSchema.make({
   contentKey: contentRecord.change.contentKey,
   delivery: contentRecord.change.delivery,
   family: "material",
-  projectionHash: hashContentProjection(projection),
+  projectionHash: publicationProjectionHash,
   publicPath: projection.publicPath,
   rendererDomain: contentRecord.change.rendererDomain,
   sourceHash: publicationPayload.sourceHash,

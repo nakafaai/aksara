@@ -1,9 +1,3 @@
-import { Buffer } from "node:buffer";
-import {
-  createHash,
-  generateKeyPairSync,
-  sign as signBytes,
-} from "node:crypto";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   type CompiledContentPayload,
@@ -11,6 +5,7 @@ import {
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,
 } from "@nakafa/aksara-contracts/content";
+import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -32,6 +27,10 @@ import {
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import {
+  generateEd25519KeyPem,
+  signEd25519Message,
+} from "@nakafa/aksara-contracts/signature/key";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema, Stream } from "effect";
 import {
@@ -44,7 +43,9 @@ import { testRendererDomains } from "#test/renderer";
 
 const rawMdx = "## Test protocol";
 const compiledCode = "return {};";
-const keys = generateKeyPairSync("ed25519");
+const { privateKeyPem, publicKeyPem } = await Effect.runPromise(
+  generateEd25519KeyPem()
+);
 const keyId = SigningKeyIdSchema.make("test-rollback-key");
 /** Builds the renderer contract used by authenticated rollback fixtures. */
 export const makeRollbackRendererManifest = Effect.fn(
@@ -59,9 +60,10 @@ export const makeRollbackRendererManifest = Effect.fn(
     publishedDomains: ["mathematics"],
   })
 );
+const rawMdxSourceHash = await Effect.runPromise(hashText(rawMdx));
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: Buffer.byteLength(compiledCode, "utf8"),
+  byteLength: new TextEncoder().encode(compiledCode).byteLength,
   compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
   compilerVersion: "0.1.0",
@@ -72,32 +74,30 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   rawMdx,
   rendererDomain: "mathematics",
   requiredComponents: [],
-  sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
+  sourceHash: rawMdxSourceHash,
 });
 const rollbackAppLocale = AppLocaleSchema.make("en");
 
 /** Signs one compiled payload with the shared rollback test key. */
-function signRollbackPayload(value: typeof payload) {
-  const artifactHash = hashCompiledContentPayload(value);
-  const signature = Ed25519SignatureSchema.make(
-    signBytes(
-      null,
-      Buffer.from(
-        canonicalizeContentArtifactSigningInput(artifactHash, value),
-        "utf8"
-      ),
-      keys.privateKey
-    ).toString("base64url")
-  );
-  return SignedContentArtifactSchema.make({
-    artifactHash,
-    keyId,
-    payload: value,
-    signature,
-  });
-}
+const signRollbackPayload = Effect.fn("publisher.rollback.testSignPayload")(
+  function* (value: typeof payload) {
+    const artifactHash = yield* hashCompiledContentPayload(value);
+    const signature = yield* signEd25519Message(
+      privateKeyPem,
+      canonicalizeContentArtifactSigningInput(artifactHash, value)
+    );
+    return SignedContentArtifactSchema.make({
+      artifactHash,
+      keyId,
+      payload: value,
+      signature,
+    });
+  }
+);
 
-export const rollbackArtifact = signRollbackPayload(payload);
+export const rollbackArtifact = await Effect.runPromise(
+  signRollbackPayload(payload)
+);
 export const rollbackProjection = Schema.decodeSync(
   MaterialLessonProjectionSchema
 )({
@@ -139,8 +139,9 @@ const incompatiblePayload = CompiledContentPayloadSchema.make({
   ...payload,
   requiredComponents: ["CandidateMissing"],
 });
-export const incompatibleRollbackArtifact =
-  signRollbackPayload(incompatiblePayload);
+export const incompatibleRollbackArtifact = await Effect.runPromise(
+  signRollbackPayload(incompatiblePayload)
+);
 export const incompatibleRollbackUpsert = RollbackUpsertStateSchema.make({
   artifact: incompatibleRollbackArtifact,
   change: {
@@ -185,16 +186,14 @@ export const makeLargeRollbackRecord = Effect.fn(
   const largePayload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)(
     {
       ...rollbackArtifact.payload,
-      byteLength: Buffer.byteLength(largeCompiledCode, "utf8"),
+      byteLength: new TextEncoder().encode(largeCompiledCode).byteLength,
       compiledCode: largeCompiledCode,
       plainText: "p".repeat(90 * 1024),
       rawMdx: largeRawMdx,
-      sourceHash: `sha256:${createHash("sha256")
-        .update(largeRawMdx)
-        .digest("hex")}`,
+      sourceHash: yield* hashText(largeRawMdx),
     }
   );
-  const artifact = signRollbackPayload(largePayload);
+  const artifact = yield* signRollbackPayload(largePayload);
   const projection = MaterialLessonProjectionSchema.make({
     ...rollbackProjection,
     metadata: {
@@ -225,13 +224,15 @@ export const priorRollbackReleaseId = ReleaseIdSchema.make(
 );
 
 /** Builds one derived upsert from a real publication record. */
-export function makeDerivedRollbackUpsert(record: {
+export const makeDerivedRollbackUpsert = Effect.fn(
+  "publisher.rollback.testDerivedUpsert"
+)(function* (record: {
   readonly change: RollbackUpsertState["change"];
   readonly payload: CompiledContentPayload;
   readonly projection: ContentProjection;
 }) {
   return {
-    artifact: signRollbackPayload(record.payload),
+    artifact: yield* signRollbackPayload(record.payload),
     item: {
       change: record.change,
       index: 0,
@@ -240,13 +241,10 @@ export function makeDerivedRollbackUpsert(record: {
     kind: "upsert",
     projection: record.projection,
   } satisfies DerivedRollbackState;
-}
+});
 
 const resolver = ContentVerificationKeyResolver.of({
-  resolve: () =>
-    Effect.succeed(
-      keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-    ),
+  resolve: () => Effect.succeed(publicKeyPem),
 });
 
 /** Collects derived records through the selected signature and renderer policy. */

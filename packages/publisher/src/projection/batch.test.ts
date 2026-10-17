@@ -1,6 +1,5 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
@@ -81,8 +80,8 @@ describe("projection batching", () => {
           Arr.every(
             batches,
             (batch) =>
-              Buffer.byteLength(canonicalizeProjectionBatch(batch), "utf8") <=
-              MAX_PROJECTION_BATCH_BYTES
+              new TextEncoder().encode(canonicalizeProjectionBatch(batch))
+                .byteLength <= MAX_PROJECTION_BATCH_BYTES
           )
         ).toBe(true);
       })
@@ -105,8 +104,8 @@ describe("projection batching", () => {
         Arr.every(
           batches,
           (batch) =>
-            Buffer.byteLength(canonicalizeProjectionBatch(batch), "utf8") <=
-            MAX_PROJECTION_BATCH_BYTES
+            new TextEncoder().encode(canonicalizeProjectionBatch(batch))
+              .byteLength <= MAX_PROJECTION_BATCH_BYTES
         )
       ).toBe(true);
     })

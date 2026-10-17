@@ -1,7 +1,4 @@
 // @vitest-environment node
-import { Buffer } from "node:buffer";
-import { generateKeyPairSync, verify } from "node:crypto";
-
 import { assert, describe, expect, it } from "@effect/vitest";
 import {
   GitCommitShaSchema,
@@ -9,6 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
@@ -21,59 +19,63 @@ import { Array as Arr, Effect, MutableHashMap, Option } from "effect";
 import { preparePublicationRuntimes } from "#publisher/publication/runtime";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { rendererManifest } from "#test/publication";
-import { signingManifest } from "#test/signing";
+import { signingManifest, verifyWithPublicKeyPem } from "#test/signing";
 
-const keys = generateKeyPairSync("ed25519");
 const signingKeyId = "test-publication-runtime-key";
-const resolver = ContentVerificationKeyResolver.of({
-  resolve: (keyId) =>
-    keyId === signingKeyId
-      ? Effect.succeed(
-          keys.publicKey.export({ format: "pem", type: "spki" }).toString()
-        )
-      : Effect.fail(new SigningKeyNotFoundError({ keyId })),
-});
 const sourceGitSha = GitCommitShaSchema.make("d".repeat(40));
-const snapshot = makeTryoutSnapshot({
-  activeAppLocales: signingManifest.activeAppLocales,
-  catalogDigest: signingManifest.itemsDigest,
-  counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-  placementCount: 1,
-  placementDigest: signingManifest.resultDigest,
-  routeCount: 5,
+
+/** Creates one fresh signing key and the runtime fixtures that every test shares. */
+const fixtures = Effect.gen(function* () {
+  const keys = yield* generateEd25519KeyPem();
+  const snapshot = yield* makeTryoutSnapshot({
+    activeAppLocales: signingManifest.activeAppLocales,
+    catalogDigest: signingManifest.itemsDigest,
+    counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
+    placementCount: 1,
+    placementDigest: signingManifest.resultDigest,
+    routeCount: 5,
+  });
+  const recoverySnapshot = yield* makeTryoutSnapshot({
+    activeAppLocales: signingManifest.activeAppLocales,
+    catalogDigest: signingManifest.itemsDigest,
+    counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
+    placementCount: 0,
+    placementDigest: signingManifest.resultDigest,
+    routeCount: 0,
+  });
+  const runtimeManifest = ContentReleaseManifestSchema.make({
+    ...signingManifest,
+    baseActiveAppLocales: signingManifest.activeAppLocales,
+    baseManifestHash: signingManifest.itemsDigest,
+    baseReleaseId: ReleaseIdSchema.make("test-runtime-base"),
+    scope: { ...signingManifest.scope, snapshots: ["tryout"] },
+    snapshots: {
+      ...signingManifest.snapshots,
+      tryout: replaceContentSnapshot({
+        baseSnapshotId: recoverySnapshot.snapshotId,
+        resultSnapshotId: snapshot.snapshotId,
+        rowCount: 1,
+        rowDigest: signingManifest.itemsDigest,
+      }),
+    },
+  });
+  return { keys, recoverySnapshot, runtimeManifest, snapshot };
 });
-const recoverySnapshot = makeTryoutSnapshot({
-  activeAppLocales: signingManifest.activeAppLocales,
-  catalogDigest: signingManifest.itemsDigest,
-  counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
-  placementCount: 0,
-  placementDigest: signingManifest.resultDigest,
-  routeCount: 0,
-});
-const runtimeManifest = ContentReleaseManifestSchema.make({
-  ...signingManifest,
-  baseActiveAppLocales: signingManifest.activeAppLocales,
-  baseManifestHash: signingManifest.itemsDigest,
-  baseReleaseId: ReleaseIdSchema.make("test-runtime-base"),
-  scope: { ...signingManifest.scope, snapshots: ["tryout"] },
-  snapshots: {
-    ...signingManifest.snapshots,
-    tryout: replaceContentSnapshot({
-      baseSnapshotId: recoverySnapshot.snapshotId,
-      resultSnapshotId: snapshot.snapshotId,
-      rowCount: 1,
-      rowDigest: signingManifest.itemsDigest,
-    }),
-  },
-});
+
+/** Resolves the one signing key of this file to the public key of one test run. */
+const resolverFor = (publicKeyPem: string) =>
+  ContentVerificationKeyResolver.of({
+    resolve: (keyId) =>
+      keyId === signingKeyId
+        ? Effect.succeed(publicKeyPem)
+        : Effect.fail(new SigningKeyNotFoundError({ keyId })),
+  });
 
 /** Creates one real signer for runtime bundle boundary tests. */
-const makeSigner = () =>
+const makeSigner = (privateKeyPem: string) =>
   makeEd25519PublicationSigner({
     keyId: signingKeyId,
-    privateKeyPem: keys.privateKey
-      .export({ format: "pem", type: "pkcs8" })
-      .toString(),
+    privateKeyPem,
   });
 
 /** Test-only Ed25519 public key that verifies the recorded candidate and recovery bundle signatures. */
@@ -93,7 +95,9 @@ describe("publication runtime", () => {
     "pins the bundle hash and signature of candidate and recovery pairs",
     () =>
       Effect.gen(function* () {
-        const signer = yield* makeSigner();
+        const { keys, recoverySnapshot, runtimeManifest, snapshot } =
+          yield* fixtures;
+        const signer = yield* makeSigner(keys.privateKeyPem);
         const release = yield* signer.signRelease(runtimeManifest);
         const bundles = yield* preparePublicationRuntimes({
           release,
@@ -102,7 +106,10 @@ describe("publication runtime", () => {
           signer,
           sourceGitSha,
         }).pipe(
-          Effect.provideService(ContentVerificationKeyResolver, resolver)
+          Effect.provideService(
+            ContentVerificationKeyResolver,
+            resolverFor(keys.publicKeyPem)
+          )
         );
         const recordedSignatures = MutableHashMap.fromIterable([
           [
@@ -119,7 +126,7 @@ describe("publication runtime", () => {
         ]);
         /** Verifies each produced bundle over the transformed signing input with its recorded signature. */
         const verifies = (transform: (input: string) => string) =>
-          Arr.map(bundles, (bundle) => {
+          Effect.forEach(bundles, (bundle) => {
             const signature = Option.getOrUndefined(
               MutableHashMap.get(recordedSignatures, bundle.bundleHash)
             );
@@ -127,26 +134,24 @@ describe("publication runtime", () => {
               bundle.bundleHash,
               bundle.payload
             );
-            return (
-              signature !== undefined &&
-              verify(
-                null,
-                Buffer.from(transform(input), "utf8"),
-                TEST_PUBLIC_KEY_PEM,
-                Buffer.from(signature, "base64url")
-              )
-            );
+            return signature === undefined
+              ? Effect.succeed(false)
+              : verifyWithPublicKeyPem(
+                  TEST_PUBLIC_KEY_PEM,
+                  transform(input),
+                  signature
+                );
           });
-        expect(verifies((input) => input)).toEqual([true, true]);
-        expect(verifies((input) => input.replace("aksara", "aksarb"))).toEqual([
-          false,
-          false,
-        ]);
+        expect(yield* verifies((input) => input)).toEqual([true, true]);
+        expect(
+          yield* verifies((input) => input.replace("aksara", "aksarb"))
+        ).toEqual([false, false]);
       })
   );
   it.effect("skips an unrelated Git release", () =>
     Effect.gen(function* () {
-      const signer = yield* makeSigner();
+      const { keys } = yield* fixtures;
+      const signer = yield* makeSigner(keys.privateKeyPem);
       const release = yield* signer.signRelease(signingManifest);
       const bundles = yield* preparePublicationRuntimes({
         release,
@@ -154,7 +159,12 @@ describe("publication runtime", () => {
         runtime: null,
         signer,
         sourceGitSha,
-      }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
+      }).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          resolverFor(keys.publicKeyPem)
+        )
+      );
 
       assert.deepStrictEqual(bundles, []);
     })
@@ -162,7 +172,9 @@ describe("publication runtime", () => {
 
   it.effect("signs candidate and retained recovery runtime pairs", () =>
     Effect.gen(function* () {
-      const signer = yield* makeSigner();
+      const { keys, recoverySnapshot, runtimeManifest, snapshot } =
+        yield* fixtures;
+      const signer = yield* makeSigner(keys.privateKeyPem);
       const release = yield* signer.signRelease(runtimeManifest);
       const bundles = yield* preparePublicationRuntimes({
         release,
@@ -170,7 +182,12 @@ describe("publication runtime", () => {
         runtime: { recovery: recoverySnapshot, result: snapshot },
         signer,
         sourceGitSha,
-      }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
+      }).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          resolverFor(keys.publicKeyPem)
+        )
+      );
 
       assert.deepStrictEqual(
         Arr.map(bundles, (bundle) => bundle.payload),
@@ -192,7 +209,8 @@ describe("publication runtime", () => {
 
   it.effect("signs one candidate when the retained pair already exists", () =>
     Effect.gen(function* () {
-      const signer = yield* makeSigner();
+      const { keys, runtimeManifest, snapshot } = yield* fixtures;
+      const signer = yield* makeSigner(keys.privateKeyPem);
       const release = yield* signer.signRelease(runtimeManifest);
       const bundles = yield* preparePublicationRuntimes({
         release,
@@ -200,7 +218,12 @@ describe("publication runtime", () => {
         runtime: { recovery: null, result: snapshot },
         signer,
         sourceGitSha,
-      }).pipe(Effect.provideService(ContentVerificationKeyResolver, resolver));
+      }).pipe(
+        Effect.provideService(
+          ContentVerificationKeyResolver,
+          resolverFor(keys.publicKeyPem)
+        )
+      );
 
       assert.strictEqual(bundles.length, 1);
       assert.deepStrictEqual(bundles[0]?.payload.snapshot, snapshot);
