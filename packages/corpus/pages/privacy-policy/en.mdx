@@ -154,7 +154,7 @@ A memory is independent of your chats: deleting a chat deletes no memory and no 
 
 Nakafa encrypts the title and the text of each memory, and the text of the portrait, in its database with a key that belongs to your account (AES-256-GCM). The account key is itself encrypted with a key that only the Convex deployment environment holds. Deleting your account deletes your memories and your portrait, and then that account key. The rest of a memory's record is not encrypted: who wrote it, its kind (a grade or level, a goal, a way of learning, a hard topic, or a situation), its end date, when it was saved and last said again, the pages of Nakafa you had open when you said it, at most 8, and a search index of keyed hashes of the first six characters of each word. Only your account key can make these hashes.
 
-Nakafa also encrypts chat titles and conversation summaries in its database with the same account key. Nakafa does not encrypt the messages of a chat in this way.
+Nakafa also encrypts chat titles, conversation summaries, the messages you send to Nina, and the names of files you upload in its database with the same account key. It does not encrypt Nina's replies or the steps she takes with her tools in this way. The same is true of messages and file names saved before October 17, 2026.
 
 Nina's context also includes the page you are reading when you ask and these account facts: your learning focus and region from onboarding, your role and preferred curriculum, your preferred try-out country, and the result of your latest finished try-out. Nakafa does not add your name or email address to that context.
 
