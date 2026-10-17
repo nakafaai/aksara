@@ -22,10 +22,7 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
   class SocketTestError extends TestSchema.TaggedError<
     SocketTestError,
     { readonly brand: unique symbol }
-  >()(
-    "SocketTestError",
-    {}
-  ) {}
+  >()("SocketTestError", {}) {}
   return {
     ...original,
     NodeSocketServer: {

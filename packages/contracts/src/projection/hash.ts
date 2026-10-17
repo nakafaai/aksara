@@ -9,10 +9,7 @@ import {
 export class ContentProjectionHashError extends Schema.TaggedError<
   ContentProjectionHashError,
   { readonly brand: unique symbol }
->()(
-  "ContentProjectionHashError",
-  { contentKey: Schema.String }
-) {}
+>()("ContentProjectionHashError", { contentKey: Schema.String }) {}
 
 /** Hashes one canonical projection for authoritative content-head diffing. */
 export const hashContentProjection = Effect.fn(

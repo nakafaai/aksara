@@ -5,10 +5,7 @@ import { hashText } from "#contracts/hash/text";
 export class TryoutCanonicalHashError extends Schema.TaggedError<
   TryoutCanonicalHashError,
   { readonly brand: unique symbol }
->()(
-  "TryoutCanonicalHashError",
-  { domain: Schema.String }
-) {}
+>()("TryoutCanonicalHashError", { domain: Schema.String }) {}
 
 /** Computes one domain-separated canonical try-out SHA-256 identity. */
 export const hashTryoutCanonical = Effect.fn(

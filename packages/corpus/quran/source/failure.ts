@@ -5,23 +5,17 @@ import { Schema } from "effect";
 export class QuranSourceFileError extends Schema.TaggedError<
   QuranSourceFileError,
   { readonly brand: unique symbol }
->()(
-  "QuranSourceFileError",
-  {
-    detail: Schema.String,
-  }
-) {}
+>()("QuranSourceFileError", {
+  detail: Schema.String,
+}) {}
 
 /** A source load requested a locale subset that has no honest physical bundle. */
 export class QuranSourceLocaleError extends Schema.TaggedError<
   QuranSourceLocaleError,
   { readonly brand: unique symbol }
->()(
-  "QuranSourceLocaleError",
-  {
-    appLocales: Schema.Array(AppLocaleSchema),
-  }
-) {}
+>()("QuranSourceLocaleError", {
+  appLocales: Schema.Array(AppLocaleSchema),
+}) {}
 
 /** Maps one failed digest of pinned Quran source bytes to a source error that names what failed. */
 export function digestFailure(detail: string) {

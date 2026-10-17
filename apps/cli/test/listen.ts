@@ -14,10 +14,7 @@ export const listenPlan = {
 class ListenTestError extends Schema.TaggedError<
   ListenTestError,
   { readonly brand: unique symbol }
->()(
-  "ListenTestError",
-  {}
-) {}
+>()("ListenTestError", {}) {}
 
 /**
  * Wraps the platform listener so that one test can fail the bind or report a

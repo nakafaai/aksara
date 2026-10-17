@@ -5,10 +5,7 @@ import { type Document, isMap, isScalar, isSeq, type YAMLMap } from "yaml";
 export class WorkflowError extends Schema.TaggedError<
   WorkflowError,
   { readonly brand: unique symbol }
->()(
-  "WorkflowError",
-  { message: Schema.String }
-) {}
+>()("WorkflowError", { message: Schema.String }) {}
 
 /** Succeeds when one required workflow fact holds, and fails with its reason otherwise. */
 export function ensure(holds: boolean, reason: string) {

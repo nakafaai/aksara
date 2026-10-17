@@ -50,10 +50,9 @@ const PEM_LINE_LENGTH = 64;
 export class Ed25519KeyError extends Schema.TaggedError<
   Ed25519KeyError,
   { readonly brand: unique symbol }
->()(
-  "Ed25519KeyError",
-  { stage: Schema.Literals(["derive", "import", "sign"]) }
-) {}
+>()("Ed25519KeyError", {
+  stage: Schema.Literals(["derive", "import", "sign"]),
+}) {}
 
 /** Decodes the DER bytes of one unencrypted PKCS#8 private key PEM. */
 function decodePrivateKeyPem(privateKeyPem: string) {

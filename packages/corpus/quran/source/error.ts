@@ -15,11 +15,8 @@ export function quranGenerationFailure(detail: string) {
 export class GermanQuranSourceSyncError extends Schema.TaggedError<
   GermanQuranSourceSyncError,
   { readonly brand: unique symbol }
->()(
-  "GermanQuranSourceSyncError",
-  {
-    cause: Schema.Unknown,
-    phase: Schema.Literals(["download", "integrity", "write"]),
-    source: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+>()("GermanQuranSourceSyncError", {
+  cause: Schema.Unknown,
+  phase: Schema.Literals(["download", "integrity", "write"]),
+  source: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}

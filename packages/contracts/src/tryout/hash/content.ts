@@ -106,10 +106,7 @@ export function canonicalizeTryoutContent(input: TryoutContentInput) {
 export class TryoutContentHashError extends Schema.TaggedError<
   TryoutContentHashError,
   { readonly brand: unique symbol }
->()(
-  "TryoutContentHashError",
-  {}
-) {}
+>()("TryoutContentHashError", {}) {}
 
 /** Hashes one complete current question pair through its canonical identity. */
 export const hashTryoutContent = Effect.fn("AksaraContracts.hashTryoutContent")(

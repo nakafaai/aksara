@@ -4,10 +4,10 @@ import { Array as Arr, Effect, Schema } from "effect";
 export class OptionArgumentError extends Schema.TaggedError<
   OptionArgumentError,
   { readonly brand: unique symbol }
->()(
-  "OptionArgumentError",
-  { argument: Schema.String, detail: Schema.String }
-) {}
+>()("OptionArgumentError", {
+  argument: Schema.String,
+  detail: Schema.String,
+}) {}
 
 /**
  * Whether one token is an option. A lone dash is a positional operand, as
