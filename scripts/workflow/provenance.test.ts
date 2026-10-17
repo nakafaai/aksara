@@ -204,17 +204,15 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
   it("keeps npm publication checks inside the registry processing window", ({
     contracts: source,
   }) =>
-    Effect.gen(function* () {
-      yield* expectRefusal(
-        verifyProvenanceWorkflow(
-          source.replaceAll(
-            "PUBLICATION_WINDOW_SECONDS=300",
-            "PUBLICATION_WINDOW_SECONDS=30"
-          )
-        ),
-        "npm publication must allow npm metadata propagation"
-      );
-    }));
+    expectRefusal(
+      verifyProvenanceWorkflow(
+        source.replaceAll(
+          "PUBLICATION_WINDOW_SECONDS=300",
+          "PUBLICATION_WINDOW_SECONDS=30"
+        )
+      ),
+      "npm publication must allow npm metadata propagation"
+    ));
 
   it("rejects malformed or incomplete workflow jobs", ({ contracts: source }) =>
     Effect.gen(function* () {

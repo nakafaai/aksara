@@ -49,6 +49,21 @@ describe("npm trusted publication digest", () => {
     }).pipe(Effect.provide(NodeServices.layer))
   );
 
+  it.effect("refuses a workflow that lacks one of its three release jobs", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const error = yield* verifyNpmWorkflow(
+        source.replace("\n  verify:", "\n  other:"),
+        contract
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "WorkflowError",
+        message: "npm workflow requires three release jobs",
+      });
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
   it.effect(
     "reports a workflow that is not YAML as a typed workflow error",
     () =>
