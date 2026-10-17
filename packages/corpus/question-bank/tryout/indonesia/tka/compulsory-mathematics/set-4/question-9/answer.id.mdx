@@ -1,0 +1,85 @@
+export const metadata = {
+  title: "Pembahasan Soal 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Ada dua besaran yang berubah dari satu tahap ke tahap berikutnya. **Banyak segitiga berwarna dikali <InlineMath math="3" />**, karena setiap segitiga berwarna menghasilkan tiga segitiga berwarna baru. **Luas daerah berwarna dikali <InlineMath math="\frac34" />**, karena keempat segitiga baru sama luas dan hanya satu dari empat bagian itu yang warnanya dihapus.
+
+Pada tahap ke-<InlineMath math="0" />, luas segitiga adalah <InlineMath math="\frac12\times8\times8=32\text{ cm}^2" />. Misalkan <InlineMath math="N_n" /> adalah banyak segitiga berwarna dan <InlineMath math="L_n" /> adalah luas daerah berwarna dalam <InlineMath math="\text{cm}^2" /> pada tahap ke-<InlineMath math="n" />. Keduanya membentuk barisan geometri.
+
+<BlockMath math="\begin{aligned}
+N_n&=3^n \\
+L_n&=32\left(\frac34\right)^n \\
+L_{n-1}-L_n&=\frac14\,L_{n-1}
+\end{aligned}" />
+
+Baris terakhir menyatakan luas yang warnanya dihapus ketika tahap ke-<InlineMath math="(n-1)" /> diubah menjadi tahap ke-<InlineMath math="n" />, yaitu seperempat luas berwarna pada tahap sebelumnya.
+
+| Tahap | Banyak segitiga berwarna | Luas berwarna <InlineMath math="(\text{cm}^2)" /> | Luas yang warnanya baru dihapus <InlineMath math="(\text{cm}^2)" /> |
+| ---: | ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | belum ada |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="\frac{27}{2}=13{,}5" /> | <InlineMath math="\frac92" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="\frac{81}{8}=10{,}125" /> | <InlineMath math="\frac{27}{8}" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="\frac{243}{32}\approx7{,}59" /> | <InlineMath math="\frac{81}{32}" /> |
+
+<MathVisual
+  title={<>Pola pada tahap ke-<InlineMath math="3" /></>}
+  description={<>Tahap ke-<InlineMath math="3" /> memuat <InlineMath math="27" /> segitiga berwarna dengan panjang kaki <InlineMath math="1\text{ cm}" />. Luas setiap segitiga kecil adalah <InlineMath math="\frac12\text{ cm}^2" />, sehingga luas daerah berwarnanya <InlineMath math="\frac{27}{2}\text{ cm}^2" />.</>}
+  labels={{
+    "leg-small": <InlineMath math="1\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "stage-3-part-1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }] },
+      { id: "stage-3-part-2", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 1 }] },
+      { id: "stage-3-part-3", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 2 }] },
+      { id: "stage-3-part-4", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 2, y: 1 }] },
+      { id: "stage-3-part-5", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 3, y: 1 }] },
+      { id: "stage-3-part-6", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }] },
+      { id: "stage-3-part-7", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 0, y: 3 }] },
+      { id: "stage-3-part-8", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }] },
+      { id: "stage-3-part-9", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 4 }] },
+      { id: "stage-3-part-10", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 4, y: 1 }] },
+      { id: "stage-3-part-11", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 5, y: 1 }] },
+      { id: "stage-3-part-12", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 4, y: 2 }] },
+      { id: "stage-3-part-13", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 6, y: 1 }] },
+      { id: "stage-3-part-14", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 8, y: 0 }, { x: 7, y: 1 }] },
+      { id: "stage-3-part-15", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 1 }, { x: 7, y: 1 }, { x: 6, y: 2 }] },
+      { id: "stage-3-part-16", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 2 }, { x: 5, y: 2 }, { x: 4, y: 3 }] },
+      { id: "stage-3-part-17", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 2 }, { x: 6, y: 2 }, { x: 5, y: 3 }] },
+      { id: "stage-3-part-18", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }, { x: 4, y: 4 }] },
+      { id: "stage-3-part-19", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 1, y: 4 }, { x: 0, y: 5 }] },
+      { id: "stage-3-part-20", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 4 }, { x: 2, y: 4 }, { x: 1, y: 5 }] },
+      { id: "stage-3-part-21", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 1, y: 5 }, { x: 0, y: 6 }] },
+      { id: "stage-3-part-22", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 4 }, { x: 3, y: 4 }, { x: 2, y: 5 }] },
+      { id: "stage-3-part-23", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 3, y: 5 }] },
+      { id: "stage-3-part-24", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }] },
+      { id: "stage-3-part-25", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 6 }, { x: 1, y: 6 }, { x: 0, y: 7 }] },
+      { id: "stage-3-part-26", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 6 }, { x: 2, y: 6 }, { x: 1, y: 7 }] },
+      { id: "stage-3-part-27", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 7 }, { x: 1, y: 7 }, { x: 0, y: 8 }] },
+    ],
+    labels: [
+      { key: "leg-small", objectId: "stage-3-part-1", at: { x: 0.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Gambar tahap ke-<InlineMath math="3" /> juga memeriksa tabel. Ada <InlineMath math="27" /> segitiga kecil berwarna dengan kaki <InlineMath math="\frac{8}{2^3}=1\text{ cm}" />, jadi luas berwarnanya <InlineMath math="27\times\frac12=13{,}5\text{ cm}^2" />, sama dengan <InlineMath math="L_3" />.
+
+1. Pernyataan bahwa banyak segitiga berwarna pada tahap ke-<InlineMath math="n" /> adalah <InlineMath math="3n" /> salah. Rumus itu hanya cocok untuk <InlineMath math="n=1" />. Pada tahap ke-<InlineMath math="2" /> ada <InlineMath math="3^2=9" /> segitiga, bukan <InlineMath math="3\times2=6" />, karena banyaknya dikali <InlineMath math="3" /> pada setiap tahap, bukan ditambah <InlineMath math="3" />.
+2. Pernyataan bahwa tahap ke-<InlineMath math="4" /> memuat <InlineMath math="81" /> segitiga berwarna benar, karena <InlineMath math="N_4=3^4=81" />.
+3. Pernyataan bahwa luas yang dihapus pada dua perubahan pertama sama besar salah. Dari tahap ke-<InlineMath math="0" /> ke tahap ke-<InlineMath math="1" /> yang dihapus <InlineMath math="\frac14\times32=8\text{ cm}^2" />, sedangkan dari tahap ke-<InlineMath math="1" /> ke tahap ke-<InlineMath math="2" /> yang dihapus <InlineMath math="\frac14\times24=6\text{ cm}^2" />. Bagian yang dihapus mengecil karena seperempat itu diambil dari luas berwarna yang makin kecil.
+4. Pernyataan bahwa luas daerah berwarna pada tahap ke-<InlineMath math="3" /> adalah <InlineMath math="13{,}5\text{ cm}^2" /> benar, karena <InlineMath math="L_3=32\times\frac{27}{64}=\frac{27}{2}=13{,}5" />.
+5. Pernyataan tentang tahap ke-<InlineMath math="5" /> benar. Luas berwarna terus mengecil, <InlineMath math="L_4=\frac{81}{8}=10{,}125" /> masih lebih dari <InlineMath math="10" />, dan <InlineMath math="L_5=\frac{243}{32}\approx7{,}59" /> sudah kurang dari <InlineMath math="10" />.
+
+Jadi, pernyataan yang benar adalah pernyataan tentang <InlineMath math="81" /> segitiga pada tahap ke-<InlineMath math="4" />, luas <InlineMath math="13{,}5\text{ cm}^2" /> pada tahap ke-<InlineMath math="3" />, dan tahap ke-<InlineMath math="5" /> sebagai tahap pertama dengan luas berwarna kurang dari <InlineMath math="10\text{ cm}^2" />.

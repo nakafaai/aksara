@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Das schraffierte Gebiet wird von der <InlineMath math="y" />-Achse und zwei schrägen Geraden begrenzt, also **liefert jede Randgerade eine Ungleichung**. Stelle für jede schräge Gerade zuerst ihre Gleichung aus den Achsenschnittpunkten auf. Danach bestimmst du die Richtung der Ungleichung mit einem **Testpunkt**, der nicht auf dieser Geraden liegt.
+
+Eine Gerade, die die <InlineMath math="x" />-Achse in <InlineMath math="(a,0)" /> und die <InlineMath math="y" />-Achse in <InlineMath math="(0,b)" /> schneidet, hat die Gleichung <InlineMath math="\frac{x}{a}+\frac{y}{b}=1" />. Die erste Gerade schneidet die Achsen in <InlineMath math="(6,0)" /> und <InlineMath math="(0,6)" />, die zweite in <InlineMath math="(9,0)" /> und <InlineMath math="(0,3)" />.
+
+<BlockMath math="\begin{aligned}
+\frac{x}{6}+\frac{y}{6}=1&\iff x+y=6 \\
+\frac{x}{9}+\frac{y}{3}=1&\iff x+3y=9
+\end{aligned}" />
+
+Nimm den Ursprung <InlineMath math="(0,0)" /> als Testpunkt. Für die Gerade <InlineMath math="x+y=6" /> liefert der Ursprung <InlineMath math="0\le6" />, und das schraffierte Gebiet liegt auf derselben Seite wie der Ursprung. Das Gebiet erfüllt also <InlineMath math="x+y\le6" />. Für die Gerade <InlineMath math="x+3y=9" /> liefert der Ursprung <InlineMath math="0<9" />, aber das schraffierte Gebiet liegt auf der anderen Seite. Das Gebiet erfüllt also <InlineMath math="x+3y\ge9" />. Der linke Rand des Gebiets ist die <InlineMath math="y" />-Achse, daher gilt <InlineMath math="x\ge0" />.
+
+<MathVisual
+  title="Testpunkte am schraffierten Gebiet"
+  description={<>Der Ursprung liegt außerhalb, weil er <InlineMath math="x+3y\ge9" /> nicht erfüllt, während der Punkt <InlineMath math="(1,3)" /> innerhalb liegt. Die beiden schrägen Geraden schneiden sich in <InlineMath math="\left(\frac92,\frac32\right)" />.</>}
+  labels={{
+    "coordinate-g-y": <InlineMath math="(0,6)" />,
+    "coordinate-g-x": <InlineMath math="(6,0)" />,
+    "coordinate-h-y": <InlineMath math="(0,3)" />,
+    "coordinate-h-x": <InlineMath math="(9,0)" />,
+    "coordinate-corner": <InlineMath math="\left(\frac92,\frac32\right)" />,
+    "coordinate-origin": <InlineMath math="(0,0)" />,
+    "coordinate-inside": <InlineMath math="(1,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 10.5 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "solution-region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 0, y: 6 }, { x: 4.5, y: 1.5 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }] },
+      { id: "line-h", kind: "line", appearance: "secondary", through: [{ x: 0, y: 3 }, { x: 9, y: 0 }] },
+      { id: "point-g-y", kind: "point", appearance: "primary", at: { x: 0, y: 6 } },
+      { id: "point-g-x", kind: "point", appearance: "primary", at: { x: 6, y: 0 } },
+      { id: "point-h-y", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "point-h-x", kind: "point", appearance: "secondary", at: { x: 9, y: 0 } },
+      { id: "corner-gh", kind: "point", appearance: "highlight", at: { x: 4.5, y: 1.5 } },
+      { id: "test-origin", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "test-inside", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
+    ],
+    labels: [
+      { key: "coordinate-g-y", objectId: "point-g-y", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "coordinate-g-x", objectId: "point-g-x", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "coordinate-h-y", objectId: "point-h-y", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "coordinate-h-x", objectId: "point-h-x", at: { x: 9, y: 0 }, placement: "below" },
+      { key: "coordinate-corner", objectId: "corner-gh", at: { x: 4.5, y: 1.5 }, placement: "above-right" },
+      { key: "coordinate-origin", objectId: "test-origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "coordinate-inside", objectId: "test-inside", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Die Bedingung <InlineMath math="y\ge0" />, die in jeder Antwortmöglichkeit steht, ist von selbst erfüllt. Ziehst du <InlineMath math="x+y\le6" /> von <InlineMath math="x+3y\ge9" /> ab, erhältst du eine untere Schranke für <InlineMath math="y" />.
+
+<BlockMath math="(x+3y)-(x+y)\ge9-6\iff2y\ge3\iff y\ge\frac32" />
+
+Zur Probe testest du den Punkt <InlineMath math="(1,3)" />, der im Gebiet liegt. Beide schrägen Ungleichungen müssen erfüllt sein.
+
+<BlockMath math="\begin{aligned}
+1+3&=4\le6 \\
+1+3(3)&=10\ge9
+\end{aligned}" />
+
+Das schraffierte Gebiet ist also die Lösungsmenge des Systems <InlineMath math="x+y\le6,\ x+3y\ge9,\ x\ge0,\ y\ge0" />.
+
+- <InlineMath math="x+y\le6,\ x+3y\le9" /> mit den beiden Vorzeichenbedingungen beschreibt das Gebiet unterhalb beider Geraden, also das Viereck, das den Ursprung enthält.
+- <InlineMath math="x+y\le6,\ 3x+y\ge9" /> mit den beiden Vorzeichenbedingungen verwendet eine Gerade durch <InlineMath math="(3,0)" /> und <InlineMath math="(0,9)" />, weil beim Aufstellen der zweiten Gleichung die Rollen der beiden Achsenschnittpunkte vertauscht wurden.
+- <InlineMath math="x+y\ge6,\ x+3y\ge9" /> mit den beiden Vorzeichenbedingungen beschreibt das Gebiet oberhalb beider Geraden, das sich nach rechts oben unbegrenzt fortsetzt.
+- <InlineMath math="x+y\ge6,\ x+3y\le9" /> mit den beiden Vorzeichenbedingungen beschreibt das kleine Dreieck mit den Ecken <InlineMath math="\left(\frac92,\frac32\right)" />, <InlineMath math="(6,0)" /> und <InlineMath math="(9,0)" />, nicht das schraffierte Gebiet.

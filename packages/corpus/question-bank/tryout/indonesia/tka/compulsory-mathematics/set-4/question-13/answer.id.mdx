@@ -1,0 +1,84 @@
+export const metadata = {
+  title: "Pembahasan Soal 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Misalkan pusat rotasinya <InlineMath math="P(a,b)" />. Untuk merotasi titik <InlineMath math="(x,y)" /> sebesar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="P" />, **geser <InlineMath math="P" /> ke titik asal, rotasikan, lalu geser kembali**. Vektor <InlineMath math="(x-a,\,y-b)" /> berputar menjadi <InlineMath math="\bigl(-(y-b),\,x-a\bigr)" />, sehingga peta titiknya sebagai berikut.
+
+<BlockMath math="(x,y)\mapsto\bigl(a-(y-b),\ b+(x-a)\bigr)" />
+
+Terapkan rumus itu pada <InlineMath math="A(2,2)" />, yang dipetakan ke <InlineMath math="A'(-1,-1)" />. Setiap koordinat memberi satu persamaan.
+
+<BlockMath math="\begin{aligned}
+a-(2-b)&=-1 \\
+b+(2-a)&=-1
+\end{aligned}" />
+
+Tulis ulang kedua persamaan, jumlahkan keduanya untuk memperoleh <InlineMath math="a" />, lalu substitusikan <InlineMath math="a" /> ke <InlineMath math="a+b=1" />.
+
+<BlockMath math="\begin{aligned}
+a+b&=1 \\
+a-b&=3 \\
+2a&=4 \\
+a&=2 \\
+b&=1-a=-1
+\end{aligned}" />
+
+Satu pusat harus berlaku untuk semua titik, jadi **periksa dengan <InlineMath math="B" /> dan <InlineMath math="C" />** memakai <InlineMath math="P(2,-1)" />.
+
+<BlockMath math="\begin{aligned}
+B(6,3)&\mapsto\bigl(2-(3+1),\ -1+(6-2)\bigr)=(-2,3)=B' \\
+C(1,5)&\mapsto\bigl(2-(5+1),\ -1+(1-2)\bigr)=(-4,-2)=C'
+\end{aligned}" />
+
+<MathVisual
+  title={<>Pusat rotasi <InlineMath math="P(2,-1)" /></>}
+  description={<>Ruas <InlineMath math="PA" /> dan <InlineMath math="PA'" /> sama panjang, yaitu <InlineMath math="3" /> satuan, dan saling tegak lurus. Ruas <InlineMath math="PB" /> dan <InlineMath math="PB'" /> juga sama panjang, yaitu <InlineMath math="4\sqrt{2}" /> satuan, dan saling tegak lurus. Busur dari <InlineMath math="A" /> ke <InlineMath math="A'" /> menunjukkan putaran <InlineMath math="90^\circ" /> mengelilingi <InlineMath math="P" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-a-image": <InlineMath math="A'" />,
+    "vertex-b-image": <InlineMath math="B'" />,
+    "vertex-c-image": <InlineMath math="C'" />,
+    "name-p": <InlineMath math="P(2,-1)" />,
+    "angle-a": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 7.5 },
+      y: { min: -3.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-abc", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 6, y: 3 }, { x: 1, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: -1 }, { x: -2, y: 3 }, { x: -4, y: -2 }] },
+      { id: "arm-pa", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: 2, y: 2 } },
+      { id: "arm-pa-image", kind: "segment", appearance: "highlight", from: { x: 2, y: -1 }, to: { x: -1, y: -1 } },
+      { id: "turn-a", kind: "arc", appearance: "highlight", center: { x: 2, y: -1 }, radius: 3, startDegrees: 90, sweepDegrees: 90 },
+      { id: "arm-pb", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 6, y: 3 } },
+      { id: "arm-pb-image", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: -2, y: 3 } },
+      { id: "center-p", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-abc", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "vertex-b", objectId: "triangle-abc", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "vertex-c", objectId: "triangle-abc", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "vertex-a-image", objectId: "triangle-image", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "vertex-b-image", objectId: "triangle-image", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "vertex-c-image", objectId: "triangle-image", at: { x: -4, y: -2 }, placement: "below-left" },
+      { key: "name-p", objectId: "center-p", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "angle-a", objectId: "turn-a", at: { x: 1, y: 0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
+Jadi, koordinat titik <InlineMath math="P" /> adalah <InlineMath math="(2,-1)" />.
+
+- <InlineMath math="(-1,2)" /> memetakan <InlineMath math="A" /> ke <InlineMath math="A'" /> jika rotasinya searah jarum jam. Pusat ini gagal untuk <InlineMath math="B" />, yang akan berpindah ke <InlineMath math="(0,-5)" />, bukan ke <InlineMath math="B'" />.
+- <InlineMath math="(0,0)" /> muncul jika rotasi dianggap selalu berpusat di titik asal, padahal rotasi <InlineMath math="90^\circ" /> terhadap titik asal memetakan <InlineMath math="A" /> ke <InlineMath math="(-2,2)" />, bukan ke <InlineMath math="A'" />.
+- <InlineMath math="\left(\frac12,\frac12\right)" /> adalah titik tengah <InlineMath math="AA'" />. Pusat rotasi berada di tengah ruas <InlineMath math="AA'" /> hanya pada rotasi <InlineMath math="180^\circ" />, sedangkan pada rotasi <InlineMath math="90^\circ" /> pusatnya hanya terletak pada garis sumbu ruas <InlineMath math="AA'" />.
+- <InlineMath math="(1,-3)" /> adalah vektor geser pada <InlineMath math="A'=R(A)+(1,-3)" />, dengan <InlineMath math="R" /> rotasi <InlineMath math="90^\circ" /> terhadap titik asal. Vektor itu bukan pusat rotasi, karena pusatnya memenuhi <InlineMath math="P-R(P)=(1,-3)" />.

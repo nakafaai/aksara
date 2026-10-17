@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Alle vier Aussagen werden am Graphen geprüft. Auf jedem schrägen Abschnitt ist **die Geschwindigkeit des Aufzugs der Betrag der Höhenänderung geteilt durch die Dauer des Abschnitts**, auf jedem waagerechten Abschnitt steht der Aufzug.
+
+| Zeitintervall | Bewegung des Aufzugs | Geschwindigkeit |
+| --- | --- | ---: |
+| <InlineMath math="0\le t\le10" /> | steigt von <InlineMath math="0" /> auf <InlineMath math="20\text{ m}" /> | <InlineMath math="\frac{20}{10}=2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | bleibt bei <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | sinkt von <InlineMath math="20" /> auf <InlineMath math="8\text{ m}" /> | <InlineMath math="\frac{12}{8}=1{,}5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | bleibt bei <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | steigt von <InlineMath math="8" /> auf <InlineMath math="26\text{ m}" /> | <InlineMath math="\frac{18}{12}=1{,}5\text{ m/s}" /> |
+
+Für die Höhe <InlineMath math="14\text{ m}" /> stellst du auf jedem schrägen Abschnitt die Höhenformel auf und setzt sie gleich <InlineMath math="14" />. Auf dem ersten Abschnitt gilt <InlineMath math="h=2t" />, auf dem dritten <InlineMath math="h=20-1{,}5(t-16)" /> und auf dem fünften <InlineMath math="h=8+1{,}5(t-28)" />.
+
+<BlockMath math="\begin{aligned}
+2t=14&\iff t=7 \\
+20-1{,}5(t-16)=14&\iff t=20 \\
+8+1{,}5(t-28)=14&\iff t=32
+\end{aligned}" />
+
+Jeder dieser Zeitpunkte liegt im Intervall seines Abschnitts. Auf den beiden waagerechten Abschnitten bleibt die Höhe bei <InlineMath math="20\text{ m}" /> und <InlineMath math="8\text{ m}" />, also gibt es keinen weiteren Zeitpunkt, zu dem der Aufzug <InlineMath math="14\text{ m}" /> hoch ist.
+
+<MathVisual
+  title="Wann der Aufzug vierzehn Meter hoch ist"
+  description={<>Die waagerechte Gerade <InlineMath math="h=14" /> schneidet den Höhengraphen genau dreimal, nämlich bei <InlineMath math="t=7" />, <InlineMath math="t=20" /> und <InlineMath math="t=32" />. Die waagerechten Abschnitte bei <InlineMath math="h=20" /> und <InlineMath math="h=8" /> berühren diese Gerade nicht.</>}
+  labels={{
+    "time-1": <InlineMath math="t=7" />,
+    "time-2": <InlineMath math="t=20" />,
+    "time-3": <InlineMath math="t=32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lift-graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 20 }, { x: 16, y: 20 }, { x: 24, y: 8 }, { x: 28, y: 8 }, { x: 40, y: 26 }] },
+      { id: "level-14", kind: "line", appearance: "highlight", through: [{ x: 0, y: 14 }, { x: 40, y: 14 }] },
+      { id: "cross-1", kind: "point", appearance: "answer", at: { x: 7, y: 14 } },
+      { id: "cross-2", kind: "point", appearance: "answer", at: { x: 20, y: 14 } },
+      { id: "cross-3", kind: "point", appearance: "answer", at: { x: 32, y: 14 } },
+    ],
+    labels: [
+      { key: "time-1", objectId: "cross-1", at: { x: 7, y: 14 }, placement: "above-left" },
+      { key: "time-2", objectId: "cross-2", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "time-3", objectId: "cross-3", at: { x: 32, y: 14 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Für die letzte Aussage seien <InlineMath math="v_1" /> die Durchschnittsgeschwindigkeit auf <InlineMath math="0\le t\le24" /> und <InlineMath math="v_2" /> die Durchschnittsgeschwindigkeit auf <InlineMath math="24\le t\le40" />. Die Strecke in jedem Intervall ist die Summe der Strecken auf den Abschnitten darin.
+
+<BlockMath math="\begin{aligned}
+v_1&=\frac{20+0+12}{24}=\frac{32}{24}=\frac43\text{ m/s} \\
+v_2&=\frac{0+18}{16}=\frac{18}{16}=\frac98\text{ m/s}
+\end{aligned}" />
+
+1. Die Aussage, dass der Aufzug in den ersten <InlineMath math="10" /> Sekunden am schnellsten fährt, ist wahr. Dort beträgt seine Geschwindigkeit <InlineMath math="2\text{ m/s}" />, auf allen anderen Abschnitten höchstens <InlineMath math="1{,}5\text{ m/s}" />.
+2. Die Aussage, dass der Aufzug genau dreimal in <InlineMath math="14\text{ m}" /> Höhe ist, ist wahr, nämlich bei <InlineMath math="t=7" />, <InlineMath math="t=20" /> und <InlineMath math="t=32" />.
+3. Die Aussage über das Intervall <InlineMath math="16\le t\le24" /> ist falsch. In diesem Intervall **sinkt der Aufzug von <InlineMath math="20\text{ m}" /> auf <InlineMath math="8\text{ m}" />**, seine Höhe nimmt also jede Sekunde um <InlineMath math="1{,}5\text{ m}" /> ab und nicht zu.
+4. Die Aussage, dass beide Durchschnittsgeschwindigkeiten gleich sind, ist falsch, denn <InlineMath math="\frac43\text{ m/s}\ne\frac98\text{ m/s}" />. In den ersten <InlineMath math="24" /> Sekunden ist sie größer, da <InlineMath math="\frac43=\frac{32}{24}" /> und <InlineMath math="\frac98=\frac{27}{24}" /> gilt.
+
+Die ersten beiden Aussagen sind also wahr, die Aussagen über das Intervall <InlineMath math="16\le t\le24" /> und über gleiche Durchschnittsgeschwindigkeiten sind falsch.

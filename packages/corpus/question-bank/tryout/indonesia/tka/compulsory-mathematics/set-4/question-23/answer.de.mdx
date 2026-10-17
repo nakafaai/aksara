@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 23",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Der Ergebnisraum besteht aus allen Schülern der Tabelle, also aus **<InlineMath math="220" /> Schülern, die mit gleicher Wahrscheinlichkeit gewählt werden**. Gesucht ist ein Schüler, der zwei Bedingungen zugleich erfüllt: Er ist in Klasse XI und hat Naturwissenschaften (*sains*) gewählt. Solche Schüler stehen in der Zelle in Zeile XI und Spalte Sains, und das sind <InlineMath math="24" /> Schüler.
+
+| Gruppe von Schülern | Anzahl |
+| --- | ---: |
+| Klasse XI und Naturwissenschaften | <InlineMath math="24" /> |
+| Alle Schüler der Klasse XI | <InlineMath math="100" /> |
+| Alle Schüler mit Naturwissenschaften | <InlineMath math="66" /> |
+| Alle Schüler der Tabelle | <InlineMath math="220" /> |
+
+Die erste Zeile zählt die günstigen Ergebnisse, die letzte Zeile alle möglichen Ergebnisse. Die beiden mittleren Zeilen sind kein Ergebnisraum, denn der Schüler wird aus der ganzen Tabelle gewählt und nicht nur aus einer Klasse oder einer AG.
+
+<BlockMath math="P(\text{XI und Naturwissenschaften})=\frac{24}{220}=\frac{6}{55}" />
+
+Prüfe, ob der Wert plausibel ist. Die Wahrscheinlichkeit für zwei Bedingungen zugleich kann nicht größer sein als die Wahrscheinlichkeit jeder einzelnen Bedingung, und tatsächlich ist <InlineMath math="\frac{6}{55}" /> kleiner als die Wahrscheinlichkeit für Klasse XI, <InlineMath math="\frac{100}{220}=\frac{5}{11}" />, und kleiner als die Wahrscheinlichkeit für Naturwissenschaften, <InlineMath math="\frac{66}{220}=\frac{3}{10}" />.
+
+Die Wahrscheinlichkeit, dass der gewählte Schüler in Klasse XI ist und Naturwissenschaften gewählt hat, beträgt also <InlineMath math="\frac{6}{55}" />.
+
+- <InlineMath math="\frac{6}{25}=\frac{24}{100}" /> ist die Wahrscheinlichkeit, dass ein Schüler Naturwissenschaften gewählt hat, wenn bereits feststeht, dass er in Klasse XI ist. Der Ergebnisraum wird dabei fälschlich auf die <InlineMath math="100" /> Schüler der Klasse XI beschränkt.
+- <InlineMath math="\frac{3}{10}=\frac{66}{220}" /> ist die Wahrscheinlichkeit, dass ein Schüler aus irgendeiner Klasse Naturwissenschaften gewählt hat. Die Bedingung Klasse XI fehlt.
+- <InlineMath math="\frac{4}{11}=\frac{24}{66}" /> ist die Wahrscheinlichkeit, dass ein Schüler in Klasse XI ist, wenn bereits feststeht, dass er Naturwissenschaften gewählt hat. Der Ergebnisraum wird dabei fälschlich auf die <InlineMath math="66" /> Schüler mit Naturwissenschaften beschränkt.
+- <InlineMath math="\frac{5}{11}=\frac{100}{220}" /> ist die Wahrscheinlichkeit, dass ein Schüler in Klasse XI ist. Die Bedingung Naturwissenschaften fehlt.
