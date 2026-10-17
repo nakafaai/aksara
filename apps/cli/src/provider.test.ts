@@ -1,3 +1,4 @@
+import type { Server } from "node:http";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
@@ -23,7 +24,10 @@ const ReadyArtifactsSchema = Schema.Struct({
   ),
 });
 
-const listenPlan = vi.hoisted(() => ({ fail: false }));
+const listenPlan = vi.hoisted(() => ({
+  fail: false,
+  servers: [] as Server[],
+}));
 
 vi.mock("@effect/platform-node", async (importOriginal) => {
   const original =
@@ -38,18 +42,27 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
     ...original,
     NodeHttpServer: {
       ...original.NodeHttpServer,
-      /** Fails the loopback listener only when one test asks for a bind failure. */
-      make: (...args: Parameters<typeof original.NodeHttpServer.make>) =>
+      /**
+       * Fails the loopback listener only when one test asks for a bind failure,
+       * and records every Node server that the provider creates.
+       */
+      make: (
+        ...[evaluate, options]: Parameters<typeof original.NodeHttpServer.make>
+      ) =>
         listenPlan.fail
           ? TestEffect.fail(new ListenTestError())
-          : original.NodeHttpServer.make(...args),
+          : original.NodeHttpServer.make(() => {
+              const server = evaluate();
+              listenPlan.servers = Arr.append(listenPlan.servers, server);
+              return server;
+            }, options),
     },
   };
 });
 
 afterEach(() => {
   listenPlan.fail = false;
-  vi.restoreAllMocks();
+  listenPlan.servers = [];
 });
 describe("local preview provider", () => {
   it.live(
@@ -277,6 +290,25 @@ describe("local preview provider", () => {
         ).pipe(Effect.flip);
 
         expect(listenError).toMatchObject({ stage: "listen" });
+      }),
+    30_000
+  );
+
+  it.live(
+    "closes a listener whose bind completes after its acquisition is interrupted",
+    () =>
+      Effect.gen(function* () {
+        const input = yield* makeProviderInput;
+        yield* Effect.scoped(
+          Effect.raceFirst(openPreviewProvider(input), Effect.void)
+        );
+        yield* Effect.sleep("50 millis");
+
+        const listening = Arr.map(
+          listenPlan.servers,
+          (server) => server.listening
+        );
+        expect(listening).toEqual([false]);
       }),
     30_000
   );

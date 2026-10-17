@@ -11,7 +11,49 @@ import {
   makeStartInput,
 } from "#test/process";
 
+const socketPlan = vi.hoisted(() => ({ external: false, fail: false }));
+
+vi.mock("@effect/platform-node", async (importOriginal) => {
+  const original =
+    await importOriginal<typeof import("@effect/platform-node")>();
+  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+  const NetAddress = await import("effect/net/NetAddress");
+  /** One tagged bind failure that the socket mock reports on demand. */
+  class SocketTestError extends TestSchema.TaggedError<SocketTestError>()(
+    "SocketTestError",
+    {}
+  ) {}
+  return {
+    ...original,
+    NodeSocketServer: {
+      ...original.NodeSocketServer,
+      /**
+       * Makes the reserved socket fail to bind, or report an address off
+       * loopback, only when one test asks for it.
+       */
+      make: (options: Parameters<typeof original.NodeSocketServer.make>[0]) => {
+        if (socketPlan.fail) {
+          return TestEffect.fail(new SocketTestError());
+        }
+        const reservation = original.NodeSocketServer.make(options);
+        if (!socketPlan.external) {
+          return reservation;
+        }
+        return TestEffect.map(reservation, (server) => ({
+          ...server,
+          address: NetAddress.inetAddressFromIpStringUnsafe(
+            "192.0.2.1",
+            31_234
+          ),
+        }));
+      },
+    },
+  };
+});
+
 afterEach(() => {
+  socketPlan.external = false;
+  socketPlan.fail = false;
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
@@ -204,5 +246,35 @@ describe("Nakafa child process", () => {
       expect(start).toMatchObject({ reason: "start" });
       expect(exit).toMatchObject({ reason: "exit" });
     }).pipe(Effect.provide(inheritedEnvironment("/usr/bin:/bin")))
+  );
+
+  it.effect(
+    "refuses to start the child when the reserved socket is off loopback or cannot bind",
+    () =>
+      Effect.gen(function* () {
+        const input = yield* makeStartInput();
+        const onStart = vi.fn<(input: NakafaProcessInput) => void>();
+        const processes = makeProcess(
+          onStart,
+          Effect.succeed({ exitCode: Effect.succeed(0) })
+        );
+        socketPlan.external = true;
+        const external = yield* Effect.scoped(
+          startNakafa(input).pipe(
+            Effect.provideService(NakafaProcess, processes)
+          )
+        ).pipe(Effect.flip);
+        socketPlan.external = false;
+        socketPlan.fail = true;
+        const bind = yield* Effect.scoped(
+          startNakafa(input).pipe(
+            Effect.provideService(NakafaProcess, processes)
+          )
+        ).pipe(Effect.flip);
+
+        expect(external).toMatchObject({ reason: "start" });
+        expect(bind).toMatchObject({ reason: "start" });
+        expect(onStart).not.toHaveBeenCalled();
+      })
   );
 });

@@ -1,4 +1,3 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   LOCAL_PREVIEW_ARTIFACT_PREFIX,
@@ -12,17 +11,21 @@ import {
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import {
-  type Context,
+  Deferred,
   Duration,
   Effect,
-  Equal,
-  Fiber,
   HashMap,
-  MutableHashMap,
   Option,
-  Schedule,
+  PubSub,
   Schema,
+  Stream,
 } from "effect";
+import { HttpServerRequest } from "effect/http/HttpServerRequest";
+import {
+  type HttpServerResponse,
+  stream as streamResponse,
+  text as textResponse,
+} from "effect/http/HttpServerResponse";
 import { encodeJsonText } from "#cli/text/json";
 
 export const PREVIEW_MANIFEST_PATH = "/manifest";
@@ -30,6 +33,7 @@ export const PREVIEW_EVENTS_PATH = "/events";
 
 const PREVIEW_HEARTBEAT = ": keep-alive\n\n";
 const PREVIEW_HEARTBEAT_INTERVAL_MS = 30_000;
+const encoder = new TextEncoder();
 
 const PreviewHttpStateSchema = Schema.Struct({
   artifacts: Schema.HashMap(Sha256HashSchema, Schema.String),
@@ -43,16 +47,14 @@ export type PreviewHttpState = typeof PreviewHttpStateSchema.Type;
 /** Authenticated transport around atomically replaced preview state. */
 export interface PreviewHttp {
   /** Ends every open event stream during scoped provider shutdown. */
-  readonly close: () => void;
-  /** Handles one loopback HTTP request without owning server lifecycle. */
-  readonly handle: (request: IncomingMessage, response: ServerResponse) => void;
+  readonly close: Effect.Effect<void>;
+  /** Answers one loopback HTTP request against one atomic state snapshot. */
+  readonly handle: Effect.Effect<HttpServerResponse, never, HttpServerRequest>;
   /** Broadcasts one already committed state to every live event stream. */
-  readonly publish: (state: PreviewHttpState) => void;
+  readonly publish: (state: PreviewHttpState) => Effect.Effect<void>;
 }
 
 interface PreviewHttpInput {
-  /** Services of the fiber that opened the provider; every heartbeat runs with them. */
-  readonly context: Context.Context<never>;
   /** Overrides heartbeat cadence for deterministic transport tests. */
   readonly heartbeatIntervalMs?: number;
   /** Returns the one complete state committed before this request began. */
@@ -60,14 +62,21 @@ interface PreviewHttpInput {
   readonly token: string;
 }
 
-/** Writes one bounded JSON response with cache and sniffing disabled. */
-function writeJson(response: ServerResponse, status: number, body: string) {
-  response.writeHead(status, {
-    "cache-control": "no-store",
-    "content-type": "application/json; charset=utf-8",
-    "x-content-type-options": "nosniff",
+/** Builds one JSON response with cache and sniffing disabled. */
+function jsonResponse(
+  status: number,
+  body: string,
+  headers: Record<string, string> = {}
+) {
+  return textResponse(body, {
+    contentType: "application/json; charset=utf-8",
+    headers: {
+      "cache-control": "no-store",
+      "x-content-type-options": "nosniff",
+      ...headers,
+    },
+    status,
   });
-  response.end(body);
 }
 
 /** Compares two byte sequences by visiting every byte, so the result does not reveal where they first differ. */
@@ -85,14 +94,13 @@ function sameBytes(left: Uint8Array, right: Uint8Array) {
 /** Compares one bearer header without data-dependent token comparison. */
 function hasValidToken(header: string | undefined, token: string) {
   return sameBytes(
-    new TextEncoder().encode(header ?? ""),
-    new TextEncoder().encode(`Bearer ${token}`)
+    encoder.encode(header ?? ""),
+    encoder.encode(`Bearer ${token}`)
   );
 }
 
 /** Returns the exact request path without normalizing traversal segments. */
-function requestPath(request: IncomingMessage) {
-  const url = String(request.url);
+function requestPath(url: string) {
   const queryIndex = url.indexOf("?");
   return queryIndex === -1 ? url : url.slice(0, queryIndex);
 }
@@ -118,98 +126,79 @@ function eventJson(manifest: LocalPreviewManifest) {
   );
 }
 
-/**
- * Writes one keep-alive line after each full interval until its fiber is
- * interrupted. A write to a peer that is gone does not throw: Node destroys the
- * response and emits `close`, and the `close` handler interrupts this fiber.
- */
-const writeKeepAlives = Effect.fn("AksaraCli.writePreviewKeepAlives")(
-  (response: ServerResponse, intervalMs: number) => {
-    const interval = Duration.millis(intervalMs);
-    return Effect.sync(() => response.write(PREVIEW_HEARTBEAT)).pipe(
-      Effect.repeat(Schedule.spaced(interval)),
-      Effect.delay(interval)
-    );
-  }
-);
+/** Formats one committed state as one server-sent update event. */
+function updateEvent(state: PreviewHttpState) {
+  return `event: update\ndata: ${eventJson(state.manifest)}\n\n`;
+}
 
 /** Creates the authenticated request transport around scoped provider state. */
-export function makePreviewHttp(input: PreviewHttpInput): PreviewHttp {
-  const clients = MutableHashMap.empty<ServerResponse, Fiber.Fiber<unknown>>();
-  /** Forks one fiber with the services of the fiber that opened the provider. */
-  const runFork = Effect.runForkWith(input.context);
-  /** Interrupts one heartbeat from a Node callback, before its response ends. */
-  const stopHeartbeat = (heartbeat: Fiber.Fiber<unknown>) => {
-    runFork(Fiber.interrupt(heartbeat));
-  };
+export const makePreviewHttp = Effect.fn("AksaraCli.makePreviewHttp")(
+  function* (input: PreviewHttpInput) {
+    const updates = yield* PubSub.unbounded<PreviewHttpState>();
+    const closed = yield* Deferred.make<void>();
+    const heartbeatInterval = Duration.millis(
+      input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
+    );
+    /** Each keep-alive waits one full interval, so the first one never comes at once. */
+    const heartbeats = Stream.fromEffectRepeat(
+      Effect.sleep(heartbeatInterval).pipe(Effect.as(PREVIEW_HEARTBEAT))
+    );
+    /** One stream subscribes before it reads the current state, so no commit between them is lost. */
+    const committedUpdates = Stream.scoped(
+      Stream.unwrap(
+        Effect.gen(function* () {
+          const subscription = yield* PubSub.subscribe(updates);
+          return Stream.concat(
+            Stream.make(input.readState()),
+            Stream.fromSubscription(subscription)
+          );
+        })
+      )
+    ).pipe(Stream.map(updateEvent));
+    const body = committedUpdates.pipe(
+      Stream.merge(heartbeats),
+      Stream.interruptWhen(Deferred.await(closed)),
+      Stream.map((text) => encoder.encode(text))
+    );
 
-  /** Handles one authenticated request against one atomic state snapshot. */
-  const handle: PreviewHttp["handle"] = (request, response) => {
-    if (!hasValidToken(request.headers.authorization, input.token)) {
-      writeJson(response, 401, '{"error":"unauthorized"}');
-      return;
-    }
-    if (request.method !== "GET") {
-      response.setHeader("allow", "GET");
-      writeJson(response, 405, '{"error":"method"}');
-      return;
-    }
-    const path = requestPath(request);
-    const state = input.readState();
-    if (path === PREVIEW_MANIFEST_PATH) {
-      writeJson(response, 200, state.manifestJson);
-      return;
-    }
-    if (path === PREVIEW_EVENTS_PATH) {
-      response.writeHead(200, {
-        "cache-control": "no-store",
-        connection: "keep-alive",
-        "content-type": "text/event-stream; charset=utf-8",
-      });
-      const heartbeat = runFork(
-        writeKeepAlives(
-          response,
-          input.heartbeatIntervalMs ?? PREVIEW_HEARTBEAT_INTERVAL_MS
-        )
-      );
-      MutableHashMap.set(clients, Equal.byReferenceUnsafe(response), heartbeat);
-      response.once("close", () => {
-        stopHeartbeat(heartbeat);
-        MutableHashMap.remove(clients, Equal.byReferenceUnsafe(response));
-      });
-      response.write(`event: update\ndata: ${eventJson(state.manifest)}\n\n`);
-      return;
-    }
-    if (path.startsWith(LOCAL_PREVIEW_ARTIFACT_PREFIX)) {
-      const artifact = decodeArtifactHash(path).pipe(
-        Option.flatMap((hash) => HashMap.get(state.artifacts, hash))
-      );
-      if (Option.isSome(artifact)) {
-        writeJson(response, 200, artifact.value);
-        return;
+    /** Answers one authenticated request against one atomic state snapshot. */
+    const handle = Effect.gen(function* () {
+      const request = yield* HttpServerRequest;
+      if (!hasValidToken(request.headers.authorization, input.token)) {
+        return jsonResponse(401, '{"error":"unauthorized"}');
       }
-      writeJson(response, 409, '{"error":"409"}');
-      return;
-    }
-    writeJson(response, 404, '{"error":"404"}');
-  };
+      if (request.method !== "GET") {
+        return jsonResponse(405, '{"error":"method"}', { allow: "GET" });
+      }
+      const path = requestPath(request.url);
+      if (path === PREVIEW_EVENTS_PATH) {
+        return streamResponse(body, {
+          contentType: "text/event-stream; charset=utf-8",
+          headers: { "cache-control": "no-store", connection: "keep-alive" },
+          status: 200,
+        });
+      }
+      const state = input.readState();
+      if (path === PREVIEW_MANIFEST_PATH) {
+        return jsonResponse(200, state.manifestJson);
+      }
+      if (path.startsWith(LOCAL_PREVIEW_ARTIFACT_PREFIX)) {
+        const artifact = decodeArtifactHash(path).pipe(
+          Option.flatMap((hash) => HashMap.get(state.artifacts, hash))
+        );
+        if (Option.isSome(artifact)) {
+          return jsonResponse(200, artifact.value);
+        }
+        return jsonResponse(409, '{"error":"409"}');
+      }
+      return jsonResponse(404, '{"error":"404"}');
+    });
 
-  /** Ends every event response without retaining stale scoped clients. */
-  const close = () => {
-    for (const [client, heartbeat] of clients) {
-      stopHeartbeat(heartbeat);
-      client.end();
-    }
-    MutableHashMap.clear(clients);
-  };
-
-  /** Notifies every live client after one complete state replacement. */
-  const publish = (state: PreviewHttpState) => {
-    const event = `event: update\ndata: ${eventJson(state.manifest)}\n\n`;
-    for (const client of MutableHashMap.keys(clients)) {
-      client.write(event);
-    }
-  };
-
-  return { close, handle, publish };
-}
+    return {
+      close: Deferred.succeed(closed, undefined).pipe(Effect.asVoid),
+      handle,
+      publish: (state: PreviewHttpState) =>
+        PubSub.publish(updates, state).pipe(Effect.asVoid),
+    } satisfies PreviewHttp;
+  }
+);

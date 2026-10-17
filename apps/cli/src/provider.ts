@@ -17,6 +17,7 @@ import {
 } from "@nakafa/aksara-contracts/preview/spec";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import { Array as Arr, Effect, HashMap, Redacted, Schema } from "effect";
+import { isInetAddress } from "effect/net/NetAddress";
 import {
   makePreviewHttp,
   PREVIEW_EVENTS_PATH,
@@ -46,9 +47,6 @@ const PreviewReadyResultSchema = Schema.Struct({
   projection: ContentProjectionSchema,
 });
 type PreviewReadyResult = typeof PreviewReadyResultSchema.Type;
-
-/** The port that the loopback listener reports, the only part of its address the provider uses. */
-const LoopbackPortSchema = Schema.Struct({ port: Schema.Finite });
 
 /** The loopback listener could not start, so no provider state is ever served. */
 const listenFailure = () => new PreviewProviderError({ stage: "listen" });
@@ -164,16 +162,20 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
     };
     let generation = 0;
     const token = Redacted.value(input.token);
-    const context = yield* Effect.context<never>();
-    const http = makePreviewHttp({ context, readState: () => state, token });
-    const server = yield* NodeHttpServer.make(() => createServer(http.handle), {
-      host: "127.0.0.1",
-      port: 0,
-    }).pipe(Effect.mapError(listenFailure));
-    const { port } = yield* Schema.decodeUnknownEffect(LoopbackPortSchema)(
-      server.address
+    const http = yield* makePreviewHttp({ readState: () => state, token });
+    /**
+     * The bind completes on a later tick and the platform cannot cancel it, so
+     * an interrupt waits for the listener and the scope then closes it.
+     */
+    const server = yield* Effect.uninterruptible(
+      NodeHttpServer.make(createServer, { host: "127.0.0.1", port: 0 })
     ).pipe(Effect.mapError(listenFailure));
-    yield* Effect.addFinalizer(() => Effect.sync(() => http.close()));
+    const { address } = server;
+    if (!isInetAddress(address)) {
+      return yield* new PreviewProviderError({ stage: "listen" });
+    }
+    yield* server.serve(http.handle);
+    yield* Effect.addFinalizer(() => http.close);
     /** Replaces the complete served state before notifying connected clients. */
     const update = Effect.fn("AksaraCli.updatePreviewProvider")(
       (
@@ -181,7 +183,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
         results: readonly PreviewReadyResult[] = []
       ) =>
         encodeManifest(next).pipe(
-          Effect.map((encoded) => {
+          Effect.flatMap((encoded) => {
             state = {
               ...encoded,
               artifacts: HashMap.fromIterable(Arr.map(results, artifactEntry)),
@@ -212,7 +214,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
           status: "failed",
         }),
       manifestPath: PREVIEW_MANIFEST_PATH,
-      origin: new URL(`http://127.0.0.1:${port}`),
+      origin: new URL(`http://127.0.0.1:${address.port}`),
       pending: (repositories) =>
         Effect.suspend(() => {
           generation += 1;

@@ -1,5 +1,4 @@
-import { ServerResponse } from "node:http";
-import { Array as Arr, Effect } from "effect";
+import { Effect } from "effect";
 import { PREVIEW_EVENTS_PATH } from "#cli/provider/http";
 import {
   openPreviewHttpReader,
@@ -57,17 +56,6 @@ export const waitFor = Effect.fn("AksaraCliTest.waitForPreviewHttpAssertion")(
 
 /** The exact keep-alive line that the transport writes to an idle event stream. */
 export const KEEP_ALIVE_LINE = ": keep-alive\n\n";
-
-/** Counts keep-alive lines written to any response until its scope closes. */
-export const keepAliveLineCounter = Effect.acquireRelease(
-  Effect.sync(() => vi.spyOn(ServerResponse.prototype, "write")),
-  (spy) => Effect.sync(() => spy.mockRestore())
-).pipe(
-  Effect.map(
-    (spy) => () =>
-      Arr.filter(spy.mock.calls, ([chunk]) => chunk === KEEP_ALIVE_LINE).length
-  )
-);
 
 /** Opens one authenticated event stream and returns its raw body reader. */
 export const openEventStream = Effect.fn(

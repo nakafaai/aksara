@@ -1,5 +1,6 @@
 import { NodeSocketServer } from "@effect/platform-node";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
+import { isInetAddress, isLoopback } from "effect/net/NetAddress";
 import { NakafaProcess } from "#cli/child/process";
 import type { PreviewCredentials } from "#cli/credentials";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
@@ -51,23 +52,22 @@ export interface RunningNakafa {
   readonly origin: URL;
 }
 
-/** The port of the loopback socket that the reservation reports, the only part of its address it uses. */
-const LoopbackPortSchema = Schema.Struct({ port: Schema.Finite });
-
 /** The app child could not start on a reserved loopback port. */
 const startFailure = () => makeNakafaAppError("start", false);
 
-/** Allocates one currently free localhost port for the actual app child. */
+/**
+ * Allocates one currently free port on loopback for the actual app child. The
+ * socket is closed when the reservation scope ends, so the port is free again.
+ */
 const reserveNakafaPort = Effect.fn("AksaraCli.reserveNakafaPort")(
   function* () {
-    const address = yield* Effect.scoped(
-      NodeSocketServer.make({ host: NAKAFA_LOOPBACK_HOST, port: 0 }).pipe(
-        Effect.map((server) => server.address)
-      )
+    const { address } = yield* Effect.scoped(
+      NodeSocketServer.make({ host: NAKAFA_LOOPBACK_HOST, port: 0 })
     );
-    const { port } =
-      yield* Schema.decodeUnknownEffect(LoopbackPortSchema)(address);
-    return port;
+    if (!(isInetAddress(address) && isLoopback(address.address))) {
+      return yield* startFailure();
+    }
+    return address.port;
   },
   Effect.mapError(startFailure)
 );
