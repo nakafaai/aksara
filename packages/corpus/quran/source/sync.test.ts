@@ -81,15 +81,14 @@ layer(quranSyncFixtureLayer)("German Quran source sync", (it) => {
       const fixture = yield* QuranSyncFixture;
       const edition = Uint8Array.from(fixture.edition);
       const translation = Uint8Array.from(fixture.translation);
-      const publication = Uint8Array.from(fixture.publication);
-      const terms = Uint8Array.from(fixture.terms);
       edition[0] = edition[0] === 0 ? 1 : 0;
       translation[0] = translation[0] === 0 ? 1 : 0;
+      const { terms } = fixture;
       const cases = [
         [GERMAN_QURAN_EDITION_URL, edition, "bubenheim-edition.pdf"],
         [
           GERMAN_QURAN_PUBLICATION_URL,
-          publication.subarray(1),
+          fixture.publication.subarray(1),
           "islamhouse-german-bubenheim.json",
         ],
         [GERMAN_QURAN_TERMS_URL, terms.subarray(1), "islamhouse-faq.html"],
