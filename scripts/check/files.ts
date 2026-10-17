@@ -8,10 +8,10 @@ const GENERATED_PATH_PATTERN =
   /(?:^|\/)(?:dist|node_modules|_generated)(?:\/|$)/u;
 
 /** Git could not list the repository's tracked files. */
-export class TrackedFilesError extends Schema.TaggedError<TrackedFilesError>()(
-  "TrackedFilesError",
-  { message: Schema.String }
-) {}
+export class TrackedFilesError extends Schema.TaggedError<
+  TrackedFilesError,
+  { readonly brand: unique symbol }
+>()("TrackedFilesError", { message: Schema.String }) {}
 
 /** Runs Git in the working directory and returns its standard output. */
 const gitOutput = Effect.fn("AksaraPolicy.gitOutput")(function* (

@@ -29,14 +29,14 @@ const GitBlobMetadataSchema = Schema.Struct({
 type GitBlobMetadata = typeof GitBlobMetadataSchema.Type;
 
 /** Git's binary batch response violated its exact framing contract. */
-export class GitBatchError extends Schema.TaggedError<GitBatchError>()(
-  "GitBatchError",
-  {
-    cause: Schema.Unknown,
-    reason: Schema.Literals(["limit", "protocol"]),
-    sourcePath: Schema.NullOr(CorpusSourcePathSchema),
-  }
-) {}
+export class GitBatchError extends Schema.TaggedError<
+  GitBatchError,
+  { readonly brand: unique symbol }
+>()("GitBatchError", {
+  cause: Schema.Unknown,
+  reason: Schema.Literals(["limit", "protocol"]),
+  sourcePath: Schema.NullOr(CorpusSourcePathSchema),
+}) {}
 
 /** Requests only immutable object identities and sizes before any body read. */
 export function makeGitMetadataRequest(

@@ -17,15 +17,15 @@ function marksFact(marks: TryoutSection["marks"]) {
       );
 }
 
-export class AssessmentReadinessMismatchError extends Schema.TaggedError<AssessmentReadinessMismatchError>()(
-  "AssessmentReadinessMismatchError",
-  {
-    actual: Schema.Trimmed.check(Schema.isNonEmpty()),
-    expected: Schema.Trimmed.check(Schema.isNonEmpty()),
-    field: Schema.Trimmed.check(Schema.isNonEmpty()),
-    scope: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class AssessmentReadinessMismatchError extends Schema.TaggedError<
+  AssessmentReadinessMismatchError,
+  { readonly brand: unique symbol }
+>()("AssessmentReadinessMismatchError", {
+  actual: Schema.Trimmed.check(Schema.isNonEmpty()),
+  expected: Schema.Trimmed.check(Schema.isNonEmpty()),
+  field: Schema.Trimmed.check(Schema.isNonEmpty()),
+  scope: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Compares one readiness fact and returns a typed mismatch on drift. */
 export function validateReadinessField(

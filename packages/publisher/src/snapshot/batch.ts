@@ -14,19 +14,19 @@ import { streamBatches } from "#publisher/batch/core";
 import { encodeJsonText } from "#publisher/text/json";
 
 /** One structured row is not owned by its declared snapshot envelope. */
-export class SnapshotBatchBindingError extends Schema.TaggedError<SnapshotBatchBindingError>()(
-  "SnapshotBatchBindingError",
-  {
-    actual: Schema.String,
-    expected: Schema.String,
-    family: ContentSnapshotKindSchema,
-    field: Schema.Literals(["family", "snapshotId"]),
-    itemOffset: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-  }
-) {}
+export class SnapshotBatchBindingError extends Schema.TaggedError<
+  SnapshotBatchBindingError,
+  { readonly brand: unique symbol }
+>()("SnapshotBatchBindingError", {
+  actual: Schema.String,
+  expected: Schema.String,
+  family: ContentSnapshotKindSchema,
+  field: Schema.Literals(["family", "snapshotId"]),
+  itemOffset: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+}) {}
 
 /** Serializes one complete snapshot-row request in canonical wire order. */
 export function canonicalizeSnapshotBatch(batch: StageSnapshotBatchInput) {

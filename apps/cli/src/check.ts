@@ -11,10 +11,10 @@ import { NakafaAppLive } from "#cli/nakafa";
 import { openRendererSession } from "#cli/renderer/session";
 
 /** Signals that the reviewed Quran source is not approved for publication. */
-export class CatalogCheckBlockedError extends Schema.TaggedError<CatalogCheckBlockedError>()(
-  "CatalogCheckBlockedError",
-  { provenanceDigest: Sha256HashSchema }
-) {}
+export class CatalogCheckBlockedError extends Schema.TaggedError<
+  CatalogCheckBlockedError,
+  { readonly brand: unique symbol }
+>()("CatalogCheckBlockedError", { provenanceDigest: Sha256HashSchema }) {}
 
 /** Runs complete read-only validation against the actual Nakafa renderer. */
 export const runCheckCommand = Effect.fn("AksaraCli.runCheckCommand")(

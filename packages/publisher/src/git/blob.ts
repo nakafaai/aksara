@@ -43,14 +43,14 @@ const GitBlobInputSchema = Schema.Struct({
 type GitBlobInput = typeof GitBlobInputSchema.Type;
 
 /** A repository command or exact-revision validation step failed. */
-export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
-  "GitBlobError",
-  {
-    cause: Schema.Unknown,
-    message: Schema.Trimmed.check(Schema.isNonEmpty()),
-    operation: GitBlobOperationSchema,
-  }
-) {}
+export class GitBlobError extends Schema.TaggedError<
+  GitBlobError,
+  { readonly brand: unique symbol }
+>()("GitBlobError", {
+  cause: Schema.Unknown,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+  operation: GitBlobOperationSchema,
+}) {}
 
 /** Reads one bounded batch of immutable UTF-8 corpus blobs. */
 export class GitBlob extends Context.Service<

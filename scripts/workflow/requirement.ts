@@ -2,10 +2,10 @@ import { Effect, Schema } from "effect";
 import { type Document, isMap, isScalar, isSeq, type YAMLMap } from "yaml";
 
 /** A fact that a workflow verifier requires does not hold, so the workflow is refused with its reason. */
-export class WorkflowError extends Schema.TaggedError<WorkflowError>()(
-  "WorkflowError",
-  { message: Schema.String }
-) {}
+export class WorkflowError extends Schema.TaggedError<
+  WorkflowError,
+  { readonly brand: unique symbol }
+>()("WorkflowError", { message: Schema.String }) {}
 
 /** Succeeds when one required workflow fact holds, and fails with its reason otherwise. */
 export function ensure(holds: boolean, reason: string) {

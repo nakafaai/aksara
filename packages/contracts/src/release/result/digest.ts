@@ -24,41 +24,41 @@ import {
 import { RESULT_CATALOG_DIGEST_DOMAIN } from "#contracts/release/result/spec";
 
 /** SHA-256 computation failed before result-catalog integrity was established. */
-export class ResultCatalogHashError extends Schema.TaggedError<ResultCatalogHashError>()(
-  "ResultCatalogHashError",
-  { releaseId: ReleaseIdSchema }
-) {}
+export class ResultCatalogHashError extends Schema.TaggedError<
+  ResultCatalogHashError,
+  { readonly brand: unique symbol }
+>()("ResultCatalogHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** A result catalog is duplicated or outside canonical content-head order. */
-export class ResultCatalogOrderError extends Schema.TaggedError<ResultCatalogOrderError>()(
-  "ResultCatalogOrderError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class ResultCatalogOrderError extends Schema.TaggedError<
+  ResultCatalogOrderError,
+  { readonly brand: unique symbol }
+>()("ResultCatalogOrderError", {
+  ...ContentHeadIdentitySchema.fields,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** Two complete result heads claim the same locale-specific public route. */
-export class ResultCatalogRouteError extends Schema.TaggedError<ResultCatalogRouteError>()(
-  "ResultCatalogRouteError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    publicPath: PublicPathSchema,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class ResultCatalogRouteError extends Schema.TaggedError<
+  ResultCatalogRouteError,
+  { readonly brand: unique symbol }
+>()("ResultCatalogRouteError", {
+  ...ContentHeadIdentitySchema.fields,
+  publicPath: PublicPathSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** A replayed result catalog has a different signed head count. */
-export class ResultCatalogCountMismatchError extends Schema.TaggedError<ResultCatalogCountMismatchError>()(
-  "ResultCatalogCountMismatchError",
-  { ...ReleaseCountMismatchFields }
-) {}
+export class ResultCatalogCountMismatchError extends Schema.TaggedError<
+  ResultCatalogCountMismatchError,
+  { readonly brand: unique symbol }
+>()("ResultCatalogCountMismatchError", { ...ReleaseCountMismatchFields }) {}
 
 /** A replayed result catalog does not match its signed digest. */
-export class ResultCatalogDigestMismatchError extends Schema.TaggedError<ResultCatalogDigestMismatchError>()(
-  "ResultCatalogDigestMismatchError",
-  { ...ReleaseDigestMismatchFields }
-) {}
+export class ResultCatalogDigestMismatchError extends Schema.TaggedError<
+  ResultCatalogDigestMismatchError,
+  { readonly brand: unique symbol }
+>()("ResultCatalogDigestMismatchError", { ...ReleaseDigestMismatchFields }) {}
 
 /** Keeps mutable digest and ordering state private to one catalog replay. */
 class ResultCatalogDigestState {

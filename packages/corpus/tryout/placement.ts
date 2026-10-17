@@ -32,19 +32,13 @@ export type TryoutPlacementContext = typeof TryoutPlacementContextSchema.Type;
  * means a rubric item sits in an exam that scores correct and wrong outcomes
  * instead of summing raw points.
  */
-export class TryoutPlacementError extends Schema.TaggedError<TryoutPlacementError>()(
-  "TryoutPlacementError",
-  {
-    questionKey: QuestionKeySchema,
-    reason: Schema.Literals([
-      "decode",
-      "order",
-      "owner",
-      "response",
-      "scoring",
-    ]),
-  }
-) {}
+export class TryoutPlacementError extends Schema.TaggedError<
+  TryoutPlacementError,
+  { readonly brand: unique symbol }
+>()("TryoutPlacementError", {
+  questionKey: QuestionKeySchema,
+  reason: Schema.Literals(["decode", "order", "owner", "response", "scoring"]),
+}) {}
 
 /** Checks that the supplied hierarchy is nested in its decoded exam source. */
 function ownsContext(context: TryoutPlacementContext) {

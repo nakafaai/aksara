@@ -10,14 +10,14 @@ import type { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item"
 import { Array as Arr, Effect, Schema } from "effect";
 
 /** An authored item does not exactly match its section-owned locales. */
-export class QuestionItemLocaleError extends Schema.TaggedError<QuestionItemLocaleError>()(
-  "QuestionItemLocaleError",
-  {
-    actualLocales: Schema.Array(AppLocaleCodeSchema),
-    expectedLocales: Schema.Array(ArtifactLocaleSchema),
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class QuestionItemLocaleError extends Schema.TaggedError<
+  QuestionItemLocaleError,
+  { readonly brand: unique symbol }
+>()("QuestionItemLocaleError", {
+  actualLocales: Schema.Array(AppLocaleCodeSchema),
+  expectedLocales: Schema.Array(ArtifactLocaleSchema),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Returns canonical locale keys present in one decoded item. */
 function actualItemLocales(item: typeof QuestionItemSchema.Type) {

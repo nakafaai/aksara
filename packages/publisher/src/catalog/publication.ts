@@ -47,15 +47,15 @@ const ContentCatalogBaseSchema = Schema.Struct({
 type ContentCatalogBase = typeof ContentCatalogBaseSchema.Type;
 
 /** A genesis publication found active heads without an authenticated base. */
-export class CatalogGenesisError extends Schema.TaggedError<CatalogGenesisError>()(
-  "CatalogGenesisError",
-  {
-    actualCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
+export class CatalogGenesisError extends Schema.TaggedError<
+  CatalogGenesisError,
+  { readonly brand: unique symbol }
+>()("CatalogGenesisError", {
+  actualCount: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+}) {}
 
 /** Replayable whole-catalog plan consumed by generic release preparation. */
 export interface ContentCatalogPublication {

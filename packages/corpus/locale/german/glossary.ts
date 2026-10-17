@@ -55,10 +55,10 @@ const GermanGlossarySchema = Schema.NonEmptyArray(
 );
 
 /** The source-controlled German terminology glossary is invalid. */
-export class GermanGlossaryError extends Schema.TaggedError<GermanGlossaryError>()(
-  "GermanGlossaryError",
-  { cause: Schema.Unknown }
-) {}
+export class GermanGlossaryError extends Schema.TaggedError<
+  GermanGlossaryError,
+  { readonly brand: unique symbol }
+>()("GermanGlossaryError", { cause: Schema.Unknown }) {}
 
 /** Decodes the reviewed German terminology sources of truth. */
 export const decodeGermanGlossary = Effect.fn(
@@ -77,10 +77,10 @@ export const decodeGermanGlossary = Effect.fn(
 );
 
 /** One required glossary term is absent from the reviewed source. */
-export class GermanGlossaryTermError extends Schema.TaggedError<GermanGlossaryTermError>()(
-  "GermanGlossaryTermError",
-  { key: GermanGlossaryKeySchema }
-) {}
+export class GermanGlossaryTermError extends Schema.TaggedError<
+  GermanGlossaryTermError,
+  { readonly brand: unique symbol }
+>()("GermanGlossaryTermError", { key: GermanGlossaryKeySchema }) {}
 
 /** Resolves one reviewed term without guessing or manufacturing a translation. */
 export const requireGermanGlossaryTerm = Effect.fn(

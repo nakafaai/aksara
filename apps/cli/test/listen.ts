@@ -11,10 +11,10 @@ export const listenPlan = {
 };
 
 /** One tagged bind failure that the listener mock reports on demand. */
-class ListenTestError extends Schema.TaggedError<ListenTestError>()(
-  "ListenTestError",
-  {}
-) {}
+class ListenTestError extends Schema.TaggedError<
+  ListenTestError,
+  { readonly brand: unique symbol }
+>()("ListenTestError", {}) {}
 
 /**
  * Wraps the platform listener so that one test can fail the bind or report a

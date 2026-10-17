@@ -74,7 +74,7 @@ See:
 ## Requirements
 
 - Node 24
-- pnpm 11.28.4 through Corepack
+- pnpm 11.28.6 through Corepack
 
 The exact supported runtime and package-manager versions live in
 [`package.json`](package.json). Install the frozen workspace from the repository

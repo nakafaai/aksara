@@ -49,16 +49,16 @@ const RouteOwnerSchema = Schema.Struct({
 type RouteOwner = typeof RouteOwnerSchema.Type;
 
 /** Two transition rows claimed the same route on one side of the delta. */
-export class RoutePlanConflictError extends Schema.TaggedError<RoutePlanConflictError>()(
-  "RoutePlanConflictError",
-  {
-    appLocale: AppLocaleSchema,
-    existingContentKey: ContentKeySchema,
-    incomingContentKey: ContentKeySchema,
-    publicPath: PublicPathSchema,
-    side: Schema.Literals(["current", "next"]),
-  }
-) {}
+export class RoutePlanConflictError extends Schema.TaggedError<
+  RoutePlanConflictError,
+  { readonly brand: unique symbol }
+>()("RoutePlanConflictError", {
+  appLocale: AppLocaleSchema,
+  existingContentKey: ContentKeySchema,
+  incomingContentKey: ContentKeySchema,
+  publicPath: PublicPathSchema,
+  side: Schema.Literals(["current", "next"]),
+}) {}
 
 /** Creates the two empty ownership maps that one route plan fills in transition order. */
 function emptyRoutePlanState() {

@@ -44,10 +44,10 @@ const articleKeys = [
 ];
 
 /** The pinned acceptance corpus no longer contains a required reviewed source. */
-export class AcceptanceSourceError extends Schema.TaggedError<AcceptanceSourceError>()(
-  "AcceptanceSourceError",
-  { identity: Schema.String }
-) {}
+export class AcceptanceSourceError extends Schema.TaggedError<
+  AcceptanceSourceError,
+  { readonly brand: unique symbol }
+>()("AcceptanceSourceError", { identity: Schema.String }) {}
 
 /** Requires every selected identity in every active locale before compiling. */
 const selectEntries = Effect.fn("AksaraPublisher.selectAcceptanceEntries")(

@@ -15,13 +15,13 @@ import {
 } from "effect";
 
 /** A material route has no complete subject or course presentation context. */
-export class CurriculumContextError extends Schema.TaggedError<CurriculumContextError>()(
-  "CurriculumContextError",
-  {
-    nodeKey: Schema.String,
-    programKey: LearningProgramKeySchema,
-  }
-) {}
+export class CurriculumContextError extends Schema.TaggedError<
+  CurriculumContextError,
+  { readonly brand: unique symbol }
+>()("CurriculumContextError", {
+  nodeKey: Schema.String,
+  programKey: LearningProgramKeySchema,
+}) {}
 
 /** Finds the closest card group and subject/course parent for one material. */
 function findMaterialContext(

@@ -24,10 +24,10 @@ const WorkspaceIdentitySchema = Schema.Struct({
 type WorkspaceIdentity = typeof WorkspaceIdentitySchema.Type;
 
 /** A workspace manifest does not define the import-boundary identity of its package. */
-export class WorkspaceIdentityError extends Schema.TaggedError<WorkspaceIdentityError>()(
-  "WorkspaceIdentityError",
-  { message: Schema.String }
-) {}
+export class WorkspaceIdentityError extends Schema.TaggedError<
+  WorkspaceIdentityError,
+  { readonly brand: unique symbol }
+>()("WorkspaceIdentityError", { message: Schema.String }) {}
 
 /** Returns the import-boundary identity of the workspace that owns one source file. */
 export type WorkspaceIdentityResolver = (

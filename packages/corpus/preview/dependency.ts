@@ -30,13 +30,13 @@ const CORPUS_ALIAS = "#corpus/";
 const MAX_SOURCE_FILES = 128;
 
 /** A source-module dependency closure cannot be reproduced safely. */
-export class SourceDependencyError extends Schema.TaggedError<SourceDependencyError>()(
-  "SourceDependencyError",
-  {
-    reason: Schema.Literals(["limit", "missing", "module", "syntax"]),
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class SourceDependencyError extends Schema.TaggedError<
+  SourceDependencyError,
+  { readonly brand: unique symbol }
+>()("SourceDependencyError", {
+  reason: Schema.Literals(["limit", "missing", "module", "syntax"]),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Collects every static module reference or rejects unsupported loading. */
 function inspectModuleSpecifiers(sourceFile: SourceFile) {

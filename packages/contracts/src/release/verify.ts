@@ -17,30 +17,30 @@ import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
 
 /** Unknown release input did not exactly satisfy its signed wire contract. */
-export class ReleaseVerificationDecodeError extends Schema.TaggedError<ReleaseVerificationDecodeError>()(
-  "ReleaseVerificationDecodeError",
-  {
-    message: Schema.Literal(
-      "Release verification input does not satisfy its exact wire contract."
-    ),
-  }
-) {}
+export class ReleaseVerificationDecodeError extends Schema.TaggedError<
+  ReleaseVerificationDecodeError,
+  { readonly brand: unique symbol }
+>()("ReleaseVerificationDecodeError", {
+  message: Schema.Literal(
+    "Release verification input does not satisfy its exact wire contract."
+  ),
+}) {}
 
 /** The envelope hash does not identify its complete canonical manifest. */
-export class ReleaseManifestHashMismatchError extends Schema.TaggedError<ReleaseManifestHashMismatchError>()(
-  "ReleaseManifestHashMismatchError",
-  { ...ReleaseHashMismatchFields }
-) {}
+export class ReleaseManifestHashMismatchError extends Schema.TaggedError<
+  ReleaseManifestHashMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseManifestHashMismatchError", { ...ReleaseHashMismatchFields }) {}
 
 /** Stored release recovery input does not satisfy its exact bundle contract. */
-export class ReleaseBundleVerificationDecodeError extends Schema.TaggedError<ReleaseBundleVerificationDecodeError>()(
-  "ReleaseBundleVerificationDecodeError",
-  {
-    message: Schema.Literal(
-      "Release bundle verification input does not satisfy its exact wire contract."
-    ),
-  }
-) {}
+export class ReleaseBundleVerificationDecodeError extends Schema.TaggedError<
+  ReleaseBundleVerificationDecodeError,
+  { readonly brand: unique symbol }
+>()("ReleaseBundleVerificationDecodeError", {
+  message: Schema.Literal(
+    "Release bundle verification input does not satisfy its exact wire contract."
+  ),
+}) {}
 
 /** Confirms that a release envelope identifies its canonical manifest. */
 function validateManifestHash(

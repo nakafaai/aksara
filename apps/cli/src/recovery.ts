@@ -3,25 +3,28 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema } from "effect";
 
 /** Checked-out Git source differs from the immutable candidate provenance. */
-class RecoveryRevisionMismatchError extends Schema.TaggedError<RecoveryRevisionMismatchError>()(
-  "RecoveryRevisionMismatchError",
-  { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
-) {}
+class RecoveryRevisionMismatchError extends Schema.TaggedError<
+  RecoveryRevisionMismatchError,
+  { readonly brand: unique symbol }
+>()("RecoveryRevisionMismatchError", {
+  actual: GitCommitShaSchema,
+  expected: GitCommitShaSchema,
+}) {}
 
 /** Active base state differs from the immutable candidate recovery identity. */
-export class RecoveryBaseMismatchError extends Schema.TaggedError<RecoveryBaseMismatchError>()(
-  "RecoveryBaseMismatchError",
-  {
-    field: Schema.Literals([
-      "presence",
-      "activeAppLocales",
-      "manifestHash",
-      "releaseId",
-      "result",
-      "snapshots",
-    ]),
-  }
-) {}
+export class RecoveryBaseMismatchError extends Schema.TaggedError<
+  RecoveryBaseMismatchError,
+  { readonly brand: unique symbol }
+>()("RecoveryBaseMismatchError", {
+  field: Schema.Literals([
+    "presence",
+    "activeAppLocales",
+    "manifestHash",
+    "releaseId",
+    "result",
+    "snapshots",
+  ]),
+}) {}
 
 /** Requires the current clean checkout to equal stored Git provenance. */
 export function validateRecoveryRevision(

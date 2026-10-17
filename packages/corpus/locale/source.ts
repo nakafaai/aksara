@@ -37,13 +37,13 @@ export function sourceLocaleValue<Value>(
 }
 
 /** Source copy required for an authoring or publication operation is absent. */
-export class SourceLocaleUnavailableError extends Schema.TaggedError<SourceLocaleUnavailableError>()(
-  "SourceLocaleUnavailableError",
-  {
-    appLocale: AppLocaleSchema,
-    owner: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class SourceLocaleUnavailableError extends Schema.TaggedError<
+  SourceLocaleUnavailableError,
+  { readonly brand: unique symbol }
+>()("SourceLocaleUnavailableError", {
+  appLocale: AppLocaleSchema,
+  owner: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Resolves reviewed localized source copy without a fallback language. */
 export const requireSourceLocale = Effect.fn(

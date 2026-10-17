@@ -20,13 +20,13 @@ import type { TryoutScoring } from "#contracts/tryout/spec";
  * set lacks marks or a section of another set has them, and `rubric` means a
  * rubric placement sits in a set that does not sum raw points.
  */
-export class TryoutScoringError extends Schema.TaggedError<TryoutScoringError>()(
-  "TryoutScoringError",
-  {
-    code: Schema.Literals(["marks", "rubric", "strategy"]),
-    identity: Schema.String,
-  }
-) {}
+export class TryoutScoringError extends Schema.TaggedError<
+  TryoutScoringError,
+  { readonly brand: unique symbol }
+>()("TryoutScoringError", {
+  code: Schema.Literals(["marks", "rubric", "strategy"]),
+  identity: Schema.String,
+}) {}
 
 /** Creates empty scoring facts for one snapshot verification pass. */
 export function makeTryoutScoringFacts() {

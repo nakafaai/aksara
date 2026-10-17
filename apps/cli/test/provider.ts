@@ -28,20 +28,20 @@ const providerRepositories = makeRepositoryTracker();
 export const PREVIEW_PROVIDER_TEST_TOKEN = "test-preview-provider-token";
 
 /** Test-only failure while exercising a real preview provider boundary. */
-export class PreviewProviderTestError extends Schema.TaggedError<PreviewProviderTestError>()(
-  "PreviewProviderTestError",
-  {
-    cause: Schema.optional(Schema.Unknown),
-    stage: Schema.Literals([
-      "close",
-      "fetch",
-      "listen",
-      "response",
-      "stream",
-      "wait",
-    ]),
-  }
-) {}
+export class PreviewProviderTestError extends Schema.TaggedError<
+  PreviewProviderTestError,
+  { readonly brand: unique symbol }
+>()("PreviewProviderTestError", {
+  cause: Schema.optional(Schema.Unknown),
+  stage: Schema.Literals([
+    "close",
+    "fetch",
+    "listen",
+    "response",
+    "stream",
+    "wait",
+  ]),
+}) {}
 
 /** Acquires one compiled real document and removes its repository on release. */
 function acquirePreviewReady() {

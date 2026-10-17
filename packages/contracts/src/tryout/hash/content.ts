@@ -103,10 +103,10 @@ export function canonicalizeTryoutContent(input: TryoutContentInput) {
 }
 
 /** Web Crypto could not hash one canonical try-out content identity. */
-export class TryoutContentHashError extends Schema.TaggedError<TryoutContentHashError>()(
-  "TryoutContentHashError",
-  {}
-) {}
+export class TryoutContentHashError extends Schema.TaggedError<
+  TryoutContentHashError,
+  { readonly brand: unique symbol }
+>()("TryoutContentHashError", {}) {}
 
 /** Hashes one complete current question pair through its canonical identity. */
 export const hashTryoutContent = Effect.fn("AksaraContracts.hashTryoutContent")(

@@ -47,10 +47,12 @@ const ED25519_PUBLIC_KEY_BYTES = 32;
 const PEM_LINE_LENGTH = 64;
 
 /** An Ed25519 key could not be generated, imported from PEM, derived as a public key, or used to sign. */
-export class Ed25519KeyError extends Schema.TaggedError<Ed25519KeyError>()(
-  "Ed25519KeyError",
-  { stage: Schema.Literals(["derive", "import", "sign"]) }
-) {}
+export class Ed25519KeyError extends Schema.TaggedError<
+  Ed25519KeyError,
+  { readonly brand: unique symbol }
+>()("Ed25519KeyError", {
+  stage: Schema.Literals(["derive", "import", "sign"]),
+}) {}
 
 /** Decodes the DER bytes of one unencrypted PKCS#8 private key PEM. */
 function decodePrivateKeyPem(privateKeyPem: string) {

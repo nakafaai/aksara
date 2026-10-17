@@ -14,73 +14,73 @@ export type ArtifactVerificationRequest =
   typeof ArtifactVerificationRequestSchema.Type;
 
 /** Unknown artifact input did not exactly satisfy the verification contract. */
-export class ArtifactVerificationDecodeError extends Schema.TaggedError<ArtifactVerificationDecodeError>()(
-  "ArtifactVerificationDecodeError",
-  {
-    message: Schema.Literal(
-      "Artifact verification input does not satisfy its exact wire contract."
-    ),
-  }
-) {}
+export class ArtifactVerificationDecodeError extends Schema.TaggedError<
+  ArtifactVerificationDecodeError,
+  { readonly brand: unique symbol }
+>()("ArtifactVerificationDecodeError", {
+  message: Schema.Literal(
+    "Artifact verification input does not satisfy its exact wire contract."
+  ),
+}) {}
 
 /** A signed artifact exceeded the canonical UTF-8 wire ceiling. */
-export class ArtifactVerificationByteLimitError extends Schema.TaggedError<ArtifactVerificationByteLimitError>()(
-  "ArtifactVerificationByteLimitError",
-  {
-    actualBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    maxBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
+export class ArtifactVerificationByteLimitError extends Schema.TaggedError<
+  ArtifactVerificationByteLimitError,
+  { readonly brand: unique symbol }
+>()("ArtifactVerificationByteLimitError", {
+  actualBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  maxBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+}) {}
 
 /** Declared compiled bytes differ from the authenticated function body. */
-export class ArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<ArtifactCompiledByteLengthMismatchError>()(
-  "ArtifactCompiledByteLengthMismatchError",
-  {
-    actualBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    contentKey: ContentKeySchema,
-    declaredBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-  }
-) {}
+export class ArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<
+  ArtifactCompiledByteLengthMismatchError,
+  { readonly brand: unique symbol }
+>()("ArtifactCompiledByteLengthMismatchError", {
+  actualBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  contentKey: ContentKeySchema,
+  declaredBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+}) {}
 
 /** One authenticated payload field exceeded its shared runtime ceiling. */
-export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<ArtifactPayloadFieldByteLimitError>()(
-  "ArtifactPayloadFieldByteLimitError",
-  {
-    actualBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    contentKey: ContentKeySchema,
-    field: Schema.Literals([
-      "rawMdx",
-      "compiledCode",
-      "plainText",
-      "canonicalPayload",
-    ]),
-    maxBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
+export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<
+  ArtifactPayloadFieldByteLimitError,
+  { readonly brand: unique symbol }
+>()("ArtifactPayloadFieldByteLimitError", {
+  actualBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  contentKey: ContentKeySchema,
+  field: Schema.Literals([
+    "rawMdx",
+    "compiledCode",
+    "plainText",
+    "canonicalPayload",
+  ]),
+  maxBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+}) {}
 
 /** SHA-256 computation failed before authenticity could be established. */
-export class ArtifactHashComputationError extends Schema.TaggedError<ArtifactHashComputationError>()(
-  "ArtifactHashComputationError",
-  { contentKey: ContentKeySchema }
-) {}
+export class ArtifactHashComputationError extends Schema.TaggedError<
+  ArtifactHashComputationError,
+  { readonly brand: unique symbol }
+>()("ArtifactHashComputationError", { contentKey: ContentKeySchema }) {}
 
 /** Fields that name one content hash, its content key, and the hash that failed. */
 const ContentHashMismatchFields = {
@@ -90,37 +90,37 @@ const ContentHashMismatchFields = {
 };
 
 /** The signed artifact hash does not identify its canonical payload. */
-export class ArtifactHashMismatchError extends Schema.TaggedError<ArtifactHashMismatchError>()(
-  "ArtifactHashMismatchError",
-  { ...ContentHashMismatchFields }
-) {}
+export class ArtifactHashMismatchError extends Schema.TaggedError<
+  ArtifactHashMismatchError,
+  { readonly brand: unique symbol }
+>()("ArtifactHashMismatchError", { ...ContentHashMismatchFields }) {}
 
 /** SHA-256 could not be calculated for the authenticated authored source. */
-export class ArtifactSourceHashComputationError extends Schema.TaggedError<ArtifactSourceHashComputationError>()(
-  "ArtifactSourceHashComputationError",
-  { contentKey: ContentKeySchema }
-) {}
+export class ArtifactSourceHashComputationError extends Schema.TaggedError<
+  ArtifactSourceHashComputationError,
+  { readonly brand: unique symbol }
+>()("ArtifactSourceHashComputationError", { contentKey: ContentKeySchema }) {}
 
 /** The authenticated source hash does not identify the complete raw MDX. */
-export class ArtifactSourceHashMismatchError extends Schema.TaggedError<ArtifactSourceHashMismatchError>()(
-  "ArtifactSourceHashMismatchError",
-  { ...ContentHashMismatchFields }
-) {}
+export class ArtifactSourceHashMismatchError extends Schema.TaggedError<
+  ArtifactSourceHashMismatchError,
+  { readonly brand: unique symbol }
+>()("ArtifactSourceHashMismatchError", { ...ContentHashMismatchFields }) {}
 
 /** A custom component required by the artifact is absent from the renderer. */
-export class ArtifactRendererComponentMissingError extends Schema.TaggedError<ArtifactRendererComponentMissingError>()(
-  "ArtifactRendererComponentMissingError",
-  {
-    componentName: RendererComponentNameSchema,
-    contentKey: ContentKeySchema,
-  }
-) {}
+export class ArtifactRendererComponentMissingError extends Schema.TaggedError<
+  ArtifactRendererComponentMissingError,
+  { readonly brand: unique symbol }
+>()("ArtifactRendererComponentMissingError", {
+  componentName: RendererComponentNameSchema,
+  contentKey: ContentKeySchema,
+}) {}
 
 /** The deployed Nakafa app cannot route this artifact's renderer domain. */
-export class ArtifactRendererDomainUnpublishedError extends Schema.TaggedError<ArtifactRendererDomainUnpublishedError>()(
-  "ArtifactRendererDomainUnpublishedError",
-  {
-    contentKey: ContentKeySchema,
-    rendererDomain: RendererDomainSchema,
-  }
-) {}
+export class ArtifactRendererDomainUnpublishedError extends Schema.TaggedError<
+  ArtifactRendererDomainUnpublishedError,
+  { readonly brand: unique symbol }
+>()("ArtifactRendererDomainUnpublishedError", {
+  contentKey: ContentKeySchema,
+  rendererDomain: RendererDomainSchema,
+}) {}

@@ -31,10 +31,10 @@ import {
 import { validateQuestionLabels } from "#corpus/question-bank/label";
 
 /** An item module contains executable or structurally invalid TypeScript. */
-export class QuestionItemError extends Schema.TaggedError<QuestionItemError>()(
-  "QuestionItemError",
-  { sourcePath: CorpusSourcePathSchema }
-) {}
+export class QuestionItemError extends Schema.TaggedError<
+  QuestionItemError,
+  { readonly brand: unique symbol }
+>()("QuestionItemError", { sourcePath: CorpusSourcePathSchema }) {}
 
 /** Reads one non-computed property name from a reviewed literal. */
 function readPropertyName(name: PropertyName) {

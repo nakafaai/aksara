@@ -53,77 +53,80 @@ import {
 } from "effect";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 /** The exact reviewed Aksara revision could not provide release sources. */
-export class PublicationSourceError extends Schema.TaggedError<PublicationSourceError>()(
-  "PublicationSourceError",
-  {
-    aksaraSha: GitCommitShaSchema,
-    cause: Schema.Unknown,
-    message: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class PublicationSourceError extends Schema.TaggedError<
+  PublicationSourceError,
+  { readonly brand: unique symbol }
+>()("PublicationSourceError", {
+  aksaraSha: GitCommitShaSchema,
+  cause: Schema.Unknown,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 /** A persisted target status belongs to another release identity. */
-export class PublicationStatusMismatchError extends Schema.TaggedError<PublicationStatusMismatchError>()(
-  "PublicationStatusMismatchError",
-  {
-    actualManifestHash: Sha256HashSchema,
-    actualReleaseId: ReleaseIdSchema,
-    expectedManifestHash: Sha256HashSchema,
-    expectedReleaseId: ReleaseIdSchema,
-  }
-) {}
+export class PublicationStatusMismatchError extends Schema.TaggedError<
+  PublicationStatusMismatchError,
+  { readonly brand: unique symbol }
+>()("PublicationStatusMismatchError", {
+  actualManifestHash: Sha256HashSchema,
+  actualReleaseId: ReleaseIdSchema,
+  expectedManifestHash: Sha256HashSchema,
+  expectedReleaseId: ReleaseIdSchema,
+}) {}
 
 /** Durable target verification did not finish inside the release SLO. */
-export class PublicationVerificationTimeoutError extends Schema.TaggedError<PublicationVerificationTimeoutError>()(
-  "PublicationVerificationTimeoutError",
-  {
-    releaseId: ReleaseIdSchema,
-    timeoutSeconds: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
+export class PublicationVerificationTimeoutError extends Schema.TaggedError<
+  PublicationVerificationTimeoutError,
+  { readonly brand: unique symbol }
+>()("PublicationVerificationTimeoutError", {
+  releaseId: ReleaseIdSchema,
+  timeoutSeconds: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+}) {}
 /** A durably aborted immutable release cannot resume under the same identity. */
-export class PublicationReleaseAbortedError extends Schema.TaggedError<PublicationReleaseAbortedError>()(
-  "PublicationReleaseAbortedError",
-  { manifestHash: Sha256HashSchema, releaseId: ReleaseIdSchema }
-) {}
+export class PublicationReleaseAbortedError extends Schema.TaggedError<
+  PublicationReleaseAbortedError,
+  { readonly brand: unique symbol }
+>()("PublicationReleaseAbortedError", {
+  manifestHash: Sha256HashSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** A stored release is not yet or no longer safe for direct finalization. */
-export class PublicationResumePhaseError extends Schema.TaggedError<PublicationResumePhaseError>()(
-  "PublicationResumePhaseError",
-  {
-    phase: Schema.Literals([
-      "missing",
-      "staging",
-      "verifying",
-      "verified",
-      "aborting",
-      "completed",
-    ]),
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class PublicationResumePhaseError extends Schema.TaggedError<
+  PublicationResumePhaseError,
+  { readonly brand: unique symbol }
+>()("PublicationResumePhaseError", {
+  phase: Schema.Literals([
+    "missing",
+    "staging",
+    "verifying",
+    "verified",
+    "aborting",
+    "completed",
+  ]),
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** A prepared mode disagrees with the provenance signed by its manifest. */
-export class PublicationModeMismatchError extends Schema.TaggedError<PublicationModeMismatchError>()(
-  "PublicationModeMismatchError",
-  {
-    manifestMode: Schema.Literals(["git", "rollback"]),
-    preparedMode: Schema.Literals(["git", "rollback"]),
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class PublicationModeMismatchError extends Schema.TaggedError<
+  PublicationModeMismatchError,
+  { readonly brand: unique symbol }
+>()("PublicationModeMismatchError", {
+  manifestMode: Schema.Literals(["git", "rollback"]),
+  preparedMode: Schema.Literals(["git", "rollback"]),
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** A recovery identity aliases the candidate or the active base it protects. */
-export class PublicationRecoveryIdentityError extends Schema.TaggedError<PublicationRecoveryIdentityError>()(
-  "PublicationRecoveryIdentityError",
-  {
-    conflictingReleaseId: ReleaseIdSchema,
-    recoveryId: ReleaseIdSchema,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class PublicationRecoveryIdentityError extends Schema.TaggedError<
+  PublicationRecoveryIdentityError,
+  { readonly brand: unique symbol }
+>()("PublicationRecoveryIdentityError", {
+  conflictingReleaseId: ReleaseIdSchema,
+  recoveryId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** Activation steps that can fail closed: renderer preflight and cache convergence. */
 export const PublicationActivationPhaseSchema = Schema.Literals([
@@ -132,13 +135,13 @@ export const PublicationActivationPhaseSchema = Schema.Literals([
 ]);
 
 /** Renderer preflight or post-commit cache convergence failed closed. */
-export class PublicationActivationError extends Schema.TaggedError<PublicationActivationError>()(
-  "PublicationActivationError",
-  {
-    phase: PublicationActivationPhaseSchema,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class PublicationActivationError extends Schema.TaggedError<
+  PublicationActivationError,
+  { readonly brand: unique symbol }
+>()("PublicationActivationError", {
+  phase: PublicationActivationPhaseSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** Signing configuration injected only into the safe publication operation. */
 export class PublicationSigningKey extends Context.Service<

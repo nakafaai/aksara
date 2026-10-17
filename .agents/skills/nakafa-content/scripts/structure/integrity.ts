@@ -4,13 +4,13 @@ import { Effect, FileSystem, Schema } from "effect";
 const TEXT_EXTENSIONS = new Set([".md", ".mdx", ".ts"]);
 
 /** Typed failure for an unreadable entry during owned-source scans. */
-export class StructureScanError extends Schema.TaggedError<StructureScanError>()(
-  "StructureScanError",
-  {
-    detail: Schema.String,
-    reason: Schema.Literals(["unreadable-entry"]),
-  }
-) {}
+export class StructureScanError extends Schema.TaggedError<
+  StructureScanError,
+  { readonly brand: unique symbol }
+>()("StructureScanError", {
+  detail: Schema.String,
+  reason: Schema.Literals(["unreadable-entry"]),
+}) {}
 
 /** Returns true for symbolic links, which scans never follow. */
 const isSymbolicLink = Effect.fn("StructureIntegrity.isSymbolicLink")(

@@ -40,33 +40,33 @@ export const PageEntrySchema = Schema.Struct({
 export type PageEntry = typeof PageEntrySchema.Type;
 
 /** A decoded public page catalog repeats one stable page identity. */
-export class PageKeyDuplicateError extends Schema.TaggedError<PageKeyDuplicateError>()(
-  "PageKeyDuplicateError",
-  { pageKey: PageKeySchema }
-) {}
+export class PageKeyDuplicateError extends Schema.TaggedError<
+  PageKeyDuplicateError,
+  { readonly brand: unique symbol }
+>()("PageKeyDuplicateError", { pageKey: PageKeySchema }) {}
 
 /** Two stable page identities resolve to the same authored source root. */
-export class PageRootDuplicateError extends Schema.TaggedError<PageRootDuplicateError>()(
-  "PageRootDuplicateError",
-  { sourceRoot: PageRootSchema }
-) {}
+export class PageRootDuplicateError extends Schema.TaggedError<
+  PageRootDuplicateError,
+  { readonly brand: unique symbol }
+>()("PageRootDuplicateError", { sourceRoot: PageRootSchema }) {}
 
 /** Two stable page identities project to the same locale-owned public path. */
-export class PageRouteCollisionError extends Schema.TaggedError<PageRouteCollisionError>()(
-  "PageRouteCollisionError",
-  {
-    appLocale: AppLocaleSchema,
-    conflictingContentKey: ContentKeySchema,
-    contentKey: ContentKeySchema,
-    publicPath: PublicPathSchema,
-  }
-) {}
+export class PageRouteCollisionError extends Schema.TaggedError<
+  PageRouteCollisionError,
+  { readonly brand: unique symbol }
+>()("PageRouteCollisionError", {
+  appLocale: AppLocaleSchema,
+  conflictingContentKey: ContentKeySchema,
+  contentKey: ContentKeySchema,
+  publicPath: PublicPathSchema,
+}) {}
 
 /** A projected public page registry failed strict entry decoding. */
-export class PageRegistryError extends Schema.TaggedError<PageRegistryError>()(
-  "PageRegistryError",
-  { cause: Schema.Unknown }
-) {}
+export class PageRegistryError extends Schema.TaggedError<
+  PageRegistryError,
+  { readonly brand: unique symbol }
+>()("PageRegistryError", { cause: Schema.Unknown }) {}
 
 /** Projects one reviewed source into one exact locale-specific public page. */
 export const projectPage = Effect.fn("AksaraCorpus.projectPage")(function* (

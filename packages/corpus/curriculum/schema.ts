@@ -114,19 +114,22 @@ type StructureNodeInput = Omit<
 >;
 
 /** A curriculum source failed strict schema decoding at its definition seam. */
-export class CurriculumDecodeError extends Schema.TaggedError<CurriculumDecodeError>()(
-  "CurriculumDecodeError",
-  { cause: Schema.Unknown, message: Schema.Trimmed.check(Schema.isNonEmpty()) }
-) {}
+export class CurriculumDecodeError extends Schema.TaggedError<
+  CurriculumDecodeError,
+  { readonly brand: unique symbol }
+>()("CurriculumDecodeError", {
+  cause: Schema.Unknown,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** A decoded curriculum contains the same stable node identity twice. */
-export class CurriculumDuplicateError extends Schema.TaggedError<CurriculumDuplicateError>()(
-  "CurriculumDuplicateError",
-  {
-    nodeKey: CurriculumNodeKeySchema,
-    programKey: LearningProgramKeySchema,
-  }
-) {}
+export class CurriculumDuplicateError extends Schema.TaggedError<
+  CurriculumDuplicateError,
+  { readonly brand: unique symbol }
+>()("CurriculumDuplicateError", {
+  nodeKey: CurriculumNodeKeySchema,
+  programKey: LearningProgramKeySchema,
+}) {}
 
 /** Adds the helper-owned navigation level to one encoded structure node. */
 function structureNode(

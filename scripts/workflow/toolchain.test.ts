@@ -149,7 +149,7 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       yield* refuses(
         ci.replace(
           TOOLCHAIN_STEP,
-          `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020`
+          `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
         ),
         "Workflows must not use a second Node.js setup action"
       );

@@ -8,10 +8,10 @@ const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
   "nakafa.aksara.content-release-items";
 
 /** SHA-256 computation failed before item integrity was established. */
-export class ReleaseItemsHashComputationError extends Schema.TaggedError<ReleaseItemsHashComputationError>()(
-  "ReleaseItemsHashComputationError",
-  { releaseId: ReleaseIdSchema }
-) {}
+export class ReleaseItemsHashComputationError extends Schema.TaggedError<
+  ReleaseItemsHashComputationError,
+  { readonly brand: unique symbol }
+>()("ReleaseItemsHashComputationError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps the digest stream private while exposing canonical operation counts. */
 class ReleaseItemsDigestState {

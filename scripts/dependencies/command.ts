@@ -25,10 +25,10 @@ const RegistryVersionText = Schema.fromJsonString(Schema.String);
 const OutdatedText = Schema.fromJsonString(OutdatedSchema);
 
 /** A dependency command could not execute or returned unusable output. */
-export class DependencyCommandError extends Schema.TaggedError<DependencyCommandError>()(
-  "DependencyCommandError",
-  { message: Schema.String }
-) {}
+export class DependencyCommandError extends Schema.TaggedError<
+  DependencyCommandError,
+  { readonly brand: unique symbol }
+>()("DependencyCommandError", { message: Schema.String }) {}
 
 /** Runs pnpm in the repository and preserves its exact terminal output. */
 export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(

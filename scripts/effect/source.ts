@@ -28,25 +28,25 @@ const PackageManifest = Schema.Struct({
 
 const JsonDocument = Schema.fromJsonString(Schema.Unknown);
 
-class EffectSourceReadError extends Schema.TaggedError<EffectSourceReadError>()(
-  "EffectSourceReadError",
-  { message: Schema.String }
-) {}
+class EffectSourceReadError extends Schema.TaggedError<
+  EffectSourceReadError,
+  { readonly brand: unique symbol }
+>()("EffectSourceReadError", { message: Schema.String }) {}
 
-class EffectSourceGitError extends Schema.TaggedError<EffectSourceGitError>()(
-  "EffectSourceGitError",
-  { message: Schema.String }
-) {}
+class EffectSourceGitError extends Schema.TaggedError<
+  EffectSourceGitError,
+  { readonly brand: unique symbol }
+>()("EffectSourceGitError", { message: Schema.String }) {}
 
-class EffectSourceMismatch extends Schema.TaggedError<EffectSourceMismatch>()(
-  "EffectSourceMismatch",
-  { message: Schema.String }
-) {}
+class EffectSourceMismatch extends Schema.TaggedError<
+  EffectSourceMismatch,
+  { readonly brand: unique symbol }
+>()("EffectSourceMismatch", { message: Schema.String }) {}
 
-class EffectSourceUsageError extends Schema.TaggedError<EffectSourceUsageError>()(
-  "EffectSourceUsageError",
-  { message: Schema.String }
-) {}
+class EffectSourceUsageError extends Schema.TaggedError<
+  EffectSourceUsageError,
+  { readonly brand: unique symbol }
+>()("EffectSourceUsageError", { message: Schema.String }) {}
 
 /** Translates one platform command failure into the CLI error contract. */
 function gitPlatformError(error: PlatformError) {

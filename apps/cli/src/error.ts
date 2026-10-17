@@ -1,28 +1,28 @@
 import { Schema } from "effect";
 
 /** Nakafa process or authenticated renderer discovery failed. */
-export class NakafaAppError extends Schema.TaggedError<NakafaAppError>()(
-  "NakafaAppError",
-  {
-    reason: Schema.Literals([
-      "auth",
-      "body",
-      "cache",
-      "child-env",
-      "contract",
-      "exit",
-      "json",
-      "network",
-      "origin",
-      "redirect",
-      "start",
-      "status",
-      "timeout",
-    ]),
-    retryable: Schema.Boolean,
-    status: Schema.optional(Schema.Finite.pipe(Schema.check(Schema.isInt()))),
-  }
-) {}
+export class NakafaAppError extends Schema.TaggedError<
+  NakafaAppError,
+  { readonly brand: unique symbol }
+>()("NakafaAppError", {
+  reason: Schema.Literals([
+    "auth",
+    "body",
+    "cache",
+    "child-env",
+    "contract",
+    "exit",
+    "json",
+    "network",
+    "origin",
+    "redirect",
+    "start",
+    "status",
+    "timeout",
+  ]),
+  retryable: Schema.Boolean,
+  status: Schema.optional(Schema.Finite.pipe(Schema.check(Schema.isInt()))),
+}) {}
 
 /** Creates one sanitized failure without retaining response or process data. */
 export function makeNakafaAppError(

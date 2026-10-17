@@ -40,25 +40,25 @@ const MaterialFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same material identity more than once. */
-class MaterialHeadDuplicateError extends Schema.TaggedError<MaterialHeadDuplicateError>()(
-  "MaterialHeadDuplicateError",
-  ContentHeadIdentitySchema.fields
-) {}
+class MaterialHeadDuplicateError extends Schema.TaggedError<
+  MaterialHeadDuplicateError,
+  { readonly brand: unique symbol }
+>()("MaterialHeadDuplicateError", ContentHeadIdentitySchema.fields) {}
 
 /** A target returned material heads outside canonical content-head order. */
-class MaterialHeadOrderError extends Schema.TaggedError<MaterialHeadOrderError>()(
-  "MaterialHeadOrderError",
-  ContentHeadIdentitySchema.fields
-) {}
+class MaterialHeadOrderError extends Schema.TaggedError<
+  MaterialHeadOrderError,
+  { readonly brand: unique symbol }
+>()("MaterialHeadOrderError", ContentHeadIdentitySchema.fields) {}
 
 /** A material-head page contained a row owned by another content family. */
-class MaterialHeadFamilyError extends Schema.TaggedError<MaterialHeadFamilyError>()(
-  "MaterialHeadFamilyError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    field: MaterialFamilyFieldSchema,
-  }
-) {}
+class MaterialHeadFamilyError extends Schema.TaggedError<
+  MaterialHeadFamilyError,
+  { readonly brand: unique symbol }
+>()("MaterialHeadFamilyError", {
+  ...ContentHeadIdentitySchema.fields,
+  field: MaterialFamilyFieldSchema,
+}) {}
 
 /** Every failure possible while replaying authoritative publication records. */
 type MaterialPublicationStreamError<E> =

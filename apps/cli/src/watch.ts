@@ -22,10 +22,12 @@ import {
 import { PreviewProviderError } from "#cli/provider";
 
 /** Filesystem watching stopped instead of preserving the authoring session. */
-export class PreviewWatchError extends Schema.TaggedError<PreviewWatchError>()(
-  "PreviewWatchError",
-  { reason: Schema.Literals(["ended", "filesystem"]) }
-) {}
+export class PreviewWatchError extends Schema.TaggedError<
+  PreviewWatchError,
+  { readonly brand: unique symbol }
+>()("PreviewWatchError", {
+  reason: Schema.Literals(["ended", "filesystem"]),
+}) {}
 
 /** Creates the empty watch state of one physical directory. */
 function emptyWatchedDirectory() {

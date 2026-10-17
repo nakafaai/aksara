@@ -223,10 +223,8 @@ export function derivePreparedRecords<E, R>(input: {
           Effect.flatMap((transition) =>
             validatePriorState(transition, recordIndex)
           ),
-          Effect.flatMap((transition) =>
-            validateOrder(state, transition.record, recordIndex).pipe(
-              Effect.as(transition)
-            )
+          Effect.tap((transition) =>
+            validateOrder(state, transition.record, recordIndex)
           ),
           Effect.map((transition) =>
             deriveRecord(transition, recordIndex, input.releaseId)

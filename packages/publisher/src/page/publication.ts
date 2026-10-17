@@ -43,25 +43,25 @@ const PageFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same public page identity more than once. */
-class PageHeadDuplicateError extends Schema.TaggedError<PageHeadDuplicateError>()(
-  "PageHeadDuplicateError",
-  ContentHeadIdentitySchema.fields
-) {}
+class PageHeadDuplicateError extends Schema.TaggedError<
+  PageHeadDuplicateError,
+  { readonly brand: unique symbol }
+>()("PageHeadDuplicateError", ContentHeadIdentitySchema.fields) {}
 
 /** A target returned public page heads outside canonical content-head order. */
-class PageHeadOrderError extends Schema.TaggedError<PageHeadOrderError>()(
-  "PageHeadOrderError",
-  ContentHeadIdentitySchema.fields
-) {}
+class PageHeadOrderError extends Schema.TaggedError<
+  PageHeadOrderError,
+  { readonly brand: unique symbol }
+>()("PageHeadOrderError", ContentHeadIdentitySchema.fields) {}
 
 /** A public page-head response contained a row owned by another family. */
-class PageHeadFamilyError extends Schema.TaggedError<PageHeadFamilyError>()(
-  "PageHeadFamilyError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    field: PageFamilyFieldSchema,
-  }
-) {}
+class PageHeadFamilyError extends Schema.TaggedError<
+  PageHeadFamilyError,
+  { readonly brand: unique symbol }
+>()("PageHeadFamilyError", {
+  ...ContentHeadIdentitySchema.fields,
+  field: PageFamilyFieldSchema,
+}) {}
 
 /** Every failure possible while replaying authoritative page records. */
 type PagePublicationStreamError<E> =

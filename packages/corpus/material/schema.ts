@@ -88,13 +88,13 @@ export type LessonMaterialSource = typeof LessonMaterialSourceSchema.Type;
 type LessonMaterialSourceInput = typeof LessonMaterialSourceSchema.Encoded;
 
 /** One authored lesson material failed strict source decoding. */
-export class LessonMaterialError extends Schema.TaggedError<LessonMaterialError>()(
-  "LessonMaterialError",
-  {
-    cause: Schema.Unknown,
-    materialKey: Schema.String,
-  }
-) {}
+export class LessonMaterialError extends Schema.TaggedError<
+  LessonMaterialError,
+  { readonly brand: unique symbol }
+>()("LessonMaterialError", {
+  cause: Schema.Unknown,
+  materialKey: Schema.String,
+}) {}
 
 /** Lazily decodes one authored lesson material at its source-module seam. */
 export const defineLessonMaterial = Effect.fn(

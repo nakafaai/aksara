@@ -50,59 +50,59 @@ export const ArticleEntrySchema = Schema.Struct({
 export type ArticleEntry = typeof ArticleEntrySchema.Type;
 
 /** A decoded article catalog repeats one category-local article slug. */
-export class ArticleSlugError extends Schema.TaggedError<ArticleSlugError>()(
-  "ArticleSlugError",
-  { slug: ArticleSlugSchema }
-) {}
+export class ArticleSlugError extends Schema.TaggedError<
+  ArticleSlugError,
+  { readonly brand: unique symbol }
+>()("ArticleSlugError", { slug: ArticleSlugSchema }) {}
 
 /** One article category maps to conflicting deployed renderer domains. */
-export class ArticleRendererError extends Schema.TaggedError<ArticleRendererError>()(
-  "ArticleRendererError",
-  {
-    actual: RendererDomainSchema,
-    category: ArticleCategorySchema,
-    expected: RendererDomainSchema,
-  }
-) {}
+export class ArticleRendererError extends Schema.TaggedError<
+  ArticleRendererError,
+  { readonly brand: unique symbol }
+>()("ArticleRendererError", {
+  actual: RendererDomainSchema,
+  category: ArticleCategorySchema,
+  expected: RendererDomainSchema,
+}) {}
 
 /** One category maps to conflicting localized display titles. */
-export class ArticleTitleError extends Schema.TaggedError<ArticleTitleError>()(
-  "ArticleTitleError",
-  {
-    actual: Schema.optional(ArticleCategoryTitleSchema),
-    appLocale: AppLocaleSchema,
-    category: ArticleCategorySchema,
-    expected: Schema.optional(ArticleCategoryTitleSchema),
-  }
-) {}
+export class ArticleTitleError extends Schema.TaggedError<
+  ArticleTitleError,
+  { readonly brand: unique symbol }
+>()("ArticleTitleError", {
+  actual: Schema.optional(ArticleCategoryTitleSchema),
+  appLocale: AppLocaleSchema,
+  category: ArticleCategorySchema,
+  expected: Schema.optional(ArticleCategoryTitleSchema),
+}) {}
 
 /** One stable category maps to conflicting locale-owned route segments. */
-export class ArticleCategoryRouteError extends Schema.TaggedError<ArticleCategoryRouteError>()(
-  "ArticleCategoryRouteError",
-  {
-    actual: Schema.optional(ArticleRouteSlugSchema),
-    appLocale: AppLocaleSchema,
-    category: ArticleCategorySchema,
-    expected: Schema.optional(ArticleRouteSlugSchema),
-  }
-) {}
+export class ArticleCategoryRouteError extends Schema.TaggedError<
+  ArticleCategoryRouteError,
+  { readonly brand: unique symbol }
+>()("ArticleCategoryRouteError", {
+  actual: Schema.optional(ArticleRouteSlugSchema),
+  appLocale: AppLocaleSchema,
+  category: ArticleCategorySchema,
+  expected: Schema.optional(ArticleRouteSlugSchema),
+}) {}
 
 /** Two stable article identities project to the same locale-owned public path. */
-export class ArticleRouteCollisionError extends Schema.TaggedError<ArticleRouteCollisionError>()(
-  "ArticleRouteCollisionError",
-  {
-    appLocale: AppLocaleSchema,
-    conflictingContentKey: ContentKeySchema,
-    contentKey: ContentKeySchema,
-    publicPath: PublicPathSchema,
-  }
-) {}
+export class ArticleRouteCollisionError extends Schema.TaggedError<
+  ArticleRouteCollisionError,
+  { readonly brand: unique symbol }
+>()("ArticleRouteCollisionError", {
+  appLocale: AppLocaleSchema,
+  conflictingContentKey: ContentKeySchema,
+  contentKey: ContentKeySchema,
+  publicPath: PublicPathSchema,
+}) {}
 
 /** A projected article registry failed strict entry decoding. */
-export class ArticleRegistryError extends Schema.TaggedError<ArticleRegistryError>()(
-  "ArticleRegistryError",
-  { cause: Schema.Unknown }
-) {}
+export class ArticleRegistryError extends Schema.TaggedError<
+  ArticleRegistryError,
+  { readonly brand: unique symbol }
+>()("ArticleRegistryError", { cause: Schema.Unknown }) {}
 
 /** The category fields that every article of one category must agree on. */
 type ArticleCategoryIdentity = Pick<

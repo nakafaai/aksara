@@ -3,18 +3,18 @@ import type { SignedContentRelease } from "#contracts/release/spec";
 import type { SignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/spec";
 
 /** A runtime bundle does not describe a pair authenticated by its Git release. */
-export class TryoutRuntimeBundleSourceError extends Schema.TaggedError<TryoutRuntimeBundleSourceError>()(
-  "TryoutRuntimeBundleSourceError",
-  {
-    reason: Schema.Literals([
-      "release",
-      "manifest",
-      "revision",
-      "renderer",
-      "snapshot",
-    ]),
-  }
-) {}
+export class TryoutRuntimeBundleSourceError extends Schema.TaggedError<
+  TryoutRuntimeBundleSourceError,
+  { readonly brand: unique symbol }
+>()("TryoutRuntimeBundleSourceError", {
+  reason: Schema.Literals([
+    "release",
+    "manifest",
+    "revision",
+    "renderer",
+    "snapshot",
+  ]),
+}) {}
 
 /** Authenticates a runtime pair against its Git source or signed recovery link. */
 export const verifyTryoutRuntimeBundleSource = Effect.fn(

@@ -9,10 +9,10 @@ import {
 const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections";
 
 /** SHA-256 computation failed before projection integrity was established. */
-export class ProjectionHashError extends Schema.TaggedError<ProjectionHashError>()(
-  "ProjectionHashError",
-  { releaseId: ReleaseIdSchema }
-) {}
+export class ProjectionHashError extends Schema.TaggedError<
+  ProjectionHashError,
+  { readonly brand: unique symbol }
+>()("ProjectionHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps the digest stream private while exposing only canonical counters. */
 class ProjectionDigestState {

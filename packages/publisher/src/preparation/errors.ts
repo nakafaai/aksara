@@ -22,64 +22,70 @@ export const CoherenceFieldSchema = Schema.Literals([
 ]);
 
 /** A release attempted to reuse its immutable base release identity. */
-export class PreparedReleaseIdentityError extends Schema.TaggedError<PreparedReleaseIdentityError>()(
-  "PreparedReleaseIdentityError",
-  { baseReleaseId: ReleaseIdSchema, releaseId: ReleaseIdSchema }
-) {}
+export class PreparedReleaseIdentityError extends Schema.TaggedError<
+  PreparedReleaseIdentityError,
+  { readonly brand: unique symbol }
+>()("PreparedReleaseIdentityError", {
+  baseReleaseId: ReleaseIdSchema,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** A base release omitted part of its immutable release and snapshot identity. */
-export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<PreparedReleaseBaseIdentityError>()(
-  "PreparedReleaseBaseIdentityError",
-  {
-    baseManifestHash: Schema.NullOr(Sha256HashSchema),
-    baseReleaseId: Schema.NullOr(ReleaseIdSchema),
-    hasBaseActiveAppLocales: Schema.Boolean,
-    hasRendererBase: Schema.Boolean,
-    hasSnapshotBase: Schema.Boolean,
-  }
-) {}
+export class PreparedReleaseBaseIdentityError extends Schema.TaggedError<
+  PreparedReleaseBaseIdentityError,
+  { readonly brand: unique symbol }
+>()("PreparedReleaseBaseIdentityError", {
+  baseManifestHash: Schema.NullOr(Sha256HashSchema),
+  baseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  hasBaseActiveAppLocales: Schema.Boolean,
+  hasRendererBase: Schema.Boolean,
+  hasSnapshotBase: Schema.Boolean,
+}) {}
 
 /** A release attempted to replace an unselected structured snapshot family. */
-export class PreparedSnapshotScopeError extends Schema.TaggedError<PreparedSnapshotScopeError>()(
-  "PreparedSnapshotScopeError",
-  { family: ContentSnapshotKindSchema }
-) {}
+export class PreparedSnapshotScopeError extends Schema.TaggedError<
+  PreparedSnapshotScopeError,
+  { readonly brand: unique symbol }
+>()("PreparedSnapshotScopeError", { family: ContentSnapshotKindSchema }) {}
 
 /** A runtime bundle snapshot differs from the release's resulting try-out state. */
-export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<PreparedTryoutRuntimeSnapshotError>()(
-  "PreparedTryoutRuntimeSnapshotError",
-  {
-    actualSnapshotId: Sha256HashSchema,
-    expectedSnapshotId: Schema.NullOr(Sha256HashSchema),
-  }
-) {}
+export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<
+  PreparedTryoutRuntimeSnapshotError,
+  { readonly brand: unique symbol }
+>()("PreparedTryoutRuntimeSnapshotError", {
+  actualSnapshotId: Sha256HashSchema,
+  expectedSnapshotId: Schema.NullOr(Sha256HashSchema),
+}) {}
 
 /** A try-out replacement omitted the runtime pair required for activation. */
-export class PreparedTryoutRuntimeMissingError extends Schema.TaggedError<PreparedTryoutRuntimeMissingError>()(
-  "PreparedTryoutRuntimeMissingError",
-  {}
-) {}
+export class PreparedTryoutRuntimeMissingError extends Schema.TaggedError<
+  PreparedTryoutRuntimeMissingError,
+  { readonly brand: unique symbol }
+>()("PreparedTryoutRuntimeMissingError", {}) {}
 
 /** Candidate and recovery runtime snapshots do not form one valid transition. */
-export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<PreparedTryoutRuntimeTransitionError>()(
-  "PreparedTryoutRuntimeTransitionError",
-  { snapshotId: Sha256HashSchema }
-) {}
+export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<
+  PreparedTryoutRuntimeTransitionError,
+  { readonly brand: unique symbol }
+>()("PreparedTryoutRuntimeTransitionError", { snapshotId: Sha256HashSchema }) {}
 
 /** One authored record failed its exact current schema. */
-export class PreparedContentDecodeError extends Schema.TaggedError<PreparedContentDecodeError>()(
-  "PreparedContentDecodeError",
-  { recordIndex: RecordIndexSchema }
-) {}
+export class PreparedContentDecodeError extends Schema.TaggedError<
+  PreparedContentDecodeError,
+  { readonly brand: unique symbol }
+>()("PreparedContentDecodeError", { recordIndex: RecordIndexSchema }) {}
 
 /** Bound source, change, payload, and projection fields disagree. */
-export class PreparedContentCoherenceError extends Schema.TaggedError<PreparedContentCoherenceError>()(
-  "PreparedContentCoherenceError",
-  { field: CoherenceFieldSchema, recordIndex: RecordIndexSchema }
-) {}
+export class PreparedContentCoherenceError extends Schema.TaggedError<
+  PreparedContentCoherenceError,
+  { readonly brand: unique symbol }
+>()("PreparedContentCoherenceError", {
+  field: CoherenceFieldSchema,
+  recordIndex: RecordIndexSchema,
+}) {}
 
 /** Authored records are duplicated or outside canonical head order. */
-export class PreparedContentOrderError extends Schema.TaggedError<PreparedContentOrderError>()(
-  "PreparedContentOrderError",
-  { recordIndex: RecordIndexSchema }
-) {}
+export class PreparedContentOrderError extends Schema.TaggedError<
+  PreparedContentOrderError,
+  { readonly brand: unique symbol }
+>()("PreparedContentOrderError", { recordIndex: RecordIndexSchema }) {}

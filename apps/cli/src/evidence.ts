@@ -8,25 +8,28 @@ const MAXIMUM_GIT_OUTPUT_BYTES = 4 * 1024 * 1024;
 const MAXIMUM_GIT_ERROR_BYTES = 16 * 1024;
 
 /** Git could not prove the exact revision or dirty state of one checkout. */
-export class PreviewEvidenceError extends Schema.TaggedError<PreviewEvidenceError>()(
-  "PreviewEvidenceError",
-  {
-    repository: Schema.Literals(["aksara", "nakafa"]),
-    stage: Schema.Literals(["sha", "status"]),
-  }
-) {}
+export class PreviewEvidenceError extends Schema.TaggedError<
+  PreviewEvidenceError,
+  { readonly brand: unique symbol }
+>()("PreviewEvidenceError", {
+  repository: Schema.Literals(["aksara", "nakafa"]),
+  stage: Schema.Literals(["sha", "status"]),
+}) {}
 
 /** Production release preparation refuses a dirty authored checkout. */
-export class ReleaseEvidenceError extends Schema.TaggedError<ReleaseEvidenceError>()(
-  "ReleaseEvidenceError",
-  { reason: Schema.Literal("dirty") }
-) {}
+export class ReleaseEvidenceError extends Schema.TaggedError<
+  ReleaseEvidenceError,
+  { readonly brand: unique symbol }
+>()("ReleaseEvidenceError", { reason: Schema.Literal("dirty") }) {}
 
 /** Authored source changed while one production release was being prepared. */
-export class ReleaseRevisionChangedError extends Schema.TaggedError<ReleaseRevisionChangedError>()(
-  "ReleaseRevisionChangedError",
-  { actual: GitCommitShaSchema, expected: GitCommitShaSchema }
-) {}
+export class ReleaseRevisionChangedError extends Schema.TaggedError<
+  ReleaseRevisionChangedError,
+  { readonly brand: unique symbol }
+>()("ReleaseRevisionChangedError", {
+  actual: GitCommitShaSchema,
+  expected: GitCommitShaSchema,
+}) {}
 
 /** Fatally decodes bounded Git output without retaining process diagnostics. */
 function decodeGitOutput(bytes: Uint8Array, error: PreviewEvidenceError) {

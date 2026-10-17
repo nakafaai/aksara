@@ -14,36 +14,36 @@ const PublicationBatchKindSchema = Schema.Literals([
 type PublicationBatchKind = typeof PublicationBatchKindSchema.Type;
 
 /** One value cannot fit inside its mandatory publication batch ceiling. */
-export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBatchLimitError>()(
-  "PublicationBatchLimitError",
-  {
-    actualBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    actualCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    expectedCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    itemOffset: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    kind: PublicationBatchKindSchema,
-    maxBytes: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-    maxCount: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
-  }
-) {}
+export class PublicationBatchLimitError extends Schema.TaggedError<
+  PublicationBatchLimitError,
+  { readonly brand: unique symbol }
+>()("PublicationBatchLimitError", {
+  actualBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  actualCount: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  expectedCount: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  itemOffset: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  kind: PublicationBatchKindSchema,
+  maxBytes: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+  maxCount: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+}) {}
 
 /** Measures one canonical string using its transmitted UTF-8 representation. */
 function utf8Bytes(value: string) {

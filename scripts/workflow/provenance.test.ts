@@ -174,7 +174,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
           mutateJob(
             source,
             "verify",
-            "          node-version: 24.21.0",
+            "          node-version: 24.22.0",
             "          node-version: 22.0.0"
           ),
           "npm verification must use the repository Node runtime",
@@ -249,7 +249,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
             source,
             "publish",
             "    steps:",
-            "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
+            "    steps:\n      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333\n        with:\n          name: contract-verifier"
           )
         ),
         "npm publication must not receive the verifier artifact"

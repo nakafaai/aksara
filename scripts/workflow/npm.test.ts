@@ -12,7 +12,7 @@ import { mutateJob } from "#scripts/workflow/test/mutation";
 const contract: NpmWorkflowContract = {
   packageArtifact: "cli-package",
   publishSha256:
-    "5209d8ab9e2fa3a1d24f8eccae20d5c695e4576147e4fcbefd1e1725ffa9b0d9",
+    "1457ab6a66705d5d83e88d3c047ed667846b4a7485a0538259514a2dee4aad54",
   repository: "nakafaai/aksara",
   verifierArtifact: "cli-verifier",
   workflowPath: ".github/workflows/cli.yml",
@@ -27,7 +27,7 @@ describe("npm trusted publication digest", () => {
           verifyNpmWorkflow(source, {
             ...contract,
             publishSha256:
-              "5209d8ab9e2fa3a1d24f8eccae20d5c695e4576147e4fcbefd1e1725ffa9b0d8",
+              "1457ab6a66705d5d83e88d3c047ed667846b4a7485a0538259514a2dee4aad53",
           })
         )
       ).toContain("npm publication must match the exact trusted job");

@@ -15,24 +15,24 @@ import type { TryoutExamSource } from "#corpus/tryout/schema";
 type TargetRowKind = Exclude<TryoutCatalogRow["kind"], "country">;
 
 /** An authored question cannot resolve to one active try-out hierarchy. */
-export class TryoutTargetError extends Schema.TaggedError<TryoutTargetError>()(
-  "TryoutTargetError",
-  {
-    count: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThanOrEqualTo(0))
-    ),
-    rowKind: Schema.Literals([
-      "context",
-      "exam",
-      "section",
-      "set",
-      "target",
-      "track",
-    ]),
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class TryoutTargetError extends Schema.TaggedError<
+  TryoutTargetError,
+  { readonly brand: unique symbol }
+>()("TryoutTargetError", {
+  count: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThanOrEqualTo(0))
+  ),
+  rowKind: Schema.Literals([
+    "context",
+    "exam",
+    "section",
+    "set",
+    "target",
+    "track",
+  ]),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Selects one required hierarchy value and rejects missing or repeated owners. */
 const selectOne = Effect.fn("AksaraCorpus.selectTryoutTargetValue")(function* <

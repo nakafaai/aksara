@@ -29,14 +29,14 @@ import {
 import { type CliPackageError, readPackageVersion } from "#cli/package";
 
 /** The installed launcher could not execute the checkout-owned CLI source. */
-class CliLaunchError extends Schema.TaggedError<CliLaunchError>()(
-  "CliLaunchError",
-  {
-    cause: Schema.Unknown,
-    path: Schema.String,
-    reason: Schema.Literals(["checkout", "missing", "process"]),
-  }
-) {}
+class CliLaunchError extends Schema.TaggedError<
+  CliLaunchError,
+  { readonly brand: unique symbol }
+>()("CliLaunchError", {
+  cause: Schema.Unknown,
+  path: Schema.String,
+  reason: Schema.Literals(["checkout", "missing", "process"]),
+}) {}
 
 /** Resolves the exact checkout-owned command without bundling operational code. */
 export const makeLaunchCommand = Effect.fn("AksaraCli.makeLaunchCommand")(

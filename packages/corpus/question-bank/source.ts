@@ -53,26 +53,29 @@ export function indexQuestionItems(sources: readonly QuestionSource[]) {
   );
 }
 /** Reading a question-bank directory or source file failed. */
-export class QuestionReadError extends Schema.TaggedError<QuestionReadError>()(
-  "QuestionReadError",
-  { cause: Schema.Unknown, path: CorpusSourcePathSchema }
-) {}
+export class QuestionReadError extends Schema.TaggedError<
+  QuestionReadError,
+  { readonly brand: unique symbol }
+>()("QuestionReadError", {
+  cause: Schema.Unknown,
+  path: CorpusSourcePathSchema,
+}) {}
 /** A question directory does not contain its exact section-owned file set. */
-export class QuestionFileSetError extends Schema.TaggedError<QuestionFileSetError>()(
-  "QuestionFileSetError",
-  {
-    files: Schema.Array(Schema.String),
-    sourcePath: CorpusSourcePathSchema,
-  }
-) {}
+export class QuestionFileSetError extends Schema.TaggedError<
+  QuestionFileSetError,
+  { readonly brand: unique symbol }
+>()("QuestionFileSetError", {
+  files: Schema.Array(Schema.String),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 /** A set does not contain a contiguous question sequence beginning at one. */
-export class QuestionSequenceError extends Schema.TaggedError<QuestionSequenceError>()(
-  "QuestionSequenceError",
-  {
-    questionNumbers: Schema.Array(Schema.Finite),
-    setPath: QuestionSetKeySchema,
-  }
-) {}
+export class QuestionSequenceError extends Schema.TaggedError<
+  QuestionSequenceError,
+  { readonly brand: unique symbol }
+>()("QuestionSequenceError", {
+  questionNumbers: Schema.Array(Schema.Finite),
+  setPath: QuestionSetKeySchema,
+}) {}
 
 /** Groups every recursive directory entry beneath its question directory. */
 function groupQuestionFiles(entries: readonly string[], separator: string) {

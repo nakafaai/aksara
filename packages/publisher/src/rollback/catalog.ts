@@ -43,20 +43,20 @@ const CatalogMergeSchema = Schema.Union([
 type CatalogMerge = typeof CatalogMergeSchema.Type;
 
 /** A transition's signed current state disagrees with the active catalog. */
-export class RollbackCatalogStateMismatchError extends Schema.TaggedError<RollbackCatalogStateMismatchError>()(
-  "RollbackCatalogStateMismatchError",
-  {
-    artifactLocale: ArtifactLocaleSchema,
-    contentKey: ContentKeySchema,
-    reason: Schema.Literals(["missing", "unexpected", "different"]),
-  }
-) {}
+export class RollbackCatalogStateMismatchError extends Schema.TaggedError<
+  RollbackCatalogStateMismatchError,
+  { readonly brand: unique symbol }
+>()("RollbackCatalogStateMismatchError", {
+  artifactLocale: ArtifactLocaleSchema,
+  contentKey: ContentKeySchema,
+  reason: Schema.Literals(["missing", "unexpected", "different"]),
+}) {}
 
 /** A restored route collides with an untouched structurally shared head. */
-export class RollbackCatalogRouteError extends Schema.TaggedError<RollbackCatalogRouteError>()(
-  "RollbackCatalogRouteError",
-  { ...PublicRouteFields }
-) {}
+export class RollbackCatalogRouteError extends Schema.TaggedError<
+  RollbackCatalogRouteError,
+  { readonly brand: unique symbol }
+>()("RollbackCatalogRouteError", { ...PublicRouteFields }) {}
 
 /** Emits the prior compact state after proving the active current state. */
 function resolveMerge(merge: CatalogMerge) {

@@ -14,22 +14,24 @@ import type { ContentReleaseManifest } from "#contracts/release/spec";
 const ROLLBACK_SNAPSHOT_DIGEST_DOMAIN = "nakafa.aksara.rollback-snapshot";
 
 /** SHA-256 computation failed before rollback-state integrity was established. */
-export class RollbackSnapshotHashError extends Schema.TaggedError<RollbackSnapshotHashError>()(
-  "RollbackSnapshotHashError",
-  { releaseId: ReleaseIdSchema }
-) {}
+export class RollbackSnapshotHashError extends Schema.TaggedError<
+  RollbackSnapshotHashError,
+  { readonly brand: unique symbol }
+>()("RollbackSnapshotHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** A replayed rollback snapshot has a different signed entry count. */
-export class RollbackSnapshotCountMismatchError extends Schema.TaggedError<RollbackSnapshotCountMismatchError>()(
-  "RollbackSnapshotCountMismatchError",
-  { ...ReleaseCountMismatchFields }
-) {}
+export class RollbackSnapshotCountMismatchError extends Schema.TaggedError<
+  RollbackSnapshotCountMismatchError,
+  { readonly brand: unique symbol }
+>()("RollbackSnapshotCountMismatchError", { ...ReleaseCountMismatchFields }) {}
 
 /** A replayed rollback snapshot does not match its signed digest. */
-export class RollbackSnapshotDigestMismatchError extends Schema.TaggedError<RollbackSnapshotDigestMismatchError>()(
-  "RollbackSnapshotDigestMismatchError",
-  { ...ReleaseDigestMismatchFields }
-) {}
+export class RollbackSnapshotDigestMismatchError extends Schema.TaggedError<
+  RollbackSnapshotDigestMismatchError,
+  { readonly brand: unique symbol }
+>()("RollbackSnapshotDigestMismatchError", {
+  ...ReleaseDigestMismatchFields,
+}) {}
 
 /** Keeps the digest stream private behind the incremental digest seam. */
 class RollbackSnapshotDigestState {

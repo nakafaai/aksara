@@ -41,47 +41,43 @@ const ContentCatalogValidationSchema = Schema.Struct({
 type ContentCatalogValidation = typeof ContentCatalogValidationSchema.Type;
 
 /** One prepared count differs from its authoritative source inventory. */
-export class ContentCatalogCountError extends Schema.TaggedError<ContentCatalogCountError>()(
-  "ContentCatalogCountError",
-  {
-    actualCount: CountSchema,
-    expectedCount: CountSchema,
-    kind: Schema.Literals([
-      ...ContentFamilySchema.literals,
-      "records",
-      "routes",
-    ]),
-  }
-) {}
+export class ContentCatalogCountError extends Schema.TaggedError<
+  ContentCatalogCountError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogCountError", {
+  actualCount: CountSchema,
+  expectedCount: CountSchema,
+  kind: Schema.Literals([...ContentFamilySchema.literals, "records", "routes"]),
+}) {}
 
 /** A compiled result row differs from the source-owned body identity. */
-export class ContentCatalogIdentityError extends Schema.TaggedError<ContentCatalogIdentityError>()(
-  "ContentCatalogIdentityError",
-  {
-    actual: CatalogResultIdentityError.fields.actual,
-    expected: CatalogResultIdentityError.fields.expected,
-    index: CatalogResultIdentityError.fields.index,
-  }
-) {}
+export class ContentCatalogIdentityError extends Schema.TaggedError<
+  ContentCatalogIdentityError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogIdentityError", {
+  actual: CatalogResultIdentityError.fields.actual,
+  expected: CatalogResultIdentityError.fields.expected,
+  index: CatalogResultIdentityError.fields.index,
+}) {}
 
 /** A complete route projection differs from its source-derived digest. */
-export class ContentCatalogDigestError extends Schema.TaggedError<ContentCatalogDigestError>()(
-  "ContentCatalogDigestError",
-  {
-    actualDigest: Sha256HashSchema,
-    expectedDigest: Sha256HashSchema,
-    kind: Schema.Literal("routes"),
-  }
-) {}
+export class ContentCatalogDigestError extends Schema.TaggedError<
+  ContentCatalogDigestError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogDigestError", {
+  actualDigest: Sha256HashSchema,
+  expectedDigest: Sha256HashSchema,
+  kind: Schema.Literal("routes"),
+}) {}
 
 /** One internal preparation or canonical digest stage failed. */
-export class ContentCatalogValidationError extends Schema.TaggedError<ContentCatalogValidationError>()(
-  "ContentCatalogValidationError",
-  {
-    cause: Schema.Unknown,
-    stage: Schema.Literals(["catalog", "result", "routes", "snapshots"]),
-  }
-) {}
+export class ContentCatalogValidationError extends Schema.TaggedError<
+  ContentCatalogValidationError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogValidationError", {
+  cause: Schema.Unknown,
+  stage: Schema.Literals(["catalog", "result", "routes", "snapshots"]),
+}) {}
 
 /** Requires one prepared count to equal its source-derived expectation. */
 function requireCount(

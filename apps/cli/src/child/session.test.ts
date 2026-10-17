@@ -19,10 +19,10 @@ vi.mock("@effect/platform-node", async (importOriginal) => {
   const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
   const NetAddress = await import("effect/net/NetAddress");
   /** One tagged bind failure that the socket mock reports on demand. */
-  class SocketTestError extends TestSchema.TaggedError<SocketTestError>()(
-    "SocketTestError",
-    {}
-  ) {}
+  class SocketTestError extends TestSchema.TaggedError<
+    SocketTestError,
+    { readonly brand: unique symbol }
+  >()("SocketTestError", {}) {}
   return {
     ...original,
     NodeSocketServer: {

@@ -81,13 +81,13 @@ export type ArticleSource = typeof ArticleSourceSchema.Type;
 export type ArticleSourceInput = typeof ArticleSourceSchema.Encoded;
 
 /** One authored article source failed strict source decoding. */
-export class ArticleSourceError extends Schema.TaggedError<ArticleSourceError>()(
-  "ArticleSourceError",
-  {
-    cause: Schema.Unknown,
-    sourceRoot: Schema.String,
-  }
-) {}
+export class ArticleSourceError extends Schema.TaggedError<
+  ArticleSourceError,
+  { readonly brand: unique symbol }
+>()("ArticleSourceError", {
+  cause: Schema.Unknown,
+  sourceRoot: Schema.String,
+}) {}
 
 /** Lazily decodes one reviewed article pair at its source-module seam. */
 export const defineArticleSource = Effect.fn(

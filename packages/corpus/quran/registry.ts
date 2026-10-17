@@ -26,44 +26,44 @@ const INITIAL_STATE: QuranRegistryState = {
 };
 
 /** One authored surah failed the exact Quran source contract. */
-export class QuranSourceError extends Schema.TaggedError<QuranSourceError>()(
-  "QuranSourceError",
-  {
-    cause: Schema.Unknown,
-    position: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  }
-) {}
+export class QuranSourceError extends Schema.TaggedError<
+  QuranSourceError,
+  { readonly brand: unique symbol }
+>()("QuranSourceError", {
+  cause: Schema.Unknown,
+  position: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+}) {}
 
 /** Quran source cardinality differs from the complete reviewed corpus. */
-export class QuranCountError extends Schema.TaggedError<QuranCountError>()(
-  "QuranCountError",
-  {
-    actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
-    expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    scope: Schema.Literals(["surahs", "surah-verses", "verses"]),
-    surahNumber: Schema.NullOr(QuranSurahNumberSchema),
-  }
-) {}
+export class QuranCountError extends Schema.TaggedError<
+  QuranCountError,
+  { readonly brand: unique symbol }
+>()("QuranCountError", {
+  actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
+  expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+  scope: Schema.Literals(["surahs", "surah-verses", "verses"]),
+  surahNumber: Schema.NullOr(QuranSurahNumberSchema),
+}) {}
 
 /** Quran source order differs from canonical surah or verse numbering. */
-export class QuranSequenceError extends Schema.TaggedError<QuranSequenceError>()(
-  "QuranSequenceError",
-  {
-    actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-    scope: Schema.Literals(["surah", "surah-verse", "quran-verse"]),
-    surahNumber: QuranSurahNumberSchema,
-  }
-) {}
+export class QuranSequenceError extends Schema.TaggedError<
+  QuranSequenceError,
+  { readonly brand: unique symbol }
+>()("QuranSequenceError", {
+  actual: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+  expected: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
+  scope: Schema.Literals(["surah", "surah-verse", "quran-verse"]),
+  surahNumber: QuranSurahNumberSchema,
+}) {}
 
 /** Two surah sources claim the same chronological revelation order. */
-export class QuranRevelationError extends Schema.TaggedError<QuranRevelationError>()(
-  "QuranRevelationError",
-  {
-    order: QuranSurahNumberSchema,
-    surahNumber: QuranSurahNumberSchema,
-  }
-) {}
+export class QuranRevelationError extends Schema.TaggedError<
+  QuranRevelationError,
+  { readonly brand: unique symbol }
+>()("QuranRevelationError", {
+  order: QuranSurahNumberSchema,
+  surahNumber: QuranSurahNumberSchema,
+}) {}
 
 /** Checks one decoded surah against its local and global corpus position. */
 function validateSurah(state: QuranRegistryState, surah: QuranSurah) {

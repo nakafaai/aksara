@@ -40,10 +40,10 @@ const ContentCatalogExpectationSchema = Schema.Struct({
 type ContentCatalogExpectation = typeof ContentCatalogExpectationSchema.Type;
 
 /** An authoritative source registry failed before expectation projection. */
-export class ContentCatalogExpectationError extends Schema.TaggedError<ContentCatalogExpectationError>()(
-  "ContentCatalogExpectationError",
-  { cause: Schema.Unknown }
-) {}
+export class ContentCatalogExpectationError extends Schema.TaggedError<
+  ContentCatalogExpectationError,
+  { readonly brand: unique symbol }
+>()("ContentCatalogExpectationError", { cause: Schema.Unknown }) {}
 
 /** Projects one public source route into its expected genesis transition. */
 function expectedRoute(route: {

@@ -36,13 +36,13 @@ export type PageSource = typeof PageSourceSchema.Type;
 export type PageSourceInput = typeof PageSourceSchema.Encoded;
 
 /** One authored public page source failed strict source decoding. */
-export class PageSourceError extends Schema.TaggedError<PageSourceError>()(
-  "PageSourceError",
-  {
-    cause: Schema.Unknown,
-    sourceRoot: Schema.String,
-  }
-) {}
+export class PageSourceError extends Schema.TaggedError<
+  PageSourceError,
+  { readonly brand: unique symbol }
+>()("PageSourceError", {
+  cause: Schema.Unknown,
+  sourceRoot: Schema.String,
+}) {}
 
 /** Lazily decodes one reviewed public page at its source-module seam. */
 export const definePageSource = Effect.fn("AksaraCorpus.definePageSource")(

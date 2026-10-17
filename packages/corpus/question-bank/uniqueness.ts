@@ -23,10 +23,12 @@ const QuestionRepeatSchema = Schema.Struct({
 type QuestionRepeat = typeof QuestionRepeatSchema.Type;
 
 /** The bank holds prompts that repeat another prompt in the same locale. */
-export class QuestionDuplicateError extends Schema.TaggedError<QuestionDuplicateError>()(
-  "QuestionDuplicateError",
-  { repeats: Schema.Array(QuestionRepeatSchema) }
-) {}
+export class QuestionDuplicateError extends Schema.TaggedError<
+  QuestionDuplicateError,
+  { readonly brand: unique symbol }
+>()("QuestionDuplicateError", {
+  repeats: Schema.Array(QuestionRepeatSchema),
+}) {}
 
 /** One prompt body reduced to its locale-scoped comparison keys. */
 const PromptPrintSchema = Schema.Struct({

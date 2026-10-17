@@ -65,29 +65,29 @@ const materialDomainSources = [
 ];
 
 /** The material-domain descriptor catalog failed strict schema decoding. */
-export class MaterialDomainCatalogError extends Schema.TaggedError<MaterialDomainCatalogError>()(
-  "MaterialDomainCatalogError",
-  { cause: Schema.Unknown }
-) {}
+export class MaterialDomainCatalogError extends Schema.TaggedError<
+  MaterialDomainCatalogError,
+  { readonly brand: unique symbol }
+>()("MaterialDomainCatalogError", { cause: Schema.Unknown }) {}
 
 /** Two material-domain descriptors claim the same key or localized route. */
-export class MaterialDomainConflictError extends Schema.TaggedError<MaterialDomainConflictError>()(
-  "MaterialDomainConflictError",
-  {
-    code: Schema.Literals(["key", "route"]),
-    key: MaterialDomainSchema,
-    value: Schema.String,
-  }
-) {}
+export class MaterialDomainConflictError extends Schema.TaggedError<
+  MaterialDomainConflictError,
+  { readonly brand: unique symbol }
+>()("MaterialDomainConflictError", {
+  code: Schema.Literals(["key", "route"]),
+  key: MaterialDomainSchema,
+  value: Schema.String,
+}) {}
 
 /** Reviewed material or curriculum source references an unknown domain. */
-export class MaterialDomainMissingError extends Schema.TaggedError<MaterialDomainMissingError>()(
-  "MaterialDomainMissingError",
-  {
-    key: MaterialDomainSchema,
-    owner: Schema.String,
-  }
-) {}
+export class MaterialDomainMissingError extends Schema.TaggedError<
+  MaterialDomainMissingError,
+  { readonly brand: unique symbol }
+>()("MaterialDomainMissingError", {
+  key: MaterialDomainSchema,
+  owner: Schema.String,
+}) {}
 
 /** Decodes the reviewed domain catalog and rejects ambiguous ownership. */
 export const decodeMaterialDomains = Effect.fn(

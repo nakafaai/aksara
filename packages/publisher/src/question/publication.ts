@@ -61,25 +61,25 @@ const QuestionFamilyFieldSchema = Schema.Literals([
 ]);
 
 /** A target returned the same question identity more than once. */
-export class QuestionHeadDuplicateError extends Schema.TaggedError<QuestionHeadDuplicateError>()(
-  "QuestionHeadDuplicateError",
-  ContentHeadIdentitySchema.fields
-) {}
+export class QuestionHeadDuplicateError extends Schema.TaggedError<
+  QuestionHeadDuplicateError,
+  { readonly brand: unique symbol }
+>()("QuestionHeadDuplicateError", ContentHeadIdentitySchema.fields) {}
 
 /** A target returned question heads outside canonical content-head order. */
-export class QuestionHeadOrderError extends Schema.TaggedError<QuestionHeadOrderError>()(
-  "QuestionHeadOrderError",
-  ContentHeadIdentitySchema.fields
-) {}
+export class QuestionHeadOrderError extends Schema.TaggedError<
+  QuestionHeadOrderError,
+  { readonly brand: unique symbol }
+>()("QuestionHeadOrderError", ContentHeadIdentitySchema.fields) {}
 
 /** A question-head page contained identity owned by another family or body. */
-export class QuestionHeadFamilyError extends Schema.TaggedError<QuestionHeadFamilyError>()(
-  "QuestionHeadFamilyError",
-  {
-    ...ContentHeadIdentitySchema.fields,
-    field: QuestionFamilyFieldSchema,
-  }
-) {}
+export class QuestionHeadFamilyError extends Schema.TaggedError<
+  QuestionHeadFamilyError,
+  { readonly brand: unique symbol }
+>()("QuestionHeadFamilyError", {
+  ...ContentHeadIdentitySchema.fields,
+  field: QuestionFamilyFieldSchema,
+}) {}
 
 /** Every failure possible while replaying authoritative question records. */
 type QuestionPublicationStreamError<E> =

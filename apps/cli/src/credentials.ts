@@ -16,10 +16,12 @@ const RendererCredentialsSchema = Schema.Struct({
 export type RendererCredentials = typeof RendererCredentialsSchema.Type;
 
 /** Local Ed25519 key or bearer-token generation failed before serving. */
-export class PreviewCredentialError extends Schema.TaggedError<PreviewCredentialError>()(
-  "PreviewCredentialError",
-  { stage: Schema.Literals(["generate", "signer"]) }
-) {}
+export class PreviewCredentialError extends Schema.TaggedError<
+  PreviewCredentialError,
+  { readonly brand: unique symbol }
+>()("PreviewCredentialError", {
+  stage: Schema.Literals(["generate", "signer"]),
+}) {}
 
 /** Creates one unpredictable 32-byte token in unpadded base64url form. */
 const randomToken = Effect.fn("AksaraCli.randomToken")(function* () {

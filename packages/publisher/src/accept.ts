@@ -10,10 +10,12 @@ import { PublicationTarget } from "#publisher/publication/spec";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
 
 /** Acceptance input or cumulative target evidence violated its exact contract. */
-export class ReleaseAcceptContractError extends Schema.TaggedError<ReleaseAcceptContractError>()(
-  "ReleaseAcceptContractError",
-  { contract: Schema.Literals(["request", "receipt"]) }
-) {}
+export class ReleaseAcceptContractError extends Schema.TaggedError<
+  ReleaseAcceptContractError,
+  { readonly brand: unique symbol }
+>()("ReleaseAcceptContractError", {
+  contract: Schema.Literals(["request", "receipt"]),
+}) {}
 
 type AcceptContentRelease = (
   input: unknown

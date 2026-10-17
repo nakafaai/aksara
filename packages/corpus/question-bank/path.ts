@@ -95,13 +95,13 @@ export function locateQuestionEntry(entry: string, separator: string) {
 }
 
 /** A physical question directory does not follow the canonical path grammar. */
-export class QuestionPathError extends Schema.TaggedError<QuestionPathError>()(
-  "QuestionPathError",
-  {
-    reason: Schema.Literals(["grammar", "language", "renderer"]),
-    sourcePath: Schema.String,
-  }
-) {}
+export class QuestionPathError extends Schema.TaggedError<
+  QuestionPathError,
+  { readonly brand: unique symbol }
+>()("QuestionPathError", {
+  reason: Schema.Literals(["grammar", "language", "renderer"]),
+  sourcePath: Schema.String,
+}) {}
 
 /** Flattens reviewed hierarchy into the section-owned question-bank seams. */
 function questionBankSections(sources: readonly TryoutExamSource[]) {

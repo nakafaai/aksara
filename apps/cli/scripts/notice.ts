@@ -19,7 +19,10 @@ const ManifestSchema = Schema.fromJsonString(
 const LICENSE_PATTERN = /^licen[cs]e(?:[.-]|$)/iu;
 
 /** A bundled dependency cannot provide complete license evidence. */
-class NoticeError extends Schema.TaggedError<NoticeError>()("NoticeError", {
+class NoticeError extends Schema.TaggedError<
+  NoticeError,
+  { readonly brand: unique symbol }
+>()("NoticeError", {
   cause: Schema.Unknown,
   path: Schema.String,
   stage: Schema.Literals(["license", "manifest"]),

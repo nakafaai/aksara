@@ -14,38 +14,38 @@ import {
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 /** One streamed projection failed strict schema decoding. */
-export class ProjectionDecodeError extends Schema.TaggedError<ProjectionDecodeError>()(
-  "ProjectionDecodeError",
-  { projectionIndex: ReleaseCountSchema }
-) {}
+export class ProjectionDecodeError extends Schema.TaggedError<
+  ProjectionDecodeError,
+  { readonly brand: unique symbol }
+>()("ProjectionDecodeError", { projectionIndex: ReleaseCountSchema }) {}
 
 /** Projections are duplicated or not in canonical content-head order. */
-export class ProjectionOrderError extends Schema.TaggedError<ProjectionOrderError>()(
-  "ProjectionOrderError",
-  { projectionIndex: ReleaseCountSchema }
-) {}
+export class ProjectionOrderError extends Schema.TaggedError<
+  ProjectionOrderError,
+  { readonly brand: unique symbol }
+>()("ProjectionOrderError", { projectionIndex: ReleaseCountSchema }) {}
 
 /** Two content projections claim the same locale-specific public route. */
-export class ProjectionRouteError extends Schema.TaggedError<ProjectionRouteError>()(
-  "ProjectionRouteError",
-  {
-    duplicateIndex: ReleaseCountSchema,
-    firstIndex: ReleaseCountSchema,
-    publicPath: PublicPathSchema,
-  }
-) {}
+export class ProjectionRouteError extends Schema.TaggedError<
+  ProjectionRouteError,
+  { readonly brand: unique symbol }
+>()("ProjectionRouteError", {
+  duplicateIndex: ReleaseCountSchema,
+  firstIndex: ReleaseCountSchema,
+  publicPath: PublicPathSchema,
+}) {}
 
 /** The streamed projection count differs from the signed manifest. */
-export class ProjectionCountError extends Schema.TaggedError<ProjectionCountError>()(
-  "ProjectionCountError",
-  { ...ReleaseCountMismatchFields }
-) {}
+export class ProjectionCountError extends Schema.TaggedError<
+  ProjectionCountError,
+  { readonly brand: unique symbol }
+>()("ProjectionCountError", { ...ReleaseCountMismatchFields }) {}
 
 /** The streamed projection digest differs from the signed manifest. */
-export class ProjectionDigestError extends Schema.TaggedError<ProjectionDigestError>()(
-  "ProjectionDigestError",
-  { ...ReleaseDigestMismatchFields }
-) {}
+export class ProjectionDigestError extends Schema.TaggedError<
+  ProjectionDigestError,
+  { readonly brand: unique symbol }
+>()("ProjectionDigestError", { ...ReleaseDigestMismatchFields }) {}
 
 /** Creates the replay state that one stream of projections shares while it decodes. */
 function projectionState() {

@@ -8,15 +8,15 @@ import {
 } from "#contracts/release/snapshot/scope";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */
-export class SnapshotEvidenceError extends Schema.TaggedError<SnapshotEvidenceError>()(
-  "SnapshotEvidenceError",
-  {
-    actual: Schema.String,
-    expected: Schema.String,
-    family: ContentSnapshotKindSchema,
-    field: Schema.String,
-  }
-) {}
+export class SnapshotEvidenceError extends Schema.TaggedError<
+  SnapshotEvidenceError,
+  { readonly brand: unique symbol }
+>()("SnapshotEvidenceError", {
+  actual: Schema.String,
+  expected: Schema.String,
+  family: ContentSnapshotKindSchema,
+  field: Schema.String,
+}) {}
 
 /** Creates a fresh structured-row replay for one verification pass. */
 export type SnapshotRowSource<E, R> = Stream.Stream<ContentSnapshotRow, E, R>;

@@ -67,10 +67,10 @@ const pageSourceInputs: readonly PageSourceInput[] = [
 ];
 
 /** An injected public page source catalog failed strict decoding. */
-export class PageCatalogError extends Schema.TaggedError<PageCatalogError>()(
-  "PageCatalogError",
-  { cause: Schema.Unknown }
-) {}
+export class PageCatalogError extends Schema.TaggedError<
+  PageCatalogError,
+  { readonly brand: unique symbol }
+>()("PageCatalogError", { cause: Schema.Unknown }) {}
 
 /** Composes every reviewed source program into one public page catalog. */
 export const decodePageSources = Effect.fn("AksaraCorpus.decodePageSources")(
@@ -87,10 +87,13 @@ export const decodePageSources = Effect.fn("AksaraCorpus.decodePageSources")(
 );
 
 /** Reading one reviewed public page body failed through Effect Platform. */
-export class PageReadError extends Schema.TaggedError<PageReadError>()(
-  "PageReadError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class PageReadError extends Schema.TaggedError<
+  PageReadError,
+  { readonly brand: unique symbol }
+>()("PageReadError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The authored MDX body that a public page document adds to its registry entry. */
 const PageDocumentBodySchema = Schema.Struct({ rawMdx: Schema.String });

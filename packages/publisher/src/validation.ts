@@ -23,31 +23,37 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { Array as Arr, Effect, Schema } from "effect";
 
 /** Signed payloads do not exactly satisfy their authenticated item stream. */
-export class ReleaseArtifactMismatchError extends Schema.TaggedError<ReleaseArtifactMismatchError>()(
-  "ReleaseArtifactMismatchError",
-  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
-) {}
+export class ReleaseArtifactMismatchError extends Schema.TaggedError<
+  ReleaseArtifactMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseArtifactMismatchError", {
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Target activation evidence differs from the deterministic release request. */
-export class PublicationReceiptMismatchError extends Schema.TaggedError<PublicationReceiptMismatchError>()(
-  "PublicationReceiptMismatchError",
-  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
-) {}
+export class PublicationReceiptMismatchError extends Schema.TaggedError<
+  PublicationReceiptMismatchError,
+  { readonly brand: unique symbol }
+>()("PublicationReceiptMismatchError", {
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** Staged evidence differs from the release and activation must not proceed. */
-export class ReleaseVerificationMismatchError extends Schema.TaggedError<ReleaseVerificationMismatchError>()(
-  "ReleaseVerificationMismatchError",
-  { message: Schema.Trimmed.check(Schema.isNonEmpty()) }
-) {}
+export class ReleaseVerificationMismatchError extends Schema.TaggedError<
+  ReleaseVerificationMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseVerificationMismatchError", {
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** The release was prepared for a different exact Nakafa renderer manifest. */
-export class ReleaseRendererManifestMismatchError extends Schema.TaggedError<ReleaseRendererManifestMismatchError>()(
-  "ReleaseRendererManifestMismatchError",
-  {
-    ...Sha256MismatchFields,
-    releaseId: ReleaseIdSchema,
-  }
-) {}
+export class ReleaseRendererManifestMismatchError extends Schema.TaggedError<
+  ReleaseRendererManifestMismatchError,
+  { readonly brand: unique symbol }
+>()("ReleaseRendererManifestMismatchError", {
+  ...Sha256MismatchFields,
+  releaseId: ReleaseIdSchema,
+}) {}
 
 /** Requires one deterministic compiler result to match its release item. */
 export function validateCompiledPayloadForItem(

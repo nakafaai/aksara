@@ -9,10 +9,10 @@ import {
 const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes";
 
 /** SHA-256 computation failed before route integrity was established. */
-export class RouteHashError extends Schema.TaggedError<RouteHashError>()(
-  "RouteHashError",
-  { releaseId: ReleaseIdSchema }
-) {}
+export class RouteHashError extends Schema.TaggedError<
+  RouteHashError,
+  { readonly brand: unique symbol }
+>()("RouteHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps incremental route digest state private to one release preparation. */
 class RouteDigestState {

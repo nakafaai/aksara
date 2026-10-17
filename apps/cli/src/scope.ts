@@ -18,10 +18,10 @@ import {
 } from "effect";
 
 /** One CLI selector does not form a canonical production publication scope. */
-class ProductionScopeDecodeError extends Schema.TaggedError<ProductionScopeDecodeError>()(
-  "ProductionScopeDecodeError",
-  {}
-) {}
+class ProductionScopeDecodeError extends Schema.TaggedError<
+  ProductionScopeDecodeError,
+  { readonly brand: unique symbol }
+>()("ProductionScopeDecodeError", {}) {}
 
 const DecodedSelectorSchema = Schema.Struct({
   kind: Schema.Literals(["family", "snapshot"]),

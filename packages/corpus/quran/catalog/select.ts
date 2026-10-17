@@ -25,26 +25,26 @@ import {
 } from "#corpus/quran/catalog/registry";
 
 /** A catalog source, locale copy, access record, or provenance record is invalid. */
-export class QuranCatalogError extends Schema.TaggedError<QuranCatalogError>()(
-  "QuranCatalogError",
-  {
-    activeAppLocales: Schema.Array(AppLocaleSchema),
-    appLocale: Schema.optional(AppLocaleSchema),
-    reason: Schema.Literals([
-      "duplicate-access",
-      "duplicate-copy",
-      "duplicate-provenance",
-      "duplicate-source",
-      "mismatched-provenance",
-      "missing-access",
-      "missing-copy",
-      "missing-provenance",
-      "missing-source",
-    ]),
-    scope: Schema.optional(QuranProvenanceScopeSchema),
-    sourceId: Schema.optional(QuranSourceIdSchema),
-  }
-) {}
+export class QuranCatalogError extends Schema.TaggedError<
+  QuranCatalogError,
+  { readonly brand: unique symbol }
+>()("QuranCatalogError", {
+  activeAppLocales: Schema.Array(AppLocaleSchema),
+  appLocale: Schema.optional(AppLocaleSchema),
+  reason: Schema.Literals([
+    "duplicate-access",
+    "duplicate-copy",
+    "duplicate-provenance",
+    "duplicate-source",
+    "mismatched-provenance",
+    "missing-access",
+    "missing-copy",
+    "missing-provenance",
+    "missing-source",
+  ]),
+  scope: Schema.optional(QuranProvenanceScopeSchema),
+  sourceId: Schema.optional(QuranSourceIdSchema),
+}) {}
 
 /** Resolves exactly one catalog source by stable identity. */
 const requireSource = Effect.fn("AksaraCorpus.requireQuranCatalogSource")(

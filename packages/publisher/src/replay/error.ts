@@ -11,19 +11,19 @@ const ReplaySpoolOperationSchema = Schema.Literals([
 ]);
 
 /** A bounded temporary replay spool could not preserve an exact record. */
-export class ReplaySpoolError extends Schema.TaggedError<ReplaySpoolError>()(
-  "ReplaySpoolError",
-  {
-    cause: Schema.Unknown,
-    index: Schema.optional(
-      Schema.Finite.pipe(
-        Schema.check(Schema.isInt()),
-        Schema.check(Schema.isGreaterThanOrEqualTo(0))
-      )
-    ),
-    operation: ReplaySpoolOperationSchema,
-  }
-) {}
+export class ReplaySpoolError extends Schema.TaggedError<
+  ReplaySpoolError,
+  { readonly brand: unique symbol }
+>()("ReplaySpoolError", {
+  cause: Schema.Unknown,
+  index: Schema.optional(
+    Schema.Finite.pipe(
+      Schema.check(Schema.isInt()),
+      Schema.check(Schema.isGreaterThanOrEqualTo(0))
+    )
+  ),
+  operation: ReplaySpoolOperationSchema,
+}) {}
 
 /** Maps a replay failure without exposing temporary filesystem coordinates. */
 export function replaySpoolFailure(

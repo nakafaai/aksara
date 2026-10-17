@@ -3,10 +3,10 @@ import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
 /** TypeScript configuration does not own exactly one workspace source condition. */
-export class SourceConditionError extends Schema.TaggedError<SourceConditionError>()(
-  "SourceConditionError",
-  { message: Schema.String }
-) {}
+export class SourceConditionError extends Schema.TaggedError<
+  SourceConditionError,
+  { readonly brand: unique symbol }
+>()("SourceConditionError", { message: Schema.String }) {}
 
 /** Reads the one workspace source condition owned by TypeScript configuration. */
 export const sourceConditionFromConfig = Effect.fn(

@@ -167,19 +167,22 @@ type TryoutExamSourceInput = typeof TryoutExamSourceSchema.Encoded;
 export type TryoutExamSource = typeof TryoutExamSourceSchema.Type;
 
 /** One authored try-out catalog failed strict schema decoding. */
-export class TryoutDecodeError extends Schema.TaggedError<TryoutDecodeError>()(
-  "TryoutDecodeError",
-  { cause: Schema.Unknown, message: Schema.Trimmed.check(Schema.isNonEmpty()) }
-) {}
+export class TryoutDecodeError extends Schema.TaggedError<
+  TryoutDecodeError,
+  { readonly brand: unique symbol }
+>()("TryoutDecodeError", {
+  cause: Schema.Unknown,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** One authored try-out scope contains the same stable key twice. */
-export class TryoutDuplicateError extends Schema.TaggedError<TryoutDuplicateError>()(
-  "TryoutDuplicateError",
-  {
-    key: TryoutKeySchema,
-    scope: Schema.Trimmed.check(Schema.isNonEmpty()),
-  }
-) {}
+export class TryoutDuplicateError extends Schema.TaggedError<
+  TryoutDuplicateError,
+  { readonly brand: unique symbol }
+>()("TryoutDuplicateError", {
+  key: TryoutKeySchema,
+  scope: Schema.Trimmed.check(Schema.isNonEmpty()),
+}) {}
 
 /** An authored try-out source that carries a stable key: a track, a set, or a section. */
 type TryoutKeyedSource =

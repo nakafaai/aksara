@@ -19,14 +19,14 @@ import {
 import { JsonTextSchema } from "#cli/text/json";
 
 /** An isolated npm smoke command returned a non-zero exit status. */
-class CliTestCommandError extends Schema.TaggedError<CliTestCommandError>()(
-  "CliTestCommandError",
-  {
-    command: Schema.String,
-    exitCode: Schema.Finite.pipe(Schema.check(Schema.isInt())),
-    stderr: Schema.String,
-  }
-) {}
+class CliTestCommandError extends Schema.TaggedError<
+  CliTestCommandError,
+  { readonly brand: unique symbol }
+>()("CliTestCommandError", {
+  command: Schema.String,
+  exitCode: Schema.Finite.pipe(Schema.check(Schema.isInt())),
+  stderr: Schema.String,
+}) {}
 
 const packageRoot = fileURLToPath(new URL("../", import.meta.url));
 const distributionRoot = fileURLToPath(

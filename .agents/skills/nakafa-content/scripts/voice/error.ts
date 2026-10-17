@@ -6,15 +6,15 @@ import { Schema } from "effect";
  * Every failure names a machine-readable reason so the CLI boundary maps it
  * to a stable process exit code without parsing message text.
  */
-export class LessonVoiceCheckError extends Schema.TaggedError<LessonVoiceCheckError>()(
-  "LessonVoiceCheckError",
-  {
-    detail: Schema.String,
-    reason: Schema.Literals([
-      "empty-root",
-      "invalid-arguments",
-      "unparseable-document",
-      "unreadable-entry",
-    ]),
-  }
-) {}
+export class LessonVoiceCheckError extends Schema.TaggedError<
+  LessonVoiceCheckError,
+  { readonly brand: unique symbol }
+>()("LessonVoiceCheckError", {
+  detail: Schema.String,
+  reason: Schema.Literals([
+    "empty-root",
+    "invalid-arguments",
+    "unparseable-document",
+    "unreadable-entry",
+  ]),
+}) {}

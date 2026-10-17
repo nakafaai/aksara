@@ -23,16 +23,22 @@ import { Effect, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";
 
 /** Authored page metadata does not satisfy Nakafa's exact public contract. */
-export class PageMetadataError extends Schema.TaggedError<PageMetadataError>()(
-  "PageMetadataError",
-  { cause: Schema.Unknown, sourcePath: CorpusSourcePathSchema }
-) {}
+export class PageMetadataError extends Schema.TaggedError<
+  PageMetadataError,
+  { readonly brand: unique symbol }
+>()("PageMetadataError", {
+  cause: Schema.Unknown,
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** The checkout could not provide its canonical reviewed public page source. */
-export class PageSourceError extends Schema.TaggedError<PageSourceError>()(
-  "PageSourceError",
-  { cause: Schema.Unknown, checkoutRoot: Schema.String }
-) {}
+export class PageSourceError extends Schema.TaggedError<
+  PageSourceError,
+  { readonly brand: unique symbol }
+>()("PageSourceError", {
+  cause: Schema.Unknown,
+  checkoutRoot: Schema.String,
+}) {}
 
 /** Binds one checkout root to the shared public page source error adapter. */
 export function mapPageSourceError(checkoutRoot: string) {

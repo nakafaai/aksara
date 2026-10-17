@@ -18,13 +18,13 @@ const NODE_IMPORT_CONDITIONS = HashSet.fromIterable([
 ]);
 
 /** One installed-package contract or operating-system read could not be verified. */
-export class InstallVerificationError extends Schema.TaggedError<InstallVerificationError>()(
-  "InstallVerificationError",
-  {
-    cause: Schema.Unknown,
-    message: Schema.String,
-  }
-) {}
+export class InstallVerificationError extends Schema.TaggedError<
+  InstallVerificationError,
+  { readonly brand: unique symbol }
+>()("InstallVerificationError", {
+  cause: Schema.Unknown,
+  message: Schema.String,
+}) {}
 
 /** The request that one consumer inspection receives: specifiers to import, and public specifiers to resolve. */
 const InstallInspectionSchema = Schema.Struct({

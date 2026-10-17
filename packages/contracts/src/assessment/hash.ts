@@ -57,10 +57,10 @@ export const canonicalJson = Effect.fn("AksaraContracts.canonicalJson")(
 );
 
 /** A stored hash is not the hash of the content that carries it. */
-export class VersionHashMismatchError extends Schema.TaggedError<VersionHashMismatchError>()(
-  "VersionHashMismatchError",
-  { ...Sha256MismatchFields }
-) {}
+export class VersionHashMismatchError extends Schema.TaggedError<
+  VersionHashMismatchError,
+  { readonly brand: unique symbol }
+>()("VersionHashMismatchError", { ...Sha256MismatchFields }) {}
 
 /** Hashes the canonical encoding of one record under the domain of its kind. */
 const hashRecord = (domain: string, record: unknown) =>

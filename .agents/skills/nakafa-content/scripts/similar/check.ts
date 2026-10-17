@@ -21,10 +21,10 @@ const encodePrettyJson = Schema.encodeSync(
 );
 
 /** The similarity check was called with arguments it cannot use. */
-export class SimilarityCheckError extends Schema.TaggedError<SimilarityCheckError>()(
-  "SimilarityCheckError",
-  { detail: Schema.String }
-) {}
+export class SimilarityCheckError extends Schema.TaggedError<
+  SimilarityCheckError,
+  { readonly brand: unique symbol }
+>()("SimilarityCheckError", { detail: Schema.String }) {}
 
 /** Reads one target directory and a threshold between zero and one. */
 const parseOptions = Effect.fn("SimilarityCheck.parseOptions")(function* (
