@@ -15,6 +15,7 @@ import {
 } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
+import { withNextSourceDigestFailure } from "#corpus/test/digest";
 import {
   fixtureLayer,
   QuranSourceFixture,
@@ -144,18 +145,9 @@ layer(fixtureLayer)("Quran source loading", (it) => {
   it.effect("maps a failed pinned digest into a source file error", () =>
     Effect.gen(function* () {
       const fixture = yield* QuranSourceFixture;
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only pinned source digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* reject(fixture.sourceBytes).pipe(
+        withNextSourceDigestFailure
       );
-
-      const error = yield* reject(fixture.sourceBytes);
 
       expect(error).toMatchObject({
         _tag: "QuranSourceFileError",

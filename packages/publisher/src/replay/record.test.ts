@@ -11,6 +11,7 @@ import {
   validateReplaySpoolUsage,
 } from "#publisher/replay/record";
 import { encodeJsonText } from "#publisher/text/json";
+import { withNextDigestFailure } from "#test/digest";
 
 const ReplayEntrySchema = Schema.Struct({
   sequence: Schema.Finite,
@@ -108,18 +109,9 @@ describe("replay record", () => {
 
   it.effect("maps a failed record digest into a hash spool failure", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only record digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* reject(encodeReplayRecord(entry, 3)).pipe(
+        withNextDigestFailure
       );
-
-      const error = yield* reject(encodeReplayRecord(entry, 3));
 
       expect(error).toMatchObject({
         _tag: "ReplaySpoolError",
@@ -134,16 +126,6 @@ describe("replay record", () => {
     () =>
       Effect.gen(function* () {
         const encoded = yield* encodeReplayRecord(entry, 5);
-        yield* Effect.acquireRelease(
-          Effect.sync(() =>
-            vi
-              .spyOn(globalThis.crypto.subtle, "digest")
-              .mockRejectedValueOnce(
-                new TypeError("Test-only record digest failure.")
-              )
-          ),
-          (mock) => Effect.sync(() => mock.mockRestore())
-        );
 
         const error = yield* reject(
           decodeReplayRecord({
@@ -152,7 +134,7 @@ describe("replay record", () => {
             index: 5,
             schema: ReplayEntrySchema,
           })
-        );
+        ).pipe(withNextDigestFailure);
 
         expect(error).toMatchObject({
           _tag: "ReplaySpoolError",

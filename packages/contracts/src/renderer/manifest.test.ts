@@ -8,6 +8,7 @@ import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { testRendererDomains } from "#contracts/test/renderer";
 
 const input = {
@@ -154,15 +155,7 @@ describe("renderer manifest", () => {
   );
 
   it.effect("maps hashing failures to a typed error", () =>
-    Effect.acquireUseRelease(
-      Effect.sync(() =>
-        vi
-          .spyOn(crypto.subtle, "digest")
-          .mockRejectedValueOnce(new TypeError("injected hash failure"))
-      ),
-      () => createRendererManifest(input).pipe(Effect.flip),
-      (digest) => Effect.sync(() => digest.mockRestore())
-    ).pipe(
+    withNextDigestFailure(createRendererManifest(input).pipe(Effect.flip)).pipe(
       Effect.map((error) =>
         expect(error._tag).toBe("RendererManifestHashComputeError")
       )

@@ -3,11 +3,11 @@ import { expect, layer } from "@effect/vitest";
 import { Array as Arr, Effect, FileSystem, Option, Path, Schema } from "effect";
 import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
-import { withArchiveDigestFailure } from "#scripts/test/digest";
 import { makeProcessHandle } from "#scripts/test/process";
 import { encodeJsonText } from "#scripts/text/json";
 
@@ -197,7 +197,7 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
   it.effect("maps a failed archive digest into a release error", () =>
     Effect.gen(function* () {
       const fixture = yield* proofFixture("aksara-proof-digest-");
-      const error = yield* withArchiveDigestFailure(
+      const error = yield* withNextDigestFailure(
         proveWithCommands(
           fixture.input,
           fakeCommands(fixture.archive, fixture.release)

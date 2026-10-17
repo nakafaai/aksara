@@ -7,6 +7,7 @@ import {
   hashBytes,
   webCryptoService,
 } from "#contracts/hash/digest";
+import { withNextDigestFailure } from "#contracts/test/digest";
 
 describe("Web Crypto random bytes", () => {
   it.effect("fills every byte, including the bytes past one random chunk", () =>
@@ -56,16 +57,9 @@ describe("SHA-256 digests through Effect's Crypto service", () => {
 
   it.effect("maps a rejected digest into the platform error channel", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(crypto.subtle, "digest")
-            .mockRejectedValueOnce(new TypeError("injected digest failure"))
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* withNextDigestFailure(
+        digestSha256(new Uint8Array()).pipe(Effect.flip)
       );
-
-      const error = yield* digestSha256(new Uint8Array()).pipe(Effect.flip);
 
       expect(error).toBeInstanceOf(PlatformError.PlatformError);
       expect(error.reason.module).toBe("Crypto");

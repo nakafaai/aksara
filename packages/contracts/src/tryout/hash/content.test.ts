@@ -2,6 +2,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, HashSet, Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { rubric as rubricResponse } from "#contracts/test/rubric";
 import { responseText } from "#contracts/test/tryout";
 import { JsonTextSchema } from "#contracts/text/json";
@@ -173,18 +174,9 @@ describe("try-out content hash", () => {
 
   it.effect("maps a failed digest into the content hash error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only content digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* withNextDigestFailure(
+        hashTryoutContent(source).pipe(Effect.flip)
       );
-
-      const error = yield* hashTryoutContent(source).pipe(Effect.flip);
 
       expect(error).toMatchObject({ _tag: "TryoutContentHashError" });
     })

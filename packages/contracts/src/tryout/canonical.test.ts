@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { hashTryoutCanonical } from "#contracts/tryout/canonical";
 
 describe("try-out canonical digest golden vectors", () => {
@@ -21,21 +22,11 @@ describe("try-out canonical digest golden vectors", () => {
 
   it.effect("maps a failed digest into the canonical hash error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only canonical digest failure.")
-            )
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
+      const error = yield* withNextDigestFailure(
+        hashTryoutCanonical("nakafa.aksara.tryout-test", "text").pipe(
+          Effect.flip
+        )
       );
-
-      const error = yield* hashTryoutCanonical(
-        "nakafa.aksara.tryout-test",
-        "text"
-      ).pipe(Effect.flip);
 
       expect(error).toMatchObject({
         _tag: "TryoutCanonicalHashError",

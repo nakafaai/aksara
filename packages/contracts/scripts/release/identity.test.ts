@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   compareVersions,
   decideArchive,
@@ -8,7 +9,6 @@ import {
   parseVersion,
   resolveIdentity,
 } from "#scripts/release/identity";
-import { withArchiveDigestFailure } from "#scripts/test/digest";
 
 /** Encodes one immutable release row from its real tag and package version. */
 function release(tag: string, version: string) {
@@ -250,7 +250,7 @@ describe("pinned release identities", () => {
 
   it.effect("maps a failed archive digest into an archive error", () =>
     Effect.gen(function* () {
-      const error = yield* withArchiveDigestFailure(
+      const error = yield* withNextDigestFailure(
         decideArchive(
           { current: yield* parseVersion("0.1.0"), latest: undefined },
           new TextEncoder().encode("Arsip"),

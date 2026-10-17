@@ -14,6 +14,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { rendererManifest } from "#contracts/test/request";
 import {
   compatibleManifest,
@@ -140,16 +141,8 @@ describe("signed try-out runtime bundle verification", () => {
 
   it.effect("maps Web Crypto hash failures to the bundle source", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(crypto.subtle, "digest")
-            .mockRejectedValueOnce(new TypeError("injected digest failure"))
-        ),
-        (mock) => Effect.sync(() => mock.mockRestore())
-      );
-      const failure = yield* hashTryoutRuntimeBundlePayload(payload).pipe(
-        Effect.flip
+      const failure = yield* withNextDigestFailure(
+        hashTryoutRuntimeBundlePayload(payload).pipe(Effect.flip)
       );
       expect(failure).toMatchObject({
         _tag: "TryoutRuntimeBundleHashComputationError",
