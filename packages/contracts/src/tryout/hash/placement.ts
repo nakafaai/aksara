@@ -58,7 +58,7 @@ export const makeTryoutPlacementRecord = Effect.fn(
   return TryoutPlacementRecordSchema.make({ row, rowHash });
 });
 
-/** Digests canonically ordered placements in constant space. */
+/** Digests canonically ordered placements. Their canonical bytes are held until one Web Crypto digest runs. */
 export function digestTryoutPlacements<E, R>(
   records: Stream.Stream<TryoutPlacementRecord, E, R>
 ) {
