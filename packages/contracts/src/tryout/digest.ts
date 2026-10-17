@@ -1,8 +1,7 @@
-import { createHash } from "node:crypto";
-
 import { Effect, Schema, Stream } from "effect";
 
-import { Sha256HashSchema } from "#contracts/ids";
+import { DigestStream } from "#contracts/hash/stream";
+import type { Sha256HashSchema } from "#contracts/ids";
 import { compareCodeUnits } from "#contracts/text/order";
 
 /** A snapshot stream is duplicated, unsorted, or tampered. */
@@ -21,29 +20,31 @@ interface DigestRecord<Row> {
 
 /** Keeps one stream digest and previous identity private to its replay. */
 class TryoutDigestState {
-  readonly #hash;
+  readonly #stream = new DigestStream();
   count = 0;
   previous: string | undefined;
 
-  /** Creates one fresh domain-separated incremental digest. */
+  /** Starts one fresh domain-separated digest stream. */
   constructor(domain: string) {
-    this.#hash = createHash("sha256").update(domain).update("\n");
+    this.#stream.add(domain);
+    this.#stream.add("\n");
   }
 
   /** Adds one verified canonical record to the digest. */
   update(canonical: string, identity: string) {
-    this.#hash.update(canonical).update("\n");
+    this.#stream.add(canonical);
+    this.#stream.add("\n");
     this.count += 1;
     this.previous = identity;
   }
 
-  /** Consumes the hash and returns its branded value. */
+  /** Digests the complete stream once and returns its branded value. */
   digest() {
-    return Sha256HashSchema.make(`sha256:${this.#hash.digest("hex")}`);
+    return this.#stream.digest();
   }
 }
 
-/** Verifies and adds one immutable record without retaining prior rows. */
+/** Verifies one immutable record and adds its canonical bytes to the digest stream. */
 function updateDigest<Row>(
   state: TryoutDigestState,
   record: DigestRecord<Row>,
@@ -64,7 +65,11 @@ function updateDigest<Row>(
   return Effect.succeed(state);
 }
 
-/** Digests one canonically ordered record stream with constant memory. */
+/**
+ * Digests one canonically ordered record stream. The canonical bytes are held
+ * until one Web Crypto digest runs over them, because Web Crypto has no
+ * incremental form.
+ */
 export const digestTryoutRecords = Effect.fn(
   "AksaraContracts.digestTryoutRecords"
 )(function* <E, R, Row, HashError>(input: {
@@ -96,5 +101,6 @@ export const digestTryoutRecords = Effect.fn(
         })
     )
   );
-  return { count: state.count, digest: state.digest() };
+  const digest = yield* state.digest();
+  return { count: state.count, digest };
 });

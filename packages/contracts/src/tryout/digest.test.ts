@@ -98,7 +98,10 @@ describe("try-out streaming digest golden vectors", () => {
         Stream.make(secondRecord, firstRecord)
       ).pipe(Effect.flip);
 
-      expect([repeated.code, unsorted.code]).toEqual(["order", "order"]);
+      expect([repeated, unsorted]).toMatchObject([
+        { _tag: "TryoutDigestError", code: "order" },
+        { _tag: "TryoutDigestError", code: "order" },
+      ]);
     })
   );
 });
