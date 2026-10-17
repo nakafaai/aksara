@@ -129,6 +129,11 @@ jobs:
           fi
           git rev-parse --verify HEAD
 
+      # The workflow check imports the contracts package, which resolves to its
+      # build output, so the package is built before the checks run.
+      - name: Build contracts for the repository checks
+        run: pnpm --filter @nakafa/aksara-contracts build
+
       - name: Verify repository controls
         run: |
           pnpm lint
