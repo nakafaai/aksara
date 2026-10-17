@@ -28,7 +28,7 @@ const refused = (
 /** Replaces one fragment of one text source and expects the verifier to refuse the result. */
 const refusedReplacement = (
   sources: WorkflowSources,
-  key: "ci" | "contracts" | "release",
+  key: "contracts" | "release",
   from: string,
   to: string,
   message: string
@@ -86,29 +86,29 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
       }
     }));
 
-  it("requires CI to use the tested archive identity decision", (sources) =>
+  it("requires contract releases to use the tested archive identity decision", (sources) =>
     refusedReplacement(
       sources,
-      "ci",
+      "contracts",
       "release/command.ts describe",
       "release/command.ts inspect",
-      "CI must derive release necessity from the tested identity tool"
+      "Contract releases must derive release necessity from the tested identity tool"
     ));
 
   it("derives previous bytes only from final immutable releases", (sources) =>
     refusedReplacement(
       sources,
-      "ci",
+      "contracts",
       ".immutable == true",
       ".immutable == false",
-      "CI must derive release necessity from the tested identity tool"
+      "Contract releases must derive release necessity from the tested identity tool"
     ));
 
   it("rejects shell contract version parsing", (sources) =>
     refused(
       sources,
-      { ci: `${sources.ci}\n# IFS=. read -r current_major` },
-      "CI must not parse contract versions in shell"
+      { contracts: `${sources.contracts}\n# IFS=. read -r current_major` },
+      "Contract releases must not parse contract versions in shell"
     ));
 
   it("attests the verified archive before privileged transfer", (sources) =>
@@ -239,7 +239,7 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
   it("requires exact action commits", (sources) =>
     refusedReplacement(
       sources,
-      "ci",
+      "contracts",
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/checkout@main",
       "Workflow action actions/checkout@main must use an exact commit"

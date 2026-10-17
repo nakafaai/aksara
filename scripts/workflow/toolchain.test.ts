@@ -33,13 +33,10 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
 
   it("accepts package.json-owned toolchains and every YAML job identifier", ({
     all: sources,
-    ci,
+    cli,
   }) =>
     Effect.gen(function* () {
-      const quotedUppercaseJob = ci.replace(
-        "  checks:\n",
-        '  "Checks_Main":\n'
-      );
+      const quotedUppercaseJob = cli.replace("  build:\n", '  "Build_Main":\n');
 
       yield* verifyWorkflowToolchains(sources);
       yield* accepts(quotedUppercaseJob);
@@ -82,32 +79,32 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   );
 
   it("rejects duplicated environment versions at every workflow scope", ({
-    ci,
+    cli,
   }) =>
     Effect.gen(function* () {
       yield* refuses(
-        ci.replace(
-          "permissions:\n",
-          "env:\n  NODE_VERSION: 24\n\npermissions:\n"
+        cli.replace(
+          "permissions: {}\n",
+          "env:\n  NODE_VERSION: 24\n\npermissions: {}\n"
         ),
         "Workflows must not duplicate Node or pnpm versions"
       );
       yield* refuses(
-        ci.replace(
-          "  checks:\n",
-          '  checks:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
+        cli.replace(
+          "  build:\n",
+          '  build:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
         ),
         "Workflows must not duplicate Node or pnpm versions"
       );
       yield* refuses(
-        ci.replace(
+        cli.replace(
           "      - name: Install dependencies",
           '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
         ),
         "Workflows must not duplicate Node or pnpm versions"
       );
       yield* refuses(
-        ci.replace(
+        cli.replace(
           "      - name: Audit dependencies",
           '      - name: Audit dependencies\n        env:\n          "PNPM_VERSION" : 11.15.1'
         ),
@@ -125,36 +122,36 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
     () => refuses(PNPM_JOB_ENV, "Every pnpm job must set up the toolchain once")
   );
 
-  it("requires exactly one toolchain setup 0", ({ ci }) =>
+  it("requires exactly one toolchain setup 0", ({ cli }) =>
     refuses(
-      ci.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
+      cli.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
       "Every pnpm job must set up the toolchain once"
     ));
 
-  it("requires exactly one toolchain setup 1", ({ ci }) =>
+  it("requires exactly one toolchain setup 1", ({ cli }) =>
     refuses(
-      ci.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`),
+      cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`),
       "Every pnpm job must set up the toolchain once"
     ));
 
-  it("rejects legacy, competing, and unreviewed setup actions", ({ ci }) =>
+  it("rejects legacy, competing, and unreviewed setup actions", ({ cli }) =>
     Effect.gen(function* () {
       yield* refuses(
-        ci.replace(
+        cli.replace(
           TOOLCHAIN_SETUP_ACTION,
           "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
         ),
         "Workflows must not use legacy pnpm/action-setup"
       );
       yield* refuses(
-        ci.replace(
+        cli.replace(
           TOOLCHAIN_STEP,
           `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
         ),
         "Workflows must not use a second Node.js setup action"
       );
       yield* refuses(
-        ci.replace(
+        cli.replace(
           TOOLCHAIN_SETUP_ACTION,
           "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b"
         ),
@@ -162,10 +159,10 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       );
     }));
 
-  it("detects pnpm invoked through a workflow environment alias", ({ ci }) =>
+  it("detects pnpm invoked through a workflow environment alias", ({ cli }) =>
     Effect.gen(function* () {
-      const aliasedPnpm = ci
-        .replace("  checks:\n", "  checks:\n    env:\n      PM: pnpm\n")
+      const aliasedPnpm = cli
+        .replace("  build:\n", "  build:\n    env:\n      PM: pnpm\n")
         .replace("run: pnpm install", "run: $PM install");
       const actionsAlias = aliasedPnpm.replace(
         "run: $PM install",
@@ -175,7 +172,7 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       yield* accepts(aliasedPnpm);
       yield* accepts(actionsAlias);
       yield* accepts(
-        ci.replace("  checks:\n", "  checks:\n    env:\n      RETRIES: 3\n")
+        cli.replace("  build:\n", "  build:\n    env:\n      RETRIES: 3\n")
       );
 
       yield* refuses(
@@ -188,9 +185,9 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       );
     }));
 
-  it("requires setup before the first pnpm command", ({ ci }) =>
+  it("requires setup before the first pnpm command", ({ cli }) =>
     refuses(
-      ci.replace(
+      cli.replace(
         TOOLCHAIN_STEP,
         `      - name: Premature command
         run: pnpm --version
@@ -200,9 +197,9 @@ ${TOOLCHAIN_STEP}`
       "Every pnpm job must set up the toolchain before running pnpm"
     ));
 
-  it("rejects toolchain versions declared by setup inputs", ({ ci }) =>
+  it("rejects toolchain versions declared by setup inputs", ({ cli }) =>
     Effect.gen(function* () {
-      const variants = setupInputVariants(ci);
+      const variants = setupInputVariants(cli);
 
       yield* refuses(
         variants.inlinePnpm,
@@ -231,9 +228,9 @@ ${TOOLCHAIN_STEP}`
     }));
 
   for (const command of REPLACEMENT_COMMANDS) {
-    it(`rejects pnpm replacement command ${command}`, ({ ci }) =>
+    it(`rejects pnpm replacement command ${command}`, ({ cli }) =>
       refuses(
-        ci.replace(
+        cli.replace(
           "      - name: Install dependencies",
           `      - name: Replace pnpm\n        run: ${command}\n\n      - name: Install dependencies`
         ),
@@ -241,23 +238,23 @@ ${TOOLCHAIN_STEP}`
       ));
   }
 
-  it("requires every toolchain setup step to run unconditionally", ({ ci }) =>
+  it("requires every toolchain setup step to run unconditionally", ({ cli }) =>
     refuses(
-      ci.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n        if: false`),
+      cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n        if: false`),
       "The toolchain setup step must run unconditionally"
     ));
 
-  it("requires every toolchain setup step to stop on failure", ({ ci }) =>
+  it("requires every toolchain setup step to stop on failure", ({ cli }) =>
     Effect.gen(function* () {
       yield* refuses(
-        ci.replace(
+        cli.replace(
           TOOLCHAIN_STEP,
           `${TOOLCHAIN_STEP}\n        continue-on-error: true`
         ),
         "The toolchain setup step must stop on failure"
       );
       yield* accepts(
-        ci.replace(
+        cli.replace(
           TOOLCHAIN_STEP,
           `${TOOLCHAIN_STEP}\n        continue-on-error: false`
         )
@@ -265,15 +262,15 @@ ${TOOLCHAIN_STEP}`
     }));
 
   it("rejects malformed action inputs without matching unrelated values", ({
-    ci,
+    cli,
   }) =>
     Effect.gen(function* () {
       yield* refuses(
-        ci.replace(TOOLCHAIN_STEP, `${SETUP_HEADER}\n        with: invalid`),
+        cli.replace(TOOLCHAIN_STEP, `${SETUP_HEADER}\n        with: invalid`),
         "Workflow action inputs must be a mapping"
       );
       yield* accepts(
-        ci.replace(
+        cli.replace(
           "          persist-credentials: false",
           "          persist-credentials: false\n          version: stable"
         )
@@ -281,9 +278,9 @@ ${TOOLCHAIN_STEP}`
     }));
 
   for (const [input, message] of PNPM_INPUT_CASES) {
-    it(`normalizes pnpm input ${input}`, ({ ci }) =>
+    it(`normalizes pnpm input ${input}`, ({ cli }) =>
       refuses(
-        ci.replace(
+        cli.replace(
           "          cache: true",
           `          ${input}\n          cache: true`
         ),
@@ -291,9 +288,9 @@ ${TOOLCHAIN_STEP}`
       ));
   }
 
-  it("normalizes and rejects duplicated input names", ({ ci }) =>
+  it("normalizes and rejects duplicated input names", ({ cli }) =>
     refuses(
-      ci.replace(
+      cli.replace(
         "          cache: true",
         "          CACHE: true\n          cache: true"
       ),

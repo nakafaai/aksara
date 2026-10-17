@@ -87,11 +87,15 @@ pnpm install --frozen-lockfile
 
 ## Development
 
-Run the complete local quality gate:
+Run the local quality gate on each pull request's exact head. It runs the checks
+that GitHub Actions CI used to run. The contract archive identity,
+`packages/contracts/scripts/release/command.ts describe` and `decide`, needs
+GitHub release data, so `contracts.yml` checks it on `main` instead.
 
 ```sh
 pnpm format
 pnpm lint
+pnpm deprecations
 pnpm names
 pnpm jsdocs
 pnpm lines
@@ -99,6 +103,7 @@ pnpm boundaries
 pnpm locales
 pnpm points
 pnpm workflows
+pnpm native
 pnpm typecheck
 pnpm test
 pnpm build

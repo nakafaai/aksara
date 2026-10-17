@@ -4,6 +4,28 @@ This file records the external repository controls that were verified through
 2026-09-30. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
+## Amendment, 17 Oct 2026: GitHub Actions CI removed
+
+GitHub Actions CI is deleted for good. Waiting for CI was the bottleneck, so
+`.github/workflows/ci.yml` and its policy checks are removed, and every pull
+request is verified locally on its exact head with the quality gate in
+[`README.md`](../README.md#development). That gate runs the checks that CI ran,
+except the contract archive identity, which needs GitHub release data and runs
+in `contracts.yml` on `main`. A pull request merges by squash once its exact
+head passed the local gate:
+
+```sh
+gh pr merge <number> --squash --match-head-commit <sha>
+```
+
+This amendment supersedes the CI, required-check, and merge-queue statements
+below. Ruleset `19330486` was read on 17 Oct 2026. It still requires pull
+requests and resolved review conversations, and it blocks deletion and
+non-fast-forward updates. It has no required status check and no merge queue.
+This change does not alter any GitHub setting or ruleset. The sections below
+record the state through 30 Sep 2026, except that the contracts release path now
+describes squash merges.
+
 ## Current GitHub state
 
 - Repository: public `nakafaai/aksara`.
@@ -110,11 +132,9 @@ for comparison. One tested TypeScript module compares its exact bytes with the
 latest immutable release, so unchanged contract artifacts stop before the full
 release gate and changed bytes require a greater package version. This
 byte-level decision replaces brittle workflow path lists. A push run stops
-after that build and verification: `main` revisions land through the merge
-queue, and GitHub refuses environment reviews in runs that
-`github-merge-queue[bot]` triggers. Publication therefore runs only in a manual
-dispatch from `main`, which also recovers a same-SHA mutable release because
-only final immutable releases participate in previous-archive comparison.
+after that build and verification. Publication runs only in a manual dispatch
+from `main`, which also recovers a same-SHA mutable release because only final
+immutable releases participate in previous-archive comparison.
 Historical `contracts-v*` releases remain immutable history, while new tags use
 `@nakafa/aksara-contracts@<version>`. No npm registry token, Changesets bot, or
 fixed waiting window participates in this boundary.

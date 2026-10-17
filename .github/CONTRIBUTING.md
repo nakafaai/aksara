@@ -73,12 +73,16 @@ educational content or fixtures.
 ```bash
 pnpm format
 pnpm lint
+pnpm deprecations
 pnpm security:audit
 pnpm names
 pnpm jsdocs
 pnpm lines
+pnpm locales
 pnpm points
+pnpm workflows
 pnpm boundaries
+pnpm native
 pnpm typecheck
 pnpm test
 pnpm build
@@ -97,10 +101,11 @@ pnpm verify:consumer
 - Document stable callable declarations with useful JSDoc.
 - Maintain 100% per-file statement, branch, function, and line coverage for
   production modules under `packages/*/src`. Repository and package scripts are
-  typechecked, linted, and exercised by their dedicated CI commands.
+  typechecked, linted, and exercised by the commands listed above.
 - Do not add invented content, placeholder packages, or compatibility layers.
 - Bump `packages/contracts/package.json` only when the verified release archive
-  bytes change. CI compares the archive with the latest immutable release.
+  bytes change. The contracts workflow compares the archive with the latest
+  immutable release.
 
 ### Submitting Changes
 

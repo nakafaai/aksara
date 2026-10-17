@@ -2,12 +2,10 @@ import { Array as Arr, Console, Effect, Schema } from "effect";
 import { trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
 import { readSource } from "#scripts/source";
-import { verifyCiWorkflow } from "#scripts/workflow/ci";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
 import { ensure, sameNames } from "#scripts/workflow/requirement";
-import { repositoryTestTargets } from "#scripts/workflow/target";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -19,7 +17,6 @@ const NPM_ATTESTATION_URL =
 const NPM_REGISTRY = "https://registry.npmjs.org";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
 const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
-const VERIFY_CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const ARCHIVE_BUILD_PATTERN =
   /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
 const FULL_GATE_PATTERN =
@@ -54,14 +51,12 @@ const TOP_LEVEL_JOB_PATTERN = /\n {2}[a-z][a-z_]*:\n/u;
 /** Workflow sources whose release controls must remain coherent. */
 const WorkflowSourcesSchema = Schema.Struct({
   all: Schema.Array(Schema.String),
-  ci: Schema.String,
   cli: Schema.String,
   contracts: Schema.String,
   release: Schema.String,
-  testTargets: Schema.Array(Schema.String),
 });
 
-/** Workflow sources and the repository test targets that the CI policy names. */
+/** Workflow sources that the workflow policy names. */
 export type WorkflowSources = typeof WorkflowSourcesSchema.Type;
 
 /** Returns where one named contract release step starts, and refuses a workflow that does not declare it. */
@@ -78,15 +73,8 @@ const contractStepStart = Effect.fn("AksaraWorkflow.contractStepStart")(
 
 /** Verifies one source-only contract archive and one content release path. */
 export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
-  function* ({
-    all,
-    ci,
-    cli,
-    contracts,
-    release,
-    testTargets,
-  }: WorkflowSources) {
-    const releaseCombined = `${ci}\n${contracts}\n${release}`;
+  function* ({ all, cli, contracts, release }: WorkflowSources) {
+    const releaseCombined = `${contracts}\n${release}`;
     const combined = `${releaseCombined}\n${cli}`;
     yield* ensure(
       !FORBIDDEN_REGISTRY_PATTERN.test(releaseCombined),
@@ -109,26 +97,9 @@ export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
       "Workflow probes must clear failed CLI output instead of treating error bodies as state"
     );
     yield* verifyWorkflowToolchains(
-      Arr.dedupe([ci, cli, contracts, release, ...all])
+      Arr.dedupe([cli, contracts, release, ...all])
     );
-    yield* verifyCiWorkflow(ci, testTargets);
     yield* verifyCliWorkflow(cli);
-    yield* ensure(
-      FROZEN_INSTALL_PATTERN.test(ci),
-      "CI must install the exact pnpm lockfile"
-    );
-    yield* ensure(
-      RELEASE_IDENTITY_PATTERN.test(ci),
-      "CI must derive release necessity from the tested identity tool"
-    );
-    yield* ensure(
-      !SHELL_VERSION_PATTERN.test(ci),
-      "CI must not parse contract versions in shell"
-    );
-    yield* ensure(
-      VERIFY_CONSUMER_PATTERN.test(ci),
-      "CI must prove the release archive in an isolated consumer"
-    );
     yield* ensure(
       CONTRACT_TRIGGER_PATTERN.test(contracts),
       "Contract release checks must run for every main source revision"
@@ -262,12 +233,10 @@ const readWorkflowSources = Effect.fn("WorkflowCheck.readSources")(
       Arr.filter(trackedPaths, (path) => WORKFLOW_PATH_PATTERN.test(path)),
       (path) => readSource(path)
     );
-    const ci = yield* readSource(".github/workflows/ci.yml");
     const cli = yield* readSource(".github/workflows/cli.yml");
     const contracts = yield* readSource(".github/workflows/contracts.yml");
     const release = yield* readSource(".github/workflows/release.yml");
-    const testTargets = yield* repositoryTestTargets();
-    return { all, ci, cli, contracts, release, testTargets };
+    return { all, cli, contracts, release };
   }
 );
 
