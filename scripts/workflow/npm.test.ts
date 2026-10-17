@@ -32,4 +32,32 @@ describe("npm trusted publication digest", () => {
       ).toContain("npm publication must match the exact trusted job");
     }).pipe(Effect.provide(NodeServices.layer))
   );
+
+  it.effect("reports a rejected publish digest as a typed workflow error", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const error = yield* verifyNpmWorkflow(source, {
+        ...contract,
+        publishSha256:
+          "5209d8ab9e2fa3a1d24f8eccae20d5c695e4576147e4fcbefd1e1725ffa9b0d8",
+      }).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "WorkflowError",
+        message: "npm publication must match the exact trusted job",
+      });
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect(
+    "reports a workflow that is not YAML as a typed workflow error",
+    () =>
+      Effect.gen(function* () {
+        const error = yield* verifyNpmWorkflow("jobs: [", contract).pipe(
+          Effect.flip
+        );
+
+        expect(error).toMatchObject({ _tag: "WorkflowError" });
+      })
+  );
 });

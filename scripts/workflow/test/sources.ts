@@ -43,8 +43,8 @@ export function sourceTestsOf(it: Vitest.MethodsNonLive<WorkflowSourceSet>) {
 export function sourceEffectTestsOf(
   it: Vitest.MethodsNonLive<WorkflowSourceSet>
 ) {
-  return (
+  return <E>(
     name: string,
-    check: (sources: WorkflowSources) => Effect.Effect<void>
+    check: (sources: WorkflowSources) => Effect.Effect<void, E>
   ) => it.effect(name, () => WorkflowSourceSet.pipe(Effect.flatMap(check)));
 }
