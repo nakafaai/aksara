@@ -75,9 +75,8 @@ const verifyPublicIdentity = Effect.fn("AksaraContracts.verifyPublicIdentity")(
     if (!hasProjectionSourcePath(response.projection, response.sourcePath)) {
       return yield* new ContentRuntimeMismatchError({ reason: "sourcePath" });
     }
-    if (
-      response.projectionHash !== hashContentProjection(response.projection)
-    ) {
+    const projectionHash = yield* hashContentProjection(response.projection);
+    if (response.projectionHash !== projectionHash) {
       return yield* new ContentRuntimeMismatchError({
         reason: "projectionHash",
       });

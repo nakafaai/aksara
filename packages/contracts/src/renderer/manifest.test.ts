@@ -1,7 +1,7 @@
 // @vitest-environment node
-import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Option } from "effect";
+import { hashText } from "#contracts/hash/text";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import {
@@ -35,7 +35,7 @@ describe("renderer manifest", () => {
           RENDERER_DOMAINS
         );
         expect(manifest.hash).toBe(
-          `sha256:${createHash("sha256").update(canonicalizeRendererManifestContract(manifest)).digest("hex")}`
+          yield* hashText(canonicalizeRendererManifestContract(manifest))
         );
         expect(yield* validateRendererManifestHash(manifest)).toEqual(manifest);
       })
@@ -121,7 +121,7 @@ describe("renderer manifest", () => {
         };
         const incompleteEnvelope = {
           ...contract,
-          hash: `sha256:${createHash("sha256").update(canonicalizeRendererManifestContract(contract)).digest("hex")}`,
+          hash: yield* hashText(canonicalizeRendererManifestContract(contract)),
         };
         const error = yield* validateRendererManifestHash(
           incompleteEnvelope
@@ -147,7 +147,7 @@ describe("renderer manifest", () => {
         const contract = { ...manifest, domains: overlap.domains };
         const errorFromWire = yield* validateRendererManifestHash({
           ...contract,
-          hash: `sha256:${createHash("sha256").update(canonicalizeRendererManifestContract(contract)).digest("hex")}`,
+          hash: yield* hashText(canonicalizeRendererManifestContract(contract)),
         }).pipe(Effect.flip);
         expect(errorFromWire._tag).toBe("ContractDecodeError");
       })

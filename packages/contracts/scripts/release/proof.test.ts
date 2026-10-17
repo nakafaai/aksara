@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
@@ -11,6 +10,7 @@ import {
   Sink,
   Stream,
 } from "effect";
+import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import {
   type ContractProofInput,
@@ -119,7 +119,7 @@ const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
   const archive = path.join(root, "current.tgz");
   yield* fileSystem.writeFile(
     archive,
-    Buffer.from(PINNED_ARCHIVE_BASE64, "base64")
+    yield* Effect.fromResult(Base64.decode(PINNED_ARCHIVE_BASE64))
   );
   const packagePath = path.join(root, "package.json");
   yield* fileSystem.writeFileString(
@@ -218,6 +218,32 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
           size: 383,
         });
       })
+  );
+
+  it.effect("maps a failed archive digest into a release error", () =>
+    Effect.gen(function* () {
+      const fixture = yield* proofFixture("aksara-proof-digest-");
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only archive digest failure.")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* proveWithCommands(
+        fixture.input,
+        fakeCommands(fixture.archive, fixture.release)
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        detail: "The current contract archive cannot be hashed.",
+        reason: "release",
+      });
+    })
   );
 
   it.effect("rejects malformed proof inputs and remote metadata", () =>

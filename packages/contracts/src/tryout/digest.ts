@@ -67,7 +67,7 @@ function updateDigest<Row>(
 /** Digests one canonically ordered record stream with constant memory. */
 export const digestTryoutRecords = Effect.fn(
   "AksaraContracts.digestTryoutRecords"
-)(function* <E, R, Row>(input: {
+)(function* <E, R, Row, HashError>(input: {
   /** Serializes one row into its exact digest bytes. */
   readonly canonicalize: (row: Row) => string;
   readonly domain: string;
@@ -75,21 +75,25 @@ export const digestTryoutRecords = Effect.fn(
   readonly identity: (row: Row) => string;
   readonly records: Stream.Stream<DigestRecord<Row>, E, R>;
   /** Recomputes the authenticated row hash for integrity checking. */
-  readonly rowHash: (row: Row) => typeof Sha256HashSchema.Type;
+  readonly rowHash: (
+    row: Row
+  ) => Effect.Effect<typeof Sha256HashSchema.Type, HashError>;
 }) {
   const state = yield* input.records.pipe(
     Stream.runFoldEffect(
       () => new TryoutDigestState(input.domain),
-      (current, record) => {
-        const canonical = input.canonicalize(record.row);
-        return updateDigest(
-          current,
-          record,
-          input.identity(record.row),
-          input.rowHash(record.row),
-          `${canonical}\0${record.rowHash}`
-        );
-      }
+      (current, record) =>
+        Effect.gen(function* () {
+          const canonical = input.canonicalize(record.row);
+          const expectedHash = yield* input.rowHash(record.row);
+          return yield* updateDigest(
+            current,
+            record,
+            input.identity(record.row),
+            expectedHash,
+            `${canonical}\0${record.rowHash}`
+          );
+        })
     )
   );
   return { count: state.count, digest: state.digest() };

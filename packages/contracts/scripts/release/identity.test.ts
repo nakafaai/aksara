@@ -265,6 +265,32 @@ describe("pinned release identities", () => {
       })
   );
 
+  it.effect("maps a failed archive digest into an archive error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only archive digest failure.")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* decideArchive(
+        { current: yield* parseVersion("0.1.0"), latest: undefined },
+        new TextEncoder().encode("Arsip"),
+        undefined
+      ).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        detail: "The current contract archive cannot be hashed.",
+        reason: "archive",
+      });
+    })
+  );
+
   it.effect(
     "pins the release plan for the current package and newest release",
     () =>

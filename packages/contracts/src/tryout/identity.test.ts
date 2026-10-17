@@ -9,7 +9,7 @@ import {
 } from "effect";
 
 import { ContentKeySchema } from "#contracts/ids";
-import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { tryoutTestRows } from "#contracts/test/tryout";
 import { TryoutCatalogNodeIdentitySchema } from "#contracts/tryout/catalog";
 import {
   compareTryoutPlacements,
@@ -19,9 +19,11 @@ import {
   tryoutPlacementLogicalIdentity,
 } from "#contracts/tryout/identity";
 
+const fixture = tryoutTestRows;
+
 describe("try-out placement identity", () => {
   it("derives complete-row identities from the minimal semantic contract", () => {
-    const rows = Arr.map(makeTryoutTestRows().catalog, ({ row }) => row);
+    const rows = Arr.map(fixture.catalog, ({ row }) => row);
     const identities = Arr.map(rows, (row) => {
       const identity = Schema.decodeSync(TryoutCatalogNodeIdentitySchema)(row, {
         onExcessProperty: "ignore",
@@ -60,10 +62,7 @@ describe("try-out placement identity", () => {
   });
 
   it("orders application-localized placements deterministically", () => {
-    const placements = Arr.map(
-      makeTryoutTestRows().placements,
-      ({ row }) => row
-    );
+    const placements = Arr.map(fixture.placements, ({ row }) => row);
     const sorted = Arr.sort(
       placements,
       Order.make<(typeof placements)[number]>((left, right) =>
@@ -120,10 +119,7 @@ describe("try-out identity golden strings", () => {
           setKey: "test-set",
           trackKey: "test-track",
         });
-        const placements = Arr.map(
-          makeTryoutTestRows().placements,
-          ({ row }) => row
-        );
+        const placements = Arr.map(fixture.placements, ({ row }) => row);
         const base = yield* Effect.fromOption(
           Arr.findFirst(placements, ({ appLocale }) => appLocale === "en")
         );
@@ -150,10 +146,7 @@ describe("try-out identity golden strings", () => {
     "orders question numbers by identity text, so question ten precedes nine",
     () =>
       Effect.gen(function* () {
-        const placements = Arr.map(
-          makeTryoutTestRows().placements,
-          ({ row }) => row
-        );
+        const placements = Arr.map(fixture.placements, ({ row }) => row);
         const base = yield* Effect.fromOption(
           Arr.findFirst(placements, ({ appLocale }) => appLocale === "en")
         );

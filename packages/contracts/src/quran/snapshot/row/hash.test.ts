@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Option } from "effect";
 
@@ -6,39 +5,8 @@ import {
   canonicalizeQuranRow,
   hashQuranRow,
 } from "#contracts/quran/snapshot/row/hash";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { quranRepresentativePayloads } from "#contracts/test/quran";
-
-const failures = vi.hoisted(() => ({ rowHash: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects deterministic failures into current Quran row hashing. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Preserves native binding while intercepting the current row domain. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (
-                failures.rowHash &&
-                String(data).startsWith("nakafa.aksara.quran-row\n")
-              ) {
-                throw new TypeError("injected current Quran row hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 describe("Quran row golden identities", () => {
   it("pins the canonical bytes of each representative row kind", () => {
@@ -100,17 +68,9 @@ describe("Quran row hashing", () => {
           (candidate) => candidate.kind === "quran-surah"
         )
       );
-      yield* Effect.acquireRelease(
-        Effect.sync(() => {
-          failures.rowHash = true;
-        }),
-        () =>
-          Effect.sync(() => {
-            failures.rowHash = false;
-          })
+      const error = yield* withNextDigestFailure(
+        hashQuranRow(payload).pipe(Effect.flip)
       );
-
-      const error = yield* hashQuranRow(payload).pipe(Effect.flip);
 
       expect(error).toMatchObject({
         _tag: "QuranRowHashError",

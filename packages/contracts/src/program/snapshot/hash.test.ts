@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 
@@ -15,49 +14,11 @@ import {
 } from "#contracts/program/snapshot/hash";
 import { ProgramSnapshotFactsSchema } from "#contracts/program/snapshot/spec";
 import { LearningProgramSchema } from "#contracts/program/spec";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,
 } from "#contracts/test/program";
-
-const failures = vi.hoisted(() => ({ hash: false, rowHash: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Creates a real hash whose update call supports deterministic failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Intercepts update while preserving every other real hash method. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              const text = String(data);
-              if (
-                failures.hash &&
-                text.startsWith("nakafa.aksara.localized-program-snapshot\n")
-              ) {
-                throw new TypeError("injected program snapshot hash failure");
-              }
-              if (
-                failures.rowHash &&
-                text.startsWith("nakafa.aksara.program-row\n")
-              ) {
-                throw new TypeError("injected program row hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
 
 const facts = Schema.decodeSync(ProgramSnapshotFactsSchema)({
   activeAppLocales: ActiveAppLocaleListSchema.make([
@@ -173,19 +134,11 @@ describe("program snapshot hashing", () => {
     })
   );
 
-  it.effect("maps Node hashing failures to the typed contract error", () =>
+  it.effect("maps a failed digest to the typed contract error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() => {
-          failures.hash = true;
-        }),
-        () =>
-          Effect.sync(() => {
-            failures.hash = false;
-          })
+      const error = yield* withNextDigestFailure(
+        makeProgramSnapshot(facts).pipe(Effect.flip)
       );
-
-      const error = yield* makeProgramSnapshot(facts).pipe(Effect.flip);
       expect(error._tag).toBe("ProgramSnapshotHashError");
     })
   );
@@ -210,20 +163,10 @@ describe("program snapshot row hashing", () => {
     })
   );
 
-  it.effect("maps row hashing failures to the typed error", () =>
+  it.effect("maps a failed digest to the typed row error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() => {
-          failures.rowHash = true;
-        }),
-        () =>
-          Effect.sync(() => {
-            failures.rowHash = false;
-          })
-      );
-
-      const error = yield* makeProgramSnapshotRow(makeTestProgram(1)).pipe(
-        Effect.flip
+      const error = yield* withNextDigestFailure(
+        makeProgramSnapshotRow(makeTestProgram(1)).pipe(Effect.flip)
       );
       expect(error).toMatchObject({
         _tag: "ProgramRowHashError",

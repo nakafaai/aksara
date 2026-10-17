@@ -1,13 +1,6 @@
-import { Buffer } from "node:buffer";
-import { generateKeyPairSync, sign as signBytes } from "node:crypto";
-
 import { Effect, Schema } from "effect";
 
-import {
-  Ed25519SignatureSchema,
-  ReleaseIdSchema,
-  SigningKeyIdSchema,
-} from "#contracts/ids";
+import { ReleaseIdSchema, SigningKeyIdSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
@@ -20,13 +13,17 @@ import {
 } from "#contracts/release/spec";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
+  generateEd25519KeyPem,
+  signEd25519Message,
+} from "#contracts/signature/key";
+import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
 import { testRendererDomains } from "#contracts/test/renderer";
 import { release as transportRelease } from "#contracts/test/request";
 
-const keys = generateKeyPairSync("ed25519");
+const keys = await Effect.runPromise(generateEd25519KeyPem());
 const keyId = SigningKeyIdSchema.make("test-signing-key");
 
 /** Parent release identity used by forward and rollback verification fixtures. */
@@ -34,9 +31,7 @@ export const verificationBaseReleaseId = ReleaseIdSchema.make(
   "test-release-parent"
 );
 
-const publicKeyPem = keys.publicKey
-  .export({ format: "pem", type: "spki" })
-  .toString();
+const { publicKeyPem } = keys;
 
 /** Renderer manifest cryptographically bound to verification fixtures. */
 export const verificationRendererManifest = await Effect.runPromise(
@@ -78,26 +73,21 @@ export const verificationManifest = Schema.decodeSync(
 });
 
 /** Produces a valid current signed release for verification scenarios. */
-export function signVerificationRelease(
-  value: ContentReleaseManifest = verificationManifest
-): SignedContentRelease {
-  const manifestHash = Effect.runSync(hashContentReleaseManifest(value));
+export const signVerificationRelease = Effect.fn(
+  "AksaraContracts.test.signVerificationRelease"
+)(function* (value: ContentReleaseManifest = verificationManifest) {
+  const manifestHash = yield* hashContentReleaseManifest(value);
+  const signature = yield* signEd25519Message(
+    keys.privateKeyPem,
+    canonicalizeContentReleaseSigningInput(manifestHash, value)
+  );
   return SignedContentReleaseSchema.make({
     keyId,
     manifest: value,
     manifestHash,
-    signature: Ed25519SignatureSchema.make(
-      signBytes(
-        null,
-        Buffer.from(
-          canonicalizeContentReleaseSigningInput(manifestHash, value),
-          "utf8"
-        ),
-        keys.privateKey
-      ).toString("base64url")
-    ),
-  });
-}
+    signature,
+  }) satisfies SignedContentRelease;
+});
 
 /** Trusted resolver used by signed release verification tests. */
 export const verificationKeyResolver = ContentVerificationKeyResolver.of({

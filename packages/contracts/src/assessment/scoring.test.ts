@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr } from "effect";
+import { Array as Arr, type Schema } from "effect";
 import {
   InteractionKindSchema,
   InteractionSchema,
@@ -181,9 +181,14 @@ describe("which rule scores which interaction", () => {
   });
 });
 
+/** One band of a wrong-parts rule as a decoder receives it, derived from the rule schema. */
+type WrongPartsBandInput = Schema.Codec.Encoded<
+  typeof WrongPartsRuleSchema
+>["bands"][number];
+
 describe("wrong-parts tables", () => {
   /** Builds the raw wrong-parts rule of the given bands, which a decoder may refuse. */
-  const tableOf = (...bands: readonly { points: number; wrong: number }[]) => ({
+  const tableOf = (...bands: readonly WrongPartsBandInput[]) => ({
     bands,
     kind: "wrongParts",
   });

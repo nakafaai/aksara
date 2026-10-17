@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import {
   Array as Arr,
   Effect,
@@ -9,6 +8,9 @@ import {
   Order,
   Schema,
 } from "effect";
+import { Hex } from "effect/encoding";
+import { digestSha256 } from "#contracts/hash/digest";
+import { sameBytes } from "#scripts/release/bytes";
 
 const CONTRACT_NAME = "@nakafa/aksara-contracts";
 const FIRST_VERSION = "0.1.0";
@@ -212,7 +214,16 @@ export const decideArchive = Effect.fn("AksaraContracts.decideArchive")(
     currentBytes: Uint8Array,
     previousBytes: Uint8Array | undefined
   ) {
-    const sha256 = createHash("sha256").update(currentBytes).digest("hex");
+    const sha256 = Hex.encode(
+      yield* digestSha256(currentBytes).pipe(
+        Effect.mapError(() =>
+          releaseError(
+            "archive",
+            "The current contract archive cannot be hashed."
+          )
+        )
+      )
+    );
     const size = currentBytes.byteLength;
     if (!plan.latest) {
       if (previousBytes !== undefined) {
@@ -236,7 +247,7 @@ export const decideArchive = Effect.fn("AksaraContracts.decideArchive")(
     }
     const comparison = compareVersions(plan.current, plan.latest);
     if (comparison === 0) {
-      if (!Buffer.from(currentBytes).equals(Buffer.from(previousBytes))) {
+      if (!sameBytes(currentBytes, previousBytes)) {
         return yield* releaseError(
           "archive",
           "Contract archive bytes changed without a package version bump"

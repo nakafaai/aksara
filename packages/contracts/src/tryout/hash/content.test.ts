@@ -1,5 +1,5 @@
 import { assert, describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Exit, HashSet, Schema } from "effect";
+import { Array as Arr, Effect, Exit, HashSet, Schema } from "effect";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { rubric as rubricResponse } from "#contracts/test/rubric";
@@ -44,119 +44,151 @@ const source = Schema.decodeSync(TryoutContentInputSchema)({
 });
 
 describe("try-out content hash", () => {
-  it("matches the durable question-pair canonical bytes", () => {
-    expect(canonicalizeTryoutContent(source)).toBe(
-      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05"}'
-    );
-    expect(hashTryoutContent(source)).toBe(
-      "523fc7dbc93bb4a26cf33f4afcf01b64797fbfb8149462fd8313b1fb4633647a"
-    );
-  });
+  it.effect("matches the durable question-pair canonical bytes", () =>
+    Effect.gen(function* () {
+      expect(canonicalizeTryoutContent(source)).toBe(
+        '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05"}'
+      );
+      expect(yield* hashTryoutContent(source)).toBe(
+        "523fc7dbc93bb4a26cf33f4afcf01b64797fbfb8149462fd8313b1fb4633647a"
+      );
+    })
+  );
 
-  it("binds complete blueprint, modification, and stimulus facts", () => {
-    const documented = Schema.decodeSync(TryoutContentInputSchema)({
-      ...source,
-      blueprint: {
-        cognitiveLevel: "reasoning",
-        contentDomain: "algebra",
-        topic: "functions",
-      },
-      dateModified: DateOnlySchema.make("2025-03-05"),
-      stimulusKey: "shared-table",
-    });
+  it.effect("binds complete blueprint, modification, and stimulus facts", () =>
+    Effect.gen(function* () {
+      const documented = yield* Schema.decodeEffect(TryoutContentInputSchema)({
+        ...source,
+        blueprint: {
+          cognitiveLevel: "reasoning",
+          contentDomain: "algebra",
+          topic: "functions",
+        },
+        dateModified: DateOnlySchema.make("2025-03-05"),
+        stimulusKey: "shared-table",
+      });
 
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutContent(documented))
-    ).toMatchObject({
-      blueprint: documented.blueprint,
-      dateModified: Date.UTC(2025, 2, 5),
-      stimulusKey: "shared-table",
-    });
-    expect(hashTryoutContent(documented)).not.toBe(hashTryoutContent(source));
-  });
+      expect(
+        yield* Schema.decodeEffect(JsonTextSchema)(
+          canonicalizeTryoutContent(documented)
+        )
+      ).toMatchObject({
+        blueprint: documented.blueprint,
+        dateModified: Date.UTC(2025, 2, 5),
+        stimulusKey: "shared-table",
+      });
+      expect(yield* hashTryoutContent(documented)).not.toBe(
+        yield* hashTryoutContent(source)
+      );
+    })
+  );
 
-  it.each([
-    ["answerBody", "changed answer"],
-    ["datePublished", DateOnlySchema.make("2025-03-05")],
-    ["answerArtifactLocale", "id"],
-    ["appLocale", "id"],
-    ["deliveryLanguage", "id"],
-    ["questionBody", "changed question"],
-    ["questionArtifactLocale", "id"],
-    [
-      "sourcePath",
-      QuestionKeySchema.make(
+  it.effect.each([
+    { field: "answerBody", value: "changed answer" },
+    { field: "datePublished", value: DateOnlySchema.make("2025-03-05") },
+    { field: "answerArtifactLocale", value: "id" },
+    { field: "appLocale", value: "id" },
+    { field: "deliveryLanguage", value: "id" },
+    { field: "questionBody", value: "changed question" },
+    { field: "questionArtifactLocale", value: "id" },
+    {
+      field: "sourcePath",
+      value: QuestionKeySchema.make(
         "question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-2"
       ),
-    ],
-    ["sourceRevision", "2026-07-06"],
-  ] as const)("changes when %s changes", (field, value) => {
-    expect(hashTryoutContent({ ...source, [field]: value })).not.toBe(
-      hashTryoutContent(source)
-    );
-  });
+    },
+    { field: "sourceRevision", value: "2026-07-06" },
+  ])("changes when $field changes", ({ field, value }) =>
+    Effect.gen(function* () {
+      expect(yield* hashTryoutContent({ ...source, [field]: value })).not.toBe(
+        yield* hashTryoutContent(source)
+      );
+    })
+  );
 
-  it("changes when response label, order, or correctness changes", () => {
-    assert(source.response.kind === "single-choice");
-    const variants = [
-      {
-        ...source.response,
-        options: Arr.map(source.response.options, (option, index) =>
-          index === 0 ? { ...option, label: responseText("Changed") } : option
+  it.effect("changes when response label, order, or correctness changes", () =>
+    Effect.gen(function* () {
+      assert(source.response.kind === "single-choice");
+      const variants = [
+        {
+          ...source.response,
+          options: Arr.map(source.response.options, (option, index) =>
+            index === 0 ? { ...option, label: responseText("Changed") } : option
+          ),
+        },
+        {
+          ...source.response,
+          options: Arr.map(source.response.options, (option) => ({
+            ...option,
+            order: option.order === 1 ? 2 : 1,
+          })),
+        },
+        {
+          ...source.response,
+          options: Arr.map(source.response.options, (option) => ({
+            ...option,
+            isCorrect: !option.isCorrect,
+          })),
+        },
+      ];
+      const base = yield* hashTryoutContent(source);
+      const hashes = yield* Effect.forEach(variants, (response) =>
+        hashTryoutContent({ ...source, response })
+      );
+      expect(Arr.every(hashes, (hash) => hash !== base)).toBe(true);
+    })
+  );
+
+  it.effect(
+    "binds short-answer and rubric responses into the question identity",
+    () =>
+      Effect.gen(function* () {
+        const shortAnswer = yield* Schema.decodeEffect(
+          TryoutContentInputSchema
+        )({
+          ...source,
+          response: {
+            key: { acceptsFractions: false, kind: "number", value: "12" },
+            kind: "short-answer",
+          },
+        });
+        const rubric = yield* Schema.decodeEffect(TryoutContentInputSchema)({
+          ...source,
+          response: rubricResponse,
+        });
+
+        expect(canonicalizeTryoutContent(shortAnswer)).toContain(
+          '"response":{"key":{"acceptsFractions":false,"kind":"number","value":"12"},"kind":"short-answer"}'
+        );
+        expect(canonicalizeTryoutContent(rubric)).toContain(
+          '"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"}'
+        );
+        const hashes = yield* Effect.forEach(
+          [source, shortAnswer, rubric],
+          hashTryoutContent
+        );
+        expect(HashSet.size(HashSet.fromIterable(hashes))).toBe(3);
+      })
+  );
+
+  it.effect("maps a failed digest into the content hash error", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(globalThis.crypto.subtle, "digest")
+            .mockRejectedValueOnce(
+              new TypeError("Test-only content digest failure.")
+            )
         ),
-      },
-      {
-        ...source.response,
-        options: Arr.map(source.response.options, (option) => ({
-          ...option,
-          order: option.order === 1 ? 2 : 1,
-        })),
-      },
-      {
-        ...source.response,
-        options: Arr.map(source.response.options, (option) => ({
-          ...option,
-          isCorrect: !option.isCorrect,
-        })),
-      },
-    ];
-    expect(
-      Arr.every(
-        variants,
-        (response) =>
-          hashTryoutContent({ ...source, response }) !==
-          hashTryoutContent(source)
-      )
-    ).toBe(true);
-  });
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
 
-  it("binds short-answer and rubric responses into the question identity", () => {
-    const shortAnswer = Schema.decodeSync(TryoutContentInputSchema)({
-      ...source,
-      response: {
-        key: { acceptsFractions: false, kind: "number", value: "12" },
-        kind: "short-answer",
-      },
-    });
-    const rubric = Schema.decodeSync(TryoutContentInputSchema)({
-      ...source,
-      response: rubricResponse,
-    });
+      const error = yield* hashTryoutContent(source).pipe(Effect.flip);
 
-    expect(canonicalizeTryoutContent(shortAnswer)).toContain(
-      '"response":{"key":{"acceptsFractions":false,"kind":"number","value":"12"},"kind":"short-answer"}'
-    );
-    expect(canonicalizeTryoutContent(rubric)).toContain(
-      '"label":{"de":"Result (de)","en":"Result (en)","id":"Result (id)"}'
-    );
-    expect(
-      HashSet.size(
-        HashSet.fromIterable(
-          Arr.map([source, shortAnswer, rubric], hashTryoutContent)
-        )
-      )
-    ).toBe(3);
-  });
+      expect(error).toMatchObject({ _tag: "TryoutContentHashError" });
+    })
+  );
 
   it("rejects modification dates that are not later than publication", () => {
     const result = Schema.decodeExit(TryoutContentInputSchema)({
@@ -168,40 +200,50 @@ describe("try-out content hash", () => {
     );
   });
 
-  it("pins the canonical bytes and hash of a documented question pair", () => {
-    const documented = Schema.decodeSync(TryoutContentInputSchema)({
-      ...source,
-      blueprint: {
-        cognitiveLevel: "reasoning",
-        contentDomain: "algebra",
-        topic: "functions",
-      },
-      dateModified: "2025-03-05",
-      stimulusKey: "shared-table",
-    });
+  it.effect(
+    "pins the canonical bytes and hash of a documented question pair",
+    () =>
+      Effect.gen(function* () {
+        const documented = yield* Schema.decodeEffect(TryoutContentInputSchema)(
+          {
+            ...source,
+            blueprint: {
+              cognitiveLevel: "reasoning",
+              contentDomain: "algebra",
+              topic: "functions",
+            },
+            dateModified: "2025-03-05",
+            stimulusKey: "shared-table",
+          }
+        );
 
-    expect(canonicalizeTryoutContent(documented)).toBe(
-      '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"dateModified":1741132800000,"datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05","stimulusKey":"shared-table"}'
-    );
-    expect(hashTryoutContent(documented)).toBe(
-      "6d06c9022bed215fdefe2ea24586cc79cebaf14aaa2584253dc7251ae6822c03"
-    );
-  });
+        expect(canonicalizeTryoutContent(documented)).toBe(
+          '{"answerArtifactLocale":"de","answerBody":"Answer\\n\\nDetail","appLocale":"de","blueprint":{"cognitiveLevel":"reasoning","contentDomain":"algebra","topic":"functions"},"dateModified":1741132800000,"datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05","stimulusKey":"shared-table"}'
+        );
+        expect(yield* hashTryoutContent(documented)).toBe(
+          "6d06c9022bed215fdefe2ea24586cc79cebaf14aaa2584253dc7251ae6822c03"
+        );
+      })
+  );
 
-  it("pins the canonical bytes and hash of localized non-ASCII bodies", () => {
-    const localized = Schema.decodeSync(TryoutContentInputSchema)({
-      ...source,
-      answerBody: "\nJawaban é\n\n\nRincian é\n",
-      questionBody: "\nPertanyaan é\n",
-    });
+  it.effect(
+    "pins the canonical bytes and hash of localized non-ASCII bodies",
+    () =>
+      Effect.gen(function* () {
+        const localized = yield* Schema.decodeEffect(TryoutContentInputSchema)({
+          ...source,
+          answerBody: "\nJawaban é\n\n\nRincian é\n",
+          questionBody: "\nPertanyaan é\n",
+        });
 
-    expect(canonicalizeTryoutContent(localized)).toBe(
-      '{"answerArtifactLocale":"de","answerBody":"Jawaban é\\n\\nRincian é","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Pertanyaan é","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05"}'
-    );
-    expect(hashTryoutContent(localized)).toBe(
-      "c6e9e26075432b14ed6f4841ac0264067c5edfc77348934aeb055d82678ed572"
-    );
-  });
+        expect(canonicalizeTryoutContent(localized)).toBe(
+          '{"answerArtifactLocale":"de","answerBody":"Jawaban é\\n\\nRincian é","appLocale":"de","datePublished":1741046400000,"deliveryLanguage":"en","languagePolicy":{"kind":"fixed","language":"en"},"questionArtifactLocale":"en","questionBody":"Pertanyaan é","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Choice 1","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Choice 2","optionKey":"option-2","order":2}]},"sourcePath":"question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1","sourceRevision":"2026-07-05"}'
+        );
+        expect(yield* hashTryoutContent(localized)).toBe(
+          "c6e9e26075432b14ed6f4841ac0264067c5edfc77348934aeb055d82678ed572"
+        );
+      })
+  );
 
   it("rejects app, answer, delivery, and question locale drift", () => {
     const result = Schema.decodeExit(TryoutContentInputSchema)({

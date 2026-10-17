@@ -1,4 +1,4 @@
-import type { Stream } from "effect";
+import { Effect, type Stream } from "effect";
 
 import { canonicalQuestionBlueprint } from "#contracts/question/item";
 import { canonicalQuestionResponse } from "#contracts/question/response";
@@ -48,17 +48,15 @@ export function canonicalizeTryoutPlacement(row: TryoutPlacement) {
 }
 
 /** Creates one immutable authenticated placement record. */
-export function makeTryoutPlacementRecord(
-  row: TryoutPlacement
-): TryoutPlacementRecord {
-  return TryoutPlacementRecordSchema.make({
-    row,
-    rowHash: hashTryoutCanonical(
-      PLACEMENT_DOMAIN,
-      canonicalizeTryoutPlacement(row)
-    ),
-  });
-}
+export const makeTryoutPlacementRecord = Effect.fn(
+  "AksaraContracts.makeTryoutPlacementRecord"
+)(function* (row: TryoutPlacement) {
+  const rowHash = yield* hashTryoutCanonical(
+    PLACEMENT_DOMAIN,
+    canonicalizeTryoutPlacement(row)
+  );
+  return TryoutPlacementRecordSchema.make({ row, rowHash });
+});
 
 /** Digests canonically ordered placements in constant space. */
 export function digestTryoutPlacements<E, R>(
@@ -69,6 +67,9 @@ export function digestTryoutPlacements<E, R>(
     domain: PLACEMENT_DOMAIN,
     identity: tryoutPlacementIdentity,
     records,
-    rowHash: (row) => makeTryoutPlacementRecord(row).rowHash,
+    rowHash: (row) =>
+      makeTryoutPlacementRecord(row).pipe(
+        Effect.map((record) => record.rowHash)
+      ),
   });
 }

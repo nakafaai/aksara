@@ -1,6 +1,6 @@
-import { createHash, verify as verifyBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
+import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
@@ -10,6 +10,7 @@ import {
 import { EMPTY_SNAPSHOT_ROW_DIGEST } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { release } from "#contracts/test/request";
+import { verifyEd25519Pem } from "#contracts/test/signature";
 import { verificationManifest } from "#contracts/test/verification";
 import { encodeJsonText } from "#contracts/text/json";
 
@@ -123,29 +124,39 @@ const rollbackManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
 });
 
 describe("release signing", () => {
-  it("canonicalizes the fixed-size manifest and domain-separated signing input", () => {
-    const { manifest } = release;
-    const canonical = canonicalizeContentReleaseManifest(manifest);
-    const manifestHash = Sha256HashSchema.make(
-      `sha256:${createHash("sha256").update(canonical).digest("hex")}`
-    );
+  it.effect(
+    "canonicalizes the fixed-size manifest and domain-separated signing input",
+    () =>
+      Effect.gen(function* () {
+        const { manifest } = release;
+        const canonical = canonicalizeContentReleaseManifest(manifest);
+        const manifestHash = yield* hashText(canonical);
 
-    expect(canonical).not.toContain("test:content");
-    expect(canonical).toContain(`"itemCount":${manifest.itemCount}`);
-    expect(canonical).toContain(`"itemsDigest":"${manifest.itemsDigest}"`);
-    expect(canonical).toContain(
-      `"projectionCount":${manifest.projectionCount}`
-    );
-    expect(canonical).toContain(`"resultDigest":"${manifest.resultDigest}"`);
-    expect(canonical).toContain(`"rollbackCount":${manifest.rollbackCount}`);
-    expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
-    expect(canonical).toContain(`"scope":${encodeJsonText(manifest.scope)}`);
-    expect(canonical).not.toContain('"scope":{"content"');
-    expect(canonicalizeContentReleaseSigningInput(manifestHash, manifest)).toBe(
-      `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
-    );
-    expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
-  });
+        expect(canonical).not.toContain("test:content");
+        expect(canonical).toContain(`"itemCount":${manifest.itemCount}`);
+        expect(canonical).toContain(`"itemsDigest":"${manifest.itemsDigest}"`);
+        expect(canonical).toContain(
+          `"projectionCount":${manifest.projectionCount}`
+        );
+        expect(canonical).toContain(
+          `"resultDigest":"${manifest.resultDigest}"`
+        );
+        expect(canonical).toContain(
+          `"rollbackCount":${manifest.rollbackCount}`
+        );
+        expect(canonical).toContain(`"routeCount":${manifest.routeCount}`);
+        expect(canonical).toContain(
+          `"scope":${encodeJsonText(manifest.scope)}`
+        );
+        expect(canonical).not.toContain('"scope":{"content"');
+        expect(
+          canonicalizeContentReleaseSigningInput(manifestHash, manifest)
+        ).toBe(
+          `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
+        );
+        expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
+      })
+  );
 
   it("pins the canonical bytes of a genesis release manifest", () => {
     expect(canonicalizeContentReleaseManifest(genesisManifest)).toBe(
@@ -169,29 +180,27 @@ describe("release signing", () => {
     );
   });
 
-  it("verifies the pinned Ed25519 signature over the exact release signing input", () => {
-    const message = canonicalizeContentReleaseSigningInput(
-      Sha256HashSchema.make(
-        "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
-      ),
-      verificationManifest
-    );
+  it.effect(
+    "verifies the pinned Ed25519 signature over the exact release signing input",
+    () =>
+      Effect.gen(function* () {
+        const message = canonicalizeContentReleaseSigningInput(
+          Sha256HashSchema.make(
+            "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
+          ),
+          verificationManifest
+        );
 
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(message),
-        testPublicKeyPem,
-        Buffer.from(pinnedSignature, "base64url")
-      )
-    ).toBe(true);
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(message.replace("aksara", "aksarb")),
-        testPublicKeyPem,
-        Buffer.from(pinnedSignature, "base64url")
-      )
-    ).toBe(false);
-  });
+        expect(
+          yield* verifyEd25519Pem(testPublicKeyPem, message, pinnedSignature)
+        ).toBe(true);
+        expect(
+          yield* verifyEd25519Pem(
+            testPublicKeyPem,
+            message.replace("aksara", "aksarb"),
+            pinnedSignature
+          )
+        ).toBe(false);
+      })
+  );
 });

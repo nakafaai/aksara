@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Exit, Option, Order, Schema } from "effect";
-import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { tryoutTestRows } from "#contracts/test/tryout";
 import {
   countSectionQuestions,
   TryoutCatalogNodeIdentitySchema,
@@ -8,8 +8,9 @@ import {
   TryoutCatalogRowSchema,
 } from "#contracts/tryout/catalog";
 
+const fixture = tryoutTestRows;
 const rows: readonly TryoutCatalogRow[] = Arr.map(
-  makeTryoutTestRows().catalog,
+  fixture.catalog,
   ({ row }) => row
 );
 

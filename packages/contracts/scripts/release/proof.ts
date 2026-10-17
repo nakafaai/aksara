@@ -1,11 +1,13 @@
-import { createHash } from "node:crypto";
 import { Effect, FileSystem, Path, Schema } from "effect";
+import { Hex } from "effect/encoding";
 import { ChildProcess } from "effect/process";
+import { digestSha256 } from "#contracts/hash/digest";
 import {
   commandText,
   platformError,
   verifyArchive,
 } from "#scripts/release/archive";
+import { sameBytes } from "#scripts/release/bytes";
 import { decodeRelease, decodeTag } from "#scripts/release/github";
 import { packageIdentity, releaseError } from "#scripts/release/identity";
 
@@ -135,7 +137,16 @@ export const proveContractRelease = Effect.fn(
       "The contract release must contain exactly the expected archive and size"
     );
   }
-  const sha256 = createHash("sha256").update(currentBytes).digest("hex");
+  const sha256 = Hex.encode(
+    yield* digestSha256(currentBytes).pipe(
+      Effect.mapError(() =>
+        releaseError(
+          "release",
+          "The current contract archive cannot be hashed."
+        )
+      )
+    )
+  );
   if (asset.digest !== `sha256:${sha256}`) {
     return yield* releaseError(
       "release",
@@ -187,7 +198,7 @@ export const proveContractRelease = Effect.fn(
     identity,
     tools.tar
   );
-  if (!Buffer.from(currentBytes).equals(Buffer.from(downloadedBytes))) {
+  if (!sameBytes(currentBytes, downloadedBytes)) {
     return yield* releaseError(
       "release",
       "The downloaded immutable archive differs from the current source build"

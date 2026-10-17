@@ -1,6 +1,4 @@
 // @vitest-environment node
-import { Buffer } from "node:buffer";
-import { generateKeyPairSync, sign as signBytes } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
 
@@ -11,7 +9,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import { ACTIVE_APP_LOCALES } from "#contracts/locale";
+import { signEd25519Message } from "#contracts/signature/key";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
@@ -21,6 +19,10 @@ import {
   compatibleManifest,
   tamperSignature,
 } from "#contracts/test/runtime/fixture";
+import {
+  tryoutRuntimeKeys,
+  tryoutRuntimeSnapshot,
+} from "#contracts/test/runtime/keys";
 import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime/canonical";
 import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/hash";
 import {
@@ -29,22 +31,10 @@ import {
   type TryoutRuntimeBundlePayload,
 } from "#contracts/tryout/runtime/spec";
 import { verifySignedTryoutRuntimeBundle } from "#contracts/tryout/runtime/verify";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
-const keys = generateKeyPairSync("ed25519");
 const keyId = SigningKeyIdSchema.make("test-runtime-bundle-key");
-const publicKeyPem = keys.publicKey
-  .export({ format: "pem", type: "spki" })
-  .toString();
-const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-const snapshot = makeTryoutSnapshot({
-  activeAppLocales: ACTIVE_APP_LOCALES,
-  catalogDigest: hash,
-  counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-  placementCount: 2,
-  placementDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-  routeCount: 5,
-});
+const { publicKeyPem } = tryoutRuntimeKeys;
+const snapshot = tryoutRuntimeSnapshot;
 const payload: TryoutRuntimeBundlePayload = {
   format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
   rendererManifestHash: rendererManifest.hash,
@@ -80,15 +70,9 @@ const makeBundle = Effect.fn("RuntimeVerificationTest.makeBundle")(function* (
   value: TryoutRuntimeBundlePayload
 ) {
   const bundleHash = yield* hashTryoutRuntimeBundlePayload(value);
-  const signature = Ed25519SignatureSchema.make(
-    signBytes(
-      null,
-      Buffer.from(
-        canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, value),
-        "utf8"
-      ),
-      keys.privateKey
-    ).toString("base64url")
+  const signature = yield* signEd25519Message(
+    tryoutRuntimeKeys.privateKeyPem,
+    canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, value)
   );
   return SignedTryoutRuntimeBundleSchema.make({
     bundleHash,

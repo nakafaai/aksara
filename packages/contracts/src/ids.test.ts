@@ -1,6 +1,6 @@
-import { Buffer } from "node:buffer";
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Exit, Result, Schema } from "effect";
+import { Base64Url } from "effect/encoding";
 import {
   CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,
@@ -31,10 +31,10 @@ describe("ids", () => {
     const canonical = "A".repeat(86);
     const nonCanonical = `${"A".repeat(85)}B`;
 
-    expect(Buffer.from(canonical, "base64url")).toHaveLength(64);
-    expect(Buffer.from(nonCanonical, "base64url")).toEqual(
-      Buffer.from(canonical, "base64url")
+    expect(Base64Url.decode(canonical)).toEqual(
+      Result.succeed(new Uint8Array(64))
     );
+    expect(Base64Url.decode(nonCanonical)).toEqual(Base64Url.decode(canonical));
     for (const finalCharacter of ["A", "Q", "g", "w"]) {
       expect(
         Exit.isSuccess(

@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, Record as Rec, Schema } from "effect";
 import {
@@ -14,6 +13,7 @@ import {
   quranProvenanceScopes,
   quranSourceForProvenanceScope,
 } from "#contracts/quran/provenance";
+import { withNextDigestFailure } from "#contracts/test/digest";
 import { reverseObjectKeys } from "#contracts/test/order";
 import {
   goldenArabicRecord,
@@ -99,35 +99,6 @@ describe("Quran provenance golden identities", () => {
       ["metadata", "tanzil-metadata"],
     ]);
   });
-});
-
-const failures = vi.hoisted(() => ({ hash: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic provenance hashing failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Intercepts hash updates only while explicit failure state is active. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (failures.hash) {
-                throw new TypeError("injected provenance hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
 });
 
 describe("Quran provenance", () => {
@@ -269,20 +240,14 @@ describe("Quran provenance", () => {
     })
   );
 
-  it.effect("maps Node hashing failures to the typed provenance error", () =>
+  it.effect("maps a failed digest to the typed provenance error", () =>
     Effect.gen(function* () {
-      yield* Effect.addFinalizer(() =>
-        Effect.sync(() => {
-          failures.hash = false;
-        })
+      const error = yield* withNextDigestFailure(
+        hashQuranProvenance({
+          activeAppLocales: ACTIVE_APP_LOCALES,
+          records: records("approved"),
+        }).pipe(Effect.flip)
       );
-      yield* Effect.sync(() => {
-        failures.hash = true;
-      });
-      const error = yield* hashQuranProvenance({
-        activeAppLocales: ACTIVE_APP_LOCALES,
-        records: records("approved"),
-      }).pipe(Effect.flip);
 
       expect(error._tag).toBe("QuranProvenanceHashError");
     })

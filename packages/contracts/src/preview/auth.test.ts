@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
@@ -14,38 +13,13 @@ import {
 import { rendererManifest } from "#contracts/test/request";
 import { encodeJsonText } from "#contracts/text/json";
 
-const failures = vi.hoisted(() => ({ hmac: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Injects one deterministic failure into renderer HMAC computation. */
-    createHmac(algorithm: string, key: BinaryLike) {
-      const hmac = crypto.createHmac(algorithm, key);
-      return new Proxy(hmac, {
-        /** Preserves native binding while intercepting the explicit test state. */
-        get(target, property) {
-          if (property === "update" && failures.hmac) {
-            return (_data: BinaryLike) => {
-              throw new TypeError("injected renderer HMAC failure");
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
-
 const nonce = PreviewRendererNonceSchema.make("n".repeat(43));
 const secret = PreviewRendererSecretSchema.make("s".repeat(43));
 const foreignSecret = PreviewRendererSecretSchema.make("x".repeat(43));
 const manifest = rendererManifest;
 
 afterEach(() => {
-  failures.hmac = false;
+  vi.restoreAllMocks();
 });
 
 describe("preview renderer authentication", () => {
@@ -122,12 +96,60 @@ describe("preview renderer authentication", () => {
       })
   );
 
-  it.effect("maps Node HMAC failures into the typed authentication error", () =>
+  it.effect(
+    "maps Web Crypto HMAC failures into the typed authentication error",
+    () =>
+      Effect.gen(function* () {
+        vi.spyOn(globalThis.crypto.subtle, "sign").mockRejectedValueOnce(
+          new TypeError("Test-only renderer HMAC failure.")
+        );
+        const error = yield* computePreviewRendererProof({
+          manifestHash: manifest.hash,
+          nonce,
+          secret,
+        }).pipe(Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "PreviewRendererAuthError",
+          reason: "compute",
+        });
+      })
+  );
+});
+
+describe("preview renderer Web Crypto failures", () => {
+  it.effect("maps a rejected key import into the compute error", () =>
     Effect.gen(function* () {
-      failures.hmac = true;
+      vi.spyOn(globalThis.crypto.subtle, "importKey").mockRejectedValueOnce(
+        new TypeError("Test-only renderer key import failure.")
+      );
       const error = yield* computePreviewRendererProof({
         manifestHash: manifest.hash,
         nonce,
+        secret,
+      }).pipe(Effect.flip);
+
+      expect(error).toMatchObject({
+        _tag: "PreviewRendererAuthError",
+        reason: "compute",
+      });
+    })
+  );
+
+  it.effect("maps a rejected verification into the compute error", () =>
+    Effect.gen(function* () {
+      const proof = yield* computePreviewRendererProof({
+        manifestHash: manifest.hash,
+        nonce,
+        secret,
+      });
+      vi.spyOn(globalThis.crypto.subtle, "verify").mockRejectedValueOnce(
+        new TypeError("Test-only renderer verification failure.")
+      );
+      const error = yield* verifyPreviewRendererProof({
+        manifestHash: manifest.hash,
+        nonce,
+        proof,
         secret,
       }).pipe(Effect.flip);
 

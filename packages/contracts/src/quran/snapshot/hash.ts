@@ -1,8 +1,6 @@
-import { createHash } from "node:crypto";
-
 import { Effect, Schema } from "effect";
 
-import { Sha256HashSchema } from "#contracts/ids";
+import { hashText } from "#contracts/hash/text";
 import {
   QURAN_SNAPSHOT_FORMAT,
   type QuranSnapshot,
@@ -45,22 +43,16 @@ export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
 
 /** Creates the content-addressed identity of one complete Quran snapshot. */
 export const makeQuranSnapshot = Effect.fn("AksaraContracts.makeQuranSnapshot")(
-  (input: QuranSnapshotFacts) =>
-    Effect.try({
-      catch: () => new QuranSnapshotHashError(),
-      try: () => {
-        const snapshotId = Sha256HashSchema.make(
-          `sha256:${createHash("sha256")
-            .update(`${SNAPSHOT_DOMAIN}\n${canonicalizeQuranSnapshot(input)}`)
-            .digest("hex")}`
-        );
-        return QuranSnapshotSchema.make({
-          ...input,
-          format: QURAN_SNAPSHOT_FORMAT,
-          snapshotId,
-        });
-      },
-    })
+  function* (input: QuranSnapshotFacts) {
+    const snapshotId = yield* hashText(
+      `${SNAPSHOT_DOMAIN}\n${canonicalizeQuranSnapshot(input)}`
+    ).pipe(Effect.mapError(() => new QuranSnapshotHashError()));
+    return QuranSnapshotSchema.make({
+      ...input,
+      format: QURAN_SNAPSHOT_FORMAT,
+      snapshotId,
+    });
+  }
 );
 
 /** Recomputes the content identity of one stored current snapshot. */

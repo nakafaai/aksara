@@ -1,12 +1,5 @@
 // @vitest-environment node
 
-import { Buffer } from "node:buffer";
-import {
-  createHash,
-  generateKeyPairSync,
-  sign,
-  verify as verifyBytes,
-} from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import {
@@ -16,76 +9,29 @@ import {
 import {
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
-  SignedContentArtifactSchema,
 } from "#contracts/content";
-import {
-  Ed25519SignatureSchema,
-  Sha256HashSchema,
-  SigningKeyIdSchema,
-} from "#contracts/ids";
+import { SigningKeyIdSchema } from "#contracts/ids";
 import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
-
-const keyId = SigningKeyIdSchema.make("artifact-integrity-key");
-const signingKeys = generateKeyPairSync("ed25519");
-const publicKey = signingKeys.publicKey
-  .export({ format: "pem", type: "spki" })
-  .toString();
-const rawMdx = "## Integrity";
-const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
-  artifactLocale: "en",
-  byteLength: 10,
-  compiledCode: "return {};",
-  compilerConfigHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-  compilerVersion: "0.1.0",
-  contentKey: "test:integrity",
-  format: "mdx-function-body",
-  mdxCompilerVersion: "3.1.1",
-  plainText: "Integrity",
-  rawMdx,
-  rendererDomain: "mathematics",
-  requiredComponents: ["FutureRendererOnly"],
-  sourceHash: Sha256HashSchema.make(
-    `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
-  ),
-});
-const artifactHash = hashCompiledContentPayload(payload);
-const artifact = SignedContentArtifactSchema.make({
-  artifactHash,
-  keyId,
-  payload,
-  signature: Ed25519SignatureSchema.make(
-    sign(
-      null,
-      Buffer.from(
-        canonicalizeContentArtifactSigningInput(artifactHash, payload),
-        "utf8"
-      ),
-      signingKeys.privateKey
-    ).toString("base64url")
-  ),
-});
-const resolver = ContentVerificationKeyResolver.of({
-  /** Resolves only the signing key trusted by this integrity fixture. */
-  resolve: (requestedKeyId) =>
-    requestedKeyId === keyId
-      ? Effect.succeed(publicKey)
-      : Effect.fail(new SigningKeyNotFoundError({ keyId: requestedKeyId })),
-});
+import {
+  integrityArtifact,
+  integrityResolver,
+} from "#contracts/test/integrity";
+import { verifyEd25519Pem } from "#contracts/test/signature";
 
 /** Runs exact artifact authentication with the trusted fixture resolver. */
 function authenticate(input: unknown) {
   return verifySignedContentArtifactIntegrity(input).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, resolver)
+    Effect.provideService(ContentVerificationKeyResolver, integrityResolver)
   );
 }
 
 /** Returns the typed authentication failure for an invalid fixture. */
 function reject(input: unknown) {
   return verifySignedContentArtifactIntegrity(input).pipe(
-    Effect.provideService(ContentVerificationKeyResolver, resolver),
+    Effect.provideService(ContentVerificationKeyResolver, integrityResolver),
     Effect.flip
   );
 }
@@ -93,13 +39,15 @@ function reject(input: unknown) {
 describe("artifact integrity", () => {
   it.effect("authenticates without applying renderer compatibility", () =>
     Effect.gen(function* () {
-      expect(yield* authenticate(artifact)).toEqual(artifact);
+      expect(yield* authenticate(integrityArtifact)).toEqual(integrityArtifact);
     })
   );
 
   it.effect("rejects excess envelope properties", () =>
     Effect.gen(function* () {
-      expect(yield* reject({ ...artifact, unexpected: true })).toMatchObject({
+      expect(
+        yield* reject({ ...integrityArtifact, unexpected: true })
+      ).toMatchObject({
         _tag: "ArtifactVerificationDecodeError",
       });
     })
@@ -150,11 +98,15 @@ function authenticatePinned(input: unknown) {
 }
 
 describe("pinned artifact integrity", () => {
-  it("pins the SHA-256 identity of non-ASCII canonical payload bytes", () => {
-    expect(hashCompiledContentPayload(pinnedPayload)).toBe(
-      "sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5"
-    );
-  });
+  it.effect(
+    "pins the SHA-256 identity of non-ASCII canonical payload bytes",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* hashCompiledContentPayload(pinnedPayload)).toBe(
+          "sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5"
+        );
+      })
+  );
 
   it.effect("authenticates pinned bytes under the pinned Ed25519 key", () =>
     Effect.gen(function* () {
@@ -184,26 +136,28 @@ describe("pinned artifact integrity", () => {
     })
   );
 
-  it("verifies the pinned signature over the exact canonical bytes", () => {
-    const input = canonicalizeContentArtifactSigningInput(
-      hashCompiledContentPayload(pinnedPayload),
-      pinnedPayload
-    );
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(input, "utf8"),
-        pinnedPublicKey,
-        Buffer.from(pinnedArtifact.signature, "base64url")
-      )
-    ).toBe(true);
-    expect(
-      verifyBytes(
-        null,
-        Buffer.from(input.replace("aksara", "aksarb"), "utf8"),
-        pinnedPublicKey,
-        Buffer.from(pinnedArtifact.signature, "base64url")
-      )
-    ).toBe(false);
-  });
+  it.effect(
+    "verifies the pinned signature over the exact canonical bytes",
+    () =>
+      Effect.gen(function* () {
+        const input = canonicalizeContentArtifactSigningInput(
+          yield* hashCompiledContentPayload(pinnedPayload),
+          pinnedPayload
+        );
+        expect(
+          yield* verifyEd25519Pem(
+            pinnedPublicKey,
+            input,
+            pinnedArtifact.signature
+          )
+        ).toBe(true);
+        expect(
+          yield* verifyEd25519Pem(
+            pinnedPublicKey,
+            input.replace("aksara", "aksarb"),
+            pinnedArtifact.signature
+          )
+        ).toBe(false);
+      })
+  );
 });

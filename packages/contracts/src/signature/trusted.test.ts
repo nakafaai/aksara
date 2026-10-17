@@ -1,21 +1,20 @@
-import { createPublicKey, generateKeyPairSync } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
 import { SigningKeyIdSchema } from "#contracts/ids";
+import { generateEd25519KeyPem } from "#contracts/signature/key";
 import {
   ACTIVE_SIGNING_KEY_ID,
   makeTrustedKeyResolver,
   TRUSTED_CONTENT_KEYS,
   TrustedKeySchema,
 } from "#contracts/signature/trusted";
+import { importEd25519PublicKeyPem } from "#contracts/test/signature";
 
 const oldKeyId = SigningKeyIdSchema.make("content-2026-01");
 const currentPublicKey =
   "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n";
-const makeRetainedKey = Effect.sync(() => {
-  const publicKeyPem = generateKeyPairSync("ed25519")
-    .publicKey.export({ format: "pem", type: "spki" })
-    .toString();
+const makeRetainedKey = Effect.gen(function* () {
+  const { publicKeyPem } = yield* generateEd25519KeyPem();
 
   return {
     entry: TrustedKeySchema.make({ keyId: oldKeyId, publicKeyPem }),
@@ -24,23 +23,24 @@ const makeRetainedKey = Effect.sync(() => {
 });
 
 describe("trusted content keys", () => {
-  it("contains the exact first production public key", () => {
-    expect(TRUSTED_CONTENT_KEYS).toEqual([
-      {
-        keyId: "content-2026-07-23",
-        publicKeyPem: currentPublicKey,
-      },
-    ]);
-    expect(
-      Arr.every(
-        TRUSTED_CONTENT_KEYS,
-        ({ publicKeyPem }) =>
-          createPublicKey(publicKeyPem).asymmetricKeyType === "ed25519"
-      )
-    ).toBe(true);
-    expect(Object.isFrozen(TRUSTED_CONTENT_KEYS)).toBe(true);
-    expect(Object.isFrozen(TRUSTED_CONTENT_KEYS[0])).toBe(true);
-  });
+  it.effect("contains the exact first production public key", () =>
+    Effect.gen(function* () {
+      expect(TRUSTED_CONTENT_KEYS).toEqual([
+        {
+          keyId: "content-2026-07-23",
+          publicKeyPem: currentPublicKey,
+        },
+      ]);
+      const algorithms = yield* Effect.forEach(TRUSTED_CONTENT_KEYS, (key) =>
+        importEd25519PublicKeyPem(key.publicKeyPem)
+      );
+      expect(Arr.map(algorithms, (key) => key.algorithm.name)).toEqual(
+        Arr.map(TRUSTED_CONTENT_KEYS, () => "Ed25519")
+      );
+      expect(Object.isFrozen(TRUSTED_CONTENT_KEYS)).toBe(true);
+      expect(Object.isFrozen(TRUSTED_CONTENT_KEYS[0])).toBe(true);
+    })
+  );
 
   it.effect("resolves both current and retained rotation keys", () =>
     Effect.gen(function* () {

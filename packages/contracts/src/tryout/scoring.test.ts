@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Stream } from "effect";
+import { Effect, Stream } from "effect";
 
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { rubric } from "#contracts/test/rubric";
-import { makeTryoutTestRows } from "#contracts/test/tryout";
+import { tryoutTestRows } from "#contracts/test/tryout";
 import type { TryoutCatalogRecord } from "#contracts/tryout/catalog";
 import { verifyTryoutLocaleClosure } from "#contracts/tryout/closure/locale";
 import { makeTryoutCatalogRecord } from "#contracts/tryout/hash/catalog";
@@ -11,7 +11,7 @@ import { makeTryoutPlacementRecord } from "#contracts/tryout/hash/placement";
 import type { TryoutPlacementRecord } from "#contracts/tryout/placement";
 import type { TryoutMarks, TryoutScoring } from "#contracts/tryout/spec";
 
-const rows = makeTryoutTestRows();
+const rows = tryoutTestRows;
 const marks: TryoutMarks = { blank: 0, correct: 4, wrong: -1 };
 const SECTION_IDENTITY =
   "en\0section\0indonesia\0snbt\x002027\0set-1\0quantitative-knowledge";
@@ -22,7 +22,7 @@ function scoredCatalog(input: {
   readonly marks?: TryoutMarks;
   readonly set: TryoutScoring;
 }) {
-  return Arr.map(rows.catalog, ({ row }) => {
+  return Effect.forEach(rows.catalog, ({ row }) => {
     if (row.kind === "exam") {
       return makeTryoutCatalogRecord({ ...row, scoringStrategy: input.exam });
     }
@@ -38,7 +38,7 @@ function scoredCatalog(input: {
 
 /** Rebuilds every localized placement with one rubric response. */
 function rubricPlacements() {
-  return Arr.map(rows.placements, ({ row }) =>
+  return Effect.forEach(rows.placements, ({ row }) =>
     makeTryoutPlacementRecord({ ...row, response: rubric })
   );
 }
@@ -61,7 +61,7 @@ describe("try-out scoring coherence", () => {
       expect(yield* verify({})).toBeUndefined();
       expect(
         yield* verify({
-          catalog: scoredCatalog({
+          catalog: yield* scoredCatalog({
             exam: "penalized",
             marks,
             set: "penalized",
@@ -70,8 +70,8 @@ describe("try-out scoring coherence", () => {
       ).toBeUndefined();
       expect(
         yield* verify({
-          catalog: scoredCatalog({ exam: "raw", set: "raw" }),
-          placements: rubricPlacements(),
+          catalog: yield* scoredCatalog({ exam: "raw", set: "raw" }),
+          placements: yield* rubricPlacements(),
         })
       ).toBeUndefined();
     })
@@ -80,7 +80,7 @@ describe("try-out scoring coherence", () => {
   it.effect("rejects a set that scores differently from its exam", () =>
     Effect.gen(function* () {
       const error = yield* verify({
-        catalog: scoredCatalog({ exam: "irt", set: "raw" }),
+        catalog: yield* scoredCatalog({ exam: "irt", set: "raw" }),
       }).pipe(Effect.flip);
 
       expect(error).toMatchObject({
@@ -95,10 +95,13 @@ describe("try-out scoring coherence", () => {
     Effect.gen(function* () {
       const errors = yield* Effect.all([
         verify({
-          catalog: scoredCatalog({ exam: "penalized", set: "penalized" }),
+          catalog: yield* scoredCatalog({
+            exam: "penalized",
+            set: "penalized",
+          }),
         }).pipe(Effect.flip),
         verify({
-          catalog: scoredCatalog({ exam: "irt", marks, set: "irt" }),
+          catalog: yield* scoredCatalog({ exam: "irt", marks, set: "irt" }),
         }).pipe(Effect.flip),
       ]);
 
@@ -115,14 +118,14 @@ describe("try-out scoring coherence", () => {
   it.effect("rejects rubric placements outside raw sets", () =>
     Effect.gen(function* () {
       const errors = yield* Effect.all([
-        verify({ placements: rubricPlacements() }).pipe(Effect.flip),
+        verify({ placements: yield* rubricPlacements() }).pipe(Effect.flip),
         verify({
-          catalog: scoredCatalog({
+          catalog: yield* scoredCatalog({
             exam: "penalized",
             marks,
             set: "penalized",
           }),
-          placements: rubricPlacements(),
+          placements: yield* rubricPlacements(),
         }).pipe(Effect.flip),
       ]);
 

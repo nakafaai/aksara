@@ -36,7 +36,7 @@ function digestStream<E, R>(
     domain: "nakafa.aksara.test.tryout-digest",
     identity: (row) => row.identity,
     records: stream,
-    rowHash: (row) => Sha256HashSchema.make(row.hash),
+    rowHash: (row) => Effect.succeed(Sha256HashSchema.make(row.hash)),
   });
 }
 

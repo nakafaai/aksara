@@ -91,16 +91,16 @@ type PreviousFamily = MutableRef.MutableRef<Option.Option<ContentSnapshotKind>>;
 /** Derives one replacement's aggregate row evidence in its owning runtime. */
 function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
   if (snapshot.family === "program") {
-    return {
+    return Effect.succeed({
       rowCount: snapshot.manifest.rowCount,
       rowDigest: snapshot.manifest.rowDigest,
-    };
+    });
   }
   if (snapshot.family === "quran") {
-    return {
+    return Effect.succeed({
       rowCount: snapshot.manifest.projectionCount,
       rowDigest: snapshot.manifest.projectionDigest,
-    };
+    });
   }
   return tryoutSnapshotRowEvidence(snapshot.manifest);
 }
@@ -171,20 +171,22 @@ function replaceSnapshotState(
   snapshots: ContentSnapshotSet,
   snapshot: ContentSnapshotManifest
 ) {
-  return Effect.try({
-    catch: () => new SnapshotTransitionError({ family: snapshot.family }),
-    try: () => {
-      const baseSnapshotId = snapshots[snapshot.family].resultSnapshotId;
-      const evidence = snapshotRowEvidence(snapshot);
-      return ContentSnapshotSetSchema.make({
-        ...snapshots,
-        [snapshot.family]: replaceContentSnapshot({
-          baseSnapshotId,
-          resultSnapshotId: snapshot.manifest.snapshotId,
-          ...evidence,
-        }),
-      });
-    },
+  return Effect.gen(function* () {
+    const evidence = yield* snapshotRowEvidence(snapshot);
+    return yield* Effect.try({
+      catch: () => new SnapshotTransitionError({ family: snapshot.family }),
+      try: () => {
+        const baseSnapshotId = snapshots[snapshot.family].resultSnapshotId;
+        return ContentSnapshotSetSchema.make({
+          ...snapshots,
+          [snapshot.family]: replaceContentSnapshot({
+            baseSnapshotId,
+            resultSnapshotId: snapshot.manifest.snapshotId,
+            ...evidence,
+          }),
+        });
+      },
+    });
   });
 }
 

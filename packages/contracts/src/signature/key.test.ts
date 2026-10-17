@@ -6,9 +6,10 @@ import {
   Ed25519KeyError,
   ed25519PublicKeyBytes,
   ed25519PublicKeyPem,
-  importEd25519PrivateKey,
-  signEd25519,
+  generateEd25519KeyPem,
+  signEd25519Message,
 } from "#contracts/signature/key";
+import { importEd25519PublicKeyPem } from "#contracts/test/signature";
 
 /** A fixed test seed, the bytes 1 to 32. It is a fixture, not a key used anywhere. */
 const SEED = Uint8Array.from({ length: 32 }, (_, index) => index + 1);
@@ -30,7 +31,8 @@ const PKCS8_ED25519_PREFIX = Uint8Array.of(
   0x04,
   0x20
 );
-const MESSAGE = new TextEncoder().encode("nakafa.aksara.test\nfixed message\n");
+const MESSAGE_TEXT = "nakafa.aksara.test\nfixed message\n";
+const MESSAGE = new TextEncoder().encode(MESSAGE_TEXT);
 const SEED_PUBLIC_KEY_PEM =
   "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAebVWLo/mVPlAeLES6KmLp5AfhTrmlb7X4OORC60ElmQ=\n-----END PUBLIC KEY-----\n";
 const SEED_SIGNATURE =
@@ -49,21 +51,18 @@ function privateKeyPemOf(der: Uint8Array) {
   return `-----BEGIN PRIVATE KEY-----\n${Base64.encode(der)}\n-----END PRIVATE KEY-----\n`;
 }
 
+/** Decodes one unpadded base64url signature into its raw bytes. */
+function signatureBytes(signature: string) {
+  return Effect.fromResult(Base64Url.decode(signature));
+}
+
 /** Verifies with Web Crypto alone, from the SPKI PEM that the derivation returned. */
 function verifiesWithPublicKeyPem(
   publicKeyPem: string,
   signature: Uint8Array,
   message: Uint8Array
 ) {
-  const body = publicKeyPem.split("\n").slice(1, -2).join("");
-  const spki = Uint8Array.from(atob(body), (character) =>
-    character.charCodeAt(0)
-  );
-  return Effect.promise(() =>
-    crypto.subtle.importKey("spki", spki, { name: "Ed25519" }, false, [
-      "verify",
-    ])
-  ).pipe(
+  return importEd25519PublicKeyPem(publicKeyPem).pipe(
     Effect.flatMap((publicKey) =>
       Effect.promise(() =>
         crypto.subtle.verify("Ed25519", publicKey, signature, message)
@@ -85,19 +84,48 @@ describe("Ed25519 keys from PEM", () => {
 
   it.effect("signs the exact bytes that Node signs for the same seed", () =>
     Effect.gen(function* () {
-      const key = yield* importEd25519PrivateKey(seedPrivateKeyPem());
-      const signature = yield* signEd25519(key, MESSAGE);
+      const signature = yield* signEd25519Message(
+        seedPrivateKeyPem(),
+        MESSAGE_TEXT
+      );
 
-      expect(Base64Url.encode(signature)).toBe(SEED_SIGNATURE);
+      expect(signature).toBe(SEED_SIGNATURE);
       expect(
-        yield* verifiesWithPublicKeyPem(SEED_PUBLIC_KEY_PEM, signature, MESSAGE)
+        yield* verifiesWithPublicKeyPem(
+          SEED_PUBLIC_KEY_PEM,
+          yield* signatureBytes(signature),
+          MESSAGE
+        )
       ).toBe(true);
     })
   );
 
+  it.effect(
+    "generates a key pair whose PEM parts sign and verify together",
+    () =>
+      Effect.gen(function* () {
+        const generated = yield* generateEd25519KeyPem();
+        const signature = yield* signEd25519Message(
+          generated.privateKeyPem,
+          MESSAGE_TEXT
+        );
+
+        expect(yield* ed25519PublicKeyPem(generated.privateKeyPem)).toBe(
+          generated.publicKeyPem
+        );
+        expect(
+          yield* verifiesWithPublicKeyPem(
+            generated.publicKeyPem,
+            yield* signatureBytes(signature),
+            MESSAGE
+          )
+        ).toBe(true);
+      })
+  );
+
   it.effect("rejects text that is not an unencrypted PKCS#8 PEM", () =>
     Effect.gen(function* () {
-      const error = yield* importEd25519PrivateKey("not a key").pipe(
+      const error = yield* signEd25519Message("not a key", MESSAGE_TEXT).pipe(
         Effect.flip
       );
 
@@ -108,8 +136,9 @@ describe("Ed25519 keys from PEM", () => {
 
   it.effect("rejects a PEM body that is not base64", () =>
     Effect.gen(function* () {
-      const error = yield* importEd25519PrivateKey(
-        "-----BEGIN PRIVATE KEY-----\n!!!\n-----END PRIVATE KEY-----\n"
+      const error = yield* signEd25519Message(
+        "-----BEGIN PRIVATE KEY-----\n!!!\n-----END PRIVATE KEY-----\n",
+        MESSAGE_TEXT
       ).pipe(Effect.flip);
 
       expect(error.stage).toBe("import");
@@ -128,8 +157,9 @@ describe("Ed25519 keys from PEM", () => {
       const der = yield* Effect.promise(() =>
         crypto.subtle.exportKey("pkcs8", pair.privateKey)
       );
-      const error = yield* importEd25519PrivateKey(
-        privateKeyPemOf(new Uint8Array(der))
+      const error = yield* signEd25519Message(
+        privateKeyPemOf(new Uint8Array(der)),
+        MESSAGE_TEXT
       ).pipe(Effect.flip);
 
       expect(error.stage).toBe("import");
@@ -182,7 +212,6 @@ describe("Ed25519 keys from PEM", () => {
 
   it.effect("maps a rejected Web Crypto signature into the sign stage", () =>
     Effect.gen(function* () {
-      const key = yield* importEd25519PrivateKey(seedPrivateKeyPem());
       yield* Effect.acquireRelease(
         Effect.sync(() =>
           vi
@@ -192,7 +221,10 @@ describe("Ed25519 keys from PEM", () => {
         (mock) => Effect.sync(() => mock.mockRestore())
       );
 
-      const error = yield* signEd25519(key, MESSAGE).pipe(Effect.flip);
+      const error = yield* signEd25519Message(
+        seedPrivateKeyPem(),
+        MESSAGE_TEXT
+      ).pipe(Effect.flip);
 
       expect(error.stage).toBe("sign");
     })

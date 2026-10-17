@@ -1,6 +1,5 @@
-import { Buffer } from "node:buffer";
-import { verify as verifyBytes } from "node:crypto";
-import { Array as Arr, Effect, Schema } from "effect";
+import { Effect, Schema } from "effect";
+import { Base64Url } from "effect/encoding";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
 import {
   CompiledContentPayloadSchema,
@@ -13,6 +12,7 @@ import {
   ContentVerificationKeyResolver,
   SigningKeyNotFoundError,
 } from "#contracts/signature/spec";
+import { importEd25519PublicKeyPem } from "#contracts/test/signature";
 
 /** Test-only Ed25519 key identity that signed the pinned artifact below. */
 const pinnedKeyId = SigningKeyIdSchema.make("test-signing-key");
@@ -49,20 +49,30 @@ export const pinnedResolver = ContentVerificationKeyResolver.of({
 });
 
 /** Verifies the pinned signature over its exact canonical bytes, then over the same bytes with one changed byte. */
-export function verifyPinnedSignature() {
-  const payload = Schema.decodeSync(CompiledContentPayloadSchema)(
+export const verifyPinnedSignature = Effect.fn(
+  "AksaraContracts.test.verifyPinnedSignature"
+)(function* () {
+  const payload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)(
     pinnedArtifact.payload
   );
   const input = canonicalizeContentArtifactSigningInput(
-    hashCompiledContentPayload(payload),
+    yield* hashCompiledContentPayload(payload),
     payload
   );
-  return Arr.map([input, input.replace("aksara", "aksarb")], (text) =>
-    verifyBytes(
-      null,
-      Buffer.from(text, "utf8"),
-      pinnedPublicKey,
-      Buffer.from(pinnedArtifact.signature, "base64url")
-    )
+  const publicKey = yield* importEd25519PublicKeyPem(pinnedPublicKey);
+  const signature = yield* Effect.fromResult(
+    Base64Url.decode(pinnedArtifact.signature)
   );
-}
+  return yield* Effect.forEach(
+    [input, input.replace("aksara", "aksarb")],
+    (text) =>
+      Effect.promise(() =>
+        crypto.subtle.verify(
+          "Ed25519",
+          publicKey,
+          signature,
+          new TextEncoder().encode(text)
+        )
+      )
+  );
+});

@@ -19,6 +19,17 @@ describe("UTF-8 text hashing", () => {
     })
   );
 
+  it.effect("pins the digest of ASCII and multi-line non-ASCII text", () =>
+    Effect.gen(function* () {
+      expect(yield* hashText("aksara")).toBe(
+        "sha256:10d512e0d0ea808078e6e773ca22d06dda9c8255f557674eba033830a07a8732"
+      );
+      expect(yield* hashText("Pelajaran é ✓ 数学\n\n- satu\n- dua")).toBe(
+        "sha256:4f6d1d56c579dfce19f0c186e79bd9dd9ed504ccf9ec1b6048b936489a396583"
+      );
+    })
+  );
+
   it.effect("maps Web Crypto failures into the typed error channel", () =>
     Effect.gen(function* () {
       yield* Effect.acquireRelease(

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { JsonTextSchema } from "#contracts/text/json";
@@ -24,38 +24,48 @@ const input = Schema.decodeSync(TryoutSnapshotFactsSchema)({
 });
 
 describe("try-out snapshot golden identities", () => {
-  it("pins the content-addressed snapshot identity and row evidence", () => {
-    expect(makeTryoutSnapshot(input).snapshotId).toBe(
-      "sha256:b8066804ee09fc79af009a462775813ea3a2683e414e9095a0290f1693a8dfc5"
-    );
-    expect(tryoutSnapshotRowEvidence(input)).toEqual({
-      rowCount: 894,
-      rowDigest:
-        "sha256:72c5ba88dd2f3f5b198e2e28d9e5fd79f829e2569956a03dad584190f0f222e2",
-    });
-  });
+  it.effect(
+    "pins the content-addressed snapshot identity and row evidence",
+    () =>
+      Effect.gen(function* () {
+        expect((yield* makeTryoutSnapshot(input)).snapshotId).toBe(
+          "sha256:b8066804ee09fc79af009a462775813ea3a2683e414e9095a0290f1693a8dfc5"
+        );
+        expect(yield* tryoutSnapshotRowEvidence(input)).toEqual({
+          rowCount: 894,
+          rowDigest:
+            "sha256:72c5ba88dd2f3f5b198e2e28d9e5fd79f829e2569956a03dad584190f0f222e2",
+        });
+      })
+  );
 });
 
 describe("try-out snapshot hashing", () => {
-  it("binds locale and inventory facts", () => {
-    const first = makeTryoutSnapshot(input);
-    const second = makeTryoutSnapshot(input);
+  it.effect("binds locale and inventory facts", () =>
+    Effect.gen(function* () {
+      const first = yield* makeTryoutSnapshot(input);
+      const second = yield* makeTryoutSnapshot(input);
 
-    expect(
-      Schema.decodeSync(JsonTextSchema)(canonicalizeTryoutSnapshot(input))
-    ).toEqual({
-      ...input,
-      format: TRYOUT_SNAPSHOT_FORMAT,
-    });
-    expect(first).toEqual(second);
-    expect(first.snapshotId).toMatch(SHA256_HASH_PATTERN);
-  });
+      expect(
+        yield* Schema.decodeEffect(JsonTextSchema)(
+          canonicalizeTryoutSnapshot(input)
+        )
+      ).toEqual({
+        ...input,
+        format: TRYOUT_SNAPSHOT_FORMAT,
+      });
+      expect(first).toEqual(second);
+      expect(first.snapshotId).toMatch(SHA256_HASH_PATTERN);
+    })
+  );
 
-  it("binds the aggregate row count and both row digests", () => {
-    const evidence = tryoutSnapshotRowEvidence(input);
+  it.effect("binds the aggregate row count and both row digests", () =>
+    Effect.gen(function* () {
+      const evidence = yield* tryoutSnapshotRowEvidence(input);
 
-    expect(evidence.rowCount).toBe(894);
-    expect(evidence.rowDigest).not.toBe(input.catalogDigest);
-    expect(evidence.rowDigest).not.toBe(input.placementDigest);
-  });
+      expect(evidence.rowCount).toBe(894);
+      expect(evidence.rowDigest).not.toBe(input.catalogDigest);
+      expect(evidence.rowDigest).not.toBe(input.placementDigest);
+    })
+  );
 });

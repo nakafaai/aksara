@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Effect, Schema } from "effect";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -42,7 +42,9 @@ const runtimeProjection = MaterialLessonProjectionSchema.make({
   artifactLocale: ArtifactLocaleSchema.make("en"),
   contentKey: runtimeContentKey,
 });
-export const artifact = createSignedArtifact(runtimeContentKey);
+export const artifact = await Effect.runPromise(
+  createSignedArtifact(runtimeContentKey)
+);
 
 export const found = {
   activeManifestHash: release.manifestHash,
@@ -51,7 +53,9 @@ export const found = {
   delivery: "public",
   kind: "found",
   projection: runtimeProjection,
-  projectionHash: hashContentProjection(runtimeProjection),
+  projectionHash: await Effect.runPromise(
+    hashContentProjection(runtimeProjection)
+  ),
   release,
   rendererManifest,
   sourcePath: CorpusSourcePathSchema.make(
@@ -88,7 +92,9 @@ const articleProjection = ArticleProjectionSchema.make({
   references: [],
   sitemap: true,
 });
-export const articleArtifact = createSignedArtifact(articleContentKey);
+export const articleArtifact = await Effect.runPromise(
+  createSignedArtifact(articleContentKey)
+);
 export const articleRequest = {
   appLocale: "en",
   delivery: "public",
@@ -98,7 +104,9 @@ export const articleFound = {
   ...found,
   artifact: articleArtifact,
   projection: articleProjection,
-  projectionHash: hashContentProjection(articleProjection),
+  projectionHash: await Effect.runPromise(
+    hashContentProjection(articleProjection)
+  ),
   sourcePath: CorpusSourcePathSchema.make(
     "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
   ),
@@ -120,7 +128,9 @@ const pageProjection = Schema.decodeSync(PublicPageProjectionSchema)({
   sitemap: true,
   sourcePath: "packages/corpus/pages/terms/en.mdx",
 });
-export const pageArtifact = createSignedArtifact(pageContentKey);
+export const pageArtifact = await Effect.runPromise(
+  createSignedArtifact(pageContentKey)
+);
 export const pageRequest = {
   appLocale: "en",
   delivery: "public",
@@ -130,7 +140,9 @@ export const pageFound = {
   ...found,
   artifact: pageArtifact,
   projection: pageProjection,
-  projectionHash: hashContentProjection(pageProjection),
+  projectionHash: await Effect.runPromise(
+    hashContentProjection(pageProjection)
+  ),
   sourcePath: CorpusSourcePathSchema.make("packages/corpus/pages/terms/en.mdx"),
 } as const;
 

@@ -15,16 +15,17 @@ const protectedQuestionKey =
 export const protectedContentKey = ContentKeySchema.make(
   `${protectedQuestionKey}/question`
 );
-export const protectedArtifact = createSignedArtifact(protectedContentKey);
+export const protectedArtifact = await Effect.runPromise(
+  createSignedArtifact(protectedContentKey)
+);
 export const protectedAnswerContentKey = ContentKeySchema.make(
   `${protectedQuestionKey}/answer`
 );
-export const protectedAnswerArtifact = createSignedArtifact(
-  protectedAnswerContentKey
+export const protectedAnswerArtifact = await Effect.runPromise(
+  createSignedArtifact(protectedAnswerContentKey)
 );
-export const protectedExpandedArtifact = createSignedArtifact(
-  protectedContentKey,
-  ["InlineMath"]
+export const protectedExpandedArtifact = await Effect.runPromise(
+  createSignedArtifact(protectedContentKey, ["InlineMath"])
 );
 export const protectedSelector = {
   artifactHash: protectedArtifact.artifactHash,

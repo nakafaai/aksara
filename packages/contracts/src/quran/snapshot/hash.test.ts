@@ -1,4 +1,3 @@
-import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 
@@ -9,40 +8,7 @@ import {
   verifyQuranSnapshotHash,
 } from "#contracts/quran/snapshot/hash";
 import { QuranSnapshotFactsSchema } from "#contracts/quran/snapshot/spec";
-
-const failures = vi.hoisted(() => ({ hash: false }));
-
-vi.mock("node:crypto", async (importOriginal) => {
-  const crypto = await importOriginal<typeof import("node:crypto")>();
-  return {
-    ...crypto,
-    /** Creates a real hash whose update call supports deterministic failure. */
-    createHash(algorithm: string) {
-      const hash = crypto.createHash(algorithm);
-      return new Proxy(hash, {
-        /** Intercepts update while preserving every other real hash method. */
-        get(target, property, receiver) {
-          if (property === "update") {
-            return (data: BinaryLike) => {
-              if (
-                failures.hash &&
-                String(data).startsWith(
-                  "nakafa.aksara.localized-quran-snapshot\n"
-                )
-              ) {
-                throw new TypeError("injected Quran snapshot hash failure");
-              }
-              target.update(data);
-              return receiver;
-            };
-          }
-          const value = Reflect.get(target, property, target);
-          return typeof value === "function" ? value.bind(target) : value;
-        },
-      });
-    },
-  };
-});
+import { withNextDigestFailure } from "#contracts/test/digest";
 
 const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
@@ -100,19 +66,11 @@ describe("Quran snapshot hashing", () => {
     })
   );
 
-  it.effect("maps Node hashing failures to the typed contract error", () =>
+  it.effect("maps a failed digest to the typed contract error", () =>
     Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() => {
-          failures.hash = true;
-        }),
-        () =>
-          Effect.sync(() => {
-            failures.hash = false;
-          })
+      const error = yield* withNextDigestFailure(
+        makeQuranSnapshot(facts).pipe(Effect.flip)
       );
-
-      const error = yield* makeQuranSnapshot(facts).pipe(Effect.flip);
       expect(error._tag).toBe("QuranSnapshotHashError");
     })
   );
