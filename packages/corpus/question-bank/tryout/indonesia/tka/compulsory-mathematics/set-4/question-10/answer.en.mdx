@@ -1,0 +1,82 @@
+export const metadata = {
+  title: "Solution to Question 10",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The altitude <InlineMath math="CD" /> from the right angle splits triangle <InlineMath math="ABC" /> into two smaller right triangles, <InlineMath math="ADC" /> and <InlineMath math="CDB" />. These two triangles are **similar**, so the ratios of their sides lead to <InlineMath math="CD" />.
+
+They are similar because two pairs of angles are equal. Angles <InlineMath math="ADC" /> and <InlineMath math="CDB" /> are both <InlineMath math="90^\circ" />. The angles of triangle <InlineMath math="ADC" /> and the angles of triangle <InlineMath math="ABC" /> each add up to <InlineMath math="180^\circ" />, so the following two angles are equal.
+
+<BlockMath math="\begin{aligned}
+\angle ACD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A \\
+\angle CBD&=180^\circ-90^\circ-\angle A=90^\circ-\angle A
+\end{aligned}" />
+
+In this similarity, <InlineMath math="A" /> matches <InlineMath math="C" />, <InlineMath math="D" /> matches <InlineMath math="D" />, and <InlineMath math="C" /> matches <InlineMath math="B" />. So **the ratios of the legs of the two triangles are equal**.
+
+<BlockMath math="\begin{aligned}
+\frac{AD}{CD}&=\frac{CD}{DB} \\
+CD^2&=AD\cdot DB=4\cdot9=36 \\
+CD&=6
+\end{aligned}" />
+
+A length is positive, so <InlineMath math="CD=6\text{ cm}" />.
+
+<MathVisual
+  title="Two similar right triangles"
+  description={<>Triangle <InlineMath math="ADC" /> on the left and triangle <InlineMath math="CDB" /> on the right are similar. Side <InlineMath math="AD" /> matches <InlineMath math="CD" />, and <InlineMath math="CD" /> matches <InlineMath math="DB" />.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "foot-d": <InlineMath math="D" />,
+    "length-ad": <InlineMath math="4\text{ cm}" />,
+    "length-db": <InlineMath math="9\text{ cm}" />,
+    "length-cd": <InlineMath math="6\text{ cm}" />,
+    "length-ac": <InlineMath math="2\sqrt{13}\text{ cm}" />,
+    "length-bc": <InlineMath math="3\sqrt{13}\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 17.5 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-adc", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }] },
+      { id: "triangle-cdb", kind: "polygon", appearance: "highlight", vertices: [{ x: 7, y: 0 }, { x: 16, y: 0 }, { x: 7, y: 6 }] },
+      { id: "altitude-cd", kind: "segment", appearance: "answer", from: { x: 7, y: 6 }, to: { x: 7, y: 0 } },
+      { id: "right-angle-d", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0.6 }, { x: 7.6, y: 0.6 }, { x: 7.6, y: 0 }] },
+      { id: "right-angle-c", kind: "polyline", appearance: "reference", vertices: [{ x: 6.664, y: 5.496 }, { x: 7.168, y: 5.16 }, { x: 7.504, y: 5.664 }] },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-adc", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "triangle-cdb", at: { x: 16, y: 0 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "triangle-cdb", at: { x: 7, y: 6 }, placement: "above" },
+      { key: "foot-d", objectId: "altitude-cd", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "length-ad", objectId: "triangle-adc", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "length-db", objectId: "triangle-cdb", at: { x: 11.5, y: 0 }, placement: "below" },
+      { key: "length-cd", objectId: "altitude-cd", at: { x: 7, y: 3 }, placement: "right" },
+      { key: "length-ac", objectId: "triangle-adc", at: { x: 5, y: 3 }, placement: "above-left" },
+      { key: "length-bc", objectId: "triangle-cdb", at: { x: 11.5, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Check the result with the Pythagorean theorem. Compute <InlineMath math="AC^2" /> and <InlineMath math="BC^2" /> from the two small triangles, then confirm that they satisfy the theorem in the large triangle with <InlineMath math="AB=4+9=13" />.
+
+<BlockMath math="\begin{aligned}
+AC^2&=4^2+6^2=52 \\
+BC^2&=9^2+6^2=117 \\
+AC^2+BC^2&=169=13^2=AB^2
+\end{aligned}" />
+
+The length of <InlineMath math="CD" /> is therefore <InlineMath math="6\text{ cm}" />.
+
+- <InlineMath math="\frac{13}{2}\text{ cm}" /> is half of <InlineMath math="AB" />, the length of the median from <InlineMath math="C" /> to the midpoint of <InlineMath math="AB" />. The median and the altitude have equal length only when <InlineMath math="AD=DB" />.
+- <InlineMath math="2\sqrt{13}\text{ cm}" /> is the length of <InlineMath math="AC" />, which follows from <InlineMath math="AC^2=AD\cdot AB=4\cdot13" />, not the length of <InlineMath math="CD" />.
+- <InlineMath math="6\sqrt{2}\text{ cm}" /> appears when <InlineMath math="AB^2=AC^2+BC^2" /> is written as <InlineMath math="169=16+81+CD^2" />, although <InlineMath math="CD^2" /> occurs twice, once in <InlineMath math="AC^2" /> and once in <InlineMath math="BC^2" />.
+- <InlineMath math="3\sqrt{13}\text{ cm}" /> is the length of <InlineMath math="BC" />, which follows from <InlineMath math="BC^2=DB\cdot AB=9\cdot13" />.

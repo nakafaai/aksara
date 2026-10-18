@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Soal 24",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Tinggi <InlineMath math="40" /> bibit cabai yang ditanam pada media A dan <InlineMath math="40" /> bibit cabai yang ditanam pada media B diukur dalam sentimeter setelah empat minggu. Statistik lima serangkai kedua kelompok data, yaitu minimum, kuartil bawah, median, kuartil atas, dan maksimum, disajikan pada tabel dan diagram kotak garis berikut. Median adalah nilai tengah data terurut, yaitu rata-rata dua nilai tengah jika banyak data genap. Kuartil bawah <InlineMath math="Q_1" /> dan kuartil atas <InlineMath math="Q_3" /> berturut-turut adalah median separuh bawah dan median separuh atas data terurut.
+
+| Media | Minimum | <InlineMath math="Q_1" /> | Median | <InlineMath math="Q_3" /> | Maksimum |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A | 10 | 12 | 13 | 15 | 19 |
+| B | 11 | 13 | 14 | 15 | 17 |
+
+<MathVisual
+  title="Diagram kotak garis tinggi bibit"
+  description={<>Setiap kotak membentang dari <InlineMath math="Q_1" /> ke <InlineMath math="Q_3" />, garis di dalam kotak adalah median, dan garis di kedua sisi kotak mencapai minimum dan maksimum. Sumbu mendatar menyatakan tinggi bibit dalam sentimeter, dan nilai tepatnya tercantum pada tabel.</>}
+  labels={{
+    "name-a": "Media A",
+    "name-b": "Media B",
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 20 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "medium-a-box", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 2.6 }, { x: 15, y: 2.6 }, { x: 15, y: 3.4 }, { x: 12, y: 3.4 }] },
+      { id: "medium-a-median", kind: "segment", appearance: "primary", from: { x: 13, y: 2.6 }, to: { x: 13, y: 3.4 } },
+      { id: "medium-a-whisker-low", kind: "segment", appearance: "primary", from: { x: 10, y: 3 }, to: { x: 12, y: 3 } },
+      { id: "medium-a-whisker-high", kind: "segment", appearance: "primary", from: { x: 15, y: 3 }, to: { x: 19, y: 3 } },
+      { id: "medium-a-cap-low", kind: "segment", appearance: "primary", from: { x: 10, y: 2.8 }, to: { x: 10, y: 3.2 } },
+      { id: "medium-a-cap-high", kind: "segment", appearance: "primary", from: { x: 19, y: 2.8 }, to: { x: 19, y: 3.2 } },
+      { id: "medium-b-box", kind: "polygon", appearance: "secondary", vertices: [{ x: 13, y: 0.6 }, { x: 15, y: 0.6 }, { x: 15, y: 1.4 }, { x: 13, y: 1.4 }] },
+      { id: "medium-b-median", kind: "segment", appearance: "secondary", from: { x: 14, y: 0.6 }, to: { x: 14, y: 1.4 } },
+      { id: "medium-b-whisker-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 1 }, to: { x: 13, y: 1 } },
+      { id: "medium-b-whisker-high", kind: "segment", appearance: "secondary", from: { x: 15, y: 1 }, to: { x: 17, y: 1 } },
+      { id: "medium-b-cap-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 0.8 }, to: { x: 11, y: 1.2 } },
+      { id: "medium-b-cap-high", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 17, y: 1.2 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "medium-a-box", at: { x: 13.5, y: 3.4 }, placement: "above" },
+      { key: "name-b", objectId: "medium-b-box", at: { x: 14, y: 1.4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Pilih semua pernyataan yang benar.

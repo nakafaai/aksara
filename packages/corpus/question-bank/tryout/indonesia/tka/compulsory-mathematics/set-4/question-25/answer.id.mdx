@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Pembahasan Soal 25",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Peluang setiap juring sebanding dengan sudut pusatnya, jadi peluangnya adalah sudut pusat dibagi <InlineMath math="360^\circ" />. Kedua putaran saling bebas, sehingga **peluang sepasang hasil adalah hasil kali peluang masing-masing putaran**.
+
+<BlockMath math="\begin{aligned}
+P(A)&=\frac{180^\circ}{360^\circ}=\frac12 \\
+P(B)&=\frac{120^\circ}{360^\circ}=\frac13 \\
+P(C)&=\frac{60^\circ}{360^\circ}=\frac16
+\end{aligned}" />
+
+<LineEquation
+  title="Papan putar dengan tiga juring"
+  description={<>Juring <InlineMath math="A" /> menempati setengah lingkaran, jadi peluangnya <InlineMath math="\frac12" />. Juring <InlineMath math="B" /> dan juring <InlineMath math="C" /> menempati sepertiga dan seperenam lingkaran.</>}
+  cameraPosition={[10, 10, 12]}
+  cameraTarget={[10, 10, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const t = (i * Math.PI) / 180;
+        return { x: 10 + 4 * Math.cos(t), y: 10 + 4 * Math.sin(t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...[90, 270, 30].map((degrees) => ({
+      points: [0, 4].map((r) => ({ x: 10 + r * Math.cos((degrees * Math.PI) / 180), y: 10 + r * Math.sin((degrees * Math.PI) / 180), z: 0 })),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((90 + (i / 240) * 180) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="A" />, at: 120, offset: [1.9 * Math.cos(Math.PI), 1.9 * Math.sin(Math.PI), 0] },
+        { text: <InlineMath math="180^\circ" />, at: 120, offset: [0.8 * Math.cos(Math.PI), 0.8 * Math.sin(Math.PI), 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((270 + (i / 240) * 120) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="B" />, at: 120, offset: [1.9 * Math.cos((11 * Math.PI) / 6), 1.9 * Math.sin((11 * Math.PI) / 6), 0] },
+        { text: <InlineMath math="120^\circ" />, at: 120, offset: [0.8 * Math.cos((11 * Math.PI) / 6), 0.8 * Math.sin((11 * Math.PI) / 6), 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 + (i / 240) * 60) * Math.PI) / 180;
+        return { x: 10 + 0.9 * Math.cos(t), y: 10 + 0.9 * Math.sin(t), z: 0 };
+      }),
+      color: "#d97706",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="C" />, at: 120, offset: [1.9 * Math.cos(Math.PI / 3), 1.9 * Math.sin(Math.PI / 3), 0] },
+        { text: <InlineMath math="60^\circ" />, at: 120, offset: [0.8 * Math.cos(Math.PI / 3), 0.8 * Math.sin(Math.PI / 3), 0] },
+      ],
+    },
+  ]}
+/>
+
+Tabel berikut memuat peluang kesembilan pasangan hasil. Baris menyatakan hasil putaran pertama dan kolom menyatakan hasil putaran kedua. Jumlah kesembilan peluang itu <InlineMath math="1" />, sesuai dengan ruang sampel yang lengkap.
+
+| Putaran pertama | Kedua di <InlineMath math="A" /> | Kedua di <InlineMath math="B" /> | Kedua di <InlineMath math="C" /> |
+| --- | ---: | ---: | ---: |
+| <InlineMath math="A" /> | <InlineMath math="\frac14" /> | <InlineMath math="\frac16" /> | <InlineMath math="\frac1{12}" /> |
+| <InlineMath math="B" /> | <InlineMath math="\frac16" /> | <InlineMath math="\frac19" /> | <InlineMath math="\frac1{18}" /> |
+| <InlineMath math="C" /> | <InlineMath math="\frac1{12}" /> | <InlineMath math="\frac1{18}" /> | <InlineMath math="\frac1{36}" /> |
+
+1. Pernyataan bahwa peluang berhenti di <InlineMath math="C" /> paling sedikit satu kali adalah <InlineMath math="\frac13" /> salah. Hitung lewat komplemennya, yaitu kedua putaran tidak berhenti di <InlineMath math="C" />. Nilai <InlineMath math="\frac13=\frac16+\frac16" /> menghitung pasangan <InlineMath math="CC" /> dua kali.
+
+<BlockMath math="P(\text{paling sedikit sekali di }C)=1-\left(\frac56\right)^2=1-\frac{25}{36}=\frac{11}{36}" />
+
+2. Pernyataan bahwa peluang kedua putaran berhenti di juring yang sama adalah <InlineMath math="\frac{7}{18}" /> benar. Jumlahkan ketiga peluang pada diagonal tabel, <InlineMath math="\frac14+\frac19+\frac1{36}=\frac{9+4+1}{36}=\frac{14}{36}=\frac{7}{18}" />.
+3. Pernyataan bahwa peluang putaran pertama di <InlineMath math="A" /> dan putaran kedua tidak di <InlineMath math="A" /> adalah <InlineMath math="\frac14" /> benar, karena <InlineMath math="\frac12\cdot\left(1-\frac12\right)=\frac14" />. Hasil yang sama diperoleh dari tabel, <InlineMath math="\frac16+\frac1{12}=\frac14" />.
+4. Pernyataan bahwa kedua kejadian saling bebas salah. Misalkan <InlineMath math="E" /> kejadian putaran pertama berhenti di <InlineMath math="A" /> dan <InlineMath math="F" /> kejadian kedua putaran berhenti di juring yang sama. Irisannya hanya pasangan <InlineMath math="AA" />. Dua kejadian saling bebas hanya jika **peluang irisannya sama dengan hasil kali peluangnya**.
+
+<BlockMath math="\begin{aligned}
+P(E\cap F)&=P(AA)=\frac14=\frac{9}{36} \\
+P(E)\cdot P(F)&=\frac12\cdot\frac{7}{18}=\frac{7}{36}\ne\frac{9}{36}
+\end{aligned}" />
+
+Jadi, pernyataan tentang juring yang sama dan tentang <InlineMath math="A" /> lalu bukan <InlineMath math="A" /> benar, sedangkan pernyataan tentang peluang <InlineMath math="\frac13" /> dan tentang kejadian yang saling bebas salah.

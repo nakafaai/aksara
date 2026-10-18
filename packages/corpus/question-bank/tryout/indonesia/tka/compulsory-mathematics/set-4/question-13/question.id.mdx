@@ -1,0 +1,43 @@
+export const metadata = {
+  title: "Soal 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Segitiga <InlineMath math="ABC" /> dengan <InlineMath math="A(2,2)" />, <InlineMath math="B(6,3)" />, dan <InlineMath math="C(1,5)" /> dirotasi sebesar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap suatu titik <InlineMath math="P" />. Bayangannya adalah segitiga <InlineMath math="A'B'C'" /> dengan <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-2,3)" />, dan <InlineMath math="C'(-4,-2)" />.
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan bayangannya</>}
+  description={<>Segitiga <InlineMath math="ABC" /> berada di kanan atas, sedangkan bayangannya <InlineMath math="A'B'C'" /> berada di kiri. Pusat rotasi <InlineMath math="P" /> tidak digambar.</>}
+  labels={{
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-a-image": <InlineMath math="A'" />,
+    "vertex-b-image": <InlineMath math="B'" />,
+    "vertex-c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 7.5 },
+      y: { min: -3.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle-abc", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 2 }, { x: 6, y: 3 }, { x: 1, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "secondary", vertices: [{ x: -1, y: -1 }, { x: -2, y: 3 }, { x: -4, y: -2 }] },
+    ],
+    labels: [
+      { key: "vertex-a", objectId: "triangle-abc", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "vertex-b", objectId: "triangle-abc", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "vertex-c", objectId: "triangle-abc", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "vertex-a-image", objectId: "triangle-image", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "vertex-b-image", objectId: "triangle-image", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "vertex-c-image", objectId: "triangle-image", at: { x: -4, y: -2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Koordinat titik <InlineMath math="P" /> adalah ....

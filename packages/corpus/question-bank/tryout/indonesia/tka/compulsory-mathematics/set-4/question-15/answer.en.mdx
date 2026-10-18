@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Solution to Question 15",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The tip of the minute hand moves on a circle whose radius is the length of the hand, <InlineMath math="r=21\text{ cm}" />. The hand makes one full turn in <InlineMath math="60" /> minutes. From <InlineMath math="8{:}10" /> to <InlineMath math="8{:}30" /> is <InlineMath math="20" /> minutes, so **the hand makes <InlineMath math="\frac{20}{60}=\frac13" /> of a turn**. The distance traveled by its tip is the arc that is one third of the circumference. Let <InlineMath math="K" /> be the circumference and <InlineMath math="s" /> the length of that arc.
+
+<BlockMath math="\begin{aligned}
+K&=2\pi r=2\cdot\frac{22}{7}\cdot21=132\text{ cm} \\
+s&=\frac{20}{60}\cdot K=\frac13\cdot132=44\text{ cm}
+\end{aligned}" />
+
+<LineEquation
+  title={<>The minute hand from <InlineMath math="8{:}10" /> to <InlineMath math="8{:}30" /></>}
+  description={<>The <InlineMath math="12" /> is at the top. At <InlineMath math="8{:}10" /> the minute hand points to the <InlineMath math="2" />, and at <InlineMath math="8{:}30" /> it points to the <InlineMath math="6" />. The tip travels along an arc with a central angle of <InlineMath math="120^\circ" />.</>}
+  cameraPosition={[50, 50, 66]}
+  cameraTarget={[50, 50, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const t = (i * Math.PI) / 180;
+        return { x: 50 + 21 * Math.cos(t), y: 50 + 21 * Math.sin(t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [0, 21].map((r) => ({ x: 50 + r * Math.cos(Math.PI / 6), y: 50 + r * Math.sin(Math.PI / 6), z: 0 })),
+      color: "#7c3aed",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="8{:}10" />, at: 1, offset: [1.2, 0.7, 0], anchorX: "left" }],
+    },
+    {
+      points: [0, 10.5, 21].map((r) => ({ x: 50 + r * Math.cos(-Math.PI / 2), y: 50 + r * Math.sin(-Math.PI / 2), z: 0 })),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="8{:}30" />, at: 2, offset: [0, -2.4, 0] },
+        { text: <InlineMath math="21\text{ cm}" />, at: 1, offset: [-1.2, 0, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 - i / 2) * Math.PI) / 180;
+        return { x: 50 + 21 * Math.cos(t), y: 50 + 21 * Math.sin(t), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="44\text{ cm}" />, at: 120, offset: [1.2, -0.7, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const t = ((30 - i / 2) * Math.PI) / 180;
+        return { x: 50 + 4 * Math.cos(t), y: 50 + 4 * Math.sin(t), z: 0 };
+      }),
+      color: "#d97706",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="120^\circ" />, at: 120, offset: [0.8, 0, 0], anchorX: "left" }],
+    },
+  ]}
+/>
+
+Check with the angle. The minute hand turns <InlineMath math="\frac{360^\circ}{60}=6^\circ" /> each minute, so in <InlineMath math="20" /> minutes it turns <InlineMath math="120^\circ" />.
+
+<BlockMath math="s=\frac{120^\circ}{360^\circ}\cdot132=44\text{ cm}" />
+
+The tip of the minute hand therefore travels <InlineMath math="44\text{ cm}" />.
+
+- <InlineMath math="14\text{ cm}" /> is one third of the <InlineMath math="42\text{ cm}" /> diameter. It appears when the circumference is taken to be the diameter, which drops the factor <InlineMath math="\pi" />, although the tip travels <InlineMath math="2\pi r=132\text{ cm}" /> in one full turn.
+- <InlineMath math="22\text{ cm}" /> appears when the circumference is computed as <InlineMath math="\pi r=66\text{ cm}" />, which treats <InlineMath math="21\text{ cm}" /> as the diameter instead of the radius.
+- <InlineMath math="26.4\text{ cm}" /> appears when <InlineMath math="20" /> minutes is written as <InlineMath math="0.2" /> hour, although <InlineMath math="20" /> minutes is <InlineMath math="\frac{20}{60}=\frac13" /> hour.
+- <InlineMath math="42\text{ cm}" /> appears when <InlineMath math="\pi" /> is rounded to <InlineMath math="3" />, although the problem asks for <InlineMath math="\pi=\frac{22}{7}" />.

@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Pembahasan Soal 22",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Hanya siswa kelas X yang memilih olahraga yang berpindah, jadi **dasar perhitungan <InlineMath math="25\%" /> adalah <InlineMath math="48" /> siswa**, bukan <InlineMath math="84" /> atau <InlineMath math="120" /> siswa. Banyak siswa kelas X tetap <InlineMath math="120" />, karena siswa yang berpindah pilihan tetap siswa kelas X. Misalkan <InlineMath math="k" /> adalah banyak siswa yang berpindah dan <InlineMath math="S" /> adalah banyak siswa kelas X yang memilih seni setelah perpindahan.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{25}{100}\cdot48=12 \\
+S&=30+12=42 \\
+\frac{S}{120}\cdot100\%&=\frac{42}{120}\cdot100\%=35\%
+\end{aligned}" />
+
+| Pilihan siswa kelas X | Sebelum | Perubahan | Sesudah |
+| --- | ---: | ---: | ---: |
+| Olahraga | <InlineMath math="48" /> | <InlineMath math="-12" /> | <InlineMath math="36" /> |
+| Seni | <InlineMath math="30" /> | <InlineMath math="+12" /> | <InlineMath math="42" /> |
+| Sains | <InlineMath math="42" /> | <InlineMath math="0" /> | <InlineMath math="42" /> |
+| Jumlah | <InlineMath math="120" /> | <InlineMath math="0" /> | <InlineMath math="120" /> |
+
+Tabel itu memeriksa bahwa jumlah siswa kelas X tidak berubah. Grafik berikut menunjukkan pilihan siswa kelas X setelah perpindahan. Batang seni kini sama tinggi dengan batang sains, yaitu <InlineMath math="42" /> dari <InlineMath math="120" /> siswa.
+
+<HistogramChart
+  title="Pilihan siswa kelas X setelah perpindahan"
+  description="Batang seni naik setinggi batang sains, sedangkan batang olahraga turun karena seperempat peminatnya berpindah ke seni."
+  data={[
+    { name: "Olahraga", value: 36 },
+    { name: "Seni", value: 42 },
+    { name: "Sains", value: 42 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Banyak siswa",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+      },
+    },
+  }}
+  yAxisLabel="Banyak siswa"
+/>
+
+Jadi, setelah perpindahan, <InlineMath math="35\%" /> siswa kelas X memilih seni.
+
+- <InlineMath math="25\%" /> adalah persentase siswa seni sebelum perpindahan, <InlineMath math="\frac{30}{120}" />, sehingga perpindahannya belum dihitung.
+- <InlineMath math="31{,}25\%" /> muncul jika banyak siswa seni dinaikkan <InlineMath math="25\%" />, yaitu <InlineMath math="30\cdot1{,}25=37{,}5" /> siswa. Persen itu seharusnya diambil dari siswa olahraga, dan banyak siswa juga tidak mungkin pecahan.
+- <InlineMath math="42{,}5\%" /> muncul jika <InlineMath math="25\%" /> dari seluruh <InlineMath math="84" /> siswa olahraga di kelas X dan kelas XI dianggap berpindah, padahal siswa kelas XI tidak berpindah.
+- <InlineMath math="50\%" /> muncul jika <InlineMath math="25\%" /> dari seluruh <InlineMath math="120" /> siswa kelas X, yaitu <InlineMath math="30" /> siswa, dianggap berpindah ke seni.

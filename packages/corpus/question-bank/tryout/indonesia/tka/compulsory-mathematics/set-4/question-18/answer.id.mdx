@@ -1,0 +1,58 @@
+export const metadata = {
+  title: "Pembahasan Soal 18",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Massa sama dengan massa jenis kali volume, jadi yang perlu dihitung adalah **volume beton pada dinding saja**, bukan volume seluruh tabung. Penampang gorong-gorong berbentuk cincin di antara lingkaran luar berjari-jari <InlineMath math="R=35\text{ cm}" /> dan lingkaran dalam berjari-jari <InlineMath math="r=35-7=28\text{ cm}" />. Massa jenisnya dalam <InlineMath math="\text{g/cm}^3" />, jadi panjangnya juga harus dalam sentimeter, yaitu <InlineMath math="\ell=1\text{ m}=100\text{ cm}" />.
+
+<MathVisual
+  title="Penampang gorong-gorong"
+  description={<>Beton hanya mengisi cincin di antara lingkaran luar berjari-jari <InlineMath math="35\text{ cm}" /> dan lingkaran dalam berjari-jari <InlineMath math="28\text{ cm}" />. Lebar cincin itu adalah tebal dinding, <InlineMath math="7\text{ cm}" />.</>}
+  labels={{
+    "length-outer": <InlineMath math="35\text{ cm}" />,
+    "length-inner": <InlineMath math="28\text{ cm}" />,
+    "length-wall": <InlineMath math="7\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 82 },
+      y: { min: -2, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-wall", kind: "circle", appearance: "primary", center: { x: 40, y: 40 }, radius: 35 },
+      { id: "inner-wall", kind: "circle", appearance: "secondary", center: { x: 40, y: 40 }, radius: 28 },
+      { id: "radius-outer", kind: "segment", appearance: "primary", from: { x: 40, y: 40 }, to: { x: 40, y: 75 } },
+      { id: "radius-inner", kind: "segment", appearance: "secondary", from: { x: 40, y: 40 }, to: { x: 12, y: 40 } },
+      { id: "wall-thickness", kind: "segment", appearance: "highlight", from: { x: 68, y: 40 }, to: { x: 75, y: 40 } },
+    ],
+    labels: [
+      { key: "length-outer", objectId: "radius-outer", at: { x: 40, y: 57.5 }, placement: "right" },
+      { key: "length-inner", objectId: "radius-inner", at: { x: 26, y: 40 }, placement: "above" },
+      { key: "length-wall", objectId: "wall-thickness", at: { x: 75, y: 40 }, placement: "right" },
+    ],
+  }}
+/>
+
+Luas cincin adalah luas lingkaran luar dikurangi luas lingkaran dalam. Selisih kuadratnya paling mudah dihitung dengan pemfaktoran, <InlineMath math="35^2-28^2=(35-28)(35+28)=7\cdot63=441" />. Massa jenis beton ditulis <InlineMath math="\rho=2{,}5\text{ g/cm}^3" />.
+
+<BlockMath math="\begin{aligned}
+V&=\pi\left(R^2-r^2\right)\ell \\
+&=\frac{22}{7}\cdot441\cdot100 \\
+&=138{.}600\text{ cm}^3 \\
+m&=\rho V=2{,}5\cdot138{.}600=346{.}500\text{ g}=346{,}5\text{ kg}
+\end{aligned}" />
+
+Periksa dengan cara kedua. Jika dinding dibuka menjadi lempeng, panjangnya sama dengan keliling lingkaran tengah berjari-jari <InlineMath math="\frac{35+28}{2}=31{,}5\text{ cm}" />, lebarnya <InlineMath math="100\text{ cm}" />, dan tebalnya <InlineMath math="7\text{ cm}" />. Cara ini tepat karena <InlineMath math="R^2-r^2=(R-r)(R+r)" />.
+
+<BlockMath math="2\cdot\frac{22}{7}\cdot31{,}5\cdot7\cdot100=138{.}600\text{ cm}^3" />
+
+Jadi, massa satu gorong-gorong adalah <InlineMath math="346{,}5\text{ kg}" />.
+
+- <InlineMath math="3{,}465\text{ kg}" /> muncul jika panjang <InlineMath math="1\text{ m}" /> tidak diubah menjadi <InlineMath math="100\text{ cm}" />, sehingga volumenya hanya <InlineMath math="1{.}386\text{ cm}^3" />.
+- <InlineMath math="38{,}5\text{ kg}" /> muncul jika luas cincin dihitung sebagai <InlineMath math="\pi\cdot7^2" />, yaitu tebal dinding dikuadratkan, padahal luas cincin adalah <InlineMath math="\pi\left(R^2-r^2\right)" />.
+- <InlineMath math="138{,}6\text{ kg}" /> muncul jika volume <InlineMath math="138{.}600\text{ cm}^3=138{,}6" /> liter langsung dibaca sebagai <InlineMath math="138{,}6\text{ kg}" />, seolah-olah massa jenis beton sama dengan air, <InlineMath math="1\text{ g/cm}^3" />.
+- <InlineMath math="962{,}5\text{ kg}" /> adalah massa tabung pejal berjari-jari <InlineMath math="35\text{ cm}" />, tanpa mengurangi rongga di dalamnya.

@@ -1,0 +1,85 @@
+export const metadata = {
+  title: "Solution to Question 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Two quantities change from one stage to the next. **The number of colored triangles triples**, because each colored triangle produces three new colored triangles. **The colored area is multiplied by <InlineMath math="\frac34" />**, because the four new triangles have equal areas and only one of the four parts loses its color.
+
+At stage <InlineMath math="0" />, the triangle has area <InlineMath math="\frac12\times8\times8=32\text{ cm}^2" />. Let <InlineMath math="N_n" /> be the number of colored triangles and <InlineMath math="L_n" /> the colored area in <InlineMath math="\text{cm}^2" /> at stage <InlineMath math="n" />. Both form geometric sequences.
+
+<BlockMath math="\begin{aligned}
+N_n&=3^n \\
+L_n&=32\left(\frac34\right)^n \\
+L_{n-1}-L_n&=\frac14\,L_{n-1}
+\end{aligned}" />
+
+The last line gives the area that loses its color when stage <InlineMath math="n-1" /> becomes stage <InlineMath math="n" />, which is one quarter of the colored area at the previous stage.
+
+| Stage | Colored triangles | Colored area <InlineMath math="(\text{cm}^2)" /> | Area that just lost its color <InlineMath math="(\text{cm}^2)" /> |
+| ---: | ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | none yet |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="\frac{27}{2}=13.5" /> | <InlineMath math="\frac92" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="\frac{81}{8}=10.125" /> | <InlineMath math="\frac{27}{8}" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="\frac{243}{32}\approx7.59" /> | <InlineMath math="\frac{81}{32}" /> |
+
+<MathVisual
+  title={<>Stage <InlineMath math="3" /> of the pattern</>}
+  description={<>Stage <InlineMath math="3" /> contains <InlineMath math="27" /> colored triangles with legs of <InlineMath math="1\text{ cm}" />. Each small triangle has area <InlineMath math="\frac12\text{ cm}^2" />, so the colored area is <InlineMath math="\frac{27}{2}\text{ cm}^2" />.</>}
+  labels={{
+    "leg-small": <InlineMath math="1\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -2, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "stage-3-part-1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }] },
+      { id: "stage-3-part-2", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 1 }] },
+      { id: "stage-3-part-3", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 2 }] },
+      { id: "stage-3-part-4", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 2, y: 1 }] },
+      { id: "stage-3-part-5", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 3, y: 1 }] },
+      { id: "stage-3-part-6", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }] },
+      { id: "stage-3-part-7", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }, { x: 0, y: 3 }] },
+      { id: "stage-3-part-8", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }] },
+      { id: "stage-3-part-9", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 4 }] },
+      { id: "stage-3-part-10", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 4, y: 1 }] },
+      { id: "stage-3-part-11", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 5, y: 1 }] },
+      { id: "stage-3-part-12", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 5, y: 1 }, { x: 4, y: 2 }] },
+      { id: "stage-3-part-13", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 6, y: 1 }] },
+      { id: "stage-3-part-14", kind: "polygon", appearance: "primary", vertices: [{ x: 7, y: 0 }, { x: 8, y: 0 }, { x: 7, y: 1 }] },
+      { id: "stage-3-part-15", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 1 }, { x: 7, y: 1 }, { x: 6, y: 2 }] },
+      { id: "stage-3-part-16", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 2 }, { x: 5, y: 2 }, { x: 4, y: 3 }] },
+      { id: "stage-3-part-17", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 2 }, { x: 6, y: 2 }, { x: 5, y: 3 }] },
+      { id: "stage-3-part-18", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }, { x: 4, y: 4 }] },
+      { id: "stage-3-part-19", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 1, y: 4 }, { x: 0, y: 5 }] },
+      { id: "stage-3-part-20", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 4 }, { x: 2, y: 4 }, { x: 1, y: 5 }] },
+      { id: "stage-3-part-21", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 1, y: 5 }, { x: 0, y: 6 }] },
+      { id: "stage-3-part-22", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 4 }, { x: 3, y: 4 }, { x: 2, y: 5 }] },
+      { id: "stage-3-part-23", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 3, y: 5 }] },
+      { id: "stage-3-part-24", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }] },
+      { id: "stage-3-part-25", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 6 }, { x: 1, y: 6 }, { x: 0, y: 7 }] },
+      { id: "stage-3-part-26", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 6 }, { x: 2, y: 6 }, { x: 1, y: 7 }] },
+      { id: "stage-3-part-27", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 7 }, { x: 1, y: 7 }, { x: 0, y: 8 }] },
+    ],
+    labels: [
+      { key: "leg-small", objectId: "stage-3-part-1", at: { x: 0.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+The picture of stage <InlineMath math="3" /> also checks the table. It has <InlineMath math="27" /> small colored triangles with legs of <InlineMath math="\frac{8}{2^3}=1\text{ cm}" />, so the colored area is <InlineMath math="27\times\frac12=13.5\text{ cm}^2" />, the same as <InlineMath math="L_3" />.
+
+1. The statement that stage <InlineMath math="n" /> has <InlineMath math="3n" /> colored triangles is false. That formula fits only <InlineMath math="n=1" />. Stage <InlineMath math="2" /> has <InlineMath math="3^2=9" /> triangles, not <InlineMath math="3\times2=6" />, because the count is multiplied by <InlineMath math="3" /> at each stage, not increased by <InlineMath math="3" />.
+2. The statement that stage <InlineMath math="4" /> contains <InlineMath math="81" /> colored triangles is true, because <InlineMath math="N_4=3^4=81" />.
+3. The statement that the first two changes remove equal areas is false. Going from stage <InlineMath math="0" /> to stage <InlineMath math="1" /> removes <InlineMath math="\frac14\times32=8\text{ cm}^2" />, while going from stage <InlineMath math="1" /> to stage <InlineMath math="2" /> removes <InlineMath math="\frac14\times24=6\text{ cm}^2" />. The removed part shrinks because the quarter is taken from a colored area that keeps getting smaller.
+4. The statement that the colored area at stage <InlineMath math="3" /> is <InlineMath math="13.5\text{ cm}^2" /> is true, because <InlineMath math="L_3=32\times\frac{27}{64}=\frac{27}{2}=13.5" />.
+5. The statement about stage <InlineMath math="5" /> is true. The colored area keeps decreasing, <InlineMath math="L_4=\frac{81}{8}=10.125" /> is still more than <InlineMath math="10" />, and <InlineMath math="L_5=\frac{243}{32}\approx7.59" /> is already less than <InlineMath math="10" />.
+
+The true statements are the ones about <InlineMath math="81" /> triangles at stage <InlineMath math="4" />, an area of <InlineMath math="13.5\text{ cm}^2" /> at stage <InlineMath math="3" />, and stage <InlineMath math="5" /> as the first stage with a colored area below <InlineMath math="10\text{ cm}^2" />.

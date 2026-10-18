@@ -1,0 +1,72 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Die Durchschnittsgeschwindigkeit ergibt sich aus der **gesamten zurückgelegten Strecke**, nicht aus dem Unterschied zwischen End- und Anfangshöhe. Aufwärts- und Abwärtsfahrt vergrößern beide die Strecke. Auf jedem Abschnitt des Graphen ist die Strecke der Betrag der Höhenänderung, und die Geschwindigkeit ist diese Strecke geteilt durch die Dauer des Abschnitts.
+
+| Zeitintervall | Höhe | Strecke | Dauer | Geschwindigkeit |
+| --- | --- | ---: | ---: | ---: |
+| <InlineMath math="0\le t\le10" /> | steigt von <InlineMath math="0" /> auf <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="10\text{ s}" /> | <InlineMath math="2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | bleibt bei <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="6\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | sinkt von <InlineMath math="20" /> auf <InlineMath math="8\text{ m}" /> | <InlineMath math="12\text{ m}" /> | <InlineMath math="8\text{ s}" /> | <InlineMath math="1{,}5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | bleibt bei <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | steigt von <InlineMath math="8" /> auf <InlineMath math="26\text{ m}" /> | <InlineMath math="18\text{ m}" /> | <InlineMath math="12\text{ s}" /> | <InlineMath math="1{,}5\text{ m/s}" /> |
+
+<MathVisual
+  title="Geschwindigkeit auf jedem Abschnitt"
+  description={<>Schräge Abschnitte zeigen, dass der Aufzug fährt, waagerechte Abschnitte, dass er steht. Auch der fallende Abschnitt auf <InlineMath math="16\le t\le24" /> erhöht die Strecke um <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    "speed-1": <InlineMath math="2\text{ m/s}" />,
+    "speed-2": <InlineMath math="0\text{ m/s}" />,
+    "speed-3": <InlineMath math="1{,}5\text{ m/s}" />,
+    "speed-4": <InlineMath math="0\text{ m/s}" />,
+    "speed-5": <InlineMath math="1{,}5\text{ m/s}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "part-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 20 } },
+      { id: "part-2", kind: "segment", appearance: "reference", from: { x: 10, y: 20 }, to: { x: 16, y: 20 } },
+      { id: "part-3", kind: "segment", appearance: "primary", from: { x: 16, y: 20 }, to: { x: 24, y: 8 } },
+      { id: "part-4", kind: "segment", appearance: "reference", from: { x: 24, y: 8 }, to: { x: 28, y: 8 } },
+      { id: "part-5", kind: "segment", appearance: "primary", from: { x: 28, y: 8 }, to: { x: 40, y: 26 } },
+      { id: "vertex-0", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "vertex-1", kind: "point", appearance: "reference", at: { x: 10, y: 20 } },
+      { id: "vertex-2", kind: "point", appearance: "reference", at: { x: 16, y: 20 } },
+      { id: "vertex-3", kind: "point", appearance: "reference", at: { x: 24, y: 8 } },
+      { id: "vertex-4", kind: "point", appearance: "reference", at: { x: 28, y: 8 } },
+      { id: "vertex-5", kind: "point", appearance: "reference", at: { x: 40, y: 26 } },
+    ],
+    labels: [
+      { key: "speed-1", objectId: "part-1", at: { x: 5, y: 10 }, placement: "above-left" },
+      { key: "speed-2", objectId: "part-2", at: { x: 13, y: 20 }, placement: "above" },
+      { key: "speed-3", objectId: "part-3", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "speed-4", objectId: "part-4", at: { x: 26, y: 8 }, placement: "below" },
+      { key: "speed-5", objectId: "part-5", at: { x: 34, y: 17 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Es seien <InlineMath math="s" /> die gesamte Strecke und <InlineMath math="v" /> die Durchschnittsgeschwindigkeit in den <InlineMath math="40" /> Sekunden.
+
+<BlockMath math="\begin{aligned}
+s&=20+0+12+0+18=50\text{ m} \\
+v&=\frac{s}{40\text{ s}}=\frac{50\text{ m}}{40\text{ s}}=\frac54\text{ m/s}
+\end{aligned}" />
+
+Das Ergebnis ist plausibel. Eine Durchschnittsgeschwindigkeit liegt zwischen der kleinsten Geschwindigkeit <InlineMath math="0\text{ m/s}" /> und der größten Geschwindigkeit <InlineMath math="2\text{ m/s}" />. Außerdem steht der Aufzug <InlineMath math="10" /> Sekunden lang, also muss sein Durchschnitt kleiner sein als die Durchschnittsgeschwindigkeit während der Fahrt allein, <InlineMath math="\frac{50}{30}=\frac53\text{ m/s}" />.
+
+Die Durchschnittsgeschwindigkeit des Aufzugs in diesen <InlineMath math="40" /> Sekunden beträgt also <InlineMath math="\frac54\text{ m/s}" />.
+
+- <InlineMath math="\frac{13}{20}\text{ m/s}" /> erhältst du aus der Höhenänderung vom Anfang bis zum Ende, <InlineMath math="26\text{ m}" />, geteilt durch <InlineMath math="40\text{ s}" />. Dabei verringert die Abwärtsfahrt von <InlineMath math="12\text{ m}" /> die Strecke, obwohl der Aufzug sie tatsächlich zurücklegt.
+- <InlineMath math="\frac{19}{20}\text{ m/s}" /> berücksichtigt nur die Aufwärtsfahrten, <InlineMath math="20+18=38\text{ m}" />, und vergisst die Abwärtsfahrt von <InlineMath math="12\text{ m}" />.
+- <InlineMath math="1\text{ m/s}" /> ist der Mittelwert der fünf Abschnittsgeschwindigkeiten <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="1{,}5" />, <InlineMath math="0" /> und <InlineMath math="1{,}5" />, der die unterschiedliche Dauer der Abschnitte übersieht.
+- <InlineMath math="\frac53\text{ m/s}" /> entsteht, wenn du die gesamte Strecke nur durch die <InlineMath math="30" /> Sekunden Fahrzeit teilst, obwohl die <InlineMath math="10" /> Sekunden Stillstand zum Intervall von <InlineMath math="40" /> Sekunden gehören.

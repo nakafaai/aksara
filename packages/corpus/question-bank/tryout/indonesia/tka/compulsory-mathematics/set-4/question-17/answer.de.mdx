@@ -1,0 +1,77 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 17",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Die Kosten hängen vom Flächeninhalt der vier Seitenflächen des Dachs ab. Jede Seitenfläche ist ein gleichschenkliges Dreieck mit der Grundseite <InlineMath math="8\text{ m}" />. **Die Höhe dieses Dreiecks ist der Abstand von <InlineMath math="T" /> zur Mitte seiner Grundseite**, nicht die Pyramidenhöhe <InlineMath math="3\text{ m}" />.
+
+Es seien <InlineMath math="O" /> der Mittelpunkt der Grundfläche und <InlineMath math="M" /> die Mitte von <InlineMath math="AB" />. Das Dreieck <InlineMath math="TOM" /> hat bei <InlineMath math="O" /> einen rechten Winkel, mit <InlineMath math="TO=3\text{ m}" /> und <InlineMath math="OM=4\text{ m}" />, der halben Grundseite. Es seien <InlineMath math="L" /> der Flächeninhalt der vier Seitenflächen und <InlineMath math="K" /> die Kosten in Rupiah.
+
+<BlockMath math="\begin{aligned}
+TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
+L_{\triangle TAB}&=\frac12\cdot AB\cdot TM=\frac12\cdot8\cdot5=20 \\
+L&=4\cdot20=80 \\
+K&=80\cdot85{.}000=6{.}800{.}000
+\end{aligned}" />
+
+<MathVisual
+  title={<>Die Höhe der Seitenfläche <InlineMath math="TM" /></>}
+  description={<>Die Strecke <InlineMath math="TM" /> verbindet die Spitze mit der Mitte der Seite <InlineMath math="AB" /> und ist <InlineMath math="5\text{ m}" /> lang. Sie ist die Hypotenuse des rechtwinkligen Dreiecks <InlineMath math="TOM" /> mit den Katheten <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.</>}
+  labels={{
+    "vertex-t": <InlineMath math="T" />,
+    "vertex-a": <InlineMath math="A" />,
+    "vertex-b": <InlineMath math="B" />,
+    "vertex-c": <InlineMath math="C" />,
+    "vertex-d": <InlineMath math="D" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
+    "name-o": <InlineMath math="O" />,
+    "name-m": <InlineMath math="M" />,
+    "length-om": <InlineMath math="4\text{ m}" />,
+    "length-tm": <InlineMath math="5\text{ m}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 4 },
+      z: { min: -5, max: 5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
+      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
+      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
+      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
+      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
+      { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
+      { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
+      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
+      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
+      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
+      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
+      { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
+      { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Prüfe das Ergebnis über die Kosten je Fläche. Eine Seitenfläche von <InlineMath math="20\text{ m}^2" /> kostet <InlineMath math="20\cdot\text{Rp}85{.}000=\text{Rp}1{.}700{.}000" />, vier Seitenflächen kosten also <InlineMath math="4\cdot\text{Rp}1{.}700{.}000=\text{Rp}6{.}800{.}000" />.
+
+Das Metalldach für die vier Seitenflächen kostet also <InlineMath math="\text{Rp}6{.}800{.}000" />.
+
+- <InlineMath math="\text{Rp}1{.}700{.}000" /> sind die Kosten für nur eine Seitenfläche, obwohl das Dach vier hat.
+- <InlineMath math="\text{Rp}3{.}400{.}000" /> entsteht, wenn du als Grundseite jedes Dreiecks <InlineMath math="4\text{ m}" /> nimmst, also die halbe Seite, die zur Berechnung von <InlineMath math="TM" /> dient. Dann scheint jede Seitenfläche nur <InlineMath math="10\text{ m}^2" /> groß zu sein.
+- <InlineMath math="\text{Rp}4{.}080{.}000" /> entsteht, wenn du die Pyramidenhöhe <InlineMath math="3\text{ m}" /> als Höhe jeder Seitenfläche verwendest. Das ergibt <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
+- <InlineMath math="\text{Rp}5{.}440{.}000" /> sind die Kosten für die Grundfläche <InlineMath math="8\cdot8=64\text{ m}^2" />, obwohl die Seitenflächen bedeckt werden und nicht die Grundfläche.
