@@ -1,337 +1,217 @@
 export const metadata = {
-  title: "Vertical Translation",
-  description: "Shift function graphs up or down while tracking coordinates, asymptotes, and ranges.",
+  title: "Vertical Shift of a Function",
+  description: "Shift a function graph up or down by adding a constant, then track how the range, the horizontal asymptote, and the intercepts change.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-01",
   subject: "Function Transformation",
 };
 
-## Moving a Graph Up or Down
+## Lifting or Lowering the Whole Graph
 
-Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. Each point moves by the **same vertical distance**, lifting or lowering the whole graph.
+A vertical shift moves the whole graph of a function up or down without changing its shape. A shift by <InlineMath math="k" /> changes the equation and every point of the graph like this:
 
-If you have a function <InlineMath math="f(x)" />, then vertical translation produces a new function <InlineMath math="g(x) = f(x) + k" /> where <InlineMath math="k" /> is the translation constant.
+<BlockMath math="y = f(x) \longrightarrow y = f(x) + k, \qquad (x_0, y_0) \longrightarrow (x_0, y_0 + k)" />
 
-### Reading the Sign Rule
+So **a positive <InlineMath math="k" /> lifts the graph and a negative <InlineMath math="k" /> lowers it**, and every <InlineMath math="x" />-coordinate stays the same. The domain does not change, but the range, the horizontal asymptote (the horizontal line the graph approaches), and the <InlineMath math="y" />-intercept move by <InlineMath math="k" />. The interactive 3D view shows the range as the span of heights you see from the side.
 
-Look at where <InlineMath math="k" /> sits in the rule below. It is written outside the function, so it is added to the finished output.
+For example, <InlineMath math="y = x^2 + 3" /> is the parabola <InlineMath math="y = x^2" /> lifted <InlineMath math="3 \text{ units}" />, so its vertex moves from <InlineMath math="(0, 0)" /> to <InlineMath math="(0, 3)" />. The sign of <InlineMath math="k" /> gives the direction directly, because <InlineMath math="k" /> is added to the output after it has been computed. The zeros do not move by <InlineMath math="k" /> and have to be worked out again.
 
-<BlockMath math="g(x) = f(x) + k" />
+## Seeing the Range From the Side
 
-Because <InlineMath math="k" /> is added to the output, its sign works <Highlight>exactly the way you read it</Highlight>. A positive <InlineMath math="k" /> lifts the graph, and a negative <InlineMath math="k" /> lowers it.
+The range of a function is the set of all its outputs, so **the range is the span of heights the graph reaches**. Take <InlineMath math="f(x) = |x| - 1" /> with the domain <InlineMath math="-2 \leq x \leq 2" /> and shift its graph <InlineMath math="4 \text{ units}" /> up. The result is <InlineMath math="g(x) = f(x) + 4 = |x| + 3" /> with the same domain.
 
-| Value of <InlineMath math="k" /> | Shift of the graph | Example of the vertex |
-| --- | --- | --- |
-| <InlineMath math="k > 0" /> | Up by <InlineMath math="k \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(0,k)" /> |
-| <InlineMath math="k < 0" /> | Down by <InlineMath math="\lvert k \rvert \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(0,k)" /> |
-| <InlineMath math="k = 0" /> | The graph does not move | <InlineMath math="(0,0)" /> stays where it is |
+On the domain <InlineMath math="-2 \leq x \leq 2" />, the [absolute value](/en/subjects/mathematics/function-modeling/absolute-value-function) <InlineMath math="|x|" /> is smallest, <InlineMath math="0" />, at <InlineMath math="x = 0" /> and largest, <InlineMath math="2" />, at both ends, so the range of <InlineMath math="f" /> is <InlineMath math="[-1, 1]" /> and the range of <InlineMath math="g" /> is <InlineMath math="[3, 5]" />.
 
-All three rows use the vertex <InlineMath math="(0,0)" /> as a reference so the direction is easy to compare. For a function with a different reference point, every point moves by the same distance in the same direction.
+In the 3D view, the graph of <InlineMath math="g" /> is drawn in a plane parallel to the plane of <InlineMath math="f" />, so you can look at both from the side without one hiding the other.
 
-## Visualization of Vertical Translation
-
-The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical translation leaves the slope unchanged.
-
-<LineEquation
-  title={<>Vertical Translation of Linear Function <InlineMath math="f(x) = 2x" /></>}
-  description={<>The three lines have the same slope and different <InlineMath math="y" />-intercepts.</>}
-  data={[
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [3.8, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [-3.5, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x - 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [3.8, -0.7, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[0, 0.5, 0]}
-  cameraPosition={[0, 0.5, 14]}
-  showZAxis={false}
+<MathVisual
+  title={<>Graphs of <InlineMath math="f(x) = |x| - 1" /> and <InlineMath math="g(x) = |x| + 3" /> in two parallel planes</>}
+  description={<>Turn the view until you look from the side: each graph covers its own range bar, <InlineMath math="[-1, 1]" /> and <InlineMath math="[3, 5]" />. From above, each graph covers its own domain bar, and both bars span <InlineMath math="[-2, 2]" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = |x| - 1" />,
+    g: <InlineMath math="g(x) = |x| + 3" />,
+    rangef: <InlineMath math="[-1, 1]" />,
+    rangeg: <InlineMath math="[3, 5]" />,
+    domain: <InlineMath math="[-2, 2]" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 3 }, y: { min: -3, max: 6 }, z: { min: -2.5, max: 0.5 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "graph-f", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 1, z: 0 }, { x: 0, y: -1, z: 0 }, { x: 2, y: 1, z: 0 }] },
+      { id: "graph-g", kind: "polyline", appearance: "secondary", vertices: [{ x: -2, y: 5, z: -2 }, { x: 0, y: 3, z: -2 }, { x: 2, y: 5, z: -2 }] },
+      { id: "range-f", kind: "segment", appearance: "primary", from: { x: -3, y: -1, z: 0 }, to: { x: -3, y: 1, z: 0 } },
+      { id: "range-g", kind: "segment", appearance: "secondary", from: { x: -3, y: 3, z: -2 }, to: { x: -3, y: 5, z: -2 } },
+      { id: "domain-f", kind: "segment", appearance: "reference", from: { x: -2, y: -2, z: 0 }, to: { x: 2, y: -2, z: 0 } },
+      { id: "domain-g", kind: "segment", appearance: "reference", from: { x: -2, y: 2, z: -2 }, to: { x: 2, y: 2, z: -2 } },
+      { id: "vertex-f", kind: "point", appearance: "primary", at: { x: 0, y: -1, z: 0 } },
+      { id: "vertex-g", kind: "point", appearance: "secondary", at: { x: 0, y: 3, z: -2 } },
+    ],
+    labels: [
+      { key: "f", objectId: "graph-f", at: { x: 2, y: 1, z: 0 }, placement: "right" },
+      { key: "g", objectId: "graph-g", at: { x: 2, y: 5, z: -2 }, placement: "right" },
+      { key: "rangef", objectId: "range-f", at: { x: -3, y: 0, z: 0 }, placement: "left" },
+      { key: "rangeg", objectId: "range-g", at: { x: -3, y: 4, z: -2 }, placement: "left" },
+      { key: "domain", objectId: "domain-f", at: { x: 0, y: -2, z: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
-The graph shows:
-- The original function <InlineMath math="f(x) = 2x" /> passes through the origin
-- Function <InlineMath math="g(x) = 2x + 3" /> is the result of translation **upward** by <InlineMath math="3 \text{ units}" />
-- Function <InlineMath math="h(x) = 2x - 2" /> is the result of translation downward by <InlineMath math="2 \text{ units}" />
+Turn the view until you are looking along the <InlineMath math="x" />-axis. Each graph then appears as a vertical segment that covers its own range bar. **Each end of the range bar rises by <InlineMath math="4 \text{ units}" />**, from <InlineMath math="-1" /> to <InlineMath math="3" /> and from <InlineMath math="1" /> to <InlineMath math="5" />, because every height has increased by <InlineMath math="k = 4" />. The two bars have the same length, because the shape of the graph does not change.
 
-## Vertical Translation on Quadratic Functions
+Now turn the view until you look from above. Each graph appears as a horizontal segment that covers its own domain bar, and both bars span <InlineMath math="[-2, 2]" />, because a vertical shift does not touch the <InlineMath math="x" />-coordinates. In general, **a range <InlineMath math="[c, d]" /> becomes <InlineMath math="[c + k, d + k]" />**, while the domain stays the same.
 
-The same translation rule applies to the quadratic function <InlineMath math="f(x) = x^2" />.
+## The Vertex and Zeros After the Shift
 
-<LineEquation
-  title={<>Vertical Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
-  description="The parabola shape remains the same, only its vertical position changes."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4, z: 0 };
-      }),
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=x^2+4" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 3, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=x^2-3" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
+The function <InlineMath math="f(x) = x^2 - 4x + 3 = (x - 2)^2 - 1" /> has its vertex at <InlineMath math="(2, -1)" /> and its zeros at <InlineMath math="1" /> and <InlineMath math="3" />, the values of <InlineMath math="x" /> that make <InlineMath math="f(x) = 0" />. Lift its graph <InlineMath math="5 \text{ units}" /> by adding <InlineMath math="5" /> to every output:
 
-The vertices make the displacement explicit:
-- The **vertex** of the original parabola <InlineMath math="f(x) = x^2" /> is at <InlineMath math="(0, 0)" />
-- After vertical translation <InlineMath math="+4" />, the vertex of <InlineMath math="g(x) = x^2 + 4" /> is at <InlineMath math="(0, 4)" />
-- After vertical translation <InlineMath math="-3" />, the vertex of <InlineMath math="h(x) = x^2 - 3" /> is at <InlineMath math="(0, -3)" />
+<BlockMath math="g(x) = f(x) + 5 = x^2 - 4x + 3 + 5 = x^2 - 4x + 8" />
 
-## Which Values the Vertical Shift Moves
+The vertex rises from <InlineMath math="(2, -1)" /> to <InlineMath math="(2, 4)" />. Check: <InlineMath math="g(2) = 4 - 8 + 8 = 4" />. To find the zeros of <InlineMath math="g" />, compute the discriminant of the equation <InlineMath math="x^2 - 4x + 8 = 0" />:
 
-Once you know the direction of the shift, you still need to know which parts of the function move with it. A vertical translation acts on the output, so the **height** of the graph moves while the allowed values of <InlineMath math="x" /> stay the same.
+<BlockMath math="D = (-4)^2 - 4 \cdot 1 \cdot 8 = 16 - 32 = -16" />
 
-Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. After a translation by <InlineMath math="k" />, that point moves to <InlineMath math="(a, b + k)" /> on the graph of <InlineMath math="f(x) + k" />. The <InlineMath math="x" /> coordinate does not change, only the <InlineMath math="y" /> value moves.
+A negative discriminant means the equation [has no real roots](/en/subjects/mathematics/quadratic-function/quadratic-equation-types-of-root), so **the graph of <InlineMath math="g" /> does not cross the <InlineMath math="x" />-axis**. Its lowest point already sits at height <InlineMath math="4" />.
 
-| Part of the function | Before the translation | After the translation by <InlineMath math="k" /> |
+The zeros do not move by <InlineMath math="5 \text{ units}" />, because the shift changes the heights of points while a zero is a value of <InlineMath math="x" />. The values of <InlineMath math="x" /> that make <InlineMath math="f(x) + k = 0" /> are exactly the values that make <InlineMath math="f(x) = -k" />. So the new zeros are **the <InlineMath math="x" />-values where the old graph has height <InlineMath math="-k" />**.
+
+| Value of <InlineMath math="k" /> | Equation <InlineMath math="f(x) = -k" /> | Zeros of <InlineMath math="f(x) + k" /> |
 | --- | --- | --- |
-| Graph shape | The original shape | The same shape, moved vertically |
-| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a, b + k)" /> |
-| Domain | The original interval | The same interval as before |
-| Range <InlineMath math="[c, d]" /> | The original interval | Moves to <InlineMath math="[c + k, d + k]" /> |
+| <InlineMath math="5" /> | <InlineMath math="x^2 - 4x + 3 = -5" /> | None |
+| <InlineMath math="1" /> | <InlineMath math="x^2 - 4x + 3 = -1" /> | <InlineMath math="2" /> |
+| <InlineMath math="0" /> | <InlineMath math="x^2 - 4x + 3 = 0" /> | <InlineMath math="1" /> and <InlineMath math="3" /> |
+| <InlineMath math="-5" /> | <InlineMath math="x^2 - 4x + 3 = 5" /> | <InlineMath math="2 - \sqrt{6}" /> and <InlineMath math="2 + \sqrt{6}" /> |
 
-The range moves with the graph because it describes the height of the output values, while the domain stays the same because the allowed values of <InlineMath math="x" /> do not change. A [horizontal translation](/en/subjects/mathematics/function-transformation/horizontal-translation) swaps those roles.
+As <InlineMath math="k" /> increases from <InlineMath math="0" /> to <InlineMath math="1" />, the two zeros move toward each other until they meet at <InlineMath math="x = 2" />, where the vertex touches the <InlineMath math="x" />-axis. For <InlineMath math="k > 1" /> both disappear. When the graph is lowered <InlineMath math="5 \text{ units}" />, the two zeros move apart to about <InlineMath math="-0.45" /> and <InlineMath math="4.45" />.
 
-## Moving an Exponential Graph Vertically
+## The Horizontal Asymptote Moves Too
 
-For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical translation also moves the **horizontal asymptote**.
+The graph of the [exponential function](/en/subjects/mathematics/function-modeling/exponential-function) <InlineMath math="f(x) = 2^x" /> gets closer and closer to the line <InlineMath math="y = 0" /> as <InlineMath math="x" /> decreases, but it never touches that line. A line that a graph approaches like this is called a horizontal [asymptote](/en/subjects/mathematics/function-modeling/asymptote). Shift the graph of <InlineMath math="f" /> down by <InlineMath math="3 \text{ units}" />, so <InlineMath math="g(x) = 2^x - 3" />.
+
+Since <InlineMath math="2^x" /> is always positive, <InlineMath math="2^x - 3" /> is always greater than <InlineMath math="-3" /> and gets closer to <InlineMath math="-3" /> as <InlineMath math="x" /> decreases. So **the horizontal asymptote of <InlineMath math="g" /> drops to <InlineMath math="y = -3" />**, and the range becomes <InlineMath math="(-3, \infty)" />. The <InlineMath math="y" />-intercept and the zero come straight from the rule for <InlineMath math="g" />:
+
+<MathContainer>
+<BlockMath math="g(0) = 2^0 - 3 = -2" />
+<BlockMath math="2^x - 3 = 0 \iff 2^x = 3 \iff x = \log_2 3 \approx 1.585" />
+</MathContainer>
+
+The <InlineMath math="y" />-intercept drops from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, -2)" />, exactly <InlineMath math="3 \text{ units}" />. Check the zero: <InlineMath math="2^{\log_2 3} - 3 = 3 - 3 = 0" />. The graph of <InlineMath math="f" /> has no zero, while the graph of <InlineMath math="g" /> has one, so the zeros do not simply move with the graph.
 
 <LineEquation
-  title={<>Vertical Translation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description="The exponential curve maintains its characteristics after vertical translation."
+  title={<>Curves <InlineMath math="f(x) = 2^x" /> and <InlineMath math="g(x) = 2^x - 3" /></>}
+  description={<>Every point drops <InlineMath math="3 \text{ units}" />, for example <InlineMath math="(2, 4)" /> to <InlineMath math="(2, 1)" />. The curve <InlineMath math="g" /> approaches the line <InlineMath math="y = -3" /> and crosses the <InlineMath math="x" />-axis at <InlineMath math="x = \log_2 3" />.</>}
+  cameraPosition={[-0.5, 2.5, 18]}
+  cameraTarget={[-0.5, 2.5, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 695 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 694) * 8;
+      points: Array.from({ length: 141 }, (_, i) => {
+        const x = -4 + i / 20;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 347 }],
-      showPoints: false,
+      pointIndices: [80, 120],
+      showPoints: true,
+      smooth: false,
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="f(x) = 2^x" />, at: 140, anchorX: "right", offset: [-0.3, 0.3, 0] }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 346 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 345) * 8;
-        return { x, y: Math.pow(2, x) + 2, z: 0 };
+      points: Array.from({ length: 141 }, (_, i) => {
+        const x = -4 + i / 20;
+        return { x, y: Math.pow(2, x) - 3, z: 0 };
       }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0], at: 173 }],
-      showPoints: false,
+      pointIndices: [80, 120],
+      showPoints: true,
+      smooth: false,
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x) = 2^x - 3" />, at: 140, anchorX: "left", offset: [0.3, 0, 0] }],
     },
     {
+      points: [{ x: Math.log2(3), y: 0, z: 0 }],
+      showPoints: true,
       smooth: false,
-      points: Array.from({ length: 697 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 696) * 8;
-        return { x, y: Math.pow(2, x) - 1, z: 0 };
-      }),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0], at: 347 }],
+      color: "#7c3aed",
+    },
+    {
+      points: [
+        { x: -4.5, y: -3, z: 0 },
+        { x: 3.5, y: -3, z: 0 },
+      ],
       showPoints: false,
+      smooth: false,
+      color: "#64748b",
+      labels: [{ text: <InlineMath math="y = -3" />, at: 0, anchorX: "left", offset: [0, -0.45, 0] }],
+    },
+    {
+      points: [
+        { x: 2, y: 4, z: 0 },
+        { x: 2, y: 1, z: 0 },
+      ],
+      cone: { position: "end", size: 0.4 },
+      showPoints: false,
+      smooth: false,
+      color: "#64748b",
     },
   ]}
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
   showZAxis={false}
 />
 
-The horizontal asymptote at <InlineMath math="y = 0" /> on <InlineMath math="f(x) = 2^x" /> moves to <InlineMath math="y = k" /> on <InlineMath math="f(x) + k" />. Unlike a horizontal shift, this changes the height the curve approaches, so the asymptote is no longer pinned to the <InlineMath math="x" />-axis.
+## Mistakes When Adding a Constant
 
-The <InlineMath math="y" />-intercept moves from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, 1 + k)" />. Its <InlineMath math="x" /> coordinate stays at zero because the graph only moves vertically.
+A constant <InlineMath math="k" /> written **outside the parentheses** always moves the graph vertically by <InlineMath math="k" />, because there <InlineMath math="k" /> is added to the output. A constant inside the parentheses, as in <InlineMath math="f(x + 5)" />, gives a [horizontal shift](/en/subjects/mathematics/function-transformation/horizontal-translation) that moves the graph <InlineMath math="5 \text{ units}" /> to the left. Multiplying the output, as in <InlineMath math="3f(x)" />, is a [vertical dilation](/en/subjects/mathematics/function-transformation/vertical-dilation) that multiplies every height, while adding <InlineMath math="k" /> moves every point by the same distance.
+
+| Mistake | Why it fails | How to catch it |
+| --- | --- | --- |
+| Writing <InlineMath math="f(x + 3)" /> for a shift up | A constant inside the parentheses changes the input, so the graph moves sideways | The height at <InlineMath math="x_0" /> must rise by exactly <InlineMath math="3" />, but <InlineMath math="f(x_0 + 3)" /> usually differs from <InlineMath math="f(x_0) + 3" /> |
+| Changing the domain | A vertical shift does not touch the <InlineMath math="x" />-coordinates | The domain conditions for <InlineMath math="f" /> and <InlineMath math="f + k" /> are identical |
+| Moving the zeros by <InlineMath math="k" /> | A zero is a value of <InlineMath math="x" />, while the shift changes heights | Solve <InlineMath math="f(x) = -k" /> |
+| Leaving the asymptote at <InlineMath math="y = 0" /> | Every output grows by <InlineMath math="k" />, including the value the graph approaches | Work out the value that <InlineMath math="f(x) + k" /> approaches |
+| Reading <InlineMath math="f(x) - 3" /> as a shift up by <InlineMath math="3" /> | That form means <InlineMath math="k = -3" /> | The <InlineMath math="y" />-intercept must drop from <InlineMath math="f(0)" /> to <InlineMath math="f(0) - 3" /> |
+
+In [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function), the order of adding to and multiplying the output changes the result: <InlineMath math="2f(x) + 1" /> differs from <InlineMath math="2\big(f(x) + 1\big) = 2f(x) + 2" />.
 
 ## Exercises
 
-The three problems below use the sign rule you have just learned. Each one adds the constant to the output, so watch the value of <InlineMath math="k" />. Try them without the answer key first, then compare your steps with the worked answers.
+In each problem, <InlineMath math="k" /> is the change in the height of every point. Add <InlineMath math="k" /> to the whole output <InlineMath math="f(x)" />, then work out the <InlineMath math="y" />-intercept, the zeros, or the range directly from the new rule. **Check one point** before you write down your final answer.
 
-1. Given the function <InlineMath math="f(x) = x^2 + 4x + 3" />. Determine the equation of the function resulting from vertical translation **upward** by <InlineMath math="5 \text{ units}" />.
+1. The graph of <InlineMath math="f(x) = x^2 + 4x + 3" /> is shifted <InlineMath math="3 \text{ units}" /> down. Find the equation of the new graph, its vertex, and its zeros.
 
-2. The graph of the function <InlineMath math="g(x) = 3x + 2" /> is translated vertically downward by <InlineMath math="7 \text{ units}" />. Determine the equation of the resulting translated function, then determine the <InlineMath math="y" />-intercept after translation.
+2. Shift the graph of <InlineMath math="f(x) = 3x + 2" /> down by <InlineMath math="7 \text{ units}" />. What are the equation of the new graph, its <InlineMath math="y" />-intercept, and its zero?
 
-3. Function <InlineMath math="h(x) = \sqrt{x}" /> undergoes vertical translation such that point <InlineMath math="(4, 2)" /> becomes <InlineMath math="(4, 5)" />. Determine the translation constant value and the equation of the resulting translated function.
+3. The graph of <InlineMath math="f(x) = \sqrt{x}" /> is shifted vertically so that the point <InlineMath math="(4, 2)" /> moves to <InlineMath math="(4, 5)" />. Find <InlineMath math="k" />, the equation of the new graph, and its range.
+
+4. Let <InlineMath math="f(x) = x^2 - 4" />. For which values of <InlineMath math="k" /> does the function <InlineMath math="y = f(x) + k" /> have exactly one zero, and for which values of <InlineMath math="k" /> does it have no zero?
 
 ### Worked Solutions
 
-**Problem 1**. Adding **to the output** gives:
+**Problem 1**. A shift of <InlineMath math="3 \text{ units}" /> down means <InlineMath math="k = -3" />, so subtract <InlineMath math="3" /> from every output:
 
-Vertical translation upward by <InlineMath math="5 \text{ units}" />:
+<BlockMath math="g(x) = f(x) - 3 = x^2 + 4x + 3 - 3 = x^2 + 4x" />
 
-<BlockMath math="F(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
+The form <InlineMath math="f(x) = (x + 2)^2 - 1" /> gives the old vertex <InlineMath math="(-2, -1)" />, so the new vertex is <InlineMath math="(-2, -4)" />. Factoring as <InlineMath math="x^2 + 4x = x(x + 4)" /> gives the zeros <InlineMath math="0" /> and <InlineMath math="-4" />. Check with the rule for zeros: both values must satisfy <InlineMath math="f(x) = 3" />, and indeed <InlineMath math="f(0) = 3" /> and <InlineMath math="f(-4) = 16 - 16 + 3 = 3" />. So the new graph is <InlineMath math="y = x^2 + 4x" /> with the vertex <InlineMath math="(-2, -4)" /> and **the zeros <InlineMath math="0" /> and <InlineMath math="-4" />**.
 
-<LineEquation
-  title={<>Function <InlineMath math="f(x) = x^2 + 4x + 3" /> and Its Translation Result</>}
-  description={
-    <>
-      Original quadratic function and the result of vertical translation
-      upward by <InlineMath math="5 \text{ units}" />.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4 * x + 3, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, at: 10, offset: [0, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4 * x + 3 + 5, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2+4x+8" />, at: 10, offset: [0, -0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
+**Problem 2**. A shift of <InlineMath math="7 \text{ units}" /> down means <InlineMath math="k = -7" />. Write the new equation, then find the intercept from the input zero and the zero from the output zero:
 
-**Problem 2**. Subtract seven from each output to shift the graph down. Find the vertical intercept by setting the input to zero.
+<MathContainer>
+<BlockMath math="g(x) = 3x + 2 - 7 = 3x - 5" />
+<BlockMath math="g(0) = 3 \cdot 0 - 5 = -5" />
+<BlockMath math="3x - 5 = 0 \iff x = \tfrac{5}{3}" />
+</MathContainer>
 
-- Translation **downward** by <InlineMath math="7 \text{ units}" />: <InlineMath math="G(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
-- <InlineMath math="y" />-intercept: substitute <InlineMath math="x = 0" /> into <InlineMath math="G(0) = 3(0) - 5 = -5" />, so the intercept point is <InlineMath math="(0, -5)" />
+The <InlineMath math="y" />-intercept drops from <InlineMath math="(0, 2)" /> to <InlineMath math="(0, -5)" />, exactly <InlineMath math="7 \text{ units}" />. The zero moves from <InlineMath math="-\tfrac{2}{3}" /> to <InlineMath math="\tfrac{5}{3}" />, which is <InlineMath math="\tfrac{7}{3} \text{ units}" /> to the right, **a different distance from the shift of the graph**. Check: <InlineMath math="g\left(\tfrac{5}{3}\right) = 5 - 5 = 0" />. So the new graph is <InlineMath math="y = 3x - 5" /> with the <InlineMath math="y" />-intercept <InlineMath math="(0, -5)" /> and the zero <InlineMath math="\tfrac{5}{3}" />.
 
-Visualization:
+**Problem 3**. The <InlineMath math="x" />-coordinate stays <InlineMath math="4" /> and the height changes from <InlineMath math="2" /> to <InlineMath math="5" />, so this is a vertical shift with <InlineMath math="k = 5 - 2 = 3" />. Add <InlineMath math="3" /> to the output, then find the range from the smallest value of <InlineMath math="\sqrt{x}" />:
 
-<LineEquation
-  title={<>Function <InlineMath math="g(x) = 3x + 2" /> and Its Translation Result</>}
-  description={
-    <>
-      Original linear function and the result of vertical translation
-      downward by <InlineMath math="7 \text{ units}" />.
-    </>
-  }
-  data={[
-    {
-      points: Array.from({ length: 29 }, (_, pointIndex) => {
-        const i = pointIndex - 8;
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * x + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0], at: 18 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * x + 2 - 7, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=3x-5" />, offset: [1, 0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
+<MathContainer>
+<BlockMath math="g(x) = \sqrt{x} + 3" />
+<BlockMath math="\sqrt{x} \geq 0 \iff \sqrt{x} + 3 \geq 3" />
+</MathContainer>
 
-**Problem 3**. Point <InlineMath math="(4, 2)" /> on <InlineMath math="h(x) = \sqrt{x}" /> becomes <InlineMath math="(4, 5)" />, meaning vertical translation by <InlineMath math="k = 5 - 2 = 3 \text{ units}" /> **upward**.
-Equation of the translation result: <InlineMath math="H(x) = \sqrt{x} + 3" />
+Check the point given in the problem: <InlineMath math="g(4) = 2 + 3 = 5" />. The domain stays <InlineMath math="[0, \infty)" />, while **the range moves from <InlineMath math="[0, \infty)" /> to <InlineMath math="[3, \infty)" />**. So <InlineMath math="k = 3" /> and the new graph is <InlineMath math="y = \sqrt{x} + 3" />.
 
-<LineEquation
-  title={<>Function <InlineMath math="h(x) = \sqrt{x}" /> and Its Translation Result</>}
-  description={
-    <>
-      Original square root function and the result of vertical translation
-      upward by <InlineMath math="3 \text{ units}" />.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#4f46e5",
-      labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.58113883008419);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t + 3, z: 0 };
-          });
-      })(),
-      color: "#059669",
-      labels: [{ at: 64, text: <InlineMath math="H(x)=\sqrt{x}+3" />, offset: [0, -0.1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[6, 3, 16]}
-  cameraTarget={[6, 3, 0]}
-  showZAxis={false}
-/>
+**Problem 4**. The zeros of <InlineMath math="y = f(x) + k" /> satisfy this equation:
+
+<BlockMath math="x^2 - 4 + k = 0 \iff x^2 = 4 - k" />
+
+The square of a real number is never negative. If <InlineMath math="4 - k = 0" />, the only solution is <InlineMath math="x = 0" />, so the function has exactly one zero for **<InlineMath math="k = 4" />**. If <InlineMath math="4 - k < 0" />, no real number works, so the function has no zero for **<InlineMath math="k > 4" />**. For <InlineMath math="k < 4" /> there are two zeros, <InlineMath math="x = \pm\sqrt{4 - k}" />. Check <InlineMath math="k = 4" />: <InlineMath math="f(x) + 4 = x^2" />, and the vertex <InlineMath math="(0, -4)" /> rises exactly to <InlineMath math="(0, 0)" />, where the graph touches the <InlineMath math="x" />-axis at one point.

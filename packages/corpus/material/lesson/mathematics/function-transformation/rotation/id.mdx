@@ -1,566 +1,929 @@
 export const metadata = {
-  title: "Rotasi",
-  description: "Gunakan rumus, grafik, dan contoh dengan pembahasan lengkap untuk merotasi titik serta kurva fungsi terhadap pusat tetap.",
+  title: "Rotasi Fungsi",
+  description: "Putar titik dan grafik fungsi sebesar 90, 180, 270 derajat atau sudut apa pun terhadap titik asal maupun pusat lain, lalu temukan persamaan kurva hasilnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Transformasi Fungsi",
 };
 
-## Memutar Titik pada Grafik Mengelilingi Pusat Rotasi
+## Memutar Setiap Titik Grafik
 
-Rotasi adalah transformasi geometri yang memutar suatu objek <Highlight>terhadap titik pusat tertentu dengan sudut rotasi yang ditentukan</Highlight>. Dalam konteks fungsi, rotasi mengubah posisi grafik fungsi dengan cara memutar setiap titik pada grafik tersebut.
+Rotasi grafik fungsi memutar setiap titik pada grafik **dengan sudut yang sama terhadap satu pusat rotasi**. Sudut positif berarti putaran berlawanan arah jarum jam, sedangkan sudut negatif berarti putaran searah jarum jam. Terhadap titik asal <InlineMath math="O(0, 0)" />, rotasi sebesar <InlineMath math="\theta" /> memindahkan titik <InlineMath math="(x, y)" /> ke bayangan <InlineMath math="(x', y')" />:
 
-Bayangkan sebuah roda yang berputar. Setiap titik pada roda bergerak di sepanjang lingkaran yang berpusat di poros. Rotasi grafik bekerja serupa. Setiap titik bergerak mengelilingi pusat rotasi dengan jarak yang tetap.
+<BlockMath math="\begin{aligned} x' &= x\cos\theta - y\sin\theta \\ y' &= x\sin\theta + y\cos\theta \end{aligned}" />
 
-## Rumus Rotasi Terhadap Titik Pusat
+Untuk sudut kelipatan <InlineMath math="90^\circ" />, rumus itu menjadi aturan yang lebih singkat. Putaran <InlineMath math="90^\circ" /> memindahkan <InlineMath math="(x, y)" /> ke <InlineMath math="(-y, x)" />, putaran <InlineMath math="180^\circ" /> ke <InlineMath math="(-x, -y)" />, dan putaran <InlineMath math="270^\circ" /> ke <InlineMath math="(y, -x)" />. Di lingkaran satuan interaktif, kamu bisa mengubah <InlineMath math="\theta" /> sendiri dan melihat ke mana titik <InlineMath math="(1, 0)" /> berpindah.
 
-Untuk merotasi titik <InlineMath math="(x, y)" /> terhadap pusat <InlineMath math="(a, b)" /> dengan sudut <InlineMath math="\theta" />, hitung dahulu koordinat titik relatif terhadap pusat. Tuliskan kedua koordinat ini sebagai <InlineMath math="u" /> dan <InlineMath math="v" />:
+Pada grafik fungsi, rotasi juga mengubah persamaan. Persamaan kurva hasil rotasi kamu peroleh dengan menyatakan koordinat lama melalui koordinat baru, lalu menyubstitusikan ungkapan tersebut ke persamaan semula. Kurva hasilnya **belum tentu grafik fungsi**, karena setelah diputar satu nilai <InlineMath math="x" /> bisa berpasangan dengan dua nilai <InlineMath math="y" />. Aturan putar yang sama juga dipakai untuk titik dan bangun datar pada [rotasi dalam transformasi geometri](/id/materi/matematika/transformasi-geometri/rotasi).
 
-<BlockMath math="\begin{aligned} u &amp;= x-a \\ v &amp;= y-b \end{aligned}" />
+## Asal Rumus dari Lingkaran Satuan
 
-Rotasikan koordinat relatif tersebut, lalu tambahkan kembali koordinat pusat. Penambahan <InlineMath math="a" /> pada koordinat horizontal dan <InlineMath math="b" /> pada koordinat vertikal membawa hasil rotasi ke sistem koordinat semula:
+Mulailah dari titik <InlineMath math="(1, 0)" />, yang berjarak <InlineMath math="1" /> dari titik asal. Karena **rotasi tidak mengubah jarak ke pusat**, bayangannya tetap berada di lingkaran berjari-jari <InlineMath math="1" />, tepat di ujung jari-jari yang membentuk sudut <InlineMath math="\theta" /> dengan sumbu <InlineMath math="x" /> positif. Pada lingkaran satuan, titik di ujung jari-jari bersudut <InlineMath math="\theta" /> memiliki koordinat <InlineMath math="(\cos\theta, \sin\theta)" />. Begitulah kosinus dan sinus didefinisikan untuk sudut berapa pun.
 
-<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ y' &amp;= u\sin\theta+v\cos\theta+b \end{aligned}" />
-
-Setiap simbol pada rumus tersebut berarti:
-- <InlineMath math="(x, y)" /> adalah koordinat **titik asal**
-- <InlineMath math="(x', y')" /> adalah koordinat titik hasil rotasi
-- <InlineMath math="(a, b)" /> adalah titik pusat rotasi
-- <InlineMath math="\theta" /> adalah sudut rotasi (positif untuk arah berlawanan jarum jam)
-
-## Rotasi Khusus Terhadap Titik Asal
-
-Rotasi terhadap titik asal <InlineMath math="(0, 0)" /> adalah kasus yang paling sering kamu jumpai, karena mengganti <InlineMath math="a = 0" /> dan <InlineMath math="b = 0" /> menghapus suku translasi pada rumus umum. Yang tersisa hanyalah perubahan arah, dan tiga putaran seperempat berikut mencakup sebagian besar soal.
-
-Aturan pertama adalah **putaran seperempat berlawanan arah jarum jam**. Terapkan aturan pertama dua kali untuk memperoleh aturan putaran setengah, atau tiga kali untuk memperoleh aturan putaran tiga perempat.
-
-1. Rotasi <InlineMath math="90^\circ" />
-
-<BlockMath math="(x, y) \rightarrow (-y, x)" />
-
-2. Rotasi <InlineMath math="180^\circ" />
-
-<BlockMath math="(x, y) \rightarrow (-x, -y)" />
-
-3. Rotasi <InlineMath math="270^\circ" />
-
-<BlockMath math="(x, y) \rightarrow (y, -x)" />
-
-## Visualisasi Rotasi Fungsi Kuadrat
-
-Memutar kurva berarti memutar setiap titiknya. Fungsi kuadrat <InlineMath math="y = x^2" /> memperlihatkan hal itu dengan jelas karena titik-titiknya berpasangan pada nilai yang sama, sehingga hasil rotasinya bisa kamu periksa langsung. Tampilan berikut memperlihatkan parabola asli dan hasil rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotasi Fungsi <InlineMath math="y = x^2" /> Terhadap Titik Asal</>}
-  description={<>Perbandingan fungsi asli dengan hasil rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 135 }, (_, pointIndex) => {
-        const x = -2.5 + pointIndex / 134 * 5;
-        const y = x * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=x^2" />,
-          at: 92,
-          offset: [0.5, 0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 369 }, (_, pointIndex) => {
-        const x = -2.5 + pointIndex / 368 * 5;
-        const y = x * x;
-        // Rotasi 90° terhadap titik asal: (x,y) → (-y,x)
-        const xRotated = -y;
-        const yRotated = x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <>Hasil Rotasi <InlineMath math="90^\circ" /></>,
-          at: 159,
-          offset: [-1, 0.5, 0],
-        },
-      ],
-    },
-  ]}
+<UnitCircle
+  title={<>Bayangan titik <InlineMath math="(1, 0)" /> setelah diputar sebesar <InlineMath math="\theta" /></>}
+  description={<>Ubah nilai <InlineMath math="\theta" /> pada kolom sudut. Ujung jari-jari adalah bayangan <InlineMath math="(1, 0)" />, jadi koordinatnya selalu <InlineMath math="(\cos\theta, \sin\theta)" /> dan jaraknya ke titik asal tetap <InlineMath math="1" />.</>}
+  angle={60}
 />
 
-Hasil rotasi memenuhi **relasi**, bukan fungsi tunggal terhadap koordinat horizontal:
+Kolom sudut dimulai dari <InlineMath math="60" />, sehingga ujung jari-jari berada di <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, sesuai nilai <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> yang tertulis di bawah lingkaran.
 
-<BlockMath math="X=-y=-x^2=-Y^2" />
+Coba isi <InlineMath math="90" />, <InlineMath math="180" />, dan <InlineMath math="270" />. Ujung jari-jari berhenti di <InlineMath math="(0, 1)" />, <InlineMath math="(-1, 0)" />, dan <InlineMath math="(0, -1)" />, sementara titiknya tidak pernah meninggalkan lingkaran. Jika kamu mengisi <InlineMath math="-90" />, jari-jari berputar searah jarum jam dan berhenti di <InlineMath math="(0, -1)" />, tempat yang sama dengan putaran <InlineMath math="270^\circ" />.
 
-Titik <InlineMath math="(1,1)" /> dan <InlineMath math="(-1,1)" /> berpindah menjadi <InlineMath math="(-1,1)" /> dan <InlineMath math="(-1,-1)" />. Satu nilai <InlineMath math="X=-1" /> memiliki dua nilai <InlineMath math="Y" />.
+Titik <InlineMath math="(0, 1)" /> sudah membentuk sudut <InlineMath math="90^\circ" /> dengan sumbu <InlineMath math="x" /> positif, jadi memutar titik itu sebesar <InlineMath math="\theta" /> sama dengan **membaca lingkaran pada sudut <InlineMath math="\theta + 90^\circ" />**. Isi <InlineMath math="150" />, yaitu <InlineMath math="60 + 90" />, dan ujung jari-jari berada di <InlineMath math="\left(-\tfrac{\sqrt{3}}{2}, \tfrac{1}{2}\right)" />. Pasangan itu sama dengan <InlineMath math="(-\sin 60^\circ, \cos 60^\circ)" />.
 
-## Sifat Rotasi Fungsi
+Pola yang sama berlaku untuk setiap sudut, karena <InlineMath math="\cos(\theta + 90^\circ) = -\sin\theta" /> dan <InlineMath math="\sin(\theta + 90^\circ) = \cos\theta" />, jadi bayangan <InlineMath math="(0, 1)" /> adalah <InlineMath math="(-\sin\theta, \cos\theta)" />.
 
-Rotasi memindahkan grafik mengelilingi titik tetap tanpa mengubah ukurannya, jadi bentuk grafik tetap dan hanya orientasinya yang berubah. Tabel berikut merangkum apa yang tetap dan apa yang berubah.
+Kedua bayangan itu cukup untuk memutar titik mana pun. Titik <InlineMath math="(x, y)" /> dicapai dari titik asal dengan <InlineMath math="x" /> langkah searah <InlineMath math="(1, 0)" />, lalu <InlineMath math="y" /> langkah searah <InlineMath math="(0, 1)" />. Rotasi memutar persegi panjang yang dibentuk kedua langkah itu secara utuh, jadi bayangannya dicapai dengan **jumlah langkah yang sama di sepanjang arah yang sudah diputar**:
 
-| Sifat | Yang terjadi | Alasannya |
-| --- | --- | --- |
-| Bentuk | Bentuk grafik tidak berubah | Rotasi memindahkan setiap titik dengan sudut yang sama terhadap pusat yang sama |
-| Jarak | Jarak antara dua titik tetap sama | Memutar dua titik terhadap satu pusat mempertahankan ruas yang menghubungkan keduanya |
-| Sudut antar sisi | Sudut pada bangun tetap sama | Rotasi adalah gerak kaku, sehingga tidak pernah membengkokkan bangun |
-| Orientasi | Grafik berputar ke arah baru | Titik selain pusat bergerak pada busur lingkaran mengelilingi pusat |
-| Penggabungan | Dua rotasi terhadap pusat yang sama menjumlahkan sudutnya | Memutar sebesar <InlineMath math="\theta_1" /> lalu <InlineMath math="\theta_2" /> sama dengan satu putaran sebesar <InlineMath math="\theta_1 + \theta_2" /> |
+<BlockMath math="\begin{aligned} (x', y') &= x(\cos\theta, \sin\theta) + y(-\sin\theta, \cos\theta) \\ &= (x\cos\theta - y\sin\theta,\ x\sin\theta + y\cos\theta) \end{aligned}" />
 
-Karena jarak dan sudut tidak pernah berubah, rotasi disebut gerak kaku. Satu fakta itu menjelaskan mengapa bentuk dan ukuran tetap, sedangkan posisi dan arah adalah <Highlight>satu-satunya bagian yang berpindah</Highlight>.
+Kedua komponen itu adalah rumus rotasi terhadap titik asal. Rumus yang sama bisa kamu tulis sebagai satu perkalian [matriks rotasi](/id/materi/matematika/transformasi-geometri/matriks-rotasi) dengan vektor <InlineMath math="(x, y)" />.
 
-## Penerapan Rotasi pada Berbagai Fungsi
+Sebagai contoh, titik <InlineMath math="P(2, 4)" /> pada grafik <InlineMath math="y = x^2" /> diputar sebesar <InlineMath math="60^\circ" /> terhadap titik asal. Nilai <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> terbaca di lingkaran satuan saat <InlineMath math="\theta = 60^\circ" />, dan juga tercantum pada [nilai trigonometri sudut istimewa](/id/materi/matematika/trigonometri/sudut-istimewa-perbandingan-trigonometri). Dengan <InlineMath math="x = 2" /> dan <InlineMath math="y = 4" />, rumus rotasi memberi:
 
-Rotasi tidak memperlakukan setiap kurva dengan cara yang sama. Garis lurus dan kurva eksponensial sama-sama **mempertahankan bentuknya**, tetapi garis yang dirotasi tetap berupa garis lurus, sedangkan kurva eksponensial yang dirotasi berubah sumbu yang didekatinya. Dua kasus berikut menunjukkan perbedaan itu.
+<BlockMath math="\begin{aligned} x' &= 2 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = 1 - 2\sqrt{3} \\ y' &= 2 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = \sqrt{3} + 2 \end{aligned}" />
 
-### Rotasi Fungsi Linear
+Bayangannya adalah <InlineMath math="P'(1 - 2\sqrt{3}, \sqrt{3} + 2)" />, dengan <InlineMath math="x' \approx -2{,}46" /> dan <InlineMath math="y' \approx 3{,}73" />. Jarak <InlineMath math="P'" /> ke titik asal harus sama dengan jarak <InlineMath math="OP" />:
 
-Pada fungsi linear <InlineMath math="y = mx + c" />, setiap titik berpindah ke posisi baru, sehingga <Highlight>kemiringan dan posisi berubah bersamaan</Highlight>. Rotasi <InlineMath math="45^\circ" /> berlawanan arah jarum jam terhadap titik asal memperlihatkan bagaimana garis asli berubah menjadi garis kedua.
+<BlockMath math="(1 - 2\sqrt{3})^2 + (\sqrt{3} + 2)^2 = (13 - 4\sqrt{3}) + (7 + 4\sqrt{3}) = 20 = 2^2 + 4^2" />
 
-Untuk contoh <InlineMath math="y=2x+1" />, aturan rotasi memberi dua koordinat baru berikut. Hilangkan variabel lama agar persamaan garis hasil rotasi terlihat langsung.
-
-<MathContainer>
-<BlockMath math="X=\frac{x-(2x+1)}{\sqrt2}=-\frac{x+1}{\sqrt2},\qquad Y=\frac{x+(2x+1)}{\sqrt2}=\frac{3x+1}{\sqrt2}" />
-
-<BlockMath math="x=-\sqrt2X-1 \quad\Rightarrow\quad Y=-3X-\sqrt2" />
-</MathContainer>
+Arah putarannya juga cocok. Karena <InlineMath math="P" /> memiliki <InlineMath math="y > x > 0" />, sudut <InlineMath math="OP" /> terhadap sumbu <InlineMath math="x" /> positif ada di antara <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" />. Setelah ditambah <InlineMath math="60^\circ" />, sudutnya berada di antara <InlineMath math="105^\circ" /> dan <InlineMath math="150^\circ" />, yaitu di kuadran II, dan <InlineMath math="P'" /> memang memiliki <InlineMath math="x' < 0" /> dan <InlineMath math="y' > 0" />.
 
 <LineEquation
+  title={<>Titik <InlineMath math="P(2, 4)" /> dan parabola <InlineMath math="y = x^2" /> diputar <InlineMath math="60^\circ" /></>}
+  description={<>Dari titik asal, <InlineMath math="P" /> dicapai lewat <InlineMath math="A(2, 0)" />: <InlineMath math="2" /> langkah mendatar, lalu <InlineMath math="4" /> langkah tegak. Setelah putaran <InlineMath math="60^\circ" />, langkah <InlineMath math="OA'" /> tetap <InlineMath math="2" /> dan langkah <InlineMath math="A'P'" /> tetap <InlineMath math="4" />, keduanya tetap tegak lurus. Busur menunjukkan perjalanan <InlineMath math="P" /> ke <InlineMath math="P'" />.</>}
   showZAxis={false}
-  title={<>Rotasi Fungsi Linear <InlineMath math="y = 2x + 1" /></>}
-  description={<>Rotasi <InlineMath math="45^\circ" /> terhadap titik asal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
+  cameraPosition={[-0.7, 2, 10]}
+  cameraTarget={[-0.7, 2, 0]}
   data={[
     {
-      points: Array.from({ length: 23 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = i - 5;
-        const y = 2 * x + 1;
-        return { x, y, z: 0 };
+      points: Array.from({ length: 421 }, (_, i) => {
+        const x = (i - 210) / 100;
+        return { x, y: x * x, z: 0 };
       }),
       smooth: false,
-      color: "#0d9488",
+      color: "#ea580c",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=2x + 1" />,
-          at: 18,
-          offset: [1, 0.5, 0],
-        },
-      ],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 392, offset: [0.44, 1.06, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const i = pointIndex - 2;
-        const x = i - 5;
-        const y = 2 * x + 1;
-        // Rotasi 45° terhadap titik asal
-        const cos45 = Math.cos(Math.PI / 4);
-        const sin45 = Math.sin(Math.PI / 4);
-        const xRotated = x * cos45 - y * sin45;
-        const yRotated = x * sin45 + y * cos45;
-        return { x: xRotated, y: yRotated, z: 0 };
+      points: Array.from({ length: 421 }, (_, i) => {
+        const t = (i - 210) / 100;
+        const cos = 1 / 2;
+        const sin = Math.sqrt(3) / 2;
+        return { x: t * cos - t * t * sin, y: t * sin + t * t * cos, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: false,
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }, { x: 2, y: 4, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
       labels: [
-        {
-          text: <>Rotasi <InlineMath math="45^\circ" /></>,
-          at: 8,
-          offset: [-0.5, 1.8, 0],
-        },
+        { text: <InlineMath math="A(2, 0)" />, at: 0, offset: [-0.09, -0.44, 0], anchorX: "right" },
+        { text: <InlineMath math="P(2, 4)" />, at: 1, offset: [0.19, -0.46, 0], anchorX: "left" },
       ],
+    },
+    {
+      points: (() => {
+        const cos = 1 / 2;
+        const sin = Math.sqrt(3) / 2;
+        return [
+          { x: 0, y: 0, z: 0 },
+          { x: 2 * cos, y: 2 * sin, z: 0 },
+          { x: 2 * cos - 4 * sin, y: 2 * sin + 4 * cos, z: 0 },
+        ];
+      })(),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1, 2],
+      labels: [
+        { text: <InlineMath math="A'" />, at: 1, offset: [0.0, 0.65, 0] },
+        { text: <InlineMath math="P'" />, at: 2, offset: [-0.22, -0.33, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 241 }, (_, i) => {
+        const angle = (Math.PI / 3) * (i / 240);
+        return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
     },
   ]}
 />
 
-### Rotasi Fungsi Eksponensial
+Langkah <InlineMath math="2" /> dan <InlineMath math="4" /> pada grafik itu adalah langkah pada rumus rotasi, yaitu <InlineMath math="P' = 2(\cos 60^\circ, \sin 60^\circ) + 4(-\sin 60^\circ, \cos 60^\circ)" />. Titik <InlineMath math="P'" /> juga terletak pada parabola hasil putaran, karena setiap titik parabola ikut berputar <InlineMath math="60^\circ" /> bersama <InlineMath math="P" />.
 
-Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva tersebut belum tentu tetap menjadi grafik fungsi terhadap koordinat horizontal.
+## Putaran Kelipatan Sudut Siku
 
-Pada putaran ini, hasilnya justru **tetap merupakan fungsi**. Dengan <InlineMath math="X=-2^x" /> dan <InlineMath math="Y=x" />, kamu memperoleh:
+Pada sudut <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" />, dan <InlineMath math="270^\circ" />, nilai <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> hanya <InlineMath math="0" />, <InlineMath math="1" />, atau <InlineMath math="-1" />. Rumus rotasi pun menyusut menjadi **perubahan tanda koordinat**, dan pada <InlineMath math="90^\circ" /> serta <InlineMath math="270^\circ" /> kedua koordinat juga bertukar tempat. Untuk <InlineMath math="90^\circ" />, substitusi <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" /> memberi:
 
-<BlockMath math="Y=\log_2(-X),\qquad X<0" />
+<BlockMath math="\begin{aligned} x' &= x \cdot 0 - y \cdot 1 = -y \\ y' &= x \cdot 1 + y \cdot 0 = x \end{aligned}" />
 
-Asimtot horizontal semula berubah menjadi asimtot vertikal <InlineMath math="X=0" />.
+Dengan cara yang sama, <InlineMath math="\cos 180^\circ = -1" /> dan <InlineMath math="\sin 180^\circ = 0" /> memberi <InlineMath math="(-x, -y)" />, sedangkan <InlineMath math="\cos 270^\circ = 0" /> dan <InlineMath math="\sin 270^\circ = -1" /> memberi <InlineMath math="(y, -x)" />. Kolom bayangan <InlineMath math="(1, 0)" /> pada tabel adalah posisi ujung jari-jari di lingkaran satuan untuk sudut yang sama, jadi setiap aturan bisa kamu cocokkan di sana.
+
+| Sudut | Bayangan <InlineMath math="(1, 0)" /> | Bayangan <InlineMath math="(x, y)" /> | Arah putaran |
+| --- | --- | --- | --- |
+| <InlineMath math="90^\circ" /> | <InlineMath math="(0, 1)" /> | <InlineMath math="(-y, x)" /> | Seperempat putaran berlawanan arah jarum jam |
+| <InlineMath math="180^\circ" /> | <InlineMath math="(-1, 0)" /> | <InlineMath math="(-x, -y)" /> | Setengah putaran, ke arah mana pun hasilnya sama |
+| <InlineMath math="270^\circ" /> | <InlineMath math="(0, -1)" /> | <InlineMath math="(y, -x)" /> | Sama dengan <InlineMath math="-90^\circ" />, seperempat putaran searah jarum jam |
+
+Contohnya, titik <InlineMath math="P(3, 4)" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal. Aturan <InlineMath math="(x, y) \mapsto (-y, x)" /> memberi:
+
+<BlockMath math="P(3, 4) \longmapsto P'(-4, 3)" />
+
+Periksa jarak dan sudutnya. Jarak kedua titik ke <InlineMath math="O" /> sama, karena <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. Gradien <InlineMath math="OP" /> adalah <InlineMath math="\tfrac{4}{3}" /> dan gradien <InlineMath math="OP'" /> adalah <InlineMath math="-\tfrac{3}{4}" />. Hasil kali keduanya <InlineMath math="-1" />, jadi <InlineMath math="OP" /> tegak lurus <InlineMath math="OP'" />. Titik <InlineMath math="P'" /> juga berada di kuadran II, satu kuadran berlawanan arah jarum jam dari <InlineMath math="P" />.
 
 <LineEquation
+  title={<>Titik <InlineMath math="P(3, 4)" /> setelah satu, dua, dan tiga kali seperempat putaran</>}
+  description={<>Titik <InlineMath math="P'" />, <InlineMath math="P''" />, dan <InlineMath math="P'''" /> adalah bayangan <InlineMath math="P" /> oleh putaran <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" />, dan <InlineMath math="270^\circ" />. Keempat jari-jari sama panjang, yaitu <InlineMath math="5" />, dan dua jari-jari yang berurutan saling tegak lurus.</>}
   showZAxis={false}
-  title={<>Rotasi Fungsi <InlineMath math="y = 2^x" /></>}
-  description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
+  cameraPosition={[0, 0, 20]}
+  cameraTarget={[0, 0, 0]}
   data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 779 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 778 * 7;
-        const y = Math.pow(2, x);
-        return { x, y, z: 0 };
+    ...Array.from({ length: 4 }, (_, quarter) => ({
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (quarter + i / 270);
+        return { x: 3 * Math.cos(angle) - 4 * Math.sin(angle), y: 3 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
       }),
-      color: "#059669",
+      smooth: false,
+      color: "#64748b",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=2^x" />,
-          at: 556,
-          offset: [-0.2, -2, 0],
-        },
-      ],
+      cone: { position: "end", size: 0.3 },
+    })),
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P(3, 4)" />, at: 1, offset: [0.33, 0.79, 0], anchorX: "left" }],
     },
     {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -4, y: 3, z: 0 }],
       smooth: false,
-      points: Array.from({ length: 326 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 325 * 7;
-        const y = Math.pow(2, x);
-        // Rotasi 90° terhadap titik asal: (x,y) → (-y,x)
-        const xRotated = -y;
-        const yRotated = x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P'(-4, 3)" />, at: 1, offset: [-0.31, 0.74, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -4, z: 0 }],
+      smooth: false,
+      color: "#db2777",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P''(-3, -4)" />, at: 1, offset: [-0.33, -0.79, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: -3, z: 0 }],
+      smooth: false,
       color: "#d97706",
-      showPoints: false,
-      labels: [
-        {
-          text: <>Rotasi <InlineMath math="90^\circ" /></>,
-          at: 186,
-          offset: [-0.5, 0.5, 0],
-        },
-      ],
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P'''(4, -3)" />, at: 1, offset: [0.31, -0.74, 0], anchorX: "left" }],
     },
   ]}
 />
 
-## Langkah Menentukan Hasil Rotasi
+Setiap seperempat putaran menukar kedua koordinat dan mengganti satu tanda, jadi <InlineMath math="(3, 4)" /> berpindah ke <InlineMath math="(-4, 3)" />, lalu <InlineMath math="(-3, -4)" />, lalu <InlineMath math="(4, -3)" />. Seperempat putaran keempat membawa titik itu kembali ke <InlineMath math="P" />, karena empat kali <InlineMath math="90^\circ" /> adalah satu putaran penuh.
 
-Ketika kamu memutar seluruh kurva, rumus rotasi bekerja pada titik, sehingga pengerjaannya berjalan titik demi titik. Mulailah dengan menetapkan pusat dan sudut rotasi, karena keduanya muncul di setiap perhitungan berikutnya.
+Putaran <InlineMath math="180^\circ" /> mengganti tanda kedua koordinat sekaligus. Hasil yang sama muncul jika grafik dicerminkan terhadap sumbu <InlineMath math="x" />, yang mengganti tanda <InlineMath math="y" />, lalu dicerminkan terhadap sumbu <InlineMath math="y" />, yang mengganti tanda <InlineMath math="x" />. Pada persamaan, **setengah putaran mengubah <InlineMath math="y = f(x)" /> menjadi <InlineMath math="y = -f(-x)" />**, gabungan dari [refleksi terhadap sumbu <InlineMath math="x" />](/id/materi/matematika/transformasi-fungsi/refleksi-vertikal) dan [refleksi terhadap sumbu <InlineMath math="y" />](/id/materi/matematika/transformasi-fungsi/refleksi-horizontal).
 
-Setelah itu, pilih beberapa titik pada kurva asli, termasuk titik ujung dan titik puncak jika kurva tersebut memilikinya, lalu terapkan rumus rotasi pada setiap titik. Gambar titik-**titik hasil** rotasi, hubungkan sesuai urutan aslinya, dan periksa beberapa titik tambahan di antara sampel. Hasilnya belum tentu tetap menjadi fungsi terhadap <InlineMath math="x" />, karena dua titik hasil rotasi dapat memiliki nilai <InlineMath math="x" /> yang sama.
+Setiap pencerminan itu sama hasilnya dengan **balikan bidang**: seluruh bidang diputar setengah putaran di dalam ruang dengan sumbu cermin sebagai poros, sehingga setiap titik menempuh setengah lingkaran keluar dari bidang dan mendarat di bayangan cerminnya.
 
-## Latihan
-
-Setiap soal berikut meminta satu rotasi, sehingga semuanya cukup diselesaikan dengan memasukkan pusat dan sudut ke rumus rotasi. Kerjakan titik demi titik dan perhatikan arah sudutnya, karena putaran berlawanan arah jarum jam dan searah jarum jam menghasilkan hasil yang berbeda. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
-
-1. Tentukan hasil rotasi titik <InlineMath math="(3, 4)" /> terhadap **titik asal** dengan sudut <InlineMath math="90^\circ" /> berlawanan arah jarum jam.
-
-2. Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> dirotasi <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan koordinat titik puncak hasil rotasi jika titik puncak asli berada di <InlineMath math="(1, 0)" />.
-
-3. Garis <InlineMath math="y = 3x - 2" /> dirotasi <InlineMath math="270^\circ" /> terhadap titik asal. Tentukan persamaan garis hasil rotasi.
-
-4. Titik <InlineMath math="(2, 5)" /> dirotasi <InlineMath math="60^\circ" /> terhadap titik <InlineMath math="(1, 1)" />. Tentukan koordinat hasil rotasi.
-
-5. Fungsi <InlineMath math="y = \sqrt{x}" /> untuk <InlineMath math="x \geq 0" /> dirotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal. Jelaskan bentuk grafik hasil rotasi.
-
-### Pembahasan
-
-**Soal 1**. Menggunakan **rumus rotasi** <InlineMath math="90^\circ" />:
-
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (-y, x)" />
-<BlockMath math="(3, 4) \rightarrow (-4, 3)" />
-</MathContainer>
-
-Jadi hasil rotasi adalah <InlineMath math="(-4, 3)" />.
+Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, parabola dengan titik puncak <InlineMath math="V(2, 2)" />. Balikan pada sumbu <InlineMath math="x" /> mengangkat <InlineMath math="V" /> keluar dari bidang dan menurunkannya di <InlineMath math="(2, -2)" />. Sesudah itu, balikan pada sumbu <InlineMath math="y" /> membawa titik itu ke <InlineMath math="(-2, -2)" />.
 
 <LineEquation
-  showZAxis={false}
-  title={<>Visualisasi Rotasi Titik <InlineMath math="(3, 4)" /></>}
-  description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
+  title={<>Dua balikan bidang dan setengah putaran untuk <InlineMath math="f(x) = (x - 2)^2 + 2" /></>}
+  description={<>Lintasan <InlineMath math="V" /> keluar dari bidang dua kali. Setengah lingkaran pertama melintasi sumbu <InlineMath math="x" /> dan turun di <InlineMath math="(2, -2)" />, lalu setengah lingkaran kedua melintasi sumbu <InlineMath math="y" /> dan turun di <InlineMath math="V'(-2, -2)" />, ujung busur di dalam bidang yang memutar <InlineMath math="V" /> sejauh <InlineMath math="180^\circ" /> terhadap <InlineMath math="O" />.</>}
+  cameraPosition={[7, -7, 10]}
+  cameraTarget={[0, 0, 1]}
   data={[
     {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(3, 4)" />,
-          at: 1,
-          offset: [0.3, 0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 3, z: 0 }
-      ],
+      points: Array.from({ length: 301 }, (_, i) => {
+        const s = (i - 150) / 100;
+        return { x: 2 + s, y: s * s + 2, z: 0 };
+      }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(-4, 3)" />,
-          at: 1,
-          offset: [-0.5, 0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
+      labels: [{ text: <InlineMath math="y = f(x)" />, at: 273, offset: [0.48, 0.57, 0], anchorX: "left" }],
     },
-  ]}
-/>
-
-**Soal 2**. **Titik puncak** asli dirotasi <InlineMath math="180^\circ" />:
-
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (-x, -y)" />
-<BlockMath math="(1, 0) \rightarrow (-1, 0)" />
-</MathContainer>
-
-Koordinat titik puncak hasil rotasi adalah <InlineMath math="(-1, 0)" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotasi Fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /></>}
-  description={<>Rotasi <InlineMath math="180^\circ" /> terhadap titik asal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
     {
-      smooth: false,
-      points: Array.from({ length: 127 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex + 0;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x - 2 * x + 1;
-        return { x, y, z: 0 };
+      points: Array.from({ length: 301 }, (_, i) => {
+        const s = (i - 150) / 100;
+        return { x: 2 + s, y: -(s * s + 2), z: 0 };
       }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
-          at: 90,
-          offset: [1, 0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 160 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex + 0;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x - 2 * x + 1;
-        // Rotasi 180°: (x,y) → (-x,-y)
-        const xRotated = -x;
-        const yRotated = -y;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        {
-          text: <>Hasil Rotasi <InlineMath math="180^\circ" /></>,
-          at: 40,
-          offset: [-0.5, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-**Soal 3**. Ambil **dua titik** pada garis dan rotasi <InlineMath math="270^\circ" />:
-
-<MathContainer>
-<BlockMath math="(x, y) \rightarrow (y, -x)" />
-<BlockMath math="(0, -2) \rightarrow (-2, 0)" />
-<BlockMath math="(1, 1) \rightarrow (1, -1)" />
-<BlockMath math="m = \frac{-1 - 0}{1 - (-2)} = \frac{-1}{3}" />
-<BlockMath math="0=-\frac{1}{3}(-2)+b \quad\Rightarrow\quad b=-\frac{2}{3}" />
-<BlockMath math="y = -\frac{1}{3}x - \frac{2}{3}" />
-</MathContainer>
-
-Maka persamaan garis hasil rotasi adalah <InlineMath math="y = -\frac{1}{3}x - \frac{2}{3}" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotasi Garis <InlineMath math="y = 3x - 2" /></>}
-  description={<>Rotasi <InlineMath math="270^\circ" /> terhadap titik asal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 14 }, (_, pointIndex) => {
-        const i = pointIndex - 3;
-        const x = (i - 5) * 0.8;
-        const y = 3 * x - 2;
-        return { x, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#059669",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=3x - 2" />,
-          at: 9,
-          offset: [2, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: Array.from({ length: 17 }, (_, pointIndex) => {
-        const i = pointIndex - 5;
-        const x = (i - 5) * 0.8;
-        const y = 3 * x - 2;
-        // Rotasi 270°: (x,y) → (y,-x)
-        const xRotated = y;
-        const yRotated = -x;
-        return { x: xRotated, y: yRotated, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=-\frac{1}{3}x-\frac{2}{3}" />,
-          at: 10,
-          offset: [-0.5, 1.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-**Soal 4**. Hitung dahulu koordinat titik <InlineMath math="(2, 5)" /> relatif terhadap pusat <InlineMath math="(1, 1)" />:
-
-<BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
-
-Masukkan kedua nilai tersebut dan sudut <InlineMath math="60^\circ" /> ke **rumus rotasi**. Kedua koordinat pusat bernilai <InlineMath math="1" />, sehingga setiap rumus memuat penambahan <InlineMath math="1" />:
-
-<MathContainer>
-<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
-<BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
-</MathContainer>
-
-Koordinat hasil rotasi: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />
-
-<LineEquation
-  showZAxis={false}
-  title={<>Rotasi Titik <InlineMath math="(2, 5)" /> Terhadap Titik <InlineMath math="(1, 1)" /></>}
-  description={<>Rotasi <InlineMath math="60^\circ" /> berlawanan arah jarum jam.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      points: [
-        { x: 1, y: 1, z: 0 },
-        { x: 2, y: 5, z: 0 }
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="(2, 5)" />,
-          at: 1,
-          offset: [0.7, -0.2, 0],
-        },
-        {
-          text: <>Pusat <InlineMath math="(1,1)" /></>,
-          at: 0,
-          offset: [0.3, -0.3, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
-    },
-    {
-      points: [
-        { x: 1, y: 1, z: 0 },
-        { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
-      ],
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [
-        {
-          text: "Hasil Rotasi",
-          at: 1,
-          offset: [-0.5, 0.1, 0],
-        },
-      ],
-      cone: { position: "end", size: 0.3 }
+      labels: [{ text: <InlineMath math="y = -f(x)" />, at: 297, offset: [-0.21, -0.56, 0] }],
+    },
+    {
+      points: Array.from({ length: 301 }, (_, i) => {
+        const s = (i - 150) / 100;
+        return { x: -(2 + s), y: -(s * s + 2), z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = -f(-x)" />, at: 6, offset: [-1.07, -0.9, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 721 }, (_, i) => {
+        const turn = Math.PI * (i / 720);
+        return { x: 2, y: 2 * Math.cos(turn), z: 2 * Math.sin(turn) };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: Array.from({ length: 721 }, (_, i) => {
+        const turn = Math.PI * (i / 720);
+        return { x: 2 * Math.cos(turn), y: -2, z: 2 * Math.sin(turn) };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = Math.PI * (i / 360);
+        return { x: 2 * Math.cos(angle) - 2 * Math.sin(angle), y: 2 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: [{ x: 2, y: 2, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [0.34, -0.94, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 2, y: -2, z: 0 }],
+      smooth: false,
+      color: "#db2777",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(2, -2)" />, at: 0, offset: [0.48, 0.57, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: -2, y: -2, z: 0 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="V'" />, at: 0, offset: [0.57, 0.48, 0], anchorX: "left" }],
     },
   ]}
 />
 
-**Soal 5**. Fungsi <InlineMath math="y = \sqrt{x}" /> dirotasi <InlineMath math="90^\circ" /> menjadi:
+Putar tampilan sampai kamu melihat bidang lurus dari depan. Lintasan <InlineMath math="V" /> melalui kedua balikan berakhir di titik yang sama dengan busur setengah putaran, yaitu <InlineMath math="V'(-2, -2)" />, dan parabola terakhir adalah <InlineMath math="y = -f(-x) = -(x + 2)^2 - 2" />. Periksa titik puncaknya: <InlineMath math="-(-2 + 2)^2 - 2 = -2" />.
 
-<MathContainer>
-<BlockMath math="X=-y=-\sqrt{x},\quad Y=x" />
-<BlockMath math="X=-\sqrt{Y}\le0 \quad\Rightarrow\quad Y=X^2" />
-<BlockMath math="y = x^2 \text{ untuk } x \leq 0" />
-</MathContainer>
+Kedua pencerminan bekerja pada koordinat yang berbeda, jadi urutannya boleh ditukar, sama seperti transformasi horizontal dan vertikal dalam [kombinasi transformasi fungsi](/id/materi/matematika/transformasi-fungsi/kombinasi-transformasi-fungsi).
 
-Kurva hasil rotasi adalah bagian kiri parabola yang terbuka **ke atas**. Domainnya <InlineMath math="x \leq 0" /> dan rangenya <InlineMath math="y \geq 0" />. Kurva ini diperoleh dengan mencerminkan bagian kanan asli dari <InlineMath math="y = x^2" /> terhadap sumbu <InlineMath math="y" />.
+## Memutar terhadap Titik Pusat Lain
+
+Rumus <InlineMath math="x' = x\cos\theta - y\sin\theta" /> dan <InlineMath math="y' = x\sin\theta + y\cos\theta" /> hanya memutar terhadap titik asal. Untuk pusat <InlineMath math="C(p, q)" />, geser dulu bidang sehingga <InlineMath math="C" /> jatuh di titik asal, putar dengan rumus titik asal, lalu geser bidang kembali. Selisih <InlineMath math="(x - p, y - q)" /> adalah posisi titik dilihat dari <InlineMath math="C" />, dan **selisih itulah yang diputar** sebelum koordinat <InlineMath math="C" /> ditambahkan lagi:
+
+<BlockMath math="\begin{aligned} x' &= p + (x - p)\cos\theta - (y - q)\sin\theta \\ y' &= q + (x - p)\sin\theta + (y - q)\cos\theta \end{aligned}" />
+
+Titik <InlineMath math="C" /> sendiri tidak berpindah, karena selisih <InlineMath math="C" /> terhadap <InlineMath math="C" /> adalah <InlineMath math="(0, 0)" />. Setiap titik lain bergerak pada lingkaran yang berpusat di <InlineMath math="C" />, jadi jaraknya ke <InlineMath math="C" /> tetap.
+
+Misalnya, titik <InlineMath math="P(2, 5)" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="C(1, 1)" />. Selisih <InlineMath math="P" /> terhadap <InlineMath math="C" /> adalah <InlineMath math="(2 - 1, 5 - 1) = (1, 4)" />. Seperempat putaran mengubah selisih itu dengan aturan <InlineMath math="(u, v) \mapsto (-v, u)" />, lalu koordinat <InlineMath math="C" /> ditambahkan kembali:
+
+<BlockMath math="(1, 4) \longmapsto (-4, 1), \qquad P' = (1 + (-4),\ 1 + 1) = (-3, 2)" />
+
+Jarak ke pusat tidak berubah. Sebelum putaran, <InlineMath math="|CP|^2 = 1^2 + 4^2 = 17" />. Sesudahnya, <InlineMath math="|CP'|^2 = (-3 - 1)^2 + (2 - 1)^2 = 16 + 1 = 17" />. Gradien <InlineMath math="CP" /> adalah <InlineMath math="4" /> dan gradien <InlineMath math="CP'" /> adalah <InlineMath math="-\tfrac{1}{4}" />, hasil kalinya <InlineMath math="-1" />, jadi kedua ruas itu tegak lurus. Jika <InlineMath math="P" /> keliru diputar terhadap <InlineMath math="O" />, hasilnya <InlineMath math="(-5, 2)" />. Jarak titik itu ke <InlineMath math="C" /> berubah dari <InlineMath math="\sqrt{17}" /> menjadi <InlineMath math="\sqrt{37}" />, jadi kamu tahu pusatnya keliru.
+
+Untuk sudut yang bukan kelipatan <InlineMath math="90^\circ" />, pakai rumus lengkapnya. Putaran <InlineMath math="60^\circ" /> terhadap <InlineMath math="C(1, 1)" /> memutar selisih <InlineMath math="(1, 4)" /> dengan <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> dan <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" />, lalu menambahkan <InlineMath math="C" /> kembali:
+
+<ContentStack>
+
+<BlockMath math="\begin{aligned} x' &= 1 + 1 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = \tfrac{3}{2} - 2\sqrt{3} \\ y' &= 1 + 1 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = 3 + \tfrac{\sqrt{3}}{2} \end{aligned}" />
 
 <LineEquation
+  title={<>Titik <InlineMath math="P(2, 5)" /> diputar terhadap <InlineMath math="C(1, 1)" /></>}
+  description={<>Busur adalah lintasan <InlineMath math="P" /> pada lingkaran berpusat di <InlineMath math="C" /> dengan jari-jari <InlineMath math="\sqrt{17}" />. Busur itu melewati <InlineMath math="Q" />, bayangan oleh putaran <InlineMath math="60^\circ" />, lalu berhenti di <InlineMath math="P'(-3, 2)" />, bayangan oleh putaran <InlineMath math="90^\circ" />. Ruas <InlineMath math="CP" /> dan <InlineMath math="CP'" /> saling tegak lurus.</>}
   showZAxis={false}
-  title={<>Rotasi Fungsi <InlineMath math="y = \sqrt{x}" /></>}
-  description={<>Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
+  cameraPosition={[-0.5, 3, 10]}
+  cameraTarget={[-0.5, 3, 0]}
   data={[
     {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: 1 + Math.cos(angle) - 4 * Math.sin(angle), y: 1 + Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
+      }),
       smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.9364916731037085);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#65a30d",
+      color: "#0d9488",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=\sqrt{x}" />,
-          at: 78,
-          offset: [0.5, 0.3, 0],
-        },
-      ],
+      cone: { position: "end", size: 0.3 },
     },
     {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 5, z: 0 }],
       smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.9364916731037085);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = -t;
-            return { x, y: t * t, z: 0 };
-          });
-      })(),
-      color: "#e11d48",
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P(2, 5)" />, at: 1, offset: [0.17, 0.11, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }],
+      smooth: false,
+      color: "#db2777",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="Q" />, at: 1, offset: [-0.22, 0.33, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: -3, y: 2, z: 0 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1],
+      labels: [{ text: <InlineMath math="P'(-3, 2)" />, at: 1, offset: [-0.83, -0.56, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C(1, 1)" />, at: 0, offset: [0.29, -0.19, 0], anchorX: "left" }],
+    },
+  ]}
+/>
+
+</ContentStack>
+
+Jadi <InlineMath math="Q = \left(\tfrac{3}{2} - 2\sqrt{3},\ 3 + \tfrac{\sqrt{3}}{2}\right)" />, dengan <InlineMath math="x' \approx -1{,}96" /> dan <InlineMath math="y' \approx 3{,}87" />. Titik itu terletak pada busur yang sama dengan <InlineMath math="P'" />, karena jaraknya ke <InlineMath math="C" /> juga <InlineMath math="\sqrt{17}" />: <InlineMath math="\left(\tfrac{1}{2} - 2\sqrt{3}\right)^2 + \left(\tfrac{\sqrt{3}}{2} + 2\right)^2 = \left(\tfrac{49}{4} - 2\sqrt{3}\right) + \left(\tfrac{19}{4} + 2\sqrt{3}\right) = 17" />.
+
+## Persamaan Kurva Hasil Rotasi
+
+Rumus rotasi memberi bayangan satu titik, tetapi persamaan kurva hasil rotasi menuntut arah sebaliknya. Setiap titik baru <InlineMath math="(x', y')" /> berasal dari titik lama <InlineMath math="(x, y)" /> yang memenuhi persamaan semula. Titik lama itu kamu dapatkan dengan **memutar balik titik baru sebesar <InlineMath math="-\theta" />**:
+
+<BlockMath math="\begin{aligned} x &= x'\cos\theta + y'\sin\theta \\ y &= -x'\sin\theta + y'\cos\theta \end{aligned}" />
+
+Substitusikan kedua ungkapan itu ke persamaan semula, sederhanakan, lalu hapus tanda aksen. Tanda aksen hanya membedakan titik baru dari titik lama selama menghitung, jadi persamaan akhirnya ditulis lagi dengan <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+Untuk parabola <InlineMath math="y = x^2" /> yang diputar <InlineMath math="90^\circ" />, nilai <InlineMath math="\cos 90^\circ = 0" /> dan <InlineMath math="\sin 90^\circ = 1" /> memberi <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />. Substitusi ke <InlineMath math="y = x^2" /> menghasilkan:
+
+<BlockMath math="\begin{aligned} y &= x^2 \\ -x' &= (y')^2 \\ x' &= -(y')^2 \end{aligned}" />
+
+Setelah tanda aksen dihapus, kurva hasil rotasinya adalah **parabola <InlineMath math="x = -y^2" /> yang membuka ke kiri**. Periksa dengan satu titik: <InlineMath math="(2, 4)" /> pada parabola semula berpindah ke <InlineMath math="(-4, 2)" /> menurut aturan <InlineMath math="(x, y) \mapsto (-y, x)" />, dan titik itu memenuhi <InlineMath math="-4 = -(2)^2" />.
+
+Garis <InlineMath math="y = 2x + 1" /> yang diputar <InlineMath math="90^\circ" /> diolah dengan substitusi yang sama, <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />:
+
+<BlockMath math="\begin{aligned} -x' &= 2y' + 1 \\ y' &= -\frac{x' + 1}{2} \end{aligned}" />
+
+Garis bayangannya adalah <InlineMath math="y = -\tfrac{x + 1}{2}" />, atau <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />. Gradiennya <InlineMath math="-\tfrac{1}{2}" />, kebalikan negatif dari gradien semula <InlineMath math="2" />, sesuai dengan garis yang diputar seperempat putaran. Titik <InlineMath math="(0, 1)" /> berpindah ke <InlineMath math="(-1, 0)" /> dan titik <InlineMath math="(1, 3)" /> berpindah ke <InlineMath math="(-3, 1)" />. Keduanya memenuhi persamaan baru, karena <InlineMath math="-\tfrac{-1 + 1}{2} = 0" /> dan <InlineMath math="-\tfrac{-3 + 1}{2} = 1" />.
+
+Untuk sudut <InlineMath math="45^\circ" />, nilai <InlineMath math="\cos 45^\circ = \sin 45^\circ = \tfrac{\sqrt{2}}{2}" /> memberi <InlineMath math="x = \tfrac{\sqrt{2}}{2}(x' + y')" /> dan <InlineMath math="y = \tfrac{\sqrt{2}}{2}(y' - x')" />. Substitusikan ke <InlineMath math="y = 2x + 1" />, lalu **kalikan kedua ruas dengan <InlineMath math="\sqrt{2}" />** supaya pecahannya hilang:
+
+<BlockMath math="\begin{aligned} \tfrac{\sqrt{2}}{2}(y' - x') &= \sqrt{2}(x' + y') + 1 \\ y' - x' &= 2x' + 2y' + \sqrt{2} \\ y' &= -3x' - \sqrt{2} \end{aligned}" />
+
+<LineEquation
+  title={<>Garis <InlineMath math="y = 2x + 1" /> diputar <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" /></>}
+  description={<>Busur membawa <InlineMath math="(0, 1)" /> dan <InlineMath math="(1, 3)" /> lewat bayangan <InlineMath math="45^\circ" /> di tengah busur ke bayangan <InlineMath math="90^\circ" /> di ujungnya. Kedua bayangan tetap garis lurus, dan setiap titik berputar dengan sudut yang sama.</>}
+  showZAxis={false}
+  cameraPosition={[-0.75, 1, 9.5]}
+  cameraTarget={[-0.75, 1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -1.75 + 3.5 * i;
+        return { x, y: 2 * x + 1, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
       showPoints: false,
+      labels: [{ text: <InlineMath math="y = 2x + 1" />, at: 1, offset: [-3.65, -7.08, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const y = 4.5 - 7 * i;
+        return { x: -(y + Math.sqrt(2)) / 3, y, z: 0 };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = -3x - \sqrt{2}" />, at: 0, offset: [0.14, -1.19, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -4 + 6.5 * i;
+        return { x, y: -(x + 1) / 2, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />, at: 1, offset: [-0.5, -0.44, 0] }],
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: -Math.sin(angle), y: Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [0, 135, 270],
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: Math.cos(angle) - 3 * Math.sin(angle), y: Math.sin(angle) + 3 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [0, 135, 270],
+      cone: { position: "end", size: 0.3 },
       labels: [
-        {
-          text: <InlineMath math="y=x^2 (x \le 0)" />,
-          at: 78,
-          offset: [-0.8, -0.5, 0],
-        },
+        { text: <InlineMath math="(1, 3)" />, at: 0, offset: [0.21, -0.21, 0], anchorX: "left" },
+        { text: <InlineMath math="(-3, 1)" />, at: 270, offset: [-0.09, -0.44, 0], anchorX: "right" },
       ],
     },
   ]}
 />
+
+Garis bayangan <InlineMath math="45^\circ" /> adalah <InlineMath math="y = -3x - \sqrt{2}" />. Periksa dengan <InlineMath math="(0, 1)" />, yang berpindah ke <InlineMath math="\left(-\tfrac{\sqrt{2}}{2}, \tfrac{\sqrt{2}}{2}\right)" />: <InlineMath math="-3\left(-\tfrac{\sqrt{2}}{2}\right) - \sqrt{2} = \tfrac{\sqrt{2}}{2}" />. Hanya putaran <InlineMath math="90^\circ" /> yang membuat gradien menjadi kebalikan negatif. Putaran <InlineMath math="45^\circ" /> mengubah gradien <InlineMath math="2" /> menjadi <InlineMath math="-3" />.
+
+## Ketika Hasil Rotasi Bukan Lagi Fungsi
+
+Sebuah kurva adalah grafik fungsi jika setiap garis vertikal memotong kurva itu paling banyak satu kali. Pemeriksaan ini disebut [uji garis vertikal](/id/materi/matematika/fungsi-komposisi-dan-fungsi-invers/fungsi-dan-bukan-fungsi). Parabola <InlineMath math="x = -y^2" /> hasil putaran <InlineMath math="y = x^2" /> **gagal dalam uji garis vertikal**, karena garis <InlineMath math="x = -4" /> memotong parabola itu di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />.
+
+<LineEquation
+  title={<>Parabola <InlineMath math="y = x^2" /> dan bayangannya setelah diputar <InlineMath math="90^\circ" /></>}
+  description={<>Garis vertikal <InlineMath math="x = -4" /> memotong kurva <InlineMath math="x = -y^2" /> di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />, bayangan titik <InlineMath math="(2, 4)" /> dan <InlineMath math="(-2, 4)" /> yang sama-sama terletak pada garis <InlineMath math="y = 4" />.</>}
+  showZAxis={false}
+  cameraPosition={[-1.05, 1.1, 10]}
+  cameraTarget={[-1.05, 1.1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 461 }, (_, i) => {
+        const t = (i - 230) / 100;
+        return { x: t, y: t * t, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [30, 430],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 28, offset: [-0.44, 1.06, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 461 }, (_, i) => {
+        const t = (i - 230) / 100;
+        return { x: -t * t, y: t, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [30, 430],
+      labels: [
+        { text: <InlineMath math="x = -y^2" />, at: 105, offset: [-0.25, 0.37, 0], anchorX: "right" },
+        { text: <InlineMath math="(-4, 2)" />, at: 430, offset: [0.19, 0.46, 0], anchorX: "left" },
+        { text: <InlineMath math="(-4, -2)" />, at: 30, offset: [0.19, -0.46, 0], anchorX: "left" },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => ({ x: -4, y: -2.6 + 5.2 * i, z: 0 })),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x = -4" />, at: 1, offset: [0.17, -1.62, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => ({ x: -2.6 + 5.2 * i, y: 4, z: 0 })),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = 4" />, at: 1, offset: [-5.36, 0.0, 0], anchorX: "right" }],
+    },
+  ]}
+/>
+
+Kurva <InlineMath math="x = -y^2" /> tetap sebuah **relasi**, yaitu himpunan pasangan berurutan <InlineMath math="(x, y)" />. Pada kurva ini, setiap nilai <InlineMath math="y" /> memiliki tepat satu nilai <InlineMath math="x" />. Masalahnya ada pada arah sebaliknya. Satu nilai <InlineMath math="x" /> di kiri titik asal berpasangan dengan dua nilai <InlineMath math="y" />, jadi kurva itu tidak bisa ditulis sebagai satu fungsi <InlineMath math="y = g(x)" />.
+
+Putaran <InlineMath math="90^\circ" /> menukar peran <InlineMath math="x" /> dan <InlineMath math="y" /> disertai perubahan tanda. Akibatnya, hasil putaran <InlineMath math="90^\circ" /> atau <InlineMath math="270^\circ" /> adalah fungsi tepat ketika **setiap garis horizontal memotong grafik semula paling banyak satu kali**. Parabola <InlineMath math="y = x^2" /> gagal karena garis <InlineMath math="y = 4" /> memotong parabola itu di <InlineMath math="(2, 4)" /> dan <InlineMath math="(-2, 4)" />. Kedua titik itu berpindah ke garis vertikal yang sama, <InlineMath math="x = -4" />.
+
+Grafik <InlineMath math="y = 2^x" /> memenuhi syarat tersebut. Setiap garis horizontal <InlineMath math="y = c" /> dengan <InlineMath math="c > 0" /> memotong grafik itu tepat sekali, dan garis dengan <InlineMath math="c \le 0" /> tidak memotongnya sama sekali. Putaran <InlineMath math="90^\circ" /> memindahkan titik <InlineMath math="(x, 2^x)" /> ke <InlineMath math="(-2^x, x)" />. Jadi koordinat baru memenuhi <InlineMath math="x' = -2^{y'}" />, atau <InlineMath math="2^{y'} = -x'" />, sehingga kurva hasil rotasinya adalah:
+
+<BlockMath math="y = \log_2(-x), \qquad x < 0" />
+
+Asimtot horizontal <InlineMath math="y = 0" /> pada grafik semula ikut berputar menjadi asimtot vertikal <InlineMath math="x = 0" />. Periksa titik <InlineMath math="(2, 4)" />: bayangannya <InlineMath math="(-4, 2)" />, dan <InlineMath math="\log_2(-(-4)) = \log_2 4 = 2" />.
+
+Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diuraikan menjadi dua balikan bidang, yaitu pertukaran <InlineMath math="x" /> dan <InlineMath math="y" />, lalu perubahan tanda. Balikan pada garis <InlineMath math="y = x" /> menukar kedua koordinat, jadi <InlineMath math="y = 2^x" /> menjadi grafik fungsi inversnya, <InlineMath math="y = \log_2 x" />. Sesudah itu, balikan pada sumbu <InlineMath math="y" /> mengganti tanda <InlineMath math="x" /> dan memberi <InlineMath math="y = \log_2(-x)" />.
+
+<LineEquation
+  title={<>Putaran <InlineMath math="90^\circ" /> sebagai balikan pada <InlineMath math="y = x" /> lalu pada sumbu <InlineMath math="y" /></>}
+  description={<>Balikan pertama membawa titik <InlineMath math="A(2, 4)" /> pada <InlineMath math="y = 2^x" /> keluar dari bidang ke <InlineMath math="(4, 2)" /> pada <InlineMath math="y = \log_2 x" />. Balikan kedua membawanya ke <InlineMath math="A'(-4, 2)" /> pada <InlineMath math="y = \log_2(-x)" />, ujung busur seperempat putaran di dalam bidang.</>}
+  cameraPosition={[2, -11, 9]}
+  cameraTarget={[0, 1, 1]}
+  data={[
+    {
+      points: Array.from({ length: 526 }, (_, i) => {
+        const s = -3 + i / 100;
+        return { x: s, y: 2 ** s, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = 2^x" />, at: 54, offset: [0.24, -1.38, 0] }],
+    },
+    {
+      points: Array.from({ length: 526 }, (_, i) => {
+        const s = -3 + i / 100;
+        return { x: 2 ** s, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = \log_2 x" />, at: 60, offset: [0.45, 0.78, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 526 }, (_, i) => {
+        const s = -3 + i / 100;
+        return { x: -(2 ** s), y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = \log_2(-x)" />, at: 6, offset: [-0.16, -0.19, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = 4.75 * i;
+        return { x, y: x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x" />, at: 1, offset: [0.17, -0.19, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 721 }, (_, i) => {
+        const turn = Math.PI * (i / 720);
+        return { x: 3 - Math.cos(turn), y: 3 + Math.cos(turn), z: Math.sqrt(2) * Math.sin(turn) };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      cone: { position: "end", size: 0.2 },
+    },
+    {
+      points: Array.from({ length: 721 }, (_, i) => {
+        const turn = Math.PI * (i / 720);
+        return { x: 4 * Math.cos(turn), y: 2, z: 4 * Math.sin(turn) };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: [{ x: 2, y: 4, z: 0 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.3, 1.67, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      smooth: false,
+      color: "#db2777",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.74, -0.42, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: -4, y: 2, z: 0 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A'" />, at: 0, offset: [-0.34, -0.94, 0], anchorX: "right" }],
+    },
+  ]}
+/>
+
+Di antara kedua balikan, kurva <InlineMath math="y = \log_2 x" /> sudah grafik fungsi, karena setiap garis vertikal memotongnya paling banyak satu kali.
+
+Pencerminan terhadap <InlineMath math="y = x" /> mengubah grafik <InlineMath math="f" /> menjadi grafik relasi inversnya. Relasi invers itu adalah fungsi tepat ketika setiap garis horizontal memotong grafik semula paling banyak satu kali. Balikan pada sumbu <InlineMath math="y" /> tidak mengubah sifat itu, karena balikan itu hanya mengganti tanda <InlineMath math="x" />. Itulah sebabnya **syarat garis horizontal menentukan apakah hasil putaran <InlineMath math="90^\circ" /> masih fungsi**.
+
+Grafik <InlineMath math="y = \sqrt{x}" /> juga lolos uji garis horizontal, karena setiap garis <InlineMath math="y = c" /> dengan <InlineMath math="c \ge 0" /> memotongnya tepat sekali. Putaran <InlineMath math="90^\circ" /> memindahkan <InlineMath math="(t^2, t)" /> dengan <InlineMath math="t \ge 0" /> ke <InlineMath math="(-t, t^2)" />. Jika <InlineMath math="x = -t" />, maka <InlineMath math="y = t^2 = x^2" /> dengan <InlineMath math="x \le 0" />, jadi kurva hasil rotasinya adalah **separuh kiri parabola <InlineMath math="y = x^2" />**.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="y = \sqrt{x}" /> diputar <InlineMath math="90^\circ" /></>}
+  description={<>Grafik <InlineMath math="y = \sqrt{x}" /> berubah menjadi <InlineMath math="y = x^2" /> untuk <InlineMath math="x \le 0" />. Busur membawa <InlineMath math="(4, 2)" /> ke <InlineMath math="(-2, 4)" />, dan setiap garis vertikal di kiri sumbu <InlineMath math="y" /> memotong bayangan itu tepat sekali.</>}
+  showZAxis={false}
+  cameraPosition={[1.2, 2.1, 9.5]}
+  cameraTarget={[1.2, 2.1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 441 }, (_, i) => {
+        const t = i / 200;
+        return { x: t * t, y: t, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [400],
+      labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 84, offset: [0.6, 0.0, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 441 }, (_, i) => {
+        const t = i / 200;
+        return { x: -t, y: t * t, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [400],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 434, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: 4 * Math.cos(angle) - 2 * Math.sin(angle), y: 4 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+      labels: [
+        { text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.09, -0.44, 0], anchorX: "left" },
+        { text: <InlineMath math="(-2, 4)" />, at: 270, offset: [0.32, -0.32, 0], anchorX: "left" },
+      ],
+    },
+  ]}
+/>
+
+Domain grafik <InlineMath math="y = \sqrt{x}" /> adalah <InlineMath math="x \ge 0" /> dan rangenya <InlineMath math="y \ge 0" />. Pada bayangannya, domainnya <InlineMath math="x \le 0" /> dan rangenya tetap <InlineMath math="y \ge 0" />. Periksa titik <InlineMath math="(4, 2)" />: bayangannya <InlineMath math="(-2, 4)" />, dan <InlineMath math="(-2)^2 = 4" />.
+
+Putaran <InlineMath math="180^\circ" /> selalu menghasilkan fungsi, karena hasilnya <InlineMath math="y = -f(-x)" />. Sebaliknya, garis horizontal <InlineMath math="y = 3" /> yang diputar <InlineMath math="90^\circ" /> menjadi garis vertikal <InlineMath math="x = -3" />, yang semua titiknya memiliki nilai <InlineMath math="x" /> yang sama.
+
+## Kesalahan Arah dan Pusat Putaran
+
+Rotasi menjaga jarak setiap titik ke pusat, dan putaran sebesar <InlineMath math="\theta" /> terhadap titik asal selalu membawa <InlineMath math="(1, 0)" /> ke <InlineMath math="(\cos\theta, \sin\theta)" />. Karena itu, sebelum memakai hasil putaran, **uji hasil itu dengan satu titik yang mudah dihitung**. Bayangan <InlineMath math="(1, 0)" /> memeriksa arah putaran, jarak ke pusat memeriksa letak pusat, dan bayangan satu titik kurva memeriksa persamaan baru.
+
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Memakai <InlineMath math="(y, -x)" /> untuk putaran <InlineMath math="90^\circ" /> berlawanan arah jarum jam | Aturan itu memutar <InlineMath math="90^\circ" /> searah jarum jam, sama dengan <InlineMath math="270^\circ" /> | Titik <InlineMath math="(1, 0)" /> harus mendarat di <InlineMath math="(0, 1)" />, bukan di <InlineMath math="(0, -1)" /> |
+| Memutar terhadap titik asal padahal pusatnya <InlineMath math="C(p, q)" /> | Rumus tanpa <InlineMath math="p" /> dan <InlineMath math="q" /> hanya menjaga jarak ke <InlineMath math="O" /> | Jarak ke <InlineMath math="C" /> sebelum dan sesudah putaran harus sama |
+| Menukar <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> | Koordinat <InlineMath math="x" /> ujung jari-jari adalah <InlineMath math="\cos\theta" /> | Pada <InlineMath math="\theta = 60^\circ" />, ujung jari-jari ada di <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" /> |
+| Memasukkan aturan maju ke persamaan semula | Hasilnya kurva yang diputar ke arah sebaliknya, misalnya <InlineMath math="x = y^2" /> untuk <InlineMath math="y = x^2" /> | Bayangan <InlineMath math="(2, 4)" />, yaitu <InlineMath math="(-4, 2)" />, harus memenuhi persamaan baru |
+| Menganggap hasil rotasi selalu fungsi | Putaran <InlineMath math="90^\circ" /> bisa memberi dua nilai <InlineMath math="y" /> untuk satu <InlineMath math="x" /> | Lakukan uji garis vertikal pada kurva hasil rotasi |
+
+## Latihan
+
+Di soal 1 kamu memutar satu titik, di soal 2 sebuah garis, dan di soal 3 sebuah parabola, semuanya terhadap titik asal. Soal 4 meminta putaran parabola terhadap pusat lain. Tulis pusat dan sudut putaran sebelum menghitung, lalu **uji jawabanmu dengan jarak ke pusat atau dengan satu titik** sebelum membaca pembahasan.
+
+1. Tentukan bayangan titik <InlineMath math="A(-2, 5)" /> oleh rotasi <InlineMath math="-90^\circ" /> terhadap titik asal.
+
+2. Garis <InlineMath math="y = 3x - 2" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal. Tentukan persamaan garis bayangannya.
+
+3. Parabola <InlineMath math="y = x^2 - 4" /> diputar <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan persamaan kurva hasil rotasi dan periksa apakah kurva itu masih grafik fungsi.
+
+4. Parabola <InlineMath math="y = (x - 3)^2 + 1" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="C(1, 2)" />. Tentukan bayangan titik puncaknya dan persamaan kurva hasil rotasi, lalu periksa apakah kurva itu masih grafik fungsi.
+
+### Pembahasan
+
+**Soal 1**. Sudut <InlineMath math="-90^\circ" /> berarti **seperempat putaran searah jarum jam**, sama dengan <InlineMath math="270^\circ" />. Aturannya <InlineMath math="(x, y) \mapsto (y, -x)" />:
+
+<BlockMath math="A(-2, 5) \longmapsto A'(5, -(-2)) = A'(5, 2)" />
+
+Jarak ke titik asal tetap, karena <InlineMath math="(-2)^2 + 5^2 = 5^2 + 2^2 = 29" />. Gradien <InlineMath math="OA" /> adalah <InlineMath math="-\tfrac{5}{2}" /> dan gradien <InlineMath math="OA'" /> adalah <InlineMath math="\tfrac{2}{5}" />, hasil kalinya <InlineMath math="-1" />. Titik <InlineMath math="A" /> ada di kuadran II, dan seperempat putaran searah jarum jam membawa <InlineMath math="A" /> ke kuadran I. Jadi bayangan <InlineMath math="A" /> adalah <InlineMath math="A'(5, 2)" />.
+
+**Soal 2**. Untuk putaran <InlineMath math="90^\circ" />, titik lama dinyatakan melalui titik baru dengan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" />. Substitusikan ke <InlineMath math="y = 3x - 2" /> dan **selesaikan untuk <InlineMath math="y'" />**:
+
+<BlockMath math="\begin{aligned} -x' &= 3y' - 2 \\ 3y' &= -x' + 2 \\ y' &= -\tfrac{1}{3}x' + \tfrac{2}{3} \end{aligned}" />
+
+Periksa dengan dua titik garis semula. Titik <InlineMath math="(0, -2)" /> berpindah ke <InlineMath math="(2, 0)" />, dan <InlineMath math="-\tfrac{2}{3} + \tfrac{2}{3} = 0" />. Titik <InlineMath math="(1, 1)" /> berpindah ke <InlineMath math="(-1, 1)" />, dan <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />. Jadi persamaan garis bayangannya adalah <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />.
+
+<LineEquation
+  title={<>Garis <InlineMath math="y = 3x - 2" /> dan bayangannya oleh putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /></>}
+  description={<>Busur membawa <InlineMath math="(0, -2)" /> ke <InlineMath math="(2, 0)" /> dan <InlineMath math="(1, 1)" /> ke <InlineMath math="(-1, 1)" />, dua titik pada jawaban <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />. Garis sejajar <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> adalah bayangan oleh putaran <InlineMath math="270^\circ" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const y = -3.5 + 7 * i;
+        return { x: (y + 2) / 3, y, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = 3x - 2" />, at: 1, offset: [-2.48, -7.1, 0], anchorX: "right" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -3.5 + 7 * i;
+        return { x, y: -x / 3 + 2 / 3, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />, at: 0, offset: [0.32, 0.32, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => {
+        const x = -3.5 + 7 * i;
+        return { x, y: -x / 3 - 2 / 3, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />, at: 1, offset: [-0.79, -0.42, 0] }],
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: 2 * Math.sin(angle), y: -2 * Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [0, 270],
+      cone: { position: "end", size: 0.25 },
+      labels: [
+        { text: <InlineMath math="(0, -2)" />, at: 0, offset: [-0.17, 0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(2, 0)" />, at: 270, offset: [0.09, 0.44, 0], anchorX: "left" },
+      ],
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: Math.cos(angle) - Math.sin(angle), y: Math.sin(angle) + Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [0, 270],
+      cone: { position: "end", size: 0.25 },
+      labels: [
+        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.33, 0.22, 0], anchorX: "left" },
+        { text: <InlineMath math="(-1, 1)" />, at: 270, offset: [-0.67, -0.44, 0] },
+      ],
+    },
+  ]}
+/>
+
+Garis <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> muncul jika aturan <InlineMath math="(y, -x)" /> dipakai untuk putaran <InlineMath math="90^\circ" />. Garis itu sejajar dengan jawaban tetapi berada di sisi lain titik asal, karena putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /> berselisih setengah putaran.
+
+**Soal 3**. Untuk <InlineMath math="180^\circ" />, nilai <InlineMath math="\cos 180^\circ = -1" /> dan <InlineMath math="\sin 180^\circ = 0" /> memberi <InlineMath math="x = -x'" /> dan <InlineMath math="y = -y'" />. Substitusikan ke <InlineMath math="y = x^2 - 4" />:
+
+<BlockMath math="\begin{aligned} -y' &= (-x')^2 - 4 \\ y' &= -(x')^2 + 4 \end{aligned}" />
+
+Kurva hasil rotasinya adalah <InlineMath math="y = 4 - x^2" />, sama dengan <InlineMath math="y = -f(-x)" />. Titik puncak <InlineMath math="(0, -4)" /> berpindah ke <InlineMath math="(0, 4)" />, dan <InlineMath math="4 - 0^2 = 4" />. Titik potong sumbu <InlineMath math="x" /> di <InlineMath math="(2, 0)" /> berpindah ke <InlineMath math="(-2, 0)" />, dan <InlineMath math="4 - (-2)^2 = 0" />. Parabola <InlineMath math="y = 4 - x^2" /> membuka ke bawah dan setiap garis vertikal memotongnya tepat sekali, jadi kurva hasil rotasi **masih grafik fungsi**.
+
+<LineEquation
+  title={<>Parabola <InlineMath math="y = x^2 - 4" /> dan bayangannya oleh setengah putaran</>}
+  description={<>Titik puncak <InlineMath math="(0, -4)" /> berpindah ke <InlineMath math="(0, 4)" />. Kedua parabola melewati <InlineMath math="(-2, 0)" /> dan <InlineMath math="(2, 0)" />, dan busur setengah putaran membawa yang satu ke yang lain.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 12.5]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: x * x - 4, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [100, 300, 500],
+      labels: [
+        { text: <InlineMath math="y = x^2 - 4" />, at: 540, offset: [0.19, -0.46, 0], anchorX: "left" },
+        { text: <InlineMath math="(0, -4)" />, at: 300, offset: [0.23, -0.55, 0], anchorX: "left" },
+      ],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: 4 - x * x, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [100, 300, 500],
+      labels: [
+        { text: <InlineMath math="y = 4 - x^2" />, at: 60, offset: [-0.19, 0.46, 0], anchorX: "right" },
+        { text: <InlineMath math="(0, 4)" />, at: 300, offset: [-0.23, 0.55, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = Math.PI * (i / 360);
+        return { x: 2 * Math.cos(angle), y: 2 * Math.sin(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+      labels: [
+        { text: <InlineMath math="(2, 0)" />, at: 0, offset: [0.57, -0.57, 0], anchorX: "left" },
+        { text: <InlineMath math="(-2, 0)" />, at: 360, offset: [-0.57, 0.57, 0], anchorX: "right" },
+      ],
+    },
+  ]}
+/>
+
+Kedua parabola memotong sumbu <InlineMath math="x" /> di titik yang sama. Setengah putaran membawa <InlineMath math="(2, 0)" /> ke <InlineMath math="(-2, 0)" /> dan membawa <InlineMath math="(-2, 0)" /> ke <InlineMath math="(2, 0)" />, sedangkan kedua titik itu memang titik potong <InlineMath math="y = x^2 - 4" /> dengan sumbu <InlineMath math="x" />.
+
+**Soal 4**. Titik puncak parabola semula adalah <InlineMath math="V(3, 1)" />, dan selisihnya terhadap <InlineMath math="C(1, 2)" /> adalah <InlineMath math="(2, -1)" />. Seperempat putaran mengubah selisih itu menjadi <InlineMath math="(1, 2)" />, lalu koordinat <InlineMath math="C" /> ditambahkan kembali:
+
+<BlockMath math="(2, -1) \longmapsto (1, 2), \qquad V' = (1 + 1,\ 2 + 2) = (2, 4)" />
+
+Jaraknya ke pusat tetap, karena <InlineMath math="|CV|^2 = 2^2 + (-1)^2 = 5" /> dan <InlineMath math="|CV'|^2 = 1^2 + 2^2 = 5" />. Untuk persamaan kurva, **nyatakan titik lama melalui titik baru**. Putaran <InlineMath math="90^\circ" /> terhadap <InlineMath math="C" /> memberi <InlineMath math="x' = 1 - (y - 2)" /> dan <InlineMath math="y' = 2 + (x - 1)" />, sehingga <InlineMath math="x = y' - 1" /> dan <InlineMath math="y = 3 - x'" />. Substitusikan ke <InlineMath math="y = (x - 3)^2 + 1" />:
+
+<BlockMath math="\begin{aligned} 3 - x' &= \left((y' - 1) - 3\right)^2 + 1 \\ 3 - x' &= (y' - 4)^2 + 1 \\ x' &= 2 - (y' - 4)^2 \end{aligned}" />
+
+Setelah tanda aksen dihapus, kurva hasil rotasinya adalah <InlineMath math="x = 2 - (y - 4)^2" />, parabola yang membuka ke kiri dengan puncak <InlineMath math="(2, 4)" />, cocok dengan <InlineMath math="V'" />. Kurva itu **bukan grafik fungsi**. Titik <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" /> pada parabola semula berpindah ke <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />, dua titik pada garis vertikal <InlineMath math="x = 1" />. Keduanya memenuhi persamaan baru, karena <InlineMath math="2 - (3 - 4)^2 = 1" /> dan <InlineMath math="2 - (5 - 4)^2 = 1" />.
+
+<LineEquation
+  title={<>Parabola <InlineMath math="y = (x - 3)^2 + 1" /> diputar <InlineMath math="90^\circ" /> terhadap <InlineMath math="C(1, 2)" /></>}
+  description={<>Parabola yang membuka ke atas adalah <InlineMath math="y = (x - 3)^2 + 1" />, dan parabola yang membuka ke kiri adalah hasil rotasinya, <InlineMath math="x = 2 - (y - 4)^2" />. Busur membawa <InlineMath math="V(3, 1)" /> ke <InlineMath math="V'(2, 4)" /> dengan jarak tetap <InlineMath math="\sqrt{5}" /> dari <InlineMath math="C" />, dan garis <InlineMath math="x = 1" /> memotong hasil rotasi di <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />.</>}
+  showZAxis={false}
+  cameraPosition={[1.5, 3.4, 10]}
+  cameraTarget={[1.5, 3.4, 0]}
+  data={[
+    {
+      points: Array.from({ length: 321 }, (_, i) => {
+        const x = 1.4 + i / 100;
+        return { x, y: (x - 3) ** 2 + 1, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [60, 160, 260],
+      labels: [
+        { text: <InlineMath math="V(3, 1)" />, at: 160, offset: [-0.19, -0.46, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 321 }, (_, i) => {
+        const x = 1.4 + i / 100;
+        return { x: 2 - (x - 3) ** 2, y: x + 1, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [60, 160, 260],
+      labels: [
+        { text: <InlineMath math="V'(2, 4)" />, at: 160, offset: [0.17, 0.42, 0], anchorX: "left" },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => ({ x: 1, y: 2.5 + 4.2 * i, z: 0 })),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x = 1" />, at: 1, offset: [0.17, -0.29, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 271 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 270);
+        return { x: 1 + 2 * Math.cos(angle) + Math.sin(angle), y: 2 + 2 * Math.sin(angle) - Math.cos(angle), z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      cone: { position: "end", size: 0.25 },
+    },
+    {
+      points: [{ x: 1, y: 2, z: 0 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="C(1, 2)" />, at: 0, offset: [0.12, -0.59, 0] }],
+    },
+  ]}
+/>
+
+Garis vertikal <InlineMath math="x = 1" /> memotong kurva hasil rotasi dua kali, jadi kurva itu gagal dalam uji garis vertikal. Parabola semula gagal dalam uji garis horizontal dengan cara yang sama, karena garis <InlineMath math="y = 2" /> memotongnya di <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" />.

@@ -1,339 +1,309 @@
 export const metadata = {
-  title: "Horizontale Spiegelung",
-  description: "Spiegle einen Funktionsgraphen an der y-Achse und bestimme die neuen x-Koordinaten.",
+  title: "Spiegelung von Funktionen an der y-Achse",
+  description: "Spiegle einen Funktionsgraphen an der y-Achse, indem du x durch minus x ersetzt, und bestimme neue Punkte, Definitionsbereich und Gleichung mit Rechenweg.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-02",
   subject: "Funktionstransformation",
 };
 
-## Den Graphen an der senkrechten Achse spiegeln
+## Einen Graphen an der y-Achse spiegeln
 
-Bei einer horizontalen Spiegelung wird ein Funktionsgraph an der <InlineMath math="y" />-Achse gespiegelt. Ein Punkt rechts von der Achse erscheint danach <Highlight>im gleichen Abstand links von ihr</Highlight>, so wie ein Gegenstand in einem senkrechten Spiegel.
+Um einen Funktionsgraphen an der <InlineMath math="y" />-Achse zu spiegeln, ersetzt du in <InlineMath math="y=f(x)" /> jedes <InlineMath math="x" /> durch <InlineMath math="-x" /> und erhältst <InlineMath math="y=f(-x)" />. Jeder Punkt <InlineMath math="(x_0,y_0)" /> des Graphen von <InlineMath math="f" /> landet dabei bei <InlineMath math="(-x_0,y_0)" />, also **bleibt die Höhe gleich und nur die Seite wechselt**.
 
-Für eine Funktion <InlineMath math="f(x)" /> entsteht dabei die neue Funktion <InlineMath math="g(x) = f(-x)" />. Das Minuszeichen im Argument bewirkt die Spiegelung an der <InlineMath math="y" />-Achse.
+In der 3D-Ansicht kannst du die Koordinatenebene um die <InlineMath math="y" />-Achse halb herumdrehen und zusehen, wie die Kurve <InlineMath math="y=\sqrt{x}" /> genau dort landet, wo die Kurve <InlineMath math="y=\sqrt{-x}" /> liegt.
 
-### Spiegelungsregel
+<MathContainer>
+  <BlockMath math="y=f(x)\;\longrightarrow\;y=f(-x)" />
+  <BlockMath math="(x_0,\,y_0)\;\longmapsto\;(-x_0,\,y_0)" />
+</MathContainer>
 
-Für jede Funktion <InlineMath math="f(x)" /> gilt:
+Punkte rechts der <InlineMath math="y" />-Achse wandern im gleichen Abstand nach links, Punkte links davon nach rechts, und **Punkte auf der <InlineMath math="y" />-Achse bleiben liegen**. Jeder Punkt bewegt sich also waagerecht, obwohl die Spiegelachse selbst senkrecht steht.
 
-<BlockMath math="g(x) = f(-x)" />
+Probier es an einem Punkt aus. Der Punkt <InlineMath math="(4,2)" /> liegt auf <InlineMath math="y=\sqrt{x}" />, denn <InlineMath math="\sqrt{4}=2" />. Sein Bildpunkt <InlineMath math="(-4,2)" /> liegt auf <InlineMath math="y=\sqrt{-x}" />, denn <InlineMath math="\sqrt{-(-4)}=\sqrt{4}=2" />. Dieselbe Punktregel gilt bei der [Spiegelung von Punkten an der vertikalen Achse](/de/faecher/mathematik/geometrische-transformationen/spiegelung-an-der-y-achse). Neu ist hier, dass du alle Punkte eines Graphen auf einmal spiegelst und das Ergebnis als neue Funktionsgleichung aufschreibst.
 
-Jeder Punkt <InlineMath math="(x, y)" /> des ursprünglichen Graphen wird also zum Punkt <InlineMath math="(-x, y)" />. Die Höhe bleibt gleich, nur die horizontale Position wechselt die Seite.
+## Eine halbe Drehung um die y-Achse
 
-Punkte auf der **Spiegelachse bleiben fest**. Bei anderen Punkten wechselt die zur Spiegelachse senkrechte Koordinate ihr Vorzeichen. Zweimaliges Spiegeln führt jeden Punkt an seine Ausgangsposition zurück.
+Im Raum ist die Koordinatenebene die Ebene <InlineMath math="z=0" />, und die <InlineMath math="z" />-Achse zeigt auf dich zu. Drehst du diese Ebene um <InlineMath math="180^\circ" /> mit der <InlineMath math="y" />-Achse als Drehachse, läuft jeder Punkt auf einem waagerechten Halbkreis um die <InlineMath math="y" />-Achse. Weil der Kreis waagerecht liegt, **ändert sich die Höhe eines Punktes nie**.
 
-<BlockMath math="g(-x)=f(-(-x))=f(x)" />
+Nach einer Vierteldrehung liegt ein Punkt <InlineMath math="(x_0,y_0,0)" /> mit <InlineMath math="x_0>0" /> hinter der ursprünglichen Ebene, nach einer halben Drehung im gleichen Abstand auf der anderen Seite der Achse:
 
-## Die Spiegelung im Graphen
+<BlockMath math="\begin{aligned} (x_0,\,y_0,\,0) &\xrightarrow{\;90^\circ\;} (0,\,y_0,\,-x_0) \\ &\xrightarrow{\;90^\circ\;} (-x_0,\,y_0,\,0) \end{aligned}" />
 
-Betrachten wir zuerst die quadratische Funktion <InlineMath math="f(x) = (x - 2)^2" />.
+Ein Punkt mit <InlineMath math="x_0<0" /> dreht sich genauso, kommt aber vor der Ebene vorbei, weil <InlineMath math="-x_0>0" /> ist. Für jeden Punkt steht am Ende also genau die Regel für die Spiegelung an der <InlineMath math="y" />-Achse. Die 3D-Ansicht zeigt <InlineMath math="y=\sqrt{x}" />, das Spiegelbild <InlineMath math="y=\sqrt{-x}" /> und die Halbkreisbahnen von drei Punkten auf <InlineMath math="y=\sqrt{x}" />.
 
 <LineEquation
-  title={<>Spiegelung der quadratischen Funktion <InlineMath math="f(x) = (x - 2)^2" /></>}
-  description={<>Der zweite Graph ist das Spiegelbild des ersten an der <InlineMath math="y" />-Achse.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Halbe Drehung der Ebene um die <InlineMath math="y" />-Achse</>}
+  description={<>Jeder Punkt von <InlineMath math="y=\sqrt{x}" /> außer dem Ursprung läuft auf einem waagerechten Halbkreis hinter der Ebene und landet in gleicher Höhe auf <InlineMath math="y=\sqrt{-x}" />.</>}
+  cameraPosition={[5.5, 4.5, 11]}
+  cameraTarget={[0, 1, 0]}
+  showZAxis
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: (x - 2) * (x - 2), z: 0 };
+      points: Array.from({ length: 81 }, (_, i) => {
+        const t = i / 40;
+        return { x: t * t, y: t, z: 0 };
       }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=(x-2)^2" />, offset: [1, 1, 0] }],
+      smooth: false,
       showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: ((-x) - 2) * ((-x) - 2), z: 0 };
-      }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(-x-2)^2" />, offset: [-1, -1, 0] }],
-      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\sqrt{x}" />, at: 64, offset: [0.6, -0.5, 0] }],
     },
-  ]}
-  showZAxis={false}
-/>
-
-Am Graphen lässt sich direkt ablesen:
-- Die ursprüngliche Funktion <InlineMath math="f(x) = (x - 2)^2" /> hat ihren **Scheitelpunkt** bei <InlineMath math="(2, 0)" />
-- Die reflektierte Funktion <InlineMath math="g(x) = (-x - 2)^2" /> hat ihren Scheitelpunkt bei <InlineMath math="(-2, 0)" />
-- Die beiden Graphen sind Spiegelbilder voneinander an der <InlineMath math="y" />-Achse
-
-## Spiegelung einer linearen Funktion
-
-Dieselbe Spiegelungsregel gilt für die lineare Funktion <InlineMath math="f(x) = 2x + 3" />.
-
-<LineEquation
-  title={<>Spiegelung der linearen Funktion <InlineMath math="f(x) = 2x + 3" /></>}
-  description={<>Die gespiegelte Gerade hat die entgegengesetzte Steigung, aber denselben <InlineMath math="y" />-Achsenabschnitt.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
     {
-      points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const i = pointIndex - 27;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 3, z: 0 };
+      points: Array.from({ length: 81 }, (_, i) => {
+        const t = i / 40;
+        return { x: -t * t, y: t, z: 0 };
       }),
       smooth: false,
+      showPoints: false,
       color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [2.5, 0.5, 0], at: 37 }],
-      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\sqrt{-x}" />, at: 64, offset: [-0.6, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 24 }, (_, pointIndex) => {
-        const i = pointIndex + 0;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * -x + 3, z: 0 };
+      points: Array.from({ length: 49 }, (_, k) => {
+        const angle = (k * Math.PI) / 48;
+        return { x: Math.cos(angle), y: 1, z: -Math.sin(angle) };
       }),
       smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=-2x+3" />, offset: [-2.5, 1.5, 0], at: 10 }],
-      showPoints: false,
+      showPoints: true,
+      pointIndices: [0, 48],
+      cone: { position: "end", size: 0.25 },
+      color: "#0d9488",
+    },
+    {
+      points: Array.from({ length: 49 }, (_, k) => {
+        const angle = (k * Math.PI) / 48;
+        return { x: 2.25 * Math.cos(angle), y: 1.5, z: -2.25 * Math.sin(angle) };
+      }),
+      smooth: false,
+      showPoints: true,
+      pointIndices: [0, 48],
+      cone: { position: "end", size: 0.25 },
+      color: "#0d9488",
+    },
+    {
+      points: Array.from({ length: 49 }, (_, k) => {
+        const angle = (k * Math.PI) / 48;
+        return { x: 4 * Math.cos(angle), y: 2, z: -4 * Math.sin(angle) };
+      }),
+      smooth: false,
+      showPoints: true,
+      pointIndices: [0, 48],
+      cone: { position: "end", size: 0.25 },
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="180^\circ" />, at: 24, offset: [0, 0.4, 0] }],
     },
   ]}
-  showZAxis={false}
 />
 
-Der Vergleich zeigt:
-- Die ursprüngliche Funktion <InlineMath math="f(x) = 2x + 3" /> hat eine positive **Steigung** von <InlineMath math="2" />
-- Die gespiegelte Funktion <InlineMath math="g(x) = -2x + 3" /> hat die Steigung <InlineMath math="-2" />
-- Beide Geraden schneiden die <InlineMath math="y" />-Achse im selben Punkt <InlineMath math="(0, 3)" />
+Starte die automatische Drehung oder ziehe die Ansicht zur Seite, bis du die Ebene von hinten siehst. Von dort erscheint <InlineMath math="y=\sqrt{x}" /> links und <InlineMath math="y=\sqrt{-x}" /> rechts. Die beiden Kurven haben die Plätze getauscht, das Kurvenpaar sieht aber genauso aus wie in der Vorderansicht. Der Ursprung <InlineMath math="(0,0)" /> liegt auf der Drehachse und bewegt sich überhaupt nicht.
 
-## Welche Werte die horizontale Spiegelung umkehrt
+Die drei Punkte mit eingezeichneter Bahn kannst du nachrechnen. Jeder Bildpunkt erfüllt <InlineMath math="y=\sqrt{-x}" />:
 
-Eine horizontale Spiegelung klappt den Graphen an der <InlineMath math="y" />-Achse, deshalb ist die <InlineMath math="y" />-Achse die Spiegellinie. Jeder Punkt behält seinen Abstand zur Spiegellinie, wandert aber auf die andere Seite.
-
-Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Der zugehörige Punkt auf dem Graphen von <InlineMath math="f(-x)" /> ist <InlineMath math="(-a, b)" />. Der <InlineMath math="y" />-Wert bleibt <InlineMath math="b" />, und nur das Vorzeichen der <InlineMath math="x" />-Koordinate dreht sich um.
-
-| Teil der Funktion | Vor der Spiegelung | Nach der Spiegelung |
+| Punkt auf <InlineMath math="y=\sqrt{x}" /> | Bildpunkt nach der halben Drehung | Probe mit <InlineMath math="y=\sqrt{-x}" /> |
 | --- | --- | --- |
-| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(-a, b)" /> |
-| Definitionsbereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[-d, -c]" /> |
-| Wertebereich | Die ursprünglichen Ausgabewerte | Dieselben Werte wie vorher |
-| <InlineMath math="y" />-Achsenabschnitt | Bei <InlineMath math="x = 0" /> | Bleibt bei <InlineMath math="x = 0" /> |
+| <InlineMath math="(1,1)" /> | <InlineMath math="(-1,1)" /> | <InlineMath math="\sqrt{-(-1)}=\sqrt{1}=1" /> |
+| <InlineMath math="\left(\tfrac{9}{4},\tfrac{3}{2}\right)" /> | <InlineMath math="\left(-\tfrac{9}{4},\tfrac{3}{2}\right)" /> | <InlineMath math="\sqrt{-\left(-\tfrac{9}{4}\right)}=\sqrt{\tfrac{9}{4}}=\tfrac{3}{2}" /> |
+| <InlineMath math="(4,2)" /> | <InlineMath math="(-4,2)" /> | <InlineMath math="\sqrt{-(-4)}=\sqrt{4}=2" /> |
 
-<Highlight>Der Definitionsbereich wechselt auf die andere Seite</Highlight>, weil er die erlaubten Werte von <InlineMath math="x" /> enthält und diese Werte ihr Vorzeichen umkehren. Der Wertebereich bleibt gleich, weil die Höhe des Graphen an jeder Stelle unverändert ist. Eine [vertikale Spiegelung](/de/faecher/mathematik/funktionstransformationen/spiegelung-an-der-x-achse) klappt stattdessen die Höhen um.
+## Jedes Argument durch die Gegenzahl ersetzen
 
-## Exponentielles Wachstum in Zerfall umwandeln
+Die Gleichung <InlineMath math="g(x)=f(-x)" /> sagt dir, wie du die Höhe des neuen Graphen berechnest. Für <InlineMath math="g(3)" /> rechnest du <InlineMath math="f(-3)" /> aus. Die Höhe von <InlineMath math="g" /> an der Stelle <InlineMath math="x=3" /> ist also **die Höhe von <InlineMath math="f" /> an der Stelle <InlineMath math="x=-3" />**. Allgemein taucht die Höhe, die <InlineMath math="f" /> an der Stelle <InlineMath math="x_0" /> hat, bei <InlineMath math="g" /> an der Stelle <InlineMath math="-x_0" /> auf:
 
-Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird aus Wachstum durch die **Spiegelung** ein Zerfall.
+<BlockMath math="g(-x_0)=f\big(-(-x_0)\big)=f(x_0)" />
 
-<LineEquation
-  title={<>Spiegelung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
-  description={<>Der gespiegelte Graph fällt, behält aber dieselbe horizontale Asymptote und denselben <InlineMath math="y" />-Achsenabschnitt.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 960) * 6;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [3, 1, 0], at: 480 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 115 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 114) * 6;
-        return { x, y: Math.pow(2, -x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{-x}" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+Spiegle zum Beispiel <InlineMath math="f(x)=x^2+3x+2" /> an der <InlineMath math="y" />-Achse. Ersetze jedes <InlineMath math="x" /> durch <InlineMath math="(-x)" />, auch das <InlineMath math="x" /> im Summanden <InlineMath math="3x" />. Die Klammer sorgt dafür, dass das Minuszeichen mitquadriert wird:
 
-Für Exponentialfunktionen:
-- Die horizontale Asymptote bleibt für beide Funktionen bei <InlineMath math="y = 0" />
-- Der <InlineMath math="y" />-Achsenabschnitt bleibt bei <InlineMath math="(0, 1)" /> gleich
-- Die ursprünglich ansteigende Funktion wird nach der Spiegelung abnehmend
+<BlockMath math="\begin{aligned} g(x) &= f(-x) \\ &= (-x)^2+3(-x)+2 \\ &= x^2-3x+2 \end{aligned}" />
 
-## Spiegelung einer Quadratwurzelfunktion
+Prüfe das Ergebnis an Merkmalen des Graphen. Nullstellen, Scheitelpunkt und <InlineMath math="y" />-Achsenabschnitt müssen der Regel <InlineMath math="(x_0,y_0)\mapsto(-x_0,y_0)" /> folgen:
 
-Bei einer Quadratwurzelfunktion wechselt der gesamte Graph von der rechten auf die linke Seite der senkrechten Achse.
+| Merkmal | <InlineMath math="f(x)=x^2+3x+2" /> | <InlineMath math="g(x)=x^2-3x+2" /> |
+| --- | --- | --- |
+| Nullstellen | <InlineMath math="x=-2" /> und <InlineMath math="x=-1" /> | <InlineMath math="x=1" /> und <InlineMath math="x=2" /> |
+| Scheitelpunkt | <InlineMath math="\left(-\tfrac{3}{2},-\tfrac{1}{4}\right)" /> | <InlineMath math="\left(\tfrac{3}{2},-\tfrac{1}{4}\right)" /> |
+| <InlineMath math="y" />-Achsenabschnitt | <InlineMath math="(0,2)" /> | <InlineMath math="(0,2)" /> |
+
+Jede <InlineMath math="x" />-Koordinate wechselt das Vorzeichen, jede Höhe bleibt gleich. Der <InlineMath math="y" />-Achsenabschnitt bewegt sich nicht, weil er genau auf der Spiegelachse liegt. Einen Punkt kannst du auch direkt prüfen: <InlineMath math="g(1)=1-3+2=0" />, genauso wie <InlineMath math="f(-1)=1-3+2=0" />.
 
 <LineEquation
-  title={<>Spiegelung der Quadratwurzelfunktion <InlineMath math="f(x) = \sqrt{x}" /></>}
-  description="Der gespiegelte Graph verläuft vom Ursprung aus nach links, während seine Höhen unverändert bleiben."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
+  title={<>Die Parabel <InlineMath math="f(x)=x^2+3x+2" /> und ihr Spiegelbild</>}
+  description={<>Scheitelpunkt und Nullstellen von <InlineMath math="f" /> tauchen bei <InlineMath math="g" /> auf der anderen Seite der <InlineMath math="y" />-Achse in gleicher Höhe wieder auf, und der Punkt <InlineMath math="(0,2)" /> gehört zu beiden Graphen.</>}
+  cameraPosition={[0, 2.75, 11]}
+  cameraTarget={[0, 2.75, 0]}
+  showZAxis={false}
   data={[
     {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = -4 + i / 20;
+        return { x, y: x * x + 3 * x + 2, z: 0 };
+      }),
       smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#0891b2",
-      labels: [{ at: 64, text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
-      showPoints: false,
+      showPoints: true,
+      pointIndices: [40, 50, 60, 80],
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="f(x)=x^2+3x+2" />, at: 0, offset: [1.6, 1, 0] }],
     },
     {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = -1 + i / 20;
+        return { x, y: x * x - 3 * x + 2, z: 0 };
+      }),
       smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = -t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="g(x)=\sqrt{-x}" />, offset: [-1, 1.5, 0], at: 64 }],
-      showPoints: false,
+      showPoints: true,
+      pointIndices: [20, 40, 50, 60],
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="g(x)=x^2-3x+2" />, at: 100, offset: [-1.6, 1, 0] }],
     },
   ]}
-  showZAxis={false}
 />
 
-Der Graph bestätigt:
-- Der **Definitionsbereich** der ursprünglichen Funktion <InlineMath math="f(x) = \sqrt{x}" /> ist <InlineMath math="[0, \infty)" />
-- Der Definitionsbereich der reflektierten Funktion <InlineMath math="g(x) = \sqrt{-x}" /> ist <InlineMath math="(-\infty, 0]" />
-- Beide Kurven treffen sich im Ursprung <InlineMath math="(0, 0)" />
+## Aus Wachstum wird Zerfall
+
+Die Funktion <InlineMath math="g(x)=3^x+1" /> steigt von links nach rechts, denn jedes Mal, wenn <InlineMath math="x" /> um <InlineMath math="1" /> wächst, verdreifacht sich der Term <InlineMath math="3^x" />. Spiegle <InlineMath math="g" /> an der <InlineMath math="y" />-Achse und schreibe <InlineMath math="3^{-x}" /> als Potenz mit der Basis <InlineMath math="\tfrac{1}{3}" />, dem Kehrwert von <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned} G(x) &= g(-x) = 3^{-x}+1 \\ &= \left(3^{-1}\right)^{x}+1 = \left(\tfrac{1}{3}\right)^{x}+1 \end{aligned}" />
+
+Die Basis <InlineMath math="\tfrac{1}{3}" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />, also fällt <InlineMath math="G" /> von links nach rechts. Aus der wachsenden Funktion ist ein **Zerfall** geworden: Jedes Mal, wenn <InlineMath math="x" /> um <InlineMath math="1" /> wächst, schrumpft <InlineMath math="\left(\tfrac{1}{3}\right)^x" /> auf ein Drittel, genau wie bei den Modellen zum [exponentiellen Zerfall](/de/faecher/mathematik/potenzen-und-logarithmen/exponentieller-zerfall).
+
+Die Spiegelung an der <InlineMath math="y" />-Achse **lässt waagerechte Asymptote und Wertebereich unverändert**, weil beide nur von den Höhen abhängen: Die Asymptote bleibt <InlineMath math="y=1" />, der Wertebereich bleibt <InlineMath math="(1,\infty)" />. Auch der Definitionsbereich bleibt die Menge aller reellen Zahlen, weil diese Menge symmetrisch zu <InlineMath math="0" /> liegt. Der <InlineMath math="y" />-Achsenabschnitt bleibt <InlineMath math="(0,2)" />, denn <InlineMath math="g(0)=3^0+1=2" />, und dieser Punkt liegt auf der Spiegelachse. Prüfe zwei Punktpaare: <InlineMath math="G(1)=\tfrac{1}{3}+1=\tfrac{4}{3}=g(-1)" /> und <InlineMath math="G(-1)=3+1=4=g(1)" />.
+
+<LineEquation
+  title={<>Wachstum <InlineMath math="g(x)=3^x+1" /> und Zerfall <InlineMath math="G(x)=3^{-x}+1" /></>}
+  description={<>Die Kurve <InlineMath math="g" /> nähert sich der Asymptote <InlineMath math="y=1" /> für immer kleinere <InlineMath math="x" />, die Kurve <InlineMath math="G" /> für immer größere <InlineMath math="x" />. Der Punkt <InlineMath math="(1,4)" /> auf <InlineMath math="g" /> gehört zu <InlineMath math="(-1,4)" /> auf <InlineMath math="G" />.</>}
+  cameraPosition={[0, 3.25, 10]}
+  cameraTarget={[0, 3.25, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 111 }, (_, i) => {
+        const x = -4 + i / 20;
+        return { x, y: Math.pow(3, x) + 1, z: 0 };
+      }),
+      smooth: false,
+      showPoints: true,
+      pointIndices: [80, 100],
+      color: "#ea580c",
+      labels: [{ text: <InlineMath math="g(x)=3^x+1" />, at: 110, offset: [0.3, 0.5, 0] }],
+    },
+    {
+      points: Array.from({ length: 111 }, (_, i) => {
+        const x = 4 - i / 20;
+        return { x, y: Math.pow(3, -x) + 1, z: 0 };
+      }),
+      smooth: false,
+      showPoints: true,
+      pointIndices: [80, 100],
+      color: "#7c3aed",
+      labels: [{ text: <InlineMath math="G(x)=3^{-x}+1" />, at: 110, offset: [-0.3, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: -4, y: 1, z: 0 },
+        { x: 4, y: 1, z: 0 },
+      ],
+      smooth: false,
+      showPoints: false,
+      lineWidth: 1,
+      color: "#475569",
+      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [-0.6, -0.45, 0] }],
+    },
+  ]}
+/>
+
+## Wenn der Graph beim Spiegeln gleich bleibt
+
+Manche Graphen sind bereits symmetrisch zur <InlineMath math="y" />-Achse, sodass ihr Spiegelbild genau auf ihnen selbst landet. Das passiert, wenn <InlineMath math="f(-x)=f(x)" /> für jedes <InlineMath math="x" /> im Definitionsbereich gilt. Solche Funktionen heißen **gerade Funktionen**, ihr Graph ist achsensymmetrisch zur <InlineMath math="y" />-Achse. Beispiele sind <InlineMath math="f(x)=x^2" />, weil <InlineMath math="(-x)^2=x^2" />, und <InlineMath math="f(x)=|x|" />, weil <InlineMath math="|-x|=|x|" />. Dafür braucht es einen symmetrischen Definitionsbereich: Liegt <InlineMath math="x" /> darin, muss auch <InlineMath math="-x" /> darin liegen.
+
+Andere Funktionen erfüllen <InlineMath math="f(-x)=-f(x)" /> und heißen **ungerade Funktionen**. Bei einer ungeraden Funktion liefert die Spiegelung an der <InlineMath math="y" />-Achse denselben Graphen wie die Multiplikation der ganzen Funktion mit <InlineMath math="-1" />. Ein Beispiel ist <InlineMath math="f(x)=x^3-x" />:
+
+<BlockMath math="\begin{aligned} f(-x) &= (-x)^3-(-x) = -x^3+x \\ &= -\left(x^3-x\right) = -f(x) \end{aligned}" />
+
+Der Graph einer ungeraden Funktion bleibt auch bei einer [Drehung](/de/faecher/mathematik/funktionstransformationen/rotation) um <InlineMath math="180^\circ" /> um den Ursprung gleich, er ist punktsymmetrisch zum Ursprung. Diese Drehung bringt <InlineMath math="(x_0,y_0)" /> nach <InlineMath math="(-x_0,-y_0)" />, und der Punkt <InlineMath math="(-x_0,-f(x_0))" /> liegt tatsächlich auf dem Graphen, weil <InlineMath math="-f(x_0)=f(-x_0)" /> gilt.
+
+| Funktion | <InlineMath math="f(-x)" /> | Art | Graph nach der Spiegelung |
+| --- | --- | --- | --- |
+| <InlineMath math="x^2" /> | <InlineMath math="x^2" /> | gerade | derselbe wie vorher |
+| <InlineMath math="\lvert x\rvert" /> | <InlineMath math="\lvert x\rvert" /> | gerade | derselbe wie vorher |
+| <InlineMath math="x^3-x" /> | <InlineMath math="-x^3+x" /> | ungerade | derselbe wie der Graph von <InlineMath math="y=-f(x)" /> |
+| <InlineMath math="x^2+x" /> | <InlineMath math="x^2-x" /> | weder noch | ein neuer Graph |
+
+Die Funktion <InlineMath math="f(x)=x^2+x" /> ist weder gerade noch ungerade. Ein Punktpaar reicht als Beleg: <InlineMath math="f(1)=2" />, aber <InlineMath math="f(-1)=0" />, und <InlineMath math="0" /> ist weder <InlineMath math="2" /> noch <InlineMath math="-2" />.
+
+## Der Definitionsbereich wechselt die Seite
+
+In den Definitionsbereich gehören alle Werte von <InlineMath math="x" />, die du einsetzen darfst. Der Graph von <InlineMath math="y=f(-x)" /> ist an der Stelle <InlineMath math="x" /> nur definiert, wenn <InlineMath math="-x" /> im Definitionsbereich von <InlineMath math="f" /> liegt. Angenommen, <InlineMath math="f" /> ist auf <InlineMath math="[1,5]" /> definiert. Dann lautet die Bedingung <InlineMath math="1\le -x\le 5" />. Multiplizierst du alle drei Teile mit <InlineMath math="-1" />, drehen sich beide Ungleichheitszeichen um:
+
+<BlockMath math="1\le -x\le 5\iff -5\le x\le -1" />
+
+Der neue Definitionsbereich ist also <InlineMath math="[-5,-1]" />, und **beide Grenzen wechseln das Vorzeichen und tauschen die Plätze**. Die neue linke Grenze stammt von der alten rechten.
+
+Bei Wurzelfunktionen passiert dasselbe. Der Definitionsbereich von <InlineMath math="y=\sqrt{x}" /> ist <InlineMath math="[0,\infty)" />, weil der Term unter der Wurzel einer [Quadratwurzelfunktion](/de/faecher/mathematik/funktionen-und-modelle/quadratwurzelfunktion) nicht negativ sein darf. Für <InlineMath math="y=\sqrt{-x}" /> lautet die Bedingung <InlineMath math="-x\ge 0" />, also <InlineMath math="x\le 0" />, und der Definitionsbereich ist <InlineMath math="(-\infty,0]" />.
+
+| Teil des Graphen | Bei <InlineMath math="y=f(x)" /> | Bei <InlineMath math="y=f(-x)" /> |
+| --- | --- | --- |
+| Punkt | <InlineMath math="(x_0,y_0)" /> | <InlineMath math="(-x_0,y_0)" /> |
+| Definitionsbereich | <InlineMath math="[c,d]" /> | <InlineMath math="[-d,-c]" /> |
+| Wertebereich | alle Höhen des Graphen | unverändert |
+| <InlineMath math="y" />-Achsenabschnitt | <InlineMath math="(0,f(0))" /> | weiterhin <InlineMath math="(0,f(0))" /> |
+| Nullstelle | <InlineMath math="x=r" /> | <InlineMath math="x=-r" /> |
+| Verlauf | steigend auf <InlineMath math="[c,d]" /> | fallend auf <InlineMath math="[-d,-c]" /> |
+| Waagerechte Asymptote | <InlineMath math="y=q" /> | weiterhin <InlineMath math="y=q" /> |
+| Senkrechte Asymptote | <InlineMath math="x=p" /> | <InlineMath math="x=-p" /> |
+
+Wer <InlineMath math="x" /> durch <InlineMath math="-x" /> ersetzt, setzt den Wert <InlineMath math="b=-1" /> in die Form <InlineMath math="y=f(bx)" /> der [horizontalen Streckung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung) ein. Jeder negative Faktor spiegelt den Graphen zusätzlich an der <InlineMath math="y" />-Achse. Mit <InlineMath math="b=-1" /> ändert sich die Breite nicht, übrig bleibt also nur die Spiegelung. Der Wert <InlineMath math="b=-2" /> in <InlineMath math="f(-2x)" /> spiegelt den Graphen dagegen und ändert zugleich seine Breite.
+
+## Das Minuszeichen an der falschen Stelle
+
+Bei <InlineMath math="f(-x)" /> wirkt das Minuszeichen nur auf das Argument, muss dort aber **jedes <InlineMath math="x" /> der Formel** erfassen. Die ersten drei Fehler in der Tabelle verletzen diese Regel, die letzten beiden entstehen beim Ablesen des Ergebnisses:
+
+| Fehler | Warum er falsch ist | So fällt er auf |
+| --- | --- | --- |
+| <InlineMath math="-f(x)" /> schreiben | Ein Minus vor der Funktion kehrt die Höhen um, der Graph wird an der <InlineMath math="x" />-Achse gespiegelt | Der <InlineMath math="y" />-Achsenabschnitt muss <InlineMath math="(0,f(0))" /> bleiben |
+| <InlineMath math="-x^2" /> statt <InlineMath math="(-x)^2" /> schreiben | Ohne Klammer wird nur <InlineMath math="x" /> quadriert und das Ergebnis danach negativ genommen | Teste <InlineMath math="x=1" />: <InlineMath math="(-1)^2=1" />, aber <InlineMath math="-1^2=-1" /> |
+| Nur einen Teil der <InlineMath math="x" /> ersetzen | Bei <InlineMath math="x^2+3x+2" /> ändert das Ersetzen nur des ersten <InlineMath math="x" /> die Formel gar nicht | Teste einen Punkt: <InlineMath math="g(1)" /> muss gleich <InlineMath math="f(-1)" /> sein |
+| Grenzen des Definitionsbereichs nicht tauschen | <InlineMath math="[-c,-d]" /> setzt die größere Zahl nach links | Die linke Grenze eines Intervalls ist immer die kleinere Zahl |
+| Erwarten, dass sich eine gerade Funktion ändert | Für <InlineMath math="x^2" /> und <InlineMath math="\lvert x\rvert" /> gilt <InlineMath math="f(-x)=f(x)" /> | Berechne <InlineMath math="f(-x)" />, bevor du skizzierst |
+
+Der erste Fehler verändert die Art der Spiegelung. Die Formel <InlineMath math="-f(x)" /> kehrt die Höhe jedes Punktes um und ergibt eine [Spiegelung an der <InlineMath math="x" />-Achse](/de/faecher/mathematik/funktionstransformationen/spiegelung-an-der-x-achse). Der <InlineMath math="y" />-Achsenabschnitt trennt beide Fälle: Bei <InlineMath math="f(-x)" /> bleibt er liegen, bei <InlineMath math="-f(x)" /> wechselt seine Höhe das Vorzeichen, außer wenn <InlineMath math="f(0)=0" /> ist.
 
 ## Übungen
 
-Die drei Aufgaben nutzen die Spiegelregel, die du gerade gelernt hast. Jede Aufgabe ersetzt das Argument <InlineMath math="x" /> durch <InlineMath math="-x" />, also erscheint jedes Ergebnis auf der anderen Seite der <InlineMath math="y" />-Achse. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+Die Aufgaben 1 bis 3 fragen jeweils nach einem Merkmal des gespiegelten Graphen: nach den Nullstellen, nach dem Definitionsbereich und nach dem Scheitelpunkt. In Aufgabe 4 entscheidest du, ob sich der Graph einer kubischen Funktion überhaupt ändert. Ersetze in jeder Aufgabe **jedes <InlineMath math="x" /> durch <InlineMath math="-x" />**, bevor du vereinfachst, und prüfe dein Ergebnis an einem Punkt.
 
-1. Spiegle die Funktion <InlineMath math="f(x) = x^2 + 3x + 2" /> horizontal und bestimme die neue Funktionsgleichung.
+1. Bestimme die Gleichung des Graphen von <InlineMath math="f(x)=x^2-6x+5" /> nach der Spiegelung an der <InlineMath math="y" />-Achse und berechne seine Nullstellen.
 
-2. Der Graph der Funktion <InlineMath math="g(x) = 3^x + 1" /> wird an der <InlineMath math="y" />-Achse gespiegelt. Bestimme die Gleichung der gespiegelten Funktion und danach den **Definitionsbereich** dieser Funktion.
+2. Der Graph von <InlineMath math="g(x)=\sqrt{x-2}" /> wird an der <InlineMath math="y" />-Achse gespiegelt. Gib die Gleichung des neuen Graphen und seinen Definitionsbereich an.
 
-3. Spiegle die Funktion <InlineMath math="h(x) = |x + 2|" /> horizontal und bestimme den Scheitelpunkt des neuen Graphen.
+3. Spiegle <InlineMath math="h(x)=\lvert x+2\rvert" /> an der <InlineMath math="y" />-Achse. Vereinfache das Ergebnis so weit wie möglich und bestimme den Scheitelpunkt.
+
+4. Ändert sich der Graph von <InlineMath math="f(x)=x^3-x" />, wenn du ihn an der <InlineMath math="y" />-Achse spiegelst? Vergleiche das Ergebnis mit dem Graphen von <InlineMath math="y=-f(x)" />.
 
 ### Lösungen
 
-**Aufgabe 1**. Ersetze **jede Eingabe** durch ihren Gegenwert und vereinfache dann:
+**Aufgabe 1**. Die quadratische Funktion wird an der <InlineMath math="y" />-Achse gespiegelt, also ersetzt du jedes <InlineMath math="x" /> durch <InlineMath math="(-x)" />, auch im Summanden <InlineMath math="-6x" />:
 
-Horizontale Reflexion:
+<BlockMath math="\begin{aligned} F(x) &= f(-x) \\ &= (-x)^2-6(-x)+5 \\ &= x^2+6x+5 \\ &= (x+1)(x+5) \end{aligned}" />
 
-<BlockMath math="F(x) = f(-x) = (-x)^2 + 3(-x) + 2 = x^2 - 3x + 2" />
+Die Nullstellen von <InlineMath math="F" /> sind <InlineMath math="x=-5" /> und <InlineMath math="x=-1" />. Zum Vergleich: <InlineMath math="f(x)=(x-1)(x-5)" /> hat die Nullstellen <InlineMath math="1" /> und <InlineMath math="5" />, **jede Nullstelle wechselt also das Vorzeichen**. Auch ein weiterer Punkt passt: <InlineMath math="F(-1)=1-6+5=0=f(1)" />. Der gespiegelte Graph gehört also zu <InlineMath math="F(x)=x^2+6x+5" /> mit den Nullstellen <InlineMath math="-5" /> und <InlineMath math="-1" />.
 
-<LineEquation
-  title={<>Funktion <InlineMath math="f(x) = x^2 + 3x + 2" /> und ihr Spiegelbild</>}
-  description={<>Die Spiegelung an der <InlineMath math="y" />-Achse vertauscht die Vorzeichen der <InlineMath math="x" />-Koordinaten und verschiebt den Scheitelpunkt auf die andere Seite.</>}
-  cameraPosition={[0, 2, 12]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 3 * x + 2, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+3x+2" />, offset: [-2.5, -3.7, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 3 * x + 2, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2-3x+2" />, offset: [2.4, -4.8, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Aufgabe 2**. Ersetze <InlineMath math="x" /> unter der Wurzel durch <InlineMath math="-x" /> und bestimme dann die Werte von <InlineMath math="x" />, für die der Term unter der Wurzel nicht negativ ist:
 
-**Aufgabe 2**. Das Negieren der Eingabe **schränkt reelle Eingaben nicht ein**. Die Exponentialfunktion bleibt für alle reellen Zahlen definiert.
+<MathContainer>
+  <BlockMath math="G(x)=g(-x)=\sqrt{-x-2}" />
+  <BlockMath math="-x-2\ge 0\iff -x\ge 2\iff x\le -2" />
+</MathContainer>
 
-Gleichung der resultierenden reflektierten Funktion:
+Der Definitionsbereich von <InlineMath math="G" /> ist <InlineMath math="(-\infty,-2]" />. Bei <InlineMath math="g" /> lautete er <InlineMath math="[2,\infty)" />, **die Grenze <InlineMath math="2" /> wechselt also das Vorzeichen**, und der ganze Definitionsbereich liegt jetzt links der <InlineMath math="y" />-Achse. Prüfe mit dem Punkt <InlineMath math="(6,2)" /> auf <InlineMath math="g" />, denn <InlineMath math="\sqrt{6-2}=2" />. Sein Bildpunkt <InlineMath math="(-6,2)" /> liegt auf <InlineMath math="G" />, denn <InlineMath math="G(-6)=\sqrt{6-2}=2" />. Also gilt <InlineMath math="G(x)=\sqrt{-x-2}" /> mit dem Definitionsbereich <InlineMath math="(-\infty,-2]" />.
 
-- Horizontale Reflexion: <InlineMath math="G(x) = g(-x) = 3^{-x} + 1" />
-- Definitionsbereich nach der Spiegelung: Bleibt <InlineMath math="(-\infty, \infty)" />, weil Exponentialfunktionen für alle reellen Zahlen definiert sind
+**Aufgabe 3**. Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" /> und ziehe das Minuszeichen aus dem Betrag heraus. Der letzte Schritt ist erlaubt, weil **der Betrag das Vorzeichen nicht beachtet**, es gilt also <InlineMath math="\lvert -a\rvert=\lvert a\rvert" />:
 
-Im Graphen:
+<BlockMath math="\begin{aligned} H(x) &= h(-x) = \lvert -x+2\rvert \\ &= \lvert -(x-2)\rvert = \lvert x-2\rvert \end{aligned}" />
 
-<LineEquation
-  title={<>Funktion <InlineMath math="g(x) = 3^x + 1" /> und ihr Spiegelbild</>}
-  description="Der wachsende Exponentialgraph wird zu einem fallenden Graphen mit derselben horizontalen Asymptote."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 691 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 690) * 6;
-        return { x, y: Math.pow(3, x) + 1, z: 0 };
-      }),
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="g(x)=3^x+1" />, offset: [3, 1, 0], at: 345 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 185 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 184) * 6;
-        return { x, y: Math.pow(3, -x) + 1, z: 0 };
-      }),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=3^{-x}+1" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+Ein Betrag erreicht seinen kleinsten Wert <InlineMath math="0" />, wenn sein Inneres null ist, also bei <InlineMath math="x=2" />. Der Scheitelpunkt von <InlineMath math="H" /> ist damit <InlineMath math="(2,0)" />. Prüfe mit der Punktregel: Der Scheitelpunkt <InlineMath math="(-2,0)" /> von <InlineMath math="h" /> wandert nach <InlineMath math="(2,0)" />. Auch ein weiterer Punkt passt: <InlineMath math="H(5)=3" /> und <InlineMath math="h(-5)=\lvert -3\rvert=3" />. Also gilt <InlineMath math="H(x)=\lvert x-2\rvert" /> mit dem Scheitelpunkt <InlineMath math="(2,0)" />.
 
-**Aufgabe 3**. Nach der horizontalen Spiegelung liegt der Scheitelpunkt dort, wo der Ausdruck innerhalb des Betrags null ist.
+**Aufgabe 4**. Berechne zuerst <InlineMath math="f(-x)" /> und vergleiche mit <InlineMath math="f(x)" />:
 
-<BlockMath math="-x+2=0\;\Rightarrow\;x=2,\qquad H(2)=0" />
+<BlockMath math="\begin{aligned} f(-x) &= (-x)^3-(-x) \\ &= -x^3+x = -f(x) \end{aligned}" />
 
-Der Betrag erreicht sein Minimum, wenn sein **Argument null ergibt**. Löse diese Gleichung für die waagerechte Koordinate des Scheitelpunkts.
-
-Die ursprüngliche Funktion <InlineMath math="h(x) = |x + 2|" /> hat ihren Scheitelpunkt bei <InlineMath math="(-2, 0)" />.
-Nach horizontaler Spiegelung: <InlineMath math="H(x) = |-x + 2| = |-(x - 2)| = |x - 2|" />, der Scheitelpunkt wird <InlineMath math="(2, 0)" />.
-
-<LineEquation
-  title={<>Funktion <InlineMath math="h(x) = |x + 2|" /> und ihr Spiegelbild</>}
-  description={<>Die Spiegelung an der <InlineMath math="y" />-Achse verschiebt den Scheitelpunkt auf die gegenüberliegende Seite.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 94 }, (_, pointIndex) => {
-        const i = pointIndex - 41;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(x + 2), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x+2|" />, offset: [-1, 1, 0], at: 61 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 86 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(-x + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=|-x+2|" />, offset: [1, -1, 0], at: 38 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+Das Ergebnis ist <InlineMath math="-f(x)" />, also ist <InlineMath math="f" /> eine **ungerade Funktion**. Der Graph ändert sich, denn <InlineMath math="-f(x)" /> ist nicht dasselbe wie <InlineMath math="f(x)" />. Zum Beispiel liegt <InlineMath math="(2,6)" /> auf <InlineMath math="f" />, weil <InlineMath math="8-2=6" />. Sein Bildpunkt ist <InlineMath math="(-2,6)" />, aber <InlineMath math="f(-2)=-8+2=-6" />, also liegt <InlineMath math="(-2,6)" /> nicht auf dem ursprünglichen Graphen. Der Bildpunkt liegt auf <InlineMath math="y=-f(x)" />, denn <InlineMath math="-f(-2)=6" />. Der Graph wird also zu <InlineMath math="y=-x^3+x" />, und das ist derselbe Graph wie <InlineMath math="y=-f(x)" />.

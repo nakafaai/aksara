@@ -21,11 +21,14 @@
 - Page titles and body headings use one short phrase containing letters and
   ordinary spaces. Put formulas, code tokens, aliases, digits, operators,
   punctuation, emojis, and full questions in the first sentence below instead.
-  A hyphen required by standard word formation remains valid, such as `rata-rata`
-  or `jari-jari`. Never delete that hyphen, choose a stiffer synonym, or strip
-  punctuation from a sentence to leave an ungrammatical word pile. This rule
-  does not govern React-node component titles or descriptions, which render
-  mathematical identifiers according to the math rules below.
+  A hyphen required by standard word formation remains valid: the Indonesian
+  reduplication in `rata-rata` or `jari-jari`, and the German or English
+  compound that joins one letter to a word, such as `y-Achse` or `x-axis`.
+  Never delete that hyphen, choose a stiffer synonym, or strip punctuation from
+  a sentence to leave an ungrammatical word pile. Rephrase any other hyphenated
+  compound with letters and spaces. This rule does not govern React-node
+  component titles or descriptions, which render mathematical identifiers
+  according to the math rules below.
 - A heading must teach a concept. Citation-only sections such as `Source`,
   `References`, `Sumber`, `Referensi`, `Quelle`, `Quellen`, and localized
   bibliography variants are forbidden. A substantive `Energy Sources` section

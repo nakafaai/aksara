@@ -1,599 +1,697 @@
 export const metadata = {
   title: "Kombinasi Transformasi Fungsi",
-  description: "Gunakan grafik dan contoh dengan pembahasan lengkap untuk melihat cara beberapa transformasi fungsi digabungkan dan pengaruh urutannya.",
+  description: "Gabungkan pergeseran, peregangan, dan pencerminan grafik fungsi langkah demi langkah, lalu pelajari kapan urutan transformasi mengubah persamaan akhirnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-24",
+  dateModified: "2026-10-02",
   subject: "Transformasi Fungsi",
 };
 
-## Transformasi Berurutan pada Grafik yang Sama
+## Menerapkan Beberapa Transformasi Satu per Satu
 
-Kombinasi transformasi menerapkan **perubahan secara berurutan** pada fungsi yang sama. Setiap operasi menerima hasil operasi sebelumnya, sehingga perubahan urutan dapat mengubah fungsi akhir.
+Kombinasi transformasi menerapkan beberapa transformasi satu per satu, dan **setiap langkah bekerja pada hasil langkah sebelumnya**. Untuk <InlineMath math="a \neq 0" /> dan <InlineMath math="b \neq 0" />, bentuk umumnya adalah:
 
-Translasi, refleksi, rotasi, dan dilatasi dapat digabungkan. Perubahan urutan penerapannya dapat mengubah hasil akhir.
+<BlockMath math="g(x) = a\,f\big(b(x - h)\big) + k" />
 
-## Jenis Kombinasi Transformasi
+Dari grafik <InlineMath math="f" />, kerjakan dilatasi horizontal dengan faktor <InlineMath math="\tfrac{1}{b}" />, translasi horizontal sejauh <InlineMath math="h" />, dilatasi vertikal dengan faktor <InlineMath math="a" />, lalu translasi vertikal sejauh <InlineMath math="k" />.
 
-Untuk translasi, refleksi terhadap sumbu, dan dilatasi, kita membedakan **masukan dan keluaran**, dan setiap kelompok bekerja pada sumbu yang berbeda. Operasi vertikal mengubah keluaran fungsi, sehingga grafik bergeser ke atas, ke bawah, atau berubah tingginya. Operasi horizontal mengubah masukan, sehingga grafik bergeser ke samping, tercermin terhadap sumbu <InlineMath math="y" />, atau berubah lebarnya.
+Translasi dan dilatasi pada sumbu yang sama memberi hasil lain jika urutannya ditukar, kecuali faktornya <InlineMath math="1" /> atau pergeserannya <InlineMath math="0" />, sedangkan **langkah horizontal dan langkah vertikal boleh ditukar**.
 
-### Kombinasi Transformasi Vertikal
+Nilai <InlineMath math="a" /> yang negatif juga mencerminkan grafik terhadap sumbu <InlineMath math="x" />, dan nilai <InlineMath math="b" /> yang negatif mencerminkannya terhadap sumbu <InlineMath math="y" />. Misalnya, <InlineMath math="a = -2" /> meregangkan grafik secara tegak dengan faktor <InlineMath math="2" /> dan sekaligus mencerminkannya terhadap sumbu <InlineMath math="x" />.
 
-Transformasi vertikal melibatkan perubahan pada sumbu <InlineMath math="y" />. Kombinasi yang umum adalah **translasi vertikal** diikuti dengan dilatasi vertikal.
+## Urutan pada Sumbu yang Sama Mengubah Hasil
 
-Untuk fungsi <InlineMath math="f(x)" /> yang mengalami translasi vertikal sebesar <InlineMath math="b" /> kemudian dilatasi vertikal dengan faktor <InlineMath math="k" />, rumusnya menjadi:
+Dua langkah vertikal sudah cukup untuk memperlihatkan pengaruh urutan. Fungsi <InlineMath math="f(x) = x^2" /> mendapat [dilatasi vertikal](/id/materi/matematika/transformasi-fungsi/dilatasi-vertikal) dengan faktor <InlineMath math="2" /> dan [translasi vertikal](/id/materi/matematika/transformasi-fungsi/translasi-vertikal) sejauh <InlineMath math="1" /> satuan ke atas. Urutan A mengalikan keluaran dengan <InlineMath math="2" /> dulu, lalu menambahkan <InlineMath math="1" />. Urutan B menambahkan <InlineMath math="1" /> dulu, lalu mengalikan hasilnya dengan <InlineMath math="2" />:
 
-<BlockMath math="g(x) = k \cdot (f(x) + b)" />
-
-### Kombinasi Transformasi Horizontal
-
-Transformasi horizontal memengaruhi sumbu <InlineMath math="x" />. Contohnya adalah refleksi terhadap sumbu <InlineMath math="y" /> diikuti dengan **translasi horizontal**.
-
-Untuk fungsi <InlineMath math="f(x)" /> yang direfleksikan terhadap sumbu <InlineMath math="y" /> kemudian ditranslasi horizontal sebesar <InlineMath math="a" />, rumusnya adalah:
-
-<BlockMath math="g(x) = f(-(x - a))" />
-
-## Visualisasi Kombinasi Transformasi
-
-Terapkan dua transformasi secara berurutan pada fungsi kuadrat <InlineMath math="f(x) = x^2" />:
-
-1. **Fungsi Awal**: <InlineMath math="f(x) = x^2" />
-
-2. **Langkah 1**: Translasi Vertikal Geser <InlineMath math="2 \text{ unit}" /> ke atas
-
-<BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
-
-3. **Langkah 2**: Dilatasi Vertikal Kalikan dengan faktor <InlineMath math="0{,}5" />
-
-<BlockMath math="\begin{aligned} g(x) &amp;= 0{,}5 \cdot f_1(x) \\ &amp;= 0{,}5(x^2 + 2) \\ &amp;= 0{,}5x^2 + 1 \end{aligned}" />
-
-**Contoh Perhitungan untuk <InlineMath math="x = 2" />**:
-- Fungsi awal: <InlineMath math="f(2) = 2^2 = 4" />
-- Setelah translasi: <InlineMath math="f_1(2) = 4 + 2 = 6" />
-- Setelah dilatasi: <InlineMath math="g(2) = 0{,}5 \times 6 = 3" />
-
-Grafik berikut menunjukkan fungsi awal, hasil translasi, dan hasil dilatasi:
-
-<LineEquation
-  showZAxis={false}
-  title={<>Kombinasi Translasi dan Dilatasi Vertikal</>}
-  description={
-    <>
-      Fungsi kuadrat dengan translasi vertikal <InlineMath math="2 \text{ unit}" /> ke atas kemudian dilatasi vertikal dengan faktor <InlineMath math="0{,}5" />.
-    </>
-  }
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.4;
-        const y = x * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f" />,
-          at: 25,
-          offset: [-1, 0, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.4;
-        const y = x * x + 2;
-        return { x, y, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f_1" />,
-          at: 80,
-          offset: [-0.8, -3.56, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 115 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 7;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.4;
-        const y = 0.5 * (x * x + 2);
-        return { x, y, z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="g" />,
-          at: 87,
-          offset: [1, -0.7, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-## Urutan Transformasi
-
-Urutan transformasi dapat mengubah hasil akhir. Bandingkan kedua urutan berikut:
-
-**Perbandingan Urutan Transformasi**:
-
-**Urutan A: Dilatasi dulu, lalu translasi**
-1. Fungsi awal: <InlineMath math="f(x) = x^2" />
-2. Dilatasi vertikal dengan faktor <InlineMath math="2" />: <InlineMath math="h_1(x) = 2 \cdot f(x) = 2x^2" />
-3. Translasi vertikal <InlineMath math="+1" />: <InlineMath math="h_A(x) = h_1(x) + 1 = 2x^2 + 1" />
-
-**Urutan B: Translasi dulu, lalu dilatasi**
-1. Fungsi awal: <InlineMath math="f(x) = x^2" />
-2. Translasi vertikal <InlineMath math="+1" />: <InlineMath math="h_2(x) = f(x) + 1 = x^2 + 1" />
-3. Dilatasi vertikal dengan faktor <InlineMath math="2" />: <InlineMath math="h_B(x) = 2 \cdot h_2(x) = 2(x^2 + 1) = 2x^2 + 2" />
-
-**Contoh Perhitungan untuk <InlineMath math="x = 1" />**:
-
-*Urutan A:*
-- Fungsi awal: <InlineMath math="f(1) = 1^2 = 1" />
-- Setelah dilatasi: <InlineMath math="h_1(1) = 2 \times 1 = 2" />
-- Setelah translasi: <InlineMath math="h_A(1) = 2 + 1 = 3" />
-
-*Urutan B:*
-- Fungsi awal: <InlineMath math="f(1) = 1^2 = 1" />
-- Setelah translasi: <InlineMath math="h_2(1) = 1 + 1 = 2" />
-- Setelah dilatasi: <InlineMath math="h_B(1) = 2 \times 2 = 4" />
-
-Kedua urutan transformasi memberi hasil akhir yang berbeda: <InlineMath math="h_A(1) = 3" /> sedangkan <InlineMath math="h_B(1) = 4" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Perbandingan Urutan Transformasi</>}
-  description="Membandingkan hasil transformasi dengan urutan yang berbeda."
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 115 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 7;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f" />,
-          at: 32,
-          offset: [-1, -0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = 2 * x * x + 1;
-        return { x, y, z: 0 };
-      }),
-      color: "#059669",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h_A" />,
-          at: 70,
-          offset: [1, -0.8, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = 2 * (x * x + 1);
-        return { x, y, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h_B" />,
-          at: 20,
-          offset: [-0.4, -3.58, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-## Transformasi Horizontal Kombinasi
-
-Untuk transformasi horizontal, kita dapat menggabungkan refleksi dan translasi:
-
-1. **Fungsi Awal**: <InlineMath math="f(x) = 1{,}5^x" />
-
-2. **Langkah 1**: Refleksi terhadap sumbu <InlineMath math="y" /> Ganti <InlineMath math="x" /> dengan <InlineMath math="-x" />
-
-<BlockMath math="f_1(x) = f(-x) = 1{,}5^{-x}" />
-
-3. **Langkah 2**: Translasi horizontal Geser <InlineMath math="2 \text{ unit}" /> ke kanan
-
-<BlockMath math="\begin{aligned} g(x) &amp;= f_1(x-2) \\ &amp;= 1{,}5^{-(x-2)} \\ &amp;= 1{,}5^{-x+2} \end{aligned}" />
-
-**Contoh Perhitungan untuk <InlineMath math="x = 3" />**:
-- Fungsi awal: <InlineMath math="f(3) = 1{,}5^3 = 3{,}375" />
-- Setelah refleksi: <InlineMath math="f_1(3) = 1{,}5^{-3} = \frac{1}{3{,}375} \approx 0{,}296" />
-- Setelah translasi: <InlineMath math="g(3) = 1{,}5^{-(3-2)} = 1{,}5^{-1} = \frac{1}{1{,}5} \approx 0{,}667" />
-
-Grafik berikut mempertahankan kedua langkah perantara:
-
-<LineEquation
-  showZAxis={false}
-  title={<>Kombinasi Refleksi dan Translasi Horizontal</>}
-  description={<>Fungsi eksponensial dengan refleksi terhadap sumbu <InlineMath math="y" /> kemudian translasi horizontal.</>}
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 1178 }, (_, pointIndex) => {
-        const x = -3 + pointIndex / 1177 * 7;
-        const y = Math.pow(1.5, x);
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f" />,
-          at: 750,
-          offset: [0.5, 1.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 359 }, (_, pointIndex) => {
-        const x = -3 + pointIndex / 358 * 7;
-        const y = Math.pow(1.5, -x);
-        return { x, y, z: 0 };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f_1" />,
-          at: 80,
-          offset: [-0.6, -0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 311 }, (_, pointIndex) => {
-        const x = -3 + pointIndex / 310 * 7;
-        const y = Math.pow(1.5, -(x - 2));
-        return { x, y, z: 0 };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="g" />,
-          at: 32,
-          offset: [-0.6, 0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-## Sifat Kombinasi Transformasi
-
-Untuk memeriksa apakah urutan boleh ditukar, bandingkan **rumus akhir kedua urutan**. Kesamaan hasil juga dapat terjadi pada kasus khusus, misalnya faktor dilatasi satu atau translasi nol.
-
-| Sifat | Artinya | Contoh |
-| --- | --- | --- |
-| Urutan berpengaruh | Dua operasi pada sumbu yang sama belum tentu dapat ditukar | Dilatasi lalu translasi memberi <InlineMath math="kf(x)+b" />. Translasi lalu dilatasi memberi <InlineMath math="k(f(x)+b)" /> |
-| Sumbu berbeda bersifat bebas | Transformasi horizontal dan vertikal dapat diterapkan dalam urutan mana pun | Mengubah tinggi grafik lalu menggesernya ke samping menghasilkan grafik yang sama pada kedua urutan |
-| Operasi sejenis bergabung | Translasi pada arah yang sama menjumlahkan perpindahannya, dan dilatasi pada sumbu yang sama mengalikan faktornya | Translasi ke atas sebesar <InlineMath math="2" /> lalu <InlineMath math="3" /> menggeser grafik ke atas sebesar <InlineMath math="5" /> |
-| Kontinuitas tetap terjaga | Jika fungsi asli tidak putus dan tidak melompat, hasilnya juga demikian | Fungsi <InlineMath math="f(x)" /> yang kontinu tetap kontinu setelah kombinasi translasi, refleksi sumbu, dan dilatasi dengan faktor tak nol |
-
-Gunakan **fungsi perantara** sesuai urutan yang diminta. Jika <InlineMath math="f_1(x)=f(-x)" />, menggeser hasilnya ke kanan berarti <InlineMath math="g(x)=f_1(x-a)=f(-(x-a))" />. Membaca operasi hitung di dalam argumen bukan aturan universal untuk menentukan urutan gerak grafik.
-
-## Latihan
-
-Soal-soal berikut menggabungkan dua transformasi atau lebih, jadi baca urutan yang tertulis sebelum menuliskan rumus apa pun. Tulis **hasil setiap langkah** sebelum menerapkan transformasi berikutnya. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
-
-1. Fungsi <InlineMath math="f(x) = x^2" /> ditranslasi vertikal <InlineMath math="3 \text{ unit}" /> ke atas, kemudian dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />. Tentukan rumus fungsi hasil transformasi.
-
-2. Fungsi <InlineMath math="g(x) = 2^x" /> direfleksikan terhadap sumbu <InlineMath math="y" />, kemudian ditranslasi horizontal <InlineMath math="1 \text{ unit}" /> ke kanan. Tuliskan rumus fungsi hasil transformasi.
-
-3. Bandingkan hasil transformasi fungsi <InlineMath math="h(x) = x^2" /> pada urutan A dan urutan B. Urutan A menerapkan dilatasi vertikal dengan faktor <InlineMath math="3" /> lebih dulu, lalu translasi vertikal <InlineMath math="2 \text{ unit}" /> ke atas. Urutan B menerapkan translasi vertikal <InlineMath math="2 \text{ unit}" /> ke atas lebih dulu, lalu dilatasi vertikal dengan faktor <InlineMath math="3" />. Jelaskan mengapa kedua hasilnya berbeda.
-
-4. Fungsi <InlineMath math="f(x) = \sqrt{x}" /> mengalami kombinasi transformasi sehingga menjadi <InlineMath math="g(x) = 2\sqrt{x + 3} - 1" />. Sebutkan transformasi apa saja yang terjadi dan urutannya.
-
-5. Tentukan rumus fungsi hasil transformasi jika <InlineMath math="f(x) = |x|" /> ditranslasi horizontal <InlineMath math="2 \text{ unit}" /> ke kiri, direfleksikan terhadap sumbu <InlineMath math="x" />, kemudian dilatasi vertikal dengan faktor <InlineMath math="3" />.
-
-### Pembahasan
-
-**Soal 1**. Transformasi bertahap pada <InlineMath math="f(x) = x^2" />:
-
-Langkah 1: **Translasi vertikal** <InlineMath math="+3" />
-
-<BlockMath math="f_1(x) = x^2 + 3" />
-
-Langkah 2: Dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />
-
-<BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
-
-Jadi rumus fungsi hasil transformasi adalah <InlineMath math="g(x) = \frac{1}{2}x^2 + \frac{3}{2}" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Transformasi Bertahap: Translasi Kemudian Dilatasi</>}
-  description="Transformasi bertahap fungsi kuadrat."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="f" />,
-          at: 25,
-          offset: [-0.6, -0.3, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = 0.5 * (x * x + 3);
-        return { x, y, z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="g" />,
-          at: 80,
-          offset: [0.6, -0.3, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-**Soal 2**. Transformasi bertahap pada <InlineMath math="g(x) = 2^x" />:
-
-Langkah 1: Refleksi terhadap sumbu <InlineMath math="y" />
-
-<BlockMath math="g_1(x) = 2^{-x}" />
-
-Langkah 2: **Translasi horizontal** <InlineMath math="1 \text{ unit}" /> ke kanan
-
-<BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
-
-Jadi rumus fungsi hasil transformasi adalah <InlineMath math="h(x) = 2^{1-x}" />.
-
-<LineEquation
-  showZAxis={false}
-  title={<>Refleksi dan Translasi Horizontal Fungsi Eksponensial</>}
-  description="Transformasi fungsi eksponensial."
-  cameraPosition={[0, 2, 16]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 1126 }, (_, pointIndex) => {
-        const x = -3 + pointIndex / 1125 * 7;
-        const y = Math.pow(2, x);
-        return { x, y, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="g" />,
-          at: 750,
-          offset: [0.5, 0.5, 0],
-        },
-      ],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 300 }, (_, pointIndex) => {
-        const x = -3 + pointIndex / 299 * 7;
-        const y = Math.pow(2, 1 - x);
-        return { x, y, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h" />,
-          at: 160,
-          offset: [0, -2.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
-
-**Soal 3**. Perbandingan dua urutan transformasi:
-
-**Urutan A**: Dilatasi dulu, lalu translasi
+<ContentStack>
 
 <MathContainer>
-<BlockMath math="h_1(x) = 3x^2" />
-<BlockMath math="h_A(x) = 3x^2 + 2" />
+<BlockMath math="g_A(x) = 2f(x) + 1 = 2x^2 + 1" />
+<BlockMath math="g_B(x) = 2\big(f(x) + 1\big) = 2x^2 + 2" />
 </MathContainer>
-
-**Urutan B**: Translasi dulu, lalu dilatasi
-
-<MathContainer>
-<BlockMath math="h_2(x) = x^2 + 2" />
-<BlockMath math="h_B(x) = 3(x^2 + 2) = 3x^2 + 6" />
-</MathContainer>
-
-Hasil berbeda: <InlineMath math="h_A(x) = 3x^2 + 2" /> dan <InlineMath math="h_B(x) = 3x^2 + 6" />.
 
 <LineEquation
+  title={<>Grafik <InlineMath math="f(x) = x^2" />, <InlineMath math="g_A" />, dan <InlineMath math="g_B" /></>}
+  description={<>Titik <InlineMath math="(1, 1)" /> pada <InlineMath math="f" /> naik ke <InlineMath math="(1, 2)" /> pada kedua urutan, lalu berhenti di <InlineMath math="(1, 3)" /> pada <InlineMath math="g_A" /> dan di <InlineMath math="(1, 4)" /> pada <InlineMath math="g_B" />.</>}
   showZAxis={false}
-  title={<>Pengaruh Urutan Transformasi pada Hasil Akhir</>}
-  description="Perbandingan urutan transformasi yang berbeda."
-  cameraPosition={[0, 3, 16]}
+  cameraPosition={[0, 3, 8.5]}
   cameraTarget={[0, 3, 0]}
   data={[
     {
-      smooth: false,
-      points: Array.from({ length: 123 }, (_, pointIndex) => {
-        const sampleIndex = pointIndex - 11;
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = x * x;
-        return { x, y, z: 0 };
+      points: Array.from({ length: 321 }, (_, i) => {
+        const x = (i - 160) / 100;
+        return { x, y: x * x, z: 0 };
       }),
-      color: "#9333ea",
+      smooth: false,
+      color: "#64748b",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h" />,
-          at: 36,
-          offset: [-1, -0.5, 0],
-        },
-      ],
+      labels: [{ text: <InlineMath math="f" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = 3 * x * x + 2;
-        return { x, y, z: 0 };
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 200;
+        return { x, y: 2 * x * x + 1, z: 0 };
       }),
-      color: "#059669",
+      smooth: false,
+      color: "#ea580c",
       showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h_A" />,
-          at: 80,
-          offset: [0.5, 0.5, 0],
-        },
-      ],
+      labels: [{ text: <InlineMath math="g_A" />, at: 60, offset: [-0.17, -0.25, 0], anchorX: "right" }],
     },
     {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = (i - 10) * 0.3;
-        const y = 3 * (x * x + 2);
-        return { x, y, z: 0 };
+      points: Array.from({ length: 561 }, (_, i) => {
+        const x = (i - 280) / 200;
+        return { x, y: 2 * x * x + 2, z: 0 };
       }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g_B" />, at: 40, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 1, y: 4, z: 0 }],
+      smooth: false,
       color: "#d97706",
-      showPoints: false,
+      showPoints: true,
       labels: [
-        {
-          text: <InlineMath math="h_B" />,
-          at: 20,
-          offset: [-0.5, 0.5, 0],
-        },
+        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.17, -0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="(1, 3)" />, at: 2, offset: [0.18, -0.08, 0], anchorX: "left" },
+        { text: <InlineMath math="(1, 4)" />, at: 3, offset: [0.39, -0.08, 0], anchorX: "left" },
       ],
     },
   ]}
 />
 
-**Soal 4**. Analisis transformasi <InlineMath math="g(x) = 2\sqrt{x + 3} - 1" /> dari <InlineMath math="f(x) = \sqrt{x}" />:
+</ContentStack>
 
-Transformasi yang terjadi secara berurutan:
-- Translasi horizontal <InlineMath math="3 \text{ unit}" /> ke kiri: <InlineMath math="f(x + 3) = \sqrt{x + 3}" />
-- Dilatasi vertikal dengan faktor <InlineMath math="2" />: <InlineMath math="2\sqrt{x + 3}" />
-- Translasi vertikal <InlineMath math="1 \text{ unit}" /> ke bawah: <InlineMath math="2\sqrt{x + 3} - 1" />
+Lacak titik <InlineMath math="(1, 1)" /> pada grafik <InlineMath math="f" />. Urutan A memindahkan titik itu ke <InlineMath math="(1, 2)" /> lalu <InlineMath math="(1, 3)" />, dan memang <InlineMath math="g_A(1) = 3" />. Urutan B memindahkannya ke <InlineMath math="(1, 2)" /> lalu <InlineMath math="(1, 4)" />, dan <InlineMath math="g_B(1) = 4" />. Kedua grafik berbeda, karena pada urutan B **dilatasi ikut menggandakan pergeseran** yang sudah terjadi:
 
-Urutan ini **salah satu pilihan yang valid**. Pergeseran horizontal boleh ditukar dengan kedua operasi vertikal, tetapi menggeser turun sebelum menggandakan keluaran memberi hasil berbeda. Syarat akar <InlineMath math="x+3\ge0" /> memberi domain <InlineMath math="x\ge-3" />. Nilai minimum keluaran adalah <InlineMath math="-1" />.
+<BlockMath math="a\big(f(x) + k\big) = a\,f(x) + ak" />
 
-**Soal 5**. Geser titik puncak **dua satuan ke kiri**, lalu ubah tanda setiap keluaran dan kalikan besar keluaran dengan tiga. Titik puncak hasilnya adalah <InlineMath math="(-2,0)" />.
+Jadi, untuk dilatasi dengan faktor <InlineMath math="a" /> yang diikuti pergeseran sejauh <InlineMath math="k" />, tulis <InlineMath math="a\,f(x) + k" />. Jika pergeseran dikerjakan lebih dulu, besar pergeseran akhirnya menjadi <InlineMath math="ak" />. Pada grafik, <InlineMath math="g_B" /> selalu tepat satu satuan di atas <InlineMath math="g_A" />, karena <InlineMath math="2x^2 + 2 = (2x^2 + 1) + 1" /> untuk setiap <InlineMath math="x" />.
 
-Transformasi bertahap pada <InlineMath math="f(x) = |x|" />:
+## Memampatkan Dulu atau Menggeser Dulu
 
-<MathContainer>
-<BlockMath math="f_1(x) = |x + 2|" />
-<BlockMath math="f_2(x) = -|x + 2|" />
-<BlockMath math="g(x) = -3|x + 2|" />
-</MathContainer>
+Pada sumbu horizontal, urutan juga menentukan hasil. Mulai lagi dari <InlineMath math="f(x) = x^2" />. [Dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal) dengan faktor <InlineMath math="\tfrac{1}{2}" /> memampatkan grafik ke arah sumbu <InlineMath math="y" /> dengan mengganti <InlineMath math="x" /> menjadi <InlineMath math="2x" />. [Translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal) sejauh <InlineMath math="3" /> satuan ke kanan mengganti <InlineMath math="x" /> menjadi <InlineMath math="x - 3" />. Urutan A memampatkan dulu, lalu menggeser:
 
-Jadi rumus fungsi hasil transformasi adalah <InlineMath math="g(x) = -3|x + 2|" />.
+<BlockMath math="\begin{aligned} y &= f(2x) = (2x)^2 \\ y &= f\big(2(x - 3)\big) = \big(2(x - 3)\big)^2 \end{aligned}" />
+
+Urutan B menggeser dulu, lalu pemampatan mengganti setiap <InlineMath math="x" /> pada hasil pergeseran menjadi <InlineMath math="2x" />:
+
+<ContentStack>
+
+<BlockMath math="\begin{aligned} y &= f(x - 3) = (x - 3)^2 \\ y &= f(2x - 3) = (2x - 3)^2 \end{aligned}" />
 
 <LineEquation
-  showZAxis={false}
-  title={<>Kombinasi Translasi, Refleksi, dan Dilatasi Fungsi Mutlak</>}
-  description="Transformasi bertahap fungsi nilai mutlak."
-  cameraPosition={[0, 0, 12]}
+  title={<>Dua urutan langkah dari <InlineMath math="y = x^2" /></>}
+  description={<>Lapisan tengah adalah <InlineMath math="y = f(x)" /> dengan <InlineMath math="f(x) = x^2" />. Lapisan ke arah <InlineMath math="z" /> positif mengikuti urutan A dan lapisan ke arah <InlineMath math="z" /> negatif mengikuti urutan B. Lihat dari atas untuk membandingkan tempat titik puncak setiap urutan berhenti.</>}
+  cameraPosition={[7.4, 8.5, 7]}
+  cameraTarget={[1.5, 0.8, 0]}
   data={[
     {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s, y: s * s, z: 0 };
+      }),
       smooth: false,
-      points: [
-        { x: -9, y: 9, z: 0 },
-        ...Array.from({ length: 101 }, (_, sampleIndex) => {
-          const i = sampleIndex / 5;
-          const x = (i - 10) * 0.3;
-          const y = Math.abs(x);
-          return { x, y, z: 0 };
-        }),
-        { x: 9, y: 9, z: 0 },
-      ],
-      color: "#0891b2",
+      color: "#64748b",
       showPoints: false,
+      labels: [{ text: <InlineMath math="y = f(x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s / 2, y: s * s, z: 2 };
+      }),
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = f(2x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s / 2 + 3, y: s * s, z: 4 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = f(2(x - 3))" />, at: 300, offset: [0, -0.9, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s + 3, y: s * s, z: -2 };
+      }),
+      smooth: false,
+      color: "#c026d3",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = f(x - 3)" />, at: 300, offset: [0, -0.9, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: (s + 3) / 2, y: s * s, z: -4 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = f(2x - 3)" />, at: 0, offset: [-0.7, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 2 }, { x: 3, y: 0, z: 4 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: -2 }, { x: 3 / 2, y: 0, z: -4 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+    },
+  ]}
+/>
+
+</ContentStack>
+
+Sumbu <InlineMath math="z" /> hanya memisahkan langkah: urutan A maju ke arah <InlineMath math="z" /> positif satu lapisan per langkah, sedangkan urutan B mundur ke arah <InlineMath math="z" /> negatif. Garis yang menghubungkan titik-titik puncak menunjukkan perjalanan titik puncak setiap urutan. Putar tampilan sampai kamu melihat dari atas. Pada petak lantai, titik puncak urutan A berhenti di <InlineMath math="x = 3" />, sedangkan titik puncak urutan B berhenti di <InlineMath math="x = \tfrac{3}{2}" />.
+
+Pada urutan B, pemampatan datang sesudah pergeseran, jadi pemampatan ke arah sumbu <InlineMath math="y" /> ikut membagi dua jarak pergeseran. Titik puncak yang sudah berada di <InlineMath math="x = 3" /> tertarik ke <InlineMath math="x = \tfrac{3}{2}" />. Itulah sebabnya **grafik <InlineMath math="y = f(2x - 3)" /> hanya bergeser <InlineMath math="\tfrac{3}{2}" /> satuan**. Semua lapisan tetap setinggi <InlineMath math="\tfrac{9}{4}" />, karena langkah horizontal tidak mengubah keluaran.
+
+Titik <InlineMath math="(1, 1)" /> memeriksa kedua urutan. Urutan A memindahkan titik itu ke <InlineMath math="\left(\tfrac{1}{2}, 1\right)" /> lalu <InlineMath math="\left(\tfrac{7}{2}, 1\right)" />, sedangkan urutan B memindahkannya ke <InlineMath math="(4, 1)" /> lalu <InlineMath math="(2, 1)" />. Keduanya memenuhi persamaan akhir masing-masing, karena <InlineMath math="\big(2(\tfrac{7}{2} - 3)\big)^2 = 1" /> dan <InlineMath math="(2 \cdot 2 - 3)^2 = 1" />.
+
+## Membaca Urutan dari Bentuk Persamaan
+
+Jika persamaan sudah berbentuk <InlineMath math="y = a\,f\big(b(x - h)\big) + k" />, urutan langkahnya bisa langsung dibaca. Persamaan seperti <InlineMath math="y = f(2x - 6)" /> belum berbentuk begitu, jadi **keluarkan dulu pengali <InlineMath math="x" /> dari isi kurung**:
+
+<BlockMath math="f(2x - 6) = f\big(2(x - 3)\big)" />
+
+Bentuk kanan dibaca sebagai pemampatan dengan faktor <InlineMath math="\tfrac{1}{2}" />, lalu pergeseran <InlineMath math="3" /> satuan ke kanan. Persamaan yang sama juga bisa dibaca dengan urutan terbalik, yaitu geser <InlineMath math="6" /> satuan ke kanan lalu mampatkan, karena pemampatan sesudah pergeseran membagi dua pergeseran <InlineMath math="6" /> menjadi <InlineMath math="3" />. Kedua bacaan benar selama besar pergeseran cocok dengan urutannya.
+
+Setiap langkah dasar mengubah persamaan dan titik dengan cara yang tetap.
+
+| Langkah | Persamaan baru | Titik <InlineMath math="(x_0, y_0)" /> berpindah ke |
+| --- | --- | --- |
+| Dilatasi horizontal dengan faktor <InlineMath math="\tfrac{1}{b}" /> | <InlineMath math="y = f(bx)" /> | <InlineMath math="\left(\tfrac{x_0}{b}, y_0\right)" /> |
+| Translasi horizontal sejauh <InlineMath math="h" /> | <InlineMath math="y = f(x - h)" /> | <InlineMath math="(x_0 + h, y_0)" /> |
+| Dilatasi vertikal dengan faktor <InlineMath math="a" /> | <InlineMath math="y = a\,f(x)" /> | <InlineMath math="(x_0, a y_0)" /> |
+| Translasi vertikal sejauh <InlineMath math="k" /> | <InlineMath math="y = f(x) + k" /> | <InlineMath math="(x_0, y_0 + k)" /> |
+
+Jika keempat langkah dikerjakan dengan urutan pada bentuk umum, setiap titik <InlineMath math="(x_0, y_0)" /> pada grafik <InlineMath math="f" /> berakhir di:
+
+<BlockMath math="(x_0, y_0) \longmapsto \left(\frac{x_0}{b} + h,\ a y_0 + k\right)" />
+
+Urutan langkah tampak di rumus itu. Nilai <InlineMath math="x_0" /> dibagi <InlineMath math="b" /> dulu lalu ditambah <InlineMath math="h" />, sedangkan <InlineMath math="y_0" /> dikali <InlineMath math="a" /> dulu lalu ditambah <InlineMath math="k" />.
+
+Sebagai contoh, fungsi <InlineMath math="g(x) = 2\sqrt{2x + 6} - 1" /> diuraikan menjadi langkah-langkah dari <InlineMath math="f(x) = \sqrt{x}" />. Pengali <InlineMath math="x" /> dikeluarkan lebih dulu dari isi akar:
+
+<BlockMath math="g(x) = 2\sqrt{2(x + 3)} - 1 = 2f\big(2(x + 3)\big) - 1" />
+
+Jadi <InlineMath math="a = 2" />, <InlineMath math="b = 2" />, <InlineMath math="h = -3" />, dan <InlineMath math="k = -1" />. Grafik <InlineMath math="y = \sqrt{x}" /> dimampatkan dengan faktor <InlineMath math="\tfrac{1}{2}" />, digeser <InlineMath math="3" /> satuan ke kiri, diregangkan tegak dengan faktor <InlineMath math="2" />, lalu digeser <InlineMath math="1" /> satuan ke bawah. Rumus titik memindahkan titik awal kurva dan titik <InlineMath math="(4, 2)" />:
+
+<MathContainer>
+<BlockMath math="(0, 0) \longmapsto \left(\tfrac{0}{2} - 3,\ 2 \cdot 0 - 1\right) = (-3, -1)" />
+<BlockMath math="(4, 2) \longmapsto \left(\tfrac{4}{2} - 3,\ 2 \cdot 2 - 1\right) = (-1, 3)" />
+</MathContainer>
+
+<LineEquation
+  title={<>Grafik <InlineMath math="f(x) = \sqrt{x}" /> dan <InlineMath math="g(x) = 2\sqrt{2x + 6} - 1" /></>}
+  description={<>Panah menghubungkan <InlineMath math="(0, 0)" /> dengan <InlineMath math="(-3, -1)" /> dan <InlineMath math="(4, 2)" /> dengan <InlineMath math="(-1, 3)" />. Setiap titik <InlineMath math="(x_0, y_0)" /> pada <InlineMath math="f" /> berpindah ke <InlineMath math="\left(\tfrac{x_0}{2} - 3, 2y_0 - 1\right)" />.</>}
+  showZAxis={false}
+  cameraPosition={[1.5, 1.4, 11]}
+  cameraTarget={[1.5, 1.4, 0]}
+  data={[
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: s * s, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      pointIndices: [0, 400],
+      labels: [{ text: <InlineMath math="f" />, at: 450, offset: [0, 0.45, 0] }],
+    },
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: (s * s) / 2 - 3, y: 2 * s - 1, z: 0 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      pointIndices: [0, 400],
+      labels: [{ text: <InlineMath math="g" />, at: 300, offset: [-0.5, 0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -1, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }, { x: -1, y: 3, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      cone: { position: "end", size: 0.3 },
+    },
+  ]}
+/>
+
+Periksa dengan persamaan <InlineMath math="g" />: <InlineMath math="g(-3) = 2\sqrt{0} - 1 = -1" /> dan <InlineMath math="g(-1) = 2\sqrt{4} - 1 = 3" />. Titik awal kurva akar pindah dari <InlineMath math="(0, 0)" /> ke <InlineMath math="(-3, -1)" />, jadi **domain <InlineMath math="g" /> adalah <InlineMath math="x \geq -3" />** dan nilai terkecil <InlineMath math="g" /> adalah <InlineMath math="-1" />.
+
+## Transformasi Horizontal dan Vertikal Boleh Ditukar
+
+Langkah horizontal hanya mengubah koordinat <InlineMath math="x" /> setiap titik, dan langkah vertikal hanya mengubah koordinat <InlineMath math="y" />. Karena keduanya mengubah koordinat yang berbeda, **urutan langkah horizontal dan vertikal boleh ditukar**. Geser <InlineMath math="y = x^2" /> sejauh <InlineMath math="1" /> satuan ke kanan lalu <InlineMath math="2" /> satuan ke atas, dan kamu mendapat <InlineMath math="y = (x - 1)^2 + 2" />. Jika kamu menggeser <InlineMath math="2" /> satuan ke atas dulu, kamu mendapat <InlineMath math="y = x^2 + 2" />, lalu pergeseran ke kanan mengubah <InlineMath math="x^2 + 2" /> menjadi <InlineMath math="(x - 1)^2 + 2" /> juga.
+
+<LineEquation
+  title={<>Dua urutan yang berakhir pada grafik yang sama</>}
+  description={<>Lapisan pertama adalah <InlineMath math="y = x^2" />. Lapisan kedua memuat kedua hasil antara, <InlineMath math="y = (x - 1)^2" /> dan <InlineMath math="y = x^2 + 2" />. Kedua lintasan titik puncak bertemu lagi di <InlineMath math="(1, 2)" /> pada lapisan ketiga, <InlineMath math="y = (x - 1)^2 + 2" />.</>}
+  cameraPosition={[7, 6.5, 9]}
+  cameraTarget={[0.5, 1.5, 2]}
+  data={[
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s, y: s * s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 0, offset: [-0.8, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s + 1, y: s * s, z: 2 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = (x - 1)^2" />, at: 600, offset: [1.2, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s, y: s * s + 2, z: 2 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2 + 2" />, at: 0, offset: [-1.1, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const s = (i - 300) / 200;
+        return { x: s + 1, y: s * s + 2, z: 4 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = (x - 1)^2 + 2" />, at: 600, offset: [1.5, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 2 }, { x: 1, y: 2, z: 4 }],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 2 }, { x: 1, y: 2, z: 4 }],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1, 2)" />, at: 2, offset: [0.7, 0.35, 0] }],
+    },
+  ]}
+/>
+
+Satu lintasan bergerak ke kanan dulu, lintasan lain naik dulu, tetapi keduanya berakhir di titik puncak yang sama, <InlineMath math="(1, 2)" />. Keempat titik puncak membentuk jajar genjang, karena setiap lintasan memuat langkah <InlineMath math="1" /> satuan ke kanan dan langkah <InlineMath math="2" /> satuan ke atas, hanya urutannya yang berbeda.
+
+Dua pencerminan juga boleh ditukar. [Refleksi terhadap sumbu <InlineMath math="x" />](/id/materi/matematika/transformasi-fungsi/refleksi-vertikal) mengganti tanda keluaran, sedangkan [refleksi terhadap sumbu <InlineMath math="y" />](/id/materi/matematika/transformasi-fungsi/refleksi-horizontal) mengganti tanda masukan. Dalam urutan mana pun, kedua pencerminan itu memindahkan setiap titik ke lawan kedua koordinatnya:
+
+<MathContainer>
+<BlockMath math="(x, y) \longmapsto (x, -y) \longmapsto (-x, -y)" />
+<BlockMath math="y = f(x) \longmapsto y = -f(x) \longmapsto y = -f(-x)" />
+</MathContainer>
+
+Gabungan dua pencerminan itu adalah [rotasi](/id/materi/matematika/transformasi-fungsi/rotasi) sebesar <InlineMath math="180^\circ" /> terhadap titik asal, karena setiap titik <InlineMath math="(x, y)" /> berpindah ke <InlineMath math="(-x, -y)" />.
+
+Secara aljabar, bentuk umum <InlineMath math="a\,f\big(b(x - h)\big) + k" /> adalah sebuah [komposisi fungsi](/id/materi/matematika/fungsi-komposisi-dan-fungsi-invers/komposisi-fungsi). Fungsi dalam <InlineMath math="B" /> mengolah masukan sebelum <InlineMath math="f" /> bekerja, dan fungsi luar <InlineMath math="A" /> mengolah keluaran <InlineMath math="f" />:
+
+<BlockMath math="\begin{aligned} g(x) &= A\big(f(B(x))\big) \\ B(x) &= b(x - h) \\ A(u) &= au + k \end{aligned}" />
+
+Fungsi <InlineMath math="B" /> bekerja pada masukan, jadi titik grafik bergerak mendatar menurut invers dari <InlineMath math="B" />, yaitu <InlineMath math="x_0 \mapsto \tfrac{x_0}{b} + h" />. Invers itu membagi dengan <InlineMath math="b" /> dulu, baru menambahkan <InlineMath math="h" />. Karena itu, **langkah di dalam kurung dikerjakan terbalik dari urutan penulisannya**: <InlineMath math="b(x - h)" /> ditulis dengan pengurangan <InlineMath math="h" /> lebih dulu, tetapi pada grafik, dilatasi horizontal dengan faktor <InlineMath math="\tfrac{1}{b}" /> dikerjakan lebih dulu.
+
+## Menyusun Persamaan dari Uraian Kata
+
+Saat transformasi diberikan dalam kata-kata, **tulis satu fungsi perantara untuk setiap langkah**. Misalnya, grafik <InlineMath math="f(x) = |x|" /> digeser <InlineMath math="2" /> satuan ke kiri, dicerminkan terhadap sumbu <InlineMath math="x" />, diregangkan tegak dengan faktor <InlineMath math="3" />, lalu digeser <InlineMath math="4" /> satuan ke atas. Setiap langkah bekerja pada fungsi perantara sebelumnya:
+
+<MathContainer>
+<BlockMath math="f_1(x) = f(x + 2) = |x + 2|" />
+<BlockMath math="f_2(x) = -f_1(x) = -|x + 2|" />
+<BlockMath math="f_3(x) = 3f_2(x) = -3|x + 2|" />
+<BlockMath math="g(x) = f_3(x) + 4 = -3|x + 2| + 4" />
+</MathContainer>
+
+Lacak titik <InlineMath math="(1, 1)" /> pada grafik <InlineMath math="f" />. Langkah demi langkah, titik itu berpindah ke <InlineMath math="(-1, 1)" />, <InlineMath math="(-1, -1)" />, <InlineMath math="(-1, -3)" />, lalu <InlineMath math="(-1, 1)" />. Persamaan akhir memberi <InlineMath math="g(-1) = -3|1| + 4 = 1" />, sesuai dengan titik terakhir. Titik puncak <InlineMath math="(0, 0)" /> berakhir di <InlineMath math="(-2, 4)" />, dan <InlineMath math="g(-2) = 4" />.
+
+<LineEquation
+  title={<>Satu lapisan untuk setiap fungsi perantara dari <InlineMath math="f(x) = |x|" /></>}
+  description={<>Lapisan berurutan memuat <InlineMath math="f" />, <InlineMath math="f_1" />, <InlineMath math="f_2" />, <InlineMath math="f_3" />, dan <InlineMath math="g" />. Satu lintasan mengikuti titik <InlineMath math="(1, 1)" /> sampai <InlineMath math="(-1, 1)" />, dan lintasan lain mengikuti titik puncak dari <InlineMath math="(0, 0)" /> sampai <InlineMath math="(-2, 4)" />.</>}
+  cameraPosition={[11, 7, 13]}
+  cameraTarget={[-1, 0, 4]}
+  data={[
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s, y: Math.abs(s), z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: Math.abs(s), z: 2 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_1" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -Math.abs(s), z: 4 };
+      }),
+      smooth: false,
+      color: "#db2777",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_2" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -3 * Math.abs(s), z: 6 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f_3" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, i) => {
+        const s = -2 + 2 * i;
+        return { x: s - 2, y: -3 * Math.abs(s) + 4, z: 8 };
+      }),
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="g" />, at: 2, offset: [0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: -1, y: 1, z: 2 }, { x: -1, y: -1, z: 4 }, { x: -1, y: -3, z: 6 }, { x: -1, y: 1, z: 8 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: true,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -2, y: 0, z: 2 }, { x: -2, y: 0, z: 4 }, { x: -2, y: 0, z: 6 }, { x: -2, y: 4, z: 8 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+    },
+  ]}
+/>
+
+Putar tampilan dan ikuti titik <InlineMath math="(1, 1)" /> dari lapisan ke lapisan. Setiap posisinya memenuhi fungsi perantara di lapisan itu, misalnya <InlineMath math="f_2(-1) = -|1| = -1" />. Pencerminan membalik bentuk V ke bawah, peregangan membuat kemiringan kedua kakinya tiga kali kemiringan semula, dan baru langkah terakhir mengangkat titik puncak ke <InlineMath math="(-2, 4)" />.
+
+Urutan kata-kata menentukan persamaan. Jika pergeseran <InlineMath math="4" /> satuan ke atas dikerjakan sebelum pencerminan, **pencerminan yang datang kemudian ikut membalik pergeseran itu**:
+
+<BlockMath math="-3\big(|x + 2| + 4\big) = -3|x + 2| - 12" />
+
+Titik puncaknya menjadi <InlineMath math="(-2, -12)" />, jauh dari <InlineMath math="(-2, 4)" /> yang diminta uraian semula.
+
+## Kesalahan Saat Menyusun Urutan
+
+Dilatasi atau pencerminan bekerja pada seluruh hasil langkah sebelumnya, jadi **pergeseran yang dikerjakan lebih dulu pada sumbu yang sama ikut berubah**. Untuk menemukan kesalahan urutan, **lacak satu titik melalui setiap langkah**. Setelah setiap langkah, posisi baru titik itu harus memenuhi fungsi perantara langkah tersebut, dan posisi terakhirnya harus memenuhi persamaan akhir.
+
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Membaca <InlineMath math="f(2x - 3)" /> sebagai geser <InlineMath math="3" /> satuan | Pemampatan sesudah pergeseran ikut membagi dua pergeseran itu | Tulis <InlineMath math="f\big(2(x - \tfrac{3}{2})\big)" />, atau selesaikan <InlineMath math="2x - 3 = 0" /> |
+| Menggeser sebelum mengalikan pada <InlineMath math="a\,f(x) + k" /> | Pergeseran ikut dikali <InlineMath math="a" />, karena <InlineMath math="a\big(f(x) + k\big) = a\,f(x) + ak" /> | Lacak titik <InlineMath math="(1, 1)" /> pada <InlineMath math="y = x^2" /> |
+| Lupa bahwa pencerminan membalik pergeseran sebelumnya | <InlineMath math="-\big(f(x) + k\big) = -f(x) - k" /> | Lacak titik puncak melalui setiap langkah |
+| Langsung menulis persamaan akhir | Langkah yang tertukar tidak bisa diperiksa satu per satu | Tulis <InlineMath math="f_1" />, <InlineMath math="f_2" />, dan seterusnya, lalu uji satu titik |
+
+## Latihan
+
+Di soal 1 dan 2 kamu menyusun persamaan dari langkah yang diuraikan dengan kata-kata. Sebaliknya, di soal 3 dan 4 kamu membaca langkah dari persamaan, lalu memakai langkah itu untuk menentukan titik puncak dan dua domain. Tulis fungsi perantara atau urutan langkah lebih dulu, lalu **uji hasilmu dengan satu titik** sebelum membaca pembahasan.
+
+1. Fungsi <InlineMath math="f(x) = x^2" /> digeser <InlineMath math="3" /> satuan ke atas, lalu mengalami dilatasi vertikal dengan faktor <InlineMath math="\tfrac{1}{2}" />. Tentukan persamaan fungsi hasilnya.
+
+2. Fungsi <InlineMath math="f(x) = 2^x" /> dicerminkan terhadap sumbu <InlineMath math="y" />, lalu digeser <InlineMath math="1" /> satuan ke kanan. Tentukan persamaan fungsi hasilnya.
+
+3. Uraikan <InlineMath math="r(x) = (3x + 6)^2 - 4" /> menjadi langkah-langkah dari <InlineMath math="f(x) = x^2" />, lalu tentukan titik puncak grafik <InlineMath math="r" />.
+
+4. Tentukan domain <InlineMath math="p(x) = \sqrt{2x - 4}" /> dan <InlineMath math="q(x) = \sqrt{2(x - 4)}" />. Jelaskan perbedaan kedua domain itu dengan urutan langkah dari <InlineMath math="f(x) = \sqrt{x}" />.
+
+### Pembahasan
+
+**Soal 1**. Langkah pertama menambahkan <InlineMath math="3" /> pada keluaran, dan langkah kedua **mengalikan seluruh hasil itu** dengan <InlineMath math="\tfrac{1}{2}" />:
+
+<MathContainer>
+<BlockMath math="f_1(x) = x^2 + 3" />
+<BlockMath math="g(x) = \tfrac{1}{2}f_1(x) = \tfrac{1}{2}(x^2 + 3) = \tfrac{1}{2}x^2 + \tfrac{3}{2}" />
+</MathContainer>
+
+Pergeseran <InlineMath math="3" /> ikut dikali <InlineMath math="\tfrac{1}{2}" />, karena dilatasi datang sesudahnya. Lacak titik <InlineMath math="(1, 1)" />: titik itu berpindah ke <InlineMath math="(1, 4)" />, lalu ke <InlineMath math="(1, 2)" />, dan <InlineMath math="g(1) = \tfrac{1}{2} + \tfrac{3}{2} = 2" />. Jadi <InlineMath math="g(x) = \tfrac{1}{2}x^2 + \tfrac{3}{2}" />.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="f" />, <InlineMath math="f_1" />, dan <InlineMath math="g" /> pada soal 1</>}
+  description={<>Grafik <InlineMath math="f_1(x) = x^2 + 3" /> berada <InlineMath math="3" /> satuan di atas <InlineMath math="f" />, lalu <InlineMath math="g" /> membagi dua setiap tinggi <InlineMath math="f_1" />. Titik puncak <InlineMath math="(0, 3)" /> ikut turun ke <InlineMath math="\left(0, \tfrac{3}{2}\right)" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 3, 9]}
+  cameraTarget={[0, 3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const x = (i - 250) / 100;
+        return { x, y: x * x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, i) => {
+        const x = (i - 180) / 100;
+        return { x, y: x * x + 3, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [180, 280],
+      labels: [{ text: <InlineMath math="f_1" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 601 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: (x * x + 3) / 2, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [300, 400],
+      labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.17, -0.25, 0], anchorX: "right" }],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }],
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.22, -0.33, 0], anchorX: "left" }],
+    },
+  ]}
+/>
+
+Pada grafik, titik <InlineMath math="(1, 4)" /> di <InlineMath math="f_1" /> dan titik <InlineMath math="(1, 2)" /> di <InlineMath math="g" /> berada pada garis vertikal yang sama dengan <InlineMath math="(1, 1)" />, karena kedua langkah hanya mengubah tinggi.
+
+**Soal 2**. Pencerminan terhadap sumbu <InlineMath math="y" /> mengganti <InlineMath math="x" /> dengan <InlineMath math="-x" />. Pergeseran ke kanan lalu **mengganti setiap <InlineMath math="x" /> dengan <InlineMath math="x - 1" />** di dalam hasil itu:
+
+<MathContainer>
+<BlockMath math="f_1(x) = 2^{-x}" />
+<BlockMath math="g(x) = f_1(x - 1) = 2^{-(x - 1)} = 2^{1 - x}" />
+</MathContainer>
+
+Pangkat <InlineMath math="-x" /> berubah menjadi <InlineMath math="-(x - 1)" />, jadi hasilnya <InlineMath math="2^{1 - x}" />, dan bentuk <InlineMath math="2^{-x - 1}" /> keliru. Lacak titik <InlineMath math="(1, 2)" /> pada grafik <InlineMath math="f" />: pencerminan memindahkan titik itu ke <InlineMath math="(-1, 2)" />, lalu pergeseran ke <InlineMath math="(0, 2)" />, dan <InlineMath math="g(0) = 2^1 = 2" />. Jadi <InlineMath math="g(x) = 2^{1 - x}" />.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="f(x) = 2^x" />, <InlineMath math="f_1(x) = 2^{-x}" />, dan <InlineMath math="g(x) = 2^{1 - x}" /></>}
+  description={<>Ketiga titik bertanda berada pada garis <InlineMath math="y = 2" />: <InlineMath math="(1, 2)" /> pada <InlineMath math="f" />, <InlineMath math="(-1, 2)" /> pada <InlineMath math="f_1" />, dan <InlineMath math="(0, 2)" /> pada <InlineMath math="g" />. Grafik <InlineMath math="g" /> adalah <InlineMath math="f_1" /> yang digeser <InlineMath math="1" /> satuan ke kanan.</>}
+  showZAxis={false}
+  cameraPosition={[0.5, 2.6, 9]}
+  cameraTarget={[0.5, 2.6, 0]}
+  data={[
+    {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 300) / 100;
+        return { x, y: 2 ** x, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: true,
+      pointIndices: [400],
       labels: [
-        {
-          text: <InlineMath math="f" />,
-          at: 76,
-          offset: [0.5, 0.3, 0],
-        },
+        { text: <InlineMath math="f" />, at: 520, offset: [-0.17, 0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(1, 2)" />, at: 400, offset: [0.17, -0.25, 0], anchorX: "left" },
       ],
     },
     {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 250) / 100;
+        return { x, y: 2 ** -x, z: 0 };
+      }),
       smooth: false,
-      points: [
-        { x: -5, y: -9, z: 0 },
-        ...[
-                 { x: -3, y: -3, z: 0 },
-                 { x: -2, y: 0, z: 0 },
-                 { x: -1.5, y: -1.5, z: 0 },
-                 { x: 3, y: -15, z: 0 },
-               ],
-      ],
-      color: "#db2777",
-      showPoints: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [150],
       labels: [
-        {
-          text: <InlineMath math="g" />,
-          at: 3,
-          offset: [-0.8, -0.3, 0],
-        },
+        { text: <InlineMath math="f_1" />, at: 30, offset: [-0.17, -0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(-1, 2)" />, at: 150, offset: [-0.17, -0.25, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: Array.from({ length: 551 }, (_, i) => {
+        const x = (i - 150) / 100;
+        return { x, y: 2 ** (1 - x), z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [150],
+      labels: [
+        { text: <InlineMath math="g" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="(0, 2)" />, at: 150, offset: [0.57, 0.57, 0] },
       ],
     },
   ]}
 />
+
+Garis mendatar <InlineMath math="y = 2" /> memperlihatkan kedua langkah. Pencerminan membawa <InlineMath math="(1, 2)" /> ke seberang sumbu <InlineMath math="y" />, dan pergeseran membawanya <InlineMath math="1" /> satuan ke kanan ke <InlineMath math="(0, 2)" />, titik potong <InlineMath math="g" /> dengan sumbu <InlineMath math="y" />.
+
+**Soal 3**. Keluarkan pengali <InlineMath math="x" /> dari isi kurung supaya bentuk umumnya terbaca:
+
+<BlockMath math="r(x) = (3x + 6)^2 - 4 = \big(3(x + 2)\big)^2 - 4 = f\big(3(x + 2)\big) - 4" />
+
+Jadi <InlineMath math="b = 3" />, <InlineMath math="h = -2" />, dan <InlineMath math="k = -4" />. Grafik <InlineMath math="y = x^2" /> dimampatkan dengan faktor <InlineMath math="\tfrac{1}{3}" />, digeser <InlineMath math="2" /> satuan ke kiri, lalu digeser <InlineMath math="4" /> satuan ke bawah. Titik puncak <InlineMath math="(0, 0)" /> tidak berpindah saat dimampatkan, lalu pindah ke <InlineMath math="(-2, 0)" /> dan berakhir di **titik puncak <InlineMath math="(-2, -4)" />**. Periksa: <InlineMath math="r(-2) = (-6 + 6)^2 - 4 = -4" />. Titik <InlineMath math="(1, 1)" /> juga cocok, karena titik itu berpindah ke <InlineMath math="\left(\tfrac{1}{3}, 1\right)" />, <InlineMath math="\left(-\tfrac{5}{3}, 1\right)" />, lalu <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />, dan <InlineMath math="r\left(-\tfrac{5}{3}\right) = (-5 + 6)^2 - 4 = -3" />.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="y = x^2" /> dan <InlineMath math="r(x) = (3x + 6)^2 - 4" /></>}
+  description={<>Setiap titik <InlineMath math="(s, s^2)" /> pada <InlineMath math="y = x^2" /> berpindah ke <InlineMath math="\left(\tfrac{s}{3} - 2, s^2 - 4\right)" />. Lintasan bertanda membawa <InlineMath math="(1, 1)" /> lewat <InlineMath math="\left(\tfrac{1}{3}, 1\right)" /> dan <InlineMath math="\left(-\tfrac{5}{3}, 1\right)" /> ke <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />.</>}
+  showZAxis={false}
+  cameraPosition={[-0.5, 0.5, 11]}
+  cameraTarget={[-0.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 441 }, (_, i) => {
+        const s = (i - 220) / 100;
+        return { x: s, y: s * s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 400, offset: [0.22, -0.33, 0], anchorX: "left" }],
+    },
+    {
+      points: Array.from({ length: 3001 }, (_, i) => {
+        const s = (i - 1500) / 500;
+        return { x: s / 3 - 2, y: s * s - 4, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [1500],
+      labels: [
+        { text: <InlineMath math="r" />, at: 300, offset: [-0.2, 0.04, 0], anchorX: "right" },
+        { text: <InlineMath math="(-2, -4)" />, at: 1500, offset: [-0.33, -0.22, 0], anchorX: "right" },
+      ],
+    },
+    {
+      points: [{ x: 1, y: 1, z: 0 }, { x: 1 / 3, y: 1, z: 0 }, { x: -5 / 3, y: 1, z: 0 }, { x: -5 / 3, y: -3, z: 0 }],
+      smooth: false,
+      color: "#d97706",
+      showPoints: true,
+      cone: { position: "end", size: 0.25 },
+      labels: [
+        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.22, -0.33, 0], anchorX: "left" },
+        { text: <InlineMath math="\left(-\tfrac{5}{3}, -3\right)" />, at: 3, offset: [0.3, -0.15, 0], anchorX: "left" },
+      ],
+    },
+  ]}
+/>
+
+Grafik <InlineMath math="r" /> jauh lebih curam daripada <InlineMath math="y = x^2" />, karena pemampatan dengan faktor <InlineMath math="\tfrac{1}{3}" /> membuat setiap jarak mendatar ke sumbu simetri tinggal sepertiga, sedangkan tinggi setiap titik di atas titik puncak tetap.
+
+**Soal 4**. Keluarkan pengali <InlineMath math="x" /> dari isi akar, <InlineMath math="p(x) = \sqrt{2x - 4} = \sqrt{2(x - 2)}" />. Bentuk ini berarti grafik <InlineMath math="y = \sqrt{x}" /> dimampatkan dengan faktor <InlineMath math="\tfrac{1}{2}" />, lalu digeser <InlineMath math="2" /> satuan ke kanan. Titik awal <InlineMath math="(0, 0)" /> tidak berpindah saat dimampatkan, lalu pindah ke <InlineMath math="(2, 0)" />.
+
+Fungsi <InlineMath math="q" /> memakai pemampatan yang sama, tetapi **pergeseran sesudahnya sejauh <InlineMath math="4" /> satuan**, jadi titik awalnya pindah ke <InlineMath math="(4, 0)" />. Syarat isi akar tidak negatif memberi batas yang sama:
+
+<BlockMath math="\begin{aligned} 2x - 4 \geq 0 &\iff x \geq 2 \\ 2(x - 4) \geq 0 &\iff x \geq 4 \end{aligned}" />
+
+Jadi domain <InlineMath math="p" /> adalah <InlineMath math="x \geq 2" /> dan domain <InlineMath math="q" /> adalah <InlineMath math="x \geq 4" />. Jika <InlineMath math="p" /> dibaca sebagai geser dulu lalu mampatkan, pergeserannya <InlineMath math="4" /> satuan, dan pemampatan membawa titik awal dari <InlineMath math="(4, 0)" /> kembali ke <InlineMath math="(2, 0)" />. Kedua bacaan memberi domain yang sama.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="f(x) = \sqrt{x}" />, <InlineMath math="p(x) = \sqrt{2x - 4}" />, dan <InlineMath math="q(x) = \sqrt{2(x - 4)}" /></>}
+  description={<>Grafik <InlineMath math="p" /> dan <InlineMath math="q" /> sama bentuknya, yaitu <InlineMath math="y = \sqrt{x}" /> yang dimampatkan dengan faktor <InlineMath math="\tfrac{1}{2}" />. Titik awalnya berada di <InlineMath math="(2, 0)" /> dan <InlineMath math="(4, 0)" />, sesuai dengan kedua domain.</>}
+  showZAxis={false}
+  cameraPosition={[3.4, 1.2, 9.5]}
+  cameraTarget={[3.4, 1.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: s * s, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#64748b",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="f" />, at: 460, offset: [0.23, 0.55, 0] }],
+    },
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: (s * s) / 2 + 2, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      pointIndices: [0],
+      labels: [
+        { text: <InlineMath math="p" />, at: 460, offset: [-0.22, 0.33, 0], anchorX: "right" },
+        { text: <InlineMath math="(2, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 501 }, (_, i) => {
+        const s = i / 200;
+        return { x: (s * s) / 2 + 4, y: s, z: 0 };
+      }),
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      pointIndices: [0],
+      labels: [
+        { text: <InlineMath math="q" />, at: 460, offset: [0.22, -0.33, 0], anchorX: "left" },
+        { text: <InlineMath math="(4, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
+      ],
+    },
+  ]}
+/>
+
+Kurva <InlineMath math="q" /> adalah kurva <InlineMath math="p" /> yang digeser <InlineMath math="2" /> satuan ke kanan, karena <InlineMath math="q(x) = p(x - 2)" />. Pergeseran itu datang sesudah pemampatan, jadi tidak dibagi dua, dan titik awal <InlineMath math="(2, 0)" /> pindah tepat ke <InlineMath math="(4, 0)" />.
