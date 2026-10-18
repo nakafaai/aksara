@@ -58,9 +58,12 @@ For assessed content, also apply the
   the teaching subject dominant, and trim unnecessary construction extensions
   without changing the mathematical meaning. Confirm whether the owning
   component preserves the authored pose or explicitly fits finite content.
-  The owning card composes its header, scene body, and full-width bordered
-  footer. Grid and playback controls belong in that footer; do not add a gizmo
-  or overlay controls on the mathematical subject.
+  The owning card composes its header, an optional toolbar, the scene body,
+  an actions band, and a footer of facts, separated by full-width lines. The
+  actions band holds the shared scene actions (Play, Reset, Full screen, and
+  Grid on a coordinate scene); the footer reads out what the scene shows as
+  labels and values in even columns, never as badges or coloured text. Do not
+  add a gizmo or overlay controls on the mathematical subject.
   Use the established EvilCharts components, tables, and diagrams when their
   axes, values, comparisons, or structure explain real data more clearly. The
   chart library's own renderer is a data display, not a hand-drawn
@@ -200,8 +203,8 @@ graph teaches the wrong mathematics on an education platform.
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
 performs the teaching job. Add a new owned component only for a verified gap.
-Preserve the shared grid, rotation, and playback controls. Camera perspective
-never changes the mathematical dimension of an authored object.
+Preserve the shared scene actions: grid, play, reset, and full screen. Camera
+perspective never changes the mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
@@ -239,7 +242,8 @@ designed: it carries a teaching job and never decorates.
   molecules, and machines must match their cited references in parts,
   proportions where stated, labels, and motion.
 - Every visual renders inside its renderer-owned card: a header with a title
-  and description, the scene, and a footer holding the controls.
+  and description, the scene with its actions, and a footer of facts that reads
+  out what the scene shows.
 - The still frame teaches on its own, because a learner may pause the motion
   or read the page with reduced motion.
 - Be creative inside these limits. A good visual surprises the learner with a
