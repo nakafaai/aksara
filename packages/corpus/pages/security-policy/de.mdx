@@ -2,12 +2,12 @@ export const metadata = {
   title: "Sicherheitsrichtlinie",
   description: "Informiere dich über Nakafas Sicherheitsmaßnahmen und Richtlinien zum Schutz deiner Daten und der Plattform.",
   datePublished: "2026-08-22",
-  dateModified: "2026-10-14",
+  dateModified: "2026-10-20",
 };
 
 # Sicherheitsrichtlinie
 
-Zuletzt aktualisiert: 14. Oktober 2026
+Zuletzt aktualisiert: 20. Oktober 2026
 
 Diese Sicherheitsrichtlinie beschreibt die Sicherheitsmaßnahmen, die PT NAKAFA TEKNO KREATIF („Nakafa“, „wir“, „uns“ oder „unser“) einsetzt, und die Maßnahmen, die wir von den Nutzerinnen und Nutzern erwarten, um Vertraulichkeit, Integrität und Verfügbarkeit der Dienste und zugehörigen Daten zu schützen.
 
@@ -44,7 +44,7 @@ Anwendungsdaten werden in Convex gespeichert. Authentifizierungspflichtige Nakaf
 
 ### Meldung betriebsbezogener Ausnahmen
 
-Fehlgeschlagene produktive Next.js-Anfragen werden nur dann an PostHog gemeldet, wenn die serverseitige Ausnahmemeldung aktiviert ist. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa Route, Anfragemethode oder Fehlerkennung des Frameworks. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
+Fehlgeschlagene Serveranfragen in der Produktion werden nur dann an PostHog gemeldet, wenn die serverseitige Ausnahmemeldung aktiviert ist. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa Anfragemethode oder Fehlerquelle. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
 
 Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
 
@@ -52,16 +52,16 @@ Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktan
 
 Laut der unten genannten Revision prüft der Nakafa-Repository-Workflow Abhängigkeiten und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe für die Hauptbranch erstellen zusätzlich die Produktionsanwendung, außer eine Änderung bearbeitet nur Dokumentation oder bestehende Testdateien. Der Workflow ist seit dem 14. Oktober 2026 deaktiviert, daher laufen diese Prüfungen dort nicht, und Änderungen werden vor dem Zusammenführen lokal geprüft. Wenn sie laufen, verringern sie Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
 
-### Implementierungsnachweise für diese Fassung
+### Implementierungsnachweise für diese Fassungen
 
-Die technischen Aussagen oben sind auf die folgende genaue Nakafa-Implementierungsrevision und die Anbieterdokumentation begrenzt:
+Die technischen Aussagen oben sind auf die folgenden genauen Nakafa-Implementierungsrevisionen und die Anbieterdokumentation begrenzt:
 
 - [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
 - [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
 - [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
 - [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
-- [Erfassung von Next.js-Anfragefehlern über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/instrumentation.ts)
+- [Erfassung von Anfragefehlern am Server-Einstiegspunkt über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
 - [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
