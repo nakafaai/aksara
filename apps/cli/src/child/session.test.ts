@@ -87,17 +87,19 @@ describe("Nakafa child process", () => {
           input.credentials.internalContentToken
         );
 
-        expect(Arr.take(started.args, 7)).toEqual([
+        const { port } = result.child.origin;
+        expect(started.args).toEqual([
           "--filter",
           "www",
           "exec",
-          "next",
+          "vite",
           "dev",
-          "--hostname",
+          "--host",
           "localhost",
+          "--port",
+          port,
+          "--strictPort",
         ]);
-        const { port } = result.child.origin;
-        expect(Arr.takeRight(started.args, 2)).toEqual(["--port", port]);
         expect(result.child.origin.toString()).toBe(
           `http://localhost:${result.child.origin.port}/`
         );
@@ -114,16 +116,14 @@ describe("Nakafa child process", () => {
           "AKSARA_PUBLICATION_TOKEN",
           "CONTENT_RUNTIME_TOKEN",
           "HOME",
-          "INTERNAL_CONTENT_API_KEY",
-          "NEXT_PUBLIC_APP_URL",
-          "NEXT_PUBLIC_CONVEX_SITE_URL",
-          "NEXT_PUBLIC_CONVEX_URL",
-          "NEXT_PUBLIC_MCP_URL",
-          "NEXT_PUBLIC_POSTHOG_KEY",
-          "NEXT_PUBLIC_POSTHOG_UI_HOST",
-          "NEXT_PUBLIC_VERSION",
           "PATH",
           "SITE_URL",
+          "VITE_AKSARA_PREVIEW_CHILD",
+          "VITE_APP_URL",
+          "VITE_CONVEX_SITE_URL",
+          "VITE_CONVEX_URL",
+          "VITE_POSTHOG_KEY",
+          "VITE_POSTHOG_UI_HOST",
         ]);
         expect(started.environment).toMatchObject({
           AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
@@ -145,22 +145,20 @@ describe("Nakafa child process", () => {
             input.credentials.contentRuntimeToken
           ),
           HOME: "/home/aksara-test",
-          INTERNAL_CONTENT_API_KEY: internalContentToken,
-          NEXT_PUBLIC_APP_URL: result.child.origin.toString(),
-          NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
+          PATH: "/usr/bin:/bin",
+          SITE_URL: result.child.origin.toString(),
+          VITE_AKSARA_PREVIEW_CHILD: "true",
+          VITE_APP_URL: result.child.origin.toString(),
+          VITE_CONVEX_SITE_URL: new URL(
             "/__aksara-preview/convex-site",
             result.child.origin
           ).toString(),
-          NEXT_PUBLIC_CONVEX_URL: new URL(
+          VITE_CONVEX_URL: new URL(
             "/__aksara-preview/convex",
             result.child.origin
           ).toString(),
-          NEXT_PUBLIC_MCP_URL: new URL("/mcp", result.child.origin).toString(),
-          NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
-          NEXT_PUBLIC_POSTHOG_UI_HOST: result.child.origin.toString(),
-          NEXT_PUBLIC_VERSION: "aksara-preview",
-          PATH: "/usr/bin:/bin",
-          SITE_URL: result.child.origin.toString(),
+          VITE_POSTHOG_KEY: "phc_aksara_preview",
+          VITE_POSTHOG_UI_HOST: result.child.origin.toString(),
         });
         expect(started.environment).not.toHaveProperty(
           "AKSARA_TEST_PARENT_SECRET"
