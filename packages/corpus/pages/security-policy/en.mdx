@@ -2,12 +2,12 @@ export const metadata = {
   title: "Security Policy",
   description: "Review Nakafa's security practices and policies to understand how we safeguard your data and ensure platform security.",
   datePublished: "2025-10-18",
-  dateModified: "2026-10-14",
+  dateModified: "2026-10-20",
 };
 
 # Security Policy
 
-Last updated: October 14, 2026
+Last updated: October 20, 2026
 
 This Security Policy describes the security measures PT NAKAFA TEKNO KREATIF ("Nakafa," "we," "us," or "our") uses, and the measures we expect users to take, to help protect the confidentiality, integrity, and availability of the Services and related data.
 
@@ -44,7 +44,7 @@ Application data is stored in Convex. Nakafa application functions that require 
 
 ### Operational exception reporting
 
-Production Next.js request failures are reported to PostHog only when server exception reporting is enabled. Each report keeps sanitized stack frames and an allowlisted, length-bounded technical context such as the route, request method, or framework error digest. Nakafa uses these reports to diagnose the specific failure and plan corrective maintenance. This is not a representation that Nakafa operates a separate security-information or abuse-detection system.
+Production server request failures are reported to PostHog only when server exception reporting is enabled. Each report keeps sanitized stack frames and an allowlisted, length-bounded technical context such as the request method or the error source. Nakafa uses these reports to diagnose the specific failure and plan corrective maintenance. This is not a representation that Nakafa operates a separate security-information or abuse-detection system.
 
 Operational exception reports do not carry a user, account, or product-analytics identifier. Optional product-usage events are separate and require an effective analytics consent decision.
 
@@ -52,16 +52,16 @@ Operational exception reports do not carry a user, account, or product-analytics
 
 At the revision below, the Nakafa repository workflow audits dependencies and runs tests for pull requests. Trusted internal and main-branch runs also build the production application unless a change only edits documentation or existing test files. The workflow has been turned off since October 14, 2026, so these checks do not run there now, and changes are verified locally before they merge. When they run, these checks reduce risk, but they do not establish that every vulnerability has been found or remediated.
 
-### Implementation evidence for this revision
+### Implementation evidence for these revisions
 
-The technical statements above are bounded to the following exact Nakafa implementation revision and provider documentation:
+The technical statements above are bounded to the following exact Nakafa implementation revisions and provider documentation:
 
 - [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
 - [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
 - [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
 - [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
-- [Next.js request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/instrumentation.ts)
+- [Server entry request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
 - [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)

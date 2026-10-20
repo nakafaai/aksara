@@ -9,7 +9,7 @@
 Nakafa MDX is executable content, not plain text. It contains React components,
 math, and rich educational interactions. The final system must keep Nakafa's
 actual statically imported renderer implementations while removing the entire
-authored corpus from the Next.js compiler graph.
+authored corpus from the web application's compiler graph.
 
 The official `@mdx-js/mdx` package exposes `compile` with
 `outputFormat: "function-body"` and `run` for executing that precompiled form.
@@ -26,7 +26,6 @@ References:
 
 - [MDX compile and run APIs](https://mdxjs.com/packages/mdx/)
 - [MDX security guidance](https://mdxjs.com/docs/getting-started/#security)
-- [Next.js MDX guidance](https://nextjs.org/docs/app/guides/mdx)
 
 ## Decision
 
@@ -159,11 +158,12 @@ implementations.
 
 ### Renderer bundle-isolation topology
 
-Next.js 16.2.10 and Turbopack measurements rejected a single global
-implementation registry. Direct imports, `next/dynamic`, `React.lazy`, shared
-server registries with literal dynamic imports, and the same registry behind
-`connection()` all caused a plain content route to preload unrelated client
-implementations from the shared route module graph.
+Measurements on the former Next.js 16.2.10 app with Turbopack (2026-07-21,
+before the move to TanStack Start) rejected a single global implementation
+registry. Direct imports, `next/dynamic`, `React.lazy`, shared server registries
+with literal dynamic imports, and the same registry behind `connection()` all
+caused a plain content route to preload unrelated client implementations from
+the shared route module graph.
 
 A standalone production proof then gave each physical route entrypoint its own
 static implementation registry while keeping official `@mdx-js/mdx/run` and
@@ -180,9 +180,9 @@ This evidence establishes two separate concepts:
   statically importing only that domain's capability union.
 
 The candidate is route/capability sharding, not a per-document import map. URL
-ownership and route selection remain in Next.js. A shared page implementation
-may receive the route-owned registry, but it must not import every rich
-implementation.
+ownership and route selection remain in the TanStack Start router. A shared page
+implementation may receive the route-owned registry, but it must not import
+every rich implementation.
 
 This is a measured deviation from the originally selected single static global
 implementation registry, explicitly approved by the repository owner on
@@ -195,9 +195,6 @@ Evidence is recorded in
 [`docs/baselines/renderer.md`](../baselines/renderer.md).
 The full AST import inventory and measured eleven-shard candidate are recorded in
 [`docs/baselines/inventory.md`](../baselines/inventory.md).
-The relevant framework constraints are documented in the Next.js
-[lazy-loading guide](https://nextjs.org/docs/app/guides/lazy-loading) and
-[`connection()` reference](https://nextjs.org/docs/app/api-reference/functions/connection).
 
 The current contract enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
 compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
@@ -222,7 +219,7 @@ Reference: [Convex production limits](https://docs.convex.dev/production/state/l
 - Official server-only `@mdx-js/mdx/run` in Nakafa's Node runtime.
 - A pure global renderer contract manifest.
 - Finite static route-domain implementation registries selected by physical
-  Next.js route ownership, never by individual document.
+  TanStack Start route ownership, never by individual document.
 - Fail-closed hash, signature, release, and renderer-contract checks.
 
 ## Rejected

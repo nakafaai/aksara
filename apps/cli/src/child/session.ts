@@ -32,18 +32,16 @@ const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PUBLICATION_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   CONTENT_RUNTIME_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   HOME: Schema.Trimmed.check(Schema.isNonEmpty()),
-  INTERNAL_CONTENT_API_KEY: Schema.Trimmed.check(Schema.isNonEmpty()),
-  NEXT_PUBLIC_APP_URL: ChildUrlSchema,
-  NEXT_PUBLIC_CONVEX_SITE_URL: ChildUrlSchema,
-  NEXT_PUBLIC_CONVEX_URL: ChildUrlSchema,
-  NEXT_PUBLIC_MCP_URL: ChildUrlSchema,
-  NEXT_PUBLIC_POSTHOG_KEY: Schema.String.pipe(
-    Schema.check(Schema.isStartingWith("phc_"))
-  ),
-  NEXT_PUBLIC_POSTHOG_UI_HOST: ChildUrlSchema,
-  NEXT_PUBLIC_VERSION: Schema.Literal("aksara-preview"),
   PATH: Schema.Trimmed.check(Schema.isNonEmpty()),
   SITE_URL: ChildUrlSchema,
+  VITE_AKSARA_PREVIEW_CHILD: Schema.Literal("true"),
+  VITE_APP_URL: ChildUrlSchema,
+  VITE_CONVEX_SITE_URL: ChildUrlSchema,
+  VITE_CONVEX_URL: ChildUrlSchema,
+  VITE_POSTHOG_KEY: Schema.String.pipe(
+    Schema.check(Schema.isStartingWith("phc_"))
+  ),
+  VITE_POSTHOG_UI_HOST: ChildUrlSchema,
 });
 
 /** Running child whose exit always terminates the local preview session. */
@@ -119,29 +117,22 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
         input.credentials.contentRuntimeToken
       ),
       HOME: home,
-      INTERNAL_CONTENT_API_KEY: Redacted.value(
-        input.credentials.internalContentToken
-      ),
-      NEXT_PUBLIC_APP_URL: origin.toString(),
-      NEXT_PUBLIC_CONVEX_SITE_URL: new URL(
+      PATH: path,
+      SITE_URL: origin.toString(),
+      VITE_AKSARA_PREVIEW_CHILD: "true",
+      VITE_APP_URL: origin.toString(),
+      VITE_CONVEX_SITE_URL: new URL(
         "/__aksara-preview/convex-site",
         origin
       ).toString(),
-      NEXT_PUBLIC_CONVEX_URL: new URL(
-        "/__aksara-preview/convex",
-        origin
-      ).toString(),
-      NEXT_PUBLIC_MCP_URL: new URL("/mcp", origin).toString(),
-      NEXT_PUBLIC_POSTHOG_KEY: "phc_aksara_preview",
-      NEXT_PUBLIC_POSTHOG_UI_HOST: origin.toString(),
-      NEXT_PUBLIC_VERSION: "aksara-preview",
-      PATH: path,
-      SITE_URL: origin.toString(),
+      VITE_CONVEX_URL: new URL("/__aksara-preview/convex", origin).toString(),
+      VITE_POSTHOG_KEY: "phc_aksara_preview",
+      VITE_POSTHOG_UI_HOST: origin.toString(),
     }).pipe(Effect.mapError(childEnvironmentFailure));
   }
 );
 
-/** Starts the Next app with inherited stdio and explicit preview environment. */
+/** Starts the TanStack Start app with inherited stdio and explicit preview environment. */
 export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
   function* (input: {
     readonly credentials: PreviewCredentials;
@@ -158,12 +149,13 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
           "--filter",
           "www",
           "exec",
-          "next",
+          "vite",
           "dev",
-          "--hostname",
+          "--host",
           NAKAFA_LOOPBACK_HOST,
           "--port",
           String(port),
+          "--strictPort",
         ],
         command: "pnpm",
         environment,

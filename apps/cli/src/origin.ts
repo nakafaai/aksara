@@ -1,4 +1,4 @@
-/** Host matching Next.js' canonical loopback origin for same-origin rewrites. */
+/** Loopback host that the spawned Nakafa dev server listens on and the origin guard accepts. */
 export const NAKAFA_LOOPBACK_HOST = "localhost";
 
 /** Proves renderer discovery cannot leave the spawned localhost origin. */
