@@ -44,7 +44,7 @@ Anwendungsdaten werden in Convex gespeichert. Authentifizierungspflichtige Nakaf
 
 ### Meldung betriebsbezogener Ausnahmen
 
-Fehlgeschlagene Serveranfragen in der Produktion werden nur dann an PostHog gemeldet, wenn die serverseitige Ausnahmemeldung aktiviert ist. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa Anfragemethode oder Fehlerquelle. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
+Serverseitige Ausnahmen, die Nakafa erfasst, werden nur aus der Produktionsumgebung an PostHog gemeldet, und niemals, während die Website vorab gerendert wird. Jeder Bericht enthält bereinigte Stack-Frames und einen zugelassenen, längenbegrenzten technischen Kontext, etwa die Anfragemethode oder die Fehlerquelle. Außerdem wird der User-Agent der Anfrage mitgesendet, den PostHog zur Einordnung des Datenverkehrs nutzt. Nakafa verwendet diese Berichte, um den konkreten Fehler zu untersuchen und Korrekturmaßnahmen zu planen. Dies ist keine Aussage, dass Nakafa ein getrenntes Sicherheitsinformations- oder Missbrauchserkennungssystem betreibt.
 
 Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktanalysekennung. Optionale Ereignisse zur Produktnutzung werden getrennt verarbeitet und erfordern eine wirksame Analyseentscheidung.
 
@@ -62,6 +62,7 @@ Die technischen Aussagen oben sind auf die folgenden genauen Nakafa-Implementier
 - [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
 - [Erfassung von Anfragefehlern am Server-Einstiegspunkt über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
+- [Prüfung, die Serverberichte nur in der Produktionsumgebung und außerhalb des Prerenderings freigibt](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/packages/analytics/server-reporting.ts)
 - [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)

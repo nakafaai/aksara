@@ -44,7 +44,7 @@ Data aplikasi disimpan di Convex. Fungsi aplikasi Nakafa yang memerlukan autenti
 
 ### Pelaporan pengecualian operasional
 
-Kegagalan permintaan server di produksi dilaporkan ke PostHog hanya ketika pelaporan pengecualian server diaktifkan. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti metode permintaan atau sumber kesalahan. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
+Pengecualian server yang dicatat Nakafa hanya dilaporkan ke PostHog dari lingkungan produksi, dan tidak pernah ketika situs sedang di-prerender. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti metode permintaan atau sumber kesalahan. Laporan juga memuat user agent permintaan yang dipakai PostHog untuk mengklasifikasikan lalu lintas. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
 
 Laporan pengecualian operasional tidak membawa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
 
@@ -62,6 +62,7 @@ Pernyataan teknis di atas dibatasi pada revisi-revisi implementasi Nakafa yang t
 - [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
 - [Penangkapan kesalahan permintaan di titik masuk server melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
+- [Gerbang yang hanya mengizinkan laporan pengecualian server di lingkungan produksi dan di luar prerender](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/packages/analytics/server-reporting.ts)
 - [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
