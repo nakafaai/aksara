@@ -4,7 +4,9 @@ import { runConsumerCommand } from "#scripts/consumer/command";
 import { consumerEnvironment } from "#scripts/consumer/environment";
 import { validatePackedManifest } from "#scripts/consumer/packed";
 import {
+  CONSUMER_PACKAGE_MANAGER,
   type ConsumerPackageInput,
+  consumerPnpmArguments,
   consumerFailure as failure,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
@@ -13,13 +15,6 @@ import { createReleaseManifest, parsePackageManifest } from "#scripts/manifest";
 const EffectManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
 );
-
-/**
- * The package manager of the isolated consumer. The consumer is a pnpm project,
- * as nakafa.com is, so the archive is verified with pnpm 11.28.6, the release
- * Aksara used before its own workspace moved to Bun.
- */
-const CONSUMER_PACKAGE_MANAGER = "pnpm@11.28.6";
 
 /** Builds and validates one exact release archive in a scoped workspace. */
 export const stageConsumerPackage = Effect.fn(
@@ -126,15 +121,15 @@ export const stageConsumerPackage = Effect.fn(
   ]).pipe(
     Effect.mapError(failure("filesystem", "Contract package staging failed"))
   );
-  const tools = { pnpm: "pnpm", tar: "tar", ...input.tools };
+  const tools = { bunx: "bunx", tar: "tar", ...input.tools };
   yield* runConsumerCommand(
-    tools.pnpm,
-    [
+    tools.bunx,
+    consumerPnpmArguments([
       "pack",
       "--config.ignore-scripts=true",
       "--pack-destination",
       packDirectory,
-    ],
+    ]),
     childEnvironment,
     input.platform,
     "Contract package creation",
@@ -189,13 +184,13 @@ export const stageConsumerPackage = Effect.fn(
     sourceManifest,
   });
   return {
+    bunx: tools.bunx,
     childEnvironment,
     consumerDirectory,
     effectVersion,
     packageManager: CONSUMER_PACKAGE_MANAGER,
     packageName: sourceManifest.name,
     packedManifest,
-    pnpm: tools.pnpm,
     tarballPath,
     verifierDirectory,
     workspaceRoot,

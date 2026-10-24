@@ -16,6 +16,7 @@ import {
   ConsumerPackageInputSchema,
   consumerError,
   consumerFailure,
+  consumerPnpmArguments,
   createConsumerManifest,
   createConsumerSource,
   createConsumerTsconfig,
@@ -167,8 +168,13 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       "Consumer manifest staging failed"
     );
     yield* run(
-      staged.pnpm,
-      ["install", "--ignore-scripts", "--no-frozen-lockfile", "--prod"],
+      staged.bunx,
+      consumerPnpmArguments([
+        "install",
+        "--ignore-scripts",
+        "--no-frozen-lockfile",
+        "--prod",
+      ]),
       "Consumer dependency installation",
       staged.consumerDirectory
     );
