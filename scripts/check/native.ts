@@ -10,7 +10,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * The nakafa.com commit whose source check runs here. Move this pin on purpose,
  * only after the source check reports zero findings here at that commit. The
  * Effect cohort pins and the compiler rule block move with the pin, in the same
- * change, because `pnpm native` compares them with nakafa.com.
+ * change, because `bun run native` compares them with nakafa.com.
  */
 export const NAKAFA_COMMIT = "a9c9be2e307bef8fc709a35cdcf0d0bdf9ab296c";
 
