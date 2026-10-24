@@ -56,7 +56,7 @@ describes squash merges.
   the initial main ref and the cleanup pull request.
 - GitHub Actions default token permissions are read-only and workflows cannot
   approve pull requests.
-- Actions are limited to GitHub-owned actions and `pnpm/setup`; every
+- Actions are limited to GitHub-owned actions and `oven-sh/setup-bun`; every
   action is pinned to a full commit SHA.
 - CI and every source-executing release job install the frozen lockfile and
   reject known dependency advisories before running repository code.

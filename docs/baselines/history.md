@@ -5,7 +5,7 @@ authored-input history import. Publication and source cutover remain a
 family-by-family migration.
 
 This file preserves migration-time source evidence. It does not describe
-mutable production state. Use the read-only `pnpm status` command documented in
+mutable production state. Use the read-only `bun run status` command documented in
 the root [README](../../README.md) for authoritative release slots.
 
 ## Function Concept

@@ -15,7 +15,7 @@ credentials, signing keys, unpublished content, or personal data.
 Only the latest `main` revision and immutable contract archives currently
 referenced by Nakafa production are supported. The signed content runtime is
 production-supported only for explicitly activated scopes. Read those
-authoritative release slots with the read-only `pnpm status` command documented
+authoritative release slots with the read-only `bun run status` command documented
 in [`README.md`](README.md). Repository documentation does not duplicate
 mutable production state. Any new scope remains unsupported until its runtime,
 migration, activation, rollback, provenance, and hosted acceptance gates pass.

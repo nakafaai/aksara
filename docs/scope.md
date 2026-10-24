@@ -15,7 +15,7 @@ document selectors and their historical decoder have been retired.
 Local release commands repeat `--scope`:
 
 ```sh
-pnpm release -- \
+bun run release -- \
   --release-id release-2026-07-24 \
   --recovery-id recovery-2026-07-24 \
   --scope family:material \

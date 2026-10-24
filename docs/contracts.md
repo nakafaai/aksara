@@ -46,7 +46,7 @@ pnpm archive format without a duplicated workflow path list.
 Run:
 
 ```sh
-pnpm verify:consumer
+bun run verify:consumer
 ```
 
 The verifier builds the contracts package, copies only `dist`, `README.md`,

@@ -28,9 +28,9 @@ reason, as its own rule record, `docs/adr/0021-rules.md`, says.
 
 ## Consequences
 
-- Do not brand `ProvenanceVerificationError` in this copy alone: `pnpm native`
+- Do not brand `ProvenanceVerificationError` in this copy alone: `bun run native`
   compares it byte for byte with nakafa.com's file.
-- `pnpm native` also compares the Effect cohort pins of both repositories, so the
+- `bun run native` also compares the Effect cohort pins of both repositories, so the
   nakafa.com cohort moves before Aksara's cohort does.
-- `pnpm native` also requires both repositories to give `schemaClassMissingBrand`
+- `bun run native` also requires both repositories to give `schemaClassMissingBrand`
   the same severity, so the rule moves to `error` in both or in neither.

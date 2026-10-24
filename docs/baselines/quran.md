@@ -6,7 +6,7 @@
 - Aksara source: `packages/corpus/quran`
 
 This is the dated provenance decision from 2026-07-25. Production activation
-later completed. Use the read-only `pnpm status` command documented in the root
+later completed. Use the read-only `bun run status` command documented in the root
 [README](../../README.md) for authoritative release slots. The historical
 decision below is retained to show what this review did and did not prove at
 that time.

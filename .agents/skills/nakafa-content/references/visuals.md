@@ -179,7 +179,7 @@ graph teaches the wrong mathematics on an education platform.
   with `LineEquation` and raise the gap.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
-  on every changed lesson and article, or `pnpm points` for both corpus roots.
+  on every changed lesson and article, or `bun run points` for both corpus roots.
   It reports `file:line:column` for three findings. `literal-points` means one
   series holds more than eight typed points, either `{ x, y }` objects or
   tuples of two or three numbers, counted through the arrays it spreads into
