@@ -4,7 +4,3 @@
 # Each entry expires on its ignoreUntil date and the audit fails again, so it is reviewed
 # then; delete it as soon as a patched release ships.
 
-[[IgnoredVulns]]
-id = "GHSA-vfj7-8cjw-p6xm"
-ignoreUntil = 2026-10-27
-reason = "braces <=3.0.3 has no patched release. Only the lint toolchain reaches it (ultracite -> fast-glob and find-workspaces -> micromatch -> braces), and it expands glob patterns from this repository's own configuration, never untrusted input. Checked again on 16 October 2026: braces 3.0.3 is still the newest release, and ultracite 8.0.1 still depends on fast-glob ^3.3.3, so upgrading the linter does not remove the path."
