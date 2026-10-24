@@ -4,20 +4,20 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-The cost depends on the area of the four lateral faces of the roof. Each lateral face is an isosceles triangle with base <InlineMath math="8\text{ m}" />. **The height of that triangle is the distance from <InlineMath math="T" /> to the midpoint of its base**, not the <InlineMath math="3\text{ m}" /> height of the pyramid.
+The distance from a point to a plane is measured along the perpendicular to that plane. For the point <InlineMath math="O" /> and the lateral face <InlineMath math="TAB" />, that perpendicular can be found in triangle <InlineMath math="TOM" />, where <InlineMath math="O" /> is the center of the base and <InlineMath math="M" /> is the midpoint of <InlineMath math="AB" />.
 
-Let <InlineMath math="O" /> be the center of the base and <InlineMath math="M" /> the midpoint of <InlineMath math="AB" />. Triangle <InlineMath math="TOM" /> has a right angle at <InlineMath math="O" />, with <InlineMath math="TO=3\text{ m}" /> and <InlineMath math="OM=4\text{ m}" />, half of a base side. Let <InlineMath math="L" /> be the area of the four lateral faces and <InlineMath math="K" /> the cost in rupiah.
+Triangle <InlineMath math="TOM" /> has a right angle at <InlineMath math="O" />, with <InlineMath math="TO=3\text{ m}" /> and <InlineMath math="OM=4\text{ m}" />, half of a base side. The edge <InlineMath math="AB" /> is perpendicular to <InlineMath math="TO" /> and to <InlineMath math="OM" />, so <InlineMath math="AB" /> is perpendicular to the plane <InlineMath math="TOM" />. The plane <InlineMath math="TAB" /> contains <InlineMath math="AB" />, so the plane <InlineMath math="TAB" /> is perpendicular to the plane <InlineMath math="TOM" />. The two planes meet along the line <InlineMath math="TM" />, so **the required distance is the segment from <InlineMath math="O" /> perpendicular to <InlineMath math="TM" />** inside triangle <InlineMath math="TOM" />.
+
+The area of triangle <InlineMath math="TOM" /> can be computed in two ways, <InlineMath math="\frac12\cdot TO\cdot OM" /> and <InlineMath math="\frac12\cdot TM\cdot d" />, where <InlineMath math="d" /> is the distance from <InlineMath math="O" /> to <InlineMath math="TM" />.
 
 <BlockMath math="\begin{aligned}
 TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
-L_{\triangle TAB}&=\frac12\cdot AB\cdot TM=\frac12\cdot8\cdot5=20 \\
-L&=4\cdot20=80 \\
-K&=80\cdot85{,}000=6{,}800{,}000
+d&=\frac{TO\cdot OM}{TM}=\frac{3\cdot4}{5}=\frac{12}{5}
 \end{aligned}" />
 
 <MathVisual
-  title={<>The slant height <InlineMath math="TM" /></>}
-  description={<>Segment <InlineMath math="TM" /> joins the apex to the midpoint of side <InlineMath math="AB" /> and is <InlineMath math="5\text{ m}" /> long. It is the hypotenuse of the right triangle <InlineMath math="TOM" /> with legs <InlineMath math="3\text{ m}" /> and <InlineMath math="4\text{ m}" />.</>}
+  title={<>Distance from <InlineMath math="O" /> to <InlineMath math="TM" /></>}
+  description={<>Segment <InlineMath math="OH" /> is perpendicular to <InlineMath math="TM" /> at <InlineMath math="H" /> and is <InlineMath math="\frac{12}{5}\text{ m}" /> long. It is the distance from <InlineMath math="O" /> to the plane <InlineMath math="TAB" />.</>}
   labels={{
     "vertex-t": <InlineMath math="T" />,
     "vertex-a": <InlineMath math="A" />,
@@ -27,8 +27,10 @@ K&=80\cdot85{,}000=6{,}800{,}000
     "length-to": <InlineMath math="3\text{ m}" />,
     "name-o": <InlineMath math="O" />,
     "name-m": <InlineMath math="M" />,
+    "name-h": <InlineMath math="H" />,
     "length-om": <InlineMath math="4\text{ m}" />,
     "length-tm": <InlineMath math="5\text{ m}" />,
+    "length-oh": <InlineMath math="\frac{12}{5}\text{ m}" />,
   }}
   scene={{
     space: "space",
@@ -49,7 +51,9 @@ K&=80\cdot85{,}000=6{,}800{,}000
       { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
       { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
       { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "distance-oh", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
+      { id: "foot-h", kind: "point", appearance: "answer", at: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
     ],
     labels: [
@@ -61,17 +65,19 @@ K&=80\cdot85{,}000=6{,}800{,}000
       { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
       { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
       { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "name-h", objectId: "foot-h", at: { x: 0, y: 48 / 25, z: 36 / 25 }, placement: "right" },
       { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
       { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
+      { key: "length-oh", objectId: "distance-oh", at: { x: 0, y: 24 / 25, z: 18 / 25 }, placement: "below-right" },
     ],
   }}
 />
 
-Check by computing the cost per face. One lateral face of <InlineMath math="20\text{ m}^2" /> costs <InlineMath math="20\cdot\text{Rp}85{,}000=\text{Rp}1{,}700{,}000" />, so four faces cost <InlineMath math="4\cdot\text{Rp}1{,}700{,}000=\text{Rp}6{,}800{,}000" />.
+Check with coordinates. Take <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" />, and <InlineMath math="B=(4,0,4)" />. The plane <InlineMath math="TAB" /> has the equation <InlineMath math="4y+3z=12" />, so the distance from <InlineMath math="O" /> to that plane is <InlineMath math="\frac{|-12|}{\sqrt{4^2+3^2}}=\frac{12}{5}" />.
 
-The metal roofing for the four lateral faces therefore costs <InlineMath math="\text{Rp}6{,}800{,}000" />.
+Therefore the distance from <InlineMath math="O" /> to the lateral face <InlineMath math="TAB" /> is <InlineMath math="\frac{12}{5}\text{ m}" />.
 
-- <InlineMath math="\text{Rp}1{,}700{,}000" /> is the cost of only one lateral face, although the roof has four.
-- <InlineMath math="\text{Rp}3{,}400{,}000" /> appears when the base of each triangle is taken as <InlineMath math="4\text{ m}" />, the half side used to find <InlineMath math="TM" />, so that each lateral face seems to have an area of <InlineMath math="10\text{ m}^2" />.
-- <InlineMath math="\text{Rp}4{,}080{,}000" /> appears when the <InlineMath math="3\text{ m}" /> height of the pyramid is used as the height of each face, which gives <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
-- <InlineMath math="\text{Rp}5{,}440{,}000" /> is the cost for the base area <InlineMath math="8\cdot8=64\text{ m}^2" />, although the lateral faces are covered, not the base.
+- <InlineMath math="3\text{ m}" /> is the height of the pyramid, the distance from <InlineMath math="T" /> to the base. It is not the distance from <InlineMath math="O" /> to a lateral face.
+- <InlineMath math="4\text{ m}" /> is <InlineMath math="OM" />, the distance from <InlineMath math="O" /> to the edge <InlineMath math="AB" />. Segment <InlineMath math="OM" /> is not perpendicular to the plane <InlineMath math="TAB" />, so it is not that distance.
+- <InlineMath math="\frac{24}{5}\text{ m}" /> appears when the area of triangle <InlineMath math="TOM" /> is taken as <InlineMath math="TO\cdot OM=12" /> instead of half of that, giving <InlineMath math="2\cdot\frac{12}{5}=\frac{24}{5}" />.
+- <InlineMath math="5\text{ m}" /> is <InlineMath math="TM" />, the slant height of the lateral face. It is not the distance from <InlineMath math="O" />.

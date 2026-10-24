@@ -4,7 +4,7 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Statistik lima serangkai hanya memuat lima nilai dari setiap kelompok: minimum, kuartil bawah, median, kuartil atas, dan maksimum. Pernyataan yang hanya bergantung pada kelima nilai itu bisa langsung dinilai. Pernyataan yang memakai kata **pasti** sudah salah jika ada satu saja kumpulan data yang cocok dengan statistik lima serangkai tetapi melanggar pernyataan tersebut.
+Statistik lima serangkai hanya memuat lima nilai dari setiap kelompok: minimum, kuartil bawah, median, kuartil atas, dan maksimum. Pernyataan yang hanya bergantung pada kelima nilai itu bisa langsung dinilai, termasuk **jangkauan**, yaitu maksimum dikurangi minimum.
 
 #### Penyebaran dan letak data
 
@@ -66,34 +66,10 @@ x_{21}&\ge\frac{x_{20}+x_{21}}{2}=14
 
 Akibatnya, data ke-<InlineMath math="21" /> sampai ke-<InlineMath math="40" />, yaitu <InlineMath math="20" /> bibit atau setengah kelompok, tingginya paling sedikit <InlineMath math="14\text{ cm}" />.
 
-#### Rata-rata yang tidak ditentukan
-
-Tabel berikut adalah satu contoh data yang cocok dengan kedua statistik lima serangkai. Contoh ini menunjukkan bahwa **statistik lima serangkai tidak menentukan rata-rata**.
-
-| Tinggi <InlineMath math="(\text{cm})" /> | Banyak bibit media A | Banyak bibit media B |
-| ---: | ---: | ---: |
-| <InlineMath math="10" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
-| <InlineMath math="11" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
-| <InlineMath math="12" /> | <InlineMath math="10" /> | <InlineMath math="0" /> |
-| <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="19" /> |
-| <InlineMath math="15" /> | <InlineMath math="10" /> | <InlineMath math="19" /> |
-| <InlineMath math="17" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
-| <InlineMath math="19" /> | <InlineMath math="9" /> | <InlineMath math="0" /> |
-| Jumlah | <InlineMath math="40" /> | <InlineMath math="40" /> |
-
-Periksa statistik lima serangkainya. Pada media A, data ke-<InlineMath math="1" /> adalah <InlineMath math="10" />, data ke-<InlineMath math="2" /> sampai ke-<InlineMath math="11" /> adalah <InlineMath math="12" />, data ke-<InlineMath math="12" /> sampai ke-<InlineMath math="21" /> adalah <InlineMath math="13" />, data ke-<InlineMath math="22" /> sampai ke-<InlineMath math="31" /> adalah <InlineMath math="15" />, dan sisanya <InlineMath math="19" />. Jadi <InlineMath math="Q_1=\frac{x_{10}+x_{11}}{2}=12" />, median <InlineMath math="\frac{x_{20}+x_{21}}{2}=13" />, dan <InlineMath math="Q_3=\frac{x_{30}+x_{31}}{2}=15" />. Pada media B, data ke-<InlineMath math="1" /> adalah <InlineMath math="11" />, data ke-<InlineMath math="2" /> sampai ke-<InlineMath math="20" /> adalah <InlineMath math="13" />, data ke-<InlineMath math="21" /> sampai ke-<InlineMath math="39" /> adalah <InlineMath math="15" />, dan data ke-<InlineMath math="40" /> adalah <InlineMath math="17" />. Jadi <InlineMath math="Q_1=13" />, median <InlineMath math="\frac{13+15}{2}=14" />, dan <InlineMath math="Q_3=15" />.
-
-<BlockMath math="\begin{aligned}
-\bar x_A&=\frac{10+10\cdot12+10\cdot13+10\cdot15+9\cdot19}{40}=\frac{581}{40}=14{,}525 \\
-\bar x_B&=\frac{11+19\cdot13+19\cdot15+17}{40}=\frac{560}{40}=14
-\end{aligned}" />
-
-Pada contoh ini, rata-rata media A justru lebih besar daripada rata-rata media B, padahal statistik lima serangkainya sama persis dengan soal.
-
 #### Menilai setiap pernyataan
 
 1. Pernyataan bahwa jangkauan antarkuartil media A lebih besar benar, karena <InlineMath math="3\text{ cm}>2\text{ cm}" />.
-2. Pernyataan bahwa rata-rata media A pasti lebih kecil salah. Contoh data di atas cocok dengan statistik lima serangkai, tetapi **rata-rata media A lebih besar**, yaitu <InlineMath math="14{,}525\text{ cm}" /> berbanding <InlineMath math="14\text{ cm}" />.
+2. Pernyataan bahwa jangkauan tinggi bibit pada media B lebih besar salah. Jangkauan media B adalah <InlineMath math="17-11=6\text{ cm}" />, **lebih kecil daripada jangkauan media A**, <InlineMath math="19-10=9\text{ cm}" />.
 3. Pernyataan bahwa paling sedikit setengah bibit media B tingginya <InlineMath math="14\text{ cm}" /> atau lebih benar, karena data ke-<InlineMath math="21" /> sampai ke-<InlineMath math="40" /> pada media B tingginya paling sedikit <InlineMath math="14\text{ cm}" />.
 4. Pernyataan bahwa median media A lebih besar salah, karena median media A adalah <InlineMath math="13\text{ cm}" />, lebih kecil daripada median media B, <InlineMath math="14\text{ cm}" />.
 5. Pernyataan bahwa bibit terpendek tumbuh pada media A benar. Bibit terpendek di media A tingginya <InlineMath math="10\text{ cm}" />, sedangkan setiap bibit di media B tingginya paling sedikit <InlineMath math="11\text{ cm}" />.

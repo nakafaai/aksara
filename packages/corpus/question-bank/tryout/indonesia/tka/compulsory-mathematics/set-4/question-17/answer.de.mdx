@@ -4,20 +4,20 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Die Kosten hängen vom Flächeninhalt der vier Seitenflächen des Dachs ab. Jede Seitenfläche ist ein gleichschenkliges Dreieck mit der Grundseite <InlineMath math="8\text{ m}" />. **Die Höhe dieses Dreiecks ist der Abstand von <InlineMath math="T" /> zur Mitte seiner Grundseite**, nicht die Pyramidenhöhe <InlineMath math="3\text{ m}" />.
+Der Abstand eines Punktes zu einer Ebene wird entlang der Senkrechten zu dieser Ebene gemessen. Für den Punkt <InlineMath math="O" /> und die Seitenfläche <InlineMath math="TAB" /> findet man diese Senkrechte im Dreieck <InlineMath math="TOM" />, wobei <InlineMath math="O" /> der Mittelpunkt der Grundfläche und <InlineMath math="M" /> die Mitte von <InlineMath math="AB" /> ist.
 
-Es seien <InlineMath math="O" /> der Mittelpunkt der Grundfläche und <InlineMath math="M" /> die Mitte von <InlineMath math="AB" />. Das Dreieck <InlineMath math="TOM" /> hat bei <InlineMath math="O" /> einen rechten Winkel, mit <InlineMath math="TO=3\text{ m}" /> und <InlineMath math="OM=4\text{ m}" />, der halben Grundseite. Es seien <InlineMath math="L" /> der Flächeninhalt der vier Seitenflächen und <InlineMath math="K" /> die Kosten in Rupiah.
+Das Dreieck <InlineMath math="TOM" /> hat bei <InlineMath math="O" /> einen rechten Winkel, mit <InlineMath math="TO=3\text{ m}" /> und <InlineMath math="OM=4\text{ m}" />, der halben Grundseite. Die Kante <InlineMath math="AB" /> steht senkrecht auf <InlineMath math="TO" /> und auf <InlineMath math="OM" />, also steht <InlineMath math="AB" /> senkrecht auf der Ebene <InlineMath math="TOM" />. Die Ebene <InlineMath math="TAB" /> enthält <InlineMath math="AB" />, also steht sie senkrecht auf der Ebene <InlineMath math="TOM" />. Beide Ebenen schneiden sich in der Geraden <InlineMath math="TM" />. **Der gesuchte Abstand ist daher die Strecke von <InlineMath math="O" /> senkrecht zu <InlineMath math="TM" />** im Dreieck <InlineMath math="TOM" />.
+
+Der Flächeninhalt des Dreiecks <InlineMath math="TOM" /> lässt sich auf zwei Arten berechnen, nämlich <InlineMath math="\frac12\cdot TO\cdot OM" /> und <InlineMath math="\frac12\cdot TM\cdot d" />, wobei <InlineMath math="d" /> der Abstand von <InlineMath math="O" /> zu <InlineMath math="TM" /> ist.
 
 <BlockMath math="\begin{aligned}
 TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
-L_{\triangle TAB}&=\frac12\cdot AB\cdot TM=\frac12\cdot8\cdot5=20 \\
-L&=4\cdot20=80 \\
-K&=80\cdot85{.}000=6{.}800{.}000
+d&=\frac{TO\cdot OM}{TM}=\frac{3\cdot4}{5}=\frac{12}{5}
 \end{aligned}" />
 
 <MathVisual
-  title={<>Die Höhe der Seitenfläche <InlineMath math="TM" /></>}
-  description={<>Die Strecke <InlineMath math="TM" /> verbindet die Spitze mit der Mitte der Seite <InlineMath math="AB" /> und ist <InlineMath math="5\text{ m}" /> lang. Sie ist die Hypotenuse des rechtwinkligen Dreiecks <InlineMath math="TOM" /> mit den Katheten <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.</>}
+  title={<>Abstand von <InlineMath math="O" /> zu <InlineMath math="TM" /></>}
+  description={<>Die Strecke <InlineMath math="OH" /> steht senkrecht auf <InlineMath math="TM" /> im Punkt <InlineMath math="H" /> und ist <InlineMath math="\frac{12}{5}\text{ m}" /> lang. Sie ist der Abstand von <InlineMath math="O" /> zur Ebene <InlineMath math="TAB" />.</>}
   labels={{
     "vertex-t": <InlineMath math="T" />,
     "vertex-a": <InlineMath math="A" />,
@@ -27,8 +27,10 @@ K&=80\cdot85{.}000=6{.}800{.}000
     "length-to": <InlineMath math="3\text{ m}" />,
     "name-o": <InlineMath math="O" />,
     "name-m": <InlineMath math="M" />,
+    "name-h": <InlineMath math="H" />,
     "length-om": <InlineMath math="4\text{ m}" />,
     "length-tm": <InlineMath math="5\text{ m}" />,
+    "length-oh": <InlineMath math="\frac{12}{5}\text{ m}" />,
   }}
   scene={{
     space: "space",
@@ -49,7 +51,9 @@ K&=80\cdot85{.}000=6{.}800{.}000
       { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
       { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
       { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "distance-oh", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
+      { id: "foot-h", kind: "point", appearance: "answer", at: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
     ],
     labels: [
@@ -61,17 +65,19 @@ K&=80\cdot85{.}000=6{.}800{.}000
       { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
       { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
       { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "name-h", objectId: "foot-h", at: { x: 0, y: 48 / 25, z: 36 / 25 }, placement: "right" },
       { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
       { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
+      { key: "length-oh", objectId: "distance-oh", at: { x: 0, y: 24 / 25, z: 18 / 25 }, placement: "below-right" },
     ],
   }}
 />
 
-Prüfe das Ergebnis über die Kosten je Fläche. Eine Seitenfläche von <InlineMath math="20\text{ m}^2" /> kostet <InlineMath math="20\cdot\text{Rp}85{.}000=\text{Rp}1{.}700{.}000" />, vier Seitenflächen kosten also <InlineMath math="4\cdot\text{Rp}1{.}700{.}000=\text{Rp}6{.}800{.}000" />.
+Zur Kontrolle mit Koordinaten: Man setze <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" /> und <InlineMath math="B=(4,0,4)" />. Die Ebene <InlineMath math="TAB" /> hat die Gleichung <InlineMath math="4y+3z=12" />. Also ist der Abstand von <InlineMath math="O" /> zu dieser Ebene <InlineMath math="\frac{|-12|}{\sqrt{4^2+3^2}}=\frac{12}{5}" />.
 
-Das Metalldach für die vier Seitenflächen kostet also <InlineMath math="\text{Rp}6{.}800{.}000" />.
+Also beträgt der Abstand von <InlineMath math="O" /> zur Seitenfläche <InlineMath math="TAB" /> <InlineMath math="\frac{12}{5}\text{ m}" />.
 
-- <InlineMath math="\text{Rp}1{.}700{.}000" /> sind die Kosten für nur eine Seitenfläche, obwohl das Dach vier hat.
-- <InlineMath math="\text{Rp}3{.}400{.}000" /> entsteht, wenn du als Grundseite jedes Dreiecks <InlineMath math="4\text{ m}" /> nimmst, also die halbe Seite, die zur Berechnung von <InlineMath math="TM" /> dient. Dann scheint jede Seitenfläche nur <InlineMath math="10\text{ m}^2" /> groß zu sein.
-- <InlineMath math="\text{Rp}4{.}080{.}000" /> entsteht, wenn du die Pyramidenhöhe <InlineMath math="3\text{ m}" /> als Höhe jeder Seitenfläche verwendest. Das ergibt <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
-- <InlineMath math="\text{Rp}5{.}440{.}000" /> sind die Kosten für die Grundfläche <InlineMath math="8\cdot8=64\text{ m}^2" />, obwohl die Seitenflächen bedeckt werden und nicht die Grundfläche.
+- <InlineMath math="3\text{ m}" /> ist die Höhe der Pyramide, also der Abstand von <InlineMath math="T" /> zur Grundfläche. Das ist nicht der Abstand von <InlineMath math="O" /> zu einer Seitenfläche.
+- <InlineMath math="4\text{ m}" /> ist <InlineMath math="OM" />, der Abstand von <InlineMath math="O" /> zur Kante <InlineMath math="AB" />. Die Strecke <InlineMath math="OM" /> steht aber nicht senkrecht auf der Ebene <InlineMath math="TAB" />, daher ist sie nicht dieser Abstand.
+- <InlineMath math="\frac{24}{5}\text{ m}" /> entsteht, wenn der Flächeninhalt von <InlineMath math="TOM" /> als <InlineMath math="TO\cdot OM=12" /> statt als die Hälfte davon angesetzt wird, also <InlineMath math="2\cdot\frac{12}{5}=\frac{24}{5}" />.
+- <InlineMath math="5\text{ m}" /> ist <InlineMath math="TM" />, die Höhe der Seitenfläche. Das ist nicht der Abstand von <InlineMath math="O" />.

@@ -4,20 +4,20 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Biaya bergantung pada luas keempat sisi tegak atap. Setiap sisi tegak adalah segitiga sama kaki dengan alas <InlineMath math="8\text{ m}" />. **Tinggi segitiga itu adalah jarak <InlineMath math="T" /> ke titik tengah alasnya**, bukan tinggi limas <InlineMath math="3\text{ m}" />.
+Jarak titik ke bidang diukur sepanjang garis yang tegak lurus pada bidang itu. Untuk titik <InlineMath math="O" /> dan bidang sisi tegak <InlineMath math="TAB" />, garis seperti itu dapat dicari dalam segitiga <InlineMath math="TOM" />, dengan <InlineMath math="O" /> pusat alas dan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />.
 
-Misalkan <InlineMath math="O" /> pusat alas dan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />. Segitiga <InlineMath math="TOM" /> siku-siku di <InlineMath math="O" />, dengan <InlineMath math="TO=3\text{ m}" /> dan <InlineMath math="OM=4\text{ m}" />, yaitu setengah sisi alas. Misalkan <InlineMath math="L" /> adalah luas keempat sisi tegak dan <InlineMath math="K" /> adalah biayanya dalam rupiah.
+Segitiga <InlineMath math="TOM" /> siku-siku di <InlineMath math="O" />, dengan <InlineMath math="TO=3\text{ m}" /> dan <InlineMath math="OM=4\text{ m}" />, yaitu setengah sisi alas. Rusuk <InlineMath math="AB" /> tegak lurus pada <InlineMath math="TO" /> dan <InlineMath math="OM" />, sehingga <InlineMath math="AB" /> tegak lurus pada bidang <InlineMath math="TOM" />. Bidang <InlineMath math="TAB" /> memuat <InlineMath math="AB" />, sehingga bidang <InlineMath math="TAB" /> tegak lurus pada bidang <InlineMath math="TOM" />. Kedua bidang itu berpotongan pada garis <InlineMath math="TM" />, jadi **jarak yang dicari adalah ruas dari <InlineMath math="O" /> yang tegak lurus pada <InlineMath math="TM" />** di dalam segitiga <InlineMath math="TOM" />.
+
+Luas segitiga <InlineMath math="TOM" /> dihitung dua cara, yaitu <InlineMath math="\frac12\cdot TO\cdot OM" /> dan <InlineMath math="\frac12\cdot TM\cdot d" />, dengan <InlineMath math="d" /> jarak dari <InlineMath math="O" /> ke <InlineMath math="TM" />.
 
 <BlockMath math="\begin{aligned}
 TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
-L_{\triangle TAB}&=\frac12\cdot AB\cdot TM=\frac12\cdot8\cdot5=20 \\
-L&=4\cdot20=80 \\
-K&=80\cdot85{.}000=6{.}800{.}000
+d&=\frac{TO\cdot OM}{TM}=\frac{3\cdot4}{5}=\frac{12}{5}
 \end{aligned}" />
 
 <MathVisual
-  title={<>Tinggi sisi tegak <InlineMath math="TM" /></>}
-  description={<>Ruas <InlineMath math="TM" /> menghubungkan puncak dengan titik tengah sisi <InlineMath math="AB" />, dan panjangnya <InlineMath math="5\text{ m}" />. Ruas itu adalah sisi miring segitiga siku-siku <InlineMath math="TOM" /> dengan kaki <InlineMath math="3\text{ m}" /> dan <InlineMath math="4\text{ m}" />.</>}
+  title={<>Jarak <InlineMath math="O" /> ke <InlineMath math="TM" /></>}
+  description={<>Ruas <InlineMath math="OH" /> tegak lurus pada <InlineMath math="TM" /> di titik <InlineMath math="H" /> dan panjangnya <InlineMath math="\frac{12}{5}\text{ m}" />. Ruas itu adalah jarak titik <InlineMath math="O" /> ke bidang <InlineMath math="TAB" />.</>}
   labels={{
     "vertex-t": <InlineMath math="T" />,
     "vertex-a": <InlineMath math="A" />,
@@ -27,8 +27,10 @@ K&=80\cdot85{.}000=6{.}800{.}000
     "length-to": <InlineMath math="3\text{ m}" />,
     "name-o": <InlineMath math="O" />,
     "name-m": <InlineMath math="M" />,
+    "name-h": <InlineMath math="H" />,
     "length-om": <InlineMath math="4\text{ m}" />,
     "length-tm": <InlineMath math="5\text{ m}" />,
+    "length-oh": <InlineMath math="\frac{12}{5}\text{ m}" />,
   }}
   scene={{
     space: "space",
@@ -49,7 +51,9 @@ K&=80\cdot85{.}000=6{.}800{.}000
       { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
       { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
       { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "distance-oh", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
+      { id: "foot-h", kind: "point", appearance: "answer", at: { x: 0, y: 48 / 25, z: 36 / 25 } },
       { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
     ],
     labels: [
@@ -61,17 +65,19 @@ K&=80\cdot85{.}000=6{.}800{.}000
       { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
       { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
       { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
+      { key: "name-h", objectId: "foot-h", at: { x: 0, y: 48 / 25, z: 36 / 25 }, placement: "right" },
       { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
       { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
+      { key: "length-oh", objectId: "distance-oh", at: { x: 0, y: 24 / 25, z: 18 / 25 }, placement: "below-right" },
     ],
   }}
 />
 
-Periksa dengan menghitung biaya per sisi. Satu sisi tegak seluas <InlineMath math="20\text{ m}^2" /> berbiaya <InlineMath math="20\cdot\text{Rp}85{.}000=\text{Rp}1{.}700{.}000" />, sehingga empat sisi berbiaya <InlineMath math="4\cdot\text{Rp}1{.}700{.}000=\text{Rp}6{.}800{.}000" />.
+Periksa dengan koordinat. Ambil <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" />, dan <InlineMath math="B=(4,0,4)" />. Bidang <InlineMath math="TAB" /> memiliki persamaan <InlineMath math="4y+3z=12" />, sehingga jarak <InlineMath math="O" /> ke bidang itu adalah <InlineMath math="\frac{|-12|}{\sqrt{4^2+3^2}}=\frac{12}{5}" />.
 
-Jadi, biaya pembelian atap logam untuk keempat sisi tegak adalah <InlineMath math="\text{Rp}6{.}800{.}000" />.
+Jadi, jarak titik <InlineMath math="O" /> ke bidang sisi tegak <InlineMath math="TAB" /> adalah <InlineMath math="\frac{12}{5}\text{ m}" />.
 
-- <InlineMath math="\text{Rp}1{.}700{.}000" /> adalah biaya untuk satu sisi tegak saja, padahal atap memiliki empat sisi tegak.
-- <InlineMath math="\text{Rp}3{.}400{.}000" /> muncul jika alas segitiga ditulis <InlineMath math="4\text{ m}" />, yaitu setengah sisi alas yang dipakai untuk menghitung <InlineMath math="TM" />, sehingga setiap sisi tegak dianggap seluas <InlineMath math="10\text{ m}^2" />.
-- <InlineMath math="\text{Rp}4{.}080{.}000" /> muncul jika tinggi limas <InlineMath math="3\text{ m}" /> dipakai sebagai tinggi sisi tegak, sehingga luasnya <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
-- <InlineMath math="\text{Rp}5{.}440{.}000" /> adalah biaya untuk luas alas <InlineMath math="8\cdot8=64\text{ m}^2" />, padahal yang ditutup adalah sisi tegak atap, bukan alasnya.
+- <InlineMath math="3\text{ m}" /> adalah tinggi limas, yaitu jarak <InlineMath math="T" /> ke pusat alas. Itu bukan jarak <InlineMath math="O" /> ke bidang sisi tegak.
+- <InlineMath math="4\text{ m}" /> adalah <InlineMath math="OM" />, yaitu jarak <InlineMath math="O" /> ke rusuk <InlineMath math="AB" />. Ruas <InlineMath math="OM" /> tidak tegak lurus pada bidang <InlineMath math="TAB" />, sehingga bukan jarak ke bidang itu.
+- <InlineMath math="\frac{24}{5}\text{ m}" /> muncul jika luas segitiga <InlineMath math="TOM" /> diambil sebagai <InlineMath math="TO\cdot OM=12" /> tanpa setengahnya, sehingga hasilnya <InlineMath math="2\cdot\frac{12}{5}=\frac{24}{5}" />.
+- <InlineMath math="5\text{ m}" /> adalah <InlineMath math="TM" />, yaitu tinggi sisi tegak. Itu bukan jarak dari <InlineMath math="O" />.

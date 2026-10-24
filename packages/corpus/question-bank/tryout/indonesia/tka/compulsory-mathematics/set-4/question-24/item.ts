@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Rata-rata tinggi bibit pada media A pasti lebih kecil daripada rata-rata tinggi bibit pada media B.",
+            "Jangkauan tinggi bibit pada media B lebih besar daripada jangkauan tinggi bibit pada media A.",
         },
         {
           isCorrect: true,
