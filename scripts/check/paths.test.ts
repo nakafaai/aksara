@@ -23,7 +23,7 @@ describe("path policy", () => {
         "packages/release-notes/plan.ts",
       ])
     ).toEqual([
-      ".npmrc: pnpm and package.json own the toolchain contract",
+      ".npmrc: bun and package.json own the toolchain contract",
       "src/legacy.jsx: hand-written JavaScript source is not allowed",
       "src/legacy.cjsx: hand-written JavaScript source is not allowed",
       "src/legacy.mjsx: hand-written JavaScript source is not allowed",
@@ -42,8 +42,8 @@ describe("path policy", () => {
         ".github/CODE_OF_CONDUCT.md",
         "CONTENT_LICENSE.md",
         "THIRD_PARTY.md",
-        "pnpm-lock.yaml",
-        "pnpm-workspace.yaml",
+        "bun.lock",
+        "bunfig.toml",
         "tsconfig.build.json",
         "packages/compiler/policy.config.ts",
         "packages/compiler/policy.config.test.ts",
@@ -110,6 +110,7 @@ describe("path policy", () => {
     ).toEqual([
       ".agents/skills/nakafa-content/references/question-bank.md: question-bank.md must be one word",
       "docs/THIRD_PARTY.md: THIRD_PARTY.md must be one word",
+      "packages/compiler/pnpm-workspace.yaml: bun and package.json own the toolchain contract",
       "packages/compiler/pnpm-workspace.yaml: pnpm-workspace.yaml must be one word",
       "packages/corpus/articles/source-map.ts: source-map.ts must be one word",
       "packages/corpus/material/lesson/very-long-source-slug/worked-example.mdx: worked-example.mdx must be one word",

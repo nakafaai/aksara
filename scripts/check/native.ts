@@ -120,6 +120,7 @@ export const verifyNativeSource = Effect.fn("AksaraNative.verifySource")(
             quietOptions(checkout)
           )
         );
+        // The pinned nakafa.com checkout is still a pnpm workspace, so its install stays pnpm.
         yield* runCommand(
           "install",
           ChildProcess.make(
