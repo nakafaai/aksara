@@ -118,9 +118,10 @@ graph teaches the wrong mathematics on an education platform.
   Never author hand-written SVG, raw SVG paths, HTML or CSS drawings, canvas
   code, or images. A p5 sketch meets the same bar as a 3D scene: every drawn
   value is computed, the motion teaches, and the still frame reads on its own.
-- **Every plotted coordinate is computed in the source.** Build each point
-  series in the MDX expression from the formula the lesson teaches, with
-  `Array.from` over a parameter:
+- **Every plotted coordinate is computed from its formula.** A sinusoid or
+  tangent series declares its `curve` instead of points, as described below.
+  Every other series builds each point in the MDX expression from the formula
+  the lesson teaches, with `Array.from` over a parameter:
 
   ```tsx
   // F(x) = (3x - 1)^2 stays inside a frame of height 4 for -1/3 <= x <= 1.
@@ -138,6 +139,35 @@ graph teaches the wrong mathematics on an education platform.
   numbers. Observations are the one thing no formula draws, so a chart of
   observed data such as `ScatterDiagram` keeps its measured values as typed
   data.
+- **A sinusoid or tangent series declares its `curve`.** When a `LineEquation`
+  series plots `y = amplitude * f(frequency * x + phase) + shift`, with `f` equal
+  to `sin`, `cos`, or `tan`, declare those parameters and the domain instead of
+  listing points. This is the preferred form for these families:
+
+  ```tsx
+  // y = 2 sin(x - pi / 4) + 1 for -2 pi <= x <= 2 pi
+  curve: {
+    kind: "sin",
+    amplitude: 2,
+    frequency: 1,
+    phase: -Math.PI / 4,
+    shift: 1,
+    domain: [-2 * Math.PI, 2 * Math.PI],
+  },
+  ```
+
+  The component samples the formula in the browser, so the source never lists
+  the points of these families. `samples` sets the grid and is at least two
+  hundred (the default). Sine and cosine sample evenly in `x` across the
+  domain, ends included. A tangent samples evenly in `frequency * x + phase`
+  across its domain, ends included, so its steep ends keep their points. A
+  label's `at` indexes that grid, so choose `samples` so that every anchor
+  lands on the point it names. A tangent may cover asymptotes: the component
+  splits it at every asymptote inside the domain and clips it to the graph's y
+  limit. Keep one series per branch when the lesson shows each branch on its
+  own. Other families, such as
+  polynomial, exponential, and logarithm, keep their points until a lesson needs
+  a declared form for them.
 - **`MathVisual` holds exact named geometry, written as expressions.** The
   compiler reads its `scene` without running code. It accepts literals and
   constant numeric expressions, such as `Math.sqrt(3)`, `Math.SQRT1_2`,
@@ -159,11 +189,13 @@ graph teaches the wrong mathematics on an education platform.
   hundred samples per visible branch and more where the slope or curvature is
   high, until no corner shows at the largest card size, including full
   screen. Keep `smooth: false`, so the path follows the exact samples instead
-  of an interpolating spline.
+  of an interpolating spline. A `curve` series receives these samples from the
+  component, so its source declares only the domain.
 - **Corners and breaks appear exactly where the mathematics puts them.** Put
   an exact sample at every corner, cusp, piecewise boundary, and named point,
   such as the vertex of `|x|`. Split the series at every discontinuity and
-  asymptote instead of joining across it.
+  asymptote instead of joining across it. For a tangent `curve`, the component
+  makes that split.
 - **A revision never removes 3D or animation.** Inventory every interactive
   visual before editing. Fix a visual that is wrong, rebuild it when its
   component cannot carry the job, and add visuals where a main idea has none.
