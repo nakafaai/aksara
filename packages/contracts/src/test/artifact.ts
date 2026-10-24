@@ -19,7 +19,7 @@ const pinnedKeyId = SigningKeyIdSchema.make("test-signing-key");
 
 /** Public SPKI of the test-only key that signed the pinned artifact below. */
 export const pinnedPublicKey =
-  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA8uawKEJcm5XFi/ETWgO48DOTyG7ot9Re75SGqHkBg8A=\n-----END PUBLIC KEY-----\n";
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAH+8DYjgopYDVszJy8jkcSsqHPcK6i4SmzKm00rvINfA=\n-----END PUBLIC KEY-----\n";
 
 /** Decodes the recorded signed artifact through the wire contract it must satisfy. */
 const decodePinnedArtifact = Schema.decodeUnknownSync(
@@ -28,7 +28,7 @@ const decodePinnedArtifact = Schema.decodeUnknownSync(
 
 export const pinnedArtifact = decodePinnedArtifact(
   // Record again: create a key, sign the same input, and replace the public key and signature literals.
-  '{"artifactHash":"sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5","keyId":"test-signing-key","payload":{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"},"signature":"iBgfctwTZXN_Y1LoxsP2QyUSvpgdUEiJDRW6RHIy-m-oqcdA-PT-bE725Pccr1ACRVKA2uiKczNzWaGFmw15BQ"}'
+  '{"artifactHash":"sha256:508ce1909ea0a77762e5505df173961744ab0e75b642a8c0fbc69919f7d29c8a","keyId":"test-signing-key","payload":{"artifactLocale":"id","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.2.0","contentKey":"articles/science/cell-biology","contentTree":{"$node":"element","name":"fragment","props":{},"children":[{"$node":"element","name":"InlineMath","props":{"math":"x","title":"Pecahan Ñandú café 😀"},"children":[]}]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"},"signature":"sSkHAOPFiJbQUU85GBv2KNBCfG1X3tGY_WUEdEqLHMzN2atoANRMU5ebcCH524y4oTTintdhVP82fxBR1ZkZBg"}'
 );
 
 /** Decodes the recorded renderer manifest through its envelope contract. */

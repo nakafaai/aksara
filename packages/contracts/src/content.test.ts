@@ -28,12 +28,23 @@ const TEST_HEADING = "Protocol Test Heading";
 
 const nonAsciiPayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "id",
-  byteLength: 45,
-  compiledCode: 'return {title: "Pecahan Ñandú café 😀"};',
   compilerConfigHash: `sha256:${"d".repeat(64)}`,
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "articles/science/cell-biology",
-  format: "mdx-function-body",
+  contentTree: {
+    $node: "element",
+    children: [
+      {
+        $node: "element",
+        children: [],
+        name: "InlineMath",
+        props: { math: "x", title: "Pecahan Ñandú café 😀" },
+      },
+    ],
+    name: "fragment",
+    props: {},
+  },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Pecahan Ñandú café 😀",
   rawMdx: "## Pecahan Ñandú café 😀",
@@ -160,12 +171,23 @@ describe("content", () => {
     Effect.gen(function* () {
       const payload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)({
         artifactLocale: "en",
-        byteLength: 10,
-        compiledCode: "return {};",
         compilerConfigHash: `sha256:${"c".repeat(64)}`,
-        compilerVersion: "0.1.0",
+        compilerVersion: "0.2.0",
         contentKey: "test:content",
-        format: "mdx-function-body",
+        contentTree: {
+          $node: "element",
+          children: [
+            {
+              $node: "element",
+              children: [TEST_HEADING],
+              name: "h2",
+              props: {},
+            },
+          ],
+          name: "fragment",
+          props: {},
+        },
+        format: "content-tree",
         mdxCompilerVersion: "3.1.1",
         plainText: TEST_HEADING,
         rawMdx: `## ${TEST_HEADING}`,
@@ -175,7 +197,7 @@ describe("content", () => {
           "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
       });
       const canonicalPayload =
-        '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine"],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
+        '{"artifactLocale":"en","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.2.0","contentKey":"test:content","contentTree":{"$node":"element","name":"fragment","props":{},"children":[{"$node":"element","name":"h2","props":{},"children":["Protocol Test Heading"]}]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine"],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
       const artifactHash = yield* hashText(canonicalPayload);
       const artifact = yield* Schema.decodeEffect(SignedContentArtifactSchema)({
         artifactHash,
@@ -203,7 +225,7 @@ describe("content", () => {
 
   it("pins canonical payload bytes for non-ASCII content and a component list", () => {
     expect(canonicalizeCompiledContentPayload(nonAsciiPayload)).toBe(
-      '{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
+      '{"artifactLocale":"id","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.2.0","contentKey":"articles/science/cell-biology","contentTree":{"$node":"element","name":"fragment","props":{},"children":[{"$node":"element","name":"InlineMath","props":{"math":"x","title":"Pecahan Ñandú café 😀"},"children":[]}]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
     );
   });
 
@@ -221,10 +243,10 @@ describe("content", () => {
     expect(
       canonicalizeContentArtifactSigningInput(artifactHash, nonAsciiPayload)
     ).toBe(
-      'nakafa.aksara.content-artifact\nsha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5\n{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
+      'nakafa.aksara.content-artifact\nsha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5\n{"artifactLocale":"id","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.2.0","contentKey":"articles/science/cell-biology","contentTree":{"$node":"element","name":"fragment","props":{},"children":[{"$node":"element","name":"InlineMath","props":{"math":"x","title":"Pecahan Ñandú café 😀"},"children":[]}]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"}'
     );
     expect(canonicalizeSignedContentArtifact(artifact)).toBe(
-      '{"artifactHash":"sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5","keyId":"fixture-key","payload":{"artifactLocale":"id","byteLength":45,"compiledCode":"return {title: \\"Pecahan Ñandú café 😀\\"};","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.1.0","contentKey":"articles/science/cell-biology","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}'
+      '{"artifactHash":"sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5","keyId":"fixture-key","payload":{"artifactLocale":"id","compilerConfigHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","compilerVersion":"0.2.0","contentKey":"articles/science/cell-biology","contentTree":{"$node":"element","name":"fragment","props":{},"children":[{"$node":"element","name":"InlineMath","props":{"math":"x","title":"Pecahan Ñandú café 😀"},"children":[]}]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Pecahan Ñandú café 😀","rawMdx":"## Pecahan Ñandú café 😀","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine","InlineMath"],"sourceHash":"sha256:2080c334ac43a3b624b19f1674bf757593da7213edb4900b9a689dfcddb8b115"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}'
     );
   });
 

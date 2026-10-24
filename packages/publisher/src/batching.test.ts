@@ -54,15 +54,18 @@ const makeItems = Effect.fn("PublicationBatchingTest.makeItems")(() =>
 
 /** Builds one schema-valid signed artifact with configurable compiled bytes. */
 function artifact(index: number, compiledBytes = 10) {
-  const compiledCode = "x".repeat(compiledBytes);
   const payload = CompiledContentPayloadSchema.make({
     artifactLocale: ArtifactLocaleSchema.make("en"),
-    byteLength: compiledCode.length,
-    compiledCode,
     compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-    compilerVersion: "0.1.0",
+    compilerVersion: "0.2.0",
     contentKey: ContentKeySchema.make(`test:artifact-${index}`),
-    format: "mdx-function-body",
+    contentTree: {
+      $node: "element",
+      children: ["x".repeat(compiledBytes)],
+      name: "fragment",
+      props: {},
+    },
+    format: "content-tree",
     mdxCompilerVersion: "3.1.1",
     plainText: "",
     rawMdx: "",
@@ -253,7 +256,7 @@ describe("publication batch canonical wire bytes", () => {
         releaseId,
       })
     ).toMatchInlineSnapshot(
-      `"{"artifacts":[{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","byteLength":10,"compiledCode":"xxxxxxxxxx","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.1.0","contentKey":"test:artifact-0","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Pelajaran é ✓ 数学","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","byteLength":10,"compiledCode":"xxxxxxxxxx","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.1.0","contentKey":"test:artifact-1","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}],"batchIndex":0,"operation":"stageArtifactBatch","releaseId":"test-release-batching"}"`
+      `"{"artifacts":[{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.2.0","contentKey":"test:artifact-0","contentTree":{"$node":"element","name":"fragment","props":{},"children":["xxxxxxxxxx"]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"Pelajaran é ✓ 数学","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},{"artifactHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","keyId":"test-key","payload":{"artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","compilerVersion":"0.2.0","contentKey":"test:artifact-1","contentTree":{"$node":"element","name":"fragment","props":{},"children":["xxxxxxxxxx"]},"format":"content-tree","mdxCompilerVersion":"3.1.1","plainText":"","rawMdx":"","rendererDomain":"mathematics","requiredComponents":[],"sourceHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},"signature":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"}],"batchIndex":0,"operation":"stageArtifactBatch","releaseId":"test-release-batching"}"`
     );
   });
 });

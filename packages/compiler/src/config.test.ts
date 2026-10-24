@@ -131,7 +131,7 @@ layer(NodeServices.layer)("compiler config", (it) => {
         expect(
           yield* createCompilerConfigHash(manifest, "mathematics")
         ).toMatchInlineSnapshot(
-          `"sha256:4e4ef9c9b6a51d47f6f0c1efa21477d1859ed0e78f885aa550e3f72c4f5b76a9"`
+          `"sha256:bab01403e0b17176dfe7794fcadfd1499ffb8ffc43318885eb7d95c75de5f992"`
         );
       })
   );
