@@ -77,6 +77,14 @@ const compilerDetail = Match.type<PreviewDocumentError>().pipe(
       `unsupported metadata syntax: ${diagnosticList(error.reasons)}`,
     ContentByteLimitExceededError: (error) =>
       `${error.field} is ${error.actualBytes} bytes; maximum is ${error.maxBytes}`,
+    ContentTreeEvaluationError: (error) =>
+      error.causeMessage === undefined
+        ? error.message
+        : `${error.message} Cause: ${error.causeMessage}`,
+    ContentTreePolicyError: (error) =>
+      error.prop === null
+        ? `${error.reason} in ${error.element}`
+        : `${error.reason} in ${error.element} prop ${error.prop}`,
     ExecutablePolicyError: (error) =>
       `rejected executable syntax: ${diagnosticList(
         Arr.map(error.violations, ({ identifier, rule }) => {
