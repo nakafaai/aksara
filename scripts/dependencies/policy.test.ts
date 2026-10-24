@@ -15,6 +15,12 @@ describe("dependency hold policy", () => {
 
   it("excludes only package-manager metadata from routine updates", () => {
     expect(expectedIgnoredDependencies()).toContain("effect");
+    expect(expectedIgnoredDependencies()).toContain(
+      "@effect/platform-node-shared"
+    );
+    expect(expectedIgnoredDependencies()).toContain(
+      "micromark-extension-math@3.1.0>katex"
+    );
     expect(expectedIgnoredDependencies()).not.toContain("bun");
   });
 });

@@ -39,6 +39,7 @@ const RootManifestSchema = Schema.Struct({
   devEngines: Schema.Struct({
     runtime: Schema.Struct({ version: Schema.String }),
   }),
+  overrides: Schema.Record(Schema.String, Schema.String),
   packageManager: Schema.String,
   workspaces: Schema.Struct({
     catalog: Schema.Record(Schema.String, Schema.String),
@@ -48,11 +49,17 @@ const RootManifestSchema = Schema.Struct({
 
 type RootManifest = typeof RootManifestSchema.Type;
 
-const RoutineSectionSchema = Schema.Literals(["catalog", "devDependencies"]);
+const RoutineSectionSchema = Schema.Literals([
+  "catalog",
+  "devDependencies",
+  "overrides",
+]);
 
+/** One routine declaration. Its package is the registry name that its key pins. */
 const RoutineDependencySchema = Schema.Struct({
   current: Schema.String,
   dependency: Schema.String,
+  packageName: Schema.String,
   section: RoutineSectionSchema,
 });
 
@@ -105,6 +112,9 @@ function currentVersion(hold: DependencyHold, manifest: RootManifest) {
   if (hold.source === "catalog") {
     return manifest.workspaces.catalog[hold.dependency];
   }
+  if (hold.source === "override") {
+    return manifest.overrides[hold.dependency];
+  }
   if (hold.source === "root-dev-dependency") {
     return manifest.devDependencies[hold.dependency];
   }
@@ -151,6 +161,13 @@ function holdProblems(review: HoldReview): readonly string[] {
   ];
 }
 
+/** Returns the package that an override key pins: its last `parent>` segment without a version. */
+function overriddenPackage(key: string): string {
+  const segment = key.slice(key.lastIndexOf(">") + 1);
+  const versionStart = segment.indexOf("@", 1);
+  return versionStart === -1 ? segment : segment.slice(0, versionStart);
+}
+
 /** Lists the declarations that routine updates may move, excluding every reviewed hold. */
 function routineDependencies(
   manifest: RootManifest
@@ -161,6 +178,7 @@ function routineDependencies(
     .map(([dependency, current]) => ({
       current,
       dependency,
+      packageName: dependency,
       section: "catalog" as const,
     }));
   const direct = Rec.toEntries(manifest.devDependencies)
@@ -175,9 +193,18 @@ function routineDependencies(
     .map(([dependency, current]) => ({
       current,
       dependency,
+      packageName: dependency,
       section: "devDependencies" as const,
     }));
-  return [...catalog, ...direct];
+  const overridden = Rec.toEntries(manifest.overrides)
+    .filter(([key]) => !Arr.contains(held, key))
+    .map(([key, current]) => ({
+      current,
+      dependency: key,
+      packageName: overriddenPackage(key),
+      section: "overrides" as const,
+    }));
+  return [...catalog, ...direct, ...overridden];
 }
 
 /** Keeps the routine declarations whose registry latest differs from the manifest. */
@@ -191,7 +218,7 @@ const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
       dependencies,
       (dependency) =>
         Effect.gen(function* () {
-          const spec = `${dependency.dependency}@latest`;
+          const spec = `${dependency.packageName}@latest`;
           const output = yield* runner(root, [
             "info",
             spec,
@@ -232,6 +259,10 @@ const writeManifest = Effect.fn("DependencyPolicy.writeManifest")(function* (
     devDependencies: {
       ...fields.devDependencies,
       ...declaredUpdates(updates, "devDependencies"),
+    },
+    overrides: {
+      ...fields.overrides,
+      ...declaredUpdates(updates, "overrides"),
     },
     workspaces: {
       ...fields.workspaces,

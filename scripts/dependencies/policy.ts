@@ -5,6 +5,7 @@ const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/u;
 const DeclarationSourceSchema = Schema.Literals([
   "catalog",
   "node-runtime",
+  "override",
   "package-manager",
   "root-dev-dependency",
 ]);
@@ -51,6 +52,16 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     registry: "@effect/vitest@latest",
     reviewedLatest: "4.0.6",
     source: "catalog",
+  },
+  {
+    approvedCurrent: "4.0.5",
+    cohort: "Effect",
+    dependency: "@effect/platform-node-shared",
+    reason:
+      "An override that pins the shared platform package to the Effect cohort. The cohort moves with nakafa.com as described on the effect entry.",
+    registry: "@effect/platform-node-shared@latest",
+    reviewedLatest: "4.0.6",
+    source: "override",
   },
   {
     approvedCurrent: "5.0.5",
@@ -135,6 +146,16 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     registry: "bun@latest",
     reviewedLatest: "1.4.4",
     source: "package-manager",
+  },
+  {
+    approvedCurrent: "0.19.0",
+    cohort: "Math rendering",
+    dependency: "micromark-extension-math@3.1.0>katex",
+    reason:
+      "An override that pins the katex used by micromark-extension-math@3.1.0. Its 0.19.1 release was published on 23 October 2026 at 20:41 UTC, and the one-day minimum release age admits it only from 24 October 2026 at 20:41 UTC. Move this override to 0.19.1 and delete this hold in the same change.",
+    registry: "katex@latest",
+    reviewedLatest: "0.19.1",
+    source: "override",
   },
 ];
 

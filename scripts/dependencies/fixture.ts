@@ -19,15 +19,21 @@ export function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
   return { exitCode, stderr, stdout };
 }
 
-/** The Bun answer for every reviewed hold, which names its reviewed upstream version. */
-const REVIEWED_ANSWERS = Rec.fromEntries(
-  DEPENDENCY_HOLDS.map(
-    (hold) =>
-      [
-        hold.registry,
-        output(0, Schema.encodeSync(RegistryVersionText)(hold.reviewedLatest)),
-      ] as const
-  )
+/** The registry answer of every reviewed hold, and of every routine declaration in the approved manifest. */
+export const reviewedRegistry: Readonly<Record<string, string>> = {
+  ...Rec.fromEntries(
+    DEPENDENCY_HOLDS.map(
+      (hold) => [hold.registry, hold.reviewedLatest] as const
+    )
+  ),
+  "esbuild@latest": "0.28.2",
+  "source-map-js@latest": "1.2.2",
+  "yaml@latest": "2.9.1",
+};
+
+/** The Bun answer for every registry spec, which prints each version as one JSON string. */
+const REVIEWED_ANSWERS = Rec.map(reviewedRegistry, (version) =>
+  output(0, Schema.encodeSync(RegistryVersionText)(version))
 );
 
 /** Builds deterministic Bun output for one policy test, answering each registry spec. */
@@ -45,11 +51,6 @@ export function makeRunner(
   };
 }
 
-/** The registry answer for every reviewed hold, which is its reviewed upstream version. */
-export const reviewedRegistry = Rec.fromEntries(
-  DEPENDENCY_HOLDS.map((hold) => [hold.registry, hold.reviewedLatest] as const)
-);
-
 /** Returns the approved declaration for one held dependency. */
 export function approved(dependency: string): string {
   return Option.getOrThrow(
@@ -58,21 +59,26 @@ export function approved(dependency: string): string {
 }
 
 /** A root manifest that declares every reviewed hold at its approved version, plus routine dependencies. */
-export function approvedManifest(overrides?: {
+export function approvedManifest(options?: {
   readonly catalog?: Readonly<Record<string, string>>;
   readonly omit?: string;
+  readonly overrides?: Readonly<Record<string, string>>;
 }) {
   const catalog: Record<string, string> = {};
   const devDependencies: Record<string, string> = {};
+  const overrides: Record<string, string> = { "source-map-js": "1.2.2" };
   for (const hold of DEPENDENCY_HOLDS) {
     if (hold.source === "catalog") {
       catalog[hold.dependency] = hold.approvedCurrent;
+    }
+    if (hold.source === "override") {
+      overrides[hold.dependency] = hold.approvedCurrent;
     }
     if (hold.source === "root-dev-dependency") {
       devDependencies[hold.dependency] = hold.approvedCurrent;
     }
   }
-  const omitted = overrides?.omit;
+  const omitted = options?.omit;
   const declared = Rec.filter(
     { ...devDependencies, "@probe/app": "workspace:*", yaml: "2.9.1" },
     (_, name) => name !== omitted
@@ -82,9 +88,10 @@ export function approvedManifest(overrides?: {
     devEngines: {
       runtime: { name: "node", onFail: "download", version: approved("node") },
     },
+    overrides: { ...overrides, ...options?.overrides },
     packageManager: `bun@${approved("bun")}`,
     workspaces: {
-      catalog: { ...catalog, esbuild: "0.28.2", ...overrides?.catalog },
+      catalog: { ...catalog, esbuild: "0.28.2", ...options?.catalog },
       packages: ["apps/*", "packages/*"],
     },
   };

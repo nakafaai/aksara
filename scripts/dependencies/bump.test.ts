@@ -67,6 +67,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           yield* installFakeBun(config.root, {
             ...reviewedRegistry,
             "esbuild@latest": "0.28.3",
+            "source-map-js@latest": "1.2.3",
             "yaml@latest": "2.9.2",
           });
 
@@ -81,7 +82,59 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(effectReport.current, approved("effect"));
           assert.ok(manifest.includes('"yaml":"2.9.2"'));
           assert.ok(manifest.includes('"esbuild":"0.28.3"'));
+          assert.ok(manifest.includes('"source-map-js":"1.2.3"'));
           assert.ok(manifest.includes('"@probe/app":"workspace:*"'));
+        })
+    );
+
+    it.effect(
+      "moves the package behind each nested and scoped override key",
+      () =>
+        Effect.gen(function* () {
+          const fileSystem = yield* FileSystem.FileSystem;
+          const config = yield* createConfig({
+            manifest: approvedManifest({
+              overrides: {
+                "@scope/tool@2.0.0": "2.0.0",
+                "parent@1.0.0>leaf": "1.0.0",
+              },
+            }),
+          });
+
+          yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({
+              "@scope/tool@latest": output(0, '"2.0.1"'),
+              "leaf@latest": output(0, '"1.0.1"'),
+            })
+          );
+          const manifest = yield* fileSystem.readFileString(config.manifest);
+
+          assert.ok(manifest.includes('"@scope/tool@2.0.0":"2.0.1"'));
+          assert.ok(manifest.includes('"parent@1.0.0>leaf":"1.0.1"'));
+        })
+    );
+
+    it.effect(
+      "fails when a reviewed override hold drifts from its approved version",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig({
+            manifest: approvedManifest({
+              overrides: { "@effect/platform-node-shared": "4.0.6" },
+            }),
+          });
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner()
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.ok(
+            error.message.includes(
+              "@effect/platform-node-shared declares 4.0.6; approved 4.0.5."
+            )
+          );
         })
     );
 
