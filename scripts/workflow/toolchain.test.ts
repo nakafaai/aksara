@@ -32,6 +32,12 @@ const refuses = (source: string, message: string) =>
 /** Accepts one workflow text under the toolchain policy. */
 const accepts = (source: string) => verifyWorkflowToolchains([source]);
 
+const NODE_ONCE = "Every Bun job must set up Node.js once";
+const BUN_ONCE = "Every Bun job must set up the toolchain once";
+const DERIVE_BUN = "Workflows must derive the Bun version from package.json";
+const DERIVE_NODE =
+  "Workflows must derive the Node.js version from package.json";
+
 layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   const it = sourceEffectTestsOf(layered);
 
@@ -40,10 +46,8 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
     cli,
   }) =>
     Effect.gen(function* () {
-      const quotedUppercaseJob = cli.replace("  build:\n", '  "Build_Main":\n');
-
       yield* verifyWorkflowToolchains(sources);
-      yield* accepts(quotedUppercaseJob);
+      yield* accepts(cli.replace("  build:\n", '  "Build_Main":\n'));
     }));
 
   Arr.forEach(INVALID_WORKFLOW_STRUCTURES, ([source, message], index) => {
@@ -57,7 +61,6 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       const refusal = yield* verifyWorkflowToolchains(["jobs: ["]).pipe(
         Effect.flip
       );
-
       expect(Schema.is(WorkflowError)(refusal)).toBe(true);
     })
   );
@@ -85,36 +88,28 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   it("rejects duplicated environment versions at every workflow scope", ({
     cli,
   }) =>
-    Effect.gen(function* () {
-      yield* refuses(
+    Effect.forEach(
+      [
         cli.replace(
           "permissions: {}\n",
           "env:\n  NODE_VERSION: 24\n\npermissions: {}\n"
         ),
-        "Workflows must not duplicate Node or Bun versions"
-      );
-      yield* refuses(
         cli.replace(
           "  build:\n",
           '  build:\n    env: { "BUN_VERSION" : 1.4.4 }\n'
         ),
-        "Workflows must not duplicate Node or Bun versions"
-      );
-      yield* refuses(
         cli.replace(
           "      - name: Install dependencies",
           '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
         ),
-        "Workflows must not duplicate Node or Bun versions"
-      );
-      yield* refuses(
         cli.replace(
           "      - name: Audit dependencies",
           '      - name: Audit dependencies\n        env:\n          "BUN_VERSION" : 1.4.4'
         ),
-        "Workflows must not duplicate Node or Bun versions"
-      );
-    }));
+      ],
+      (source) =>
+        refuses(source, "Workflows must not duplicate Node or Bun versions")
+    ));
 
   layered.effect(
     "keeps a job environment value over the workflow value of the same name",
@@ -123,26 +118,20 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
 
   layered.effect(
     "requires toolchain setup when a job environment value makes it run Bun",
-    () => refuses(BUN_JOB_ENV, "Every Bun job must set up Node.js once")
+    () => refuses(BUN_JOB_ENV, NODE_ONCE)
   );
 
   it("requires exactly one Node.js setup", ({ cli }) =>
-    refuses(
-      cli.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-      "Every Bun job must set up Node.js once"
-    ));
-
-  it("requires exactly one Node.js setup when two are declared", ({ cli }) =>
-    refuses(
-      cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${NODE_SETUP_STEP}`),
-      "Every Bun job must set up Node.js once"
-    ));
+    Effect.gen(function* () {
+      yield* refuses(cli.replace(`${TOOLCHAIN_STEP}\n\n`, ""), NODE_ONCE);
+      yield* refuses(
+        cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${NODE_SETUP_STEP}`),
+        NODE_ONCE
+      );
+    }));
 
   it("requires exactly one Bun setup", ({ cli }) =>
-    refuses(
-      cli.replace(`\n\n${BUN_SETUP_STEP}`, ""),
-      "Every Bun job must set up the toolchain once"
-    ));
+    refuses(cli.replace(`\n\n${BUN_SETUP_STEP}`, ""), BUN_ONCE));
 
   it("rejects pnpm actions and unreviewed setup actions", ({ cli }) =>
     Effect.gen(function* () {
@@ -172,7 +161,7 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
           TOOLCHAIN_STEP,
           `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
         ),
-        "Every Bun job must set up Node.js once"
+        NODE_ONCE
       );
     }));
 
@@ -191,14 +180,13 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       yield* accepts(
         cli.replace("  build:\n", "  build:\n    env:\n      RETRIES: 3\n")
       );
-
       yield* refuses(
         aliasedBun.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-        "Every Bun job must set up Node.js once"
+        NODE_ONCE
       );
       yield* refuses(
         actionsAlias.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-        "Every Bun job must set up Node.js once"
+        NODE_ONCE
       );
     }));
 
@@ -217,23 +205,10 @@ ${TOOLCHAIN_STEP}`
   it("rejects toolchain versions declared by setup inputs", ({ cli }) =>
     Effect.gen(function* () {
       const variants = setupInputVariants(cli);
-
-      yield* refuses(
-        variants.inlineBun,
-        "Workflows must derive the Bun version from package.json"
-      );
-      yield* refuses(
-        variants.alternateManifest,
-        "Workflows must derive the Bun version from package.json"
-      );
-      yield* refuses(
-        variants.inlineNode,
-        "Workflows must derive the Node.js version from package.json"
-      );
-      yield* refuses(
-        variants.missingBunVersionFile,
-        "Workflows must derive the Bun version from package.json"
-      );
+      yield* refuses(variants.inlineBun, DERIVE_BUN);
+      yield* refuses(variants.alternateManifest, DERIVE_BUN);
+      yield* refuses(variants.inlineNode, DERIVE_NODE);
+      yield* refuses(variants.missingBunVersionFile, DERIVE_BUN);
       yield* refuses(
         variants.noBunInputs,
         "The toolchain setup step must define inputs"

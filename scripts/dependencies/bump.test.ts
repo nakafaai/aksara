@@ -7,85 +7,22 @@ import {
   FileSystem,
   Option,
   Path,
-  Record as Rec,
   Schema,
 } from "effect";
 
-import {
-  type BumpDependenciesConfig,
-  makeBumpDependenciesProgram,
-} from "#scripts/dependencies/bump";
+import { makeBumpDependenciesProgram } from "#scripts/dependencies/bump";
 import type { BunRunner } from "#scripts/dependencies/command";
-import { makeRunner, output } from "#scripts/dependencies/fixture";
+import {
+  approved,
+  approvedManifest,
+  createConfig,
+  makeRunner,
+  output,
+  reviewedRegistry,
+} from "#scripts/dependencies/fixture";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
-
-/** Returns the approved declaration for one held dependency. */
-function approved(dependency: string) {
-  const hold = Option.getOrUndefined(
-    Arr.findFirst(DEPENDENCY_HOLDS, (entry) => entry.dependency === dependency)
-  );
-  assert.ok(hold, `${dependency} has a reviewed hold`);
-  return hold.approvedCurrent;
-}
-
-/** The registry answer for every reviewed hold, which is its reviewed upstream version. */
-const reviewedRegistry = Rec.fromEntries(
-  DEPENDENCY_HOLDS.map((hold) => [hold.registry, hold.reviewedLatest] as const)
-);
-
-/** A root manifest that declares every reviewed hold at its approved version, plus routine dependencies. */
-function approvedManifest(overrides?: {
-  readonly catalog?: Readonly<Record<string, string>>;
-  readonly omit?: string;
-}) {
-  const catalog: Record<string, string> = {};
-  const devDependencies: Record<string, string> = {};
-  for (const hold of DEPENDENCY_HOLDS) {
-    if (hold.source === "catalog") {
-      catalog[hold.dependency] = hold.approvedCurrent;
-    }
-    if (hold.source === "root-dev-dependency") {
-      devDependencies[hold.dependency] = hold.approvedCurrent;
-    }
-  }
-  const omitted = overrides?.omit;
-  const declared = Rec.filter(
-    { ...devDependencies, "@probe/app": "workspace:*", yaml: "2.9.1" },
-    (_, name) => name !== omitted
-  );
-  return {
-    devDependencies: declared,
-    devEngines: {
-      runtime: { name: "node", onFail: "download", version: approved("node") },
-    },
-    packageManager: `bun@${approved("bun")}`,
-    workspaces: {
-      catalog: { ...catalog, esbuild: "0.28.2", ...overrides?.catalog },
-      packages: ["apps/*", "packages/*"],
-    },
-  };
-}
-
-/** Writes one root manifest, or the exact text given, into a fresh temporary workspace. */
-const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
-  function* (input?: { readonly manifest?: unknown; readonly text?: string }) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const path = yield* Path.Path;
-    const root = yield* fileSystem.makeTempDirectoryScoped({
-      prefix: "aksara-bump-deps-",
-    });
-    const manifest = path.join(root, "package.json");
-    const text =
-      input?.text ??
-      (yield* Schema.encodeEffect(JsonText)(
-        input?.manifest ?? approvedManifest()
-      ));
-    yield* fileSystem.writeFileString(manifest, text);
-    return { manifest, root } satisfies BumpDependenciesConfig;
-  }
-);
 
 /** Installs a local bun executable that answers registry lookups from one table and accepts updates. */
 const installFakeBun = Effect.fn("BumpDependenciesTest.installFakeBun")(
@@ -182,6 +119,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           });
           const before = yield* fileSystem.readFileString(config.manifest);
           const commands: (readonly string[])[] = [];
+          /** Records every Bun command that the policy runs before the fixture answers it. */
           const runner: BunRunner = (root, args) => {
             commands.push(args);
             return makeRunner()(root, args);
