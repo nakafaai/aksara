@@ -107,7 +107,14 @@ describe("server-only artifact verification", () => {
       expectedTag: "ArtifactHashMismatchError",
       program: rejectArtifact({
         ...validArtifact,
-        payload: makePayload({ compiledCode: "return { changed: true };" }),
+        payload: makePayload({
+          contentTree: {
+            $node: "element",
+            children: ["changed"],
+            name: "fragment",
+            props: {},
+          },
+        }),
       }),
     },
     {

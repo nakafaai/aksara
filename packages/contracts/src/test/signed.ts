@@ -29,12 +29,11 @@ export const trustedPublicKey = signingKeys.publicKeyPem;
 /** The compiled payload that the verification suites sign and then alter. */
 export const basePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: 10,
-  compiledCode: "return {};",
   compilerConfigHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "test:content",
-  format: "mdx-function-body",
+  contentTree: { $node: "element", children: [], name: "fragment", props: {} },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: SIGNED_TEST_HEADING,
   rawMdx: `## ${SIGNED_TEST_HEADING}`,

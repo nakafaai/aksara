@@ -56,15 +56,26 @@ describe("artifact integrity", () => {
 
 const pinnedKeyId = SigningKeyIdSchema.make("pinned-integrity-key");
 const pinnedPublicKey =
-  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAm0AgJ2qQN1UYw3vw5GW7n72eFC8RGdBcTAK02157+QA=\n-----END PUBLIC KEY-----\n";
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAeNv9+h25bDs/tSMT3WFoorh9rweV/4jdk+ssSIK0sJs=\n-----END PUBLIC KEY-----\n";
 const pinnedPayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "id",
-  byteLength: 45,
-  compiledCode: 'return {title: "Pecahan Ñandú café 😀"};',
   compilerConfigHash: `sha256:${"d".repeat(64)}`,
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "articles/science/cell-biology",
-  format: "mdx-function-body",
+  contentTree: {
+    $node: "element",
+    children: [
+      {
+        $node: "element",
+        children: [],
+        name: "InlineMath",
+        props: { math: "x", title: "Pecahan Ñandú café 😀" },
+      },
+    ],
+    name: "fragment",
+    props: {},
+  },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Pecahan Ñandú café 😀",
   rawMdx: "## Pecahan Ñandú café 😀",
@@ -75,12 +86,12 @@ const pinnedPayload = Schema.decodeSync(CompiledContentPayloadSchema)({
 });
 const pinnedArtifact = {
   artifactHash:
-    "sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5",
+    "sha256:508ce1909ea0a77762e5505df173961744ab0e75b642a8c0fbc69919f7d29c8a",
   keyId: "pinned-integrity-key",
   payload: pinnedPayload,
   // Record again: create a key, sign the same input, and replace the public key and signature literals.
   signature:
-    "ENkq-BP_LhKMqkP801vuwF0d4_FKhdygCNr2peQAj6VxOO9oCJjK1J-n1fvPmCmP5zGHtEulw9BoAVb0tga0DA",
+    "vFSLdTWiTWHiL8jfepaCusvDp9BIoprI0jpmiqS5zI6tWtmJyuOH3O-xlIRwfzLVF86iHMC-S1uKRl1aN1NDDw",
 };
 const pinnedResolver = ContentVerificationKeyResolver.of({
   /** Resolves only the fixed public key that signed the pinned artifact bytes. */
@@ -103,7 +114,7 @@ describe("pinned artifact integrity", () => {
     () =>
       Effect.gen(function* () {
         expect(yield* hashCompiledContentPayload(pinnedPayload)).toBe(
-          "sha256:ac3bfd493f08cb5042765c2a54192a3a9750badd133e20a8934fa595f9ff88f5"
+          "sha256:508ce1909ea0a77762e5505df173961744ab0e75b642a8c0fbc69919f7d29c8a"
         );
       })
   );

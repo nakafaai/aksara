@@ -7,18 +7,28 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import {
-  MAX_COMPILED_CODE_BYTES,
+  MAX_CONTENT_TREE_BYTES,
   MAX_SIGNED_ARTIFACT_BYTES,
 } from "#contracts/limits";
+import type { ContentTreeElement } from "#contracts/tree";
+
+/** Builds a fragment whose one text child holds the given text. */
+function treeWithText(text: string): ContentTreeElement {
+  return {
+    $node: "element",
+    children: [text],
+    name: "fragment",
+    props: {},
+  };
+}
 
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: 10,
-  compiledCode: "return {};",
   compilerConfigHash: `sha256:${"b".repeat(64)}`,
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "test:limits",
-  format: "mdx-function-body",
+  contentTree: treeWithText("Limits"),
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Limits",
   rawMdx: "## Limits",
@@ -38,7 +48,7 @@ function artifact(overrides: Partial<CompiledContentPayload> = {}) {
 }
 
 describe("artifact limits", () => {
-  it.effect("accepts a payload whose declared and actual bytes agree", () =>
+  it.effect("accepts a payload within every byte ceiling", () =>
     Effect.gen(function* () {
       expect(yield* validateArtifactByteIntegrity(artifact())).toBeUndefined();
     })
@@ -47,21 +57,15 @@ describe("artifact limits", () => {
   it.effect.each([
     {
       overrides: {
-        byteLength: MAX_SIGNED_ARTIFACT_BYTES,
-        compiledCode: "x".repeat(MAX_SIGNED_ARTIFACT_BYTES),
+        contentTree: treeWithText("x".repeat(MAX_SIGNED_ARTIFACT_BYTES)),
       },
       tag: "ArtifactVerificationByteLimitError",
     },
     {
       overrides: {
-        byteLength: MAX_COMPILED_CODE_BYTES + 1,
-        compiledCode: "x".repeat(MAX_COMPILED_CODE_BYTES + 1),
+        contentTree: treeWithText("x".repeat(MAX_CONTENT_TREE_BYTES)),
       },
       tag: "ArtifactPayloadFieldByteLimitError",
-    },
-    {
-      overrides: { byteLength: 9 },
-      tag: "ArtifactCompiledByteLengthMismatchError",
     },
   ])("rejects $tag", ({ overrides, tag }) =>
     Effect.gen(function* () {

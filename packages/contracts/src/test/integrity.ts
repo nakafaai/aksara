@@ -24,12 +24,11 @@ export const integrityPublicKeyPem = signingKeys.publicKeyPem;
 const rawMdx = "## Integrity";
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: 10,
-  compiledCode: "return {};",
   compilerConfigHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "test:integrity",
-  format: "mdx-function-body",
+  contentTree: { $node: "element", children: [], name: "fragment", props: {} },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Integrity",
   rawMdx,
