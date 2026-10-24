@@ -152,6 +152,7 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
     const port = yield* reserveNakafaPort();
     const origin = new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`);
     const environment = yield* makeChildEnvironment(input, origin);
+    // The nakafa.com workspace is still pnpm, so its www dev server starts through pnpm.
     const process = yield* processes
       .start({
         args: [
