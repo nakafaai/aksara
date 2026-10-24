@@ -12,28 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp }5{.}440{.}000$$",
+          label: "$$0{,}44\\text{ m}^2$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp }1{.}700{.}000$$",
+          label: "$$0{,}88\\text{ m}^2$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp }4{.}080{.}000$$",
+          label: "$$2{,}2\\text{ m}^2$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp }3{.}400{.}000$$",
+          label: "$$3{,}52\\text{ m}^2$$",
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp }6{.}800{.}000$$",
+          label: "$$1{,}76\\text{ m}^2$$",
         },
       ],
     },
   },
-  stimulusKey: "pavilion-roof",
+  stimulusKey: "culvert",
 };
 
 export default item;

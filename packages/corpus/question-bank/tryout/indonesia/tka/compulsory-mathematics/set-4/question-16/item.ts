@@ -33,7 +33,6 @@ const item: QuestionItem = {
       ],
     },
   },
-  stimulusKey: "pavilion-roof",
 };
 
 export default item;

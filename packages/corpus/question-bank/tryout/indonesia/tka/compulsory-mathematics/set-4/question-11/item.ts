@@ -12,15 +12,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$9\\text{ km}$$",
+          label: "$$1{,}2\\text{ km}$$",
         },
         {
           isCorrect: true,
-          label: "$$7{,}2\\text{ km}$$",
+          label: "$$6\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$15\\text{ km}$$",
+          label: "$$\\sqrt{45}\\text{ km}$$",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$12\\text{ km}$$",
+          label: "$$\\sqrt{85}\\text{ km}$$",
         },
       ],
     },

@@ -12,26 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Banyak segitiga berwarna pada tahap ke-$$n$$ adalah $$3n$$.",
+          label:
+            "Pada gelombang ke-$$2$$ ada $$6$$ orang yang baru mengetahui kabar itu.",
         },
         {
           isCorrect: true,
-          label: "Tahap ke-$$4$$ memuat $$81$$ segitiga berwarna.",
+          label:
+            "Setelah $$3$$ gelombang, ada $$40$$ orang yang mengetahui kabar itu, termasuk orang pertama.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Setelah $$4$$ gelombang, jumlah orang yang mengetahui kabar itu lebih dari $$120$$ orang.",
         },
         {
           isCorrect: false,
           label:
-            "Luas daerah yang dihapus warnanya pada tahap ke-$$2$$ sama dengan luas daerah yang dihapus warnanya pada tahap ke-$$1$$.",
+            "Pada gelombang ke-$$4$$ ada $$64$$ orang yang baru mengetahui kabar itu.",
         },
         {
           isCorrect: true,
           label:
-            "Luas daerah berwarna pada tahap ke-$$3$$ adalah $$13{,}5\\text{ cm}^2$$.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Tahap pertama dengan luas daerah berwarna kurang dari $$10\\text{ cm}^2$$ adalah tahap ke-$$5$$.",
+            "Jumlah orang yang baru pada gelombang ke-$$3$$ adalah tiga kali jumlah orang yang baru pada gelombang ke-$$2$$.",
         },
       ],
     },

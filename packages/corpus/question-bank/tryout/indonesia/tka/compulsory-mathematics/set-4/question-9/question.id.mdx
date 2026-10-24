@@ -4,52 +4,6 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Sebuah pola dibentuk dengan aturan berikut. Tahap 0 adalah segitiga siku-siku sama kaki dengan kaki-kaki sepanjang <InlineMath math="8\text{ cm}" />, dan seluruh daerahnya diwarnai. Pada setiap tahap berikutnya, setiap segitiga yang berwarna dibagi menjadi empat segitiga yang sama besar oleh ruas-ruas yang menghubungkan titik tengah sisi-sisinya. Segitiga di tengah tidak diwarnai, sedangkan ketiga segitiga lainnya tetap diwarnai. Tahap ke-<InlineMath math="n" /> adalah hasil setelah proses itu diulang <InlineMath math="n" /> kali dari tahap 0.
-
-Diagram berikut menunjukkan tahap 0, tahap 1, dan tahap 2.
-
-<MathVisual
-  title={<>Tahap 0, tahap 1, dan tahap 2</>}
-  description={<>Setiap satuan pada sumbu sama dengan <InlineMath math="1\text{ cm}" />. Bagian tengah yang tidak diwarnai tampak sebagai celah di antara segitiga berwarna.</>}
-  labels={{
-    "title-0": "Tahap 0",
-    "title-1": "Tahap 1",
-    "title-2": "Tahap 2",
-    "leg-0": <InlineMath math="8\text{ cm}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -2, max: 34 },
-      y: { min: -2, max: 11 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "stage-0", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 8 }] },
-      { id: "leg-0", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
-      { id: "stage-1-outline", kind: "polygon", appearance: "reference", vertices: [{ x: 12, y: 0 }, { x: 20, y: 0 }, { x: 12, y: 8 }] },
-      { id: "stage-1-bottom-left", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 0 }, { x: 16, y: 0 }, { x: 12, y: 4 }] },
-      { id: "stage-1-bottom-right", kind: "polygon", appearance: "primary", vertices: [{ x: 16, y: 0 }, { x: 20, y: 0 }, { x: 16, y: 4 }] },
-      { id: "stage-1-top-left", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 4 }, { x: 16, y: 4 }, { x: 12, y: 8 }] },
-      { id: "stage-2-outline", kind: "polygon", appearance: "reference", vertices: [{ x: 24, y: 0 }, { x: 32, y: 0 }, { x: 24, y: 8 }] },
-      { id: "stage-2-a1", kind: "polygon", appearance: "primary", vertices: [{ x: 24, y: 0 }, { x: 26, y: 0 }, { x: 24, y: 2 }] },
-      { id: "stage-2-a2", kind: "polygon", appearance: "primary", vertices: [{ x: 26, y: 0 }, { x: 28, y: 0 }, { x: 26, y: 2 }] },
-      { id: "stage-2-a3", kind: "polygon", appearance: "primary", vertices: [{ x: 24, y: 2 }, { x: 26, y: 2 }, { x: 24, y: 4 }] },
-      { id: "stage-2-b1", kind: "polygon", appearance: "primary", vertices: [{ x: 28, y: 0 }, { x: 30, y: 0 }, { x: 28, y: 2 }] },
-      { id: "stage-2-b2", kind: "polygon", appearance: "primary", vertices: [{ x: 30, y: 0 }, { x: 32, y: 0 }, { x: 30, y: 2 }] },
-      { id: "stage-2-b3", kind: "polygon", appearance: "primary", vertices: [{ x: 28, y: 2 }, { x: 30, y: 2 }, { x: 28, y: 4 }] },
-      { id: "stage-2-c1", kind: "polygon", appearance: "primary", vertices: [{ x: 24, y: 4 }, { x: 26, y: 4 }, { x: 24, y: 6 }] },
-      { id: "stage-2-c2", kind: "polygon", appearance: "primary", vertices: [{ x: 26, y: 4 }, { x: 28, y: 4 }, { x: 26, y: 6 }] },
-      { id: "stage-2-c3", kind: "polygon", appearance: "primary", vertices: [{ x: 24, y: 6 }, { x: 26, y: 6 }, { x: 24, y: 8 }] },
-    ],
-    labels: [
-      { key: "title-0", objectId: "stage-0", at: { x: 0, y: 8 }, placement: "above" },
-      { key: "title-1", objectId: "stage-1-outline", at: { x: 12, y: 8 }, placement: "above" },
-      { key: "title-2", objectId: "stage-2-outline", at: { x: 24, y: 8 }, placement: "above" },
-      { key: "leg-0", objectId: "leg-0", at: { x: 4, y: 0 }, placement: "below" },
-    ],
-  }}
-/>
+Pada awal, satu orang mengetahui sebuah kabar. Pada gelombang pertama, orang itu memberi tahu tiga orang yang belum mengetahui kabar tersebut. Pada setiap gelombang berikutnya, setiap orang yang baru mengetahui kabar pada gelombang sebelumnya memberi tahu tiga orang lain yang belum mengetahuinya. Tidak ada orang yang menerima kabar yang sama dua kali, dan orang pertama tidak dihitung sebagai orang baru.
 
 Pilih semua pernyataan yang benar.

@@ -4,27 +4,32 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-The shortest new road from the office <InlineMath math="O" /> to the highway is the segment that is **perpendicular to the highway**. Let that segment meet the highway at <InlineMath math="F" />. For any other point <InlineMath math="P" /> on the highway, triangle <InlineMath math="OFP" /> has a right angle at <InlineMath math="F" />, so <InlineMath math="OP^2=OF^2+FP^2" />. Therefore <InlineMath math="OP" /> is never shorter than <InlineMath math="OF" />. So you only need the length of <InlineMath math="OF" />.
+The shortest new road from the post <InlineMath math="P" /> to the highway is the segment that is **perpendicular to the highway**. This segment meets the highway at one point. Any other point on the highway forms a right triangle with <InlineMath math="P" /> and that meeting point, so it is always farther from <InlineMath math="P" />. You only need the distance from <InlineMath math="P" /> to the line <InlineMath math="AB" />.
 
-Triangle <InlineMath math="OAB" /> has a right angle at <InlineMath math="O" />, because the two axes are perpendicular. By the Pythagorean theorem, the length of <InlineMath math="AB" /> is:
-
-<BlockMath math="\begin{aligned}
-AB&=\sqrt{OA^2+OB^2}=\sqrt{12^2+9^2}=\sqrt{225}=15\text{ km}
-\end{aligned}" />
-
-The area of triangle <InlineMath math="OAB" /> can be found from its legs, and also from the base <InlineMath math="AB" /> and the height <InlineMath math="OF" />:
+First find the slope of <InlineMath math="AB" />:
 
 <BlockMath math="\begin{aligned}
-\frac12\cdot OA\cdot OB&=\frac12\cdot AB\cdot OF \\
-\frac12\cdot12\cdot9&=\frac12\cdot15\cdot OF \\
-OF&=\frac{108}{15}=7.2\text{ km}
+m&=\frac{1-9}{11-5}=\frac{-8}{6}=-\frac43
 \end{aligned}" />
 
-Before you use this result, check that <InlineMath math="F" /> lies on segment <InlineMath math="AB" />, not on its extension. Triangle <InlineMath math="AFO" /> is similar to triangle <InlineMath math="AOB" />, so <InlineMath math="AF=\frac{OA^2}{AB}=\frac{144}{15}=9.6\text{ km}" />. In the same way, <InlineMath math="FB=\frac{OB^2}{AB}=\frac{81}{15}=5.4\text{ km}" />. Both lengths are positive, so <InlineMath math="F" /> lies between <InlineMath math="A" /> and <InlineMath math="B" />. As a check, <InlineMath math="OF^2=AF\cdot FB=9.6\cdot5.4=51.84=7.2^2" />.
+With the point <InlineMath math="A(5,9)" />, the line is <InlineMath math="y-9=-\frac43(x-5)" />. Multiply both sides by 3 and rearrange:
 
-- <InlineMath math="9\text{ km}" /> is the distance from <InlineMath math="O" /> to <InlineMath math="B" />. Segment <InlineMath math="OB" /> meets the highway at <InlineMath math="B" /> and is not perpendicular to it.
-- <InlineMath math="12\text{ km}" /> is the distance from <InlineMath math="O" /> to <InlineMath math="A" />. Segment <InlineMath math="OA" /> meets the highway at <InlineMath math="A" /> and is also not perpendicular to it.
-- <InlineMath math="15\text{ km}" /> is the length of the highway from <InlineMath math="A" /> to <InlineMath math="B" />. It is not a distance from <InlineMath math="O" />.
-- <InlineMath math="7.5\text{ km}" /> is the distance from <InlineMath math="O" /> to the midpoint <InlineMath math="M" /> of <InlineMath math="AB" />. Because the angle at <InlineMath math="O" /> is a right angle, <InlineMath math="OM=\frac12AB=7.5\text{ km}" />. That distance is longer than <InlineMath math="OF" />, because the perpendicular distance is the shortest.
+<BlockMath math="\begin{aligned}
+3y-27&=-4x+20 \\
+4x+3y&=47
+\end{aligned}" />
 
-So the shortest new road from the office to the highway is <InlineMath math="7.2\text{ km}" /> long.
+The distance from <InlineMath math="P(2,3)" /> to this line follows from the point-to-line distance formula:
+
+<BlockMath math="\begin{aligned}
+d&=\frac{|4\cdot2+3\cdot3-47|}{\sqrt{4^2+3^2}}=\frac{|-30|}{\sqrt{25}}=\frac{30}{5}=6\text{ km}
+\end{aligned}" />
+
+Check the result with the foot of the perpendicular, <InlineMath math="F" />. It lies at <InlineMath math="P+t(4,3)" /> with <InlineMath math="t=\frac65" />, so <InlineMath math="F(6.8,\,6.6)" />. The vector <InlineMath math="\overrightarrow{PF}=(4.8,\,3.6)" /> has length <InlineMath math="\sqrt{4.8^2+3.6^2}=\sqrt{36}=6\text{ km}" />, which matches. The x-coordinate <InlineMath math="6.8" /> lies between <InlineMath math="5" /> and <InlineMath math="11" />, so <InlineMath math="F" /> is on the segment <InlineMath math="AB" />, and the new road really meets the highway there.
+
+- <InlineMath math="1.2\text{ km}" /> comes from dividing by 25, the square of 5, and forgetting the square root.
+- <InlineMath math="7.5\text{ km}" /> comes from dividing by 4 instead of 5, which is a wrong value for the square root in the denominator.
+- <InlineMath math="\sqrt{45}\text{ km}" /> is the distance from <InlineMath math="P" /> to <InlineMath math="A" />. That segment is not perpendicular to the highway.
+- <InlineMath math="\sqrt{85}\text{ km}" /> is the distance from <InlineMath math="P" /> to <InlineMath math="B" />. That segment is not perpendicular to the highway either.
+
+So the shortest new road from the post to the highway is 6 km long.

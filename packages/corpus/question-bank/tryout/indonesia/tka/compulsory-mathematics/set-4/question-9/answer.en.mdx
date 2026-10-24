@@ -4,32 +4,22 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Stage 0 is a right isosceles triangle with legs of 8 cm, so its shaded area is <InlineMath math="\frac12\cdot8\cdot8=32\text{ cm}^2" />. At each stage, every shaded triangle is split into four congruent triangles, and only the middle one loses its shading. So each shaded triangle leaves **three shaded triangles**, and each new triangle has legs half as long as the triangle it came from.
-
-Let <InlineMath math="c_n" /> be the number of shaded triangles and <InlineMath math="A_n" /> the shaded area at stage <InlineMath math="n" />. Each shaded triangle becomes three shaded triangles, so the count is **multiplied by 3** at each stage. Each new triangle has one quarter of the area of its parent, so the shaded area is multiplied by <InlineMath math="\frac34" /> at each stage.
+In each wave, every person who has just learned the message tells **three new people**. So the number of new people in wave <InlineMath math="k" /> is <InlineMath math="3^k" />, and the first person is not counted as new. The number of people who know the message after <InlineMath math="k" /> waves is therefore the first person plus all the new people:
 
 <BlockMath math="\begin{aligned}
-c_n&=3^n \\
-A_n&=32\left(\frac34\right)^n
+1+3+3^2+\cdots+3^k&=\frac{3^{k+1}-1}{2}
 \end{aligned}" />
 
-The area removed at a stage is the middle triangle of each shaded triangle from the stage before. It is a quarter of the shaded area of that earlier stage, so <InlineMath math="A_n-A_{n+1}=\frac14A_n" />. For stage 1, the removed area is <InlineMath math="\frac14\cdot32=8\text{ cm}^2" />. For stage 2, it is <InlineMath math="\frac14\cdot24=6\text{ cm}^2" />, because stage 1 has a shaded area of <InlineMath math="24\text{ cm}^2" />.
+For <InlineMath math="k=3" /> this gives <InlineMath math="\frac{3^4-1}{2}=40" />, and for <InlineMath math="k=4" /> it gives <InlineMath math="\frac{3^5-1}{2}=121" />. Use these values to check each statement.
 
-| Stage | Number of shaded triangles | Shaded area (cm²) | Area removed at this stage (cm²) |
-| --- | --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
-| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="13.5" /> | <InlineMath math="4.5" /> |
-| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="10.125" /> | <InlineMath math="3.375" /> |
-| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="7.59375" /> | <InlineMath math="2.53125" /> |
+The statement about wave 2 with 6 new people is false. In wave 2 there are <InlineMath math="3^2=9" /> new people, because each of the three people from wave 1 tells three more. The number 6 appears if you double the count instead of tripling it.
 
-Now judge each statement.
+The statement about three waves is true: <InlineMath math="1+3+9+27=40" />, including the first person.
 
-1. This statement is false. At stage 2 there are <InlineMath math="3^2=9" /> shaded triangles, not <InlineMath math="3\cdot2=6" />. The count is multiplied by 3 at each stage, not increased by 3.
-2. This statement is true, because <InlineMath math="c_4=3^4=81" />.
-3. This statement is false. The area removed at stage 1 is <InlineMath math="8\text{ cm}^2" />. At stage 2 there are three middle triangles, each <InlineMath math="2\text{ cm}^2" />, so the total removed is <InlineMath math="6\text{ cm}^2" />. The two areas are not equal.
-4. This statement is true. <InlineMath math="A_3=32\cdot\frac{27}{64}=\frac{27}{2}=13.5\text{ cm}^2" />.
-5. This statement is true. <InlineMath math="A_4=\frac{81}{8}=10.125" /> is still more than <InlineMath math="10" />, but <InlineMath math="A_5=\frac{243}{32}=7.59375" /> is less than <InlineMath math="10" />. So the first stage with a shaded area below <InlineMath math="10\text{ cm}^2" /> is stage 5.
+The statement about four waves is also true: <InlineMath math="1+3+9+27+81=121" />, and <InlineMath math="121>120" />.
 
-So the true statements concern the number of shaded triangles at stage 4, the shaded area at stage 3, and the first stage whose shaded area is below <InlineMath math="10\text{ cm}^2" />.
+The statement about wave 4 with 64 new people is false. The number of new people in wave 4 is <InlineMath math="3^4=81" />. The number 64 is <InlineMath math="4^3" />, which comes from swapping the base and the exponent.
+
+The statement about wave 3 is true. Wave 3 has <InlineMath math="27=3\cdot9" /> new people, three times the number in wave 2.
+
+So the true statements concern 40 people after three waves, more than 120 people after four waves, and 27 new people in wave 3.

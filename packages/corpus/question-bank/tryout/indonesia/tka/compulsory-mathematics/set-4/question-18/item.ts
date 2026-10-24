@@ -33,6 +33,7 @@ const item: QuestionItem = {
       ],
     },
   },
+  stimulusKey: "culvert",
 };
 
 export default item;

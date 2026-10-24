@@ -4,27 +4,32 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Jalan baru yang terpendek dari <InlineMath math="O" /> ke jalan raya adalah ruas garis yang **tegak lurus pada jalan raya**. Misalkan ruas itu bertemu jalan raya di titik <InlineMath math="F" />. Untuk titik <InlineMath math="P" /> lain pada jalan raya, segitiga <InlineMath math="OFP" /> siku-siku di <InlineMath math="F" />, sehingga <InlineMath math="OP^2=OF^2+FP^2" />. Akibatnya <InlineMath math="OP" /> tidak pernah lebih pendek daripada <InlineMath math="OF" />. Jadi kamu cukup mencari panjang <InlineMath math="OF" />.
+Jalan penghubung terpendek dari <InlineMath math="P" /> ke jalan raya adalah ruas garis yang **tegak lurus pada jalan raya**. Ruas ini bertemu jalan raya di satu titik. Titik lain pada jalan raya membentuk segitiga siku-siku dengan <InlineMath math="P" /> dan titik pertemuan itu, sehingga jaraknya dari <InlineMath math="P" /> selalu lebih panjang. Jadi kamu cukup mencari jarak dari <InlineMath math="P" /> ke garis <InlineMath math="AB" />.
 
-Segitiga <InlineMath math="OAB" /> siku-siku di <InlineMath math="O" />, karena kedua sumbu saling tegak lurus. Dengan teorema Pythagoras, panjang <InlineMath math="AB" /> dihitung sebagai berikut:
-
-<BlockMath math="\begin{aligned}
-AB&=\sqrt{OA^2+OB^2}=\sqrt{12^2+9^2}=\sqrt{225}=15\text{ km}
-\end{aligned}" />
-
-Luas segitiga <InlineMath math="OAB" /> dapat dihitung dari kedua kakinya, lalu dari alas <InlineMath math="AB" /> dan tinggi <InlineMath math="OF" />:
+Mula-mula cari gradien garis <InlineMath math="AB" />:
 
 <BlockMath math="\begin{aligned}
-\frac12\cdot OA\cdot OB&=\frac12\cdot AB\cdot OF \\
-\frac12\cdot12\cdot9&=\frac12\cdot15\cdot OF \\
-OF&=\frac{108}{15}=7{,}2\text{ km}
+m&=\frac{1-9}{11-5}=\frac{-8}{6}=-\frac43
 \end{aligned}" />
 
-Sebelum memakai hasil ini, periksa bahwa <InlineMath math="F" /> berada pada ruas <InlineMath math="AB" />, bukan pada perpanjangannya. Segitiga <InlineMath math="AFO" /> sebangun dengan segitiga <InlineMath math="AOB" />, sehingga <InlineMath math="AF=\frac{OA^2}{AB}=\frac{144}{15}=9{,}6\text{ km}" />. Dengan cara yang sama, <InlineMath math="FB=\frac{OB^2}{AB}=\frac{81}{15}=5{,}4\text{ km}" />. Kedua panjang itu positif, jadi <InlineMath math="F" /> berada di antara <InlineMath math="A" /> dan <InlineMath math="B" />. Sebagai pemeriksaan, <InlineMath math="OF^2=AF\cdot FB=9{,}6\cdot5{,}4=51{,}84=7{,}2^2" />.
+Dengan titik <InlineMath math="A(5,9)" />, persamaan garisnya adalah <InlineMath math="y-9=-\frac43(x-5)" />. Kalikan kedua ruas dengan 3, lalu susun ulang:
 
-- <InlineMath math="9\text{ km}" /> adalah jarak dari <InlineMath math="O" /> ke <InlineMath math="B" />. Ruas <InlineMath math="OB" /> bertemu jalan raya di <InlineMath math="B" /> dan tidak tegak lurus padanya.
-- <InlineMath math="12\text{ km}" /> adalah jarak dari <InlineMath math="O" /> ke <InlineMath math="A" />. Ruas <InlineMath math="OA" /> bertemu jalan raya di <InlineMath math="A" /> dan juga tidak tegak lurus padanya.
-- <InlineMath math="15\text{ km}" /> adalah panjang jalan raya dari <InlineMath math="A" /> ke <InlineMath math="B" />. Itu bukan jarak dari <InlineMath math="O" />.
-- <InlineMath math="7{,}5\text{ km}" /> adalah jarak dari <InlineMath math="O" /> ke titik tengah <InlineMath math="M" /> pada <InlineMath math="AB" />. Karena sudut di <InlineMath math="O" /> siku-siku, <InlineMath math="OM=\frac12AB=7{,}5\text{ km}" />. Jarak ini lebih panjang daripada <InlineMath math="OF" />, karena jarak tegak lurus adalah yang terpendek.
+<BlockMath math="\begin{aligned}
+3y-27&=-4x+20 \\
+4x+3y&=47
+\end{aligned}" />
 
-Jadi, jalan baru terpendek dari kantor desa ke jalan raya panjangnya <InlineMath math="7{,}2\text{ km}" />.
+Jarak dari titik <InlineMath math="P(2,3)" /> ke garis itu dihitung dengan rumus jarak titik ke garis:
+
+<BlockMath math="\begin{aligned}
+d&=\frac{|4\cdot2+3\cdot3-47|}{\sqrt{4^2+3^2}}=\frac{|-30|}{\sqrt{25}}=\frac{30}{5}=6\text{ km}
+\end{aligned}" />
+
+Periksa hasilnya dengan titik kaki tegak lurus <InlineMath math="F" />. Titik itu berada pada <InlineMath math="P+t(4,3)" /> dengan <InlineMath math="t=\frac65" />, jadi <InlineMath math="F(6{,}8;\,6{,}6)" />. Vektor <InlineMath math="\overrightarrow{PF}=(4{,}8;\,3{,}6)" /> memiliki panjang <InlineMath math="\sqrt{4{,}8^2+3{,}6^2}=\sqrt{36}=6\text{ km}" />, sesuai dengan hasil tadi. Absis <InlineMath math="6{,}8" /> terletak di antara <InlineMath math="5" /> dan <InlineMath math="11" />, jadi <InlineMath math="F" /> berada pada ruas <InlineMath math="AB" /> dan jalan penghubung benar-benar bertemu jalan raya di sana.
+
+- <InlineMath math="1{,}2\text{ km}" /> didapat jika kamu membagi dengan 25, yaitu kuadrat dari 5, dan lupa menarik akar.
+- <InlineMath math="7{,}5\text{ km}" /> didapat jika kamu membagi dengan 4, yaitu keliru menghitung akar penyebut.
+- <InlineMath math="\sqrt{45}\text{ km}" /> adalah jarak dari <InlineMath math="P" /> ke <InlineMath math="A" />. Ruas itu tidak tegak lurus pada jalan raya.
+- <InlineMath math="\sqrt{85}\text{ km}" /> adalah jarak dari <InlineMath math="P" /> ke <InlineMath math="B" />. Ruas itu juga tidak tegak lurus pada jalan raya.
+
+Jadi jalan penghubung terpendek dari pos pemantau ke jalan raya panjangnya 6 km.

@@ -4,32 +4,22 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Tahap 0 berbentuk segitiga siku-siku sama kaki dengan kaki 8 cm, sehingga luas daerah berwarnanya adalah <InlineMath math="\frac12\cdot8\cdot8=32\text{ cm}^2" />. Pada setiap tahap, setiap segitiga berwarna dibagi menjadi empat segitiga yang sama besar, dan hanya segitiga di tengah yang tidak diwarnai. Jadi setiap segitiga berwarna menghasilkan **tiga segitiga berwarna**, dan setiap segitiga baru memiliki kaki setengah dari kaki segitiga asalnya.
-
-Misalkan <InlineMath math="c_n" /> adalah banyak segitiga berwarna dan <InlineMath math="A_n" /> adalah luas daerah berwarna pada tahap ke-<InlineMath math="n" />. Karena setiap segitiga berwarna menjadi tiga segitiga berwarna, banyaknya **dikalikan 3** pada setiap tahap. Setiap segitiga baru memiliki luas seperempat dari segitiga asalnya, sehingga luas daerah berwarna dikalikan <InlineMath math="\frac34" /> pada setiap tahap.
+Setiap gelombang, setiap orang yang baru mengetahui kabar memberi tahu **tiga orang baru**. Jumlah orang baru pada gelombang ke-<InlineMath math="k" /> karena itu adalah <InlineMath math="3^k" />, dan orang pertama tidak ikut dihitung sebagai orang baru. Jadi jumlah orang yang mengetahui kabar setelah <InlineMath math="k" /> gelombang adalah orang pertama ditambah semua orang baru:
 
 <BlockMath math="\begin{aligned}
-c_n&=3^n \\
-A_n&=32\left(\frac34\right)^n
+1+3+3^2+\cdots+3^k&=\frac{3^{k+1}-1}{2}
 \end{aligned}" />
 
-Daerah yang dihapus warnanya pada suatu tahap adalah segitiga di tengah dari setiap segitiga berwarna pada tahap sebelumnya. Luasnya seperempat dari luas daerah berwarna tahap sebelumnya, sehingga <InlineMath math="A_n-A_{n+1}=\frac14A_n" />. Untuk tahap ke-1, luas yang dihapus adalah <InlineMath math="\frac14\cdot32=8\text{ cm}^2" />. Untuk tahap ke-2, luas yang dihapus adalah <InlineMath math="\frac14\cdot24=6\text{ cm}^2" />, karena tahap ke-1 memiliki luas berwarna <InlineMath math="24\text{ cm}^2" />.
+Dengan rumus ini kamu bisa memeriksa setiap pernyataan. Untuk <InlineMath math="k=3" /> diperoleh <InlineMath math="\frac{3^4-1}{2}=40" />, dan untuk <InlineMath math="k=4" /> diperoleh <InlineMath math="\frac{3^5-1}{2}=121" />.
 
-| Tahap | Banyak segitiga berwarna | Luas daerah berwarna (cm²) | Luas yang dihapus pada tahap itu (cm²) |
-| --- | --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
-| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="13{,}5" /> | <InlineMath math="4{,}5" /> |
-| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="10{,}125" /> | <InlineMath math="3{,}375" /> |
-| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="7{,}59375" /> | <InlineMath math="2{,}53125" /> |
+Pernyataan tentang gelombang ke-2 yang menyebut 6 orang baru salah. Pada gelombang ke-2 ada <InlineMath math="3^2=9" /> orang baru, karena setiap dari tiga orang pada gelombang pertama memberi tahu tiga orang lagi. Angka 6 muncul jika jumlah orang baru hanya dikali dua, padahal setiap gelombang mengalikannya dengan tiga.
 
-Sekarang nilai setiap pernyataan.
+Pernyataan tentang tiga gelombang benar. Orang yang mengetahui kabar berjumlah <InlineMath math="1+3+9+27=40" />, termasuk orang pertama.
 
-1. Pernyataan ini salah. Pada tahap ke-2 banyak segitiga berwarnanya adalah <InlineMath math="3^2=9" />, bukan <InlineMath math="3\cdot2=6" />. Banyaknya dikalikan 3 pada setiap tahap, bukan ditambah 3.
-2. Pernyataan ini benar, karena <InlineMath math="c_4=3^4=81" />.
-3. Pernyataan ini salah. Daerah yang dihapus pada tahap ke-1 adalah <InlineMath math="8\text{ cm}^2" />. Pada tahap ke-2 ada tiga segitiga tengah, masing-masing <InlineMath math="2\text{ cm}^2" />, sehingga totalnya <InlineMath math="6\text{ cm}^2" />. Kedua luas itu tidak sama.
-4. Pernyataan ini benar. <InlineMath math="A_3=32\cdot\frac{27}{64}=\frac{27}{2}=13{,}5\text{ cm}^2" />.
-5. Pernyataan ini benar. <InlineMath math="A_4=\frac{81}{8}=10{,}125" /> masih lebih dari <InlineMath math="10" />, tetapi <InlineMath math="A_5=\frac{243}{32}=7{,}59375" /> sudah kurang dari <InlineMath math="10" />. Jadi tahap pertama dengan luas berwarna kurang dari <InlineMath math="10\text{ cm}^2" /> adalah tahap ke-5.
+Pernyataan tentang empat gelombang juga benar. Jumlahnya <InlineMath math="1+3+9+27+81=121" />, dan <InlineMath math="121>120" />.
 
-Jadi, pernyataan yang benar adalah tentang banyak segitiga berwarna pada tahap ke-4, luas daerah berwarna pada tahap ke-3, dan tahap pertama dengan luas daerah berwarna kurang dari <InlineMath math="10\text{ cm}^2" />.
+Pernyataan tentang gelombang ke-4 yang menyebut 64 orang baru salah. Orang baru pada gelombang ke-4 adalah <InlineMath math="3^4=81" />. Angka 64 adalah <InlineMath math="4^3" />, hasil dari menukar bilangan pokok dan pangkatnya.
+
+Pernyataan tentang gelombang ke-3 benar. Orang baru pada gelombang ke-3 adalah <InlineMath math="27=3\cdot9" />, yaitu tiga kali orang baru pada gelombang ke-2.
+
+Jadi pernyataan yang benar adalah tentang 40 orang setelah tiga gelombang, tentang lebih dari 120 orang setelah empat gelombang, dan tentang 27 orang baru pada gelombang ke-3.

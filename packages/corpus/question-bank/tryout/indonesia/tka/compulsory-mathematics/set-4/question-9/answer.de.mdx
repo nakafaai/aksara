@@ -4,32 +4,22 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Stufe 0 ist ein rechtwinklig gleichschenkliges Dreieck mit Katheten von 8 cm, also beträgt die gefärbte Fläche <InlineMath math="\frac12\cdot8\cdot8=32\text{ cm}^2" />. Auf jeder Stufe wird jedes gefärbte Dreieck in vier kongruente Dreiecke zerlegt, und nur das mittlere verliert seine Färbung. Aus jedem gefärbten Dreieck entstehen also **drei gefärbte Dreiecke**, und jedes neue Dreieck hat halb so lange Katheten wie das Dreieck, aus dem es entstanden ist.
-
-Sei <InlineMath math="c_n" /> die Anzahl der gefärbten Dreiecke und <InlineMath math="A_n" /> die gefärbte Fläche auf Stufe <InlineMath math="n" />. Jedes gefärbte Dreieck wird zu drei gefärbten Dreiecken, daher wird die Anzahl auf jeder Stufe **mit 3 multipliziert**. Jedes neue Dreieck hat ein Viertel der Fläche seines Ausgangsdreiecks, daher wird die gefärbte Fläche auf jeder Stufe mit <InlineMath math="\frac34" /> multipliziert.
+In jeder Welle erzählt jede Person, die die Nachricht gerade erst erfahren hat, **drei neuen Personen** davon. Die Zahl der neuen Personen in Welle <InlineMath math="k" /> ist daher <InlineMath math="3^k" />. Die Person am Anfang zählt nicht als neu. Nach <InlineMath math="k" /> Wellen kennen die Nachricht also die Person am Anfang und alle neuen Personen:
 
 <BlockMath math="\begin{aligned}
-c_n&=3^n \\
-A_n&=32\left(\frac34\right)^n
+1+3+3^2+\cdots+3^k&=\frac{3^{k+1}-1}{2}
 \end{aligned}" />
 
-Die auf einer Stufe entfernte Färbung ist das mittlere Dreieck jedes gefärbten Dreiecks der Vorstufe. Diese Fläche beträgt ein Viertel der gefärbten Fläche der Vorstufe, also <InlineMath math="A_n-A_{n+1}=\frac14A_n" />. Für Stufe 1 ist die entfernte Fläche <InlineMath math="\frac14\cdot32=8\text{ cm}^2" />. Für Stufe 2 ist sie <InlineMath math="\frac14\cdot24=6\text{ cm}^2" />, denn Stufe 1 hat eine gefärbte Fläche von <InlineMath math="24\text{ cm}^2" />.
+Für <InlineMath math="k=3" /> ergibt das <InlineMath math="\frac{3^4-1}{2}=40" />, für <InlineMath math="k=4" /> ergibt es <InlineMath math="\frac{3^5-1}{2}=121" />. Mit diesen Werten prüfst du jede Aussage.
 
-| Stufe | Anzahl gefärbter Dreiecke | Gefärbte Fläche (cm²) | Auf dieser Stufe entfernte Fläche (cm²) |
-| --- | --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
-| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="13{,}5" /> | <InlineMath math="4{,}5" /> |
-| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="10{,}125" /> | <InlineMath math="3{,}375" /> |
-| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="7{,}59375" /> | <InlineMath math="2{,}53125" /> |
+Die Aussage zur zweiten Welle mit 6 neuen Personen ist falsch. In Welle 2 sind es <InlineMath math="3^2=9" /> neue Personen, weil jede der drei Personen aus Welle 1 wieder drei weitere informiert. Die 6 entsteht, wenn man verdoppelt statt zu verdreifachen.
 
-Prüfe nun jede Aussage.
+Die Aussage zu drei Wellen ist richtig: <InlineMath math="1+3+9+27=40" />, die Person am Anfang eingeschlossen.
 
-1. Diese Aussage ist falsch. Auf Stufe 2 sind es <InlineMath math="3^2=9" /> gefärbte Dreiecke, nicht <InlineMath math="3\cdot2=6" />. Die Anzahl wird auf jeder Stufe mit 3 multipliziert und nicht um 3 erhöht.
-2. Diese Aussage ist richtig, denn <InlineMath math="c_4=3^4=81" />.
-3. Diese Aussage ist falsch. Auf Stufe 1 wird eine Fläche von <InlineMath math="8\text{ cm}^2" /> entfernt. Auf Stufe 2 gibt es drei mittlere Dreiecke mit je <InlineMath math="2\text{ cm}^2" />, insgesamt also <InlineMath math="6\text{ cm}^2" />. Die beiden Flächen sind nicht gleich groß.
-4. Diese Aussage ist richtig. <InlineMath math="A_3=32\cdot\frac{27}{64}=\frac{27}{2}=13{,}5\text{ cm}^2" />.
-5. Diese Aussage ist richtig. <InlineMath math="A_4=\frac{81}{8}=10{,}125" /> ist noch größer als <InlineMath math="10" />, aber <InlineMath math="A_5=\frac{243}{32}=7{,}59375" /> ist kleiner als <InlineMath math="10" />. Die erste Stufe mit einer gefärbten Fläche unter <InlineMath math="10\text{ cm}^2" /> ist also Stufe 5.
+Auch die Aussage zu vier Wellen ist richtig: <InlineMath math="1+3+9+27+81=121" />, und <InlineMath math="121>120" />.
 
-Die richtigen Aussagen betreffen also die Anzahl der gefärbten Dreiecke auf Stufe 4, die gefärbte Fläche auf Stufe 3 und die erste Stufe, deren gefärbte Fläche unter <InlineMath math="10\text{ cm}^2" /> liegt.
+Die Aussage zur vierten Welle mit 64 neuen Personen ist falsch. Es sind <InlineMath math="3^4=81" /> neue Personen. Die 64 ist <InlineMath math="4^3" />, und sie entsteht, wenn man Basis und Exponent vertauscht.
+
+Die Aussage zur dritten Welle ist richtig: <InlineMath math="27=3\cdot9" />, also gibt es in Welle 3 dreimal so viele neue Personen wie in Welle 2.
+
+Richtig sind also die Aussagen über 40 Personen nach drei Wellen, über mehr als 120 Personen nach vier Wellen und über 27 neue Personen in Welle 3.
