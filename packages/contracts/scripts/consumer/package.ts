@@ -8,15 +8,18 @@ import {
   consumerFailure as failure,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
-import {
-  createReleaseManifest,
-  parsePackageManifest,
-  parseWorkspaceManifest,
-} from "#scripts/manifest";
+import { createReleaseManifest, parsePackageManifest } from "#scripts/manifest";
 
 const EffectManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
 );
+
+/**
+ * The package manager of the isolated consumer. The consumer is a pnpm project,
+ * as nakafa.com is, so the archive is verified with pnpm 11.28.6, the release
+ * Aksara used before its own workspace moved to Bun.
+ */
+const CONSUMER_PACKAGE_MANAGER = "pnpm@11.28.6";
 
 /** Builds and validates one exact release archive in a scoped workspace. */
 export const stageConsumerPackage = Effect.fn(
@@ -39,25 +42,16 @@ export const stageConsumerPackage = Effect.fn(
     fileSystem
       .readFileString(file, "utf8")
       .pipe(Effect.mapError(failure("filesystem", `Unable to read ${file}`)));
-  const [sourceManifestSource, sourceLicense, rootManifestSource] =
-    yield* Effect.all([
-      read(packageFile("package.json")),
-      read(packageFile("LICENSE")),
-      read(path.join(workspaceRoot, "package.json")),
-    ]);
+  const [sourceManifestSource, sourceLicense] = yield* Effect.all([
+    read(packageFile("package.json")),
+    read(packageFile("LICENSE")),
+  ]);
   const sourceManifest = yield* Effect.try({
     catch: failure(
       "manifest",
       `Contract package manifest ${packageFile("package.json")} is malformed`
     ),
     try: () => parsePackageManifest(sourceManifestSource),
-  });
-  const rootManifest = yield* Effect.try({
-    catch: failure(
-      "manifest",
-      `Workspace package manifest ${path.join(workspaceRoot, "package.json")} is malformed`
-    ),
-    try: () => parseWorkspaceManifest(rootManifestSource),
   });
   const temporaryRoot = yield* fileSystem
     .makeTempDirectoryScoped({
@@ -198,7 +192,7 @@ export const stageConsumerPackage = Effect.fn(
     childEnvironment,
     consumerDirectory,
     effectVersion,
-    packageManager: rootManifest.packageManager,
+    packageManager: CONSUMER_PACKAGE_MANAGER,
     packageName: sourceManifest.name,
     packedManifest,
     pnpm: tools.pnpm,

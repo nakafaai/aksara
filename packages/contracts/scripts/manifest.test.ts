@@ -7,7 +7,6 @@ import {
   type PackageManifest,
   parseInstalledManifest,
   parsePackageManifest,
-  parseWorkspaceManifest,
   textField,
 } from "#scripts/manifest";
 import { encodeJsonText, JsonTextSchema } from "#scripts/text/json";
@@ -32,12 +31,9 @@ const packageManifest = {
 } satisfies PackageManifest;
 
 describe("manifest tooling", () => {
-  it("decodes complete package and workspace manifests", () => {
+  it("decodes complete package manifests", () => {
     expect(parsePackageManifest(encodeJsonText(packageManifest))).toEqual(
       packageManifest
-    );
-    expect(parseWorkspaceManifest('{"packageManager":"pnpm@11.25.0"}')).toEqual(
-      { packageManager: "pnpm@11.25.0" }
     );
   });
 
@@ -148,7 +144,6 @@ describe("manifest tooling", () => {
 
   it("rejects text that is not JSON in every manifest reader", () => {
     expect(() => parsePackageManifest("{")).toThrow();
-    expect(() => parseWorkspaceManifest("{")).toThrow();
     expect(() => parseInstalledManifest("{")).toThrow();
     expect(() => createReleaseManifest("{", "4.0.0-rc.112")).toThrow();
   });
@@ -217,12 +212,6 @@ describe("manifest tooling", () => {
     expect(() =>
       parseInstalledManifest('{"name":"package","exports":{".":{"import":1}}}')
     ).toThrow("Export . condition import must be text");
-    expect(() => parseWorkspaceManifest("[]")).toThrow(
-      "The workspace manifest must be an object"
-    );
-    expect(() => parseWorkspaceManifest("{}")).toThrow(
-      "Workspace packageManager must be text"
-    );
   });
 });
 
