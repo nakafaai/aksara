@@ -109,18 +109,19 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "2.5.15",
     cohort: "Biome and Ultracite",
     dependency: "@biomejs/biome",
-    reason: "Formatter behavior is reviewed as one linting cohort.",
+    reason:
+      "Formatter behavior is reviewed as one linting cohort. Ultracite 8.0.2 still configures the useSortedClasses rule, which Biome 2.6 no longer knows, so Biome 2.6.x fails the lint configuration with an unknown key. The hold lifts when Ultracite's configuration supports the 2.6 line.",
     registry: "@biomejs/biome@latest",
-    reviewedLatest: "2.5.15",
+    reviewedLatest: "2.6.3",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "8.0.1",
+    approvedCurrent: "8.0.2",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
     reason: "Formatter behavior is reviewed as one linting cohort.",
     registry: "ultracite@latest",
-    reviewedLatest: "8.0.1",
+    reviewedLatest: "8.0.2",
     source: "root-dev-dependency",
   },
   {
