@@ -8,6 +8,34 @@
     "#nakafa-content/*": "./.agents/skills/nakafa-content/scripts/*.ts",
     "#scripts/*": "./scripts/*.ts"
   },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "@effect/platform-node": "4.0.5",
+      "@effect/vitest": "4.0.5",
+      "@mdx-js/mdx": "3.1.1",
+      "@types/estree-jsx": "1.0.5",
+      "@types/mdast": "4.0.4",
+      "@types/unist": "3.0.3",
+      "@vitest/coverage-istanbul": "5.0.5",
+      "effect": "4.0.5",
+      "esbuild": "0.28.2",
+      "eslint-scope": "9.1.2",
+      "estree-util-visit": "2.0.0",
+      "mdast-util-mdx": "3.0.0",
+      "mdast-util-to-string": "4.0.0",
+      "remark-gfm": "4.0.1",
+      "remark-math": "6.0.0",
+      "remark-parse": "11.0.0",
+      "typescript": "7.0.2",
+      "unified": "11.0.5",
+      "unist-util-visit": "5.1.0",
+      "vitest": "5.0.5"
+    }
+  },
   "scripts": {
     "abort": "turbo run abort --filter=@nakafa/aksara-cli",
     "accept": "turbo run accept --filter=@nakafa/aksara-cli",
@@ -18,7 +46,7 @@
     "clean": "turbo run clean",
     "clean:root": "git clean -xdf coverage",
     "cleanup": "turbo run cleanup --filter=@nakafa/aksara-cli",
-    "deprecations": "turbo run build && pnpm deprecations:audit",
+    "deprecations": "turbo run build && bun run deprecations:audit",
     "deprecations:audit": "node --conditions=aksara-source scripts/check/deprecations.ts",
     "dev": "turbo run dev --filter=@nakafa/aksara-cli",
     "effect:source:check": "node scripts/effect/source.ts check",
@@ -26,7 +54,7 @@
     "format": "ultracite fix",
     "jsdocs": "node --conditions=aksara-source scripts/check/docs.ts",
     "lines": "node --conditions=aksara-source scripts/check/lines.ts",
-    "lint": "pnpm effect:source:check && node --conditions=aksara-source scripts/check/effect.ts && ultracite check",
+    "lint": "bun run effect:source:check && node --conditions=aksara-source scripts/check/effect.ts && ultracite check",
     "locales": "node --conditions=aksara-source scripts/check/locales.ts",
     "names": "node scripts/check/paths.ts",
     "native": "node scripts/check/native.ts",
@@ -45,6 +73,14 @@
     "typecheck:root": "tsc --project tsconfig.json",
     "verify:consumer": "turbo run verify:consumer",
     "workflows": "node scripts/workflow/check.ts"
+  },
+  "overrides": {
+    "@effect/platform-node-shared": "4.0.5",
+    "micromark-extension-math@3.1.0>katex": "0.19.0",
+    "source-map-js": "1.2.2",
+    "undici": "8.12.2",
+    "vite": "8.1.6",
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@actions/expressions": "0.3.61",
@@ -73,7 +109,7 @@
     "vitest": "catalog:",
     "yaml": "2.9.1"
   },
-  "packageManager": "pnpm@11.28.6",
+  "packageManager": "bun@1.4.4",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },
@@ -83,5 +119,8 @@
       "version": "24.22.1",
       "onFail": "download"
     }
-  }
+  },
+  "trustedDependencies": [
+    "esbuild"
+  ]
 }
