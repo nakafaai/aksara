@@ -100,6 +100,15 @@ export class ArtifactRendererComponentMissingError extends Schema.TaggedError<
   contentKey: ContentKeySchema,
 }) {}
 
+/** The content tree uses a component that the artifact does not declare as required. */
+export class ArtifactTreeComponentUnlistedError extends Schema.TaggedError<
+  ArtifactTreeComponentUnlistedError,
+  { readonly brand: unique symbol }
+>()("ArtifactTreeComponentUnlistedError", {
+  componentName: Schema.String.check(Schema.isNonEmpty()),
+  contentKey: ContentKeySchema,
+}) {}
+
 /** The deployed Nakafa app cannot route this artifact's renderer domain. */
 export class ArtifactRendererDomainUnpublishedError extends Schema.TaggedError<
   ArtifactRendererDomainUnpublishedError,

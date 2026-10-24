@@ -32,6 +32,7 @@ export const CONTENT_TREE_INTRINSIC_TAGS = [
   "pre",
   "section",
   "strong",
+  "sub",
   "sup",
   "table",
   "tbody",
@@ -122,7 +123,11 @@ const ContentTreeChildSchema: Schema.Codec<ContentTreeChild> = Schema.suspend(
     Schema.Union([Schema.String, ContentTreeElementSchema])
 );
 
-/** One element of the tree, with its reserved marker and its exact fields. */
+/**
+ * One element of the tree, with its reserved marker and its exact fields. The
+ * signed bytes come from canonicalizeContentTree, never from the key order of a
+ * decoded object, which the repository's formatter keeps alphabetical.
+ */
 const ContentTreeElementSchema: Schema.Codec<ContentTreeElement> =
   Schema.Struct({
     $node: Schema.Literal("element"),
@@ -204,4 +209,46 @@ function canonicalElementText(element: ContentTreeElement): string {
 /** Serializes the tree as the exact JSON text that hashes and signatures cover. */
 export function canonicalizeContentTree(tree: ContentTreeElement): string {
   return canonicalElementText(tree);
+}
+
+/** Checks whether an element name is a renderer component, not the fragment or an intrinsic tag. */
+function isComponentElementName(name: ContentTreeElementName) {
+  return (
+    name !== FRAGMENT_NAME && !Schema.is(ContentTreeIntrinsicTagSchema)(name)
+  );
+}
+
+/** Collects the component names of one element and of every element nested beneath it. */
+function componentNamesOfElement(
+  element: ContentTreeElement
+): readonly string[] {
+  const own = isComponentElementName(element.name) ? [element.name] : [];
+  return [
+    ...own,
+    ...Arr.flatMap(element.children, (child) =>
+      typeof child === "string" ? [] : componentNamesOfElement(child)
+    ),
+    ...Arr.flatMap(Rec.values(element.props), componentNamesOfValue),
+  ];
+}
+
+/** Collects the component names of one prop value, which may hold lists, objects, and elements. */
+function componentNamesOfValue(value: ContentTreeValue): readonly string[] {
+  if (isElement(value)) {
+    return componentNamesOfElement(value);
+  }
+  if (isList(value)) {
+    return Arr.flatMap(value, componentNamesOfValue);
+  }
+  if (isProps(value)) {
+    return Arr.flatMap(Rec.values(value), componentNamesOfValue);
+  }
+  return [];
+}
+
+/** Lists the renderer components that one tree uses, once each, in first-use order. */
+export function contentTreeComponentNames(
+  tree: ContentTreeElement
+): readonly string[] {
+  return Arr.dedupe(componentNamesOfElement(tree));
 }

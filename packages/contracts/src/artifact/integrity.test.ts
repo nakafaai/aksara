@@ -17,7 +17,9 @@ import {
 } from "#contracts/signature/spec";
 import {
   integrityArtifact,
+  integrityPayload,
   integrityResolver,
+  signIntegrityPayload,
 } from "#contracts/test/integrity";
 import { verifyEd25519Pem } from "#contracts/test/signature";
 
@@ -50,6 +52,46 @@ describe("artifact integrity", () => {
       ).toMatchObject({
         _tag: "ArtifactVerificationDecodeError",
       });
+    })
+  );
+  it.effect("rejects a tree component that the artifact does not require", () =>
+    Effect.gen(function* () {
+      const artifact = yield* signIntegrityPayload({
+        ...integrityPayload,
+        contentTree: {
+          $node: "element",
+          children: [
+            { $node: "element", children: [], name: "InlineMath", props: {} },
+          ],
+          name: "fragment",
+          props: {},
+        },
+        requiredComponents: [],
+      });
+
+      expect(yield* reject(artifact)).toMatchObject({
+        _tag: "ArtifactTreeComponentUnlistedError",
+        componentName: "InlineMath",
+      });
+    })
+  );
+
+  it.effect("authenticates a tree whose components the artifact requires", () =>
+    Effect.gen(function* () {
+      const artifact = yield* signIntegrityPayload({
+        ...integrityPayload,
+        contentTree: {
+          $node: "element",
+          children: [
+            { $node: "element", children: [], name: "InlineMath", props: {} },
+          ],
+          name: "fragment",
+          props: {},
+        },
+        requiredComponents: ["InlineMath"],
+      });
+
+      expect(yield* authenticate(artifact)).toEqual(artifact);
     })
   );
 });
