@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{4}{3}$$",
+          label: "$$\\text{Rp }5{.}440{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{5}$$",
+          label: "$$\\text{Rp }1{.}700{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3\\sqrt{2}}{8}$$",
+          label: "$$\\text{Rp }4{.}080{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{4}{5}$$",
+          label: "$$\\text{Rp }3{.}400{.}000$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$\\text{Rp }6{.}800{.}000$$",
         },
       ],
     },

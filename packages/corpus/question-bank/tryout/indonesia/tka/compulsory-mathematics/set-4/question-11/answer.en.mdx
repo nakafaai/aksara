@@ -4,31 +4,27 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-The path from <InlineMath math="C" /> that is perpendicular to <InlineMath math="AB" /> is the **height of triangle <InlineMath math="ABC" />** from <InlineMath math="C" /> to side <InlineMath math="AB" />. You can find that height from the area of triangle <InlineMath math="ABC" />, once the length of <InlineMath math="AB" /> is known.
+The shortest new road from the office <InlineMath math="O" /> to the highway is the segment that is **perpendicular to the highway**. Let that segment meet the highway at <InlineMath math="F" />. For any other point <InlineMath math="P" /> on the highway, triangle <InlineMath math="OFP" /> has a right angle at <InlineMath math="F" />, so <InlineMath math="OP^2=OF^2+FP^2" />. Therefore <InlineMath math="OP" /> is never shorter than <InlineMath math="OF" />. So you only need the length of <InlineMath math="OF" />.
 
-The diagonals of a rhombus bisect each other and meet at right angles. Let the intersection point be <InlineMath math="O" />. Half of each diagonal gives <InlineMath math="OA=6\text{ m}" /> and <InlineMath math="OB=8\text{ m}" />. Triangle <InlineMath math="AOB" /> has a right angle at <InlineMath math="O" />, so the Pythagorean theorem gives the side <InlineMath math="AB" />.
-
-<BlockMath math="\begin{aligned}
-AB&=\sqrt{OA^2+OB^2}=\sqrt{6^2+8^2}=\sqrt{100}=10\text{ m}
-\end{aligned}" />
-
-The area of the rhombus follows from its two diagonals: <InlineMath math="\frac12\cdot AC\cdot BD=\frac12\cdot12\cdot16=96\text{ m}^2" />. The diagonal <InlineMath math="AC" /> splits the rhombus into two congruent triangles, <InlineMath math="ABC" /> and <InlineMath math="ACD" />, so triangle <InlineMath math="ABC" /> has half of that area, <InlineMath math="48\text{ m}^2" />.
-
-Now use base <InlineMath math="AB" /> and find the height <InlineMath math="h" /> from <InlineMath math="C" />:
+Triangle <InlineMath math="OAB" /> has a right angle at <InlineMath math="O" />, because the two axes are perpendicular. By the Pythagorean theorem, the length of <InlineMath math="AB" /> is:
 
 <BlockMath math="\begin{aligned}
-\frac12\cdot AB\cdot h&=48 \\
-\frac12\cdot10\cdot h&=48 \\
-h&=\frac{96}{10}=9.6
+AB&=\sqrt{OA^2+OB^2}=\sqrt{12^2+9^2}=\sqrt{225}=15\text{ km}
 \end{aligned}" />
 
-Before you use this value, check that the perpendicular from <InlineMath math="C" /> lands on the **segment <InlineMath math="AB" />, not on its extension**. The angle at <InlineMath math="B" /> in triangle <InlineMath math="ABC" /> is acute, because <InlineMath math="AC^2=144<AB^2+BC^2=200" />. The angle at <InlineMath math="A" /> is also acute. So the foot of the perpendicular lies inside <InlineMath math="AB" />.
+The area of triangle <InlineMath math="OAB" /> can be found from its legs, and also from the base <InlineMath math="AB" /> and the height <InlineMath math="OF" />:
 
-Coordinates give the same result. Put <InlineMath math="O" /> at the origin, so that <InlineMath math="A(-6,0)" />, <InlineMath math="B(0,8)" />, and <InlineMath math="C(6,0)" />. The line <InlineMath math="AB" /> is <InlineMath math="4x-3y+24=0" />, and the distance from <InlineMath math="C" /> to it is <InlineMath math="\frac{|4(6)-3(0)+24|}{\sqrt{4^2+3^2}}=\frac{48}{5}=9.6" />.
+<BlockMath math="\begin{aligned}
+\frac12\cdot OA\cdot OB&=\frac12\cdot AB\cdot OF \\
+\frac12\cdot12\cdot9&=\frac12\cdot15\cdot OF \\
+OF&=\frac{108}{15}=7.2\text{ km}
+\end{aligned}" />
 
-- <InlineMath math="6\text{ m}" /> is half of diagonal <InlineMath math="AC" />, the distance from the centre to the corner <InlineMath math="A" />. It is not the distance to the side <InlineMath math="AB" />.
-- <InlineMath math="8\text{ m}" /> is half of diagonal <InlineMath math="BD" />, the segment <InlineMath math="OB" />. That segment is not perpendicular to <InlineMath math="AB" />.
-- <InlineMath math="10\text{ m}" /> is the length of side <InlineMath math="AB" />. Side <InlineMath math="BC" /> has the same length, but it is not perpendicular to <InlineMath math="AB" />.
-- <InlineMath math="12\text{ m}" /> is diagonal <InlineMath math="AC" />. It meets <InlineMath math="AB" /> at the corner <InlineMath math="A" /> and is not perpendicular to it.
+Before you use this result, check that <InlineMath math="F" /> lies on segment <InlineMath math="AB" />, not on its extension. Triangle <InlineMath math="AFO" /> is similar to triangle <InlineMath math="AOB" />, so <InlineMath math="AF=\frac{OA^2}{AB}=\frac{144}{15}=9.6\text{ km}" />. In the same way, <InlineMath math="FB=\frac{OB^2}{AB}=\frac{81}{15}=5.4\text{ km}" />. Both lengths are positive, so <InlineMath math="F" /> lies between <InlineMath math="A" /> and <InlineMath math="B" />. As a check, <InlineMath math="OF^2=AF\cdot FB=9.6\cdot5.4=51.84=7.2^2" />.
 
-So the path from <InlineMath math="C" /> that is perpendicular to <InlineMath math="AB" /> is <InlineMath math="9.6\text{ m}" /> long.
+- <InlineMath math="9\text{ km}" /> is the distance from <InlineMath math="O" /> to <InlineMath math="B" />. Segment <InlineMath math="OB" /> meets the highway at <InlineMath math="B" /> and is not perpendicular to it.
+- <InlineMath math="12\text{ km}" /> is the distance from <InlineMath math="O" /> to <InlineMath math="A" />. Segment <InlineMath math="OA" /> meets the highway at <InlineMath math="A" /> and is also not perpendicular to it.
+- <InlineMath math="15\text{ km}" /> is the length of the highway from <InlineMath math="A" /> to <InlineMath math="B" />. It is not a distance from <InlineMath math="O" />.
+- <InlineMath math="7.5\text{ km}" /> is the distance from <InlineMath math="O" /> to the midpoint <InlineMath math="M" /> of <InlineMath math="AB" />. Because the angle at <InlineMath math="O" /> is a right angle, <InlineMath math="OM=\frac12AB=7.5\text{ km}" />. That distance is longer than <InlineMath math="OF" />, because the perpendicular distance is the shortest.
+
+So the shortest new road from the office to the highway is <InlineMath math="7.2\text{ km}" /> long.

@@ -4,69 +4,25 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Sudut antara dua bidang diukur pada **garis potongnya**. Bidang <InlineMath math="TAB" /> dan bidang alas berpotongan pada rusuk <InlineMath math="AB" />. Ambil titik tengah <InlineMath math="M" /> pada <InlineMath math="AB" />, lalu cari garis di setiap bidang yang melalui <InlineMath math="M" /> dan tegak lurus pada <InlineMath math="AB" />.
+Sisi tegak atap adalah bidang <InlineMath math="TAB" />, <InlineMath math="TBC" />, <InlineMath math="TCD" />, dan <InlineMath math="TDA" />. Alas <InlineMath math="ABCD" /> tidak perlu ditutup, sehingga biaya hanya bergantung pada **luas keempat sisi tegak**.
 
-Di bidang alas, garis itu adalah <InlineMath math="OM" />, karena <InlineMath math="O" /> adalah pusat persegi dan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />. Di bidang <InlineMath math="TAB" />, garis itu adalah <InlineMath math="TM" />, karena <InlineMath math="TA=TB" /> membuat segitiga <InlineMath math="TAB" /> sama kaki, sehingga garis median <InlineMath math="TM" /> juga merupakan tinggi. Jadi sudut antara kedua bidang adalah sudut <InlineMath math="TMO" />.
+Tinggi 3 m pada soal adalah jarak dari puncak <InlineMath math="T" /> ke bidang alas, bukan tinggi setiap sisi tegak. Tinggi sisi tegak yang dibutuhkan adalah ruas <InlineMath math="TM" />, dengan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />. Misalkan <InlineMath math="O" /> pusat alas. Ruas <InlineMath math="OM" /> sama dengan setengah sisi alas, dan <InlineMath math="TO" /> tegak lurus pada alas. Karena itu <InlineMath math="TM" /> juga tegak lurus pada <InlineMath math="AB" />, dan segitiga <InlineMath math="TOM" /> siku-siku di <InlineMath math="O" />:
 
-Segitiga <InlineMath math="TOM" /> **siku-siku di <InlineMath math="O" />**, karena <InlineMath math="TO" /> tegak lurus pada bidang alas. Kedua sisi siku-sikunya adalah <InlineMath math="TO=3\text{ m}" /> dan <InlineMath math="OM=4\text{ m}" />, yaitu setengah sisi alas. Tangen sudut <InlineMath math="TMO" /> adalah
+<BlockMath math="\begin{aligned}
+TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=\sqrt{25}=5\text{ m}
+\end{aligned}" />
 
-<BlockMath math="\tan\angle TMO=\frac{TO}{OM}=\frac{3}{4}" />
+Satu sisi tegak berbentuk segitiga dengan alas 8 m dan tinggi 5 m, sehingga luasnya <InlineMath math="\frac12\cdot8\cdot5=20\text{ m}^2" />. Keempat sisi tegak memiliki luas <InlineMath math="4\cdot20=80\text{ m}^2" />.
 
-<MathVisual
-  title="Segitiga TOM pada sudut kemiringan atap"
-  description={<>Ruas <InlineMath math="OM" /> dan ruas <InlineMath math="TM" /> tegak lurus pada rusuk <InlineMath math="AB" />. Sudut <InlineMath math="TMO" /> adalah sudut antara bidang <InlineMath math="TAB" /> dan bidang alas.</>}
-  labels={{
-    "vertex-t": <InlineMath math="T" />,
-    "vertex-a": <InlineMath math="A" />,
-    "vertex-b": <InlineMath math="B" />,
-    "name-o": <InlineMath math="O" />,
-    "name-m": <InlineMath math="M" />,
-    "length-to": <InlineMath math="3\text{ m}" />,
-    "length-om": <InlineMath math="4\text{ m}" />,
-    "length-tm": <InlineMath math="5\text{ m}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 4 },
-      z: { min: -5, max: 5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
-    objects: [
-      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
-      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
-      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
-      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
-      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
-      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
-      { id: "segment-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "segment-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "point-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
-      { id: "point-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
-    ],
-    labels: [
-      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
-      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
-      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
-      { key: "name-o", objectId: "point-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
-      { key: "name-m", objectId: "point-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
-      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
-      { key: "length-om", objectId: "segment-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
-      { key: "length-tm", objectId: "segment-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
-    ],
-  }}
-/>
+<BlockMath math="\begin{aligned}
+\text{Biaya}&=80\cdot\text{Rp }85{.}000=\text{Rp }6{.}800{.}000
+\end{aligned}" />
 
-Periksa dengan panjang sisi miring. <InlineMath math="TM=\sqrt{3^2+4^2}=5\text{ m}" />, sehingga <InlineMath math="\sin\angle TMO=\frac35" /> dan <InlineMath math="\cos\angle TMO=\frac45" />. Ketiga nilai itu konsisten karena <InlineMath math="(3,4,5)" /> adalah tripel Pythagoras.
+Sebagai pemeriksaan, keliling alas <InlineMath math="32\text{ m}" /> dan tinggi sisi tegak <InlineMath math="5\text{ m}" /> memberi <InlineMath math="\frac12\cdot32\cdot5=80\text{ m}^2" />, sama dengan hasil tadi.
 
-Cek kedua dengan koordinat. Ambil <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" />, dan <InlineMath math="B=(4,0,4)" />. Bidang <InlineMath math="TAB" /> memiliki persamaan <InlineMath math="4y+3z=12" />, sehingga vektor normalnya <InlineMath math="(0,4,3)" />. Normal bidang alas adalah <InlineMath math="(0,1,0)" />. Maka <InlineMath math="\cos\theta=\frac{4}{5}" />, dan <InlineMath math="\tan\theta=\frac34" />.
+- <InlineMath math="\text{Rp }1{.}700{.}000" /> hanya menutup satu sisi tegak, yaitu <InlineMath math="20\cdot\text{Rp }85{.}000" />.
+- <InlineMath math="\text{Rp }3{.}400{.}000" /> hanya menutup dua sisi tegak, padahal soal meminta keempatnya.
+- <InlineMath math="\text{Rp }4{.}080{.}000" /> memakai tinggi 3 m sebagai tinggi sisi tegak. Luas yang keliru itu adalah <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
+- <InlineMath math="\text{Rp }5{.}440{.}000" /> memakai luas alas <InlineMath math="8\cdot8=64\text{ m}^2" />. Alas tidak perlu ditutup.
 
-Jadi, nilai tangen sudut antara bidang <InlineMath math="TAB" /> dan bidang alas adalah <InlineMath math="\frac34" />.
-
-- <InlineMath math="\frac43" /> adalah kebalikan tangen. Nilai itu muncul jika <InlineMath math="OM" /> dibagi <InlineMath math="TO" />.
-- <InlineMath math="\frac35" /> adalah nilai sinus. Penyebutnya adalah sisi miring <InlineMath math="TM" />, bukan <InlineMath math="OM" />.
-- <InlineMath math="\frac45" /> adalah nilai kosinus. Ia memakai <InlineMath math="OM" /> dan <InlineMath math="TM" />, bukan <InlineMath math="TO" /> dan <InlineMath math="OM" />.
-- <InlineMath math="\frac{3\sqrt2}{8}" /> adalah tangen sudut antara rusuk <InlineMath math="TA" /> dan bidang alas, yaitu <InlineMath math="TO" /> dibagi <InlineMath math="OA=4\sqrt2" />. Itu sudut antara garis dan bidang, bukan sudut antara dua bidang.
+Jadi, biaya seng untuk menutup keempat sisi tegak atap adalah <InlineMath math="\text{Rp }6{.}800{.}000" />.

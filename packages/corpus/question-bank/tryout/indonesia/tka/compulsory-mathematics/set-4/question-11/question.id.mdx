@@ -4,41 +4,36 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Sebuah taman berbentuk belah ketupat <InlineMath math="ABCD" /> dengan panjang diagonal <InlineMath math="AC=12\text{ m}" /> dan <InlineMath math="BD=16\text{ m}" />. Pemilik taman akan membuat jalan setapak lurus dari titik <InlineMath math="C" /> ke sisi <InlineMath math="AB" />, dengan jalan setapak itu tegak lurus terhadap sisi <InlineMath math="AB" />.
+Kantor desa berada di titik <InlineMath math="O(0,0)" /> pada peta dengan satuan kilometer. Sebuah jalan raya lurus melewati titik <InlineMath math="A(12,0)" /> dan titik <InlineMath math="B(0,9)" />. Jalan baru akan dibangun lurus dari <InlineMath math="O" /> menuju jalan raya dengan panjang sependek mungkin.
 
 <MathVisual
-  title={<>Belah ketupat <InlineMath math="ABCD" /></>}
-  description={<>Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan di tengah taman. Titik <InlineMath math="C" /> adalah titik sudut yang berseberangan dengan <InlineMath math="A" />.</>}
+  title={<>Kantor desa dan jalan raya</>}
+  description={<>Titik <InlineMath math="O" /> adalah kantor desa. Garis jalan raya melewati <InlineMath math="A" /> dan <InlineMath math="B" />, dan kedua sumbu memakai satuan kilometer.</>}
   labels={{
+    "name-o": <InlineMath math="O" />,
     "name-a": <InlineMath math="A" />,
     "name-b": <InlineMath math="B" />,
-    "name-c": <InlineMath math="C" />,
-    "name-d": <InlineMath math="D" />,
-    "length-ac": <InlineMath math="12\text{ m}" />,
-    "length-bd": <InlineMath math="16\text{ m}" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -8, max: 8 },
-      y: { min: -10, max: 10 },
+      x: { min: -2, max: 14 },
+      y: { min: -2, max: 11 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "rhombus-abcd", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0 }, { x: 0, y: 8 }, { x: 6, y: 0 }, { x: 0, y: -8 }] },
-      { id: "diag-ac", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 6, y: 0 } },
-      { id: "diag-bd", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 0, y: -8 } },
+      { id: "highway", kind: "line", appearance: "primary", through: [{ x: 12, y: 0 }, { x: 0, y: 9 }] },
+      { id: "village-office", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 12, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 0, y: 9 } },
     ],
     labels: [
-      { key: "name-a", objectId: "rhombus-abcd", at: { x: -6, y: 0 }, placement: "below-left" },
-      { key: "name-b", objectId: "rhombus-abcd", at: { x: 0, y: 8 }, placement: "above" },
-      { key: "name-c", objectId: "rhombus-abcd", at: { x: 6, y: 0 }, placement: "below-right" },
-      { key: "name-d", objectId: "rhombus-abcd", at: { x: 0, y: -8 }, placement: "below" },
-      { key: "length-ac", objectId: "diag-ac", at: { x: -3, y: 0 }, placement: "below" },
-      { key: "length-bd", objectId: "diag-bd", at: { x: 0, y: -4 }, placement: "right" },
+      { key: "name-o", objectId: "village-office", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-a", objectId: "point-a", at: { x: 12, y: 0 }, placement: "below" },
+      { key: "name-b", objectId: "point-b", at: { x: 0, y: 9 }, placement: "above-right" },
     ],
   }}
 />
 
-Panjang jalan setapak tersebut adalah ....
+Panjang jalan baru itu adalah ....

@@ -12,27 +12,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Setiap kali bola memantul, tinggi pantulan berikutnya berkurang $$40\\text{ cm}$$ dari tinggi pantulan sebelumnya.",
+          label: "Banyak segitiga berwarna pada tahap ke-$$n$$ adalah $$3n$$.",
         },
         {
           isCorrect: true,
-          label: "Tinggi pantulan pertama bola adalah $$120\\text{ cm}$$.",
+          label: "Tahap ke-$$4$$ memuat $$81$$ segitiga berwarna.",
         },
         {
           isCorrect: false,
           label:
-            "Bola menempuh jarak $$4{,}375\\text{ m}$$ sejak dijatuhkan sampai menyentuh lantai untuk keempat kalinya.",
+            "Luas daerah yang dihapus warnanya pada tahap ke-$$2$$ sama dengan luas daerah yang dihapus warnanya pada tahap ke-$$1$$.",
         },
         {
           isCorrect: true,
           label:
-            "Pantulan pertama yang tingginya kurang dari $$40\\text{ cm}$$ adalah pantulan ke-$$5$$.",
+            "Luas daerah berwarna pada tahap ke-$$3$$ adalah $$13{,}5\\text{ cm}^2$$.",
         },
         {
           isCorrect: true,
           label:
-            "Bola menempuh jarak $$7{,}15\\text{ m}$$ sejak dijatuhkan sampai menyentuh lantai untuk keempat kalinya.",
+            "Tahap pertama dengan luas daerah berwarna kurang dari $$10\\text{ cm}^2$$ adalah tahap ke-$$5$$.",
         },
       ],
     },

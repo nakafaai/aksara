@@ -4,69 +4,25 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-The angle between two planes is measured at their **line of intersection**. Plane <InlineMath math="TAB" /> and the base meet along the edge <InlineMath math="AB" />. Take the midpoint <InlineMath math="M" /> of <InlineMath math="AB" />, and find the line in each plane that passes through <InlineMath math="M" /> and is perpendicular to <InlineMath math="AB" />.
+The lateral faces of the roof are triangles <InlineMath math="TAB" />, <InlineMath math="TBC" />, <InlineMath math="TCD" />, and <InlineMath math="TDA" />. The base <InlineMath math="ABCD" /> does not need covering, so the cost depends only on the **area of the four lateral faces**.
 
-In the base, that line is <InlineMath math="OM" />, because <InlineMath math="O" /> is the centre of the square and <InlineMath math="M" /> is the midpoint of <InlineMath math="AB" />. In plane <InlineMath math="TAB" />, the line is <InlineMath math="TM" />, because <InlineMath math="TA=TB" /> makes triangle <InlineMath math="TAB" /> isosceles, so the median <InlineMath math="TM" /> is also an altitude. The angle between the two planes is therefore the angle <InlineMath math="TMO" />.
+The height of 3 m in the stimulus is the distance from the apex <InlineMath math="T" /> to the base plane. It is not the height of each lateral face. The height of a face is the segment <InlineMath math="TM" />, where <InlineMath math="M" /> is the midpoint of <InlineMath math="AB" />. Let <InlineMath math="O" /> be the centre of the base. Segment <InlineMath math="OM" /> is half of a base side, and <InlineMath math="TO" /> is perpendicular to the base. So <InlineMath math="TM" /> is also perpendicular to <InlineMath math="AB" />, and triangle <InlineMath math="TOM" /> has a right angle at <InlineMath math="O" />:
 
-Triangle <InlineMath math="TOM" /> has **a right angle at <InlineMath math="O" />**, because <InlineMath math="TO" /> is perpendicular to the base. Its legs are <InlineMath math="TO=3\text{ m}" /> and <InlineMath math="OM=4\text{ m}" />, which is half the side of the base. The tangent of the angle <InlineMath math="TMO" /> is
+<BlockMath math="\begin{aligned}
+TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=\sqrt{25}=5\text{ m}
+\end{aligned}" />
 
-<BlockMath math="\tan\angle TMO=\frac{TO}{OM}=\frac{3}{4}" />
+One lateral face is a triangle with base 8 m and height 5 m, so its area is <InlineMath math="\frac12\cdot8\cdot5=20\text{ m}^2" />. The four lateral faces have an area of <InlineMath math="4\cdot20=80\text{ m}^2" />.
 
-<MathVisual
-  title="Triangle TOM at the roof's slope"
-  description={<>Segment <InlineMath math="OM" /> and segment <InlineMath math="TM" /> are both perpendicular to the edge <InlineMath math="AB" />. The angle <InlineMath math="TMO" /> is the angle between plane <InlineMath math="TAB" /> and the base.</>}
-  labels={{
-    "vertex-t": <InlineMath math="T" />,
-    "vertex-a": <InlineMath math="A" />,
-    "vertex-b": <InlineMath math="B" />,
-    "name-o": <InlineMath math="O" />,
-    "name-m": <InlineMath math="M" />,
-    "length-to": <InlineMath math="3\text{ m}" />,
-    "length-om": <InlineMath math="4\text{ m}" />,
-    "length-tm": <InlineMath math="5\text{ m}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 4 },
-      z: { min: -5, max: 5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
-    objects: [
-      { id: "base-abcd", kind: "polygon", appearance: "reference", vertices: [{ x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
-      { id: "face-tab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: 4 }, { x: 4, y: 0, z: 4 }] },
-      { id: "face-tbc", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: 4 }, { x: 4, y: 0, z: -4 }] },
-      { id: "face-tcd", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: 4, y: 0, z: -4 }, { x: -4, y: 0, z: -4 }] },
-      { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
-      { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
-      { id: "segment-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "segment-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "point-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
-      { id: "point-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
-    ],
-    labels: [
-      { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
-      { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
-      { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
-      { key: "name-o", objectId: "point-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
-      { key: "name-m", objectId: "point-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
-      { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
-      { key: "length-om", objectId: "segment-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
-      { key: "length-tm", objectId: "segment-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
-    ],
-  }}
-/>
+<BlockMath math="\begin{aligned}
+\text{Cost}&=80\cdot\text{Rp }85{,}000=\text{Rp }6{,}800{,}000
+\end{aligned}" />
 
-Check the slant side. <InlineMath math="TM=\sqrt{3^2+4^2}=5\text{ m}" />, so <InlineMath math="\sin\angle TMO=\frac35" /> and <InlineMath math="\cos\angle TMO=\frac45" />. These three values agree, because <InlineMath math="(3,4,5)" /> is a Pythagorean triple.
+As a check, half the base perimeter times the face height gives the same area: <InlineMath math="\frac12\cdot32\cdot5=80\text{ m}^2" />.
 
-Check the result with coordinates as well. Take <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" />, and <InlineMath math="B=(4,0,4)" />. Plane <InlineMath math="TAB" /> has the equation <InlineMath math="4y+3z=12" />, so a normal vector is <InlineMath math="(0,4,3)" />. A normal vector of the base is <InlineMath math="(0,1,0)" />. Therefore <InlineMath math="\cos\theta=\frac45" />, and <InlineMath math="\tan\theta=\frac34" />.
+- <InlineMath math="\text{Rp }1{,}700{,}000" /> covers only one lateral face, which is <InlineMath math="20\cdot\text{Rp }85{,}000" />.
+- <InlineMath math="\text{Rp }3{,}400{,}000" /> covers only two lateral faces, but the question asks for all four.
+- <InlineMath math="\text{Rp }4{,}080{,}000" /> uses the 3 m height as the height of each face. That wrong area is <InlineMath math="4\cdot\frac12\cdot8\cdot3=48\text{ m}^2" />.
+- <InlineMath math="\text{Rp }5{,}440{,}000" /> uses the base area <InlineMath math="8\cdot8=64\text{ m}^2" />. The base does not need covering.
 
-So the tangent of the angle between plane <InlineMath math="TAB" /> and the base is <InlineMath math="\frac34" />.
-
-- <InlineMath math="\frac43" /> is the reciprocal of the tangent. It appears when <InlineMath math="OM" /> is divided by <InlineMath math="TO" />.
-- <InlineMath math="\frac35" /> is the sine. Its denominator is the slant side <InlineMath math="TM" />, not <InlineMath math="OM" />.
-- <InlineMath math="\frac45" /> is the cosine. It uses <InlineMath math="OM" /> and <InlineMath math="TM" />, not <InlineMath math="TO" /> and <InlineMath math="OM" />.
-- <InlineMath math="\frac{3\sqrt2}{8}" /> is the tangent of the angle between the edge <InlineMath math="TA" /> and the base, which is <InlineMath math="TO" /> divided by <InlineMath math="OA=4\sqrt2" />. That is an angle between a line and a plane, not between two planes.
+So the cost of the metal roofing for the four lateral faces is <InlineMath math="\text{Rp }6{,}800{,}000" />.

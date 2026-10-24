@@ -4,30 +4,32 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Tinggi pantulan membentuk **barisan geometri**. Pantulan pertama adalah <InlineMath math="\frac34" /> dari tinggi jatuh <InlineMath math="160\text{ cm}" />, dan setiap pantulan berikutnya adalah <InlineMath math="\frac34" /> dari pantulan sebelumnya. Jadi tinggi pantulan ke-<InlineMath math="k" /> adalah <InlineMath math="r_k=160\left(\frac34\right)^k" />.
+Tahap 0 berbentuk segitiga siku-siku sama kaki dengan kaki 8 cm, sehingga luas daerah berwarnanya adalah <InlineMath math="\frac12\cdot8\cdot8=32\text{ cm}^2" />. Pada setiap tahap, setiap segitiga berwarna dibagi menjadi empat segitiga yang sama besar, dan hanya segitiga di tengah yang tidak diwarnai. Jadi setiap segitiga berwarna menghasilkan **tiga segitiga berwarna**, dan setiap segitiga baru memiliki kaki setengah dari kaki segitiga asalnya.
+
+Misalkan <InlineMath math="c_n" /> adalah banyak segitiga berwarna dan <InlineMath math="A_n" /> adalah luas daerah berwarna pada tahap ke-<InlineMath math="n" />. Karena setiap segitiga berwarna menjadi tiga segitiga berwarna, banyaknya **dikalikan 3** pada setiap tahap. Setiap segitiga baru memiliki luas seperempat dari segitiga asalnya, sehingga luas daerah berwarna dikalikan <InlineMath math="\frac34" /> pada setiap tahap.
 
 <BlockMath math="\begin{aligned}
-r_1&=120 \\
-r_2&=90 \\
-r_3&=\frac{135}{2}=67{,}5 \\
-r_4&=\frac{405}{8}=50{,}625 \\
-r_5&=\frac{1215}{32}=37{,}96875
+c_n&=3^n \\
+A_n&=32\left(\frac34\right)^n
 \end{aligned}" />
 
-Untuk jarak, lihat satu kali pantulan. Setelah bola menyentuh lantai, bola naik sejauh <InlineMath math="r_k" /> lalu turun sejauh <InlineMath math="r_k" /> lagi sebelum menyentuh lantai berikutnya. Jarak sampai sentuhan ke-<InlineMath math="(k+1)" /> sama dengan jarak sampai sentuhan ke-<InlineMath math="k" /> **ditambah <InlineMath math="2r_k" />**. Jarak sampai sentuhan pertama adalah jarak jatuh, yaitu <InlineMath math="160\text{ cm}" />.
+Daerah yang dihapus warnanya pada suatu tahap adalah segitiga di tengah dari setiap segitiga berwarna pada tahap sebelumnya. Luasnya seperempat dari luas daerah berwarna tahap sebelumnya, sehingga <InlineMath math="A_n-A_{n+1}=\frac14A_n" />. Untuk tahap ke-1, luas yang dihapus adalah <InlineMath math="\frac14\cdot32=8\text{ cm}^2" />. Untuk tahap ke-2, luas yang dihapus adalah <InlineMath math="\frac14\cdot24=6\text{ cm}^2" />, karena tahap ke-1 memiliki luas berwarna <InlineMath math="24\text{ cm}^2" />.
 
-<BlockMath math="\begin{aligned}
-\text{sampai sentuhan ke-2}&=160+2(120)=400 \\
-\text{sampai sentuhan ke-3}&=400+2(90)=580 \\
-\text{sampai sentuhan ke-4}&=580+2\left(\frac{135}{2}\right)=715
-\end{aligned}" />
+| Tahap | Banyak segitiga berwarna | Luas daerah berwarna (cm²) | Luas yang dihapus pada tahap itu (cm²) |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="13{,}5" /> | <InlineMath math="4{,}5" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="10{,}125" /> | <InlineMath math="3{,}375" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="7{,}59375" /> | <InlineMath math="2{,}53125" /> |
 
 Sekarang nilai setiap pernyataan.
 
-1. Pernyataan ini salah. Dari pantulan pertama ke pantulan kedua, tinggi turun dari <InlineMath math="120\text{ cm}" /> menjadi <InlineMath math="90\text{ cm}" />, yaitu <InlineMath math="30\text{ cm}" />, bukan <InlineMath math="40\text{ cm}" />. Tinggi tidak berkurang dengan selisih tetap, karena setiap pantulan dikalikan <InlineMath math="\frac34" />.
-2. Pernyataan ini benar, karena <InlineMath math="r_1=120\text{ cm}" />.
-3. Pernyataan ini salah. Angka <InlineMath math="4{,}375\text{ m}" /> **hanya menjumlahkan jarak jatuh**, yaitu <InlineMath math="160+120+90+67{,}5=437{,}5\text{ cm}" />. Kamu juga harus menambahkan jarak naik setiap pantulan, sehingga jarak sampai sentuhan ke-4 adalah <InlineMath math="715\text{ cm}" />.
-4. Pernyataan ini benar. Pantulan ke-4 setinggi <InlineMath math="50{,}625\text{ cm}" />, masih lebih dari <InlineMath math="40\text{ cm}" />. Pantulan ke-5 setinggi <InlineMath math="37{,}96875\text{ cm}" />, sudah kurang dari <InlineMath math="40\text{ cm}" />.
-5. Pernyataan ini benar. Jarak sampai sentuhan ke-4 adalah <InlineMath math="715\text{ cm}=7{,}15\text{ m}" />.
+1. Pernyataan ini salah. Pada tahap ke-2 banyak segitiga berwarnanya adalah <InlineMath math="3^2=9" />, bukan <InlineMath math="3\cdot2=6" />. Banyaknya dikalikan 3 pada setiap tahap, bukan ditambah 3.
+2. Pernyataan ini benar, karena <InlineMath math="c_4=3^4=81" />.
+3. Pernyataan ini salah. Daerah yang dihapus pada tahap ke-1 adalah <InlineMath math="8\text{ cm}^2" />. Pada tahap ke-2 ada tiga segitiga tengah, masing-masing <InlineMath math="2\text{ cm}^2" />, sehingga totalnya <InlineMath math="6\text{ cm}^2" />. Kedua luas itu tidak sama.
+4. Pernyataan ini benar. <InlineMath math="A_3=32\cdot\frac{27}{64}=\frac{27}{2}=13{,}5\text{ cm}^2" />.
+5. Pernyataan ini benar. <InlineMath math="A_4=\frac{81}{8}=10{,}125" /> masih lebih dari <InlineMath math="10" />, tetapi <InlineMath math="A_5=\frac{243}{32}=7{,}59375" /> sudah kurang dari <InlineMath math="10" />. Jadi tahap pertama dengan luas berwarna kurang dari <InlineMath math="10\text{ cm}^2" /> adalah tahap ke-5.
 
-Jadi, pernyataan yang benar adalah tentang tinggi pantulan pertama, tentang pantulan pertama yang tingginya kurang dari <InlineMath math="40\text{ cm}" />, dan tentang jarak total sampai sentuhan keempat.
+Jadi, pernyataan yang benar adalah tentang banyak segitiga berwarna pada tahap ke-4, luas daerah berwarna pada tahap ke-3, dan tahap pertama dengan luas daerah berwarna kurang dari <InlineMath math="10\text{ cm}^2" />.

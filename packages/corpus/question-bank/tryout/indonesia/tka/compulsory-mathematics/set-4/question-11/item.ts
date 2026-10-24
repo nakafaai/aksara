@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$6\\text{ m}$$",
+          label: "$$9\\text{ km}$$",
         },
         {
           isCorrect: true,
-          label: "$$9{,}6\\text{ m}$$",
+          label: "$$7{,}2\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$8\\text{ m}$$",
+          label: "$$15\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$10\\text{ m}$$",
+          label: "$$7{,}5\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$12\\text{ m}$$",
+          label: "$$12\\text{ km}$$",
         },
       ],
     },

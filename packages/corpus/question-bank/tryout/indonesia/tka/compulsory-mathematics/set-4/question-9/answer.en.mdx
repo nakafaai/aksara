@@ -4,30 +4,32 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-The rebound heights form a **geometric sequence**. The first rebound is <InlineMath math="\frac34" /> of the <InlineMath math="160\text{ cm}" /> fall, and each later rebound is <InlineMath math="\frac34" /> of the rebound before it. So the rebound after the k-th touch has height <InlineMath math="r_k=160\left(\frac34\right)^k" />.
+Stage 0 is a right isosceles triangle with legs of 8 cm, so its shaded area is <InlineMath math="\frac12\cdot8\cdot8=32\text{ cm}^2" />. At each stage, every shaded triangle is split into four congruent triangles, and only the middle one loses its shading. So each shaded triangle leaves **three shaded triangles**, and each new triangle has legs half as long as the triangle it came from.
+
+Let <InlineMath math="c_n" /> be the number of shaded triangles and <InlineMath math="A_n" /> the shaded area at stage <InlineMath math="n" />. Each shaded triangle becomes three shaded triangles, so the count is **multiplied by 3** at each stage. Each new triangle has one quarter of the area of its parent, so the shaded area is multiplied by <InlineMath math="\frac34" /> at each stage.
 
 <BlockMath math="\begin{aligned}
-r_1&=120 \\
-r_2&=90 \\
-r_3&=\frac{135}{2}=67.5 \\
-r_4&=\frac{405}{8}=50.625 \\
-r_5&=\frac{1215}{32}=37.96875
+c_n&=3^n \\
+A_n&=32\left(\frac34\right)^n
 \end{aligned}" />
 
-For the distance, look at one bounce. After a touch, the ball rises <InlineMath math="r_k" /> and falls the same distance before it touches the floor again. So the distance up to touch <InlineMath math="k+1" /> equals the distance up to touch <InlineMath math="k" /> **plus <InlineMath math="2r_k" />**. The distance up to the first touch is the fall, <InlineMath math="160\text{ cm}" />.
+The area removed at a stage is the middle triangle of each shaded triangle from the stage before. It is a quarter of the shaded area of that earlier stage, so <InlineMath math="A_n-A_{n+1}=\frac14A_n" />. For stage 1, the removed area is <InlineMath math="\frac14\cdot32=8\text{ cm}^2" />. For stage 2, it is <InlineMath math="\frac14\cdot24=6\text{ cm}^2" />, because stage 1 has a shaded area of <InlineMath math="24\text{ cm}^2" />.
 
-<BlockMath math="\begin{aligned}
-\text{up to touch 2}&=160+2(120)=400 \\
-\text{up to touch 3}&=400+2(90)=580 \\
-\text{up to touch 4}&=580+2\left(\frac{135}{2}\right)=715
-\end{aligned}" />
+| Stage | Number of shaded triangles | Shaded area (cm²) | Area removed at this stage (cm²) |
+| --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="8" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="18" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="13.5" /> | <InlineMath math="4.5" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="10.125" /> | <InlineMath math="3.375" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="7.59375" /> | <InlineMath math="2.53125" /> |
 
 Now judge each statement.
 
-1. This statement is false. From the first rebound to the second, the height falls from <InlineMath math="120\text{ cm}" /> to <InlineMath math="90\text{ cm}" />, a drop of <InlineMath math="30\text{ cm}" />, not <InlineMath math="40\text{ cm}" />. The height is multiplied by <InlineMath math="\frac34" /> at each bounce, so the drop is not constant.
-2. This statement is true, because <InlineMath math="r_1=120\text{ cm}" />.
-3. This statement is false. The value <InlineMath math="4.375\text{ m}" /> **only adds the falls**, <InlineMath math="160+120+90+67.5=437.5\text{ cm}" />. You must also add the rise before each fall, so the distance up to touch 4 is <InlineMath math="715\text{ cm}" />.
-4. This statement is true. The fourth rebound is <InlineMath math="50.625\text{ cm}" />, which is still more than <InlineMath math="40\text{ cm}" />. The fifth rebound is <InlineMath math="37.96875\text{ cm}" />, which is less than <InlineMath math="40\text{ cm}" />.
-5. This statement is true. The distance up to touch 4 is <InlineMath math="715\text{ cm}=7.15\text{ m}" />.
+1. This statement is false. At stage 2 there are <InlineMath math="3^2=9" /> shaded triangles, not <InlineMath math="3\cdot2=6" />. The count is multiplied by 3 at each stage, not increased by 3.
+2. This statement is true, because <InlineMath math="c_4=3^4=81" />.
+3. This statement is false. The area removed at stage 1 is <InlineMath math="8\text{ cm}^2" />. At stage 2 there are three middle triangles, each <InlineMath math="2\text{ cm}^2" />, so the total removed is <InlineMath math="6\text{ cm}^2" />. The two areas are not equal.
+4. This statement is true. <InlineMath math="A_3=32\cdot\frac{27}{64}=\frac{27}{2}=13.5\text{ cm}^2" />.
+5. This statement is true. <InlineMath math="A_4=\frac{81}{8}=10.125" /> is still more than <InlineMath math="10" />, but <InlineMath math="A_5=\frac{243}{32}=7.59375" /> is less than <InlineMath math="10" />. So the first stage with a shaded area below <InlineMath math="10\text{ cm}^2" /> is stage 5.
 
-So the true statements concern the first rebound height, the first rebound lower than <InlineMath math="40\text{ cm}" />, and the total distance up to the fourth touch.
+So the true statements concern the number of shaded triangles at stage 4, the shaded area at stage 3, and the first stage whose shaded area is below <InlineMath math="10\text{ cm}^2" />.
