@@ -25,7 +25,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Luas daerah berwarna pada tahap ke-$$3$$ adalah $$13{,}5\\text{ cm}^2$$.",
+          label:
+            "Luas daerah berwarna pada tahap ke-$$3$$ adalah $$13{,}5\\text{ cm}^2$$.",
         },
         {
           isCorrect: true,

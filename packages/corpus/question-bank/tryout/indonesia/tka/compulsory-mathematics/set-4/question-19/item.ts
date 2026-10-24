@@ -13,11 +13,13 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Satu putaran pedal memindahkan sepeda sejauh $$6{,}6\\text{ m}$$.",
+          label:
+            "Satu putaran pedal memindahkan sepeda sejauh $$6{,}6\\text{ m}$$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Untuk menempuh jarak $$1{,}32\\text{ km}$$, pedal harus diputar $$600$$ kali.",
+          label:
+            "Untuk menempuh jarak $$1{,}32\\text{ km}$$, pedal harus diputar $$600$$ kali.",
         },
         {
           correctCategoryOrder: 2,

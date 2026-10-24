@@ -17,7 +17,8 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 1,
-          label: "Lift berada pada ketinggian $$14\\text{ m}$$ tepat tiga kali.",
+          label:
+            "Lift berada pada ketinggian $$14\\text{ m}$$ tepat tiga kali.",
         },
         {
           correctCategoryOrder: 2,

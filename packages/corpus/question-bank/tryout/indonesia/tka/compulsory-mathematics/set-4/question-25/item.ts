@@ -18,7 +18,8 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang kedua putaran berhenti di juring yang sama adalah $$\\frac{7}{18}$$.",
+          label:
+            "Peluang kedua putaran berhenti di juring yang sama adalah $$\\frac{7}{18}$$.",
         },
         {
           correctCategoryOrder: 1,
@@ -28,7 +29,7 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 2,
           label:
-            "Kejadian \"putaran pertama berhenti di juring $$A$$\" dan kejadian \"kedua putaran berhenti di juring yang sama\" saling bebas.",
+            'Kejadian "putaran pertama berhenti di juring $$A$$" dan kejadian "kedua putaran berhenti di juring yang sama" saling bebas.',
         },
       ],
     },
