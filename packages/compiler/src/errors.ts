@@ -1,4 +1,7 @@
-import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
 import { StaticLiteralSyntaxReasonSchema } from "#compiler/ast/literal";
 
@@ -161,7 +164,7 @@ export class ContentByteLimitExceededError extends Schema.TaggedError<
   contentKey: ContentKeySchema,
   field: Schema.Literals([
     "rawMdx",
-    "compiledCode",
+    "contentTree",
     "plainText",
     "canonicalPayload",
   ]),
@@ -207,4 +210,37 @@ export class AuthoredMetadataSyntaxError extends Schema.TaggedError<
   reasons: Schema.Array(AuthoredMetadataSyntaxReasonSchema).pipe(
     Schema.check(Schema.isMinLength(1))
   ),
+}) {}
+
+/** Evaluating the compiled body did not produce the one fragment that a tree requires. */
+export class ContentTreeEvaluationError extends Schema.TaggedError<
+  ContentTreeEvaluationError,
+  { readonly brand: unique symbol }
+>()("ContentTreeEvaluationError", {
+  cause: Schema.Unknown,
+  contentKey: ContentKeySchema,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
+
+/** Rejected reasons for one value that cannot be signed as content tree data. */
+export const ContentTreePolicyReasonSchema = Schema.Literals([
+  "non-finite-number",
+  "not-json",
+  "reserved-key",
+  "unknown-element",
+  "unsupported-child",
+]);
+export type ContentTreePolicyReason = typeof ContentTreePolicyReasonSchema.Type;
+
+/** A compiled element or prop is not data that the signed content tree can carry. */
+export class ContentTreePolicyError extends Schema.TaggedError<
+  ContentTreePolicyError,
+  { readonly brand: unique symbol }
+>()("ContentTreePolicyError", {
+  contentKey: ContentKeySchema,
+  element: Schema.String.check(Schema.isNonEmpty()),
+  prop: Schema.NullOr(Schema.String),
+  reason: ContentTreePolicyReasonSchema,
+  sourcePath: CorpusSourcePathSchema,
 }) {}

@@ -1,8 +1,10 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import { type CompileReason, compileIncremental } from "#compiler/incremental";
 import { createTestRendererManifest } from "#compiler/test/content";
+
+const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const RAW_MDX = `export const metadata = {
@@ -135,7 +137,12 @@ describe("incremental compilation", () => {
             ...first.result,
             payload: {
               ...first.result.payload,
-              compiledCode: "return { default: () => process.env };",
+              contentTree: {
+                $node: "element",
+                children: ["process.env"],
+                name: "fragment",
+                props: {},
+              },
             },
           },
         },
@@ -155,7 +162,9 @@ describe("incremental compilation", () => {
             Effect.tap((result) =>
               Effect.sync(() =>
                 assert.ok(
-                  !result.result.payload.compiledCode.includes("process.env")
+                  !encodeJson(result.result.payload.contentTree).includes(
+                    "process.env"
+                  )
                 )
               )
             )
@@ -230,10 +239,10 @@ describe("incremental compilation", () => {
           rawMdx: VECTOR_MDX,
         });
         expect(cache.identityHash).toMatchInlineSnapshot(
-          `"sha256:c86ee9f5364bda5e4ffdd9576b38b22c994ebf3a622e980566d49c4b762089b0"`
+          `"sha256:8a44ecc2716475676ae301596e2fbb40c23863dc2f5c9e58565b10a7a66f0b01"`
         );
         expect(cache.resultHash).toMatchInlineSnapshot(
-          `"sha256:7eae38a099c500c9c52833ff50d7a566462638724718c3341b32742751ca2ee1"`
+          `"sha256:03ead3001522fde9ff303d805e35047d74e9cde1d67edfeba784cdc1a7baf5bb"`
         );
       })
   );
