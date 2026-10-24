@@ -2,6 +2,7 @@ import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
+import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
 import { Schema } from "effect";
 import { materialGraph } from "#test/graph";
 
@@ -61,12 +62,16 @@ const artifact = Schema.decodeSync(SignedContentArtifactSchema)({
   keyId: "test-http-key",
   payload: {
     artifactLocale: "en",
-    byteLength: 1,
-    compiledCode: "x",
     compilerConfigHash: transportArtifactHash,
-    compilerVersion: "0.1.0",
+    compilerVersion: "0.2.0",
     contentKey: "test:http",
-    format: "mdx-function-body",
+    contentTree: {
+      $node: "element",
+      children: [],
+      name: "fragment",
+      props: {},
+    },
+    format: "content-tree",
     mdxCompilerVersion: "3.1.1",
     plainText: "Test protocol",
     rawMdx: "x",
@@ -82,3 +87,13 @@ export const transportContent = {
   items: [item, deletedItem],
   projection,
 };
+
+/** Builds one fragment whose single text child holds the given text. */
+export function textTree(text: string): ContentTreeElement {
+  return {
+    $node: "element",
+    children: [text],
+    name: "fragment",
+    props: {},
+  };
+}
