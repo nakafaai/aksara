@@ -204,7 +204,7 @@ export const questionRendererCounts = [
   { count: 200, rendererDomain: "snbt-math" },
   { count: 1075, rendererDomain: "snbt-plain" },
   { count: 200, rendererDomain: "snbt-quant" },
-  { count: 75, rendererDomain: "tka-math" },
+  { count: 100, rendererDomain: "tka-math" },
 ];
 
 /** Creates recursive directory output for one synthetic question directory. */

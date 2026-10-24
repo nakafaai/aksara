@@ -106,12 +106,12 @@ describe("tryout catalog", () => {
           ])
         );
 
-        expect(rows).toHaveLength(321);
+        expect(rows).toHaveLength(327);
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 240,
-          set: 60,
+          section: 243,
+          set: 63,
           track: 12,
         });
         expect(
@@ -122,7 +122,7 @@ describe("tryout catalog", () => {
               row.examKey === "tka" &&
               row.publicPath === undefined
           )
-        ).toHaveLength(30);
+        ).toHaveLength(33);
       })
   );
 
@@ -134,7 +134,7 @@ describe("tryout catalog", () => {
           Arr.flatMap(track.sets, (set) => set.sections)
         )
       );
-      expect(sections).toHaveLength(80);
+      expect(sections).toHaveLength(81);
       for (const section of sections) {
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
@@ -270,7 +270,7 @@ describe("tryout catalog", () => {
 
         expect(
           Arr.filter(rows, ({ appLocale }) => appLocale === "de")
-        ).toHaveLength(107);
+        ).toHaveLength(109);
         expect(
           Option.getOrUndefined(
             Arr.findFirst(
