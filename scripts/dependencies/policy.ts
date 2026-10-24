@@ -27,27 +27,29 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.0.6 is reviewed here, but nakafa.com still pins 4.0.5, and docs/adr/compiler.md requires the nakafa.com cohort to move before this one, so the cohort stays on 4.0.5 until nakafa.com moves.",
     registry: "effect@latest",
-    reviewedLatest: "4.0.5",
+    reviewedLatest: "4.0.6",
     source: "catalog",
   },
   {
     approvedCurrent: "4.0.5",
     cohort: "Effect",
     dependency: "@effect/platform-node",
-    reason: "All Effect ecosystem packages must use one exact cohort.",
+    reason:
+      "All Effect ecosystem packages must use one exact cohort. The cohort moves with nakafa.com as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.0.5",
+    reviewedLatest: "4.0.6",
     source: "catalog",
   },
   {
     approvedCurrent: "4.0.5",
     cohort: "Effect",
     dependency: "@effect/vitest",
-    reason: "The test adapter must match the installed Effect cohort.",
+    reason:
+      "The test adapter must match the installed Effect cohort. The cohort moves with nakafa.com as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.0.5",
+    reviewedLatest: "4.0.6",
     source: "catalog",
   },
   {
@@ -73,9 +75,9 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. 0.53.3 makes effect-tsgo diagnostics report related locations. 0.53.4 only moves the TypeScript next tag, which Aksara does not use, and the one-day minimum release age admits it on 18 October 2026. Every rule is decided in packages/typescript-config/base.json.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. 0.53.3 makes effect-tsgo diagnostics report related locations. 0.53.4 only moves the TypeScript next tag, which Aksara does not use, and the one-day minimum release age admits it on 18 October 2026. Every rule is decided in packages/typescript-config/base.json. The rule schema from 0.53.3 to 0.56.1 adds preferEffectString (off by default) and schemaClassObjectLiteral (warning by default) and changes no existing rule. Both must be decided in base.json before 0.56.1 is adopted, and that rule block must match nakafa.com (docs/adr/compiler.md), so the compiler stays on 0.53.3 until nakafa.com moves.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.53.4",
+    reviewedLatest: "0.56.1",
     source: "root-dev-dependency",
   },
   {
@@ -131,7 +133,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     reason:
       "pnpm 12 records its own packages in a second YAML document at the top of the lockfile. OSV Scanner 2.6.0 reads both documents and Turborepo hashes each workspace as before, but GitHub's dependency graph reads only the first (dependabot/dependabot-core#15904), so it would report no application dependencies and close this repository's Dependabot alerts. The one setting that keeps a single document, `pmOnFail: ignore`, also stops pnpm from enforcing the pinned version. pnpm 12 moves here and in nakafa.com once GitHub reads both documents.",
     registry: "pnpm@latest",
-    reviewedLatest: "12.11.2",
+    reviewedLatest: "12.15.0",
     source: "package-manager",
   },
 ];
