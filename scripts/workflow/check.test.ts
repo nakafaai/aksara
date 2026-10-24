@@ -275,8 +275,8 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
         release: sources.release
           .replace("environment: content-production", "environment: moved")
           .replace(
-            "    steps:\n      - name: Checkout",
-            "    environment: content-production\n    steps:\n      - name: Checkout"
+            "  contracts:\n",
+            "  contracts:\n    environment: content-production\n"
           ),
       },
       "Contract proof must finish before production credentials are approved"

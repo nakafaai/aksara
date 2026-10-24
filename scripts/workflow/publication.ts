@@ -109,8 +109,10 @@ const verifyPlans = Effect.fn("AksaraScripts.verifyPublicationPlans")(
 );
 
 /**
- * Verifies that the guards come first, run unconditionally, and stop the job
- * when they fail, so no dispatch reaches a checkout or a credential unchecked.
+ * Verifies that the guards are the first steps of the contracts job, which every
+ * other job needs, and that they run unconditionally and stop the job when they
+ * fail. A bad dispatch then fails in seconds, before any checkout, verification
+ * or credential.
  */
 const verifyDispatchGuards = Effect.fn("AksaraScripts.verifyDispatchGuards")(
   function* (document: Document) {
@@ -118,10 +120,10 @@ const verifyDispatchGuards = Effect.fn("AksaraScripts.verifyDispatchGuards")(
       DISPATCH_GUARDS,
       ([name, env], index) =>
         Effect.gen(function* () {
-          const step = ["jobs", "operate", "steps", index];
+          const step = ["jobs", "contracts", "steps", index];
           yield* ensure(
             document.getIn([...step, "name"]) === name,
-            `${name} must be step ${index + 1} of the publication job, before any checkout or credential use`
+            `${name} must be step ${index + 1} of the contracts job, before any checkout or credential use`
           );
           yield* ensure(
             document.getIn([...step, "if"]) === undefined,
