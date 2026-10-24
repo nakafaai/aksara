@@ -63,5 +63,5 @@ rejected before reuse.
 
 ## License
 
-This package uses the Nakafa Source Available License 1.0. See `LICENSE` in the
+This package uses the Nakafa Source Available License 2.0. See `LICENSE` in the
 package for the complete terms.
