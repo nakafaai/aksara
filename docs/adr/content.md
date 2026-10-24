@@ -224,9 +224,10 @@ JSON props and ordered children. A prop is JSON data or a nested element, and a
 plain JSON object may not use the reserved element key.
 
 Publish-time policy rejects, naming the document and the prop: a function,
-symbol, bigint, class instance, `undefined`, or sparse list value; a non-finite
-number; the reserved key; an unknown tag; and a child that is neither text nor
-an element. `-0` is written as `0`, the one numeric value that JSON cannot carry.
+symbol, bigint, class instance, sparse or `undefined` list value, or object with
+a symbol key; a non-finite number; the reserved key; an unknown tag; and a child
+that is neither text nor an element. An `undefined` prop is omitted, as React
+omits it. The signed bytes write `-0` as `0`, so a tree holds no negative zero.
 
 Nakafa renders the tree with its React component map and evaluates no code, so
 the Cloudflare Workers runtime needs neither `eval` nor `new Function`. The tree
@@ -236,8 +237,11 @@ below still holds.
 Equivalence is checked at two levels. The compiler tests compare every
 data-computing corpus document with a React element model of the compiled body.
 A scratch proof over the whole corpus compared SHA-256 hashes of server-rendered
-HTML: 8,576 of 8,585 documents matched byte for byte, and the other nine are
-rejected by the policy or the content tree ceiling until their content changes.
+HTML: 8,576 of 8,585 documents matched byte for byte before six answers dropped
+their infinite NumberLine bounds. Those six now omit the bounds, which Nakafa
+draws to the axis edge and must accept before release, so they need a visual
+comparison instead of a byte comparison. The three trigonometric function graph
+lessons still exceed the 384 KiB ceiling.
 
 ## Accepted
 
