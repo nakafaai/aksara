@@ -84,6 +84,11 @@ root:
 bun install --frozen-lockfile
 ```
 
+Bun does not enforce the `engines` or `devEngines` fields, so a local install
+on another Node.js major succeeds without an error. CI selects Node.js from
+`package.json` through `actions/setup-node`; a local checkout must run Node 24
+itself.
+
 ## Development
 
 Run the local quality gate on each pull request's exact head. It runs the checks
