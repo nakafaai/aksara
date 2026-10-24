@@ -82,7 +82,7 @@ const readManifest = Effect.fn("DependencyPolicy.readManifest")(function* (
       (error) => new DependencyPolicyError({ message: error.message })
     )
   );
-  const document = yield* Schema.decodeUnknownEffect(JsonObject)(source).pipe(
+  const document = yield* Schema.decodeEffect(JsonObject)(source).pipe(
     Effect.mapError(
       () => new DependencyPolicyError({ message: `${path} is not valid.` })
     )
@@ -241,8 +241,8 @@ const writeManifest = Effect.fn("DependencyPolicy.writeManifest")(function* (
       },
     },
   };
-  const text = yield* Effect.sync(() => JSON.stringify(next, null, 2));
-  yield* fileSystem.writeFileString(path, `${text}\n`);
+  const text = yield* Schema.encodeEffect(JsonObject)(next);
+  yield* fileSystem.writeFileString(path, text);
 });
 
 /** Verifies every reviewed hold, moves routine dependencies to their newest release, and refreshes the lock. */
@@ -291,7 +291,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
                 `${dependency} ${current} -> ${latest}`
             ),
             ", "
-          )}.`
+          )}. Run bun run format to restore the manifest layout.`
     );
     return reviews;
   }

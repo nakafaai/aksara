@@ -142,9 +142,9 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
           assert.ok(effectReport);
           assert.strictEqual(effectReport.current, approved("effect"));
-          assert.ok(manifest.includes('"yaml": "2.9.2"'));
-          assert.ok(manifest.includes('"esbuild": "0.28.3"'));
-          assert.ok(manifest.includes('"@probe/app": "workspace:*"'));
+          assert.ok(manifest.includes('"yaml":"2.9.2"'));
+          assert.ok(manifest.includes('"esbuild":"0.28.3"'));
+          assert.ok(manifest.includes('"@probe/app":"workspace:*"'));
         })
     );
 
