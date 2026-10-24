@@ -156,11 +156,16 @@ graph teaches the wrong mathematics on an education platform.
   },
   ```
 
-  The component samples the formula in the browser, with at least two hundred
-  samples per branch, so the source never lists the points of these families.
-  A tangent may cover asymptotes: the component splits it at every asymptote
-  inside the domain and clips it to the graph's y limit. Keep one series per
-  branch when the lesson shows each branch on its own. Other families, such as
+  The component samples the formula in the browser, so the source never lists
+  the points of these families. `samples` sets the grid and is at least two
+  hundred (the default). Sine and cosine sample evenly in `x` across the
+  domain, ends included. A tangent samples evenly in `frequency * x + phase`
+  across its domain, ends included, so its steep ends keep their points. A
+  label's `at` indexes that grid, so choose `samples` so that every anchor
+  lands on the point it names. A tangent may cover asymptotes: the component
+  splits it at every asymptote inside the domain and clips it to the graph's y
+  limit. Keep one series per branch when the lesson shows each branch on its
+  own. Other families, such as
   polynomial, exponential, and logarithm, keep their points until a lesson needs
   a declared form for them.
 - **`MathVisual` holds exact named geometry, written as expressions.** The
