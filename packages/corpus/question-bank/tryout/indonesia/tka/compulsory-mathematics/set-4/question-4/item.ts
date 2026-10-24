@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$x+y\\le6,\\ x+3y\\ge9,\\ x\\ge0,\\ y\\ge0$$",
+          label: "$$x\\ge0,\\ 2x+y\\le8,\\ 2y-3x\\ge2$$",
         },
         {
           isCorrect: false,
-          label: "$$x+y\\le6,\\ x+3y\\le9,\\ x\\ge0,\\ y\\ge0$$",
+          label: "$$x\\ge0,\\ 2x+y\\ge8,\\ 2y-3x\\ge2$$",
         },
         {
           isCorrect: false,
-          label: "$$x+y\\le6,\\ 3x+y\\ge9,\\ x\\ge0,\\ y\\ge0$$",
+          label: "$$x\\ge0,\\ 2x+y\\le8,\\ 2y-3x\\le2$$",
         },
         {
           isCorrect: false,
-          label: "$$x+y\\ge6,\\ x+3y\\ge9,\\ x\\ge0,\\ y\\ge0$$",
+          label: "$$x\\le0,\\ 2x+y\\le8,\\ 2y-3x\\ge2$$",
         },
         {
           isCorrect: false,
-          label: "$$x+y\\ge6,\\ x+3y\\le9,\\ x\\ge0,\\ y\\ge0$$",
+          label: "$$x\\ge0,\\ 2x+y\\le8,\\ 3x-2y\\ge2$$",
         },
       ],
     },

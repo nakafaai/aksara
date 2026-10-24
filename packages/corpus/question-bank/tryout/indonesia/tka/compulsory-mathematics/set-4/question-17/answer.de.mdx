@@ -4,33 +4,26 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Der Abstand eines Punktes zu einer Ebene wird entlang der Senkrechten zu dieser Ebene gemessen. Für den Punkt <InlineMath math="O" /> und die Seitenfläche <InlineMath math="TAB" /> findet man diese Senkrechte im Dreieck <InlineMath math="TOM" />, wobei <InlineMath math="O" /> der Mittelpunkt der Grundfläche und <InlineMath math="M" /> die Mitte von <InlineMath math="AB" /> ist.
+Den Winkel zwischen zwei Ebenen misst du an ihrer **Schnittgeraden**. Die Ebene <InlineMath math="TAB" /> und die Grundfläche schneiden sich in der Kante <InlineMath math="AB" />. Bestimme den Mittelpunkt <InlineMath math="M" /> von <InlineMath math="AB" /> und suche in jeder Ebene die Gerade, die durch <InlineMath math="M" /> verläuft und auf <InlineMath math="AB" /> senkrecht steht.
 
-Das Dreieck <InlineMath math="TOM" /> hat bei <InlineMath math="O" /> einen rechten Winkel, mit <InlineMath math="TO=3\text{ m}" /> und <InlineMath math="OM=4\text{ m}" />, der halben Grundseite. Die Kante <InlineMath math="AB" /> steht senkrecht auf <InlineMath math="TO" /> und auf <InlineMath math="OM" />, also steht <InlineMath math="AB" /> senkrecht auf der Ebene <InlineMath math="TOM" />. Die Ebene <InlineMath math="TAB" /> enthält <InlineMath math="AB" />, also steht sie senkrecht auf der Ebene <InlineMath math="TOM" />. Beide Ebenen schneiden sich in der Geraden <InlineMath math="TM" />. **Der gesuchte Abstand ist daher die Strecke von <InlineMath math="O" /> senkrecht zu <InlineMath math="TM" />** im Dreieck <InlineMath math="TOM" />.
+In der Grundfläche ist das die Strecke <InlineMath math="OM" />, denn <InlineMath math="O" /> ist der Mittelpunkt des Quadrats und <InlineMath math="M" /> der Mittelpunkt von <InlineMath math="AB" />. In der Ebene <InlineMath math="TAB" /> ist es die Strecke <InlineMath math="TM" />, denn <InlineMath math="TA=TB" /> macht das Dreieck <InlineMath math="TAB" /> gleichschenklig. Dann ist die Seitenhalbierende <InlineMath math="TM" /> zugleich die Höhe. Der Winkel zwischen den beiden Ebenen ist daher der Winkel <InlineMath math="TMO" />.
 
-Der Flächeninhalt des Dreiecks <InlineMath math="TOM" /> lässt sich auf zwei Arten berechnen, nämlich <InlineMath math="\frac12\cdot TO\cdot OM" /> und <InlineMath math="\frac12\cdot TM\cdot d" />, wobei <InlineMath math="d" /> der Abstand von <InlineMath math="O" /> zu <InlineMath math="TM" /> ist.
+Das Dreieck <InlineMath math="TOM" /> ist **bei <InlineMath math="O" /> rechtwinklig**, denn <InlineMath math="TO" /> steht senkrecht auf der Grundfläche. Seine Katheten sind <InlineMath math="TO=3\text{ m}" /> und <InlineMath math="OM=4\text{ m}" />, also die halbe Grundseite. Der Tangens des Winkels <InlineMath math="TMO" /> ist
 
-<BlockMath math="\begin{aligned}
-TM&=\sqrt{TO^2+OM^2}=\sqrt{3^2+4^2}=5 \\
-d&=\frac{TO\cdot OM}{TM}=\frac{3\cdot4}{5}=\frac{12}{5}
-\end{aligned}" />
+<BlockMath math="\tan\angle TMO=\frac{TO}{OM}=\frac{3}{4}" />
 
 <MathVisual
-  title={<>Abstand von <InlineMath math="O" /> zu <InlineMath math="TM" /></>}
-  description={<>Die Strecke <InlineMath math="OH" /> steht senkrecht auf <InlineMath math="TM" /> im Punkt <InlineMath math="H" /> und ist <InlineMath math="\frac{12}{5}\text{ m}" /> lang. Sie ist der Abstand von <InlineMath math="O" /> zur Ebene <InlineMath math="TAB" />.</>}
+  title="Dreieck TOM an der Dachneigung"
+  description={<>Die Strecke <InlineMath math="OM" /> und die Strecke <InlineMath math="TM" /> stehen beide senkrecht auf der Kante <InlineMath math="AB" />. Der Winkel <InlineMath math="TMO" /> ist der Winkel zwischen der Ebene <InlineMath math="TAB" /> und der Grundfläche.</>}
   labels={{
     "vertex-t": <InlineMath math="T" />,
     "vertex-a": <InlineMath math="A" />,
     "vertex-b": <InlineMath math="B" />,
-    "vertex-c": <InlineMath math="C" />,
-    "vertex-d": <InlineMath math="D" />,
-    "length-to": <InlineMath math="3\text{ m}" />,
     "name-o": <InlineMath math="O" />,
     "name-m": <InlineMath math="M" />,
-    "name-h": <InlineMath math="H" />,
+    "length-to": <InlineMath math="3\text{ m}" />,
     "length-om": <InlineMath math="4\text{ m}" />,
     "length-tm": <InlineMath math="5\text{ m}" />,
-    "length-oh": <InlineMath math="\frac{12}{5}\text{ m}" />,
   }}
   scene={{
     space: "space",
@@ -49,35 +42,31 @@ d&=\frac{TO\cdot OM}{TM}=\frac{3\cdot4}{5}=\frac{12}{5}
       { id: "face-tda", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 3, z: 0 }, { x: -4, y: 0, z: -4 }, { x: -4, y: 0, z: 4 }] },
       { id: "height-to", kind: "segment", appearance: "construction", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 0 } },
       { id: "triangle-tom", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }] },
-      { id: "half-side-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "slant-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
-      { id: "distance-oh", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 48 / 25, z: 36 / 25 } },
-      { id: "midpoint-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
-      { id: "foot-h", kind: "point", appearance: "answer", at: { x: 0, y: 48 / 25, z: 36 / 25 } },
-      { id: "center-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+      { id: "segment-om", kind: "segment", appearance: "highlight", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "segment-tm", kind: "segment", appearance: "answer", from: { x: 0, y: 3, z: 0 }, to: { x: 0, y: 0, z: 4 } },
+      { id: "point-o", kind: "point", appearance: "highlight", at: { x: 0, y: 0, z: 0 } },
+      { id: "point-m", kind: "point", appearance: "answer", at: { x: 0, y: 0, z: 4 } },
     ],
     labels: [
       { key: "vertex-t", objectId: "face-tab", at: { x: 0, y: 3, z: 0 }, placement: "right" },
       { key: "vertex-a", objectId: "base-abcd", at: { x: -4, y: 0, z: 4 }, placement: "below-left" },
       { key: "vertex-b", objectId: "base-abcd", at: { x: 4, y: 0, z: 4 }, placement: "below-right" },
-      { key: "vertex-c", objectId: "base-abcd", at: { x: 4, y: 0, z: -4 }, placement: "right" },
-      { key: "vertex-d", objectId: "base-abcd", at: { x: -4, y: 0, z: -4 }, placement: "above" },
+      { key: "name-o", objectId: "point-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
+      { key: "name-m", objectId: "point-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
       { key: "length-to", objectId: "height-to", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
-      { key: "name-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "left" },
-      { key: "name-m", objectId: "midpoint-m", at: { x: 0, y: 0, z: 4 }, placement: "below" },
-      { key: "name-h", objectId: "foot-h", at: { x: 0, y: 48 / 25, z: 36 / 25 }, placement: "right" },
-      { key: "length-om", objectId: "half-side-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
-      { key: "length-tm", objectId: "slant-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
-      { key: "length-oh", objectId: "distance-oh", at: { x: 0, y: 24 / 25, z: 18 / 25 }, placement: "below-right" },
+      { key: "length-om", objectId: "segment-om", at: { x: 0, y: 0, z: 2 }, placement: "below-right" },
+      { key: "length-tm", objectId: "segment-tm", at: { x: 0, y: 1.5, z: 2 }, placement: "left" },
     ],
   }}
 />
 
-Zur Kontrolle mit Koordinaten: Man setze <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" /> und <InlineMath math="B=(4,0,4)" />. Die Ebene <InlineMath math="TAB" /> hat die Gleichung <InlineMath math="4y+3z=12" />. Also ist der Abstand von <InlineMath math="O" /> zu dieser Ebene <InlineMath math="\frac{|-12|}{\sqrt{4^2+3^2}}=\frac{12}{5}" />.
+Prüfe die Schrägseite. <InlineMath math="TM=\sqrt{3^2+4^2}=5\text{ m}" />, also <InlineMath math="\sin\angle TMO=\frac35" /> und <InlineMath math="\cos\angle TMO=\frac45" />. Diese drei Werte passen zusammen, weil <InlineMath math="(3,4,5)" /> ein pythagoreisches Zahlentripel ist.
 
-Also beträgt der Abstand von <InlineMath math="O" /> zur Seitenfläche <InlineMath math="TAB" /> <InlineMath math="\frac{12}{5}\text{ m}" />.
+Prüfe das Ergebnis zusätzlich mit Koordinaten. Setze <InlineMath math="O=(0,0,0)" />, <InlineMath math="T=(0,3,0)" />, <InlineMath math="A=(-4,0,4)" /> und <InlineMath math="B=(4,0,4)" />. Die Ebene <InlineMath math="TAB" /> hat die Gleichung <InlineMath math="4y+3z=12" />, also ist <InlineMath math="(0,4,3)" /> ein Normalenvektor. Ein Normalenvektor der Grundfläche ist <InlineMath math="(0,1,0)" />. Daraus folgt <InlineMath math="\cos\theta=\frac45" /> und <InlineMath math="\tan\theta=\frac34" />.
 
-- <InlineMath math="3\text{ m}" /> ist die Höhe der Pyramide, also der Abstand von <InlineMath math="T" /> zur Grundfläche. Das ist nicht der Abstand von <InlineMath math="O" /> zu einer Seitenfläche.
-- <InlineMath math="4\text{ m}" /> ist <InlineMath math="OM" />, der Abstand von <InlineMath math="O" /> zur Kante <InlineMath math="AB" />. Die Strecke <InlineMath math="OM" /> steht aber nicht senkrecht auf der Ebene <InlineMath math="TAB" />, daher ist sie nicht dieser Abstand.
-- <InlineMath math="\frac{24}{5}\text{ m}" /> entsteht, wenn der Flächeninhalt von <InlineMath math="TOM" /> als <InlineMath math="TO\cdot OM=12" /> statt als die Hälfte davon angesetzt wird, also <InlineMath math="2\cdot\frac{12}{5}=\frac{24}{5}" />.
-- <InlineMath math="5\text{ m}" /> ist <InlineMath math="TM" />, die Höhe der Seitenfläche. Das ist nicht der Abstand von <InlineMath math="O" />.
+Der Tangens des Winkels zwischen der Ebene <InlineMath math="TAB" /> und der Grundfläche ist also <InlineMath math="\frac34" />.
+
+- <InlineMath math="\frac43" /> ist der Kehrwert des Tangens. Dieser Wert entsteht, wenn du <InlineMath math="OM" /> durch <InlineMath math="TO" /> teilst.
+- <InlineMath math="\frac35" /> ist der Sinus. Der Nenner ist die Schrägseite <InlineMath math="TM" />, nicht <InlineMath math="OM" />.
+- <InlineMath math="\frac45" /> ist der Kosinus. Er verwendet <InlineMath math="OM" /> und <InlineMath math="TM" />, nicht <InlineMath math="TO" /> und <InlineMath math="OM" />.
+- <InlineMath math="\frac{3\sqrt2}{8}" /> ist der Tangens des Winkels zwischen der Kante <InlineMath math="TA" /> und der Grundfläche, also <InlineMath math="TO" /> geteilt durch <InlineMath math="OA=4\sqrt2" />. Das ist ein Winkel zwischen einer Geraden und einer Ebene, nicht zwischen zwei Ebenen.

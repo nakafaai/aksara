@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3\\text{ m}$$",
+          label: "$$\\frac{4}{3}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ m}$$",
+          label: "$$\\frac{3}{5}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{24}{5}\\text{ m}$$",
+          label: "$$\\frac{3\\sqrt{2}}{8}$$",
         },
         {
           isCorrect: false,
-          label: "$$5\\text{ m}$$",
+          label: "$$\\frac{4}{5}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{12}{5}\\text{ m}$$",
+          label: "$$\\frac{3}{4}$$",
         },
       ],
     },

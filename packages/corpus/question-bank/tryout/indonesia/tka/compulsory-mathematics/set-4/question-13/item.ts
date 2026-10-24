@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-1,2)$$",
+          label: "$$(-4,6)$$",
         },
         {
           isCorrect: false,
-          label: "$$(0,0)$$",
+          label: "$$(-6,-4)$$",
         },
         {
           isCorrect: false,
-          label: "$$\\left(\\frac{1}{2},\\frac{1}{2}\\right)$$",
+          label: "$$(-4,-6)$$",
         },
         {
           isCorrect: false,
-          label: "$$(1,-3)$$",
+          label: "$$(-3,-2)$$",
         },
         {
           isCorrect: true,
-          label: "$$(2,-1)$$",
+          label: "$$(6,4)$$",
         },
       ],
     },

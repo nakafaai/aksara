@@ -33,7 +33,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Bibit yang paling pendek di antara seluruh $$80$$ bibit tumbuh pada media A.",
+            "Tinggi terendah di antara seluruh $$80$$ bibit terdapat pada media A.",
         },
       ],
     },
