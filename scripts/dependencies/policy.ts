@@ -88,12 +88,12 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "24.22.0",
+    approvedCurrent: "24.22.1",
     cohort: "Node 24",
     dependency: "node",
     reason: "Aksara supports the current Node 24 runtime line only.",
     registry: "node@24",
-    reviewedLatest: "24.22.0",
+    reviewedLatest: "24.22.1",
     source: "node-runtime",
   },
   {
