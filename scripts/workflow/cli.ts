@@ -12,7 +12,7 @@ const CLI_WORKFLOW = {
   workflowPath: ".github/workflows/cli.yml",
 } as const;
 const CLI_GATE_PATTERN =
-  /pnpm exec turbo run test typecheck build --filter=@nakafa\/aksara-cli/u;
+  /bunx turbo run test typecheck build --filter=@nakafa\/aksara-cli/u;
 const STABLE_VERSION_PATTERN =
   /^ {6}- name: Verify stable package version\n^ {8}run: \|\n[\s\S]*^ {10}version=\$\(jq -er '\.version' apps\/cli\/dist\/package\/package\.json\)$[\s\S]*^ {10}if \[\[ ! "\$version" =~ \^\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\\\.\(0\|\[1-9\]\[0-9\]\*\)\$ \]\]; then$/mu;
 

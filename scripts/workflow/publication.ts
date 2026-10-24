@@ -9,25 +9,27 @@ import {
 } from "#scripts/workflow/plan";
 import { ensure, requireSeq, yamlData } from "#scripts/workflow/requirement";
 
-const CONSUMER_PATTERN = /pnpm verify:consumer/u;
-const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
+const CONSUMER_PATTERN =
+  /bun run (?:--filter @nakafa\/aksara-contracts )?verify:consumer/u;
+const OPERATION_PATTERN =
+  /bun run (?:release|accept|recover|abort|cleanup) --/u;
 const SHARED_VALIDATION_PATTERN =
-  /verify:[\s\S]*needs: contracts[\s\S]*Verify full publication revision[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build[\s\S]*operate:[\s\S]*needs\.verify\.result == 'success'/u;
+  /verify:[\s\S]*needs: contracts[\s\S]*Verify full publication revision[\s\S]*bun run typecheck[\s\S]*bun run test[\s\S]*bun run build[\s\S]*operate:[\s\S]*needs\.verify\.result == 'success'/u;
 const PARITY_PREFLIGHT_PATTERN =
-  /Verify paired acceptance[\s\S]*pnpm parity --[\s\S]*Accept active release/u;
+  /Verify paired acceptance[\s\S]*bun run parity --[\s\S]*Accept active release/u;
 const PARITY_RESULT_PATTERN =
-  /parity:\n[\s\S]*needs: operate[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*pnpm parity --/u;
+  /parity:\n[\s\S]*needs: operate[\s\S]*environment: content-production[\s\S]*Verify paired result[\s\S]*bun run parity --/u;
 const PRODUCTION_ENV_PATTERN = /environment: content-production/u;
 const ISOLATED_OPERATION_PATTERN =
-  /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*pnpm --dir "\$OPERATION_ROOT" install --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
+  /git worktree add --detach "\$OPERATION_ROOT" "\$GITHUB_SHA"[\s\S]*bun install --cwd "\$OPERATION_ROOT" --frozen-lockfile[\s\S]*rev-parse --verify HEAD[\s\S]*status --porcelain=v1 --untracked-files=normal[\s\S]*working-directory: \$\{\{ runner\.temp \}\}\/aksara-operation/u;
 const TERMINAL_GATE_PATTERN =
-  /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
+  /Verify terminal operation revision[\s\S]*bunx turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*bun run deprecations:audit/u;
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
 const CONTENT_CONTRACT_PATTERN =
-  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[contracts, verify\][\s\S]*needs\.contracts\.result == 'success'/u;
+  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*bun run --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[contracts, verify\][\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
-  /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
+  /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup Node\.js$/mu;
 
 /** The dispatch whose final parity job the blockers below must stop. */
 const PAIRED_RELEASE = { operation: "release", target: "both" };
@@ -286,7 +288,7 @@ export const verifyPublicationWorkflow = Effect.fn(
           "jobs",
           "parity",
           "steps",
-          3,
+          4,
           "env",
           `${prefix}_PUBLICATION_${key}`,
         ]) === `\${{ ${namespace}.${prefix}_PUBLICATION_${key} }}`,

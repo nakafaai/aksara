@@ -9,20 +9,20 @@ import { ensure, sameNames } from "#scripts/workflow/requirement";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
-  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|changesets|package-proof/iu;
+  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|bun publish|changesets|package-proof/iu;
 const REGISTRY_REFERENCE_PATTERN =
   /(?:https?:\/\/|\/\/)?registry\.npmjs\.org(?:[^\s"'`]+)?/giu;
 const NPM_ATTESTATION_URL =
   "https://registry.npmjs.org/-/npm/v1/attestations/$encoded_package_name@$package_version";
 const NPM_REGISTRY = "https://registry.npmjs.org";
 const SWALLOWED_CLI_OUTPUT_PATTERN = /2>\/dev\/null \|\| true\)/u;
-const FROZEN_INSTALL_PATTERN = /pnpm install --frozen-lockfile/u;
+const FROZEN_INSTALL_PATTERN = /bun install --frozen-lockfile/u;
 const ARCHIVE_BUILD_PATTERN =
-  /pnpm verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
+  /bun run verify:consumer -- --output "\$(?:CURRENT_ARCHIVE|TARBALL)"/u;
 const FULL_GATE_PATTERN =
-  /pnpm lint[\s\S]*pnpm deprecations[\s\S]*pnpm names[\s\S]*pnpm jsdocs[\s\S]*pnpm lines[\s\S]*pnpm workflows[\s\S]*pnpm boundaries[\s\S]*pnpm typecheck[\s\S]*pnpm test[\s\S]*pnpm build/u;
+  /bun run lint[\s\S]*bun run deprecations[\s\S]*bun run names[\s\S]*bun run jsdocs[\s\S]*bun run lines[\s\S]*bun run workflows[\s\S]*bun run boundaries[\s\S]*bun run typecheck[\s\S]*bun run test[\s\S]*bun run build/u;
 const CONDITIONAL_GATE_PATTERN =
-  /Decide exact archive release[\s\S]*Verify repository[\s\S]*if: steps\.decision\.outputs\.mode == 'create'[\s\S]*pnpm lint/u;
+  /Decide exact archive release[\s\S]*Verify repository[\s\S]*if: steps\.decision\.outputs\.mode == 'create'[\s\S]*bun run lint/u;
 const CONTRACT_TRIGGER_PATTERN =
   /push:[\s\S]*branches: \[main\][\s\S]*workflow_dispatch:/u;
 const CONTRACT_PATH_TRIGGER_PATTERN = /\bpaths(?:-ignore)?:/u;
@@ -31,7 +31,7 @@ const RELEASE_IDENTITY_PATTERN =
 const SHELL_VERSION_PATTERN =
   /IFS=|current_(?:major|minor|patch)|latest_(?:major|minor|patch)|latest_version=\$\{|release_tag="(?:contracts-v|@nakafa\/aksara-contracts@)\$|asset_name="nakafa-aksara-contracts-\$/u;
 const ARCHIVE_IDENTITY_PATTERN =
-  /release\/command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release\/command\.ts "\$\{arguments\[@\]\}"/u;
+  /release\/command\.ts describe[\s\S]*bun run verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release\/command\.ts "\$\{arguments\[@\]\}"/u;
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
 const RELEASE_JOB_PATTERN =
@@ -114,7 +114,7 @@ export const verifyWorkflows = Effect.fn("AksaraWorkflow.verifyWorkflows")(
     );
     yield* ensure(
       FROZEN_INSTALL_PATTERN.test(contracts),
-      "Contract releases must install the exact pnpm lockfile"
+      "Contract releases must install the exact Bun lockfile"
     );
     yield* ensure(
       RELEASE_IDENTITY_PATTERN.test(contracts),
