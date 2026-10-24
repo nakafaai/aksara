@@ -10,21 +10,14 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import { stringify } from "yaml";
 
 import {
   type BumpDependenciesConfig,
   makeBumpDependenciesProgram,
 } from "#scripts/dependencies/bump";
-import {
-  DependencyCommandError,
-  type PnpmRunner,
-} from "#scripts/dependencies/command";
+import type { BunRunner } from "#scripts/dependencies/command";
 import { makeRunner, output } from "#scripts/dependencies/fixture";
-import {
-  DEPENDENCY_HOLDS,
-  expectedIgnoredDependencies,
-} from "#scripts/dependencies/policy";
+import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
@@ -37,88 +30,80 @@ function approved(dependency: string) {
   return hold.approvedCurrent;
 }
 
-/** Writes one complete dependency-policy fixture. */
+/** The registry answer for every reviewed hold, which is its reviewed upstream version. */
+const reviewedRegistry = Rec.fromEntries(
+  DEPENDENCY_HOLDS.map((hold) => [hold.registry, hold.reviewedLatest] as const)
+);
+
+/** A root manifest that declares every reviewed hold at its approved version, plus routine dependencies. */
+function approvedManifest(overrides?: {
+  readonly catalog?: Readonly<Record<string, string>>;
+  readonly omit?: string;
+}) {
+  const catalog: Record<string, string> = {};
+  const devDependencies: Record<string, string> = {};
+  for (const hold of DEPENDENCY_HOLDS) {
+    if (hold.source === "catalog") {
+      catalog[hold.dependency] = hold.approvedCurrent;
+    }
+    if (hold.source === "root-dev-dependency") {
+      devDependencies[hold.dependency] = hold.approvedCurrent;
+    }
+  }
+  const omitted = overrides?.omit;
+  const declared = Rec.filter(
+    { ...devDependencies, "@probe/app": "workspace:*", yaml: "2.9.1" },
+    (_, name) => name !== omitted
+  );
+  return {
+    devDependencies: declared,
+    devEngines: {
+      runtime: { name: "node", onFail: "download", version: approved("node") },
+    },
+    packageManager: `bun@${approved("bun")}`,
+    workspaces: {
+      catalog: { ...catalog, esbuild: "0.28.2", ...overrides?.catalog },
+      packages: ["apps/*", "packages/*"],
+    },
+  };
+}
+
+/** Writes one root manifest, or the exact text given, into a fresh temporary workspace. */
 const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
-  function* (input?: {
-    readonly invalidManifest?: string;
-    readonly invalidWorkspace?: string;
-    readonly omitUltracite?: boolean;
-    readonly omitIgnore?: string;
-  }) {
+  function* (input?: { readonly manifest?: unknown; readonly text?: string }) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
     const root = yield* fileSystem.makeTempDirectoryScoped({
       prefix: "aksara-bump-deps-",
     });
     const manifest = path.join(root, "package.json");
-    const workspace = path.join(root, "pnpm-workspace.yaml");
-    const devDependencies: Record<string, string> = {
-      "@biomejs/biome": approved("@biomejs/biome"),
-      "@effect/tsgo": approved("@effect/tsgo"),
-      "@types/node": approved("@types/node"),
-      ...(input?.omitUltracite ? {} : { ultracite: approved("ultracite") }),
-    };
-    const ignoreDeps = Arr.filter(
-      expectedIgnoredDependencies(),
-      (dependency) => dependency !== input?.omitIgnore
-    );
-
-    const manifestText =
-      input?.invalidManifest ??
-      (yield* Schema.encodeEffect(JsonText)({
-        devDependencies,
-        devEngines: { runtime: { version: approved("node") } },
-        packageManager: `pnpm@${approved("pnpm")}`,
-      }));
-    yield* fileSystem.writeFileString(manifest, manifestText);
-    yield* fileSystem.writeFileString(
-      workspace,
-      input?.invalidWorkspace ??
-        stringify({
-          catalog: {
-            "@effect/platform-node": approved("@effect/platform-node"),
-            "@effect/vitest": approved("@effect/vitest"),
-            "@vitest/coverage-istanbul": approved("@vitest/coverage-istanbul"),
-            effect: approved("effect"),
-            typescript: approved("typescript"),
-            vitest: approved("vitest"),
-          },
-          update: { ignoreDeps },
-        })
-    );
-    return { manifest, root, workspace } satisfies BumpDependenciesConfig;
+    const text =
+      input?.text ??
+      (yield* Schema.encodeEffect(JsonText)(
+        input?.manifest ?? approvedManifest()
+      ));
+    yield* fileSystem.writeFileString(manifest, text);
+    return { manifest, root } satisfies BumpDependenciesConfig;
   }
 );
 
-/** Returns one typed program failure at the Vitest boundary. */
-const fail = Effect.fn("BumpDependenciesTest.fail")(
-  (config: BumpDependenciesConfig, runner: PnpmRunner) =>
-    makeBumpDependenciesProgram(config, runner).pipe(Effect.flip)
-);
-
-/** Installs a local pnpm executable that serves the reviewed registry view. */
-const installFakePnpm = Effect.fn("BumpDependenciesTest.installFakePnpm")(
-  function* (root: string) {
+/** Installs a local bun executable that answers registry lookups from one table and accepts updates. */
+const installFakeBun = Effect.fn("BumpDependenciesTest.installFakeBun")(
+  function* (root: string, registry: Readonly<Record<string, string>>) {
     const fileSystem = yield* FileSystem.FileSystem;
     const path = yield* Path.Path;
-    const versions = Rec.fromEntries(
-      Arr.map(
-        DEPENDENCY_HOLDS,
-        ({ registry, reviewedLatest }): readonly [string, string] => [
-          registry,
-          reviewedLatest,
-        ]
-      )
-    );
-    const executable = path.join(root, "pnpm");
-    const versionsText = yield* Schema.encodeEffect(JsonText)(versions);
+    const executable = path.join(root, "bun");
+    const registryText = yield* Schema.encodeEffect(JsonText)(registry);
     yield* fileSystem.writeFileString(
       executable,
       `#!/usr/bin/env node
 const args = process.argv.slice(2);
-const versions = ${versionsText};
-if (args[0] === "view") console.log(JSON.stringify(versions[args[1]]));
-if (args[0] === "outdated") { console.log("{}"); process.exitCode = 1; }
+const registry = ${registryText};
+if (args[0] === "info") {
+  console.log(JSON.stringify(registry[args[1]] ?? "missing"));
+  process.exit(0);
+}
+process.exit(args[0] === "update" ? 0 : 2);
 `
     );
     yield* fileSystem.chmod(executable, 0o755);
@@ -137,146 +122,208 @@ layer(NodeServices.layer, { excludeTestServices: true })(
   "dependency update policy",
   (it) => {
     it.effect(
-      "updates routines and reports every approved hold through real process IO",
+      "moves routine declarations to their registry latest and reports every hold through real process IO",
       () =>
         Effect.gen(function* () {
+          const fileSystem = yield* FileSystem.FileSystem;
           const config = yield* createConfig();
-          yield* installFakePnpm(config.root);
+          yield* installFakeBun(config.root, {
+            ...reviewedRegistry,
+            "esbuild@latest": "0.28.3",
+            "yaml@latest": "2.9.2",
+          });
 
           const reports = yield* makeBumpDependenciesProgram(config);
           const effectReport = Option.getOrUndefined(
             Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
+          const manifest = yield* fileSystem.readFileString(config.manifest);
 
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
           assert.ok(effectReport);
           assert.strictEqual(effectReport.current, approved("effect"));
-          assert.strictEqual(
-            effectReport.latest,
-            Option.getOrUndefined(
-              Arr.findFirst(
-                DEPENDENCY_HOLDS,
-                ({ dependency }) => dependency === "effect"
-              )
-            )?.reviewedLatest
-          );
+          assert.ok(manifest.includes('"yaml": "2.9.2"'));
+          assert.ok(manifest.includes('"esbuild": "0.28.3"'));
+          assert.ok(manifest.includes('"@probe/app": "workspace:*"'));
         })
     );
 
     it.effect(
-      "fails with every unresolved declaration, registry, and routine hold",
+      "leaves the manifest untouched when every routine declaration is current",
       () =>
         Effect.gen(function* () {
-          const config = yield* createConfig({ omitUltracite: true });
-          const error = yield* fail(
+          const fileSystem = yield* FileSystem.FileSystem;
+          const config = yield* createConfig();
+          const before = yield* fileSystem.readFileString(config.manifest);
+
+          const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              outdated: output(1, '{"yaml":{}}'),
-              registry: {
-                "ultracite@latest": output(0, '"7.10.7"'),
-              },
+              "esbuild@latest": output(0, '"0.28.2"'),
+              "yaml@latest": output(0, '"2.9.1"'),
             })
           );
 
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(error.message.includes("ultracite declares no version"));
-          assert.ok(error.message.includes("ultracite upstream is 7.10.7"));
-          assert.ok(
-            error.message.includes("Routine dependencies remain outdated: yaml")
+          assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
+          assert.strictEqual(
+            yield* fileSystem.readFileString(config.manifest),
+            before
           );
         })
     );
 
     it.effect(
-      "fails before updating when dependency safety policy drifts",
+      "fails before writing or updating when a reviewed hold drifts",
       () =>
         Effect.gen(function* () {
-          const runner = vi.fn(makeRunner());
+          const fileSystem = yield* FileSystem.FileSystem;
           const config = yield* createConfig({
-            omitIgnore: "effect",
+            manifest: approvedManifest({ catalog: { effect: "4.0.6" } }),
           });
-          const error = yield* fail(config, runner);
+          const before = yield* fileSystem.readFileString(config.manifest);
+          const commands: (readonly string[])[] = [];
+          const runner: BunRunner = (root, args) => {
+            commands.push(args);
+            return makeRunner()(root, args);
+          };
+
+          const error = yield* makeBumpDependenciesProgram(config, runner).pipe(
+            Effect.flip
+          );
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(error.message.includes("update.ignoreDeps"));
-          assert.strictEqual(runner.mock.calls.length, 0);
+          assert.ok(
+            error.message.includes("effect declares 4.0.6; approved 4.0.5.")
+          );
+          assert.strictEqual(
+            commands.some(([command]) => command === "update"),
+            false
+          );
+          assert.strictEqual(
+            yield* fileSystem.readFileString(config.manifest),
+            before
+          );
         })
     );
 
-    it.effect("types update and repository file failures", () =>
+    it.effect(
+      "fails when a reviewed hold has a newer upstream than its review",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({ "effect@latest": output(0, '"4.0.7"') })
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.ok(
+            error.message.includes(
+              "effect upstream is 4.0.7; last reviewed 4.0.6."
+            )
+          );
+        })
+    );
+
+    it.effect(
+      "fails when the manifest no longer declares a reviewed hold",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig({
+            manifest: approvedManifest({ omit: "ultracite" }),
+          });
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner()
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.ok(
+            error.message.includes(
+              "ultracite declares missing; approved 8.0.2."
+            )
+          );
+        })
+    );
+
+    it.effect("types a failed registry lookup for a routine dependency", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const error = yield* makeBumpDependenciesProgram(
+          config,
+          makeRunner({
+            "esbuild@latest": output(0, '"0.28.2"'),
+            "yaml@latest": output(2, "", "registry unavailable"),
+          })
+        ).pipe(Effect.flip);
+
+        assert.strictEqual(error._tag, "DependencyCommandError");
+        assert.strictEqual(error.message, "registry unavailable");
+      })
+    );
+
+    it.effect(
+      "types a failed bun update after the declarations are written",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner(
+              {
+                "esbuild@latest": output(0, '"0.28.2"'),
+                "yaml@latest": output(0, '"2.9.2"'),
+              },
+              output(2, "", "update failed")
+            )
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyCommandError");
+          assert.strictEqual(error.message, "update failed");
+        })
+    );
+
+    it.effect("names a failed bun update that prints nothing", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const error = yield* makeBumpDependenciesProgram(
+          config,
+          makeRunner(
+            {
+              "esbuild@latest": output(0, '"0.28.2"'),
+              "yaml@latest": output(0, '"2.9.1"'),
+            },
+            output(2)
+          )
+        ).pipe(Effect.flip);
+
+        assert.strictEqual(error.message, "bun update failed.");
+      })
+    );
+
+    it.effect("types unreadable, invalid JSON, and incomplete manifests", () =>
       Effect.gen(function* () {
         const path = yield* Path.Path;
         const config = yield* createConfig();
-        const updateFailure = yield* fail(
-          config,
-          makeRunner({ update: output(2, "", "update failed") })
-        );
-        assert.strictEqual(updateFailure._tag, "DependencyCommandError");
-        assert.strictEqual(updateFailure.message, "update failed");
-
-        const emptyUpdateFailure = yield* fail(
-          config,
-          makeRunner({ update: output(2) })
-        );
-        assert.strictEqual(emptyUpdateFailure.message, "pnpm update failed.");
-
-        const missingManifest = yield* fail(
-          {
-            ...config,
-            manifest: path.join(config.root, "missing.json"),
-          },
+        const missing = yield* makeBumpDependenciesProgram(
+          { ...config, manifest: path.join(config.root, "missing.json") },
           makeRunner()
-        );
-        assert.strictEqual(missingManifest._tag, "DependencyPolicyError");
+        ).pipe(Effect.flip);
+        assert.strictEqual(missing._tag, "DependencyPolicyError");
 
-        const invalidManifest = yield* createConfig({ invalidManifest: "{" });
-        const invalidManifestFailure = yield* fail(
-          invalidManifest,
+        const invalid = yield* createConfig({ text: "{" });
+        const invalidFailure = yield* makeBumpDependenciesProgram(
+          invalid,
           makeRunner()
-        );
-        assert.ok(invalidManifestFailure.message.includes("is not valid"));
+        ).pipe(Effect.flip);
+        assert.ok(invalidFailure.message.includes("is not valid"));
 
-        const emptyManifest = yield* createConfig({ invalidManifest: "{}" });
-        const emptyManifestFailure = yield* fail(emptyManifest, makeRunner());
-        assert.ok(emptyManifestFailure.message.includes("invalid shape"));
-
-        const invalidWorkspace = yield* createConfig({
-          invalidWorkspace: "[invalid",
-        });
-        const invalidWorkspaceFailure = yield* fail(
-          invalidWorkspace,
+        const incomplete = yield* createConfig({ text: "{}" });
+        const incompleteFailure = yield* makeBumpDependenciesProgram(
+          incomplete,
           makeRunner()
-        );
-        assert.ok(invalidWorkspaceFailure.message.includes("is not valid"));
-
-        const emptyWorkspace = yield* createConfig({ invalidWorkspace: "{}" });
-        const emptyWorkspaceFailure = yield* fail(emptyWorkspace, makeRunner());
-        assert.ok(emptyWorkspaceFailure.message.includes("invalid shape"));
-      })
-    );
-
-    it.effect("preserves injected command-service failures", () =>
-      Effect.gen(function* () {
-        const config = yield* createConfig();
-        const error = yield* fail(config, () =>
-          Effect.fail(
-            new DependencyCommandError({ message: "runner unavailable" })
-          )
-        );
-
-        assert.strictEqual(error.message, "runner unavailable");
-      })
-    );
-
-    it.effect("accepts an explicit fake runner without process services", () =>
-      Effect.gen(function* () {
-        const config = yield* createConfig();
-        const runner = makeRunner();
-        const reports = yield* makeBumpDependenciesProgram(config, runner);
-        const missingRegistry = yield* runner(config.root, ["view"]);
-
-        assert.ok(Arr.every(reports, ({ current }) => current !== "missing"));
-        assert.deepStrictEqual(missingRegistry, output(0, '"missing"'));
+        ).pipe(Effect.flip);
+        assert.ok(incompleteFailure.message.includes("has an invalid shape"));
       })
     );
   }

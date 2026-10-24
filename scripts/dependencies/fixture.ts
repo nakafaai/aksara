@@ -1,5 +1,5 @@
-import { Array as Arr, Effect, Option, Schema } from "effect";
-import type { CommandOutput, PnpmRunner } from "#scripts/dependencies/command";
+import { Array as Arr, Effect, Option, Record as Rec, Schema } from "effect";
+import type { BunRunner, CommandOutput } from "#scripts/dependencies/command";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
 const RegistryVersionText = Schema.fromJsonString(Schema.String);
@@ -9,27 +9,28 @@ export function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
   return { exitCode, stderr, stdout };
 }
 
-/** Builds deterministic pnpm output for one policy test. */
-export function makeRunner(input?: {
-  readonly outdated?: CommandOutput;
-  readonly registry?: Readonly<Record<string, CommandOutput>>;
-  readonly update?: CommandOutput;
-}): PnpmRunner {
+/** The Bun answer for every reviewed hold, which names its reviewed upstream version. */
+const REVIEWED_ANSWERS = Rec.fromEntries(
+  DEPENDENCY_HOLDS.map(
+    (hold) =>
+      [
+        hold.registry,
+        output(0, Schema.encodeSync(RegistryVersionText)(hold.reviewedLatest)),
+      ] as const
+  )
+);
+
+/** Builds deterministic Bun output for one policy test, answering each registry spec. */
+export function makeRunner(
+  registry: Readonly<Record<string, CommandOutput>> = {},
+  update: CommandOutput = output()
+): BunRunner {
+  const answers = { ...REVIEWED_ANSWERS, ...registry };
   return (_root, args) => {
     if (args[0] === "update") {
-      return Effect.succeed(input?.update ?? output());
+      return Effect.succeed(update);
     }
-    if (args[0] === "outdated") {
-      return Effect.succeed(input?.outdated ?? output(1, "{}"));
-    }
-    const registry = args[1] ?? "missing";
-    const configured = input?.registry?.[registry];
-    const reviewed = Option.getOrUndefined(
-      Arr.findFirst(DEPENDENCY_HOLDS, (hold) => hold.registry === registry)
-    )?.reviewedLatest;
-    return Effect.succeed(
-      configured ??
-        output(0, Schema.encodeSync(RegistryVersionText)(reviewed ?? "missing"))
-    );
+    const spec = Option.getOrThrow(Arr.get(args, 1));
+    return Effect.succeed(Option.getOrThrow(Rec.get(answers, spec)));
   };
 }

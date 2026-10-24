@@ -1,4 +1,4 @@
-import { Array as Arr, Effect, Record as Rec, Schema, Stream } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { ChildProcess, type ChildProcessSpawner } from "effect/process";
 
 const CommandOutputSchema = Schema.Struct({
@@ -7,11 +7,11 @@ const CommandOutputSchema = Schema.Struct({
   stdout: Schema.String,
 });
 
-/** Complete output from one repository-owned pnpm command. */
+/** Complete output from one repository-owned Bun command. */
 export type CommandOutput = typeof CommandOutputSchema.Type;
 
-/** Injectable pnpm process boundary used by dependency policy. */
-export type PnpmRunner = (
+/** Injectable Bun process boundary used by dependency policy. */
+export type BunRunner = (
   root: string,
   args: readonly string[]
 ) => Effect.Effect<
@@ -20,9 +20,7 @@ export type PnpmRunner = (
   ChildProcessSpawner.ChildProcessSpawner
 >;
 
-const OutdatedSchema = Schema.Record(Schema.String, Schema.Unknown);
 const RegistryVersionText = Schema.fromJsonString(Schema.String);
-const OutdatedText = Schema.fromJsonString(OutdatedSchema);
 
 /** A dependency command could not execute or returned unusable output. */
 export class DependencyCommandError extends Schema.TaggedError<
@@ -30,12 +28,12 @@ export class DependencyCommandError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("DependencyCommandError", { message: Schema.String }) {}
 
-/** Runs pnpm in the repository and preserves its exact terminal output. */
-export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
+/** Runs Bun in the repository and preserves its exact terminal output. */
+export const runBun = Effect.fn("DependencyCommand.runBun")(
   (root: string, args: readonly string[]) =>
     Effect.scoped(
       Effect.gen(function* () {
-        const command = yield* ChildProcess.make("pnpm", args, { cwd: root });
+        const command = yield* ChildProcess.make("bun", args, { cwd: root });
         const [exitCode, stdout, stderr] = yield* Effect.all(
           [
             command.exitCode,
@@ -53,7 +51,7 @@ export const runPnpm = Effect.fn("DependencyCommand.runPnpm")(
     )
 );
 
-/** Decodes one scalar version returned by `pnpm view`. */
+/** Decodes one scalar version returned by `bun info <spec> version --json`. */
 export function decodeRegistryVersion(output: CommandOutput, registry: string) {
   if (output.exitCode !== 0) {
     return Effect.fail(
@@ -67,28 +65,6 @@ export function decodeRegistryVersion(output: CommandOutput, registry: string) {
       () =>
         new DependencyCommandError({
           message: `${registry} returned no version.`,
-        })
-    )
-  );
-}
-
-/** Decodes the unresolved dependency names returned by `pnpm outdated`. */
-export function decodeOutdatedDependencies(output: CommandOutput) {
-  if (!Arr.contains([0, 1], output.exitCode)) {
-    return Effect.fail(
-      new DependencyCommandError({
-        message: output.stderr.trim() || "pnpm outdated failed.",
-      })
-    );
-  }
-  // Blank output means pnpm found nothing outdated.
-  const text = output.stdout.trim() ? output.stdout : "{}";
-  return Schema.decodeEffect(OutdatedText)(text).pipe(
-    Effect.map(Rec.keys),
-    Effect.mapError(
-      () =>
-        new DependencyCommandError({
-          message: "pnpm outdated returned an invalid shape.",
         })
     )
   );

@@ -127,13 +127,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "11.28.6",
-    cohort: "pnpm",
-    dependency: "pnpm",
+    approvedCurrent: "1.4.4",
+    cohort: "Bun",
+    dependency: "bun",
     reason:
-      "pnpm 12 records its own packages in a second YAML document at the top of the lockfile. OSV Scanner 2.6.0 reads both documents and Turborepo hashes each workspace as before, but GitHub's dependency graph reads only the first (dependabot/dependabot-core#15904), so it would report no application dependencies and close this repository's Dependabot alerts. The one setting that keeps a single document, `pmOnFail: ignore`, also stops pnpm from enforcing the pinned version. pnpm 12 moves here and in nakafa.com once GitHub reads both documents.",
-    registry: "pnpm@latest",
-    reviewedLatest: "12.15.0",
+      "Bun is the package manager and writes bun.lock, which records every resolved version. 1.4.4 is the newest Bun release and the version installed on the maintainers' machine, so packageManager pins it exactly.",
+    registry: "bun@latest",
+    reviewedLatest: "1.4.4",
     source: "package-manager",
   },
 ];
@@ -145,7 +145,7 @@ export function declaredVersion(spec: string): string | undefined {
   )?.[1];
 }
 
-/** Returns every dependency that routine pnpm updates must leave untouched. */
+/** Returns every dependency that routine updates must leave untouched. */
 export function expectedIgnoredDependencies() {
   return pipe(
     DEPENDENCY_HOLDS,

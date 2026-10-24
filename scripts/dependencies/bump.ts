@@ -1,11 +1,15 @@
-import { Array as Arr, Effect, Equivalence, Order, Ref, Schema } from "effect";
-import { parse } from "yaml";
 import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Record as Rec,
+  Schema,
+} from "effect";
+import {
+  type BunRunner,
   DependencyCommandError,
-  decodeOutdatedDependencies,
   decodeRegistryVersion,
-  type PnpmRunner,
-  runPnpm,
+  runBun,
 } from "#scripts/dependencies/command";
 import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
@@ -20,69 +24,86 @@ import { readSource } from "#scripts/source";
 const BumpDependenciesConfigSchema = Schema.Struct({
   manifest: Schema.String,
   root: Schema.String,
-  workspace: Schema.String,
 });
 
 /** Paths of the repository files that the dependency policy reads and updates. */
 export type BumpDependenciesConfig = typeof BumpDependenciesConfigSchema.Type;
 
+const JsonObject = Schema.fromJsonString(
+  Schema.Record(Schema.String, Schema.Unknown)
+);
+
+/** The root manifest fields that the dependency policy reads and writes. */
 const RootManifestSchema = Schema.Struct({
   devDependencies: Schema.Record(Schema.String, Schema.String),
   devEngines: Schema.Struct({
     runtime: Schema.Struct({ version: Schema.String }),
   }),
   packageManager: Schema.String,
+  workspaces: Schema.Struct({
+    catalog: Schema.Record(Schema.String, Schema.String),
+    packages: Schema.Array(Schema.String),
+  }),
 });
 
-const WorkspaceSchema = Schema.Struct({
-  catalog: Schema.Record(Schema.String, Schema.String),
-  update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
+type RootManifest = typeof RootManifestSchema.Type;
+
+const RoutineSectionSchema = Schema.Literals(["catalog", "devDependencies"]);
+
+const RoutineDependencySchema = Schema.Struct({
+  current: Schema.String,
+  dependency: Schema.String,
+  section: RoutineSectionSchema,
 });
 
-const parseJson = Schema.decodeSync(Schema.fromJsonString(Schema.Unknown));
+type RoutineDependency = typeof RoutineDependencySchema.Type;
 
-/** A held cohort differs from its explicit repository review decision. */
+/** One routine declaration whose registry latest differs from the manifest. */
+type RoutineUpdate = RoutineDependency & { readonly latest: string };
+
+/** A reviewed hold with the version the manifest declares and the registry latest. */
+type HoldReview = DependencyHold & {
+  readonly current: string;
+  readonly latest: string;
+};
+
+/** A dependency policy check failed: a reviewed hold drifted or the manifest is not valid. */
 class DependencyPolicyError extends Schema.TaggedError<
   DependencyPolicyError,
   { readonly brand: unique symbol }
 >()("DependencyPolicyError", { message: Schema.String }) {}
 
-/** Reads one structured repository file through its runtime schema. */
-const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(
-  function* <A>(
-    path: string,
-    parseSource: (source: string) => unknown,
-    schema: Schema.Codec<A, unknown, never, never>
-  ) {
-    const source = yield* readSource(path).pipe(
-      Effect.mapError(
-        (error) => new DependencyPolicyError({ message: error.message })
-      )
-    );
-    const input = yield* Effect.try({
-      catch: () =>
-        new DependencyPolicyError({ message: `${path} is not valid.` }),
-      try: () => parseSource(source),
-    });
-    return yield* Schema.decodeUnknownEffect(schema)(input).pipe(
-      Effect.mapError(
-        () =>
-          new DependencyPolicyError({
-            message: `${path} has an invalid shape.`,
-          })
-      )
-    );
-  }
-);
-
-/** Returns the reviewed declaration for one held dependency. */
-function currentVersion(
-  hold: DependencyHold,
-  manifest: typeof RootManifestSchema.Type,
-  workspace: typeof WorkspaceSchema.Type
+/** Reads the root manifest as an open JSON object and as the fields the policy owns. */
+const readManifest = Effect.fn("DependencyPolicy.readManifest")(function* (
+  path: string
 ) {
+  const source = yield* readSource(path).pipe(
+    Effect.mapError(
+      (error) => new DependencyPolicyError({ message: error.message })
+    )
+  );
+  const document = yield* Schema.decodeUnknownEffect(JsonObject)(source).pipe(
+    Effect.mapError(
+      () => new DependencyPolicyError({ message: `${path} is not valid.` })
+    )
+  );
+  const fields = yield* Schema.decodeUnknownEffect(RootManifestSchema)(
+    document
+  ).pipe(
+    Effect.mapError(
+      () =>
+        new DependencyPolicyError({
+          message: `${path} has an invalid shape.`,
+        })
+    )
+  );
+  return { document, fields };
+});
+
+/** Returns the manifest declaration that one reviewed hold reads. */
+function currentVersion(hold: DependencyHold, manifest: RootManifest) {
   if (hold.source === "catalog") {
-    return workspace.catalog[hold.dependency];
+    return manifest.workspaces.catalog[hold.dependency];
   }
   if (hold.source === "root-dev-dependency") {
     return manifest.devDependencies[hold.dependency];
@@ -93,109 +114,186 @@ function currentVersion(
   return manifest.packageManager;
 }
 
-/** Updates routine packages and proves every explicit hold is still reviewed. */
-export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
-  function* (config: BumpDependenciesConfig, runner: PnpmRunner = runPnpm) {
-    const manifest = yield* readStructuredFile(
-      config.manifest,
-      parseJson,
-      RootManifestSchema
-    );
-    const workspace = yield* readStructuredFile(
-      config.workspace,
-      parse,
-      WorkspaceSchema
-    );
-    const expectedIgnores = expectedIgnoredDependencies();
-    const actualIgnores = Arr.sort(workspace.update.ignoreDeps, Order.String);
-    if (
-      !Equivalence.Array(Equivalence.String)(actualIgnores, expectedIgnores)
-    ) {
-      return yield* new DependencyPolicyError({
-        message:
-          "pnpm update.ignoreDeps does not match the reviewed hold policy.",
-      });
-    }
+/** Reads the declared version and the registry latest of one reviewed hold. */
+const reviewHold = Effect.fn("DependencyPolicy.reviewHold")(function* (
+  hold: DependencyHold,
+  manifest: RootManifest,
+  root: string,
+  runner: BunRunner
+) {
+  const output = yield* runner(root, [
+    "info",
+    hold.registry,
+    "version",
+    "--json",
+  ]);
+  const latest = yield* decodeRegistryVersion(output, hold.registry);
+  return {
+    ...hold,
+    current: declaredVersion(currentVersion(hold, manifest) ?? "") ?? "missing",
+    latest,
+  } satisfies HoldReview;
+});
 
-    const update = yield* runner(config.root, [
-      "update",
-      "--recursive",
-      "--latest",
-    ]);
-    if (update.exitCode !== 0) {
-      return yield* new DependencyCommandError({
-        message: update.stderr.trim() || "pnpm update failed.",
-      });
-    }
+/** Lists every way one reviewed hold differs from its approval and its reviewed upstream. */
+function holdProblems(review: HoldReview): readonly string[] {
+  return [
+    ...(review.current === review.approvedCurrent
+      ? []
+      : [
+          `${review.dependency} declares ${review.current}; approved ${review.approvedCurrent}.`,
+        ]),
+    ...(review.latest === review.reviewedLatest
+      ? []
+      : [
+          `${review.dependency} upstream is ${review.latest}; last reviewed ${review.reviewedLatest}.`,
+        ]),
+  ];
+}
 
-    const problems = yield* Ref.make<readonly string[]>([]);
-    const reports = yield* Effect.forEach(
-      DEPENDENCY_HOLDS,
-      (hold) =>
+/** Lists the declarations that routine updates may move, excluding every reviewed hold. */
+function routineDependencies(
+  manifest: RootManifest
+): readonly RoutineDependency[] {
+  const held = expectedIgnoredDependencies();
+  const catalog = Rec.toEntries(manifest.workspaces.catalog)
+    .filter(([dependency]) => !Arr.contains(held, dependency))
+    .map(([dependency, current]) => ({
+      current,
+      dependency,
+      section: "catalog" as const,
+    }));
+  const direct = Rec.toEntries(manifest.devDependencies)
+    .filter(
+      ([dependency, spec]) =>
+        !(
+          Arr.contains(held, dependency) ||
+          spec.startsWith("catalog:") ||
+          spec.startsWith("workspace:")
+        )
+    )
+    .map(([dependency, current]) => ({
+      current,
+      dependency,
+      section: "devDependencies" as const,
+    }));
+  return [...catalog, ...direct];
+}
+
+/** Keeps the routine declarations whose registry latest differs from the manifest. */
+const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
+  function* (
+    dependencies: readonly RoutineDependency[],
+    root: string,
+    runner: BunRunner
+  ) {
+    const planned = yield* Effect.forEach(
+      dependencies,
+      (dependency) =>
         Effect.gen(function* () {
-          const declared = declaredVersion(
-            currentVersion(hold, manifest, workspace) ?? ""
-          );
-          const output = yield* runner(config.root, [
-            "view",
-            hold.registry,
+          const spec = `${dependency.dependency}@latest`;
+          const output = yield* runner(root, [
+            "info",
+            spec,
             "version",
             "--json",
           ]);
-          const latest = yield* decodeRegistryVersion(output, hold.registry);
-          if (declared !== hold.approvedCurrent) {
-            yield* Ref.update(
-              problems,
-              Arr.append(
-                `${hold.dependency} declares ${declared ?? "no version"}; approved ${hold.approvedCurrent}.`
-              )
-            );
-          }
-          if (latest !== hold.reviewedLatest) {
-            yield* Ref.update(
-              problems,
-              Arr.append(
-                `${hold.dependency} upstream is ${latest}; last reviewed ${hold.reviewedLatest}.`
-              )
-            );
-          }
-          return { ...hold, current: declared ?? "missing", latest };
+          const latest = yield* decodeRegistryVersion(output, spec);
+          return { ...dependency, latest };
         }),
       { concurrency: 4 }
     );
+    return Arr.filter(planned, ({ current, latest }) => current !== latest);
+  }
+);
 
-    const outdatedOutput = yield* runner(config.root, [
-      "outdated",
-      "--recursive",
-      "--format",
-      "json",
-    ]);
-    const unresolvedRoutine = yield* decodeOutdatedDependencies(outdatedOutput);
-    if (unresolvedRoutine.length > 0) {
-      yield* Ref.update(
-        problems,
-        Arr.append(
-          `Routine dependencies remain outdated: ${Arr.join(Arr.sort(unresolvedRoutine, Order.String), ", ")}.`
-        )
-      );
-    }
+/** Maps the routine updates of one manifest section to the versions they declare. */
+function declaredUpdates(
+  updates: readonly RoutineUpdate[],
+  section: RoutineDependency["section"]
+) {
+  return Rec.fromEntries(
+    Arr.filter(updates, (update) => update.section === section).map(
+      (update) => [update.dependency, update.latest] as const
+    )
+  );
+}
 
-    for (const report of reports) {
-      yield* Effect.logInfo(
-        `${report.cohort}: ${report.dependency} ${report.current}; reviewed upstream ${report.latest}. ${report.reason}`
-      );
-    }
-    const found = yield* Ref.get(problems);
-    if (found.length > 0) {
+/** Writes the planned declarations into the root manifest and keeps every other field. */
+const writeManifest = Effect.fn("DependencyPolicy.writeManifest")(function* (
+  path: string,
+  document: Readonly<Record<string, unknown>>,
+  fields: RootManifest,
+  updates: readonly RoutineUpdate[]
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const next = {
+    ...document,
+    devDependencies: {
+      ...fields.devDependencies,
+      ...declaredUpdates(updates, "devDependencies"),
+    },
+    workspaces: {
+      ...fields.workspaces,
+      catalog: {
+        ...fields.workspaces.catalog,
+        ...declaredUpdates(updates, "catalog"),
+      },
+    },
+  };
+  const text = yield* Effect.sync(() => JSON.stringify(next, null, 2));
+  yield* fileSystem.writeFileString(path, `${text}\n`);
+});
+
+/** Verifies every reviewed hold, moves routine dependencies to their newest release, and refreshes the lock. */
+export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
+  function* (config: BumpDependenciesConfig, runner: BunRunner = runBun) {
+    const { document, fields } = yield* readManifest(config.manifest);
+    const reviews = yield* Effect.forEach(
+      DEPENDENCY_HOLDS,
+      (hold) => reviewHold(hold, fields, config.root, runner),
+      { concurrency: 4 }
+    );
+    const problems = Arr.flatMap(reviews, holdProblems);
+    if (problems.length > 0) {
       return yield* new DependencyPolicyError({
-        message: Arr.join(found, "\n"),
+        message: Arr.join(problems, "\n"),
       });
     }
 
-    yield* Effect.logInfo(
-      "Routine dependencies and every reviewed hold are current."
+    const updates = yield* planRoutineUpdates(
+      routineDependencies(fields),
+      config.root,
+      runner
     );
-    return reports;
+    if (updates.length > 0) {
+      yield* writeManifest(config.manifest, document, fields, updates);
+    }
+
+    const refresh = yield* runner(config.root, ["update"]);
+    if (refresh.exitCode !== 0) {
+      return yield* new DependencyCommandError({
+        message: refresh.stderr.trim() || "bun update failed.",
+      });
+    }
+
+    for (const review of reviews) {
+      yield* Effect.logInfo(
+        `${review.cohort}: ${review.dependency} ${review.current}; reviewed upstream ${review.latest}. ${review.reason}`
+      );
+    }
+    yield* Effect.logInfo(
+      updates.length === 0
+        ? "Routine dependencies and every reviewed hold are current."
+        : `Updated routine dependencies: ${Arr.join(
+            updates.map(
+              ({ current, dependency, latest }) =>
+                `${dependency} ${current} -> ${latest}`
+            ),
+            ", "
+          )}.`
+    );
+    return reviews;
   }
 );
 
