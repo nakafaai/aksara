@@ -130,25 +130,35 @@ function serializeValue(
   return Effect.fail(valueError(site, location, "not-json"));
 }
 
-/** Serializes one plain object of JSON data, rejecting the reserved element key. */
+/**
+ * Serializes one plain object of JSON data. A symbol key cannot be written as
+ * JSON, and the reserved element key is never data. An undefined member is
+ * omitted, as React omits it, while an undefined list value stays refused.
+ */
 function serializeObject(
   value: Record<string, unknown>,
   site: TreeSite,
   location: ValueLocation
 ) {
+  if (Object.getOwnPropertySymbols(value).length > 0) {
+    return Effect.fail(valueError(site, location, "not-json"));
+  }
+  const keys = Rec.keys(value);
+  if (Arr.contains(keys, ELEMENT_KEY)) {
+    return Effect.fail(valueError(site, location, "reserved-key"));
+  }
   return Effect.map(
-    Effect.forEach(Rec.keys(value), (key) => {
-      if (key === ELEMENT_KEY) {
-        return Effect.fail(valueError(site, location, "reserved-key"));
-      }
-      return Effect.map(
-        serializeValue(value[key], site, {
-          ...location,
-          prop: `${location.prop}.${key}`,
-        }),
-        (serialized): [string, ContentTreeValue] => [key, serialized]
-      );
-    }),
+    Effect.forEach(
+      Arr.filter(keys, (key) => value[key] !== undefined),
+      (key) =>
+        Effect.map(
+          serializeValue(value[key], site, {
+            ...location,
+            prop: `${location.prop}.${key}`,
+          }),
+          (serialized): [string, ContentTreeValue] => [key, serialized]
+        )
+    ),
     (entries) => Rec.fromEntries(entries)
   );
 }
@@ -204,21 +214,32 @@ function serializeCall(
   });
 }
 
-/** Serializes every prop of one call except its children. */
+/**
+ * Serializes every prop of one call except its children. A symbol-keyed prop
+ * is named by its symbol, and an undefined prop is omitted as React omits it.
+ */
 function serializeProps(call: TreeCall, site: TreeSite, element: string) {
+  const [symbolKey] = Object.getOwnPropertySymbols(call.props);
+  if (symbolKey !== undefined) {
+    return Effect.fail(
+      valueError(site, { element, prop: String(symbolKey) }, "not-json")
+    );
+  }
   const keys = Arr.filter(Rec.keys(call.props), (key) => key !== CHILDREN_PROP);
+  if (Arr.contains(keys, ELEMENT_KEY)) {
+    return Effect.fail(
+      valueError(site, { element, prop: ELEMENT_KEY }, "reserved-key")
+    );
+  }
   return Effect.map(
-    Effect.forEach(keys, (key) => {
-      if (key === ELEMENT_KEY) {
-        return Effect.fail(
-          valueError(site, { element, prop: key }, "reserved-key")
-        );
-      }
-      return Effect.map(
-        serializeValue(call.props[key], site, { element, prop: key }),
-        (value): [string, ContentTreeValue] => [key, value]
-      );
-    }),
+    Effect.forEach(
+      Arr.filter(keys, (key) => call.props[key] !== undefined),
+      (key) =>
+        Effect.map(
+          serializeValue(call.props[key], site, { element, prop: key }),
+          (value): [string, ContentTreeValue] => [key, value]
+        )
+    ),
     (entries) => Rec.fromEntries(entries)
   );
 }

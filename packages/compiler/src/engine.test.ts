@@ -140,11 +140,6 @@ describe("compileContent policy for the content tree", () => {
       reason: "not-json",
     },
     {
-      body: '<InlineMath math="x" data={undefined} />',
-      prop: "data",
-      reason: "not-json",
-    },
-    {
       body: '<InlineMath math="x" data={0 / 0} />',
       prop: "data",
       reason: "non-finite-number",
@@ -182,6 +177,29 @@ describe("compileContent policy for the content tree", () => {
           "packages/corpus/test/serialize/en.mdx"
         );
       }
+    })
+  );
+
+  it.effect("omits an undefined prop from the tree, as React does", () =>
+    Effect.gen(function* () {
+      const manifest = yield* rendererManifest;
+      const result = yield* compileContent({
+        artifactLocale: "id",
+        contentKey: "test:undefined-prop",
+        rawMdx:
+          'export const metadata = {}\n\n<InlineMath math="x" data={undefined} />',
+        rendererDomain: "mathematics",
+        rendererManifest: manifest,
+        sourcePath: "packages/corpus/test/serialize/en.mdx",
+      });
+      assert.deepStrictEqual(result.payload.contentTree.children, [
+        {
+          $node: "element",
+          children: [],
+          name: "InlineMath",
+          props: { math: "x" },
+        },
+      ]);
     })
   );
 

@@ -28,7 +28,52 @@ function rejectFragment(props: Readonly<Record<string, unknown>>) {
   return Effect.flip(serializeFragment(props));
 }
 
+/** Symbol key that JSON text cannot carry. */
+const hidden = Symbol("hidden");
+
 describe("serializeContentTree", () => {
+  it.effect("serializes the subscript intrinsic tag as its own element", () =>
+    Effect.gen(function* () {
+      const tree = yield* serializeFragment({
+        children: ["H", new TreeCall("sub", { children: "2" }), "O"],
+      });
+
+      assert.deepStrictEqual(tree.children, [
+        "H",
+        { $node: "element", children: ["2"], name: "sub", props: {} },
+        "O",
+      ]);
+    })
+  );
+
+  it.effect("omits undefined props as React does and keeps null", () =>
+    Effect.gen(function* () {
+      const { NumberLine } = createTreeRuntime([
+        "NumberLine",
+      ]).useMDXComponents();
+      const tree = yield* serializeFragment({
+        children: [
+          new TreeCall(NumberLine, {
+            children: [],
+            end: 3,
+            labels: { max: 3, min: undefined },
+            nothing: null,
+            start: undefined,
+          }),
+        ],
+      });
+
+      assert.deepStrictEqual(tree.children, [
+        {
+          $node: "element",
+          children: [],
+          name: "NumberLine",
+          props: { end: 3, labels: { max: 3 }, nothing: null },
+        },
+      ]);
+    })
+  );
+
   it.effect(
     "keeps text, numbers as text, flattens lists, and drops empty values",
     () =>
@@ -156,8 +201,24 @@ describe("serializeContentTree", () => {
           "not-json",
         ],
         [
-          { children: [new TreeCall("p", { data: undefined })] },
+          { children: [new TreeCall("p", { data: [undefined] })] },
+          "data[0]",
+          "p",
+          "not-json",
+        ],
+        [
+          {
+            children: [
+              new TreeCall("p", { data: { visible: 1, [hidden]: 2 } }),
+            ],
+          },
           "data",
+          "p",
+          "not-json",
+        ],
+        [
+          { children: [new TreeCall("p", { [hidden]: 2 })] },
+          String(hidden),
           "p",
           "not-json",
         ],

@@ -211,6 +211,11 @@ describe("compileContent", () => {
       '{[].filter.constructor("return process")()}',
     ],
     [
+      "locale-dependent-access",
+      "toLocaleString",
+      "{(1234.5).toLocaleString()}",
+    ],
+    [
       "dangerous-jsx-attribute",
       "dangerouslySetInnerHTML",
       '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',

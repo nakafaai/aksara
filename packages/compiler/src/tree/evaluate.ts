@@ -3,8 +3,11 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, Schema } from "effect";
-import { ContentTreeEvaluationError } from "#compiler/errors";
+import { Effect, Predicate, Schema } from "effect";
+import {
+  ContentTreeEvaluationError,
+  MAX_CAUSE_MESSAGE_LENGTH,
+} from "#compiler/errors";
 import { createTreeRuntime, TreeCall } from "#compiler/tree/runtime";
 import { serializeContentTree } from "#compiler/tree/serialize";
 
@@ -19,6 +22,19 @@ export type EvaluateContentTreeInput =
   typeof EvaluateContentTreeInputSchema.Type;
 
 /**
+ * Returns the bounded message of a thrown error or string, so the author sees
+ * the expression that failed. Any other thrown value has no message to show.
+ */
+function causeMessageOf(cause: unknown) {
+  if (Predicate.isError(cause)) {
+    return cause.message.slice(0, MAX_CAUSE_MESSAGE_LENGTH);
+  }
+  if (Predicate.isString(cause)) {
+    return cause.slice(0, MAX_CAUSE_MESSAGE_LENGTH);
+  }
+}
+
+/**
  * Evaluates one compiled function body once in Node, after the authored source
  * policy has passed, and signs the element tree it returns. The body runs with
  * the tree runtime, so Nakafa never evaluates code.
@@ -30,6 +46,7 @@ export const evaluateContentTree = Effect.fn(
     catch: (cause) =>
       new ContentTreeEvaluationError({
         cause,
+        causeMessage: causeMessageOf(cause),
         contentKey: input.contentKey,
         message: "Evaluating the compiled document body failed.",
         sourcePath: input.sourcePath,

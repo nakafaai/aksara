@@ -63,6 +63,7 @@ const ExecutablePolicyViolationSchema = Schema.Struct({
     "globalThis",
     "network-global",
     "prototype-chain-access",
+    "locale-dependent-access",
     "dynamic-property-access",
     "dangerous-jsx-attribute",
     "unknown-free-global",
@@ -212,12 +213,18 @@ export class AuthoredMetadataSyntaxError extends Schema.TaggedError<
   ),
 }) {}
 
+/** Longest message of a thrown value that an evaluation failure carries for its author. */
+export const MAX_CAUSE_MESSAGE_LENGTH = 512;
+
 /** Evaluating the compiled body did not produce the one fragment that a tree requires. */
 export class ContentTreeEvaluationError extends Schema.TaggedError<
   ContentTreeEvaluationError,
   { readonly brand: unique symbol }
 >()("ContentTreeEvaluationError", {
   cause: Schema.Unknown,
+  causeMessage: Schema.optional(
+    Schema.String.check(Schema.isMaxLength(MAX_CAUSE_MESSAGE_LENGTH))
+  ),
   contentKey: ContentKeySchema,
   message: Schema.Trimmed.check(Schema.isNonEmpty()),
   sourcePath: CorpusSourcePathSchema,
