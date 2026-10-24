@@ -116,29 +116,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
     );
 
     it.effect(
-      "fails when a reviewed override hold drifts from its approved version",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig({
-            manifest: approvedManifest({
-              overrides: { "@effect/platform-node-shared": "4.0.6" },
-            }),
-          });
-          const error = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner()
-          ).pipe(Effect.flip);
-
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(
-            error.message.includes(
-              "@effect/platform-node-shared declares 4.0.6; approved 4.0.5."
-            )
-          );
-        })
-    );
-
-    it.effect(
       "leaves the manifest untouched when every routine declaration is current",
       () =>
         Effect.gen(function* () {

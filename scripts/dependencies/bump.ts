@@ -1,16 +1,16 @@
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Record as Rec,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
 import {
   type BunRunner,
   DependencyCommandError,
   decodeRegistryVersion,
   runBun,
 } from "#scripts/dependencies/command";
+import {
+  DependencyPolicyError,
+  type RootManifest,
+  readManifest,
+  writeManifest,
+} from "#scripts/dependencies/manifest";
 import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
@@ -19,7 +19,6 @@ import {
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
 import { runEntry } from "#scripts/entry";
-import { readSource } from "#scripts/source";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
   manifest: Schema.String,
@@ -28,26 +27,6 @@ const BumpDependenciesConfigSchema = Schema.Struct({
 
 /** Paths of the repository files that the dependency policy reads and updates. */
 export type BumpDependenciesConfig = typeof BumpDependenciesConfigSchema.Type;
-
-const JsonObject = Schema.fromJsonString(
-  Schema.Record(Schema.String, Schema.Unknown)
-);
-
-/** The root manifest fields that the dependency policy reads and writes. */
-const RootManifestSchema = Schema.Struct({
-  devDependencies: Schema.Record(Schema.String, Schema.String),
-  devEngines: Schema.Struct({
-    runtime: Schema.Struct({ version: Schema.String }),
-  }),
-  overrides: Schema.Record(Schema.String, Schema.String),
-  packageManager: Schema.String,
-  workspaces: Schema.Struct({
-    catalog: Schema.Record(Schema.String, Schema.String),
-    packages: Schema.Array(Schema.String),
-  }),
-});
-
-type RootManifest = typeof RootManifestSchema.Type;
 
 const RoutineSectionSchema = Schema.Literals([
   "catalog",
@@ -73,39 +52,6 @@ type HoldReview = DependencyHold & {
   readonly current: string;
   readonly latest: string;
 };
-
-/** A dependency policy check failed: a reviewed hold drifted or the manifest is not valid. */
-class DependencyPolicyError extends Schema.TaggedError<
-  DependencyPolicyError,
-  { readonly brand: unique symbol }
->()("DependencyPolicyError", { message: Schema.String }) {}
-
-/** Reads the root manifest as an open JSON object and as the fields the policy owns. */
-const readManifest = Effect.fn("DependencyPolicy.readManifest")(function* (
-  path: string
-) {
-  const source = yield* readSource(path).pipe(
-    Effect.mapError(
-      (error) => new DependencyPolicyError({ message: error.message })
-    )
-  );
-  const document = yield* Schema.decodeEffect(JsonObject)(source).pipe(
-    Effect.mapError(
-      () => new DependencyPolicyError({ message: `${path} is not valid.` })
-    )
-  );
-  const fields = yield* Schema.decodeUnknownEffect(RootManifestSchema)(
-    document
-  ).pipe(
-    Effect.mapError(
-      () =>
-        new DependencyPolicyError({
-          message: `${path} has an invalid shape.`,
-        })
-    )
-  );
-  return { document, fields };
-});
 
 /** Returns the manifest declaration that one reviewed hold reads. */
 function currentVersion(hold: DependencyHold, manifest: RootManifest) {
@@ -246,36 +192,6 @@ function declaredUpdates(
   );
 }
 
-/** Writes the planned declarations into the root manifest and keeps every other field. */
-const writeManifest = Effect.fn("DependencyPolicy.writeManifest")(function* (
-  path: string,
-  document: Readonly<Record<string, unknown>>,
-  fields: RootManifest,
-  updates: readonly RoutineUpdate[]
-) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const next = {
-    ...document,
-    devDependencies: {
-      ...fields.devDependencies,
-      ...declaredUpdates(updates, "devDependencies"),
-    },
-    overrides: {
-      ...fields.overrides,
-      ...declaredUpdates(updates, "overrides"),
-    },
-    workspaces: {
-      ...fields.workspaces,
-      catalog: {
-        ...fields.workspaces.catalog,
-        ...declaredUpdates(updates, "catalog"),
-      },
-    },
-  };
-  const text = yield* Schema.encodeEffect(JsonObject)(next);
-  yield* fileSystem.writeFileString(path, text);
-});
-
 /** Verifies every reviewed hold, moves routine dependencies to their newest release, and refreshes the lock. */
 export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
   function* (config: BumpDependenciesConfig, runner: BunRunner = runBun) {
@@ -298,7 +214,11 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       runner
     );
     if (updates.length > 0) {
-      yield* writeManifest(config.manifest, document, fields, updates);
+      yield* writeManifest(config.manifest, document, fields, {
+        catalog: declaredUpdates(updates, "catalog"),
+        devDependencies: declaredUpdates(updates, "devDependencies"),
+        overrides: declaredUpdates(updates, "overrides"),
+      });
     }
 
     const refresh = yield* runner(config.root, ["update"]);
