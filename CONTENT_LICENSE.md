@@ -60,14 +60,16 @@ Without written permission, you may do only the following:
 
 ## 4. Search Engines and Answers
 
-A general public search engine or answer service may crawl `nakafa.com` as its
-`robots.txt` allows, keep the copies its index needs, and show a snippet of no
-more than 160 characters in its results. It may also answer a user's question
-from a Nakafa page at the time the question is asked, if the answer names
-Nakafa, links to the page used, and quotes no more than one sentence from it.
+A general public search engine or answer service, including an AI assistant
+that answers with web results, may crawl `nakafa.com` as its `robots.txt`
+allows, keep the copies its index needs, and show the snippets and previews
+that the page's robots meta tags allow. It may also answer a user's question
+from a Nakafa page, if the answer cites the page with a link to it and quotes
+no more than one sentence from it.
 
-Only a crawler that identifies itself as a search or answer crawler, and that
-uses its copies only as this Section describes, may crawl under it. This Section
+Only a crawler that identifies itself as a search or answer crawler, or a
+fetcher that retrieves a page because a user asked for it, and that uses its
+copies only as this Section describes, may act under it. This Section
 does not cover any course, tutoring service, school, study app, subscription,
 paid service, advertisement, channel, account, or product built on Nakafa
 content, or any service that uses Nakafa content to attract customers,
@@ -91,6 +93,12 @@ Copyright. It is also published in machine-readable form at
 `tdm-policy` headers of the official website's pages, and in the
 `Content-Signal` line and the training-crawler rules of
 `https://nakafa.com/robots.txt`.
+
+The one exception is Google's `Google-Extended` token. Google uses that one
+token both for training Gemini models and for grounding Gemini answers in pages
+it has crawled, and offers no way to allow one without the other. So that
+Gemini can cite Nakafa, `robots.txt` allows it, and Google may use Nakafa
+content for the uses Google ties to that token.
 
 ## 6. What Is Forbidden
 
