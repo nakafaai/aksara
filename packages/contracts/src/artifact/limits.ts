@@ -1,6 +1,5 @@
 import { Effect } from "effect";
 import {
-  ArtifactCompiledByteLengthMismatchError,
   ArtifactPayloadFieldByteLimitError,
   ArtifactVerificationByteLimitError,
 } from "#contracts/artifact/spec";
@@ -12,11 +11,12 @@ import {
 } from "#contracts/content";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,
-  MAX_COMPILED_CODE_BYTES,
+  MAX_CONTENT_TREE_BYTES,
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
   MAX_SIGNED_ARTIFACT_BYTES,
 } from "#contracts/limits";
+import { canonicalizeContentTree } from "#contracts/tree";
 
 /** Rejects a complete signed artifact envelope above its wire ceiling. */
 function enforceSignedWireLimit(artifact: SignedContentArtifact) {
@@ -55,22 +55,12 @@ function enforcePayloadFieldLimit(
   );
 }
 
-/** Verifies complete wire, declared bytes, and every bounded payload field. */
+/** Verifies the complete wire and every bounded payload field. */
 export const validateArtifactByteIntegrity = Effect.fn(
   "AksaraContracts.validateArtifactByteIntegrity"
 )(function* (artifact: SignedContentArtifact) {
   yield* enforceSignedWireLimit(artifact);
   const { payload } = artifact;
-  const compiledBytes = new TextEncoder().encode(
-    payload.compiledCode
-  ).byteLength;
-  if (payload.byteLength !== compiledBytes) {
-    return yield* new ArtifactCompiledByteLengthMismatchError({
-      actualBytes: compiledBytes,
-      contentKey: payload.contentKey,
-      declaredBytes: payload.byteLength,
-    });
-  }
   yield* enforcePayloadFieldLimit(
     payload,
     "rawMdx",
@@ -79,9 +69,9 @@ export const validateArtifactByteIntegrity = Effect.fn(
   );
   yield* enforcePayloadFieldLimit(
     payload,
-    "compiledCode",
-    payload.compiledCode,
-    MAX_COMPILED_CODE_BYTES
+    "contentTree",
+    canonicalizeContentTree(payload.contentTree),
+    MAX_CONTENT_TREE_BYTES
   );
   yield* enforcePayloadFieldLimit(
     payload,

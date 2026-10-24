@@ -82,11 +82,11 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.53.3",
+    approvedCurrent: "0.56.0",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. 0.53.3 makes effect-tsgo diagnostics report related locations. 0.53.4 only moves the TypeScript next tag, which Aksara does not use, and the one-day minimum release age admits it on 18 October 2026. Every rule is decided in packages/typescript-config/base.json. The rule schema from 0.53.3 to 0.56.1 adds preferEffectString (off by default) and schemaClassObjectLiteral (warning by default) and changes no existing rule. Both must be decided in base.json before 0.56.1 is adopted, and that rule block must match nakafa.com (docs/adr/compiler.md), so the compiler stays on 0.53.3 until nakafa.com moves.",
+      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. 0.53.3 makes effect-tsgo diagnostics report related locations. 0.53.4 only moves the TypeScript next tag, which Aksara does not use, and the one-day minimum release age admits it on 18 October 2026. Every rule is decided in packages/typescript-config/base.json. @effect/tsgo 0.56.0 adds preferEffectString (off by default) and schemaClassObjectLiteral (warning by default) and changes no existing rule. base.json decides both as nakafa.com's rule record does: preferEffectString stays off, and schemaClassObjectLiteral is error. The compiler moves to 0.56.0 with nakafa.com's upgrade lane. 0.56.1, the reviewed upstream release, moves in its own change once the one-day minimum release age admits it. Every later version must decide its new rules in base.json in the same change, and that rule block must match nakafa.com (docs/adr/compiler.md).",
     registry: "@effect/tsgo@latest",
     reviewedLatest: "0.56.1",
     source: "root-dev-dependency",
@@ -146,16 +146,6 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     registry: "bun@latest",
     reviewedLatest: "1.4.4",
     source: "package-manager",
-  },
-  {
-    approvedCurrent: "0.19.0",
-    cohort: "Math rendering",
-    dependency: "micromark-extension-math@3.1.0>katex",
-    reason:
-      "An override that pins the katex used by micromark-extension-math@3.1.0. Its 0.19.1 release was published on 23 October 2026 at 20:41 UTC, and the one-day minimum release age admits it only from 24 October 2026 at 20:41 UTC. Move this override to 0.19.1 and delete this hold in the same change.",
-    registry: "katex@latest",
-    reviewedLatest: "0.19.1",
-    source: "override",
   },
 ];
 

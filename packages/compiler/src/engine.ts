@@ -11,13 +11,14 @@ import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,
-  MAX_COMPILED_CODE_BYTES,
+  MAX_CONTENT_TREE_BYTES,
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
 } from "@nakafa/aksara-contracts/limits";
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { canonicalizeContentTree } from "@nakafa/aksara-contracts/tree";
 import {
   Array as Arr,
   Effect,
@@ -49,6 +50,7 @@ import {
   validateMetadata,
 } from "#compiler/metadata";
 import { createSourcePolicy } from "#compiler/policy/source";
+import { evaluateContentTree } from "#compiler/tree/evaluate";
 
 type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
@@ -66,7 +68,7 @@ function capturePlainText(
 /** Enforces one compiler-owned UTF-8 field ceiling with a typed failure. */
 export function enforceContentByteLimit(
   contentKey: ContentKey,
-  field: "rawMdx" | "compiledCode" | "plainText" | "canonicalPayload",
+  field: "rawMdx" | "contentTree" | "plainText" | "canonicalPayload",
   value: string,
   maxBytes: number
 ) {
@@ -197,12 +199,22 @@ export const compileValidatedContent = Effect.fn(
 
   yield* sourcePolicy.validate();
 
-  const compiledCode = String(file);
-  const byteLength = yield* enforceContentByteLimit(
+  const requiredComponents = yield* selectRendererRequirements(
     request.contentKey,
-    "compiledCode",
-    compiledCode,
-    MAX_COMPILED_CODE_BYTES
+    requiredComponentNames,
+    components
+  );
+  const contentTree = yield* evaluateContentTree({
+    compiledCode: String(file),
+    componentNames: components,
+    contentKey: request.contentKey,
+    sourcePath: request.sourcePath,
+  });
+  yield* enforceContentByteLimit(
+    request.contentKey,
+    "contentTree",
+    canonicalizeContentTree(contentTree),
+    MAX_CONTENT_TREE_BYTES
   );
   yield* enforceContentByteLimit(
     request.contentKey,
@@ -210,22 +222,16 @@ export const compileValidatedContent = Effect.fn(
     plainText,
     MAX_PLAIN_TEXT_BYTES
   );
-  const requiredComponents = yield* selectRendererRequirements(
-    request.contentKey,
-    requiredComponentNames,
-    components
-  );
   const payload = CompiledContentPayloadSchema.make({
     artifactLocale: request.artifactLocale,
-    byteLength,
-    compiledCode,
     compilerConfigHash: yield* createCompilerConfigHash(
       request.rendererManifest,
       request.rendererDomain
     ),
     compilerVersion: AKSARA_COMPILER_VERSION,
     contentKey: request.contentKey,
-    format: "mdx-function-body",
+    contentTree,
+    format: "content-tree",
     mdxCompilerVersion: MDX_COMPILER_VERSION,
     plainText,
     rawMdx: request.rawMdx,

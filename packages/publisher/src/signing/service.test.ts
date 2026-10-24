@@ -158,11 +158,14 @@ describe("Ed25519 publication signing", () => {
   it.effect("refuses to sign an artifact above the complete wire ceiling", () =>
     Effect.gen(function* () {
       const { signer } = yield* makeSigner();
-      const compiledCode = "x".repeat(MAX_SIGNED_ARTIFACT_BYTES);
       const oversizedPayload = CompiledContentPayloadSchema.make({
         ...payload,
-        byteLength: new TextEncoder().encode(compiledCode).byteLength,
-        compiledCode,
+        contentTree: {
+          $node: "element",
+          children: ["x".repeat(MAX_SIGNED_ARTIFACT_BYTES)],
+          name: "fragment",
+          props: {},
+        },
       });
       const error = yield* signer
         .signArtifact(oversizedPayload)
@@ -211,9 +214,9 @@ describe("Ed25519 publication signature vectors", () => {
         release.manifestHash,
         runtimeBundle.bundleHash,
       ]).toEqual([
-        "sha256:a988ede8eb7f5ec4efe3249d10ae5feb8cd6b6691e5c8bf21c461fda0c297f32",
-        "sha256:2920f6035d15b14d7f75537d9da7dc127c8f21a4a52f2339006e9869b03e4293",
-        "sha256:003052adf84cda81dfffda8dfaa15cb7e6e7223630f01bfb835c88c6ca7b8f72",
+        "sha256:ea361ee31f9369675a115b986903ba6efd3bc5a1b0970cdffcbe10541f70325e",
+        "sha256:2a0b8a7be69f28b0700181d26d5946f97ea99ee4d321857aea90aacf3a385cd7",
+        "sha256:66f4dd92fbf1acb8bd5d42f65e18cb5d629fdb66300b85d34be6d592b40dbe58",
       ]);
       const artifactInput = canonicalizeContentArtifactSigningInput(
         artifact.artifactHash,

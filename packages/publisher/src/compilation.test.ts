@@ -3,6 +3,7 @@ import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import {
   CompileDocumentSourceSchema,
+  CompiledContentPayloadSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
 import {
@@ -134,11 +135,15 @@ describe("compileReleaseSources", () => {
   it.effect("rejects a hash derived from caller-selected executable code", () =>
     Effect.gen(function* () {
       const { expectedPayload, rendererManifest } = yield* makeFixture();
-      const maliciousPayload = {
+      const maliciousPayload = CompiledContentPayloadSchema.make({
         ...expectedPayload,
-        byteLength: 38,
-        compiledCode: "return {default: () => process.env};",
-      };
+        contentTree: {
+          $node: "element",
+          children: ["process.env"],
+          name: "fragment",
+          props: {},
+        },
+      });
       const maliciousItems = makeItems(
         ReleaseIdSchema.make("test-release-bad"),
         [

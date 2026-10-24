@@ -32,6 +32,7 @@ import {
   signEd25519Message,
 } from "@nakafa/aksara-contracts/signature/key";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
+import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
 import { Effect, Schema, Stream } from "effect";
 import {
   type DerivedRollbackState,
@@ -42,7 +43,6 @@ import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
 
 const rawMdx = "## Test protocol";
-const compiledCode = "return {};";
 const { privateKeyPem, publicKeyPem } = await Effect.runPromise(
   generateEd25519KeyPem()
 );
@@ -63,12 +63,11 @@ export const makeRollbackRendererManifest = Effect.fn(
 const rawMdxSourceHash = await Effect.runPromise(hashText(rawMdx));
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: new TextEncoder().encode(compiledCode).byteLength,
-  compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "test:rollback-record",
-  format: "mdx-function-body",
+  contentTree: { $node: "element", children: [], name: "fragment", props: {} },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,
@@ -181,13 +180,17 @@ export const rollbackDeletionRecord = RollbackRecordSchema.make({
 export const makeLargeRollbackRecord = Effect.fn(
   "publisher.rollback.makeLargeTestRecord"
 )(function* () {
-  const largeCompiledCode = `/*${"x".repeat(240 * 1024)}*/\nreturn {};`;
+  const largeContentTree: ContentTreeElement = {
+    $node: "element",
+    children: ["x".repeat(240 * 1024)],
+    name: "fragment",
+    props: {},
+  };
   const largeRawMdx = `{/*${"m".repeat(90 * 1024)}*/}`;
   const largePayload = yield* Schema.decodeEffect(CompiledContentPayloadSchema)(
     {
       ...rollbackArtifact.payload,
-      byteLength: new TextEncoder().encode(largeCompiledCode).byteLength,
-      compiledCode: largeCompiledCode,
+      contentTree: largeContentTree,
       plainText: "p".repeat(90 * 1024),
       rawMdx: largeRawMdx,
       sourceHash: yield* hashText(largeRawMdx),

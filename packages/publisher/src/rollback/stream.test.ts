@@ -30,6 +30,7 @@ import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRollbackRecords } from "#publisher/rollback/stream";
 import { PublicationTargetTransportError } from "#publisher/target/errors";
+import { textTree } from "#test/content";
 import { materialGraph } from "#test/graph";
 import { makePublicationTarget } from "#test/target";
 
@@ -77,16 +78,14 @@ function deletionPage(index: number, total: number, done = false) {
 /** Creates one schema-valid page whose canonical wire exceeds four MiB. */
 function oversizedPage() {
   const appLocale = AppLocaleSchema.make("en");
-  const compiledCode = "x".repeat(MAX_ROLLBACK_PAGE_BYTES);
   const artifactHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
   const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
     artifactLocale: "en",
-    byteLength: new TextEncoder().encode(compiledCode).byteLength,
-    compiledCode,
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
-    compilerVersion: "0.1.0",
+    compilerVersion: "0.2.0",
     contentKey: "test:rollback-large",
-    format: "mdx-function-body",
+    contentTree: textTree("x".repeat(MAX_ROLLBACK_PAGE_BYTES)),
+    format: "content-tree",
     mdxCompilerVersion: "3.1.1",
     plainText: "Pelajaran é ✓ 数学",
     rawMdx: "## Test protocol",
@@ -270,7 +269,7 @@ describe("streamRollbackRecords", () => {
         Effect.map((error) =>
           expect(error).toMatchObject({
             _tag: "RollbackPageByteLimitError",
-            actualBytes: 8_392_356,
+            actualBytes: 8_392_426,
           })
         )
       )

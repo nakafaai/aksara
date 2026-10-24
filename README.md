@@ -234,8 +234,10 @@ attested archive for independent byte and source verification.
 
 ## License
 
-Software is governed by the [Nakafa Source Available License 1.0](LICENSE).
-Educational content is governed by the
-[Nakafa Content License 1.0](CONTENT_LICENSE.md), subject to third-party rights
-and attribution. Nakafa brand usage is governed by the
-[Nakafa Trademark and Brand Policy](TRADEMARKS.md).
+Aksara is source available, not open source: it is public so that anyone can
+read and audit it, not so that anyone can copy, fork, publish, rebrand, or gain
+from it. Software is governed by the
+[Nakafa Source Available License 2.0](LICENSE). Educational content is governed
+by the [Nakafa Content License 2.0](CONTENT_LICENSE.md), which reserves text and
+data mining and AI training, subject to third-party rights. Nakafa brand usage
+is governed by the [Nakafa Trademark and Brand Policy 2.0](TRADEMARKS.md).

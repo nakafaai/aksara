@@ -14,6 +14,7 @@ import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { encodeJsonText } from "#contracts/text/json";
 import { compareCodeUnits } from "#contracts/text/order";
+import { ContentTreeSchema, canonicalizeContentTree } from "#contracts/tree";
 
 /** Published content families backed by real Aksara source registries. */
 export const ContentFamilySchema = Schema.Literals([
@@ -63,7 +64,7 @@ export function compareContentHeads(
 }
 
 /** Compiler protocol implemented by this Aksara compiler release. */
-export const AKSARA_COMPILER_VERSION = "0.1.0";
+export const AKSARA_COMPILER_VERSION = "0.2.0";
 
 /** Official MDX compiler version used to produce function-body artifacts. */
 export const MDX_COMPILER_VERSION = "3.1.1";
@@ -85,18 +86,14 @@ export const CompileDocumentRequestSchema = Schema.Struct({
 });
 export type CompileDocumentRequest = typeof CompileDocumentRequestSchema.Type;
 
-/** Precompiled trusted payload stored and signed before server-only execution. */
+/** Compiled trusted payload: its evaluated content tree is what Nakafa renders. */
 export const CompiledContentPayloadSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
-  byteLength: Schema.Finite.pipe(
-    Schema.check(Schema.isInt()),
-    Schema.check(Schema.isGreaterThanOrEqualTo(0))
-  ),
-  compiledCode: Schema.String,
   compilerConfigHash: Sha256HashSchema,
   compilerVersion: Schema.Literal(AKSARA_COMPILER_VERSION),
   contentKey: ContentKeySchema,
-  format: Schema.Literal("mdx-function-body"),
+  contentTree: ContentTreeSchema,
+  format: Schema.Literal("content-tree"),
   mdxCompilerVersion: Schema.Literal(MDX_COMPILER_VERSION),
   plainText: Schema.String,
   rawMdx: Schema.String,
@@ -117,25 +114,11 @@ export type SignedContentArtifact = typeof SignedContentArtifactSchema.Type;
 
 const CONTENT_ARTIFACT_SIGNATURE_DOMAIN = "nakafa.aksara.content-artifact";
 
-/** Serializes a compiled payload with stable field and component order. */
+/** Serializes a compiled payload with stable field, prop, and element order. */
 export function canonicalizeCompiledContentPayload(
   payload: CompiledContentPayload
 ) {
-  return encodeJsonText({
-    artifactLocale: payload.artifactLocale,
-    byteLength: payload.byteLength,
-    compiledCode: payload.compiledCode,
-    compilerConfigHash: payload.compilerConfigHash,
-    compilerVersion: payload.compilerVersion,
-    contentKey: payload.contentKey,
-    format: payload.format,
-    mdxCompilerVersion: payload.mdxCompilerVersion,
-    plainText: payload.plainText,
-    rawMdx: payload.rawMdx,
-    rendererDomain: payload.rendererDomain,
-    requiredComponents: payload.requiredComponents,
-    sourceHash: payload.sourceHash,
-  });
+  return `{"artifactLocale":${encodeJsonText(payload.artifactLocale)},"compilerConfigHash":${encodeJsonText(payload.compilerConfigHash)},"compilerVersion":${encodeJsonText(payload.compilerVersion)},"contentKey":${encodeJsonText(payload.contentKey)},"contentTree":${canonicalizeContentTree(payload.contentTree)},"format":${encodeJsonText(payload.format)},"mdxCompilerVersion":${encodeJsonText(payload.mdxCompilerVersion)},"plainText":${encodeJsonText(payload.plainText)},"rawMdx":${encodeJsonText(payload.rawMdx)},"rendererDomain":${encodeJsonText(payload.rendererDomain)},"requiredComponents":${encodeJsonText(payload.requiredComponents)},"sourceHash":${encodeJsonText(payload.sourceHash)}}`;
 }
 
 /** Returns the domain-separated canonical bytes covered by Ed25519. */

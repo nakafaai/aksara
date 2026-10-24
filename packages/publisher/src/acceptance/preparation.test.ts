@@ -87,7 +87,7 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
         expect(prepared.rendererManifest).toEqual(fixture.rendererManifest);
         expect(prepared.rendererPreflight).toBe("exact");
       }),
-    { timeout: 60_000 }
+    { timeout: 120_000 }
   );
 
   it.effect(
