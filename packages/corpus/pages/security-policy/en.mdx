@@ -50,29 +50,29 @@ Operational exception reports do not carry a user, account, or product-analytics
 
 ### Secure development and change management
 
-At the revision below, the Nakafa repository workflow audits dependencies and runs tests for pull requests. Trusted internal and main-branch runs also build the production application unless a change only edits documentation or existing test files. The workflow has been turned off since October 14, 2026, so these checks do not run there now, and changes are verified locally before they merge. When they run, these checks reduce risk, but they do not establish that every vulnerability has been found or remediated.
+At the revision below, the Nakafa repository workflow audits dependencies and runs tests for pull requests. Trusted internal and main-branch runs also build the production application unless a change only edits documentation or existing test files. The workflow file was deleted on October 17, 2026, so these checks no longer run in GitHub Actions, and changes are verified locally before they merge. When they run, these checks reduce risk, but they do not establish that every vulnerability has been found or remediated.
 
 ### Implementation evidence for these revisions
 
 The technical statements above are bounded to the following exact Nakafa implementation revisions and provider documentation:
 
-- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
+- [Application-wide transport and browser security headers](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/site/index.ts)
 - [Validated application sessions and active-user checks](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
-- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
+- [Timing-safe internal content bearer verification](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/lib/content/internal/authorization.ts)
 - [Consent-gated browser analytics with automatic collection disabled](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Bounded, identity-free operational exception reporting](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
-- [Server entry request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
-- [Gate that allows server exception reports only in the production deployment and outside prerendering](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/packages/analytics/server-reporting.ts)
+- [Server entry request-error capture through the bounded reporting adapter](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/server.ts)
+- [Gate that allows server exception reports only in the production deployment and outside prerendering](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/analytics/server-reporting.ts)
 - [Deletion-aware backend analytics delivery](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Pull-request dependency audit and test workflow](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Trusted production-build workflow step](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
-- [Vercel HTTPS and certificate delivery documentation](https://vercel.com/docs/security#encryption)
+- [Cloudflare HTTPS and certificate delivery documentation](https://developers.cloudflare.com/ssl/)
 
 ## Third-party service security
 
 The Services rely on third-party services. Their security practices and controls are important to the overall security of the Services. Our core third-party services include:
 
-- Vercel (hosting and delivery)
+- Cloudflare (hosting and delivery)
 - Convex (database, backend infrastructure, and AI request routing)
 - Polar (payments and subscription management)
 - Resend (email delivery)

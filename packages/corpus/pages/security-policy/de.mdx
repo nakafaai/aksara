@@ -50,29 +50,29 @@ Betriebsbezogene Ausnahmeberichte enthalten keine Nutzer-, Konto- oder Produktan
 
 ### Sichere Entwicklung und Änderungsverwaltung
 
-Laut der unten genannten Revision prüft der Nakafa-Repository-Workflow Abhängigkeiten und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe für die Hauptbranch erstellen zusätzlich die Produktionsanwendung, außer eine Änderung bearbeitet nur Dokumentation oder bestehende Testdateien. Der Workflow ist seit dem 14. Oktober 2026 deaktiviert, daher laufen diese Prüfungen dort nicht, und Änderungen werden vor dem Zusammenführen lokal geprüft. Wenn sie laufen, verringern sie Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
+Laut der unten genannten Revision prüft der Nakafa-Repository-Workflow Abhängigkeiten und führt Tests für Pull Requests aus. Vertrauenswürdige interne Läufe und Läufe für die Hauptbranch erstellen zusätzlich die Produktionsanwendung, außer eine Änderung bearbeitet nur Dokumentation oder bestehende Testdateien. Der Workflow wurde am 17. Oktober 2026 gelöscht, daher laufen diese Prüfungen nicht mehr in GitHub Actions, und Änderungen werden vor dem Zusammenführen lokal geprüft. Wenn sie laufen, verringern sie Risiken, belegen aber nicht, dass jede Schwachstelle gefunden oder behoben wurde.
 
 ### Implementierungsnachweise für diese Fassungen
 
 Die technischen Aussagen oben sind auf die folgenden genauen Nakafa-Implementierungsrevisionen und die Anbieterdokumentation begrenzt:
 
-- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
+- [Anwendungsweite Transport- und Browser-Sicherheitsheader](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/site/index.ts)
 - [Validierte Anwendungssitzungen und Prüfung aktiver Nutzerkonten](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
-- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
+- [Zeitkonstante Prüfung von Bearer-Zugangsdaten für interne Inhalte](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/lib/content/internal/authorization.ts)
 - [Einwilligungsbasierte Browseranalyse mit deaktivierter automatischer Erfassung](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Begrenzte betriebsbezogene Fehlerberichte ohne Nutzeridentität](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
-- [Erfassung von Anfragefehlern am Server-Einstiegspunkt über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/apps/www/app/server.ts)
-- [Prüfung, die Serverberichte nur in der Produktionsumgebung und außerhalb des Prerenderings freigibt](https://github.com/nakafaai/nakafa.com/blob/35bb26044847360c87c6ad6fcdc5c9e158bb2a09/packages/analytics/server-reporting.ts)
+- [Erfassung von Anfragefehlern am Server-Einstiegspunkt über den begrenzten Berichtsadapter](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/server.ts)
+- [Prüfung, die Serverberichte nur in der Produktionsumgebung und außerhalb des Prerenderings freigibt](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/analytics/server-reporting.ts)
 - [Löschungsbewusste Übermittlung von Backend-Analysen](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Workflow für Abhängigkeitsprüfung und Pull-Request-Tests](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Vertrauenswürdiger Workflow-Schritt für den Produktions-Build](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
-- [Vercel-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://vercel.com/docs/security#encryption)
+- [Cloudflare-Dokumentation zu HTTPS und Zertifikatsbereitstellung](https://developers.cloudflare.com/ssl/)
 
 ## Sicherheit externer Dienstleister
 
 Die Dienste sind auf externe Anbieter angewiesen. Deren Sicherheitsverfahren und Kontrollen sind für die Sicherheit der gesamten Dienste relevant. Zu unseren wichtigsten externen Diensten gehören:
 
-- Vercel (Hosting und Auslieferung)
+- Cloudflare (Hosting und Auslieferung)
 - Convex (Datenbank, Backend-Infrastruktur und Weiterleitung von KI-Anfragen)
 - Polar (Zahlungen und Abonnementverwaltung)
 - Resend (E-Mail-Versand)
