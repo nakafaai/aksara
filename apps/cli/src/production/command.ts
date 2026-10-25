@@ -14,7 +14,7 @@ import { makeGitPublicationSourceLive } from "@nakafa/aksara-publisher/git/sourc
 import { publishGitRelease } from "@nakafa/aksara-publisher/publication";
 import {
   PublicationActivation,
-  PublicationRecoveryId,
+  PublicationRetention,
   PublicationSigningKey,
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
@@ -217,7 +217,7 @@ export const runProductionCommand: (input: {
     yield* logPublicationScope(publishable.manifest);
     const receipt = yield* publishGitRelease(publishable).pipe(
       Effect.provideService(PublicationActivation, activation),
-      Effect.provideService(PublicationRecoveryId, input.args.recoveryId),
+      Effect.provideService(PublicationRetention, input.args.retention),
       Effect.provideService(ContentVerificationKeyResolver, keyResolver),
       Effect.provideService(PublicationSigningKey, signingKey),
       Effect.provideService(PublicationTarget, target),

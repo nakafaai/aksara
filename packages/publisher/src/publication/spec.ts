@@ -128,6 +128,20 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<
   releaseId: ReleaseIdSchema,
 }) {}
 
+/**
+ * A declared bootstrap does not name the candidate's base, or does not replace
+ * every head of that base, so it cannot skip the retained inverse.
+ */
+export class PublicationBootstrapError extends Schema.TaggedError<
+  PublicationBootstrapError,
+  { readonly brand: unique symbol }
+>()("PublicationBootstrapError", {
+  baseReleaseId: ReleaseIdSchema,
+  manifestBaseReleaseId: Schema.NullOr(ReleaseIdSchema),
+  reason: Schema.Literals(["base", "replacement"]),
+  releaseId: ReleaseIdSchema,
+}) {}
+
 /** Activation steps that can fail closed: renderer preflight and cache convergence. */
 export const PublicationActivationPhaseSchema = Schema.Literals([
   "cache",
@@ -152,11 +166,30 @@ export class PublicationSigningKey extends Context.Service<
   }
 >()("@nakafa/aksara-publisher/publication/spec/PublicationSigningKey") {}
 
-/** Operator-selected immutable identity for the pre-activation inverse release. */
-export class PublicationRecoveryId extends Context.Service<
-  PublicationRecoveryId,
-  typeof ReleaseIdSchema.Type
->()("@nakafa/aksara-publisher/publication/spec/PublicationRecoveryId") {}
+/**
+ * The one release that protects a candidate until activation: either a signed
+ * inverse, or a declared bootstrap over a retired base, which keeps no inverse.
+ */
+export const PublicationRetentionSchema = Schema.Union([
+  Schema.Struct({
+    kind: Schema.Literal("inverse"),
+    recoveryId: ReleaseIdSchema,
+  }),
+  Schema.Struct({
+    baseReleaseId: ReleaseIdSchema,
+    kind: Schema.Literal("bootstrap"),
+  }),
+]);
+
+/** One validated retention decision for a single publication. */
+export type PublicationRetentionDecision =
+  typeof PublicationRetentionSchema.Type;
+
+/** Operator-selected retention for one publication, injected at the boundary. */
+export class PublicationRetention extends Context.Service<
+  PublicationRetention,
+  PublicationRetentionDecision
+>()("@nakafa/aksara-publisher/publication/spec/PublicationRetention") {}
 
 /** Owns renderer preflight and post-commit Nakafa cache convergence. */
 export class PublicationActivation extends Context.Service<

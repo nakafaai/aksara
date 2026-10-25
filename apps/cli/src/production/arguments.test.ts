@@ -8,7 +8,16 @@ const baseArguments = [
   "--recovery-id",
   "recovery-2026-07-22",
 ] as const;
+const bootstrapArguments = [
+  "--release-id",
+  "release-2026-07-22",
+  "--bootstrap-over",
+  "release-retired",
+] as const;
 const assetHash = `sha256:${"a".repeat(64)}`;
+const next = ["--release-id", "release-next"] as const;
+const nextInverse = [...next, "--recovery-id", "release-next"] as const;
+const nextBootstrap = [...next, "--bootstrap-over", "release-retired"] as const;
 
 /** Decodes one production argument collection. */
 function parse(args: readonly string[]) {
@@ -27,8 +36,11 @@ describe("release production arguments", () => {
         yield* parse([...baseArguments, "--scope", "family:material"])
       ).toEqual({
         command: "release",
-        recoveryId: "recovery-2026-07-22",
         releaseId: "release-2026-07-22",
+        retention: {
+          kind: "inverse",
+          recoveryId: "recovery-2026-07-22",
+        },
         scope: {
           families: ["material"],
           snapshots: [],
@@ -44,14 +56,38 @@ describe("release production arguments", () => {
       ).toEqual({
         command: "release",
         rebuild: true,
-        recoveryId: "recovery-2026-07-22",
         releaseId: "release-2026-07-22",
+        retention: {
+          kind: "inverse",
+          recoveryId: "recovery-2026-07-22",
+        },
         scope: {
           families: ["page"],
           snapshots: [],
         },
       });
     })
+  );
+
+  it.effect(
+    "decodes a bootstrap over its retired base without an inverse",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* parse([...bootstrapArguments, "--scope", "family:material"])
+        ).toEqual({
+          command: "release",
+          releaseId: "release-2026-07-22",
+          retention: {
+            baseReleaseId: "release-retired",
+            kind: "bootstrap",
+          },
+          scope: {
+            families: ["material"],
+            snapshots: [],
+          },
+        });
+      })
   );
 
   it.effect("rejects a duplicate rebuild flag", () =>
@@ -115,24 +151,28 @@ describe("release production arguments", () => {
   );
 
   it.effect.each([
+    { args: ["--unknown", "value"], option: "command", reason: "unknown" },
+    { args: ["--asset-hash", assetHash], option: "command", reason: "unknown" },
+    { args: next, option: "--recovery-id", reason: "missing" },
+    { args: nextInverse, option: "--recovery-id", reason: "identity" },
     {
-      args: ["--unknown", "value"],
-      option: "command",
-      reason: "unknown",
+      args: [...bootstrapArguments, "--recovery-id", "recovery-2026-07-22"],
+      option: "--bootstrap-over",
+      reason: "conflict",
     },
     {
-      args: ["--asset-hash", assetHash],
-      option: "command",
-      reason: "unknown",
+      args: ["--release-id", "release-2026-07-22", "--bootstrap-over"],
+      option: "--bootstrap-over",
+      reason: "value",
     },
     {
-      args: ["--release-id", "release-next"],
-      option: "--recovery-id",
-      reason: "missing",
-    },
-    {
-      args: ["--release-id", "release-next", "--recovery-id", "release-next"],
-      option: "--recovery-id",
+      args: [
+        "--release-id",
+        "release-next",
+        "--bootstrap-over",
+        "release-next",
+      ],
+      option: "--bootstrap-over",
       reason: "identity",
     },
   ] as const)("rejects invalid production input %#", (input) =>
@@ -142,6 +182,33 @@ describe("release production arguments", () => {
         command: "release",
         option: input.option,
         reason: input.reason,
+      });
+    })
+  );
+});
+
+describe("recovery and bootstrap options by command", () => {
+  it.effect.each([
+    ["accept", "--recovery-id", "missing", next],
+    ["parity", "--recovery-id", "missing", next],
+    ["recover", "--recovery-id", "missing", next],
+    ["accept", "--recovery-id", "identity", nextInverse],
+    ["parity", "--recovery-id", "identity", nextInverse],
+    ["recover", "--recovery-id", "identity", nextInverse],
+    ["accept", "--bootstrap-over", "unknown", nextBootstrap],
+    ["parity", "--bootstrap-over", "unknown", nextBootstrap],
+    ["recover", "--bootstrap-over", "unknown", nextBootstrap],
+    ["abort", "--bootstrap-over", "unknown", nextBootstrap],
+    ["cleanup", "--bootstrap-over", "unknown", nextBootstrap],
+  ] as const)("rejects %s with %s as %s", ([command, option, reason, args]) =>
+    Effect.gen(function* () {
+      expect(
+        yield* parseProductionArguments(command, args).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "ProductionArgumentsError",
+        command,
+        option,
+        reason,
       });
     })
   );

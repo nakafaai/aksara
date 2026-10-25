@@ -24,11 +24,12 @@ import type {
 import type {
   PublicationActivation,
   PublicationActivationError,
+  PublicationBootstrapError,
   PublicationModeMismatchError,
-  PublicationRecoveryId,
   PublicationRecoveryIdentityError,
   PublicationReleaseAbortedError,
   PublicationResumePhaseError,
+  PublicationRetention,
   PublicationSigningKey,
   PublicationSource,
   PublicationSourceError,
@@ -68,6 +69,7 @@ export type PublishContentReleaseError<E> =
   | PublicationBatchLimitError
   | SnapshotBatchBindingError
   | PublicationActivationError
+  | PublicationBootstrapError
   | PublicationReceiptMismatchError
   | PublicationRecoveryIdentityError
   | PublicationModeMismatchError
@@ -87,7 +89,7 @@ type PublishReleaseRequirements<R> =
   | FileSystem.FileSystem
   | Path.Path
   | PublicationSigningKey
-  | PublicationRecoveryId
+  | PublicationRetention
   | PublicationActivation
   | PublicationTarget
   | Effect.Services<ReturnType<typeof verifySignedContentArtifact>>

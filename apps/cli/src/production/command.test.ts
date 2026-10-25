@@ -34,8 +34,11 @@ describe("production command", () => {
       });
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-active"),
         releaseId: releaseId("release-active"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-active"),
+        },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-active" });
@@ -65,8 +68,11 @@ describe("production command", () => {
       });
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-completed"),
         releaseId: releaseId("release-completed"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-completed"),
+        },
         scope: FUNCTION_SCOPE,
       });
       const expectedReceipt = yield* receiptFor(completed.release.manifest);
@@ -97,8 +103,11 @@ describe("production command", () => {
       });
       const error = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-active"),
         releaseId: releaseId("release-active"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-active"),
+        },
         scope: FUNCTION_SCOPE,
       }).pipe(Effect.flip);
       expect(error).toMatchObject({
@@ -121,8 +130,11 @@ describe("production command", () => {
         calls.derivedPublicKeyPem = "different-derived-public-key";
         const error = yield* productionProgram({
           command: "release",
-          recoveryId: releaseId("recovery-rejected"),
           releaseId: releaseId("release-rejected"),
+          retention: {
+            kind: "inverse",
+            recoveryId: releaseId("recovery-rejected"),
+          },
           scope: FUNCTION_SCOPE,
         }).pipe(Effect.flip);
         expect(error).toMatchObject({
@@ -151,8 +163,11 @@ describe("production command", () => {
         });
         const error = yield* productionProgram({
           command: "release",
-          recoveryId: releaseId("recovery-other"),
           releaseId: releaseId("release-other"),
+          retention: {
+            kind: "inverse",
+            recoveryId: releaseId("recovery-other"),
+          },
           scope: FUNCTION_SCOPE,
         }).pipe(Effect.flip);
         expect(error).toMatchObject({
@@ -183,8 +198,11 @@ describe("production command", () => {
       });
       const error = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-candidate"),
+        },
         scope: FUNCTION_SCOPE,
       }).pipe(Effect.flip);
       expect(error).toMatchObject({
@@ -207,8 +225,8 @@ describe("production command", () => {
 
       const error = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
+        retention: { kind: "inverse", recoveryId: releaseId("recovery-next") },
         scope: FUNCTION_SCOPE,
       }).pipe(Effect.flip);
       expect(error).toMatchObject({
@@ -236,8 +254,11 @@ describe("production command", () => {
       calls.manifestMismatch = true;
       const error = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-candidate"),
+        },
         scope: FUNCTION_SCOPE,
       }).pipe(Effect.flip);
       expect(error).toMatchObject({

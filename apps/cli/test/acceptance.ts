@@ -6,7 +6,7 @@ import { StageSnapshotBatchInputSchema } from "@nakafa/aksara-contracts/transpor
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import {
   PublicationActivation,
-  PublicationRecoveryId,
+  PublicationRetention,
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,
@@ -110,7 +110,9 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
         const signingKey = yield* PublicationSigningKey;
         const resolver = yield* ContentVerificationKeyResolver;
         const activation = yield* PublicationActivation;
-        calls.recoveryId = yield* PublicationRecoveryId;
+        const retention = yield* PublicationRetention;
+        calls.recoveryId =
+          retention.kind === "inverse" ? retention.recoveryId : "";
         yield* PublicationSource;
         const target = yield* PublicationTarget;
         const resolved = yield* resolver.resolve(
