@@ -9,10 +9,10 @@ import {
 import { Effect, type Redacted } from "effect";
 import { HttpClient } from "effect/http";
 import {
-  type CacheSurface,
-  makeAbsentCacheInvalidation,
-  makeProductionCacheInvalidation,
-} from "#cli/cache/activation";
+  makeAbsentReleaseDispatch,
+  makeProductionReleaseDispatch,
+  type ReleaseDispatch,
+} from "#cli/dispatch/activation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
 
 /** Applies the exact or directional renderer proof selected during preparation. */
@@ -38,22 +38,21 @@ const verifyRendererPreflight = Effect.fn("AksaraCli.verifyRendererPreflight")(
   }
 );
 
-/** Captures HTTP for the pre-commit renderer and post-commit cache gates. */
+/** Captures HTTP for the pre-commit renderer gate and the post-commit release dispatch. */
 export const makeProductionActivation = Effect.fn(
   "AksaraCli.makeProductionActivation"
 )(function* (settings: {
-  readonly cacheSurface: CacheSurface;
   readonly endpoint: URL;
+  readonly releaseDispatch: ReleaseDispatch;
   readonly token: Redacted.Redacted<string>;
 }) {
   const client = yield* HttpClient.HttpClient;
   const invalidate =
-    settings.cacheSurface === "none"
-      ? makeAbsentCacheInvalidation()
-      : makeProductionCacheInvalidation({
+    settings.releaseDispatch.surface === "none"
+      ? makeAbsentReleaseDispatch()
+      : makeProductionReleaseDispatch({
           client,
-          endpoint: settings.endpoint,
-          token: settings.token,
+          token: settings.releaseDispatch.token,
         });
   /** Re-fetches and verifies the deployed renderer immediately before commit. */
   const verify = (bundle: ContentReleaseBundle, preflight: RendererPreflight) =>

@@ -1,7 +1,12 @@
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
-import { type CacheSurface, CacheSurfaceSchema } from "#cli/cache/activation";
+import {
+  type ReleaseDispatch,
+  ReleaseDispatchSchema,
+  type ReleaseSurface,
+  ReleaseSurfaceSchema,
+} from "#cli/dispatch/activation";
 import {
   ProductionEnvironmentError,
   type ProductionVariable,
@@ -25,7 +30,7 @@ export type PublicationEnvironment = typeof PublicationEnvironmentSchema.Type;
 /** Validated secrets and endpoints required by a production content command. */
 const RecoveryEnvironmentSchema = Schema.Struct({
   ...PublicationEnvironmentSchema.fields,
-  cacheSurface: CacheSurfaceSchema,
+  releaseDispatch: ReleaseDispatchSchema,
   rendererEndpoint: Schema.URL,
   rendererToken: Schema.Redacted(Schema.String),
 });
@@ -185,15 +190,25 @@ export const readRecoveryEnvironment = Effect.fn(
     tokenConfig("AKSARA_RENDERER_TOKEN"),
     "AKSARA_RENDERER_TOKEN"
   );
-  const cacheSurface = yield* readConfig(
-    Config.schema(CacheSurfaceSchema, "AKSARA_CACHE_SURFACE").pipe(
-      Config.withDefault<CacheSurface>("deployed")
+  const releaseSurface = yield* readConfig(
+    Config.schema(ReleaseSurfaceSchema, "AKSARA_CACHE_SURFACE").pipe(
+      Config.withDefault<ReleaseSurface>("deployed")
     ),
     "AKSARA_CACHE_SURFACE"
   );
+  const releaseDispatch: ReleaseDispatch =
+    releaseSurface === "none"
+      ? { surface: "none" }
+      : {
+          surface: "deployed",
+          token: yield* readConfig(
+            tokenConfig("AKSARA_NAKAFA_DISPATCH_TOKEN"),
+            "AKSARA_NAKAFA_DISPATCH_TOKEN"
+          ),
+        };
   return {
     ...publication,
-    cacheSurface,
+    releaseDispatch,
     rendererEndpoint,
     rendererToken,
   } satisfies typeof RecoveryEnvironmentSchema.Type;

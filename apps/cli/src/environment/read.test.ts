@@ -180,7 +180,7 @@ describe("production environment", () => {
         "publication-token"
       );
       expect(Redacted.value(environment.rendererToken)).toBe("renderer-token");
-      expect(environment.cacheSurface).toBe("deployed");
+      expect(environment.releaseDispatch.surface).toBe("deployed");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
       expect(
@@ -232,11 +232,13 @@ describe("production environment", () => {
     })
   );
 
-  it.effect("decodes a declared cache surface and rejects an unknown one", () =>
+  it.effect("requires the dispatch token only for a deployed surface", () =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture;
-      const declared = MutableHashMap.set(
-        MutableHashMap.fromIterable(productionValues),
+      const withoutToken = MutableHashMap.fromIterable(productionValues);
+      MutableHashMap.remove(withoutToken, "AKSARA_NAKAFA_DISPATCH_TOKEN");
+      const none = MutableHashMap.set(
+        MutableHashMap.fromIterable(withoutToken),
         "AKSARA_CACHE_SURFACE",
         "none"
       );
@@ -245,9 +247,14 @@ describe("production environment", () => {
           const recovery = yield* readRecoveryEnvironment();
           return yield* readProductionEnvironment(recovery);
         }),
-        declared
+        none
       );
-      expect(environment.cacheSurface).toBe("none");
+      expect(environment.releaseDispatch).toEqual({ surface: "none" });
+
+      expect(yield* rejectProduction(withoutToken)).toMatchObject({
+        _tag: "ProductionEnvironmentError",
+        variable: "AKSARA_NAKAFA_DISPATCH_TOKEN",
+      });
 
       const unknown = MutableHashMap.set(
         MutableHashMap.fromIterable(productionValues),

@@ -128,8 +128,8 @@ export const runProductionCommand: (input: {
     }).pipe(Effect.mapError(mapProductionError("target")));
     const target = retryPublicationTarget(rawTarget);
     const activation = yield* makeProductionActivation({
-      cacheSurface: recoveryEnvironment.cacheSurface,
       endpoint: recoveryEnvironment.rendererEndpoint,
+      releaseDispatch: recoveryEnvironment.releaseDispatch,
       token: recoveryEnvironment.rendererToken,
     });
     const current = yield* target.current.pipe(
