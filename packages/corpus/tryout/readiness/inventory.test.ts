@@ -76,7 +76,7 @@ layer(realQuestionCorpusLayer)("assessment question readiness", (it) => {
       Effect.gen(function* () {
         const { questions, readiness, source } = yield* loadTkaReadiness();
 
-        expect(questions).toHaveLength(75);
+        expect(questions).toHaveLength(100);
         expect(
           yield* validateAssessmentQuestionReadiness(
             source,

@@ -62,19 +62,19 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 240,
-          set: 60,
+          section: 243,
+          set: 63,
           track: 12,
         });
-        expect(projection.catalog).toHaveLength(321);
-        expect(projection.routeCount).toBe(291);
-        expect(projection.placements).toHaveLength(5550);
+        expect(projection.catalog).toHaveLength(327);
+        expect(projection.routeCount).toBe(294);
+        expect(projection.placements).toHaveLength(5625);
         const questionKeys = Arr.map(
           projection.placements,
           ({ questionContentKey }) => questionContentKey
         );
-        expect(HashSet.size(HashSet.fromIterable(questionKeys))).toBe(1850);
-        expect(HashSet.size(bodyHeads)).toBe(11_100);
+        expect(HashSet.size(HashSet.fromIterable(questionKeys))).toBe(1875);
+        expect(HashSet.size(bodyHeads)).toBe(11_250);
         expect(
           Arr.every(
             projection.placements,
@@ -143,7 +143,7 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
         );
 
         expect(snbt).toHaveLength(4800);
-        expect(tka).toHaveLength(750);
+        expect(tka).toHaveLength(825);
         expect(
           Arr.map(
             Array.from({ length: 10 }, (_, index) => `set-${index + 1}`),
@@ -165,7 +165,7 @@ layer(realQuestionCorpusLayer)("tryout projection", (it) => {
                   appLocale === "en" && placementTrackKey === trackKey
               ).length
           )
-        ).toEqual([75, 75, 100]);
+        ).toEqual([100, 75, 100]);
         expect(
           HashSet.fromIterable(Arr.map(snbt, ({ setKey }) => setKey))
         ).toEqual(

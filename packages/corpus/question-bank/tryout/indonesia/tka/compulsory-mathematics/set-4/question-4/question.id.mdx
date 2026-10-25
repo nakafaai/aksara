@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Soal 4",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Daerah yang diarsir pada gambar berikut, termasuk garis-garis batasnya, adalah himpunan penyelesaian suatu sistem pertidaksamaan linear dua variabel.
+
+<MathVisual
+  title="Daerah himpunan penyelesaian"
+  description={<>Daerah segitiga yang diarsir dibatasi oleh sumbu <InlineMath math="y" />, garis yang melalui <InlineMath math="(0,8)" /> dan <InlineMath math="(4,0)" />, serta garis yang melalui <InlineMath math="(0,1)" /> dan <InlineMath math="(2,4)" />.</>}
+  labels={{
+    "coordinate-p": <InlineMath math="(0,8)" />,
+    "coordinate-q": <InlineMath math="(4,0)" />,
+    "coordinate-r": <InlineMath math="(0,1)" />,
+    "coordinate-s": <InlineMath math="(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5.5 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "solution-region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 1 }, { x: 0, y: 8 }, { x: 2, y: 4 }] },
+      { id: "line-p", kind: "line", appearance: "primary", through: [{ x: 0, y: 8 }, { x: 4, y: 0 }] },
+      { id: "line-r", kind: "line", appearance: "secondary", through: [{ x: 0, y: 1 }, { x: 2, y: 4 }] },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 0, y: 8 } },
+      { id: "point-q", kind: "point", appearance: "primary", at: { x: 4, y: 0 } },
+      { id: "point-r", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "point-s", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "coordinate-p", objectId: "point-p", at: { x: 0, y: 8 }, placement: "left" },
+      { key: "coordinate-q", objectId: "point-q", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "coordinate-r", objectId: "point-r", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "coordinate-s", objectId: "point-s", at: { x: 2, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sistem pertidaksamaan tersebut adalah ....

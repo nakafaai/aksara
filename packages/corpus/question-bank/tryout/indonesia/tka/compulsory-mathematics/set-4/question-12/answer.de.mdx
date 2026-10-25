@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 12",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Der obere Eintrag des Vektors <InlineMath math="T" /> ist die waagerechte Verschiebung, der untere die senkrechte. Diese Verschiebung **bewegt also jeden Punkt um <InlineMath math="2" /> Einheiten nach links und um <InlineMath math="3" /> Einheiten nach oben**, also <InlineMath math="(x,y)\mapsto(x-2,\,y+3)" />. Eine Verschiebung ändert die Form der Parabel nicht, deshalb genügt es, den Scheitelpunkt zu verfolgen. Bringe die Gleichung zuerst durch quadratische Ergänzung in die Scheitelpunktform.
+
+<BlockMath math="\begin{aligned}
+y&=x^2-4x+1 \\
+&=\left(x^2-4x+4\right)-4+1 \\
+&=(x-2)^2-3
+\end{aligned}" />
+
+Der Scheitelpunkt der ursprünglichen Parabel ist <InlineMath math="(2,-3)" />. Nach der Verschiebung liegt er bei <InlineMath math="(2-2,\,-3+3)=(0,0)" />. Der Koeffizient von <InlineMath math="x^2" /> bleibt <InlineMath math="1" />, also ist das Bild die Parabel <InlineMath math="y=x^2" />.
+
+<MathVisual
+  title="Die Parabel vor und nach der Verschiebung"
+  description={<>Der Scheitelpunkt <InlineMath math="P(2,-3)" /> wandert nach <InlineMath math="P'(0,0)" />, und der Punkt <InlineMath math="Q(4,1)" /> wandert nach <InlineMath math="Q'(2,4)" />. Die Strecken <InlineMath math="PP'" /> und <InlineMath math="QQ'" /> sind parallel und gleich lang, weil eine Verschiebung jeden Punkt um denselben Vektor <InlineMath math="T" /> bewegt.</>}
+  labels={{
+    "equation-original": <InlineMath math="y=x^2-4x+1" />,
+    "equation-image": <InlineMath math="y=x^2" />,
+    "name-vertex-original": <InlineMath math="P" />,
+    "name-vertex-image": <InlineMath math="P'" />,
+    "name-point-original": <InlineMath math="Q" />,
+    "name-point-image": <InlineMath math="Q'" />,
+    "vector-t": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 8 },
+      y: { min: -4.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph-original", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 1 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x" },
+      { id: "graph-image", kind: "quadratic", appearance: "answer", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2.5, max: 2.5 }, inputAxis: "x" },
+      { id: "shift-vertex", kind: "segment", appearance: "highlight", from: { x: 2, y: -3 }, to: { x: 0, y: 0 } },
+      { id: "shift-point", kind: "segment", appearance: "highlight", from: { x: 4, y: 1 }, to: { x: 2, y: 4 } },
+      { id: "vertex-original", kind: "point", appearance: "primary", at: { x: 2, y: -3 } },
+      { id: "vertex-image", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "point-original", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+      { id: "point-image", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "equation-original", objectId: "graph-original", at: { x: 4.5, y: 3.25 }, placement: "right" },
+      { key: "equation-image", objectId: "graph-image", at: { x: -2.5, y: 6.25 }, placement: "left" },
+      { key: "name-vertex-original", objectId: "vertex-original", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "name-vertex-image", objectId: "vertex-image", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "name-point-original", objectId: "point-original", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "name-point-image", objectId: "point-image", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "vector-t", objectId: "shift-point", at: { x: 3, y: 2.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Prüfe das Ergebnis durch Einsetzen. Ein Punkt <InlineMath math="(x',y')" /> des Bildes stammt vom Punkt <InlineMath math="(x'+2,\,y'-3)" /> des ursprünglichen Graphen. Dieser Ausgangspunkt erfüllt die ursprüngliche Gleichung.
+
+<BlockMath math="\begin{aligned}
+y'-3&=(x'+2)^2-4(x'+2)+1 \\
+&=x'^2+4x'+4-4x'-8+1 \\
+&=x'^2-3 \\
+y'&=x'^2
+\end{aligned}" />
+
+Die Gleichung des Bildgraphen lautet also <InlineMath math="y=x^2" />.
+
+- <InlineMath math="y=x^2-6" /> entsteht, wenn du den senkrechten Anteil in die falsche Richtung anwendest, als würde der Graph um <InlineMath math="3" /> Einheiten nach unten wandern. Dann liegt der Scheitelpunkt bei <InlineMath math="(0,-6)" />.
+- <InlineMath math="y=x^2+8" /> entsteht, wenn du <InlineMath math="x+2" /> nur in den Term <InlineMath math="x^2" /> einsetzt und den Term <InlineMath math="-4x" /> unverändert lässt.
+- <InlineMath math="y=x^2-8x+10" /> entsteht, wenn du beide Anteile umkehrst, also <InlineMath math="2" /> Einheiten nach rechts und <InlineMath math="3" /> Einheiten nach unten. Dann liegt der Scheitelpunkt bei <InlineMath math="(4,-6)" />.
+- <InlineMath math="y=x^2-8x+16" /> entsteht, wenn du nur den waagerechten Anteil umkehrst, also <InlineMath math="2" /> Einheiten nach rechts. Dann liegt der Scheitelpunkt bei <InlineMath math="(4,0)" />.

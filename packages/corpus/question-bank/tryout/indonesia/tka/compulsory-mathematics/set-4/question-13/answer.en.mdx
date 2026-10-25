@@ -1,0 +1,25 @@
+export const metadata = {
+  title: "Solution to Question 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+The centre of a rotation is the **only point that stays fixed** during the rotation, and every other point moves along an arc around that centre. So you can find the coordinates of the centre from one pair of points and their image, then check the result with another pair.
+
+Let the centre of rotation be <InlineMath math="P(p,q)" />. A rotation of <InlineMath math="90^\circ" /> counterclockwise maps a point <InlineMath math="(x,y)" /> to <InlineMath math="(p-(y-q),q+(x-p))" />. Use the pair <InlineMath math="A(1,1)" /> and <InlineMath math="A'(0,-2)" />:
+
+<BlockMath math="\begin{aligned}
+0&=p-(1-q) \\
+-2&=q+(1-p)
+\end{aligned}" />
+
+The first equation becomes <InlineMath math="p+q=1" />, and the second becomes <InlineMath math="p-q=3" />. Adding them gives <InlineMath math="2p=4" />, so <InlineMath math="p=2" /> and <InlineMath math="q=-1" />.
+
+Check with another pair. For <InlineMath math="B(4,1)" />, the formula gives <InlineMath math="(2-(1+1),-1+(4-2))=(0,1)" />, which is <InlineMath math="B'" />. For <InlineMath math="C(1,3)" />, it gives <InlineMath math="(2-(3+1),-1+(1-2))=(-2,-2)" />, which is <InlineMath math="C'" />. All three pairs agree, so <InlineMath math="P(2,-1)" /> is the centre of rotation.
+
+- <InlineMath math="(-1,0)" /> maps <InlineMath math="A" /> to <InlineMath math="A'" /> when the turn is clockwise, but <InlineMath math="B" /> does not reach <InlineMath math="B'" />. Checking only one point hides the wrong direction.
+- <InlineMath math="(0,0)" /> assumes that the rotation is about the origin. From the origin, <InlineMath math="A(1,1)" /> goes to <InlineMath math="(-1,1)" /> or <InlineMath math="(1,-1)" />, not to <InlineMath math="A'" />.
+- <InlineMath math="\left(\frac12,-\frac12\right)" /> is the midpoint of <InlineMath math="AA'" />. The midpoint between a point and its image is not the centre of rotation.
+- <InlineMath math="(2,1)" /> flips the sign of the <InlineMath math="y" />-coordinate. From this point, <InlineMath math="A" /> goes to <InlineMath math="(2,0)" />, not to <InlineMath math="A'" />.
+
+So the centre of rotation is <InlineMath math="P(2,-1)" />.

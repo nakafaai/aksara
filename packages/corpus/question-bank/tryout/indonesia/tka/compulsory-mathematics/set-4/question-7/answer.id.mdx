@@ -1,0 +1,72 @@
+export const metadata = {
+  title: "Pembahasan Soal 7",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Laju rata-rata dihitung dari **total jarak tempuh**, bukan dari selisih ketinggian akhir dan awal. Jadi, gerakan naik dan gerakan turun sama-sama menambah jarak. Pada setiap ruas grafik, jarak tempuhnya adalah besar perubahan ketinggian, dan lajunya adalah jarak itu dibagi lama ruas.
+
+| Selang waktu | Ketinggian | Jarak tempuh | Lama | Laju |
+| --- | --- | ---: | ---: | ---: |
+| <InlineMath math="0\le t\le10" /> | naik dari <InlineMath math="0" /> ke <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="10\text{ s}" /> | <InlineMath math="2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | diam di <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="6\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | turun dari <InlineMath math="20" /> ke <InlineMath math="8\text{ m}" /> | <InlineMath math="12\text{ m}" /> | <InlineMath math="8\text{ s}" /> | <InlineMath math="1{,}5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | diam di <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | naik dari <InlineMath math="8" /> ke <InlineMath math="26\text{ m}" /> | <InlineMath math="18\text{ m}" /> | <InlineMath math="12\text{ s}" /> | <InlineMath math="1{,}5\text{ m/s}" /> |
+
+<MathVisual
+  title="Laju pada setiap ruas grafik"
+  description={<>Ruas yang miring menunjukkan lift bergerak, sedangkan ruas yang mendatar menunjukkan lift diam. Ruas turun pada <InlineMath math="16\le t\le24" /> tetap menambah jarak tempuh sebesar <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    "speed-1": <InlineMath math="2\text{ m/s}" />,
+    "speed-2": <InlineMath math="0\text{ m/s}" />,
+    "speed-3": <InlineMath math="1{,}5\text{ m/s}" />,
+    "speed-4": <InlineMath math="0\text{ m/s}" />,
+    "speed-5": <InlineMath math="1{,}5\text{ m/s}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "part-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 20 } },
+      { id: "part-2", kind: "segment", appearance: "reference", from: { x: 10, y: 20 }, to: { x: 16, y: 20 } },
+      { id: "part-3", kind: "segment", appearance: "primary", from: { x: 16, y: 20 }, to: { x: 24, y: 8 } },
+      { id: "part-4", kind: "segment", appearance: "reference", from: { x: 24, y: 8 }, to: { x: 28, y: 8 } },
+      { id: "part-5", kind: "segment", appearance: "primary", from: { x: 28, y: 8 }, to: { x: 40, y: 26 } },
+      { id: "vertex-0", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "vertex-1", kind: "point", appearance: "reference", at: { x: 10, y: 20 } },
+      { id: "vertex-2", kind: "point", appearance: "reference", at: { x: 16, y: 20 } },
+      { id: "vertex-3", kind: "point", appearance: "reference", at: { x: 24, y: 8 } },
+      { id: "vertex-4", kind: "point", appearance: "reference", at: { x: 28, y: 8 } },
+      { id: "vertex-5", kind: "point", appearance: "reference", at: { x: 40, y: 26 } },
+    ],
+    labels: [
+      { key: "speed-1", objectId: "part-1", at: { x: 5, y: 10 }, placement: "above-left" },
+      { key: "speed-2", objectId: "part-2", at: { x: 13, y: 20 }, placement: "above" },
+      { key: "speed-3", objectId: "part-3", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "speed-4", objectId: "part-4", at: { x: 26, y: 8 }, placement: "below" },
+      { key: "speed-5", objectId: "part-5", at: { x: 34, y: 17 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Misalkan <InlineMath math="s" /> adalah total jarak tempuh dan <InlineMath math="v" /> adalah laju rata-rata selama <InlineMath math="40" /> detik.
+
+<BlockMath math="\begin{aligned}
+s&=20+0+12+0+18=50\text{ m} \\
+v&=\frac{s}{40\text{ s}}=\frac{50\text{ m}}{40\text{ s}}=\frac54\text{ m/s}
+\end{aligned}" />
+
+Hasil ini masuk akal. Laju rata-rata harus berada di antara laju terkecil <InlineMath math="0\text{ m/s}" /> dan laju terbesar <InlineMath math="2\text{ m/s}" />. Selain itu, lift diam selama <InlineMath math="10" /> detik, sehingga laju rata-ratanya harus lebih kecil daripada laju rata-rata ketika lift hanya bergerak, yaitu <InlineMath math="\frac{50}{30}=\frac53\text{ m/s}" />.
+
+Jadi, laju rata-rata lift selama <InlineMath math="40" /> detik itu adalah <InlineMath math="\frac54\text{ m/s}" />.
+
+- <InlineMath math="\frac{13}{20}\text{ m/s}" /> diperoleh dari perubahan ketinggian dari awal sampai akhir, <InlineMath math="26\text{ m}" />, dibagi <InlineMath math="40\text{ s}" />. Cara ini membuat gerakan turun <InlineMath math="12\text{ m}" /> mengurangi jarak, padahal jarak itu juga ditempuh.
+- <InlineMath math="\frac{19}{20}\text{ m/s}" /> hanya menghitung gerakan naik, <InlineMath math="20+18=38\text{ m}" />, sedangkan gerakan turun <InlineMath math="12\text{ m}" /> terlupakan.
+- <InlineMath math="1\text{ m/s}" /> adalah rata-rata kelima laju ruas, <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="1{,}5" />, <InlineMath math="0" />, dan <InlineMath math="1{,}5" />, tanpa memperhatikan bahwa lama setiap ruas berbeda.
+- <InlineMath math="\frac53\text{ m/s}" /> diperoleh jika total jarak hanya dibagi <InlineMath math="30" /> detik saat lift bergerak, padahal <InlineMath math="10" /> detik ketika lift diam juga termasuk dalam selang <InlineMath math="40" /> detik.

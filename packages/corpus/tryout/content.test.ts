@@ -17,14 +17,14 @@ layer(realQuestionCorpusLayer)("tryout content", (it) => {
           Effect.provide(questionLayer)
         );
 
-        expect(content.entries).toHaveLength(7400);
-        expect(content.projection.placements).toHaveLength(5550);
+        expect(content.entries).toHaveLength(7500);
+        expect(content.projection.placements).toHaveLength(5625);
         expect(
           Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "question")
-        ).toHaveLength(1850);
+        ).toHaveLength(1875);
         expect(
           Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "answer")
-        ).toHaveLength(5550);
+        ).toHaveLength(5625);
       }),
     { timeout: 30_000 }
   );
