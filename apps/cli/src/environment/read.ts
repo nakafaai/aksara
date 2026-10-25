@@ -4,7 +4,6 @@ import { Config, Effect, Option, Redacted, Schema } from "effect";
 import {
   type ReleaseDispatch,
   ReleaseDispatchSchema,
-  type ReleaseSurface,
   ReleaseSurfaceSchema,
 } from "#cli/dispatch/activation";
 import {
@@ -191,10 +190,8 @@ export const readRecoveryEnvironment = Effect.fn(
     "AKSARA_RENDERER_TOKEN"
   );
   const releaseSurface = yield* readConfig(
-    Config.schema(ReleaseSurfaceSchema, "AKSARA_CACHE_SURFACE").pipe(
-      Config.withDefault<ReleaseSurface>("deployed")
-    ),
-    "AKSARA_CACHE_SURFACE"
+    Config.schema(ReleaseSurfaceSchema, "NAKAFA_DEPLOY_SURFACE"),
+    "NAKAFA_DEPLOY_SURFACE"
   );
   const releaseDispatch: ReleaseDispatch =
     releaseSurface === "none"
@@ -202,8 +199,8 @@ export const readRecoveryEnvironment = Effect.fn(
       : {
           surface: "deployed",
           token: yield* readConfig(
-            tokenConfig("AKSARA_NAKAFA_DISPATCH_TOKEN"),
-            "AKSARA_NAKAFA_DISPATCH_TOKEN"
+            tokenConfig("NAKAFA_DEPLOY_TOKEN"),
+            "NAKAFA_DEPLOY_TOKEN"
           ),
         };
   return {

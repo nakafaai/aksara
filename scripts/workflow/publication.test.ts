@@ -8,8 +8,10 @@ import {
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
 
+/** Writes one workflow expression as the text that the workflow file holds. */
+const expression = (body: string) => `\${{ ${body} }}`;
 /** Writes one dispatched workflow input as the expression text that the workflow reads. */
-const inputExpression = (input: string) => `\${{ inputs.${input} }}`;
+const inputExpression = (input: string) => expression(`inputs.${input}`);
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
@@ -114,7 +116,12 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
     "deployed",
-    "Release and recovery must invalidate only their deployed cache surface",
+    "Release and recovery must deploy Nakafa only from production",
+  ],
+  [
+    `NAKAFA_DEPLOY_TOKEN: ${expression("steps.nakafa-deploy.outputs.token")}`,
+    `NAKAFA_DEPLOY_TOKEN: ${expression("secrets.NAKAFA_DEPLOY_TOKEN")}`,
+    "Release and recovery must read the deploy app's installation token",
   ],
   [
     `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          OPERATION`,

@@ -52,7 +52,7 @@ function makeDispatch(statuses: readonly number[]) {
 }
 
 describe("production release dispatch", () => {
-  it.effect("dispatches one release event for a release with changes", () =>
+  it.effect("runs one production deploy for a release with changes", () =>
     Effect.gen(function* () {
       const { captured, dispatch } = makeDispatch([204]);
       expect(
@@ -68,8 +68,8 @@ describe("production release dispatch", () => {
       const [request] = captured.requests;
       assert(request !== undefined, "The dispatch sent no request.");
       expect(requestJson(request)).toEqual({
-        client_payload: { releaseId: RELEASE.manifest.releaseId },
-        event_type: "aksara-release",
+        inputs: { stage: "prod" },
+        ref: "main",
       });
     })
   );

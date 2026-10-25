@@ -1,23 +1,19 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
 import { HttpClientError } from "effect/http";
-import {
-  dispatchReleaseEvent,
-  RELEASE_DISPATCH_EVENT,
-} from "#cli/dispatch/exchange";
+import { dispatchNakafaDeploy } from "#cli/dispatch/exchange";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const TOKEN = Redacted.make("dispatch-token");
-const RELEASE_ID = "release-2026-10-25";
 
-/** Dispatches one release through a client that answers every request with the given status. */
+/** Dispatches one deploy through a client that answers every request with the given status. */
 function dispatchWithStatus(status: number) {
   const captured = captureClient((request) =>
     Effect.succeed(webResponse(request, null, { status }))
   );
   return {
     captured,
-    dispatch: dispatchReleaseEvent(captured.client, TOKEN, RELEASE_ID),
+    dispatch: dispatchNakafaDeploy(captured.client, TOKEN),
   };
 }
 
@@ -27,7 +23,7 @@ const failureFor = (status: number) =>
 
 describe("release dispatch exchange", () => {
   it.effect(
-    "posts the release event with the bearer token and GitHub's headers",
+    "runs the production deploy from main with the bearer token and GitHub's headers",
     () =>
       Effect.gen(function* () {
         const { captured, dispatch } = dispatchWithStatus(204);
@@ -37,7 +33,7 @@ describe("release dispatch exchange", () => {
         assert(request !== undefined, "The dispatch sent no request.");
         expect(request.method).toBe("POST");
         expect(request.url).toBe(
-          "https://api.github.com/repos/nakafaai/nakafa.com/dispatches"
+          "https://api.github.com/repos/nakafaai/nakafa.com/actions/workflows/deploy.yml/dispatches"
         );
         expect(request.headers).toMatchObject({
           accept: "application/vnd.github+json",
@@ -45,8 +41,8 @@ describe("release dispatch exchange", () => {
           "x-github-api-version": "2022-11-28",
         });
         expect(requestJson(request)).toEqual({
-          client_payload: { releaseId: RELEASE_ID },
-          event_type: RELEASE_DISPATCH_EVENT,
+          inputs: { stage: "prod" },
+          ref: "main",
         });
       })
   );
@@ -72,9 +68,7 @@ describe("release dispatch exchange", () => {
         )
       );
       expect(
-        yield* Effect.flip(
-          dispatchReleaseEvent(captured.client, TOKEN, RELEASE_ID)
-        )
+        yield* Effect.flip(dispatchNakafaDeploy(captured.client, TOKEN))
       ).toMatchObject({ retryable: false });
     })
   );
@@ -89,9 +83,7 @@ describe("release dispatch exchange", () => {
         )
       );
       expect(
-        yield* Effect.flip(
-          dispatchReleaseEvent(captured.client, TOKEN, RELEASE_ID)
-        )
+        yield* Effect.flip(dispatchNakafaDeploy(captured.client, TOKEN))
       ).toMatchObject({ retryable: true });
     })
   );

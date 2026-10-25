@@ -197,6 +197,7 @@ describe("production environment", () => {
 
   it.effect.each([
     ["AKSARA_PUBLICATION_ENDPOINT", undefined],
+    ["NAKAFA_DEPLOY_SURFACE", undefined],
     ["AKSARA_PUBLICATION_ENDPOINT", "http://content.example.test/publish"],
     [
       "AKSARA_PUBLICATION_ENDPOINT",
@@ -232,14 +233,14 @@ describe("production environment", () => {
     })
   );
 
-  it.effect("requires the dispatch token only for a deployed surface", () =>
+  it.effect("requires the deploy token only for a deployed surface", () =>
     Effect.gen(function* () {
       const { productionValues } = yield* makeEnvironmentFixture;
       const withoutToken = MutableHashMap.fromIterable(productionValues);
-      MutableHashMap.remove(withoutToken, "AKSARA_NAKAFA_DISPATCH_TOKEN");
+      MutableHashMap.remove(withoutToken, "NAKAFA_DEPLOY_TOKEN");
       const none = MutableHashMap.set(
         MutableHashMap.fromIterable(withoutToken),
-        "AKSARA_CACHE_SURFACE",
+        "NAKAFA_DEPLOY_SURFACE",
         "none"
       );
       const environment = yield* provideConfig(
@@ -253,17 +254,17 @@ describe("production environment", () => {
 
       expect(yield* rejectProduction(withoutToken)).toMatchObject({
         _tag: "ProductionEnvironmentError",
-        variable: "AKSARA_NAKAFA_DISPATCH_TOKEN",
+        variable: "NAKAFA_DEPLOY_TOKEN",
       });
 
       const unknown = MutableHashMap.set(
         MutableHashMap.fromIterable(productionValues),
-        "AKSARA_CACHE_SURFACE",
+        "NAKAFA_DEPLOY_SURFACE",
         "absent"
       );
       expect(yield* rejectProduction(unknown)).toMatchObject({
         _tag: "ProductionEnvironmentError",
-        variable: "AKSARA_CACHE_SURFACE",
+        variable: "NAKAFA_DEPLOY_SURFACE",
       });
     })
   );

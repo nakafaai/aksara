@@ -308,14 +308,28 @@ jobs:
             exit 1
           fi
 
+      # A production release or recovery runs Nakafa's deploy workflow. The deploy
+      # app's installation token reaches only that repository's Actions, and it
+      # expires within the hour.
+      - name: Create the Nakafa deploy token
+        id: nakafa-deploy
+        if: matrix.target == 'production' && (inputs.operation == 'release' || inputs.operation == 'recover')
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.NAKAFA_DEPLOY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.NAKAFA_DEPLOY_APP_PRIVATE_KEY }}
+          owner: nakafaai
+          repositories: nakafa.com
+          permission-actions: write
+
       - name: Publish release
         if: inputs.operation == 'release'
         working-directory: ${{ runner.temp }}/aksara-operation
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
-          AKSARA_CACHE_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
-          AKSARA_NAKAFA_DISPATCH_TOKEN: ${{ matrix.target == 'production' && secrets.AKSARA_NAKAFA_DISPATCH_TOKEN || '' }}
+          NAKAFA_DEPLOY_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
+          NAKAFA_DEPLOY_TOKEN: ${{ steps.nakafa-deploy.outputs.token }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
@@ -377,8 +391,8 @@ jobs:
         env:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
-          AKSARA_CACHE_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
-          AKSARA_NAKAFA_DISPATCH_TOKEN: ${{ matrix.target == 'production' && secrets.AKSARA_NAKAFA_DISPATCH_TOKEN || '' }}
+          NAKAFA_DEPLOY_SURFACE: ${{ matrix.target == 'development' && 'none' || 'deployed' }}
+          NAKAFA_DEPLOY_TOKEN: ${{ steps.nakafa-deploy.outputs.token }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           RECOVERY_ID: ${{ inputs.recovery_id }}

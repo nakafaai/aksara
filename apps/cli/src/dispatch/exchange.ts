@@ -2,19 +2,16 @@ import { Effect, type Redacted, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { ReleaseDispatchError } from "#cli/dispatch/error";
 
-/** The one dispatch endpoint of the repository that deploys Nakafa. */
-const NAKAFA_DISPATCH_URL = new URL(
-  "https://api.github.com/repos/nakafaai/nakafa.com/dispatches"
+/** The dispatch endpoint of Nakafa's deploy workflow. */
+const NAKAFA_DEPLOY_URL = new URL(
+  "https://api.github.com/repos/nakafaai/nakafa.com/actions/workflows/deploy.yml/dispatches"
 );
 
-/** The event type that Nakafa's deploy workflow listens for. */
-export const RELEASE_DISPATCH_EVENT = "aksara-release";
-
-/** The body that GitHub's repository dispatch endpoint accepts, with the release it announces. */
-const DispatchBodyJsonSchema = Schema.fromJsonString(
+/** The body of a production deploy: Nakafa deploys production only from main. */
+const DeployBodyJsonSchema = Schema.fromJsonString(
   Schema.Struct({
-    client_payload: Schema.Struct({ releaseId: Schema.String }),
-    event_type: Schema.Literal(RELEASE_DISPATCH_EVENT),
+    inputs: Schema.Struct({ stage: Schema.Literal("prod") }),
+    ref: Schema.Literal("main"),
   })
 );
 
@@ -24,22 +21,19 @@ function isRetryableStatus(status: number) {
 }
 
 /**
- * Sends one release dispatch to Nakafa's deploy workflow with a fine-grained token.
- * GitHub answers 204 when it accepts the event, and any other answer is a failure.
+ * Runs Nakafa's production deploy with the deploy app's installation token, so
+ * the site prerenders the activated release. GitHub answers 204 when it accepts
+ * the dispatch, and any other answer is a failure.
  */
-export const dispatchReleaseEvent = Effect.fn("AksaraCli.dispatchReleaseEvent")(
-  (
-    client: HttpClient.HttpClient,
-    token: Redacted.Redacted<string>,
-    releaseId: string
-  ) =>
+export const dispatchNakafaDeploy = Effect.fn("AksaraCli.dispatchNakafaDeploy")(
+  (client: HttpClient.HttpClient, token: Redacted.Redacted<string>) =>
     Effect.gen(function* () {
       // The body is a literal of this module's own schema, so its encoding cannot fail.
-      const body = yield* Schema.encodeEffect(DispatchBodyJsonSchema)({
-        client_payload: { releaseId },
-        event_type: RELEASE_DISPATCH_EVENT,
+      const body = yield* Schema.encodeEffect(DeployBodyJsonSchema)({
+        inputs: { stage: "prod" },
+        ref: "main",
       }).pipe(Effect.orDie);
-      const request = HttpClientRequest.post(NAKAFA_DISPATCH_URL).pipe(
+      const request = HttpClientRequest.post(NAKAFA_DEPLOY_URL).pipe(
         HttpClientRequest.bearerToken(token),
         HttpClientRequest.setHeader("accept", "application/vnd.github+json"),
         HttpClientRequest.setHeader("x-github-api-version", "2022-11-28"),
@@ -55,7 +49,7 @@ export const dispatchReleaseEvent = Effect.fn("AksaraCli.dispatchReleaseEvent")(
           Effect.mapError(() => new ReleaseDispatchError({ retryable: true }))
         );
       if (
-        response.request.url !== NAKAFA_DISPATCH_URL.toString() ||
+        response.request.url !== NAKAFA_DEPLOY_URL.toString() ||
         (response.status >= 300 && response.status < 400)
       ) {
         return yield* new ReleaseDispatchError({ retryable: false });

@@ -4,7 +4,7 @@ import { PublicationActivationError } from "@nakafa/aksara-publisher/publication
 import { Effect, type Redacted, Schedule, Schema, Stream } from "effect";
 import type { HttpClient } from "effect/http";
 import { ReleaseDispatchError } from "#cli/dispatch/error";
-import { dispatchReleaseEvent } from "#cli/dispatch/exchange";
+import { dispatchNakafaDeploy } from "#cli/dispatch/exchange";
 
 const RETRY_COUNT = 3;
 const RETRY_DELAY = "100 millis";
@@ -12,8 +12,8 @@ const REQUEST_TIMEOUT = "30 seconds";
 
 /**
  * Selects whether one publication target deploys Nakafa. Only a production target
- * dispatches its release, because Nakafa's deploy workflow ships the production
- * site. A development or acceptance target dispatches nothing.
+ * runs Nakafa's deploy workflow, because that workflow ships the production site.
+ * A development or acceptance target dispatches nothing.
  */
 export const ReleaseSurfaceSchema = Schema.Literals(["deployed", "none"]);
 export type ReleaseSurface = typeof ReleaseSurfaceSchema.Type;
@@ -63,11 +63,7 @@ export function makeProductionReleaseDispatch(settings: {
     const {
       manifest: { releaseId },
     } = input.release;
-    yield* dispatchReleaseEvent(
-      settings.client,
-      settings.token,
-      releaseId
-    ).pipe(
+    yield* dispatchNakafaDeploy(settings.client, settings.token).pipe(
       Effect.retry({
         schedule: Schedule.exponential(RETRY_DELAY),
         times: RETRY_COUNT,
