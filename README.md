@@ -188,8 +188,10 @@ verification job finishes before any publication job receives credentials. A
 failed target does not cancel its peer. Inspect each durable state before
 rerunning the same release identity at its exact original revision. Resume
 rejects a different revision. Recovery, abort, and cleanup take exactly one
-target. Development has no deployed cache surface; production invalidates its
-deployed surface. Credentials are selected by target key with no value fallback.
+target. A production release or recovery that changes content runs Nakafa's
+deploy workflow with the deploy app's installation token, so the site
+prerenders the active release; development deploys nothing. Credentials are
+selected by target key with no value fallback.
 
 A catch-up publishes the revision of `main` that the workflow is dispatched
 from, so dispatch it while `main` is still at the revision of the production
