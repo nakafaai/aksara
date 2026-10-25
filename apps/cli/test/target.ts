@@ -127,8 +127,8 @@ export const gitBundle = Effect.fn("AksaraCliTest.gitBundle")(function* (
   );
 });
 
-/** The next Git release bundle that the cache and activation suites share, hashed once for the process. */
-export const NEXT_RELEASE_BUNDLE = await Effect.runPromise(
+/** The staged Git release bundle that the cache and activation suites share, hashed once for the process. */
+export const STAGED_RELEASE_BUNDLE = await Effect.runPromise(
   gitBundle("release-next")
 );
 

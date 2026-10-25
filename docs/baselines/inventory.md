@@ -27,8 +27,9 @@ The classified transitive client graph is:
 
 ## Smallest measured candidate route partition
 
-The standalone Next.js preload measurement found physical route entrypoints to
-be the only tested topology that isolated rich implementations. The repository
+The standalone preload measurement on the former Next.js app (baseline
+25506da68a, 2026-07-21) found physical route entrypoints to be the only tested
+topology that isolated rich implementations. The repository
 owner approved finite static route-domain registries on 2026-07-21. The
 smallest measured starting partition is eleven source domains:
 
@@ -47,8 +48,8 @@ smallest measured starting partition is eleven source domains:
 Static route children win over dynamic siblings. The plain SNBT fallback must
 accept only English language, general knowledge, Indonesian language, and
 reading and writing skills; it must not become an unbounded generic rich
-loader. `next-intl` continues to own localized public path rewriting, so these
-internal physical entries do not change public URLs.
+loader. On the former Next.js app, `next-intl` owned localized public path
+rewriting, so these internal physical entries did not change public URLs.
 
 | Physical shard | MDX | Heavy documents | Non-heavy documents sharing the union |
 |---|---:|---|---:|
@@ -70,10 +71,6 @@ accepted; the exact eleven-domain partition remains measurement evidence, not a
 reproducible production gate, until the actual published-artifact runtime
 confirms it.
 
-The topology follows the documented Next.js
-[dynamic route](https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes)
-and [project structure](https://nextjs.org/docs/app/getting-started/project-structure)
-rules, plus `next-intl`
-[localized pathnames](https://next-intl.dev/docs/routing/configuration#pathnames).
-Route groups are not an alternative because two groups may not resolve to the
-same public path.
+On the former Next.js app, the topology followed Next.js dynamic route and
+project structure rules, plus `next-intl` localized pathnames. Route groups were
+not an alternative because two groups may not resolve to the same public path.
