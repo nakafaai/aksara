@@ -24,7 +24,10 @@ const ACTIVE_CONTENT_KEY = Object.freeze(
 /** Only this reviewed identity may sign newly published content. */
 export const ACTIVE_SIGNING_KEY_ID = ACTIVE_CONTENT_KEY.keyId;
 
-/** Production keys retained while signed content may still reference them. */
+/**
+ * The one production key trusted to verify content. A retired key leaves this
+ * list in the change that rotates it.
+ */
 export const TRUSTED_CONTENT_KEYS = Object.freeze([ACTIVE_CONTENT_KEY]);
 
 /** Builds an immutable exact-ID resolver from code-owned retained entries. */

@@ -317,7 +317,10 @@ compatibility layer.
    writing MDX; the compiler makes the document.
 2. The question bank and try-out sets are published as item families, versions,
    stimuli, profiles, and papers. No stored record is converted; retired records
-   are deleted in the same change.
+   are deleted in the same change. A retired record that a learner attempt is
+   bound to is not deleted. Nakafa proves with a read-only query that no attempt
+   references it before the change deletes anything, and the change stops
+   otherwise.
 3. The publisher signs and stages those records and delivers each key only to an
    entitled reader and each explanation only after release. Before it freezes a
    paper it checks the stimulus versions the paper lists with

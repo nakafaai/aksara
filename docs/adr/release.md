@@ -2,8 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-07-23
-- Amended: 2026-10-25, zero-legacy: renderer changes match exactly, with no
-  directional preflight, and a bootstrap is one way.
+- Amended: 2026-10-25, zero-legacy: the bootstrap switch is one way, and the
+  Nakafa web host replaces Vercel.
 
 ## Context
 
@@ -102,8 +102,9 @@ signature or release state.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
    operator-selected recovery ID, unless the candidate is a declared bootstrap
    over a retired generation (see the bootstrap section below).
-5. Re-fetch the deployed Nakafa renderer manifest. Require its hash to equal the
-   candidate's frozen renderer manifest hash.
+5. Re-fetch the deployed Nakafa renderer manifest. Require an exact hash for a
+   renderer-changing candidate, or prove directional compatibility with the
+   retained frozen manifest for a scoped content-only candidate.
 6. In one Convex mutation, compare the expected base, set `active` to the
    candidate, clear `candidate`, and retain the verified inverse in
    `recovery`.
@@ -157,8 +158,9 @@ inverse rule:
   base: `resultCount` equals `upsertCount`, so no base head survives. When the
   base names a try-out snapshot, the candidate must replace that snapshot too,
   because its placements bind the retired artifacts. The CLI also requires the
-  candidate to carry the live renderer manifest, and that manifest must differ
-  from the retired base's. The publisher then stages and verifies the candidate,
+  candidate to carry the live renderer manifest. An inverse release may keep the
+  base renderer when its scope cannot close the renderer change, but a bootstrap
+  refuses that fallback. The publisher then stages and verifies the candidate,
   runs the renderer preflight, and activates. It never derives, stages, or
   verifies an inverse.
 - Nakafa receives no declaration from the publisher. It decides eligibility from
@@ -196,11 +198,13 @@ delivery classification, and the active publication pointer. Nakafa still
 independently decodes and verifies the signed release, signed artifact,
 artifact hash, component requirements, and projection hash before execution.
 Public content execution is bound to the exact active signed release and is
-verified against that release's frozen renderer manifest, which must equal the
-deployed manifest hash. Non-rendering public evidence reads authenticate the
-same active release, frozen renderer, and artifact. Protected content is bound
-to its exact signed snapshot release and checked against the same frozen
-renderer manifest.
+first verified against that release's frozen renderer manifest. If the
+deployed manifest hash differs, the selected artifact must also prove that its
+domain and required component names remain executable by the deployed renderer.
+Non-rendering public evidence reads authenticate the same active release,
+frozen renderer, and artifact without claiming live execution compatibility.
+Protected content applies the directional execution check after binding the
+artifact to its exact signed snapshot release.
 
 Every current renderer manifest carries the complete canonical domain set; one
 contract is authoritative and no reader accepts an incomplete domain set.
@@ -208,9 +212,11 @@ Compilation, family planning, signing, staging, runtime evidence, and execution
 use the same exact contract and hash validation. Publication may select a
 subset of those domains, and each document uses its own physical capability.
 A release that adopts the new renderer hash requires complete family closure
-and an exact live match. A release that keeps the active hash may select a subset
-of families and retains the active frozen manifest. Recovery requires the same
-exact match. Runtime execution still checks each selected artifact independently.
+and an exact live match. A scoped content-only release retains the active
+frozen manifest and may activate only when the live renderer still publishes
+every frozen published domain and contains every frozen base and
+published-domain component name. Recovery applies the same directional
+preflight. Runtime execution still checks each selected artifact independently.
 
 The signed result catalog digest authenticates the complete canonical result
 set. It is not a per-row inclusion proof. The current design therefore detects
@@ -230,8 +236,13 @@ source repository is public.
   is one way.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
-- A renderer change and the content that uses it ship in one step. Changing the
-  domain set requires a complete current-format republish of the signed content.
+- Additional components in existing renderer domains can deploy before
+  publication without breaking the older active release. Changing the domain
+  set requires a complete current-format republish of the signed content.
+- Scoped content publication remains independent of an additive renderer
+  deployment while preserving the active frozen renderer contract.
+- A deployment that understands a newly published domain remains the rollback
+  target until that content has been rolled back or superseded.
 - Lost responses and runner crashes resume from durable state.
 - New candidates wait until retained recovery is accepted or activated. A
   bootstrap retains no recovery, so it needs no such wait.
@@ -250,7 +261,6 @@ source repository is public.
 - Copying immutable structured rows during forward rollback.
 - Treating a result digest as a row inclusion proof.
 - Claiming signed artifacts protect against arbitrary trusted-database writes.
-- Directional renderer compatibility and a rollback target kept for old content.
 
 ## Development and production publication
 
