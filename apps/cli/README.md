@@ -53,8 +53,8 @@ instead of `--recovery-id`, takes one target, and has no accept or recover
 step, because a bootstrap replaces every head of its base and cannot be
 restored. The command refuses before any write unless the live renderer
 manifest differs from the retired base's and the scope closes that change,
-including the try-out snapshot. See `docs/adr/release.md` for the rule and its
-one-way undo.
+including the try-out snapshot. The switch is one way: the retired generation is
+never restored. See `docs/adr/release.md` for the rule.
 
 A rejected release names its reason and the exact release that owns the
 blocking slot, and a release that cannot adopt the live renderer manifest names

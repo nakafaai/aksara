@@ -4,6 +4,8 @@
 - Date: 2026-07-21
 - Amended: 2026-10-24 by decision 37, which replaces runtime evaluation with a
   signed content tree (see "Content tree" below)
+- Amended: 2026-10-25, zero-legacy: key rotation is one step, and a renderer
+  change ships with the content that uses it.
 - Nakafa baseline SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
 
 ## Context
@@ -41,14 +43,13 @@ The contracts package owns the reviewed public-key registry and a distinct
 active signing-key identity. The production CLI derives an SPKI public key from
 its validated PKCS8 private key, then requires the configured key ID to be the
 active identity and the derived SPKI to exactly match its registry entry before
-creating any publication target or making a network request. The same resolver
-retains older verification keys without authorizing them to sign new releases.
+creating any publication target or making a network request.
 
-Rotation follows expand-retain-contract order: add and deploy the new public
-key, change the active signing identity and Environment signer together, retain
-every old key while a live or rollback-eligible artifact references it, and
-remove an old key only after that retention proof passes. Unknown, duplicate,
-inactive, and mismatched keys fail closed.
+Rotation is one step: the new public key, the active signing identity, and the
+Environment signer change together, the retired key leaves the registry in the
+same change, and a complete current-format republish replaces every artifact it
+signed. A brief break during deploy is accepted. Unknown, duplicate, inactive,
+and mismatched keys fail closed.
 
 The release envelope authenticates its base release, source origin, ordered item
 count and domain-separated SHA-256 digest, expected projection count and digest,
@@ -101,10 +102,9 @@ Nakafa may render an artifact only after all of these checks pass:
    selected by a protected snapshot.
 2. Its content hash matches the signed payload.
 3. Its signature is valid.
-4. Public and protected content first match the exact renderer manifest frozen
-   into their signed release. When the deployed renderer hash differs, the
-   selected artifact's domain and component requirements must remain compatible
-   with the deployed renderer.
+4. Public and protected content match the exact renderer manifest frozen into
+   their signed release. A deployed renderer with a different hash does not
+   render it.
 5. Every required component name is available in the selected domain.
 6. Its statically analyzable renderer boundary implements every required rich
    component without leaking unrelated client capabilities into the route.
@@ -118,13 +118,12 @@ network globals, unknown free globals, dynamic computed properties, direct
 prototype-chain escape properties, prototype-reflection entry points, and
 `dangerouslySetInnerHTML`. Other static string and finite literal numeric
 property access remains available. The artifact compiler rejects every body
-import and export. Existing
-component imports must be removed by the separately audited migration normalizer
-before compilation; alias shape is never treated as proof that an import source
-is safe. These checks are defense in depth against common mistakes and obvious
-escape syntax. JavaScript has equivalent expressions that static checks cannot
-prove safe, so this policy never changes the requirement that every MDX author
-and reviewer is a trusted production code author.
+import and export. Authored source therefore keeps none, and alias shape is never
+treated as proof that an import source is safe. These checks are defense in depth
+against common mistakes and obvious escape syntax. JavaScript has equivalent
+expressions that static checks cannot prove safe, so this policy never changes
+the requirement that every MDX author and reviewer is a trusted production code
+author.
 
 Every authored document must contain exactly one standalone
 `export const metadata` declaration. The compiler decodes its literal arrays
@@ -151,9 +150,9 @@ dependencies discovered through MDX's missing-reference AST. Intrinsic Markdown
 tags such as `h2`, `p`, and `table` belong to the base renderer names. The
 manifest contains one current component set, with no component versions or
 separate authoring and supported registries. Its authenticated hash binds name
-ownership and published domains. Renderer behavior is verified in Nakafa;
-matching renderer changes deploy before content that uses them. A breaking
-contract change retires the predecessor encoding in the same change and
+ownership and published domains. Renderer behavior is verified in Nakafa, and a
+matching renderer change ships in the same change as the content that uses it. A
+breaking contract change retires the predecessor encoding in the same change and
 requires a complete current-format republish, rather than permanent alternate
 implementations.
 
@@ -176,7 +175,7 @@ WebGL passed.
 This evidence establishes two separate concepts:
 
 - one global, implementation-free component contract manifest for compiler and
-  release compatibility;
+  release checks;
 - a finite set of physical route-domain implementation registries, each
   statically importing only that domain's capability union.
 
@@ -202,11 +201,12 @@ content tree, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
 artifact wire value. The Nakafa Convex adapter must also enforce a 512 KiB
 complete stored-row ceiling with Convex's official size calculation and a
 4 MiB complete mutation-envelope ceiling. Production publication requires
-Nakafa to consume the exact attested contracts release archive and deploy the
-authenticated signature-verifying ingress first. The content workflow rebuilds
-that archive without production credentials and verifies exact immutable
-GitHub release bytes, digest, source tag, ancestry, release integrity, asset
-integrity, and build attestation before any production operation can begin.
+Nakafa to consume the exact attested contracts release archive, and the
+authenticated signature-verifying ingress ships in that same change. The content
+workflow rebuilds that archive without production credentials and verifies exact
+immutable GitHub release bytes, digest, source tag, ancestry, release integrity,
+asset integrity, and build attestation before any production operation can
+begin.
 
 Reference: [Convex production limits](https://docs.convex.dev/production/state/limits).
 

@@ -47,12 +47,11 @@ Aksara MDX is reviewed executable source. It is not a sandbox or an upload
 format for untrusted users.
 
 Before Nakafa executes an artifact, the runtime verifies its signed release,
-artifact signature, hashes, delivery policy, projection, and renderer support.
-A release that adopts a renderer change must prove the complete corpus and bind
-the exact deployed manifest. A scoped content-only release may retain the
-active frozen manifest only while pre-activation proves the live renderer is a
-compatible superset. Runtime reads independently prove the selected artifact
-against the live renderer when its hash differs from the frozen manifest.
+artifact signature, hashes, delivery policy, projection, and renderer manifest.
+A release that changes the renderer must prove the complete corpus and bind the
+exact deployed manifest. A release that keeps the active manifest hash may
+select a subset and retain the active frozen manifest. Runtime reads refuse an
+artifact whose frozen manifest differs from the deployed renderer.
 
 The release protocol keeps an invisible candidate and a verified signed
 recovery before one atomic activation. Acceptance deliberately removes a
@@ -64,7 +63,7 @@ See:
 - [`docs/adr/content.md`](docs/adr/content.md) for
   trusted MDX and renderer boundaries.
 - [`docs/adr/release.md`](docs/adr/release.md) for release,
-  compatibility, recovery, and cleanup rules.
+  recovery, and cleanup rules.
 - [`docs/scope.md`](docs/scope.md) for canonical release
   scopes.
 - [`docs/contracts.md`](docs/contracts.md) for the immutable contracts archive.
@@ -171,8 +170,8 @@ names the retired active release with `--bootstrap-over <active-release-id>`
 in place of `--recovery-id`, and it selects every family and snapshot because
 it must replace every head. The live renderer must differ from the retired
 base's, or the command refuses before any write. It takes one target and has no
-accept or recover step. Its undo is a forward release of the last commit of the
-retired generation. See [`docs/adr/release.md`](docs/adr/release.md).
+accept or recover step. The switch is one way: the retired generation is never
+restored. See [`docs/adr/release.md`](docs/adr/release.md).
 
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does

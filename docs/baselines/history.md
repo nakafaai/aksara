@@ -1,8 +1,7 @@
 # Corpus history migration evidence
 
 This evidence records the bounded rich-slice history imports and the complete
-authored-input history import. Publication and source cutover remain a
-family-by-family migration.
+authored-input history import.
 
 This file preserves migration-time source evidence. It does not describe
 mutable production state. Use the read-only `pnpm status` command documented in
@@ -96,7 +95,7 @@ import proved 5,048 unique physical targets with no collision, including 222
 deterministic physical moves. No file name or non-lesson directory exceeds two
 semantic words. Original paths remain permanently inspectable through
 `history/full-corpus`; family registries own their logical identities when each
-publication contract migrates.
+publication contract changes.
 
 ## Post-import normalization
 
@@ -175,14 +174,15 @@ and are therefore intentionally preserved.
 
 The complete filtered history was searched without printing file contents for
 common private-key headers and common GitHub, Stripe, Slack, npm, Convex,
-Vercel, and AWS credential patterns. That bounded scan found no matching path.
+Vercel, and AWS credential patterns (Nakafa left Vercel on 25 Oct 2026). That
+bounded scan found no matching path.
 It does not replace GitHub secret scanning or a dedicated secret scanner before
 push.
 
 No `LICENSE`, `COPYING`, or `NOTICE` file and no common inline open-source
 license marker was found inside the filtered corpus history. Absence of a
 marker is not provenance proof. Source attribution and reuse terms still
-require a family-by-family audit before public migration.
+require a per-family audit before public release.
 
 The Nakafa `main` history has three reachable blobs above 10 MiB. All are Quran
 source revisions: one current `packages/contents/quran/source.ts` blob at
@@ -208,7 +208,7 @@ git rev-list --count HEAD
 ```
 
 Each family must repeat the bounded secret and provenance review before it is
-published or cut over. Importing reviewed source history does not satisfy the
+published. Importing reviewed source history does not satisfy the
 family publication gates.
 
 ## Article category labels

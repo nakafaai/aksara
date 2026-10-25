@@ -205,10 +205,10 @@ graph teaches the wrong mathematics on an education platform.
 - **Fix the component, never the data.** When a component cannot draw a
   concept exactly or smoothly, improve the component in Nakafa's renderer, and
   Aksara's source policy where it rejects the source, with the best
-  composition, and deploy it before the content that uses it. Never work
-  around a component limit with hard-coded data. A `MathVisual` scene that
-  needs a curve its exact objects cannot draw is such a limit: draw the curve
-  with `LineEquation` and raise the gap.
+  composition, and ship it in the same change as the content that uses it.
+  Never work around a component limit with hard-coded data. A `MathVisual` scene
+  that needs a curve its exact objects cannot draw is such a limit: draw the
+  curve with `LineEquation` and raise the gap.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
   on every changed lesson and article, or `pnpm points` for both corpus roots.
@@ -265,8 +265,8 @@ designed: it carries a teaching job and never decorates.
   exploration uses the established EvilCharts components. When no component in
   the current renderer manifest can carry the teaching job, such as a random
   experiment, a step-by-step algorithm, or a particle simulation, that is a
-  renderer gap: the component is built and deployed in Nakafa's renderer first,
-  and a lesson uses it only after the manifest lists it.
+  renderer gap: the component is built in Nakafa's renderer, and a lesson uses
+  it only in the same change that adds it to the manifest.
 - Build component families, not one-off pictures. A new component takes the
   parameters its lessons need, computes every drawn value from the governing
   formula in a data module with complete unit tests, and cites the source of

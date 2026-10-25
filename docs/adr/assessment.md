@@ -3,6 +3,9 @@
 - Status: Accepted
 - Date: 2026-10-13
 - Widened: 2026-10-16, version 0.50.0 (see Widenings in 0.50.0)
+- Amended: 2026-10-25, zero-legacy: the old `question/` and `tryout/` modules are
+  deleted by the change that switches their readers, and the steps below land as
+  one change.
 
 ## Context
 
@@ -19,10 +22,9 @@ profile: its sections, tools, accommodations, or report.
 
 ## Decision
 
-Aksara adds a new contract in `packages/contracts/src/assessment/`, next to the
-old one. Every part is an Effect Schema and every type is `typeof X.Type`. The
-old `question/` and `tryout/` modules and every reader of them do not change in
-this decision.
+Aksara adds a new contract in `packages/contracts/src/assessment/`. Every part is
+an Effect Schema and every type is `typeof X.Type`. The change that switches the
+readers to it deletes the old `question/` and `tryout/` modules.
 
 ### Documents
 
@@ -306,25 +308,25 @@ when their depth is known to be small.
 
 ## What the later work does
 
-Each step below is a separate change. They land in one release train, because a
-breaking signed contract change needs a complete current-format republish and no
+The steps below land together in one change and one release, because a breaking
+signed contract change needs a complete current-format republish and no
 compatibility layer.
 
 1. The compiler turns authored source into documents, interactions, scoring,
    keys, explanations, and hashed item and stimulus versions. Authors keep
    writing MDX; the compiler makes the document.
-2. The corpus migration rewrites today's question bank and try-out sets as item
-   families, versions, stimuli, profiles, and papers.
+2. The question bank and try-out sets are published as item families, versions,
+   stimuli, profiles, and papers. No stored record is converted; retired records
+   are deleted in the same change.
 3. The publisher signs and stages those records and delivers each key only to an
    entitled reader and each explanation only after release. Before it freezes a
    paper it checks the stimulus versions the paper lists with
    `verifyPaperStimuli`, and it checks each key against its item version.
 4. Nakafa's consumer renders the document, plays the interactions, grades with
    the keys, and reads profiles and papers.
-5. The release that switches the readers deletes `question/` and `tryout/` and
+5. The change that switches the readers deletes `question/` and `tryout/` and
    the shapes that only they use, and takes the contracts package to its next
-   major version. Until then both generations live in the package, and no
-   reader of the old one changes.
+   major version.
 
 ## Consequences
 
