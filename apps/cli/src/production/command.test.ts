@@ -6,7 +6,7 @@ import {
   productionCalls,
   productionProgram,
 } from "#test/production/harness";
-import { FUNCTION_SCOPE } from "#test/real";
+import { BOOTSTRAP_SCOPE, FUNCTION_SCOPE, LIVE_RENDERER } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -21,6 +21,30 @@ beforeEach(() => {
   calls.reset();
   calls.current = ACTIVE_PRODUCTION_STATE;
 });
+
+/** Runs one release that keeps the named inverse over the material scope. */
+function runInverse(id: string, recovery: string) {
+  return productionProgram({
+    command: "release",
+    releaseId: releaseId(id),
+    retention: { kind: "inverse", recoveryId: releaseId(recovery) },
+    scope: FUNCTION_SCOPE,
+  });
+}
+
+/** Runs one bootstrap that replaces the active release within the given scope. */
+function runBootstrap(scope: typeof BOOTSTRAP_SCOPE) {
+  return productionProgram({
+    command: "release",
+    releaseId: releaseId("release-bootstrap"),
+    retention: {
+      baseReleaseId: releaseId("release-active"),
+      kind: "bootstrap",
+    },
+    scope,
+  });
+}
+
 describe("production command", () => {
   it.effect("resumes an active release without reading the signer secret", () =>
     Effect.gen(function* () {
@@ -32,12 +56,7 @@ describe("production command", () => {
         recovery: yield* recoveryBundle("recovery-active", active),
         tryoutRuntimeBundle: null,
       });
-      const receipt = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-active"),
-        releaseId: releaseId("release-active"),
-        scope: FUNCTION_SCOPE,
-      });
+      const receipt = yield* runInverse("release-active", "recovery-active");
       expect(receipt).toMatchObject({ releaseId: "release-active" });
       expect(calls).toMatchObject({
         catalogCalls: 0,
@@ -63,12 +82,10 @@ describe("production command", () => {
         recovery: null,
         tryoutRuntimeBundle: null,
       });
-      const receipt = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-completed"),
-        releaseId: releaseId("release-completed"),
-        scope: FUNCTION_SCOPE,
-      });
+      const receipt = yield* runInverse(
+        "release-completed",
+        "recovery-completed"
+      );
       const expectedReceipt = yield* receiptFor(completed.release.manifest);
       expect(receipt).toEqual(expectedReceipt);
       expect(calls).toMatchObject({
@@ -95,12 +112,9 @@ describe("production command", () => {
         recovery: null,
         tryoutRuntimeBundle: null,
       });
-      const error = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-active"),
-        releaseId: releaseId("release-active"),
-        scope: FUNCTION_SCOPE,
-      }).pipe(Effect.flip);
+      const error = yield* runInverse("release-active", "recovery-active").pipe(
+        Effect.flip
+      );
       expect(error).toMatchObject({
         failure: "RecoveryRevisionMismatchError",
         stage: "prepare",
@@ -119,12 +133,10 @@ describe("production command", () => {
     () =>
       Effect.gen(function* () {
         calls.derivedPublicKeyPem = "different-derived-public-key";
-        const error = yield* productionProgram({
-          command: "release",
-          recoveryId: releaseId("recovery-rejected"),
-          releaseId: releaseId("release-rejected"),
-          scope: FUNCTION_SCOPE,
-        }).pipe(Effect.flip);
+        const error = yield* runInverse(
+          "release-rejected",
+          "recovery-rejected"
+        ).pipe(Effect.flip);
         expect(error).toMatchObject({
           failure: "SigningKeyMismatchError",
           stage: "keys",
@@ -149,12 +161,9 @@ describe("production command", () => {
           recovery: null,
           tryoutRuntimeBundle: null,
         });
-        const error = yield* productionProgram({
-          command: "release",
-          recoveryId: releaseId("recovery-other"),
-          releaseId: releaseId("release-other"),
-          scope: FUNCTION_SCOPE,
-        }).pipe(Effect.flip);
+        const error = yield* runInverse("release-other", "recovery-other").pipe(
+          Effect.flip
+        );
         expect(error).toMatchObject({
           failure: "ProductionStateError",
           stage: "state",
@@ -181,12 +190,10 @@ describe("production command", () => {
         recovery: null,
         tryoutRuntimeBundle: null,
       });
-      const error = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-candidate"),
-        releaseId: releaseId("release-candidate"),
-        scope: FUNCTION_SCOPE,
-      }).pipe(Effect.flip);
+      const error = yield* runInverse(
+        "release-candidate",
+        "recovery-candidate"
+      ).pipe(Effect.flip);
       expect(error).toMatchObject({
         failure: "RecoveryRevisionMismatchError",
         stage: "prepare",
@@ -205,12 +212,9 @@ describe("production command", () => {
     Effect.gen(function* () {
       calls.finalSha = "b".repeat(40);
 
-      const error = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-next"),
-        releaseId: releaseId("release-next"),
-        scope: FUNCTION_SCOPE,
-      }).pipe(Effect.flip);
+      const error = yield* runInverse("release-next", "recovery-next").pipe(
+        Effect.flip
+      );
       expect(error).toMatchObject({
         failure: "ReleaseRevisionChangedError",
         stage: "prepare",
@@ -234,12 +238,10 @@ describe("production command", () => {
         tryoutRuntimeBundle: null,
       });
       calls.manifestMismatch = true;
-      const error = yield* productionProgram({
-        command: "release",
-        recoveryId: releaseId("recovery-candidate"),
-        releaseId: releaseId("release-candidate"),
-        scope: FUNCTION_SCOPE,
-      }).pipe(Effect.flip);
+      const error = yield* runInverse(
+        "release-candidate",
+        "recovery-candidate"
+      ).pipe(Effect.flip);
       expect(error).toMatchObject({
         failure: "PreparedStoredReleaseMismatchError",
         stage: "prepare",
@@ -251,6 +253,47 @@ describe("production command", () => {
         snapshotCalls: 0,
         sourceLayers: 0,
       });
+    })
+  );
+
+  it.effect("bootstraps over the active release", () =>
+    Effect.gen(function* () {
+      calls.rendererManifestOverride = LIVE_RENDERER;
+      const receipt = yield* runBootstrap(BOOTSTRAP_SCOPE);
+      expect(receipt).toMatchObject({ releaseId: "release-bootstrap" });
+      expect(calls).toMatchObject({
+        publicationRetention: { kind: "bootstrap" },
+        publishCalls: 1,
+      });
+    })
+  );
+
+  it.effect("refuses a bootstrap that cannot close its renderer", () =>
+    Effect.gen(function* () {
+      calls.rendererManifestOverride = LIVE_RENDERER;
+      const error = yield* runBootstrap(FUNCTION_SCOPE).pipe(Effect.flip);
+      expect(error).toMatchObject({ failure: "BootstrapRendererError" });
+      expect(calls).toMatchObject({ publishCalls: 0, rendererCalls: 1 });
+    })
+  );
+
+  it.effect("refuses a rebuilt bootstrap on the active renderer", () =>
+    Effect.gen(function* () {
+      const active = yield* gitBundle("release-active");
+      const candidate = yield* gitBundle("release-bootstrap", {
+        baseManifestHash: active.release.manifestHash,
+        baseReleaseId: releaseId("release-active"),
+        scope: BOOTSTRAP_SCOPE,
+      });
+      calls.current = currentState({
+        active: yield* completedBundle(active),
+        candidate: { ...candidate, phase: "verifying" },
+        recovery: null,
+        tryoutRuntimeBundle: null,
+      });
+      const error = yield* runBootstrap(BOOTSTRAP_SCOPE).pipe(Effect.flip);
+      expect(error).toMatchObject({ failure: "BootstrapRendererError" });
+      expect(calls).toMatchObject({ catalogCalls: 0, publishCalls: 0 });
     })
   );
 });

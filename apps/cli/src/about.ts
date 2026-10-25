@@ -17,7 +17,7 @@ Usage:
   aksara check
   aksara status
   aksara parity --release-id <id> --recovery-id <id>
-  aksara release --release-id <id> --recovery-id <id> --scope <selector> [--rebuild]
+  aksara release --release-id <id> (--recovery-id <id> | --bootstrap-over <id>) --scope <selector> [--rebuild]
   aksara accept --release-id <id> --recovery-id <id>
   aksara recover --release-id <id> --recovery-id <id>
   aksara abort --release-id <id>

@@ -50,8 +50,8 @@ describe("production preparation", () => {
       const active = yield* gitBundle("release-active");
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-next"),
         releaseId: releaseId("release-next"),
+        retention: { kind: "inverse", recoveryId: releaseId("recovery-next") },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-next" });
@@ -92,8 +92,11 @@ describe("production preparation", () => {
         const receipt = yield* productionProgram({
           command: "release",
           rebuild: true,
-          recoveryId: releaseId("recovery-rebuild"),
           releaseId: releaseId("release-rebuild"),
+          retention: {
+            kind: "inverse",
+            recoveryId: releaseId("recovery-rebuild"),
+          },
           scope: FUNCTION_SCOPE,
         });
         expect(receipt.releaseId).toBe("release-rebuild");
@@ -111,8 +114,8 @@ describe("production preparation", () => {
       });
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-first"),
         releaseId: releaseId("release-first"),
+        retention: { kind: "inverse", recoveryId: releaseId("recovery-first") },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-first" });
@@ -135,8 +138,11 @@ describe("production preparation", () => {
       });
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-snapshot"),
         releaseId: releaseId("release-snapshot"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-snapshot"),
+        },
         scope: tryoutScope,
       });
       expect(receipt).toMatchObject({ releaseId: "release-snapshot" });
@@ -170,8 +176,11 @@ describe("production preparation", () => {
 
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-runtime-next"),
         releaseId: releaseId("release-runtime-next"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-runtime-next"),
+        },
         scope: FUNCTION_SCOPE,
       });
 
@@ -211,8 +220,11 @@ describe("production preparation", () => {
 
         const partial = yield* productionProgram({
           command: "release",
-          recoveryId: releaseId("recovery-renderer-partial"),
           releaseId: releaseId("release-renderer-partial"),
+          retention: {
+            kind: "inverse",
+            recoveryId: releaseId("recovery-renderer-partial"),
+          },
           scope: FUNCTION_SCOPE,
         });
         expect(partial.releaseId).toBe("release-renderer-partial");
@@ -227,8 +239,11 @@ describe("production preparation", () => {
         calls.rendererManifestOverride = yield* refreshedRendererManifest;
         const receipt = yield* productionProgram({
           command: "release",
-          recoveryId: releaseId("recovery-renderer"),
           releaseId: releaseId("release-renderer"),
+          retention: {
+            kind: "inverse",
+            recoveryId: releaseId("recovery-renderer"),
+          },
           scope: rendererScope,
         });
         expect(receipt.releaseId).toBe("release-renderer");
@@ -253,8 +268,11 @@ describe("production preparation", () => {
       });
       const receipt = yield* productionProgram({
         command: "release",
-        recoveryId: releaseId("recovery-candidate"),
         releaseId: releaseId("release-candidate"),
+        retention: {
+          kind: "inverse",
+          recoveryId: releaseId("recovery-candidate"),
+        },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-candidate" });

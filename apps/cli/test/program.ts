@@ -16,6 +16,14 @@ const RecoveryCommandSchema = Schema.Struct({
   releaseId: Schema.String,
 });
 
+const RetentionSchema = Schema.Union([
+  Schema.Struct({ kind: Schema.Literal("inverse"), recoveryId: Schema.String }),
+  Schema.Struct({
+    baseReleaseId: Schema.String,
+    kind: Schema.Literal("bootstrap"),
+  }),
+]);
+
 const ProgramCallsSchema = Schema.Struct({
   abort: Schema.mutableKey(Schema.UndefinedOr(ReleaseCommandSchema)),
   accept: Schema.mutableKey(Schema.UndefinedOr(RecoveryCommandSchema)),
@@ -46,8 +54,8 @@ const ProgramCallsSchema = Schema.Struct({
       Schema.Struct({
         args: Schema.Struct({
           command: Schema.String,
-          recoveryId: Schema.String,
           releaseId: Schema.String,
+          retention: RetentionSchema,
         }),
         cwd: Schema.String,
       })

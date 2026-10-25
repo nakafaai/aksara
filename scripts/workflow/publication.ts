@@ -1,5 +1,9 @@
-import { Array as Arr, Effect, Option, Record as Rec, Schema } from "effect";
-import { type Document, parseDocument } from "yaml";
+import { Array as Arr, Effect } from "effect";
+import { parseDocument } from "yaml";
+import {
+  verifyDispatchGuards,
+  verifyTargetChoice,
+} from "#scripts/workflow/dispatch";
 import {
   ACCEPTED_DISPATCHES,
   intendedPlan,
@@ -7,7 +11,7 @@ import {
   samePlan,
   workflowPlan,
 } from "#scripts/workflow/plan";
-import { ensure, requireSeq, yamlData } from "#scripts/workflow/requirement";
+import { ensure, requireSeq } from "#scripts/workflow/requirement";
 
 const CONSUMER_PATTERN = /pnpm verify:consumer/u;
 const OPERATION_PATTERN = /pnpm (?:release|accept|recover|abort|cleanup) --/u;
@@ -24,6 +28,10 @@ const TERMINAL_GATE_PATTERN =
   /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
+const RELEASE_RETENTION_PATTERN =
+  /if \[\[ -n "\$BOOTSTRAP_OVER" \]\]; then\n\s+retention_args=\(--bootstrap-over "\$BOOTSTRAP_OVER"\)\n\s+else\n\s+retention_args=\(--recovery-id "\$RECOVERY_ID"\)\n\s+fi\n\s+pnpm release -- --release-id "\$RELEASE_ID" \\\n\s+"\$\{retention_args\[@\]\}" "\$\{scope_args\[@\]\}"/u;
+const RELEASE_BOOTSTRAP_ENV_PATTERN =
+  /- name: Publish release[\s\S]*?BOOTSTRAP_OVER: \$\{\{ inputs\.bootstrap_over \}\}/u;
 const CONTENT_CONTRACT_PATTERN =
   /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[contracts, verify\][\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
@@ -38,49 +46,6 @@ const PARITY_BLOCKERS = [
   ["off main", { ref: "refs/heads/topic" }],
   ["outside the Aksara repository", { repository: "someone/aksara" }],
 ] as const;
-
-/** The target choice of a dispatch: production by default, or either one, or both. */
-const TargetInputSchema = Schema.Struct({
-  default: Schema.Literal("production"),
-  options: Schema.Tuple([
-    Schema.Literal("production"),
-    Schema.Literal("development"),
-    Schema.Literal("both"),
-  ]),
-  required: Schema.Literal(true),
-  type: Schema.Literal("choice"),
-});
-
-/** The part of a workflow that declares the target choice. */
-const TargetDispatchSchema = Schema.Struct({
-  on: Schema.Struct({
-    workflow_dispatch: Schema.Struct({
-      inputs: Schema.Struct({ target: TargetInputSchema }),
-    }),
-  }),
-});
-
-/**
- * The steps that refuse a bad dispatch, in the order they run, each with the
- * dispatch input that every environment variable of the step must read.
- */
-const DISPATCH_GUARDS: ReadonlyArray<
-  readonly [string, Readonly<Record<string, string>>]
-> = [
-  ["Validate target", { OPERATION: "operation", TARGET: "target" }],
-  ["Validate operation", {}],
-];
-
-/** Verifies that a dispatch selects production, development, or both. */
-const verifyTargetChoice = Effect.fn("AksaraScripts.verifyTargetChoice")(
-  function* (document: Document) {
-    const value = yield* yamlData(document);
-    yield* ensure(
-      Option.isSome(Schema.decodeUnknownOption(TargetDispatchSchema)(value)),
-      "The target input must offer exactly production, development, and both in that order, with production as the default"
-    );
-  }
-);
 
 /**
  * Verifies, by evaluating the workflow expressions, that every dispatch starts
@@ -105,47 +70,6 @@ const verifyPlans = Effect.fn("AksaraScripts.verifyPublicationPlans")(
         `The final parity must not run ${reason}`
       );
     }
-  }
-);
-
-/**
- * Verifies that the guards are the first steps of the contracts job, which every
- * other job needs, and that they run unconditionally and stop the job when they
- * fail. A bad dispatch then fails in seconds, before any checkout, verification
- * or credential.
- */
-const verifyDispatchGuards = Effect.fn("AksaraScripts.verifyDispatchGuards")(
-  function* (document: Document) {
-    yield* Effect.forEach(
-      DISPATCH_GUARDS,
-      ([name, env], index) =>
-        Effect.gen(function* () {
-          const step = ["jobs", "contracts", "steps", index];
-          yield* ensure(
-            document.getIn([...step, "name"]) === name,
-            `${name} must be step ${index + 1} of the contracts job, before any checkout or credential use`
-          );
-          yield* ensure(
-            document.getIn([...step, "if"]) === undefined,
-            `${name} must run unconditionally`
-          );
-          yield* ensure(
-            document.getIn([...step, "continue-on-error"]) === undefined,
-            `${name} must stop the job when it fails`
-          );
-          yield* Effect.forEach(
-            Rec.toEntries(env),
-            ([variable, input]) =>
-              ensure(
-                document.getIn([...step, "env", variable]) ===
-                  `\${{ inputs.${input} }}`,
-                `${name} must read the dispatched ${input}`
-              ),
-            { discard: true }
-          );
-        }),
-      { discard: true }
-    );
   }
 );
 
@@ -195,6 +119,14 @@ export const verifyPublicationWorkflow = Effect.fn(
   yield* ensure(
     PUBLICATION_SCOPE_PATTERN.test(release),
     "Content releases must validate and pass one explicit scalable scope"
+  );
+  yield* ensure(
+    RELEASE_RETENTION_PATTERN.test(release),
+    "Content releases must pass exactly one retained decision: the inverse or the bootstrap base"
+  );
+  yield* ensure(
+    RELEASE_BOOTSTRAP_ENV_PATTERN.test(release),
+    "Release must read the dispatched bootstrap base"
   );
   yield* ensure(
     Arr.filter(all, (source) => OPERATION_PATTERN.test(source)).length === 1,

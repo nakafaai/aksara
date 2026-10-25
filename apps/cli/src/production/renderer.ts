@@ -1,9 +1,11 @@
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, type Redacted, Result, Schedule } from "effect";
+import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
+import { Effect, type Redacted, Result, Schedule, Schema } from "effect";
 import type { HttpClient } from "effect/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
@@ -87,4 +89,37 @@ export const selectRendererManifest = Effect.fn(
     return activeBundle.rendererManifest;
   }
   return liveRenderer;
+});
+
+/**
+ * A bootstrap that keeps the retired base renderer cannot render its content tree.
+ * The renderer selection falls back to the base when the scope cannot close, so
+ * this refusal is where that fallback becomes a failure instead of a silent choice.
+ */
+export class BootstrapRendererError extends Schema.TaggedError<
+  BootstrapRendererError,
+  { readonly brand: unique symbol }
+>()("BootstrapRendererError", {
+  rendererManifestHash: Sha256HashSchema,
+}) {}
+
+/**
+ * Refuses a bootstrap whose candidate renderer is the retired base renderer. An
+ * inverse retention keeps no such constraint, so it passes through unchanged.
+ */
+export const requireBootstrapRenderer = Effect.fn(
+  "AksaraCli.requireBootstrapRenderer"
+)(function* (input: {
+  readonly baseRendererManifestHash: typeof Sha256HashSchema.Type | null;
+  readonly rendererManifestHash: typeof Sha256HashSchema.Type;
+  readonly retention: PublicationRetentionDecision;
+}) {
+  if (
+    input.retention.kind === "bootstrap" &&
+    input.rendererManifestHash === input.baseRendererManifestHash
+  ) {
+    return yield* new BootstrapRendererError({
+      rendererManifestHash: input.rendererManifestHash,
+    });
+  }
 });

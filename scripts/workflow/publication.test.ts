@@ -1,8 +1,5 @@
-import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr, Effect } from "effect";
-import { readSource } from "#scripts/source";
-import { ACCEPTED_DISPATCHES } from "#scripts/workflow/plan";
+import { Effect } from "effect";
 import { verifyPublicationWorkflow } from "#scripts/workflow/publication";
 import { expectRefusal } from "#scripts/workflow/test/failure";
 import { mutateJob } from "#scripts/workflow/test/mutation";
@@ -10,7 +7,9 @@ import {
   sourceEffectTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
-import { contractsStepProgram, runProgram } from "#scripts/workflow/test/step";
+
+/** Writes one dispatched workflow input as the expression text that the workflow reads. */
+const inputExpression = (input: string) => `\${{ inputs.${input} }}`;
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
@@ -117,6 +116,21 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     "deployed",
     "Release and recovery must invalidate only their deployed cache surface",
   ],
+  [
+    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          OPERATION`,
+    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          OPERATION`,
+    "Validate operation must read the dispatched bootstrap_over",
+  ],
+  [
+    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          RECOVERY_ID`,
+    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          RECOVERY_ID`,
+    "Release must read the dispatched bootstrap base",
+  ],
+  [
+    'retention_args=(--bootstrap-over "$BOOTSTRAP_OVER")',
+    'retention_args=(--recovery-id "$BOOTSTRAP_OVER")',
+    "Content releases must pass exactly one retained decision",
+  ],
 ];
 
 /** Conditions of the final parity job whose removal would let it run when it must not, with the refusal each must meet. */
@@ -130,15 +144,6 @@ const PARITY_GUARDS: ReadonlyArray<readonly [string, string]> = [
     "github.repository == 'nakafaai/aksara'",
     "The final parity must not run outside the Aksara repository",
   ],
-];
-
-/** The steps that refuse a bad dispatch. */
-const GUARD_STEPS = ["Validate target", "Validate operation"];
-
-/** Step keys that would let a dispatch past a failed guard, with the refusal each must meet. */
-const GUARD_BYPASSES: ReadonlyArray<readonly [string, string]> = [
-  ["if: inputs.operation == 'release'", "must run unconditionally"],
-  ["continue-on-error: true", "must stop the job when it fails"],
 ];
 
 layer(workflowSourcesLayer)("publication target policy", (layered) => {
@@ -159,19 +164,6 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
       "Only one workflow may own content publication"
     ));
 
-  it("requires the target input to offer production first", ({ release }) =>
-    Effect.gen(function* () {
-      const source = release.replace(
-        "- production\n          - development",
-        "- development\n          - production"
-      );
-      expect(source).not.toEqual(release);
-      yield* expectRefusal(
-        verifyPublicationWorkflow(source, [source]),
-        "in that order"
-      );
-    }));
-
   for (const [before, after, error] of UNSAFE_PUBLICATION_CHANGES) {
     it(`rejects unsafe publication change to ${before.trim()}`, ({ release }) =>
       Effect.gen(function* () {
@@ -182,24 +174,6 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
           error
         );
       }));
-  }
-
-  for (const name of GUARD_STEPS) {
-    for (const [bypass, error] of GUARD_BYPASSES) {
-      it(`rejects '${bypass}' on ${name}`, ({ release }) =>
-        Effect.gen(function* () {
-          const header = `      - name: ${name}\n`;
-          const source = release.replace(
-            header,
-            `${header}        ${bypass}\n`
-          );
-          expect(source).not.toEqual(release);
-          yield* expectRefusal(
-            verifyPublicationWorkflow(source, [source]),
-            `${name} ${error}`
-          );
-        }));
-    }
   }
 
   for (const [condition, error] of PARITY_GUARDS) {
@@ -213,67 +187,4 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
         );
       }));
   }
-});
-
-const UNKNOWN_TARGETS = ["staging", "Production", "both,production", ""];
-const TERMINAL_OPERATIONS = ["recover", "abort", "cleanup"];
-
-/** Pairs every operation with every target. */
-function combinations(
-  operations: readonly string[],
-  targets: readonly string[]
-) {
-  return Arr.flatMap(operations, (operation) =>
-    Arr.map(targets, (target) => ({ operation, target }))
-  );
-}
-
-/** Runs the real target validation step of the release workflow. */
-const validateTarget = Effect.fn("WorkflowTest.validateTarget")(function* (
-  operation: string,
-  target: string
-) {
-  const release = yield* readSource(".github/workflows/release.yml");
-  return yield* runProgram(
-    yield* contractsStepProgram(release, "Validate target"),
-    {
-      OPERATION: operation,
-      TARGET: target,
-    }
-  );
-});
-
-layer(NodeServices.layer)("publication target validation", (test) => {
-  test.effect.each(ACCEPTED_DISPATCHES)(
-    "accepts $operation on $target",
-    ({ operation, target }) =>
-      Effect.gen(function* () {
-        const result = yield* validateTarget(operation, target);
-        expect(result).toEqual({ exitCode: 0, stderr: "" });
-      })
-  );
-
-  test.effect.each(TERMINAL_OPERATIONS)(
-    "refuses to %s both targets at once",
-    (operation) =>
-      Effect.gen(function* () {
-        const result = yield* validateTarget(operation, "both");
-        expect(result.exitCode).toBe(1);
-        expect(result.stderr).toBe(
-          "Recovery, abort, and cleanup take one target, not both.\n"
-        );
-      })
-  );
-
-  test.effect.each(
-    combinations(["release", "accept", ...TERMINAL_OPERATIONS], UNKNOWN_TARGETS)
-  )(
-    "refuses $operation on the unknown target '$target'",
-    ({ operation, target }) =>
-      Effect.gen(function* () {
-        const result = yield* validateTarget(operation, target);
-        expect(result.exitCode).toBe(1);
-        expect(result.stderr).toBe("Unknown publication target.\n");
-      })
-  );
 });
