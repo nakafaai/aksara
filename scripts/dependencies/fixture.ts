@@ -1,5 +1,6 @@
 import {
   Array as Arr,
+  Config,
   Effect,
   FileSystem,
   Option,
@@ -19,22 +20,44 @@ export function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
   return { exitCode, stderr, stdout };
 }
 
-/** The registry answer of every reviewed hold, and of every routine declaration in the approved manifest. */
-export const reviewedRegistry: Readonly<Record<string, string>> = {
-  ...Rec.fromEntries(
-    DEPENDENCY_HOLDS.map(
+/** A release published long before any test runs, so the one-day release-age gate admits it. */
+export const PAST_RELEASE = "2020-01-01T00:00:00.000Z";
+
+/** A release published in the future, so the one-day release-age gate never admits it. */
+export const GATED_RELEASE = "2099-01-01T00:00:00.000Z";
+
+/** The registry answer of every reviewed hold, keyed by its registry spec. */
+export const reviewedRegistry: Readonly<Record<string, string>> =
+  Rec.fromEntries(
+    Arr.map(
+      DEPENDENCY_HOLDS,
       (hold) => [hold.registry, hold.reviewedLatest] as const
     )
-  ),
-  "esbuild@latest": "0.28.2",
-  "source-map-js@latest": "1.2.2",
-  "yaml@latest": "2.9.1",
+  );
+
+/** The publish times that Bun reports for every routine declaration in the approved manifest. */
+export const reviewedReleases: Readonly<
+  Record<string, Readonly<Record<string, string>>>
+> = {
+  esbuild: { "0.28.2": PAST_RELEASE },
+  "source-map-js": { "1.2.2": PAST_RELEASE },
+  yaml: { "2.9.1": PAST_RELEASE },
 };
 
-/** The Bun answer for every registry spec, which prints each version as one JSON string. */
-const REVIEWED_ANSWERS = Rec.map(reviewedRegistry, (version) =>
-  output(0, Schema.encodeSync(RegistryVersionText)(version))
-);
+/** Creates the output of `bun info <name> time --json` for one table of release times. */
+export function releaseTimes(
+  times: Readonly<Record<string, string>>
+): CommandOutput {
+  return output(0, Schema.encodeSync(JsonText)(times));
+}
+
+/** The Bun answer for every registry spec, which prints each version as one JSON string, and for every routine package's release times. */
+const REVIEWED_ANSWERS: Readonly<Record<string, CommandOutput>> = {
+  ...Rec.map(reviewedRegistry, (version) =>
+    output(0, Schema.encodeSync(RegistryVersionText)(version))
+  ),
+  ...Rec.map(reviewedReleases, releaseTimes),
+};
 
 /** Builds deterministic Bun output for one policy test, answering each registry spec. */
 export function makeRunner(
@@ -113,5 +136,35 @@ export const createConfig = Effect.fn("DependencyFixture.createConfig")(
       ));
     yield* fileSystem.writeFileString(manifest, text);
     return { manifest, root } satisfies BumpDependenciesConfig;
+  }
+);
+
+/**
+ * Installs a local bun executable that answers registry lookups from one table
+ * and accepts updates. Returns the PATH that makes it the first `bun` found.
+ */
+export const installFakeBun = Effect.fn("DependencyFixture.installFakeBun")(
+  function* (root: string, registry: Readonly<Record<string, unknown>>) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const executable = path.join(root, "bun");
+    const registryText = yield* Schema.encodeEffect(JsonText)(registry);
+    yield* fileSystem.writeFileString(
+      executable,
+      `#!/usr/bin/env node
+const args = process.argv.slice(2);
+const registry = ${registryText};
+if (args[0] === "info") {
+  console.log(JSON.stringify(registry[args[1]] ?? "missing"));
+  process.exit(0);
+}
+process.exit(args[0] === "update" ? 0 : 2);
+`
+    );
+    yield* fileSystem.chmod(executable, 0o755);
+    const originalPath = yield* Config.String("PATH").pipe(
+      Config.withDefault("")
+    );
+    return `${root}:${originalPath}`;
   }
 );

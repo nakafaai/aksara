@@ -1,4 +1,11 @@
-import { Array as Arr, Effect, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Clock,
+  Effect,
+  pipe,
+  Record as Rec,
+  Schema,
+} from "effect";
 import {
   type BunRunner,
   DependencyCommandError,
@@ -15,9 +22,14 @@ import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
   type DependencyHold,
+  DependencyHoldSchema,
   declaredVersion,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
+import {
+  decodeReleaseTimes,
+  newestAdmittedRelease,
+} from "#scripts/dependencies/release";
 import { runEntry } from "#scripts/entry";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
@@ -45,13 +57,19 @@ const RoutineDependencySchema = Schema.Struct({
 type RoutineDependency = typeof RoutineDependencySchema.Type;
 
 /** One routine declaration whose registry latest differs from the manifest. */
-type RoutineUpdate = RoutineDependency & { readonly latest: string };
+const RoutineUpdateSchema = Schema.Struct({
+  ...RoutineDependencySchema.fields,
+  latest: Schema.String,
+});
+type RoutineUpdate = typeof RoutineUpdateSchema.Type;
 
 /** A reviewed hold with the version the manifest declares and the registry latest. */
-type HoldReview = DependencyHold & {
-  readonly current: string;
-  readonly latest: string;
-};
+const HoldReviewSchema = Schema.Struct({
+  ...DependencyHoldSchema.fields,
+  current: Schema.String,
+  latest: Schema.String,
+});
+type HoldReview = typeof HoldReviewSchema.Type;
 
 /** Returns the manifest declaration that one reviewed hold reads. */
 function currentVersion(hold: DependencyHold, manifest: RootManifest) {
@@ -119,59 +137,82 @@ function routineDependencies(
   manifest: RootManifest
 ): readonly RoutineDependency[] {
   const held = expectedIgnoredDependencies();
-  const catalog = Rec.toEntries(manifest.workspaces.catalog)
-    .filter(([dependency]) => !Arr.contains(held, dependency))
-    .map(([dependency, current]) => ({
+  const catalog = pipe(
+    Rec.toEntries(manifest.workspaces.catalog),
+    Arr.filter(([dependency]) => !Arr.contains(held, dependency)),
+    Arr.map(([dependency, current]) => ({
       current,
       dependency,
       packageName: dependency,
       section: "catalog" as const,
-    }));
-  const direct = Rec.toEntries(manifest.devDependencies)
-    .filter(
+    }))
+  );
+  const direct = pipe(
+    Rec.toEntries(manifest.devDependencies),
+    Arr.filter(
       ([dependency, spec]) =>
         !(
           Arr.contains(held, dependency) ||
           spec.startsWith("catalog:") ||
           spec.startsWith("workspace:")
         )
-    )
-    .map(([dependency, current]) => ({
+    ),
+    Arr.map(([dependency, current]) => ({
       current,
       dependency,
       packageName: dependency,
       section: "devDependencies" as const,
-    }));
-  const overridden = Rec.toEntries(manifest.overrides)
-    .filter(([key]) => !Arr.contains(held, key))
-    .map(([key, current]) => ({
+    }))
+  );
+  const overridden = pipe(
+    Rec.toEntries(manifest.overrides),
+    Arr.filter(([key]) => !Arr.contains(held, key)),
+    Arr.map(([key, current]) => ({
       current,
       dependency: key,
       packageName: overriddenPackage(key),
       section: "overrides" as const,
-    }));
+    }))
+  );
   return [...catalog, ...direct, ...overridden];
 }
 
-/** Keeps the routine declarations whose registry latest differs from the manifest. */
+/**
+ * Keeps the routine declarations whose newest release that the one-day gate
+ * admits differs from the manifest. Bun's `@latest` ignores the gate, so the
+ * release times decide the candidate.
+ */
 const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
   function* (
     dependencies: readonly RoutineDependency[],
     root: string,
     runner: BunRunner
   ) {
+    const now = yield* Clock.currentTimeMillis;
     const planned = yield* Effect.forEach(
       dependencies,
       (dependency) =>
         Effect.gen(function* () {
-          const spec = `${dependency.packageName}@latest`;
           const output = yield* runner(root, [
             "info",
-            spec,
-            "version",
+            dependency.packageName,
+            "time",
             "--json",
           ]);
-          const latest = yield* decodeRegistryVersion(output, spec);
+          const times = yield* decodeReleaseTimes(
+            output,
+            dependency.packageName
+          );
+          const latest = yield* Effect.fromOption(
+            newestAdmittedRelease(times, now)
+          ).pipe(
+            Effect.mapError(
+              () =>
+                new DependencyPolicyError({
+                  message: `${dependency.packageName} has no stable release older than the one-day release-age gate.`,
+                })
+            )
+          );
           return { ...dependency, latest };
         }),
       { concurrency: 4 }
@@ -186,8 +227,10 @@ function declaredUpdates(
   section: RoutineDependency["section"]
 ) {
   return Rec.fromEntries(
-    Arr.filter(updates, (update) => update.section === section).map(
-      (update) => [update.dependency, update.latest] as const
+    pipe(
+      updates,
+      Arr.filter((update) => update.section === section),
+      Arr.map((update) => [update.dependency, update.latest] as const)
     )
   );
 }
@@ -237,7 +280,8 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
       updates.length === 0
         ? "Routine dependencies and every reviewed hold are current."
         : `Updated routine dependencies: ${Arr.join(
-            updates.map(
+            Arr.map(
+              updates,
               ({ current, dependency, latest }) =>
                 `${dependency} ${current} -> ${latest}`
             ),

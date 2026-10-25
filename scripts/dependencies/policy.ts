@@ -10,7 +10,8 @@ const DeclarationSourceSchema = Schema.Literals([
   "root-dev-dependency",
 ]);
 
-const DependencyHoldSchema = Schema.Struct({
+/** One reviewed hold: the approved declaration, the reviewed upstream, and the reason for the hold. */
+export const DependencyHoldSchema = Schema.Struct({
   approvedCurrent: Schema.String,
   cohort: Schema.String,
   dependency: Schema.String,

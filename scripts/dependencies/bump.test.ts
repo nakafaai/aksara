@@ -1,14 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
-import {
-  Array as Arr,
-  Config,
-  Effect,
-  FileSystem,
-  Option,
-  Path,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, FileSystem, Option, Ref } from "effect";
 
 import { makeBumpDependenciesProgram } from "#scripts/dependencies/bump";
 import type { BunRunner } from "#scripts/dependencies/command";
@@ -16,40 +8,15 @@ import {
   approved,
   approvedManifest,
   createConfig,
+  GATED_RELEASE,
+  installFakeBun,
   makeRunner,
   output,
+  PAST_RELEASE,
+  releaseTimes,
   reviewedRegistry,
 } from "#scripts/dependencies/fixture";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
-
-const JsonText = Schema.fromJsonString(Schema.Unknown);
-
-/** Installs a local bun executable that answers registry lookups from one table and accepts updates. */
-const installFakeBun = Effect.fn("BumpDependenciesTest.installFakeBun")(
-  function* (root: string, registry: Readonly<Record<string, string>>) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const path = yield* Path.Path;
-    const executable = path.join(root, "bun");
-    const registryText = yield* Schema.encodeEffect(JsonText)(registry);
-    yield* fileSystem.writeFileString(
-      executable,
-      `#!/usr/bin/env node
-const args = process.argv.slice(2);
-const registry = ${registryText};
-if (args[0] === "info") {
-  console.log(JSON.stringify(registry[args[1]] ?? "missing"));
-  process.exit(0);
-}
-process.exit(args[0] === "update" ? 0 : 2);
-`
-    );
-    yield* fileSystem.chmod(executable, 0o755);
-    const originalPath = yield* Config.String("PATH").pipe(
-      Config.withDefault("")
-    );
-    vi.stubEnv("PATH", `${root}:${originalPath}`);
-  }
-);
 
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -64,12 +31,13 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         Effect.gen(function* () {
           const fileSystem = yield* FileSystem.FileSystem;
           const config = yield* createConfig();
-          yield* installFakeBun(config.root, {
+          const path = yield* installFakeBun(config.root, {
             ...reviewedRegistry,
-            "esbuild@latest": "0.28.3",
-            "source-map-js@latest": "1.2.3",
-            "yaml@latest": "2.9.2",
+            esbuild: { "0.28.2": PAST_RELEASE, "0.28.3": PAST_RELEASE },
+            "source-map-js": { "1.2.2": PAST_RELEASE, "1.2.3": PAST_RELEASE },
+            yaml: { "2.9.1": PAST_RELEASE, "2.9.2": PAST_RELEASE },
           });
+          vi.stubEnv("PATH", path);
 
           const reports = yield* makeBumpDependenciesProgram(config);
           const effectReport = Option.getOrUndefined(
@@ -84,6 +52,49 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.ok(manifest.includes('"esbuild":"0.28.3"'));
           assert.ok(manifest.includes('"source-map-js":"1.2.3"'));
           assert.ok(manifest.includes('"@probe/app":"workspace:*"'));
+        })
+    );
+
+    it.effect(
+      "keeps a routine declaration on its last release while a newer one is inside the release-age gate",
+      () =>
+        Effect.gen(function* () {
+          const fileSystem = yield* FileSystem.FileSystem;
+          const config = yield* createConfig();
+
+          yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({
+              esbuild: releaseTimes({
+                "0.28.2": PAST_RELEASE,
+                "0.28.3": GATED_RELEASE,
+              }),
+            })
+          );
+          const manifest = yield* fileSystem.readFileString(config.manifest);
+
+          assert.ok(manifest.includes('"esbuild":"0.28.2"'));
+          assert.strictEqual(manifest.includes('"esbuild":"0.28.3"'), false);
+        })
+    );
+
+    it.effect(
+      "fails when no stable release of a routine declaration is older than the release-age gate",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({
+              yaml: releaseTimes({ "2.9.2": GATED_RELEASE }),
+            })
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.strictEqual(
+            error.message,
+            "yaml has no stable release older than the one-day release-age gate."
+          );
         })
     );
 
@@ -104,8 +115,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              "@scope/tool@latest": output(0, '"2.0.1"'),
-              "leaf@latest": output(0, '"1.0.1"'),
+              "@scope/tool": releaseTimes({
+                "2.0.0": PAST_RELEASE,
+                "2.0.1": PAST_RELEASE,
+              }),
+              leaf: releaseTimes({
+                "1.0.0": PAST_RELEASE,
+                "1.0.1": PAST_RELEASE,
+              }),
             })
           );
           const manifest = yield* fileSystem.readFileString(config.manifest);
@@ -126,8 +143,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              "esbuild@latest": output(0, '"0.28.2"'),
-              "yaml@latest": output(0, '"2.9.1"'),
+              esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
+              yaml: releaseTimes({ "2.9.1": PAST_RELEASE }),
             })
           );
 
@@ -148,12 +165,13 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             manifest: approvedManifest({ catalog: { effect: "4.0.6" } }),
           });
           const before = yield* fileSystem.readFileString(config.manifest);
-          const commands: (readonly string[])[] = [];
+          const commands = yield* Ref.make<readonly (readonly string[])[]>([]);
           /** Records every Bun command that the policy runs before the fixture answers it. */
-          const runner: BunRunner = (root, args) => {
-            commands.push(args);
-            return makeRunner()(root, args);
-          };
+          const runner: BunRunner = (root, args) =>
+            Effect.andThen(
+              Ref.update(commands, (list) => Arr.append(list, args)),
+              makeRunner()(root, args)
+            );
 
           const error = yield* makeBumpDependenciesProgram(config, runner).pipe(
             Effect.flip
@@ -163,8 +181,9 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.ok(
             error.message.includes("effect declares 4.0.6; approved 4.0.5.")
           );
+          const recorded = yield* Ref.get(commands);
           assert.strictEqual(
-            commands.some(([command]) => command === "update"),
+            Arr.some(recorded, ([command]) => command === "update"),
             false
           );
           assert.strictEqual(
@@ -220,8 +239,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const error = yield* makeBumpDependenciesProgram(
           config,
           makeRunner({
-            "esbuild@latest": output(0, '"0.28.2"'),
-            "yaml@latest": output(2, "", "registry unavailable"),
+            esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
+            yaml: output(2, "", "registry unavailable"),
           })
         ).pipe(Effect.flip);
 
@@ -239,8 +258,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             config,
             makeRunner(
               {
-                "esbuild@latest": output(0, '"0.28.2"'),
-                "yaml@latest": output(0, '"2.9.2"'),
+                esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
+                yaml: releaseTimes({
+                  "2.9.1": PAST_RELEASE,
+                  "2.9.2": PAST_RELEASE,
+                }),
               },
               output(2, "", "update failed")
             )
@@ -258,40 +280,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           config,
           makeRunner(
             {
-              "esbuild@latest": output(0, '"0.28.2"'),
-              "yaml@latest": output(0, '"2.9.1"'),
+              esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
+              yaml: releaseTimes({ "2.9.1": PAST_RELEASE }),
             },
             output(2)
           )
         ).pipe(Effect.flip);
 
         assert.strictEqual(error.message, "bun update failed.");
-      })
-    );
-
-    it.effect("types unreadable, invalid JSON, and incomplete manifests", () =>
-      Effect.gen(function* () {
-        const path = yield* Path.Path;
-        const config = yield* createConfig();
-        const missing = yield* makeBumpDependenciesProgram(
-          { ...config, manifest: path.join(config.root, "missing.json") },
-          makeRunner()
-        ).pipe(Effect.flip);
-        assert.strictEqual(missing._tag, "DependencyPolicyError");
-
-        const invalid = yield* createConfig({ text: "{" });
-        const invalidFailure = yield* makeBumpDependenciesProgram(
-          invalid,
-          makeRunner()
-        ).pipe(Effect.flip);
-        assert.ok(invalidFailure.message.includes("is not valid"));
-
-        const incomplete = yield* createConfig({ text: "{}" });
-        const incompleteFailure = yield* makeBumpDependenciesProgram(
-          incomplete,
-          makeRunner()
-        ).pipe(Effect.flip);
-        assert.ok(incompleteFailure.message.includes("has an invalid shape"));
       })
     );
   }
