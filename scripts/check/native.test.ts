@@ -18,7 +18,7 @@ import {
 } from "#scripts/check/native";
 
 const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
-const INSTALL_ARGUMENTS = ["install", "--frozen-lockfile", "--filter", "{.}"];
+const INSTALL_ARGUMENTS = ["install", "--frozen-lockfile"];
 const COMMIT_PATTERN = /^[0-9a-f]{40}$/u;
 
 /** One command that the fake spawner received, with its executable, arguments, and working directory. */
@@ -115,7 +115,7 @@ layer(NodeServices.layer)("native source check", (it) => {
 
         expect(calls).toEqual([
           ...cloneCalls(checkout),
-          ["pnpm", INSTALL_ARGUMENTS, checkout],
+          ["bun", INSTALL_ARGUMENTS, checkout],
           [
             "node",
             [path.join(checkout, "scripts", "check", "tests.ts")],
@@ -182,13 +182,16 @@ layer(NodeServices.layer)("native source check", (it) => {
   );
 
   it.effect(
-    "fails with the install step and its exit code when pnpm install exits unsuccessfully",
+    "fails with the install step and its exit code when bun install exits unsuccessfully",
     () =>
       Effect.gen(function* () {
         const fake = yield* recordingSpawner((command) =>
           Effect.succeed(
-            command.command === "pnpm"
-              ? completed(1, "ERR_PNPM_LOCKFILE_CONFIG_MISMATCH\n")
+            command.command === "bun"
+              ? completed(
+                  1,
+                  "error: lockfile had changes, but lockfile is frozen\n"
+                )
               : completed(0)
           )
         );
@@ -200,13 +203,13 @@ layer(NodeServices.layer)("native source check", (it) => {
           new NativeCheckError({
             exitCode: 1,
             message:
-              "The install step exited with code 1: ERR_PNPM_LOCKFILE_CONFIG_MISMATCH",
+              "The install step exited with code 1: error: lockfile had changes, but lockfile is frozen",
             step: "install",
           })
         );
         expect(calls).toEqual([
           ...cloneCalls(checkout),
-          ["pnpm", INSTALL_ARGUMENTS, checkout],
+          ["bun", INSTALL_ARGUMENTS, checkout],
         ]);
       })
   );
@@ -234,7 +237,7 @@ layer(NodeServices.layer)("native source check", (it) => {
         );
         expect(calls).toEqual([
           ...cloneCalls(checkout),
-          ["pnpm", INSTALL_ARGUMENTS, checkout],
+          ["bun", INSTALL_ARGUMENTS, checkout],
           [
             "node",
             [path.join(checkout, "scripts", "check", "tests.ts")],
@@ -249,7 +252,9 @@ layer(NodeServices.layer)("native source check", (it) => {
       const fileSystem = yield* FileSystem.FileSystem;
       const fake = yield* recordingSpawner((command) =>
         Effect.succeed(
-          command.command === "pnpm" ? completed(1, "ERR_PNPM") : completed(0)
+          command.command === "bun"
+            ? completed(1, "error: install")
+            : completed(0)
         )
       );
       yield* runWith(fake.spawner).pipe(Effect.flip);

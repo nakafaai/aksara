@@ -12,7 +12,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * Effect cohort pins and the compiler rule block move with the pin, in the same
  * change, because `bun run native` compares them with nakafa.com.
  */
-export const NAKAFA_COMMIT = "a9c9be2e307bef8fc709a35cdcf0d0bdf9ab296c";
+export const NAKAFA_COMMIT = "2359c75ad04fc7c9615bc688fbbf6a8f9c599fe0";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
@@ -120,12 +120,11 @@ export const verifyNativeSource = Effect.fn("AksaraNative.verifySource")(
             quietOptions(checkout)
           )
         );
-        // The pinned nakafa.com checkout is still a pnpm workspace, so its install stays pnpm.
         yield* runCommand(
           "install",
           ChildProcess.make(
-            "pnpm",
-            ["install", "--frozen-lockfile", "--filter", "{.}"],
+            "bun",
+            ["install", "--frozen-lockfile"],
             quietOptions(checkout)
           )
         );
