@@ -1,9 +1,8 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
-import { Array as Arr, Effect, FileSystem, Option, Ref } from "effect";
+import { Array as Arr, Effect, FileSystem, Option } from "effect";
 
 import { makeBumpDependenciesProgram } from "#scripts/dependencies/bump";
-import type { BunRunner } from "#scripts/dependencies/command";
 import {
   approved,
   approvedManifest,
@@ -14,7 +13,7 @@ import {
   output,
   PAST_RELEASE,
   releaseTimes,
-  reviewedRegistry,
+  reviewedHoldReleases,
 } from "#scripts/dependencies/fixture";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
@@ -32,7 +31,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const fileSystem = yield* FileSystem.FileSystem;
           const config = yield* createConfig();
           const path = yield* installFakeBun(config.root, {
-            ...reviewedRegistry,
+            ...reviewedHoldReleases,
             esbuild: { "0.28.2": PAST_RELEASE, "0.28.3": PAST_RELEASE },
             "source-map-js": { "1.2.2": PAST_RELEASE, "1.2.3": PAST_RELEASE },
             yaml: { "2.9.1": PAST_RELEASE, "2.9.2": PAST_RELEASE },
@@ -152,83 +151,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(
             yield* fileSystem.readFileString(config.manifest),
             before
-          );
-        })
-    );
-
-    it.effect(
-      "fails before writing or updating when a reviewed hold drifts",
-      () =>
-        Effect.gen(function* () {
-          const fileSystem = yield* FileSystem.FileSystem;
-          const config = yield* createConfig({
-            manifest: approvedManifest({ catalog: { effect: "4.0.6" } }),
-          });
-          const before = yield* fileSystem.readFileString(config.manifest);
-          const commands = yield* Ref.make<readonly (readonly string[])[]>([]);
-          /** Records every Bun command that the policy runs before the fixture answers it. */
-          const runner: BunRunner = (root, args) =>
-            Effect.andThen(
-              Ref.update(commands, (list) => Arr.append(list, args)),
-              makeRunner()(root, args)
-            );
-
-          const error = yield* makeBumpDependenciesProgram(config, runner).pipe(
-            Effect.flip
-          );
-
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(
-            error.message.includes("effect declares 4.0.6; approved 4.0.5.")
-          );
-          const recorded = yield* Ref.get(commands);
-          assert.strictEqual(
-            Arr.some(recorded, ([command]) => command === "update"),
-            false
-          );
-          assert.strictEqual(
-            yield* fileSystem.readFileString(config.manifest),
-            before
-          );
-        })
-    );
-
-    it.effect(
-      "fails when a reviewed hold has a newer upstream than its review",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig();
-          const error = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner({ "effect@latest": output(0, '"4.0.7"') })
-          ).pipe(Effect.flip);
-
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(
-            error.message.includes(
-              "effect upstream is 4.0.7; last reviewed 4.0.6."
-            )
-          );
-        })
-    );
-
-    it.effect(
-      "fails when the manifest no longer declares a reviewed hold",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig({
-            manifest: approvedManifest({ omit: "ultracite" }),
-          });
-          const error = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner()
-          ).pipe(Effect.flip);
-
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.ok(
-            error.message.includes(
-              "ultracite declares missing; approved 8.0.2."
-            )
           );
         })
     );

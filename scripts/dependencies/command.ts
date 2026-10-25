@@ -20,8 +20,6 @@ export type BunRunner = (
   ChildProcessSpawner.ChildProcessSpawner
 >;
 
-const RegistryVersionText = Schema.fromJsonString(Schema.String);
-
 /** A dependency command could not execute or returned unusable output. */
 export class DependencyCommandError extends Schema.TaggedError<
   DependencyCommandError,
@@ -50,22 +48,3 @@ export const runBun = Effect.fn("DependencyCommand.runBun")(
       )
     )
 );
-
-/** Decodes one scalar version returned by `bun info <spec> version --json`. */
-export function decodeRegistryVersion(output: CommandOutput, registry: string) {
-  if (output.exitCode !== 0) {
-    return Effect.fail(
-      new DependencyCommandError({
-        message: output.stderr.trim() || `Unable to inspect ${registry}.`,
-      })
-    );
-  }
-  return Schema.decodeEffect(RegistryVersionText)(output.stdout).pipe(
-    Effect.mapError(
-      () =>
-        new DependencyCommandError({
-          message: `${registry} returned no version.`,
-        })
-    )
-  );
-}

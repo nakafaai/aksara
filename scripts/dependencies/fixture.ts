@@ -12,7 +12,6 @@ import type { BumpDependenciesConfig } from "#scripts/dependencies/bump";
 import type { BunRunner, CommandOutput } from "#scripts/dependencies/command";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
 
-const RegistryVersionText = Schema.fromJsonString(Schema.String);
 const JsonText = Schema.fromJsonString(Schema.Unknown);
 
 /** Creates one exact command observation. */
@@ -26,14 +25,16 @@ export const PAST_RELEASE = "2020-01-01T00:00:00.000Z";
 /** A release published in the future, so the one-day release-age gate never admits it. */
 export const GATED_RELEASE = "2099-01-01T00:00:00.000Z";
 
-/** The registry answer of every reviewed hold, keyed by its registry spec. */
-export const reviewedRegistry: Readonly<Record<string, string>> =
-  Rec.fromEntries(
-    Arr.map(
-      DEPENDENCY_HOLDS,
-      (hold) => [hold.registry, hold.reviewedLatest] as const
-    )
-  );
+/** The publish times of the reviewed upstream release of every hold, keyed by package name. */
+export const reviewedHoldReleases: Readonly<
+  Record<string, Readonly<Record<string, string>>>
+> = Rec.fromEntries(
+  Arr.map(
+    DEPENDENCY_HOLDS,
+    (hold) =>
+      [hold.dependency, { [hold.reviewedLatest]: PAST_RELEASE }] as const
+  )
+);
 
 /** The publish times that Bun reports for every routine declaration in the approved manifest. */
 export const reviewedReleases: Readonly<
@@ -51,15 +52,13 @@ export function releaseTimes(
   return output(0, Schema.encodeSync(JsonText)(times));
 }
 
-/** The Bun answer for every registry spec, which prints each version as one JSON string, and for every routine package's release times. */
+/** The Bun answer for every reviewed hold and every routine package: its release times, keyed by package name. */
 const REVIEWED_ANSWERS: Readonly<Record<string, CommandOutput>> = {
-  ...Rec.map(reviewedRegistry, (version) =>
-    output(0, Schema.encodeSync(RegistryVersionText)(version))
-  ),
+  ...Rec.map(reviewedHoldReleases, releaseTimes),
   ...Rec.map(reviewedReleases, releaseTimes),
 };
 
-/** Builds deterministic Bun output for one policy test, answering each registry spec. */
+/** Builds deterministic Bun output for one policy test, answering each package name. */
 export function makeRunner(
   registry: Readonly<Record<string, CommandOutput>> = {},
   update: CommandOutput = output()

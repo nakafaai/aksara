@@ -1,17 +1,10 @@
-import {
-  Array as Arr,
-  Clock,
-  Effect,
-  pipe,
-  Record as Rec,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, pipe, Record as Rec, Schema } from "effect";
 import {
   type BunRunner,
   DependencyCommandError,
-  decodeRegistryVersion,
   runBun,
 } from "#scripts/dependencies/command";
+import { holdProblems, reviewHold } from "#scripts/dependencies/hold";
 import {
   DependencyPolicyError,
   type RootManifest,
@@ -21,15 +14,9 @@ import {
 import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
-  type DependencyHold,
-  DependencyHoldSchema,
-  declaredVersion,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
-import {
-  decodeReleaseTimes,
-  newestAdmittedRelease,
-} from "#scripts/dependencies/release";
+import { admittedLatest } from "#scripts/dependencies/release";
 import { runEntry } from "#scripts/entry";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
@@ -62,68 +49,6 @@ const RoutineUpdateSchema = Schema.Struct({
   latest: Schema.String,
 });
 type RoutineUpdate = typeof RoutineUpdateSchema.Type;
-
-/** A reviewed hold with the version the manifest declares and the registry latest. */
-const HoldReviewSchema = Schema.Struct({
-  ...DependencyHoldSchema.fields,
-  current: Schema.String,
-  latest: Schema.String,
-});
-type HoldReview = typeof HoldReviewSchema.Type;
-
-/** Returns the manifest declaration that one reviewed hold reads. */
-function currentVersion(hold: DependencyHold, manifest: RootManifest) {
-  if (hold.source === "catalog") {
-    return manifest.workspaces.catalog[hold.dependency];
-  }
-  if (hold.source === "override") {
-    return manifest.overrides[hold.dependency];
-  }
-  if (hold.source === "root-dev-dependency") {
-    return manifest.devDependencies[hold.dependency];
-  }
-  if (hold.source === "node-runtime") {
-    return manifest.devEngines.runtime.version;
-  }
-  return manifest.packageManager;
-}
-
-/** Reads the declared version and the registry latest of one reviewed hold. */
-const reviewHold = Effect.fn("DependencyPolicy.reviewHold")(function* (
-  hold: DependencyHold,
-  manifest: RootManifest,
-  root: string,
-  runner: BunRunner
-) {
-  const output = yield* runner(root, [
-    "info",
-    hold.registry,
-    "version",
-    "--json",
-  ]);
-  const latest = yield* decodeRegistryVersion(output, hold.registry);
-  return {
-    ...hold,
-    current: declaredVersion(currentVersion(hold, manifest) ?? "") ?? "missing",
-    latest,
-  } satisfies HoldReview;
-});
-
-/** Lists every way one reviewed hold differs from its approval and its reviewed upstream. */
-function holdProblems(review: HoldReview): readonly string[] {
-  return [
-    ...(review.current === review.approvedCurrent
-      ? []
-      : [
-          `${review.dependency} declares ${review.current}; approved ${review.approvedCurrent}.`,
-        ]),
-    ...(review.latest === review.reviewedLatest
-      ? []
-      : [
-          `${review.dependency} upstream is ${review.latest}; last reviewed ${review.reviewedLatest}.`,
-        ]),
-  ];
-}
 
 /** Returns the package that an override key pins: its last `parent>` segment without a version. */
 function overriddenPackage(key: string): string {
@@ -177,41 +102,22 @@ function routineDependencies(
   return [...catalog, ...direct, ...overridden];
 }
 
-/**
- * Keeps the routine declarations whose newest release that the one-day gate
- * admits differs from the manifest. Bun's `@latest` ignores the gate, so the
- * release times decide the candidate.
- */
+/** Keeps the routine declarations whose newest admitted release differs from the manifest. */
 const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
   function* (
     dependencies: readonly RoutineDependency[],
     root: string,
     runner: BunRunner
   ) {
-    const now = yield* Clock.currentTimeMillis;
     const planned = yield* Effect.forEach(
       dependencies,
       (dependency) =>
         Effect.gen(function* () {
-          const output = yield* runner(root, [
-            "info",
+          const latest = yield* admittedLatest(
             dependency.packageName,
-            "time",
-            "--json",
-          ]);
-          const times = yield* decodeReleaseTimes(
-            output,
-            dependency.packageName
-          );
-          const latest = yield* Effect.fromOption(
-            newestAdmittedRelease(times, now)
-          ).pipe(
-            Effect.mapError(
-              () =>
-                new DependencyPolicyError({
-                  message: `${dependency.packageName} has no stable release older than the one-day release-age gate.`,
-                })
-            )
+            undefined,
+            root,
+            runner
           );
           return { ...dependency, latest };
         }),
@@ -273,7 +179,7 @@ export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
 
     for (const review of reviews) {
       yield* Effect.logInfo(
-        `${review.cohort}: ${review.dependency} ${review.current}; reviewed upstream ${review.latest}. ${review.reason}`
+        `${review.cohort}: ${review.dependency} ${review.current}; reviewed upstream ${review.reviewedLatest}. ${review.reason}`
       );
     }
     yield* Effect.logInfo(

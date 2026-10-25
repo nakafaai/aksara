@@ -1,5 +1,6 @@
 import {
   Array as Arr,
+  Clock,
   DateTime,
   Effect,
   type Option,
@@ -9,9 +10,11 @@ import {
   Schema,
 } from "effect";
 import {
+  type BunRunner,
   type CommandOutput,
   DependencyCommandError,
 } from "#scripts/dependencies/command";
+import { DependencyPolicyError } from "#scripts/dependencies/manifest";
 
 /** The one-day release-age gate in milliseconds, the value of `minimumReleaseAge` in bunfig.toml. */
 export const RELEASE_AGE_MILLIS = 86_400_000;
@@ -28,6 +31,11 @@ function releaseSortKey(version: string): string {
 }
 
 const ReleaseOrder = Order.mapInput(Order.String, releaseSortKey);
+
+/** Reports whether one stable release is newer than another in release order. */
+export function isNewerRelease(candidate: string, reviewed: string): boolean {
+  return ReleaseOrder(candidate, reviewed) > 0;
+}
 
 const ReleaseTimesText = Schema.fromJsonString(
   Schema.Record(Schema.String, Schema.DateTimeUtcFromString)
@@ -58,20 +66,51 @@ export function decodeReleaseTimes(output: CommandOutput, name: string) {
 /**
  * Returns the newest stable release that is at least one release age old at
  * `now`, which is the test Bun's `minimumReleaseAge` applies to every new
- * resolution. Nothing is returned when every stable release is still inside it.
+ * resolution. A release line such as `24` keeps only the versions that start
+ * with `24.`. Nothing is returned when every stable release is still inside it.
  */
 export function newestAdmittedRelease(
   times: ReleaseTimes,
-  now: number
+  now: number,
+  line?: string
 ): Option.Option<string> {
   const admitted = pipe(
     Rec.toEntries(times),
     Arr.filter(
       ([version, published]) =>
         STABLE_RELEASE_PATTERN.test(version) &&
+        (line === undefined || version.startsWith(`${line}.`)) &&
         now - DateTime.toEpochMillis(published) >= RELEASE_AGE_MILLIS
     ),
     Arr.map(([version]) => version)
   );
   return Arr.last(Arr.sort(admitted, ReleaseOrder));
 }
+
+/**
+ * Reads the newest stable release of one package that the one-day gate admits,
+ * within an optional release line. Bun's `@latest` ignores the gate, so the
+ * release times decide every candidate, routine or held.
+ */
+export const admittedLatest = Effect.fn("DependencyPolicy.admittedLatest")(
+  function* (
+    name: string,
+    line: string | undefined,
+    root: string,
+    runner: BunRunner
+  ) {
+    const now = yield* Clock.currentTimeMillis;
+    const output = yield* runner(root, ["info", name, "time", "--json"]);
+    const times = yield* decodeReleaseTimes(output, name);
+    return yield* Effect.fromOption(
+      newestAdmittedRelease(times, now, line)
+    ).pipe(
+      Effect.mapError(
+        () =>
+          new DependencyPolicyError({
+            message: `${name} has no stable release older than the one-day release-age gate.`,
+          })
+      )
+    );
+  }
+);

@@ -113,4 +113,32 @@ describe("release age gate", () => {
         expect(newestAdmittedRelease(times, NOW)).toEqual(Option.none());
       })
   );
+
+  it.effect("keeps only the release line that a hold names", () =>
+    Effect.gen(function* () {
+      const times = yield* timesOf({
+        "24.22.0": OLD,
+        "24.22.1": OLD,
+        "24.23.0": INSIDE_GATE,
+        "25.0.0": OLD,
+      });
+
+      expect(
+        Option.getOrUndefined(newestAdmittedRelease(times, NOW, "24"))
+      ).toBe("24.22.1");
+      expect(Option.getOrUndefined(newestAdmittedRelease(times, NOW))).toBe(
+        "25.0.0"
+      );
+    })
+  );
+
+  it.effect(
+    "reports nothing when no admitted release is in the release line",
+    () =>
+      Effect.gen(function* () {
+        const times = yield* timesOf({ "24.0.0": INSIDE_GATE, "25.0.0": OLD });
+
+        expect(newestAdmittedRelease(times, NOW, "24")).toEqual(Option.none());
+      })
+  );
 });
