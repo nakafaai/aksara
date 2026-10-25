@@ -10,7 +10,7 @@ import {
   sourceEffectTestsOf,
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
-import { operateStepProgram, runProgram } from "#scripts/workflow/test/step";
+import { contractsStepProgram, runProgram } from "#scripts/workflow/test/step";
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
@@ -80,12 +80,12 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   [
     "- name: Validate target",
     "- name: Check target",
-    "Validate target must be step 1 of the publication job",
+    "Validate target must be step 1 of the contracts job",
   ],
   [
     "- name: Validate operation",
     "- name: Check operation",
-    "Validate operation must be step 2 of the publication job",
+    "Validate operation must be step 2 of the contracts job",
   ],
   [
     "TARGET:",
@@ -235,7 +235,7 @@ const validateTarget = Effect.fn("WorkflowTest.validateTarget")(function* (
 ) {
   const release = yield* readSource(".github/workflows/release.yml");
   return yield* runProgram(
-    yield* operateStepProgram(release, "Validate target"),
+    yield* contractsStepProgram(release, "Validate target"),
     {
       OPERATION: operation,
       TARGET: target,
