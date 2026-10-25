@@ -30,19 +30,19 @@ const ChildEnvironmentSchema = Schema.Struct({
   AKSARA_PREVIEW_RENDERER_SECRET: Schema.Trimmed.check(Schema.isNonEmpty()),
   AKSARA_PREVIEW_RENDERER_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   AKSARA_PUBLICATION_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
-  CONTENT_RUNTIME_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
+  CONTENT_READ_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   HOME: Schema.Trimmed.check(Schema.isNonEmpty()),
   PATH: Schema.Trimmed.check(Schema.isNonEmpty()),
   SITE_URL: ChildUrlSchema,
   VITE_AKSARA_PREVIEW_CHILD: Schema.Literal("true"),
-  VITE_APP_URL: ChildUrlSchema,
   VITE_CONVEX_SITE_URL: ChildUrlSchema,
   VITE_CONVEX_URL: ChildUrlSchema,
-  VITE_POSTHOG_KEY: Schema.String.pipe(
+  VITE_POSTHOG_PROJECT_TOKEN: Schema.String.pipe(
     Schema.check(Schema.isStartingWith("phc_"))
   ),
   VITE_POSTHOG_PROXY_HOST: ChildUrlSchema,
   VITE_POSTHOG_UI_HOST: ChildUrlSchema,
+  VITE_SITE_URL: ChildUrlSchema,
 });
 
 /** Running child whose exit always terminates the local preview session. */
@@ -114,24 +114,22 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       AKSARA_PUBLICATION_TOKEN: Redacted.value(
         input.credentials.internalContentToken
       ),
-      CONTENT_RUNTIME_TOKEN: Redacted.value(
-        input.credentials.contentRuntimeToken
-      ),
+      CONTENT_READ_TOKEN: Redacted.value(input.credentials.contentReadToken),
       HOME: home,
       PATH: path,
       SITE_URL: origin.toString(),
       VITE_AKSARA_PREVIEW_CHILD: "true",
-      VITE_APP_URL: origin.toString(),
       VITE_CONVEX_SITE_URL: new URL(
         "/__aksara-preview/convex-site",
         origin
       ).toString(),
       VITE_CONVEX_URL: new URL("/__aksara-preview/convex", origin).toString(),
-      VITE_POSTHOG_KEY: "phc_aksara_preview",
+      VITE_POSTHOG_PROJECT_TOKEN: "phc_aksara_preview",
       // The preview child never admits analytics, so its own origin serves as the
       // proxy host without receiving a single event.
       VITE_POSTHOG_PROXY_HOST: origin.toString(),
       VITE_POSTHOG_UI_HOST: origin.toString(),
+      VITE_SITE_URL: origin.toString(),
     }).pipe(Effect.mapError(childEnvironmentFailure));
   }
 );
