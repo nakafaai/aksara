@@ -31,7 +31,7 @@ const TERMINAL_GATE_PATTERN =
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
 const RELEASE_RETENTION_PATTERN =
-  /if \[\[ -n "\$BOOTSTRAP_OVER" \]\]; then\n\s+retention_args=\(--bootstrap-over "\$BOOTSTRAP_OVER"\)\n\s+else\n\s+retention_args=\(--recovery-id "\$RECOVERY_ID"\)\n\s+fi\n\s+pnpm release -- --release-id "\$RELEASE_ID" \\\n\s+"\$\{retention_args\[@\]\}" "\$\{scope_args\[@\]\}"/u;
+  /if \[\[ -n "\$BOOTSTRAP_OVER" \]\]; then\n\s+retention_args=\(--bootstrap-over "\$BOOTSTRAP_OVER"\)\n\s+else\n\s+retention_args=\(--recovery-id "\$RECOVERY_ID"\)\n\s+fi\n\s+bun run release -- --release-id "\$RELEASE_ID" \\\n\s+"\$\{retention_args\[@\]\}" "\$\{scope_args\[@\]\}"/u;
 const RELEASE_BOOTSTRAP_ENV_PATTERN =
   /- name: Publish release[\s\S]*?BOOTSTRAP_OVER: \$\{\{ inputs\.bootstrap_over \}\}/u;
 const CONTENT_CONTRACT_PATTERN =
