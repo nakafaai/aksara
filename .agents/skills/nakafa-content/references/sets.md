@@ -61,7 +61,7 @@ test description and the rules that govern it.
   Compare every new item with the complete bank and its source material before
   authoring it, not only with its own set.
 - The bank loader rejects a prompt that repeats another prompt in the same
-  locale exactly or with only its numbers changed, so `pnpm test` and every
+  locale exactly or with only its numbers changed, so `bun run test` and every
   publication fail on it.
 - Before a set is integrated, run the similarity check on its directory and
   resolve every pair it reports:

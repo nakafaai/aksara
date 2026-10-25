@@ -142,23 +142,27 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup toolchain
-        uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          cache: true
-          install: false
+          node-version-file: package.json
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Audit dependencies
-        run: pnpm security:audit
+        run: bun run security:audit
 
       - name: Build exact contract archive
         env:
           TARBALL: ${{ runner.temp }}/nakafa-aksara-contracts.tgz
         run: >-
-          pnpm --filter @nakafa/aksara-contracts verify:consumer --output "$TARBALL"
+          bun run --filter @nakafa/aksara-contracts verify:consumer --output "$TARBALL"
 
       - name: Prove immutable contract release
         env:
@@ -187,17 +191,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup toolchain
-        uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          cache: true
-          install: false
+          node-version-file: package.json
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Audit dependencies
-        run: pnpm security:audit
+        run: bun run security:audit
 
       - name: Verify exact main revision
         run: |
@@ -210,41 +218,41 @@ jobs:
       # The workflow check imports the contracts package, which resolves to its
       # build output, so the package is built before the checks run.
       - name: Build contracts for the repository checks
-        run: pnpm --filter @nakafa/aksara-contracts build
+        run: bun run --filter @nakafa/aksara-contracts build
 
       - name: Verify repository controls
         run: |
-          pnpm lint
-          pnpm names
-          pnpm jsdocs
-          pnpm lines
-          pnpm locales
-          pnpm points
-          pnpm workflows
-          pnpm boundaries
+          bun run lint
+          bun run names
+          bun run jsdocs
+          bun run lines
+          bun run locales
+          bun run points
+          bun run workflows
+          bun run boundaries
 
       - name: Verify full publication revision
         if: inputs.operation == 'accept' || inputs.operation == 'release'
         run: |
-          pnpm deprecations
-          pnpm typecheck
-          pnpm test
-          pnpm build
-          pnpm verify:consumer
+          bun run deprecations
+          bun run typecheck
+          bun run test
+          bun run build
+          bun run verify:consumer
 
       - name: Verify terminal operation revision
         if: inputs.operation == 'abort' || inputs.operation == 'cleanup' || inputs.operation == 'recover'
         run: |
           # Package test tasks do not reach the root suites, so name them here.
-          pnpm exec turbo run test:root test:lesson-voice --filter=// --concurrency=1
+          bunx turbo run test:root test:lesson-voice --filter=// --concurrency=1
           # One task at a time, as the root test script runs them: on a two-core
           # runner concurrent suites starve the fixture tests past their timeout.
-          pnpm exec turbo run typecheck test build \
+          bunx turbo run typecheck test build \
             --filter=@nakafa/aksara-contracts \
             --filter=@nakafa/aksara-publisher \
             --filter=@nakafa/aksara-cli \
             --concurrency=1
-          pnpm deprecations:audit
+          bun run deprecations:audit
 
   operate:
     name: ${{ inputs.operation }} (${{ matrix.target }})
@@ -273,17 +281,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup toolchain
-        uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          cache: true
-          install: false
+          node-version-file: package.json
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Audit dependencies
-        run: pnpm security:audit
+        run: bun run security:audit
 
       - name: Verify exact main revision
         run: |
@@ -298,7 +310,7 @@ jobs:
           OPERATION_ROOT: ${{ runner.temp }}/aksara-operation
         run: |
           git worktree add --detach "$OPERATION_ROOT" "$GITHUB_SHA"
-          pnpm --dir "$OPERATION_ROOT" install --frozen-lockfile
+          bun install --cwd "$OPERATION_ROOT" --frozen-lockfile
           if [[ "$(git -C "$OPERATION_ROOT" rev-parse --verify HEAD)" != "$GITHUB_SHA" ]]; then
             echo "The isolated operation checkout does not match the reviewed workflow revision." >&2
             exit 1
@@ -354,7 +366,7 @@ jobs:
           else
             retention_args=(--recovery-id "$RECOVERY_ID")
           fi
-          pnpm release -- --release-id "$RELEASE_ID" \
+          bun run release -- --release-id "$RELEASE_ID" \
             "${retention_args[@]}" "${scope_args[@]}" "${rebuild_args[@]}"
 
       # Only an acceptance of both targets compares them. One target accepts
@@ -370,7 +382,7 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: >-
-          pnpm parity -- --release-id "$RELEASE_ID"
+          bun run parity -- --release-id "$RELEASE_ID"
           --recovery-id "$RECOVERY_ID"
 
       - name: Accept active release
@@ -382,7 +394,7 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: >-
-          pnpm accept -- --release-id "$RELEASE_ID"
+          bun run accept -- --release-id "$RELEASE_ID"
           --recovery-id "$RECOVERY_ID"
 
       - name: Recover active release
@@ -398,7 +410,7 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: >-
-          pnpm recover -- --release-id "$RELEASE_ID"
+          bun run recover -- --release-id "$RELEASE_ID"
           --recovery-id "$RECOVERY_ID"
 
       - name: Clean unreachable release
@@ -408,7 +420,7 @@ jobs:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           RELEASE_ID: ${{ inputs.release_id }}
-        run: pnpm cleanup -- --release-id "$RELEASE_ID"
+        run: bun run cleanup -- --release-id "$RELEASE_ID"
 
       - name: Abort pending release
         if: inputs.operation == 'abort'
@@ -417,7 +429,7 @@ jobs:
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_ENDPOINT' || 'AKSARA_PUBLICATION_ENDPOINT'] }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets[matrix.target == 'development' && 'AKSARA_DEV_PUBLICATION_TOKEN' || 'AKSARA_PUBLICATION_TOKEN'] }}
           RELEASE_ID: ${{ inputs.release_id }}
-        run: pnpm abort -- --release-id "$RELEASE_ID"
+        run: bun run abort -- --release-id "$RELEASE_ID"
 
   # Runs only when both targets were published together. A release to one
   # target has no peer to compare, so nothing waits for the other deployment.
@@ -440,14 +452,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup toolchain
-        uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          cache: true
-          install: false
+          node-version-file: package.json
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: Verify paired result
         env:
@@ -458,5 +474,5 @@ jobs:
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: >-
-          pnpm parity -- --release-id "$RELEASE_ID"
+          bun run parity -- --release-id "$RELEASE_ID"
           --recovery-id "$RECOVERY_ID"

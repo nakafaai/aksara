@@ -7,16 +7,20 @@ import {
   workflowSourcesLayer,
 } from "#scripts/workflow/test/sources";
 import {
+  BUN_INPUT_CASES,
+  BUN_JOB_ENV,
+  BUN_SETUP_HEADER,
+  BUN_SETUP_STEP,
   INVALID_WORKFLOW_STRUCTURES,
+  NODE_INPUT_CASES,
+  NODE_SETUP_STEP,
   NPM_JOB_ENV,
-  PNPM_INPUT_CASES,
-  PNPM_JOB_ENV,
   REPLACEMENT_COMMANDS,
-  SETUP_HEADER,
   setupInputVariants,
   TOOLCHAIN_STEP,
 } from "#scripts/workflow/test/toolchain";
 import {
+  NODE_SETUP_ACTION,
   TOOLCHAIN_SETUP_ACTION,
   verifyWorkflowToolchains,
 } from "#scripts/workflow/toolchain";
@@ -28,6 +32,12 @@ const refuses = (source: string, message: string) =>
 /** Accepts one workflow text under the toolchain policy. */
 const accepts = (source: string) => verifyWorkflowToolchains([source]);
 
+const NODE_ONCE = "Every Bun job must set up Node.js once";
+const BUN_ONCE = "Every Bun job must set up the toolchain once";
+const DERIVE_BUN = "Workflows must derive the Bun version from package.json";
+const DERIVE_NODE =
+  "Workflows must derive the Node.js version from package.json";
+
 layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   const it = sourceEffectTestsOf(layered);
 
@@ -36,10 +46,8 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
     cli,
   }) =>
     Effect.gen(function* () {
-      const quotedUppercaseJob = cli.replace("  build:\n", '  "Build_Main":\n');
-
       yield* verifyWorkflowToolchains(sources);
-      yield* accepts(quotedUppercaseJob);
+      yield* accepts(cli.replace("  build:\n", '  "Build_Main":\n'));
     }));
 
   Arr.forEach(INVALID_WORKFLOW_STRUCTURES, ([source, message], index) => {
@@ -53,12 +61,11 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
       const refusal = yield* verifyWorkflowToolchains(["jobs: ["]).pipe(
         Effect.flip
       );
-
       expect(Schema.is(WorkflowError)(refusal)).toBe(true);
     })
   );
 
-  layered.effect("ignores jobs that do not execute pnpm", () =>
+  layered.effect("ignores jobs that do not execute Bun", () =>
     accepts(
       "jobs:\n  reusable:\n    uses: nakafaai/workflows/.github/workflows/check.yml@main"
     )
@@ -81,36 +88,28 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   it("rejects duplicated environment versions at every workflow scope", ({
     cli,
   }) =>
-    Effect.gen(function* () {
-      yield* refuses(
+    Effect.forEach(
+      [
         cli.replace(
           "permissions: {}\n",
           "env:\n  NODE_VERSION: 24\n\npermissions: {}\n"
         ),
-        "Workflows must not duplicate Node or pnpm versions"
-      );
-      yield* refuses(
         cli.replace(
           "  build:\n",
-          '  build:\n    env: { "PNPM_VERSION" : 11.15.1 }\n'
+          '  build:\n    env: { "BUN_VERSION" : 1.4.4 }\n'
         ),
-        "Workflows must not duplicate Node or pnpm versions"
-      );
-      yield* refuses(
         cli.replace(
           "      - name: Install dependencies",
           '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
         ),
-        "Workflows must not duplicate Node or pnpm versions"
-      );
-      yield* refuses(
         cli.replace(
           "      - name: Audit dependencies",
-          '      - name: Audit dependencies\n        env:\n          "PNPM_VERSION" : 11.15.1'
+          '      - name: Audit dependencies\n        env:\n          "BUN_VERSION" : 1.4.4'
         ),
-        "Workflows must not duplicate Node or pnpm versions"
-      );
-    }));
+      ],
+      (source) =>
+        refuses(source, "Workflows must not duplicate Node or Bun versions")
+    ));
 
   layered.effect(
     "keeps a job environment value over the workflow value of the same name",
@@ -118,129 +117,118 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   );
 
   layered.effect(
-    "requires toolchain setup when a job environment value makes it run pnpm",
-    () => refuses(PNPM_JOB_ENV, "Every pnpm job must set up the toolchain once")
+    "requires toolchain setup when a job environment value makes it run Bun",
+    () => refuses(BUN_JOB_ENV, NODE_ONCE)
   );
 
-  it("requires exactly one toolchain setup 0", ({ cli }) =>
-    refuses(
-      cli.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-      "Every pnpm job must set up the toolchain once"
-    ));
+  it("requires exactly one Node.js setup", ({ cli }) =>
+    Effect.gen(function* () {
+      yield* refuses(cli.replace(`${TOOLCHAIN_STEP}\n\n`, ""), NODE_ONCE);
+      yield* refuses(
+        cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${NODE_SETUP_STEP}`),
+        NODE_ONCE
+      );
+    }));
 
-  it("requires exactly one toolchain setup 1", ({ cli }) =>
-    refuses(
-      cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n\n${TOOLCHAIN_STEP}`),
-      "Every pnpm job must set up the toolchain once"
-    ));
+  it("requires exactly one Bun setup", ({ cli }) =>
+    refuses(cli.replace(`\n\n${BUN_SETUP_STEP}`, ""), BUN_ONCE));
 
-  it("rejects legacy, competing, and unreviewed setup actions", ({ cli }) =>
+  it("rejects pnpm actions and unreviewed setup actions", ({ cli }) =>
     Effect.gen(function* () {
       yield* refuses(
         cli.replace(
           TOOLCHAIN_SETUP_ACTION,
-          "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
+          "pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4"
         ),
-        "Workflows must not use legacy pnpm/action-setup"
+        "Workflows must not use pnpm actions"
+      );
+      yield* refuses(
+        cli.replace(
+          TOOLCHAIN_SETUP_ACTION,
+          "oven-sh/setup-bun@1111111111111111111111111111111111111111"
+        ),
+        "The toolchain setup must use the reviewed oven-sh/setup-bun release"
+      );
+      yield* refuses(
+        cli.replace(
+          NODE_SETUP_ACTION,
+          "actions/setup-node@1111111111111111111111111111111111111111"
+        ),
+        "The Node.js setup must use the reviewed actions/setup-node release"
       );
       yield* refuses(
         cli.replace(
           TOOLCHAIN_STEP,
           `${TOOLCHAIN_STEP}\n\n      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1`
         ),
-        "Workflows must not use a second Node.js setup action"
-      );
-      yield* refuses(
-        cli.replace(
-          TOOLCHAIN_SETUP_ACTION,
-          "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b"
-        ),
-        "The toolchain setup must use the reviewed pnpm/setup release"
+        NODE_ONCE
       );
     }));
 
-  it("detects pnpm invoked through a workflow environment alias", ({ cli }) =>
+  it("detects Bun invoked through a workflow environment alias", ({ cli }) =>
     Effect.gen(function* () {
-      const aliasedPnpm = cli
-        .replace("  build:\n", "  build:\n    env:\n      PM: pnpm\n")
-        .replace("run: pnpm install", "run: $PM install");
-      const actionsAlias = aliasedPnpm.replace(
+      const aliasedBun = cli
+        .replace("  build:\n", "  build:\n    env:\n      PM: bun\n")
+        .replace("run: bun install", "run: $PM install");
+      const actionsAlias = aliasedBun.replace(
         "run: $PM install",
         Arr.join(["run: $", "{{ env.PM }} install"], "")
       );
 
-      yield* accepts(aliasedPnpm);
+      yield* accepts(aliasedBun);
       yield* accepts(actionsAlias);
       yield* accepts(
         cli.replace("  build:\n", "  build:\n    env:\n      RETRIES: 3\n")
       );
-
       yield* refuses(
-        aliasedPnpm.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-        "Every pnpm job must set up the toolchain once"
+        aliasedBun.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
+        NODE_ONCE
       );
       yield* refuses(
         actionsAlias.replace(`${TOOLCHAIN_STEP}\n\n`, ""),
-        "Every pnpm job must set up the toolchain once"
+        NODE_ONCE
       );
     }));
 
-  it("requires setup before the first pnpm command", ({ cli }) =>
+  it("requires setup before the first Bun command", ({ cli }) =>
     refuses(
       cli.replace(
         TOOLCHAIN_STEP,
         `      - name: Premature command
-        run: pnpm --version
+        run: bun --version
 
 ${TOOLCHAIN_STEP}`
       ),
-      "Every pnpm job must set up the toolchain before running pnpm"
+      "Every Bun job must set up Node.js before running Bun"
     ));
 
   it("rejects toolchain versions declared by setup inputs", ({ cli }) =>
     Effect.gen(function* () {
       const variants = setupInputVariants(cli);
-
+      yield* refuses(variants.inlineBun, DERIVE_BUN);
+      yield* refuses(variants.alternateManifest, DERIVE_BUN);
+      yield* refuses(variants.inlineNode, DERIVE_NODE);
+      yield* refuses(variants.missingBunVersionFile, DERIVE_BUN);
       yield* refuses(
-        variants.inlinePnpm,
-        "Workflows must derive the pnpm version from package.json"
-      );
-      yield* refuses(
-        variants.alternateManifest,
-        "Workflows must derive the toolchain from the root package.json"
-      );
-      yield* refuses(
-        variants.inlineRuntime,
-        "Workflows must derive the runtime from package.json"
-      );
-      yield* refuses(
-        variants.noInputs,
+        variants.noBunInputs,
         "The toolchain setup step must define inputs"
-      );
-      yield* refuses(
-        variants.noCache,
-        "The toolchain setup must cache the root pnpm store"
-      );
-      yield* refuses(
-        variants.hiddenInstall,
-        "The toolchain setup must leave the frozen install explicit"
       );
     }));
 
   for (const command of REPLACEMENT_COMMANDS) {
-    it(`rejects pnpm replacement command ${command}`, ({ cli }) =>
+    it(`rejects Bun replacement command ${command}`, ({ cli }) =>
       refuses(
         cli.replace(
           "      - name: Install dependencies",
-          `      - name: Replace pnpm\n        run: ${command}\n\n      - name: Install dependencies`
+          `      - name: Replace Bun\n        run: ${command}\n\n      - name: Install dependencies`
         ),
-        "Workflows must not replace the package.json-selected pnpm version"
+        "Workflows must not replace the package.json-selected Bun version"
       ));
   }
 
   it("requires every toolchain setup step to run unconditionally", ({ cli }) =>
     refuses(
-      cli.replace(TOOLCHAIN_STEP, `${TOOLCHAIN_STEP}\n        if: false`),
+      cli.replace(BUN_SETUP_STEP, `${BUN_SETUP_STEP}\n        if: false`),
       "The toolchain setup step must run unconditionally"
     ));
 
@@ -248,15 +236,15 @@ ${TOOLCHAIN_STEP}`
     Effect.gen(function* () {
       yield* refuses(
         cli.replace(
-          TOOLCHAIN_STEP,
-          `${TOOLCHAIN_STEP}\n        continue-on-error: true`
+          BUN_SETUP_STEP,
+          `${BUN_SETUP_STEP}\n        continue-on-error: true`
         ),
         "The toolchain setup step must stop on failure"
       );
       yield* accepts(
         cli.replace(
-          TOOLCHAIN_STEP,
-          `${TOOLCHAIN_STEP}\n        continue-on-error: false`
+          BUN_SETUP_STEP,
+          `${BUN_SETUP_STEP}\n        continue-on-error: false`
         )
       );
     }));
@@ -266,7 +254,10 @@ ${TOOLCHAIN_STEP}`
   }) =>
     Effect.gen(function* () {
       yield* refuses(
-        cli.replace(TOOLCHAIN_STEP, `${SETUP_HEADER}\n        with: invalid`),
+        cli.replace(
+          BUN_SETUP_STEP,
+          `${BUN_SETUP_HEADER}\n        with: invalid`
+        ),
         "Workflow action inputs must be a mapping"
       );
       yield* accepts(
@@ -277,12 +268,23 @@ ${TOOLCHAIN_STEP}`
       );
     }));
 
-  for (const [input, message] of PNPM_INPUT_CASES) {
-    it(`normalizes pnpm input ${input}`, ({ cli }) =>
+  for (const [input, message] of BUN_INPUT_CASES) {
+    it(`normalizes Bun input ${input}`, ({ cli }) =>
       refuses(
         cli.replace(
-          "          cache: true",
-          `          ${input}\n          cache: true`
+          "          bun-version-file: package.json",
+          `          ${input}\n          bun-version-file: package.json`
+        ),
+        message
+      ));
+  }
+
+  for (const [input, message] of NODE_INPUT_CASES) {
+    it(`normalizes Node.js input ${input}`, ({ cli }) =>
+      refuses(
+        cli.replace(
+          "          node-version-file: package.json",
+          `          ${input}\n          node-version-file: package.json`
         ),
         message
       ));
@@ -291,9 +293,9 @@ ${TOOLCHAIN_STEP}`
   it("normalizes and rejects duplicated input names", ({ cli }) =>
     refuses(
       cli.replace(
-        "          cache: true",
-        "          CACHE: true\n          cache: true"
+        "          bun-version-file: package.json",
+        "          BUN-VERSION-FILE: package.json\n          bun-version-file: package.json"
       ),
-      "Workflow action input cache must not be duplicated case-insensitively"
+      "Workflow action input bun-version-file must not be duplicated case-insensitively"
     ));
 });

@@ -6,6 +6,5 @@ export const defaultBumpConfig = Effect.gen(function* () {
   return {
     manifest: path.resolve(import.meta.dirname, "../../package.json"),
     root: path.resolve(import.meta.dirname, "../.."),
-    workspace: path.resolve(import.meta.dirname, "../../pnpm-workspace.yaml"),
   };
 });

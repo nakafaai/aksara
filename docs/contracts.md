@@ -16,7 +16,7 @@ asset: nakafa-aksara-contracts-<version>.tgz
 npm is the consumer distribution channel. The immutable GitHub Release asset
 is the independently attested archive used for byte comparison, release
 recovery, and supply-chain verification. Consumers use an exact npm version and
-commit its pnpm lockfile integrity. They do not depend on a raw GitHub archive
+commit its integrity in their lockfile. They do not depend on a raw GitHub archive
 URL or Git source.
 
 ## Release identity
@@ -46,7 +46,7 @@ pnpm archive format without a duplicated workflow path list.
 Run:
 
 ```sh
-pnpm verify:consumer
+bun run verify:consumer
 ```
 
 The verifier builds the contracts package, copies only `dist`, `README.md`,

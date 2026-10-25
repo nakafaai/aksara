@@ -773,7 +773,7 @@
     "build": "git clean -xdf dist && tsc --project tsconfig.build.json",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json",
-    "verify:consumer": "pnpm run build && node --conditions=aksara-source scripts/verify/edge.ts && node scripts/verify/consumer.ts"
+    "verify:consumer": "bun run build && node --conditions=aksara-source scripts/verify/edge.ts && node scripts/verify/consumer.ts"
   },
   "devDependencies": {
     "@effect/platform-node": "catalog:",

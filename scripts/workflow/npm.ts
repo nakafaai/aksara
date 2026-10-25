@@ -177,7 +177,7 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
     const publishSource = jobSource(publish);
     const verifySource = jobSource(verify);
     yield* requireSource("npm build", buildSource, [
-      "pnpm exec esbuild scripts/provenance/main.ts",
+      "bunx esbuild scripts/provenance/main.ts",
       "createRequire(import.meta.url)",
       UPLOAD_ACTION,
       contract.packageArtifact,

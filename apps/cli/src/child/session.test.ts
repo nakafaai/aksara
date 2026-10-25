@@ -88,10 +88,11 @@ describe("Nakafa child process", () => {
         );
 
         const { port } = result.child.origin;
+        expect(started.command).toBe("bun");
         expect(started.args).toEqual([
-          "--filter",
-          "www",
-          "exec",
+          "run",
+          "--cwd",
+          "apps/www",
           "vite",
           "dev",
           "--host",

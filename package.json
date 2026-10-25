@@ -8,49 +8,86 @@
     "#nakafa-content/*": "./.agents/skills/nakafa-content/scripts/*.ts",
     "#scripts/*": "./scripts/*.ts"
   },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "@effect/platform-node": "4.0.5",
+      "@effect/vitest": "4.0.5",
+      "@mdx-js/mdx": "3.1.1",
+      "@types/estree-jsx": "1.0.5",
+      "@types/mdast": "4.0.4",
+      "@types/unist": "3.0.3",
+      "@vitest/coverage-istanbul": "5.0.5",
+      "effect": "4.0.5",
+      "esbuild": "0.28.2",
+      "eslint-scope": "9.1.2",
+      "estree-util-visit": "2.0.0",
+      "mdast-util-mdx": "3.0.0",
+      "mdast-util-to-string": "4.0.0",
+      "remark-gfm": "4.0.1",
+      "remark-math": "6.0.0",
+      "remark-parse": "11.0.0",
+      "typescript": "7.0.2",
+      "unified": "11.0.5",
+      "unist-util-visit": "5.1.0",
+      "vitest": "5.0.5"
+    }
+  },
   "scripts": {
-    "abort": "turbo run abort --filter=@nakafa/aksara-cli",
-    "accept": "turbo run accept --filter=@nakafa/aksara-cli",
+    "abort": "turbo run abort --filter=@nakafa/aksara-cli --",
+    "accept": "turbo run accept --filter=@nakafa/aksara-cli --",
     "boundaries": "node --conditions=aksara-source scripts/imports/check.ts",
     "build": "turbo run build",
     "bump-deps": "node scripts/dependencies/bump.ts",
     "check": "turbo run check --filter=@nakafa/aksara-cli",
     "clean": "turbo run clean",
     "clean:root": "git clean -xdf coverage",
-    "cleanup": "turbo run cleanup --filter=@nakafa/aksara-cli",
-    "deprecations": "turbo run build && pnpm deprecations:audit",
+    "cleanup": "turbo run cleanup --filter=@nakafa/aksara-cli --",
+    "deprecations": "turbo run build && bun run deprecations:audit",
     "deprecations:audit": "node --conditions=aksara-source scripts/check/deprecations.ts",
-    "dev": "turbo run dev --filter=@nakafa/aksara-cli",
+    "dev": "turbo run dev --filter=@nakafa/aksara-cli --",
     "effect:source:check": "node scripts/effect/source.ts check",
     "effect:source:update": "node scripts/effect/source.ts update",
     "format": "ultracite fix",
     "jsdocs": "node --conditions=aksara-source scripts/check/docs.ts",
     "lines": "node --conditions=aksara-source scripts/check/lines.ts",
-    "lint": "pnpm effect:source:check && node --conditions=aksara-source scripts/check/effect.ts && ultracite check",
+    "lint": "bun run effect:source:check && node --conditions=aksara-source scripts/check/effect.ts && ultracite check",
     "locales": "node --conditions=aksara-source scripts/check/locales.ts",
     "names": "node scripts/check/paths.ts",
     "native": "node scripts/check/native.ts",
-    "parity": "turbo run parity --filter=@nakafa/aksara-cli",
+    "parity": "turbo run parity --filter=@nakafa/aksara-cli --",
     "points": "node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts packages/corpus/material/lesson packages/corpus/articles",
     "prepare": "effect-tsgo patch --typescript --no-oxlint",
     "quran:source:sync": "node --conditions=aksara-source scripts/quran/sync.ts",
-    "recover": "turbo run recover --filter=@nakafa/aksara-cli",
-    "release": "turbo run release --filter=@nakafa/aksara-cli",
+    "recover": "turbo run recover --filter=@nakafa/aksara-cli --",
+    "release": "turbo run release --filter=@nakafa/aksara-cli --",
     "security:audit": "bash scripts/osv",
-    "status": "turbo run status --filter=@nakafa/aksara-cli",
+    "status": "turbo run status --filter=@nakafa/aksara-cli --",
     "test": "turbo run test test:lesson-voice test:root --concurrency=1",
     "test:lesson-voice": "vitest run --config scripts/voice.config.ts",
     "test:root": "vitest run --config scripts/vitest.config.ts",
     "typecheck": "turbo run typecheck",
     "typecheck:root": "tsc --project tsconfig.json",
-    "verify:consumer": "turbo run verify:consumer",
+    "verify:consumer": "turbo run verify:consumer --",
     "workflows": "node scripts/workflow/check.ts"
+  },
+  "overrides": {
+    "@effect/platform-node-shared": "4.0.5",
+    "ip-address": "10.7.4",
+    "micromark-extension-math@3.1.0>katex": "0.19.1",
+    "source-map-js": "1.2.2",
+    "undici": "8.12.3",
+    "vite": "8.3.5",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@actions/expressions": "0.3.61",
     "@biomejs/biome": "2.5.15",
     "@effect/platform-node": "catalog:",
-    "@effect/tsgo": "0.53.3",
+    "@effect/tsgo": "0.56.0",
     "@effect/vitest": "catalog:",
     "@mdx-js/mdx": "catalog:",
     "@nakafa/aksara-contracts": "workspace:*",
@@ -67,21 +104,24 @@
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
     "sigstore": "5.0.0",
-    "turbo": "2.11.8",
+    "turbo": "2.11.10",
     "typescript": "catalog:",
-    "ultracite": "8.0.1",
+    "ultracite": "8.0.2",
     "vitest": "catalog:",
     "yaml": "2.9.1"
   },
-  "packageManager": "pnpm@11.28.6",
+  "packageManager": "bun@1.4.4",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "24.22.0",
+      "version": "24.22.1",
       "onFail": "download"
     }
-  }
+  },
+  "trustedDependencies": [
+    "esbuild"
+  ]
 }

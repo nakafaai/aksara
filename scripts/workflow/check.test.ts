@@ -50,10 +50,10 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
       {
         all: [
           ...sources.all,
-          "jobs:\n  verify:\n    steps:\n      - run: pnpm test",
+          "jobs:\n  verify:\n    steps:\n      - run: bun run test",
         ],
       },
-      "Every pnpm job must set up the toolchain once"
+      "Every Bun job must set up Node.js once"
     ));
 
   it("always verifies each named release workflow", (sources) =>
@@ -65,7 +65,7 @@ layer(workflowSourcesLayer)("workflow policy", (layered) => {
           "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
         ),
       },
-      "Every pnpm job must set up the toolchain once"
+      "Every Bun job must set up the toolchain once"
     ));
 
   it("rejects registry publication machinery", (sources) =>

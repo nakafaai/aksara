@@ -166,7 +166,7 @@ layer(workflowSourcesLayer)("publication target policy", (layered) => {
     expectRefusal(
       verifyPublicationWorkflow(release, [
         release,
-        "run: pnpm release -- --release-id drift",
+        "run: bun run release -- --release-id drift",
       ]),
       "Only one workflow may own content publication"
     ));

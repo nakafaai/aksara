@@ -10,6 +10,9 @@ import {
 } from "#scripts/consumer/verifier";
 import { OptionArgumentError } from "#scripts/options";
 
+/** Matches the temporary pack directory that the consumer packs into. */
+const PACK_DIRECTORY_PATTERN = /\/pack$/u;
+
 /** Supplies the exact live boundary inputs for direct program verification. */
 const input = (args: readonly string[] = []) => ({
   args,
@@ -113,7 +116,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       const processError = yield* verifyConsumer({
         ...input(),
         temporaryDirectory: workspace,
-        tools: { pnpm: process.execPath },
+        tools: { bunx: process.execPath },
       }).pipe(Effect.scoped, Effect.provide(configuration(root)), Effect.flip);
       expect(processError).toMatchObject({
         detail: expect.stringContaining("Contract package creation"),
@@ -129,7 +132,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       const startError = yield* verifyConsumer({
         ...input(),
         temporaryDirectory: workspace,
-        tools: { pnpm: path.join(root, "missing-command") },
+        tools: { bunx: path.join(root, "missing-command") },
       }).pipe(
         Effect.scoped,
         Effect.provide(configuration(root, { NPM_TOKEN: credential })),
@@ -167,6 +170,51 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       });
       expect(fileError.cause).toMatchObject({ _tag: "PlatformError" });
     })
+  );
+
+  effectIt.effect(
+    "packs the consumer with the pinned pnpm release through bunx",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-consumer-pnpm-",
+        });
+        const workspace = path.join(root, "workspace");
+        const recorded = path.join(root, "arguments.txt");
+        const bunx = path.join(root, "bunx");
+        yield* fileSystem.makeDirectory(workspace);
+        yield* fileSystem.writeFileString(
+          bunx,
+          `#!/bin/sh\nprintf '%s\\n' "$@" > "${recorded}"\nexit 3\n`
+        );
+        yield* fileSystem.chmod(bunx, 0o755);
+
+        const error = yield* verifyConsumer({
+          ...input(),
+          temporaryDirectory: workspace,
+          tools: { bunx },
+        }).pipe(
+          Effect.scoped,
+          Effect.provide(configuration(root)),
+          Effect.flip
+        );
+        expect(error).toMatchObject({
+          detail: expect.stringContaining("Contract package creation"),
+          reason: "process",
+        });
+        const command = (yield* fileSystem.readFileString(recorded))
+          .trimEnd()
+          .split("\n");
+        expect(command).toEqual([
+          "pnpm@11.28.8",
+          "pack",
+          "--config.ignore-scripts=true",
+          "--pack-destination",
+          expect.stringMatching(PACK_DIRECTORY_PATTERN),
+        ]);
+      })
   );
 
   effectIt.effect(

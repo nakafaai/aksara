@@ -5,7 +5,7 @@
 Compile and open one real document through the Aksara CLI and Nakafa renderer:
 
 ```sh
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
+bun run dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
 ```
 
 Set `NAKAFA_APP_DIR` when the sibling Nakafa checkout is not at the configured
@@ -29,7 +29,7 @@ through Turbo, which owns dependency build order. The repository-owned lesson
 voice suite has its own root command:
 
 ```sh
-pnpm test:lesson-voice
+bun run test:lesson-voice
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
@@ -39,36 +39,36 @@ node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/chec
 
 Run that suite before the corpus gate when changing a voice rule. The
 `aksara-source` condition resolves the tracked locale contract in a clean
-checkout. `pnpm test` includes the suite and default corpus gate through Turbo;
+checkout. `bun run test` includes the suite and default corpus gate through Turbo;
 checks must never depend on an ignored `packages/contracts/dist` left by an
 older task.
 
 Format changed files, then run the repository gates appropriate to the change:
 
 ```sh
-pnpm format
-pnpm names
-pnpm lines
-pnpm jsdocs
-pnpm locales
-pnpm points
-pnpm boundaries
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm verify:consumer
+bun run format
+bun run names
+bun run lines
+bun run jsdocs
+bun run locales
+bun run points
+bun run boundaries
+bun run lint
+bun run typecheck
+bun run test
+bun run build
+bun run verify:consumer
 ```
 
 Before a release candidate, also run:
 
 ```sh
-pnpm deprecations
-pnpm security:audit
-pnpm check
+bun run deprecations
+bun run security:audit
+bun run check
 ```
 
-`pnpm check` needs exact renderer credentials and validates the complete
+`bun run check` needs exact renderer credentials and validates the complete
 current corpus. It must not consume Humanizer output or an editorial review
 catalog. Source, provenance, renderer, locale, and publication failures remain
 typed blockers. Run the security audit after every dependency or lockfile
@@ -224,8 +224,8 @@ three findings, the thresholds, and the one scoped skip live in
 [computed and exact visuals](visuals.md#computed-and-exact-visuals).
 
 ```sh
-pnpm points
-pnpm points --base <ref>
+bun run points
+bun run points --base <ref>
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts packages/corpus/material/lesson/mathematics/<topic> --base origin/main
 ```
 

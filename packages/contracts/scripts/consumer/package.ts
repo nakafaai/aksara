@@ -4,15 +4,13 @@ import { runConsumerCommand } from "#scripts/consumer/command";
 import { consumerEnvironment } from "#scripts/consumer/environment";
 import { validatePackedManifest } from "#scripts/consumer/packed";
 import {
+  CONSUMER_PACKAGE_MANAGER,
   type ConsumerPackageInput,
+  consumerPnpmArguments,
   consumerFailure as failure,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
-import {
-  createReleaseManifest,
-  parsePackageManifest,
-  parseWorkspaceManifest,
-} from "#scripts/manifest";
+import { createReleaseManifest, parsePackageManifest } from "#scripts/manifest";
 
 const EffectManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })
@@ -39,25 +37,16 @@ export const stageConsumerPackage = Effect.fn(
     fileSystem
       .readFileString(file, "utf8")
       .pipe(Effect.mapError(failure("filesystem", `Unable to read ${file}`)));
-  const [sourceManifestSource, sourceLicense, rootManifestSource] =
-    yield* Effect.all([
-      read(packageFile("package.json")),
-      read(packageFile("LICENSE")),
-      read(path.join(workspaceRoot, "package.json")),
-    ]);
+  const [sourceManifestSource, sourceLicense] = yield* Effect.all([
+    read(packageFile("package.json")),
+    read(packageFile("LICENSE")),
+  ]);
   const sourceManifest = yield* Effect.try({
     catch: failure(
       "manifest",
       `Contract package manifest ${packageFile("package.json")} is malformed`
     ),
     try: () => parsePackageManifest(sourceManifestSource),
-  });
-  const rootManifest = yield* Effect.try({
-    catch: failure(
-      "manifest",
-      `Workspace package manifest ${path.join(workspaceRoot, "package.json")} is malformed`
-    ),
-    try: () => parseWorkspaceManifest(rootManifestSource),
   });
   const temporaryRoot = yield* fileSystem
     .makeTempDirectoryScoped({
@@ -132,15 +121,15 @@ export const stageConsumerPackage = Effect.fn(
   ]).pipe(
     Effect.mapError(failure("filesystem", "Contract package staging failed"))
   );
-  const tools = { pnpm: "pnpm", tar: "tar", ...input.tools };
+  const tools = { bunx: "bunx", tar: "tar", ...input.tools };
   yield* runConsumerCommand(
-    tools.pnpm,
-    [
+    tools.bunx,
+    consumerPnpmArguments([
       "pack",
       "--config.ignore-scripts=true",
       "--pack-destination",
       packDirectory,
-    ],
+    ]),
     childEnvironment,
     input.platform,
     "Contract package creation",
@@ -195,13 +184,13 @@ export const stageConsumerPackage = Effect.fn(
     sourceManifest,
   });
   return {
+    bunx: tools.bunx,
     childEnvironment,
     consumerDirectory,
     effectVersion,
-    packageManager: rootManifest.packageManager,
+    packageManager: CONSUMER_PACKAGE_MANAGER,
     packageName: sourceManifest.name,
     packedManifest,
-    pnpm: tools.pnpm,
     tarballPath,
     verifierDirectory,
     workspaceRoot,

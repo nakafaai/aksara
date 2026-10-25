@@ -131,13 +131,6 @@ export function createReleaseManifest(
   return `${encodePrettyJsonText(manifest)}\n`;
 }
 
-/** Root toolchain field inherited by an isolated package consumer. */
-const WorkspaceManifestSchema = Schema.Struct({
-  packageManager: Schema.String,
-});
-
-type WorkspaceManifest = typeof WorkspaceManifestSchema.Type;
-
 /** Installed package fields exercised by the isolated consumer verifier. */
 const InstalledManifestSchema = Schema.Struct({
   exports: Schema.Record(
@@ -257,15 +250,4 @@ export function parseInstalledManifest(source: string): InstalledManifest {
     exports[subpath] = exportConditions(descriptor, subpath);
   }
   return { exports, name };
-}
-
-/** Decodes the root package-manager contract used by the consumer. */
-export function parseWorkspaceManifest(source: string): WorkspaceManifest {
-  const parsed: unknown = Schema.decodeSync(JsonTextSchema)(source);
-  assert.ok(isObject(parsed), "The workspace manifest must be an object");
-  const packageManager = textField(
-    parsed.packageManager,
-    "Workspace packageManager must be text"
-  );
-  return { packageManager };
 }

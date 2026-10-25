@@ -35,7 +35,7 @@ Production state is not copied into this README. Read the authoritative release
 slots with:
 
 ```sh
-pnpm status
+bun run status
 ```
 
 That command is read-only. It does not sign, stage, activate, or delete
@@ -74,16 +74,20 @@ See:
 ## Requirements
 
 - Node 24
-- pnpm 11.28.6 through Corepack
+- Bun 1.4.4
 
 The exact supported runtime and package-manager versions live in
 [`package.json`](package.json). Install the frozen workspace from the repository
 root:
 
 ```sh
-corepack enable
-pnpm install --frozen-lockfile
+bun install --frozen-lockfile
 ```
+
+Bun does not enforce the `engines` or `devEngines` fields, so a local install
+on another Node.js major succeeds without an error. CI selects Node.js from
+`package.json` through `actions/setup-node`; a local checkout must run Node 24
+itself.
 
 ## Development
 
@@ -93,35 +97,35 @@ that GitHub Actions CI used to run. The contract archive identity,
 GitHub release data, so `contracts.yml` checks it on `main` instead.
 
 ```sh
-pnpm format
-pnpm lint
-pnpm deprecations
-pnpm names
-pnpm jsdocs
-pnpm lines
-pnpm boundaries
-pnpm locales
-pnpm points
-pnpm workflows
-pnpm native
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm verify:consumer
-pnpm security:audit
+bun run format
+bun run lint
+bun run deprecations
+bun run names
+bun run jsdocs
+bun run lines
+bun run boundaries
+bun run locales
+bun run points
+bun run workflows
+bun run native
+bun run typecheck
+bun run test
+bun run build
+bun run verify:consumer
+bun run security:audit
 ```
 
 Preview one real document through a sibling Nakafa checkout:
 
 ```sh
-pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
+bun run dev -- --document packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx
 ```
 
 Preview a German application shell while preserving the language being
 assessed:
 
 ```sh
-pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/question.en.mdx --app-locale de
+bun run dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english/set-1/question-1/question.en.mdx --app-locale de
 ```
 
 The selected prompt and response options remain in the assessed language. The
@@ -130,7 +134,7 @@ shell and worked answer use the selected application locale.
 Run a focused workspace test through Turbo so dependency builds are current:
 
 ```sh
-pnpm exec turbo run test --filter=@nakafa/aksara-publisher
+bunx turbo run test --filter=@nakafa/aksara-publisher
 ```
 
 Do not run a package test directly when it consumes another workspace. Turbo
@@ -148,7 +152,7 @@ Creating a production release requires an explicit canonical scope. Recovery,
 acceptance, status, and cleanup use the recorded release identity. For example:
 
 ```sh
-pnpm release -- \
+bun run release -- \
   --release-id release-2026-08-20 \
   --recovery-id recovery-2026-08-20 \
   --scope family:article \
@@ -202,7 +206,7 @@ inverse of any earlier development release first, because a retained inverse
 blocks a new candidate. Accept a release to one target with a dispatch for that
 same target.
 
-The read-only `pnpm parity -- --release-id <id> --recovery-id <id>` command
+The read-only `bun run parity -- --release-id <id> --recovery-id <id>` command
 verifies both active signatures, source revision, locales, frozen renderer,
 complete result catalog digest, and every snapshot result identity. The workflow
 runs it only when `both` is selected: after the paired release and acceptance,
@@ -222,8 +226,8 @@ use `NODE_EXTRA_CA_CERTS` for its temporary certificate. Never disable TLS
 verification.
 
 The contracts package is published as `@nakafa/aksara-contracts` through npm
-trusted publishing with provenance. Consumers pin the exact npm version and
-pnpm integrity in their lockfile. An immutable GitHub Release retains the same
+trusted publishing with provenance. Consumers pin the exact npm version and its
+integrity in their lockfile. An immutable GitHub Release retains the same
 attested archive for independent byte and source verification.
 
 ## Toolchain notes
@@ -232,8 +236,8 @@ attested archive for independent byte and source verification.
   Source inspection uses scoped native compiler snapshots. The compiler,
   unstable API, and Effect patch are pinned and upgraded together.
 - Effect work uses the version-matched read-only source under `repos/effect`.
-  Run `pnpm effect:source:check` before review. Update that subtree only through
-  `pnpm effect:source:update` as part of an approved dependency cohort.
+  Run `bun run effect:source:check` before review. Update that subtree only through
+  `bun run effect:source:update` as part of an approved dependency cohort.
 - Package-internal imports use private aliases such as `#contracts/*`.
   Cross-package imports use exact `@nakafa/*` exports.
 - Generated `dist` output is ignored. Source tests resolve package aliases to

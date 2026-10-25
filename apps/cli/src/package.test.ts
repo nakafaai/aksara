@@ -134,7 +134,7 @@ describe("Aksara CLI package", () => {
         const effectVersion = yield* readPackageVersion(
           new URL(import.meta.resolve("effect/package.json"))
         );
-        yield* runCommand("pnpm", ["build"], packageRoot);
+        yield* runCommand("bun", ["run", "build"], packageRoot);
         const packOutput = yield* runCommand(
           "npm",
           [

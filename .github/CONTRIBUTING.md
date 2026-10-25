@@ -34,7 +34,7 @@ Do not submit a contribution if you cannot grant these rights.
 ### Prerequisites
 
 - Node.js 24
-- pnpm, using the version declared in `package.json`
+- Bun, using the version declared in `package.json`
 - Git
 - GitHub CLI, authenticated with `gh auth login`
 
@@ -43,7 +43,7 @@ Do not submit a contribution if you cannot grant these rights.
 ```bash
 gh repo fork nakafaai/aksara --clone --remote
 cd aksara
-pnpm install --frozen-lockfile
+bun install --frozen-lockfile
 ```
 
 Before editing, read root `AGENTS.md` and the nearest nested `AGENTS.md`. For
@@ -71,29 +71,29 @@ educational content or fixtures.
 ### Development Commands
 
 ```bash
-pnpm format
-pnpm lint
-pnpm deprecations
-pnpm security:audit
-pnpm names
-pnpm jsdocs
-pnpm lines
-pnpm locales
-pnpm points
-pnpm workflows
-pnpm boundaries
-pnpm native
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm verify:consumer
+bun run format
+bun run lint
+bun run deprecations
+bun run security:audit
+bun run names
+bun run jsdocs
+bun run lines
+bun run locales
+bun run points
+bun run workflows
+bun run boundaries
+bun run native
+bun run typecheck
+bun run test
+bun run build
+bun run verify:consumer
 ```
 
 ### Code Standards
 
 - Keep TypeScript strict and Effect-native.
 - Use package aliases instead of relative TypeScript imports.
-- Name every file and folder with exactly one semantic word; `pnpm names`
+- Name every file and folder with exactly one semantic word; `bun run names`
   enforces it. Content identities such as lesson, article, curriculum, page,
   and question-bank source folders keep their exact names. `AGENTS.md` lists
   every convention the check allows.

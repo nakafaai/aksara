@@ -1,201 +1,200 @@
-import { Array as Arr, Effect, Equivalence, Order, Ref, Schema } from "effect";
-import { parse } from "yaml";
+import { Array as Arr, Effect, pipe, Record as Rec, Schema } from "effect";
 import {
+  type BunRunner,
   DependencyCommandError,
-  decodeOutdatedDependencies,
-  decodeRegistryVersion,
-  type PnpmRunner,
-  runPnpm,
+  runBun,
 } from "#scripts/dependencies/command";
+import { holdProblems, reviewHold } from "#scripts/dependencies/hold";
+import {
+  DependencyPolicyError,
+  type RootManifest,
+  readManifest,
+  writeManifest,
+} from "#scripts/dependencies/manifest";
 import { defaultBumpConfig } from "#scripts/dependencies/paths";
 import {
   DEPENDENCY_HOLDS,
-  type DependencyHold,
-  declaredVersion,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
+import { admittedLatest } from "#scripts/dependencies/release";
 import { runEntry } from "#scripts/entry";
-import { readSource } from "#scripts/source";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
   manifest: Schema.String,
   root: Schema.String,
-  workspace: Schema.String,
 });
 
 /** Paths of the repository files that the dependency policy reads and updates. */
 export type BumpDependenciesConfig = typeof BumpDependenciesConfigSchema.Type;
 
-const RootManifestSchema = Schema.Struct({
-  devDependencies: Schema.Record(Schema.String, Schema.String),
-  devEngines: Schema.Struct({
-    runtime: Schema.Struct({ version: Schema.String }),
-  }),
-  packageManager: Schema.String,
+const RoutineSectionSchema = Schema.Literals([
+  "catalog",
+  "devDependencies",
+  "overrides",
+]);
+
+/** One routine declaration. Its package is the registry name that its key pins. */
+const RoutineDependencySchema = Schema.Struct({
+  current: Schema.String,
+  dependency: Schema.String,
+  packageName: Schema.String,
+  section: RoutineSectionSchema,
 });
 
-const WorkspaceSchema = Schema.Struct({
-  catalog: Schema.Record(Schema.String, Schema.String),
-  update: Schema.Struct({ ignoreDeps: Schema.Array(Schema.String) }),
+type RoutineDependency = typeof RoutineDependencySchema.Type;
+
+/** One routine declaration whose registry latest differs from the manifest. */
+const RoutineUpdateSchema = Schema.Struct({
+  ...RoutineDependencySchema.fields,
+  latest: Schema.String,
 });
+type RoutineUpdate = typeof RoutineUpdateSchema.Type;
 
-const parseJson = Schema.decodeSync(Schema.fromJsonString(Schema.Unknown));
-
-/** A held cohort differs from its explicit repository review decision. */
-class DependencyPolicyError extends Schema.TaggedError<
-  DependencyPolicyError,
-  { readonly brand: unique symbol }
->()("DependencyPolicyError", { message: Schema.String }) {}
-
-/** Reads one structured repository file through its runtime schema. */
-const readStructuredFile = Effect.fn("DependencyPolicy.readStructuredFile")(
-  function* <A>(
-    path: string,
-    parseSource: (source: string) => unknown,
-    schema: Schema.Codec<A, unknown, never, never>
-  ) {
-    const source = yield* readSource(path).pipe(
-      Effect.mapError(
-        (error) => new DependencyPolicyError({ message: error.message })
-      )
-    );
-    const input = yield* Effect.try({
-      catch: () =>
-        new DependencyPolicyError({ message: `${path} is not valid.` }),
-      try: () => parseSource(source),
-    });
-    return yield* Schema.decodeUnknownEffect(schema)(input).pipe(
-      Effect.mapError(
-        () =>
-          new DependencyPolicyError({
-            message: `${path} has an invalid shape.`,
-          })
-      )
-    );
-  }
-);
-
-/** Returns the reviewed declaration for one held dependency. */
-function currentVersion(
-  hold: DependencyHold,
-  manifest: typeof RootManifestSchema.Type,
-  workspace: typeof WorkspaceSchema.Type
-) {
-  if (hold.source === "catalog") {
-    return workspace.catalog[hold.dependency];
-  }
-  if (hold.source === "root-dev-dependency") {
-    return manifest.devDependencies[hold.dependency];
-  }
-  if (hold.source === "node-runtime") {
-    return manifest.devEngines.runtime.version;
-  }
-  return manifest.packageManager;
+/** Returns the package that an override key pins: its last `parent>` segment without a version. */
+function overriddenPackage(key: string): string {
+  const segment = key.slice(key.lastIndexOf(">") + 1);
+  const versionStart = segment.indexOf("@", 1);
+  return versionStart === -1 ? segment : segment.slice(0, versionStart);
 }
 
-/** Updates routine packages and proves every explicit hold is still reviewed. */
-export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
-  function* (config: BumpDependenciesConfig, runner: PnpmRunner = runPnpm) {
-    const manifest = yield* readStructuredFile(
-      config.manifest,
-      parseJson,
-      RootManifestSchema
-    );
-    const workspace = yield* readStructuredFile(
-      config.workspace,
-      parse,
-      WorkspaceSchema
-    );
-    const expectedIgnores = expectedIgnoredDependencies();
-    const actualIgnores = Arr.sort(workspace.update.ignoreDeps, Order.String);
-    if (
-      !Equivalence.Array(Equivalence.String)(actualIgnores, expectedIgnores)
-    ) {
-      return yield* new DependencyPolicyError({
-        message:
-          "pnpm update.ignoreDeps does not match the reviewed hold policy.",
-      });
-    }
+/** Lists the declarations that routine updates may move, excluding every reviewed hold. */
+function routineDependencies(
+  manifest: RootManifest
+): readonly RoutineDependency[] {
+  const held = expectedIgnoredDependencies();
+  const catalog = pipe(
+    Rec.toEntries(manifest.workspaces.catalog),
+    Arr.filter(([dependency]) => !Arr.contains(held, dependency)),
+    Arr.map(([dependency, current]) => ({
+      current,
+      dependency,
+      packageName: dependency,
+      section: "catalog" as const,
+    }))
+  );
+  const direct = pipe(
+    Rec.toEntries(manifest.devDependencies),
+    Arr.filter(
+      ([dependency, spec]) =>
+        !(
+          Arr.contains(held, dependency) ||
+          spec.startsWith("catalog:") ||
+          spec.startsWith("workspace:")
+        )
+    ),
+    Arr.map(([dependency, current]) => ({
+      current,
+      dependency,
+      packageName: dependency,
+      section: "devDependencies" as const,
+    }))
+  );
+  const overridden = pipe(
+    Rec.toEntries(manifest.overrides),
+    Arr.filter(([key]) => !Arr.contains(held, key)),
+    Arr.map(([key, current]) => ({
+      current,
+      dependency: key,
+      packageName: overriddenPackage(key),
+      section: "overrides" as const,
+    }))
+  );
+  return [...catalog, ...direct, ...overridden];
+}
 
-    const update = yield* runner(config.root, [
-      "update",
-      "--recursive",
-      "--latest",
-    ]);
-    if (update.exitCode !== 0) {
-      return yield* new DependencyCommandError({
-        message: update.stderr.trim() || "pnpm update failed.",
-      });
-    }
-
-    const problems = yield* Ref.make<readonly string[]>([]);
-    const reports = yield* Effect.forEach(
-      DEPENDENCY_HOLDS,
-      (hold) =>
+/** Keeps the routine declarations whose newest admitted release differs from the manifest. */
+const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
+  function* (
+    dependencies: readonly RoutineDependency[],
+    root: string,
+    runner: BunRunner
+  ) {
+    const planned = yield* Effect.forEach(
+      dependencies,
+      (dependency) =>
         Effect.gen(function* () {
-          const declared = declaredVersion(
-            currentVersion(hold, manifest, workspace) ?? ""
+          const latest = yield* admittedLatest(
+            dependency.packageName,
+            undefined,
+            root,
+            runner
           );
-          const output = yield* runner(config.root, [
-            "view",
-            hold.registry,
-            "version",
-            "--json",
-          ]);
-          const latest = yield* decodeRegistryVersion(output, hold.registry);
-          if (declared !== hold.approvedCurrent) {
-            yield* Ref.update(
-              problems,
-              Arr.append(
-                `${hold.dependency} declares ${declared ?? "no version"}; approved ${hold.approvedCurrent}.`
-              )
-            );
-          }
-          if (latest !== hold.reviewedLatest) {
-            yield* Ref.update(
-              problems,
-              Arr.append(
-                `${hold.dependency} upstream is ${latest}; last reviewed ${hold.reviewedLatest}.`
-              )
-            );
-          }
-          return { ...hold, current: declared ?? "missing", latest };
+          return { ...dependency, latest };
         }),
       { concurrency: 4 }
     );
+    return Arr.filter(planned, ({ current, latest }) => current !== latest);
+  }
+);
 
-    const outdatedOutput = yield* runner(config.root, [
-      "outdated",
-      "--recursive",
-      "--format",
-      "json",
-    ]);
-    const unresolvedRoutine = yield* decodeOutdatedDependencies(outdatedOutput);
-    if (unresolvedRoutine.length > 0) {
-      yield* Ref.update(
-        problems,
-        Arr.append(
-          `Routine dependencies remain outdated: ${Arr.join(Arr.sort(unresolvedRoutine, Order.String), ", ")}.`
-        )
-      );
-    }
+/** Maps the routine updates of one manifest section to the versions they declare. */
+function declaredUpdates(
+  updates: readonly RoutineUpdate[],
+  section: RoutineDependency["section"]
+) {
+  return Rec.fromEntries(
+    pipe(
+      updates,
+      Arr.filter((update) => update.section === section),
+      Arr.map((update) => [update.dependency, update.latest] as const)
+    )
+  );
+}
 
-    for (const report of reports) {
-      yield* Effect.logInfo(
-        `${report.cohort}: ${report.dependency} ${report.current}; reviewed upstream ${report.latest}. ${report.reason}`
-      );
-    }
-    const found = yield* Ref.get(problems);
-    if (found.length > 0) {
+/** Verifies every reviewed hold, moves routine dependencies to their newest release, and refreshes the lock. */
+export const makeBumpDependenciesProgram = Effect.fn("DependencyPolicy.main")(
+  function* (config: BumpDependenciesConfig, runner: BunRunner = runBun) {
+    const { document, fields } = yield* readManifest(config.manifest);
+    const reviews = yield* Effect.forEach(
+      DEPENDENCY_HOLDS,
+      (hold) => reviewHold(hold, fields, config.root, runner),
+      { concurrency: 4 }
+    );
+    const problems = Arr.flatMap(reviews, holdProblems);
+    if (problems.length > 0) {
       return yield* new DependencyPolicyError({
-        message: Arr.join(found, "\n"),
+        message: Arr.join(problems, "\n"),
       });
     }
 
-    yield* Effect.logInfo(
-      "Routine dependencies and every reviewed hold are current."
+    const updates = yield* planRoutineUpdates(
+      routineDependencies(fields),
+      config.root,
+      runner
     );
-    return reports;
+    if (updates.length > 0) {
+      yield* writeManifest(config.manifest, document, fields, {
+        catalog: declaredUpdates(updates, "catalog"),
+        devDependencies: declaredUpdates(updates, "devDependencies"),
+        overrides: declaredUpdates(updates, "overrides"),
+      });
+    }
+
+    const refresh = yield* runner(config.root, ["update"]);
+    if (refresh.exitCode !== 0) {
+      return yield* new DependencyCommandError({
+        message: refresh.stderr.trim() || "bun update failed.",
+      });
+    }
+
+    for (const review of reviews) {
+      yield* Effect.logInfo(
+        `${review.cohort}: ${review.dependency} ${review.current}; reviewed upstream ${review.reviewedLatest}. ${review.reason}`
+      );
+    }
+    yield* Effect.logInfo(
+      updates.length === 0
+        ? "Routine dependencies and every reviewed hold are current."
+        : `Updated routine dependencies: ${Arr.join(
+            Arr.map(
+              updates,
+              ({ current, dependency, latest }) =>
+                `${dependency} ${current} -> ${latest}`
+            ),
+            ", "
+          )}. Run bun run format to restore the manifest layout.`
+    );
+    return reviews;
   }
 );
 

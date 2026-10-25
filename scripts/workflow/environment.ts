@@ -8,7 +8,7 @@ import {
   scalarText,
 } from "#scripts/workflow/requirement";
 
-const TOOLCHAIN_ENV_NAMES = HashSet.make("NODE_VERSION", "PNPM_VERSION");
+const TOOLCHAIN_ENV_NAMES = HashSet.make("BUN_VERSION", "NODE_VERSION");
 const ENVIRONMENT_ALIAS_PATTERNS = [
   /\$\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
   /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
@@ -23,7 +23,7 @@ const environmentEntry = Effect.fn("AksaraScripts.workflowEnvironmentEntry")(
     );
     yield* ensure(
       !HashSet.has(TOOLCHAIN_ENV_NAMES, name),
-      "Workflows must not duplicate Node or pnpm versions"
+      "Workflows must not duplicate Node or Bun versions"
     );
 
     const value = scalarText(item.value);
@@ -58,8 +58,8 @@ export function mergeEnvironment(
   return HashMap.union(inherited, local);
 }
 
-/** Reports whether one shell command executes pnpm through an environment alias. */
-export function usesPnpmAlias(
+/** Reports whether one shell command executes Bun through an environment alias. */
+export function usesBunAlias(
   command: string,
   environment: HashMap.HashMap<string, string>
 ): boolean {
@@ -68,7 +68,7 @@ export function usesPnpmAlias(
       const name = match[1] ?? match[2];
       if (
         name !== undefined &&
-        Option.contains(HashMap.get(environment, name), "pnpm")
+        Option.contains(HashMap.get(environment, name), "bun")
       ) {
         return true;
       }

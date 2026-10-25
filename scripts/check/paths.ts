@@ -16,15 +16,16 @@ const FORBIDDEN_FILE_NAMES = HashSet.make(
   ".node-version",
   ".npmrc",
   ".nvmrc",
-  "bun.lock",
   "bun.lockb",
   "deno.lock",
   "npm-shrinkwrap.json",
   "package-lock.json",
+  "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
   "yarn.lock"
 );
 /** Repository files whose exact names the toolchain mandates. */
-const TOOLCHAIN_FILES = HashSet.make("pnpm-lock.yaml", "pnpm-workspace.yaml");
+const TOOLCHAIN_FILES = HashSet.make("bun.lock", "bunfig.toml");
 const ROLE_SUFFIXES = HashSet.make("build", "config", "d", "spec", "test");
 /** Roots whose folders are content identities, such as lesson and article slugs. */
 const CONTENT_ROOTS = [
@@ -139,7 +140,7 @@ export function pathViolations(files: readonly string[]): readonly string[] {
     const toolchainViolation = Option.exists(Arr.last(segments), (basename) =>
       HashSet.has(FORBIDDEN_FILE_NAMES, basename)
     )
-      ? [`${file}: pnpm and package.json own the toolchain contract`]
+      ? [`${file}: bun and package.json own the toolchain contract`]
       : [];
     const sourceViolation = JAVASCRIPT_PATTERN.test(file)
       ? [`${file}: hand-written JavaScript source is not allowed`]

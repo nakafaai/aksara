@@ -8,7 +8,7 @@ preview, and signed publication.
 - Node.js 24
 - A cloned Aksara repository for every operational command
 - The matching Nakafa repository for preview and catalog validation
-- `pnpm install` in each repository before commands that start local workspaces
+- `bun install` in each repository before commands that start local workspaces
 
 ## Install with npm
 
