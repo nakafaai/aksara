@@ -43,6 +43,23 @@
   trailing space already renders, an ordinal suffix welded to a closed value,
   and a conjunction that names an alternative inside a single equation stay
   valid.
+- The `heading-symbol` rule admits, in German and English headings and page
+  titles only, a hyphen that joins one letter to a word, such as `y-Achse` and
+  `x-Axis`. Amtliches Regelwerk 2024, § 40 (1), lists `y-Achse` and `n-Eck`
+  among the compounds with a single letter. Before this widening the rule
+  rejected the compound. The reflection lessons spelled the axis as
+  `senkrechten Achse` or `waagerechten Achse` in their German titles, which
+  disagreed with their German headings, and as `Y Axis` or `X Axis` in English.
+  Every title and heading in those lessons now uses the compound, so all
+  locales match. A corpus-wide search of the 766 German and English lesson files
+  (7058 heading and title lines), the articles, and the question bank found a
+  one-letter compound or a standalone axis letter in a heading or title only in
+  the two reflection lessons. The fixtures in `scripts/heading/hyphen.test.ts`
+  keep `x-Achse`, `n-Eck`, `α-Strahlen`, and `Flipping a Graph Across the x-Axis`
+  valid, and reject `xy-Achse`, `x-y`, `Die y- und x-Achse`, `Die Achse-y`,
+  `The xy-Plane`, `A Well-Known Rule`, and `The 3-Axis`. Indonesian rejects the
+  one-letter compound and keeps `sumbu y`, because its axis names put the letter
+  after the noun.
 
 The deterministic lesson voice gate is a quality regression linter, not an AI
 authorship detector. Admit a new rule only when all of these conditions hold:
@@ -158,10 +175,10 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
   do not reject them in an answer. Read the prompt and all answer siblings to
   evaluate their pedagogical use.
 
-A full question-bank run covers 9650 MDX files. A clean automated result proves
-only these boundaries, never mathematical accuracy or the completeness of every
-worked solution. The [worked-solution review](solutions.md) still owns
-those decisions.
+A full question-bank run covers every MDX file in the bank. A clean automated
+result proves only these boundaries, never mathematical accuracy or the
+completeness of every worked solution. The
+[worked-solution review](solutions.md) still owns those decisions.
 
 A **review candidate** is a finding the gate emits at the `review` tier, so only
 `--strict-review` fails it while the repository suite still rejects it. A

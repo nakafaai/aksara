@@ -48,4 +48,4 @@ the three findings above with new evidence.
 - Inline `bundle.ts`, `runtime.ts`, and `transition.ts` into
   `preparation.ts`. Rejected for the three findings above.
 - Merge the three modules into one `tryout.ts` file. Rejected: same
-  interfaces, fewer files, no new depth — relocation without leverage.
+  interfaces, fewer files, no new depth: relocation without leverage.

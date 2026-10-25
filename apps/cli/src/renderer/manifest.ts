@@ -74,7 +74,7 @@ export const fetchRendererManifest: FetchRenderer = Effect.fn(
   return fetchPreviewRenderer(new URL(RENDERER_PATH, origin), credentials);
 });
 
-/** Allows one cold Next graph bootstrap while keeping a hung child bounded. */
+/** Allows one cold Vite dev-server bootstrap while keeping a hung child bounded. */
 export const waitForRenderer: FetchRenderer = Effect.fn(
   "AksaraCli.waitForRenderer"
 )((origin, credentials) =>

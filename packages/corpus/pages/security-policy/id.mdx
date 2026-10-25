@@ -2,12 +2,12 @@ export const metadata = {
   title: "Kebijakan Keamanan",
   description: "Tinjau praktik dan kebijakan keamanan Nakafa untuk memahami bagaimana kami melindungi data dan menjamin keamanan platform.",
   datePublished: "2025-10-18",
-  dateModified: "2026-10-14",
+  dateModified: "2026-10-25",
 };
 
 # Kebijakan Keamanan
 
-Terakhir diperbarui: 14 Oktober 2026
+Terakhir diperbarui: 25 Oktober 2026
 
 Kebijakan Keamanan ini menjelaskan langkah-langkah keamanan yang digunakan PT NAKAFA TEKNO KREATIF ("Nakafa", "kami") serta langkah yang kami harapkan dari pengguna untuk membantu melindungi kerahasiaan, integritas, dan ketersediaan Layanan serta data terkait.
 
@@ -44,34 +44,35 @@ Data aplikasi disimpan di Convex. Fungsi aplikasi Nakafa yang memerlukan autenti
 
 ### Pelaporan pengecualian operasional
 
-Kegagalan permintaan Next.js produksi dilaporkan ke PostHog hanya ketika pelaporan pengecualian server diaktifkan. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti rute, metode permintaan, atau ringkasan kesalahan framework. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
+Pengecualian server yang dicatat Nakafa hanya dilaporkan ke PostHog dari lingkungan produksi, dan tidak pernah ketika situs sedang di-prerender. Setiap laporan mempertahankan baris stack trace yang disanitasi serta konteks teknis yang diizinkan dan dibatasi panjangnya, seperti metode permintaan atau sumber kesalahan. Laporan juga memuat user agent permintaan yang dipakai PostHog untuk mengklasifikasikan lalu lintas. Nakafa menggunakan laporan tersebut untuk mendiagnosis kegagalan tertentu dan merencanakan pemeliharaan korektif. Pernyataan ini tidak menyatakan bahwa Nakafa mengoperasikan sistem informasi keamanan atau deteksi penyalahgunaan yang terpisah.
 
 Laporan pengecualian operasional tidak membawa pengenal pengguna, akun, atau analitik produk. Peristiwa penggunaan produk opsional dipisahkan dan memerlukan keputusan persetujuan analitik yang efektif.
 
 ### Pengembangan aman dan manajemen perubahan
 
-Pada revisi di bawah, workflow repositori Nakafa mengaudit dependensi dan menjalankan pengujian untuk pull request. Proses tepercaya internal dan proses pada cabang utama juga membangun aplikasi produksi, kecuali perubahan hanya menyunting dokumentasi atau berkas pengujian yang sudah ada. Workflow tersebut dinonaktifkan sejak 14 Oktober 2026, sehingga pemeriksaan ini tidak berjalan di sana, dan perubahan diverifikasi secara lokal sebelum digabungkan. Ketika berjalan, pemeriksaan ini mengurangi risiko, tetapi tidak membuktikan bahwa setiap kerentanan telah ditemukan atau diperbaiki.
+Pada revisi di bawah, workflow repositori Nakafa mengaudit dependensi dan menjalankan pengujian untuk pull request. Proses tepercaya internal dan proses pada cabang utama juga membangun aplikasi produksi, kecuali perubahan hanya menyunting dokumentasi atau berkas pengujian yang sudah ada. Workflow tersebut dihapus pada 17 Oktober 2026, sehingga pemeriksaan ini tidak lagi berjalan di GitHub Actions, dan perubahan diverifikasi secara lokal sebelum digabungkan. Ketika berjalan, pemeriksaan ini mengurangi risiko, tetapi tidak membuktikan bahwa setiap kerentanan telah ditemukan atau diperbaiki.
 
-### Bukti implementasi untuk revisi ini
+### Bukti implementasi untuk revisi-revisi ini
 
-Pernyataan teknis di atas dibatasi pada revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
+Pernyataan teknis di atas dibatasi pada revisi-revisi implementasi Nakafa yang tepat dan dokumentasi penyedia berikut:
 
-- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/next-config/index.ts)
+- [Header keamanan transportasi dan peramban untuk seluruh aplikasi](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/site/index.ts)
 - [Sesi aplikasi tervalidasi dan pemeriksaan pengguna aktif](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/auth/session.ts)
-- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/lib/content/internal/authorization.ts)
+- [Verifikasi bearer untuk konten internal dengan perbandingan waktu konstan](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/lib/content/internal/authorization.ts)
 - [Analitik peramban berbasis persetujuan dengan pengumpulan otomatis dinonaktifkan](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/browser.ts)
 - [Pelaporan pengecualian operasional yang dibatasi dan tanpa identitas](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/analytics/posthog/exception.ts)
-- [Penangkapan kesalahan permintaan Next.js melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/apps/www/instrumentation.ts)
+- [Penangkapan kesalahan permintaan di titik masuk server melalui adapter pelaporan yang dibatasi](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/apps/www/src/server.ts)
+- [Gerbang yang hanya mengizinkan laporan pengecualian server di lingkungan produksi dan di luar prerender](https://github.com/nakafaai/nakafa.com/blob/d5bbe16ae66ceec84b6931d57aeb8999d4a78f8f/packages/analytics/server-reporting.ts)
 - [Pengiriman analitik backend yang memperhatikan penghapusan akun](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/packages/backend/confect/analytics/capture.ts)
 - [Workflow audit dependensi dan pengujian pull request](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
 - [Langkah workflow build produksi tepercaya](https://github.com/nakafaai/nakafa.com/blob/6dbc43b76cbd0d8d59b6d4fb79c77712c2305f82/.github/workflows/ci.yml)
-- [Dokumentasi Vercel tentang HTTPS dan penerbitan sertifikat](https://vercel.com/docs/security#encryption)
+- [Dokumentasi Cloudflare tentang HTTPS dan penerbitan sertifikat](https://developers.cloudflare.com/ssl/)
 
 ## Keamanan layanan pihak ketiga
 
 Layanan bergantung pada layanan pihak ketiga. Praktik keamanan dan kontrol mereka berpengaruh pada keamanan keseluruhan Layanan. Layanan pihak ketiga inti kami meliputi:
 
-- Vercel (hosting dan delivery)
+- Cloudflare (hosting dan delivery)
 - Convex (basis data, infrastruktur backend, dan perutean permintaan AI)
 - Polar (pembayaran dan manajemen langganan)
 - Resend (pengiriman email)

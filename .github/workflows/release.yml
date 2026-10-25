@@ -245,10 +245,13 @@ jobs:
         run: |
           # Package test tasks do not reach the root suites, so name them here.
           bunx turbo run test:root test:lesson-voice --filter=// --concurrency=1
+          # One task at a time, as the root test script runs them: on a two-core
+          # runner concurrent suites starve the fixture tests past their timeout.
           bunx turbo run typecheck test build \
             --filter=@nakafa/aksara-contracts \
             --filter=@nakafa/aksara-publisher \
-            --filter=@nakafa/aksara-cli
+            --filter=@nakafa/aksara-cli \
+            --concurrency=1
           bun run deprecations:audit
 
   operate:

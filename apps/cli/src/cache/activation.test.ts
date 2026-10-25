@@ -12,9 +12,9 @@ import {
 } from "#cli/cache/activation";
 import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
-import { NEXT_RELEASE_BUNDLE } from "#test/target";
+import { STAGED_RELEASE_BUNDLE } from "#test/target";
 
-const RELEASE = NEXT_RELEASE_BUNDLE.release;
+const RELEASE = STAGED_RELEASE_BUNDLE.release;
 
 /** Creates one successful private cache response for the captured request. */
 function cacheResponse(

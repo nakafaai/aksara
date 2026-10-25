@@ -21,7 +21,7 @@ export class NakafaApp extends Context.Service<
       origin: URL,
       credentials: RendererCredentials
     ) => Effect.Effect<RendererManifestEnvelope, NakafaAppError>;
-    /** Starts the actual Nakafa Next development app on localhost. */
+    /** Starts the actual Nakafa TanStack Start development app on localhost. */
     readonly start: (
       input: NakafaStartInput
     ) => Effect.Effect<RunningNakafa, NakafaAppError, Scope.Scope>;

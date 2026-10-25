@@ -9,7 +9,7 @@ production acceptance result.
 
 - Recorded: 2026-07-21
 - Nakafa baseline: `25506da68a5dd97bc55f99b6f7304384c4744206`
-- Next.js: 16.2.10 with Turbopack and Cache Components
+- Measured on Next.js 16.2.10 with Turbopack and Cache Components, before the move to TanStack Start
 - MDX: `@mdx-js/mdx` 3.1.1, `outputFormat: "function-body"`, official `run`
 - Rendering: request-time PPR child behind `connection()` and `Suspense`
 
@@ -20,7 +20,7 @@ browser-side artifact execution was introduced.
 
 ## Rejected shared module graphs
 
-Each of these shared implementation graphs caused a plain article to preload
+On Next.js, each of these shared implementation graphs caused a plain article to preload
 unrelated R3F/client code:
 
 - one directly imported global implementation registry;
@@ -31,9 +31,8 @@ unrelated R3F/client code:
 - that same shared registry moved behind `connection()`.
 
 Request-time execution did not alter the client-reference preload graph. This
-matches the Next.js lazy-loading documentation: automatic code splitting is not
-currently supported when a Server Component dynamically imports a Client
-Component.
+matched the Next.js lazy-loading documentation: automatic code splitting was not
+supported when a Server Component dynamically imported a Client Component.
 
 ## Passing physical route topology
 
