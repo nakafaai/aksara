@@ -2,12 +2,12 @@ export const metadata = {
   title: "Developer Resources",
   description: "Use Nakafa's public REST API, OpenAPI contract, MCP server, and command-line client in reliable education workflows.",
   datePublished: "2026-08-28",
-  dateModified: "2026-08-31",
+  dateModified: "2026-10-25",
 };
 
 # Developer Resources
 
-Last updated: September 20, 2026
+Last updated: October 25, 2026
 
 Nakafa provides public, machine-readable access to multilingual learning materials and bounded Quran references. These interfaces suit agents and applications that need typed inputs, predictable errors, and canonical content references. They are read-only, require no Nakafa account, and do not expose private learner records, purchases, or account actions.
 
@@ -28,7 +28,7 @@ The canonical API base is [https://api.nakafa.com/v1](https://api.nakafa.com/v1)
 - `GET /v1/taxonomy`: inspect the published taxonomy
 - `GET /v1/quran/{surah}`: retrieve a typed verse range
 
-Search returns 10 results by default and accepts at most 10 per request. The search window contains at most 10 results, with `offset` from 0 to 9. When using a smaller `limit`, follow `has_more` and `next_offset` to read the next page within that window. Clients should budget for no more than 120 requests per 60 seconds from one IP and handle HTTP 429 responses with backoff.
+Search returns 10 results by default and accepts at most 10 per request. The search window contains at most 10 results, with `offset` from 0 to 9. When using a smaller `limit`, follow `has_more` and `next_offset` to read the next page within that window. The public read quota applies to search, content, Quran, taxonomy, and MCP requests. Each client IP may send a burst of up to 30 requests, and its allowance refills at 120 requests per 60 seconds, so clients should pace requests to that rate and handle HTTP 429 responses with backoff.
 
 <CodeBlock
   data={[{
@@ -42,7 +42,7 @@ Search returns 10 results by default and accepts at most 10 per request. The sea
 
 The [Nakafa OpenAPI 3.1 contract](https://api.nakafa.com/openapi.json) describes every public operation, input, response, and example. Compatible additions remain in `v1`. A breaking change requires a new major path.
 
-Convex-owned API failures use RFC 9457 Problem Details with the media type `application/problem+json`. Each response includes a stable `code`, a human-readable `detail`, a concrete `resolution`, and a traceable `request_id`. A Vercel Firewall HTTP 429 can stop a request before it reaches Convex, so clients must treat that platform-owned response as an exception and retry with backoff.
+Convex-owned API failures use RFC 9457 Problem Details with the media type `application/problem+json`. Each response includes a stable `code`, a human-readable `detail`, a concrete `resolution`, and a traceable `request_id`. Cloudflare can refuse a request before it reaches Convex. The firewall rule on the nakafa.com zone refuses a request whose user agent names a training-only crawler, such as GPTBot or ClaudeBot, on every host of the zone, including api.nakafa.com and mcp.nakafa.com. That refusal is Cloudflare's own response, not a Problem Details response, and retrying it with backoff does not help.
 
 <CodeBlock
   data={[{
@@ -102,7 +102,7 @@ Mcp-Method: tools/list
 
 ## Command line
 
-The official Node 24 package is `@nakafa/cli`, with the executable `nakafa`. It calls the public REST API and prints compact JSON by default. Add `--pretty` for readable output or `--api-base` when verifying a local or independently hosted compatible API endpoint.
+The official Node 24 package is `@nakafa/cli`, with the executable `nakafa`. It calls the public REST API for its search, get, taxonomy, and quran commands, and prints compact JSON by default. Add `--pretty` for readable output or `--api-base` when verifying a local or independently hosted compatible API endpoint.
 
 <CodeBlock
   data={[{
