@@ -147,13 +147,13 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
     const port = yield* reserveNakafaPort();
     const origin = new URL(`http://${NAKAFA_LOOPBACK_HOST}:${port}`);
     const environment = yield* makeChildEnvironment(input, origin);
-    // The nakafa.com workspace is still pnpm, so its www dev server starts through pnpm.
+    // nakafa.com is a Bun workspace, so its www app runs its own Vite binary through Bun.
     const process = yield* processes
       .start({
         args: [
-          "--filter",
-          "www",
-          "exec",
+          "run",
+          "--cwd",
+          "apps/www",
           "vite",
           "dev",
           "--host",
@@ -162,7 +162,7 @@ export const startNakafa = Effect.fn("AksaraCli.startNakafa")(
           String(port),
           "--strictPort",
         ],
-        command: "pnpm",
+        command: "bun",
         environment,
         root: input.root,
       })
