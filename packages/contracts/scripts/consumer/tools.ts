@@ -3,9 +3,11 @@ import { Array as Arr, Schema } from "effect";
 import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
 
 /**
- * The package manager of the isolated consumer. The consumer is a pnpm project,
- * as nakafa.com is, so the archive is packed and installed with pnpm 11.28.8.
- * Runners do not install pnpm, so Bun fetches this exact release through bunx.
+ * The package manager of the isolated consumer. The archive is packed and
+ * installed with pnpm 11.28.8, the pinned release whose pack output the release
+ * identity compares byte for byte. nakafa.com installs the published package
+ * with Bun, but changing this pack step changes the archive identity. Runners
+ * do not install pnpm, so Bun fetches this exact release through bunx.
  */
 export const CONSUMER_PACKAGE_MANAGER = "pnpm@11.28.8";
 

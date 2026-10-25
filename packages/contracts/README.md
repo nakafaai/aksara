@@ -10,7 +10,7 @@ implementation, signing key, deployment credential, or browser-side MDX
 runtime.
 
 Consumers install the exact `@nakafa/aksara-contracts` version from npm and
-commit its pnpm lockfile integrity. npm provenance and the matching immutable
+commit its integrity in their lockfile. npm provenance and the matching immutable
 GitHub Release bind those package bytes to the reviewed Aksara source. Content
 requiring a newer contract may be activated only after a compatible Nakafa
 renderer is live.
