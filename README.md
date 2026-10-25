@@ -47,10 +47,10 @@ Aksara MDX is reviewed executable source. It is not a sandbox or an upload
 format for untrusted users.
 
 Before Nakafa executes an artifact, the runtime verifies its signed release,
-artifact signature, hashes, delivery policy, projection, and renderer support.
-A release that adopts a renderer change must prove the complete corpus and bind
-the exact deployed manifest. A scoped content-only release may retain the
-active frozen manifest only while pre-activation proves the live renderer is a
+artifact signature, hashes, delivery policy, projection, and renderer manifest.
+A release that changes the renderer must prove the complete corpus and bind the
+exact deployed manifest. A scoped content-only release may retain the active
+frozen manifest only while pre-activation proves the live renderer is a
 compatible superset. Runtime reads independently prove the selected artifact
 against the live renderer when its hash differs from the frozen manifest.
 
@@ -173,10 +173,10 @@ The first release of a new content contract generation replaces a base that
 the new renderer cannot read, so no inverse can protect it. Such a release
 names the retired active release with `--bootstrap-over <active-release-id>`
 in place of `--recovery-id`, and it selects every family and snapshot because
-it must replace every head. The live renderer must differ from the retired
-base's, or the command refuses before any write. It takes one target and has no
-accept or recover step. Its undo is a forward release of the last commit of the
-retired generation. See [`docs/adr/release.md`](docs/adr/release.md).
+it must replace every head. A live renderer change must be closed by that
+scope, or the command refuses before any write. It takes one target and has no
+accept or recover step. The switch is one way: the retired generation is never
+restored. See [`docs/adr/release.md`](docs/adr/release.md).
 
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does
@@ -192,8 +192,10 @@ verification job finishes before any publication job receives credentials. A
 failed target does not cancel its peer. Inspect each durable state before
 rerunning the same release identity at its exact original revision. Resume
 rejects a different revision. Recovery, abort, and cleanup take exactly one
-target. Development has no deployed cache surface; production invalidates its
-deployed surface. Credentials are selected by target key with no value fallback.
+target. A production release or recovery that changes content runs Nakafa's
+deploy workflow with the deploy app's installation token, so the site
+prerenders the active release; development deploys nothing. Credentials are
+selected by target key with no value fallback.
 
 A catch-up publishes the revision of `main` that the workflow is dispatched
 from, so dispatch it while `main` is still at the revision of the production

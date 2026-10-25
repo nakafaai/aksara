@@ -136,6 +136,7 @@ export function environmentMock(calls: TargetCalls) {
   const recoveryEnvironment = {
     publicationEndpoint: new URL("https://content.example.test/publish"),
     publicationToken: Redacted.make("publication-token"),
+    releaseDispatch: { surface: "none" } as const,
     rendererEndpoint: new URL(
       "https://www.example.test/api/internal/content/renderer"
     ),

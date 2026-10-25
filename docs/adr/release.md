@@ -2,12 +2,14 @@
 
 - Status: Accepted
 - Date: 2026-07-23
+- Amended: 2026-10-25, zero-legacy: the bootstrap switch is one way, and the
+  Nakafa web host replaces Vercel.
 
 ## Context
 
 A content release changes Convex state and Nakafa cache visibility, while a
-renderer change is deployed independently. Convex and Vercel do not share a
-distributed transaction. A release protocol therefore needs an invisible
+renderer change is deployed independently. Convex and the Nakafa web host do not
+share a distributed transaction. A release protocol therefore needs an invisible
 candidate, an already-proven inverse, one atomic visibility change, explicit
 operator acceptance, and a forward recovery path.
 
@@ -156,12 +158,11 @@ inverse rule:
   base: `resultCount` equals `upsertCount`, so no base head survives. When the
   base names a try-out snapshot, the candidate must replace that snapshot too,
   because its placements bind the retired artifacts. The CLI also requires the
-  candidate to carry the live renderer manifest, and that manifest must differ
-  from the retired base's. An inverse release may keep the base renderer when
-  its scope cannot close the renderer change, but a bootstrap refuses that
-  fallback. The publisher then stages and verifies the candidate, runs the
-  renderer preflight, and activates. It never derives, stages, or verifies an
-  inverse.
+  candidate to carry the live renderer manifest. An inverse release may keep the
+  base renderer when its scope cannot close the renderer change, but a bootstrap
+  refuses that fallback. The publisher then stages and verifies the candidate,
+  runs the renderer preflight, and activates. It never derives, stages, or
+  verifies an inverse.
 - Nakafa receives no declaration from the publisher. It decides eligibility from
   its own state and the signed manifest. A candidate is a bootstrap only when its
   base is the active release, the target records the active generation as
@@ -171,10 +172,10 @@ inverse rule:
   skips the recovery requirement only for a stored bootstrap.
 - A bootstrap has no accept or recover step. Accept and recover refuse it, and
   parity does not run for it because it runs on one target.
-- The switch is one way. The undo is a forward release of the last commit of the
-  retired generation, compiled under the current renderer, which then has an
-  ordinary verified inverse. The target cannot return to the retired generation
-  by rollback.
+- The switch is one way. The retired generation is never restored: the target
+  cannot return to it by rollback or by a forward release. A later correction is
+  an ordinary forward release under the current generation, with its own
+  verified inverse.
 
 ### Failure and cleanup
 
@@ -205,19 +206,17 @@ frozen renderer, and artifact without claiming live execution compatibility.
 Protected content applies the directional execution check after binding the
 artifact to its exact signed snapshot release.
 
-Every current renderer manifest contains the complete canonical domain set.
+Every current renderer manifest carries the complete canonical domain set; one
+contract is authoritative and no reader accepts an incomplete domain set.
 Compilation, family planning, signing, staging, runtime evidence, and execution
 use the same exact contract and hash validation. Publication may select a
 subset of those domains, and each document uses its own physical capability.
-Every current renderer manifest carries the complete canonical domain set; one
-contract is authoritative and no reader accepts an incomplete domain set.
 A release that adopts the new renderer hash requires complete family closure
 and an exact live match. A scoped content-only release retains the active
 frozen manifest and may activate only when the live renderer still publishes
 every frozen published domain and contains every frozen base and
-published-domain component name. Recovery
-applies the same directional preflight. Runtime execution still checks each
-selected artifact independently.
+published-domain component name. Recovery applies the same directional
+preflight. Runtime execution still checks each selected artifact independently.
 
 The signed result catalog digest authenticates the complete canonical result
 set. It is not a per-row inclusion proof. The current design therefore detects
@@ -233,8 +232,8 @@ source repository is public.
 ## Consequences
 
 - Every release and explicit rollback has a verified recovery path before it
-  becomes visible, except a declared bootstrap over a retired generation, whose
-  undo is a forward release.
+  becomes visible, except a declared bootstrap over a retired generation, which
+  is one way.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additional components in existing renderer domains can deploy before

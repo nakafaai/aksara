@@ -13,6 +13,9 @@ import {
 } from "#scripts/workflow/plan";
 import { ensure, requireSeq } from "#scripts/workflow/requirement";
 
+/** The output of the release step that mints the Nakafa deploy app's installation token. */
+const NAKAFA_DEPLOY_TOKEN_OUTPUT = "steps.nakafa-deploy.outputs.token";
+
 const CONSUMER_PATTERN =
   /bun run (?:--filter @nakafa\/aksara-contracts )?verify:consumer/u;
 const OPERATION_PATTERN =
@@ -205,9 +208,14 @@ export const verifyPublicationWorkflow = Effect.fn(
       condition === "inputs.operation == 'recover'"
     ) {
       yield* ensure(
-        document.getIn([...base, "env", "AKSARA_CACHE_SURFACE"]) ===
+        document.getIn([...base, "env", "NAKAFA_DEPLOY_SURFACE"]) ===
           `\${{ matrix.target == 'development' && 'none' || 'deployed' }}`,
-        "Release and recovery must invalidate only their deployed cache surface"
+        "Release and recovery must deploy Nakafa only from production"
+      );
+      yield* ensure(
+        document.getIn([...base, "env", "NAKAFA_DEPLOY_TOKEN"]) ===
+          `\${{ ${NAKAFA_DEPLOY_TOKEN_OUTPUT} }}`,
+        "Release and recovery must read the deploy app's installation token"
       );
     }
   }

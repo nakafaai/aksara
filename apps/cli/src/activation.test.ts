@@ -47,25 +47,28 @@ vi.mock("#cli/production/renderer", async (importOriginal) => {
 
 /** Creates one activation service through its captured HTTP boundary. */
 const makeActivation = makeProductionActivation({
-  cacheSurface: "deployed",
   endpoint: new URL("https://www.example.test/api/internal/content/renderer"),
+  releaseDispatch: {
+    surface: "deployed",
+    token: Redacted.make("dispatch-token"),
+  },
   token: Redacted.make("renderer-token"),
 }).pipe(
   Effect.provideService(
     HttpClient.HttpClient,
-    captureClient(() => Effect.die("Unexpected cache request.")).client
+    captureClient(() => Effect.die("Unexpected dispatch request.")).client
   )
 );
 
-/** Creates one activation for a target that serves no deployed app cache. */
+/** Creates one activation for a target that deploys no site. */
 const makeAbsentActivation = makeProductionActivation({
-  cacheSurface: "none",
   endpoint: new URL("https://www.example.test/api/internal/content/renderer"),
+  releaseDispatch: { surface: "none" },
   token: Redacted.make("renderer-token"),
 }).pipe(
   Effect.provideService(
     HttpClient.HttpClient,
-    captureClient(() => Effect.die("Unexpected cache request.")).client
+    captureClient(() => Effect.die("Unexpected dispatch request.")).client
   )
 );
 
@@ -100,19 +103,17 @@ describe("production activation", () => {
       })
   );
 
-  it.effect(
-    "declines cache convergence for a target with no cache surface",
-    () =>
-      Effect.gen(function* () {
-        const BUNDLE = yield* gitBundle("release-next");
-        const activation = yield* makeAbsentActivation;
-        expect(
-          yield* activation.invalidate({
-            cacheChanges: Stream.make({ scope: "material" }),
-            release: BUNDLE.release,
-          })
-        ).toBeUndefined();
-      })
+  it.effect("dispatches nothing for a target that deploys no site", () =>
+    Effect.gen(function* () {
+      const BUNDLE = yield* gitBundle("release-next");
+      const activation = yield* makeAbsentActivation;
+      expect(
+        yield* activation.invalidate({
+          cacheChanges: Stream.make({ scope: "material" }),
+          release: BUNDLE.release,
+        })
+      ).toBeUndefined();
+    })
   );
 
   it.effect("accepts a compatible additive renderer deployment", () =>

@@ -197,7 +197,7 @@ export class PublicationActivation extends Context.Service<
   PublicationActivation,
   {
     /**
-     * Invalidates Nakafa content caches after the pointer commit succeeds.
+     * Announces the activated release to Nakafa after the pointer commit succeeds.
      *
      * The publisher supplies one replayable family-aware stream derived from
      * exact decoded release items, including body-free deletions.
