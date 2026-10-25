@@ -1,6 +1,6 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
-import { Array as Arr, Effect, Fiber, Option, Redacted, Stream } from "effect";
+import { Effect, Fiber, MutableList, Redacted, Stream } from "effect";
 import { HttpClientError } from "effect/http";
 import { TestClock } from "effect/testing";
 import {
@@ -31,11 +31,10 @@ const dispatchInput = (
 
 /** Creates one production dispatch through a captured client that answers each request in turn. */
 function makeDispatch(statuses: readonly number[]) {
-  const pending = [...statuses];
+  const pending = MutableList.make<number>();
+  MutableList.appendAll(pending, statuses);
   const captured = captureClient((request) => {
-    const status = Arr.head(pending);
-    pending.shift();
-    const code = Option.getOrElse(status, () => 204);
+    const [code = 204] = MutableList.takeN(pending, 1);
     return Effect.succeed(
       webResponse(request, code === 204 ? null : encodeJsonText({}), {
         status: code,
