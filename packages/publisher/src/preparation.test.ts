@@ -238,19 +238,19 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
         });
         expect(yield* digestsFor(1)).toMatchInlineSnapshot(`
           {
-            "itemsDigest": "sha256:d88e0bb8f581eb27f76636497430a430fb63f6824b06bdd82a63326ee11a87a2",
+            "itemsDigest": "sha256:7ff32f13b03aac34e549d740d6b7876514f3203e7537a34b501c067fc567de5c",
             "projectionDigest": "sha256:cd18a20e38e04bdbe7cd70d503e75ff85261da7de8ebdb03f7ca1e4441b743cf",
-            "resultDigest": "sha256:3788d304c0b1f434cdf2a8de81bc6a7d0a688230b39b46f62de2aa03d7837fb5",
-            "rollbackDigest": "sha256:f67ceb9f909a48abac2665d28162d6579ee9d1f149caa6c8b6837ae5ba8f0c87",
+            "resultDigest": "sha256:65a445541aaed9972883ef03ae0b4344d49769510757e7ab821f3a8ad0f6616a",
+            "rollbackDigest": "sha256:ef1be109b6e3705eccef23d5ce502fbfd468ed9279a8e72f74ce6dd852330899",
             "routeDigest": "sha256:5ebad4292278c4bf6e2c7655b113ce22d01eaf052fa8af090c0b3f95ff18e613",
           }
         `);
         expect(yield* digestsFor(2)).toMatchInlineSnapshot(`
           {
-            "itemsDigest": "sha256:d88e0bb8f581eb27f76636497430a430fb63f6824b06bdd82a63326ee11a87a2",
+            "itemsDigest": "sha256:7ff32f13b03aac34e549d740d6b7876514f3203e7537a34b501c067fc567de5c",
             "projectionDigest": "sha256:cd18a20e38e04bdbe7cd70d503e75ff85261da7de8ebdb03f7ca1e4441b743cf",
-            "resultDigest": "sha256:3788d304c0b1f434cdf2a8de81bc6a7d0a688230b39b46f62de2aa03d7837fb5",
-            "rollbackDigest": "sha256:f67ceb9f909a48abac2665d28162d6579ee9d1f149caa6c8b6837ae5ba8f0c87",
+            "resultDigest": "sha256:65a445541aaed9972883ef03ae0b4344d49769510757e7ab821f3a8ad0f6616a",
+            "rollbackDigest": "sha256:ef1be109b6e3705eccef23d5ce502fbfd468ed9279a8e72f74ce6dd852330899",
             "routeDigest": "sha256:5ebad4292278c4bf6e2c7655b113ce22d01eaf052fa8af090c0b3f95ff18e613",
           }
         `);

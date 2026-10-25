@@ -109,7 +109,7 @@ describe("content source inspection", () => {
         first.compilerConfigHash,
         compiled.payload.compilerConfigHash
       );
-      assert.ok(!("compiledCode" in first));
+      assert.ok(!("contentTree" in first));
     })
   );
 
@@ -136,7 +136,7 @@ describe("content source inspection", () => {
         );
         assert.strictEqual(
           current.compilerConfigHash,
-          "sha256:e499c25031367570f4b5e1367a1ac37b09ccccff69fdf41114a74c47eed1090d"
+          "sha256:95481f9ffd0ed77eb685f5a0f5bb69572a8ac7ef0ed7840251ccc4397c6fd196"
         );
       })
   );

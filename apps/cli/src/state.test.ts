@@ -6,6 +6,9 @@ import type { ReleaseArguments } from "#cli/production/arguments";
 import { FUNCTION_SCOPE } from "#test/real";
 import {
   activeState,
+  BOOTSTRAPPED_STATE,
+  candidateOverRetired,
+  RETIRED_STATE,
   rejectState,
   selectState,
   stateBundle,
@@ -22,8 +25,18 @@ function releaseArgs(
 ): ReleaseArguments {
   return {
     command: "release",
-    recoveryId: releaseId(recoveryId),
     releaseId: releaseId(id),
+    retention: { kind: "inverse", recoveryId: releaseId(recoveryId) },
+    scope: FUNCTION_SCOPE,
+  };
+}
+
+/** Creates one exact bootstrap command over the retired base it replaces. */
+function bootstrapArgs(id: string, base: string): ReleaseArguments {
+  return {
+    command: "release",
+    releaseId: releaseId(id),
+    retention: { baseReleaseId: releaseId(base), kind: "bootstrap" },
     scope: FUNCTION_SCOPE,
   };
 }
@@ -128,6 +141,36 @@ describe("production state", () => {
     })
   );
 
+  it.effect("selects bootstraps over the declared retired base only", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* selectState(
+          bootstrapArgs("release-bootstrap", "release-retired"),
+          activeState(RETIRED_STATE)
+        )
+      ).toMatchObject({
+        baseBundle: { release: RETIRED_STATE.release },
+        kind: "new",
+      });
+      expect(
+        yield* selectState(
+          bootstrapArgs("release-bootstrap", "release-retired"),
+          activeState(BOOTSTRAPPED_STATE)
+        )
+      ).toMatchObject({ kind: "resume" });
+      expect(
+        yield* selectState(
+          bootstrapArgs("release-candidate", "release-retired"),
+          stateCurrent({
+            active: RETIRED_STATE,
+            candidate: candidateOverRetired("verified"),
+            recovery: null,
+          })
+        )
+      ).toMatchObject({ kind: "rebuild" });
+    })
+  );
+
   it.effect.each([
     {
       args: releaseArgs("release-other"),
@@ -197,6 +240,55 @@ describe("production state", () => {
           recovery: stateRecovery(candidate, "recovery-candidate"),
         });
       })(),
+    },
+    {
+      args: bootstrapArgs("release-next", "release-other"),
+      reason: "bootstrap-base",
+      state: activeState(RETIRED_STATE),
+    },
+    {
+      args: bootstrapArgs("release-next", "release-retired"),
+      reason: "recovery-retained",
+      state: stateCurrent({
+        active: RETIRED_STATE,
+        candidate: null,
+        recovery: stateRecovery(RETIRED_STATE, "recovery-retired"),
+      }),
+    },
+    {
+      args: bootstrapArgs("release-bootstrap", "release-other"),
+      reason: "bootstrap-base",
+      state: activeState(BOOTSTRAPPED_STATE),
+    },
+    {
+      args: bootstrapArgs("release-bootstrap", "release-retired"),
+      reason: "recovery-conflict",
+      state: stateCurrent({
+        active: BOOTSTRAPPED_STATE,
+        candidate: null,
+        recovery: stateRecovery(BOOTSTRAPPED_STATE, "recovery-bootstrap"),
+      }),
+    },
+    {
+      args: bootstrapArgs("release-candidate", "release-retired"),
+      reason: "recovery-conflict",
+      state: (() => {
+        const candidate = candidateOverRetired("verified");
+        return stateCurrent({
+          active: RETIRED_STATE,
+          candidate,
+          recovery: stateRecovery(candidate, "recovery-other"),
+        });
+      })(),
+    },
+    {
+      args: bootstrapArgs("release-candidate", "release-other"),
+      reason: "bootstrap-base",
+      state: stateCurrent({
+        active: RETIRED_STATE,
+        candidate: candidateOverRetired("staging"),
+        recovery: null,
+      }),
     },
   ] as const)("rejects unsafe state %#", ({ args, reason, state }) =>
     Effect.gen(function* () {

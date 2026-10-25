@@ -1,8 +1,8 @@
 /** Maximum UTF-8 bytes accepted for one authored MDX source. */
 export const MAX_RAW_MDX_BYTES = 128 * 1024;
 
-/** Maximum UTF-8 bytes accepted for one emitted MDX function body. */
-export const MAX_COMPILED_CODE_BYTES = 256 * 1024;
+/** Maximum UTF-8 bytes accepted for one canonical content tree. */
+export const MAX_CONTENT_TREE_BYTES = 384 * 1024;
 
 /** Maximum UTF-8 bytes accepted for one extracted plain-text projection. */
 export const MAX_PLAIN_TEXT_BYTES = 128 * 1024;

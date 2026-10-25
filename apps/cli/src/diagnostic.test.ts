@@ -1,6 +1,13 @@
 import { describe, expect, it } from "@effect/vitest";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  ContentTreeEvaluationError,
+  ContentTreePolicyError,
+} from "@nakafa/aksara-compiler/errors";
+import {
+  ContentKeySchema,
+  CorpusSourcePathSchema,
+} from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { ContentSigningError } from "@nakafa/aksara-publisher/signing/error";
 import { Array as Arr, Effect } from "effect";
@@ -38,37 +45,45 @@ const compileFailure = Effect.fn("test.diagnostic.compileFailure")(
 );
 
 describe("document failure diagnostics", () => {
-  it.effect("explains metadata, byte, renderer, module, and MDX failures", () =>
-    Effect.gen(function* () {
-      const failures = yield* Effect.all(
-        [
-          compileFailure("## Missing metadata"),
-          compileFailure(`${VALID_METADATA}\n\n${VALID_METADATA}`),
-          compileFailure("export const metadata = getMetadata()"),
-          compileFailure(withMetadata("x".repeat(MAX_RAW_MDX_BYTES + 1))),
-          compileFailure(withMetadata("<UnknownWidget />")),
-          compileFailure(
-            withMetadata('import value from "./value"\n\n{value}')
-          ),
-          compileFailure(withMetadata("<Unclosed>")),
-        ],
-        { concurrency: "unbounded" }
-      );
-      const diagnostics = Arr.map(
-        failures,
-        (failure) => describeDocumentFailure(failure).diagnostic
-      );
+  it.effect(
+    "explains metadata, byte, renderer, module, MDX, and content tree failures",
+    () =>
+      Effect.gen(function* () {
+        const failures = yield* Effect.all(
+          [
+            compileFailure("## Missing metadata"),
+            compileFailure(`${VALID_METADATA}\n\n${VALID_METADATA}`),
+            compileFailure("export const metadata = getMetadata()"),
+            compileFailure(withMetadata("x".repeat(MAX_RAW_MDX_BYTES + 1))),
+            compileFailure(withMetadata("<UnknownWidget />")),
+            compileFailure(
+              withMetadata('import value from "./value"\n\n{value}')
+            ),
+            compileFailure(withMetadata("<Unclosed>")),
+            compileFailure(withMetadata("<span>Raw</span>")),
+            compileFailure(withMetadata("<InlineMath math={() => 1} />")),
+            compileFailure(withMetadata("{undefined.x}")),
+          ],
+          { concurrency: "unbounded" }
+        );
+        const diagnostics = Arr.map(
+          failures,
+          (failure) => describeDocumentFailure(failure).diagnostic
+        );
 
-      expect(diagnostics).toEqual([
-        "AuthoredMetadataMissingError at test:diagnostic (add exactly one metadata export).",
-        "AuthoredMetadataDuplicateError at test:diagnostic (found 2 metadata exports; keep exactly one).",
-        "AuthoredMetadataSyntaxError at test:diagnostic (unsupported metadata syntax: dynamic-value).",
-        expect.stringMatching(BYTE_DIAGNOSTIC_PATTERN),
-        "RendererComponentMissingError at test:diagnostic (register renderer component UnknownWidget before using it).",
-        "UnsupportedMdxModuleSyntaxError at test:diagnostic (remove MDX module syntax at 3:1 (import)).",
-        expect.stringMatching(MDX_DIAGNOSTIC_PATTERN),
-      ]);
-    })
+        expect(diagnostics).toEqual([
+          "AuthoredMetadataMissingError at test:diagnostic (add exactly one metadata export).",
+          "AuthoredMetadataDuplicateError at test:diagnostic (found 2 metadata exports; keep exactly one).",
+          "AuthoredMetadataSyntaxError at test:diagnostic (unsupported metadata syntax: dynamic-value).",
+          expect.stringMatching(BYTE_DIAGNOSTIC_PATTERN),
+          "RendererComponentMissingError at test:diagnostic (register renderer component UnknownWidget before using it).",
+          "UnsupportedMdxModuleSyntaxError at test:diagnostic (remove MDX module syntax at 3:1 (import)).",
+          expect.stringMatching(MDX_DIAGNOSTIC_PATTERN),
+          "ContentTreePolicyError at packages/corpus/test/diagnostic/en.mdx (unknown-element in span).",
+          "ContentTreePolicyError at packages/corpus/test/diagnostic/en.mdx (not-json in InlineMath prop math).",
+          "ContentTreeEvaluationError at packages/corpus/test/diagnostic/en.mdx (Evaluating the compiled document body failed. Cause: Cannot read properties of undefined (reading 'x')).",
+        ]);
+      })
   );
 
   it.effect(
@@ -97,6 +112,34 @@ describe("document failure diagnostics", () => {
         );
       })
   );
+
+  it("names the prop of a policy failure and omits a missing cause", () => {
+    const contentKey = ContentKeySchema.make(CONTENT_KEY);
+    const propFailure = describeDocumentFailure(
+      new ContentTreePolicyError({
+        contentKey,
+        element: "InlineMath",
+        prop: "math",
+        reason: "not-json",
+        sourcePath: SOURCE_PATH,
+      })
+    );
+    const evaluationFailure = describeDocumentFailure(
+      new ContentTreeEvaluationError({
+        cause: "not an error",
+        contentKey,
+        message: "The compiled document body must return one element.",
+        sourcePath: SOURCE_PATH,
+      })
+    );
+
+    expect(propFailure.diagnostic).toBe(
+      "ContentTreePolicyError at packages/corpus/test/source.ts (not-json in InlineMath prop math)."
+    );
+    expect(evaluationFailure.diagnostic).toBe(
+      "ContentTreeEvaluationError at packages/corpus/test/source.ts (The compiled document body must return one element.)."
+    );
+  });
 
   it("keeps public failures sanitized across every location class", () => {
     const repository = describeDocumentFailure(

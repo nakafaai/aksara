@@ -1,0 +1,100 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Betrachte ein Solarmodul von der Seite. Die geneigte Seite des Moduls, ihre Projektion auf das Dach und die senkrechte Strecke von der Oberkante zum Dach bilden ein rechtwinkliges Dreieck mit der Hypotenuse <InlineMath math="2{,}5\text{ m}" /> und dem Winkel <InlineMath math="\theta" /> an der Unterkante. **Die waagerechte Projektion verwendet den Kosinus**, die Höhe dagegen **den Sinus**. Der Winkel <InlineMath math="\theta" /> ist spitz, also ist <InlineMath math="\sin\theta" /> positiv.
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\sqrt{1-\cos^2\theta}=\sqrt{1-0{,}9216}=\sqrt{0{,}0784}=0{,}28 \\
+p&=2{,}5\cos\theta=2{,}5\cdot0{,}96=2{,}4\text{ m} \\
+t&=2{,}5\sin\theta=2{,}5\cdot0{,}28=0{,}7\text{ m}
+\end{aligned}" />
+
+Dabei ist <InlineMath math="p" /> die waagerechte Projektion des Moduls und <InlineMath math="t" /> die Höhe seiner Oberkante über dem Dach. Der kleinste waagerechte Abstand von der Oberkante eines Moduls zur Unterkante des nächsten ist <InlineMath math="c=3t" />. Der Abstand zwischen den Unterkanten zweier aufeinanderfolgender Reihen ist die Projektion des Moduls plus diese Lücke.
+
+<BlockMath math="\begin{aligned}
+c&=3t=3\cdot0{,}7=2{,}1\text{ m} \\
+d&=p+c=2{,}4+2{,}1=4{,}5\text{ m}
+\end{aligned}" />
+
+<LineEquation
+  title="Zwei aufeinanderfolgende Modulreihen"
+  description={<>Der Abstand zwischen den Unterkanten der beiden Module besteht aus der Projektion <InlineMath math="2{,}4\text{ m}" /> und der Lücke <InlineMath math="2{,}1\text{ m}" />, dem Dreifachen der Höhe <InlineMath math="0{,}7\text{ m}" />.</>}
+  cameraPosition={[9.5, 6, 9]}
+  cameraTarget={[9.5, 6, 0]}
+  showZAxis={false}
+  data={(() => {
+    const cosTheta = 0.96;
+    const sinTheta = Math.sqrt(1 - cosTheta ** 2);
+    const run = 2.5 * cosTheta;
+    const height = 2.5 * sinTheta;
+    const gap = 3 * height;
+    const pitch = run + gap;
+    return [
+      {
+        points: [{ x: 5.6, y: 6, z: 0 }, { x: 6.4 + pitch + run, y: 6, z: 0 }],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}5\text{ m}" />, at: 1, offset: [-0.08, 0.16, 0], anchorX: "right" }],
+      },
+      {
+        points: [0, 1].map((k) => ({ x: 6 + pitch + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [1, 0.5, 0].map((k) => ({ x: 6 + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="0{,}7\text{ m}" />, at: 1, offset: [0.1, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: [1, 0].map((k) => ({ x: 6 + pitch + run, y: 6 + k * height, z: 0 })),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 5.7, z: 0 })),
+        color: "#7c3aed",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}4\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + run + k * gap, y: 5.7, z: 0 })),
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}1\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * pitch, y: 5.05, z: 0 })),
+        color: "#c026d3",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="4{,}5\text{ m}" />, at: 1, offset: [0, -0.3, 0] }],
+      },
+    ];
+  })()}
+/>
+
+Prüfe das Seitendreieck mit dem Satz des Pythagoras: <InlineMath math="2{,}4^2+0{,}7^2=5{,}76+0{,}49=6{,}25=2{,}5^2" />. Es ist das Dreieck mit den Seiten <InlineMath math="7" />, <InlineMath math="24" /> und <InlineMath math="25" />, um den Faktor zehn verkleinert.
+
+Der kleinste waagerechte Abstand zwischen den Unterkanten zweier aufeinanderfolgender Modulreihen beträgt also <InlineMath math="4{,}5\text{ m}" />.
+
+- <InlineMath math="2{,}1\text{ m}" /> ist nur die Lücke zwischen der Oberkante des vorderen Moduls und der Unterkante des hinteren, ohne die Projektion des Moduls selbst.
+- <InlineMath math="3{,}1\text{ m}" /> ist die Projektion plus die Höhe, <InlineMath math="2{,}4+0{,}7" />, wobei der Faktor drei der Abstandsregel vergessen wurde.
+- <InlineMath math="4{,}6\text{ m}" /> entsteht, wenn du die Modullänge <InlineMath math="2{,}5\text{ m}" /> direkt als waagerechte Projektion verwendest, obwohl das Modul geneigt ist und seine Projektion <InlineMath math="2{,}5\cos\theta" /> beträgt.
+- <InlineMath math="7{,}9\text{ m}" /> entsteht, wenn du Sinus und Kosinus vertauschst, sodass die Höhe als <InlineMath math="2{,}4\text{ m}" /> und die Projektion als <InlineMath math="0{,}7\text{ m}" /> gilt.

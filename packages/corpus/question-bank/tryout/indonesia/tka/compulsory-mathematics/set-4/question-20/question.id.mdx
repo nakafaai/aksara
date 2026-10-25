@@ -1,0 +1,52 @@
+export const metadata = {
+  title: "Soal 20",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Panel-panel surya dipasang berbaris pada atap datar sebuah gedung. Setiap panel berbentuk persegi panjang dan dipasang miring dengan tepi bawah menempel pada atap. Sisi miring panel dari tepi bawah sampai tepi atas panjangnya <InlineMath math="2{,}5\text{ m}" /> dan membentuk sudut <InlineMath math="\theta" /> terhadap atap, dengan <InlineMath math="\cos\theta=0{,}96" />. Semua panel menghadap ke arah yang sama dan tepi-tepinya sejajar. Agar panel-panel tidak saling menaungi, jarak mendatar dari tepi atas suatu panel ke tepi bawah panel pada barisan di belakangnya paling sedikit tiga kali tinggi tepi atas panel itu dari atap.
+
+<LineEquation
+  title="Tampak samping satu panel"
+  description={<>Panel membentuk sudut <InlineMath math="\theta" /> dengan atap datar. Ruas tegak dari tepi atas panel ke atap menunjukkan tinggi tepi atas panel.</>}
+  cameraPosition={[7.4, 6.35, 4.2]}
+  cameraTarget={[7.4, 6.35, 0]}
+  showZAxis={false}
+  data={(() => {
+    const cosTheta = 0.96;
+    const sinTheta = Math.sqrt(1 - cosTheta ** 2);
+    const theta = Math.acos(cosTheta);
+    const run = 2.5 * cosTheta;
+    const height = 2.5 * sinTheta;
+    return [
+      {
+        points: [{ x: 5.6, y: 6, z: 0 }, { x: 9.2, y: 6, z: 0 }],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [0, 0.5, 1].map((k) => ({ x: 6 + k * run, y: 6 + k * height, z: 0 })),
+        color: "#ea580c",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="2{,}5\text{ m}" />, at: 1, offset: [-0.08, 0.16, 0], anchorX: "right" }],
+      },
+      {
+        points: [{ x: 6 + run, y: 6 + height, z: 0 }, { x: 6 + run, y: 6, z: 0 }],
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: Array.from({ length: 201 }, (_, i) => ({ x: 6 + Math.cos((i / 200) * theta), y: 6 + Math.sin((i / 200) * theta), z: 0 })),
+        color: "#d97706",
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: <InlineMath math="\theta" />, at: 100, offset: [0.1, 0, 0], anchorX: "left" }],
+      },
+    ];
+  })()}
+/>
+
+Jarak mendatar terkecil antara tepi bawah panel-panel pada dua barisan yang berurutan adalah ....

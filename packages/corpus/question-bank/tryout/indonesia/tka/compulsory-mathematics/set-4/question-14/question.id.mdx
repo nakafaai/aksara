@@ -1,0 +1,44 @@
+export const metadata = {
+  title: "Soal 14",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Seorang petugas akan berjalan dari pos <InlineMath math="A" /> ke tepi sebuah sungai yang lurus untuk mengambil sampel air, lalu berjalan ke pos <InlineMath math="B" />. Kedua pos berada di sisi sungai yang sama. Jarak pos <InlineMath math="A" /> ke tepi sungai adalah <InlineMath math="20\text{ m}" />, jarak pos <InlineMath math="B" /> ke tepi sungai adalah <InlineMath math="30\text{ m}" />, dan jarak antara titik-titik di tepi sungai yang paling dekat dengan <InlineMath math="A" /> dan dengan <InlineMath math="B" /> adalah <InlineMath math="120\text{ m}" />. Petugas selalu berjalan lurus, dan permukaan tanah di sekitar sungai datar.
+
+<MathVisual
+  title={<>Pos <InlineMath math="A" />, pos <InlineMath math="B" />, dan tepi sungai</>}
+  description={<>Tepi sungai digambarkan sebagai garis lurus. Ruas tegak dari <InlineMath math="A" /> dan dari <InlineMath math="B" /> ke tepi sungai panjangnya <InlineMath math="20\text{ m}" /> dan <InlineMath math="30\text{ m}" />, dan kedua ujung ruas di tepi sungai berjarak <InlineMath math="120\text{ m}" />.</>}
+  labels={{
+    "name-a": <InlineMath math="A" />,
+    "name-b": <InlineMath math="B" />,
+    "length-a": <InlineMath math="20\text{ m}" />,
+    "length-b": <InlineMath math="30\text{ m}" />,
+    "length-bank": <InlineMath math="120\text{ m}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -15, max: 135 },
+      y: { min: -15, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "river-bank", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 120, y: 0 }] },
+      { id: "drop-a", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 0, y: 0 } },
+      { id: "drop-b", kind: "segment", appearance: "construction", from: { x: 120, y: 30 }, to: { x: 120, y: 0 } },
+      { id: "post-a", kind: "point", appearance: "primary", at: { x: 0, y: 20 } },
+      { id: "post-b", kind: "point", appearance: "primary", at: { x: 120, y: 30 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "post-a", at: { x: 0, y: 20 }, placement: "above-right" },
+      { key: "name-b", objectId: "post-b", at: { x: 120, y: 30 }, placement: "above" },
+      { key: "length-a", objectId: "drop-a", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "length-b", objectId: "drop-b", at: { x: 120, y: 15 }, placement: "right" },
+      { key: "length-bank", objectId: "river-bank", at: { x: 60, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Panjang lintasan terpendek dari pos <InlineMath math="A" /> ke tepi sungai, lalu ke pos <InlineMath math="B" />, adalah ....

@@ -165,6 +165,15 @@ structured snapshot family. One global release owns the complete locale set,
 so a page-only release cannot safely move production from English and
 Indonesian to English, Indonesian, and German.
 
+The first release of a new content contract generation replaces a base that
+the new renderer cannot read, so no inverse can protect it. Such a release
+names the retired active release with `--bootstrap-over <active-release-id>`
+in place of `--recovery-id`, and it selects every family and snapshot because
+it must replace every head. The live renderer must differ from the retired
+base's, or the command refuses before any write. It takes one target and has no
+accept or recover step. Its undo is a forward release of the last commit of the
+retired generation. See [`docs/adr/release.md`](docs/adr/release.md).
+
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does
 not compile mutable working-tree bytes.
@@ -230,8 +239,10 @@ attested archive for independent byte and source verification.
 
 ## License
 
-Software is governed by the [Nakafa Source Available License 1.0](LICENSE).
-Educational content is governed by the
-[Nakafa Content License 1.0](CONTENT_LICENSE.md), subject to third-party rights
-and attribution. Nakafa brand usage is governed by the
-[Nakafa Trademark and Brand Policy](TRADEMARKS.md).
+Aksara is source available, not open source: it is public so that anyone can
+read and audit it, not so that anyone can copy, fork, publish, rebrand, or gain
+from it. Software is governed by the
+[Nakafa Source Available License 2.0](LICENSE). Educational content is governed
+by the [Nakafa Content License 2.0](CONTENT_LICENSE.md), which reserves text and
+data mining and AI training, subject to third-party rights. Nakafa brand usage
+is governed by the [Nakafa Trademark and Brand Policy 2.0](TRADEMARKS.md).

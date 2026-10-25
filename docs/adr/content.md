@@ -2,6 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-07-21
+- Amended: 2026-10-24 by decision 37, which replaces runtime evaluation with a
+  signed content tree (see "Content tree" below)
 - Nakafa baseline SHA: `25506da68a5dd97bc55f99b6f7304384c4744206`
 
 ## Context
@@ -30,9 +32,9 @@ References:
 ## Decision
 
 Aksara compiles reviewed, source-controlled MDX ahead of time with
-`outputFormat: "function-body"`. It hashes and signs each compiled payload,
-then signs a constant-size canonical release manifest with a distinct signature
-domain. One configured Ed25519 key signs both object types without making their
+`outputFormat: "function-body"`, evaluates that body once in Node, and signs
+the resulting content tree. It hashes and signs each payload, then signs a
+constant-size canonical release manifest with a distinct signature domain. One configured Ed25519 key signs both object types without making their
 signatures interchangeable.
 
 The contracts package owns the reviewed public-key registry and a distinct
@@ -70,8 +72,8 @@ renderer manifest, and requires every resulting canonical artifact hash to
 match its authenticated release item before it signs anything or performs
 publication IO. For a forward rollback, it instead re-verifies the exact prior
 signed artifact envelopes returned by the active release. Caller-provided
-source beside an unrelated SHA and caller-provided compiled code are not
-publication inputs.
+source beside an unrelated SHA and caller-provided compiled code or content
+trees are not publication inputs.
 
 Publication targets expose distinct typed failures: transient transport errors
 may be retried idempotently, while immutable-identity conflicts and stale-base
@@ -93,8 +95,7 @@ Body headers must match the preflight object IDs and sizes, and body framing
 must contain exactly the requested bytes. Compilation still verifies each
 source against its signed artifact hash before any target staging.
 
-Nakafa may execute an artifact only in a server-only Node runtime through the
-official `@mdx-js/mdx/run` API and only after all of these checks pass:
+Nakafa may render an artifact only after all of these checks pass:
 
 1. The artifact belongs to the active public release or the exact release
    selected by a protected snapshot.
@@ -196,8 +197,8 @@ Evidence is recorded in
 The full AST import inventory and measured eleven-shard candidate are recorded in
 [`docs/baselines/inventory.md`](../baselines/inventory.md).
 
-The current contract enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 256 KiB
-compiled code, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
+The current contract enforces UTF-8 ceilings at compilation and signing: 128 KiB raw MDX, 384 KiB
+content tree, 128 KiB plain text, 448 KiB canonical payload, and 480 KiB signed
 artifact wire value. The Nakafa Convex adapter must also enforce a 512 KiB
 complete stored-row ceiling with Convex's official size calculation and a
 4 MiB complete mutation-envelope ceiling. Production publication requires
@@ -209,6 +210,36 @@ integrity, and build attestation before any production operation can begin.
 
 Reference: [Convex production limits](https://docs.convex.dev/production/state/limits).
 
+## Content tree
+
+Decision 37 (2026-10-24) replaces runtime evaluation of compiled code. The
+publisher evaluates each `function-body` once in Node with a tree-building JSX
+runtime, after the authored source policy has passed. The `content-tree`
+payload is the fragment that results: each element names an intrinsic HTML tag
+from a closed list, a capitalized renderer component, or the fragment, and holds
+JSON props and ordered children. A prop is JSON data or a nested element, and a
+plain JSON object may not use the reserved element key.
+
+Publish-time policy rejects, naming the document and the prop: a function,
+symbol, bigint, class instance, sparse or `undefined` list value, or object with
+a symbol key; a non-finite number; the reserved key; an unknown tag; and a child
+that is neither text nor an element. An `undefined` prop is omitted, as React
+omits it. The signed bytes write `-0` as `0`, so a tree holds no negative zero.
+
+Nakafa renders the tree with its React component map and evaluates no code, so
+the Cloudflare Workers runtime needs neither `eval` nor `new Function`. The tree
+is data for that one renderer; the rejection of a custom JSON or AST renderer
+below still holds.
+
+Equivalence is checked at two levels. The compiler tests compare every
+data-computing corpus document with a React element model of the compiled body.
+A scratch proof over the whole corpus compared SHA-256 hashes of server-rendered
+HTML: 8,576 of 8,585 documents matched byte for byte before six answers dropped
+their infinite NumberLine bounds. Those six now omit the bounds, which Nakafa
+draws to the axis edge and must accept before release, so they need a visual
+comparison instead of a byte comparison. The three trigonometric function graph
+lessons still exceed the 384 KiB ceiling.
+
 ## Accepted
 
 - Trusted, reviewed, source-controlled executable MDX.
@@ -216,7 +247,8 @@ Reference: [Convex production limits](https://docs.convex.dev/production/state/l
 - Signed immutable payloads stored inline with Convex release data.
 - Domain-separated signed release envelopes verified before publication IO.
 - One trusted public-key resolution seam shared by artifact and release checks.
-- Official server-only `@mdx-js/mdx/run` in Nakafa's Node runtime.
+- One publish-time evaluation per document, signed as a content tree that
+  Nakafa renders with its React component map.
 - A pure global renderer contract manifest.
 - Finite static route-domain implementation registries selected by physical
   TanStack Start route ownership, never by individual document.
@@ -235,8 +267,9 @@ Reference: [Convex production limits](https://docs.convex.dev/production/state/l
 
 ## High-risk proof gate
 
-Official `run` is an explicitly high-risk vertical-slice gate, not a generic
-execution facility. The slice must prove server-only isolation, React Server
+Official `run` was an explicitly high-risk vertical-slice gate, not a generic
+execution facility. Decision 37 removed runtime evaluation, so this gate now
+covers only the publish-time evaluation inside Aksara's Node compiler. The slice must prove server-only isolation, React Server
 Component and client-component fidelity, static registry fidelity, signatures,
 hashes, runtime compatibility, payload size, cache behavior, and failure modes.
 

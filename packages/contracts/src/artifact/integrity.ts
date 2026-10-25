@@ -1,9 +1,10 @@
-import { Effect, Schema } from "effect";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import { validateArtifactByteIntegrity } from "#contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import {
   ArtifactHashComputationError,
   ArtifactHashMismatchError,
+  ArtifactTreeComponentUnlistedError,
   ArtifactVerificationDecodeError,
 } from "#contracts/artifact/spec";
 import {
@@ -16,6 +17,7 @@ import {
 import { hashText } from "#contracts/hash/text";
 import type { Sha256Hash } from "#contracts/ids";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
+import { contentTreeComponentNames } from "#contracts/tree";
 
 /** Computes the immutable identity of one canonical compiled payload. */
 export const hashCompiledContentPayload = Effect.fn(
@@ -45,6 +47,24 @@ function validateArtifactHash(
   );
 }
 
+/** Confirms that every component the content tree renders is one the artifact requires. */
+function validateTreeComponents(payload: CompiledContentPayload) {
+  const declared: readonly string[] = payload.requiredComponents;
+  const unlisted = Arr.findFirst(
+    contentTreeComponentNames(payload.contentTree),
+    (componentName) => !Arr.contains(declared, componentName)
+  );
+  if (Option.isNone(unlisted)) {
+    return Effect.void;
+  }
+  return Effect.fail(
+    new ArtifactTreeComponentUnlistedError({
+      componentName: unlisted.value,
+      contentKey: payload.contentKey,
+    })
+  );
+}
+
 /** Verifies immutable bytes, hashes, source, and signature without a renderer. */
 function authenticateSignedArtifact(artifact: SignedContentArtifact) {
   return Effect.gen(function* () {
@@ -60,6 +80,7 @@ function authenticateSignedArtifact(artifact: SignedContentArtifact) {
       subject: "artifact",
     });
     yield* validateArtifactByteIntegrity(artifact);
+    yield* validateTreeComponents(artifact.payload);
     yield* verifyCompiledContentSourceHash(artifact.payload);
     return artifact;
   });

@@ -1,0 +1,77 @@
+export const metadata = {
+  title: "Pembahasan Soal 24",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Statistik lima serangkai hanya memuat lima nilai dari setiap kelompok: minimum, kuartil bawah, median, kuartil atas, dan maksimum. Pernyataan yang hanya bergantung pada kelima nilai itu bisa langsung dinilai, termasuk **jangkauan**, yaitu maksimum dikurangi minimum.
+
+#### Penyebaran dan letak data
+
+Jangkauan antarkuartil adalah **selisih kuartil atas dan kuartil bawah**, yaitu lebar kotak pada diagram. Misalkan <InlineMath math="J_A" /> dan <InlineMath math="J_B" /> adalah jangkauan antarkuartil media A dan media B.
+
+<BlockMath math="\begin{aligned}
+J_A&=Q_3-Q_1=15-12=3\text{ cm} \\
+J_B&=Q_3-Q_1=15-13=2\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title="Lebar kotak sebagai jangkauan antarkuartil"
+  description={<>Kotak media A selebar <InlineMath math="3\text{ cm}" /> dan kotak media B selebar <InlineMath math="2\text{ cm}" />. Garis median media A berada di <InlineMath math="13\text{ cm}" />, di sebelah kiri garis median media B di <InlineMath math="14\text{ cm}" />.</>}
+  labels={{
+    "name-a": "Media A",
+    "name-b": "Media B",
+    "length-spread-a": <InlineMath math="3\text{ cm}" />,
+    "length-spread-b": <InlineMath math="2\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 20 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "medium-a-box", kind: "polygon", appearance: "primary", vertices: [{ x: 12, y: 2.6 }, { x: 15, y: 2.6 }, { x: 15, y: 3.4 }, { x: 12, y: 3.4 }] },
+      { id: "medium-a-median", kind: "segment", appearance: "primary", from: { x: 13, y: 2.6 }, to: { x: 13, y: 3.4 } },
+      { id: "medium-a-whisker-low", kind: "segment", appearance: "primary", from: { x: 10, y: 3 }, to: { x: 12, y: 3 } },
+      { id: "medium-a-whisker-high", kind: "segment", appearance: "primary", from: { x: 15, y: 3 }, to: { x: 19, y: 3 } },
+      { id: "medium-a-cap-low", kind: "segment", appearance: "primary", from: { x: 10, y: 2.8 }, to: { x: 10, y: 3.2 } },
+      { id: "medium-a-cap-high", kind: "segment", appearance: "primary", from: { x: 19, y: 2.8 }, to: { x: 19, y: 3.2 } },
+      { id: "medium-b-box", kind: "polygon", appearance: "secondary", vertices: [{ x: 13, y: 0.6 }, { x: 15, y: 0.6 }, { x: 15, y: 1.4 }, { x: 13, y: 1.4 }] },
+      { id: "medium-b-median", kind: "segment", appearance: "secondary", from: { x: 14, y: 0.6 }, to: { x: 14, y: 1.4 } },
+      { id: "medium-b-whisker-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 1 }, to: { x: 13, y: 1 } },
+      { id: "medium-b-whisker-high", kind: "segment", appearance: "secondary", from: { x: 15, y: 1 }, to: { x: 17, y: 1 } },
+      { id: "medium-b-cap-low", kind: "segment", appearance: "secondary", from: { x: 11, y: 0.8 }, to: { x: 11, y: 1.2 } },
+      { id: "medium-b-cap-high", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 17, y: 1.2 } },
+      { id: "spread-a", kind: "segment", appearance: "highlight", from: { x: 12, y: 2.3 }, to: { x: 15, y: 2.3 } },
+      { id: "spread-b", kind: "segment", appearance: "highlight", from: { x: 13, y: 0.3 }, to: { x: 15, y: 0.3 } },
+    ],
+    labels: [
+      { key: "name-a", objectId: "medium-a-box", at: { x: 13.5, y: 3.4 }, placement: "above" },
+      { key: "name-b", objectId: "medium-b-box", at: { x: 14, y: 1.4 }, placement: "above" },
+      { key: "length-spread-a", objectId: "spread-a", at: { x: 13.5, y: 2.3 }, placement: "below" },
+      { key: "length-spread-b", objectId: "spread-b", at: { x: 14, y: 0.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Median media B adalah <InlineMath math="14\text{ cm}" />. Dengan <InlineMath math="40" /> data terurut <InlineMath math="x_1\le x_2\le\dots\le x_{40}" />, median adalah rata-rata data ke-<InlineMath math="20" /> dan ke-<InlineMath math="21" />. Data ke-<InlineMath math="21" /> tidak lebih kecil daripada data ke-<InlineMath math="20" />, jadi data ke-<InlineMath math="21" /> paling sedikit sama dengan rata-rata keduanya.
+
+<BlockMath math="\begin{aligned}
+\frac{x_{20}+x_{21}}{2}&=14 \\
+x_{21}&\ge\frac{x_{20}+x_{21}}{2}=14
+\end{aligned}" />
+
+Akibatnya, data ke-<InlineMath math="21" /> sampai ke-<InlineMath math="40" />, yaitu <InlineMath math="20" /> bibit atau setengah kelompok, tingginya paling sedikit <InlineMath math="14\text{ cm}" />.
+
+#### Menilai setiap pernyataan
+
+1. Pernyataan bahwa jangkauan antarkuartil media A lebih besar benar, karena <InlineMath math="3\text{ cm}>2\text{ cm}" />.
+2. Pernyataan bahwa jangkauan tinggi bibit pada media B lebih besar salah. Jangkauan media B adalah <InlineMath math="17-11=6\text{ cm}" />, **lebih kecil daripada jangkauan media A**, <InlineMath math="19-10=9\text{ cm}" />.
+3. Pernyataan bahwa paling sedikit setengah bibit media B tingginya <InlineMath math="14\text{ cm}" /> atau lebih benar, karena data ke-<InlineMath math="21" /> sampai ke-<InlineMath math="40" /> pada media B tingginya paling sedikit <InlineMath math="14\text{ cm}" />.
+4. Pernyataan bahwa median media A lebih besar salah, karena median media A adalah <InlineMath math="13\text{ cm}" />, lebih kecil daripada median media B, <InlineMath math="14\text{ cm}" />.
+5. Pernyataan bahwa tinggi terendah di antara seluruh <InlineMath math="80" /> bibit terdapat pada media A benar. Tinggi terendah di media A adalah <InlineMath math="10\text{ cm}" />, sedangkan setiap bibit di media B tingginya paling sedikit <InlineMath math="11\text{ cm}" />, sehingga <InlineMath math="10\text{ cm}" /> adalah tinggi terendah dari seluruh bibit.
+
+Jadi, pernyataan yang benar adalah pernyataan tentang jangkauan antarkuartil, tentang setengah bibit media B yang tingginya paling sedikit <InlineMath math="14\text{ cm}" />, dan tentang tinggi terendah seluruh bibit yang terdapat pada media A.

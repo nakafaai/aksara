@@ -3,21 +3,21 @@ import { ChildProcess } from "effect/process";
 import { decodeWorkflow } from "#scripts/workflow/decode";
 import { WorkflowError } from "#scripts/workflow/requirement";
 
-/** Reads the shell program of one named step of the publication job. */
-export const operateStepProgram = Effect.fn(
-  "WorkflowTestStep.operateStepProgram"
+/** Reads the shell program of one named step of the contracts job, where the dispatch guards run. */
+export const contractsStepProgram = Effect.fn(
+  "WorkflowTestStep.contractsStepProgram"
 )(function* (release: string, name: string) {
   const { jobs } = yield* decodeWorkflow(release);
-  const job = jobs.operate;
+  const job = jobs.contracts;
   if (job === undefined) {
     return yield* new WorkflowError({
-      message: "The publication job must exist",
+      message: "The contracts job must exist",
     });
   }
   const step = Arr.findFirst(job.steps, (candidate) => candidate.name === name);
   if (Option.isNone(step) || step.value.run === undefined) {
     return yield* new WorkflowError({
-      message: `The publication step ${name} must run a shell program`,
+      message: `The contracts step ${name} must run a shell program`,
     });
   }
   return step.value.run;

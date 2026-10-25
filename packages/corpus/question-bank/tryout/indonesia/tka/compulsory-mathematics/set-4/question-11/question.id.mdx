@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Soal 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Sebuah pos pemantau berada di titik <InlineMath math="P(2,3)" /> pada peta dengan satuan kilometer. Sebuah jalan raya lurus melewati titik <InlineMath math="A(5,9)" /> dan titik <InlineMath math="B(11,1)" />. Jalan penghubung akan dibangun lurus dari <InlineMath math="P" /> menuju jalan raya dengan panjang sependek mungkin.
+
+<MathVisual
+  title={<>Pos pemantau dan jalan raya</>}
+  description={<>Titik <InlineMath math="P" /> adalah pos pemantau. Garis jalan raya melewati <InlineMath math="A" /> dan <InlineMath math="B" />, dan kedua sumbu memakai satuan kilometer.</>}
+  labels={{
+    "name-p": <InlineMath math="P" />,
+    "name-a": <InlineMath math="A" />,
+    "name-b": <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "highway", kind: "line", appearance: "primary", through: [{ x: 5, y: 9 }, { x: 11, y: 1 }] },
+      { id: "patrol-post", kind: "point", appearance: "reference", at: { x: 2, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 5, y: 9 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 11, y: 1 } },
+    ],
+    labels: [
+      { key: "name-p", objectId: "patrol-post", at: { x: 2, y: 3 }, placement: "below-left" },
+      { key: "name-a", objectId: "point-a", at: { x: 5, y: 9 }, placement: "above" },
+      { key: "name-b", objectId: "point-b", at: { x: 11, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Panjang jalan penghubung itu adalah ....

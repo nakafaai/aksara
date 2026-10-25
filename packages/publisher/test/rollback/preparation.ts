@@ -39,7 +39,6 @@ import { makePublicationTarget } from "#test/target";
 export const rollbackOf = ReleaseIdSchema.make("test-rollback-active");
 export const releaseId = ReleaseIdSchema.make("test-rollback-forward");
 const rawMdx = "## Test protocol";
-const compiledCode = "return {};";
 const keys = await Effect.runPromise(generateEd25519KeyPem());
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
@@ -67,12 +66,11 @@ const sourcePath = CorpusSourcePathSchema.make(
 const rawMdxSourceHash = await Effect.runPromise(hashText(rawMdx));
 const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   artifactLocale: "en",
-  byteLength: new TextEncoder().encode(compiledCode).byteLength,
-  compiledCode,
   compilerConfigHash: `sha256:${"a".repeat(64)}`,
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: "test:rollback-forward",
-  format: "mdx-function-body",
+  contentTree: { $node: "element", children: [], name: "fragment", props: {} },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: "Test protocol",
   rawMdx,

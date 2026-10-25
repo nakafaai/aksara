@@ -14,7 +14,10 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
-import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
+import {
+  PublicationRetentionSchema,
+  type PublicationTarget,
+} from "@nakafa/aksara-publisher/publication/spec";
 import type { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
@@ -105,6 +108,9 @@ const ProductionCallsSchema = Schema.Struct({
   keyId: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),
   manifestMismatch: Schema.mutableKey(Schema.Boolean),
   privateKeyMatches: Schema.mutableKey(Schema.Boolean),
+  publicationRetention: Schema.mutableKey(
+    Schema.UndefinedOr(PublicationRetentionSchema)
+  ),
   publishCalls: Schema.mutableKey(Schema.Finite),
   publishKind: Schema.mutableKey(Schema.UndefinedOr(Schema.Literal("git"))),
   releaseId: Schema.mutableKey(Schema.UndefinedOr(Schema.String)),

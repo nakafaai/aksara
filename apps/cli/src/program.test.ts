@@ -194,8 +194,8 @@ describe("CLI program", () => {
         expect(calls.production).toEqual({
           args: {
             command: "release",
-            recoveryId: "recovery-next",
             releaseId: "release-next",
+            retention: { kind: "inverse", recoveryId: "recovery-next" },
           },
           cwd: "/code/aksara",
         });

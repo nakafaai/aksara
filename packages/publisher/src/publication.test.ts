@@ -8,7 +8,12 @@ import {
 } from "#publisher/publication/spec";
 import { makeTarget } from "#test/lifecycle/spec";
 import { makeRelease, projection, record } from "#test/publication";
-import { publish, publishPrepared } from "#test/publication/run";
+import {
+  makeBootstrapRelease,
+  publish,
+  publishBootstrap,
+  publishPrepared,
+} from "#test/publication/run";
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
@@ -221,5 +226,75 @@ describe("content publication", () => {
       expect(state.stageProjectionBatch).not.toHaveBeenCalled();
       expect(state.stageArtifactBatch).not.toHaveBeenCalled();
     })
+  );
+
+  it.effect("bootstraps over a retired base without any retained inverse", () =>
+    Effect.gen(function* () {
+      const bootstrap = yield* Effect.promise(() =>
+        makeBootstrapRelease("test-release-bootstrap", "test-base")
+      );
+      const state = makeTarget(bootstrap);
+      const receipt = yield* publishBootstrap(
+        bootstrap.prepared,
+        state.target,
+        "test-base"
+      );
+      expect(receipt).toMatchObject({ releaseId: "test-release-bootstrap" });
+      expect(state.stageRecovery).not.toHaveBeenCalled();
+      expect(state.rollbackPage).not.toHaveBeenCalled();
+      expect(state.routePage).not.toHaveBeenCalled();
+    })
+  );
+
+  it.effect("discards only the bootstrap candidate when activation fails", () =>
+    Effect.gen(function* () {
+      const bootstrap = yield* Effect.promise(() =>
+        makeBootstrapRelease("test-release-bootstrap-preflight", "test-base")
+      );
+      const state = makeTarget(bootstrap);
+      const { releaseId } = bootstrap.manifest;
+      const failure = new PublicationActivationError({
+        phase: "preflight",
+        releaseId,
+      });
+      const activation = PublicationActivation.of({
+        invalidate: () => Effect.void,
+        verify: () => Effect.fail(failure),
+      });
+      const error = yield* publishBootstrap(
+        bootstrap.prepared,
+        state.target,
+        "test-base",
+        activation
+      ).pipe(Effect.flip);
+      expect(error).toEqual(failure);
+      expect(MutableList.toArray(state.abortOrder)).toEqual([releaseId]);
+      expect(state.activate).not.toHaveBeenCalled();
+    })
+  );
+
+  it.effect.each([
+    { declared: "test-other-base", reason: "base", survivors: 0 },
+    { declared: "test-base", reason: "replacement", survivors: 1 },
+    { declared: "test-base", reason: "snapshot", survivors: 0, tryout: true },
+  ])(
+    "rejects a bootstrap refused for its $reason",
+    ({ declared, reason, survivors, tryout }) =>
+      Effect.gen(function* () {
+        const bootstrap = yield* Effect.promise(() =>
+          makeBootstrapRelease("test-refusal", "test-base", survivors, tryout)
+        );
+        const state = makeTarget(bootstrap);
+        const error = yield* publishBootstrap(
+          bootstrap.prepared,
+          state.target,
+          declared
+        ).pipe(Effect.flip);
+        expect(error).toMatchObject({
+          _tag: "PublicationBootstrapError",
+          reason,
+        });
+        expect(state.stageRelease).not.toHaveBeenCalled();
+      })
   );
 });

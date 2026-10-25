@@ -55,6 +55,7 @@ const calls = vi.hoisted(() => {
     manifestMismatch: false,
     privateKeyMatches: false,
     publicationConfig: undefined,
+    publicationRetention: undefined,
     publishCalls: 0,
     publishKind: undefined,
     releaseId: undefined,
@@ -240,8 +241,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const { ContentVerificationKeyResolver } = await import(
     "@nakafa/aksara-contracts/signature/spec"
   );
-  const { PublicationActivation, PublicationSigningKey, PublicationTarget } =
-    await import("@nakafa/aksara-publisher/publication/spec");
+  const spec = await import("@nakafa/aksara-publisher/publication/spec");
   const { receiptFor } = await import("#test/target");
   /** Publishes one prepared Git release through injected boundary services. */
   const publish = (prepared: {
@@ -251,12 +251,13 @@ vi.mock("@nakafa/aksara-publisher/publication", async () => {
   }) => {
     calls.publishCalls += 1;
     return TestEffect.gen(function* () {
-      const signingKey = yield* PublicationSigningKey;
+      const signingKey = yield* spec.PublicationSigningKey;
       const resolver = yield* ContentVerificationKeyResolver;
-      yield* PublicationActivation;
-      yield* PublicationTarget;
+      yield* spec.PublicationActivation;
+      yield* spec.PublicationTarget;
       calls.targetServiceReads += 1;
       yield* resolver.resolve(SigningKeyIdSchema.make("content-2026-07-23"));
+      calls.publicationRetention = yield* spec.PublicationRetention;
       calls.keyId = signingKey.keyId;
       calls.privateKeyMatches =
         TestRedacted.value(signingKey.privateKeyPem) === "test-private-key";

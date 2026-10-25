@@ -104,8 +104,8 @@ The repository owner explicitly authorized the bootstrap commit and push on
    delete merged branches automatically.
 
 The owner selected the existing Nakafa license set for Aksara. Software uses
-the Nakafa Source Available License 1.0, educational corpus uses the Nakafa
-Content License 1.0, and Nakafa brand assets remain governed by the Nakafa
+the Nakafa Source Available License 2.0, educational corpus uses the Nakafa
+Content License 2.0, and Nakafa brand assets remain governed by the Nakafa
 Trademark and Brand Policy. Public visibility grants only the rights stated
 there.
 
