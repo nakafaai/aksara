@@ -50,12 +50,31 @@ export const fetchProductionRenderer: (
   );
 });
 
-/** Selects the live renderer only when this release proves its full closure. */
+/**
+ * A bootstrap whose scope cannot close the live renderer change would fall back
+ * to the base renderer. That fallback is refused: the bootstrap must publish under
+ * the live renderer. A live renderer equal to the base is fine, because the
+ * manifest lists components and the content generation lives in each artifact's
+ * payload format.
+ */
+export class BootstrapRendererError extends Schema.TaggedError<
+  BootstrapRendererError,
+  { readonly brand: unique symbol }
+>()("BootstrapRendererError", {
+  rendererManifestHash: Sha256HashSchema,
+}) {}
+
+/**
+ * Selects the live renderer only when this release proves its full closure. An
+ * inverse release falls back to the base renderer otherwise; a bootstrap is
+ * refused there, because it must publish under the live renderer.
+ */
 export const selectRendererManifest = Effect.fn(
   "AksaraCli.selectRendererManifest"
 )(function* (input: {
   readonly baseBundle: ContentReleaseBundle | null;
   readonly rendererManifest: unknown;
+  readonly retention: PublicationRetentionDecision;
   readonly scope: PublicationScope;
 }) {
   const liveRenderer = yield* validateRendererManifestHash(
@@ -76,6 +95,11 @@ export const selectRendererManifest = Effect.fn(
     scope: input.scope,
   }).pipe(Effect.result);
   if (Result.isFailure(transition)) {
+    if (input.retention.kind === "bootstrap") {
+      return yield* new BootstrapRendererError({
+        rendererManifestHash: liveRenderer.hash,
+      });
+    }
     yield* Effect.logInfo(
       "Content publication retained the base renderer manifest."
     ).pipe(
@@ -89,37 +113,4 @@ export const selectRendererManifest = Effect.fn(
     return activeBundle.rendererManifest;
   }
   return liveRenderer;
-});
-
-/**
- * A bootstrap that keeps the retired base renderer cannot render its content tree.
- * The renderer selection falls back to the base when the scope cannot close, so
- * this refusal is where that fallback becomes a failure instead of a silent choice.
- */
-export class BootstrapRendererError extends Schema.TaggedError<
-  BootstrapRendererError,
-  { readonly brand: unique symbol }
->()("BootstrapRendererError", {
-  rendererManifestHash: Sha256HashSchema,
-}) {}
-
-/**
- * Refuses a bootstrap whose candidate renderer is the retired base renderer. An
- * inverse retention keeps no such constraint, so it passes through unchanged.
- */
-export const requireBootstrapRenderer = Effect.fn(
-  "AksaraCli.requireBootstrapRenderer"
-)(function* (input: {
-  readonly baseRendererManifestHash: typeof Sha256HashSchema.Type | null;
-  readonly rendererManifestHash: typeof Sha256HashSchema.Type;
-  readonly retention: PublicationRetentionDecision;
-}) {
-  if (
-    input.retention.kind === "bootstrap" &&
-    input.rendererManifestHash === input.baseRendererManifestHash
-  ) {
-    return yield* new BootstrapRendererError({
-      rendererManifestHash: input.rendererManifestHash,
-    });
-  }
 });

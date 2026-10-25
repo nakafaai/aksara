@@ -277,7 +277,7 @@ describe("production command", () => {
     })
   );
 
-  it.effect("refuses a rebuilt bootstrap on the active renderer", () =>
+  it.effect("resumes a bootstrap candidate on the active renderer", () =>
     Effect.gen(function* () {
       const active = yield* gitBundle("release-active");
       const candidate = yield* gitBundle("release-bootstrap", {
@@ -291,9 +291,9 @@ describe("production command", () => {
         recovery: null,
         tryoutRuntimeBundle: null,
       });
-      const error = yield* runBootstrap(BOOTSTRAP_SCOPE).pipe(Effect.flip);
-      expect(error).toMatchObject({ failure: "BootstrapRendererError" });
-      expect(calls).toMatchObject({ catalogCalls: 0, publishCalls: 0 });
+      const receipt = yield* runBootstrap(BOOTSTRAP_SCOPE);
+      expect(receipt).toMatchObject({ releaseId: "release-bootstrap" });
+      expect(calls).toMatchObject({ publishCalls: 1, rendererCalls: 0 });
     })
   );
 });
