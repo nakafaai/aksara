@@ -111,7 +111,7 @@ layer(pageTestLayer)("page document", (it) => {
           "sha256:94d242cc4eba93c36fddd48ed5e531d70c5b57a5d7a2f2d47305f25e88fdb316"
         );
         expect(prepared.change.artifactHash).toBe(
-          "sha256:1cb7e1bb29750da0f4f33ce3b5241397bf396bfda6970fed4c1ce85efea64e0c"
+          "sha256:e24229154dbf35ad56a32992f9c0f54219b50d15d3bcf8cdd685f714acc4b5cb"
         );
       }).pipe(Effect.provide(Path.layer))
   );

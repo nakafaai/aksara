@@ -69,18 +69,16 @@ describe("compileContent", () => {
           '## Compiler test\n\n<BlockMath math="x" />\n\n<InlineMath math="x" />'
         );
         const { metadata, payload } = yield* compileRawMdx(rawMdx);
-        assert.strictEqual(payload.format, "mdx-function-body");
-        assert.ok(payload.compiledCode.includes("_missingMdxReference"));
+        assert.strictEqual(payload.format, "content-tree");
         assert.deepStrictEqual(payload.requiredComponents, [
           "BlockMath",
           "InlineMath",
         ]);
         assert.ok(payload.plainText.includes("Compiler test"));
-        assert.ok(!payload.compiledCode.includes("metadata"));
+        assert.include(encodeJson(payload.contentTree), '"name":"h2"');
         assert.strictEqual(payload.rawMdx, rawMdx);
         assert.strictEqual(payload.sourceHash, yield* hashText(rawMdx));
-        assert.ok(payload.byteLength > 0);
-        assert.strictEqual(payload.compilerVersion, "0.1.0");
+        assert.strictEqual(payload.compilerVersion, "0.2.0");
         assert.strictEqual(payload.mdxCompilerVersion, "3.1.1");
         assert.match(payload.compilerConfigHash, SHA256_PATTERN);
         assert.deepStrictEqual(metadata, {});
@@ -213,6 +211,11 @@ describe("compileContent", () => {
       '{[].filter.constructor("return process")()}',
     ],
     [
+      "locale-dependent-access",
+      "toLocaleString",
+      "{(1234.5).toLocaleString()}",
+    ],
+    [
       "dangerous-jsx-attribute",
       "dangerouslySetInnerHTML",
       '<div dangerouslySetInnerHTML={{ __html: "unsafe" }} />',
@@ -256,24 +259,25 @@ describe("compileContent", () => {
     Effect.gen(function* () {
       const { payload } = yield* compileRawMdx(
         withMetadata(
-          '<><span>{1 + 2}</span>{(() => { const values = [1, 2]; return values.map((value) => value * 2).join(","); })()}</>'
+          '<><em>{1 + 2}</em>{(() => { const values = [1, 2]; return values.map((value) => value * 2).join(","); })()}</>'
         )
       );
-      assert.ok(payload.compiledCode.includes("values.map"));
+      assert.include(encodeJson(payload.contentTree), '"2,4"');
+      assert.include(encodeJson(payload.contentTree), '"children":["3"]');
     })
   );
 
-  it.effect(
-    "leaves a constant scene expression for the renderer to evaluate",
-    () =>
-      Effect.gen(function* () {
-        const { payload } = yield* compileRawMdx(
-          withMetadata(
-            `<MathVisual title="Plane" description="A plane." scene={${sceneEndingAt("Math.SQRT1_2 / 2")}} />`
-          )
-        );
-        assert.include(payload.compiledCode, "x: Math.SQRT1_2 / 2");
-      })
+  it.effect("evaluates a constant scene expression once into data", () =>
+    Effect.gen(function* () {
+      const { payload } = yield* compileRawMdx(
+        withMetadata(
+          `<MathVisual title="Plane" description="A plane." scene={${sceneEndingAt("Math.SQRT1_2 / 2")}} />`
+        )
+      );
+      const [element] = payload.contentTree.children;
+      assert.strictEqual(typeof element, "object");
+      assert.include(encodeJson(element), `"x":${Math.SQRT1_2 / 2}`);
+    })
   );
 
   it.effect("wraps malformed MDX as a typed compilation failure", () =>

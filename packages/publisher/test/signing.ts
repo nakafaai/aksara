@@ -137,18 +137,18 @@ export const signingRuntimeBundle = Effect.fn(
 
 /** Test-only Ed25519 public key that verifies every recorded publication signature below. */
 export const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEAXtJyj4s/gMRtHHkNahJdbPSs7MoLMSFkstouKPMeLKw=
+MCowBQYDK2VwAyEA6bluAPQKbm/+GpJAhIAPbVbebFNcTaRo4bL6q7dimLM=
 -----END PUBLIC KEY-----
 `;
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_ARTIFACT_SIGNATURE =
-  "BMT-wVEC3LO2o3K9R8xGdnCmfKb_PRwGc1QFa8CWVOFvEZwlzSGkku8-58nGutHQYxMHvAL7Hpc29G-gkTVoDA";
+  "YtgMyawppe5wAJcDQ6MmKv4Yp2yGyKfBW_AY44KZC6jItc_MxYM1xJ17OtvViv1ONiCD4_Gm0OaOCKQun58LCQ";
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_RELEASE_SIGNATURE =
-  "ahRX-gZia7IMZiSQmxZTN5BbnpYfbCMSJziXjeA3sy6PFSAFp0RHAdffne7bXkvyFG8uEKmUQa3u-a-pyZNLAQ";
+  "-_xu7pIKZlRSa5bEoxTcGX7IJAVffm5ST9IyzUs3EBSnL1ZqZUhR_JLNG_-BUzBBnxyB6qJ9PuqGp632z7lLAA";
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_RUNTIME_BUNDLE_SIGNATURE =
-  "-Rb6vFnC-1vsq5t5AxnYn7txzUVjsA6wbWX14X7p_Sk4Jc5PCWnv0IX1dgZ9TwCLzOgagmaKLDwJz9mVeBYyBg";
+  "g1rYCPq8NSYPwKCPxSUI28L_Bdt2aHWHz5zW1gUquBNf_uDWgmEd37AlVWjCmBQiUB_R42kkZJIZ1aCIFRFhDA";
 
 /** Imports one Ed25519 SPKI public key from its PEM text for Web Crypto verification. */
 export const importEd25519PublicKeyPem = Effect.fn(

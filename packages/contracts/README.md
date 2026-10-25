@@ -25,6 +25,9 @@ remains trusted executable source.
 
 Current consumers use unversioned semantic Interfaces:
 
+- `tree` owns the signed content tree: a fragment of intrinsic tags, renderer
+  components, and text, whose props are JSON data or nested elements.
+  `canonicalizeContentTree` gives the bytes that hashes and signatures cover.
 - `graph/family` classifies either a complete graph identity or one exact
   asset ID into its application locale and content family.
 - `tryout/catalog` owns minimal catalog node schemas, while `tryout/identity`

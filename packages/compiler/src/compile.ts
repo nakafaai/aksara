@@ -15,6 +15,8 @@ import type {
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
   ContentByteLimitExceededError,
+  ContentTreeEvaluationError,
+  ContentTreePolicyError,
   MdxCompilationError,
   RendererComponentMissingError,
 } from "#compiler/errors";
@@ -37,6 +39,8 @@ export type CompileContentError =
   | AuthoredMetadataMissingError
   | AuthoredMetadataSyntaxError
   | ContentByteLimitExceededError
+  | ContentTreeEvaluationError
+  | ContentTreePolicyError
   | MdxCompilationError
   | RendererComponentMissingError
   | SourcePolicyError

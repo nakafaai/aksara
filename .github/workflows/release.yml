@@ -58,6 +58,57 @@ jobs:
       attestations: read
       contents: read
     steps:
+      # The inputs are checked before any job spends time, so a malformed dispatch fails
+      # in seconds instead of after the publication verification.
+      - name: Validate target
+        env:
+          OPERATION: ${{ inputs.operation }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          case "$TARGET" in
+            production|development|both) ;;
+            *) echo "Unknown publication target." >&2; exit 1 ;;
+          esac
+          if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
+            echo "Recovery, abort, and cleanup take one target, not both." >&2
+            exit 1
+          fi
+
+      - name: Validate operation
+        env:
+          OPERATION: ${{ inputs.operation }}
+          REBUILD: ${{ inputs.rebuild }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+          PUBLICATION_SCOPE: ${{ inputs.scope }}
+        run: |
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+            if [[ -z "$RECOVERY_ID" ]]; then
+              echo "The operation must name its exact retained inverse." >&2
+              exit 1
+            fi
+            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
+              echo "Active and recovery release identities must differ." >&2
+              exit 1
+            fi
+          elif [[ -n "$RECOVERY_ID" ]]; then
+            echo "Abort and cleanup do not accept a recovery identity." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "release" ]]; then
+            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
+              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
+              exit 1
+            fi
+          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
+            echo "Only release may select a publication scope." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
+            echo "Only release may rebuild selected families." >&2
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -186,55 +237,6 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Validate target
-        env:
-          OPERATION: ${{ inputs.operation }}
-          TARGET: ${{ inputs.target }}
-        run: |
-          case "$TARGET" in
-            production|development|both) ;;
-            *) echo "Unknown publication target." >&2; exit 1 ;;
-          esac
-          if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
-            echo "Recovery, abort, and cleanup take one target, not both." >&2
-            exit 1
-          fi
-
-      - name: Validate operation
-        env:
-          OPERATION: ${{ inputs.operation }}
-          REBUILD: ${{ inputs.rebuild }}
-          RECOVERY_ID: ${{ inputs.recovery_id }}
-          RELEASE_ID: ${{ inputs.release_id }}
-          PUBLICATION_SCOPE: ${{ inputs.scope }}
-        run: |
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
-            if [[ -z "$RECOVERY_ID" ]]; then
-              echo "The operation must name its exact retained inverse." >&2
-              exit 1
-            fi
-            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
-              echo "Active and recovery release identities must differ." >&2
-              exit 1
-            fi
-          elif [[ -n "$RECOVERY_ID" ]]; then
-            echo "Abort and cleanup do not accept a recovery identity." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "release" ]]; then
-            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
-              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
-              exit 1
-            fi
-          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
-            echo "Only release may select a publication scope." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
-            echo "Only release may rebuild selected families." >&2
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

@@ -73,6 +73,20 @@ describe("inspectPropertyProgram", () => {
   );
 
   it.effect.each([
+    ["toLocaleString", "{(1234.5).toLocaleString()}"],
+    ["toLocaleDateString", '{(0).toLocaleDateString("id-ID")}'],
+    ["toLocaleTimeString", "{(0).toLocaleTimeString()}"],
+    ["localeCompare", '{"a".localeCompare("b")}'],
+  ] as const)("rejects locale-dependent method %s", ([identifier, rawMdx]) =>
+    Effect.gen(function* () {
+      expect(yield* inspectProperties(rawMdx)).toContainEqual({
+        identifier,
+        rule: "locale-dependent-access",
+      });
+    })
+  );
+
+  it.effect.each([
     "{({})[1]}",
     '{({})["safe"]}',
     "{(() => { const a = [4, 1, 0]; const b = [2, 3, 0]; return a.map((component, index) => component + b.at(index)); })()}",

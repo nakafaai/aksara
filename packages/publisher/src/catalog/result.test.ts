@@ -45,10 +45,10 @@ layer(NodeServices.layer)("catalog result validation", (it) => {
           return evidence.digest;
         });
         expect(yield* digestFor(1)).toMatchInlineSnapshot(
-          `"sha256:a3d00bfc62fbd91378d2958296859d648daf6bcb1f57710a198bf02d3891d7d4"`
+          `"sha256:e33ddeed1796bc893493f1b12e80a8ddc2d44cd53a1e4e598ad88f5a907d3510"`
         );
         expect(yield* digestFor(2)).toMatchInlineSnapshot(
-          `"sha256:a3d00bfc62fbd91378d2958296859d648daf6bcb1f57710a198bf02d3891d7d4"`
+          `"sha256:e33ddeed1796bc893493f1b12e80a8ddc2d44cd53a1e4e598ad88f5a907d3510"`
         );
       })
   );
