@@ -169,9 +169,10 @@ The first release of a new content contract generation replaces a base that
 the new renderer cannot read, so no inverse can protect it. Such a release
 names the retired active release with `--bootstrap-over <active-release-id>`
 in place of `--recovery-id`, and it selects every family and snapshot because
-it must replace every head. It takes one target and has no accept or recover
-step. Its undo is a forward release of the last commit of the retired
-generation. See [`docs/adr/release.md`](docs/adr/release.md).
+it must replace every head. The live renderer must differ from the retired
+base's, or the command refuses before any write. It takes one target and has no
+accept or recover step. Its undo is a forward release of the last commit of the
+retired generation. See [`docs/adr/release.md`](docs/adr/release.md).
 
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does

@@ -1,5 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
 import {
   Array as Arr,
   Effect,
@@ -13,6 +15,7 @@ import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
 import {
   fetchProductionRenderer,
+  requireBootstrapRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
 import { encodeJsonText } from "#cli/text/json";
@@ -24,6 +27,10 @@ const ENDPOINT = new URL(
   "https://www.example.test/api/internal/content/renderer"
 );
 const TOKEN = Redacted.make("renderer-test-token");
+const BOOTSTRAP_RETENTION: PublicationRetentionDecision = {
+  baseReleaseId: ReleaseIdSchema.make("release-retired"),
+  kind: "bootstrap",
+};
 
 /** Creates one valid no-store renderer response for a chosen status. */
 function rendererResponse(
@@ -194,5 +201,55 @@ describe("production renderer", () => {
 
       expect(timeout).toMatchObject({ reason: "timeout" });
     })
+  );
+
+  it.effect(
+    "refuses a bootstrap renderer that is the retired base renderer",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* requireBootstrapRenderer({
+            baseRendererManifestHash: RENDERER_MANIFEST.hash,
+            rendererManifestHash: RENDERER_MANIFEST.hash,
+            retention: BOOTSTRAP_RETENTION,
+          }).pipe(Effect.flip)
+        ).toMatchObject({ _tag: "BootstrapRendererError" });
+      })
+  );
+
+  it.effect(
+    "accepts a bootstrap renderer that differs from the retired base renderer",
+    () =>
+      Effect.gen(function* () {
+        const live = yield* createRendererManifest({
+          base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
+          domains: RENDERER_MANIFEST.domains,
+          publishedDomains: RENDERER_MANIFEST.publishedDomains,
+        });
+        expect(
+          yield* requireBootstrapRenderer({
+            baseRendererManifestHash: RENDERER_MANIFEST.hash,
+            rendererManifestHash: live.hash,
+            retention: BOOTSTRAP_RETENTION,
+          })
+        ).toBeUndefined();
+      })
+  );
+
+  it.effect(
+    "leaves an inverse retention unconstrained by the retired base renderer",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* requireBootstrapRenderer({
+            baseRendererManifestHash: RENDERER_MANIFEST.hash,
+            rendererManifestHash: RENDERER_MANIFEST.hash,
+            retention: {
+              kind: "inverse",
+              recoveryId: ReleaseIdSchema.make("release-recovery"),
+            },
+          })
+        ).toBeUndefined();
+      })
   );
 });

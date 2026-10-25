@@ -129,8 +129,9 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<
 }) {}
 
 /**
- * A declared bootstrap does not name the candidate's base, or does not replace
- * every head of that base, so it cannot skip the retained inverse.
+ * A declared bootstrap does not name the candidate's base, does not replace every
+ * head of that base, or leaves a try-out snapshot of that base in place, so it
+ * cannot skip the retained inverse.
  */
 export class PublicationBootstrapError extends Schema.TaggedError<
   PublicationBootstrapError,
@@ -138,7 +139,7 @@ export class PublicationBootstrapError extends Schema.TaggedError<
 >()("PublicationBootstrapError", {
   baseReleaseId: ReleaseIdSchema,
   manifestBaseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  reason: Schema.Literals(["base", "replacement"]),
+  reason: Schema.Literals(["base", "replacement", "snapshot"]),
   releaseId: ReleaseIdSchema,
 }) {}
 

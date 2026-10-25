@@ -192,6 +192,7 @@ export const runProductionCommand: (input: {
         rebuild: input.args.rebuild,
         releaseId: input.args.releaseId,
         rendererManifest,
+        retention: input.args.retention,
         scope: action.scope,
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
@@ -207,6 +208,7 @@ export const runProductionCommand: (input: {
         kind: "rebuild",
         rebuild: input.args.rebuild,
         releaseId: input.args.releaseId,
+        retention: input.args.retention,
         scope: action.scope,
         sha: action.sha,
       }).pipe(

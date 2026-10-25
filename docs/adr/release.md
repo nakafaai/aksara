@@ -153,15 +153,22 @@ inverse rule:
   `bootstrap_over`, and a bootstrap takes exactly one target.
 - The publisher checks the declaration before any target write. The candidate's
   base must be that release, and the candidate must replace every head of its
-  base: `resultCount` equals `upsertCount`, so no base head survives. The
-  publisher then stages and verifies the candidate, runs the renderer preflight,
-  and activates. It never derives, stages, or verifies an inverse.
+  base: `resultCount` equals `upsertCount`, so no base head survives. When the
+  base names a try-out snapshot, the candidate must replace that snapshot too,
+  because its placements bind the retired artifacts. The CLI also requires the
+  candidate to carry the live renderer manifest, and that manifest must differ
+  from the retired base's. An inverse release may keep the base renderer when
+  its scope cannot close the renderer change, but a bootstrap refuses that
+  fallback. The publisher then stages and verifies the candidate, runs the
+  renderer preflight, and activates. It never derives, stages, or verifies an
+  inverse.
 - Nakafa receives no declaration from the publisher. It decides eligibility from
   its own state and the signed manifest. A candidate is a bootstrap only when its
   base is the active release, the target records the active generation as
-  retired, the replacement counts hold, and no recovery is staged. The candidate
-  stores that decision, and activation skips the recovery requirement only for a
-  stored bootstrap.
+  retired, the replacement counts hold, the try-out snapshot is replaced when the
+  base named one, the renderer manifest hash differs from the active release's,
+  and no recovery is staged. The candidate stores that decision, and activation
+  skips the recovery requirement only for a stored bootstrap.
 - A bootstrap has no accept or recover step. Accept and recover refuse it, and
   parity does not run for it because it runs on one target.
 - The switch is one way. The undo is a forward release of the last commit of the

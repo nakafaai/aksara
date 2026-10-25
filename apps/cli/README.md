@@ -51,7 +51,10 @@ The first release of a new content contract generation keeps no inverse. It
 names the retired active release with `--bootstrap-over <active-release-id>`
 instead of `--recovery-id`, takes one target, and has no accept or recover
 step, because a bootstrap replaces every head of its base and cannot be
-restored. See `docs/adr/release.md` for the rule and its one-way undo.
+restored. The command refuses before any write unless the live renderer
+manifest differs from the retired base's and the scope closes that change,
+including the try-out snapshot. See `docs/adr/release.md` for the rule and its
+one-way undo.
 
 A rejected release names its reason and the exact release that owns the
 blocking slot, and a release that cannot adopt the live renderer manifest names
