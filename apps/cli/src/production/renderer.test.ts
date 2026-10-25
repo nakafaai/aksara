@@ -15,7 +15,6 @@ import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
 import {
   fetchProductionRenderer,
-  requireBootstrapRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
 import { encodeJsonText } from "#cli/text/json";
@@ -30,6 +29,10 @@ const TOKEN = Redacted.make("renderer-test-token");
 const BOOTSTRAP_RETENTION: PublicationRetentionDecision = {
   baseReleaseId: ReleaseIdSchema.make("release-retired"),
   kind: "bootstrap",
+};
+const INVERSE_RETENTION: PublicationRetentionDecision = {
+  kind: "inverse",
+  recoveryId: ReleaseIdSchema.make("release-recovery"),
 };
 
 /** Creates one valid no-store renderer response for a chosen status. */
@@ -76,6 +79,7 @@ describe("production renderer", () => {
         yield* selectRendererManifest({
           baseBundle,
           rendererManifest: live,
+          retention: INVERSE_RETENTION,
           scope: FUNCTION_SCOPE,
         }).pipe(Effect.provide(Logger.layer([logger])))
       ).toEqual(baseBundle.rendererManifest);
@@ -101,6 +105,7 @@ describe("production renderer", () => {
         yield* selectRendererManifest({
           baseBundle,
           rendererManifest: live,
+          retention: BOOTSTRAP_RETENTION,
           scope: {
             families: ["article", "material", "page", "question"],
             snapshots: ["tryout"],
@@ -204,21 +209,7 @@ describe("production renderer", () => {
   );
 
   it.effect(
-    "refuses a bootstrap renderer that is the retired base renderer",
-    () =>
-      Effect.gen(function* () {
-        expect(
-          yield* requireBootstrapRenderer({
-            baseRendererManifestHash: RENDERER_MANIFEST.hash,
-            rendererManifestHash: RENDERER_MANIFEST.hash,
-            retention: BOOTSTRAP_RETENTION,
-          }).pipe(Effect.flip)
-        ).toMatchObject({ _tag: "BootstrapRendererError" });
-      })
-  );
-
-  it.effect(
-    "accepts a bootstrap renderer that differs from the retired base renderer",
+    "refuses a bootstrap that would fall back to the base renderer",
     () =>
       Effect.gen(function* () {
         const live = yield* createRendererManifest({
@@ -227,29 +218,30 @@ describe("production renderer", () => {
           publishedDomains: RENDERER_MANIFEST.publishedDomains,
         });
         expect(
-          yield* requireBootstrapRenderer({
-            baseRendererManifestHash: RENDERER_MANIFEST.hash,
-            rendererManifestHash: live.hash,
+          yield* selectRendererManifest({
+            baseBundle: stateBundle("release-renderer-bootstrap"),
+            rendererManifest: live,
             retention: BOOTSTRAP_RETENTION,
-          })
-        ).toBeUndefined();
+            scope: FUNCTION_SCOPE,
+          }).pipe(Effect.flip)
+        ).toMatchObject({
+          _tag: "BootstrapRendererError",
+          rendererManifestHash: live.hash,
+        });
       })
   );
 
-  it.effect(
-    "leaves an inverse retention unconstrained by the retired base renderer",
-    () =>
-      Effect.gen(function* () {
-        expect(
-          yield* requireBootstrapRenderer({
-            baseRendererManifestHash: RENDERER_MANIFEST.hash,
-            rendererManifestHash: RENDERER_MANIFEST.hash,
-            retention: {
-              kind: "inverse",
-              recoveryId: ReleaseIdSchema.make("release-recovery"),
-            },
-          })
-        ).toBeUndefined();
-      })
+  it.effect("keeps a bootstrap on a live renderer equal to the base", () =>
+    Effect.gen(function* () {
+      const baseBundle = stateBundle("release-renderer-same");
+      expect(
+        yield* selectRendererManifest({
+          baseBundle,
+          rendererManifest: baseBundle.rendererManifest,
+          retention: BOOTSTRAP_RETENTION,
+          scope: FUNCTION_SCOPE,
+        })
+      ).toEqual(baseBundle.rendererManifest);
+    })
   );
 });

@@ -44,10 +44,7 @@ import {
   validateRecoveryBase,
 } from "#cli/production/base";
 import { verifyBaseTryoutRuntimeBundle } from "#cli/production/bundle";
-import {
-  requireBootstrapRenderer,
-  selectRendererManifest,
-} from "#cli/production/renderer";
+import { selectRendererManifest } from "#cli/production/renderer";
 import { selectTryoutRuntimeRefresh } from "#cli/production/runtime";
 import { selectTryoutRuntimeTransition } from "#cli/production/transition";
 import { validateRecoveryRevision } from "#cli/recovery";
@@ -151,16 +148,12 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         ? yield* selectRendererManifest({
             baseBundle: verifiedBaseBundle,
             rendererManifest: input.rendererManifest,
+            retention: input.retention,
             scope: input.scope,
           })
         : yield* validateRendererManifestHash(input.bundle.rendererManifest);
     const baseRendererManifestHash =
       verifiedBaseBundle?.rendererManifest.hash ?? null;
-    yield* requireBootstrapRenderer({
-      baseRendererManifestHash,
-      rendererManifestHash: rendererManifest.hash,
-      retention: input.retention,
-    });
     const runtime = yield* selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
