@@ -2,7 +2,8 @@
 
 This package defines exact runtime contracts for the Aksara compiler and
 publisher. Nakafa runtime consumes the exact published contract: a proven npm
-package, its immutable release archive, and compatible renderer support.
+package, its immutable release archive, and the renderer manifest that its
+releases sign.
 
 This package contains schemas, branded identifiers, canonical wire encodings,
 and Web Crypto signature verification. It contains no corpus, renderer
@@ -11,9 +12,8 @@ runtime.
 
 Consumers install the exact `@nakafa/aksara-contracts` version from npm and
 commit its pnpm lockfile integrity. npm provenance and the matching immutable
-GitHub Release bind those package bytes to the reviewed Aksara source. Content
-requiring a newer contract may be activated only after a compatible Nakafa
-renderer is live.
+GitHub Release bind those package bytes to the reviewed Aksara source. A contract
+change ships with the Nakafa renderer that consumes it, in one step.
 
 Node-only writer and incremental digest exports remain isolated behind package
 conditions. Default-runtime exports used by Convex are audited to reject
@@ -68,9 +68,9 @@ Current consumers use unversioned semantic Interfaces:
   with typed `figure` props, twelve `interaction` kinds that hold no answer
   key, `scoring` as data, the `key` and the `explanation` of an item version as
   records of their own, `item` and `stimulus` versions named by a content hash,
-  and the exam `profile`, the frozen `paper`, and the `tools` registry. It sits
-  beside the `question/` and `tryout/` contracts until the release that
-  switches their readers deletes them.
+  and the exam `profile`, the frozen `paper`, and the `tools` registry. It is
+  the successor to the `question/` and `tryout/` contracts, which the change that
+  switches their readers deletes.
   [ADR 0005](https://github.com/nakafaai/aksara/blob/main/docs/adr/assessment.md)
   records the decisions.
 
@@ -109,9 +109,9 @@ it still publishes the selected domain and contains every required component
 name. Every current manifest contains the complete canonical domain set. The same
 contract validates stored and deployed manifests. A renderer-changing release
 remains bound to the exact deployed manifest. A scoped content-only release may
-retain the active frozen manifest only when activation proves the live renderer still publishes every frozen
-domain and contains every frozen component name. The renderer is not a
-third signed value. Current production trusts authenticated
+retain the active frozen manifest only when activation proves the live renderer
+still publishes every frozen domain and contains every frozen component name. The
+renderer is not a third signed value. Current production trusts authenticated
 Convex state for route/head membership, delivery class, and the active pointer;
 a release result digest is not a per-row inclusion proof. This boundary is
 recorded explicitly in
