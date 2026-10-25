@@ -59,18 +59,18 @@ Arah putarannya juga cocok. Karena <InlineMath math="P" /> memiliki <InlineMath 
   cameraTarget={[-0.7, 2, 0]}
   data={[
     {
-      points: Array.from({ length: 421 }, (_, i) => {
-        const x = (i - 210) / 100;
+      points: Array.from({ length: 211 }, (_, j) => {
+        const x = (2 * j - 210) / 100;
         return { x, y: x * x, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 392, offset: [0.44, 1.06, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 196, offset: [0.44, 1.06, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 421 }, (_, i) => {
-        const t = (i - 210) / 100;
+      points: Array.from({ length: 211 }, (_, j) => {
+        const t = (2 * j - 210) / 100;
         const cos = 1 / 2;
         const sin = Math.sqrt(3) / 2;
         return { x: t * cos - t * t * sin, y: t * sin + t * t * cos, z: 0 };
@@ -109,8 +109,8 @@ Arah putarannya juga cocok. Karena <InlineMath math="P" /> memiliki <InlineMath 
       ],
     },
     {
-      points: Array.from({ length: 241 }, (_, i) => {
-        const angle = (Math.PI / 3) * (i / 240);
+      points: Array.from({ length: 61 }, (_, i) => {
+        const angle = (Math.PI / 3) * (i / 60);
         return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -151,8 +151,8 @@ Periksa jarak dan sudutnya. Jarak kedua titik ke <InlineMath math="O" /> sama, k
   cameraTarget={[0, 0, 0]}
   data={[
     ...Array.from({ length: 4 }, (_, quarter) => ({
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (quarter + i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (quarter + i / 90);
         return { x: 3 * Math.cos(angle) - 4 * Math.sin(angle), y: 3 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -210,38 +210,38 @@ Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, parabola dengan titik puncak <
   cameraTarget={[0, 0, 1]}
   data={[
     {
-      points: Array.from({ length: 301 }, (_, i) => {
-        const s = (i - 150) / 100;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = -1.5 + (3 * j) / 200;
         return { x: 2 + s, y: s * s + 2, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(x)" />, at: 273, offset: [0.48, 0.57, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="y = f(x)" />, at: 182, offset: [0.48, 0.57, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 301 }, (_, i) => {
-        const s = (i - 150) / 100;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = -1.5 + (3 * j) / 200;
         return { x: 2 + s, y: -(s * s + 2), z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(x)" />, at: 297, offset: [-0.21, -0.56, 0] }],
+      labels: [{ text: <InlineMath math="y = -f(x)" />, at: 198, offset: [-0.21, -0.56, 0] }],
     },
     {
-      points: Array.from({ length: 301 }, (_, i) => {
-        const s = (i - 150) / 100;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = -1.5 + (3 * j) / 200;
         return { x: -(2 + s), y: -(s * s + 2), z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(-x)" />, at: 6, offset: [-1.07, -0.9, 0], anchorX: "right" }],
+      labels: [{ text: <InlineMath math="y = -f(-x)" />, at: 4, offset: [-1.07, -0.9, 0], anchorX: "right" }],
     },
     {
-      points: Array.from({ length: 721 }, (_, i) => {
-        const turn = Math.PI * (i / 720);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const turn = Math.PI * (i / 180);
         return { x: 2, y: 2 * Math.cos(turn), z: 2 * Math.sin(turn) };
       }),
       smooth: false,
@@ -250,8 +250,8 @@ Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, parabola dengan titik puncak <
       cone: { position: "end", size: 0.25 },
     },
     {
-      points: Array.from({ length: 721 }, (_, i) => {
-        const turn = Math.PI * (i / 720);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const turn = Math.PI * (i / 180);
         return { x: 2 * Math.cos(turn), y: -2, z: 2 * Math.sin(turn) };
       }),
       smooth: false,
@@ -260,8 +260,8 @@ Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, parabola dengan titik puncak <
       cone: { position: "end", size: 0.25 },
     },
     {
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = Math.PI * (i / 360);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const angle = Math.PI * (i / 180);
         return { x: 2 * Math.cos(angle) - 2 * Math.sin(angle), y: 2 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -325,8 +325,8 @@ Untuk sudut yang bukan kelipatan <InlineMath math="90^\circ" />, pakai rumus len
   cameraTarget={[-0.5, 3, 0]}
   data={[
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: 1 + Math.cos(angle) - 4 * Math.sin(angle), y: 1 + Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -434,29 +434,29 @@ Untuk sudut <InlineMath math="45^\circ" />, nilai <InlineMath math="\cos 45^\cir
       labels: [{ text: <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />, at: 1, offset: [-0.5, -0.44, 0] }],
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: -Math.sin(angle), y: Math.cos(angle), z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 135, 270],
+      pointIndices: [0, 45, 90],
       cone: { position: "end", size: 0.25 },
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: Math.cos(angle) - 3 * Math.sin(angle), y: Math.sin(angle) + 3 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 135, 270],
+      pointIndices: [0, 45, 90],
       cone: { position: "end", size: 0.3 },
       labels: [
         { text: <InlineMath math="(1, 3)" />, at: 0, offset: [0.21, -0.21, 0], anchorX: "left" },
-        { text: <InlineMath math="(-3, 1)" />, at: 270, offset: [-0.09, -0.44, 0], anchorX: "right" },
+        { text: <InlineMath math="(-3, 1)" />, at: 90, offset: [-0.09, -0.44, 0], anchorX: "right" },
       ],
     },
   ]}
@@ -476,29 +476,29 @@ Sebuah kurva adalah grafik fungsi jika setiap garis vertikal memotong kurva itu 
   cameraTarget={[-1.05, 1.1, 0]}
   data={[
     {
-      points: Array.from({ length: 461 }, (_, i) => {
-        const t = (i - 230) / 100;
+      points: Array.from({ length: 231 }, (_, j) => {
+        const t = (2 * j - 230) / 100;
         return { x: t, y: t * t, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: true,
-      pointIndices: [30, 430],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 28, offset: [-0.44, 1.06, 0], anchorX: "right" }],
+      pointIndices: [15, 215],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 14, offset: [-0.44, 1.06, 0], anchorX: "right" }],
     },
     {
-      points: Array.from({ length: 461 }, (_, i) => {
-        const t = (i - 230) / 100;
+      points: Array.from({ length: 231 }, (_, j) => {
+        const t = (2 * j - 230) / 100;
         return { x: -t * t, y: t, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [30, 430],
+      pointIndices: [15, 215],
       labels: [
-        { text: <InlineMath math="x = -y^2" />, at: 105, offset: [-0.25, 0.37, 0], anchorX: "right" },
-        { text: <InlineMath math="(-4, 2)" />, at: 430, offset: [0.19, 0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(-4, -2)" />, at: 30, offset: [0.19, -0.46, 0], anchorX: "left" },
+        { text: <InlineMath math="x = -y^2" />, at: 53, offset: [-0.25, 0.37, 0], anchorX: "right" },
+        { text: <InlineMath math="(-4, 2)" />, at: 215, offset: [0.19, 0.46, 0], anchorX: "left" },
+        { text: <InlineMath math="(-4, -2)" />, at: 15, offset: [0.19, -0.46, 0], anchorX: "left" },
       ],
     },
     {
@@ -537,34 +537,34 @@ Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diura
   cameraTarget={[0, 1, 1]}
   data={[
     {
-      points: Array.from({ length: 526 }, (_, i) => {
-        const s = -3 + i / 100;
+      points: Array.from({ length: 263 }, (_, j) => {
+        const s = -3 + j / 50;
         return { x: s, y: 2 ** s, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = 2^x" />, at: 54, offset: [0.24, -1.38, 0] }],
+      labels: [{ text: <InlineMath math="y = 2^x" />, at: 27, offset: [0.24, -1.38, 0] }],
     },
     {
-      points: Array.from({ length: 526 }, (_, i) => {
-        const s = -3 + i / 100;
+      points: Array.from({ length: 263 }, (_, j) => {
+        const s = -3 + j / 50;
         return { x: 2 ** s, y: s, z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2 x" />, at: 60, offset: [0.45, 0.78, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="y = \log_2 x" />, at: 30, offset: [0.45, 0.78, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 526 }, (_, i) => {
-        const s = -3 + i / 100;
+      points: Array.from({ length: 263 }, (_, j) => {
+        const s = -3 + j / 50;
         return { x: -(2 ** s), y: s, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2(-x)" />, at: 6, offset: [-0.16, -0.19, 0], anchorX: "right" }],
+      labels: [{ text: <InlineMath math="y = \log_2(-x)" />, at: 3, offset: [-0.16, -0.19, 0], anchorX: "right" }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -577,8 +577,8 @@ Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diura
       labels: [{ text: <InlineMath math="y = x" />, at: 1, offset: [0.17, -0.19, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 721 }, (_, i) => {
-        const turn = Math.PI * (i / 720);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const turn = Math.PI * (i / 180);
         return { x: 3 - Math.cos(turn), y: 3 + Math.cos(turn), z: Math.sqrt(2) * Math.sin(turn) };
       }),
       smooth: false,
@@ -587,8 +587,8 @@ Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diura
       cone: { position: "end", size: 0.2 },
     },
     {
-      points: Array.from({ length: 721 }, (_, i) => {
-        const turn = Math.PI * (i / 720);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const turn = Math.PI * (i / 180);
         return { x: 4 * Math.cos(turn), y: 2, z: 4 * Math.sin(turn) };
       }),
       smooth: false,
@@ -597,8 +597,8 @@ Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diura
       cone: { position: "end", size: 0.25 },
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -644,30 +644,30 @@ Grafik <InlineMath math="y = \sqrt{x}" /> juga lolos uji garis horizontal, karen
   cameraTarget={[1.2, 2.1, 0]}
   data={[
     {
-      points: Array.from({ length: 441 }, (_, i) => {
-        const t = i / 200;
+      points: Array.from({ length: 221 }, (_, j) => {
+        const t = j / 100;
         return { x: t * t, y: t, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: true,
-      pointIndices: [400],
-      labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 84, offset: [0.6, 0.0, 0], anchorX: "left" }],
+      pointIndices: [200],
+      labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 42, offset: [0.6, 0.0, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 441 }, (_, i) => {
-        const t = i / 200;
+      points: Array.from({ length: 221 }, (_, j) => {
+        const t = j / 100;
         return { x: -t, y: t * t, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [400],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 434, offset: [0.17, 0.25, 0], anchorX: "left" }],
+      pointIndices: [200],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 217, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: 4 * Math.cos(angle) - 2 * Math.sin(angle), y: 4 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
@@ -676,7 +676,7 @@ Grafik <InlineMath math="y = \sqrt{x}" /> juga lolos uji garis horizontal, karen
       cone: { position: "end", size: 0.3 },
       labels: [
         { text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.09, -0.44, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 4)" />, at: 270, offset: [0.32, -0.32, 0], anchorX: "left" },
+        { text: <InlineMath math="(-2, 4)" />, at: 90, offset: [0.32, -0.32, 0], anchorX: "left" },
       ],
     },
   ]}
@@ -762,33 +762,33 @@ Periksa dengan dua titik garis semula. Titik <InlineMath math="(0, -2)" /> berpi
       labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />, at: 1, offset: [-0.79, -0.42, 0] }],
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: 2 * Math.sin(angle), y: -2 * Math.cos(angle), z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 270],
+      pointIndices: [0, 90],
       cone: { position: "end", size: 0.25 },
       labels: [
         { text: <InlineMath math="(0, -2)" />, at: 0, offset: [-0.17, 0.25, 0], anchorX: "right" },
-        { text: <InlineMath math="(2, 0)" />, at: 270, offset: [0.09, 0.44, 0], anchorX: "left" },
+        { text: <InlineMath math="(2, 0)" />, at: 90, offset: [0.09, 0.44, 0], anchorX: "left" },
       ],
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: Math.cos(angle) - Math.sin(angle), y: Math.sin(angle) + Math.cos(angle), z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 270],
+      pointIndices: [0, 90],
       cone: { position: "end", size: 0.25 },
       labels: [
         { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.33, 0.22, 0], anchorX: "left" },
-        { text: <InlineMath math="(-1, 1)" />, at: 270, offset: [-0.67, -0.44, 0] },
+        { text: <InlineMath math="(-1, 1)" />, at: 90, offset: [-0.67, -0.44, 0] },
       ],
     },
   ]}
@@ -810,36 +810,36 @@ Kurva hasil rotasinya adalah <InlineMath math="y = 4 - x^2" />, sama dengan <Inl
   cameraTarget={[0, 0, 0]}
   data={[
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const x = (i - 300) / 100;
+      points: Array.from({ length: 241 }, (_, j) => {
+        const x = (j - 120) / 40;
         return { x, y: x * x - 4, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: true,
-      pointIndices: [100, 300, 500],
+      pointIndices: [40, 120, 200],
       labels: [
-        { text: <InlineMath math="y = x^2 - 4" />, at: 540, offset: [0.19, -0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(0, -4)" />, at: 300, offset: [0.23, -0.55, 0], anchorX: "left" },
+        { text: <InlineMath math="y = x^2 - 4" />, at: 216, offset: [0.19, -0.46, 0], anchorX: "left" },
+        { text: <InlineMath math="(0, -4)" />, at: 120, offset: [0.23, -0.55, 0], anchorX: "left" },
       ],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const x = (i - 300) / 100;
+      points: Array.from({ length: 241 }, (_, j) => {
+        const x = (j - 120) / 40;
         return { x, y: 4 - x * x, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [100, 300, 500],
+      pointIndices: [40, 120, 200],
       labels: [
-        { text: <InlineMath math="y = 4 - x^2" />, at: 60, offset: [-0.19, 0.46, 0], anchorX: "right" },
-        { text: <InlineMath math="(0, 4)" />, at: 300, offset: [-0.23, 0.55, 0], anchorX: "right" },
+        { text: <InlineMath math="y = 4 - x^2" />, at: 24, offset: [-0.19, 0.46, 0], anchorX: "right" },
+        { text: <InlineMath math="(0, 4)" />, at: 120, offset: [-0.23, 0.55, 0], anchorX: "right" },
       ],
     },
     {
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = Math.PI * (i / 360);
+      points: Array.from({ length: 181 }, (_, i) => {
+        const angle = Math.PI * (i / 180);
         return { x: 2 * Math.cos(angle), y: 2 * Math.sin(angle), z: 0 };
       }),
       smooth: false,
@@ -848,7 +848,7 @@ Kurva hasil rotasinya adalah <InlineMath math="y = 4 - x^2" />, sama dengan <Inl
       cone: { position: "end", size: 0.3 },
       labels: [
         { text: <InlineMath math="(2, 0)" />, at: 0, offset: [0.57, -0.57, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 0)" />, at: 360, offset: [-0.57, 0.57, 0], anchorX: "right" },
+        { text: <InlineMath math="(-2, 0)" />, at: 180, offset: [-0.57, 0.57, 0], anchorX: "right" },
       ],
     },
   ]}
@@ -907,8 +907,8 @@ Setelah tanda aksen dihapus, kurva hasil rotasinya adalah <InlineMath math="x = 
       labels: [{ text: <InlineMath math="x = 1" />, at: 1, offset: [0.17, -0.29, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 271 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 270);
+      points: Array.from({ length: 91 }, (_, i) => {
+        const angle = (Math.PI / 2) * (i / 90);
         return { x: 1 + 2 * Math.cos(angle) + Math.sin(angle), y: 2 + 2 * Math.sin(angle) - Math.cos(angle), z: 0 };
       }),
       smooth: false,

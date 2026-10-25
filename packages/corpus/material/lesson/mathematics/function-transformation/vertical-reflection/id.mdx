@@ -58,9 +58,9 @@ Bayangkan grafik <InlineMath math="y = 2^x" /> berada pada bidang <InlineMath ma
   title={<>Dua bingkai cermin untuk titik <InlineMath math="P(1, 2)" /> pada <InlineMath math="y = 2^x" /></>}
   description={<>Bingkai lantai berada pada bidang <InlineMath math="y = 0" /> dan mengirim <InlineMath math="P" /> ke <InlineMath math="(1, -2)" />. Bingkai dinding berada pada bidang <InlineMath math="x = 0" /> dan mengirim <InlineMath math="P" /> ke <InlineMath math="(-1, 2)" />.</>}
   labels={{
-    P: <InlineMath math="P(1, 2)" />,
-    Q: <InlineMath math="(1, -2)" />,
-    R: <InlineMath math="(-1, 2)" />,
+    p: <InlineMath math="P(1, 2)" />,
+    q: <InlineMath math="(1, -2)" />,
+    r: <InlineMath math="(-1, 2)" />,
     floor: <InlineMath math="y = 0" />,
     wall: <InlineMath math="x = 0" />,
   }}
@@ -130,9 +130,9 @@ Bayangkan grafik <InlineMath math="y = 2^x" /> berada pada bidang <InlineMath ma
       },
     ],
     labels: [
-      { key: "P", objectId: "point-p", at: { x: 1, y: 2, z: 0 }, placement: "right" },
-      { key: "Q", objectId: "image-floor", at: { x: 1, y: -2, z: 0 }, placement: "right" },
-      { key: "R", objectId: "image-wall", at: { x: -1, y: 2, z: 0 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "q", objectId: "image-floor", at: { x: 1, y: -2, z: 0 }, placement: "right" },
+      { key: "r", objectId: "image-wall", at: { x: -1, y: 2, z: 0 }, placement: "left" },
       { key: "floor", objectId: "floor-frame", at: { x: 3, y: 0, z: 2 }, placement: "right" },
       { key: "wall", objectId: "wall-frame", at: { x: 0, y: 4, z: 2 }, placement: "right" },
     ],
@@ -247,27 +247,25 @@ Untuk <InlineMath math="y = \sin x" />, grafik mencapai titik tertingginya di <I
   cameraPosition={[0, 0, 16]}
   cameraTarget={[0, 0, 0]}
   data={(() => {
-    const f = (x) => Math.sin(x);
-    const g = (x) => -Math.sin(x);
-    // The step pi / 100 places each marked point exactly on the sample grid.
-    const xs = Array.from({ length: 401 }, (_, i) => -2 * Math.PI + (i * 2 * Math.PI) / 200);
+    // y = sin x and y = -sin x are declared as curves over -2 pi <= x <= 2 pi, sampled at 401 points that
+    // are one pi / 100 apart, so index(x) names the sample at x and every named point is exact.
     const index = (x) => Math.round((x + 2 * Math.PI) * 100 / Math.PI);
     return [
       {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, samples: 401, domain: [-2 * Math.PI, 2 * Math.PI] },
         smooth: false,
         color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0), index(Math.PI)],
+        showPoints: false,
         labels: [{ text: <InlineMath math="\sin x" />, at: index(5.5), offset: [0, 0.4, 0], anchorX: "left" }],
       },
       {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        curve: { kind: "sin", amplitude: -1, frequency: 1, phase: 0, shift: 0, samples: 401, domain: [-2 * Math.PI, 2 * Math.PI] },
         smooth: false,
         color: "#0d9488",
         showPoints: false,
         labels: [{ text: <InlineMath math="-\sin x" />, at: index(-5.5), offset: [0, -0.4, 0], anchorX: "right" }],
       },
+      { points: [{ x: 0, y: 0, z: 0 }, { x: Math.PI, y: 0, z: 0 }], smooth: false, color: "#ea580c", showPoints: true },
       { points: [{ x: Math.PI / 2, y: 1, z: 0 }, { x: Math.PI / 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
       { points: [{ x: -Math.PI / 2, y: -1, z: 0 }, { x: -Math.PI / 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
     ];

@@ -48,24 +48,24 @@ Zwei vertikale Schritte genügen, um die Wirkung der Reihenfolge zu zeigen. Die 
       labels: [{ text: <InlineMath math="f" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const x = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const x = (3 * j - 300) / 200;
         return { x, y: 2 * x * x + 1, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_A" />, at: 60, offset: [-0.17, -0.25, 0], anchorX: "right" }],
+      labels: [{ text: <InlineMath math="g_A" />, at: 20, offset: [-0.17, -0.25, 0], anchorX: "right" }],
     },
     {
-      points: Array.from({ length: 561 }, (_, i) => {
-        const x = (i - 280) / 200;
+      points: Array.from({ length: 281 }, (_, j) => {
+        const x = (2 * j - 280) / 200;
         return { x, y: 2 * x * x + 2, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_B" />, at: 40, offset: [0.17, 0.25, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="g_B" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
       points: [{ x: 1, y: 1, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 1, y: 4, z: 0 }],
@@ -108,8 +108,8 @@ Reihenfolge B verschiebt zuerst, danach ersetzt die Stauchung jedes <InlineMath 
   cameraTarget={[1.5, 0.8, 0]}
   data={[
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s, y: s * s, z: 0 };
       }),
       smooth: false,
@@ -118,8 +118,8 @@ Reihenfolge B verschiebt zuerst, danach ersetzt die Stauchung jedes <InlineMath 
       labels: [{ text: <InlineMath math="y = f(x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s / 2, y: s * s, z: 2 };
       }),
       smooth: false,
@@ -128,28 +128,28 @@ Reihenfolge B verschiebt zuerst, danach ersetzt die Stauchung jedes <InlineMath 
       labels: [{ text: <InlineMath math="y = f(2x)" />, at: 0, offset: [-0.7, 0.4, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s / 2 + 3, y: s * s, z: 4 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(2(x - 3))" />, at: 300, offset: [0, -0.9, 0] }],
+      labels: [{ text: <InlineMath math="y = f(2(x - 3))" />, at: 100, offset: [0, -0.9, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s + 3, y: s * s, z: -2 };
       }),
       smooth: false,
       color: "#c026d3",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(x - 3)" />, at: 300, offset: [0, -0.9, 0] }],
+      labels: [{ text: <InlineMath math="y = f(x - 3)" />, at: 100, offset: [0, -0.9, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: (s + 3) / 2, y: s * s, z: -4 };
       }),
       smooth: false,
@@ -222,26 +222,26 @@ Also ist <InlineMath math="a = 2" />, <InlineMath math="b = 2" />, <InlineMath m
   cameraTarget={[1.5, 1.4, 0]}
   data={[
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const s = i / 200;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const s = j / 100;
         return { x: s * s, y: s, z: 0 };
       }),
       smooth: false,
       color: "#64748b",
       showPoints: true,
-      pointIndices: [0, 400],
-      labels: [{ text: <InlineMath math="f" />, at: 450, offset: [0, 0.45, 0] }],
+      pointIndices: [0, 200],
+      labels: [{ text: <InlineMath math="f" />, at: 225, offset: [0, 0.45, 0] }],
     },
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const s = i / 200;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const s = j / 100;
         return { x: (s * s) / 2 - 3, y: 2 * s - 1, z: 0 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      pointIndices: [0, 400],
-      labels: [{ text: <InlineMath math="g" />, at: 300, offset: [-0.5, 0.2, 0] }],
+      pointIndices: [0, 200],
+      labels: [{ text: <InlineMath math="g" />, at: 150, offset: [-0.5, 0.2, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -1, z: 0 }],
@@ -273,8 +273,8 @@ Ein horizontaler Schritt ändert nur die <InlineMath math="x" />-Koordinate jede
   cameraTarget={[0.5, 1.5, 2]}
   data={[
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s, y: s * s, z: 0 };
       }),
       smooth: false,
@@ -283,18 +283,18 @@ Ein horizontaler Schritt ändert nur die <InlineMath math="x" />-Koordinate jede
       labels: [{ text: <InlineMath math="y = x^2" />, at: 0, offset: [-0.8, 0.3, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s + 1, y: s * s, z: 2 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = (x - 1)^2" />, at: 600, offset: [1.2, 0, 0] }],
+      labels: [{ text: <InlineMath math="y = (x - 1)^2" />, at: 200, offset: [1.2, 0, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s, y: s * s + 2, z: 2 };
       }),
       smooth: false,
@@ -303,14 +303,14 @@ Ein horizontaler Schritt ändert nur die <InlineMath math="x" />-Koordinate jede
       labels: [{ text: <InlineMath math="y = x^2 + 2" />, at: 0, offset: [-1.1, 0.3, 0] }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const s = (i - 300) / 200;
+      points: Array.from({ length: 201 }, (_, j) => {
+        const s = (3 * j - 300) / 200;
         return { x: s + 1, y: s * s + 2, z: 4 };
       }),
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = (x - 1)^2 + 2" />, at: 600, offset: [1.5, 0, 0] }],
+      labels: [{ text: <InlineMath math="y = (x - 1)^2 + 2" />, at: 200, offset: [1.5, 0, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 2 }, { x: 1, y: 2, z: 4 }],
@@ -479,14 +479,14 @@ Die Verschiebung um <InlineMath math="3" /> wird ebenfalls mit <InlineMath math=
   cameraTarget={[0, 3, 0]}
   data={[
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const x = (i - 250) / 100;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const x = (2 * j - 250) / 100;
         return { x, y: x * x, z: 0 };
       }),
       smooth: false,
       color: "#64748b",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="f" />, at: 15, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -500,15 +500,15 @@ Die Verschiebung um <InlineMath math="3" /> wird ebenfalls mit <InlineMath math=
       labels: [{ text: <InlineMath math="f_1" />, at: 20, offset: [0.17, 0.25, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 601 }, (_, i) => {
-        const x = (i - 300) / 100;
+      points: Array.from({ length: 301 }, (_, j) => {
+        const x = (2 * j - 300) / 100;
         return { x, y: (x * x + 3) / 2, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [300, 400],
-      labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.17, -0.25, 0], anchorX: "right" }],
+      pointIndices: [150, 200],
+      labels: [{ text: <InlineMath math="g" />, at: 20, offset: [-0.17, -0.25, 0], anchorX: "right" }],
     },
     {
       points: [{ x: 1, y: 1, z: 0 }],
@@ -539,45 +539,45 @@ Der Exponent <InlineMath math="-x" /> wird zu <InlineMath math="-(x - 1)" />, da
   cameraTarget={[0.5, 2.6, 0]}
   data={[
     {
-      points: Array.from({ length: 551 }, (_, i) => {
-        const x = (i - 300) / 100;
+      points: Array.from({ length: 276 }, (_, j) => {
+        const x = (2 * j - 300) / 100;
         return { x, y: 2 ** x, z: 0 };
       }),
       smooth: false,
       color: "#64748b",
       showPoints: true,
-      pointIndices: [400],
+      pointIndices: [200],
       labels: [
-        { text: <InlineMath math="f" />, at: 520, offset: [-0.17, 0.25, 0], anchorX: "right" },
-        { text: <InlineMath math="(1, 2)" />, at: 400, offset: [0.17, -0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="f" />, at: 260, offset: [-0.17, 0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(1, 2)" />, at: 200, offset: [0.17, -0.25, 0], anchorX: "left" },
       ],
     },
     {
-      points: Array.from({ length: 551 }, (_, i) => {
-        const x = (i - 250) / 100;
+      points: Array.from({ length: 276 }, (_, j) => {
+        const x = (2 * j - 250) / 100;
         return { x, y: 2 ** -x, z: 0 };
       }),
       smooth: false,
       color: "#ea580c",
       showPoints: true,
-      pointIndices: [150],
+      pointIndices: [75],
       labels: [
-        { text: <InlineMath math="f_1" />, at: 30, offset: [-0.17, -0.25, 0], anchorX: "right" },
-        { text: <InlineMath math="(-1, 2)" />, at: 150, offset: [-0.17, -0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="f_1" />, at: 15, offset: [-0.17, -0.25, 0], anchorX: "right" },
+        { text: <InlineMath math="(-1, 2)" />, at: 75, offset: [-0.17, -0.25, 0], anchorX: "right" },
       ],
     },
     {
-      points: Array.from({ length: 551 }, (_, i) => {
-        const x = (i - 150) / 100;
+      points: Array.from({ length: 276 }, (_, j) => {
+        const x = (2 * j - 150) / 100;
         return { x, y: 2 ** (1 - x), z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [150],
+      pointIndices: [75],
       labels: [
-        { text: <InlineMath math="g" />, at: 30, offset: [0.17, 0.25, 0], anchorX: "left" },
-        { text: <InlineMath math="(0, 2)" />, at: 150, offset: [0.57, 0.57, 0] },
+        { text: <InlineMath math="g" />, at: 15, offset: [0.17, 0.25, 0], anchorX: "left" },
+        { text: <InlineMath math="(0, 2)" />, at: 75, offset: [0.57, 0.57, 0] },
       ],
     },
   ]}
@@ -599,27 +599,27 @@ Also ist <InlineMath math="b = 3" />, <InlineMath math="h = -2" /> und <InlineMa
   cameraTarget={[-0.5, 0.5, 0]}
   data={[
     {
-      points: Array.from({ length: 441 }, (_, i) => {
-        const s = (i - 220) / 100;
+      points: Array.from({ length: 221 }, (_, j) => {
+        const s = (2 * j - 220) / 100;
         return { x: s, y: s * s, z: 0 };
       }),
       smooth: false,
       color: "#64748b",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 400, offset: [0.22, -0.33, 0], anchorX: "left" }],
+      labels: [{ text: <InlineMath math="y = x^2" />, at: 200, offset: [0.22, -0.33, 0], anchorX: "left" }],
     },
     {
-      points: Array.from({ length: 3001 }, (_, i) => {
-        const s = (i - 1500) / 500;
+      points: Array.from({ length: 301 }, (_, j) => {
+        const s = (j - 150) / 50;
         return { x: s / 3 - 2, y: s * s - 4, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
       showPoints: true,
-      pointIndices: [1500],
+      pointIndices: [150],
       labels: [
-        { text: <InlineMath math="r" />, at: 300, offset: [-0.2, 0.04, 0], anchorX: "right" },
-        { text: <InlineMath math="(-2, -4)" />, at: 1500, offset: [-0.33, -0.22, 0], anchorX: "right" },
+        { text: <InlineMath math="r" />, at: 30, offset: [-0.2, 0.04, 0], anchorX: "right" },
+        { text: <InlineMath math="(-2, -4)" />, at: 150, offset: [-0.33, -0.22, 0], anchorX: "right" },
       ],
     },
     {
@@ -654,18 +654,18 @@ Der Definitionsbereich von <InlineMath math="p" /> besteht also aus allen <Inlin
   cameraTarget={[3.4, 1.2, 0]}
   data={[
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const s = i / 200;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const s = j / 100;
         return { x: s * s, y: s, z: 0 };
       }),
       smooth: false,
       color: "#64748b",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f" />, at: 460, offset: [0.23, 0.55, 0] }],
+      labels: [{ text: <InlineMath math="f" />, at: 230, offset: [0.23, 0.55, 0] }],
     },
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const s = i / 200;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const s = j / 100;
         return { x: (s * s) / 2 + 2, y: s, z: 0 };
       }),
       smooth: false,
@@ -673,13 +673,13 @@ Der Definitionsbereich von <InlineMath math="p" /> besteht also aus allen <Inlin
       showPoints: true,
       pointIndices: [0],
       labels: [
-        { text: <InlineMath math="p" />, at: 460, offset: [-0.22, 0.33, 0], anchorX: "right" },
+        { text: <InlineMath math="p" />, at: 230, offset: [-0.22, 0.33, 0], anchorX: "right" },
         { text: <InlineMath math="(2, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
       ],
     },
     {
-      points: Array.from({ length: 501 }, (_, i) => {
-        const s = i / 200;
+      points: Array.from({ length: 251 }, (_, j) => {
+        const s = j / 100;
         return { x: (s * s) / 2 + 4, y: s, z: 0 };
       }),
       smooth: false,
@@ -687,7 +687,7 @@ Der Definitionsbereich von <InlineMath math="p" /> besteht also aus allen <Inlin
       showPoints: true,
       pointIndices: [0],
       labels: [
-        { text: <InlineMath math="q" />, at: 460, offset: [0.22, -0.33, 0], anchorX: "left" },
+        { text: <InlineMath math="q" />, at: 230, offset: [0.22, -0.33, 0], anchorX: "left" },
         { text: <InlineMath math="(4, 0)" />, at: 0, offset: [-0.28, -0.42, 0] },
       ],
     },

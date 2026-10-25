@@ -27,12 +27,14 @@ Wende die Regel auf die Parabel <InlineMath math="f(x) = x^2" /> mit <InlineMath
   cameraTarget={[0, 4.4, 0]}
   data={(() => {
     // y = a f(x) with f(x) = x^2 leaves the frame y <= 49/4 at x = ±sqrt(49 / (4a)).
-    // Every curve uses the grid x = i / 160 strictly inside its exits, plus both exits.
+    // Each curve takes 241 samples evenly across its visible branch, with both exits as its ends.
     const f = (x) => x * x;
-    const xs = Array.from({ length: 1601 }, (_, i) => (i - 800) / 160);
     const curve = (a) => {
       const exit = Math.sqrt(49 / (4 * a));
-      return [-exit, ...xs.filter((x) => Math.abs(x) < exit), exit].map((x) => ({ x, y: a * f(x), z: 0 }));
+      return Array.from({ length: 241 }, (_, j) => {
+        const x = -exit + (2 * exit * j) / 240;
+        return { x, y: a * f(x), z: 0 };
+      });
     };
     // The point (x0, f(x0)) moves straight up or down to (x0, a f(x0)).
     const move = (x0, a) => [
@@ -44,23 +46,22 @@ Wende die Regel auf die Parabel <InlineMath math="f(x) = x^2" /> mit <InlineMath
         points: curve(1),
         smooth: false,
         color: "#ea580c",
-        showPoints: true,
-        pointIndices: [880],
-        labels: [{ text: <InlineMath math="f" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: 34, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: curve(2),
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 105, offset: [0.25, 0, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="g" />, at: 32, offset: [0.25, 0, 0], anchorX: "left" }],
       },
       {
         points: curve(1 / 2),
         smooth: false,
         color: "#7c3aed",
         showPoints: false,
-        labels: [{ text: <InlineMath math="h" />, at: 1300, offset: [0.25, -0.3, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="h" />, at: 197, offset: [0.25, -0.3, 0], anchorX: "left" }],
       },
       {
         points: move(2, 2),
@@ -75,6 +76,12 @@ Wende die Regel auf die Parabel <InlineMath math="f(x) = x^2" /> mit <InlineMath
         color: "#d97706",
         showPoints: false,
         cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: [{ x: 2, y: f(2), z: 0 }],
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
       },
     ];
   })()}
@@ -102,12 +109,14 @@ Prüfe die drei besonderen Punkte. Die Werte <InlineMath math="g(1) = 3 - 12 + 9
   cameraTarget={[2, 3, 0]}
   data={(() => {
     // f(x) = (x - 1)(x - 3) = (x - 2)^2 - 1. The curve y = a f(x) leaves the frame y <= 15 where
-    // (x - 2)^2 = 1 + 15 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    // (x - 2)^2 = 1 + 15 / a. Each curve takes 241 samples evenly across its branch inside the frame, with both exits as its ends.
     const f = (x) => (x - 1) * (x - 3);
-    const xs = Array.from({ length: 3601 }, (_, i) => -5 + i / 240);
     const curve = (a) => {
       const d = Math.sqrt(1 + 15 / a);
-      return [2 - d, ...xs.filter((x) => Math.abs(x - 2) < d), 2 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+      return Array.from({ length: 241 }, (_, j) => {
+        const x = 2 - d + (2 * d * j) / 240;
+        return { x, y: a * f(x), z: 0 };
+      });
     };
     const move = (x0) => [
       { x: x0, y: f(x0), z: 0 },
@@ -119,14 +128,14 @@ Prüfe die drei besonderen Punkte. Die Werte <InlineMath math="g(1) = 3 - 12 + 9
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: 1680, offset: [0.3, 0, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="f" />, at: 210, offset: [0.3, 0, 0], anchorX: "left" }],
       },
       {
         points: curve(3),
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 1037, offset: [-0.3, 0, 0], anchorX: "right" }],
+        labels: [{ text: <InlineMath math="g" />, at: 212, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: move(4),
@@ -239,7 +248,7 @@ Flach ist die Schicht <InlineMath math="a = 0" />, weil <InlineMath math="0 \cdo
     // and draws y = a f(x).
     const f = (x) => x * x - 1;
     const depth = (a) => 2 * (1 - a);
-    const xs = Array.from({ length: 641 }, (_, i) => -2 + i / 160);
+    const xs = Array.from({ length: 201 }, (_, j) => -2 + j / 50);
     const layer = (a) => xs.map((x) => ({ x, y: a * f(x), z: depth(a) }));
     // The line through x0 holds the point (x0, a f(x0)) of every layer. It is straight because the
     // height a f(x0) and the depth 2(1 - a) both change linearly with a.
@@ -250,14 +259,14 @@ Flach ist die Schicht <InlineMath math="a = 0" />, weil <InlineMath math="0 \cdo
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="a = 2" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="a = 2" />, at: 200, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
         points: layer(1),
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="a = 1" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="a = 1" />, at: 200, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
         points: layer(1 / 2),
@@ -271,7 +280,7 @@ Flach ist die Schicht <InlineMath math="a = 0" />, weil <InlineMath math="0 \cdo
         smooth: false,
         color: "#64748b",
         showPoints: false,
-        labels: [{ text: <InlineMath math="a = 0" />, at: 640, offset: [0.45, -0.25, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="a = 0" />, at: 200, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
         points: layer(-1),
@@ -341,10 +350,10 @@ Für <InlineMath math="f(x) = x^2" /> und <InlineMath math="a = -2" /> wird jede
   cameraTarget={[0, -2, 0]}
   data={(() => {
     // f(x) = x^2 stays inside the frame -12.5 <= y <= 9 for -3 <= x <= 3, and g(x) = -2f(x)
-    // for -5/2 <= x <= 5/2. Both use the grid x = i / 160.
+    // for -5/2 <= x <= 5/2. Both use steps of 1 / 40.
     const f = (x) => x * x;
     const g = (x) => -2 * f(x);
-    const grid = (to) => Array.from({ length: 320 * to + 1 }, (_, i) => -to + i / 160);
+    const grid = (to) => Array.from({ length: 80 * to + 1 }, (_, i) => -to + i / 40);
     const move = (x0) => [
       { x: x0, y: f(x0), z: 0 },
       { x: x0, y: g(x0), z: 0 },
@@ -355,14 +364,14 @@ Für <InlineMath math="f(x) = x^2" /> und <InlineMath math="a = -2" /> wird jede
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: 176, offset: [-0.3, 0, 0], anchorX: "right" }],
+        labels: [{ text: <InlineMath math="f" />, at: 44, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: grid(5 / 2).map((x) => ({ x, y: g(x), z: 0 })),
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 160, offset: [-0.3, 0, 0], anchorX: "right" }],
+        labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: move(1),
@@ -476,7 +485,7 @@ Der Graph von <InlineMath math="f(x) = 2^x - 4" /> nähert sich der [waagerechte
     // g(x) = f(x) / 2 reaches y = 12 where 2^x = 28; it uses the same grid plus that exact exit.
     const f = (x) => 2 ** x - 4;
     const g = (x) => f(x) / 2;
-    const xs = Array.from({ length: 1089 }, (_, i) => -12 + i / 64);
+    const xs = Array.from({ length: 273 }, (_, j) => -12 + j / 16);
     const asymptote = (y) => [-12, 12.6].map((x) => ({ x, y, z: 0 }));
     return [
       {
@@ -484,16 +493,16 @@ Der Graph von <InlineMath math="f(x) = 2^x - 4" /> nähert sich der [waagerechte
         smooth: false,
         color: "#ea580c",
         showPoints: true,
-        pointIndices: [768],
-        labels: [{ text: <InlineMath math="f" />, at: 966, offset: [-0.3, 0, 0], anchorX: "right" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="f" />, at: 241, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: [...xs.filter((x) => 2 ** x < 28), Math.log2(28)].map((x) => ({ x, y: g(x), z: 0 })),
         smooth: false,
         color: "#0d9488",
         showPoints: true,
-        pointIndices: [768],
-        labels: [{ text: <InlineMath math="g" />, at: 1000, offset: [0.3, -0.2, 0], anchorX: "left" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="g" />, at: 250, offset: [0.3, -0.2, 0], anchorX: "left" }],
       },
       {
         points: asymptote(-4),
@@ -555,26 +564,26 @@ Die beiden Lesarten der dritten Zeile treffen sich in einem Punkt. Der Punkt <In
   cameraTarget={[0.5, 3.5, 0]}
   data={(() => {
     // f(x) = 2^x stays inside the frame x >= -12, y <= 16 up to x = 4, and g(x) = 2 f(x) up to x = 3.
-    // Both use the grid x = i / 64; sample 768 is x = 0.
+    // Both use the grid x = -12 + j / 16; sample 192 is x = 0.
     const f = (x) => 2 ** x;
     const g = (x) => 2 * f(x);
-    const xs = Array.from({ length: 1025 }, (_, i) => -12 + i / 64);
+    const xs = Array.from({ length: 257 }, (_, j) => -12 + j / 16);
     return [
       {
         points: xs.map((x) => ({ x, y: f(x), z: 0 })),
         smooth: false,
         color: "#ea580c",
         showPoints: true,
-        pointIndices: [768],
-        labels: [{ text: <InlineMath math="f" />, at: 928, offset: [0.3, -0.2, 0], anchorX: "left" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="f" />, at: 232, offset: [0.3, -0.2, 0], anchorX: "left" }],
       },
       {
         points: xs.filter((x) => x <= 3).map((x) => ({ x, y: g(x), z: 0 })),
         smooth: false,
         color: "#0d9488",
         showPoints: true,
-        pointIndices: [768],
-        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.3, 0.2, 0], anchorX: "right" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="g" />, at: 220, offset: [-0.3, 0.2, 0], anchorX: "right" }],
       },
       {
         points: [
@@ -611,14 +620,16 @@ In der 3D-Ansicht der Graphenschichten liegen die Graphen von <InlineMath math="
   cameraTarget={[0, 2, -2.5]}
   data={(() => {
     // y = a x^2 for a = 1, 2, 3, 4, each in the plane z = -a and drawn up to the height 4, which it reaches
-    // at x = ±2 / sqrt(a). The grid x = i / 320 strictly inside those exits, plus both exits.
-    const xs = Array.from({ length: 1281 }, (_, i) => -2 + i / 320);
+    // at x = ±2 / sqrt(a). Each layer takes 201 samples evenly between its exits.
     const layer = (a) => {
       const e = 2 / Math.sqrt(a);
-      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * x * x, z: -a }));
+      return Array.from({ length: 201 }, (_, j) => {
+        const x = -e + (2 * e * j) / 200;
+        return { x, y: a * x * x, z: -a };
+      });
     };
-    // The factor a runs from 1 to 4 in steps of 1 / 100, so a = 1, 2, 3, 4 sit at the indices 0, 100, 200, 300.
-    const as = Array.from({ length: 301 }, (_, i) => 1 + i / 100);
+    // The factor a runs from 1 to 4 in steps of 1 / 25, so a = 1, 2, 3, 4 sit at the indices 0, 25, 50, 75.
+    const as = Array.from({ length: 76 }, (_, i) => 1 + i / 25);
     // Read vertically, the height at x = x0 is a x0^2: the line through (x0, a x0^2, -a) is straight.
     const ray = (x0) => as.map((a) => ({ x: x0, y: a * x0 * x0, z: -a }));
     // Read horizontally, a x^2 = (sqrt(a) x)^2, so the height 4 sits at x = ±2 / sqrt(a): a curved trace.
@@ -629,7 +640,7 @@ In der 3D-Ansicht der Graphenschichten liegen die Graphen von <InlineMath math="
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="a = 1" />, at: 960, offset: [0.45, -0.25, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="a = 1" />, at: 150, offset: [0.45, -0.25, 0], anchorX: "left" }],
       },
       {
         points: layer(2),
@@ -650,22 +661,22 @@ In der 3D-Ansicht der Graphenschichten liegen die Graphen von <InlineMath math="
         smooth: false,
         color: "#db2777",
         showPoints: false,
-        labels: [{ text: <InlineMath math="a = 4" />, at: 320, offset: [0.7, -0.25, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="a = 4" />, at: 100, offset: [0.7, -0.25, 0], anchorX: "left" }],
       },
       {
         points: ray(1),
         smooth: false,
         color: "#d97706",
         showPoints: true,
-        pointIndices: [0, 100, 200, 300],
-        labels: [{ text: <InlineMath math="(1, a)" />, at: 300, offset: [0.45, 0, 0], anchorX: "left" }],
+        pointIndices: [0, 25, 50, 75],
+        labels: [{ text: <InlineMath math="(1, a)" />, at: 75, offset: [0.45, 0, 0], anchorX: "left" }],
       },
       {
         points: level(1),
         smooth: false,
         color: "#64748b",
         showPoints: false,
-        labels: [{ text: <InlineMath math="x = \tfrac{2}{\sqrt{a}}" />, at: 300, offset: [-0.25, 0.7, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="x = \tfrac{2}{\sqrt{a}}" />, at: 75, offset: [-0.25, 0.7, 0], anchorX: "left" }],
       },
       {
         points: level(-1),
@@ -719,12 +730,14 @@ Die Nullstellen von <InlineMath math="f(x) = (x + 2)(x - 4)" /> sind <InlineMath
   cameraTarget={[1, -2.5, 0]}
   data={(() => {
     // f(x) = (x + 2)(x - 4) = (x - 1)^2 - 9. The curve y = a f(x) leaves the frame y <= 9 where
-    // (x - 1)^2 = 9 + 9 / a; it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    // (x - 1)^2 = 9 + 9 / a. Each curve takes 241 samples evenly across its branch inside the frame, with both exits as its ends.
     const f = (x) => (x + 2) * (x - 4);
-    const xs = Array.from({ length: 3841 }, (_, i) => -7 + i / 240);
     const curve = (a) => {
       const d = Math.sqrt(9 + 9 / a);
-      return [1 - d, ...xs.filter((x) => Math.abs(x - 1) < d), 1 + d].map((x) => ({ x, y: a * f(x), z: 0 }));
+      return Array.from({ length: 241 }, (_, j) => {
+        const x = 1 - d + (2 * d * j) / 240;
+        return { x, y: a * f(x), z: 0 };
+      });
     };
     return [
       {
@@ -732,14 +745,14 @@ Die Nullstellen von <InlineMath math="f(x) = (x + 2)(x - 4)" /> sind <InlineMath
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: 1815, offset: [0.3, 0, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="f" />, at: 214, offset: [0.3, 0, 0], anchorX: "left" }],
       },
       {
         points: curve(1 / 3),
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 2370, offset: [0.3, -0.3, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="g" />, at: 197, offset: [0.3, -0.3, 0], anchorX: "left" }],
       },
       {
         points: [
@@ -784,7 +797,7 @@ Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(4, 1)" />
     // curve leaves the y-axis vertically; the frame x <= 9 stops it at r = 3. G uses the same x-values.
     const g = (x) => Math.sqrt(x);
     const G = (x) => g(x) / 2;
-    const xs = Array.from({ length: 1201 }, (_, i) => (i / 400) ** 2);
+    const xs = Array.from({ length: 241 }, (_, j) => (j / 80) ** 2);
     const move = (x0) => [
       { x: x0, y: g(x0), z: 0 },
       { x: x0, y: G(x0), z: 0 },
@@ -795,14 +808,14 @@ Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(4, 1)" />
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 880, offset: [-0.2, 0.3, 0], anchorX: "right" }],
+        labels: [{ text: <InlineMath math="g" />, at: 176, offset: [-0.2, 0.3, 0], anchorX: "right" }],
       },
       {
         points: xs.map((x) => ({ x, y: G(x), z: 0 })),
         smooth: false,
         color: "#0d9488",
         showPoints: false,
-        labels: [{ text: <InlineMath math="G" />, at: 920, offset: [0, -0.35, 0], anchorX: "right" }],
+        labels: [{ text: <InlineMath math="G" />, at: 184, offset: [0, -0.35, 0], anchorX: "right" }],
       },
       {
         points: move(1),
@@ -836,11 +849,11 @@ Die Asymptote <InlineMath math="y = 1" /> wird zu <InlineMath math="y = -3" />. 
   cameraTarget={[0, -2, 0]}
   data={(() => {
     // f(x) = 2^x + 1 stays inside the frame x >= -16, -15 <= y <= 9 up to x = 3, where 2^x = 8.
-    // H(x) = -3 f(x) reaches y = -15 where 2^x = 4, so it stops at x = 2. Both use the grid x = i / 64;
-    // sample 1024 is x = 0.
+    // H(x) = -3 f(x) reaches y = -15 where 2^x = 4, so it stops at x = 2. Both use the grid x = -16 + j / 12;
+    // sample 192 is x = 0.
     const f = (x) => 2 ** x + 1;
     const H = (x) => -3 * f(x);
-    const xs = Array.from({ length: 1217 }, (_, i) => -16 + i / 64);
+    const xs = Array.from({ length: 229 }, (_, j) => -16 + j / 12);
     const asymptote = (y) => [-16, 16].map((x) => ({ x, y, z: 0 }));
     return [
       {
@@ -848,16 +861,16 @@ Die Asymptote <InlineMath math="y = 1" /> wird zu <InlineMath math="y = -3" />. 
         smooth: false,
         color: "#ea580c",
         showPoints: true,
-        pointIndices: [1024],
-        labels: [{ text: <InlineMath math="f" />, at: 1125, offset: [-0.3, 0, 0], anchorX: "right" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="f" />, at: 211, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: xs.filter((x) => x <= 2).map((x) => ({ x, y: H(x), z: 0 })),
         smooth: false,
         color: "#0d9488",
         showPoints: true,
-        pointIndices: [1024],
-        labels: [{ text: <InlineMath math="H" />, at: 1061, offset: [-0.3, 0, 0], anchorX: "right" }],
+        pointIndices: [192],
+        labels: [{ text: <InlineMath math="H" />, at: 199, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: asymptote(1),
@@ -903,12 +916,14 @@ Die Gleichung lautet <InlineMath math="y = 4(x^2 - 1)" />. **Die Nullstellen ble
   cameraTarget={[0, 5, 0]}
   data={(() => {
     // f(x) = x^2 - 1. The curve y = a f(x) leaves the frame y <= 18 at x = ±sqrt(1 + 18 / a);
-    // it uses the grid x = i / 240 strictly inside its exits, plus both exits.
+    // Each curve takes 241 samples evenly across its visible branch inside the frame, with both exits as its ends.
     const f = (x) => x * x - 1;
-    const xs = Array.from({ length: 2641 }, (_, i) => -5.5 + i / 240);
     const curve = (a) => {
       const e = Math.sqrt(1 + 18 / a);
-      return [-e, ...xs.filter((x) => Math.abs(x) < e), e].map((x) => ({ x, y: a * f(x), z: 0 }));
+      return Array.from({ length: 241 }, (_, j) => {
+        const x = -e + (2 * e * j) / 240;
+        return { x, y: a * f(x), z: 0 };
+      });
     };
     return [
       {
@@ -916,15 +931,14 @@ Die Gleichung lautet <InlineMath math="y = 4(x^2 - 1)" />. **Die Nullstellen ble
         smooth: false,
         color: "#ea580c",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: 1900, offset: [0.3, 0, 0], anchorX: "left" }],
+        labels: [{ text: <InlineMath math="f" />, at: 218, offset: [0.3, 0, 0], anchorX: "left" }],
       },
       {
         points: curve(4),
         smooth: false,
         color: "#0d9488",
-        showPoints: true,
-        pointIndices: [1043],
-        labels: [{ text: <InlineMath math="g" />, at: 131, offset: [-0.3, 0, 0], anchorX: "right" }],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: 28, offset: [-0.3, 0, 0], anchorX: "right" }],
       },
       {
         points: [
@@ -946,6 +960,12 @@ Die Gleichung lautet <InlineMath math="y = 4(x^2 - 1)" />. **Die Nullstellen ble
         points: [{ x: 1, y: f(1), z: 0 }],
         smooth: false,
         color: "#64748b",
+        showPoints: true,
+      },
+      {
+        points: [{ x: 2, y: 4 * f(2), z: 0 }],
+        smooth: false,
+        color: "#0d9488",
         showPoints: true,
       },
     ];
