@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Pembahasan Soal 8",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Keempat pernyataan dinilai dari grafik. Pada setiap ruas yang miring, **laju lift adalah besar perubahan ketinggian dibagi lama ruas**, sedangkan pada ruas yang mendatar lift diam.
+
+| Selang waktu | Gerakan lift | Laju |
+| --- | --- | ---: |
+| <InlineMath math="0\le t\le10" /> | naik dari <InlineMath math="0" /> ke <InlineMath math="20\text{ m}" /> | <InlineMath math="\frac{20}{10}=2\text{ m/s}" /> |
+| <InlineMath math="10\le t\le16" /> | diam di <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="16\le t\le24" /> | turun dari <InlineMath math="20" /> ke <InlineMath math="8\text{ m}" /> | <InlineMath math="\frac{12}{8}=1{,}5\text{ m/s}" /> |
+| <InlineMath math="24\le t\le28" /> | diam di <InlineMath math="8\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> |
+| <InlineMath math="28\le t\le40" /> | naik dari <InlineMath math="8" /> ke <InlineMath math="26\text{ m}" /> | <InlineMath math="\frac{18}{12}=1{,}5\text{ m/s}" /> |
+
+Untuk ketinggian <InlineMath math="14\text{ m}" />, tulis rumus ketinggian pada setiap ruas miring, lalu samakan dengan <InlineMath math="14" />. Pada ruas pertama <InlineMath math="h=2t" />, pada ruas ketiga <InlineMath math="h=20-1{,}5(t-16)" />, dan pada ruas kelima <InlineMath math="h=8+1{,}5(t-28)" />.
+
+<BlockMath math="\begin{aligned}
+2t=14&\iff t=7 \\
+20-1{,}5(t-16)=14&\iff t=20 \\
+8+1{,}5(t-28)=14&\iff t=32
+\end{aligned}" />
+
+Ketiga nilai itu berada di dalam selang ruasnya masing-masing. Pada kedua ruas mendatar, ketinggiannya tetap <InlineMath math="20\text{ m}" /> dan <InlineMath math="8\text{ m}" />, jadi tidak ada saat lain ketika lift berada pada ketinggian <InlineMath math="14\text{ m}" />.
+
+<MathVisual
+  title="Saat lift berada pada ketinggian empat belas meter"
+  description={<>Garis mendatar <InlineMath math="h=14" /> memotong grafik ketinggian tepat tiga kali, yaitu pada <InlineMath math="t=7" />, <InlineMath math="t=20" />, dan <InlineMath math="t=32" />. Ruas mendatar di <InlineMath math="h=20" /> dan <InlineMath math="h=8" /> tidak menyentuh garis itu.</>}
+  labels={{
+    "time-1": <InlineMath math="t=7" />,
+    "time-2": <InlineMath math="t=20" />,
+    "time-3": <InlineMath math="t=32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lift-graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 20 }, { x: 16, y: 20 }, { x: 24, y: 8 }, { x: 28, y: 8 }, { x: 40, y: 26 }] },
+      { id: "level-14", kind: "line", appearance: "highlight", through: [{ x: 0, y: 14 }, { x: 40, y: 14 }] },
+      { id: "cross-1", kind: "point", appearance: "answer", at: { x: 7, y: 14 } },
+      { id: "cross-2", kind: "point", appearance: "answer", at: { x: 20, y: 14 } },
+      { id: "cross-3", kind: "point", appearance: "answer", at: { x: 32, y: 14 } },
+    ],
+    labels: [
+      { key: "time-1", objectId: "cross-1", at: { x: 7, y: 14 }, placement: "above-left" },
+      { key: "time-2", objectId: "cross-2", at: { x: 20, y: 14 }, placement: "above-right" },
+      { key: "time-3", objectId: "cross-3", at: { x: 32, y: 14 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Untuk pernyataan terakhir, misalkan <InlineMath math="v_1" /> adalah laju rata-rata pada <InlineMath math="0\le t\le24" /> dan <InlineMath math="v_2" /> adalah laju rata-rata pada <InlineMath math="24\le t\le40" />. Jarak tempuh setiap selang adalah jumlah jarak pada ruas-ruas di dalamnya.
+
+<BlockMath math="\begin{aligned}
+v_1&=\frac{20+0+12}{24}=\frac{32}{24}=\frac43\text{ m/s} \\
+v_2&=\frac{0+18}{16}=\frac{18}{16}=\frac98\text{ m/s}
+\end{aligned}" />
+
+1. Pernyataan bahwa lift bergerak paling cepat pada <InlineMath math="10" /> detik pertama benar. Lajunya <InlineMath math="2\text{ m/s}" />, sedangkan pada ruas lain lajunya paling besar <InlineMath math="1{,}5\text{ m/s}" />.
+2. Pernyataan bahwa lift berada pada ketinggian <InlineMath math="14\text{ m}" /> tepat tiga kali benar, yaitu pada <InlineMath math="t=7" />, <InlineMath math="t=20" />, dan <InlineMath math="t=32" />.
+3. Pernyataan tentang selang <InlineMath math="16\le t\le24" /> salah. Pada selang itu ketinggian lift **turun dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="8\text{ m}" />**, jadi berkurang <InlineMath math="1{,}5\text{ m}" /> setiap detik, bukan bertambah.
+4. Pernyataan bahwa kedua laju rata-rata sama salah, karena <InlineMath math="\frac43\text{ m/s}\ne\frac98\text{ m/s}" />. Laju pada <InlineMath math="24" /> detik pertama lebih besar, sebab <InlineMath math="\frac43=\frac{32}{24}" /> sedangkan <InlineMath math="\frac98=\frac{27}{24}" />.
+
+Jadi, dua pernyataan pertama benar, sedangkan pernyataan tentang selang <InlineMath math="16\le t\le24" /> dan pernyataan tentang kesamaan laju rata-rata salah.

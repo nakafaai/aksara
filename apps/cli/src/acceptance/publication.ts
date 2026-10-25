@@ -7,7 +7,7 @@ import { publishGitRelease } from "@nakafa/aksara-publisher/publication";
 import {
   PublicationActivation,
   PublicationActivationError,
-  PublicationRecoveryId,
+  PublicationRetention,
   PublicationSigningKey,
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
@@ -104,7 +104,10 @@ export const publishAcceptance: Effect.Effect<
       keyId: settings.key.keyId,
       privateKeyPem: settings.privateKeyPem,
     }),
-    Effect.provideService(PublicationRecoveryId, settings.recoveryId),
+    Effect.provideService(PublicationRetention, {
+      kind: "inverse",
+      recoveryId: settings.recoveryId,
+    }),
     Effect.provideService(PublicationActivation, activation),
     Effect.provideService(PublicationTarget, target)
   );

@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 21",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Ein Stamm-Blatt-Diagramm ordnet die Daten bereits vom kleinsten zum größten Wert. Der Stamm gibt die Zehnerziffer an und das Blatt die Einerziffer, also steht die Zeile <InlineMath math="4\mid1\ 3\ 3\ 6\ 7" /> für <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" />, <InlineMath math="46" /> und <InlineMath math="47" />. Es gibt <InlineMath math="n=3+5+6+1=15" /> Werte. Da <InlineMath math="n" /> ungerade ist, **ist der Median der eine Wert genau in der Mitte**, also der Wert an der Stelle <InlineMath math="\frac{n+1}{2}" />.
+
+<BlockMath math="\frac{n+1}{2}=\frac{15+1}{2}=8" />
+
+Zähle die Stellen vom obersten Stamm an. Die ersten drei Werte stehen beim Stamm <InlineMath math="3" />, die nächsten fünf beim Stamm <InlineMath math="4" />, also ist der achte Wert das letzte Blatt beim Stamm <InlineMath math="4" />.
+
+| Stamm | Blätter | Anzahl der Werte | Stellen |
+| ---: | --- | ---: | --- |
+| 3 | 5 8 9 | <InlineMath math="3" /> | <InlineMath math="1" /> bis <InlineMath math="3" /> |
+| 4 | 1 3 3 6 7 | <InlineMath math="5" /> | <InlineMath math="4" /> bis <InlineMath math="8" /> |
+| 5 | 0 2 4 4 4 9 | <InlineMath math="6" /> | <InlineMath math="9" /> bis <InlineMath math="14" /> |
+| 6 | 1 | <InlineMath math="1" /> | <InlineMath math="15" /> |
+
+Der achte Wert ist <InlineMath math="47" />. Das Diagramm zeigt, wie viele Tage in jede Zehnergruppe fallen. Der erste Balken umfasst <InlineMath math="3" /> Tage und die ersten beiden Balken umfassen <InlineMath math="3+5=8" /> Tage, also schließt der achte Wert die Gruppe der Vierziger ab.
+
+<HistogramChart
+  title="Anzahl der Tage nach Besuchergruppe"
+  description="Jeder Balken zählt die Tage, deren Besucherzahl in eine Zehnergruppe fällt. Der mittlere Wert liegt in der Gruppe der Vierziger."
+  data={[
+    { name: "30er", value: 3 },
+    { name: "40er", value: 5 },
+    { name: "50er", value: 6 },
+    { name: "60er", value: 1 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Anzahl der Tage",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)"],
+      },
+    },
+  }}
+  yAxisLabel="Anzahl der Tage"
+/>
+
+Prüfe, dass <InlineMath math="47" /> wirklich in der Mitte liegt. Sieben Werte sind kleiner, nämlich <InlineMath math="35" />, <InlineMath math="38" />, <InlineMath math="39" />, <InlineMath math="41" />, <InlineMath math="43" />, <InlineMath math="43" /> und <InlineMath math="46" />, und sieben Werte sind größer, nämlich <InlineMath math="50" />, <InlineMath math="52" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="54" />, <InlineMath math="59" /> und <InlineMath math="61" />.
+
+Der Median der täglichen Besucherzahl beträgt also <InlineMath math="47" />.
+
+- <InlineMath math="46" /> ist der siebte Wert, eine Stelle vor der Mitte.
+- <InlineMath math="48{,}5" /> ist der Mittelwert aus dem achten und dem neunten Wert. Dieses Vorgehen gilt nur bei einer geraden Anzahl von Werten.
+- <InlineMath math="50" /> ist der neunte Wert, eine Stelle nach der Mitte.
+- <InlineMath math="54" /> ist der Modalwert, also der häufigste Wert, nicht der Wert in der Mitte.

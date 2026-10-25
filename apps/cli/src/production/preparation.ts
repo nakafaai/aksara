@@ -22,7 +22,10 @@ import {
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
-import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
+import {
+  PublicationRetentionSchema,
+  type PublicationTarget,
+} from "@nakafa/aksara-publisher/publication/spec";
 import {
   type PreparedReleaseSnapshots,
   prepareReleaseSnapshots,
@@ -51,6 +54,7 @@ const GitPreparationBaseSchema = Schema.Struct({
   checkoutRoot: Schema.String,
   rebuild: Schema.optional(Schema.Boolean),
   releaseId: ReleaseIdSchema,
+  retention: PublicationRetentionSchema,
   scope: PublicationScopeSchema,
 });
 
@@ -144,9 +148,12 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         ? yield* selectRendererManifest({
             baseBundle: verifiedBaseBundle,
             rendererManifest: input.rendererManifest,
+            retention: input.retention,
             scope: input.scope,
           })
         : yield* validateRendererManifestHash(input.bundle.rendererManifest);
+    const baseRendererManifestHash =
+      verifiedBaseBundle?.rendererManifest.hash ?? null;
     const runtime = yield* selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
@@ -196,8 +203,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       baseActiveAppLocales: base?.activeAppLocales ?? null,
       baseManifestHash: base === null ? null : base.manifestHash,
       baseReleaseId: base === null ? null : base.releaseId,
-      baseRendererManifestHash:
-        verifiedBaseBundle?.rendererManifest.hash ?? null,
+      baseRendererManifestHash,
       baseResultCount: base === null ? 0 : base.resultCount,
       baseResultDigest:
         base === null ? EMPTY_RESULT_CATALOG_DIGEST : base.resultDigest,

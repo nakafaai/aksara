@@ -38,22 +38,6 @@ export class ArtifactVerificationByteLimitError extends Schema.TaggedError<
   ),
 }) {}
 
-/** Declared compiled bytes differ from the authenticated function body. */
-export class ArtifactCompiledByteLengthMismatchError extends Schema.TaggedError<
-  ArtifactCompiledByteLengthMismatchError,
-  { readonly brand: unique symbol }
->()("ArtifactCompiledByteLengthMismatchError", {
-  actualBytes: Schema.Finite.pipe(
-    Schema.check(Schema.isInt()),
-    Schema.check(Schema.isGreaterThanOrEqualTo(0))
-  ),
-  contentKey: ContentKeySchema,
-  declaredBytes: Schema.Finite.pipe(
-    Schema.check(Schema.isInt()),
-    Schema.check(Schema.isGreaterThanOrEqualTo(0))
-  ),
-}) {}
-
 /** One authenticated payload field exceeded its shared runtime ceiling. */
 export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<
   ArtifactPayloadFieldByteLimitError,
@@ -66,7 +50,7 @@ export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<
   contentKey: ContentKeySchema,
   field: Schema.Literals([
     "rawMdx",
-    "compiledCode",
+    "contentTree",
     "plainText",
     "canonicalPayload",
   ]),
@@ -113,6 +97,15 @@ export class ArtifactRendererComponentMissingError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("ArtifactRendererComponentMissingError", {
   componentName: RendererComponentNameSchema,
+  contentKey: ContentKeySchema,
+}) {}
+
+/** The content tree uses a component that the artifact does not declare as required. */
+export class ArtifactTreeComponentUnlistedError extends Schema.TaggedError<
+  ArtifactTreeComponentUnlistedError,
+  { readonly brand: unique symbol }
+>()("ArtifactTreeComponentUnlistedError", {
+  componentName: Schema.String.check(Schema.isNonEmpty()),
   contentKey: ContentKeySchema,
 }) {}
 

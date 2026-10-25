@@ -2,7 +2,6 @@ import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/in
 import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import type {
-  ArtifactCompiledByteLengthMismatchError,
   ArtifactHashComputationError,
   ArtifactPayloadFieldByteLimitError,
   ArtifactSourceHashComputationError,
@@ -51,7 +50,6 @@ export interface PublicationSigner {
     | ArtifactHashComputationError
     | ArtifactSourceHashComputationError
     | ArtifactSourceHashMismatchError
-    | ArtifactCompiledByteLengthMismatchError
     | ArtifactPayloadFieldByteLimitError
     | ArtifactVerificationByteLimitError
     | ContentSigningError

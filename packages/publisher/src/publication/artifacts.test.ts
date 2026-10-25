@@ -35,12 +35,11 @@ const sourceHash = Sha256HashSchema.make(
 );
 const payload = CompiledContentPayloadSchema.make({
   artifactLocale: ArtifactLocaleSchema.make("en"),
-  byteLength: 1,
-  compiledCode: "x",
   compilerConfigHash: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-  compilerVersion: "0.1.0",
+  compilerVersion: "0.2.0",
   contentKey: ContentKeySchema.make("test:rollback-artifact"),
-  format: "mdx-function-body",
+  contentTree: { $node: "element", children: [], name: "fragment", props: {} },
+  format: "content-tree",
   mdxCompilerVersion: "3.1.1",
   plainText: rawMdx,
   rawMdx,

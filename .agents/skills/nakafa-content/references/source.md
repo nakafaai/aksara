@@ -6,8 +6,8 @@
   deliberately have different metadata contracts.
 - Keep the compiler-owned static `export const metadata = { ... }` declaration.
 - Do not add dynamic metadata, executable imports, or arbitrary module syntax.
-- Raw MDX remains trusted executable source. It is compiled ahead of time and
-  rendered by Nakafa's native MDX renderer.
+- Raw MDX remains trusted executable source. Aksara evaluates it once at publish
+  time into a signed content tree, which Nakafa's React renderer draws.
 - Reject hidden C0 control characters other than line feed and tab, as well as
   DEL. They can corrupt prose or LaTeX while remaining hard to see in a diff.
   Write the intended visible character explicitly and recheck every locale

@@ -145,8 +145,12 @@ describe("protected content runtime contract", () => {
             ...protectedFound.items[0].artifact,
             payload: {
               ...protectedFound.items[0].artifact.payload,
-              byteLength: MAX_PROTECTED_RUNTIME_RESPONSE_BYTES,
-              compiledCode: "x".repeat(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES),
+              contentTree: {
+                $node: "element",
+                children: ["x".repeat(MAX_PROTECTED_RUNTIME_RESPONSE_BYTES)],
+                name: "fragment",
+                props: {},
+              },
             },
           },
         },

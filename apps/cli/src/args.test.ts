@@ -147,8 +147,11 @@ describe("production arguments", () => {
         ])
       ).toEqual({
         command: "release",
-        recoveryId: "recovery-2026-07-23",
         releaseId: "release-2026-07-23",
+        retention: {
+          kind: "inverse",
+          recoveryId: "recovery-2026-07-23",
+        },
         scope: {
           families: ["material"],
           snapshots: ["program"],

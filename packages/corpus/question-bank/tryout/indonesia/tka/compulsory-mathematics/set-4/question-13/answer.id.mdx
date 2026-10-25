@@ -1,0 +1,25 @@
+export const metadata = {
+  title: "Pembahasan Soal 13",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Titik pusat rotasi adalah **satu-satunya titik yang tetap** saat rotasi, dan setiap titik bergerak sepanjang busur di sekeliling pusat itu. Karena itu koordinat pusat dapat dicari dari satu pasang titik dan bayangannya, lalu diperiksa dengan pasangan lain.
+
+Misalkan pusat rotasi <InlineMath math="P(p,q)" />. Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam memetakan titik <InlineMath math="(x,y)" /> ke <InlineMath math="(p-(y-q),q+(x-p))" />. Gunakan pasangan <InlineMath math="A(1,1)" /> dan <InlineMath math="A'(0,-2)" />:
+
+<BlockMath math="\begin{aligned}
+0&=p-(1-q) \\
+-2&=q+(1-p)
+\end{aligned}" />
+
+Persamaan pertama menjadi <InlineMath math="p+q=1" />, dan persamaan kedua menjadi <InlineMath math="p-q=3" />. Jumlah keduanya memberi <InlineMath math="2p=4" />, sehingga <InlineMath math="p=2" /> dan <InlineMath math="q=-1" />.
+
+Periksa dengan pasangan lain. Untuk <InlineMath math="B(4,1)" /> diperoleh <InlineMath math="(2-(1+1),-1+(4-2))=(0,1)" />, sesuai dengan <InlineMath math="B'" />. Untuk <InlineMath math="C(1,3)" /> diperoleh <InlineMath math="(2-(3+1),-1+(1-2))=(-2,-2)" />, sesuai dengan <InlineMath math="C'" />. Ketiga pasangan cocok, jadi <InlineMath math="P(2,-1)" /> adalah pusat rotasinya.
+
+- <InlineMath math="(-1,0)" /> memetakan <InlineMath math="A" /> ke <InlineMath math="A'" /> jika rotasinya searah jarum jam, tetapi <InlineMath math="B" /> tidak sampai ke <InlineMath math="B'" />. Memeriksa satu titik saja menyembunyikan kesalahan arah.
+- <InlineMath math="(0,0)" /> mengasumsikan rotasi terhadap titik asal. Dari titik asal, <InlineMath math="A(1,1)" /> dipetakan ke <InlineMath math="(-1,1)" /> atau <InlineMath math="(1,-1)" />, bukan ke <InlineMath math="A'" />.
+- <InlineMath math="\left(\frac12,-\frac12\right)" /> adalah titik tengah <InlineMath math="AA'" />. Titik tengah antara sebuah titik dan bayangannya bukan pusat rotasi.
+- <InlineMath math="(2,1)" /> membalik tanda koordinat <InlineMath math="y" />. Dari titik ini, <InlineMath math="A" /> dipetakan ke <InlineMath math="(2,0)" />, bukan ke <InlineMath math="A'" />.
+
+Jadi, titik pusat rotasi adalah <InlineMath math="P(2,-1)" />.

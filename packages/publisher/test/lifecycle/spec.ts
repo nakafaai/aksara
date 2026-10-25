@@ -15,6 +15,8 @@ import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback/spec";
+import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
 import { Effect, MutableHashMap, MutableList, Option, Schema } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
@@ -80,6 +82,14 @@ export function makeTarget(release: {
   /** Applies one authenticated group while preserving child transaction order. */
   const stageGroup = vi.fn(({ requests }: StageGroupInput) =>
     Effect.forEach(requests, stageOperation, { discard: true })
+  );
+  /** Counts prior-state reads, which only forward rollback preparation performs. */
+  const rollbackPage = vi.fn((request: RollbackPageRequest) =>
+    rows.rollbackPage(request).pipe(Effect.orDie)
+  );
+  /** Counts prior-owner reads, which only forward rollback preparation performs. */
+  const routePage = vi.fn((request: RoutePageRequest) =>
+    Effect.succeed(rows.routePage(request))
   );
   const verify = vi.fn(
     (
@@ -204,8 +214,8 @@ export function makeTarget(release: {
         value: Schema.decodeSync(ActiveRollbackContentReleaseSchema)(value),
       });
     },
-    rollbackPage: (request) => rows.rollbackPage(request).pipe(Effect.orDie),
-    routePage: (request) => Effect.succeed(rows.routePage(request)),
+    rollbackPage,
+    routePage,
     stageArtifactBatch,
     stageGroup,
     stageItemBatch,
@@ -252,6 +262,8 @@ export function makeTarget(release: {
       ...releaseEvidence({ manifest: release.manifest, manifestHash }),
     }),
     retainArtifacts: rows.retainArtifacts,
+    rollbackPage,
+    routePage,
     snapshot: () => ({ active, candidate, recovery }),
     stageArtifactBatch,
     stageGroup,

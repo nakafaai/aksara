@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 22",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Es wechseln nur Schüler der Klasse X, die Sport (*olahraga*) gewählt haben, und zwar zu Kunst (*seni*). Deshalb **beziehen sich die <InlineMath math="25\%" /> auf <InlineMath math="48" /> Schüler**, nicht auf <InlineMath math="84" /> oder <InlineMath math="120" /> Schüler. Klasse X hat weiterhin <InlineMath math="120" /> Schüler, denn wer wechselt, bleibt in Klasse X. Es seien <InlineMath math="k" /> die Anzahl der Wechsler und <InlineMath math="S" /> die Anzahl der Schüler der Klasse X, die nach dem Wechsel Kunst wählen.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{25}{100}\cdot48=12 \\
+S&=30+12=42 \\
+\frac{S}{120}\cdot100\%&=\frac{42}{120}\cdot100\%=35\%
+\end{aligned}" />
+
+| Wahl in Klasse X | Vorher | Änderung | Nachher |
+| --- | ---: | ---: | ---: |
+| Sport | <InlineMath math="48" /> | <InlineMath math="-12" /> | <InlineMath math="36" /> |
+| Kunst | <InlineMath math="30" /> | <InlineMath math="+12" /> | <InlineMath math="42" /> |
+| Naturwissenschaften (NaWi) | <InlineMath math="42" /> | <InlineMath math="0" /> | <InlineMath math="42" /> |
+| Summe | <InlineMath math="120" /> | <InlineMath math="0" /> | <InlineMath math="120" /> |
+
+Die Tabelle bestätigt, dass sich die Schülerzahl der Klasse X nicht ändert. Das Diagramm zeigt die Wahl der Klasse X nach dem Wechsel. Der Balken für Kunst ist jetzt so hoch wie der für NaWi, nämlich <InlineMath math="42" /> von <InlineMath math="120" /> Schülern.
+
+<HistogramChart
+  title="Wahl der Klasse X nach dem Wechsel"
+  description="Der Balken für Kunst steigt auf die Höhe des Balkens für NaWi, während der Balken für Sport sinkt, weil ein Viertel seiner Schüler zu Kunst gewechselt ist."
+  data={[
+    { name: "Sport", value: 36 },
+    { name: "Kunst", value: 42 },
+    { name: "NaWi", value: 42 },
+  ]}
+  chartConfig={{
+    value: {
+      label: "Anzahl der Schüler",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
+      },
+    },
+  }}
+  yAxisLabel="Anzahl der Schüler"
+/>
+
+Nach dem Wechsel wählen also <InlineMath math="35\%" /> der Schüler der Klasse X Kunst.
+
+- <InlineMath math="25\%" /> ist der Anteil für Kunst vor dem Wechsel, <InlineMath math="\frac{30}{120}" />, der Wechsel ist also noch nicht berücksichtigt.
+- <InlineMath math="31{,}25\%" /> entsteht, wenn du die Zahl der Kunstschüler um <InlineMath math="25\%" /> erhöhst, also <InlineMath math="30\cdot1{,}25=37{,}5" /> Schüler erhältst. Der Prozentsatz bezieht sich aber auf die Sportschüler, und eine Schülerzahl kann ohnehin keine Bruchzahl sein.
+- <InlineMath math="42{,}5\%" /> entsteht, wenn du annimmst, dass <InlineMath math="25\%" /> aller <InlineMath math="84" /> Sportschüler aus den Klassen X und XI wechseln, obwohl Schüler der Klasse XI nicht wechseln.
+- <InlineMath math="50\%" /> entsteht, wenn du annimmst, dass <InlineMath math="25\%" /> aller <InlineMath math="120" /> Schüler der Klasse X, also <InlineMath math="30" /> Schüler, zu Kunst wechseln.

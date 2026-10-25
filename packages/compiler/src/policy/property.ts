@@ -13,6 +13,14 @@ const PROTOTYPE_ESCAPE_PROPERTIES = HashSet.make(
   "setPrototypeOf"
 );
 
+/** Methods whose text depends on the publisher's default locale, time zone, or collation. */
+const LOCALE_DEPENDENT_PROPERTIES = HashSet.make(
+  "localeCompare",
+  "toLocaleDateString",
+  "toLocaleString",
+  "toLocaleTimeString"
+);
+
 type PropertyExpression = MemberExpression["property"] | Property["key"];
 
 /** Resolves a compile-time string without evaluating authored JavaScript. */
@@ -82,6 +90,12 @@ function inspectProperty(
     HashSet.has(PROTOTYPE_ESCAPE_PROPERTIES, staticName)
   ) {
     return { identifier: staticName, rule: "prototype-chain-access" };
+  }
+  if (
+    staticName !== undefined &&
+    HashSet.has(LOCALE_DEPENDENT_PROPERTIES, staticName)
+  ) {
+    return { identifier: staticName, rule: "locale-dependent-access" };
   }
 }
 

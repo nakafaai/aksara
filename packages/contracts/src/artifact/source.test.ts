@@ -13,12 +13,16 @@ const payload = Effect.fn("AksaraContracts.test.sourcePayload")(function* (
   const hash = sourceHash ?? (yield* hashText(rawMdx));
   return yield* Schema.decodeEffect(CompiledContentPayloadSchema)({
     artifactLocale: "en",
-    byteLength: 10,
-    compiledCode: "return {};",
     compilerConfigHash: `sha256:${"b".repeat(64)}`,
-    compilerVersion: "0.1.0",
+    compilerVersion: "0.2.0",
     contentKey: "test:source",
-    format: "mdx-function-body",
+    contentTree: {
+      $node: "element",
+      children: [],
+      name: "fragment",
+      props: {},
+    },
+    format: "content-tree",
     mdxCompilerVersion: "3.1.1",
     plainText: "Source",
     rawMdx,

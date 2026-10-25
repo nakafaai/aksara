@@ -80,15 +80,15 @@ const makeSigner = (privateKeyPem: string) =>
 
 /** Test-only Ed25519 public key that verifies the recorded candidate and recovery bundle signatures. */
 const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEARmu03+ghzMgowRI4IVL/IYJx08mZ7XO6OmMiz556+tg=
+MCowBQYDK2VwAyEAdnTaKCUj32UceFrFrvlW7sk8vLVTeM3j7F4KVHT1ixU=
 -----END PUBLIC KEY-----
 `;
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 const TEST_RESULT_BUNDLE_SIGNATURE =
-  "yLNxwS8jAsjfYnDnX0uRPSCyoawDbqxAj_Qy65NqUvO1uPo8puir8ahOSR2zGGxenknWDmKVnQ33XAXosYQVCw";
+  "pEnrb7fF32pdCwJCJVeqXaGlgjXOWxr5avqAlm1VuKmz4SCyQfSxYAonmXeY4fT5VshpC_kGYJfiFjnGGGDyCw";
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 const TEST_RECOVERY_BUNDLE_SIGNATURE =
-  "fXTJBJt7beDx9DWzKbysaF5rTw5lCsOZ5JDdlxt8hx_jeoHyuIKcdTZPARJ6bN1bEugfiOEz9OUZmEBIpukXAg";
+  "9-ztASkkR2LxnID8WLjTPClqpKcb2MUM6Au4A_x4WrAPcYxXmTFmJ7YHLA9T2vxaQCHS4KyhviLYXvLAtf19CA";
 
 describe("publication runtime", () => {
   it.effect(
@@ -113,11 +113,11 @@ describe("publication runtime", () => {
         );
         const recordedSignatures = MutableHashMap.fromIterable([
           [
-            "sha256:436ab25a3c201eff2f15b393b4d748e0f6e31a6387d5166dfeff342612c9d33b",
+            "sha256:a134dc4a643dddafe250b5549d4a0a24c2578fdaa24ebf154c72695dc52bb4c9",
             TEST_RESULT_BUNDLE_SIGNATURE,
           ],
           [
-            "sha256:3bdbbd2addcabafc44929817b8f5bdbbe104ca38253f97d981dab9edef971e03",
+            "sha256:4e5507ad00b69ac2c00ea2d59d5d590b6e612dda37701012a9b8aa815bac9aa8",
             TEST_RECOVERY_BUNDLE_SIGNATURE,
           ],
         ]);

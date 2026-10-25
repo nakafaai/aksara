@@ -1,16 +1,23 @@
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import {
+  type PublicationRetentionDecision,
+  PublicationRetentionSchema,
+} from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
-import { parseProductionOptions } from "#cli/production/options";
+import {
+  parseProductionOptions,
+  type RawProductionOptions,
+} from "#cli/production/options";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */
 const ReleaseArgumentsSchema = Schema.Struct({
   command: Schema.Literal("release"),
   rebuild: Schema.optional(Schema.Literal(true)),
-  recoveryId: ReleaseIdSchema,
   releaseId: ReleaseIdSchema,
+  retention: PublicationRetentionSchema,
   scope: PublicationScopeSchema,
 });
 export type ReleaseArguments = typeof ReleaseArgumentsSchema.Type;
@@ -88,13 +95,74 @@ export function isProductionCommand(
 /** Decodes one release identifier while preserving its owning option. */
 function decodeReleaseId(
   command: ProductionCommand,
-  option: "--recovery-id" | "--release-id",
+  option: "--bootstrap-over" | "--recovery-id" | "--release-id",
   value: string
 ) {
   return Schema.decodeEffect(ReleaseIdSchema)(value).pipe(
     Effect.mapError(() => argumentError(command, option, "value"))
   );
 }
+
+/**
+ * Decodes the one retention decision a release names: its retained inverse, or
+ * the retired base that it bootstraps over. The two options exclude each other.
+ */
+const parseReleaseRetention = Effect.fn("AksaraCli.parseReleaseRetention")(
+  function* (options: RawProductionOptions, releaseId: ReleaseId) {
+    if (options.bootstrapOver === undefined) {
+      if (options.recoveryId === undefined) {
+        return yield* argumentError("release", "--recovery-id", "missing");
+      }
+      const recoveryId = yield* decodeReleaseId(
+        "release",
+        "--recovery-id",
+        options.recoveryId
+      );
+      if (recoveryId === releaseId) {
+        return yield* argumentError("release", "--recovery-id", "identity");
+      }
+      return {
+        kind: "inverse",
+        recoveryId,
+      } satisfies PublicationRetentionDecision;
+    }
+    if (options.recoveryId !== undefined) {
+      return yield* argumentError("release", "--bootstrap-over", "conflict");
+    }
+    const baseReleaseId = yield* decodeReleaseId(
+      "release",
+      "--bootstrap-over",
+      options.bootstrapOver
+    );
+    if (baseReleaseId === releaseId) {
+      return yield* argumentError("release", "--bootstrap-over", "identity");
+    }
+    return {
+      baseReleaseId,
+      kind: "bootstrap",
+    } satisfies PublicationRetentionDecision;
+  }
+);
+
+/** Decodes the exact release command, its retention decision, and its scope. */
+const parseReleaseArguments = Effect.fn("AksaraCli.parseReleaseArguments")(
+  function* (options: RawProductionOptions, releaseId: ReleaseId) {
+    const retention = yield* parseReleaseRetention(options, releaseId);
+    if (options.scope.length === 0) {
+      return yield* argumentError("release", "--scope", "missing");
+    }
+    const scope = yield* decodePublicationScopeSelectors(options.scope).pipe(
+      Effect.mapError(() => argumentError("release", "--scope", "value"))
+    );
+    return {
+      command: "release",
+      ...(options.rebuild ? { rebuild: true as const } : {}),
+      releaseId,
+      retention,
+      scope,
+    } satisfies ReleaseArguments;
+  }
+);
 
 /** Decodes one already-selected production command and its strict options. */
 export const parseProductionArguments = Effect.fn(
@@ -118,6 +186,9 @@ export const parseProductionArguments = Effect.fn(
   if (command === "cleanup") {
     return { command, releaseId } satisfies CleanupArguments;
   }
+  if (command === "release") {
+    return yield* parseReleaseArguments(options, releaseId);
+  }
   if (options.recoveryId === undefined) {
     return yield* argumentError(command, "--recovery-id", "missing");
   }
@@ -135,20 +206,5 @@ export const parseProductionArguments = Effect.fn(
   if (command === "accept") {
     return { command, recoveryId, releaseId } satisfies AcceptArguments;
   }
-  if (command === "recover") {
-    return { command, recoveryId, releaseId } satisfies RecoverArguments;
-  }
-  if (options.scope.length === 0) {
-    return yield* argumentError(command, "--scope", "missing");
-  }
-  const scope = yield* decodePublicationScopeSelectors(options.scope).pipe(
-    Effect.mapError(() => argumentError(command, "--scope", "value"))
-  );
-  return {
-    command,
-    ...(options.rebuild ? { rebuild: true as const } : {}),
-    recoveryId,
-    releaseId,
-    scope,
-  } satisfies ReleaseArguments;
+  return { command, recoveryId, releaseId } satisfies RecoverArguments;
 });

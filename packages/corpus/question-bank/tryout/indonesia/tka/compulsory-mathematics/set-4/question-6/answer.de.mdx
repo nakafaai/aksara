@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 6",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Gesucht ist der Wert von <InlineMath math="t" />, für den <InlineMath math="M(t)=6" /> gilt. Teile beide Seiten durch <InlineMath math="192" /> und schreibe die rechte Seite als **Potenz mit derselben Basis**, nämlich <InlineMath math="\frac12" />. Zwei Potenzen mit derselben Basis sind nur dann gleich, wenn ihre Exponenten gleich sind.
+
+<BlockMath math="\begin{aligned}
+192\left(\frac12\right)^{\frac t5}&=6 \\
+\left(\frac12\right)^{\frac t5}&=\frac{6}{192}=\frac{1}{32}=\left(\frac12\right)^{5} \\
+\frac t5&=5 \\
+t&=25
+\end{aligned}" />
+
+Die <InlineMath math="5" /> im Nenner des Exponenten bedeutet, dass sich **die Masse alle <InlineMath math="5" /> Jahre halbiert**. Die Halbierungstabelle prüft das Ergebnis ohne Algebra.
+
+| Zeit <InlineMath math="t" /> (Jahre) | Masse <InlineMath math="M(t)" /> (Gramm) |
+| ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="192" /> |
+| <InlineMath math="5" /> | <InlineMath math="96" /> |
+| <InlineMath math="10" /> | <InlineMath math="48" /> |
+| <InlineMath math="15" /> | <InlineMath math="24" /> |
+| <InlineMath math="20" /> | <InlineMath math="12" /> |
+| <InlineMath math="25" /> | <InlineMath math="6" /> |
+
+Von <InlineMath math="192\text{ g}" /> bis <InlineMath math="6\text{ g}" /> sind es fünf Halbierungen, und jede dauert <InlineMath math="5" /> Jahre, also beträgt die Zeit <InlineMath math="5\times5=25" /> Jahre. Auch direktes Einsetzen passt: <InlineMath math="M(25)=192\left(\frac12\right)^{5}=\frac{192}{32}=6" />.
+
+Die Masse beträgt also nach <InlineMath math="25" /> Jahren nur noch <InlineMath math="6\text{ g}" />.
+
+- <InlineMath math="1" /> Jahr entsteht, wenn du <InlineMath math="\frac t5=5" /> durch Teilen löst, <InlineMath math="t=\frac55" />, obwohl beide Seiten mit <InlineMath math="5" /> multipliziert werden müssen.
+- <InlineMath math="5" /> Jahre entstehen, wenn du <InlineMath math="\frac t5=5" /> als <InlineMath math="t=5" /> liest und damit die Anzahl der Halbierungen mit der Zeit verwechselst.
+- <InlineMath math="20" /> Jahre umfassen nur vier Halbierungen, die bei einer Masse von <InlineMath math="12\text{ g}" /> enden.
+- <InlineMath math="30" /> Jahre entstehen, wenn du alle sechs Zeilen der Tabelle, also auch die Anfangsmasse <InlineMath math="192\text{ g}" /> bei <InlineMath math="t=0" />, als sechs Halbierungen zählst.

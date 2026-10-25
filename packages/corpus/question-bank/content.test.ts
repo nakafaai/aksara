@@ -87,12 +87,12 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
           Order.String
         );
 
-        expect(entries).toHaveLength(7400);
+        expect(entries).toHaveLength(7500);
         const compositeKeys = Arr.map(
           entries,
           ({ artifactLocale, contentKey }) => `${contentKey}\0${artifactLocale}`
         );
-        expect(HashSet.size(HashSet.fromIterable(compositeKeys))).toBe(7400);
+        expect(HashSet.size(HashSet.fromIterable(compositeKeys))).toBe(7500);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
           Arr.map(
@@ -100,7 +100,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
             (delivery) =>
               Arr.filter(entries, (entry) => entry.delivery === delivery).length
           )
-        ).toEqual([1850, 5550]);
+        ).toEqual([1875, 5625]);
         expect(
           Arr.map(
             ["en", "id", "de"],
@@ -108,7 +108,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
               Arr.filter(entries, (entry) => entry.artifactLocale === locale)
                 .length
           )
-        ).toEqual([2150, 3400, 1850]);
+        ).toEqual([2175, 3450, 1875]);
         expect(
           Arr.map(
             [
@@ -122,7 +122,7 @@ layer(realQuestionCorpusLayer)("question registry", (it) => {
               Arr.filter(entries, (entry) => entry.rendererDomain === domain)
                 .length
           )
-        ).toEqual([1200, 800, 4300, 800, 300]);
+        ).toEqual([1200, 800, 4300, 800, 400]);
         expect(
           Arr.some(entries, ({ contentKey }) =>
             contentKey.includes("snbt/general-reasoning/set-10/")

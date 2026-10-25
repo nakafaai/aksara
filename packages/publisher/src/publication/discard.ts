@@ -3,30 +3,36 @@ import { Cause, Effect } from "effect";
 import { abortContentRelease } from "#publisher/abort";
 import {
   PublicationRecoveryIdentityError,
+  type PublicationRetentionDecision,
   PublicationTarget,
 } from "#publisher/publication/spec";
 
-/** Clears only one failed candidate and its retained inverse. */
+/**
+ * Clears one failed candidate. An inverse decision also clears the retained
+ * inverse this attempt staged; a bootstrap has none, so only the candidate goes.
+ */
 export const discardFailedCandidate = Effect.fn(
   "AksaraPublisher.discardFailedCandidate"
 )(function* (
   target: typeof PublicationTarget.Service,
   candidateId: ReleaseId,
-  recoveryId: ReleaseId
+  retention: PublicationRetentionDecision
 ) {
   const current = yield* target.current;
-  const retainedId = current.recovery?.release.manifest.releaseId ?? null;
-  if (retainedId !== null && retainedId !== recoveryId) {
-    return yield* new PublicationRecoveryIdentityError({
-      conflictingReleaseId: retainedId,
-      recoveryId,
-      releaseId: candidateId,
-    });
-  }
-  if (retainedId === recoveryId) {
-    yield* abortContentRelease({ releaseId: recoveryId }).pipe(
-      Effect.provideService(PublicationTarget, target)
-    );
+  if (retention.kind === "inverse") {
+    const retainedId = current.recovery?.release.manifest.releaseId ?? null;
+    if (retainedId !== null && retainedId !== retention.recoveryId) {
+      return yield* new PublicationRecoveryIdentityError({
+        conflictingReleaseId: retainedId,
+        recoveryId: retention.recoveryId,
+        releaseId: candidateId,
+      });
+    }
+    if (retainedId === retention.recoveryId) {
+      yield* abortContentRelease({ releaseId: retention.recoveryId }).pipe(
+        Effect.provideService(PublicationTarget, target)
+      );
+    }
   }
   if (current.candidate?.release.manifest.releaseId === candidateId) {
     yield* abortContentRelease({ releaseId: candidateId }).pipe(
