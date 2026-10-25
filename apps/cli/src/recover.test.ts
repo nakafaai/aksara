@@ -35,6 +35,7 @@ vi.mock("#cli/environment/read", async () => {
       TestEffect.succeed({
         publicationEndpoint: new URL("https://content.example.test/publish"),
         publicationToken: TestRedacted.make("publication-token"),
+        releaseDispatch: { surface: "none" },
         rendererEndpoint: new URL(
           "https://www.example.test/api/internal/content/renderer"
         ),
