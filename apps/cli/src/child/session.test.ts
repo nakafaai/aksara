@@ -115,17 +115,17 @@ describe("Nakafa child process", () => {
           "AKSARA_PREVIEW_RENDERER_SECRET",
           "AKSARA_PREVIEW_RENDERER_TOKEN",
           "AKSARA_PUBLICATION_TOKEN",
-          "CONTENT_RUNTIME_TOKEN",
+          "CONTENT_READ_TOKEN",
           "HOME",
           "PATH",
           "SITE_URL",
           "VITE_AKSARA_PREVIEW_CHILD",
-          "VITE_APP_URL",
           "VITE_CONVEX_SITE_URL",
           "VITE_CONVEX_URL",
-          "VITE_POSTHOG_KEY",
+          "VITE_POSTHOG_PROJECT_TOKEN",
           "VITE_POSTHOG_PROXY_HOST",
           "VITE_POSTHOG_UI_HOST",
+          "VITE_SITE_URL",
         ]);
         expect(started.environment).toMatchObject({
           AKSARA_PREVIEW_EVENTS_PATH: input.provider.eventsPath,
@@ -143,14 +143,13 @@ describe("Nakafa child process", () => {
             input.credentials.renderer.token
           ),
           AKSARA_PUBLICATION_TOKEN: internalContentToken,
-          CONTENT_RUNTIME_TOKEN: Redacted.value(
-            input.credentials.contentRuntimeToken
+          CONTENT_READ_TOKEN: Redacted.value(
+            input.credentials.contentReadToken
           ),
           HOME: "/home/aksara-test",
           PATH: "/usr/bin:/bin",
           SITE_URL: result.child.origin.toString(),
           VITE_AKSARA_PREVIEW_CHILD: "true",
-          VITE_APP_URL: result.child.origin.toString(),
           VITE_CONVEX_SITE_URL: new URL(
             "/__aksara-preview/convex-site",
             result.child.origin
@@ -159,9 +158,10 @@ describe("Nakafa child process", () => {
             "/__aksara-preview/convex",
             result.child.origin
           ).toString(),
-          VITE_POSTHOG_KEY: "phc_aksara_preview",
+          VITE_POSTHOG_PROJECT_TOKEN: "phc_aksara_preview",
           VITE_POSTHOG_PROXY_HOST: result.child.origin.toString(),
           VITE_POSTHOG_UI_HOST: result.child.origin.toString(),
+          VITE_SITE_URL: result.child.origin.toString(),
         });
         expect(started.environment).not.toHaveProperty(
           "AKSARA_TEST_PARENT_SECRET"

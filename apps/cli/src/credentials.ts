@@ -46,7 +46,7 @@ export const makePreviewCredentials = Effect.fn(
     token: Redacted.make(yield* randomToken()),
   };
   const generated = {
-    contentRuntimeToken: Redacted.make(yield* randomToken()),
+    contentReadToken: Redacted.make(yield* randomToken()),
     internalContentToken: Redacted.make(yield* randomToken()),
     keyId: SigningKeyIdSchema.make(
       `local-${digest.slice("sha256:".length, "sha256:".length + 24)}`
@@ -60,7 +60,7 @@ export const makePreviewCredentials = Effect.fn(
     Effect.mapError(() => new PreviewCredentialError({ stage: "signer" }))
   );
   return {
-    contentRuntimeToken: generated.contentRuntimeToken,
+    contentReadToken: generated.contentReadToken,
     internalContentToken: generated.internalContentToken,
     keyId: generated.keyId,
     providerToken: generated.providerToken,
