@@ -1,322 +1,306 @@
 export const metadata = {
-  title: "Translasi Vertikal",
-  description: "Geser grafik fungsi ke atas atau bawah sambil menelusuri koordinat, asimtot, dan range.",
+  title: "Translasi Vertikal Fungsi",
+  description: "Geser grafik fungsi ke atas atau ke bawah dengan menambahkan konstanta, lalu lacak perubahan range, asimtot horizontal, dan titik potong sumbunya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
-  subject: "Transformasi Fungsi",
+  dateModified: "2026-10-24",
+  subject: "Function Transformation",
 };
 
-## Menggeser Grafik ke Atas atau Bawah
+## Mengangkat atau Menurunkan Seluruh Grafik
 
-Translasi vertikal menggeser grafik fungsi ke atas atau ke bawah sepanjang sumbu <InlineMath math="y" /> tanpa mengubah bentuknya. Setiap titik bergerak dengan **jarak vertikal yang sama**, sehingga seluruh grafik terangkat atau turun.
+Sebuah **translasi vertikal** sejauh <InlineMath math="k" /> mengubah <InlineMath math="y = f(x)" /> menjadi <InlineMath math="y = f(x) + k" />. Setiap titik <InlineMath math="(x_0, y_0)" /> berpindah ke <InlineMath math="(x_0, y_0 + k)" />, sehingga **setiap koordinat x tetap sama**. Grafik naik jika <InlineMath math="k > 0" /> dan turun jika <InlineMath math="k < 0" />. Domain tidak berubah, sedangkan range, asimtot horizontal, dan titik potong sumbu y ikut bergeser sejauh <InlineMath math="k" />. Grafik pertama mengangkat parabola <InlineMath math="x^2 - 4x + 3" /> sejauh lima satuan, sehingga kamu bisa melihat apa yang terjadi pada titik puncak dan pembuat nolnya.
 
-Jika kamu memiliki fungsi <InlineMath math="f(x)" />, translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" />. Konstanta <InlineMath math="k" /> menentukan arah dan jarak pergeserannya.
+<BlockMath math="(x_0, y_0) \longmapsto (x_0,\ y_0 + k)" />
 
-### Aturan Tanda pada Translasi Vertikal
+Menambahkan <InlineMath math="k" /> mengubah setiap tinggi dengan jumlah yang sama, termasuk tinggi titik-titik pada sumbu x. Karena itu pembuat nol tidak sekadar ikut bergeser sejauh <InlineMath math="k" />. Pembuat nol <InlineMath math="f" /> memenuhi <InlineMath math="f(x) = 0" />, sedangkan pembuat nol <InlineMath math="f(x) + k" /> memenuhi <InlineMath math="f(x) = -k" />, yaitu persamaan yang berbeda.
 
-Perhatikan letak <InlineMath math="k" /> pada rumus berikut. Nilai itu ditulis di luar fungsi, jadi ditambahkan pada hasil keluaran yang sudah selesai dihitung.
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="f(x) = x^2 - 4x + 3" /> dan <InlineMath math="g(x) = f(x) + 5" /></>}
+  description={<>Setiap panah vertikal menambah tinggi sebesar lima. Pembuat nol <InlineMath math="f" /> di <InlineMath math="1" /> dan <InlineMath math="3" /> naik ke tinggi <InlineMath math="5" /> pada <InlineMath math="g" />, sedangkan titik puncak naik dari <InlineMath math="(2, -1)" /> ke <InlineMath math="(2, 4)" />.</>}
+  cameraPosition={[2, 3, 14]}
+  cameraTarget={[2, 3, 0]}
+  data={(() => {
+    // Both curves use the same inputs, so every arrow starts on f and ends on g at the same x.
+    const f = (x) => x * x - 4 * x + 3;
+    const g = (x) => f(x) + 5;
+    const xs = Array.from({ length: 241 }, (_, i) => -1 + i / 40);
+    const index = (x) => Math.round((x + 1) * 40);
+    // A vertical shift by 5 keeps the x-coordinate: (x0, f(x0)) goes to (x0, f(x0) + 5).
+    const lift = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0, y: g(x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(1), index(3)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-0.5), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(-0.5), offset: [-0.3, 0.4, 0], anchorX: "right" }],
+      },
+      { points: lift(2), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: lift(1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: lift(3), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
 
-<BlockMath math="g(x) = f(x) + k" />
+Grafik ini memperlihatkan titik puncak yang naik dan kedua pembuat nol yang meninggalkan sumbu x. Setiap panah di pembuat nol berakhir pada tinggi <InlineMath math="5" />, dan <InlineMath math="g" /> tidak punya pembuat nol sama sekali, karena titik terendahnya tetap di atas sumbu x.
 
-Karena <InlineMath math="k" /> ditambahkan pada keluaran, tandanya bekerja <Highlight>sesuai dengan arah yang kamu baca</Highlight>. Nilai <InlineMath math="k" /> positif mengangkat grafik, sedangkan nilai negatif menurunkannya.
+## Pembuat Nol yang Bisa Menyatu atau Hilang
 
-| Nilai <InlineMath math="k" /> | Pergeseran grafik | Contoh titik puncak |
+Untuk mencari pembuat nol setelah pergeseran, **selesaikan persamaan baru sama dengan nol**. Ambil keluarga <InlineMath math="f(x) = x^2 - 4" /> lalu tambahkan konstanta <InlineMath math="k" />. Pembuat nolnya memenuhi <InlineMath math="x^2 - 4 + k = 0" />, atau <InlineMath math="x^2 = 4 - k" />. Jumlah penyelesaiannya bergantung pada <InlineMath math="k" />. Untuk <InlineMath math="k = 0" /> ada dua pembuat nol, yaitu <InlineMath math="\pm 2" />. Untuk <InlineMath math="k = 3" /> keduanya adalah <InlineMath math="\pm 1" />, dan untuk <InlineMath math="k = 4" /> satu-satunya pembuat nol adalah <InlineMath math="0" />, tempat parabola menyentuh sumbu x. Untuk <InlineMath math="k = 5" />, persamaan <InlineMath math="x^2 = -1" /> tidak punya penyelesaian real.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Keluarga <InlineMath math="x^2 - 4 + k" /> untuk empat nilai <InlineMath math="k" /></>}
+  description={<>Dua pembuat nol menjadi satu saat titik puncak menyentuh sumbu x pada <InlineMath math="k = 4" />, dan tidak ada pembuat nol lagi saat titik puncak berada di atas sumbu pada <InlineMath math="k = 5" />. Titik menandai setiap pembuat nol yang ada.</>}
+  cameraPosition={[0, 4, 13]}
+  cameraTarget={[0, 4, 0]}
+  data={(() => {
+    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
+    const index = (x) => Math.round((x + 3) * 40);
+    const family = (k) => (x) => x * x - 4 + k;
+    return [
+      {
+        points: xs.map((x) => ({ x, y: family(0)(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(-2), index(2)],
+        labels: [{ text: <InlineMath math="k = 0" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: family(3)(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(-1), index(1)],
+        labels: [{ text: <InlineMath math="k = 3" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: family(4)(x), z: 0 })),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="k = 4" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: family(5)(x), z: 0 })),
+        smooth: false,
+        color: "#db2777",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="k = 5" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
+      },
+    ];
+  })()}
+/>
+
+Uji yang sama berlaku untuk contoh pertama. Grafik <InlineMath math="g(x) = x^2 - 4x + 8" /> memiliki diskriminan <InlineMath math="(-4)^2 - 4(1)(8) = 16 - 32 = -16" />, yang negatif. Jadi <InlineMath math="g" /> tidak punya pembuat nol real, dan titik terendahnya, yaitu titik puncak <InlineMath math="(2, 4)" />, berada di atas sumbu x.
+
+## Asimtot Horizontal yang Ikut Bergeser
+
+Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> punya asimtot horizontal <InlineMath math="y = 0" />. Geser ke bawah tiga satuan untuk mendapat <InlineMath math="g(x) = 2^x - 3" />. **Setiap tinggi turun tiga**, sehingga asimtotnya pindah ke <InlineMath math="y = -3" />. Grafik tetap mendekati garis itu, tetapi tidak pernah menyentuhnya, dan range-nya menjadi <InlineMath math="(-3, \infty)" />. Titik potong sumbu y berpindah dari <InlineMath math="(0, 1)" /> ke <InlineMath math="(0, -2)" />, karena <InlineMath math="g(0) = 1 - 3 = -2" />.
+
+Grafik <InlineMath math="g" /> memotong sumbu x saat <InlineMath math="2^x = 3" />, sehingga <InlineMath math="x = \log_2 3 \approx 1{,}585" />. Periksa dengan <InlineMath math="g(\log_2 3) = 3 - 3 = 0" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = 2^x - 3" /></>}
+  description={<>Panah membawa titik potong <InlineMath math="(0, 1)" /> milik <InlineMath math="f" /> turun ke <InlineMath math="(0, -2)" /> pada <InlineMath math="g" />. Garis tipis adalah asimtot <InlineMath math="y = -3" />, dan titik menandai pembuat nol <InlineMath math="g" />.</>}
+  cameraPosition={[0, 2.5, 13]}
+  cameraTarget={[0, 2.5, 0]}
+  data={(() => {
+    const f = (x) => 2 ** x;
+    const g = (x) => 2 ** x - 3;
+    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
+    const index = (x) => Math.round((x + 3) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(2), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: [{ x: -3, y: -3, z: 0 }, { x: 3, y: -3, z: 0 }],
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      {
+        points: [{ x: Math.log2(3), y: 0, z: 0 }],
+        smooth: false,
+        color: "#db2777",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="x = \log_2 3" />, at: 0, offset: [0.3, 0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 0, y: 1, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Range yang Terlihat dari Samping
+
+Dua grafik di dua bidang sejajar **menampilkan range secara langsung**. Taruh <InlineMath math="f(x) = x^2 - 1" /> di bidang depan dan <InlineMath math="g(x) = x^2 + 1" /> di bidang yang berada satu setengah satuan di belakangnya, lalu batasi keduanya pada <InlineMath math="-2 \le x \le 2" />. Jika dilihat dari samping sepanjang sumbu x, setiap parabola menipis menjadi batang vertikal, dan batang itu adalah range-nya: <InlineMath math="[-1, 3]" /> untuk <InlineMath math="f" /> dan <InlineMath math="[1, 5]" /> untuk <InlineMath math="g" />. Grafik dibuka dalam pandangan samping ini, dan kamu bisa memutarnya untuk melihat dari atas.
+
+Dari atas, kedua parabola menyebar pada batang domain yang sama, <InlineMath math="[-2, 2]" />, karena translasi vertikal menjaga setiap koordinat x. Pandangan samping memperlihatkan perubahannya, sedangkan pandangan atas memperlihatkan apa yang tetap sama.
+
+<LineEquation
+  showZAxis={true}
+  title={<>Dua parabola bergeser dilihat dari samping</>}
+  description={<>Dari samping ini, kurva <InlineMath math="f" /> berada pada batang range dari <InlineMath math="-1" /> sampai <InlineMath math="3" />, dan kurva <InlineMath math="g" /> berada pada batang dari <InlineMath math="1" /> sampai <InlineMath math="5" />. Kedua batang berjarak dua satuan dalam tinggi.</>}
+  cameraPosition={[12, 2, 0.75]}
+  cameraTarget={[0, 2, 0.75]}
+  data={(() => {
+    // The parabolas are sampled on -2 <= x <= 2; the range and domain bars are exact straight lines.
+    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
+    const index = (x) => Math.round((x + 2) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: x * x - 1, z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: x * x + 1, z: 1.5 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 2.6, y: -1, z: 0 }, { x: 2.6, y: 3, z: 0 }], smooth: false, color: "#ea580c", showPoints: false, labels: [{ text: <InlineMath math="[-1, 3]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
+      { points: [{ x: 2.6, y: 1, z: 1.5 }, { x: 2.6, y: 5, z: 1.5 }], smooth: false, color: "#0d9488", showPoints: false, labels: [{ text: <InlineMath math="[1, 5]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
+      { points: [{ x: -2, y: -2.5, z: 0 }, { x: 2, y: -2.5, z: 0 }], smooth: false, color: "#475569", showPoints: false, labels: [{ text: <InlineMath math="[-2, 2]" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }] },
+      { points: [{ x: -2, y: -2.5, z: 1.5 }, { x: 2, y: -2.5, z: 1.5 }], smooth: false, color: "#475569", showPoints: false },
+    ];
+  })()}
+/>
+
+## Akar Persegi dan Garis setelah Digeser
+
+Fungsi akar <InlineMath math="f(x) = \sqrt{x}" /> yang **digeser ke atas tiga satuan** menjadi <InlineMath math="g(x) = \sqrt{x} + 3" />. Titik awal <InlineMath math="(0, 0)" /> pindah ke <InlineMath math="(0, 3)" />, dan <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(4, 5)" />. Domainnya tetap <InlineMath math="[0, \infty)" />, sedangkan range-nya berubah dari <InlineMath math="[0, \infty)" /> menjadi <InlineMath math="[3, \infty)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="f(x) = \sqrt{x}" /> dan <InlineMath math="g(x) = \sqrt{x} + 3" /></>}
+  description={<>Panah mengangkat titik <InlineMath math="(4, 2)" /> ke <InlineMath math="(4, 5)" />. Domain kedua grafik dimulai dari nol, dan range <InlineMath math="g" /> dimulai dari tinggi tiga.</>}
+  cameraPosition={[3, 3, 12]}
+  cameraTarget={[3, 3, 0]}
+  data={(() => {
+    const f = (x) => Math.sqrt(x);
+    const g = (x) => Math.sqrt(x) + 3;
+    const xs = Array.from({ length: 321 }, (_, i) => i / 40);
+    const index = (x) => Math.round(x * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="f" />, at: index(6), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="g" />, at: index(7), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      { points: [{ x: 4, y: 2, z: 0 }, { x: 4, y: 5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+Bei einer Geraden liefert dieselbe Regel ein klares Bild. Nimm <InlineMath math="f(x) = 3x + 2" /> und verschiebe sie um sieben Einheiten nach unten, sodass <InlineMath math="g(x) = 3x - 5" /> entsteht. Der Schnittpunkt mit der y-Achse wandert von <InlineMath math="(0, 2)" /> nach <InlineMath math="(0, -5)" />, und die Nullstelle wandert von <InlineMath math="x = -\frac{2}{3}" /> nach <InlineMath math="x = \frac{5}{3}" />. Hier wandert die Nullstelle tatsächlich, weil die Nullstelle einer Geraden vom konstanten Glied abhängt.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Garis <InlineMath math="f(x) = 3x + 2" /> dan salinannya <InlineMath math="g(x) = 3x - 5" /></>}
+  description={<>Panah membawa titik potong <InlineMath math="(0, 2)" /> milik <InlineMath math="f" /> turun ke <InlineMath math="(0, -5)" /> pada <InlineMath math="g" />. Titik menandai dua pembuat nol yang letaknya berbeda.</>}
+  cameraPosition={[1, 0, 14]}
+  cameraTarget={[1, 0, 0]}
+  data={(() => {
+    const f = (x) => 3 * x + 2;
+    const g = (x) => 3 * x - 5;
+    // The step 1/30 puts both zeros, -2/3 and 5/3, exactly on the sample grid.
+    const xs = Array.from({ length: 181 }, (_, i) => -2 + i / 30);
+    const index = (x) => Math.round((x + 2) * 30);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(-2 / 3)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-1.5), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(5 / 3)],
+        labels: [{ text: <InlineMath math="g" />, at: index(3), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 0, y: 2, z: 0 }, { x: 0, y: -5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Kesalahan Saat Menambahkan Konstanta
+
+Tabel berikut memuat **lima kesalahan**, alasan setiap kesalahan itu keliru, dan cara mengenalinya.
+
+| Kesalahan | Mengapa salah | Cara memeriksanya |
 | --- | --- | --- |
-| <InlineMath math="k > 0" /> | Ke atas sebesar <InlineMath math="k \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(0,k)" /> |
-| <InlineMath math="k < 0" /> | Ke bawah sebesar <InlineMath math="\lvert k \rvert \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(0,k)" /> |
-| <InlineMath math="k = 0" /> | Grafik tidak bergeser | <InlineMath math="(0,0)" /> tetap di tempatnya |
-
-Ketiga baris itu memakai titik puncak <InlineMath math="(0,0)" /> sebagai patokan supaya arah pergeseran mudah dibandingkan. Untuk fungsi dengan titik acuan lain, seluruh titik berpindah dengan besar dan arah yang sama.
-
-## Visualisasi Translasi Vertikal
-
-Fungsi linear <InlineMath math="f(x) = 2x" /> menunjukkan bahwa translasi vertikal tidak mengubah gradien.
-
-<LineEquation
-  title={<>Translasi Vertikal Fungsi Linear <InlineMath math="f(x) = 2x" /></>}
-  description={<>Ketiga garis memiliki gradien yang sama dan titik potong sumbu <InlineMath math="y" /> yang berbeda.</>}
-  data={[
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [3.8, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [-3.5, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x - 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [3.8, -0.7, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraTarget={[0, 0.5, 0]}
-  cameraPosition={[0, 0.5, 14]}
-  showZAxis={false}
-/>
-
-Grafik tersebut menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = 2x" /> melewati titik asal
-- Fungsi <InlineMath math="g(x) = 2x + 3" /> adalah hasil translasi **ke atas** <InlineMath math="3 \text{ satuan}" />
-- Fungsi <InlineMath math="h(x) = 2x - 2" /> adalah hasil translasi ke bawah <InlineMath math="2 \text{ satuan}" />
-
-## Translasi Vertikal pada Fungsi Kuadrat
-
-Aturan translasi yang sama berlaku pada fungsi kuadrat <InlineMath math="f(x) = x^2" />.
-
-<LineEquation
-  title={<>Translasi Vertikal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
-  description="Bentuk parabola tetap sama, hanya posisi vertikalnya yang berubah."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4, z: 0 };
-      }),
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=x^2+4" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 3, z: 0 };
-      }),
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=x^2-3" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
-
-Titik-titik puncaknya memperjelas perpindahan:
-- **Titik puncak** parabola asli <InlineMath math="f(x) = x^2" /> berada di <InlineMath math="(0, 0)" />
-- Setelah translasi vertikal <InlineMath math="+4" />, titik puncak <InlineMath math="g(x) = x^2 + 4" /> berada di <InlineMath math="(0, 4)" />
-- Setelah translasi vertikal <InlineMath math="-3" />, titik puncak <InlineMath math="h(x) = x^2 - 3" /> berada di <InlineMath math="(0, -3)" />
-
-## Nilai Mana yang Bergeser pada Translasi Vertikal
-
-Setelah arah pergeseran dipahami, kamu perlu tahu bagian mana dari fungsi yang ikut berubah. Translasi vertikal bekerja pada keluaran fungsi, jadi tinggi grafik bergeser, sedangkan batas nilai <InlineMath math="x" /> tetap.
-
-Ambil titik <InlineMath math="(a, b)" /> yang berada pada grafik <InlineMath math="f(x)" />. Setelah translasi sebesar <InlineMath math="k" />, titik itu berpindah ke <InlineMath math="(a, b + k)" /> pada grafik <InlineMath math="f(x) + k" />. Koordinat <InlineMath math="x" /> tidak berubah, yang bergeser hanya nilai <InlineMath math="y" />.
-
-| Bagian fungsi | Sebelum translasi | Setelah translasi <InlineMath math="k" /> |
-| --- | --- | --- |
-| Bentuk grafik | Bentuk asli | Sama, hanya bergeser vertikal |
-| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(a, b + k)" /> |
-| Domain | Selang asli | Tetap sama seperti fungsi asli |
-| Range <InlineMath math="[c, d]" /> | Selang asli | Berpindah menjadi <InlineMath math="[c + k, d + k]" /> |
-
-Jadi range bergeser bersama grafik karena range menyatakan tinggi nilai keluaran, sedangkan **domain** tidak berubah karena batas nilai <InlineMath math="x" /> tetap. Untuk [translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal), keduanya bertukar peran: domain bergeser dan range yang tetap.
-
-## Menggeser Grafik Eksponensial secara Vertikal
-
-Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, translasi vertikal juga memindahkan **asimtot horizontal**.
-
-<LineEquation
-  title={<>Translasi Vertikal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
-  description="Kurva eksponensial mempertahankan karakteristiknya setelah translasi vertikal."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 695 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 694) * 8;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 347 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 346 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 345) * 8;
-        return { x, y: Math.pow(2, x) + 2, z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0], at: 173 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 697 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 696) * 8;
-        return { x, y: Math.pow(2, x) - 1, z: 0 };
-      }),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0], at: 347 }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 12]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
-
-Asimtot horizontal di <InlineMath math="y = 0" /> pada <InlineMath math="f(x) = 2^x" /> berpindah menjadi garis <InlineMath math="y = k" /> pada <InlineMath math="f(x) + k" />. Berbeda dari translasi horizontal, pergeseran ini mengubah tinggi yang didekati kurva, karena asimtotnya tidak lagi menempel pada sumbu <InlineMath math="x" />.
-
-Titik potong dengan sumbu <InlineMath math="y" /> berpindah dari <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(0, 1 + k)" />. Koordinat <InlineMath math="x" /> titik itu tetap nol karena grafik hanya bergerak secara vertikal.
+| Menambahkan <InlineMath math="k" /> di dalam kurung | <InlineMath math="f(x + k)" /> adalah translasi horizontal yang menggeser grafik ke samping | Translasi vertikal hanya mengubah koordinat kedua setiap titik |
+| Mengubah domain | Menambahkan konstanta pada keluaran tidak pernah membuat sebuah masukan diizinkan atau dilarang | Bandingkan domain <InlineMath math="f(x) + k" /> dengan domain <InlineMath math="f" /> |
+| Menggeser pembuat nol sejauh <InlineMath math="k" /> | Pembuat nol yang baru memenuhi <InlineMath math="f(x) = -k" />, persamaan yang berbeda | Substitusikan pembuat nol lama ke aturan baru, hasilnya <InlineMath math="k" />, bukan nol |
+| Membiarkan asimtot di <InlineMath math="y = 0" /> | Asimtot ikut bergeser sejauh nilai yang sama | Baca tinggi yang didekati fungsi baru |
+| Membaca <InlineMath math="k" /> negatif sebagai pergeseran ke atas | Konstanta negatif menurunkan setiap titik | Baca tanda <InlineMath math="k" /> sebagai arah pergeseran |
 
 ## Latihan
 
-Tiga soal berikut memakai aturan tanda yang baru saja kamu pelajari. Setiap soal menambahkan konstanta pada keluaran fungsi, jadi perhatikan nilai <InlineMath math="k" /> pada tiap fungsi. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+Mulai setiap soal dengan **menentukan konstanta** <InlineMath math="k" /> dan tandanya. Lalu tambahkan konstanta itu ke keluaran aturan, dan periksa satu titik sebelum selesai.
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 + 4x + 3" />. Tentukan persamaan fungsi hasil translasi vertikal **ke atas** sebesar <InlineMath math="5 \text{ satuan}" />.
-
-2. Grafik fungsi <InlineMath math="g(x) = 3x + 2" /> ditranslasi vertikal ke bawah sebesar <InlineMath math="7 \text{ satuan}" />. Tentukan persamaan fungsi hasil translasi, lalu tentukan titik potong dengan sumbu <InlineMath math="y" /> setelah translasi.
-
-3. Fungsi <InlineMath math="h(x) = \sqrt{x}" /> mengalami translasi vertikal sehingga titik <InlineMath math="(4, 2)" /> menjadi <InlineMath math="(4, 5)" />. Tentukan nilai konstanta translasi dan persamaan fungsi hasil translasi.
+1. Geser <InlineMath math="f(x) = x^2 + 4x + 3" /> lima satuan ke atas. Tulis persamaan barunya dan tentukan titik puncaknya.
+2. Geser <InlineMath math="g(x) = 3x + 2" /> tujuh satuan ke bawah. Tulis persamaan barunya, titik potong sumbu y, dan pembuat nolnya.
+3. Grafik <InlineMath math="h(x) = \sqrt{x}" /> melalui <InlineMath math="(4, 2)" />. Geser grafik sehingga titik ini pindah ke <InlineMath math="(4, 5)" />. Tentukan <InlineMath math="k" />, tulis persamaan barunya, dan sebutkan range-nya.
+4. Misalkan <InlineMath math="f(x) = x^2 - 4" />. Untuk nilai <InlineMath math="k" /> berapa <InlineMath math="f(x) + k" /> memiliki tepat satu pembuat nol? Jelaskan jawabanmu dan periksa.
 
 ### Pembahasan
 
-**Soal 1**. Penambahan **pada keluaran** memberi:
+**Soal 1**. **Konstantanya** <InlineMath math="k = 5" />, jadi aturan barunya <InlineMath math="x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />. Titik puncak <InlineMath math="f" /> berada di <InlineMath math="x = -\frac{4}{2} = -2" />, dengan <InlineMath math="f(-2) = 4 - 8 + 3 = -1" />. Tingginya ditambah lima, sehingga titik puncak pindah ke <InlineMath math="(-2, 4)" />. Periksa: <InlineMath math="g(-2) = 4 - 8 + 8 = 4" />.
 
-Translasi vertikal ke atas <InlineMath math="5 \text{ satuan}" />:
+**Soal 2**. Konstantanya <InlineMath math="k = -7" />, jadi aturan barunya <InlineMath math="3x + 2 - 7 = 3x - 5" />. Titik potong sumbu y adalah <InlineMath math="(0, -5)" />. Pembuat nol memenuhi <InlineMath math="3x - 5 = 0" />, sehingga <InlineMath math="x = \frac{5}{3}" />. Periksa: <InlineMath math="3 \cdot \frac{5}{3} - 5 = 0" />.
 
-<BlockMath math="F(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
+**Soal 3**. Tinggi <InlineMath math="(4, 2)" /> harus menjadi <InlineMath math="5" />, sehingga **<InlineMath math="k = 3" />**. Persamaan barunya <InlineMath math="H(x) = \sqrt{x} + 3" />. Akar kuadrat tidak pernah negatif, sehingga nilai terkecilnya <InlineMath math="3" />, dan range-nya <InlineMath math="[3, \infty)" />. Domainnya tetap <InlineMath math="[0, \infty)" />.
 
-<LineEquation
-  title={<>Fungsi <InlineMath math="f(x) = x^2 + 4x + 3" /> dan Hasil Translasinya</>}
-  description={<>Fungsi kuadrat asli dan hasil translasi vertikal ke atas <InlineMath math="5 \text{ satuan}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4 * x + 3, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, at: 10, offset: [0, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 4 * x + 3 + 5, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2+4x+8" />, at: 10, offset: [0, -0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
-
-**Soal 2**. Kurangi setiap keluaran dengan tujuh untuk menggeser grafik ke bawah. Titik potong sumbu tegak diperoleh saat masukannya nol.
-
-- Translasi **ke bawah** <InlineMath math="7 \text{ satuan}" />: <InlineMath math="G(x) = g(x) - 7 = 3x + 2 - 7 = 3x - 5" />
-- Titik potong dengan sumbu <InlineMath math="y" />: substitusi <InlineMath math="x = 0" /> ke <InlineMath math="G(0) = 3(0) - 5 = -5" />, jadi titik potongnya adalah <InlineMath math="(0, -5)" />
-
-Visualisasi:
-
-<LineEquation
-  title={<>Fungsi <InlineMath math="g(x) = 3x + 2" /> dan Hasil Translasinya</>}
-  description={<>Fungsi linear asli dan hasil translasi vertikal ke bawah <InlineMath math="7 \text{ satuan}" />.</>}
-  data={[
-    {
-      points: Array.from({ length: 29 }, (_, pointIndex) => {
-        const i = pointIndex - 8;
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * x + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0], at: 18 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = (i - 10) * 0.5;
-        return { x, y: 3 * x + 2 - 7, z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=3x-5" />, offset: [1, 0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  showZAxis={false}
-/>
-
-**Soal 3**. Titik <InlineMath math="(4, 2)" /> pada <InlineMath math="h(x) = \sqrt{x}" /> menjadi <InlineMath math="(4, 5)" />, berarti translasi vertikal sebesar <InlineMath math="k = 5 - 2 = 3 \text{ satuan}" /> **ke atas**.
-Persamaan hasil translasi: <InlineMath math="H(x) = \sqrt{x} + 3" />
-
-<LineEquation
-  title={<>Fungsi <InlineMath math="h(x) = \sqrt{x}" /> dan Hasil Translasinya</>}
-  description={<>Fungsi akar kuadrat asli dan hasil translasi vertikal ke atas <InlineMath math="3 \text{ satuan}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#4f46e5",
-      labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.58113883008419);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t + 3, z: 0 };
-          });
-      })(),
-      color: "#059669",
-      labels: [{ at: 64, text: <InlineMath math="H(x)=\sqrt{x}+3" />, offset: [0, -0.1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[6, 3, 16]}
-  cameraTarget={[6, 3, 0]}
-  showZAxis={false}
-/>
+**Soal 4**. Pembuat nol <InlineMath math="f(x) + k" /> memenuhi <InlineMath math="x^2 - 4 + k = 0" />, yaitu <InlineMath math="x^2 = 4 - k" />. Persamaan ini hanya punya tepat satu penyelesaian saat ruas kanannya nol, sehingga **<InlineMath math="k = 4" />**, dengan satu-satunya pembuat nol <InlineMath math="x = 0" />. Untuk <InlineMath math="k > 4" /> ruas kanannya negatif dan tidak ada pembuat nol, sedangkan untuk <InlineMath math="k < 4" /> ada dua. Periksa: <InlineMath math="f(x) + 4 = x^2" /> hanya punya pembuat nol <InlineMath math="0" />.

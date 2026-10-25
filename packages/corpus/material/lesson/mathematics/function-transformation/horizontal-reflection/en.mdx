@@ -1,339 +1,344 @@
 export const metadata = {
-  title: "Horizontal Reflection",
-  description: "Use graphs and examples to understand how reflection across the y-axis changes a function's x-coordinates.",
+  title: "Reflecting a Function Across the y-Axis",
+  description: "Reflect a function graph across the y-axis by replacing x with its negative, then find the new points, domain, and equation and check each result.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-24",
   subject: "Function Transformation",
 };
 
-## Flipping a Graph across the Vertical Axis
+## Mirroring a Graph Across the y-Axis
 
-Horizontal reflection flips a function graph across the <InlineMath math="y" />-axis. As with a vertical mirror, each point appears at <Highlight>the same height</Highlight> and <Highlight>the same distance on the opposite side</Highlight>.
+A **horizontal reflection** across the y-axis turns <InlineMath math="y = f(x)" /> into <InlineMath math="y = f(-x)" />. Every point <InlineMath math="(x_0, y_0)" /> moves to <InlineMath math="(-x_0, y_0)" />, so **the height stays the same** and the graph swaps its left and right sides. Points that lie on the y-axis do not move at all. The first graph shows the parabola <InlineMath math="x^2 + 3x + 2" /> beside its mirror image, which is the graph of <InlineMath math="x^2 - 3x + 2" />, so you can compare the zeros on both sides.
 
-If we have a function <InlineMath math="f(x)" />, then horizontal reflection produces a new function <InlineMath math="g(x) = f(-x)" /> which is the reflection of the original function across the <InlineMath math="y" />-axis.
+<BlockMath math="(x_0, y_0) \longmapsto (-x_0,\ y_0)" />
 
-### Rules of Horizontal Reflection
-
-For any function <InlineMath math="f(x)" />, horizontal reflection is defined as:
-
-<BlockMath math="g(x) = f(-x)" />
-
-This transformation changes every point <InlineMath math="(x, y)" /> on the original graph to <InlineMath math="(-x, y)" /> on the reflected graph.
-
-Points on the **mirror axis stay fixed**. For other points, the coordinate perpendicular to the mirror axis changes sign. Reflecting twice returns every point to its original position.
-
-<BlockMath math="g(-x)=f(-(-x))=f(x)" />
-
-## Visualization of Horizontal Reflection
-
-For the quadratic function <InlineMath math="f(x) = (x - 2)^2" />, compare each **original point** with its reflected point:
+The formula confirms the picture. The new function <InlineMath math="g(x) = f(-x)" /> returns <InlineMath math="f(x_0)" /> when its input is <InlineMath math="-x_0" />, because <InlineMath math="g(-x_0) = f(-(-x_0)) = f(x_0)" />. Each point of <InlineMath math="f" /> therefore has a partner at the same height on the opposite side of the y-axis.
 
 <LineEquation
-  title={<>Horizontal Reflection of Quadratic Function <InlineMath math="f(x) = (x - 2)^2" /></>}
-  description={<>Notice how the graph reflects across the <InlineMath math="y" />-axis, forming a symmetric reflection.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: (x - 2) * (x - 2), z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=(x-2)^2" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: ((-x) - 2) * ((-x) - 2), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(-x-2)^2" />, offset: [-1, -1, 0] }],
-      showPoints: false,
-    },
-  ]}
   showZAxis={false}
+  title={<>Graphs of <InlineMath math="f(x) = x^2 + 3x + 2" /> and <InlineMath math="g(x) = f(-x)" /></>}
+  description={<>The zeros <InlineMath math="-1" /> and <InlineMath math="-2" /> of <InlineMath math="f" /> move to <InlineMath math="1" /> and <InlineMath math="2" /> on <InlineMath math="g" />. The vertex moves from <InlineMath math="(-\tfrac{3}{2}, -\tfrac{1}{4})" /> to <InlineMath math="(\tfrac{3}{2}, -\tfrac{1}{4})" />, and every arrow stays level.</>}
+  cameraPosition={[0, 5, 16]}
+  cameraTarget={[0, 5, 0]}
+  data={(() => {
+    // g(x) = f(-x) reaches the height f(x0) at -x0, so each arrow joins two points of equal height.
+    const f = (x) => x * x + 3 * x + 2;
+    const g = (x) => f(-x);
+    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
+    const index = (x) => Math.round((x + 3) * 40);
+    const mirror = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: -x0, y: g(-x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(-2.5), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      { points: mirror(-1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: mirror(-2), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: mirror(-1.5), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
 />
 
-The graph shows:
-- The original function <InlineMath math="f(x) = (x - 2)^2" /> has its vertex at <InlineMath math="(2, 0)" />
-- The reflected function <InlineMath math="g(x) = (-x - 2)^2" /> has its vertex at <InlineMath math="(-2, 0)" />
-- The two graphs are mirror images of one another across the <InlineMath math="y" />-axis
+Each arrow is level, because a reflection across the y-axis never changes a height. The vertex of <InlineMath math="f" /> sits at height <InlineMath math="-\tfrac{1}{4}" />, and the mirror image keeps that height on the other side.
 
-## Horizontal Reflection on Linear Functions
+## Turning the Plane Half a Turn
 
-The same reflection rule applies to the linear function <InlineMath math="f(x) = 2x + 3" />.
+A reflection across the y-axis in three dimensions is the same as **a half turn of the plane** about the y-axis. Put the graph of <InlineMath math="y = \sqrt{x}" /> in the plane <InlineMath math="z = 0" />, and turn the plane around the y-axis. A point <InlineMath math="(x, y, 0)" /> travels along a half circle and comes to rest at <InlineMath math="(-x, y, 0)" />. Use the controls to turn the scene and follow the three paths drawn on it.
+
+Each path keeps the same height the whole time, because the turn is around the vertical axis. That is why the mirror image of <InlineMath math="y = \sqrt{x}" /> is the graph of <InlineMath math="y = \sqrt{-x}" />. Points on the y-axis stay where they are, because a half turn about that axis leaves them fixed.
 
 <LineEquation
-  title={<>Horizontal Reflection of Linear Function <InlineMath math="f(x) = 2x + 3" /></>}
-  description={<>The reflected line has opposite slope but the same <InlineMath math="y" />-intercept.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const i = pointIndex - 27;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [2.5, 0.5, 0], at: 37 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 24 }, (_, pointIndex) => {
-        const i = pointIndex + 0;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * -x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=-2x+3" />, offset: [-2.5, 1.5, 0], at: 10 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
+  showZAxis={true}
+  title={<>Half a turn of <InlineMath math="y = \sqrt{x}" /> about the y-axis</>}
+  description={<>Three points of the curve travel along half circles from the original graph to its mirror image. Each one keeps its height, and the y-axis does not move.</>}
+  cameraPosition={[5, 4, 9]}
+  cameraTarget={[0, 1, 0]}
+  data={(() => {
+    // The curve is sampled by t with x = t^2, so each point sits exactly on y = sqrt(x) with z = 0.
+    const ts = Array.from({ length: 41 }, (_, i) => i / 20);
+    // A point (x0, sqrt(x0), 0) turns about the y-axis: (x0 cos s, sqrt(x0), -x0 sin s).
+    const turn = (x0) =>
+      Array.from({ length: 49 }, (_, k) => {
+        const s = (k * Math.PI) / 48;
+        return { x: x0 * Math.cos(s), y: Math.sqrt(x0), z: -x0 * Math.sin(s) };
+      });
+    return [
+      {
+        points: ts.map((t) => ({ x: t * t, y: t, z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 40, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: ts.map((t) => ({ x: -t * t, y: t, z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = \sqrt{-x}" />, at: 40, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      { points: turn(1), smooth: false, color: "#d97706", showPoints: false },
+      { points: turn(9 / 4), smooth: false, color: "#d97706", showPoints: false },
+      { points: turn(4), smooth: false, color: "#d97706", showPoints: false },
+    ];
+  })()}
 />
 
-The two lines show:
-- The original function <InlineMath math="f(x) = 2x + 3" /> has a **positive slope** of <InlineMath math="2" />
-- The reflected function <InlineMath math="g(x) = -2x + 3" /> has a slope of <InlineMath math="-2" />
-- Both lines intersect the <InlineMath math="y" />-axis at the same point <InlineMath math="(0, 3)" />
+## Replacing Every Input With Its Negative
 
-## Which Values the Horizontal Flip Moves
+Let <InlineMath math="f(x) = x^2 + 3x + 2 = (x + 1)(x + 2)" />. To reflect the graph, **replace every** <InlineMath math="x" /> with <InlineMath math="-x" />. Keep the brackets, because <InlineMath math="(-x)^2" /> is not the same as <InlineMath math="-x^2" />:
 
-Horizontal reflection flips a graph across the <InlineMath math="y" />-axis, so the <InlineMath math="y" />-axis acts as the mirror line. Each point on the original graph keeps its distance to the mirror line, but moves to the other side of it.
+<BlockMath math="\begin{aligned} g(x) &= f(-x) \\ &= (-x)^2 + 3(-x) + 2 \\ &= x^2 - 3x + 2 \\ &= (x - 1)(x - 2) \end{aligned}" />
 
-Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. The matching point on the graph of <InlineMath math="f(-x)" /> is <InlineMath math="(-a, b)" />. The <InlineMath math="y" /> value stays at <InlineMath math="b" />, and only the sign of the <InlineMath math="x" /> coordinate flips.
+Check the zeros. The zeros of <InlineMath math="f" /> are <InlineMath math="-1" /> and <InlineMath math="-2" />, and the zeros of <InlineMath math="g" /> are <InlineMath math="1" /> and <InlineMath math="2" />, so each zero changes its sign. The vertex of <InlineMath math="f" /> is at <InlineMath math="x = -\tfrac{3}{2}" />, and that of <InlineMath math="g" /> is at <InlineMath math="x = \tfrac{3}{2}" />, with the same height <InlineMath math="-\tfrac{1}{4}" />. Finally, the value <InlineMath math="g(1) = 1 - 3 + 2 = 0" /> equals <InlineMath math="f(-1) = 0" />, which is the point you expect.
 
-| Part of the function | Before the reflection | After the reflection |
+## Growth That Becomes Decay
+
+Take <InlineMath math="g(x) = 3^x + 1" />, which grows as <InlineMath math="x" /> increases. Its mirror image is <InlineMath math="G(x) = g(-x) = 3^{-x} + 1 = \left(\tfrac{1}{3}\right)^x + 1" />. The mirror graph decreases, so **growth becomes decay**. The horizontal asymptote <InlineMath math="y = 1" /> stays where it is, because a horizontal reflection never changes a height. The y-intercept <InlineMath math="(0, 2)" /> also stays, because the input <InlineMath math="0" /> is fixed by the reflection.
+
+Check one point. The point <InlineMath math="(1, 4)" /> on <InlineMath math="g" /> gives <InlineMath math="g(1) = 3 + 1 = 4" />, and the mirror point <InlineMath math="(-1, 4)" /> satisfies <InlineMath math="G(-1) = 3 + 1 = 4" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Graphs of <InlineMath math="g(x) = 3^x + 1" /> and <InlineMath math="G(x) = 3^{-x} + 1" /></>}
+  description={<>The arrow takes the point <InlineMath math="(1, 4)" /> on <InlineMath math="g" /> to <InlineMath math="(-1, 4)" /> on <InlineMath math="G" />. The intercept <InlineMath math="(0, 2)" /> stays fixed, and the asymptote <InlineMath math="y = 1" /> stays at the same height.</>}
+  cameraPosition={[0, 3, 11]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const g = (x) => 3 ** x + 1;
+    const G = (x) => 3 ** -x + 1;
+    const xs = Array.from({ length: 241 }, (_, i) => -2 + i / 60);
+    const index = (x) => Math.round((x + 2) * 60);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="g" />, at: index(1.5), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: G(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="G" />, at: index(-1.5), offset: [-0.3, -0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: [{ x: -2, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }],
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [0, 0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1, y: 4, z: 0 }, { x: -1, y: 4, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Even and Odd Functions Under the Mirror
+
+Some functions are unchanged by the mirror. A function is **even** when <InlineMath math="f(-x) = f(x)" />, as with <InlineMath math="x^2" /> and <InlineMath math="|x|" />. Its graph is symmetric about the y-axis, so each mirror image lies on the original graph. A function is **odd** when <InlineMath math="f(-x) = -f(x)" />, as with <InlineMath math="x^3 - x" />. For an odd function, the mirror image is the graph of <InlineMath math="-f(x)" />, so a horizontal reflection gives the same result as a vertical reflection.
+
+<BlockMath math="f(-x) = (-x)^3 - (-x) = -x^3 + x = -(x^3 - x) = -f(x)" />
+
+The graph shows <InlineMath math="f(x) = x^3 - x" />, its mirror image, and the graph of <InlineMath math="-f(x)" />. The mirror image and the graph of <InlineMath math="-f(x)" /> lie on top of each other, so the two curves coincide.
+
+<LineEquation
+  showZAxis={false}
+  title={<>The odd function <InlineMath math="x^3 - x" /> and its mirror image</>}
+  description={<>The arrow takes the point <InlineMath math="(1.5, 1.875)" /> on the curve to <InlineMath math="(-1.5, 1.875)" />. The mirror image coincides with the graph of <InlineMath math="-f(x)" />, so the two reflections agree.</>}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const f = (x) => x * x * x - x;
+    const mirror = (x) => f(-x);
+    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
+    const index = (x) => Math.round((x + 2) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(1.8), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: mirror(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f(-x)" />, at: index(-1.8), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-f(x)" />, at: index(0.4), offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1.5, y: 1.875, z: 0 }, { x: -1.5, y: 1.875, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Domains That Change Sides
+
+Let <InlineMath math="f(x) = \sqrt{x - 2}" />. Its domain is <InlineMath math="x \ge 2" />, so the graph starts at <InlineMath math="(2, 0)" />. After the reflection, <InlineMath math="g(x) = f(-x) = \sqrt{-x - 2}" />. The condition <InlineMath math="-x - 2 \ge 0" /> gives <InlineMath math="x \le -2" />, so **the new domain is** <InlineMath math="(-\infty, -2]" />, and the range stays <InlineMath math="[0, \infty)" />. The point <InlineMath math="(6, 2)" /> on <InlineMath math="f" /> moves to <InlineMath math="(-6, 2)" />, because <InlineMath math="g(-6) = \sqrt{6 - 2} = 2" />.
+
+The absolute value function gives a second check. For <InlineMath math="f(x) = |x + 2|" />, the vertex is <InlineMath math="(-2, 0)" />. Its mirror function is <InlineMath math="f(-x) = |-x + 2| = |x - 2|" />, whose vertex is <InlineMath math="(2, 0)" />. The point <InlineMath math="(-4, 2)" /> on <InlineMath math="f" /> moves to <InlineMath math="(4, 2)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Mirror pairs <InlineMath math="\sqrt{x - 2}" /> and <InlineMath math="\sqrt{-x - 2}" /></>}
+  description={<>The arrow takes <InlineMath math="(6, 2)" /> on the first graph to <InlineMath math="(-6, 2)" /> on the mirror graph. The starting point <InlineMath math="(2, 0)" /> moves to <InlineMath math="(-2, 0)" />, so the two domains are mirror images.</>}
+  cameraPosition={[0, 3, 15]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const f = (x) => Math.sqrt(x - 2);
+    const g = (x) => Math.sqrt(-x - 2);
+    const fromTwo = Array.from({ length: 241 }, (_, i) => 2 + i / 40);
+    const fromMinusEight = Array.from({ length: 241 }, (_, i) => -8 + i / 40);
+    return [
+      {
+        points: fromTwo.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="f" />, at: 200, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: fromMinusEight.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [240],
+        labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.3, -0.3, 0], anchorX: "right" }],
+      },
+      { points: [{ x: 6, y: 2, z: 0 }, { x: -6, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 2, y: 0, z: 0 }, { x: -2, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+<LineEquation
+  showZAxis={false}
+  title={<>The absolute value <InlineMath math="|x + 2|" /> and its mirror image</>}
+  description={<>The vertex <InlineMath math="(-2, 0)" /> moves to <InlineMath math="(2, 0)" />, and the point <InlineMath math="(-4, 2)" /> moves to <InlineMath math="(4, 2)" />. Both arrows stay level.</>}
+  cameraPosition={[0, 3, 13]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const f = (x) => Math.abs(x + 2);
+    const g = (x) => f(-x);
+    const xs = Array.from({ length: 201 }, (_, i) => -5 + i / 20);
+    const index = (x) => Math.round((x + 5) * 20);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(-2)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-4), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(2)],
+        labels: [{ text: <InlineMath math="g" />, at: index(4), offset: [0.3, 0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: -2, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: -4, y: 2, z: 0 }, { x: 4, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Mistakes With the Negative Sign
+
+The **most common confusion** is between <InlineMath math="f(-x)" /> and <InlineMath math="-f(x)" />. The first flips the graph across the y-axis, while the second flips it across the x-axis. The graph takes one point, <InlineMath math="P(1, 6)" />, and sends it to both places. The point <InlineMath math="(-1, 6)" /> lies on the horizontal reflection, and the point <InlineMath math="(1, -6)" /> lies on the vertical one.
+
+<LineEquation
+  showZAxis={false}
+  title={<>The point <InlineMath math="P(1, 6)" /> under two different negatives</>}
+  description={<>The arrow to the left is the horizontal reflection, and the arrow down is the vertical reflection. The two graphs differ unless the function is odd.</>}
+  cameraPosition={[0, 0, 15]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const f = (x) => x * x + 3 * x + 2;
+    const xs = Array.from({ length: 281 }, (_, i) => -4 + i / 40);
+    const index = (x) => Math.round((x + 4) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(-x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f(-x)" />, at: index(-3), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(1)],
+        labels: [{ text: <InlineMath math="f" />, at: index(2.5), offset: [0.3, 0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-f(x)" />, at: index(2.5), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1, y: 6, z: 0 }, { x: -1, y: 6, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 1, y: 6, z: 0 }, { x: 1, y: -6, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+The table lists five mistakes, why each one fails, and how to catch it.
+
+| Mistake | Why it fails | How to catch it |
 | --- | --- | --- |
-| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(-a, b)" /> |
-| Domain <InlineMath math="[c, d]" /> | The original interval | Becomes <InlineMath math="[-d, -c]" /> |
-| Range | The original output values | The same output values as before |
-| <InlineMath math="y" />-intercept | At <InlineMath math="x = 0" /> | Stays at <InlineMath math="x = 0" /> |
-
-<Highlight>The domain flips to the opposite side</Highlight> because it lists the allowed values of <InlineMath math="x" />, and those values change sign. The range keeps its values because the height of the graph at each point stays the same. A [vertical reflection](/en/subjects/mathematics/function-transformation/vertical-reflection) flips those heights instead.
-
-## Turning Exponential Growth into Decay
-
-For the exponential function <InlineMath math="f(x) = 2^x" />, reflection turns growth from left to right into decay from left to right.
-
-<LineEquation
-  title={<>Horizontal Reflection of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description={<>The reflected graph decreases but keeps the same horizontal asymptote and <InlineMath math="y" />-intercept.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 960) * 6;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [3, 1, 0], at: 480 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 115 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 114) * 6;
-        return { x, y: Math.pow(2, -x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{-x}" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-For exponential functions:
-- The **horizontal asymptote** remains at <InlineMath math="y = 0" /> for both functions
-- The <InlineMath math="y" />-intercept remains the same at <InlineMath math="(0, 1)" />
-- The function that was originally increasing becomes decreasing after reflection
-
-## Horizontal Reflection on Square Root Functions
-
-The square root function shows how reflection also moves a **restricted domain**.
-
-<LineEquation
-  title={<>Horizontal Reflection of Square Root Function <InlineMath math="f(x) = \sqrt{x}" /></>}
-  description="The reflected square root curve produces a curve that opens in the opposite direction."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#0891b2",
-      labels: [{ at: 64, text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = -t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="g(x)=\sqrt{-x}" />, offset: [-1, 1.5, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-The graph confirms:
-- The domain of the original function <InlineMath math="f(x) = \sqrt{x}" /> is <InlineMath math="[0, \infty)" />
-- The domain of the reflected function <InlineMath math="g(x) = \sqrt{-x}" /> is <InlineMath math="(-\infty, 0]" />
-- Both curves meet at the origin <InlineMath math="(0, 0)" />
+| Writing <InlineMath math="-f(x)" /> for a reflection across the y-axis | <InlineMath math="-f(x)" /> flips the heights, so the points move up and down instead of sideways | Check whether the x-coordinate or the height changes |
+| Dropping the brackets in <InlineMath math="(-x)^2" /> | <InlineMath math="-x^2" /> means <InlineMath math="-(x^2)" />, which is a reflection across the x-axis | Substitute with brackets, so that <InlineMath math="(-x)^2 = x^2" /> |
+| Changing only some of the <InlineMath math="x" /> values | Every <InlineMath math="x" /> in the rule must become <InlineMath math="-x" /> | Write the full substitution before you simplify |
+| Forgetting to reverse the domain | The domain interval flips to its mirror image | Solve the new condition on the new input |
+| Expecting an even function to change | An even function equals its own mirror image | Check whether <InlineMath math="f(-x)" /> simplifies to <InlineMath math="f(x)" /> |
 
 ## Exercises
 
-The three problems below use the mirror rule you have just learned. Each one replaces the input <InlineMath math="x" /> with <InlineMath math="-x" />, so every result appears on the opposite side of the <InlineMath math="y" />-axis. Try them without the answer key first, then compare your steps with the worked answers.
+Start each problem by **writing the full substitution** of <InlineMath math="-x" /> for <InlineMath math="x" />. Then simplify, and check one point before you finish.
 
-1. Given the function <InlineMath math="f(x) = x^2 + 3x + 2" />. Determine the equation of the function resulting from horizontal reflection.
-
-2. The graph of the function <InlineMath math="g(x) = 3^x + 1" /> is reflected across the <InlineMath math="y" />-axis. Determine the equation of the resulting function, then determine the domain of that function.
-
-3. Function <InlineMath math="h(x) = |x + 2|" /> undergoes horizontal reflection. Determine the **vertex** of the resulting reflected function.
+1. Let <InlineMath math="f(x) = x^2 - 6x + 5" />. Find the equation of its mirror image across the y-axis and the zeros of that mirror image.
+2. Let <InlineMath math="g(x) = \sqrt{x - 2}" />. Find the equation of its mirror image, its domain, and check the point <InlineMath math="(6, 2)" />.
+3. Let <InlineMath math="h(x) = |x + 2|" />. Find the equation of its mirror image and its vertex.
+4. Does the graph of <InlineMath math="y = x^3 - x" /> change under a horizontal reflection? Explain with <InlineMath math="f(-x)" />, and check the point <InlineMath math="(2, 6)" />.
 
 ### Worked Solutions
 
-**Problem 1**. Replace **every input** by its negative before simplifying:
+**Problem 1**. **The substitution** gives <InlineMath math="f(-x) = (-x)^2 - 6(-x) + 5 = x^2 + 6x + 5" />. Factoring gives <InlineMath math="(x + 1)(x + 5)" />, so the zeros are <InlineMath math="-1" /> and <InlineMath math="-5" />. These are the zeros of <InlineMath math="f" />, which are <InlineMath math="1" /> and <InlineMath math="5" />, with their signs changed. Check: <InlineMath math="f(1) = 1 - 6 + 5 = 0" />, so the mirror function at <InlineMath math="-1" /> is zero.
 
-Horizontal reflection:
+**Problem 2**. **The new function** is <InlineMath math="g(-x) = \sqrt{-x - 2}" />. Its domain comes from <InlineMath math="-x - 2 \ge 0" />, which gives <InlineMath math="x \le -2" />, so the domain is <InlineMath math="(-\infty, -2]" />. The point <InlineMath math="(6, 2)" /> on the original graph has <InlineMath math="g(6) = \sqrt{4} = 2" />, so the mirror point is <InlineMath math="(-6, 2)" />. Check: <InlineMath math="\sqrt{-(-6) - 2} = \sqrt{4} = 2" />.
 
-<BlockMath math="F(x) = f(-x) = (-x)^2 + 3(-x) + 2 = x^2 - 3x + 2" />
+**Problem 3**. **Replace** <InlineMath math="x" /> with <InlineMath math="-x" />: <InlineMath math="|-x + 2| = |x - 2|" />. The vertex of this function is where the expression inside the bars is zero, so <InlineMath math="x = 2" />, and the vertex is <InlineMath math="(2, 0)" />, the mirror image of <InlineMath math="(-2, 0)" />.
 
-<LineEquation
-  title={<>Function <InlineMath math="f(x) = x^2 + 3x + 2" /> and Its Reflection Result</>}
-  description={<>Reflection across the <InlineMath math="y" />-axis moves the vertex to the opposite side while the parabola still opens upward.</>}
-  cameraPosition={[0, 2, 12]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 3 * x + 2, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+3x+2" />, offset: [-2.5, -3.7, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 3 * x + 2, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2-3x+2" />, offset: [2.4, -4.8, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Problem 2**. Negating the input **does not restrict real inputs**, so the exponential remains defined for all real numbers.
-
-Equation of the resulting reflected function:
-
-- Horizontal reflection: <InlineMath math="G(x) = g(-x) = 3^{-x} + 1" />
-- Domain after reflection: Remains <InlineMath math="(-\infty, \infty)" /> because exponential functions are defined for all real numbers
-
-Visualization:
-
-<LineEquation
-  title={<>Function <InlineMath math="g(x) = 3^x + 1" /> and Its Reflection Result</>}
-  description="The increasing exponential curve is reflected to become a decreasing curve with the same asymptote."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 691 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 690) * 6;
-        return { x, y: Math.pow(3, x) + 1, z: 0 };
-      }),
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="g(x)=3^x+1" />, offset: [3, 1, 0], at: 345 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 185 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 184) * 6;
-        return { x, y: Math.pow(3, -x) + 1, z: 0 };
-      }),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=3^{-x}+1" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Problem 3**. After horizontal reflection, the vertex occurs where the expression inside the absolute value is zero.
-
-<BlockMath math="-x+2=0\;\Rightarrow\;x=2,\qquad H(2)=0" />
-
-Absolute value reaches its minimum when its **argument equals zero**. Solve that equation for the horizontal coordinate of the vertex.
-
-The original function <InlineMath math="h(x) = |x + 2|" /> has its vertex at <InlineMath math="(-2, 0)" />.
-After horizontal reflection: <InlineMath math="H(x) = |-x + 2| = |-(x - 2)| = |x - 2|" />, the vertex becomes <InlineMath math="(2, 0)" />.
-
-<LineEquation
-  title={<>Function <InlineMath math="h(x) = |x + 2|" /> and Its Reflection Result</>}
-  description={<>The absolute value function is reflected across the <InlineMath math="y" />-axis producing a function with opposite vertex position.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 94 }, (_, pointIndex) => {
-        const i = pointIndex - 41;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(x + 2), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x+2|" />, offset: [-1, 1, 0], at: 61 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 86 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(-x + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=|-x+2|" />, offset: [1, -1, 0], at: 38 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Problem 4**. **The substitution** gives <InlineMath math="f(-x) = (-x)^3 - (-x) = -x^3 + x = -f(x)" />. The graph therefore changes, because the mirror image is the graph of <InlineMath math="-f(x)" />, which is a different curve. Check: <InlineMath math="f(2) = 8 - 2 = 6" />, so the mirror point is <InlineMath math="(-2, 6)" />, and indeed <InlineMath math="-f(-2) = -(-6) = 6" />.

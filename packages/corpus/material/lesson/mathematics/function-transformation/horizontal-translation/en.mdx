@@ -1,367 +1,347 @@
 export const metadata = {
-  title: "Horizontal Translation",
-  description: "Shift function graphs left or right, derive the sign rule, and track how the domain and range change.",
+  title: "Horizontal Shift of a Function",
+  description: "Shift a function graph left or right, see why a minus sign inside the parentheses moves it to the right, and work out the new points and domain.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-10-24",
   subject: "Function Transformation",
 };
 
 ## Sliding a Graph Left or Right
 
-Horizontal translation slides a function graph left or right along the <InlineMath math="x" />-axis without changing its shape. <Highlight>Every point moves by the same horizontal distance</Highlight>, as if the graph were an object sliding across a table.
+A **horizontal shift** by <InlineMath math="h" /> turns <InlineMath math="y = f(x)" /> into <InlineMath math="y = f(x - h)" />. Every point <InlineMath math="(x_0, y_0)" /> moves to <InlineMath math="(x_0 + h, y_0)" />, so **the height stays the same** and the whole graph slides sideways. For <InlineMath math="h > 0" /> the graph moves right, and for <InlineMath math="h < 0" /> it moves left. The first graph follows a parabola and its copy shifted three units to the right, so you can track the vertex as it travels.
 
-If you have a function <InlineMath math="f(x)" />, then horizontal translation produces a new function <InlineMath math="g(x) = f(x - h)" /> where <InlineMath math="h" /> is the translation constant.
+<BlockMath math="(x_0, y_0) \longmapsto (x_0 + h,\ y_0)" />
 
-### Reading the Sign Rule
-
-Look at where <InlineMath math="h" /> sits in the rule below. It is written inside the parentheses together with <InlineMath math="x" />, so it changes the input before the function runs.
-
-<BlockMath math="g(x) = f(x - h)" />
-
-To obtain the **same output** as the old input <InlineMath math="a" />, the new input must satisfy <InlineMath math="x-h=a" />. Thus <InlineMath math="x=a+h" />, explaining the shift without memorizing signs.
-
-<BlockMath math="g(a+h)=f((a+h)-h)=f(a)" />
-
-Because <InlineMath math="h" /> sits inside the parentheses, its sign works the <Highlight>opposite way from the direction you read</Highlight>. Subtracting a positive number from <InlineMath math="x" /> slides the graph right, while adding a positive number slides it left.
-
-| Value of <InlineMath math="h" /> | Shift of the graph | Example of the vertex |
-| --- | --- | --- |
-| <InlineMath math="h > 0" /> | Right by <InlineMath math="h \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(h,0)" /> |
-| <InlineMath math="h < 0" /> | Left by <InlineMath math="\lvert h \rvert \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(h,0)" /> |
-| <InlineMath math="h = 0" /> | The graph does not move | <InlineMath math="(0,0)" /> stays where it is |
-
-All three rows use the vertex <InlineMath math="(0,0)" /> as a reference so the direction is easy to compare. For a function with a different reference point, every point moves by the same distance in the same direction.
-
-## Checking the Rule on a Quadratic Graph
-
-Picture three parabolas drawn on the same plane. They have exactly the same shape, but their vertices sit at different horizontal positions.
+The minus sign inside the bracket looks as if it should move the graph left, but it moves the graph right. The new function <InlineMath math="g(x) = f(x - 3)" /> reaches the output <InlineMath math="f(x_0)" /> only when its input is <InlineMath math="x_0 + 3" />, which is three units further right. The domain moves with the graph, while **the range stays the same**.
 
 <LineEquation
-  title={<>Horizontal Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
-  description="Notice how the graph shifts horizontally without changing the parabola shape."
-  cameraPosition={[0.5, 3, 16]}
-  cameraTarget={[0.5, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [0.5, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 193 }, (_, pointIndex) => {
-        const i = pointIndex / 4 + 0;
-        const x = (i - 20) * 0.25;
-        return { x, y: (x - 3) * (x - 3), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(x-3)^2" />, offset: [0.5, 1, 0], at: 80 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 173 }, (_, pointIndex) => {
-        const i = pointIndex / 4 - 3;
-        const x = (i - 20) * 0.25;
-        return { x, y: (x + 2) * (x + 2), z: 0 };
-      }),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=(x+2)^2" />, offset: [0.5, 1, 0], at: 92 }],
-      showPoints: false,
-    },
-  ]}
   showZAxis={false}
+  title={<>Graphs of <InlineMath math="f(x) = x^2" /> and <InlineMath math="g(x) = f(x - 3)" /></>}
+  description={<>The vertex <InlineMath math="(0, 0)" /> of <InlineMath math="f" /> moves to <InlineMath math="(3, 0)" />, and the point <InlineMath math="(2, 4)" /> moves to <InlineMath math="(5, 4)" />. Both arrows are level, so no height changes.</>}
+  cameraPosition={[1, 4, 14]}
+  cameraTarget={[1, 4, 0]}
+  data={(() => {
+    // g(x) = f(x - 3) = (x - 3)^2 is sampled on the same inputs as f.
+    const f = (x) => x * x;
+    const g = (x) => f(x - 3);
+    const xs = Array.from({ length: 401 }, (_, i) => -4 + i / 40);
+    const index = (x) => Math.round((x + 4) * 40);
+    // The point (x0, f(x0)) moves three units right to (x0 + 3, f(x0)) on g.
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 + 3, y: f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-2), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: move(0),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+      {
+        points: move(2),
+        smooth: false,
+        color: "#d97706",
+        showPoints: false,
+        cone: { position: "end", size: 0.3 },
+      },
+    ];
+  })()}
 />
 
-The vertices have the **same height**, so compare their horizontal coordinates to see the displacement.
+The graph shows the whole curve moving together. Its shape and its height at each position stay the same, and only its horizontal position changes. That is the meaning of a horizontal shift.
 
-| Function | Vertex | Shift |
+## Why a Minus Sign Moves the Graph Right
+
+Read <InlineMath math="g(x) = f(x - 3)" /> as two steps. First the machine subtracts <InlineMath math="3" /> from the input, and then it applies the rule of <InlineMath math="f" />. The function machine runs <InlineMath math="f(x) = 2x + 1" />. Type a number, and the card shows what the rule returns.
+
+<FunctionMachine
+  title={<>Machine for <InlineMath math="f(x) = 2x + 1" /></>}
+  description={<>Type <InlineMath math="0" />, <InlineMath math="2" />, and then <InlineMath math="5" /> to see the outputs of <InlineMath math="f" />. The graph of <InlineMath math="g" /> needs an input that is <InlineMath math="3" /> larger to produce each of them.</>}
+  inputLabel="Machine input"
+/>
+
+Now let the machine receive <InlineMath math="x - 3" /> instead of <InlineMath math="x" />. For the input <InlineMath math="8" /> of <InlineMath math="g" />, the number entering the machine is <InlineMath math="8 - 3 = 5" />, and the rule returns <InlineMath math="f(5) = 11" />. So <InlineMath math="g(8) = 11" />. The table lists three more pairs.
+
+| Input of <InlineMath math="g" /> | Number entering the machine | Output <InlineMath math="g(x)" /> |
 | --- | --- | --- |
-| <InlineMath math="x^2" /> | <InlineMath math="(0,0)" /> | <InlineMath math="0" /> |
-| <InlineMath math="(x-3)^2" /> | <InlineMath math="(3,0)" /> | <InlineMath math="+3" /> |
-| <InlineMath math="(x+2)^2" /> | <InlineMath math="(-2,0)" /> | <InlineMath math="-2" /> |
+| <InlineMath math="3" /> | <InlineMath math="3 - 3 = 0" /> | <InlineMath math="f(0) = 1" /> |
+| <InlineMath math="5" /> | <InlineMath math="5 - 3 = 2" /> | <InlineMath math="f(2) = 5" /> |
+| <InlineMath math="8" /> | <InlineMath math="8 - 3 = 5" /> | <InlineMath math="f(5) = 11" /> |
 
-## Checking the Rule on a Linear Graph
+Every output of <InlineMath math="f" /> appears again at an input that is **three larger**. For any shift <InlineMath math="h" />, the same reasoning gives
 
-The **same rule** applies to the linear function <InlineMath math="f(x) = 2x + 1" />. On a straight line, a horizontal shift does not change the slope, so checking the sign is easier than on a parabola.
+<BlockMath math="g(x_0 + h) = f\big((x_0 + h) - h\big) = f(x_0)" />
+
+Each point <InlineMath math="(x_0, f(x_0))" /> on <InlineMath math="f" /> has a partner <InlineMath math="(x_0 + h, f(x_0))" /> on <InlineMath math="g" />.
+
+## Shifting a Parabola and Its Vertex
+
+Let <InlineMath math="f(x) = x^2 - 2x - 3" />. **Completing the square** gives <InlineMath math="f(x) = (x - 1)^2 - 4" />, so the vertex is <InlineMath math="(1, -4)" /> and the zeros are <InlineMath math="-1" /> and <InlineMath math="3" />. Shift the graph <InlineMath math="2" /> units to the left, which means <InlineMath math="h = -2" />. Replace every <InlineMath math="x" /> with <InlineMath math="x + 2" />:
+
+<BlockMath math="\begin{aligned} g(x) &= f(x + 2) \\ &= (x + 2)^2 - 2(x + 2) - 3 \\ &= x^2 + 4x + 4 - 2x - 4 - 3 \\ &= x^2 + 2x - 3 \end{aligned}" />
+
+Check the result with the points you already know. The new function factors as <InlineMath math="x^2 + 2x - 3 = (x + 3)(x - 1)" />, so its zeros are <InlineMath math="-3" /> and <InlineMath math="1" />. Each old zero moved two units to the left: <InlineMath math="-1 - 2 = -3" /> and <InlineMath math="3 - 2 = 1" />. The vertex moved the same way, from <InlineMath math="(1, -4)" /> to <InlineMath math="(-1, -4)" />, which agrees with the completed square <InlineMath math="(x + 1)^2 - 4" />.
 
 <LineEquation
-  title={<>Horizontal Translation of Linear Function <InlineMath math="f(x) = 2x + 1" /></>}
-  description="The line maintains the same slope, only its horizontal position changes."
-  cameraPosition={[1, 1, 16]}
-  cameraTarget={[1, 1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 39 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0], at: 28 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 34 }, (_, pointIndex) => {
-        const i = pointIndex - 5;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * (x - 4) + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0], at: 15 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 62 }, (_, pointIndex) => {
-        const i = pointIndex - 41;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * (x + 3) + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#0891b2",
-      labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [-0.7, -2.3, 0], at: 51 }],
-      showPoints: false,
-    },
-  ]}
   showZAxis={false}
+  title={<>Graphs of <InlineMath math="f(x) = x^2 - 2x - 3" /> and <InlineMath math="g(x) = x^2 + 2x - 3" /></>}
+  description={<>The vertex and both zeros of <InlineMath math="f" /> move two units to the left. The arrows start on <InlineMath math="f" /> and end on <InlineMath math="g" /> at the same height.</>}
+  cameraPosition={[-1, 6, 18]}
+  cameraTarget={[-1, 6, 0]}
+  data={(() => {
+    // Both parabolas are sampled on the same inputs, so each arrow joins equal heights.
+    const f = (x) => x * x - 2 * x - 3;
+    const g = (x) => x * x + 2 * x - 3;
+    const xs = Array.from({ length: 321 }, (_, i) => -4 + i / 40);
+    const index = (x) => Math.round((x + 4) * 40);
+    // A horizontal shift of -2 keeps the height of each point: (x0, f(x0)) goes to (x0 - 2, f(x0)).
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 - 2, y: f(x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(1)],
+        labels: [{ text: <InlineMath math="f" />, at: index(4), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(-1)],
+        labels: [{ text: <InlineMath math="g" />, at: index(-3.5), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      { points: move(1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: move(-1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: move(3), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
 />
 
-The purple line is the original line with slope <InlineMath math="2" />. The orange line is <InlineMath math="g(x) = 2(x-4)+1" />, which shifts right by <InlineMath math="4 \text{ units}" />, and the blue line is <InlineMath math="h(x) = 2(x+3)+1" />, which shifts left by <InlineMath math="3 \text{ units}" />. All three lines stay parallel because the slope does not change.
+Each arrow is level, because a horizontal shift never changes a height. Notice that the vertex arrow ends at the vertex of <InlineMath math="g" />, and the two zero arrows end at the zeros of <InlineMath math="g" />.
 
-In both examples the direction of the shift always comes from the sign inside the parentheses. That is the opposite of a vertical translation, which adds its constant outside the function.
+## The Domain and Intercepts Move With the Graph
 
-## Which Values the Horizontal Shift Moves
+The square root function <InlineMath math="f(x) = \sqrt{x}" /> needs <InlineMath math="x \ge 0" />, so its domain is <InlineMath math="[0, \infty)" />. Shift it four units to the left to get <InlineMath math="g(x) = \sqrt{x + 4}" />. The condition <InlineMath math="x + 4 \ge 0" /> gives <InlineMath math="x \ge -4" />, so **the new domain starts at** <InlineMath math="-4" />. The range stays <InlineMath math="[0, \infty)" />, because every value from zero upward is still reached.
 
-Once you know the direction of the shift, you still need to know which parts of the function move with it. A horizontal translation acts on the input, so everything that depends on the position of <InlineMath math="x" /> moves, while the output values stay the same.
-
-Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. After a translation by <InlineMath math="h" />, that point moves to <InlineMath math="(a + h, b)" /> on the graph of <InlineMath math="f(x - h)" />. The <InlineMath math="y" /> value does not change, only the <InlineMath math="x" /> coordinate moves.
-
-| Part of the function | Before the translation | After the translation by <InlineMath math="h" /> |
-| --- | --- | --- |
-| Graph shape | The original shape | The same shape, moved horizontally |
-| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a + h, b)" /> |
-| Domain <InlineMath math="[c, d]" /> | The original interval | Moves to <InlineMath math="[c + h, d + h]" /> |
-| Range | The original output values | The same values as the original function |
-
-The domain moves with the graph because it describes the allowed values of <InlineMath math="x" />, while the range stays the same because the height of the graph at each point is unchanged. A vertical translation swaps those roles, keeping the domain and moving the range.
-
-The **output height stays the same** at each moved point, not at each fixed input. For example, <InlineMath math="g(a+h)=f(a)" />, although <InlineMath math="g(a)" /> generally differs from <InlineMath math="f(a)" />.
-
-## Checking the Rule on an Exponential Graph
-
-For an exponential curve, the **horizontal asymptote stays fixed**, while the vertical intercept is recalculated at zero input.
+The starting point <InlineMath math="(0, 0)" /> moves to <InlineMath math="(-4, 0)" />. The point <InlineMath math="(4, 2)" /> moves to <InlineMath math="(0, 2)" />, because <InlineMath math="g(0) = \sqrt{4} = 2" />.
 
 <LineEquation
-  title={<>Horizontal Translation of Exponential Function <InlineMath math="f(x) = 2^x" /></>}
-  description="The exponential curve maintains its characteristics after horizontal translation."
-  cameraPosition={[1, 3, 12]}
-  cameraTarget={[1, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 960) * 8;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 480 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 969 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 968) * 8;
-        return { x, y: Math.pow(2, x - 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{x-2}" />, offset: [0.5, 1, 0], at: 480 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 481 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 480) * 8;
-        return { x, y: Math.pow(2, x + 1), z: 0 };
-      }),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^{x+1}" />, offset: [0.5, 1, 0], at: 240 }],
-      showPoints: false,
-    },
-  ]}
   showZAxis={false}
+  title={<>Graphs of <InlineMath math="f(x) = \sqrt{x}" /> and <InlineMath math="g(x) = \sqrt{x + 4}" /></>}
+  description={<>The domain of <InlineMath math="g" /> starts at <InlineMath math="-4" />, four units left of the start of <InlineMath math="f" />. Both arrows keep their heights, and the range stays from zero upward.</>}
+  cameraPosition={[2, 3, 12]}
+  cameraTarget={[2, 3, 0]}
+  data={(() => {
+    // f needs x >= 0 and g needs x >= -4, so each curve is sampled from its own starting point.
+    const f = (x) => Math.sqrt(x);
+    const g = (x) => Math.sqrt(x + 4);
+    const fromZero = Array.from({ length: 321 }, (_, i) => i / 40);
+    const fromMinusFour = Array.from({ length: 481 }, (_, i) => -4 + i / 40);
+    // A horizontal shift of -4 keeps the height: (x0, f(x0)) goes to (x0 - 4, f(x0)).
+    const move = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: x0 - 4, y: g(x0 - 4), z: 0 },
+    ];
+    return [
+      {
+        points: fromZero.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="f" />, at: 200, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: fromMinusFour.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="g" />, at: 280, offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      { points: move(0), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: move(4), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
 />
 
-The horizontal asymptote stays at <InlineMath math="y = 0" />, because a horizontal shift does not change how the curve behaves when <InlineMath math="x" /> grows very large or very small. The function <InlineMath math="g(x) = 2^{x-2}" /> shifts right by <InlineMath math="2 \text{ units}" />, while <InlineMath math="h(x) = 2^{x+1}" /> shifts left by <InlineMath math="1 \text{ unit}" />.
+The exponential function gives a second example. Take <InlineMath math="f(x) = 2^x" /> and shift it two units to the right, so <InlineMath math="g(x) = 2^{x - 2}" />. The horizontal asymptote <InlineMath math="y = 0" /> stays where it is, because a horizontal shift never changes a height. The y-intercept does change. Its new value is <InlineMath math="g(0) = 2^{-2} = \frac{1}{4}" />, which is the value of <InlineMath math="f" /> at <InlineMath math="-2" />. The old intercept <InlineMath math="(0, 1)" /> moves to <InlineMath math="(2, 1)" />.
 
-Recalculate the vertical intercept using **zero input**. The old point <InlineMath math="(0,f(0))" /> moves to <InlineMath math="(h,f(0))" /> and generally ceases to be a vertical intercept. The new intercept is <InlineMath math="(0,f(-h))" />, provided <InlineMath math="-h" /> is in the domain.
+<LineEquation
+  showZAxis={false}
+  title={<>Graphs of <InlineMath math="f(x) = 2^x" /> and <InlineMath math="g(x) = 2^{x - 2}" /></>}
+  description={<>The arrow takes the intercept <InlineMath math="(0, 1)" /> of <InlineMath math="f" /> to <InlineMath math="(2, 1)" /> on <InlineMath math="g" />. The asymptote stays at height zero, and the new intercept of <InlineMath math="g" /> is at height one quarter.</>}
+  cameraPosition={[0, 4, 12]}
+  cameraTarget={[0, 4, 0]}
+  data={(() => {
+    // f(x) = 2^x and g(x) = 2^(x - 2) are sampled on the same inputs from -4 to 3.
+    const f = (x) => 2 ** x;
+    const g = (x) => 2 ** (x - 2);
+    const xs = Array.from({ length: 281 }, (_, i) => -4 + i / 40);
+    const index = (x) => Math.round((x + 4) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="g" />, at: index(3), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: [{ x: -4, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = 0" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 0, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
 
-<BlockMath math="f(0)=1,\qquad g(0)=2^{-2}=\frac14,\qquad h(0)=2^1=2" />
+## Horizontal and Vertical Shifts Compared
 
-## Telling Horizontal and Vertical Shifts Apart
+The expressions <InlineMath math="f(x - 3)" /> and <InlineMath math="f(x) - 3" /> look alike, but **they move a graph in different directions**. Take <InlineMath math="f(x) = x^2" />. The first shifts the vertex to <InlineMath math="(3, 0)" />, and the second shifts it down to <InlineMath math="(0, -3)" />. The graph places both results beside the original parabola.
 
-Horizontal and [vertical translations](/en/subjects/mathematics/function-transformation/vertical-translation) both move a graph, but they act on different parts of the rule. That difference decides which coordinate changes.
+<LineEquation
+  showZAxis={false}
+  title={<>Shifts of <InlineMath math="f(x) = x^2" /> in two directions</>}
+  description={<>The horizontal shift gives <InlineMath math="g(x) = (x - 3)^2" />, and the vertical shift gives <InlineMath math="k(x) = x^2 - 3" />. Each arrow moves the vertex of <InlineMath math="f" /> to the vertex of the matching curve.</>}
+  cameraPosition={[1.5, 4, 15]}
+  cameraTarget={[1.5, 4, 0]}
+  data={(() => {
+    const f = (x) => x * x;
+    const g = (x) => (x - 3) * (x - 3);
+    const k = (x) => x * x - 3;
+    const xs = Array.from({ length: 281 }, (_, i) => -2 + i / 40);
+    const index = (x) => Math.round((x + 2) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-1.5), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(4.5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: k(x), z: 0 })),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="k" />, at: index(-1.5), offset: [-0.3, -0.5, 0], anchorX: "right" }],
+      },
+      { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: -3, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
 
-| Property | Horizontal translation | Vertical translation |
+Each shift changes a different part of the rule. A horizontal shift changes the input, so every <InlineMath math="x" /> moves. A vertical shift changes the output, so every height moves. The domain of <InlineMath math="f(x - 3)" /> moves by three units, while the range stays the same. The domain of <InlineMath math="f(x) - 3" /> stays the same, while its range moves down by three units.
+
+A straight line can make the two rules look alike. For <InlineMath math="f(x) = 2x + 1" />, the shift three units to the right gives <InlineMath math="2(x - 3) + 1 = 2x - 5" />. That is the same line as <InlineMath math="f(x) - 6" />, which is a drop of six units. The graph shows both arrows on one line. Use a curve, not a straight line, when you need to read the direction of a shift.
+
+<BlockMath math="2(x - 3) + 1 = 2x - 5 = (2x + 1) - 6" />
+
+<LineEquation
+  showZAxis={false}
+  title={<>The line <InlineMath math="f(x) = 2x + 1" /> and its shifted copy</>}
+  description={<>The horizontal arrow moves the point <InlineMath math="(2, 5)" /> to <InlineMath math="(5, 5)" />. The vertical arrow moves the same point down to <InlineMath math="(2, -1)" />, which is also on <InlineMath math="g" />.</>}
+  cameraPosition={[2, 2, 16]}
+  cameraTarget={[2, 2, 0]}
+  data={(() => {
+    const f = (x) => 2 * x + 1;
+    const g = (x) => 2 * (x - 3) + 1;
+    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 20);
+    const index = (x) => Math.round((x + 2) * 20);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(-1), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(4), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 2, y: 5, z: 0 }, { x: 5, y: 5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 2, y: 5, z: 0 }, { x: 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Common Mistakes With the Sign Inside the Bracket
+
+Most errors come from treating **the input and the output** as if they were the same. The table lists five mistakes, why each one fails, and how to catch it.
+
+| Mistake | Why it fails | How to catch it |
 | --- | --- | --- |
-| Rule | <InlineMath math="g(x) = f(x - h)" /> | <InlineMath math="g(x) = f(x) + k" /> |
-| Part that changes | The function input | The function **output** |
-| Direction of the shift | Along the <InlineMath math="x" /> coordinate | Along the <InlineMath math="y" /> coordinate |
-| Sign of the constant | Opposite to the direction you read | The same as the sign of <InlineMath math="k" /> |
-| Domain and range | Domain moves, range stays | Domain stays, range moves |
-
-The main difference is where the constant sits. A constant inside the parentheses changes the input, so the shift is horizontal and its sign works in reverse. A constant outside the parentheses changes the output, so the shift is vertical and its sign works as written.
-
-A [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) changes a graph’s width, while a [vertical dilation](/en/subjects/mathematics/function-transformation/vertical-dilation) changes the distance from the horizontal axis. Translation adds a fixed displacement. In [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function), shifting before scaling can give a different final position from shifting after scaling.
+| Reading <InlineMath math="x - 3" /> as a shift of three units to the left | The graph moves right, as the machine showed for <InlineMath math="g(8) = 11" /> | Check that the vertex of <InlineMath math="x^2" /> lands on <InlineMath math="(3, 0)" /> |
+| Replacing only one <InlineMath math="x" /> | Every <InlineMath math="x" /> in the rule becomes <InlineMath math="x - 3" /> | Write <InlineMath math="2(x - 3) + 1" /> and not <InlineMath math="2x - 3 + 1" />, which equals <InlineMath math="2x - 2" /> |
+| Writing <InlineMath math="f(x) - 3" /> for a horizontal shift | Subtracting outside the bracket moves the graph down | Ask whether the change happens to the input or to the output |
+| Judging the direction with a straight line | A shifted line can equal a vertical shift of the original line | Compare a curve or one pair of corresponding points |
+| Keeping the domain fixed | The domain moves by the same amount as the input shift | Solve the new input condition, such as <InlineMath math="x + 4 \ge 0" /> |
 
 ## Exercises
 
-The three problems below use the sign rule you have just learned. Try them without the answer key first, then compare your steps with the worked answers.
+Before you write an equation, **find the shift** <InlineMath math="h" /> **and its direction**. Then replace every <InlineMath math="x" /> in the rule with <InlineMath math="x - h" />, and check one corresponding point before you finish.
 
-1. Given the function <InlineMath math="f(x) = x^2 + 2x + 1" />. Determine the equation of the function resulting from horizontal translation to the right by <InlineMath math="3 \text{ units}" />.
-
-2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> is translated horizontally to the left by <InlineMath math="4 \text{ units}" />. Determine the equation of the resulting translated function, then determine the domain of the function after translation.
-
-3. Function <InlineMath math="h(x) = 3^x" /> undergoes horizontal translation such that point <InlineMath math="(0, 1)" /> becomes <InlineMath math="(2, 1)" />. Determine the translation **constant value** and the equation of the resulting translated function.
+1. Shift <InlineMath math="f(x) = x^2 + 2x + 1" /> three units to the right. Write the new equation and find its vertex.
+2. Shift <InlineMath math="g(x) = \sqrt{x - 1}" /> five units to the left. Write the new equation, its domain, and the image of the point <InlineMath math="(1, 0)" />.
+3. The graph of <InlineMath math="h(x) = 3^x" /> passes through <InlineMath math="(0, 1)" />. Shift it so that this point moves to <InlineMath math="(-2, 1)" />. Write the new equation and its y-intercept.
+4. The vertex of <InlineMath math="f(x) = x^2 - 4x + 3" /> is <InlineMath math="(2, -1)" />. Shift the graph so that the vertex moves to <InlineMath math="(-3, -1)" />. Write the new equation and find both zeros.
 
 ### Worked Solutions
 
-**Problem 1**. Substitute into **every occurrence of the input**:
+**Problem 1**. **The shift is** <InlineMath math="h = 3" />, so replace <InlineMath math="x" /> with <InlineMath math="x - 3" />: <InlineMath math="(x - 3)^2 + 2(x - 3) + 1 = x^2 - 6x + 9 + 2x - 6 + 1 = x^2 - 4x + 4" />. The rule factors as <InlineMath math="(x - 2)^2" />, so the vertex is <InlineMath math="(2, 0)" />. The old vertex <InlineMath math="(-1, 0)" /> moved three units to the right, which agrees.
 
-Horizontal translation to the right by <InlineMath math="3 \text{ units}" />:
+**Problem 2**. The shift is <InlineMath math="h = -5" />, so replace <InlineMath math="x" /> with <InlineMath math="x + 5" />: <InlineMath math="g(x + 5) = \sqrt{x + 5 - 1} = \sqrt{x + 4}" />. The condition <InlineMath math="x + 4 \ge 0" /> gives the domain <InlineMath math="[-4, \infty)" />. The point <InlineMath math="(1, 0)" /> moves to <InlineMath math="(-4, 0)" />, and indeed <InlineMath math="\sqrt{-4 + 4} = 0" />.
 
-<BlockMath math="F(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
+**Problem 3**. The point <InlineMath math="(0, 1)" /> must move to <InlineMath math="(-2, 1)" />, so <InlineMath math="h = -2" />, and the new rule is <InlineMath math="H(x) = 3^{x + 2}" />. Its y-intercept is <InlineMath math="H(0) = 3^2 = 9" />, so the intercept is <InlineMath math="(0, 9)" />. The check <InlineMath math="H(-2) = 3^0 = 1" /> confirms that the moved point lies on the new graph.
 
-<LineEquation
-  title={<>Function <InlineMath math="f(x) = x^2 + 2x + 1" /> and Its Translation Result</>}
-  description={
-    <>
-      Original quadratic function and the result of horizontal translation to
-      the right by <InlineMath math="3 \text{ units}" />.
-    </>
-  }
-  cameraPosition={[0.5, 3, 16]}
-  cameraTarget={[0.5, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 2 * x + 1, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+2x+1" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 4 * x + 4, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2-4x+4" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Problem 2**. A shift four units left adds four to the input of the function. The square-root condition determines the new domain.
-
-- Translation to the left by <InlineMath math="4 \text{ units}" />: <InlineMath math="G(x) = g(x + 4) = \sqrt{x + 4}" />
-- **Domain** after translation: <InlineMath math="x + 4 \geq 0" />, so <InlineMath math="x \geq -4" /> or <InlineMath math="[-4, \infty)" />
-
-Visualization:
-
-<LineEquation
-  title={<>Function <InlineMath math="g(x) = \sqrt{x}" /> and Its Translation Result</>}
-  description={
-    <>
-      Original square root function and the result of horizontal translation
-      to the left by <InlineMath math="4 \text{ units}" />.
-    </>
-  }
-  cameraPosition={[3, 2, 14]}
-  cameraTarget={[3, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#7c3aed",
-      labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t + -4;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Problem 3**. Point <InlineMath math="(0, 1)" /> on <InlineMath math="h(x) = 3^x" /> becomes <InlineMath math="(2, 1)" />, meaning **horizontal translation** by <InlineMath math="h = 2 \text{ units}" /> to the right.
-Equation of the translation result: <InlineMath math="H(x) = 3^{x-2}" />
-
-<LineEquation
-  title={<>Function <InlineMath math="h(x) = 3^x" /> and Its Translation Result</>}
-  description={
-    <>
-      Original exponential function and the result of horizontal translation
-      to the right by <InlineMath math="2 \text{ units}" />.
-    </>
-  }
-  cameraPosition={[1, 2, 10]}
-  cameraTarget={[1, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 285 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 284) * 8;
-        return { x, y: Math.pow(3, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=3^x" />, offset: [-1.3, 2, 0], at: 142 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 317 }, (_, pointIndex) => {
-        const x = -4 + (pointIndex / 316) * 8;
-        return { x, y: Math.pow(3, x - 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=3^{x-2}" />, offset: [3.2, 0.988889, 0], at: 142 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Problem 4**. The vertex moves from <InlineMath math="(2, -1)" /> to <InlineMath math="(-3, -1)" />, so the shift is five units to the left, <InlineMath math="h = -5" />. Then <InlineMath math="g(x) = (x + 5)^2 - 4(x + 5) + 3 = x^2 + 6x + 8" />. The zeros of <InlineMath math="g" /> are the zeros of <InlineMath math="f" />, which are <InlineMath math="1" /> and <InlineMath math="3" />, each moved five units to the left. Check <InlineMath math="g(-4) = 16 - 24 + 8 = 0" /> and <InlineMath math="g(-2) = 4 - 12 + 8 = 0" />.

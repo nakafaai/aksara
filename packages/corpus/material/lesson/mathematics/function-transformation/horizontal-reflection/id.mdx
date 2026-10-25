@@ -1,339 +1,344 @@
 export const metadata = {
-  title: "Refleksi Horizontal",
-  description: "Gunakan grafik dan contoh untuk memahami bagaimana pencerminan terhadap sumbu y mengubah koordinat x suatu fungsi.",
+  title: "Refleksi Fungsi terhadap Sumbu Y",
+  description: "Cerminkan grafik fungsi terhadap sumbu y dengan mengganti x menjadi negatif x, lalu tentukan titik, domain, dan persamaan grafik hasil refleksinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
-  subject: "Transformasi Fungsi",
+  dateModified: "2026-10-24",
+  subject: "Function Transformation",
 };
 
-## Mencerminkan Grafik terhadap Sumbu Vertikal
+## Mencerminkan Grafik terhadap Sumbu Y
 
-Refleksi horizontal mencerminkan grafik fungsi terhadap sumbu <InlineMath math="y" />. Seperti pada cermin vertikal, setiap titik tetap berada pada <Highlight>ketinggian yang sama</Highlight> dan berpindah <Highlight>sejauh jarak yang sama ke sisi berlawanan</Highlight>.
+Sebuah **refleksi horizontal** terhadap sumbu y mengubah <InlineMath math="y = f(x)" /> menjadi <InlineMath math="y = f(-x)" />. Setiap titik <InlineMath math="(x_0, y_0)" /> berpindah ke <InlineMath math="(-x_0, y_0)" />, sehingga **tingginya tetap sama** dan grafik bertukar sisi kiri dan kanan. Titik yang berada pada sumbu y tidak bergerak sama sekali. Grafik pertama memperlihatkan parabola <InlineMath math="x^2 + 3x + 2" /> di samping bayangan cerminnya, yaitu grafik <InlineMath math="x^2 - 3x + 2" />, sehingga kamu bisa membandingkan pembuat nol di kedua sisi.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka refleksi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(-x)" /> yang merupakan bayangan dari fungsi asli terhadap sumbu <InlineMath math="y" />.
+<BlockMath math="(x_0, y_0) \longmapsto (-x_0,\ y_0)" />
 
-### Aturan Refleksi Horizontal
-
-Untuk setiap fungsi <InlineMath math="f(x)" />, refleksi horizontal didefinisikan sebagai:
-
-<BlockMath math="g(x) = f(-x)" />
-
-Transformasi ini mengubah setiap titik <InlineMath math="(x, y)" /> pada grafik asli menjadi <InlineMath math="(-x, y)" /> pada grafik hasil refleksi.
-
-Titik pada **garis cermin tetap di tempatnya**. Untuk titik di luar garis cermin, koordinat yang tegak lurus garis cermin berubah tanda. Jika dicerminkan dua kali, titik kembali ke posisi semula.
-
-<BlockMath math="g(-x)=f(-(-x))=f(x)" />
-
-## Visualisasi Refleksi Horizontal
-
-Fungsi kuadrat <InlineMath math="f(x) = (x - 2)^2" /> memperlihatkan perpindahan setiap titik dengan jelas.
+Rumusnya memperkuat gambaran itu. Fungsi baru <InlineMath math="g(x) = f(-x)" /> menghasilkan <InlineMath math="f(x_0)" /> saat masukannya <InlineMath math="-x_0" />, karena <InlineMath math="g(-x_0) = f(-(-x_0)) = f(x_0)" />. Setiap titik pada <InlineMath math="f" /> punya pasangan dengan tinggi yang sama di sisi lain sumbu y.
 
 <LineEquation
-  title={<>Refleksi Horizontal Fungsi Kuadrat <InlineMath math="f(x) = (x - 2)^2" /></>}
-  description={<>Perhatikan bagaimana grafik terpantul terhadap sumbu <InlineMath math="y" />, membentuk bayangan yang simetris.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: (x - 2) * (x - 2), z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=(x-2)^2" />, offset: [1, 1, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: ((-x) - 2) * ((-x) - 2), z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(-x-2)^2" />, offset: [-1, -1, 0] }],
-      showPoints: false,
-    },
-  ]}
   showZAxis={false}
+  title={<>Grafik <InlineMath math="f(x) = x^2 + 3x + 2" /> dan <InlineMath math="g(x) = f(-x)" /></>}
+  description={<>Pembuat nol <InlineMath math="-1" /> dan <InlineMath math="-2" /> milik <InlineMath math="f" /> berpindah ke <InlineMath math="1" /> dan <InlineMath math="2" /> pada <InlineMath math="g" />. Titik puncak berpindah dari <InlineMath math="(-\tfrac{3}{2}, -\tfrac{1}{4})" /> ke <InlineMath math="(\tfrac{3}{2}, -\tfrac{1}{4})" />, dan setiap panah tetap mendatar.</>}
+  cameraPosition={[0, 5, 16]}
+  cameraTarget={[0, 5, 0]}
+  data={(() => {
+    // g(x) = f(-x) reaches the height f(x0) at -x0, so each arrow joins two points of equal height.
+    const f = (x) => x * x + 3 * x + 2;
+    const g = (x) => f(-x);
+    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
+    const index = (x) => Math.round((x + 3) * 40);
+    const mirror = (x0) => [
+      { x: x0, y: f(x0), z: 0 },
+      { x: -x0, y: g(-x0), z: 0 },
+    ];
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="g" />, at: index(-2.5), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      { points: mirror(-1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: mirror(-2), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: mirror(-1.5), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
 />
 
-Grafik tersebut menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = (x - 2)^2" /> memiliki **titik puncak** di <InlineMath math="(2, 0)" />
-- Fungsi hasil refleksi <InlineMath math="g(x) = (-x - 2)^2" /> memiliki titik puncak di <InlineMath math="(-2, 0)" />
-- Kedua grafik merupakan bayangan cermin satu sama lain terhadap sumbu <InlineMath math="y" />
+Setiap panah mendatar, karena refleksi terhadap sumbu y tidak pernah mengubah tinggi. Titik puncak <InlineMath math="f" /> berada pada tinggi <InlineMath math="-\tfrac{1}{4}" />, dan bayangannya mempertahankan tinggi itu di sisi lain.
 
-## Refleksi Horizontal pada Fungsi Linear
+## Membalik Bidang Setengah Putaran
 
-Aturan refleksi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2x + 3" />.
+Refleksi terhadap sumbu y dalam tiga dimensi sama dengan **memutar bidang setengah putaran** mengelilingi sumbu y. Letakkan grafik <InlineMath math="y = \sqrt{x}" /> pada bidang <InlineMath math="z = 0" />, lalu putar bidang itu mengelilingi sumbu y. Sebuah titik <InlineMath math="(x, y, 0)" /> bergerak sepanjang setengah lingkaran dan berhenti di <InlineMath math="(-x, y, 0)" />. Gunakan kendali untuk memutar adegan dan ikuti ketiga lintasan yang digambar di dalamnya.
+
+Setiap lintasan mempertahankan tinggi yang sama selama putaran, karena putarannya mengelilingi sumbu vertikal. Itulah sebabnya bayangan cermin dari <InlineMath math="y = \sqrt{x}" /> adalah grafik <InlineMath math="y = \sqrt{-x}" />. Titik pada sumbu y tetap di tempatnya, karena setengah putaran mengelilingi sumbu itu tidak menggerakkannya.
 
 <LineEquation
-  title={<>Refleksi Horizontal Fungsi Linear <InlineMath math="f(x) = 2x + 3" /></>}
-  description={<>Garis hasil refleksi memiliki kemiringan yang berlawanan tetapi titik potong <InlineMath math="y" /> yang sama.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 48 }, (_, pointIndex) => {
-        const i = pointIndex - 27;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [2.5, 0.5, 0], at: 37 }],
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 24 }, (_, pointIndex) => {
-        const i = pointIndex + 0;
-        const x = (i - 10) * 0.5;
-        return { x, y: 2 * -x + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=-2x+3" />, offset: [-2.5, 1.5, 0], at: 10 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
+  showZAxis={true}
+  title={<>Setengah putaran grafik <InlineMath math="y = \sqrt{x}" /> mengelilingi sumbu y</>}
+  description={<>Tiga titik pada kurva bergerak sepanjang setengah lingkaran dari grafik asal ke bayangan cerminnya. Setiap titik mempertahankan tingginya, dan sumbu y tidak bergerak.</>}
+  cameraPosition={[5, 4, 9]}
+  cameraTarget={[0, 1, 0]}
+  data={(() => {
+    // The curve is sampled by t with x = t^2, so each point sits exactly on y = sqrt(x) with z = 0.
+    const ts = Array.from({ length: 41 }, (_, i) => i / 20);
+    // A point (x0, sqrt(x0), 0) turns about the y-axis: (x0 cos s, sqrt(x0), -x0 sin s).
+    const turn = (x0) =>
+      Array.from({ length: 49 }, (_, k) => {
+        const s = (k * Math.PI) / 48;
+        return { x: x0 * Math.cos(s), y: Math.sqrt(x0), z: -x0 * Math.sin(s) };
+      });
+    return [
+      {
+        points: ts.map((t) => ({ x: t * t, y: t, z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 40, offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: ts.map((t) => ({ x: -t * t, y: t, z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = \sqrt{-x}" />, at: 40, offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      { points: turn(1), smooth: false, color: "#d97706", showPoints: false },
+      { points: turn(9 / 4), smooth: false, color: "#d97706", showPoints: false },
+      { points: turn(4), smooth: false, color: "#d97706", showPoints: false },
+    ];
+  })()}
 />
 
-Kedua garis menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = 2x + 3" /> memiliki **kemiringan** positif <InlineMath math="2" />
-- Fungsi hasil refleksi <InlineMath math="g(x) = -2x + 3" /> memiliki kemiringan <InlineMath math="-2" />
-- Kedua garis memotong sumbu <InlineMath math="y" /> di titik yang sama <InlineMath math="(0, 3)" />
+## Mengganti Setiap Masukan dengan Lawannya
 
-## Nilai Mana yang Berubah pada Refleksi Horizontal
+Misalkan <InlineMath math="f(x) = x^2 + 3x + 2 = (x + 1)(x + 2)" />. Untuk mencerminkan grafik, ganti setiap <InlineMath math="x" /> dengan <InlineMath math="-x" />. Pertahankan **tanda kurung**, karena <InlineMath math="(-x)^2" /> tidak sama dengan <InlineMath math="-x^2" />:
 
-Refleksi horizontal membalik grafik terhadap sumbu <InlineMath math="y" />, jadi sumbu <InlineMath math="y" /> berperan sebagai garis cermin. Setiap titik pada grafik asli mempertahankan jaraknya ke garis cermin, tetapi berpindah ke sisi yang berlawanan.
+<BlockMath math="\begin{aligned} g(x) &= f(-x) \\ &= (-x)^2 + 3(-x) + 2 \\ &= x^2 - 3x + 2 \\ &= (x - 1)(x - 2) \end{aligned}" />
 
-Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />. Titik yang bersesuaian pada grafik <InlineMath math="f(-x)" /> adalah <InlineMath math="(-a, b)" />. Nilai <InlineMath math="y" /> tetap <InlineMath math="b" />, dan hanya tanda koordinat <InlineMath math="x" /> yang berbalik.
+Periksa pembuat nolnya. Pembuat nol <InlineMath math="f" /> adalah <InlineMath math="-1" /> dan <InlineMath math="-2" />, sedangkan pembuat nol <InlineMath math="g" /> adalah <InlineMath math="1" /> dan <InlineMath math="2" />, sehingga setiap pembuat nol berganti tanda. Titik puncak <InlineMath math="f" /> berada di <InlineMath math="x = -\tfrac{3}{2}" />, dan titik puncak <InlineMath math="g" /> di <InlineMath math="x = \tfrac{3}{2}" />, dengan tinggi yang sama, yaitu <InlineMath math="-\tfrac{1}{4}" />. Akhirnya, nilai <InlineMath math="g(1) = 1 - 3 + 2 = 0" /> sama dengan <InlineMath math="f(-1) = 0" />, seperti yang diharapkan.
 
-| Bagian fungsi | Sebelum refleksi | Setelah refleksi |
+## Pertumbuhan yang Berubah Menjadi Peluruhan
+
+Ambil <InlineMath math="g(x) = 3^x + 1" /> yang naik seiring bertambahnya <InlineMath math="x" />. Bayangan cerminnya adalah <InlineMath math="G(x) = g(-x) = 3^{-x} + 1 = \left(\tfrac{1}{3}\right)^x + 1" />. Grafik bayangan ini turun, sehingga **pertumbuhan berubah menjadi peluruhan**. Asimtot horizontal <InlineMath math="y = 1" /> tetap di tempatnya, karena refleksi horizontal tidak pernah mengubah tinggi. Titik potong sumbu y <InlineMath math="(0, 2)" /> juga tetap, karena masukan <InlineMath math="0" /> tidak berubah oleh refleksi.
+
+Periksa satu titik. Titik <InlineMath math="(1, 4)" /> pada <InlineMath math="g" /> memberi <InlineMath math="g(1) = 3 + 1 = 4" />, dan titik cerminnya <InlineMath math="(-1, 4)" /> memenuhi <InlineMath math="G(-1) = 3 + 1 = 4" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Grafik <InlineMath math="g(x) = 3^x + 1" /> dan <InlineMath math="G(x) = 3^{-x} + 1" /></>}
+  description={<>Panah membawa titik <InlineMath math="(1, 4)" /> pada <InlineMath math="g" /> ke <InlineMath math="(-1, 4)" /> pada <InlineMath math="G" />. Titik potong <InlineMath math="(0, 2)" /> tetap di tempatnya, dan asimtot <InlineMath math="y = 1" /> tetap pada tinggi yang sama.</>}
+  cameraPosition={[0, 3, 11]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const g = (x) => 3 ** x + 1;
+    const G = (x) => 3 ** -x + 1;
+    const xs = Array.from({ length: 241 }, (_, i) => -2 + i / 60);
+    const index = (x) => Math.round((x + 2) * 60);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(0)],
+        labels: [{ text: <InlineMath math="g" />, at: index(1.5), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: G(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="G" />, at: index(-1.5), offset: [-0.3, -0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: [{ x: -2, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }],
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [0, 0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1, y: 4, z: 0 }, { x: -1, y: 4, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Fungsi Genap dan Ganjil di Bawah Cermin
+
+Ada fungsi yang tidak berubah oleh cermin. Sebuah fungsi disebut **genap** jika <InlineMath math="f(-x) = f(x)" />, seperti <InlineMath math="x^2" /> dan <InlineMath math="|x|" />. Grafiknya simetris terhadap sumbu y, sehingga setiap bayangan cermin jatuh pada grafik asalnya. Sebuah fungsi disebut **ganjil** jika <InlineMath math="f(-x) = -f(x)" />, seperti <InlineMath math="x^3 - x" />. Untuk fungsi ganjil, bayangan cerminnya adalah grafik <InlineMath math="-f(x)" />, sehingga refleksi horizontal memberi hasil yang sama dengan refleksi vertikal.
+
+<BlockMath math="f(-x) = (-x)^3 - (-x) = -x^3 + x = -(x^3 - x) = -f(x)" />
+
+Grafik menampilkan <InlineMath math="f(x) = x^3 - x" />, bayangan cerminnya, dan grafik <InlineMath math="-f(x)" />. Bayangan cermin dan grafik <InlineMath math="-f(x)" /> berimpit, sehingga kedua kurva itu sama.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Fungsi ganjil <InlineMath math="x^3 - x" /> dan bayangan cerminnya</>}
+  description={<>Panah membawa titik <InlineMath math="(1{,}5,\ 1{,}875)" /> pada kurva ke <InlineMath math="(-1{,}5,\ 1{,}875)" />. Bayangan cermin berimpit dengan grafik <InlineMath math="-f(x)" />, sehingga kedua refleksi memberi hasil yang sama.</>}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const f = (x) => x * x * x - x;
+    const mirror = (x) => f(-x);
+    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
+    const index = (x) => Math.round((x + 2) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f" />, at: index(1.8), offset: [0.3, 0, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: mirror(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f(-x)" />, at: index(-1.8), offset: [-0.3, 0, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
+        smooth: false,
+        color: "#475569",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-f(x)" />, at: index(0.4), offset: [0, -0.4, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1.5, y: 1.875, z: 0 }, { x: -1.5, y: 1.875, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Domain yang Berpindah Sisi
+
+Ambil <InlineMath math="f(x) = \sqrt{x - 2}" />. Domainnya <InlineMath math="x \ge 2" />, sehingga grafiknya mulai di <InlineMath math="(2, 0)" />. Setelah refleksi, <InlineMath math="g(x) = f(-x) = \sqrt{-x - 2}" />. Syarat <InlineMath math="-x - 2 \ge 0" /> memberi <InlineMath math="x \le -2" />, jadi **domain baru adalah** <InlineMath math="(-\infty, -2]" />, dan range tetap <InlineMath math="[0, \infty)" />. Titik <InlineMath math="(6, 2)" /> pada <InlineMath math="f" /> berpindah ke <InlineMath math="(-6, 2)" />, karena <InlineMath math="g(-6) = \sqrt{6 - 2} = 2" />.
+
+Fungsi nilai mutlak memberi pemeriksaan kedua. Untuk <InlineMath math="f(x) = |x + 2|" />, titik puncaknya <InlineMath math="(-2, 0)" />. Fungsi cerminnya adalah <InlineMath math="f(-x) = |-x + 2| = |x - 2|" />, dengan titik puncak <InlineMath math="(2, 0)" />. Titik <InlineMath math="(-4, 2)" /> pada <InlineMath math="f" /> berpindah ke <InlineMath math="(4, 2)" />.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Pasangan cermin <InlineMath math="\sqrt{x - 2}" /> dan <InlineMath math="\sqrt{-x - 2}" /></>}
+  description={<>Panah membawa <InlineMath math="(6, 2)" /> pada grafik pertama ke <InlineMath math="(-6, 2)" /> pada grafik cermin. Titik awal <InlineMath math="(2, 0)" /> berpindah ke <InlineMath math="(-2, 0)" />, sehingga kedua domain saling bayangan cermin.</>}
+  cameraPosition={[0, 3, 15]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const f = (x) => Math.sqrt(x - 2);
+    const g = (x) => Math.sqrt(-x - 2);
+    const fromTwo = Array.from({ length: 241 }, (_, i) => 2 + i / 40);
+    const fromMinusEight = Array.from({ length: 241 }, (_, i) => -8 + i / 40);
+    return [
+      {
+        points: fromTwo.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [0],
+        labels: [{ text: <InlineMath math="f" />, at: 200, offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: fromMinusEight.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [240],
+        labels: [{ text: <InlineMath math="g" />, at: 40, offset: [-0.3, -0.3, 0], anchorX: "right" }],
+      },
+      { points: [{ x: 6, y: 2, z: 0 }, { x: -6, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 2, y: 0, z: 0 }, { x: -2, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+<LineEquation
+  showZAxis={false}
+  title={<>Nilai mutlak <InlineMath math="|x + 2|" /> dan bayangan cerminnya</>}
+  description={<>Titik puncak <InlineMath math="(-2, 0)" /> berpindah ke <InlineMath math="(2, 0)" />, dan titik <InlineMath math="(-4, 2)" /> berpindah ke <InlineMath math="(4, 2)" />. Kedua panah tetap mendatar.</>}
+  cameraPosition={[0, 3, 13]}
+  cameraTarget={[0, 3, 0]}
+  data={(() => {
+    const f = (x) => Math.abs(x + 2);
+    const g = (x) => f(-x);
+    const xs = Array.from({ length: 201 }, (_, i) => -5 + i / 20);
+    const index = (x) => Math.round((x + 5) * 20);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(-2)],
+        labels: [{ text: <InlineMath math="f" />, at: index(-4), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [index(2)],
+        labels: [{ text: <InlineMath math="g" />, at: index(4), offset: [0.3, 0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: -2, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: -4, y: 2, z: 0 }, { x: 4, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+## Kesalahan Membaca Tanda Negatif
+
+Kesalahan paling umum adalah **tertukar antara** <InlineMath math="f(-x)" /> dan <InlineMath math="-f(x)" />. Yang pertama membalik grafik terhadap sumbu y, sedangkan yang kedua membaliknya terhadap sumbu x. Grafik ini mengambil satu titik, <InlineMath math="P(1, 6)" />, dan mengirimkannya ke kedua tempat. Titik <InlineMath math="(-1, 6)" /> berada pada refleksi horizontal, dan titik <InlineMath math="(1, -6)" /> berada pada refleksi vertikal.
+
+<LineEquation
+  showZAxis={false}
+  title={<>Titik <InlineMath math="P(1, 6)" /> di bawah dua tanda negatif yang berbeda</>}
+  description={<>Panah ke kiri adalah refleksi horizontal, dan panah ke bawah adalah refleksi vertikal. Kedua grafik berbeda kecuali fungsinya ganjil.</>}
+  cameraPosition={[0, 0, 15]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const f = (x) => x * x + 3 * x + 2;
+    const xs = Array.from({ length: 281 }, (_, i) => -4 + i / 40);
+    const index = (x) => Math.round((x + 4) * 40);
+    return [
+      {
+        points: xs.map((x) => ({ x, y: f(-x), z: 0 })),
+        smooth: false,
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="f(-x)" />, at: index(-3), offset: [-0.3, 0.3, 0], anchorX: "right" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
+        smooth: false,
+        color: "#ea580c",
+        showPoints: true,
+        pointIndices: [index(1)],
+        labels: [{ text: <InlineMath math="f" />, at: index(2.5), offset: [0.3, 0.3, 0], anchorX: "left" }],
+      },
+      {
+        points: xs.map((x) => ({ x, y: -f(x), z: 0 })),
+        smooth: false,
+        color: "#7c3aed",
+        showPoints: false,
+        labels: [{ text: <InlineMath math="-f(x)" />, at: index(2.5), offset: [0.3, -0.3, 0], anchorX: "left" }],
+      },
+      { points: [{ x: 1, y: 6, z: 0 }, { x: -1, y: 6, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+      { points: [{ x: 1, y: 6, z: 0 }, { x: 1, y: -6, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
+    ];
+  })()}
+/>
+
+Tabel berikut memuat lima kesalahan, alasan setiap kesalahan itu keliru, dan cara mengenalinya.
+
+| Kesalahan | Mengapa salah | Cara memeriksanya |
 | --- | --- | --- |
-| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(-a, b)" /> |
-| Domain <InlineMath math="[c, d]" /> | Selang asli | Menjadi <InlineMath math="[-d, -c]" /> |
-| Range | Nilai keluaran asli | Tetap sama seperti semula |
-| Titik potong sumbu <InlineMath math="y" /> | Di <InlineMath math="x = 0" /> | Tetap di <InlineMath math="x = 0" /> |
-
-<Highlight>Domain berbalik ke sisi yang berlawanan</Highlight> karena domain memuat batas nilai <InlineMath math="x" />, dan nilai itu berubah tanda. Range tetap karena tinggi grafik di setiap titik tidak berubah. [Refleksi vertikal](/id/materi/matematika/transformasi-fungsi/refleksi-vertikal) membalik tinggi grafik dan membiarkan koordinat <InlineMath math="x" /> tetap.
-
-## Mengubah Pertumbuhan Eksponensial menjadi Peluruhan
-
-Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, refleksi mengubah pertumbuhan dari kiri ke kanan menjadi peluruhan dari kiri ke kanan.
-
-<LineEquation
-  title={<>Refleksi Horizontal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
-  description={<>Grafik hasil refleksi menurun, tetapi tetap memiliki asimtot horizontal dan titik potong sumbu <InlineMath math="y" /> yang sama.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 961 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 960) * 6;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [3, 1, 0], at: 480 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 115 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 114) * 6;
-        return { x, y: Math.pow(2, -x), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^{-x}" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-Pada fungsi eksponensial:
-- **Asimtot horizontal** tetap di <InlineMath math="y = 0" /> untuk kedua fungsi
-- Titik potong dengan sumbu <InlineMath math="y" /> tetap sama di <InlineMath math="(0, 1)" />
-- Fungsi yang semula naik menjadi turun setelah refleksi
-
-## Refleksi Horizontal pada Fungsi Akar
-
-Fungsi akar kuadrat menunjukkan bahwa refleksi juga memindahkan domain yang terbatas.
-
-<LineEquation
-  title={<>Refleksi Horizontal Fungsi Akar <InlineMath math="f(x) = \sqrt{x}" /></>}
-  description="Kurva akar kuadrat direfleksikan menghasilkan kurva yang membuka ke arah berlawanan."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#0891b2",
-      labels: [{ at: 64, text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const parameters = Array.from({ length: 121 }, (_, i) => i / 40);
-        parameters.push(1.5811388300841898);
-        return parameters
-          .sort((a, b) => a - b)
-          .map((t) => {
-            const x = -t * t;
-            return { x, y: t, z: 0 };
-          });
-      })(),
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="g(x)=\sqrt{-x}" />, offset: [-1, 1.5, 0], at: 64 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-Grafik tersebut menegaskan:
-- Domain fungsi asli <InlineMath math="f(x) = \sqrt{x}" /> adalah <InlineMath math="[0, \infty)" />
-- Domain fungsi hasil refleksi <InlineMath math="g(x) = \sqrt{-x}" /> adalah <InlineMath math="(-\infty, 0]" />
-- Kedua kurva bertemu di **titik asal** <InlineMath math="(0, 0)" />
+| Menulis <InlineMath math="-f(x)" /> untuk refleksi terhadap sumbu y | <InlineMath math="-f(x)" /> membalik tinggi, sehingga titik bergerak naik dan turun, bukan ke samping | Periksa apakah koordinat x atau tinggi yang berubah |
+| Menghilangkan kurung pada <InlineMath math="(-x)^2" /> | <InlineMath math="-x^2" /> berarti <InlineMath math="-(x^2)" />, yaitu refleksi terhadap sumbu x | Substitusikan dengan kurung, sehingga <InlineMath math="(-x)^2 = x^2" /> |
+| Hanya mengubah sebagian nilai <InlineMath math="x" /> | Setiap <InlineMath math="x" /> dalam aturan harus menjadi <InlineMath math="-x" /> | Tulis substitusi lengkap sebelum menyederhanakan |
+| Lupa membalik domain | Interval domain berubah menjadi bayangan cerminnya | Selesaikan syarat baru pada masukan yang baru |
+| Mengira fungsi genap akan berubah | Fungsi genap sama dengan bayangan cerminnya sendiri | Periksa apakah <InlineMath math="f(-x)" /> sederhana menjadi <InlineMath math="f(x)" /> |
 
 ## Latihan
 
-Tiga soal berikut memakai aturan cermin yang baru saja kamu pelajari. Setiap soal mengganti masukan <InlineMath math="x" /> menjadi <InlineMath math="-x" />, jadi semua hasilnya muncul di sisi yang berlawanan dari sumbu <InlineMath math="y" />. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+Mulai setiap soal dengan **menulis substitusi lengkap** <InlineMath math="x" /> menjadi <InlineMath math="-x" />. Lalu sederhanakan, dan periksa satu titik sebelum selesai.
 
-1. Diberikan fungsi <InlineMath math="f(x) = x^2 + 3x + 2" />. Tentukan persamaan fungsi hasil refleksi horizontal.
-
-2. Grafik fungsi <InlineMath math="g(x) = 3^x + 1" /> direfleksikan terhadap sumbu <InlineMath math="y" />. Tentukan persamaan fungsi hasilnya, lalu tentukan domain fungsi tersebut.
-
-3. Fungsi <InlineMath math="h(x) = |x + 2|" /> mengalami refleksi horizontal. Tentukan **titik puncak** dari fungsi hasil refleksi.
+1. Misalkan <InlineMath math="f(x) = x^2 - 6x + 5" />. Tentukan persamaan bayangan cerminnya terhadap sumbu y dan pembuat nol bayangan itu.
+2. Misalkan <InlineMath math="g(x) = \sqrt{x - 2}" />. Tentukan persamaan bayangan cerminnya, domainnya, dan periksa titik <InlineMath math="(6, 2)" />.
+3. Misalkan <InlineMath math="h(x) = |x + 2|" />. Tentukan persamaan bayangan cerminnya dan titik puncaknya.
+4. Apakah grafik <InlineMath math="y = x^3 - x" /> berubah pada refleksi horizontal? Jelaskan dengan <InlineMath math="f(-x)" />, dan periksa titik <InlineMath math="(2, 6)" />.
 
 ### Pembahasan
 
-**Soal 1**. Ganti **setiap masukan** dengan lawannya sebelum menyederhanakan:
+**Soal 1**. **Substitusinya** memberi <InlineMath math="f(-x) = (-x)^2 - 6(-x) + 5 = x^2 + 6x + 5" />. Pemfaktoran memberi <InlineMath math="(x + 1)(x + 5)" />, sehingga pembuat nolnya <InlineMath math="-1" /> dan <InlineMath math="-5" />. Itu adalah pembuat nol <InlineMath math="f" />, yaitu <InlineMath math="1" /> dan <InlineMath math="5" />, dengan tanda yang dibalik. Periksa: <InlineMath math="f(1) = 1 - 6 + 5 = 0" />, sehingga fungsi cermin di <InlineMath math="-1" /> bernilai nol.
 
-Refleksi horizontal:
+**Soal 2**. **Fungsi barunya** adalah <InlineMath math="g(-x) = \sqrt{-x - 2}" />. Domainnya berasal dari <InlineMath math="-x - 2 \ge 0" />, yang memberi <InlineMath math="x \le -2" />, sehingga domainnya <InlineMath math="(-\infty, -2]" />. Titik <InlineMath math="(6, 2)" /> pada grafik asal memiliki <InlineMath math="g(6) = \sqrt{4} = 2" />, sehingga titik cerminnya <InlineMath math="(-6, 2)" />. Periksa: <InlineMath math="\sqrt{-(-6) - 2} = \sqrt{4} = 2" />.
 
-<BlockMath math="F(x) = f(-x) = (-x)^2 + 3(-x) + 2 = x^2 - 3x + 2" />
+**Soal 3**. **Ganti** <InlineMath math="x" /> dengan <InlineMath math="-x" />: <InlineMath math="|-x + 2| = |x - 2|" />. Titik puncak fungsi ini berada di tempat isi tanda mutlaknya nol, sehingga <InlineMath math="x = 2" />, dan titik puncaknya <InlineMath math="(2, 0)" />, bayangan cermin dari <InlineMath math="(-2, 0)" />.
 
-<LineEquation
-  title={<>Fungsi <InlineMath math="f(x) = x^2 + 3x + 2" /> dan Hasil Refleksinya</>}
-  description={<>Pencerminan terhadap sumbu <InlineMath math="y" /> memindahkan titik puncak ke sisi berlawanan, sedangkan parabola tetap terbuka ke atas.</>}
-  cameraPosition={[0, 2, 12]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x + 3 * x + 2, z: 0 };
-      }),
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2+3x+2" />, offset: [-2.5, -3.7, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = (i - 20) * 0.25;
-        return { x, y: x * x - 3 * x + 2, z: 0 };
-      }),
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="F(x)=x^2-3x+2" />, offset: [2.4, -4.8, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Soal 2**. Tanda negatif pada masukan **tidak membatasi bilangan real**, sehingga eksponensial tetap terdefinisi untuk semua masukan real.
-
-Persamaan fungsi hasil refleksi:
-
-- Refleksi horizontal: <InlineMath math="G(x) = g(-x) = 3^{-x} + 1" />
-- Domain setelah refleksi: Tetap <InlineMath math="(-\infty, \infty)" /> karena fungsi eksponensial terdefinisi untuk semua bilangan real
-
-Visualisasi:
-
-<LineEquation
-  title={<>Fungsi <InlineMath math="g(x) = 3^x + 1" /> dan Hasil Refleksinya</>}
-  description="Kurva eksponensial yang naik direfleksikan menjadi kurva yang turun dengan asimtot yang sama."
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 691 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 690) * 6;
-        return { x, y: Math.pow(3, x) + 1, z: 0 };
-      }),
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="g(x)=3^x+1" />, offset: [3, 1, 0], at: 345 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 185 }, (_, pointIndex) => {
-        const x = -3 + (pointIndex / 184) * 6;
-        return { x, y: Math.pow(3, -x) + 1, z: 0 };
-      }),
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="G(x)=3^{-x}+1" />, offset: [-3, 1, 0], at: 57 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
-
-**Soal 3**. Setelah pencerminan horizontal, titik puncak berada saat ekspresi di dalam nilai mutlak bernilai nol.
-
-<BlockMath math="-x+2=0\;\Rightarrow\;x=2,\qquad H(2)=0" />
-
-Nilai mutlak mencapai minimum ketika **isi nilai mutlak nol**. Selesaikan persamaan itu untuk memperoleh koordinat mendatar titik puncak.
-
-Fungsi asli <InlineMath math="h(x) = |x + 2|" /> memiliki titik puncak di <InlineMath math="(-2, 0)" />.
-Setelah refleksi horizontal: <InlineMath math="H(x) = |-x + 2| = |-(x - 2)| = |x - 2|" />, titik puncak menjadi <InlineMath math="(2, 0)" />.
-
-<LineEquation
-  title={<>Fungsi <InlineMath math="h(x) = |x + 2|" /> dan Hasil Refleksinya</>}
-  description={<>Fungsi nilai mutlak direfleksikan terhadap sumbu <InlineMath math="y" /> menghasilkan fungsi dengan titik puncak yang berlawanan.</>}
-  cameraPosition={[0, 3, 16]}
-  cameraTarget={[0, 3, 0]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 94 }, (_, pointIndex) => {
-        const i = pointIndex - 41;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(x + 2), z: 0 };
-      }),
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="h(x)=|x+2|" />, offset: [-1, 1, 0], at: 61 }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 86 }, (_, pointIndex) => {
-        const i = pointIndex - 18;
-        const x = (i - 20) * 0.25;
-        return { x, y: Math.abs(-x + 2), z: 0 };
-      }),
-      color: "#059669",
-      labels: [{ text: <InlineMath math="H(x)=|-x+2|" />, offset: [1, -1, 0], at: 38 }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+**Soal 4**. **Substitusinya** memberi <InlineMath math="f(-x) = (-x)^3 - (-x) = -x^3 + x = -f(x)" />. Grafiknya karena itu berubah, sebab bayangan cerminnya adalah grafik <InlineMath math="-f(x)" />, kurva yang berbeda. Periksa: <InlineMath math="f(2) = 8 - 2 = 6" />, sehingga titik cerminnya <InlineMath math="(-2, 6)" />, dan memang <InlineMath math="-f(-2) = -(-6) = 6" />.
