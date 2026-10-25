@@ -98,7 +98,8 @@ signature or release state.
    Convex transaction.
 3. Recompute and verify every signed candidate count and digest.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
-   operator-selected recovery ID.
+   operator-selected recovery ID, unless the candidate is a declared bootstrap
+   over a retired generation (see the bootstrap section below).
 5. Re-fetch the deployed Nakafa renderer manifest. Require an exact hash for a
    renderer-changing candidate, or prove directional compatibility with the
    retained frozen manifest for a scoped content-only candidate.
@@ -138,6 +139,35 @@ If the activation response is lost, retry first reads historical completion
 evidence for the exact active and recovery pair. A matching completed receipt
 is authenticated and returned without a second activation. A missing lookup
 continues from current state. A different identity fails closed.
+
+### Bootstrap over a retired generation
+
+A content contract generation change can make the active release unreadable by
+the new decoder and renderer. Its artifacts cannot be restored under the new
+generation, so no inverse can protect the switch. The first release of the new
+generation is therefore a declared bootstrap, the only exception to the verified
+inverse rule:
+
+- The operator names the retired active release with `--bootstrap-over <id>` in
+  place of `--recovery-id`. The protected workflow takes the same declaration as
+  `bootstrap_over`, and a bootstrap takes exactly one target.
+- The publisher checks the declaration before any target write. The candidate's
+  base must be that release, and the candidate must replace every head of its
+  base: `resultCount` equals `upsertCount`, so no base head survives. The
+  publisher then stages and verifies the candidate, runs the renderer preflight,
+  and activates. It never derives, stages, or verifies an inverse.
+- Nakafa receives no declaration from the publisher. It decides eligibility from
+  its own state and the signed manifest. A candidate is a bootstrap only when its
+  base is the active release, the target records the active generation as
+  retired, the replacement counts hold, and no recovery is staged. The candidate
+  stores that decision, and activation skips the recovery requirement only for a
+  stored bootstrap.
+- A bootstrap has no accept or recover step. Accept and recover refuse it, and
+  parity does not run for it because it runs on one target.
+- The switch is one way. The undo is a forward release of the last commit of the
+  retired generation, compiled under the current renderer, which then has an
+  ordinary verified inverse. The target cannot return to the retired generation
+  by rollback.
 
 ### Failure and cleanup
 
@@ -196,7 +226,8 @@ source repository is public.
 ## Consequences
 
 - Every release and explicit rollback has a verified recovery path before it
-  becomes visible.
+  becomes visible, except a declared bootstrap over a retired generation, whose
+  undo is a forward release.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additional components in existing renderer domains can deploy before
@@ -207,12 +238,14 @@ source repository is public.
 - A deployment that understands a newly published domain remains the rollback
   target until that content has been rolled back or superseded.
 - Lost responses and runner crashes resume from durable state.
-- New candidates wait until retained recovery is accepted or activated.
+- New candidates wait until retained recovery is accepted or activated. A
+  bootstrap retains no recovery, so it needs no such wait.
 - Cleanup remains bounded and cannot become a hidden finalization phase.
 
 ## Rejected
 
-- Activating a candidate before its inverse is verified.
+- Activating a candidate before its inverse is verified, except the declared
+  bootstrap over a retired generation.
 - A mutable `live` copy followed by a long finalization loop.
 - Rewinding a global pointer as rollback.
 - Sharing one release ID between candidate and recovery.
