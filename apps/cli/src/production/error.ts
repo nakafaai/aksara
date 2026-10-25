@@ -2,6 +2,7 @@ import { Schema } from "effect";
 
 /** One named production option that a command accepts or rejects. */
 export const ProductionOptionSchema = Schema.Literals([
+  "--bootstrap-over",
   "--rebuild",
   "--recovery-id",
   "--release-id",
@@ -25,6 +26,7 @@ export class ProductionArgumentsError extends Schema.TaggedError<
   ]),
   option: Schema.Literals([...ProductionOptionSchema.literals, "command"]),
   reason: Schema.Literals([
+    "conflict",
     "duplicate",
     "identity",
     "missing",

@@ -1,0 +1,30 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 9",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Eine Hin- und Rückbahn bedeutet, vom einen Ende des Beckens zum anderen und wieder zurück zu schwimmen. Es sei <InlineMath math="U_n" /> die Anzahl der Hin- und Rückbahnen in der Woche <InlineMath math="n" />. Die Aufgabe gibt <InlineMath math="U_1=2" /> vor und sagt, dass die Woche <InlineMath math="n+1" /> genau <InlineMath math="n" /> Hin- und Rückbahnen mehr hat als die Woche <InlineMath math="n" />. Die Zuwächse sind also **nicht gleich**. Sie lauten <InlineMath math="1, 2, 3, 4, \ldots" />, und jede Woche entsteht aus der Vorwoche, indem du den nächsten Zuwachs addierst.
+
+Wenn du die Zuwächse nacheinander addierst, erhältst du <InlineMath math="U_2=2+1=3" />, <InlineMath math="U_3=3+2=5" />, <InlineMath math="U_4=5+3=8" />, <InlineMath math="U_5=8+4=12" />, <InlineMath math="U_6=12+5=17" /> und <InlineMath math="U_7=17+6=23" />.
+
+Für eine beliebige Woche <InlineMath math="n" /> beginnst du bei <InlineMath math="U_1" /> und addierst alle Zuwächse von Woche 1 bis Woche <InlineMath math="n" />, also <InlineMath math="1+2+\cdots+(n-1)" />. Die Summe der natürlichen Zahlen von 1 bis <InlineMath math="n-1" /> ist <InlineMath math="\frac{(n-1)n}{2}" />. Daher gilt:
+
+<BlockMath math="\begin{aligned}
+U_n&=2+\frac{(n-1)n}{2}\\
+&=\frac{n^2-n+4}{2}
+\end{aligned}" />
+
+Die Formel stimmt mit den bereits berechneten Werten überein. Für <InlineMath math="n=1" /> ergibt sie <InlineMath math="\frac{1-1+4}{2}=2" />, für <InlineMath math="n=5" /> ergibt sie <InlineMath math="\frac{25-5+4}{2}=12" />.
+
+Die erste Aussage ist falsch. In Woche 6 sind es <InlineMath math="17" /> Hin- und Rückbahnen, nicht 15. Die 15 entsteht, wenn du den Zuwachs von Woche 5 auf Woche 6 mit 3 ansetzt. Er beträgt aber 5.
+
+Die zweite Aussage ist richtig. Von Woche 4 auf Woche 5 steigt die Anzahl um <InlineMath math="U_5-U_4=12-8=4" />, denn der Zuwachs nach Woche <InlineMath math="n" /> beträgt immer <InlineMath math="n" />, hier also <InlineMath math="n=4" />.
+
+Die dritte Aussage ist falsch. In Woche 2 ergibt <InlineMath math="2n" /> den Wert 4, aber <InlineMath math="U_2=3" />. Dieser Ausdruck rechnet mit einem festen Zuwachs von 2 pro Woche. Der Zuwachs wächst jedoch jede Woche um 1.
+
+Die vierte Aussage ist richtig. Die Formel <InlineMath math="U_n=\frac{n^2-n+4}{2}" /> wurde für jede Woche <InlineMath math="n" /> hergeleitet.
+
+Die fünfte Aussage ist richtig. In Woche 6 sind es 17 Hin- und Rückbahnen, also noch nicht mehr als 20, und in Woche 7 sind es 23. Jeder Zuwachs ist positiv, daher steigt die Anzahl weiter, und jede Woche ab Woche 7 hat mehr als 20 Hin- und Rückbahnen.
+
+Richtig sind also der Anstieg um 4 Hin- und Rückbahnen von Woche 4 auf Woche 5, die Formel für die Anzahl in Woche <InlineMath math="n" /> und mehr als 20 Hin- und Rückbahnen in jeder Woche ab Woche 7.

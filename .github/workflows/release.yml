@@ -24,11 +24,15 @@ on:
           - development
           - both
       release_id:
-        description: Exact release ID for the requested operation. For release, a fresh <slug>-YYYYMMDD identity that must differ from the recovery ID. For accept, recover, abort, or cleanup, the existing release that operation targets.
+        description: Exact release ID for the requested operation. For release, a fresh <slug>-YYYYMMDD identity that must differ from the recovery ID and the bootstrap base. For accept, recover, abort, or cleanup, the existing release that operation targets.
         required: true
         type: string
       recovery_id:
-        description: Retained-inverse identity for release, accept, or recover. For release, a fresh identity, conventionally <release-id>-inverse, that must differ from both the release ID and the active base release. For accept or recover, the exact retained inverse staged alongside the candidate.
+        description: Retained-inverse identity for release, accept, or recover. For release, a fresh identity, conventionally <release-id>-inverse, that must differ from both the release ID and the active base release. For accept or recover, the exact retained inverse staged alongside the candidate. A release that bootstraps over a retired base leaves it empty.
+        required: false
+        type: string
+      bootstrap_over:
+        description: Retired active release ID that a full-replacement release supersedes with no retained inverse, for the one-way content generation switch. Only release takes it, with one target and no recovery ID. Undo is a forward release of the last commit of the retired generation.
         required: false
         type: string
       rebuild:
@@ -58,6 +62,80 @@ jobs:
       attestations: read
       contents: read
     steps:
+      # The inputs are checked before any job spends time, so a malformed dispatch fails
+      # in seconds instead of after the publication verification.
+      - name: Validate target
+        env:
+          OPERATION: ${{ inputs.operation }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          case "$TARGET" in
+            production|development|both) ;;
+            *) echo "Unknown publication target." >&2; exit 1 ;;
+          esac
+          if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
+            echo "Recovery, abort, and cleanup take one target, not both." >&2
+            exit 1
+          fi
+
+      - name: Validate operation
+        env:
+          BOOTSTRAP_OVER: ${{ inputs.bootstrap_over }}
+          OPERATION: ${{ inputs.operation }}
+          REBUILD: ${{ inputs.rebuild }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RELEASE_ID: ${{ inputs.release_id }}
+          PUBLICATION_SCOPE: ${{ inputs.scope }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          # A release keeps exactly one retained decision: its inverse, or the retired base it replaces.
+          if [[ "$OPERATION" == "release" && -n "$BOOTSTRAP_OVER" ]]; then
+            if [[ -n "$RECOVERY_ID" ]]; then
+              echo "A release names either its retained inverse or its bootstrap base, not both." >&2
+              exit 1
+            fi
+            if [[ "$BOOTSTRAP_OVER" == "$RELEASE_ID" ]]; then
+              echo "Release and bootstrap base identities must differ." >&2
+              exit 1
+            fi
+            if [[ "$TARGET" == "both" ]]; then
+              echo "A bootstrap takes one target, not both." >&2
+              exit 1
+            fi
+          elif [[ -n "$BOOTSTRAP_OVER" ]]; then
+            echo "Only release may bootstrap over a retired base." >&2
+            exit 1
+          elif [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+            if [[ -z "$RECOVERY_ID" ]]; then
+              if [[ "$OPERATION" == "release" ]]; then
+                echo "A release must name its exact retained inverse or the retired base it bootstraps over." >&2
+              else
+                echo "The operation must name its exact retained inverse." >&2
+              fi
+              exit 1
+            fi
+            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
+              echo "Active and recovery release identities must differ." >&2
+              exit 1
+            fi
+          elif [[ -n "$RECOVERY_ID" ]]; then
+            echo "Abort and cleanup do not accept a recovery identity." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "release" ]]; then
+            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
+              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
+              exit 1
+            fi
+          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
+            echo "Only release may select a publication scope." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
+            echo "Only release may rebuild selected families." >&2
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -194,55 +272,6 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Validate target
-        env:
-          OPERATION: ${{ inputs.operation }}
-          TARGET: ${{ inputs.target }}
-        run: |
-          case "$TARGET" in
-            production|development|both) ;;
-            *) echo "Unknown publication target." >&2; exit 1 ;;
-          esac
-          if [[ "$TARGET" == "both" && "$OPERATION" != "release" && "$OPERATION" != "accept" ]]; then
-            echo "Recovery, abort, and cleanup take one target, not both." >&2
-            exit 1
-          fi
-
-      - name: Validate operation
-        env:
-          OPERATION: ${{ inputs.operation }}
-          REBUILD: ${{ inputs.rebuild }}
-          RECOVERY_ID: ${{ inputs.recovery_id }}
-          RELEASE_ID: ${{ inputs.release_id }}
-          PUBLICATION_SCOPE: ${{ inputs.scope }}
-        run: |
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
-            if [[ -z "$RECOVERY_ID" ]]; then
-              echo "The operation must name its exact retained inverse." >&2
-              exit 1
-            fi
-            if [[ "$RECOVERY_ID" == "$RELEASE_ID" ]]; then
-              echo "Active and recovery release identities must differ." >&2
-              exit 1
-            fi
-          elif [[ -n "$RECOVERY_ID" ]]; then
-            echo "Abort and cleanup do not accept a recovery identity." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" == "release" ]]; then
-            if ! jq -e 'type == "array" and length > 0 and all(.[]; type == "string" and length > 0)' <<<"$PUBLICATION_SCOPE" >/dev/null; then
-              echo "A release must provide a non-empty JSON array of canonical scope selectors." >&2
-              exit 1
-            fi
-          elif [[ -n "$PUBLICATION_SCOPE" ]]; then
-            echo "Only release may select a publication scope." >&2
-            exit 1
-          fi
-          if [[ "$OPERATION" != "release" && "$REBUILD" == "true" ]]; then
-            echo "Only release may rebuild selected families." >&2
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -299,6 +328,7 @@ jobs:
           AKSARA_RENDERER_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           AKSARA_SIGNING_KEY_ID: ${{ vars.AKSARA_SIGNING_KEY_ID }}
           AKSARA_SIGNING_PRIVATE_KEY: ${{ secrets.AKSARA_SIGNING_PRIVATE_KEY }}
+          BOOTSTRAP_OVER: ${{ inputs.bootstrap_over }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
@@ -313,8 +343,13 @@ jobs:
           if [[ "$REBUILD" == "true" ]]; then
             rebuild_args+=(--rebuild)
           fi
+          if [[ -n "$BOOTSTRAP_OVER" ]]; then
+            retention_args=(--bootstrap-over "$BOOTSTRAP_OVER")
+          else
+            retention_args=(--recovery-id "$RECOVERY_ID")
+          fi
           bun run release -- --release-id "$RELEASE_ID" \
-            --recovery-id "$RECOVERY_ID" "${scope_args[@]}" "${rebuild_args[@]}"
+            "${retention_args[@]}" "${scope_args[@]}" "${rebuild_args[@]}"
 
       # Only an acceptance of both targets compares them. One target accepts
       # alone, because the other deployment may not hold the release yet.

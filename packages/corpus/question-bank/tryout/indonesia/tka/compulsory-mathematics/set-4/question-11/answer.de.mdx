@@ -1,0 +1,35 @@
+export const metadata = {
+  title: "Lösung zu Aufgabe 11",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-10-02",
+};
+
+Die kürzeste neue Straße vom Beobachtungsposten <InlineMath math="P" /> zur Hauptstraße ist die Strecke, die **senkrecht auf der Hauptstraße** steht. In einem Punkt trifft sie die Hauptstraße. Mit <InlineMath math="P" /> und diesem Treffpunkt bildet jeder andere Punkt auf der Hauptstraße ein rechtwinkliges Dreieck, daher ist er immer weiter von <InlineMath math="P" /> entfernt. Du brauchst also nur den Abstand von <InlineMath math="P" /> zur Geraden <InlineMath math="AB" />.
+
+Zuerst bestimmst du die Steigung der Geraden <InlineMath math="AB" />:
+
+<BlockMath math="\begin{aligned}
+m&=\frac{1-9}{11-5}=\frac{-8}{6}=-\frac43
+\end{aligned}" />
+
+Mit dem Punkt <InlineMath math="A(5,9)" /> lautet die Gleichung <InlineMath math="y-9=-\frac43(x-5)" />. Multipliziere beide Seiten mit 3 und ordne um:
+
+<BlockMath math="\begin{aligned}
+3y-27&=-4x+20 \\
+4x+3y&=47
+\end{aligned}" />
+
+Den Abstand von <InlineMath math="P(2,3)" /> zu dieser Geraden berechnest du mit der Formel für den Abstand eines Punktes zu einer Geraden:
+
+<BlockMath math="\begin{aligned}
+d&=\frac{|4\cdot2+3\cdot3-47|}{\sqrt{4^2+3^2}}=\frac{|-30|}{\sqrt{25}}=\frac{30}{5}=6\text{ km}
+\end{aligned}" />
+
+Prüfe das Ergebnis mit dem Lotfußpunkt <InlineMath math="F" />. Für <InlineMath math="t=\frac65" /> ist <InlineMath math="F=P+t(4,3)" />, also <InlineMath math="F(6{,}8;\,6{,}6)" />. Der Vektor <InlineMath math="\overrightarrow{PF}=(4{,}8;\,3{,}6)" /> hat die Länge <InlineMath math="\sqrt{4{,}8^2+3{,}6^2}=\sqrt{36}=6\text{ km}" />, das stimmt mit dem Ergebnis überein. Zwischen <InlineMath math="5" /> und <InlineMath math="11" /> liegt die x-Koordinate <InlineMath math="6{,}8" />. Damit liegt <InlineMath math="F" /> auf der Strecke <InlineMath math="AB" />, und die neue Straße trifft die Hauptstraße tatsächlich dort.
+
+- <InlineMath math="1{,}2\text{ km}" /> entsteht, wenn du durch 25 teilst, das Quadrat von 5, und die Wurzel vergisst.
+- Wenn du durch 4 statt durch 5 teilst, erhältst du <InlineMath math="7{,}5\text{ km}" />. Die Wurzel im Nenner ist dann falsch.
+- <InlineMath math="\sqrt{45}\text{ km}" /> entspricht dem Abstand von <InlineMath math="P" /> zu <InlineMath math="A" />. Diese Strecke steht nicht senkrecht auf der Hauptstraße.
+- Der Abstand von <InlineMath math="P" /> zu <InlineMath math="B" /> ist <InlineMath math="\sqrt{85}\text{ km}" />, und auch diese Strecke steht nicht senkrecht auf der Hauptstraße.
+
+Die kürzeste neue Straße ist also 6 km lang.

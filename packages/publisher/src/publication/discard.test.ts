@@ -41,7 +41,10 @@ describe("publication discard", () => {
       yield* discardFailedCandidate(
         state.target,
         candidate.release.manifest.releaseId,
-        recovery.release.manifest.releaseId
+        {
+          kind: "inverse",
+          recoveryId: recovery.release.manifest.releaseId,
+        }
       );
       expect(MutableList.toArray(state.abortOrder)).toEqual([
         recovery.release.manifest.releaseId,
@@ -58,13 +61,36 @@ describe("publication discard", () => {
       const error = yield* discardFailedCandidate(
         state.target,
         candidate.release.manifest.releaseId,
-        recoveryId
+        { kind: "inverse", recoveryId }
       ).pipe(Effect.flip);
       expect(error).toMatchObject({
         _tag: "PublicationRecoveryIdentityError",
         recoveryId,
       });
       expect(MutableList.toArray(state.abortOrder)).toEqual([]);
+    })
+  );
+
+  it.effect("aborts only the failed candidate of a bootstrap", () =>
+    Effect.gen(function* () {
+      const candidate = yield* Effect.promise(() =>
+        makeSignedBundle("test-discard-bootstrap")
+      );
+      const state = makeTarget(candidate.release);
+      yield* state.target.stageRelease(candidate);
+
+      yield* discardFailedCandidate(
+        state.target,
+        candidate.release.manifest.releaseId,
+        {
+          baseReleaseId: ReleaseIdSchema.make("test-discard-retired"),
+          kind: "bootstrap",
+        }
+      );
+      expect(MutableList.toArray(state.abortOrder)).toEqual([
+        candidate.release.manifest.releaseId,
+      ]);
+      expect(state.stageRecovery).not.toHaveBeenCalled();
     })
   );
 
@@ -78,7 +104,10 @@ describe("publication discard", () => {
       yield* discardFailedCandidate(
         state.target,
         candidate.release.manifest.releaseId,
-        ReleaseIdSchema.make("test-discard-empty-recovery")
+        {
+          kind: "inverse",
+          recoveryId: ReleaseIdSchema.make("test-discard-empty-recovery"),
+        }
       );
       expect(MutableList.toArray(state.abortOrder)).toEqual([]);
     })

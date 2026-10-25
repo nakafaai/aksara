@@ -25,7 +25,7 @@ import {
 
 layer(realQuestionCorpusLayer)("question source", (it) => {
   it.effect(
-    "discovers and validates all 1850 real question directories",
+    "discovers and validates all 1875 real question directories",
     () =>
       Effect.gen(function* () {
         const sources = yield* discoverSyntheticQuestionSources(
@@ -35,8 +35,8 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
         const itemsByRoot = indexQuestionItems(sources);
         const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
 
-        expect(sources).toHaveLength(1850);
-        expect(MutableHashMap.size(itemsByRoot)).toBe(1850);
+        expect(sources).toHaveLength(1875);
+        expect(MutableHashMap.size(itemsByRoot)).toBe(1875);
         expect(
           Option.getOrUndefined(
             MutableHashMap.get(itemsByRoot, first.sourceRoot)
@@ -46,7 +46,7 @@ layer(realQuestionCorpusLayer)("question source", (it) => {
           HashSet.size(
             HashSet.fromIterable(Arr.map(sources, ({ setKey }) => setKey))
           )
-        ).toBe(80);
+        ).toBe(81);
         for (const { count, rendererDomain } of questionRendererCounts) {
           expect(
             Arr.filter(

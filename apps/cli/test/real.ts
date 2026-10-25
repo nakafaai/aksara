@@ -90,6 +90,19 @@ export const RENDERER_MANIFEST = await Effect.runPromise(
     publishedDomains: ["mathematics"],
   })
 );
+/** A live renderer whose hash differs from RENDERER_MANIFEST by one probe component. */
+export const LIVE_RENDERER = await Effect.runPromise(
+  createRendererManifest({
+    base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
+    domains: RENDERER_MANIFEST.domains,
+    publishedDomains: RENDERER_MANIFEST.publishedDomains,
+  })
+);
+/** Every content family and the try-out snapshot, the scope that closes a renderer change. */
+export const BOOTSTRAP_SCOPE = PublicationScopeSchema.make({
+  families: ["article", "material", "page", "question"],
+  snapshots: ["tryout"],
+});
 
 const TestRepositoriesSchema = Schema.Struct({
   aksaraRoot: Schema.String,
