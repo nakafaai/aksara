@@ -123,6 +123,7 @@ describe("Nakafa child process", () => {
           "VITE_CONVEX_SITE_URL",
           "VITE_CONVEX_URL",
           "VITE_POSTHOG_KEY",
+          "VITE_POSTHOG_PROXY_HOST",
           "VITE_POSTHOG_UI_HOST",
         ]);
         expect(started.environment).toMatchObject({
@@ -158,6 +159,7 @@ describe("Nakafa child process", () => {
             result.child.origin
           ).toString(),
           VITE_POSTHOG_KEY: "phc_aksara_preview",
+          VITE_POSTHOG_PROXY_HOST: result.child.origin.toString(),
           VITE_POSTHOG_UI_HOST: result.child.origin.toString(),
         });
         expect(started.environment).not.toHaveProperty(

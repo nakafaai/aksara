@@ -41,6 +41,7 @@ const ChildEnvironmentSchema = Schema.Struct({
   VITE_POSTHOG_KEY: Schema.String.pipe(
     Schema.check(Schema.isStartingWith("phc_"))
   ),
+  VITE_POSTHOG_PROXY_HOST: ChildUrlSchema,
   VITE_POSTHOG_UI_HOST: ChildUrlSchema,
 });
 
@@ -127,6 +128,9 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       ).toString(),
       VITE_CONVEX_URL: new URL("/__aksara-preview/convex", origin).toString(),
       VITE_POSTHOG_KEY: "phc_aksara_preview",
+      // The preview child never admits analytics, so its own origin serves as the
+      // proxy host without receiving a single event.
+      VITE_POSTHOG_PROXY_HOST: origin.toString(),
       VITE_POSTHOG_UI_HOST: origin.toString(),
     }).pipe(Effect.mapError(childEnvironmentFailure));
   }
