@@ -4,22 +4,27 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-Setiap gelombang, setiap orang yang baru mengetahui kabar memberi tahu **tiga orang baru**. Jumlah orang baru pada gelombang ke-<InlineMath math="k" /> karena itu adalah <InlineMath math="3^k" />, dan orang pertama tidak ikut dihitung sebagai orang baru. Jadi jumlah orang yang mengetahui kabar setelah <InlineMath math="k" /> gelombang adalah orang pertama ditambah semua orang baru:
+Satu bolak-balik berarti berenang dari satu ujung kolam ke ujung lainnya lalu kembali. Misalkan <InlineMath math="U_n" /> adalah banyak bolak-balik pada minggu ke-<InlineMath math="n" />. Soal memberi <InlineMath math="U_1=2" /> dan menyatakan bahwa <InlineMath math="U_{n+1}=U_n+n" />. Selisih antarminggu **tidak tetap**: selisih itu berurutan <InlineMath math="1, 2, 3, 4, \ldots" />, sehingga kita menjumlahkan selisih itu satu per satu.
+
+Dengan menambahkan selisih satu per satu, diperoleh <InlineMath math="U_2=2+1=3" />, <InlineMath math="U_3=3+2=5" />, <InlineMath math="U_4=5+3=8" />, <InlineMath math="U_5=8+4=12" />, <InlineMath math="U_6=12+5=17" />, dan <InlineMath math="U_7=17+6=23" />.
+
+Untuk minggu ke-<InlineMath math="n" /> secara umum, <InlineMath math="U_n" /> sama dengan <InlineMath math="U_1" /> ditambah semua selisih dari minggu pertama sampai minggu ke-<InlineMath math="n" />, yaitu <InlineMath math="1+2+\cdots+(n-1)" />. Jumlah bilangan asli dari 1 sampai <InlineMath math="n-1" /> adalah <InlineMath math="\frac{(n-1)n}{2}" />, sehingga:
 
 <BlockMath math="\begin{aligned}
-1+3+3^2+\cdots+3^k&=\frac{3^{k+1}-1}{2}
+U_n&=2+\frac{(n-1)n}{2}\\
+&=\frac{n^2-n+4}{2}
 \end{aligned}" />
 
-Dengan rumus ini kamu bisa memeriksa setiap pernyataan. Untuk <InlineMath math="k=3" /> diperoleh <InlineMath math="\frac{3^4-1}{2}=40" />, dan untuk <InlineMath math="k=4" /> diperoleh <InlineMath math="\frac{3^5-1}{2}=121" />.
+Rumus ini sesuai dengan nilai yang sudah dihitung. Untuk <InlineMath math="n=1" /> diperoleh <InlineMath math="\frac{1-1+4}{2}=2" />, dan untuk <InlineMath math="n=5" /> diperoleh <InlineMath math="\frac{25-5+4}{2}=12" />.
 
-Pernyataan tentang gelombang ke-2 yang menyebut 6 orang baru salah. Pada gelombang ke-2 ada <InlineMath math="3^2=9" /> orang baru, karena setiap dari tiga orang pada gelombang pertama memberi tahu tiga orang lagi. Angka 6 muncul jika jumlah orang baru hanya dikali dua, padahal setiap gelombang mengalikannya dengan tiga.
+Pernyataan pertama salah. Pada minggu ke-6 banyaknya <InlineMath math="17" /> bolak-balik, bukan 15. Angka 15 muncul jika pertambahan dari minggu ke-5 ke minggu ke-6 dianggap 3, padahal pertambahannya 5.
 
-Pernyataan tentang tiga gelombang benar. Orang yang mengetahui kabar berjumlah <InlineMath math="1+3+9+27=40" />, termasuk orang pertama.
+Pernyataan kedua benar. Dari minggu ke-4 ke minggu ke-5 banyaknya bertambah <InlineMath math="U_5-U_4=12-8=4" />, karena pertambahan setelah minggu ke-<InlineMath math="n" /> selalu sebanyak <InlineMath math="n" />, dan di sini <InlineMath math="n=4" />.
 
-Pernyataan tentang empat gelombang juga benar. Jumlahnya <InlineMath math="1+3+9+27+81=121" />, dan <InlineMath math="121>120" />.
+Pernyataan ketiga salah. Untuk minggu ke-2, rumus <InlineMath math="2n" /> memberi 4, sedangkan <InlineMath math="U_2=3" />. Rumus itu mengandaikan pertambahan tetap 2 setiap minggu, padahal pertambahannya bertambah satu setiap minggu.
 
-Pernyataan tentang gelombang ke-4 yang menyebut 64 orang baru salah. Orang baru pada gelombang ke-4 adalah <InlineMath math="3^4=81" />. Angka 64 adalah <InlineMath math="4^3" />, hasil dari menukar bilangan pokok dan pangkatnya.
+Pernyataan keempat benar. Rumus <InlineMath math="U_n=\frac{n^2-n+4}{2}" /> diturunkan untuk setiap minggu ke-<InlineMath math="n" />.
 
-Pernyataan tentang gelombang ke-3 benar. Orang baru pada gelombang ke-3 adalah <InlineMath math="27=3\cdot9" />, yaitu tiga kali orang baru pada gelombang ke-2.
+Pernyataan kelima benar. Pada minggu ke-6 banyaknya 17 belum lebih dari 20, sedangkan pada minggu ke-7 banyaknya 23. Setiap pertambahan positif, jadi banyaknya bolak-balik terus naik, dan setiap minggu mulai minggu ke-7 memiliki lebih dari 20 bolak-balik.
 
-Jadi pernyataan yang benar adalah tentang 40 orang setelah tiga gelombang, tentang lebih dari 120 orang setelah empat gelombang, dan tentang 27 orang baru pada gelombang ke-3.
+Jadi pernyataan yang benar adalah tentang kenaikan 4 bolak-balik dari minggu ke-4 ke minggu ke-5, rumus banyak bolak-balik pada minggu ke-<InlineMath math="n" />, dan banyak bolak-balik yang lebih dari 20 mulai minggu ke-7.

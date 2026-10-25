@@ -12,28 +12,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Pada gelombang ke-$$2$$ ada $$6$$ orang yang baru mengetahui kabar itu.",
+          label: "Pada minggu ke-$$6$$ ia berenang $$15$$ bolak-balik.",
         },
         {
           isCorrect: true,
           label:
-            "Setelah $$3$$ gelombang, ada $$40$$ orang yang mengetahui kabar itu, termasuk orang pertama.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Setelah $$4$$ gelombang, jumlah orang yang mengetahui kabar itu lebih dari $$120$$ orang.",
+            "Dari minggu ke-$$4$$ ke minggu ke-$$5$$, banyak bolak-balik bertambah $$4$$.",
         },
         {
           isCorrect: false,
           label:
-            "Pada gelombang ke-$$4$$ ada $$64$$ orang yang baru mengetahui kabar itu.",
+            "Untuk setiap bilangan asli $$n$$, banyak bolak-balik pada minggu ke-$$n$$ sama dengan $$2n$$.",
         },
         {
           isCorrect: true,
           label:
-            "Jumlah orang yang baru pada gelombang ke-$$3$$ adalah tiga kali jumlah orang yang baru pada gelombang ke-$$2$$.",
+            "Untuk setiap bilangan asli $$n$$, banyak bolak-balik pada minggu ke-$$n$$ sama dengan $$\\frac{n^2-n+4}{2}$$.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Mulai minggu ke-$$7$$, banyak bolak-balik dalam satu minggu lebih dari $$20$$.",
         },
       ],
     },

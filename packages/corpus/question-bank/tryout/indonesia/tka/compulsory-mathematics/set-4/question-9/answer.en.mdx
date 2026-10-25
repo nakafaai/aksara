@@ -4,22 +4,27 @@ export const metadata = {
   datePublished: "2026-10-02",
 };
 
-In each wave, every person who has just learned the message tells **three new people**. So the number of new people in wave <InlineMath math="k" /> is <InlineMath math="3^k" />, and the first person is not counted as new. The number of people who know the message after <InlineMath math="k" /> waves is therefore the first person plus all the new people:
+One round trip means swimming from one end of the pool to the other and back. Let <InlineMath math="U_n" /> be the number of round trips in week <InlineMath math="n" />. The question gives <InlineMath math="U_1=2" /> and says that week <InlineMath math="n+1" /> has <InlineMath math="n" /> more round trips than week <InlineMath math="n" />. The increase is therefore **not constant**. The increases from one week to the next are <InlineMath math="1, 2, 3, 4, \ldots" />, so each week's total is built by adding the next increase to the previous total.
+
+Adding the increases one at a time gives <InlineMath math="U_2=2+1=3" />, <InlineMath math="U_3=3+2=5" />, <InlineMath math="U_4=5+3=8" />, <InlineMath math="U_5=8+4=12" />, <InlineMath math="U_6=12+5=17" />, and <InlineMath math="U_7=17+6=23" />.
+
+For a general week <InlineMath math="n" />, start from <InlineMath math="U_1" /> and add every increase from week 1 up to week <InlineMath math="n" />, which are <InlineMath math="1+2+\cdots+(n-1)" />. The sum of the whole numbers from 1 to <InlineMath math="n-1" /> is <InlineMath math="\frac{(n-1)n}{2}" />, so:
 
 <BlockMath math="\begin{aligned}
-1+3+3^2+\cdots+3^k&=\frac{3^{k+1}-1}{2}
+U_n&=2+\frac{(n-1)n}{2}\\
+&=\frac{n^2-n+4}{2}
 \end{aligned}" />
 
-For <InlineMath math="k=3" /> this gives <InlineMath math="\frac{3^4-1}{2}=40" />, and for <InlineMath math="k=4" /> it gives <InlineMath math="\frac{3^5-1}{2}=121" />. Use these values to check each statement.
+The formula agrees with the values already found. For <InlineMath math="n=1" /> it gives <InlineMath math="\frac{1-1+4}{2}=2" />, and for <InlineMath math="n=5" /> it gives <InlineMath math="\frac{25-5+4}{2}=12" />.
 
-The statement about wave 2 with 6 new people is false. In wave 2 there are <InlineMath math="3^2=9" /> new people, because each of the three people from wave 1 tells three more. The number 6 appears if you double the count instead of tripling it.
+The first statement is false. In week 6 there are <InlineMath math="17" /> round trips, not 15. The number 15 appears if the increase from week 5 to week 6 is taken as 3, but that increase is 5.
 
-The statement about three waves is true: <InlineMath math="1+3+9+27=40" />, including the first person.
+The second statement is true. From week 4 to week 5 the count rises by <InlineMath math="U_5-U_4=12-8=4" />, because the increase after week <InlineMath math="n" /> is always <InlineMath math="n" />, and here <InlineMath math="n=4" />.
 
-The statement about four waves is also true: <InlineMath math="1+3+9+27+81=121" />, and <InlineMath math="121>120" />.
+The third statement is false. For week 2 the expression <InlineMath math="2n" /> gives 4, but <InlineMath math="U_2=3" />. That expression assumes a fixed increase of 2 every week, while the increase grows by one each week.
 
-The statement about wave 4 with 64 new people is false. The number of new people in wave 4 is <InlineMath math="3^4=81" />. The number 64 is <InlineMath math="4^3" />, which comes from swapping the base and the exponent.
+The fourth statement is true. The formula <InlineMath math="U_n=\frac{n^2-n+4}{2}" /> was derived for every week <InlineMath math="n" />.
 
-The statement about wave 3 is true. Wave 3 has <InlineMath math="27=3\cdot9" /> new people, three times the number in wave 2.
+The fifth statement is true. Week 6 has 17 round trips, which is not more than 20, and week 7 has 23. Every increase is positive, so the count keeps rising, and every week from week 7 onward has more than 20 round trips.
 
-So the true statements concern 40 people after three waves, more than 120 people after four waves, and 27 new people in wave 3.
+The true statements are therefore the rise of 4 round trips from week 4 to week 5, the formula for the number of round trips in week <InlineMath math="n" />, and more than 20 round trips in each week from week 7 onward.
