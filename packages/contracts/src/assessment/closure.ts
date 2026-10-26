@@ -50,12 +50,13 @@ function indexRows(records: readonly AssessmentRecord[]) {
     catalog: Arr.filterMap(rows, (row) =>
       row.kind === "catalog" ? Result.succeed(row.row) : Result.failVoid
     ),
-    explanations: HashSet.fromIterable(
+    explanations: HashMap.fromIterable(
       Arr.filterMap(rows, (row) =>
         row.kind === "explanation"
-          ? Result.succeed(
-              `${row.explanation.version}\0${row.explanation.language}`
-            )
+          ? Result.succeed([
+              `${row.explanation.version}\0${row.explanation.language}`,
+              row.explanation.version,
+            ] as const)
           : Result.failVoid
       )
     ),
@@ -199,7 +200,7 @@ const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
         version.hash
       ), "unplaced", version.hash);
       for (const language of activeAppLocales) {
-        yield* require(HashSet.has(
+        yield* require(HashMap.has(
           rows.explanations,
           `${version.hash}\0${language}`
         ), "explanation", `${version.hash}\0${language}`);
@@ -223,8 +224,7 @@ function verifyRecordsOfItems(rows: Rows) {
     for (const version of rows.keys) {
       yield* require(HashMap.has(rows.items, version), "key", version);
     }
-    for (const identity of rows.explanations) {
-      const [version = ""] = identity.split("\0");
+    for (const [identity, version] of rows.explanations) {
       yield* require(HashMap.has(rows.items, version), "explanation", identity);
     }
   });

@@ -61,13 +61,14 @@ describe("figureNode", () => {
           )
         );
 
+      if (
+        number?.type !== "figure" ||
+        number.attrs.component !== "NumberLine"
+      ) {
+        return assert.fail("Expected a number line figure.");
+      }
       assert.deepStrictEqual(
-        number?.type === "figure" &&
-          number.attrs.component === "NumberLine" &&
-          Arr.map(number.attrs.props.segments, ({ end, start }) => [
-            start,
-            end,
-          ]),
+        Arr.map(number.attrs.props.segments, ({ end, start }) => [start, end]),
         [
           ["-infinity", 1],
           [1, 5],

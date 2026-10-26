@@ -1,13 +1,18 @@
-import { Array as Arr, Order, Record as Rec } from "effect";
+import { Array as Arr, Option, Order } from "effect";
 
-/** Orders the members of one canonical list by their place in it. */
+/**
+ * Orders values by their place in one canonical list. A value outside the list
+ * sorts after every member.
+ */
 export function canonicalOrder<A extends string>(
   canonical: readonly A[]
 ): Order.Order<A> {
-  const places = Rec.fromEntries(
-    Arr.map(canonical, (member, index) => [member, index] as const)
+  return Order.mapInput(Order.Number, (value: A) =>
+    Option.getOrElse(
+      Arr.findFirstIndex(canonical, (member) => member === value),
+      () => canonical.length
+    )
   );
-  return Order.mapInput(Order.Number, (member: A) => places[member]);
 }
 
 /**
