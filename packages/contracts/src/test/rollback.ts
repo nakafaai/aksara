@@ -1,10 +1,7 @@
 import { Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import {
-  MaterialHeadSchema,
-  QuestionHeadSchema,
-} from "#contracts/release/head";
+import { ArticleHeadSchema, MaterialHeadSchema } from "#contracts/release/head";
 import {
   RollbackDeleteStateSchema,
   RollbackRecordSchema,
@@ -80,15 +77,16 @@ const head = Schema.decodeSync(MaterialHeadSchema)({
   sourcePath: change.sourcePath,
 });
 
-const questionHead = Schema.decodeSync(QuestionHeadSchema)({
+const articleHead = Schema.decodeSync(ArticleHeadSchema)({
   artifactHash: artifact.artifactHash,
   artifactLocale: change.artifactLocale,
   compilerConfigHash: artifact.payload.compilerConfigHash,
   contentKey: change.contentKey,
-  delivery: "authenticated",
-  family: "question",
+  delivery: "public",
+  family: "article",
   projectionHash: `sha256:${"d".repeat(64)}`,
-  rendererDomain: "snbt-general",
+  publicPath: "articles/test/rollback",
+  rendererDomain: "politics",
   sourceHash: artifact.payload.sourceHash,
   sourcePath: change.sourcePath,
 });
@@ -171,10 +169,10 @@ export const materialEntry = Schema.decodeSync(RollbackSnapshotEntrySchema)({
   snapshot: { head, state: "material" },
 });
 
-export const questionEntry = Schema.decodeSync(RollbackSnapshotEntrySchema)({
+export const articleEntry = Schema.decodeSync(RollbackSnapshotEntrySchema)({
   index: 2,
   releaseId: "release-active",
-  snapshot: { head: questionHead, state: "question" },
+  snapshot: { head: articleHead, state: "article" },
 });
 
 /** Test material rollback snapshot entry for the rollback digest vectors. */
@@ -205,8 +203,8 @@ export const digestMaterialEntry = Schema.decodeSync(
   },
 });
 
-/** Test question rollback snapshot entry for the rollback digest vectors. */
-export const digestQuestionEntry = Schema.decodeSync(
+/** Test article rollback snapshot entry for the rollback digest vectors. */
+export const digestArticleEntry = Schema.decodeSync(
   RollbackSnapshotEntrySchema
 )({
   index: 2,
@@ -218,16 +216,17 @@ export const digestQuestionEntry = Schema.decodeSync(
       artifactLocale: "id",
       compilerConfigHash:
         "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-      contentKey: "question-bank/test/rollback",
-      delivery: "authenticated",
-      family: "question",
+      contentKey: "articles/test/rollback",
+      delivery: "public",
+      family: "article",
       projectionHash:
         "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
-      rendererDomain: "snbt-general",
+      publicPath: "articles/test/rollback",
+      rendererDomain: "politics",
       sourceHash:
         "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
-      sourcePath: "packages/corpus/question-bank/test/rollback/id.mdx",
+      sourcePath: "packages/corpus/articles/test/rollback/id.mdx",
     },
-    state: "question",
+    state: "article",
   },
 });

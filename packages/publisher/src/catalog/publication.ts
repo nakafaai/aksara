@@ -9,8 +9,6 @@ import {
   MaterialHeadSchema,
   type PageHead,
   PageHeadSchema,
-  type QuestionHead,
-  QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -29,10 +27,6 @@ import {
   preparePagePublication,
 } from "#publisher/page/publication";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
-import {
-  type PrepareQuestionPublicationError,
-  prepareQuestionPublication,
-} from "#publisher/question/publication";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import type { RouteTransition } from "#publisher/routes";
@@ -59,11 +53,11 @@ export class CatalogGenesisError extends Schema.TaggedError<
 
 /** Replayable whole-catalog plan consumed by generic release preparation. */
 export interface ContentCatalogPublication {
-  /** Replays canonical article, material, then question transitions. */
+  /** Replays canonical article, material, then page transitions. */
   readonly records: Stream.Stream<PreparedContentTransition, ReplaySpoolError>;
   /** Replays the complete desired catalog in canonical content-head order. */
   readonly result: Stream.Stream<
-    ArticleHead | MaterialHead | PageHead | QuestionHead,
+    ArticleHead | MaterialHead | PageHead,
     ReplaySpoolError
   >;
   /** Replays every family route transition for global conflict resolution. */
@@ -78,7 +72,6 @@ interface ContentCatalogPublicationInput<E, R> {
     readonly article: Stream.Stream<ArticleHead, E, R>;
     readonly material: Stream.Stream<MaterialHead, E, R>;
     readonly page: Stream.Stream<PageHead, E, R>;
-    readonly question: Stream.Stream<QuestionHead, E, R>;
   };
   readonly rebuild?: boolean | undefined;
   readonly rendererManifest: unknown;
@@ -96,7 +89,6 @@ type PrepareContentCatalogError<E> =
   | PrepareArticlePublicationError<ReplaySpoolError>
   | PrepareMaterialPublicationError<ReplaySpoolError>
   | PreparePagePublicationError<ReplaySpoolError>
-  | PrepareQuestionPublicationError<ReplaySpoolError>
   | ReplaySpoolError
   | ResultCatalogError;
 
@@ -104,10 +96,7 @@ type PrepareContentCatalogError<E> =
 function verifyBaseCatalog(
   base: ContentCatalogBase | null,
   count: number,
-  heads: Stream.Stream<
-    ArticleHead | MaterialHead | PageHead | QuestionHead,
-    ReplaySpoolError
-  >
+  heads: Stream.Stream<ArticleHead | MaterialHead | PageHead, ReplaySpoolError>
 ) {
   if (base !== null) {
     return verifyResultCatalog({
@@ -148,22 +137,13 @@ export const prepareContentCatalog: <E, R>(
     schema: PageHeadSchema,
     stream: input.published.page,
   });
-  const questionHeads = yield* createReplaySpool({
-    prefix: "aksara-question-heads-",
-    schema: QuestionHeadSchema,
-    stream: input.published.question,
-  });
   /** Replays the exact active catalog in canonical family-prefix order. */
   const active = Stream.concat(articleHeads.replay, materialHeads.replay).pipe(
-    Stream.concat(pageHeads.replay),
-    Stream.concat(questionHeads.replay)
+    Stream.concat(pageHeads.replay)
   );
   yield* verifyBaseCatalog(
     input.base,
-    articleHeads.count +
-      materialHeads.count +
-      pageHeads.count +
-      questionHeads.count,
+    articleHeads.count + materialHeads.count + pageHeads.count,
     active
   );
   const article = yield* prepareArticlePublication({
@@ -187,27 +167,17 @@ export const prepareContentCatalog: <E, R>(
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
-  const question = yield* prepareQuestionPublication({
-    checkoutRoot: input.checkoutRoot,
-    published: questionHeads.replay,
-    rebuild: input.rebuild,
-    rendererManifest: input.rendererManifest,
-    scope: input.scope,
-  });
   /** Replays canonical transitions without collecting either family. */
   const records = Stream.concat(article.records, material.records).pipe(
-    Stream.concat(page.records),
-    Stream.concat(question.records)
+    Stream.concat(page.records)
   );
   /** Replays the complete desired catalog without copying unchanged heads. */
   const result = Stream.concat(article.result, material.result).pipe(
-    Stream.concat(page.result),
-    Stream.concat(question.result)
+    Stream.concat(page.result)
   );
   /** Replays all route transitions for one global conflict-resolution pass. */
   const routes = Stream.concat(article.routes, material.routes).pipe(
-    Stream.concat(page.routes),
-    Stream.concat(question.routes)
+    Stream.concat(page.routes)
   );
   return { records, result, routes };
 });

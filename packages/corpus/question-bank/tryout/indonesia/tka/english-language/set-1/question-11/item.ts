@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "explicit-information",
   },
+  stimulus: "weather-notebook",
   versions: {
     en: {
       columns: ["Before it was found", "After it was found"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "weather-notebook",
 };
 
 export default item;

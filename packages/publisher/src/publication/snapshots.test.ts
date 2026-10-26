@@ -60,7 +60,6 @@ const prepareProgramRelease = Effect.fn(
     scope: { ...publicationScope, snapshots: ["program"] },
     snapshotManifests: snapshot.snapshotManifests,
     snapshotRows: snapshot.snapshotRows,
-    tryoutRuntime: null,
     ...snapshotPolicyBase("test-program-snapshot-base"),
     baseRendererManifestHash: rendererManifest.hash,
   });

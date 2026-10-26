@@ -106,10 +106,7 @@ describe("production renderer", () => {
           baseBundle,
           rendererManifest: live,
           retention: BOOTSTRAP_RETENTION,
-          scope: {
-            families: ["article", "material", "page", "question"],
-            snapshots: ["tryout"],
-          },
+          scope: { families: ["article", "material", "page"], snapshots: [] },
         })
       ).toEqual(live);
     })

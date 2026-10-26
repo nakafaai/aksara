@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "classification",
   },
+  stimulus: "rain-market",
   versions: {
     en: {
       columns: ["Safe movement", "Product protection", "Drainage"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "rain-market",
 };
 
 export default item;

@@ -76,8 +76,8 @@
   teaching prose without promoting the solution or adding bold substitute
   headings. Check the full exercise and solution together so each transition
   names the operation, case, or quantity being considered. Only standalone
-  question-bank answers use `####` and
-  `#####` beneath the app-owned `###` explanation heading.
+  question-bank explanations use `#` and
+  `##`, because each is a document of its own.
 - Match every numbered exercise to its complete answer. Confirm that the
   visible question identifier begins the corresponding explanation, list item,
   or table row or column. Step numbers do not identify question numbers. Name

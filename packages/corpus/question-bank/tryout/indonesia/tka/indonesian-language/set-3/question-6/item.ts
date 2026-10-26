@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
+  stimulus: "mapmakers-ink",
   versions: {
     id: {
       kind: "choice",
@@ -38,7 +39,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "mapmakers-ink",
 };
 
 export default item;

@@ -12,8 +12,8 @@ import {
 } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
 import {
-  type RoutedContentProjection,
-  RoutedContentProjectionSchema,
+  type ContentProjection,
+  ContentProjectionSchema,
 } from "#contracts/projection/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -40,7 +40,7 @@ export type PublicContentRuntimeRequest =
 /** Confirms one runtime artifact and projection describe the same document. */
 function hasCoherentContent(input: {
   readonly artifact: SignedContentArtifact;
-  readonly projection: RoutedContentProjection;
+  readonly projection: ContentProjection;
 }) {
   const { payload } = input.artifact;
   return (
@@ -53,9 +53,8 @@ function hasCoherentContent(input: {
  * Server-only content selected by trusted Convex publication state.
  *
  * The signed release, renderer, and artifact are authenticated independently.
- * Public route and head membership or protected snapshot membership remain
- * target authority. This envelope is deliberately not a cryptographic
- * inclusion proof.
+ * Public route and head membership remain target authority. This envelope
+ * is deliberately not a cryptographic inclusion proof.
  */
 const PublicContentRuntimeFoundFields = {
   artifact: SignedContentArtifactSchema,
@@ -71,7 +70,7 @@ export const PublicContentRuntimeFoundSchema = Schema.Struct({
   activeManifestHash: Sha256HashSchema,
   activeReleaseId: ReleaseIdSchema,
   delivery: Schema.Literal("public"),
-  projection: RoutedContentProjectionSchema,
+  projection: ContentProjectionSchema,
   projectionHash: Sha256HashSchema,
 }).pipe(
   Schema.check(

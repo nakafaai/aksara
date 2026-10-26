@@ -1,15 +1,15 @@
+import { CatalogRowSchema } from "@nakafa/aksara-contracts/assessment/catalog";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import {
   ACTIVE_APP_LOCALES,
   type AppLocale,
 } from "@nakafa/aksara-contracts/locale";
-import { TryoutCatalogRowSchema } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import { projectTryoutExam } from "#corpus/tryout/exam";
+import { type PaperOf, projectTryoutExam } from "#corpus/tryout/exam";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import type { ExamSource } from "#corpus/tryout/schema";
 
 const TRYOUT_PATH = "try-out";
 
@@ -21,7 +21,7 @@ export class TryoutCatalogDecodeError extends Schema.TaggedError<
 
 /** Projects one shared country once per locale from country-owned facts. */
 const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
-  function* (source: TryoutExamSource, appLocale: AppLocale) {
+  function* (source: ExamSource, appLocale: AppLocale) {
     const owner = `${source.countryKey}:${appLocale}`;
     const [translation, routeSlug] = yield* Effect.all(
       [
@@ -54,11 +54,11 @@ const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
 );
 
 /** Selects one registry-validated owner of each shared country identity. */
-function uniqueCountries(sources: readonly TryoutExamSource[]) {
+function uniqueCountries(sources: readonly ExamSource[]) {
   return [
     ...MutableHashMap.values(
       MutableHashMap.fromIterable(
-        Arr.map(sources, (source): [string, TryoutExamSource] => [
+        Arr.map(sources, (source): [string, ExamSource] => [
           source.countryKey,
           source,
         ])
@@ -70,8 +70,9 @@ function uniqueCountries(sources: readonly TryoutExamSource[]) {
 /** Produces strict hierarchy rows from one validated locale selection. */
 const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
   function* (
-    sources: readonly TryoutExamSource[],
-    appLocales: readonly AppLocale[]
+    sources: readonly ExamSource[],
+    appLocales: readonly AppLocale[],
+    paperOf: PaperOf
   ) {
     const countries = yield* Effect.forEach(
       uniqueCountries(sources),
@@ -82,11 +83,11 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
     );
     const exams = yield* Effect.forEach(sources, (source) =>
       Effect.forEach(appLocales, (appLocale) =>
-        projectTryoutExam(source, appLocale)
+        projectTryoutExam(source, appLocale, paperOf)
       )
     );
     const rows = yield* Schema.decodeUnknownEffect(
-      Schema.Array(TryoutCatalogRowSchema)
+      Schema.Array(CatalogRowSchema)
     )([...Arr.flatten(countries), ...Arr.flatten(Arr.flatten(exams))], {
       onExcessProperty: "error",
     }).pipe(
@@ -97,16 +98,12 @@ const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
   }
 );
 
-/** Produces strict hierarchy rows for the active signed locale set only. */
+/**
+ * Produces the catalog rows of every active exam in every active app locale,
+ * each set naming the paper that the publisher froze for it.
+ */
 export const projectTryoutCatalog = Effect.fn(
   "AksaraCorpus.projectTryoutCatalog"
-)(function* (sources: readonly TryoutExamSource[]) {
-  return yield* projectCatalog(sources, ACTIVE_APP_LOCALES);
+)(function* (sources: readonly ExamSource[], paperOf: PaperOf) {
+  return yield* projectCatalog(sources, ACTIVE_APP_LOCALES, paperOf);
 });
-
-/** Produces only the source hierarchy needed by one honest preview shell. */
-export const projectPreviewTryoutCatalog = Effect.fn(
-  "AksaraCorpus.projectPreviewTryoutCatalog"
-)((sources: readonly TryoutExamSource[], appLocale: AppLocale) =>
-  projectCatalog(sources, [appLocale])
-);

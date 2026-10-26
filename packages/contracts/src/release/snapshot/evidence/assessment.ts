@@ -39,7 +39,7 @@ export const verifyAssessmentSnapshotRows = Effect.fn(
   rows: SnapshotRowSource<E, R>
 ) {
   const { manifest } = snapshot;
-  const summary = yield* digestAssessmentRows(assessmentRecords(rows));
+  const summary = yield* assessmentRecords(rows).pipe(digestAssessmentRows);
   for (const kind of ASSESSMENT_ROW_KINDS) {
     yield* requireSnapshotEvidence({
       actual: summary.counts[kind],

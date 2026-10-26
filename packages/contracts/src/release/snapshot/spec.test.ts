@@ -142,17 +142,17 @@ describe("content snapshot state", () => {
 
   it("counts and canonically serializes every fixed family", () => {
     const snapshots = ContentSnapshotSetSchema.make({
+      assessment: replaceContentSnapshot({
+        baseSnapshotId: null,
+        resultSnapshotId: second,
+        rowCount: 894,
+        rowDigest: rows,
+      }),
       program: inheritContentSnapshot(null),
       quran: replaceContentSnapshot({
         baseSnapshotId: null,
         resultSnapshotId: first,
         rowCount: 1428,
-        rowDigest: rows,
-      }),
-      tryout: replaceContentSnapshot({
-        baseSnapshotId: null,
-        resultSnapshotId: second,
-        rowCount: 894,
         rowDigest: rows,
       }),
     });
@@ -167,6 +167,7 @@ describe("content snapshot state", () => {
 
   it("inverts changed families and inherits unchanged families", () => {
     const snapshots = ContentSnapshotSetSchema.make({
+      assessment: inheritContentSnapshot(first),
       program: inheritContentSnapshot(null),
       quran: replaceContentSnapshot({
         baseSnapshotId: first,
@@ -174,7 +175,6 @@ describe("content snapshot state", () => {
         rowCount: 1428,
         rowDigest: rows,
       }),
-      tryout: inheritContentSnapshot(first),
     });
     const inverse = invertContentSnapshots(snapshots);
 
@@ -184,21 +184,21 @@ describe("content snapshot state", () => {
       mode: "restore",
       resultSnapshotId: first,
     });
-    expect(inverse.tryout.mode).toBe("inherit");
+    expect(inverse.assessment.mode).toBe("inherit");
     expect(hasEmptySnapshotBases(snapshots)).toBe(false);
     expect(hasGitSnapshotModes(snapshots)).toBe(true);
     expect(hasRollbackSnapshotModes(snapshots)).toBe(false);
     expect(hasGitSnapshotModes(inverse)).toBe(false);
     expect(hasRollbackSnapshotModes(inverse)).toBe(true);
     expect(inheritContentSnapshots(snapshots)).toMatchObject({
+      assessment: { resultSnapshotId: first },
       program: { resultSnapshotId: null },
       quran: { resultSnapshotId: second },
-      tryout: { resultSnapshotId: first },
     });
     expect(baseContentSnapshots(snapshots)).toMatchObject({
+      assessment: { resultSnapshotId: first },
       program: { resultSnapshotId: null },
       quran: { resultSnapshotId: first },
-      tryout: { resultSnapshotId: first },
     });
     const materialOnly = Schema.decodeSync(PublicationScopeSchema)({
       families: ["material"],
@@ -232,6 +232,13 @@ describe("content snapshot state", () => {
 
   it("pins the canonical JSON of every fixed snapshot family", () => {
     const snapshots = Schema.decodeSync(ContentSnapshotSetSchema)({
+      assessment: {
+        baseSnapshotId: second,
+        mode: "restore",
+        resultSnapshotId: null,
+        rowCount: 0,
+        rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+      },
       program: {
         baseSnapshotId: null,
         mode: "inherit",
@@ -246,17 +253,10 @@ describe("content snapshot state", () => {
         rowCount: 1428,
         rowDigest: rows,
       },
-      tryout: {
-        baseSnapshotId: second,
-        mode: "restore",
-        resultSnapshotId: null,
-        rowCount: 0,
-        rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
-      },
     });
 
     expect(encodeJsonText(canonicalizeContentSnapshotSet(snapshots))).toBe(
-      '{"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},"tryout":{"baseSnapshotId":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}}'
+      '{"assessment":{"baseSnapshotId":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rowCount":1428,"rowDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}}'
     );
   });
 });

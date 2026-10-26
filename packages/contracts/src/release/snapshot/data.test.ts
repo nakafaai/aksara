@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, HashSet, Schema } from "effect";
 import { Hex } from "effect/encoding";
+import { ASSESSMENT_ROW_KINDS } from "#contracts/assessment/snapshot";
 import { digestSha256 } from "#contracts/hash/digest";
 
 import {
@@ -9,19 +10,6 @@ import {
   canonicalizeContentSnapshotRow,
   contentSnapshotId,
 } from "#contracts/release/snapshot/data";
-import {
-  countryRow,
-  entrySectionRow,
-  examRow,
-  fullSetRow,
-  markedSectionRow,
-  setRow,
-  trackRow,
-} from "#contracts/test/row/catalog";
-import {
-  placementRow,
-  scoredPlacementRow,
-} from "#contracts/test/row/placement";
 import {
   curriculumChildRow,
   curriculumRootRow,
@@ -82,11 +70,12 @@ describe("structured snapshot data", () => {
         )
       ).toBe(true);
       expect(
-        Arr.map(
-          Arr.filter(snapshotData.rows, (row) => row.family === "tryout"),
-          (row) => row.rowKind
+        Arr.dedupe(
+          Arr.flatMap(snapshotData.rows, (row) =>
+            row.family === "assessment" ? [row.record.row.kind] : []
+          )
         )
-      ).toContain("placement");
+      ).toEqual(ASSESSMENT_ROW_KINDS);
     })
   );
 
@@ -114,59 +103,26 @@ describe("structured snapshot data", () => {
     );
   });
 
-  it("pins the canonical bytes of a try-out catalog row", () => {
-    expect(canonicalizeContentSnapshotRow(countryRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"de","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:country","assetId":"asset:de:material:lesson:tryout:material-section:tryout:catalog:country","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:country","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Judul uji é","countryCode":"ZZ","countryKey":"test-country","kind":"country","order":1,"publicPath":"try-out/test-country"},"rowHash":"sha256:17e5b667d629410f51cf65ad99db205ea955fa642a9bf7aecbb28cc228341304"},"rowKind":"catalog"}'
-    );
-  });
+  it.effect("pins the sha256 of every canonical assessment snapshot row", () =>
+    Effect.gen(function* () {
+      const snapshotData = yield* makeSnapshotTestData();
+      const assessmentRows = Arr.filter(
+        snapshotData.rows,
+        (row) => row.family === "assessment"
+      );
+      const canonical = Arr.join(
+        Arr.map(assessmentRows, canonicalizeContentSnapshotRow),
+        "\n"
+      );
 
-  it("pins the canonical bytes of a try-out exam catalog row with a description", () => {
-    expect(canonicalizeContentSnapshotRow(examRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"id","description":"Deskripsi ujian é","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:exam","assetId":"asset:id:material:lesson:tryout:material-section:tryout:catalog:exam","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:exam","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Ujian uji é","countryKey":"test-country","examKey":"test-exam","kind":"exam","order":1,"publicPath":"try-out/test-country/test-exam","scoringStrategy":"irt"},"rowHash":"sha256:4444444444444444444444444444444444444444444444444444444444444444"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of a try-out track catalog row", () => {
-    expect(canonicalizeContentSnapshotRow(trackRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:track","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:track","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:track","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Trek uji é","countryKey":"test-country","examKey":"test-exam","kind":"track","order":1,"publicPath":"try-out/test-country/test-exam/test-track","questionCount":2,"sectionCount":2,"setCount":1,"trackKey":"test-track","trackKind":"year","visibleSectionCount":0},"rowHash":"sha256:5555555555555555555555555555555555555555555555555555555555555555"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of a try-out set catalog row with an internal entry section", () => {
-    expect(canonicalizeContentSnapshotRow(setRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:set","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:set","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:set","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set uji é","countryKey":"test-country","examKey":"test-exam","internalEntrySectionKey":"test-section","kind":"set","order":1,"publicPath":"try-out/test-country/test-exam/test-track/test-set","questionCount":1,"scoringStrategy":"irt","sectionCount":1,"setKey":"test-set","trackKey":"test-track","visibleSectionCount":0},"rowHash":"sha256:6666666666666666666666666666666666666666666666666666666666666666"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of a try-out set catalog row with every section visible", () => {
-    expect(canonicalizeContentSnapshotRow(fullSetRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"en","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:test-set-2","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:test-set-2","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:test-set-2","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Set dua é","countryKey":"test-country","examKey":"test-exam","kind":"set","order":2,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2","questionCount":2,"scoringStrategy":"penalized","sectionCount":2,"setKey":"test-set-2","trackKey":"test-track","visibleSectionCount":2},"rowHash":"sha256:7777777777777777777777777777777777777777777777777777777777777777"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of a visible try-out section catalog row with marks", () => {
-    expect(canonicalizeContentSnapshotRow(markedSectionRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"en","description":"Deskripsi bagian é","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section-visible","assetId":"asset:en:material:lesson:tryout:material-section:tryout:catalog:section-visible","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section-visible","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Bagian uji é","countryKey":"test-country","examKey":"test-exam","kind":"section","marks":{"blank":0,"correct":4,"wrong":-1},"order":1,"publicPath":"try-out/test-country/test-exam/test-track/test-set-2/test-section","questionCount":2,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set-2","sectionKey":"test-section","setKey":"test-set-2","timeLimitSeconds":1800,"trackKey":"test-track","visibility":"visible"},"rowHash":"sha256:8888888888888888888888888888888888888888888888888888888888888888"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of an internal-entry try-out section catalog row", () => {
-    expect(canonicalizeContentSnapshotRow(entrySectionRow)).toBe(
-      '{"family":"tryout","record":{"row":{"appLocale":"de","graph":{"alignmentId":"alignment:material:lesson:tryout:material-section:tryout:catalog:section-entry","assetId":"asset:de:material:lesson:tryout:material-section:tryout:catalog:section-entry","conceptId":"concept:material:lesson:tryout:catalog","learningObjectId":"lo:material-section:tryout:catalog:section-entry","lensId":"lens:material:lesson:tryout"},"sourceRevision":"2026-08-12","title":"Test-only Abschnitt ü","countryKey":"test-country","examKey":"test-exam","kind":"section","order":2,"questionCount":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set","sectionKey":"test-section","setKey":"test-set","timeLimitSeconds":60,"trackKey":"test-track","visibility":"internal-entry"},"rowHash":"sha256:9999999999999999999999999999999999999999999999999999999999999999"},"rowKind":"catalog"}'
-    );
-  });
-
-  it("pins the canonical bytes of a try-out placement row", () => {
-    expect(canonicalizeContentSnapshotRow(placementRow)).toBe(
-      '{"family":"tryout","record":{"row":{"answerArtifactLocale":"de","answerContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/answer","appLocale":"de","countryKey":"test-country","deliveryLanguage":"de","examKey":"test-exam","languagePolicy":{"kind":"app-locale"},"questionArtifactLocale":"de","questionContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/question","questionOrder":1,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-1","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Test-only correct option","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Test-only distractor","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"test-section","setKey":"test-set","sourceRevision":"2026-08-12","trackKey":"test-track","answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentHash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","questionArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"rowHash":"sha256:7b99090567abb870969f34b114cf13fa5b6ef8fb627a916767f4c5a13398a3c8"},"rowKind":"placement"}'
-    );
-  });
-
-  it("pins the canonical bytes of a try-out placement row with points, blueprint, and stimulus", () => {
-    expect(canonicalizeContentSnapshotRow(scoredPlacementRow)).toBe(
-      '{"family":"tryout","record":{"row":{"answerArtifactLocale":"id","answerContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-2/answer","appLocale":"id","blueprint":{"cognitiveLevel":"apply","contentDomain":"algebra","topic":"linear-equations"},"countryKey":"test-country","deliveryLanguage":"id","examKey":"test-exam","languagePolicy":{"kind":"app-locale"},"points":2,"questionArtifactLocale":"id","questionContentKey":"question-bank/tryout/test-country/test-exam/test-section/test-set/question-2/question","questionOrder":2,"questionSourcePath":"packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-2","rendererDomain":"snbt-quant","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"Jawaban benar é","optionKey":"option-1","order":1},{"isCorrect":false,"label":"Pengecoh é","optionKey":"option-2","order":2}]},"scope":"server","sectionKey":"test-section","setKey":"test-set","sourceRevision":"2026-08-12","stimulusKey":"stimulus-1","trackKey":"test-track","answerArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentHash":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","questionArtifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"rowHash":"sha256:cafecafecafecafecafecafecafecafecafecafecafecafecafecafecafecafe"},"rowKind":"placement"}'
-    );
-  });
+      expect(assessmentRows.length).toBe(24);
+      expect(
+        Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
+      ).toBe(
+        "fc191f9d12576439524bbbc854c97422336a1123c9f5262e321be9a65ab2afd4"
+      );
+    })
+  );
 
   it("pins the canonical bytes of a Quran search snapshot row", () => {
     expect(canonicalizeContentSnapshotRow(quranSearchRow)).toBe(

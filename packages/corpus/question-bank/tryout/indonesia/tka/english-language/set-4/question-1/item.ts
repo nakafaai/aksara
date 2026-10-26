@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "main-idea-purpose",
   },
+  stimulus: "egret-hide",
   versions: {
     en: {
       kind: "choice",
@@ -37,7 +38,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "egret-hide",
 };
 
 export default item;

@@ -6,13 +6,11 @@ import {
   selectMaterial,
   selectPage,
 } from "#corpus/preview/public";
-import { selectQuestion } from "#corpus/preview/question/prompt";
 import { PreviewSelectionError } from "#corpus/preview/source";
 
 const ARTICLE_ROOT = "packages/corpus/articles/";
 const MATERIAL_ROOT = "packages/corpus/material/";
 const PAGE_ROOT = "packages/corpus/pages/";
-const QUESTION_ROOT = "packages/corpus/question-bank/";
 
 /** Resolves one requested corpus path without cross-family or filesystem fallback. */
 export const selectPreviewDocument = Effect.fn(
@@ -67,9 +65,6 @@ export const selectPreviewDocument = Effect.fn(
       });
     }
     return page;
-  }
-  if (sourcePath.startsWith(QUESTION_ROOT)) {
-    return yield* selectQuestion(corpusRoot, sourcePath, appLocale);
   }
   return yield* new PreviewSelectionError({
     reason: "missing",

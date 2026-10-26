@@ -10,10 +10,7 @@ import type {
   ContentTreeElement,
 } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Option, Predicate } from "effect";
-import {
-  type AssessmentSite,
-  sourceError,
-} from "#compiler/assessment/error";
+import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
 import { figureNode, isFigure } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
 
@@ -33,6 +30,9 @@ const INLINE_ELEMENTS = [
 
 /** Authored heading elements and the document level each one is. */
 const HEADING_LEVELS = { h1: 1, h2: 2, h3: 3 } as const;
+
+/** Headings deeper than a document holds. */
+const DEEP_HEADING_PATTERN = /^h[4-6]$/u;
 
 /** Checks whether a child belongs inside a line of text. */
 function isInline(child: ContentTreeChild) {
@@ -66,7 +66,10 @@ function runsOf(children: readonly ContentTreeChild[]) {
         Option.isSome(last) &&
         Arr.every(last.value, isInline)
       ) {
-        return Arr.append(Arr.dropRight(runs, 1), Arr.append(last.value, child));
+        return Arr.append(
+          Arr.dropRight(runs, 1),
+          Arr.append(last.value, child)
+        );
       }
       return Arr.append(runs, [child]);
     }
@@ -124,26 +127,25 @@ function listItem(
 }
 
 /** Converts the items of one list, refusing a list without one. */
-function listItems(element: ContentTreeElement, site: AssessmentSite) {
-  return Effect.flatMap(
-    Effect.forEach(elementChildren(element), (item) =>
-      item.name === "li"
-        ? listItem(item, site)
-        : Effect.fail(sourceError(site, item.name, "placement"))
-    ),
-    (items) =>
-      Arr.isReadonlyArrayNonEmpty(items)
-        ? Effect.succeed(items)
-        : Effect.fail(sourceError(site, element.name, "document"))
+function listItems(
+  element: ContentTreeElement,
+  site: AssessmentSite
+): Effect.Effect<readonly [ListItemNode, ...ListItemNode[]], BlockError> {
+  return Effect.forEach(elementChildren(element), (item) =>
+    item.name === "li"
+      ? listItem(item, site)
+      : Effect.fail(sourceError(site, item.name, "placement"))
+  ).pipe(
+    Effect.filterOrFail(Arr.isArrayNonEmpty, () =>
+      sourceError(site, element.name, "document")
+    )
   );
 }
 
 /** Reads the first number of an ordered list, one unless the author set it. */
 function listStart(element: ContentTreeElement) {
-  const { start } = element.props;
-  return Predicate.isNumber(start) && Number.isInteger(start) && start > 0
-    ? start
-    : 1;
+  const start = Number(element.props.start);
+  return Number.isInteger(start) && start > 0 ? start : 1;
 }
 
 /** Converts one table cell: its inline content is one paragraph. */
@@ -218,7 +220,7 @@ function blockElement(
         : { attrs: { level }, type: "heading" },
     ]);
   }
-  if (/^h[4-6]$/u.test(element.name)) {
+  if (DEEP_HEADING_PATTERN.test(element.name)) {
     return Effect.fail(sourceError(site, element.name, "heading"));
   }
   if (element.name === "BlockMath") {
@@ -226,7 +228,9 @@ function blockElement(
     if (!Predicate.isString(math) || math.trim().length === 0) {
       return Effect.fail(sourceError(site, element.name, "math"));
     }
-    return Effect.succeed([{ attrs: { latex: math.trim() }, type: "mathBlock" }]);
+    return Effect.succeed([
+      { attrs: { latex: math.trim() }, type: "mathBlock" },
+    ]);
   }
   if (element.name === "ul") {
     return Effect.map(listItems(element, site), (content) => [

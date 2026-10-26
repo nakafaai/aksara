@@ -50,5 +50,11 @@ export function sourceError(
   reason: AssessmentSourceReason,
   cause?: unknown
 ) {
-  return new AssessmentSourceError({ ...site, cause, element, reason });
+  return new AssessmentSourceError({
+    cause,
+    contentKey: site.contentKey,
+    element,
+    reason,
+    sourcePath: site.sourcePath,
+  });
 }

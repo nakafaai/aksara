@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "information-validity",
   },
+  stimulus: "shade-trees",
   versions: {
     en: {
       columns: ["Supported", "Not supported"],
@@ -29,7 +30,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "shade-trees",
 };
 
 export default item;

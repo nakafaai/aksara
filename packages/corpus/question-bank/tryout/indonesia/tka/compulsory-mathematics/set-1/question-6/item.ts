@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
+  stimulus: "stationery-bundles",
   versions: {
     id: {
       kind: "choice",
@@ -33,7 +34,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "stationery-bundles",
 };
 
 export default item;

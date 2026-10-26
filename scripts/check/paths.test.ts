@@ -68,6 +68,7 @@ describe("path policy", () => {
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/answer.id.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/item.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/question.en.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/stimulus.id.mdx",
         "packages/corpus/question-bank/tryout/germany/abitur/reading-comprehension-and-writing/foundation-set/question-1/item.ts",
         "packages/corpus/question-bank/tryout/united-arab-emirates/national-school-leaving-exam/reading-comprehension-and-writing/foundation-set/question-1/item.ts",
       ])
@@ -104,6 +105,7 @@ describe("path policy", () => {
         "packages/corpus/quran/sources/german/edition-notes.pdf",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/three-word-source.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/reading-notes.mdx",
         "packages/corpus/question-bank/tryout/helpers/two-words/file.ts",
         "packages/corpus/question-bank/two-words/item.ts",
       ])
@@ -119,6 +121,9 @@ describe("path policy", () => {
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/three-word-source.mdx: three-word-source.mdx must be one word",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts: reading-comprehension-and-writing must be one word",
       "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-x/item.ts: question-x must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/reading-notes.mdx: reading-comprehension-and-writing must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/reading-notes.mdx: kite-frame must be one word",
+      "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/reading-notes.mdx: reading-notes.mdx must be one word",
       "packages/corpus/question-bank/tryout/helpers/two-words/file.ts: two-words must be one word",
       "packages/corpus/question-bank/two-words/item.ts: two-words must be one word",
     ]);

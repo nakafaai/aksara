@@ -13,10 +13,8 @@ import {
   captureSelectedFiles,
   PreviewRepositoryError,
   type PreviewRestartError,
-  type SelectedDirectory,
   type SelectedDocument,
   type SelectedFileCandidate,
-  verifySelectedDirectory,
 } from "#cli/integrity";
 
 /** Retains restart semantics when one selected file has multiple owners. */
@@ -77,43 +75,23 @@ export const selectPreviewDocument: (
         })
     )
   );
-  const [first, ...remaining] = selection.sources;
-  const firstPath = first.entry.sourcePath;
-  const directoriesByPath = MutableHashMap.empty<
-    SelectedDirectory["sourcePath"],
-    SelectedDirectory["files"]
-  >();
-  const remainingPaths = MutableHashMap.empty<
+  const { source } = selection;
+  const bodyPath = source.entry.sourcePath;
+  const dependencyPaths = MutableHashMap.empty<
     PreviewSource["entry"]["sourcePath"],
     SelectedFileCandidate["mode"]
   >();
-  for (const source of selection.sources) {
-    for (const directory of source.directories) {
-      MutableHashMap.set(
-        directoriesByPath,
-        directory.sourcePath,
-        directory.files
-      );
-    }
-    if (source.entry.sourcePath !== firstPath) {
-      recordSelectedPath(remainingPaths, source.entry.sourcePath, "reload");
-    }
-    for (const dependency of source.dependencies) {
-      recordSelectedPath(
-        remainingPaths,
-        dependency.sourcePath,
-        dependency.mode
-      );
-    }
+  for (const dependency of source.dependencies) {
+    recordSelectedPath(dependencyPaths, dependency.sourcePath, dependency.mode);
   }
   const candidates = [
     {
-      absolutePath: path.resolve(aksaraRoot, firstPath),
+      absolutePath: path.resolve(aksaraRoot, bodyPath),
       mode: "reload",
-      sourcePath: firstPath,
+      sourcePath: bodyPath,
     },
     ...Arr.map(
-      [...remainingPaths],
+      [...dependencyPaths],
       ([sourcePath, mode]): SelectedFileCandidate => {
         const selectedPath = path.resolve(aksaraRoot, sourcePath);
         if (mode === "reload") {
@@ -124,22 +102,10 @@ export const selectPreviewDocument: (
     ),
   ] satisfies readonly [SelectedFileCandidate, ...SelectedFileCandidate[]];
   const files = yield* captureSelectedFiles(candidates);
-  const directories = Arr.map(
-    [...directoriesByPath],
-    ([sourcePath, expectedFiles]): SelectedDirectory => ({
-      absolutePath: path.resolve(aksaraRoot, sourcePath),
-      files: expectedFiles,
-      sourcePath,
-    })
-  );
-  yield* Effect.forEach(directories, verifySelectedDirectory, {
-    discard: true,
-  });
   const selected = {
-    directories,
     document: selection.document,
     files,
-    sources: [first, ...remaining],
+    source,
   } satisfies SelectedDocument;
   return selected;
 });

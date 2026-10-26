@@ -1,5 +1,4 @@
 import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
-import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import { Effect, MutableList } from "effect";
 import type { createLifecycleRows } from "#test/lifecycle/state";
 
@@ -37,9 +36,6 @@ export function makeStageWriters(rows: ReturnType<typeof createLifecycleRows>) {
       )
     )
   );
-  const stageTryoutRuntimeBundle = vi.fn(
-    (_request: StageTryoutRuntimeBundleInput) => Effect.void
-  );
   const stageRouteBatch = vi.fn((batch) =>
     Effect.sync(() =>
       MutableList.appendAll(
@@ -65,10 +61,7 @@ export function makeStageWriters(rows: ReturnType<typeof createLifecycleRows>) {
     if (request.operation === "stageSnapshot") {
       return stageSnapshot(request);
     }
-    if (request.operation === "stageSnapshotBatch") {
-      return stageSnapshotBatch(request);
-    }
-    return stageTryoutRuntimeBundle(request);
+    return stageSnapshotBatch(request);
   }
   return {
     stageArtifactBatch,
@@ -78,6 +71,5 @@ export function makeStageWriters(rows: ReturnType<typeof createLifecycleRows>) {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
-    stageTryoutRuntimeBundle,
   };
 }

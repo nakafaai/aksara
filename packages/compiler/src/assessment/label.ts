@@ -10,10 +10,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { blockChildren } from "#compiler/assessment/block";
-import {
-  type AssessmentSite,
-  sourceError,
-} from "#compiler/assessment/error";
+import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
 
 const markdown = unified()
   .use(remarkParse)
@@ -104,7 +101,7 @@ export const labelDocument = Effect.fn("AksaraCompiler.labelDocument")(
   function* (label: string, site: AssessmentSite) {
     const root = markdown.parse(label);
     const content = yield* blockChildren(childrenOf(root), site);
-    return yield* Schema.decodeUnknownEffect(ContentDocumentSchema)(
+    return yield* Schema.decodeEffect(ContentDocumentSchema)(
       { content, type: "doc" },
       { onExcessProperty: "error" }
     ).pipe(

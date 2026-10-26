@@ -9,7 +9,7 @@ import {
 } from "#corpus/articles/preview";
 import { selectArticleEntries } from "#corpus/preview/public";
 import { articleSource } from "#corpus/test/article";
-import { corpusRoot } from "#corpus/test/question";
+import { corpusRoot } from "#corpus/test/root";
 
 const englishPath = CorpusSourcePathSchema.make(
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
@@ -72,13 +72,13 @@ layer(NodeServices.layer)("article preview projection", (it) => {
 
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);
-        expect(selection.sources[0].dependencies).toContainEqual({
+        expect(selection.source.dependencies).toContainEqual({
           mode: "restart",
           sourcePath:
             "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
         });
-        expect(repeated.sources[0].dependencies).toEqual(
-          selection.sources[0].dependencies
+        expect(repeated.source.dependencies).toEqual(
+          selection.source.dependencies
         );
       })
   );

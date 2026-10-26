@@ -5,10 +5,7 @@ import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { blockChildren } from "#compiler/assessment/block";
-import {
-  AssessmentSiteSchema,
-  sourceError,
-} from "#compiler/assessment/error";
+import { AssessmentSiteSchema, sourceError } from "#compiler/assessment/error";
 import { FIGURE_COMPONENTS } from "#compiler/assessment/figure";
 import { MDX_PROVIDER_SOURCE } from "#compiler/config";
 import { MdxCompilationError } from "#compiler/errors";
@@ -91,7 +88,7 @@ export const compileContentDocument = Effect.fn(
 )(function* (source: AssessmentSource) {
   const content = yield* compileAssessmentBlocks(source);
   const site = { contentKey: source.contentKey, sourcePath: source.sourcePath };
-  return yield* Schema.decodeUnknownEffect(ContentDocumentSchema)(
+  return yield* Schema.decodeEffect(ContentDocumentSchema)(
     { content, type: "doc" },
     { onExcessProperty: "error" }
   ).pipe(

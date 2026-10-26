@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
+  stimulus: "source-checking",
   versions: {
     en: {
       kind: "choice",
@@ -37,7 +38,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "source-checking",
 };
 
 export default item;

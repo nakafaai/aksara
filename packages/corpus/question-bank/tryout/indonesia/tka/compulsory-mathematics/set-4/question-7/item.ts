@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "algebra",
     topic: "functions",
   },
+  stimulus: "freight-lift",
   versions: {
     id: {
       kind: "choice",
@@ -33,7 +34,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "freight-lift",
 };
 
 export default item;

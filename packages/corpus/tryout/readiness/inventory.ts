@@ -5,23 +5,41 @@ import {
   MutableHashMap,
   Option,
   Schema,
-  Struct,
 } from "effect";
 
-import type { QuestionSource } from "#corpus/question-bank/source";
-import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
+import { itemVersions } from "#corpus/question-bank/item";
+import { setPath } from "#corpus/question-bank/path";
+import type { QuestionSet, QuestionSource } from "#corpus/question-bank/source";
+import type {
+  AssessmentReadiness,
+  ResponseFormat,
+} from "#corpus/tryout/readiness/schema";
 import {
   requireReadinessSection,
   requireReadinessTrack,
   validateAssessmentSourceReadiness,
   validateReadinessField,
 } from "#corpus/tryout/readiness/validation";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import type { ExamSource } from "#corpus/tryout/schema";
 
 type ReadinessSection = AssessmentReadiness["sections"][number];
 type ReadinessBlueprint = NonNullable<ReadinessSection["blueprint"]>;
-type TryoutTrack = TryoutExamSource["tracks"][number];
-type TryoutSection = TryoutTrack["sets"][number]["sections"][number];
+
+/**
+ * The official response format of one item: a choice with one correct option
+ * is a single choice, with several a multiple choice, and a matrix a category
+ * table. Every language of an item asks the same task, so one version tells.
+ */
+function responseFormat(question: QuestionSource): readonly ResponseFormat[] {
+  return Arr.map(itemVersions(question.item.versions), ({ interaction }) => {
+    if (interaction.kind === "matrix") {
+      return "category";
+    }
+    return Arr.filter(interaction.options, ({ correct }) => correct).length > 1
+      ? "multiple-choice"
+      : "single-choice";
+  });
+}
 
 /** Counts each observed readiness key without losing unknown values. */
 function countBy(values: readonly string[]) {
@@ -112,20 +130,15 @@ const validateTopicBlueprints = Effect.fn(
 const validateSectionQuestionReadiness = Effect.fn(
   "AksaraCorpus.validateSectionQuestionReadiness"
 )(function* (
-  section: TryoutSection,
+  items: number,
   readiness: ReadinessBlueprint,
-  questions: readonly QuestionSource[],
+  set: QuestionSet | undefined,
   scope: string
 ) {
-  const selected = Arr.filter(
-    questions,
-    ({ questionNumber, setKey }) =>
-      setKey === section.questionSourcePath &&
-      questionNumber <= section.questionCount
-  );
+  const selected = set?.questions ?? [];
   yield* validateReadinessField(
     selected.length,
-    section.questionCount,
+    items,
     "questionInventory",
     scope
   );
@@ -157,13 +170,8 @@ const validateSectionQuestionReadiness = Effect.fn(
     scope
   );
   const responseKinds = Arr.flatMap(readiness.responseMinimums, ({ kind }) =>
-    Arr.flatMap(selected, ({ item }) =>
-      Arr.some(
-        Struct.keys(item.responses),
-        (key) => item.responses[key]?.kind === kind
-      )
-        ? [kind]
-        : []
+    Arr.flatMap(selected, (question) =>
+      Arr.contains(responseFormat(question), kind) ? [kind] : []
     )
   );
   yield* validateReadinessField(
@@ -184,7 +192,7 @@ const validateSectionQuestionReadiness = Effect.fn(
   yield* validateTopicBlueprints(blueprints, readiness, scope);
   const grouped = HashSet.fromIterable(
     Arr.flatMap(selected, ({ item }) =>
-      item.stimulusKey === undefined ? [] : [item.stimulusKey]
+      item.stimulus === undefined ? [] : [item.stimulus]
     )
   );
   yield* validateReadinessField(
@@ -201,9 +209,9 @@ const validateSectionQuestionReadiness = Effect.fn(
 export const validateAssessmentQuestionReadiness = Effect.fn(
   "AksaraCorpus.validateAssessmentQuestionReadiness"
 )(function* (
-  source: TryoutExamSource,
+  source: ExamSource,
   readiness: AssessmentReadiness,
-  questions: readonly QuestionSource[]
+  sets: readonly QuestionSet[]
 ) {
   yield* validateAssessmentSourceReadiness(source, readiness);
   const track = yield* requireReadinessTrack(source, readiness);
@@ -214,7 +222,7 @@ export const validateAssessmentQuestionReadiness = Effect.fn(
       (expected, index) =>
         Effect.gen(function* () {
           const section = yield* requireReadinessSection(
-            set.sections,
+            track.profile.sections,
             expected,
             index,
             setScope
@@ -222,12 +230,19 @@ export const validateAssessmentQuestionReadiness = Effect.fn(
           if (expected.blueprint === undefined) {
             return;
           }
-          const scope = `${source.examKey}:${track.key}:${set.key}:${section.key}`;
+          const path = setPath({
+            countryKey: source.countryKey,
+            examKey: source.examKey,
+            sectionKey: section.key,
+            setKey: set.key,
+          });
           yield* validateSectionQuestionReadiness(
-            section,
+            section.items,
             expected.blueprint,
-            questions,
-            scope
+            Arr.findFirst(sets, (candidate) => candidate.path === path).pipe(
+              Option.getOrUndefined
+            ),
+            `${setScope}:${section.key}`
           );
         }),
       { discard: true }

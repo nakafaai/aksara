@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "audio-labels",
   versions: {
     id: {
       columns: ["Mengurangi gangguan", "Memperjelas isi", "Menjaga akses"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "audio-labels",
 };
 
 export default item;

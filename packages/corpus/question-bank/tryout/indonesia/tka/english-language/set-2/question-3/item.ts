@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "classification",
   },
+  stimulus: "library-boat",
   versions: {
     en: {
       columns: ["Movement", "Moisture", "Access"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "library-boat",
 };
 
 export default item;

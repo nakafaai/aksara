@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
+  stimulus: "study-breaks",
   versions: {
     id: {
       kind: "choice",
@@ -36,7 +37,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "study-breaks",
 };
 
 export default item;

@@ -78,6 +78,7 @@ export const tkaMultipleExplanation = {
       text(".")
     )
   ),
+  language: "id",
   version: tkaMultiple.hash,
 };
 

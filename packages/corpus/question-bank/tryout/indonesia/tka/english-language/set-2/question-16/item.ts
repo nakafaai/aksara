@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "procedure",
     topic: "cause-effect",
   },
+  stimulus: "emergency-plan",
   versions: {
     en: {
       kind: "choice",
@@ -38,7 +39,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "emergency-plan",
 };
 
 export default item;

@@ -1,11 +1,13 @@
 import { FigureNodeSchema } from "@nakafa/aksara-contracts/assessment/figure";
 import type {
   ContentTreeElement,
+  ContentTreeProps,
   ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
 import {
   type AssessmentSite,
+  type AssessmentSourceError,
   sourceError,
 } from "#compiler/assessment/error";
 import {
@@ -24,11 +26,13 @@ export const FIGURE_COMPONENTS = [
   "UnitCircle",
 ] as const;
 
-/** A props object of the tree: JSON members, some of them elements of rich text. */
-type TreeRecord = { readonly [key: string]: ContentTreeValue };
+/** Converted members of a props object, which the figure contract then decodes. */
+type Members = Readonly<Record<string, unknown>>;
 
 /** Checks whether a value is a plain object of props rather than a list, an element, or a scalar. */
-function isTreeRecord(value: ContentTreeValue | undefined): value is TreeRecord {
+function isTreeRecord(
+  value: ContentTreeValue | undefined
+): value is ContentTreeProps {
   return (
     value !== undefined &&
     Predicate.isObject(value) &&
@@ -37,119 +41,106 @@ function isTreeRecord(value: ContentTreeValue | undefined): value is TreeRecord 
   );
 }
 
-/** Converts one member that holds rich text, leaving a missing one for the schema to refuse. */
-function richMember(
-  record: TreeRecord,
-  key: string,
-  element: string,
-  site: AssessmentSite
-) {
-  const value = record[key];
-  if (value === undefined) {
-    return Effect.succeed(record);
-  }
-  return Effect.map(richText(value, element, site), (text) => ({
-    ...record,
-    [key]: text,
-  }));
-}
-
-/** Converts several rich-text members of one record, in order. */
+/** Converts the named members that hold rich text, leaving a missing one for the contract to refuse. */
 function richMembers(
-  record: TreeRecord,
+  record: ContentTreeProps,
   keys: readonly string[],
   element: string,
   site: AssessmentSite
-) {
-  return Effect.reduce(keys, record, (current, key) =>
-    richMember(current, key, element, site)
+): Effect.Effect<Members, AssessmentSourceError> {
+  return Effect.map(
+    Effect.forEach(keys, (key) => {
+      const value = record[key];
+      return value === undefined
+        ? Effect.succeed([])
+        : Effect.map(richText(value, element, site), (text) => [
+            [key, text] as const,
+          ]);
+    }),
+    (entries) => Rec.fromEntries(Arr.flatten(entries))
   );
 }
 
-/** Converts the rich-text members of each record in one list prop. */
-function richList(
-  record: TreeRecord,
+/** Checks whether a value of the tree is a list. */
+function isTreeList(
+  value: ContentTreeValue | undefined
+): value is readonly ContentTreeValue[] {
+  return Arr.isArray(value);
+}
+
+/** Converts the members of each record in one list prop. */
+function listMember(
+  record: ContentTreeProps,
   key: string,
-  convert: (item: TreeRecord) => Effect.Effect<TreeRecord, ReturnType<typeof sourceError>>
-) {
+  convert: (
+    item: ContentTreeProps
+  ) => Effect.Effect<Members, AssessmentSourceError>
+): Effect.Effect<Members, AssessmentSourceError> {
   const list = record[key];
-  if (!Arr.isArray(list)) {
-    return Effect.succeed(record);
+  if (!isTreeList(list)) {
+    return Effect.succeed({});
   }
   return Effect.map(
-    Effect.forEach(list, (item) =>
-      isTreeRecord(item) ? convert(item) : Effect.succeed(item)
+    Effect.forEach(
+      list,
+      (item): Effect.Effect<unknown, AssessmentSourceError> =>
+        isTreeRecord(item)
+          ? Effect.map(convert(item), (members) => ({ ...item, ...members }))
+          : Effect.succeed(item)
     ),
-    (items) => ({ ...record, [key]: items })
+    (items) => ({ [key]: items })
   );
 }
 
-/** Converts the rich text of each line label of a `LineEquation`. */
-function lineEquationProps(
-  props: TreeRecord,
-  element: string,
+/**
+ * Converts the members of one figure component that its contract takes as rich
+ * text. A scene without label anchors is authored without labels, so a missing
+ * `labels` is the empty record that the contract checks against the scene; the
+ * authoring policy refuses labels that are no object.
+ */
+function componentMembers(
+  component: (typeof FIGURE_COMPONENTS)[number],
+  props: ContentTreeProps,
   site: AssessmentSite
-) {
-  return richList(props, "data", (line) =>
-    richList(line, "labels", (label) =>
-      richMember(label, "text", element, site)
-    )
-  );
-}
-
-/** Converts the rich labels of each segment of a `NumberLine`. */
-function numberLineProps(
-  props: TreeRecord,
-  element: string,
-  site: AssessmentSite
-) {
-  return richList(props, "segments", (segment) =>
-    richMembers(segment, ["endLabel", "label", "startLabel"], element, site)
-  );
-}
-
-/** Converts the rich label of each anchor of a `MathVisual` scene. */
-function mathVisualProps(
-  props: TreeRecord,
-  element: string,
-  site: AssessmentSite
-) {
-  const { labels } = props;
-  if (!isTreeRecord(labels)) {
-    return Effect.succeed(props);
+): Effect.Effect<Members, AssessmentSourceError> {
+  if (component === "LineEquation") {
+    return listMember(props, "data", (line) =>
+      listMember(line, "labels", (label) =>
+        richMembers(label, ["text"], component, site)
+      )
+    );
+  }
+  if (component === "NumberLine") {
+    return listMember(props, "segments", (segment) =>
+      richMembers(segment, ["endLabel", "label", "startLabel"], component, site)
+    );
+  }
+  const labels = props.labels ?? {};
+  if (component !== "MathVisual" || !isTreeRecord(labels)) {
+    return Effect.succeed({});
   }
   return Effect.map(
-    richMembers(labels, Rec.keys(labels), element, site),
-    (converted) => ({ ...props, labels: converted })
+    richMembers(labels, Rec.keys(labels), component, site),
+    (converted) => ({ labels: { ...labels, ...converted } })
   );
 }
 
 /** Converts the props of one figure component into the props its contract takes. */
 function figureProps(
   component: (typeof FIGURE_COMPONENTS)[number],
-  props: TreeRecord,
+  props: ContentTreeProps,
   site: AssessmentSite
-) {
+): Effect.Effect<Members, AssessmentSourceError> {
   if (component === "Mermaid") {
     return Effect.succeed(props);
   }
-  const card = richMembers(props, ["description", "title"], component, site);
-  if (component === "LineEquation") {
-    return Effect.flatMap(card, (current) =>
-      lineEquationProps(current, component, site)
-    );
-  }
-  if (component === "NumberLine") {
-    return Effect.flatMap(card, (current) =>
-      numberLineProps(current, component, site)
-    );
-  }
-  if (component === "MathVisual") {
-    return Effect.flatMap(card, (current) =>
-      mathVisualProps(current, component, site)
-    );
-  }
-  return card;
+  return Effect.map(
+    Effect.all([
+      richMembers(props, ["description", "title"], component, site),
+      componentMembers(component, props, site),
+    ]),
+    ([card, members]) => ({ ...props, ...card, ...members })
+  );
 }
 
 /**
@@ -164,10 +155,7 @@ function altOf(element: ContentTreeElement, site: AssessmentSite) {
   if (description === undefined) {
     return Effect.fail(sourceError(site, element.name, "props"));
   }
-  return Effect.map(
-    richText(description, element.name, site),
-    plainText
-  );
+  return Effect.map(richText(description, element.name, site), plainText);
 }
 
 /** Checks whether an element names one of the figure components. */
@@ -199,8 +187,6 @@ export const figureNode = Effect.fn("AksaraCompiler.figureNode")(function* (
     },
     { onExcessProperty: "error" }
   ).pipe(
-    Effect.mapError((cause) =>
-      sourceError(site, element.name, "props", cause)
-    )
+    Effect.mapError((cause) => sourceError(site, element.name, "props", cause))
   );
 });

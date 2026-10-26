@@ -16,7 +16,6 @@ import {
 } from "#publisher/rollback/records";
 import { collectPagePublication } from "#test/page/publication";
 import { pageTestLayer } from "#test/page/spec";
-import { collectQuestionPublication } from "#test/question/spec";
 import {
   collectRollbackRecords,
   currentRollbackReleaseId,
@@ -195,24 +194,6 @@ describe("deriveRollbackRecords", () => {
         expect(yield* snapshotRollbackState(state)).toMatchObject({
           head: { family: "article" },
           state: "article",
-        });
-      })
-  );
-
-  it.effect(
-    "reconstructs a route-free question head from a real question state",
-    () =>
-      Effect.gen(function* () {
-        const [transition] = yield* Effect.tryPromise(() =>
-          collectQuestionPublication({ heads: [] })
-        );
-        if (!(transition && "payload" in transition.record)) {
-          return yield* Effect.die("Expected one question publication upsert.");
-        }
-        const state = yield* makeDerivedRollbackUpsert(transition.record);
-        expect(yield* snapshotRollbackState(state)).toMatchObject({
-          head: { family: "question", publicPath: undefined },
-          state: "question",
         });
       })
   );

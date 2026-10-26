@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
+  stimulus: "park-and-pond",
   versions: {
     id: {
       kind: "choice",
@@ -33,7 +34,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "park-and-pond",
 };
 
 export default item;

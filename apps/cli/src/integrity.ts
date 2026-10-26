@@ -4,7 +4,6 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
-  PreviewDirectorySchema,
   PreviewSelectionSchema,
   PreviewSourceSchema,
 } from "@nakafa/aksara-corpus/preview/source";
@@ -14,7 +13,6 @@ import {
   FileSystem,
   HashMap,
   Option,
-  Order,
   Schema,
 } from "effect";
 
@@ -71,23 +69,14 @@ export type SelectedFileCandidate = ReloadFileCandidate | RestartFileCandidate;
 
 type SelectedFile = typeof SelectedFileSchema.Type;
 
-/** Startup-scoped source directory with its absolute path in this checkout. */
-const SelectedDirectorySchema = Schema.Struct({
-  ...PreviewDirectorySchema.fields,
-  absolutePath: Schema.String,
-});
-/** Exact source directory whose authored file membership is startup topology. */
-export type SelectedDirectory = typeof SelectedDirectorySchema.Type;
-
-/** Exact selected document and its ordered compilation closure. */
+/** Exact selected document, its one source, and the files that source reads. */
 const SelectedDocumentSchema = Schema.Struct({
-  directories: Schema.Array(SelectedDirectorySchema),
   // Each selection variant owns one document Schema, so the field accepts any of them.
   document: Schema.Union(
     Arr.map(PreviewSelectionSchema.members, (member) => member.fields.document)
   ),
   files: Schema.NonEmptyArray(SelectedFileSchema),
-  sources: Schema.NonEmptyArray(PreviewSourceSchema),
+  source: PreviewSourceSchema,
 });
 export type SelectedDocument = typeof SelectedDocumentSchema.Type;
 
@@ -170,49 +159,11 @@ export const captureSelectedFiles = Effect.fn("AksaraCli.captureSelectedFiles")(
   }
 );
 
-/** Rejects any add, remove, rename, or replacement in one strict directory. */
-export const verifySelectedDirectory = Effect.fn(
-  "AksaraCli.verifySelectedDirectory"
-)(function* (directory: SelectedDirectory) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const actualPath = yield* fileSystem
-    .realPath(directory.absolutePath)
-    .pipe(
-      Effect.mapError(
-        () => new PreviewRestartError({ sourcePath: directory.sourcePath })
-      )
-    );
-  if (actualPath !== directory.absolutePath) {
-    return yield* new PreviewRestartError({
-      sourcePath: directory.sourcePath,
-    });
-  }
-  const files = yield* fileSystem
-    .readDirectory(directory.absolutePath)
-    .pipe(
-      Effect.mapError(
-        () => new PreviewRestartError({ sourcePath: directory.sourcePath })
-      )
-    );
-  const actualFiles = Arr.sort([...files], Order.String);
-  if (
-    actualFiles.length !== directory.files.length ||
-    Arr.some(actualFiles, (file, index) => file !== directory.files[index])
-  ) {
-    return yield* new PreviewRestartError({
-      sourcePath: directory.sourcePath,
-    });
-  }
-});
-
 /** Rejects topology that no longer matches its startup-scoped registry. */
 export const verifySelectedTopology = Effect.fn(
   "AksaraCli.verifySelectedTopology"
 )(function* (selected: SelectedDocument) {
   yield* verifySelectedFiles(selected.files);
-  yield* Effect.forEach(selected.directories, verifySelectedDirectory, {
-    discard: true,
-  });
   for (const file of selected.files) {
     if (file.mode === "reload") {
       continue;

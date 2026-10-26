@@ -1,11 +1,9 @@
-import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import {
   type ProgramRowError,
   type ProgramSnapshotError,
@@ -18,40 +16,24 @@ import {
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, type Scope, Stream } from "effect";
-import type { ReplaySpoolError } from "#publisher/replay/error";
-import {
-  type PrepareTryoutSnapshotError,
-  prepareTryoutSnapshot,
-} from "#publisher/tryout/snapshot";
+import { prepareAssessmentSnapshot } from "#publisher/assessment/snapshot";
 
 /** Exact sources required to prepare structured state for one Git release. */
-export interface ReleaseSnapshotInput<E, R> {
+export interface ReleaseSnapshotInput {
   readonly checkoutRoot: string;
   readonly families: PublicationScope["snapshots"];
   readonly previousSnapshots: ContentSnapshotSet | null;
-  /** Replays the complete desired question catalog used by try-out placement. */
-  readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
-  readonly rendererManifest: unknown;
-  /** Exact runtime refresh intent and authenticated active snapshot, when any. */
-  readonly runtime:
-    | { readonly kind: "stable" }
-    | {
-        readonly kind: "refresh";
-        readonly snapshot: TryoutSnapshot | null;
-      };
 }
 
 /** Replayable changed snapshots selected by one global release. */
 export interface PreparedReleaseSnapshots {
-  /** Replays changed manifests in canonical program, Quran, try-out order. */
+  /** Replays changed manifests in canonical assessment, program, Quran order. */
   readonly manifests: Stream.Stream<ContentSnapshotManifest>;
   /** Replays only rows owned by changed structured snapshots. */
   readonly rows: Stream.Stream<
     ContentSnapshotRow,
-    ProgramRowError | PreparedQuranRowError | ReplaySpoolError
+    ProgramRowError | PreparedQuranRowError
   >;
-  /** Exact desired snapshot when this release creates a new runtime pair. */
-  readonly tryoutRuntimeSnapshot: TryoutSnapshot | null;
 }
 
 type PrepareQuranSnapshotError = Effect.Error<
@@ -59,10 +41,9 @@ type PrepareQuranSnapshotError = Effect.Error<
 >;
 type PreparedQuranRowError = Stream.Error<PreparedQuranSnapshot["rows"]>;
 /** Every expected failure before structured release sources are replayable. */
-type PrepareReleaseSnapshotError<E> =
-  | E
+type PrepareReleaseSnapshotError =
   | PrepareQuranSnapshotError
-  | PrepareTryoutSnapshotError<never>
+  | Effect.Error<ReturnType<typeof prepareAssessmentSnapshot>>
   | Effect.Error<ReturnType<typeof loadTryoutContent>>
   | ProgramSnapshotError;
 
@@ -78,14 +59,14 @@ function replacesActiveSnapshot(
 }
 
 /** Prepares only explicitly selected changed structured snapshot families. */
-export const prepareReleaseSnapshots: <E, R>(
-  input: ReleaseSnapshotInput<E, R>
+export const prepareReleaseSnapshots: (
+  input: ReleaseSnapshotInput
 ) => Effect.Effect<
   PreparedReleaseSnapshots,
-  PrepareReleaseSnapshotError<E>,
-  FileSystem.FileSystem | Path.Path | R | Scope.Scope
-> = Effect.fn("AksaraPublisher.prepareReleaseSnapshots")(function* <E, R>(
-  input: ReleaseSnapshotInput<E, R>
+  PrepareReleaseSnapshotError,
+  FileSystem.FileSystem | Path.Path | Scope.Scope
+> = Effect.fn("AksaraPublisher.prepareReleaseSnapshots")(function* (
+  input: ReleaseSnapshotInput
 ) {
   const program = Arr.contains(input.families, "program")
     ? yield* prepareProgramSnapshot()
@@ -95,17 +76,12 @@ export const prepareReleaseSnapshots: <E, R>(
         checkoutRoot: input.checkoutRoot,
       })
     : undefined;
-  const selectsTryout = Arr.contains(input.families, "tryout");
-  const tryout =
-    selectsTryout ||
-    (input.runtime.kind === "refresh" && input.runtime.snapshot === null)
-      ? yield* prepareTryoutSnapshot({
-          checkoutRoot: input.checkoutRoot,
-          content: yield* loadTryoutContent(input.checkoutRoot),
-          questionHeads: input.questionHeads,
-          rendererManifest: input.rendererManifest,
-        })
-      : undefined;
+  const assessment = Arr.contains(input.families, "assessment")
+    ? yield* prepareAssessmentSnapshot({
+        checkoutRoot: input.checkoutRoot,
+        content: yield* loadTryoutContent(input.checkoutRoot),
+      })
+    : undefined;
   const programManifest =
     program === undefined
       ? undefined
@@ -126,23 +102,14 @@ export const prepareReleaseSnapshots: <E, R>(
   const quranChanged =
     quranManifest !== undefined &&
     replacesActiveSnapshot(input.previousSnapshots, quranManifest);
-  const tryoutChanged =
-    tryout !== undefined &&
-    replacesActiveSnapshot(input.previousSnapshots, tryout.manifest);
-  const tryoutRuntimeSnapshot = (() => {
-    if (
-      tryout !== undefined &&
-      (tryoutChanged || input.runtime.kind === "refresh")
-    ) {
-      return tryout.manifest.manifest;
-    }
-    return input.runtime.kind === "refresh" ? input.runtime.snapshot : null;
-  })();
+  const assessmentChanged =
+    assessment !== undefined &&
+    replacesActiveSnapshot(input.previousSnapshots, assessment.manifest);
   /** Replays only changed family manifests in signed canonical order. */
   const manifests = Stream.fromIterable([
+    ...(assessmentChanged && assessment ? [assessment.manifest] : []),
     ...(programChanged && programManifest ? [programManifest] : []),
     ...(quranChanged && quranManifest ? [quranManifest] : []),
-    ...(tryoutChanged && tryout ? [tryout.manifest] : []),
   ]);
   /** Replays rows only for replacement manifests owned by this release. */
   const rows = (() => {
@@ -164,11 +131,12 @@ export const prepareReleaseSnapshots: <E, R>(
             )
           )
         : Stream.empty;
-    const tryoutRows = tryoutChanged && tryout ? tryout.rows : Stream.empty;
-    return programRows.pipe(
-      Stream.concat(quranRows),
-      Stream.concat(tryoutRows)
+    const assessmentRows =
+      assessmentChanged && assessment ? assessment.rows : Stream.empty;
+    return assessmentRows.pipe(
+      Stream.concat(programRows),
+      Stream.concat(quranRows)
     );
   })();
-  return { manifests, rows, tryoutRuntimeSnapshot };
+  return { manifests, rows };
 });

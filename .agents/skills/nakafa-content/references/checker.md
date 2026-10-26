@@ -166,8 +166,8 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
   source wording. A question is not a lesson or an invitation to rewrite a
   passage whose meaning is being assessed.
 - Worked answers receive authored address, mechanical and language checks,
-  valid math and emphasis, links, and heading order beginning at `####` under
-  the app-owned `###` explanation heading. Their locale structures are compared
+  valid math and emphasis, links, and heading order beginning at `#`, because
+  each explanation is a document of its own. Their locale structures are compared
   only with other answers. Lesson-only opening and body-length requirements do
   not turn a short, complete calculation into filler. Abbreviations may already
   be defined in the prompt. Phrases such as “gagasan utama”, “the next section”,
@@ -232,8 +232,8 @@ know, so it is not the full id list.
   one paragraph stays valid even when it wraps an inline component, and inline
   or fenced code keeps `**` as programming syntax.
 - `heading-order` requires lesson and article bodies to start at `##` and use
-  at most `###`, including lesson answer keys. Standalone question-bank answers
-  start at `####` and use at most `#####` beneath the app-owned explanation.
+  at most `###`, including lesson answer keys. Question-bank explanations start
+  at `#` and use at most `##`, because each is a document of its own.
   The gate rejects skipped levels and headings outside the genre's two levels.
 - `exercise-answer-reference` requires a visible answer reference for each
   uniquely numbered prompt in an explicitly labeled lesson exercise and solution.

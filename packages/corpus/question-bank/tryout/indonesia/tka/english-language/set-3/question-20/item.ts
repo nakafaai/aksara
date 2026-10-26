@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "procedure",
     topic: "classification",
   },
+  stimulus: "fair-discussion",
   versions: {
     en: {
       kind: "choice",
@@ -30,7 +31,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "fair-discussion",
 };
 
 export default item;

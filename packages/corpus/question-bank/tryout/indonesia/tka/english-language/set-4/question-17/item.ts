@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "procedure",
     topic: "cause-effect",
   },
+  stimulus: "pinhole-projector",
   versions: {
     en: {
       kind: "choice",
@@ -34,7 +35,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "pinhole-projector",
 };
 
 export default item;

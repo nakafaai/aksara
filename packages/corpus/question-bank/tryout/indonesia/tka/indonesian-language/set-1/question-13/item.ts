@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "heat-map",
   versions: {
     id: {
       columns: ["Sudah dikendalikan", "Perlu dikendalikan"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "heat-map",
 };
 
 export default item;

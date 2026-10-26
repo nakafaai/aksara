@@ -4,11 +4,15 @@ import {
   HashMap,
   HashSet,
   Option,
+  Result,
   Schema,
   Stream,
 } from "effect";
 
-import type { CatalogRow } from "#contracts/assessment/catalog";
+import {
+  type CatalogRow,
+  catalogRowIdentity,
+} from "#contracts/assessment/catalog";
 import type { ItemFamily, ItemVersion } from "#contracts/assessment/item";
 import type { Paper } from "#contracts/assessment/paper";
 import { verifyPaperStimuli } from "#contracts/assessment/paper";
@@ -51,7 +55,10 @@ interface Rows {
   readonly items: HashMap.HashMap<string, ItemVersion>;
   readonly keys: HashSet.HashSet<string>;
   readonly papers: HashMap.HashMap<string, { hash: string; paper: Paper }>;
-  readonly profiles: HashMap.HashMap<string, { hash: string; profile: ExamProfile }>;
+  readonly profiles: HashMap.HashMap<
+    string,
+    { hash: string; profile: ExamProfile }
+  >;
   readonly stimuli: HashSet.HashSet<string>;
 }
 
@@ -90,10 +97,16 @@ function gather(rows: Rows, { row }: AssessmentRecord): Rows {
     };
   }
   if (row.kind === "family") {
-    return { ...rows, families: HashMap.set(rows.families, row.family.id, row.family) };
+    return {
+      ...rows,
+      families: HashMap.set(rows.families, row.family.id, row.family),
+    };
   }
   if (row.kind === "item") {
-    return { ...rows, items: HashMap.set(rows.items, row.version.hash, row.version) };
+    return {
+      ...rows,
+      items: HashMap.set(rows.items, row.version.hash, row.version),
+    };
   }
   if (row.kind === "stimulus") {
     return {
@@ -119,7 +132,11 @@ function stimulusIdentity(version: Pick<StimulusVersion, "hash" | "id">) {
 }
 
 /** Fails with one closure reason unless the condition holds. */
-function require(holds: boolean, reason: typeof AssessmentClosureReasonSchema.Type, identity: string) {
+function require(
+  holds: boolean,
+  reason: typeof AssessmentClosureReasonSchema.Type,
+  identity: string
+) {
   return holds
     ? Effect.void
     : Effect.fail(new AssessmentClosureError({ identity, reason }));
@@ -129,8 +146,11 @@ function require(holds: boolean, reason: typeof AssessmentClosureReasonSchema.Ty
 function fitsProfile(paper: Paper, profile: ExamProfile) {
   return (
     paper.sections.length === profile.sections.length &&
-    Arr.every(Arr.zip(paper.sections, profile.sections), ([placed, section]) =>
-      placed.section === section.id && placed.placements.length === section.items
+    Arr.every(
+      Arr.zip(paper.sections, profile.sections),
+      ([placed, section]) =>
+        placed.section === section.id &&
+        placed.placements.length === section.items
     )
   );
 }
@@ -140,25 +160,34 @@ const verifyPapers = Effect.fn("AksaraContracts.verifyAssessmentPapers")(
   function* (rows: Rows) {
     for (const { paper } of HashMap.values(rows.papers)) {
       const profile = HashMap.get(rows.profiles, paper.profile.id);
-      yield* require(
-        Option.exists(profile, ({ hash }) => hash === paper.profile.hash),
-        "profile",
-        paper.id
+      yield* require(Option.exists(
+        profile,
+        ({ hash }) => hash === paper.profile.hash
+      ), "profile", paper.id);
+      yield* require(Option.exists(profile, (entry) =>
+        fitsProfile(paper, entry.profile)
+      ), "section", paper.id);
+      const placed = Arr.flatMap(
+        paper.sections,
+        ({ placements }) => placements
       );
-      yield* require(
-        Option.exists(profile, (entry) => fitsProfile(paper, entry.profile)),
-        "section",
-        paper.id
-      );
-      const placed = Arr.flatMap(paper.sections, ({ placements }) => placements);
       const versions = Arr.getSomes(
         Arr.map(placed, ({ family, hash }) =>
-          Option.filter(HashMap.get(rows.items, hash), (version) => version.family === family)
+          Option.filter(
+            HashMap.get(rows.items, hash),
+            (version) => version.family === family
+          )
         )
       );
       yield* require(versions.length === placed.length, "place", paper.id);
       yield* verifyPaperStimuli(paper, versions).pipe(
-        Effect.mapError(() => new AssessmentClosureError({ identity: paper.id, reason: "stimulus" }))
+        Effect.mapError(
+          () =>
+            new AssessmentClosureError({
+              identity: paper.id,
+              reason: "stimulus",
+            })
+        )
       );
     }
   }
@@ -169,33 +198,39 @@ const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
   function* (rows: Rows, activeAppLocales: ActiveAppLocaleList) {
     const placed = HashSet.fromIterable(
       Arr.flatMap(Arr.fromIterable(HashMap.values(rows.papers)), ({ paper }) =>
-        Arr.flatMap(paper.sections, ({ placements }) => Arr.map(placements, ({ hash }) => hash))
+        Arr.flatMap(paper.sections, ({ placements }) =>
+          Arr.map(placements, ({ hash }) => hash)
+        )
       )
     );
     for (const version of HashMap.values(rows.items)) {
       const family = HashMap.get(rows.families, version.family);
-      yield* require(
-        Option.exists(family, ({ stimulus }) => stimulus === version.stimulus?.id),
-        "family",
-        version.family
-      );
-      yield* require(
-        version.stimulus === undefined || HashSet.has(rows.stimuli, stimulusIdentity(version.stimulus)),
-        "stimulus",
-        version.family
-      );
+      yield* require(Option.exists(
+        family,
+        ({ stimulus }) => stimulus === version.stimulus?.id
+      ), "family", version.family);
+      yield* require(version.stimulus === undefined ||
+        HashSet.has(
+          rows.stimuli,
+          stimulusIdentity(version.stimulus)
+        ), "stimulus", version.family);
       yield* require(HashSet.has(rows.keys, version.hash), "key", version.hash);
-      yield* require(HashSet.has(placed, version.hash), "unplaced", version.hash);
+      yield* require(HashSet.has(
+        placed,
+        version.hash
+      ), "unplaced", version.hash);
       for (const language of activeAppLocales) {
-        yield* require(
-          HashSet.has(rows.explanations, `${version.hash}\0${language}`),
-          "explanation",
+        yield* require(HashSet.has(
+          rows.explanations,
           `${version.hash}\0${language}`
-        );
+        ), "explanation", `${version.hash}\0${language}`);
       }
     }
     const familiesWithVersions = HashSet.fromIterable(
-      Arr.map(Arr.fromIterable(HashMap.values(rows.items)), ({ family }) => family)
+      Arr.map(
+        Arr.fromIterable(HashMap.values(rows.items)),
+        ({ family }) => family
+      )
     );
     for (const id of HashMap.keys(rows.families)) {
       yield* require(HashSet.has(familiesWithVersions, id), "family", id);
@@ -227,7 +262,10 @@ const verifyCatalog = Effect.fn("AksaraContracts.verifyAssessmentCatalog")(
         continue;
       }
       const paper = HashMap.get(rows.papers, row.paper.id);
-      yield* require(Option.exists(paper, ({ hash }) => hash === row.paper.hash), "paper", row.paper.id);
+      yield* require(Option.exists(
+        paper,
+        ({ hash }) => hash === row.paper.hash
+      ), "paper", row.paper.id);
       const sections = Arr.filterMap(rows.catalog, (section) =>
         section.kind === "section" &&
         section.appLocale === row.appLocale &&
@@ -235,30 +273,26 @@ const verifyCatalog = Effect.fn("AksaraContracts.verifyAssessmentCatalog")(
         section.examKey === row.examKey &&
         section.trackKey === row.trackKey &&
         section.setKey === row.setKey
-          ? Option.some(section.sectionKey)
-          : Option.none()
+          ? Result.succeed(section.sectionKey)
+          : Result.failVoid
       );
-      yield* require(
-        Option.exists(paper, (entry) =>
+      yield* require(Option.exists(
+        paper,
+        (entry) =>
           HashSet.size(HashSet.fromIterable(sections)) === sections.length &&
           sections.length === entry.paper.sections.length &&
-          Arr.every(entry.paper.sections, ({ section }) => Arr.contains(sections, section))
-        ),
-        "section",
-        `${row.appLocale}\0${row.setKey}`
-      );
+          Arr.every(entry.paper.sections, ({ section }) =>
+            Arr.contains(sections, section)
+          )
+      ), "section", `${row.appLocale}\0${row.setKey}`);
     }
-    const nodes = Arr.map(rows.catalog, (row) => ({
-      appLocale: row.appLocale,
-      node: Arr.join(
-        [row.kind, row.countryKey, "examKey" in row ? row.examKey : "", "trackKey" in row ? row.trackKey : "", "setKey" in row ? row.setKey : "", "sectionKey" in row ? row.sectionKey : ""],
-        "\0"
-      ),
-    }));
-    const present = HashSet.fromIterable(Arr.map(nodes, ({ appLocale, node }) => `${appLocale}\0${node}`));
-    for (const { node } of nodes) {
+    const present = HashSet.fromIterable(
+      Arr.map(rows.catalog, catalogRowIdentity)
+    );
+    for (const row of rows.catalog) {
       for (const appLocale of activeAppLocales) {
-        yield* require(HashSet.has(present, `${appLocale}\0${node}`), "locale", node);
+        const identity = catalogRowIdentity({ ...row, appLocale });
+        yield* require(HashSet.has(present, identity), "locale", identity);
       }
     }
   }
@@ -276,7 +310,9 @@ export const verifyAssessmentClosure = Effect.fn(
   readonly activeAppLocales: ActiveAppLocaleList;
   readonly records: Stream.Stream<AssessmentRecord, E, R>;
 }) {
-  const rows = yield* input.records.pipe(Stream.runFold(() => EMPTY_ROWS, gather));
+  const rows = yield* input.records.pipe(
+    Stream.runFold(() => EMPTY_ROWS, gather)
+  );
   yield* verifyCatalog(rows, input.activeAppLocales);
   yield* verifyPapers(rows);
   yield* verifyItems(rows, input.activeAppLocales);

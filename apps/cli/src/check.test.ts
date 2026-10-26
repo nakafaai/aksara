@@ -105,13 +105,26 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
         articleCount: 14,
         materialCount: 766,
         pageCount: 8,
-        questionCount: 3360,
         recordCount: 4146,
         rendererManifestHash: hash,
         resultDigest: hash,
         routeCount: 786,
         routeDigest: hash,
         snapshots: {
+          assessment: {
+            counts: {
+              catalog: 327,
+              explanation: 5625,
+              family: 1875,
+              item: 1875,
+              key: 1875,
+              paper: 21,
+              profile: 4,
+              stimulus: 159,
+            },
+            rowDigest: hash,
+            snapshotId: hash,
+          },
           program: {
             rowCount: 396,
             rowDigest: hash,
@@ -129,14 +142,6 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
             sourceDigest: hash,
           },
           stagedRows: 2316,
-          tryout: {
-            catalogCount: 54,
-            catalogDigest: hash,
-            placementCount: 420,
-            placementDigest: hash,
-            routeCount: 48,
-            snapshotId: hash,
-          },
         },
         totalCount: 4146,
       });

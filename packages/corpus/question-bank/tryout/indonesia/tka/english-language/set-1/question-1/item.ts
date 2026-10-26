@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "classification",
   },
+  stimulus: "rooftop-garden",
   versions: {
     en: {
       columns: ["Plant support", "Water care", "Record keeping"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "rooftop-garden",
 };
 
 export default item;

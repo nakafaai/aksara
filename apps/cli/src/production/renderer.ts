@@ -89,8 +89,6 @@ export const selectRendererManifest = Effect.fn(
   }
   const transition = yield* verifyRendererPolicyTransition({
     baseRendererManifestHash: activeBundle.rendererManifest.hash,
-    baseTryoutSnapshotId:
-      activeBundle.release.manifest.snapshots.tryout.resultSnapshotId,
     rendererManifestHash: liveRenderer.hash,
     scope: input.scope,
   }).pipe(Effect.result);

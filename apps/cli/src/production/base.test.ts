@@ -27,8 +27,8 @@ const SNAPSHOT_A = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 const SNAPSHOT_B = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
 /** The active release that every base test selects its source base from. */
 const activeBundle = gitBundle("release-active", {
+  assessmentSnapshotId: SNAPSHOT_A,
   baseReleaseId: releaseId("release-parent"),
-  tryoutSnapshotId: SNAPSHOT_A,
 });
 
 /** Replaces signed manifest fields only for isolated recovery-identity tests. */
@@ -51,9 +51,9 @@ describe("production base identity", () => {
       const ACTIVE = yield* activeBundle;
       const BASE = selectSourceBase(ACTIVE);
       const candidate = yield* gitBundle("release-candidate", {
+        assessmentSnapshotId: SNAPSHOT_A,
         baseManifestHash: ACTIVE.release.manifestHash,
         baseReleaseId: ACTIVE.release.manifest.releaseId,
-        tryoutSnapshotId: SNAPSHOT_A,
       });
 
       expect(selectSourceBase(null)).toBeNull();
@@ -82,7 +82,7 @@ describe("production base identity", () => {
       const active = withManifest(ACTIVE, {
         snapshots: {
           ...ACTIVE.release.manifest.snapshots,
-          tryout: replaceContentSnapshot({
+          assessment: replaceContentSnapshot({
             baseSnapshotId: null,
             resultSnapshotId: SNAPSHOT_A,
             rowCount: 1,
@@ -98,7 +98,7 @@ describe("production base identity", () => {
         {
           snapshots: {
             ...active.release.manifest.snapshots,
-            tryout: replaceContentSnapshot({
+            assessment: replaceContentSnapshot({
               baseSnapshotId: SNAPSHOT_A,
               resultSnapshotId: SNAPSHOT_B,
               rowCount: 1,
@@ -110,10 +110,10 @@ describe("production base identity", () => {
 
       const recovered = selectRecoveryBase(candidate);
       const current = selectSourceBase(active);
-      expect(recovered?.snapshots.tryout).toEqual(
+      expect(recovered?.snapshots.assessment).toEqual(
         inheritContentSnapshot(SNAPSHOT_A)
       );
-      expect(current.snapshots.tryout).toEqual(
+      expect(current.snapshots.assessment).toEqual(
         inheritContentSnapshot(SNAPSHOT_A)
       );
       expect(yield* validateRecoveryBase(recovered, current)).toBeUndefined();
@@ -174,7 +174,7 @@ describe("production base identity", () => {
           ...BASE,
           snapshots: {
             ...BASE.snapshots,
-            tryout: inheritContentSnapshot(SNAPSHOT_B),
+            assessment: inheritContentSnapshot(SNAPSHOT_B),
           },
         }).pipe(Effect.flip),
       ]);

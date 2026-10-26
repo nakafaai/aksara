@@ -57,7 +57,6 @@ const TARGET_STAGES: Readonly<{
   stageRouteBatch: "routes",
   stageSnapshot: "snapshots",
   stageSnapshotBatch: "snapshots",
-  stageTryoutRuntimeBundle: "bundles",
   status: "status",
   verify: "verify",
 };
@@ -123,13 +122,6 @@ function hasBoundConflict(
       failure.batchIndex === request.batchIndex &&
       failure.family === request.family &&
       failure.snapshotId === request.snapshotId
-    );
-  }
-  if (failure.operation === "stageTryoutRuntimeBundle") {
-    return (
-      request.operation === "stageTryoutRuntimeBundle" &&
-      failure.bundleHash === request.bundle.bundleHash &&
-      failure.snapshotId === request.bundle.payload.snapshot.snapshotId
     );
   }
   if (!("batchIndex" in failure)) {

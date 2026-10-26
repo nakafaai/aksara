@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "food-scraps",
   versions: {
     id: {
       columns: ["Boleh", "Tidak boleh"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "food-scraps",
 };
 
 export default item;

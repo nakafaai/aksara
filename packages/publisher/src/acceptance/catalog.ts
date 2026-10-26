@@ -18,7 +18,6 @@ import type { ContentCatalogPublication } from "#publisher/catalog/publication";
 import { planMaterialPublication } from "#publisher/material/plan";
 import { planPagePublication } from "#publisher/page/plan";
 import { PreparedContentTransitionSchema } from "#publisher/preparation/spec";
-import { planQuestionPublication } from "#publisher/question/plan";
 import {
   type ReplaySpoolError,
   replaySpoolFailure,
@@ -36,8 +35,7 @@ type AcceptanceCatalogError =
   | ReplaySpoolError
   | Stream.Error<ReturnType<typeof planArticlePublication<never, never>>>
   | Stream.Error<ReturnType<typeof planMaterialPublication<never, never>>>
-  | Stream.Error<ReturnType<typeof planPagePublication<never, never>>>
-  | Stream.Error<ReturnType<typeof planQuestionPublication<never, never>>>;
+  | Stream.Error<ReturnType<typeof planPagePublication<never, never>>>;
 
 /** Compiles the fixed genesis corpus through the production family planners. */
 export const prepareAcceptanceCatalog: (input: {
@@ -68,18 +66,12 @@ export const prepareAcceptanceCatalog: (input: {
     entries: sources.page,
     published,
   });
-  const question = planQuestionPublication({
-    ...input,
-    ...sources.tryout,
-    published,
-  });
   const spool = yield* createReplaySpool({
     prefix: "aksara-acceptance-",
     schema: AcceptancePlanSchema,
     stream: article.pipe(
       Stream.concat(material),
       Stream.concat(page),
-      Stream.concat(question),
       Stream.mapEffect((plan) =>
         Schema.decodeUnknownEffect(AcceptancePlanSchema)(plan).pipe(
           Effect.mapError((cause) => replaySpoolFailure("decode", cause))

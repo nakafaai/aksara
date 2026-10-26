@@ -48,12 +48,12 @@ describe("local preview provider", () => {
     () =>
       withProvider(({ provider, ready, token }) =>
         Effect.gen(function* () {
-          const [compiled] = ready.result.results;
+          const compiled = ready.result.result;
           yield* provider.ready({
             generation: 0,
             rendererManifestHash: RENDERER_MANIFEST.hash,
             repositories: PREVIEW_REPOSITORIES,
-            results: ready.result.results,
+            result: ready.result.result,
           });
           const readyManifestResponse = yield* requestProvider(
             provider,
@@ -136,19 +136,18 @@ describe("local preview provider", () => {
     () =>
       withProvider(({ provider, ready, token }) =>
         Effect.gen(function* () {
-          const [compiled] = ready.result.results;
+          const compiled = ready.result.result;
           const input = {
             generation: 0,
             rendererManifestHash: RENDERER_MANIFEST.hash,
             repositories: PREVIEW_REPOSITORIES,
-            results: ready.result.results,
+            result: ready.result.result,
           };
           yield* provider.ready(input);
           const mismatches = makeIncoherentResults(ready);
           const errors = yield* Effect.forEach(
             mismatches,
-            (result) =>
-              provider.ready({ ...input, results: [result] }).pipe(Effect.flip),
+            (result) => provider.ready({ ...input, result }).pipe(Effect.flip),
             { concurrency: "unbounded" }
           );
           expect(errors).toMatchObject(
@@ -222,7 +221,7 @@ describe("local preview provider", () => {
             generation: staleGeneration,
             rendererManifestHash: RENDERER_MANIFEST.hash,
             repositories: PREVIEW_REPOSITORIES,
-            results: ready.result.results,
+            result: ready.result.result,
           });
           const staleFailure = yield* provider.failed({
             failure: {
@@ -236,7 +235,7 @@ describe("local preview provider", () => {
             generation: currentGeneration,
             rendererManifestHash: RENDERER_MANIFEST.hash,
             repositories: PREVIEW_REPOSITORIES,
-            results: ready.result.results,
+            result: ready.result.result,
           });
 
           expect({ currentReady, staleFailure, staleReady }).toEqual({

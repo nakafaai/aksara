@@ -29,7 +29,6 @@ const ContentCatalogValidationSchema = Schema.Struct({
   articleCount: CountSchema,
   materialCount: CountSchema,
   pageCount: CountSchema,
-  questionCount: CountSchema,
   recordCount: CountSchema,
   rendererManifestHash: Sha256HashSchema,
   resultDigest: Sha256HashSchema,
@@ -128,9 +127,9 @@ export const validateContentCatalog: (input: {
   | ContentCatalogValidationError,
   FileSystem.FileSystem | Path.Path | Scope.Scope
 > = Effect.fn("AksaraPublisher.validateContentCatalog")(function* (input) {
-  const expectation = yield* readContentCatalogExpectation(
-    input.checkoutRoot
-  ).pipe(Effect.mapError((cause) => validationError("catalog", cause)));
+  const expectation = yield* readContentCatalogExpectation.pipe(
+    Effect.mapError((cause) => validationError("catalog", cause))
+  );
   const publication = yield* prepareContentCatalog({
     base: null,
     checkoutRoot: input.checkoutRoot,
@@ -138,7 +137,6 @@ export const validateContentCatalog: (input: {
       article: Stream.empty,
       material: Stream.empty,
       page: Stream.empty,
-      question: Stream.empty,
     },
     rendererManifest: input.rendererManifest,
   }).pipe(Effect.mapError((cause) => validationError("catalog", cause)));
@@ -173,11 +171,9 @@ export const validateContentCatalog: (input: {
           Stream.fromIterable(expectation.routes)
         )
       ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
-      validateCatalogSnapshots({
-        checkoutRoot: input.checkoutRoot,
-        questionHeads: result.questionHeads,
-        rendererManifest: input.rendererManifest,
-      }).pipe(Effect.mapError((cause) => validationError("snapshots", cause))),
+      validateCatalogSnapshots(input.checkoutRoot).pipe(
+        Effect.mapError((cause) => validationError("snapshots", cause))
+      ),
     ],
     { concurrency: 5 }
   );
@@ -189,11 +185,6 @@ export const validateContentCatalog: (input: {
     expectation.materialCount
   );
   yield* requireCount("page", result.pageCount, expectation.pageCount);
-  yield* requireCount(
-    "question",
-    result.questionCount,
-    expectation.questionCount
-  );
   yield* requireCount("records", recordCount, expectation.totalCount);
   yield* requireCount("routes", routes.count, expectedRoutes.count);
   yield* requireRouteDigest(routes.digest, expectedRoutes.digest);
@@ -202,7 +193,6 @@ export const validateContentCatalog: (input: {
     articleCount: result.articleCount,
     materialCount: result.materialCount,
     pageCount: result.pageCount,
-    questionCount: result.questionCount,
     recordCount,
     rendererManifestHash: input.rendererManifest.hash,
     resultDigest: result.digest,

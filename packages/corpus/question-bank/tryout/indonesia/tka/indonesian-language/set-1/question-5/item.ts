@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "information-quality",
   },
+  stimulus: "seed-library",
   versions: {
     id: {
       kind: "choice",
@@ -38,7 +39,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "seed-library",
 };
 
 export default item;

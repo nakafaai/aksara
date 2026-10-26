@@ -93,19 +93,16 @@ describe("current release state", () => {
         active,
         candidate: null,
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active: null,
         candidate: { phase: "staging", release, rendererManifest },
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: { phase: "staging", release: next, rendererManifest },
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
     ]) {
       expect(accepts(current)).toBe(true);
@@ -118,7 +115,6 @@ describe("current release state", () => {
           active,
           candidate,
           recovery: { ...retained, phase },
-          tryoutRuntimeBundle: null,
         })
       ).toBe(true);
     }
@@ -128,7 +124,6 @@ describe("current release state", () => {
         active: activated,
         candidate: null,
         recovery: retained,
-        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
     expect(
@@ -136,7 +131,6 @@ describe("current release state", () => {
         active: activated,
         candidate: null,
         recovery: { ...retained, phase: "aborting" },
-        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
   });
@@ -147,7 +141,6 @@ describe("current release state", () => {
         active: null,
         candidate: { phase: "verified", release, rendererManifest },
         recovery: genesisRecovery,
-        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
     expect(
@@ -155,7 +148,6 @@ describe("current release state", () => {
         active: activeRelease(release),
         candidate: null,
         recovery: genesisRecovery,
-        tryoutRuntimeBundle: null,
       })
     ).toBe(true);
   });
@@ -189,31 +181,26 @@ describe("current release state", () => {
         active: null,
         candidate: null,
         recovery: retained,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: { ...candidate, phase: "staging" },
         recovery: retained,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate,
         recovery: { ...retained, phase: "aborting" },
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: null,
         recovery: { ...retained, phase: "staging" },
-        tryoutRuntimeBundle: null,
       },
       ...Arr.map(invalidManifests, (manifest) => ({
         active,
         candidate,
         recovery: recoveryWith(manifest),
-        tryoutRuntimeBundle: null,
       })),
       {
         active,
@@ -229,19 +216,16 @@ describe("current release state", () => {
           },
           rendererManifest: { ...rendererManifest, hash: otherHash },
         },
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate,
         recovery: { ...retained, release },
-        tryoutRuntimeBundle: null,
       },
       {
         active: null,
         candidate,
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
@@ -249,37 +233,31 @@ describe("current release state", () => {
           baseResultCount: next.manifest.baseResultCount + 1,
         }),
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: candidateWith({ baseActiveAppLocales: ["en"] }),
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: candidateWith({ baseResultDigest: otherHash }),
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate,
         recovery: recoveryWith({ releaseId: release.manifest.releaseId }),
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: { ...candidate, phase: "active" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
       {
         active,
         candidate: { ...candidate, phase: "finalizing" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       },
     ];
     for (const state of invalidStates) {

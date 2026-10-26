@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "procedure",
     topic: "information-validity",
   },
+  stimulus: "leak-test",
   versions: {
     en: {
       kind: "choice",
@@ -37,7 +38,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "leak-test",
 };
 
 export default item;

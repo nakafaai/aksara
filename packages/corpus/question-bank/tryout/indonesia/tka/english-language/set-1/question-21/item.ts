@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
+  stimulus: "later-start",
   versions: {
     en: {
       columns: ["Outcome to measure", "Potential unequal effect"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "later-start",
 };
 
 export default item;

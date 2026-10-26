@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "probability",
   },
+  stimulus: "club-choices",
   versions: {
     id: {
       kind: "choice",
@@ -33,7 +34,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "club-choices",
 };
 
 export default item;

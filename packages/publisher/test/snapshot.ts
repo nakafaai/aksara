@@ -1,3 +1,10 @@
+import { ItemFamilyIdSchema } from "@nakafa/aksara-contracts/assessment/identity";
+import {
+  type AssessmentRow,
+  digestAssessmentRows,
+  hashAssessmentRow,
+  makeAssessmentSnapshot,
+} from "@nakafa/aksara-contracts/assessment/snapshot";
 import {
   PublicPathSchema,
   ReleaseIdSchema,
@@ -30,21 +37,14 @@ import {
   inheritContentSnapshots,
   replaceContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import { TryoutCountrySchema } from "@nakafa/aksara-contracts/tryout/catalog";
-import {
-  digestTryoutCatalog,
-  makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/hash/catalog";
-import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/hash/placement";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
 import { Effect, Stream } from "effect";
 import { materialGraph } from "#test/graph";
 
-export interface TryoutFixture {
+export interface AssessmentFixture {
   readonly manifest: Extract<
     ContentSnapshotManifest,
-    { readonly family: "tryout" }
+    { readonly family: "assessment" }
   >;
   readonly rowCount: number;
   /** Replays the representative technical row used by this unit test. */
@@ -134,61 +134,55 @@ export function makeQuranSnapshotFixture(): QuranFixture {
   };
 }
 
-/** Builds one internally consistent technical try-out dependency fixture. */
-export const tryoutSnapshotFixture = Effect.gen(function* () {
-  const record = yield* makeTryoutCatalogRecord(
-    TryoutCountrySchema.make({
-      appLocale: AppLocaleSchema.make("en"),
-      countryCode: "ID",
-      countryKey: "indonesia",
-      graph: materialGraph(AppLocaleSchema.make("en"), "tryout", "release"),
-      kind: "country",
-      order: 1,
-      publicPath: PublicPathSchema.make("try-out/indonesia"),
-      sourceRevision: "test-release",
-      title: "Test Indonesia",
-    })
-  );
-  const [catalog, placement] = yield* Effect.all([
-    digestTryoutCatalog(Stream.make(record)),
-    digestTryoutPlacements(Stream.empty),
-  ]);
-  const counts = { country: 0, exam: 0, section: 0, set: 0, track: 0 };
-  counts[record.row.kind] = 1;
-  const routeCount =
-    "publicPath" in record.row && record.row.publicPath !== undefined ? 1 : 0;
+/** The one technical assessment row, a family, with its hash. */
+export const assessmentFamilyRecord = Effect.gen(function* () {
+  const row: AssessmentRow = {
+    family: {
+      id: ItemFamilyIdSchema.make(
+        "test-country/test-exam/test-section/test-set/question-1"
+      ),
+    },
+    kind: "family",
+  };
+  return { row, rowHash: yield* hashAssessmentRow(row) };
+});
+
+/** Builds one internally consistent technical assessment dependency fixture. */
+export const assessmentSnapshotFixture = Effect.gen(function* () {
+  const record = yield* assessmentFamilyRecord;
+  const summary = yield* digestAssessmentRows(Stream.make(record));
   const manifest = {
-    family: "tryout",
-    manifest: yield* makeTryoutSnapshot({
+    family: "assessment",
+    manifest: yield* makeAssessmentSnapshot({
       activeAppLocales: ACTIVE_APP_LOCALES,
-      catalogDigest: catalog.digest,
-      counts,
-      placementCount: placement.count,
-      placementDigest: placement.digest,
-      routeCount,
+      ...summary,
     }),
-  } satisfies TryoutFixture["manifest"];
-  const row = {
-    family: "tryout",
-    record,
-    rowKind: "catalog",
-  } satisfies ContentSnapshotRow;
+  } satisfies AssessmentFixture["manifest"];
   return {
     manifest,
     rowCount: 1,
-    rows: Stream.make(row),
+    rows: Stream.make({
+      family: "assessment",
+      record,
+    } satisfies ContentSnapshotRow),
   };
 });
 
-/** Try-out manifest whose counts and digests the catalog validation tests pin. */
-export const catalogTryoutManifest = await Effect.runPromise(
-  makeTryoutSnapshot({
+/** Assessment manifest whose counts and digest the catalog validation tests pin. */
+export const catalogAssessmentManifest = await Effect.runPromise(
+  makeAssessmentSnapshot({
     activeAppLocales: ACTIVE_APP_LOCALES,
-    catalogDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-    counts: { country: 2, exam: 2, section: 4, set: 2, track: 2 },
-    placementCount: 8,
-    placementDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
-    routeCount: 10,
+    counts: {
+      catalog: 12,
+      explanation: 6,
+      family: 2,
+      item: 2,
+      key: 2,
+      paper: 1,
+      profile: 1,
+      stimulus: 0,
+    },
+    rowDigest: Sha256HashSchema.make(`sha256:${"a".repeat(64)}`),
   })
 );
 

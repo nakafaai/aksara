@@ -12,7 +12,6 @@ import {
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
-import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, Schema } from "effect";
 import { type RouteTransition, RouteTransitionSchema } from "#publisher/routes";
@@ -31,7 +30,6 @@ const ContentCatalogExpectationSchema = Schema.Struct({
   heads: Schema.Array(ExpectedCatalogHeadSchema),
   materialCount: Schema.Finite,
   pageCount: Schema.Finite,
-  questionCount: Schema.Finite,
   routes: Schema.Array(RouteTransitionSchema),
   totalCount: Schema.Finite,
 });
@@ -66,73 +64,55 @@ function expectedRoute(route: {
 }
 
 /** Reads every authoritative body source into one independent inventory. */
-export const readContentCatalogExpectation: (
-  checkoutRoot: string
-) => Effect.Effect<
+export const readContentCatalogExpectation: Effect.Effect<
   ContentCatalogExpectation,
   ContentCatalogExpectationError,
   FileSystem.FileSystem | Path.Path
-> = Effect.fn("AksaraPublisher.readContentCatalogExpectation")(
-  function* (checkoutRoot) {
-    const [articles, materials, pages, tryout] = yield* Effect.all(
-      [
-        decodeArticleRegistry(),
-        decodeMaterialRegistry(),
-        decodePageRegistry(),
-        loadTryoutContent(checkoutRoot),
-      ],
-      { concurrency: 4 }
-    ).pipe(
-      Effect.mapError((cause) => new ContentCatalogExpectationError({ cause }))
-    );
-    const heads: ExpectedCatalogHead[] = [
-      ...Arr.map(
-        articles,
-        ({ route }): ExpectedCatalogHead => ({
-          artifactLocale: route.artifactLocale,
-          contentKey: route.contentKey,
-          family: "article",
-        })
-      ),
-      ...Arr.map(
-        materials,
-        ({ route }): ExpectedCatalogHead => ({
-          artifactLocale: route.artifactLocale,
-          contentKey: route.contentKey,
-          family: "material",
-        })
-      ),
-      ...Arr.map(
-        pages,
-        ({ route }): ExpectedCatalogHead => ({
-          artifactLocale: route.artifactLocale,
-          contentKey: route.contentKey,
-          family: "page",
-        })
-      ),
-      ...Arr.map(
-        tryout.entries,
-        ({ contentKey, artifactLocale }): ExpectedCatalogHead => ({
-          artifactLocale,
-          contentKey,
-          family: "question",
-        })
-      ),
-    ];
-    const routes = [
-      ...Arr.map(articles, ({ route }) => expectedRoute(route)),
-      ...Arr.map(materials, ({ route }) => expectedRoute(route)),
-      ...Arr.map(pages, ({ route }) => expectedRoute(route)),
-    ];
+> = Effect.gen(function* () {
+  const [articles, materials, pages] = yield* Effect.all(
+    [decodeArticleRegistry(), decodeMaterialRegistry(), decodePageRegistry()],
+    { concurrency: 3 }
+  ).pipe(
+    Effect.mapError((cause) => new ContentCatalogExpectationError({ cause }))
+  );
+  const heads: ExpectedCatalogHead[] = [
+    ...Arr.map(
+      articles,
+      ({ route }): ExpectedCatalogHead => ({
+        artifactLocale: route.artifactLocale,
+        contentKey: route.contentKey,
+        family: "article",
+      })
+    ),
+    ...Arr.map(
+      materials,
+      ({ route }): ExpectedCatalogHead => ({
+        artifactLocale: route.artifactLocale,
+        contentKey: route.contentKey,
+        family: "material",
+      })
+    ),
+    ...Arr.map(
+      pages,
+      ({ route }): ExpectedCatalogHead => ({
+        artifactLocale: route.artifactLocale,
+        contentKey: route.contentKey,
+        family: "page",
+      })
+    ),
+  ];
+  const routes = [
+    ...Arr.map(articles, ({ route }) => expectedRoute(route)),
+    ...Arr.map(materials, ({ route }) => expectedRoute(route)),
+    ...Arr.map(pages, ({ route }) => expectedRoute(route)),
+  ];
 
-    return {
-      articleCount: articles.length,
-      heads,
-      materialCount: materials.length,
-      pageCount: pages.length,
-      questionCount: tryout.entries.length,
-      routes,
-      totalCount: heads.length,
-    } satisfies ContentCatalogExpectation;
-  }
-);
+  return {
+    articleCount: articles.length,
+    heads,
+    materialCount: materials.length,
+    pageCount: pages.length,
+    routes,
+    totalCount: heads.length,
+  } satisfies ContentCatalogExpectation;
+}).pipe(Effect.withSpan("AksaraPublisher.readContentCatalogExpectation"));

@@ -1,90 +1,18 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
-
-import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
+import {
+  testEnglishSection as english,
+  testReasoningSection as reasoning,
+  testSubjectTrack as subject,
+  testExamInput,
+  testYearTrack as year,
+} from "#corpus/test/exam";
+import {
+  type AssessmentReadinessInput,
+  defineAssessmentReadiness,
+} from "#corpus/tryout/readiness/schema";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
-import { defineTryoutExamSource } from "#corpus/tryout/schema";
-
-const sections = [
-  {
-    key: "general-reasoning",
-    languagePolicy: { kind: "fixed" as const, language: "id" as const },
-    order: 1,
-    questionCount: 30,
-    questionSourcePath:
-      "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
-    rendererDomain: "snbt-general",
-    routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
-    timeLimitSeconds: 1800,
-    translations: {
-      en: { title: "General Reasoning" },
-      id: { title: "Penalaran Umum" },
-    },
-  },
-  {
-    key: "quantitative-knowledge",
-    languagePolicy: { kind: "fixed" as const, language: "id" as const },
-    order: 2,
-    questionCount: 20,
-    questionSourcePath:
-      "question-bank/tryout/indonesia/snbt/quantitative-knowledge/set-1",
-    rendererDomain: "snbt-quant",
-    routeSlugs: {
-      en: "quantitative-knowledge",
-      id: "pengetahuan-kuantitatif",
-    },
-    timeLimitSeconds: 1200,
-    translations: {
-      en: { title: "Quantitative Knowledge" },
-      id: { title: "Pengetahuan Kuantitatif" },
-    },
-  },
-] as const;
-
-const sourceInput = {
-  countryCode: "ID",
-  countryKey: "indonesia",
-  countryOrder: 1,
-  countryRevision: "2026-08-30",
-  countryRouteSlugs: { en: "indonesia", id: "indonesia" },
-  countryTranslations: {
-    en: { title: "Indonesia" },
-    id: { title: "Indonesia" },
-  },
-  examKey: "snbt",
-  examOrder: 1,
-  examRouteSlugs: { en: "snbt", id: "snbt" },
-  examTranslations: {
-    en: { title: "SNBT" },
-    id: { title: "SNBT" },
-  },
-  scoringStrategy: "irt",
-  sourceRevision: "2026-08-30",
-  tracks: [
-    {
-      key: "2027",
-      kind: "year",
-      order: 1,
-      routeSlugs: { en: "2027", id: "2027" },
-      sets: [
-        {
-          key: "set-1",
-          order: 1,
-          routeSlugs: { en: "set-1", id: "set-1" },
-          sections,
-          translations: {
-            en: { title: "Set 1" },
-            id: { title: "Set 1" },
-          },
-        },
-      ],
-      translations: {
-        en: { title: "Year 2027" },
-        id: { title: "Tahun 2027" },
-      },
-    },
-  ],
-} as const;
+import { defineExamSource } from "#corpus/tryout/schema";
 
 /** Binds one fixture value to its fixture-owned official evidence. */
 const official = (value: number) => ({
@@ -92,54 +20,52 @@ const official = (value: number) => ({
   value,
 });
 
-const readinessInput = {
-  countryKey: "indonesia",
+/** The readiness of the reasoning section, its count and time both official. */
+const reasoningReadiness = {
+  key: "test-reasoning",
+  order: 1,
+  questionCount: official(1),
+  timeLimitSeconds: official(300),
+};
+
+/** The readiness of the English section, its count set editorially. */
+const englishReadiness = {
+  key: "test-english",
+  order: 2,
+  questionCount: { provenance: { kind: "editorial" as const }, value: 1 },
+  timeLimitSeconds: official(240),
+};
+
+const readinessInput: AssessmentReadinessInput = {
+  countryKey: "test-country",
   evidence: [
     {
       key: "official-source",
       label: "Official source",
-      retrievedAt: "2026-08-30",
+      retrievedAt: "2026-10-26",
       url: "https://example.edu/official",
     },
   ],
-  examKey: "snbt",
-  sections: [
-    {
-      key: "general-reasoning",
-      order: 1,
-      questionCount: official(30),
-      timeLimitSeconds: official(1800),
-    },
-    {
-      key: "quantitative-knowledge",
-      order: 2,
-      questionCount: { provenance: { kind: "editorial" as const }, value: 20 },
-      timeLimitSeconds: official(1200),
-    },
-  ],
-  sourceRevision: "2026-08-30",
+  examKey: "test-exam",
+  sections: [reasoningReadiness, englishReadiness],
+  sourceRevision: "2026-10-26",
   trackKey: "2027",
-} as const;
+};
 
 const marks = { blank: 0, correct: 4, wrong: -1 };
-const MARKS_FACT = '{"blank":0,"correct":4,"wrong":-1}';
 
-/** Builds the fixture exam as a penalized source with uniform section marks. */
-function penalizedSource(value: typeof marks) {
-  const [track] = sourceInput.tracks;
-  const markedSections = Arr.map(sections, (section) => ({
-    ...section,
-    marks: value,
-  }));
-  const set = { ...track.sets[0], sections: markedSections };
-  const tracks = [{ ...track, sets: [set] }];
-  return { ...sourceInput, scoringStrategy: "penalized" as const, tracks };
+/** The test exam with its year track's profile changed. */
+function withProfile(change: Partial<typeof year.profile>) {
+  return defineExamSource({
+    ...testExamInput,
+    tracks: [subject, { ...year, profile: { ...year.profile, ...change } }],
+  });
 }
 
-describe("assessment source readiness validation", () => {
-  it.effect("accepts every active set that matches its readiness gate", () =>
+describe("validateAssessmentSourceReadiness", () => {
+  it.effect("accepts a track that matches its readiness gate", () =>
     Effect.gen(function* () {
-      const source = yield* defineTryoutExamSource(sourceInput);
+      const source = yield* defineExamSource(testExamInput);
       const readiness = yield* defineAssessmentReadiness(readinessInput);
 
       expect(yield* validateAssessmentSourceReadiness(source, readiness)).toBe(
@@ -148,108 +74,73 @@ describe("assessment source readiness validation", () => {
     })
   );
 
-  it.effect.each([
-    {
-      expected: "30",
-      field: "questionCount",
-      source: {
-        ...sourceInput,
-        tracks: [
-          {
-            ...sourceInput.tracks[0],
-            sets: [
+  it.effect(
+    "rejects drift in items, seconds, revision, and section count",
+    () =>
+      Effect.gen(function* () {
+        const readiness = yield* defineAssessmentReadiness(readinessInput);
+        const sources = yield* Effect.all([
+          withProfile({ sections: [{ ...reasoning, items: 2 }, english] }),
+          withProfile({ sections: [{ ...reasoning, seconds: 360 }, english] }),
+          defineExamSource({ ...testExamInput, sourceRevision: "2026-10-25" }),
+          withProfile({
+            sections: [
+              reasoning,
+              english,
               {
-                ...sourceInput.tracks[0].sets[0],
-                sections: [{ ...sections[0], questionCount: 20 }, sections[1]],
+                ...english,
+                key: "test-extra",
+                routeSlugs: {
+                  de: "test-extra",
+                  en: "test-extra",
+                  id: "test-extra",
+                },
               },
             ],
-          },
-        ],
-      },
-    },
-    {
-      expected: "1800",
-      field: "timeLimitSeconds",
-      source: {
-        ...sourceInput,
-        tracks: [
-          {
-            ...sourceInput.tracks[0],
-            sets: [
-              {
-                ...sourceInput.tracks[0].sets[0],
-                sections: [
-                  { ...sections[0], timeLimitSeconds: 2700 },
-                  sections[1],
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    },
-    {
-      expected: "2026-08-30",
-      field: "sourceRevision",
-      source: { ...sourceInput, sourceRevision: "2026-08-29" },
-    },
-  ])("rejects active $field drift", ({ expected, field, source: input }) =>
-    Effect.gen(function* () {
-      const source = yield* defineTryoutExamSource(input);
-      const readiness = yield* defineAssessmentReadiness(readinessInput);
-      const failure = yield* validateAssessmentSourceReadiness(
-        source,
-        readiness
-      ).pipe(Effect.flip);
+          }),
+        ]);
+        const failures = yield* Effect.forEach(sources, (source) =>
+          validateAssessmentSourceReadiness(source, readiness).pipe(Effect.flip)
+        );
 
-      expect(failure).toMatchObject({
-        _tag: "AssessmentReadinessMismatchError",
-        expected,
-        field,
-      });
-    })
+        expect(
+          Arr.map(failures, ({ actual, expected, field }) => [
+            field,
+            actual,
+            expected,
+          ])
+        ).toEqual([
+          ["questionCount", "2", "1"],
+          ["timeLimitSeconds", "360", "300"],
+          ["sourceRevision", "2026-10-25", "2026-10-26"],
+          ["sectionCount", "3", "2"],
+        ]);
+      })
   );
 
-  it.effect("rejects missing tracks, sets, and sections", () =>
+  it.effect("rejects a missing track, sets, and section", () =>
     Effect.gen(function* () {
       const readiness = yield* defineAssessmentReadiness(readinessInput);
-      const trackSource = yield* defineTryoutExamSource({
-        ...sourceInput,
-        tracks: [{ ...sourceInput.tracks[0], key: "2028" }],
-      });
-      const setsSource = yield* defineTryoutExamSource({
-        ...sourceInput,
-        tracks: [{ ...sourceInput.tracks[0], sets: [] }],
-      });
-      const sectionSource = yield* defineTryoutExamSource({
-        ...sourceInput,
-        tracks: [
-          {
-            ...sourceInput.tracks[0],
-            sets: [
-              {
-                ...sourceInput.tracks[0].sets[0],
-                sections: [sections[0]],
-              },
-            ],
-          },
-        ],
-      });
-      const [track, sets, section] = yield* Effect.all([
-        validateAssessmentSourceReadiness(trackSource, readiness).pipe(
-          Effect.flip
-        ),
-        validateAssessmentSourceReadiness(setsSource, readiness).pipe(
-          Effect.flip
-        ),
-        validateAssessmentSourceReadiness(sectionSource, readiness).pipe(
-          Effect.flip
-        ),
+      const sources = yield* Effect.all([
+        defineExamSource({
+          ...testExamInput,
+          tracks: [subject, { ...year, key: "2028" }],
+        }),
+        defineExamSource({
+          ...testExamInput,
+          tracks: [subject, { ...year, sets: [] }],
+        }),
+        withProfile({ sections: [reasoning] }),
+        withProfile({ sections: [english, reasoning] }),
       ]);
+      const failures = yield* Effect.forEach(sources, (source) =>
+        validateAssessmentSourceReadiness(source, readiness).pipe(Effect.flip)
+      );
 
-      expect([track.field, sets.field, section.field]).toEqual([
+      expect(Arr.map(failures, ({ field }) => field)).toEqual([
         "trackKey",
         "activeSets",
+        "sectionKey",
         "sectionKey",
       ]);
     })
@@ -257,35 +148,34 @@ describe("assessment source readiness validation", () => {
 
   it.effect("validates penalized marks against their readiness evidence", () =>
     Effect.gen(function* () {
-      const [first, second] = readinessInput.sections;
       const evidence = { ...official(0), value: marks };
-      const readiness = yield* defineAssessmentReadiness({
+      const marked = yield* defineAssessmentReadiness({
         ...readinessInput,
         sections: [
-          { ...first, marks: evidence },
-          { ...second, marks: evidence },
+          { ...reasoningReadiness, marks: evidence },
+          { ...englishReadiness, marks: evidence },
         ],
       });
-      const [penalized, drifted, unmarked] = yield* Effect.all([
-        defineTryoutExamSource(penalizedSource(marks)),
-        defineTryoutExamSource(penalizedSource({ ...marks, correct: 3 })),
-        defineTryoutExamSource(sourceInput),
+      const unmarked = yield* defineAssessmentReadiness(readinessInput);
+      const [penalized, drifted, scaled] = yield* Effect.all([
+        withProfile({ scoring: { kind: "penalized", marks } }),
+        withProfile({
+          scoring: { kind: "penalized", marks: { ...marks, correct: 3 } },
+        }),
+        defineExamSource(testExamInput),
       ]);
       const failures = yield* Effect.forEach(
         [
-          validateAssessmentSourceReadiness(drifted, readiness),
-          validateAssessmentSourceReadiness(unmarked, readiness),
-          validateAssessmentSourceReadiness(
-            penalized,
-            yield* defineAssessmentReadiness(readinessInput)
-          ),
+          validateAssessmentSourceReadiness(drifted, marked),
+          validateAssessmentSourceReadiness(scaled, marked),
+          validateAssessmentSourceReadiness(penalized, unmarked),
         ],
         Effect.flip
       );
 
-      expect(
-        yield* validateAssessmentSourceReadiness(penalized, readiness)
-      ).toBe(penalized);
+      expect(yield* validateAssessmentSourceReadiness(penalized, marked)).toBe(
+        penalized
+      );
       expect(
         Arr.map(failures, ({ actual, expected, field }) => [
           field,
@@ -293,9 +183,9 @@ describe("assessment source readiness validation", () => {
           expected,
         ])
       ).toEqual([
-        ["marks", '{"blank":0,"correct":3,"wrong":-1}', MARKS_FACT],
-        ["marks", "none", MARKS_FACT],
-        ["marks", MARKS_FACT, "none"],
+        ["marks", "3/-1/0", "4/-1/0"],
+        ["marks", "none", "4/-1/0"],
+        ["marks", "4/-1/0", "none"],
       ]);
     })
   );

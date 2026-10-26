@@ -8,12 +8,12 @@ import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spe
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import {
   type LoadedPreviewSource,
-  loadPreviewSources,
+  loadPreviewSource,
   projectPreviewSource,
 } from "@nakafa/aksara-publisher/preview/source";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import type { FileSystem, Path } from "effect";
-import { Array as Arr, Effect, HashMap, Option, Ref, Schema } from "effect";
+import { Effect, Option, Ref, Schema } from "effect";
 import {
   fingerprintSelectedDocument,
   type SelectedDocument,
@@ -21,9 +21,6 @@ import {
   verifySelectedFingerprint,
   verifySelectedTopology,
 } from "#cli/integrity";
-
-type PreviewBody = LoadedPreviewSource["body"];
-type PreviewCache = HashMap.HashMap<PreviewBody["sourcePath"], LocalCache>;
 
 /** One signed current body and the renderer projection paired with it. */
 const PreviewCompileResultSchema = Schema.Struct({
@@ -34,27 +31,27 @@ const PreviewCompileResultSchema = Schema.Struct({
 /** Type of one signed current body with its renderer projection and compile kind. */
 export type PreviewCompileResult = typeof PreviewCompileResultSchema.Type;
 
-/** Ordered atomic compilation result for the selected preview document. */
+/** Atomic compilation result for the selected preview document. */
 const PreviewDocumentResultSchema = Schema.Struct({
   fingerprint: SelectedFingerprintSchema,
-  results: Schema.NonEmptyArray(PreviewCompileResultSchema),
+  result: PreviewCompileResultSchema,
 });
-/** Type of the ordered atomic compilation result for the selected preview document. */
+/** Type of the atomic compilation result for the selected preview document. */
 export type PreviewDocumentResult = typeof PreviewDocumentResultSchema.Type;
 
 /** Every expected failure from one selected-document compilation closure. */
 export type PreviewDocumentError =
   | Effect.Error<ReturnType<typeof compileIncremental>>
   | Effect.Error<ReturnType<typeof fingerprintSelectedDocument>>
-  | Effect.Error<ReturnType<typeof loadPreviewSources>>
+  | Effect.Error<ReturnType<typeof loadPreviewSource>>
   | Effect.Error<ReturnType<typeof projectPreviewSource>>
   | Effect.Error<ReturnType<PublicationSigner["signArtifact"]>>
   | Effect.Error<ReturnType<typeof verifySelectedFingerprint>>
   | Effect.Error<ReturnType<typeof verifySelectedTopology>>;
 
-/** Multi-body incremental compiler captured by one preview session. */
+/** Incremental compiler of the one selected document of a preview session. */
 export interface PreviewDocumentCompiler {
-  /** Reads, compiles, validates, and signs the complete selected closure. */
+  /** Reads, compiles, validates, and signs the selected document. */
   readonly compile: Effect.Effect<
     PreviewDocumentResult,
     PreviewDocumentError,
@@ -75,9 +72,8 @@ const compilePreviewSource = Effect.fn("AksaraCli.compilePreviewSource")(
   function* (
     source: LoadedPreviewSource,
     input: PreviewCompilerInput,
-    currentCache: PreviewCache
+    previous: Option.Option<LocalCache>
   ) {
-    const previous = HashMap.get(currentCache, source.body.sourcePath);
     const incremental = yield* compileIncremental(
       {
         ...source.body,
@@ -99,7 +95,6 @@ const compilePreviewSource = Effect.fn("AksaraCli.compilePreviewSource")(
         compileKind: incremental.kind,
         projection,
       } satisfies PreviewCompileResult,
-      sourcePath: source.body.sourcePath,
     };
   }
 );
@@ -113,38 +108,28 @@ export const makePreviewDocumentCompiler: (input: {
 }) => Effect.Effect<PreviewDocumentCompiler> = Effect.fn(
   "AksaraCli.makeDocumentCompiler"
 )(function* (input) {
-  const cache = yield* Ref.make(
-    HashMap.empty<PreviewBody["sourcePath"], LocalCache>()
-  );
+  const cache = yield* Ref.make(Option.none<LocalCache>());
 
   return {
-    /** Compiles and signs every required body as one ordered preview state. */
+    /** Compiles and signs the selected body as one preview state. */
     compile: Effect.gen(function* () {
       yield* verifySelectedTopology(input.selected);
       const fingerprint = yield* fingerprintSelectedDocument(input.selected);
-      const [firstSource, ...remainingSources] = yield* loadPreviewSources(
+      const source = yield* loadPreviewSource(
         input.aksaraRoot,
-        input.selected.sources
+        input.selected.source
       );
       yield* verifySelectedFingerprint(input.selected, fingerprint);
-      const currentCache = yield* Ref.get(cache);
-      const first = yield* compilePreviewSource(
-        firstSource,
+      const compiled = yield* compilePreviewSource(
+        source,
         input,
-        currentCache
-      );
-      const remaining = yield* Effect.forEach(remainingSources, (source) =>
-        compilePreviewSource(source, input, currentCache)
+        yield* Ref.get(cache)
       );
       yield* verifySelectedFingerprint(input.selected, fingerprint);
-      const compiled = [first, ...remaining];
-      const nextCache = Arr.reduce(compiled, currentCache, (state, item) =>
-        HashMap.set(state, item.sourcePath, item.cache)
-      );
-      yield* Ref.set(cache, nextCache);
+      yield* Ref.set(cache, Option.some(compiled.cache));
       return {
         fingerprint,
-        results: [first.result, ...Arr.map(remaining, ({ result }) => result)],
+        result: compiled.result,
       } satisfies PreviewDocumentResult;
     }).pipe(Effect.withSpan("AksaraCli.compileSelectedDocument")),
     /** Revalidates that repository evidence still describes compiled sources. */

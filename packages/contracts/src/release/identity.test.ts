@@ -20,9 +20,9 @@ const identity = {
   resultCount: 2,
   resultDigest: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
   snapshots: {
+    assessment: inheritedSnapshot,
     program: inheritedSnapshot,
     quran: inheritedSnapshot,
-    tryout: inheritedSnapshot,
   },
 };
 

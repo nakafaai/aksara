@@ -101,7 +101,6 @@ const publishMaterialRelease = Effect.fn("MaterialProgramTest.publishRelease")(
             result: Stream.fromIterable(resultHeads),
             routes: material.routes,
             scope: materialFamilyScope,
-            tryoutRuntime: null,
             ...snapshotPolicyBase("test-material-base"),
             baseRendererManifestHash: fixture.rendererManifest.hash,
             ...emptySnapshotSources,
@@ -211,7 +210,6 @@ it.effect(
         rendererManifest,
         rendererPreflight: "exact",
         routes: release.prepared.routes,
-        tryoutRuntime: null,
         ...emptySnapshotSources,
       });
       const error = yield* publishPrepared(mismatch, state.target).pipe(

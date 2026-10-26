@@ -5,30 +5,27 @@ import {
   localPreviewArtifactPath,
   PreviewArtifactSchema,
 } from "#contracts/preview/artifact";
-import { testPromptProjection } from "#contracts/test/preview/question";
+import { projection } from "#contracts/test/request";
 
-it("rejects predecessor Question fields from current preview", () => {
+it("accepts an artifact only at the path of its signed hash", () => {
   const artifactHash = `sha256:${"1".repeat(64)}`;
-  const { response: _response, ...identity } = testPromptProjection;
-  const historicalQuestion = {
-    ...identity,
-    choices: [
-      { label: "A", value: true },
-      { label: "B", value: false },
-    ],
-    metadata: {
-      authors: testPromptProjection.metadata.authors,
-      date: testPromptProjection.metadata.datePublished,
-      title: testPromptProjection.metadata.title,
-    },
-  };
+  const decode = Schema.decodeUnknownExit(PreviewArtifactSchema);
 
   expect(
-    Exit.isFailure(
-      Schema.decodeUnknownExit(PreviewArtifactSchema)({
+    Exit.isSuccess(
+      decode({
         artifactHash,
         artifactPath: localPreviewArtifactPath(artifactHash),
-        projection: historicalQuestion,
+        projection,
+      })
+    )
+  ).toBe(true);
+  expect(
+    Exit.isFailure(
+      decode({
+        artifactHash,
+        artifactPath: localPreviewArtifactPath(`sha256:${"2".repeat(64)}`),
+        projection,
       })
     )
   ).toBe(true);

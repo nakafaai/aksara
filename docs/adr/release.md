@@ -47,15 +47,15 @@ manifest, structured snapshot states, and provenance. Routes are a separate
 ordered signed stream; they are not reconstructed from projection metadata
 during publication or rollback.
 
-The global result catalog contains four body families: `article`, `material`,
-`page`, and `question`. Public pages participate in the same candidate,
+The global result catalog contains three body families: `article`, `material`,
+and `page`. Public pages participate in the same candidate,
 recovery, activation, acceptance, retention, and cleanup lifecycle. They do not
 have a family-specific active pointer, release protocol, or fallback source.
 
 ### Structured snapshots
 
 The same global release pointer selects three fixed structured families:
-`program`, `quran`, and `tryout`. There is no per-family active pointer and no
+`assessment`, `program`, and `quran`. There is no per-family active pointer and no
 second release protocol.
 
 Every signed release declares one transition for each family:
@@ -155,21 +155,19 @@ inverse rule:
   `bootstrap_over`, and a bootstrap takes exactly one target.
 - The publisher checks the declaration before any target write. The candidate's
   base must be that release, and the candidate must replace every head of its
-  base: `resultCount` equals `upsertCount`, so no base head survives. When the
-  base names a try-out snapshot, the candidate must replace that snapshot too,
-  because its placements bind the retired artifacts. The CLI also requires the
-  candidate to carry the live renderer manifest. An inverse release may keep the
-  base renderer when its scope cannot close the renderer change, but a bootstrap
-  refuses that fallback. The publisher then stages and verifies the candidate,
-  runs the renderer preflight, and activates. It never derives, stages, or
-  verifies an inverse.
+  base: `resultCount` equals `upsertCount`, so no base head survives. The CLI
+  also requires the candidate to carry the live renderer manifest. An inverse
+  release may keep the base renderer when its scope cannot close the renderer
+  change, but a bootstrap refuses that fallback. The publisher then stages and
+  verifies the candidate, runs the renderer preflight, and activates. It never
+  derives, stages, or verifies an inverse.
 - Nakafa receives no declaration from the publisher. It decides eligibility from
   its own state and the signed manifest. A candidate is a bootstrap only when its
   base is the active release, the target records the active generation as
-  retired, the replacement counts hold, the try-out snapshot is replaced when the
-  base named one, the renderer manifest hash differs from the active release's,
-  and no recovery is staged. The candidate stores that decision, and activation
-  skips the recovery requirement only for a stored bootstrap.
+  retired, the replacement counts hold, the renderer manifest hash differs from
+  the active release's, and no recovery is staged. The candidate stores that
+  decision, and activation skips the recovery requirement only for a stored
+  bootstrap.
 - A bootstrap has no accept or recover step. Accept and recover refuse it, and
   parity does not run for it because it runs on one target.
 - The switch is one way. The retired generation is never restored: the target
@@ -256,7 +254,7 @@ source repository is public.
 - Rewinding a global pointer as rollback.
 - Sharing one release ID between candidate and recovery.
 - Reconstructing route ownership from a different projection stream.
-- Separate program, Quran, or try-out active pointers.
+- Separate assessment, program, or Quran active pointers.
 - A detached Quran-only signature or family-specific release protocol.
 - Copying immutable structured rows during forward rollback.
 - Treating a result digest as a row inclusion proof.

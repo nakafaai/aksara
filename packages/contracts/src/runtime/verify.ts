@@ -1,7 +1,7 @@
 import { Array as Arr, Effect, Option } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { hashContentProjection } from "#contracts/projection/hash";
-import type { RoutedContentProjection } from "#contracts/projection/spec";
+import type { ContentProjection } from "#contracts/projection/spec";
 import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
@@ -16,7 +16,7 @@ import {
 
 /** Checks one article path preserves its pair-grouped physical source identity. */
 function hasArticleSourcePath(
-  projection: Extract<RoutedContentProjection, { readonly kind: "article" }>,
+  projection: Extract<ContentProjection, { readonly kind: "article" }>,
   sourcePath: string
 ) {
   const prefix = `packages/corpus/articles/${projection.category}/`;
@@ -33,10 +33,7 @@ function hasArticleSourcePath(
 
 /** Checks one page path matches its signed source-owned provenance. */
 function hasPageSourcePath(
-  projection: Extract<
-    RoutedContentProjection,
-    { readonly kind: "public-page" }
-  >,
+  projection: Extract<ContentProjection, { readonly kind: "public-page" }>,
   sourcePath: string
 ) {
   return sourcePath === projection.sourcePath;
@@ -44,7 +41,7 @@ function hasPageSourcePath(
 
 /** Checks one public path exactly matches its projected content family. */
 function hasProjectionSourcePath(
-  projection: RoutedContentProjection,
+  projection: ContentProjection,
   sourcePath: string
 ) {
   if (projection.kind === "article") {

@@ -1,6 +1,6 @@
+import { AssessmentCountsSchema } from "@nakafa/aksara-contracts/assessment/snapshot";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { QuranProvenanceStatusSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
-import type { QuestionHead } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
@@ -8,14 +8,7 @@ import {
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { FileSystem, Path } from "effect";
-import {
-  Array as Arr,
-  Effect,
-  Record as Rec,
-  Schema,
-  type Scope,
-  Stream,
-} from "effect";
+import { Array as Arr, Effect, Schema, type Scope, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 
 const CountSchema = Schema.Int.pipe(
@@ -24,6 +17,11 @@ const CountSchema = Schema.Int.pipe(
 
 /** Complete structured-catalog evidence produced without signing or staging. */
 export const CatalogSnapshotEvidenceSchema = Schema.Struct({
+  assessment: Schema.Struct({
+    counts: AssessmentCountsSchema,
+    rowDigest: Sha256HashSchema,
+    snapshotId: Sha256HashSchema,
+  }),
   program: Schema.Struct({
     rowCount: CountSchema,
     rowDigest: Sha256HashSchema,
@@ -41,14 +39,6 @@ export const CatalogSnapshotEvidenceSchema = Schema.Struct({
     sourceDigest: Sha256HashSchema,
   }),
   stagedRows: CountSchema,
-  tryout: Schema.Struct({
-    catalogCount: CountSchema,
-    catalogDigest: Sha256HashSchema,
-    placementCount: CountSchema,
-    placementDigest: Sha256HashSchema,
-    routeCount: CountSchema,
-    snapshotId: Sha256HashSchema,
-  }),
 });
 type CatalogSnapshotEvidence = typeof CatalogSnapshotEvidenceSchema.Type;
 
@@ -69,70 +59,39 @@ export class ContentCatalogSnapshotError extends Schema.TaggedError<
   stage: Schema.Literals(["decode", "prepare", "verify"]),
 }) {}
 
-/** Sources required to validate every current structured snapshot family. */
-interface CatalogSnapshotInput<E, R> {
-  readonly checkoutRoot: string;
-  /** Replays validated question heads for exact try-out placement binding. */
-  readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
-  readonly rendererManifest: unknown;
-}
-
-/** Requires exact Program, Quran, and Try-out manifests in canonical order. */
+/** Requires exact assessment, program, and Quran manifests in canonical order. */
 function selectCompleteManifests(
   manifests: readonly ContentSnapshotManifest[]
 ) {
-  const [program, quran, tryout] = manifests;
-  if (program?.family !== "program") {
-    return Effect.fail(
-      new CatalogSnapshotSetError({
-        actualFamilies: Arr.map(manifests, ({ family }) => family),
-      })
-    );
+  const [assessment, program, quran] = manifests;
+  if (
+    assessment?.family === "assessment" &&
+    program?.family === "program" &&
+    quran?.family === "quran"
+  ) {
+    return Effect.succeed({ assessment, program, quran });
   }
-  if (quran?.family !== "quran") {
-    return Effect.fail(
-      new CatalogSnapshotSetError({
-        actualFamilies: Arr.map(manifests, ({ family }) => family),
-      })
-    );
-  }
-  if (tryout?.family !== "tryout") {
-    return Effect.fail(
-      new CatalogSnapshotSetError({
-        actualFamilies: Arr.map(manifests, ({ family }) => family),
-      })
-    );
-  }
-  return Effect.succeed({ program, quran, tryout });
-}
-
-/** Counts every localized hierarchy row authenticated by one try-out snapshot. */
-function tryoutCatalogCount(
-  counts: Extract<
-    ContentSnapshotManifest,
-    { readonly family: "tryout" }
-  >["manifest"]["counts"]
-) {
-  return Arr.reduce(Rec.values(counts), 0, (total, count) => total + count);
+  return Effect.fail(
+    new CatalogSnapshotSetError({
+      actualFamilies: Arr.map(manifests, ({ family }) => family),
+    })
+  );
 }
 
 /** Validates every current structured family and returns signed-source facts. */
-export const validateCatalogSnapshots: <E, R>(
-  input: CatalogSnapshotInput<E, R>
+export const validateCatalogSnapshots: (
+  checkoutRoot: string
 ) => Effect.Effect<
   CatalogSnapshotEvidence,
   CatalogSnapshotSetError | ContentCatalogSnapshotError,
-  FileSystem.FileSystem | Path.Path | R | Scope.Scope
-> = Effect.fn("AksaraPublisher.validateCatalogSnapshots")(function* <E, R>(
-  input: CatalogSnapshotInput<E, R>
+  FileSystem.FileSystem | Path.Path | Scope.Scope
+> = Effect.fn("AksaraPublisher.validateCatalogSnapshots")(function* (
+  checkoutRoot: string
 ) {
   const prepared = yield* prepareReleaseSnapshots({
-    checkoutRoot: input.checkoutRoot,
+    checkoutRoot,
     families: ContentSnapshotKindSchema.literals,
     previousSnapshots: null,
-    questionHeads: input.questionHeads,
-    rendererManifest: input.rendererManifest,
-    runtime: { kind: "stable" },
   }).pipe(
     Effect.mapError(
       (cause) => new ContentCatalogSnapshotError({ cause, stage: "prepare" })
@@ -155,8 +114,14 @@ export const validateCatalogSnapshots: <E, R>(
       (cause) => new ContentCatalogSnapshotError({ cause, stage: "verify" })
     )
   );
-  const { program, quran, tryout } = yield* selectCompleteManifests(manifests);
+  const { assessment, program, quran } =
+    yield* selectCompleteManifests(manifests);
   return CatalogSnapshotEvidenceSchema.make({
+    assessment: {
+      counts: assessment.manifest.counts,
+      rowDigest: assessment.manifest.rowDigest,
+      snapshotId: assessment.manifest.snapshotId,
+    },
     program: {
       rowCount: program.manifest.rowCount,
       rowDigest: program.manifest.rowDigest,
@@ -174,13 +139,5 @@ export const validateCatalogSnapshots: <E, R>(
       sourceDigest: quran.manifest.sourceDigest,
     },
     stagedRows: verified.stagedRows,
-    tryout: {
-      catalogCount: tryoutCatalogCount(tryout.manifest.counts),
-      catalogDigest: tryout.manifest.catalogDigest,
-      placementCount: tryout.manifest.placementCount,
-      placementDigest: tryout.manifest.placementDigest,
-      routeCount: tryout.manifest.routeCount,
-      snapshotId: tryout.manifest.snapshotId,
-    },
   });
 });

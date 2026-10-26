@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "text-fit",
   },
+  stimulus: "rooftop-garden",
   versions: {
     en: {
       kind: "choice",
@@ -37,7 +38,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "rooftop-garden",
 };
 
 export default item;

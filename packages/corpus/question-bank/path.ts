@@ -1,230 +1,112 @@
+import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import {
-  QUESTION_BANK_KEY_ROOT,
-  QuestionKeySchema,
-  QuestionSegmentSchema,
-  QuestionSetKeySchema,
-  QuestionSourcePathSchema,
-  questionBankKey,
-  questionKeyParts,
-  questionSourcePathParts,
-} from "@nakafa/aksara-contracts/question/identity";
-import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import {
-  type AssessmentLanguagePolicy,
-  AssessmentLanguagePolicySchema,
-  questionArtifactLocalesForPolicy,
-} from "@nakafa/aksara-contracts/tryout/language";
-import {
-  Array as Arr,
-  Effect,
-  MutableHashMap,
-  Option,
-  Order,
-  Schema,
-} from "effect";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import { Array as Arr, Option, Schema } from "effect";
 
-/** Repository-relative root containing every authored Nakafa question. */
+/** Repository-relative root that holds every authored try-out question. */
 export const QUESTION_BANK_ROOT = CorpusSourcePathSchema.make(
-  `packages/corpus/${QUESTION_BANK_KEY_ROOT}`
+  "packages/corpus/question-bank/tryout"
 );
 
-const isQuestionSegment = Schema.is(QuestionSegmentSchema);
+/** One question folder name, `question-<n>` with n from one. */
+const QUESTION_FOLDER = /^question-([1-9]\d*)$/u;
 
-/** Canonical logical identity derived from one physical question directory. */
-export const QuestionLocationSchema = Schema.Struct({
-  languagePolicy: AssessmentLanguagePolicySchema,
-  questionKey: QuestionKeySchema,
-  questionNumber: Schema.Finite.pipe(
-    Schema.check(Schema.isInt()),
-    Schema.check(Schema.isGreaterThan(0))
-  ),
-  rendererDomain: RendererDomainSchema,
-  setKey: QuestionSetKeySchema,
-  sourceRoot: CorpusSourcePathSchema,
-});
-export type QuestionLocation = typeof QuestionLocationSchema.Type;
-const QuestionBankDefinitionSchema = Schema.Struct({
-  languagePolicy: AssessmentLanguagePolicySchema,
-  rendererDomain: RendererDomainSchema,
-});
-type QuestionBankDefinition = typeof QuestionBankDefinitionSchema.Type;
-export type QuestionBankIndex = MutableHashMap.MutableHashMap<
-  string,
-  QuestionBankDefinition
->;
+/** One authored file of a question: its item, a prompt, or an explanation. */
+const QUESTION_FILE = /^(?:item\.ts|(?:question|answer)\.[a-z]{2}\.mdx)$/u;
 
-/** Derives exact answer and assessed-language prompt files for one section. */
-export function questionSourceFiles(languagePolicy: AssessmentLanguagePolicy) {
-  return Object.freeze(
-    Arr.sort(
-      [
-        "item.ts",
-        ...Arr.map(
-          ACTIVE_APP_LOCALES,
-          (appLocale) => `answer.${appLocale}.mdx`
-        ),
-        ...Arr.map(
-          questionArtifactLocalesForPolicy(languagePolicy),
-          (artifactLocale) => `question.${artifactLocale}.mdx`
-        ),
-      ],
-      Order.String
-    )
+/** One authored file of a shared reading: its document in one language. */
+const STIMULUS_FILE = /^stimulus\.[a-z]{2}\.mdx$/u;
+
+/**
+ * The path of one set below the root: `<country>/<exam>/<section>/<set>`,
+ * four lower kebab keys.
+ */
+export const SetPathSchema = Schema.String.check(
+  Schema.makeFilter(
+    (path) => {
+      const segments = path.split("/");
+      return (
+        segments.length === 4 && Arr.every(segments, Schema.is(KebabKeySchema))
+      );
+    },
+    { message: "Expected <country>/<exam>/<section>/<set>." }
+  )
+);
+export type SetPath = typeof SetPathSchema.Type;
+
+/** Builds the path of one set from its keys. */
+export function setPath(input: {
+  readonly countryKey: string;
+  readonly examKey: string;
+  readonly sectionKey: string;
+  readonly setKey: string;
+}) {
+  return SetPathSchema.make(
+    `${input.countryKey}/${input.examKey}/${input.sectionKey}/${input.setKey}`
   );
 }
 
-/** Finds the terminal question directory and its direct relative file path. */
-export function locateQuestionEntry(entry: string, separator: string) {
-  const segments = entry.split(separator);
-  let questionIndex = -1;
-  Arr.forEach(segments, (segment, index) => {
-    if (isQuestionSegment(segment)) {
-      questionIndex = index;
-    }
-  });
-  if (questionIndex === -1) {
-    return;
-  }
-  return {
-    file: Arr.join(Arr.drop(segments, questionIndex + 1), "/"),
-    root: Arr.join(Arr.take(segments, questionIndex + 1), "/"),
-  };
-}
-
-/** A physical question directory does not follow the canonical path grammar. */
-export class QuestionPathError extends Schema.TaggedError<
-  QuestionPathError,
-  { readonly brand: unique symbol }
->()("QuestionPathError", {
-  reason: Schema.Literals(["grammar", "language", "renderer"]),
-  sourcePath: Schema.String,
-}) {}
-
-/** Flattens reviewed hierarchy into the section-owned question-bank seams. */
-function questionBankSections(sources: readonly TryoutExamSource[]) {
-  return Arr.flatMap(sources, ({ tracks }) =>
-    Arr.flatMap(tracks, ({ sets }) =>
-      Arr.flatMap(sets, ({ sections }) => sections)
-    )
+/** The repository path of one folder or file of a set. */
+export function setSourcePath(path: SetPath, ...rest: readonly string[]) {
+  return CorpusSourcePathSchema.make(
+    Arr.join([QUESTION_BANK_ROOT, path, ...rest], "/")
   );
 }
 
-/** Compares source-owned policies without relying on object serialization. */
-function hasSameLanguagePolicy(
-  left: AssessmentLanguagePolicy,
-  right: AssessmentLanguagePolicy
-) {
-  return (
-    left.kind === right.kind &&
-    (left.kind === "app-locale" ||
-      (right.kind === "fixed" && left.language === right.language))
+/**
+ * One file of the question bank, read from its path below the root: a file of
+ * a question with the question's number, or a document of a shared reading
+ * with the reading's key.
+ */
+export const BankEntrySchema = Schema.Union([
+  Schema.Struct({
+    file: Schema.String,
+    kind: Schema.Literal("question"),
+    number: Schema.Int.check(Schema.isGreaterThan(0)),
+    set: SetPathSchema,
+  }),
+  Schema.Struct({
+    file: Schema.String,
+    key: KebabKeySchema,
+    kind: Schema.Literal("stimulus"),
+    set: SetPathSchema,
+  }),
+]);
+export type BankEntry = typeof BankEntrySchema.Type;
+
+/** The six segments of one bank file: four set keys, its folder, and its file. */
+const BankPathSchema = Schema.Tuple([
+  KebabKeySchema,
+  KebabKeySchema,
+  KebabKeySchema,
+  KebabKeySchema,
+  Schema.String,
+  Schema.String,
+]);
+
+/**
+ * Reads one file path below the root, `<set>/question-<n>/<file>` or
+ * `<set>/<reading>/stimulus.<language>.mdx`. Any other path is not part of the
+ * bank and reads as nothing.
+ */
+export function readBankEntry(relative: string): Option.Option<BankEntry> {
+  return Option.flatMap(
+    Schema.decodeUnknownOption(BankPathSchema)(relative.split("/")),
+    ([countryKey, examKey, sectionKey, setKey, folder, file]) => {
+      const set = setPath({ countryKey, examKey, sectionKey, setKey });
+      const question = QUESTION_FOLDER.exec(folder);
+      if (question !== null) {
+        return QUESTION_FILE.test(file)
+          ? Option.some({
+              file,
+              kind: "question" as const,
+              number: Number(question[1]),
+              set,
+            })
+          : Option.none();
+      }
+      return Schema.is(KebabKeySchema)(folder) && STIMULUS_FILE.test(file)
+        ? Option.some({ file, key: folder, kind: "stimulus" as const, set })
+        : Option.none();
+    }
   );
 }
-
-/** Requires repeated use of one physical bank to retain one exact contract. */
-const registerQuestionBank = Effect.fn("AksaraCorpus.registerQuestionBank")(
-  function* (
-    banks: QuestionBankIndex,
-    section: ReturnType<typeof questionBankSections>[number]
-  ) {
-    const bankKey = questionBankKey(section.questionSourcePath);
-    const definition = Option.getOrUndefined(
-      MutableHashMap.get(banks, bankKey)
-    );
-    if (
-      definition !== undefined &&
-      definition.rendererDomain !== section.rendererDomain
-    ) {
-      return yield* new QuestionPathError({
-        reason: "renderer",
-        sourcePath: `packages/corpus/${bankKey}`,
-      });
-    }
-    if (
-      definition !== undefined &&
-      !hasSameLanguagePolicy(definition.languagePolicy, section.languagePolicy)
-    ) {
-      return yield* new QuestionPathError({
-        reason: "language",
-        sourcePath: `packages/corpus/${bankKey}`,
-      });
-    }
-    MutableHashMap.set(banks, bankKey, {
-      languagePolicy: section.languagePolicy,
-      rendererDomain: section.rendererDomain,
-    });
-  }
-);
-
-/** Indexes reviewed question banks once and rejects renderer conflicts. */
-export const indexQuestionBanks = Effect.fn("AksaraCorpus.indexQuestionBanks")(
-  function* (sources: readonly TryoutExamSource[]) {
-    const banks: QuestionBankIndex = MutableHashMap.empty();
-    for (const section of questionBankSections(sources)) {
-      yield* registerQuestionBank(banks, section);
-    }
-    return banks;
-  }
-);
-
-/** Decodes one physical directory into its canonical logical identity. */
-export const decodeQuestionPath = Effect.fn("AksaraCorpus.decodeQuestionPath")(
-  function* (questionBanks: QuestionBankIndex, physicalRoot: string) {
-    const sourcePath = `${QUESTION_BANK_ROOT}/${physicalRoot}`;
-    const questionKey = yield* Schema.decodeEffect(QuestionKeySchema)(
-      `${QUESTION_BANK_KEY_ROOT}/${physicalRoot}`
-    ).pipe(
-      Effect.mapError(
-        () => new QuestionPathError({ reason: "grammar", sourcePath })
-      )
-    );
-    const { questionNumber, questionSetKey } = questionKeyParts(questionKey);
-    const definition = Option.getOrUndefined(
-      MutableHashMap.get(questionBanks, questionBankKey(questionSetKey))
-    );
-    if (definition === undefined) {
-      return yield* new QuestionPathError({ reason: "renderer", sourcePath });
-    }
-
-    return {
-      questionKey,
-      questionNumber,
-      ...definition,
-      setKey: questionSetKey,
-      sourceRoot: CorpusSourcePathSchema.make(sourcePath),
-    };
-  }
-);
-
-/** Decodes one exact localized question or answer body source path. */
-export const decodeQuestionDocumentPath = Effect.fn(
-  "AksaraCorpus.decodeQuestionDocumentPath"
-)(function* (
-  questionBanks: QuestionBankIndex,
-  sourcePath: typeof CorpusSourcePathSchema.Type
-) {
-  const decodedPath = yield* Schema.decodeEffect(QuestionSourcePathSchema)(
-    sourcePath
-  ).pipe(
-    Effect.mapError(
-      () => new QuestionPathError({ reason: "grammar", sourcePath })
-    )
-  );
-  const parts = questionSourcePathParts(decodedPath);
-  if (parts.kind !== "body") {
-    return yield* new QuestionPathError({ reason: "grammar", sourcePath });
-  }
-  const physicalRoot = parts.questionKey.slice(
-    QUESTION_BANK_KEY_ROOT.length + 1
-  );
-  const location = yield* decodeQuestionPath(questionBanks, physicalRoot);
-  return {
-    ...location,
-    artifactLocale: parts.artifactLocale,
-    bodyKind: parts.bodyKind,
-    sourcePath,
-  };
-});

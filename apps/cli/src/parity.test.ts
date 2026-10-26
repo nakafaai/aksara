@@ -242,7 +242,6 @@ describe("authenticated parity command", () => {
               active: null,
               candidate: null,
               recovery: null,
-              tryoutRuntimeBundle: null,
             }
           : value;
       if (failure === "signature" && response.active) {

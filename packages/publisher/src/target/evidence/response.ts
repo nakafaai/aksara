@@ -210,11 +210,6 @@ export function hasBoundPublicationSuccess(
       stageSnapshotBatch: (value) =>
         response.operation === "stageSnapshotBatch" &&
         hasBoundSnapshotBatchReceipt(value, response.value),
-      stageTryoutRuntimeBundle: (value) =>
-        response.operation === "stageTryoutRuntimeBundle" &&
-        response.value.bundleHash === value.bundle.bundleHash &&
-        response.value.releaseId === value.releaseId &&
-        response.value.snapshotId === value.bundle.payload.snapshot.snapshotId,
       status: (value) =>
         response.operation === "status" &&
         response.value.releaseId === value.releaseId &&

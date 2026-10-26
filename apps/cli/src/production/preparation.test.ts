@@ -1,8 +1,5 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
-import {
-  Sha256HashSchema,
-  SigningKeyIdSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -18,21 +15,17 @@ import {
   currentState,
   gitBundle,
   releaseId,
-  runtimeBundleFor,
 } from "#test/target";
 
 const calls = productionCalls();
-const tryoutScope = PublicationScopeSchema.make({
+const assessmentScope = PublicationScopeSchema.make({
   families: [],
-  snapshots: ["tryout"],
+  snapshots: ["assessment"],
 });
 const rendererScope = PublicationScopeSchema.make({
-  families: ["article", "material", "page", "question"],
-  snapshots: ["tryout"],
+  families: ["article", "material", "page"],
+  snapshots: [],
 });
-const inheritedTryoutSnapshot = Sha256HashSchema.make(
-  `sha256:${"c".repeat(64)}`
-);
 const refreshedRendererManifest = createRendererManifest({
   base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
   domains: RENDERER_MANIFEST.domains,
@@ -110,7 +103,6 @@ describe("production preparation", () => {
         active: null,
         candidate: null,
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -128,13 +120,12 @@ describe("production preparation", () => {
     })
   );
 
-  it.effect("prepares selected snapshots from question heads only", () =>
+  it.effect("prepares only the selected structured snapshots", () =>
     Effect.gen(function* () {
       calls.current = currentState({
         active: null,
         candidate: null,
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",
@@ -143,53 +134,12 @@ describe("production preparation", () => {
           kind: "inverse",
           recoveryId: releaseId("recovery-snapshot"),
         },
-        scope: tryoutScope,
+        scope: assessmentScope,
       });
       expect(receipt).toMatchObject({ releaseId: "release-snapshot" });
       expect(calls).toMatchObject({
         catalogCalls: 1,
         snapshotCalls: 1,
-      });
-    })
-  );
-
-  it.effect("reuses a producer pair through two Git successors", () =>
-    Effect.gen(function* () {
-      const producer = yield* gitBundle("release-runtime-producer", {
-        baseReleaseId: releaseId("release-runtime-parent"),
-        tryoutSnapshotId: inheritedTryoutSnapshot,
-      });
-      const active = yield* gitBundle("release-runtime-active", {
-        baseManifestHash: producer.release.manifestHash,
-        baseReleaseId: producer.release.manifest.releaseId,
-        tryoutSnapshotId: inheritedTryoutSnapshot,
-      });
-      calls.current = currentState({
-        active: yield* completedBundle(active),
-        candidate: null,
-        recovery: null,
-        tryoutRuntimeBundle: runtimeBundleFor(
-          producer,
-          inheritedTryoutSnapshot
-        ),
-      });
-
-      const receipt = yield* productionProgram({
-        command: "release",
-        releaseId: releaseId("release-runtime-next"),
-        retention: {
-          kind: "inverse",
-          recoveryId: releaseId("recovery-runtime-next"),
-        },
-        scope: FUNCTION_SCOPE,
-      });
-
-      expect(receipt).toMatchObject({ releaseId: "release-runtime-next" });
-      expect(calls).toMatchObject({
-        baseReleaseId: "release-runtime-active",
-        publishCalls: 1,
-        runtimeBundleRefreshes: 0,
-        snapshotCalls: 0,
       });
     })
   );
@@ -200,19 +150,14 @@ describe("production preparation", () => {
       Effect.gen(function* () {
         const active = yield* gitBundle("release-renderer-base", {
           baseReleaseId: releaseId("release-renderer-parent"),
-          tryoutSnapshotId: inheritedTryoutSnapshot,
         });
         const activeCompleted = yield* completedBundle(active);
-        /** Restores the exact active runtime before each assertion path. */
+        /** Restores the exact active release before each assertion path. */
         const activate = () => {
           calls.current = currentState({
             active: activeCompleted,
             candidate: null,
             recovery: null,
-            tryoutRuntimeBundle: runtimeBundleFor(
-              active,
-              inheritedTryoutSnapshot
-            ),
           });
         };
         activate();
@@ -228,11 +173,7 @@ describe("production preparation", () => {
           scope: FUNCTION_SCOPE,
         });
         expect(partial.releaseId).toBe("release-renderer-partial");
-        expect(calls).toMatchObject({
-          catalogCalls: 1,
-          runtimeBundleRefreshes: 0,
-          snapshotCalls: 0,
-        });
+        expect(calls).toMatchObject({ catalogCalls: 1, snapshotCalls: 0 });
 
         calls.reset();
         activate();
@@ -247,8 +188,7 @@ describe("production preparation", () => {
           scope: rendererScope,
         });
         expect(receipt.releaseId).toBe("release-renderer");
-        expect(calls.runtimeBundleRefreshes).toBe(1);
-        expect(calls.snapshotCalls).toBe(1);
+        expect(calls).toMatchObject({ catalogCalls: 1, snapshotCalls: 0 });
       })
   );
 
@@ -264,7 +204,6 @@ describe("production preparation", () => {
         active: yield* completedBundle(active),
         candidate: { ...candidate, phase: "staging" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* productionProgram({
         command: "release",

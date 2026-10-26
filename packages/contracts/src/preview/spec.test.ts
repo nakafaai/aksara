@@ -20,21 +20,10 @@ import {
   previewRepositories,
   rejectsPreviewManifest,
 } from "#contracts/test/preview/manifest";
-import {
-  testAnswerDocument,
-  testAnswerProjection,
-  testAssessedAnswerDocument,
-  testAssessedAnswerProjection,
-  testGermanPromptProjection,
-  testPromptDocument,
-  testPromptProjection,
-} from "#contracts/test/preview/question";
 
 const articleArtifact = previewArtifact(testArticleProjection, "c");
 const materialArtifact = previewArtifact(testMaterialProjection, "d");
 const pageArtifact = previewArtifact(testPageProjection, "1");
-const promptArtifact = previewArtifact(testPromptProjection, "e");
-const answerArtifact = previewArtifact(testAnswerProjection, "f");
 const otherPageSourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/pages/security-policy/en.mdx"
 );
@@ -70,13 +59,12 @@ describe("local preview manifest", () => {
     ).toEqual([pending, ready, failed]);
   });
 
-  it("accepts one artifact for article, material, page, and prompt documents", () => {
+  it("accepts one artifact for article, material, and page documents", () => {
     const readyStates = Arr.map(
       [
         { artifacts: [articleArtifact], document: testArticleDocument },
         { artifacts: [materialArtifact], document: testMaterialDocument },
         { artifacts: [pageArtifact], document: testPageDocument },
-        { artifacts: [promptArtifact], document: testPromptDocument },
       ],
       ({ artifacts, document }, index) => ({
         artifacts,
@@ -94,61 +82,6 @@ describe("local preview manifest", () => {
         Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
       )
     ).toEqual(readyStates);
-  });
-
-  it("requires exactly ordered prompt and answer artifacts for answer review", () => {
-    const manifest = {
-      artifacts: [promptArtifact, answerArtifact],
-      document: testAnswerDocument,
-      format: LOCAL_PREVIEW_FORMAT,
-      rendererManifestHash: `sha256:${"6".repeat(64)}`,
-      repositories: previewRepositories,
-      revision: 1,
-      status: "ready",
-    };
-
-    expect(
-      Schema.decodeUnknownSync(LocalPreviewManifestSchema)(manifest)
-    ).toEqual(manifest);
-    expect(
-      Arr.every(
-        [
-          { ...manifest, artifacts: [answerArtifact, promptArtifact] },
-          { ...manifest, artifacts: [answerArtifact] },
-          { ...manifest, artifacts: [promptArtifact] },
-        ],
-        rejectsPreviewManifest
-      )
-    ).toBe(true);
-  });
-
-  it("pairs an assessed-language prompt with its localized answer", () => {
-    const localizedAnswerArtifact = previewArtifact(
-      testAssessedAnswerProjection,
-      "1"
-    );
-    const manifest = {
-      artifacts: [promptArtifact, localizedAnswerArtifact],
-      document: testAssessedAnswerDocument,
-      format: LOCAL_PREVIEW_FORMAT,
-      rendererManifestHash: `sha256:${"2".repeat(64)}`,
-      repositories: previewRepositories,
-      revision: 1,
-      status: "ready",
-    } as const;
-
-    expect(Schema.decodeSync(LocalPreviewManifestSchema)(manifest)).toEqual(
-      manifest
-    );
-    expect(
-      rejectsPreviewManifest({
-        ...manifest,
-        artifacts: [
-          previewArtifact(testGermanPromptProjection, "3"),
-          localizedAnswerArtifact,
-        ],
-      })
-    ).toBe(true);
   });
 
   it("rejects unbounded, mismatched, and incoherently addressed artifacts", () => {
@@ -178,9 +111,6 @@ describe("local preview manifest", () => {
     ];
 
     expect(Arr.every(invalid, rejectsPreviewManifest)).toBe(true);
-    expect(
-      String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[1]))
-    ).toContain("Expected at most two preview artifacts.");
     expect(
       String(Schema.decodeUnknownExit(LocalPreviewManifestSchema)(invalid[4]))
     ).toContain("Expected the artifact path to match its signed hash.");
@@ -241,10 +171,6 @@ describe("local preview manifest", () => {
           ),
         ],
         document: testMaterialDocument,
-      },
-      {
-        artifacts: [answerArtifact],
-        document: testPromptDocument,
       },
     ];
 

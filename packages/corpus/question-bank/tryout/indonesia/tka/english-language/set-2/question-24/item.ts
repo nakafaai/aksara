@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
+  stimulus: "source-checking",
   versions: {
     en: {
       columns: ["Identifying", "Tracing", "Comparing"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "source-checking",
 };
 
 export default item;

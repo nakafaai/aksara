@@ -36,8 +36,8 @@ verified.
 
 - Write each prompt in the section's assessed language, in the register of the
   real exam.
-- Each item gets its `item.ts` with the response kind the official format
-  requires, and answers in every app locale that follow
+- Each item gets its `item.ts` with the interaction the official format
+  requires (see [questions](questions.md)), and answers in every app locale that follow
   [worked solutions](solutions.md).
 - Diagrams, graphs, tables, and charts become Nakafa components or Markdown
   tables whose data the item states exactly. Nakafa publishes no images.

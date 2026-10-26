@@ -1,285 +1,107 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { deliveryLanguageForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import {
-  Array as Arr,
-  Effect,
-  HashSet,
-  Option,
-  Order,
-  Record as Rec,
-  Schema,
-} from "effect";
-import {
-  projectTryoutCatalog,
-  TryoutCatalogDecodeError,
-} from "#corpus/tryout/catalog";
-import { decodeTryoutRegistry } from "#corpus/tryout/registry";
+import { Array as Arr, Effect, Option } from "effect";
+import { testExamInput, titled } from "#corpus/test/exam";
+import { projectTryoutCatalog } from "#corpus/tryout/catalog";
+import { paperId } from "#corpus/tryout/exam";
+import { defineExamSource } from "#corpus/tryout/schema";
 
-/** SNBT literacy in English and the TKA English subject are assessed in English. */
-const ENGLISH_SECTIONS = HashSet.make(
-  "english-language",
-  "literacy-in-english"
-);
+const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-describe("tryout catalog", () => {
-  it.effect(
-    "derives graph identity from source keys for routes and internal entries",
-    () =>
-      Effect.gen(function* () {
-        const catalog = yield* Effect.flatMap(
-          decodeTryoutRegistry(),
-          projectTryoutCatalog
-        );
-        const trackEn = yield* Effect.fromOption(
-          Arr.findFirst(
-            catalog,
-            (row) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "compulsory-mathematics" &&
-              row.appLocale === "en"
-          )
-        );
-        const trackId = yield* Effect.fromOption(
-          Arr.findFirst(
-            catalog,
-            (row) =>
-              row.kind === "track" &&
-              row.examKey === "tka" &&
-              row.trackKey === "compulsory-mathematics" &&
-              row.appLocale === "id"
-          )
-        );
-        const internal = yield* Effect.fromOption(
-          Arr.findFirst(
-            catalog,
-            (row) =>
-              row.kind === "section" &&
-              row.examKey === "tka" &&
-              row.sectionKey === "compulsory-mathematics" &&
-              row.setKey === "set-1" &&
-              row.appLocale === "id"
-          )
-        );
+/** Freezes a test paper for every set. */
+function paperOf(id: string) {
+  return Option.some({ hash, id });
+}
 
-        expect(trackEn.publicPath).toBe(
-          "try-out/indonesia/tka/compulsory-mathematics"
-        );
-        expect(trackId.publicPath).toBe(
-          "try-out/indonesia/tka/matematika-wajib"
-        );
-        expect(trackEn.graph).toMatchObject({
-          conceptId: "concept:tryout:indonesia:tka:compulsory-mathematics",
-          learningObjectId:
-            "lo:tryout-track:indonesia:tka:compulsory-mathematics",
-          lensId: "lens:tryout:indonesia:tka",
-        });
-        expect(trackId.graph.conceptId).toBe(trackEn.graph.conceptId);
-        expect(trackId.graph.assetId).not.toBe(trackEn.graph.assetId);
-        expect(internal).toMatchObject({
-          graph: {
-            conceptId:
-              "concept:tryout:indonesia:tka:compulsory-mathematics:compulsory-mathematics",
-            learningObjectId:
-              "lo:tryout-section:indonesia:tka:compulsory-mathematics:set-1:compulsory-mathematics",
-            lensId: "lens:tryout:indonesia:tka",
-          },
-          visibility: "internal-entry",
-        });
-        expect("publicPath" in internal).toBe(false);
-      }),
-    { timeout: 30_000 }
-  );
+/** The test exam with a description on its country and on its English exam page. */
+const describedExam = defineExamSource({
+  ...testExamInput,
+  countryTranslations: {
+    ...titled("Test Country"),
+    en: { description: "A test country.", title: "Test Country" },
+  },
+  examTranslations: {
+    ...titled("Test Exam"),
+    en: { description: "A test exam.", title: "Test Exam" },
+  },
+});
 
-  it.effect(
-    "projects exact localized hierarchy counts and route ownership",
-    () =>
-      Effect.gen(function* () {
-        const rows = yield* Effect.flatMap(decodeTryoutRegistry(), (sources) =>
-          projectTryoutCatalog(sources)
-        );
-        const counts = Rec.fromEntries(
-          Arr.map(["country", "exam", "track", "set", "section"], (kind) => [
-            kind,
-            Arr.filter(rows, (row) => row.kind === kind).length,
-          ])
-        );
-
-        expect(rows).toHaveLength(327);
-        expect(counts).toEqual({
-          country: 3,
-          exam: 6,
-          section: 243,
-          set: 63,
-          track: 12,
-        });
-        expect(
-          Arr.filter(
-            rows,
-            (row) =>
-              row.kind === "section" &&
-              row.examKey === "tka" &&
-              row.publicPath === undefined
-          )
-        ).toHaveLength(33);
-      })
-  );
-
-  it.effect("keeps exam language independent of every app locale", () =>
+describe("projectTryoutCatalog", () => {
+  it.effect("projects every node of the exam in every active locale", () =>
     Effect.gen(function* () {
-      const sources = yield* decodeTryoutRegistry();
-      const sections = Arr.flatMap(sources, (source) =>
-        Arr.flatMap(source.tracks, (track) =>
-          Arr.flatMap(track.sets, (set) => set.sections)
-        )
-      );
-      expect(sections).toHaveLength(81);
-      for (const section of sections) {
-        for (const locale of ACTIVE_APP_LOCALES) {
-          expect(
-            deliveryLanguageForPolicy(section.languagePolicy, locale)
-          ).toBe(HashSet.has(ENGLISH_SECTIONS, section.key) ? "en" : "id");
-        }
+      const exam = yield* describedExam;
+      const rows = yield* projectTryoutCatalog([exam], paperOf);
+      const english = Arr.filter(rows, ({ appLocale }) => appLocale === "en");
+
+      expect(rows).toHaveLength(9 * ACTIVE_APP_LOCALES.length);
+      expect(english.map((row) => [row.kind, row.publicPath ?? null])).toEqual([
+        ["country", "try-out/test-country"],
+        ["exam", "try-out/test-country/test-exam"],
+        ["track", "try-out/test-country/test-exam/test-subject"],
+        ["set", "try-out/test-country/test-exam/test-subject/set-1"],
+        ["section", null],
+        ["track", "try-out/test-country/test-exam/2027"],
+        ["set", "try-out/test-country/test-exam/2027/set-1"],
+        ["section", "try-out/test-country/test-exam/2027/set-1/test-reasoning"],
+        ["section", "try-out/test-country/test-exam/2027/set-1/test-english"],
+      ]);
+      expect(english[0]).toMatchObject({ description: "A test country." });
+      expect(english[1]).toMatchObject({ description: "A test exam." });
+      expect(english[3]).toMatchObject({
+        internalEntrySectionKey: "test-subject",
+        paper: { hash, id: "test-country/test-exam/test-subject/set-1" },
+      });
+      expect(english[4]).toMatchObject({
+        order: 1,
+        sectionKey: "test-subject",
+        visibility: "internal-entry",
+      });
+      expect(english[6]).not.toHaveProperty("internalEntrySectionKey");
+      expect(english[8]).toMatchObject({ order: 2, visibility: "visible" });
+    })
+  );
+
+  it.effect("names the paper of a set from its track's profile", () =>
+    Effect.gen(function* () {
+      const exam = yield* describedExam;
+      const [subject] = exam.tracks;
+      const [set] = subject?.sets ?? [];
+      if (subject === undefined || set === undefined) {
+        return yield* Effect.die("Expected the subject set.");
       }
-    })
-  );
 
-  it.effect(
-    "maps invalid derived hierarchy counts to a typed catalog error",
-    () =>
-      Effect.gen(function* () {
-        const sources = yield* decodeTryoutRegistry();
-        const snbt = yield* Effect.fromOption(
-          Arr.findFirst(sources, ({ examKey }) => examKey === "snbt")
-        );
-        const track = yield* Effect.fromNullishOr(snbt.tracks[0]);
-        const set = yield* Effect.fromNullishOr(track.sets[0]);
-        const section = yield* Effect.fromNullishOr(set.sections[0]);
-        const invalidSnbt = {
-          ...snbt,
-          tracks: [
-            {
-              ...track,
-              sets: [
-                {
-                  ...set,
-                  sections: [
-                    { ...section, questionCount: 0 },
-                    ...Arr.drop(set.sections, 1),
-                  ],
-                },
-                ...Arr.drop(track.sets, 1),
-              ],
-            },
-          ],
-        };
-        const failure = yield* projectTryoutCatalog([
-          invalidSnbt,
-          ...Arr.filter(sources, ({ examKey }) => examKey !== "snbt"),
-        ]).pipe(Effect.flip);
-
-        expect(failure).toBeInstanceOf(TryoutCatalogDecodeError);
-        expect(failure._tag).toBe("TryoutCatalogDecodeError");
-      })
-  );
-
-  it.effect("signs institution tracks and penalized section marks", () =>
-    Effect.gen(function* () {
-      const sources = yield* decodeTryoutRegistry();
-      const tka = yield* Effect.fromOption(
-        Arr.findFirst(sources, ({ examKey }) => examKey === "tka")
-      );
-      const marks = { blank: 0, correct: 4, wrong: -1 };
-      const rows = yield* projectTryoutCatalog([
-        {
-          ...tka,
-          scoringStrategy: "penalized",
-          tracks: Arr.map(tka.tracks, (track) => ({
-            ...track,
-            kind: "institution",
-            sets: Arr.map(track.sets, (set) => ({
-              ...set,
-              sections: Arr.map(set.sections, (section) => ({
-                ...section,
-                marks,
-              })),
-            })),
-          })),
-        },
-      ]);
-      const facts = HashSet.fromIterable(
-        Arr.map(rows, (row) => {
-          if (row.kind === "section") {
-            return Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))(
-              row.marks
-            );
-          }
-          if (row.kind === "track") {
-            return row.trackKind;
-          }
-          return row.kind === "country" ? "country" : row.scoringStrategy;
-        })
-      );
-
-      expect(Arr.sort(facts, Order.String)).toEqual([
-        "country",
-        "institution",
-        "penalized",
-        yield* Schema.encodeEffect(Schema.fromJsonString(Schema.Unknown))(
-          marks
-        ),
-      ]);
-    })
-  );
-
-  it.effect("preserves an authored country description when present", () =>
-    Effect.gen(function* () {
-      const sources = yield* decodeTryoutRegistry();
-      const source = yield* Effect.fromNullishOr(sources[0]);
-      const english = yield* Effect.fromNullishOr(
-        source.countryTranslations.en
-      );
-      const description = "Official Indonesian assessment catalog.";
-      const rows = yield* projectTryoutCatalog([
-        {
-          ...source,
-          countryTranslations: {
-            ...source.countryTranslations,
-            en: { ...english, description },
-          },
-        },
-      ]);
-
-      expect(rows).toContainEqual(
-        expect.objectContaining({
-          appLocale: "en",
-          description,
-          kind: "country",
-        })
+      expect(paperId(exam, subject, set)).toBe(
+        "test-country/test-exam/test-subject/set-1"
       );
     })
   );
 
   it.effect(
-    "projects source-owned German copy through the active publication seam",
+    "refuses a set without a frozen paper, a bad paper, and a missing locale",
     () =>
       Effect.gen(function* () {
-        const sources = yield* decodeTryoutRegistry();
-        const rows = yield* projectTryoutCatalog(sources);
+        const exam = yield* describedExam;
+        const unfrozen = yield* projectTryoutCatalog([exam], () =>
+          Option.none()
+        ).pipe(Effect.flip);
+        const invalid = yield* projectTryoutCatalog([exam], () =>
+          Option.some({ hash, id: "Not a paper" })
+        ).pipe(Effect.flip);
+        const { de: _de, ...partial } = titled("Test Exam");
+        const untranslated = yield* projectTryoutCatalog(
+          [{ ...exam, examTranslations: partial }],
+          paperOf
+        ).pipe(Effect.flip);
 
-        expect(
-          Arr.filter(rows, ({ appLocale }) => appLocale === "de")
-        ).toHaveLength(109);
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(
-              rows,
-              ({ appLocale, kind }) => appLocale === "de" && kind === "exam"
-            )
-          )
-        ).toMatchObject({
-          publicPath: "try-out/indonesien/snbt",
+        expect(unfrozen).toMatchObject({
+          _tag: "CatalogPaperError",
+          paper: "test-country/test-exam/test-subject/set-1",
+        });
+        expect(invalid._tag).toBe("TryoutCatalogDecodeError");
+        expect(untranslated).toMatchObject({
+          _tag: "SourceLocaleUnavailableError",
+          owner: "test-country:test-exam",
         });
       })
   );

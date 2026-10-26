@@ -30,31 +30,10 @@ Current consumers use unversioned semantic Interfaces:
   `canonicalizeContentTree` gives the bytes that hashes and signatures cover.
 - `graph/family` classifies either a complete graph identity or one exact
   asset ID into its application locale and content family.
-- `tryout/catalog` owns minimal catalog node schemas, while `tryout/identity`
-  builds their pure lookup identities before complete signed rows are loaded.
 - `projection/material` owns the application-locale material namespace and
   validates every signed route and projection against it. Lesson metadata may
   carry an optional `searchTitle` for the HTML title, while `title` stays the
   short navigation name.
-- `question/response` owns the frozen response formats: `single-choice`,
-  `multiple-choice`, `category`, `short-answer`, and `rubric`.
-- `question/answer` owns deterministic short-answer and final-answer keys: an
-  exact canonical decimal with an optional tolerance and an explicit fraction
-  flag, or accepted text with explicit normalization rules. Every runtime
-  grades a typed answer only through `matchesAnswerKey`, reads a typed number
-  only through `readNumberAnswer`, the one number grammar, and decides that a
-  typed answer is blank only through `isBlankAnswer`, so whitespace and
-  invisible format characters alone never count as an answer.
-- `question/rubric` owns the locale-neutral `QuestionRubricScaleSchema`
-  (ordered criteria and levels with points and optional final-answer keys)
-  and the Aksara rubric, which labels every criterion and level in every
-  active app locale. Each judged criterion maps onto one Effect
-  `Decision.rate` decision, and its total is derived, never stored.
-- `question/points` owns a question's worth. Raw, penalized, and IRT scoring
-  read it only through `questionPoints`.
-- `tryout/spec` owns the `irt`, `penalized`, and `raw` scoring strategies, the
-  per-section marks of a penalized exam, and the `institution`, `subject`, and
-  `year` track kinds.
 - `projection/page` owns stable public page identities, localized paths, and
   signed metadata for human, agent, and sitemap delivery.
 - `math/base` owns the unversioned base schemas that mathematical visuals
@@ -68,15 +47,19 @@ Current consumers use unversioned semantic Interfaces:
   with typed `figure` props, twelve `interaction` kinds that hold no answer
   key, `scoring` as data, the `key` and the `explanation` of an item version as
   records of their own, `item` and `stimulus` versions named by a content hash,
-  and the exam `profile`, the frozen `paper`, and the `tools` registry. It is
-  the successor to the `question/` and `tryout/` contracts, which the change that
-  switches their readers deletes.
+  the exam `profile`, the frozen `paper`, and the `tools` registry. `answer`
+  owns the typed-answer keys: every runtime grades a typed answer only through
+  `matchesAnswerKey`, reads a typed number only through `readNumberAnswer`, the
+  one number grammar, and decides that a typed answer is blank only through
+  `isBlankAnswer`. `catalog` owns the try-out navigation rows, each set naming
+  its paper, and `snapshot` the `assessment` snapshot family that publishes all
+  of it in one signed release.
   [ADR 0005](https://github.com/nakafaai/aksara/blob/main/docs/adr/assessment.md)
   records the decisions.
 
 ## Publication dates
 
-Article, material, public page, and question metadata carry one required
+Article, material, and public page metadata carry one required
 `datePublished` and one optional `dateModified`, both as exact `DateOnly`
 values.
 

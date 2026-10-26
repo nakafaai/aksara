@@ -1,7 +1,10 @@
-import { ItemBlueprintSchema } from "@nakafa/aksara-contracts/assessment/item";
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
-import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Record as Rec, Schema, Struct } from "effect";
+import { ItemBlueprintSchema } from "@nakafa/aksara-contracts/assessment/item";
+import {
+  APP_LOCALE_CODES,
+  AppLocaleCodeSchema,
+} from "@nakafa/aksara-contracts/locale";
+import { Array as Arr, Result, Schema, Struct } from "effect";
 
 /**
  * One authored label: one rich Markdown string that becomes a document, with
@@ -108,9 +111,28 @@ function structureOf(
   };
 }
 
-/** Checks that every language of an item asks the same task. */
-function hasOneStructure(versions: Readonly<Record<string, InteractionSource>>) {
-  const [first, ...rest] = Arr.map(Rec.values(versions), structureOf);
+/** An item's interaction in each language it is asked in. */
+const VersionsSchema = Schema.Record(
+  AppLocaleCodeSchema,
+  Schema.optional(InteractionSourceSchema)
+);
+type Versions = typeof VersionsSchema.Type;
+
+/** The authored languages of an item, each with its interaction, in locale order. */
+export function itemVersions(versions: Versions) {
+  return Arr.filterMap(APP_LOCALE_CODES, (language) => {
+    const interaction = versions[language];
+    return interaction === undefined
+      ? Result.failVoid
+      : Result.succeed({ interaction, language });
+  });
+}
+
+/** Checks that an item is asked in at least one language, each asking the same task. */
+function hasOneStructure(versions: Versions) {
+  const [first, ...rest] = Arr.map(itemVersions(versions), ({ interaction }) =>
+    structureOf(interaction)
+  );
   return (
     first !== undefined &&
     Arr.every(rest, (structure) => sameStructure(first, structure))
@@ -127,7 +149,7 @@ function hasOneStructure(versions: Readonly<Record<string, InteractionSource>>) 
 export const ItemSourceSchema = Schema.Struct({
   blueprint: Schema.optionalKey(ItemBlueprintSchema),
   stimulus: Schema.optionalKey(KebabKeySchema),
-  versions: Schema.Record(AppLocaleCodeSchema, InteractionSourceSchema).check(
+  versions: VersionsSchema.check(
     Schema.makeFilter(hasOneStructure, {
       message:
         "Expected at least one language, each asking the same task with its own words.",

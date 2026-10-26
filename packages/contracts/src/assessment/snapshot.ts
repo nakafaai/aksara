@@ -1,6 +1,9 @@
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 
-import { CatalogRowSchema, catalogRowIdentity } from "#contracts/assessment/catalog";
+import {
+  CatalogRowSchema,
+  catalogRowIdentity,
+} from "#contracts/assessment/catalog";
 import { ItemExplanationSchema } from "#contracts/assessment/explanation";
 import { canonicalJson } from "#contracts/assessment/hash";
 import {
@@ -141,15 +144,13 @@ export function assessmentRowIdentity(row: AssessmentRow) {
   return `${row.explanation.version}\0${row.explanation.language}`;
 }
 
-/** Orders two rows as a snapshot streams them: by kind, then by identity. */
-export function compareAssessmentRows(left: AssessmentRow, right: AssessmentRow) {
-  const byKind =
-    ASSESSMENT_ROW_KINDS.indexOf(left.kind) -
-    ASSESSMENT_ROW_KINDS.indexOf(right.kind);
-  return byKind === 0
-    ? compareCodeUnits(assessmentRowIdentity(left), assessmentRowIdentity(right))
-    : Math.sign(byKind);
-}
+/** Orders rows as a snapshot streams them: by kind, then by identity. */
+export const AssessmentRowOrder: Order.Order<AssessmentRow> = Order.combine(
+  Order.mapInput(Order.Number, (row: AssessmentRow) =>
+    ASSESSMENT_ROW_KINDS.indexOf(row.kind)
+  ),
+  Order.mapInput(Order.make(compareCodeUnits), assessmentRowIdentity)
+);
 
 /** Computes the hash of one row from its canonical encoding. */
 export const hashAssessmentRow = Effect.fn("AksaraContracts.hashAssessmentRow")(
@@ -187,7 +188,7 @@ export const digestAssessmentRows = Effect.fn(
   const stream = new DigestStream();
   stream.add(`${ROWS_DOMAIN}\n`);
   const initial: DigestState = {
-    counts: Schema.decodeSync(AssessmentCountsSchema)({
+    counts: AssessmentCountsSchema.make({
       catalog: 0,
       explanation: 0,
       family: 0,
@@ -208,7 +209,7 @@ export const digestAssessmentRows = Effect.fn(
           const identity = assessmentRowIdentity(record.row);
           if (
             current.previous !== undefined &&
-            compareAssessmentRows(current.previous, record.row) >= 0
+            AssessmentRowOrder(current.previous, record.row) >= 0
           ) {
             return yield* new AssessmentRowsError({
               identity,
@@ -217,7 +218,9 @@ export const digestAssessmentRows = Effect.fn(
             });
           }
           const canonical = yield* canonicalJson(record.row);
-          if ((yield* hashText(`${ROW_DOMAIN}\n${canonical}`)) !== record.rowHash) {
+          if (
+            (yield* hashText(`${ROW_DOMAIN}\n${canonical}`)) !== record.rowHash
+          ) {
             return yield* new AssessmentRowsError({
               identity,
               kind: record.row.kind,

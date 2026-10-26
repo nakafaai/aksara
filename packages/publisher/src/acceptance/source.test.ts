@@ -1,15 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
-import {
-  compareContentHeads,
-  headIdentity,
-} from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
-import { QuestionReadError } from "@nakafa/aksara-corpus/question-bank/source";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Array as Arr, Effect, HashSet, Order, Path } from "effect";
 import {
@@ -109,7 +104,7 @@ beforeEach(() => {
 
 layer(NodeServices.layer)("acceptance source selection", (it) => {
   it.effect(
-    "keeps complete material groups, pages, and every first-set question locale",
+    "keeps complete material groups, pages, and the first set of every track",
     () =>
       Effect.gen(function* () {
         const selected = yield* loadAcceptanceSources(yield* checkoutRoot);
@@ -160,76 +155,40 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         expect(selected.article).toHaveLength(2 * ACTIVE_APP_LOCALES.length);
         const registry = yield* decodeTryoutRegistry();
         const { tryout } = selected;
-        const expectedRoots = Arr.flatMap(registry, ({ tracks }) =>
-          Arr.flatMap(tracks, ({ sets }) =>
-            Arr.flatMap(sets, (set) =>
-              set.key === "set-1"
-                ? Arr.flatMap(set.sections, (section) =>
-                    Array.from(
-                      { length: section.questionCount },
-                      (_, index) =>
-                        `${section.questionSourcePath}/question-${index + 1}`
-                    )
-                  )
-                : []
+        const tracks = Arr.flatMap(registry, (exam) =>
+          Arr.map(exam.tracks, (track) => ({ exam, track }))
+        );
+        expect(Arr.map(tryout.papers, ({ id }) => id)).toEqual(
+          Arr.map(
+            tracks,
+            ({ exam, track }) =>
+              `${exam.countryKey}/${exam.examKey}/${track.key}/set-1`
+          )
+        );
+        expect(Arr.map(tryout.sets, ({ path }) => path)).toEqual(
+          Arr.flatMap(tracks, ({ exam, track }) =>
+            Arr.map(
+              track.profile.sections,
+              ({ key }) => `${exam.countryKey}/${exam.examKey}/${key}/set-1`
             )
           )
         );
         expect(
-          Arr.sort(
-            Arr.map(tryout.sources, ({ questionKey }) => questionKey),
-            Order.String
+          Arr.flatMap(tryout.sets, ({ questions }) => questions)
+        ).toHaveLength(
+          Arr.reduce(tracks, 0, (total, { track }) =>
+            Arr.reduce(
+              track.profile.sections,
+              total,
+              (sum, { items }) => sum + items
+            )
           )
-        ).toEqual(Arr.sort(Arr.dedupe(expectedRoots), Order.String));
-        expect(tryout.entries).toEqual(
-          Arr.sort(tryout.entries, Order.make(compareContentHeads))
         );
         expect(
-          HashSet.size(
-            HashSet.fromIterable(Arr.map(tryout.entries, headIdentity))
+          Arr.flatMap(tryout.exams, ({ tracks: kept }) =>
+            Arr.flatMap(kept, ({ sets }) => Arr.map(sets, ({ key }) => key))
           )
-        ).toBe(tryout.entries.length);
-        for (const source of tryout.sources) {
-          const entries = Arr.filter(
-            tryout.entries,
-            ({ questionKey }) => questionKey === source.questionKey
-          );
-          expect(
-            Arr.sort(
-              Arr.map(
-                Arr.filter(entries, ({ bodyKind }) => bodyKind === "answer"),
-                ({ artifactLocale }) => artifactLocale
-              ),
-              Order.String
-            )
-          ).toEqual(Arr.sort(ACTIVE_APP_LOCALES, Order.String));
-          expect(
-            Arr.sort(
-              Arr.map(
-                Arr.filter(entries, ({ bodyKind }) => bodyKind === "question"),
-                ({ artifactLocale }) => artifactLocale
-              ),
-              Order.String
-            )
-          ).toEqual(
-            Arr.sort(
-              questionArtifactLocalesForPolicy(source.languagePolicy),
-              Order.String
-            )
-          );
-        }
-        expect(tryout.projection.placements).toHaveLength(
-          expectedRoots.length * ACTIVE_APP_LOCALES.length
-        );
-        const catalogTracks = Arr.filter(
-          tryout.projection.catalog,
-          ({ row }) => row.kind === "track"
-        );
-        const catalogSets = Arr.filter(
-          tryout.projection.catalog,
-          ({ row }) => row.kind === "set"
-        );
-        expect(catalogSets).toHaveLength(catalogTracks.length);
+        ).toEqual(Arr.map(tracks, () => "set-1"));
       })
   );
 
@@ -285,7 +244,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
       const error = yield* loadAcceptanceTryout(
         "/test/missing-acceptance-checkout"
       ).pipe(Effect.flip);
-      expect(error).toBeInstanceOf(QuestionReadError);
+      expect(error._tag).toBe("QuestionReadError");
     })
   );
 });

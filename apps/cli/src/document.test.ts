@@ -67,8 +67,8 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
         const { compiler } = yield* makeCompiler(repository);
         const first = yield* compiler.compile;
         const second = yield* compiler.compile;
-        const [firstResult] = first.results;
-        const [secondResult] = second.results;
+        const firstResult = first.result;
+        const secondResult = second.result;
 
         expect(firstResult.compileKind).toBe("compiled");
         expect(secondResult.compileKind).toBe("unchanged");
@@ -81,29 +81,17 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
   );
 
   it.effect(
-    "compiles real article and answer closures through their domain projections",
+    "compiles a real article closure through its domain projection",
     () =>
       Effect.gen(function* () {
         const article = yield* compileRealDocument(
           "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx"
         );
-        const answer = yield* compileRealDocument(
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/answer.en.mdx"
-        );
 
-        const [articleResult] = article.results;
-        expect(article.results).toHaveLength(1);
-        expect(articleResult.projection).toMatchObject({
+        expect(article.result.projection).toMatchObject({
           appLocale: "en",
           kind: "article",
         });
-        expect(answer.results).toHaveLength(2);
-        expect(
-          Arr.map(answer.results, ({ projection }) => projection)
-        ).toMatchObject([
-          { bodyKind: "question", kind: "question-body" },
-          { bodyKind: "answer", kind: "question-body" },
-        ]);
       })
   );
 
@@ -193,7 +181,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
           reason: "changed",
         });
         expect(recovered).toMatchObject({
-          results: [{ compileKind: "compiled" }],
+          result: { compileKind: "compiled" },
         });
       })
   );
@@ -210,13 +198,13 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
         const renamedError = yield* compiler.compile.pipe(Effect.flip);
         yield* fileSystem.rename(renamedPath, repository.documentPath);
         expect(yield* compiler.compile).toMatchObject({
-          results: [{ compileKind: "compiled" }],
+          result: { compileKind: "compiled" },
         });
         yield* fileSystem.remove(repository.documentPath);
         const deletedError = yield* compiler.compile.pipe(Effect.flip);
         yield* fileSystem.writeFileString(repository.documentPath, REAL_SOURCE);
         expect(yield* compiler.compile).toMatchObject({
-          results: [{ compileKind: "unchanged" }],
+          result: { compileKind: "unchanged" },
         });
 
         expect(renamedError).toMatchObject({ reason: "missing" });
@@ -273,7 +261,7 @@ layer(NodeServices.layer)("preview document compiler", (it) => {
           sourcePath: topology.sourcePath,
         });
         expect(yield* compiler.compile).toMatchObject({
-          results: [{ compileKind: "compiled" }],
+          result: { compileKind: "compiled" },
         });
       })
   );

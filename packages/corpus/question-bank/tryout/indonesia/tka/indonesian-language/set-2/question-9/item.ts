@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "fiction",
     topic: "fiction-evidence",
   },
+  stimulus: "last-broadcast",
   versions: {
     id: {
       kind: "choice",
@@ -38,7 +39,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "last-broadcast",
 };
 
 export default item;

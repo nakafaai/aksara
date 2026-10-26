@@ -3,13 +3,10 @@ import { Array as Arr, Exit, Schema } from "effect";
 import { ArticleProjectionSchema } from "#contracts/projection/article";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { PublicPageProjectionSchema } from "#contracts/projection/page";
-import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
 import {
   ContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
-  projectionPublicPath,
-  RoutedContentProjectionSchema,
 } from "#contracts/projection/spec";
 import { articleGraph, materialGraph } from "#contracts/test/graph";
 
@@ -69,51 +66,19 @@ const page = Schema.decodeSync(PublicPageProjectionSchema)({
   sitemap: true,
   sourcePath: "packages/corpus/pages/privacy-policy/en.mdx",
 });
-const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
-  artifactLocale: "en",
-  bodyKind: "question",
-  contentKey:
-    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-  kind: "question-body",
-  metadata: {
-    authors: [{ name: "Test Author" }],
-    datePublished: "2026-01-01",
-    title: "Question 1",
-  },
-  peerContentKey:
-    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
-  questionKey:
-    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
-  questionNumber: 1,
-  response: {
-    kind: "single-choice",
-    options: [
-      {
-        isCorrect: true,
-        label: "A",
-        optionKey: "option-1",
-        order: 1,
-      },
-      {
-        isCorrect: false,
-        label: "B",
-        optionKey: "option-2",
-        order: 2,
-      },
-    ],
-  },
-  setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
-});
 describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
     expect(
-      Arr.map([article, material, page, question], (value) =>
+      Arr.map([article, material, page], (value) =>
         Schema.decodeSync(ContentProjectionSchema)(value)
       )
-    ).toEqual([article, material, page, question]);
+    ).toEqual([article, material, page]);
     expect(
       Exit.isFailure(
-        Schema.decodeUnknownExit(RoutedContentProjectionSchema)(question)
+        Schema.decodeUnknownExit(ContentProjectionSchema)({
+          ...page,
+          kind: "unknown",
+        })
       )
     ).toBe(true);
   });
@@ -134,19 +99,9 @@ describe("content projection", () => {
         canonicalizeContentProjection(page)
       )
     ).toEqual(page);
-    expect(
-      Schema.decodeSync(Schema.fromJsonString(ContentProjectionSchema))(
-        canonicalizeContentProjection(question)
-      )
-    ).toEqual(question);
     expect(familyForProjection(article)).toBe("article");
     expect(familyForProjection(material)).toBe("material");
     expect(familyForProjection(page)).toBe("page");
-    expect(familyForProjection(question)).toBe("question");
-    expect(projectionPublicPath(article)).toBe(article.publicPath);
-    expect(projectionPublicPath(material)).toBe(material.publicPath);
-    expect(projectionPublicPath(page)).toBe(page.publicPath);
-    expect(projectionPublicPath(question)).toBeUndefined();
   });
 });
 
@@ -160,9 +115,6 @@ describe("pinned content projection dispatch", () => {
     );
     expect(canonicalizeContentProjection(page)).toBe(
       '{"appLocale":"en","artifactLocale":"en","contentKey":"pages/privacy-policy","kind":"public-page","metadata":{"datePublished":"2026-08-20","description":"How Nakafa processes personal data.","title":"Privacy Policy"},"pageKey":"privacy-policy","publicPath":"privacy-policy","sitemap":true,"sourcePath":"packages/corpus/pages/privacy-policy/en.mdx"}'
-    );
-    expect(canonicalizeContentProjection(question)).toBe(
-      '{"bodyKind":"question","response":{"kind":"single-choice","options":[{"isCorrect":true,"label":"A","optionKey":"option-1","order":1},{"isCorrect":false,"label":"B","optionKey":"option-2","order":2}]},"artifactLocale":"en","contentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"datePublished":"2026-01-01","title":"Question 1"},"peerContentKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer","questionKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1","questionNumber":1,"setKey":"question-bank/tryout/indonesia/snbt/general-reasoning/set-1"}'
     );
   });
 });

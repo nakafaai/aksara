@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
+  stimulus: "repair-first",
   versions: {
     en: {
       columns: ["Repair benefit", "Replacement reason"],
@@ -27,7 +28,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "repair-first",
 };
 
 export default item;

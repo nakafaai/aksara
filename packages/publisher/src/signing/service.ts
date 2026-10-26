@@ -26,16 +26,6 @@ import {
 } from "@nakafa/aksara-contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
-import {
-  hashTryoutRuntimeBundlePayload,
-  type TryoutRuntimeBundleHashComputationError,
-} from "@nakafa/aksara-contracts/tryout/runtime/hash";
-import {
-  type SignedTryoutRuntimeBundle,
-  SignedTryoutRuntimeBundleSchema,
-  type TryoutRuntimeBundlePayload,
-} from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Schema } from "effect";
 import { signCanonicalInput } from "#publisher/signing/canonical";
 import { ContentSigningError } from "#publisher/signing/error";
@@ -60,13 +50,6 @@ export interface PublicationSigner {
   ) => Effect.Effect<
     SignedContentRelease,
     ContentSigningError | ReleaseHashComputationError
-  >;
-  /** Signs one permanent snapshot and renderer runtime bundle. */
-  readonly signTryoutRuntimeBundle: (
-    payload: TryoutRuntimeBundlePayload
-  ) => Effect.Effect<
-    SignedTryoutRuntimeBundle,
-    ContentSigningError | TryoutRuntimeBundleHashComputationError
   >;
 }
 
@@ -128,32 +111,6 @@ function signRelease(
   );
 }
 
-/** Hashes and signs one permanent try-out runtime bundle payload. */
-function signTryoutRuntimeBundle(
-  keyId: typeof SigningKeyIdSchema.Type,
-  privateKeyPem: string,
-  payload: TryoutRuntimeBundlePayload
-) {
-  return hashTryoutRuntimeBundlePayload(payload).pipe(
-    Effect.flatMap((bundleHash) =>
-      signCanonicalInput(
-        privateKeyPem,
-        canonicalizeTryoutRuntimeBundleSigningInput(bundleHash, payload),
-        "tryout-runtime-bundle"
-      ).pipe(
-        Effect.map((signature) =>
-          SignedTryoutRuntimeBundleSchema.make({
-            bundleHash,
-            keyId,
-            payload,
-            signature,
-          })
-        )
-      )
-    )
-  );
-}
-
 /** Builds one Ed25519 signer used for artifacts and their release envelope. */
 export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
   "AksaraPublisher.makeEd25519PublicationSigner"
@@ -188,12 +145,6 @@ export const makeEd25519PublicationSigner: PublicationSignerFactory = Effect.fn(
       /** Signs one canonical release manifest with the configured key. */
       signRelease: Effect.fn("AksaraPublisher.signRelease")((manifest) =>
         signRelease(keyId, input.privateKeyPem, manifest)
-      ),
-      /** Signs one renderer-bound try-out snapshot with the configured key. */
-      signTryoutRuntimeBundle: Effect.fn(
-        "AksaraPublisher.signTryoutRuntimeBundle"
-      )((payload) =>
-        signTryoutRuntimeBundle(keyId, input.privateKeyPem, payload)
       ),
     } satisfies PublicationSigner;
   })

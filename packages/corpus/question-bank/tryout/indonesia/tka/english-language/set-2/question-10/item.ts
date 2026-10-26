@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "reader-response",
   },
+  stimulus: "accessible-fair",
   versions: {
     en: {
       kind: "choice",
@@ -38,7 +39,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "accessible-fair",
 };
 
 export default item;

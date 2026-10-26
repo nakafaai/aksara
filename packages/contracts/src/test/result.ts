@@ -1,8 +1,5 @@
 import { Schema } from "effect";
-import {
-  MaterialHeadSchema,
-  QuestionHeadSchema,
-} from "#contracts/release/head";
+import { ArticleHeadSchema, MaterialHeadSchema } from "#contracts/release/head";
 
 /** Builds one canonical compact material head at a test-only identity. */
 export function head(contentKey: string) {
@@ -26,18 +23,19 @@ export const firstHead = head("test:a");
 export const secondHead = head("test:b");
 export const heads = [firstHead, secondHead];
 
-const question = Schema.decodeSync(QuestionHeadSchema)({
+const article = Schema.decodeSync(ArticleHeadSchema)({
   artifactHash: `sha256:${"a".repeat(64)}`,
   artifactLocale: "en",
   compilerConfigHash: `sha256:${"b".repeat(64)}`,
-  contentKey: "question-bank/test/question",
-  delivery: "authenticated",
-  family: "question",
+  contentKey: "articles/test/result",
+  delivery: "public",
+  family: "article",
   projectionHash: `sha256:${"c".repeat(64)}`,
-  rendererDomain: "snbt-general",
+  publicPath: "articles/test/result",
+  rendererDomain: "politics",
   sourceHash: `sha256:${"d".repeat(64)}`,
-  sourcePath: "packages/corpus/question-bank/test/question/en.mdx",
+  sourcePath: "packages/corpus/articles/test/result/en.mdx",
 });
 
-/** Canonically ordered three-head result catalog with one question head. */
-export const catalog = [question, firstHead, secondHead];
+/** Canonically ordered three-head result catalog of two families. */
+export const catalog = [article, firstHead, secondHead];

@@ -11,8 +11,8 @@ editable copy of content that the other repository owns.
 
 ## What lives here
 
-- `packages/corpus` contains reviewed articles, lessons, questions, public
-  pages, program data, try-out data, and Quran sources. English, Indonesian,
+- `packages/corpus` contains reviewed articles, lessons, public pages, the
+  assessment item bank and its try-out exams, program data, and Quran sources. English, Indonesian,
   and German are active authoring and publication locales under the same
   locale-equivalent review model.
 - `packages/contracts` defines the signed wire formats shared with Nakafa.
@@ -26,8 +26,8 @@ editable copy of content that the other repository owns.
 - `packages/testing` and `packages/typescript-config` own shared repository
   test and compiler configuration.
 
-The body families are `article`, `material`, `page`, and `question`. Program,
-Quran, and try-out data use structured snapshots under the same global release.
+The body families are `article`, `material`, and `page`. Assessment, program,
+and Quran data use structured snapshots under the same global release.
 The generic `page` family owns public site documents, including legal pages,
 without creating a second legal-only publication protocol.
 

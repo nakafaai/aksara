@@ -1,13 +1,13 @@
 import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 
-import type { QuestionSource } from "#corpus/question-bank/source";
+import type { QuestionSet } from "#corpus/question-bank/source";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import type { ExamSource } from "#corpus/tryout/schema";
 
 const readinessPrograms = [
   snbtReadiness,
@@ -55,8 +55,8 @@ export const validateAssessmentReadinessEntries = Effect.fn(
   "AksaraCorpus.validateAssessmentReadinessEntries"
 )(function* (
   readiness: readonly AssessmentReadiness[],
-  sources: readonly TryoutExamSource[],
-  questions: readonly QuestionSource[]
+  sources: readonly ExamSource[],
+  sets: readonly QuestionSet[]
 ) {
   const available = yield* indexAssessmentReadiness(readiness);
   for (const source of sources) {
@@ -71,7 +71,7 @@ export const validateAssessmentReadinessEntries = Effect.fn(
           identity,
         });
       }
-      yield* validateAssessmentQuestionReadiness(source, selected, questions);
+      yield* validateAssessmentQuestionReadiness(source, selected, sets);
       MutableHashMap.remove(available, identity);
     }
   }
@@ -90,14 +90,7 @@ export const validateAssessmentReadinessEntries = Effect.fn(
 /** Validates every active exam and item inventory against one readiness gate. */
 export const validateAssessmentReadinessRegistry = Effect.fn(
   "AksaraCorpus.validateAssessmentReadinessRegistry"
-)(function* (
-  sources: readonly TryoutExamSource[],
-  questions: readonly QuestionSource[]
-) {
+)(function* (sources: readonly ExamSource[], sets: readonly QuestionSet[]) {
   const readiness = yield* Effect.all(readinessPrograms);
-  return yield* validateAssessmentReadinessEntries(
-    readiness,
-    sources,
-    questions
-  );
+  return yield* validateAssessmentReadinessEntries(readiness, sources, sets);
 });

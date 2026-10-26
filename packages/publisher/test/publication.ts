@@ -152,7 +152,6 @@ export async function makeRelease(
         },
       }),
       scope: publicationScope,
-      tryoutRuntime: null,
       ...snapshotPolicyBase(`${releaseId}-base`),
       baseRendererManifestHash: rendererManifest.hash,
       ...emptySnapshotSources,

@@ -79,8 +79,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
         const count =
           fixture.sources.article.length +
           fixture.sources.material.length +
-          fixture.sources.page.length +
-          fixture.sources.tryout.entries.length;
+          fixture.sources.page.length;
         expect(records).toHaveLength(count);
         expect(result).toHaveLength(count);
         expect(routes).toHaveLength(count);
@@ -96,7 +95,6 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
           ...Arr.map(fixture.sources.article, () => "article"),
           ...Arr.map(fixture.sources.material, () => "material"),
           ...Arr.map(fixture.sources.page, () => "page"),
-          ...Arr.map(fixture.sources.tryout.entries, () => "question"),
         ]);
         expect(compiler.calls).toBe(count);
         expect(catalog.tryout).toBe(fixture.sources.tryout);

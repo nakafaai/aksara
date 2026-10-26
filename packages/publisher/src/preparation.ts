@@ -44,7 +44,6 @@ import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
-import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import type {
   PrepareContentRelease,
   PrepareContentReleaseInput,
@@ -114,11 +113,6 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     manifests: input.snapshotManifests,
     previousSnapshots: input.previousSnapshots,
     rows: input.snapshotRows,
-  });
-  yield* validatePreparedTryoutRuntime({
-    previousSnapshots: input.previousSnapshots,
-    runtime: input.tryoutRuntime,
-    snapshots: snapshotSummary.snapshots,
   });
   /** Replays strict decoding, coherence, ordering, and route validation. */
   const records = derivePreparedRecords({
@@ -229,6 +223,5 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     routes,
     snapshotManifests,
     snapshotRows,
-    tryoutRuntime: input.tryoutRuntime,
   });
 });

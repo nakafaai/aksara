@@ -17,7 +17,6 @@ const PublicationTargetStageSchema = Schema.Literals([
   "routes",
   "projections",
   "snapshots",
-  "bundles",
   "artifacts",
   "verify",
   "activate",

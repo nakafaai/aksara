@@ -163,7 +163,6 @@ const sourcePrepared = await Effect.runPromise(
       families: ["material"],
       snapshots: [],
     },
-    tryoutRuntime: null,
     ...snapshotPolicyBase("test-rollback-source-base"),
     baseRendererManifestHash: sourceRendererManifest.hash,
     ...emptySnapshotSources,
@@ -230,13 +229,6 @@ export function rollbackTarget(
         return Effect.succeed({
           ...common,
           family: "page" as const,
-          heads: [],
-        });
-      }
-      if (request.family === "question") {
-        return Effect.succeed({
-          ...common,
-          family: "question" as const,
           heads: [],
         });
       }

@@ -18,7 +18,6 @@ export const ACTIVE_PRODUCTION_STATE = await Effect.runPromise(
       active: yield* completedBundle(active),
       candidate: null,
       recovery: null,
-      tryoutRuntimeBundle: null,
     });
   })
 );
@@ -43,7 +42,6 @@ const calls = vi.hoisted(() => {
       active: null,
       candidate: null,
       recovery: null,
-      tryoutRuntimeBundle: null,
     },
     derivedPublicKeyPem:
       "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEADaLoLeK2jGt3Jav3xpfXU5BNWYOo086miCmkV8FCmsE=\n-----END PUBLIC KEY-----\n",
@@ -64,8 +62,6 @@ const calls = vi.hoisted(() => {
     resumeBundle: undefined,
     resumeCalls: 0,
     rootReads: 0,
-    runtimeBundleRefreshes: 0,
-    runtimeResultSnapshotId: undefined,
     sha: undefined,
     signingSecretReads: 0,
     snapshotCalls: 0,
@@ -129,8 +125,6 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
       calls.baseResultCount = input.baseResultCount;
       calls.baseResultDigest = input.baseResultDigest;
       calls.releaseId = input.releaseId;
-      calls.runtimeResultSnapshotId =
-        input.tryoutRuntime?.result.snapshotId ?? null;
       calls.sha = input.aksaraSha;
       return TestEffect.gen(function* () {
         const gitRelease = yield* target.gitBundle(input.releaseId, {
@@ -212,25 +206,6 @@ vi.mock(
               })
           )
         ),
-    };
-  }
-);
-
-vi.mock(
-  import("@nakafa/aksara-contracts/tryout/runtime/verify"),
-  async (importOriginal) => {
-    const original = await importOriginal();
-    const { SignedTryoutRuntimeBundleSchema } = await import(
-      "@nakafa/aksara-contracts/tryout/runtime/spec"
-    );
-    const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
-    return {
-      ...original,
-      verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
-        TestSchema.decodeUnknownEffect(SignedTryoutRuntimeBundleSchema)(
-          input.bundle,
-          { onExcessProperty: "error" }
-        ).pipe(TestEffect.orDie),
     };
   }
 );

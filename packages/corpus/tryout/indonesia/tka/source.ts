@@ -1,7 +1,6 @@
 import { Effect } from "effect";
 
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
-import { TKA_EXAM_KEY } from "#corpus/tryout/indonesia/tka/identity";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
@@ -9,12 +8,12 @@ import { tkaCompulsoryMathematicsTrack } from "#corpus/tryout/indonesia/tka/trac
 import { tkaEnglishTrack } from "#corpus/tryout/indonesia/tka/tracks/english";
 import { tkaIndonesianTrack } from "#corpus/tryout/indonesia/tka/tracks/indonesian";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
-import { defineTryoutExamSource } from "#corpus/tryout/schema";
+import { defineExamSource } from "#corpus/tryout/schema";
 
 /** Lazily validates the source-controlled TKA catalog and placements. */
-const tkaTryoutCatalog = defineTryoutExamSource({
+const tkaTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
-  examKey: TKA_EXAM_KEY,
+  examKey: "tka",
   examOrder: 2,
   examRouteSlugs: { de: "tka", en: "tka", id: "tka" },
   examTranslations: {
@@ -32,7 +31,6 @@ const tkaTryoutCatalog = defineTryoutExamSource({
       title: "TKA",
     },
   },
-  scoringStrategy: "raw",
   sourceRevision: "2026-09-27",
   tracks: [tkaCompulsoryMathematicsTrack, tkaIndonesianTrack, tkaEnglishTrack],
 });

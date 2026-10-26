@@ -6,13 +6,10 @@ const item: ItemSource = {
     contentDomain: "procedure",
     topic: "classification",
   },
+  stimulus: "pinhole-projector",
   versions: {
     en: {
-      columns: [
-        "Adjusting the image",
-        "Making the projector",
-        "Setting it up",
-      ],
+      columns: ["Adjusting the image", "Making the projector", "Setting it up"],
       kind: "matrix",
       statements: [
         {
@@ -30,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "pinhole-projector",
 };
 
 export default item;

@@ -22,8 +22,8 @@ const priorAppLocales = Schema.decodeSync(ActiveAppLocaleListSchema)([
 ]);
 const policy = { activeAppLocales } as const;
 const completeScope = PublicationScopeSchema.make({
-  families: ["article", "material", "page", "question"],
-  snapshots: ["program", "quran", "tryout"],
+  families: ["article", "material", "page"],
+  snapshots: ["assessment", "program", "quran"],
 });
 const rendererHash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const priorRendererHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
@@ -73,7 +73,6 @@ describe("release policy", () => {
       expect(
         yield* verifyRendererPolicyTransition({
           baseRendererManifestHash: priorRendererHash,
-          baseTryoutSnapshotId: priorRendererHash,
           rendererManifestHash: rendererHash,
           scope: completeScope,
         })
@@ -81,7 +80,6 @@ describe("release policy", () => {
 
       const family = yield* verifyRendererPolicyTransition({
         baseRendererManifestHash: priorRendererHash,
-        baseTryoutSnapshotId: null,
         rendererManifestHash: rendererHash,
         scope: PublicationScopeSchema.make({
           families: ["material"],
@@ -92,22 +90,6 @@ describe("release policy", () => {
         actual: "partial",
         expected: "complete-family",
         family: "article",
-        field: "scope",
-      });
-
-      const tryout = yield* verifyRendererPolicyTransition({
-        baseRendererManifestHash: priorRendererHash,
-        baseTryoutSnapshotId: priorRendererHash,
-        rendererManifestHash: rendererHash,
-        scope: PublicationScopeSchema.make({
-          families: ["article", "material", "page", "question"],
-          snapshots: [],
-        }),
-      }).pipe(Effect.flip);
-      expect(tryout).toMatchObject({
-        actual: "missing",
-        expected: "renderer-refresh",
-        family: "tryout",
         field: "scope",
       });
     })
@@ -123,7 +105,6 @@ describe("release policy", () => {
         expect(
           yield* verifyRendererPolicyTransition({
             baseRendererManifestHash,
-            baseTryoutSnapshotId: priorRendererHash,
             rendererManifestHash: rendererHash,
             scope,
           })
@@ -246,7 +227,7 @@ describe("release policy", () => {
           policy,
           scope: PublicationScopeSchema.make({
             families: [],
-            snapshots: ["program", "quran", "tryout"],
+            snapshots: ["assessment", "program", "quran"],
           }),
         }).pipe(Effect.flip);
 

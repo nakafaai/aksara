@@ -24,15 +24,8 @@ export const PreviewRepositorySchema = Schema.Struct({
 });
 export type PreviewRepository = typeof PreviewRepositorySchema.Type;
 
-const PreviewArtifactListSchema = Schema.NonEmptyArray(
-  PreviewArtifactSchema
-).pipe(
-  Schema.check(
-    Schema.makeFilter((artifacts) => artifacts.length <= 2, {
-      message: "Expected at most two preview artifacts.",
-    })
-  )
-);
+/** The one signed artifact that renders a preview document. */
+const PreviewArtifactListSchema = Schema.Tuple([PreviewArtifactSchema]);
 type PreviewArtifactList = typeof PreviewArtifactListSchema.Type;
 
 /** Checks one article projection against its selected registry route. */
@@ -85,27 +78,19 @@ function matchesPageDocument(
   );
 }
 
-/** Checks family-specific artifact count, order, identity, and projection kind. */
+/** Checks that the one artifact projects exactly the selected document. */
 function hasCoherentReadyArtifacts(input: {
   readonly artifacts: PreviewArtifactList;
   readonly document: PreviewDocument;
 }) {
-  const first = input.artifacts[0].projection;
+  const [{ projection }] = input.artifacts;
   if (input.document.family === "article") {
-    return (
-      input.artifacts.length === 1 &&
-      matchesArticleDocument(input.document, first)
-    );
+    return matchesArticleDocument(input.document, projection);
   }
   if (input.document.family === "material") {
-    return (
-      input.artifacts.length === 1 &&
-      matchesMaterialDocument(input.document, first)
-    );
+    return matchesMaterialDocument(input.document, projection);
   }
-  return (
-    input.artifacts.length === 1 && matchesPageDocument(input.document, first)
-  );
+  return matchesPageDocument(input.document, projection);
 }
 
 const PreviewBaseSchema = Schema.Struct({

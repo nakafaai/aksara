@@ -1,51 +1,68 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
-import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
+import { Array as Arr, Effect, FileSystem, Option, Path, Schema } from "effect";
+import { QuestionReadError } from "#corpus/question-bank/entries";
+import { itemVersions } from "#corpus/question-bank/item";
+import { setSourcePath } from "#corpus/question-bank/path";
 import {
-  QuestionReadError,
-  type QuestionSource,
+  type QuestionSet,
   QuestionSourceSchema,
 } from "#corpus/question-bank/source";
 
-/** One authored prompt body with the question and locale that own it. */
+/**
+ * One task as a learner reads it in one language: the shared reading of its
+ * question, if any, then its prompt. Checks that compare tasks read this, so
+ * two questions on two readings are two tasks even when their prompts match.
+ */
 const QuestionPromptSchema = Schema.Struct({
-  locale: ArtifactLocaleSchema,
+  language: AppLocaleCodeSchema,
   path: CorpusSourcePathSchema,
   rawMdx: Schema.String,
   source: QuestionSourceSchema,
 });
 export type QuestionPrompt = typeof QuestionPromptSchema.Type;
 
-/** Reads every prompt body of the given questions in each assessed locale. */
+/** Reads every task of the given sets in each language it is asked in. */
 export const readQuestionPrompts = Effect.fn(
   "AksaraCorpus.readQuestionPrompts"
-)(function* (corpusRoot: string, sources: readonly QuestionSource[]) {
+)(function* (corpusRoot: string, sets: readonly QuestionSet[]) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
-  const prompts = Arr.flatMap(sources, (source) =>
-    Arr.map(
-      questionArtifactLocalesForPolicy(source.languagePolicy),
-      (locale) => ({
-        locale,
+  const tasks = Arr.flatMap(sets, (set) =>
+    Arr.flatMap(set.questions, (source) =>
+      Arr.map(itemVersions(source.item.versions), ({ language }) => ({
+        language,
         path: CorpusSourcePathSchema.make(
-          `${source.sourceRoot}/question.${locale}.mdx`
+          `${source.sourceRoot}/question.${language}.mdx`
+        ),
+        reading: Option.map(
+          Option.fromUndefinedOr(source.item.stimulus),
+          (key) => setSourcePath(set.path, key, `stimulus.${language}.mdx`)
         ),
         source,
-      })
+      }))
     )
   );
+  /** Reads one file of a task. */
+  const read = (file: typeof CorpusSourcePathSchema.Type) =>
+    fileSystem
+      .readFileString(path.join(corpusRoot, file), "utf8")
+      .pipe(
+        Effect.mapError((cause) => new QuestionReadError({ cause, path: file }))
+      );
   return yield* Effect.forEach(
-    prompts,
-    (prompt) =>
-      fileSystem
-        .readFileString(path.join(corpusRoot, prompt.path), "utf8")
-        .pipe(
-          Effect.mapError(
-            (cause) => new QuestionReadError({ cause, path: prompt.path })
-          ),
-          Effect.map((rawMdx): QuestionPrompt => ({ ...prompt, rawMdx }))
-        ),
+    tasks,
+    ({ language, path: prompt, reading, source }) =>
+      Effect.gen(function* () {
+        const stem = yield* read(prompt);
+        const shared = yield* Effect.forEach(Option.toArray(reading), read);
+        return QuestionPromptSchema.make({
+          language,
+          path: prompt,
+          rawMdx: Arr.join(Arr.append(shared, stem), "\n\n"),
+          source,
+        });
+      }),
     { concurrency: 16 }
   );
 });

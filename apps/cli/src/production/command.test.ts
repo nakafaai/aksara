@@ -54,7 +54,6 @@ describe("production command", () => {
         active: yield* completedBundle(active),
         candidate: null,
         recovery: yield* recoveryBundle("recovery-active", active),
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* runInverse("release-active", "recovery-active");
       expect(receipt).toMatchObject({ releaseId: "release-active" });
@@ -80,7 +79,6 @@ describe("production command", () => {
         active: yield* completedBundle(completed),
         candidate: null,
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* runInverse(
         "release-completed",
@@ -110,7 +108,6 @@ describe("production command", () => {
         active: yield* completedBundle(active),
         candidate: null,
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const error = yield* runInverse("release-active", "recovery-active").pipe(
         Effect.flip
@@ -159,7 +156,6 @@ describe("production command", () => {
           active: null,
           candidate: { ...candidate, phase: "staging" },
           recovery: null,
-          tryoutRuntimeBundle: null,
         });
         const error = yield* runInverse("release-other", "recovery-other").pipe(
           Effect.flip
@@ -188,7 +184,6 @@ describe("production command", () => {
         active: null,
         candidate: { ...candidate, phase: "staging" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const error = yield* runInverse(
         "release-candidate",
@@ -235,7 +230,6 @@ describe("production command", () => {
         active: null,
         candidate: { ...candidate, phase: "verifying" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       calls.manifestMismatch = true;
       const error = yield* runInverse(
@@ -289,7 +283,6 @@ describe("production command", () => {
         active: yield* completedBundle(active),
         candidate: { ...candidate, phase: "verifying" },
         recovery: null,
-        tryoutRuntimeBundle: null,
       });
       const receipt = yield* runBootstrap(BOOTSTRAP_SCOPE);
       expect(receipt).toMatchObject({ releaseId: "release-bootstrap" });

@@ -76,7 +76,7 @@ export function findDocumentIssues(
     ...findHeadingOrderIssues(
       source,
       tree,
-      profile === "answer" ? 4 : 2,
+      profile === "answer" ? 1 : 2,
       profile === "answer" ? undefined : locale
     ),
     ...(profile === "answer"

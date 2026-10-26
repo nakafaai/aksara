@@ -168,10 +168,7 @@ export const TextKeySchema = Schema.Struct({
 export type TextKey = typeof TextKeySchema.Type;
 
 /** A key that a typed answer is graded against: a number or accepted texts. */
-export const AnswerKeySchema = Schema.Union([
-  NumberKeySchema,
-  TextKeySchema,
-]);
+export const AnswerKeySchema = Schema.Union([NumberKeySchema, TextKeySchema]);
 export type AnswerKey = typeof AnswerKeySchema.Type;
 
 /**
@@ -255,10 +252,7 @@ export function readNumberAnswer(input: string, language: AppLocaleCode) {
  * `n / d`, the distance `|n - value * d|` is compared with the tolerance
  * scaled by `d`, so fractions are graded exactly without division.
  */
-function matchesNumberKey(
-  key: NumberKey,
-  answer: NumberAnswer
-) {
+function matchesNumberKey(key: NumberKey, answer: NumberAnswer) {
   if (answer.fraction && !key.acceptsFractions) {
     return false;
   }

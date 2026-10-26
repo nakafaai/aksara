@@ -30,7 +30,6 @@ export function makePublicationTarget(overrides: TargetOverrides) {
     stageRouteBatch: unsupported,
     stageSnapshot: unsupported,
     stageSnapshotBatch: unsupported,
-    stageTryoutRuntimeBundle: unsupported,
     status: unsupported,
     verify: unsupported,
     ...overrides,

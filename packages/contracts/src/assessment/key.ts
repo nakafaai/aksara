@@ -1,5 +1,9 @@
 import { Array as Arr, Schema } from "effect";
-
+import {
+  DecimalSchema,
+  TextKeySchema,
+  ToleranceSchema,
+} from "#contracts/assessment/answer";
 import { hasDistinctIds, LocalIdSchema } from "#contracts/assessment/identity";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { LatexSchema, PlainTextSchema } from "#contracts/assessment/scalar";
@@ -9,11 +13,6 @@ import {
   PositiveMeasureSchema,
   samePlanePoint,
 } from "#contracts/math/base";
-import {
-  DecimalSchema,
-  TextKeySchema,
-  ToleranceSchema,
-} from "#contracts/assessment/answer";
 
 const DISTINCT_MESSAGE = "Expected no part to be named twice.";
 

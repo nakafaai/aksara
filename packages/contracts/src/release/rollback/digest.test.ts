@@ -14,8 +14,8 @@ import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
 import { withNextDigestFailure } from "#contracts/test/digest";
 import {
+  digestArticleEntry,
   digestMaterialEntry,
-  digestQuestionEntry,
 } from "#contracts/test/rollback";
 
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-rollback-digest");
@@ -70,7 +70,7 @@ function manifest(
     upsertCount: 0,
   });
 }
-const rollbackEntries = [entry(), digestMaterialEntry, digestQuestionEntry];
+const rollbackEntries = [entry(), digestMaterialEntry, digestArticleEntry];
 
 describe("rollback snapshot digest", () => {
   it.effect("matches streamed and incremental canonical digests", () =>
@@ -158,15 +158,15 @@ describe("rollback snapshot digest", () => {
         expect(whole).toEqual({
           count: 3,
           digest:
-            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+            "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a",
         });
         expect(split).toEqual({
           count: 3,
           digest:
-            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+            "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a",
         });
         expect(incremental).toBe(
-          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+          "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a"
         );
       })
   );
@@ -187,7 +187,7 @@ describe("rollback snapshot digest", () => {
           _tag: "RollbackSnapshotDigestMismatchError",
         });
         expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
-          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+          "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a"
         );
       })
   );
@@ -199,7 +199,7 @@ describe("rollback snapshot digest", () => {
         manifest: manifest(
           rollbackEntries.length,
           Sha256HashSchema.make(
-            "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22"
+            "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a"
           )
         ),
       });
@@ -207,7 +207,7 @@ describe("rollback snapshot digest", () => {
       expect(summary).toEqual({
         count: 3,
         digest:
-          "sha256:6fb0b72335c9af86935dc899046e54041ddb56b6d79c8fe3666244e2931ece22",
+          "sha256:93a1e39560bf48fef180e46f7efe376e3b831e9a129085ce9a41ac2aee48b97a",
       });
     })
   );

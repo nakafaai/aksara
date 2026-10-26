@@ -1,6 +1,5 @@
 import { NodeServices } from "@effect/platform-node";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ArticleHead,
   ArticleHeadSchema,
@@ -144,7 +143,7 @@ const deriveArticleHeads = Effect.fn("ArticleTest.deriveHeads")(function* (
           delivery: record.change.delivery,
           family: "article",
           projectionHash,
-          publicPath: projectionPublicPath(record.projection),
+          publicPath: record.projection.publicPath,
           rendererDomain: record.change.rendererDomain,
           sourceHash: record.payload.sourceHash,
           sourcePath: record.change.sourcePath,

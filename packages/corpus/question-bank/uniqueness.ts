@@ -8,9 +8,8 @@ import {
   Schema,
 } from "effect";
 import { readQuestionPrompts } from "#corpus/question-bank/prompt";
-import type { QuestionSource } from "#corpus/question-bank/source";
+import type { QuestionSet } from "#corpus/question-bank/source";
 
-const METADATA_PATTERN = /^export const metadata = \{[\s\S]*?\};\s*/u;
 const MARK_PATTERN = /[“”„"'‘’`*]/gu;
 const SPACE_PATTERN = /\s+/gu;
 const NUMBER_PATTERN = /\d+(?:(?:[.,]|\{[.,]\})\d+)*/gu;
@@ -41,7 +40,6 @@ type PromptPrint = typeof PromptPrintSchema.Type;
 /** Removes case, quote, emphasis, and spacing differences that hide a repeat. */
 function normalizePrompt(rawMdx: string) {
   return rawMdx
-    .replace(METADATA_PATTERN, "")
     .toLowerCase()
     .replace(MARK_PATTERN, "")
     .replace(SPACE_PATTERN, " ")
@@ -78,10 +76,10 @@ function repeat(
 /** Rejects repeated prompts at source ingestion before any signed publication. */
 export const validateQuestionUniqueness = Effect.fn(
   "AksaraCorpus.validateQuestionUniqueness"
-)(function* (corpusRoot: string, sources: readonly QuestionSource[]) {
-  const prompts = yield* readQuestionPrompts(corpusRoot, sources);
-  const prints = Arr.map(prompts, ({ locale, path, rawMdx }) => {
-    const text = `${locale}\n${normalizePrompt(rawMdx)}`;
+)(function* (corpusRoot: string, sets: readonly QuestionSet[]) {
+  const prompts = yield* readQuestionPrompts(corpusRoot, sets);
+  const prints = Arr.map(prompts, ({ language, path, rawMdx }) => {
+    const text = `${language}\n${normalizePrompt(rawMdx)}`;
     return { numbers: text.replace(NUMBER_PATTERN, "#"), path, text };
   });
   const numberGroups = Arr.filter(

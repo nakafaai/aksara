@@ -6,10 +6,7 @@ import {
   ContentReleaseManifestSchema,
   RollbackSignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import {
-  inheritContentSnapshot,
-  invertContentSnapshots,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Path, Redacted, Schema, Stream } from "effect";
 import {
@@ -112,20 +109,15 @@ export async function makeSignedBundle(releaseId: string) {
 }
 
 /** Try-out snapshot that a base names, which a bootstrap must not keep. */
-const RETAINED_TRYOUT_SNAPSHOT = Sha256HashSchema.make(
-  `sha256:${"c".repeat(64)}`
-);
 
 /**
  * Prepares one exact-Git release over a declared base. Unless some base heads
  * survive, every result is one of its own upserts, so it replaces the base.
- * When the base names a try-out snapshot, `retainedTryout` keeps that snapshot.
  */
 export async function makeBootstrapRelease(
   releaseId: string,
   baseReleaseId: string,
-  survivingHeads = 0,
-  retainedTryout = false
+  survivingHeads = 0
 ) {
   const git = await makeRelease(releaseId);
   const manifest = ContentReleaseManifestSchema.make({
@@ -134,12 +126,6 @@ export async function makeBootstrapRelease(
     baseManifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
     baseReleaseId: ReleaseIdSchema.make(baseReleaseId),
     resultCount: git.manifest.resultCount + survivingHeads,
-    snapshots: retainedTryout
-      ? {
-          ...git.manifest.snapshots,
-          tryout: inheritContentSnapshot(RETAINED_TRYOUT_SNAPSHOT),
-        }
-      : git.manifest.snapshots,
   });
   return {
     manifest,

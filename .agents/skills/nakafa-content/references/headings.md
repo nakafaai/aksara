@@ -15,7 +15,7 @@
   the answer prose so the learner can match questions and answers. Follow the
   [worked-solution mapping](solutions.md#mapping-exercises-to-answers).
 - A standalone question-bank answer renders beneath an app-owned `###` heading.
-  Its sections start at `####` and may use `#####` for real nested analysis.
+  Its sections start at `#` and may use `##` for real nested analysis, because the explanation is a document of its own.
   This exception belongs only to question-bank answers, never lesson solutions.
 - Leave one blank line after headings.
 - Page titles and body headings use one short phrase containing letters and

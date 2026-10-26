@@ -1,18 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  HashSet,
-  Path,
-  PlatformError,
-} from "effect";
+import { Array as Arr, Effect, FileSystem, HashSet, Path } from "effect";
 import {
   captureSelectedFiles,
   fingerprintSelectedDocument,
-  verifySelectedDirectory,
   verifySelectedFingerprint,
 } from "#cli/integrity";
 import { selectPreviewDocument } from "#cli/repository";
@@ -20,8 +12,8 @@ import { FIXED_FILES, FIXED_SELECTION, readFixedText } from "#test/integrity";
 import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
 
 const repositories = makeRepositoryTracker();
-const QUESTION_PATH =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
+const ARTICLE_PATH =
+  "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
 
 afterEach(() => repositories.clear());
 
@@ -139,7 +131,7 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
         const fileSystem = yield* FileSystem.FileSystem;
         const selected = yield* selectPreviewDocument(
           yield* fileSystem.realPath(REPOSITORY_ROOT),
-          QUESTION_PATH,
+          ARTICLE_PATH,
           AppLocaleSchema.make("en")
         );
         /** Gives every selected absolute path its own text so a swap changes its hash. */
@@ -161,116 +153,6 @@ layer(NodeServices.layer)("preview source integrity", (it) => {
             HashSet.fromIterable(Arr.map(fingerprint.files, ({ hash }) => hash))
           )
         ).toBe(selected.files.length);
-      })
-  );
-
-  it.effect(
-    "accepts a directory listing in any order when its sorted names match",
-    () =>
-      Effect.gen(function* () {
-        const fileSystem = yield* FileSystem.FileSystem;
-        const selected = yield* selectPreviewDocument(
-          yield* fileSystem.realPath(REPOSITORY_ROOT),
-          QUESTION_PATH,
-          AppLocaleSchema.make("en")
-        );
-        const [directory] = selected.directories;
-        expect(directory).toBeDefined();
-        if (directory === undefined) {
-          return;
-        }
-        const reversed = Arr.reverse(directory.files);
-        yield* verifySelectedDirectory(directory).pipe(
-          Effect.provide(
-            FileSystem.layerNoop({
-              readDirectory: () => Effect.succeed(reversed),
-              realPath: () => Effect.succeed(directory.absolutePath),
-            })
-          )
-        );
-        const extra = yield* verifySelectedDirectory(directory).pipe(
-          Effect.provide(
-            FileSystem.layerNoop({
-              readDirectory: () => Effect.succeed([...reversed, "extra.mdx"]),
-              realPath: () => Effect.succeed(directory.absolutePath),
-            })
-          ),
-          Effect.flip
-        );
-        expect(extra).toMatchObject({
-          _tag: "PreviewRestartError",
-          sourcePath: directory.sourcePath,
-        });
-      })
-  );
-
-  it.effect(
-    "rejects missing, replaced, and unreadable selected directories",
-    () =>
-      Effect.gen(function* () {
-        const fileSystem = yield* FileSystem.FileSystem;
-        const selected = yield* selectPreviewDocument(
-          yield* fileSystem.realPath(REPOSITORY_ROOT),
-          QUESTION_PATH,
-          AppLocaleSchema.make("en")
-        );
-        const [directory] = selected.directories;
-        expect(directory).toBeDefined();
-        if (directory === undefined) {
-          return;
-        }
-        const systemError = PlatformError.systemError({
-          _tag: "NotFound",
-          method: "realPath",
-          module: "FileSystem",
-          pathOrDescriptor: directory.absolutePath,
-        });
-        const failures = yield* Effect.all(
-          [
-            verifySelectedDirectory(directory).pipe(
-              Effect.provide(
-                FileSystem.layerNoop({
-                  realPath: () => Effect.fail(systemError),
-                })
-              ),
-              Effect.flip
-            ),
-            verifySelectedDirectory(directory).pipe(
-              Effect.provide(
-                FileSystem.layerNoop({
-                  realPath: () =>
-                    Effect.succeed(`${directory.absolutePath}-moved`),
-                })
-              ),
-              Effect.flip
-            ),
-            verifySelectedDirectory(directory).pipe(
-              Effect.provide(
-                FileSystem.layerNoop({
-                  readDirectory: () => Effect.fail(systemError),
-                  realPath: () => Effect.succeed(directory.absolutePath),
-                })
-              ),
-              Effect.flip
-            ),
-          ],
-          { concurrency: "unbounded" }
-        );
-
-        expect(failures).toEqual([
-          expect.objectContaining({
-            _tag: "PreviewRestartError",
-            sourcePath: directory.sourcePath,
-          }),
-          expect.objectContaining({
-            _tag: "PreviewRestartError",
-            sourcePath: directory.sourcePath,
-          }),
-          expect.objectContaining({
-            _tag: "PreviewRestartError",
-            sourcePath: directory.sourcePath,
-          }),
-        ]);
       })
   );
 });

@@ -64,7 +64,7 @@ describe("snapshot transport", () => {
   it("accepts non-empty bounded rows owned by one snapshot envelope", () => {
     const input = {
       batchIndex: 0,
-      family: "tryout",
+      family: "assessment",
       releaseId,
       rows: [snapshotRow],
       snapshotId: hash,
@@ -99,7 +99,7 @@ describe("snapshot transport", () => {
     };
     const mixedRequest = {
       ...quranRequest,
-      family: "tryout",
+      family: "assessment",
       rows: [snapshotRow, quranRow],
     };
     const mismatchedQuran = {

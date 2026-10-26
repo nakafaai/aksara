@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       columns: ["Persemaian", "Penanaman", "Pemantauan"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "mangrove-nursery",
 };
 
 export default item;

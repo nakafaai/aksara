@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "refill-station",
   versions: {
     id: {
       columns: ["Data utama pada tabel", "Penjelasan alternatif"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "refill-station",
 };
 
 export default item;

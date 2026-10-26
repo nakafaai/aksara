@@ -1,6 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
@@ -28,7 +29,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "passage-4",
 };
 
 export default item;

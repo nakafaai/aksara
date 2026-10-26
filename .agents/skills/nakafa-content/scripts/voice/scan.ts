@@ -1,4 +1,3 @@
-import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import { findSectionBodyIssues } from "#nakafa-content/body/section";
 import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
 import { exerciseSectionLines } from "#nakafa-content/exercise/context";
@@ -15,6 +14,7 @@ import { unanchoredGermanFormalAddressOffset } from "#nakafa-content/voice/addre
 import { findStructuralIssues } from "#nakafa-content/voice/heading";
 import { UnsupportedLessonLocale } from "#nakafa-content/voice/locale";
 import { REPETITIVE_OPENER_RULES } from "#nakafa-content/voice/pedagogy";
+import type { BodyKind } from "#nakafa-content/voice/profile";
 import { findVisibleProseRuleIssues } from "#nakafa-content/voice/prose";
 import {
   maskRawLineProtectedContent,
@@ -137,7 +137,7 @@ function inspectLessonLine(
   quotationRanges: readonly { end: number; start: number }[],
   state: LineState,
   matchesByRule: Map<string, LessonVoiceIssue[]>,
-  bodyKind: QuestionBodyKind | undefined,
+  bodyKind: BodyKind | undefined,
   voiceRules: readonly LessonVoiceRule[],
   genre: LessonVoiceGenre
 ): LessonVoiceIssue[] {
@@ -209,7 +209,7 @@ export function findLessonVoiceIssues(
   locale: string,
   source: string,
   tree?: MdxNode,
-  bodyKind?: QuestionBodyKind,
+  bodyKind?: BodyKind,
   genre: LessonVoiceGenre = "lesson"
 ): LessonVoiceIssue[] {
   if (!isLessonVoiceLocale(locale)) {

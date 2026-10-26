@@ -55,8 +55,6 @@ function validateRecoveryIdentity(
 /**
  * Accepts a bootstrap only as a full replacement of its exact declared base.
  * Every head of that base must be superseded, because no inverse can restore it.
- * A try-out snapshot that the base names must be replaced too, because its
- * placements bind the retired artifacts that the new renderer cannot read.
  */
 function validateBootstrap(
   manifest: ContentReleaseManifest,
@@ -78,19 +76,6 @@ function validateBootstrap(
         baseReleaseId,
         manifestBaseReleaseId: manifest.baseReleaseId,
         reason: "replacement",
-        releaseId: manifest.releaseId,
-      })
-    );
-  }
-  if (
-    manifest.snapshots.tryout.baseSnapshotId !== null &&
-    manifest.snapshots.tryout.mode !== "replace"
-  ) {
-    return Effect.fail(
-      new PublicationBootstrapError({
-        baseReleaseId,
-        manifestBaseReleaseId: manifest.baseReleaseId,
-        reason: "snapshot",
         releaseId: manifest.releaseId,
       })
     );

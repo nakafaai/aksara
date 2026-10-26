@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "rain-garden",
   versions: {
     id: {
       columns: ["Sudah dicatat", "Akan dicatat"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "rain-garden",
 };
 
 export default item;

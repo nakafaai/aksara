@@ -57,14 +57,11 @@ const selectPageEntry = Effect.fn("AksaraCorpus.selectPreviewPageEntry")(
     } satisfies PagePreviewDocument;
     return {
       document,
-      sources: [
-        {
-          dependencies: yield* dependenciesFor(PAGE_OWNER),
-          directories: [],
-          entry,
-          family: "page",
-        },
-      ],
+      source: {
+        dependencies: yield* dependenciesFor(PAGE_OWNER),
+        entry,
+        family: "page",
+      },
     } satisfies PreviewSelection;
   }
 );
@@ -95,17 +92,14 @@ const buildArticleEntry = Effect.fn("AksaraCorpus.buildPreviewArticleEntry")(
     );
     return {
       document,
-      sources: [
-        {
-          dependencies: [
-            { mode: "restart", sourcePath: ARTICLE_OWNER },
-            ...(yield* dependenciesFor(sourceModule)),
-          ],
-          directories: [],
-          entry,
-          family: "article",
-        },
-      ],
+      source: {
+        dependencies: [
+          { mode: "restart", sourcePath: ARTICLE_OWNER },
+          ...(yield* dependenciesFor(sourceModule)),
+        ],
+        entry,
+        family: "article",
+      },
     } satisfies PreviewSelection;
   }
 );
@@ -156,17 +150,14 @@ const buildMaterialEntry = Effect.fn("AksaraCorpus.buildPreviewMaterialEntry")(
     );
     return {
       document,
-      sources: [
-        {
-          dependencies: [
-            { mode: "restart", sourcePath: MATERIAL_OWNER },
-            ...(yield* dependenciesFor(sourceModule)),
-          ],
-          directories: [],
-          entry,
-          family: "material",
-        },
-      ],
+      source: {
+        dependencies: [
+          { mode: "restart", sourcePath: MATERIAL_OWNER },
+          ...(yield* dependenciesFor(sourceModule)),
+        ],
+        entry,
+        family: "material",
+      },
     } satisfies PreviewSelection;
   }
 );

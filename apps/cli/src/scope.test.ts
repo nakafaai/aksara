@@ -53,12 +53,12 @@ describe("publication scope selectors", () => {
         yield* decode([
           "family:material",
           "family:article",
-          "snapshot:tryout",
           "snapshot:program",
+          "snapshot:assessment",
         ])
       ).toEqual({
         families: ["article", "material"],
-        snapshots: ["program", "tryout"],
+        snapshots: ["assessment", "program"],
       });
     })
   );

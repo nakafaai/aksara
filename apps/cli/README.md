@@ -52,7 +52,7 @@ names the retired active release with `--bootstrap-over <active-release-id>`
 instead of `--recovery-id`, takes one target, and has no accept or recover
 step, because a bootstrap replaces every head of its base and cannot be
 restored. The command refuses before any write unless the scope closes any live
-renderer change, including the try-out snapshot. The switch is one way: the
+renderer change. The switch is one way: the
 retired generation is never restored. See `docs/adr/release.md` for the rule.
 
 A rejected release names its reason and the exact release that owns the

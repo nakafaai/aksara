@@ -7,7 +7,6 @@ import type {
   ArticleHead,
   MaterialHead,
   PageHead,
-  QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -27,7 +26,6 @@ import type { CatalogTestInput } from "#test/catalog";
 import { testFileLayer } from "#test/files";
 import { MaterialTestFixtures, materialTestLayer } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
-import { sourceByPath as questionSources } from "#test/question/spec";
 import { testRendererDomains } from "#test/renderer";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -93,7 +91,6 @@ function catalogProgramFrom(
       article: Stream.fromIterable(input.article ?? []),
       material: Stream.fromIterable(input.material ?? []),
       page: Stream.fromIterable(input.page ?? []),
-      question: Stream.fromIterable(input.question ?? []),
     },
     rendererManifest: fixture.rendererManifest,
   }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
@@ -155,7 +152,6 @@ const makeCatalogTestFixtures = Effect.fn(
       ...article.sources,
       ...material.sources,
       ...page.sources,
-      ...questionSources,
     ]);
     const source = {
       checkoutRoot: article.checkoutRoot,
@@ -185,10 +181,6 @@ const makeCatalogTestFixtures = Effect.fn(
       pageHeads: Arr.filter(
         initialHeads,
         (head): head is PageHead => head.family === "page"
-      ),
-      questionHeads: Arr.filter(
-        initialHeads,
-        (head): head is QuestionHead => head.family === "question"
       ),
     };
   })
@@ -237,17 +229,16 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
       })
   );
 
-  it.effect("merges all four family streams in canonical order", () =>
+  it.effect("merges all three family streams in canonical order", () =>
     Effect.gen(function* () {
       const { initial, initialHeads } = yield* CatalogTestFixtures;
-      expect(initial.records).toHaveLength(44);
-      expect(initial.routes).toHaveLength(44);
-      expect(initialHeads).toHaveLength(44);
+      expect(initial.records).toHaveLength(40);
+      expect(initial.routes).toHaveLength(40);
+      expect(initialHeads).toHaveLength(40);
       expect(Arr.map(initialHeads, ({ family }) => family)).toEqual([
         ...Array.from({ length: 21 }, () => "article"),
         ...Array.from({ length: 4 }, () => "material"),
         ...Array.from({ length: 15 }, () => "page"),
-        ...Array.from({ length: 4 }, () => "question"),
       ]);
     })
   );
@@ -262,7 +253,6 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
           base: fixture.base,
           material: fixture.materialHeads,
           page: fixture.pageHeads,
-          question: fixture.questionHeads,
         });
         expect(publication.records).toEqual([]);
         expect(publication.result).toEqual(fixture.initialHeads);
@@ -281,7 +271,6 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
         },
         material: fixture.materialHeads,
         page: fixture.pageHeads,
-        question: fixture.questionHeads,
       });
       expect(error).toMatchObject({
         _tag: "ResultCatalogDigestMismatchError",

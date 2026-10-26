@@ -119,8 +119,6 @@ export function invokeTarget(
       stageRouteBatch: (value) => target.stageRouteBatch(value),
       stageSnapshot: (value) => target.stageSnapshot(value),
       stageSnapshotBatch: (value) => target.stageSnapshotBatch(value),
-      stageTryoutRuntimeBundle: (value) =>
-        target.stageTryoutRuntimeBundle(value),
       status: (value) => target.status(value),
       verify: (value) => target.verify(value.release),
     })

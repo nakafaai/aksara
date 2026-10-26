@@ -60,7 +60,6 @@ const TEST_ITEM_PATH = CorpusSourcePathSchema.make(
 
 /** A fixed page selection whose closure is the page body followed by one dependency. */
 export const FIXED_SELECTION: SelectedDocument = {
-  directories: [],
   document: {
     delivery: "public",
     family: "page",
@@ -80,15 +79,12 @@ export const FIXED_SELECTION: SelectedDocument = {
       sourcePath: TEST_ITEM_PATH,
     },
   ],
-  sources: [
-    {
-      dependencies: [
-        { mode: "reload", sourcePath: TEST_PAGE.sourcePath },
-        { mode: "reload", sourcePath: TEST_ITEM_PATH },
-      ],
-      directories: [],
-      entry: TEST_PAGE,
-      family: "page",
-    },
-  ],
+  source: {
+    dependencies: [
+      { mode: "reload", sourcePath: TEST_PAGE.sourcePath },
+      { mode: "reload", sourcePath: TEST_ITEM_PATH },
+    ],
+    entry: TEST_PAGE,
+    family: "page",
+  },
 };

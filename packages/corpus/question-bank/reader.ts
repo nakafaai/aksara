@@ -1,5 +1,4 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import {
   Effect,
@@ -28,13 +27,17 @@ import {
   type Statement,
   SyntaxKind,
 } from "typescript/unstable/ast";
-import { validateQuestionLabels } from "#corpus/question-bank/label";
+import { ItemSourceSchema } from "#corpus/question-bank/item";
+import { validateItemLabels } from "#corpus/question-bank/label";
 
 /** An item module contains executable or structurally invalid TypeScript. */
-export class QuestionItemError extends Schema.TaggedError<
-  QuestionItemError,
+export class ItemSourceError extends Schema.TaggedError<
+  ItemSourceError,
   { readonly brand: unique symbol }
->()("QuestionItemError", { sourcePath: CorpusSourcePathSchema }) {}
+>()("ItemSourceError", {
+  cause: Schema.optional(Schema.Unknown),
+  sourcePath: CorpusSourcePathSchema,
+}) {}
 
 /** Reads one non-computed property name from a reviewed literal. */
 function readPropertyName(name: PropertyName) {
@@ -118,9 +121,9 @@ function isItemTypeImport(statement: Statement) {
   const [binding] = bindings.elements;
   return (
     binding?.propertyName === undefined &&
-    binding?.name.text === "QuestionItem" &&
+    binding?.name.text === "ItemSource" &&
     isStringLiteral(statement.moduleSpecifier) &&
-    statement.moduleSpecifier.text === "@nakafa/aksara-contracts/question/item"
+    statement.moduleSpecifier.text === "#corpus/question-bank/item"
   );
 }
 
@@ -142,7 +145,7 @@ function readItemDeclaration(statement: Statement) {
     declaration.type === undefined ||
     !isTypeReferenceNode(declaration.type) ||
     !isIdentifier(declaration.type.typeName) ||
-    declaration.type.typeName.text !== "QuestionItem"
+    declaration.type.typeName.text !== "ItemSource"
   ) {
     return;
   }
@@ -176,22 +179,24 @@ function readItemModule(file: SourceFile) {
 }
 
 /** Parses one item module through the native AST without evaluating code. */
-export const decodeQuestionItemSource = Effect.fn(
-  "AksaraCorpus.decodeQuestionItemSource"
-)(function* (source: string, sourcePath: typeof CorpusSourcePathSchema.Type) {
-  const parser = yield* TypeScriptParser;
-  const input = yield* parser.inspect(
-    { fileName: sourcePath, source },
-    ({ diagnostics, sourceFile }) =>
-      diagnostics.length === 0 ? readItemModule(sourceFile) : undefined
-  );
-  if (input === undefined) {
-    return yield* new QuestionItemError({ sourcePath });
-  }
+export const decodeItemSource = Effect.fn("AksaraCorpus.decodeItemSource")(
+  function* (source: string, sourcePath: typeof CorpusSourcePathSchema.Type) {
+    const parser = yield* TypeScriptParser;
+    const input = yield* parser.inspect(
+      { fileName: sourcePath, source },
+      ({ diagnostics, sourceFile }) =>
+        diagnostics.length === 0 ? readItemModule(sourceFile) : undefined
+    );
+    if (input === undefined) {
+      return yield* new ItemSourceError({ sourcePath });
+    }
 
-  const item = yield* Schema.decodeUnknownEffect(QuestionItemSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(Effect.mapError(() => new QuestionItemError({ sourcePath })));
-  yield* validateQuestionLabels(item, sourcePath);
-  return item;
-});
+    const item = yield* Schema.decodeUnknownEffect(ItemSourceSchema)(input, {
+      onExcessProperty: "error",
+    }).pipe(
+      Effect.mapError((cause) => new ItemSourceError({ cause, sourcePath }))
+    );
+    yield* validateItemLabels(item, sourcePath);
+    return item;
+  }
+);

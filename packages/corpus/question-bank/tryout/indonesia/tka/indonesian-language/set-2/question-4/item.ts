@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "outline",
   },
+  stimulus: "repair-clinic",
   versions: {
     id: {
       columns: ["Meja 1", "Meja 2", "Meja 3"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "repair-clinic",
 };
 
 export default item;

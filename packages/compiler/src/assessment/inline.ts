@@ -20,10 +20,7 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import {
-  type AssessmentSite,
-  sourceError,
-} from "#compiler/assessment/error";
+import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
 
 /** The one order of marks on a text node, as the document contract keeps it. */
 const MARK_ORDER = [
@@ -37,7 +34,7 @@ const MARK_ORDER = [
 ];
 
 /** The mark each authored element adds to its text. */
-const ELEMENT_MARKS: Readonly<Record<string, Mark["type"]>> = {
+const ELEMENT_MARKS: Readonly<Record<string, Exclude<Mark["type"], "link">>> = {
   code: "code",
   em: "italic",
   strong: "bold",
@@ -186,7 +183,10 @@ function trimLines(nodes: readonly InlineNode[]) {
     const start = isLineEdge(Arr.get(nodes, index - 1));
     const end = isLineEdge(Arr.get(nodes, index + 1));
     const trimmedStart = start ? node.text.trimStart() : node.text;
-    return textNode(end ? trimmedStart.trimEnd() : trimmedStart, node.marks ?? []);
+    return textNode(
+      end ? trimmedStart.trimEnd() : trimmedStart,
+      node.marks ?? []
+    );
   });
 }
 

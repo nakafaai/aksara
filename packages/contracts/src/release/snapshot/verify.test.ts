@@ -32,18 +32,18 @@ function reject<A, E>(effect: Effect.Effect<A, E>) {
 /** Interleaves families without changing any signed per-family order. */
 function interleaveRows(rows: readonly ContentSnapshotRow[]) {
   const groups = {
+    assessment: Arr.filter(rows, (row) => row.family === "assessment"),
     program: Arr.filter(rows, (row) => row.family === "program"),
     quran: Arr.filter(rows, (row) => row.family === "quran"),
-    tryout: Arr.filter(rows, (row) => row.family === "tryout"),
   };
   const result = MutableList.make<ContentSnapshotRow>();
   const length = Math.max(
+    groups.assessment.length,
     groups.program.length,
-    groups.quran.length,
-    groups.tryout.length
+    groups.quran.length
   );
   for (let index = 0; index < length; index += 1) {
-    for (const family of ["program", "quran", "tryout"] as const) {
+    for (const family of ["assessment", "program", "quran"] as const) {
       const row = groups[family][index];
       if (row !== undefined) {
         MutableList.append(result, row);
@@ -88,13 +88,13 @@ describe("structured snapshot verification", () => {
           }),
         });
 
-        expect(result.stagedRows).toBe(2148);
+        expect(result.stagedRows).toBe(2154);
         expect(
           Arr.map(Rec.values(result.snapshots), ({ mode }) => mode)
         ).toEqual(["replace", "replace", "replace"]);
         expect({ manifestReplays, rowReplays }).toEqual({
           manifestReplays: 1,
-          rowReplays: 8,
+          rowReplays: 5,
         });
       }),
     30_000
@@ -260,8 +260,17 @@ describe("structured snapshot verification", () => {
           rows: snapshotData.rows,
         });
 
-        expect(result.stagedRows).toBe(2148);
+        expect(result.stagedRows).toBe(2154);
         expect(result.snapshots).toEqual({
+          assessment: {
+            baseSnapshotId: null,
+            mode: "replace",
+            resultSnapshotId:
+              "sha256:654825a7b1f720ffe2af8942a31af439ad985746c0aab416cab2eb4ec1c2646d",
+            rowCount: 24,
+            rowDigest:
+              "sha256:556a7889b3703a5c6d1aa6c428944a9d8debb8d477b3f6b255edad463e41dcbe",
+          },
           program: {
             baseSnapshotId: null,
             mode: "replace",
@@ -279,15 +288,6 @@ describe("structured snapshot verification", () => {
             rowCount: 1542,
             rowDigest:
               "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
-          },
-          tryout: {
-            baseSnapshotId: null,
-            mode: "replace",
-            resultSnapshotId:
-              "sha256:3fd42ba02a4f1c50d71d9443ed86b7aa871100f37d7afb9205bbc8781f2fc2ca",
-            rowCount: 18,
-            rowDigest:
-              "sha256:b4bfe8db748e1fbb236c6907bfd50b25da1e3001732ae6e0bfba6462c2ad30f0",
           },
         });
       })

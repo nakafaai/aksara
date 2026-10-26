@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type MaterialHead,
   MaterialHeadSchema,
@@ -186,7 +185,7 @@ const deriveMaterialHeads = Effect.fn("MaterialTest.deriveHeads")(function* (
           delivery: record.change.delivery,
           family: "material",
           projectionHash,
-          publicPath: projectionPublicPath(record.projection),
+          publicPath: record.projection.publicPath,
           rendererDomain: record.change.rendererDomain,
           sourceHash: record.payload.sourceHash,
           sourcePath: record.change.sourcePath,

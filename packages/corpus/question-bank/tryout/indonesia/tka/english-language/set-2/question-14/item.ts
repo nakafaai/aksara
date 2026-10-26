@@ -6,6 +6,7 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "explicit-information",
   },
+  stimulus: "last-bus",
   versions: {
     en: {
       columns: ["Planned", "Live", "Direct"],
@@ -26,7 +27,6 @@ const item: ItemSource = {
       ],
     },
   },
-  stimulus: "last-bus",
 };
 
 export default item;

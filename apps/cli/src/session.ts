@@ -8,7 +8,6 @@ import {
   makePreviewDocumentCompiler,
   type PreviewCompileResult,
   type PreviewDocumentCompiler,
-  type PreviewDocumentResult,
 } from "#cli/document";
 import type { PreviewEnvironment } from "#cli/environment/read";
 import type { PreviewEvidenceError } from "#cli/evidence";
@@ -72,14 +71,6 @@ function logCompilation(result: PreviewCompileResult) {
   );
 }
 
-/** Records every body committed together for the selected preview document. */
-function logDocumentCompilation(document: PreviewDocumentResult) {
-  return Effect.forEach(document.results, logCompilation, {
-    concurrency: "unbounded",
-    discard: true,
-  });
-}
-
 /** Compiles one atomic state after clearing the old changed-route artifacts. */
 export function refreshDocument(
   compiler: PreviewDocumentCompiler,
@@ -130,10 +121,10 @@ export function refreshDocument(
       generation,
       rendererManifestHash,
       repositories: currentRepositories,
-      results: outcome.success.results,
+      result: outcome.success.result,
     });
     if (committed) {
-      yield* logDocumentCompilation(outcome.success);
+      yield* logCompilation(outcome.success.result);
     }
     return currentRepositories;
   });

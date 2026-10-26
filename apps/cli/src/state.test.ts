@@ -53,7 +53,6 @@ describe("production state", () => {
           )
         ).toEqual({
           baseBundle: null,
-          baseTryoutRuntimeBundle: null,
           kind: "new",
           scope: FUNCTION_SCOPE,
         });
@@ -65,7 +64,6 @@ describe("production state", () => {
             release: active.release,
             rendererManifest: active.rendererManifest,
           },
-          baseTryoutRuntimeBundle: null,
           kind: "new",
           scope: FUNCTION_SCOPE,
         });
@@ -87,7 +85,6 @@ describe("production state", () => {
           )
         ).toEqual({
           baseBundle: null,
-          baseTryoutRuntimeBundle: null,
           candidate,
           kind: "rebuild",
           scope: FUNCTION_SCOPE,

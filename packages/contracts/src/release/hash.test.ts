@@ -30,6 +30,13 @@ const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   routeDigest: `sha256:${"6".repeat(64)}`,
   scope: { families: ["material"], snapshots: ["program"] },
   snapshots: {
+    assessment: {
+      baseSnapshotId: null,
+      mode: "inherit",
+      resultSnapshotId: null,
+      rowCount: 0,
+      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+    },
     program: {
       baseSnapshotId: null,
       mode: "replace",
@@ -38,13 +45,6 @@ const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
       rowDigest: `sha256:${"8".repeat(64)}`,
     },
     quran: {
-      baseSnapshotId: null,
-      mode: "inherit",
-      resultSnapshotId: null,
-      rowCount: 0,
-      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
-    },
-    tryout: {
       baseSnapshotId: null,
       mode: "inherit",
       resultSnapshotId: null,
@@ -77,8 +77,15 @@ const rollbackManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"1".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"2".repeat(64)}`,
-  scope: { families: ["material"], snapshots: ["tryout"] },
+  scope: { families: ["material"], snapshots: ["assessment"] },
   snapshots: {
+    assessment: {
+      baseSnapshotId: `sha256:${"3".repeat(64)}`,
+      mode: "restore",
+      resultSnapshotId: null,
+      rowCount: 0,
+      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+    },
     program: {
       baseSnapshotId: null,
       mode: "inherit",
@@ -89,13 +96,6 @@ const rollbackManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
     quran: {
       baseSnapshotId: null,
       mode: "inherit",
-      resultSnapshotId: null,
-      rowCount: 0,
-      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
-    },
-    tryout: {
-      baseSnapshotId: `sha256:${"3".repeat(64)}`,
-      mode: "restore",
       resultSnapshotId: null,
       rowCount: 0,
       rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
@@ -139,7 +139,7 @@ describe("release manifest hash", () => {
   it.effect("pins the sha256 identity of a genesis release manifest", () =>
     Effect.gen(function* () {
       expect(yield* hashContentReleaseManifest(genesisManifest)).toBe(
-        "sha256:679a9185a64759149272b896abda93830f235c755782068fcf1c2a9c7840e757"
+        "sha256:fbe6cdcae840065a3a5dff23e4234210a226f2c7eb3213c443a3fccbf28757a5"
       );
     })
   );
@@ -147,7 +147,7 @@ describe("release manifest hash", () => {
   it.effect("pins the sha256 identity of a rollback release manifest", () =>
     Effect.gen(function* () {
       expect(yield* hashContentReleaseManifest(rollbackManifest)).toBe(
-        "sha256:2985fde171e3ade7c4dbc279769b423b59fa18afcdc2990d45f2d4d2cd76d9aa"
+        "sha256:e39383d1e6847317d377de90462e06ddcd6d380f07661b0f0a07bb20c91e66a5"
       );
     })
   );

@@ -4,7 +4,6 @@ import {
   Effect,
   FileSystem,
   MutableHashMap,
-  MutableRef,
   Option,
   Path,
   Ref,
@@ -13,12 +12,7 @@ import {
   Stream,
 } from "effect";
 import { PreviewEvidenceError } from "#cli/evidence";
-import {
-  PreviewRestartError,
-  type SelectedDirectory,
-  type SelectedDocument,
-  verifySelectedDirectory,
-} from "#cli/integrity";
+import { PreviewRestartError, type SelectedDocument } from "#cli/integrity";
 import { PreviewProviderError } from "#cli/provider";
 
 /** Filesystem watching stopped instead of preserving the authoring session. */
@@ -33,7 +27,6 @@ export class PreviewWatchError extends Schema.TaggedError<
 function emptyWatchedDirectory() {
   return {
     files: MutableHashMap.empty<string, SelectedDocument["files"][number]>(),
-    topology: MutableRef.make(Option.none<SelectedDirectory>()),
   };
 }
 type WatchedDirectory = Readonly<ReturnType<typeof emptyWatchedDirectory>>;
@@ -68,7 +61,7 @@ function watchDirectory(
   return watched;
 }
 
-/** Builds one deduplicated directory watch plan for files and strict topology. */
+/** Builds one deduplicated directory watch plan for the selected files. */
 function selectedDirectories(selected: SelectedDocument, path: Path.Path) {
   const directories = MutableHashMap.empty<string, WatchedDirectory>();
   for (const file of selected.files) {
@@ -79,32 +72,13 @@ function selectedDirectories(selected: SelectedDocument, path: Path.Path) {
       file
     );
   }
-  for (const topology of selected.directories) {
-    MutableRef.set(
-      watchDirectory(directories, topology.absolutePath).topology,
-      Option.some(topology)
-    );
-  }
   return directories;
 }
 
-/** Decides whether one stable selected-directory event batch needs a refresh. */
-const inspectWatchEvents = Effect.fn("AksaraCli.inspectWatchEvents")(function* (
-  watched: WatchedDirectory,
-  generations: Iterable<Option.Option<number>>
-) {
-  const topology = MutableRef.get(watched.topology);
-  if (Option.isSome(topology)) {
-    yield* verifySelectedDirectory(topology.value);
-  }
-  let generation = Option.none<number>();
-  for (const next of generations) {
-    if (Option.isSome(next)) {
-      generation = next;
-    }
-  }
-  return generation;
-});
+/** Returns the last refresh generation of one stable event batch, if any event refreshed. */
+function lastGeneration(generations: Iterable<Option.Option<number>>) {
+  return Arr.last(Arr.getSomes(Arr.fromIterable(generations)));
+}
 
 /** Invalidates selected reloads immediately and rejects restart dependencies. */
 const prepareWatchEvent = Effect.fn("AksaraCli.prepareWatchEvent")(function* (
@@ -160,7 +134,7 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
           prepareWatchEvent(watched, event, path, invalidate)
         ),
         Stream.groupedWithin(1024, "75 millis"),
-        Stream.mapEffect((events) => inspectWatchEvents(watched, events))
+        Stream.map(lastGeneration)
       )
     );
     const run = Stream.mergeAll(streams, { concurrency: "unbounded" }).pipe(

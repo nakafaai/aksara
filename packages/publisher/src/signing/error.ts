@@ -6,10 +6,5 @@ export class ContentSigningError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("ContentSigningError", {
   message: Schema.Trimmed.check(Schema.isNonEmpty()),
-  stage: Schema.Literals([
-    "configuration",
-    "artifact",
-    "release",
-    "tryout-runtime-bundle",
-  ]),
+  stage: Schema.Literals(["configuration", "artifact", "release"]),
 }) {}

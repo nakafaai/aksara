@@ -80,7 +80,7 @@ with a complete sentence that identifies the relevant givens or operation.
 Retain the derivations, checks, tables, and diagrams that support the reasoning.
 Use emphasis for a decisive phrase inside that prose, not a substitute heading.
 Standalone question-bank answers have a different renderer boundary and follow
-the H4/H5 contract in [headings](headings.md).
+the H1/H2 contract of explanations in [headings](headings.md).
 
 ## Mapping exercises to answers
 
