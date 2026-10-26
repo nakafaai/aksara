@@ -79,6 +79,7 @@ describe("release dispatch exchange", () => {
     "keeps GitHub's reason for a refusal, from its JSON message or its plain text",
     () =>
       Effect.gen(function* () {
+        /** Returns the failure of one dispatch that GitHub refused with this status and body. */
         const refusal = (status: number, body: string) =>
           Effect.flip(
             dispatchNakafaDeploy(
