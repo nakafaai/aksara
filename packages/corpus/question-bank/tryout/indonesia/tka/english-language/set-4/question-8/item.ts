@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "cause-effect",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer had not practiced the melody enough at home before the rehearsals.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The other players were not keeping a steady beat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The drummer changed the speed without giving any signal.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The writer kept counting instead of following the drummer's changes in speed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer's saron was too quiet to be heard over the other instruments.",
         },
       ],
     },
   },
-  stimulusKey: "gamelan-rehearsal",
+  stimulus: "gamelan-rehearsal",
 };
 
 export default item;

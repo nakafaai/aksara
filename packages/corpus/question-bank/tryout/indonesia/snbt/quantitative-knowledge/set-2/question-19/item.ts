@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
 // Date: 2025-11-22
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kuantitas $$P$$ sama dengan $$Q$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak dapat ditentukan hubungan antara kuantitas $$P$$ dan $$Q$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$P=2Q$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
         },
       ],

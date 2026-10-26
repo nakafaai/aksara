@@ -1,18 +1,18 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
-        { isCorrect: false, label: "Reporter" },
-        { isCorrect: false, label: "Kepala Desa" },
+        { correct: false, label: "Reporter" },
+        { correct: false, label: "Kepala Desa" },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ketua acara adat Festival Munara Beba Byak Karon",
         },
-        { isCorrect: false, label: "Penyuluh" },
-        { isCorrect: true, label: "Guru" },
+        { correct: false, label: "Penyuluh" },
+        { correct: true, label: "Guru" },
       ],
     },
   },

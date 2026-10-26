@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur kondensasi melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan kondensasi penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kegunaan dan Batas Model Daur Air dalam Kotak Transparan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang kondensasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan kondensasi tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

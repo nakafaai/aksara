@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menguji simbol baru karena penanda lama sudah terbukti tidak efektif.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menerapkan simbol baru secara permanen, sedangkan peta lama hanya disimpan dalam arsip.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, tim memakai simbol baru, sedangkan pada sesi pembanding peta dan penanda lama tetap digunakan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memakai simbol baru dan penanda lama dalam kondisi yang sama tanpa pembanding terpisah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan penggunaan simbol baru dengan komentar peserta tentang peta lama.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

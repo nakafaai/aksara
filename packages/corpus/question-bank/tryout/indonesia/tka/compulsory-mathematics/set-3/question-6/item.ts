@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\text{Rp }125{.}000$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$\\text{Rp }145{.}000$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\text{Rp }135{.}000$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\text{Rp }155{.}000$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\text{Rp }165{.}000$$",
         },
       ],
     },
   },
-  stimulusKey: "courier-prices",
+  stimulus: "courier-prices",
 };
 
 export default item;

@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengamatan awal membuktikan bahwa label foto menyebabkan perbedaan hasil.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim perlu mengubah beberapa unsur layanan sekaligus sebelum mengukur ulang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pola awal membenarkan penerapan permanen label foto.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan label foto pada rak.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

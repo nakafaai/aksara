@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kristal es bening menutupi rumput.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengunjung yang datang lebih awal memotret embun es.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Karena langit cerah, embun es terbentuk di atas rumput.",
         },
       ],

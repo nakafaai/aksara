@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "cause-effect",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The yellow edges of the wooden bridges will become harder to see.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Damp air will have less room to circulate behind the paper prints.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The clips will no longer hold the lower corners when wind enters the lane.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The warmer lamps over the cooking row will cool the soup pots.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The blue circle around the central drain will be covered by the rack.",
         },
       ],
     },
   },
-  stimulusKey: "rain-market",
+  stimulus: "rain-market",
 };
 
 export default item;

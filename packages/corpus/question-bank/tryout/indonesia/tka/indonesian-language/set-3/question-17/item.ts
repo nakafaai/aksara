@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menunjukkan bahwa bagian cello dapat digantikan oleh jeda dalam susunan musik",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "membuat Rafi merasakan fungsi diam melalui ketiadaan melodi cello",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "membuat pelatih memindahkan bagian cello ke sesi latihan berikutnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengubah klarinet menjadi alat musik gesek",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menunjukkan konser telah selesai",
         },
       ],
     },
   },
-  stimulusKey: "empty-measure",
+  stimulus: "empty-measure",
 };
 
 export default item;

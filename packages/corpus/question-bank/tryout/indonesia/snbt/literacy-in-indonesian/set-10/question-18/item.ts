@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Penerangan tampaknya lebih tersedia di sekitar pasar dan jalan utama daripada jalur sungai, tetapi tiga catatan belum cukup untuk mewakili seluruh rute atau memastikan kinerja setiap lampu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua lampu bertanda penuh pasti berfungsi karena kantor desa telah menulis bahwa pemeriksaan selesai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Empat malam gelap di jalur sungai membuktikan seluruh proyek penerangan gagal di seluruh kampung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengalaman Sari membuktikan lampu pasar menyala setiap malam sepanjang tahun sampai pukul sembilan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena Mina tetap menghindari gang, pemasangan lampu tidak mengubah pengalaman malam siapa pun.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

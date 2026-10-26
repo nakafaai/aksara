@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "summary",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A workshop focuses on stocking spare chains before asking owners about recurring faults.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A child teaches Sari how to repair a rear wheel.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "A volunteer learns that careful diagnosis matters more than replacing parts quickly.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer spends a week buying new bicycles.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The workshop measures successful learning by the number of new components installed.",
         },
       ],
     },
   },
-  stimulusKey: "repair-workshop",
+  stimulus: "repair-workshop",
 };
 
 export default item;

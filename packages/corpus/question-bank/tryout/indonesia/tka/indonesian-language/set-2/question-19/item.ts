@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Awalnya ia mengutamakan kertas yang berkilau.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ia belajar memeriksa kekuatan rangka.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ia tetap menganggap bekas perbaikan harus disembunyikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ia akhirnya melihat bekas perbaikan sebagai bukti belajar.",
         },
       ],
     },
   },
-  stimulusKey: "kite-frame",
+  stimulus: "kite-frame",
 };
 
 export default item;

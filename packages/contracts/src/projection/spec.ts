@@ -11,33 +11,22 @@ import {
   canonicalizePublicPageProjection,
   PublicPageProjectionSchema,
 } from "#contracts/projection/page";
-import {
-  canonicalizeQuestionProjection,
-  QuestionBodyProjectionSchema,
-} from "#contracts/projection/question";
 
-/** Complete projection vocabulary backed by implemented content families. */
+/**
+ * Complete projection vocabulary backed by implemented content families. Every
+ * projection owns a public route, which Nakafa's path-based runtime serves.
+ */
 export const ContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
   MaterialLessonProjectionSchema,
   PublicPageProjectionSchema,
-  QuestionBodyProjectionSchema,
 ]);
 export type ContentProjection = typeof ContentProjectionSchema.Type;
-
-/** Public-route projections accepted by Nakafa's path-based runtime seam. */
-export const RoutedContentProjectionSchema = Schema.Union([
-  ArticleProjectionSchema,
-  MaterialLessonProjectionSchema,
-  PublicPageProjectionSchema,
-]);
-export type RoutedContentProjection = typeof RoutedContentProjectionSchema.Type;
 
 const matchProjectionFamily = Match.type<ContentProjection>().pipe(
   Match.discriminatorsExhaustive("kind")({
     article: () => "article" as const,
     "public-page": () => "page" as const,
-    "question-body": () => "question" as const,
     "subject-lesson": () => "material" as const,
   })
 );
@@ -45,14 +34,6 @@ const matchProjectionFamily = Match.type<ContentProjection>().pipe(
 /** Returns the release family that owns one discriminated projection. */
 export function familyForProjection(projection: ContentProjection) {
   return matchProjectionFamily(projection);
-}
-
-/** Returns public route ownership only for route-bearing projections. */
-export function projectionPublicPath(projection: ContentProjection) {
-  if (projection.kind === "question-body") {
-    return;
-  }
-  return projection.publicPath;
 }
 
 /** Returns the exact compiled artifact locale owned by one projection. */
@@ -64,7 +45,6 @@ const matchCanonicalProjection = Match.type<ContentProjection>().pipe(
   Match.discriminatorsExhaustive("kind")({
     article: canonicalizeArticleProjection,
     "public-page": canonicalizePublicPageProjection,
-    "question-body": canonicalizeQuestionProjection,
     "subject-lesson": canonicalizeMaterialProjection,
   })
 );

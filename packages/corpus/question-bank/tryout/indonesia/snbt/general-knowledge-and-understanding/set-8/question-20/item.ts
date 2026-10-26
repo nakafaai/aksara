@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Survei lapangan acak menemukan bahwa peta yang telah disesuaikan dengan intensitas kunjungan memprediksi kepadatan bibit dengan baik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tanda pengenal relawan meningkatkan jumlah laporan di jalur populer tanpa menambah cakupan pada area yang jarang dikunjungi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Survei acak menunjukkan peluang kunjungan dan ketepatan klasifikasi sama di semua lokasi sejak pencatatan dimulai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

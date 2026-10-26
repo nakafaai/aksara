@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Aula menjadi tenang karena semua sumber bunyi yang disebutkan pada awal cerita menghilang pada penutup.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Suasana tetap sama karena bel dan tombol masih terdengar, sehingga tindakan tokoh tidak memberi perubahan apa pun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan suasana membuktikan bahwa keramaian selalu menghalangi munculnya rasa ingin tahu di pameran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Percakapan menjadi terarah karena Lila menyelesaikan perdebatan dengan memberi jawaban yang benar.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Keramaian fisik tetap ada, tetapi pilihan bunyi dan tindakan pada penutup memperlihatkan terbentuknya ruang perhatian di tengah keramaian itu.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

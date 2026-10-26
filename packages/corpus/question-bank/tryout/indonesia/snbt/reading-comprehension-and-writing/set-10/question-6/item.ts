@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Susunan bahan terbukti menjadi satu-satunya penyebab nilai yang lebih tinggi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nilai kelompok yang selesai sebelum batas waktu pada pertemuan uji melebihi nilai awal dan pembanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap peserta mengalami peningkatan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Nilai awal dan pembanding sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji singkat itu menetapkan hasil jangka panjang bagi semua kelas memasak.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua kelompok selalu mempunyai tujuan yang sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perang tidak pernah menghasilkan perubahan politik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Lembaga internasional menyelesaikan setiap perselisihan",
         },
       ],

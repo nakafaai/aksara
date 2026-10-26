@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menyediakan berkas data mentah, tetapi tidak menguraikan dasar keputusannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },

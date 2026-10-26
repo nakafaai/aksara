@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Satu kali pengukuran berat badan cukup untuk membuktikan bahwa seorang anak sepenuhnya sehat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lingkar kepala saja menentukan status gizi anak pada semua kelompok umur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap kenaikan berat atau tinggi badan otomatis berarti pertumbuhan anak sudah sesuai.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pertumbuhan anak dinilai melalui beberapa pengukuran yang sesuai dengan umur serta polanya dari waktu ke waktu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kurva pertumbuhan menggantikan seluruh penilaian profesional lain terhadap kesehatan anak.",
         },

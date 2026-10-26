@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
     contentDomain: "trigonometry",
     topic: "trigonometric-ratios",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac8{13}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{\\sqrt{105}}8$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac5{13}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{12}{13}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$\\frac{\\sqrt{105}}{13}$$",
         },
       ],

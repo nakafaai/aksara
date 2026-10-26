@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$y=x^2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$y=x^2-6$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$y=x^2+8$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$y=x^2-8x+10$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$y=x^2-8x+16$$",
         },
       ],

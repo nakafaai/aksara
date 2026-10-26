@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola dapat memasang lebih banyak larangan tanpa mengubah pesan atau cara pengukuran.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Bus dengan pesan baru pada uji awal juga lebih sering didampingi relawan dan memiliki pengemudi yang mendapat pengarahan tambahan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

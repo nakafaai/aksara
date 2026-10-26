@@ -80,9 +80,6 @@ const decodeProjection = Effect.fn("AksaraContracts.decodeProjection")(
       return yield* new ProjectionOrderError({ projectionIndex });
     }
     state.previous = Option.some(projection);
-    if (projection.kind === "question-body") {
-      return projection;
-    }
     const { appLocale, publicPath } = projection;
     const identity = routeIdentity({ appLocale, publicPath });
     const firstIndex = Option.getOrUndefined(

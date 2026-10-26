@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menambah jumlah penyuluh tanpa memperbaiki pengelolaan atau perlindungan lingkungan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "hanya memperbaiki kualitas air di kawasan pesisir yang padat penduduk.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menaikkan tangkapan lebih dahulu dan baru mengumpulkan data stok setelah produksi menurun.",
         },

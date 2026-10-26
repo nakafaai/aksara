@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Sudah dicatat", "Akan dicatat"],
-      kind: "category",
+      columns: ["Sudah dicatat", "Akan dicatat"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Lama genangan",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Intensitas hujan",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Kelembapan tanah sebelum hujan",
         },
       ],
     },
   },
-  stimulusKey: "rain-garden",
+  stimulus: "rain-garden",
 };
 
 export default item;

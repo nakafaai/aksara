@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisa efektivitas formulir dengan pilihan lokasi terstruktur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektifitas formulir dengan pilihan lokasi terstruktur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisa efektifitas formulir dengan pilihan lokasi terstruktur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas formulir lokasi dalam kontek layanan barang hilang",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "analisis efektivitas formulir dengan pilihan lokasi terstruktur",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

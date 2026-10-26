@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling other factors and reporting a limitation.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

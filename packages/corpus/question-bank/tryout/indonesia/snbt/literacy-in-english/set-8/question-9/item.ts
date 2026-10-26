@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains why glossary entries need context: suitable wording depends on the situation and purpose, not on a single universal equivalent.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defining *register* proves that every participant should use the same wording in every setting.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes regional and family usage irrelevant to the glossary.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *register* replaces the measured comparison and peer review evidence.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition shows that an informal family expression is unsuitable in every public or private situation.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

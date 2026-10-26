@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim akan memperpanjang uji label baki, mencakup berbagai kondisi pasang, dan mempertahankan aturan pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan memperpanjang uji sambil mengubah aturan pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang hanya hari dengan nilai kedatangan bibit tertinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menerapkan label permanen sebagai pengganti uji lanjutan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tim akan memperpanjang uji hanya pada satu kondisi pasang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

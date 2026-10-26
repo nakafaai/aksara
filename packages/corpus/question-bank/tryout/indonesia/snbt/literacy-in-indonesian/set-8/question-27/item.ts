@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Menuliskan pertanyaan pada pembatas mengubah benda yang sisinya semula dibalik menjadi jejak penalaran yang Jati bawa menuju pembahasan berikutnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembatas bermakna keberhasilan karena bentuknya sama dengan pembatas penuh catatan milik Mira.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembatas kehilangan perannya setelah kelompok gagal menyepakati satu tafsir terhadap kalimat di halaman $$17$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan Jati terjadi karena Mira memberi tafsir yang benar dan menyelesaikan kebingungannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembatas tetap menandai rasa malu karena pada akhir cerita Jati masih memiliki dua pertanyaan yang belum terjawab.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

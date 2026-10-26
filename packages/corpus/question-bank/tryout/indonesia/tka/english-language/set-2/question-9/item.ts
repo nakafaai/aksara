@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "outline",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Signs were lowered.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Every display was moved out of the experiment room after the test walk.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pale text was replaced with darker lettering.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The portable ramp was permanently removed.",
         },
       ],
     },
   },
-  stimulusKey: "accessible-fair",
+  stimulus: "accessible-fair",
 };
 
 export default item;

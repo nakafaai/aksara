@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To show that the shop owners' worries about cost are based on false information",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To explain why the measurements were taken on only one street in the town",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To persuade the shop owners to pay for watering the young trees themselves",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To admit a real drawback of the plan and show how to manage it",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To list the tree species that grow best along the sidewalks of the town",
         },
       ],
     },
   },
-  stimulusKey: "shade-trees",
+  stimulus: "shade-trees",
 };
 
 export default item;

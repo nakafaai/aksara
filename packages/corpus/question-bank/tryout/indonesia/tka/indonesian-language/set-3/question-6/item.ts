@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laras membeli tinta merah agar peta lebih jelas tanpa memeriksa hambatan pada jalur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ibu Laras mencetak lebih banyak peta dan menganggap jumlah salinan cukup menyelesaikan masalah akses",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laras menerima jawaban umum warga dan mencatat jalur lama tanpa mengujinya bersama pengguna",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Laras memeriksa hambatan dan menemukan jalur alternatif yang lebih dapat diakses",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laras memindahkan letak lapangan pada peta tanpa menelusuri jalur alternatif menuju tempat itu",
         },
       ],
     },
   },
-  stimulusKey: "mapmakers-ink",
+  stimulus: "mapmakers-ink",
 };
 
 export default item;

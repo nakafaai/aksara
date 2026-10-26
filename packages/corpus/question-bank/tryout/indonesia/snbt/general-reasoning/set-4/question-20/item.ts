@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Makanan selingan sekolah yang aman dan bergizi seimbang dapat membantu memenuhi asupan zat gizi anak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua jajanan sekolah tidak aman",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Anak sebaiknya mengganti makanan utama dengan jajanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keamanan mikrobiologis dan kimia boleh diabaikan jika jajanan menyediakan cukup energi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Energi merupakan satu-satunya pertimbangan gizi saat memilih makanan selingan",
         },

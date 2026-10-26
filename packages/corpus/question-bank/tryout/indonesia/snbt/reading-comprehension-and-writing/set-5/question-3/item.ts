@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data awal membuktikan bahwa contoh foto menyebabkan perbedaan kesepakatan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim perlu mengubah beberapa unsur pendataan sekaligus sebelum mengukur ulang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pola awal membenarkan penerapan permanen contoh foto.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan contoh foto untuk setiap kategori kondisi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

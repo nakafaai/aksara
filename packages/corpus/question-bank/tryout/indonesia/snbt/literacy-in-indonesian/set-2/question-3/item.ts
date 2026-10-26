@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Perkembangan harga beras di Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Informasi negara selain Indonesia yang mengonsumsi beras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Informasi terkait olahan beras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cara memasak nasi tanpa menyisakan pati di dalam butirannya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Hasil penelitian tentang pengaruh pencucian terhadap tekstur nasi",
         },

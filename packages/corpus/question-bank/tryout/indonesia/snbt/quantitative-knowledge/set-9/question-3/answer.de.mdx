@@ -1,12 +1,4 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 3",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
-};
-
-<Set9Question3Graph
-  mode="answer"
+<LineEquation
   title="Lösungsvisualisierung"
   description={
     <>
@@ -14,36 +6,128 @@ export const metadata = {
       <InlineMath math="\beta" /> und <InlineMath math="\gamma" />.
     </>
   }
+  cameraPosition={[0.5, 0, 12.5]}
+  cameraTarget={[0.5, 0, 0]}
+  data={[
+    {
+      points: [
+        { x: -4, y: 2, z: 0 },
+        { x: 3.289013841, y: 2, z: 0 },
+      ],
+      color: "#4f46e5",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="P" />,
+          at: 0,
+          offset: [0, 0.5, 0],
+        },
+        {
+          text: <InlineMath math="Q" />,
+          at: 1,
+          offset: [0, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 1, y: -2, z: 0 },
+        { x: 5, y: -2, z: 0 },
+      ],
+      color: "#4f46e5",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="R" />,
+          at: 0,
+          offset: [0, -0.5, 0],
+        },
+        {
+          text: <InlineMath math="S" />,
+          at: 1,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 3.289013841, y: 2, z: 0 },
+        { x: -1, y: 0, z: 0 },
+        { x: 1, y: -2, z: 0 },
+      ],
+      color: "#4f46e5",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="25^\\circ" />,
+          at: 0,
+          offset: [-2, -0.5, 0],
+        },
+        {
+          text: <InlineMath math="\\alpha" />,
+          at: 1,
+          offset: [1.45, -0.6, 0],
+        },
+        {
+          text: <InlineMath math="135^\\circ" />,
+          at: 2,
+          offset: [1, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: -1, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 },
+      ],
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\\beta" />,
+          at: 1,
+          offset: [2, 0.5, 0],
+        },
+        {
+          text: <InlineMath math="\\gamma" />,
+          at: 1,
+          offset: [2, -0.5, 0],
+        },
+      ],
+    },
+  ]}
 />
 
 Wir zeichnen eine **Hilfslinie parallel** zu den Linien <InlineMath math="PQ" /> und <InlineMath math="RS" />, die durch den Scheitelpunkt des Winkels <InlineMath math="\alpha" /> verläuft.
 Diese Linie teilt den Winkel <InlineMath math="\alpha" /> in zwei Teile, <InlineMath math="\beta" /> und <InlineMath math="\gamma" />.
 
-#### Wechselwinkel
+# Wechselwinkel
 
 Die Winkel <InlineMath math="\beta" /> und <InlineMath math="25^\circ" /> sind **Wechselwinkel** an parallelen Geraden. Deshalb sind sie gleich groß:
 
-<MathContainer>
-  <BlockMath math="\beta = 25^\circ" />
-</MathContainer>
+<BlockMath math="\beta = 25^\circ" />
 
-#### Innenwinkel auf derselben Seite
+# Innenwinkel auf derselben Seite
 
 Die Winkel <InlineMath math="\gamma" /> und <InlineMath math="135^\circ" /> liegen **auf derselben Seite zwischen den parallelen Geraden**. Zusammen ergeben sie <InlineMath math="180^\circ" />:
 
-<MathContainer>
-  <BlockMath math="\gamma + 135^\circ = 180^\circ" />
-  <BlockMath math="\gamma = 180^\circ - 135^\circ = 45^\circ" />
-</MathContainer>
+<BlockMath math="\gamma + 135^\circ = 180^\circ" />
 
-#### Summe der Winkel
+<BlockMath math="\gamma = 180^\circ - 135^\circ = 45^\circ" />
+
+# Summe der Winkel
 
 Der Wert von <InlineMath math="\alpha" /> ist die **Summe der beiden Teilwinkel** <InlineMath math="\beta" /> und <InlineMath math="\gamma" />:
 
-<MathContainer>
-  <BlockMath math="\alpha = \beta + \gamma" />
-  <BlockMath math="\alpha = 25^\circ + 45^\circ" />
-  <BlockMath math="\alpha = 70^\circ" />
-</MathContainer>
+<BlockMath math="\alpha = \beta + \gamma" />
+
+<BlockMath math="\alpha = 25^\circ + 45^\circ" />
+
+<BlockMath math="\alpha = 70^\circ" />
 
 Damit hat <InlineMath math="\alpha" /> den Wert <InlineMath math="70^\circ" />.

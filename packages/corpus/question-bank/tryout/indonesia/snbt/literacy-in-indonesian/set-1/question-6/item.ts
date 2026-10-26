@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pernyataan seorang peneliti tanpa data pemodelan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penilaian umum terhadap kebijakan sampah Indonesia",
         },
       ],

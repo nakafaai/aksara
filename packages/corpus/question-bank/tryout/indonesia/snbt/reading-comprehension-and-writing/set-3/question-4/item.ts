@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Simbol yang lebih kontras dipilih untuk mengatasi kesulitan peserta membedakan penanda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simbol yang lebih kontras menghapus kebutuhan untuk mengukur keberhasilan peserta.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simbol yang lebih kontras memungkinkan tim mengubah banyak kondisi sekaligus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simbol yang lebih kontras menjelaskan mengapa semua nilai pembanding sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simbol yang lebih kontras dipilih hanya karena hasil akhirnya sudah dipastikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

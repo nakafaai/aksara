@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$A = B$$ atau $$E \\neq F$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jika $$A = B$$, maka $$E = F$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$A = B$$ atau $$E = F$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$A \\neq B$$ dan $$E = F$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$E \\neq F$$ atau $$A \\neq B$$",
         },
       ],

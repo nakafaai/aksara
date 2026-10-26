@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The notebook is damaged by an ordinary cause, and the characters recover only the evidence still available.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story is realistic because the surviving plants reveal the exact rainfall data missing from the notebook.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story becomes unrealistic because wet pages cannot be dried or photographed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The digital copy restores every blurred record, so the accident causes no loss of evidence.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mina's final observation turns the notebook into a character that can judge her accusation.",
         },
       ],
     },
   },
-  stimulusKey: "weather-notebook",
+  stimulus: "weather-notebook",
 };
 
 export default item;

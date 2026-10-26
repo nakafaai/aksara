@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menambahkan foto pada sesi uji karena kode huruf sudah terbukti tidak berguna.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memasang foto secara permanen, sedangkan kode huruf hanya tersisa dalam catatan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memakai foto dan kode huruf pada semua sesi tanpa kondisi pembanding terpisah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan sesi berlabel foto hanya dengan komentar tentang kode huruf lama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, rak menampilkan foto beserta kode huruf, sedangkan pada sesi pembanding hanya kode huruf.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

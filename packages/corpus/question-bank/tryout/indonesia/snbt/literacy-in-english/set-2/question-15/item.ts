@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "To prove that private offices are perfect for every task",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To advertise wearable sensors to office managers",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To show that electronic communication should be banned",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To challenge a one-size-fits-all assumption and support context-based decisions",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To argue that workplace evidence is unnecessary",
         },
       ],

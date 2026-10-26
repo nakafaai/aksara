@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Tiga Puluh Dua Lampu yang Pasti Menyala",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perdebatan Pak Udin dan Bu Sari di Dekat Jembatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kepala Kantor dan Peta Bersih yang Selesai",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Peta Berlapis untuk Cahaya yang Berubah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Gang Gelap yang Tidak Pernah Diperiksa",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

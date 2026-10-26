@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kenaikan peminjaman membuktikan bahwa seluruh anggota menyelesaikan dan memahami lebih banyak buku setelah jadwal malam dimulai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tiga catatan peserta baru cukup untuk mewakili pengalaman semua anggota, termasuk peserta yang memilih diam.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jadwal malam pasti menyebabkan kenaikan pilihan buku cerita pendek karena kedua perubahan terjadi pada tahun yang sama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sesudah jadwal berubah, pilihan cerita pendek bergambar meningkat dan beberapa peserta baru mengaitkannya dengan keberanian berdiskusi, tetapi arsip belum membuktikan penyebab atau pengalaman seluruh anggota.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan bentuk sumber membuat data peminjaman dan catatan percakapan tidak dapat dibandingkan sama sekali.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

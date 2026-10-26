@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "A ledger passed between student treasurers",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "The blank line after the balanced total",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The supplier reply that settled the concert budget",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Why every budget needs one final number",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A morning meeting with no unanswered questions",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

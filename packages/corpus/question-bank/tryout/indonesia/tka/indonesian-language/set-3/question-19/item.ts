@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "fiction-evidence",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "ia tidak kecewa ketika klarinetnya tidak disebut",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ia mempertahankan jumlah ketukan yang sama agar bagian klarinet tetap menonjol",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ayu terlambat karena rantai sepeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pelatih menghentikan latihan pertama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "partitur dicetak dengan satu birama kosong",
         },
       ],
     },
   },
-  stimulusKey: "empty-measure",
+  stimulus: "empty-measure",
 };
 
 export default item;

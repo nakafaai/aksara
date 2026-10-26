@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Dua Wadah, Dua Laju Pendinginan: Pola dan Batas Percobaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur konduksi melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjadikan konduksi penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang konduksi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan konduksi tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

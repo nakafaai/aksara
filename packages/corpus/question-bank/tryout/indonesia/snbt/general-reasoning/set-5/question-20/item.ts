@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Karyawan memilih untuk menutup perusahaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian karyawan menerima pesangon menurut hasil pertama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kedua hasil terjadi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak satu pun hasil terjadi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Hasil pertama, yaitu karyawan mengundurkan diri dan menerima pesangon, tidak terjadi",
         },

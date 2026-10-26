@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sanksi bertahap dan pengingat berpotensi lebih adil, tetapi jalur komunikasi dan pengecualian masih perlu diuji.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

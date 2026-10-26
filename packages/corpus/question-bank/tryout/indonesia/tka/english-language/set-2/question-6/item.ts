@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "comparison",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer learned that signs are adequate when their designer can explain them nearby.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer treated the rainy-day delays as proof that the project had failed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer stopped recording remaining problems.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The writer learned that a route must be tested by people with different needs.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer believed symbols were less useful than hidden arrows.",
         },
       ],
     },
   },
-  stimulusKey: "accessible-fair",
+  stimulus: "accessible-fair",
 };
 
 export default item;

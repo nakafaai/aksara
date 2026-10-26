@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu pertanyaan membuat jumlah pengunjung yang bertanya tidak perlu diukur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu pertanyaan memungkinkan banyak unsur tur diubah sekaligus.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dua pertanyaan awal pada kartu memberi pengunjung titik awal yang lebih khusus daripada undangan untuk bertanya apa saja.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

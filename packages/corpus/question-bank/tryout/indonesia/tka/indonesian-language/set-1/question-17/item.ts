@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Melindungi Mira dari pertanyaan yang berulang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjamin Seno akan pulang setiap Jumat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Memberi bentuk pada harapan Mira.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Mengingatkan Mira agar tetap melanjutkan latihan.",
         },
       ],
     },
   },
-  stimulusKey: "seat-seven",
+  stimulus: "seat-seven",
 };
 
 export default item;

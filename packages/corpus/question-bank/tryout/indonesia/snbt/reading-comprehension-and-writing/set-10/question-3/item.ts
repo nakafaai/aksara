@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengamatan awal membuktikan bahwa pengelompokan bahan menyebabkan perbedaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim perlu mengubah beberapa unsur kelas sekaligus sebelum mengukur ulang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pola awal membenarkan pengelompokan bahan secara permanen.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, dugaan tersebut perlu diuji dengan mengelompokkan bahan menurut tahap resep.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

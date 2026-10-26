@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "character",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "He expects a printed schedule to remain the most precise source during a disruption.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "He refuses to use the service page again.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "He decides that service pages make direct phone contact unnecessary.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "He learns to combine sources rather than reject an imperfect one.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "He thinks the storm did not affect transport.",
         },
       ],
     },
   },
-  stimulusKey: "last-bus",
+  stimulus: "last-bus",
 };
 
 export default item;

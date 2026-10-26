@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "daftar peristiwa berurutan tanpa pembagian tahap analisis",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pemilihan tanggal tertua sebagai awal untuk semua tujuan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "penghapusan masa peralihan agar setiap tahap memiliki batas tegas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perkiraan tanggal yang sangat rinci tanpa dukungan sumber",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pembagian waktu ke dalam tahap yang dipilih untuk menjelaskan perubahan tertentu",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menegaskan bahwa gang itu pasti akan diperiksa petugas pada malam berikutnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mewujudkan batas pengetahuan yang dimiliki para tokoh sekaligus membuka kemungkinan peta dilanjutkan tanpa memastikan siapa yang akan melengkapinya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Membuktikan bahwa catatan warga tidak berguna karena masih menyisakan lokasi kosong.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menunjukkan bahwa Nara sengaja mengabaikan gang agar peta buatannya terlihat lebih menarik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menutup konflik dengan memastikan tidak ada sumber cahaya di sekitar gang tersebut.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

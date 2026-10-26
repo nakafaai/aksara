@@ -1,17 +1,16 @@
-export const metadata = {
-  title: "Soal 5",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2026-01-01",
-};
-
 Perhatikan grafik penjualan berikut!
 
-<Set2Question5SalesChart
-  description={<> Data penjualan baju, celana, dan jas dari tahun <InlineMath math="2011" /> hingga <InlineMath math="2015" />. </>}
-  seriesLabels={{ pants: "Celana", shirts: "Baju", suits: "Jas" }}
+<Chart
   title="Grafik Penjualan di Factory Outlet"
-  yAxisLabel="Penjualan"
+  description={<> Data penjualan baju, celana, dan jas dari tahun <InlineMath math="2011" /> hingga <InlineMath math="2015" />. </>}
+  bars="apart"
+  categories={["2011", "2012", "2013", "2014", "2015"]}
+  series={[
+    { label: "Baju", mark: "bar", values: [50, 35, 20, 70, 55] },
+    { label: "Celana", mark: "bar", values: [60, 60, 50, 40, 40] },
+    { label: "Jas", mark: "bar", values: [40, 55, 45, 60, 50] },
+  ]}
+  valueLabel="Penjualan"
 />
 
 | Barang | <InlineMath math="2011" /> | <InlineMath math="2012" /> | <InlineMath math="2013" /> | <InlineMath math="2014" /> | <InlineMath math="2015" /> |

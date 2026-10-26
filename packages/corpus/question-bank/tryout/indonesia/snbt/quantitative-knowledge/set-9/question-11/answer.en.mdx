@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Solution for Problem 11",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-26",
-  dateModified: "2026-09-07",
-};
-
 Use **complement probabilities** to calculate the chance of failing.
 
 Let:
@@ -14,11 +7,11 @@ Let:
 
 Given:
 
-<MathContainer>
-  <BlockMath math="\begin{aligned}P(A)&=0.75\\P(A^c)&=1 - 0.75\\&=0.25\end{aligned}" />
-  <BlockMath math="\begin{aligned}P(B)&=0.8\\P(B^c)&=1 - 0.8\\&=0.2\end{aligned}" />
-  <BlockMath math="\begin{aligned}P(D)&=0.85\\P(D^c)&=1 - 0.85\\&=0.15\end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(A)&=0.75\\P(A^c)&=1 - 0.75\\&=0.25\end{aligned}" />
+
+<BlockMath math="\begin{aligned}P(B)&=0.8\\P(B^c)&=1 - 0.8\\&=0.2\end{aligned}" />
+
+<BlockMath math="\begin{aligned}P(D)&=0.85\\P(D^c)&=1 - 0.85\\&=0.15\end{aligned}" />
 
 Because the three outcomes are independent, we multiply the appropriate pass and fail probabilities within each case. Exactly one person passes in one of three mutually exclusive cases:
 
@@ -27,11 +20,11 @@ Because the three outcomes are independent, we multiply the appropriate pass and
 | Ali | <InlineMath math="P(A\cap B^c\cap D^c)=0.75 \cdot 0.2 \cdot 0.15= 0.0225" /> |
 | Bima | <InlineMath math="P(B\cap A^c\cap D^c)=0.8 \cdot 0.25 \cdot 0.15= 0.03" /> |
 
-#### Only Dika passes
+# Only Dika passes
 
 <BlockMath math="\begin{aligned}&P(D\cap A^c\cap B^c)\\&=0.85 \cdot 0.25 \cdot 0.2\\&= 0.0425\end{aligned}" />
 
-#### Total Probability
+# Total Probability
 
 Thus, the probability that only one person passes is the **sum of three mutually exclusive case probabilities**:
 

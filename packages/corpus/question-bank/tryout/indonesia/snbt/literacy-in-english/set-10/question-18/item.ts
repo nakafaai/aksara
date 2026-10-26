@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The ledger gains meaning primarily from its worn cover, regardless of the crossed-out totals and unanswered questions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The morning setting resolves the budget because the added initials are equivalent to confirmed prices.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The ledger keeps the same meaning as a final record even after Iris changes how the team uses it.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The blank final line confirms that the original balanced total was accurate despite the unresolved costs.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The ledger's meaning shifts through its premature claim of finality, Iris's questions, the teammates' deadlines, and the unresolved last line.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Intervensi minimum dapat mempertahankan lebih banyak informasi sejarah selama bagian berbahaya tetap ditangani.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cat tertua hanya ditemukan di beberapa ruang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

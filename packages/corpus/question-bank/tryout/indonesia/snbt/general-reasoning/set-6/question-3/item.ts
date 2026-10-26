@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kedua kegiatan dibatalkan karena hujan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kedua kegiatan dilaksanakan pada hari Minggu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Barang daur ulang dikumpulkan pada hari Minggu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kerja bakti ditunda tanpa memilih kegiatan pengganti",
         },
       ],

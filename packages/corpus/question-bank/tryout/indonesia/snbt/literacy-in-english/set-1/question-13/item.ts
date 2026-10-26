@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "To advertise employment opportunities at UNESCO.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To argue that culture is UNESCO's only field of work.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To explain why UNESCO was created and how its mission guides its current work.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To compare UNESCO with every other United Nations agency.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To criticize Member States for refusing all cooperation.",
         },
       ],

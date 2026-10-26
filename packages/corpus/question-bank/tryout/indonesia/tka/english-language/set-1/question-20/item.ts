@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
     topic: "information-validity",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "A guess about a hidden pipe without observations",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A list of room colors and furniture placed near visible pipes",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A list of electricity use recorded during the same test period",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The two readings, exact times, and any visible signs of water",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "An assurance that the observer did not notice other water use",
         },
       ],
     },
   },
-  stimulusKey: "leak-test",
+  stimulus: "leak-test",
 };
 
 export default item;

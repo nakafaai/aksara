@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Taman resapan dapat ditetapkan sebagai penyebab utama karena dua pengamatan berikutnya lebih baik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Hasil dapat diterapkan pada sekolah lain yang membangun taman dengan ukuran serupa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Taman mengurangi genangan karena intensitas hujan sesudah pembangunan lebih rendah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Data tambahan tidak lagi diperlukan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada dua hujan yang diamati sesudah pembangunan, genangan surut lebih cepat daripada dua pengamatan sebelumnya.",
         },
       ],
     },
   },
-  stimulusKey: "rain-garden",
+  stimulus: "rain-garden",
 };
 
 export default item;

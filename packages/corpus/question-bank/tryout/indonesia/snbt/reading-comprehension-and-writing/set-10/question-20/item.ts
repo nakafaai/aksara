@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena 33 lebih tinggi daripada 23 dan 25, tim menyatakan peta dengan waktu tempuh pasti efektif dan menerapkannya secara permanen.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan 33, 23, dan 25 serta merencanakan uji lanjutan tanpa membatasi cakupan klaim.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membatasi simpulan pada pintu masuk itu dan merencanakan uji lanjutan tanpa menyebut perbandingan hasil.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim membandingkan nilai 33, 23, dan 25, membatasi simpulan pada uji singkat di satu pintu masuk taman, serta merencanakan uji lebih lama pada waktu kunjungan berbeda dengan aturan pengukuran yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai 33, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah aturan pengukuran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

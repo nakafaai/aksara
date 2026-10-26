@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$10\\sqrt{145}\\text{ m}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$130\\text{ m}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\left(20\\sqrt{10}+30\\sqrt{5}\\right)\\text{ m}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\left(20+30\\sqrt{17}\\right)\\text{ m}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\left(30+20\\sqrt{37}\\right)\\text{ m}$$",
         },
       ],

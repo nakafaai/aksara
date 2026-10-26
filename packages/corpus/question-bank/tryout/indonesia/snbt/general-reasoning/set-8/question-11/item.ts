@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap distrik di kota pasti berstatus banjir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Distrik X tidak mungkin berstatus banjir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua warga kota harus segera meninggalkan kota.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak dapat ditentukan apakah penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
         },

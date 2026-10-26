@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
     topic: "reader-response",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Frustration that the class recorded unresolved barriers without cancelling the fair",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Relief that the revised route proves the next disruption will be manageable",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Disappointment that the class considered accessibility only after visitors complained",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Approval of the delay because extra setup time guarantees equal access",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Respect for the class's honest review instead of a claim of perfection",
         },
       ],
     },
   },
-  stimulusKey: "accessible-fair",
+  stimulus: "accessible-fair",
 };
 
 export default item;

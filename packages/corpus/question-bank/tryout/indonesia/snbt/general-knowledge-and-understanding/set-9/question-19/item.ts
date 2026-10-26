@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Periodisasi memilih tanggal paling awal, sedangkan kronologi mengabaikan urutan peristiwa setelah tanggal itu.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Periodisasi memilih batas penjelas sesuai tujuan analisis, sedangkan kronologi menempatkan peristiwa dalam urutan waktu.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

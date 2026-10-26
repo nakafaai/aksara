@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The tall man is real, but he leaves the house before Bayu brings the candle.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story is realistic only because it takes place during a heavy rainstorm.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "His grandmother also sees the tall man, which proves that the figure exists.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Bayu imagines the tall man in the dark, and the candle reveals a coat stand.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The coat stand really moves in the dark, but it stops when the lights return.",
         },
       ],
     },
   },
-  stimulusKey: "power-cut",
+  stimulus: "power-cut",
 };
 
 export default item;

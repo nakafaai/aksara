@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
-  responses: {
+  versions: {
     en: {
-      categories: ["Identifying", "Tracing", "Comparing"],
-      kind: "category",
+      columns: ["Identifying", "Tracing", "Comparing"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Writing the exact claim in one sentence",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Finding the original report behind a screenshot",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Checking another source with independent evidence",
         },
       ],
     },
   },
-  stimulusKey: "source-checking",
+  stimulus: "source-checking",
 };
 
 export default item;

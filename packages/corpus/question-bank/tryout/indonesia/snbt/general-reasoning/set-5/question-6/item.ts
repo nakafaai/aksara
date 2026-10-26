@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Persentase kenaikan tertinggi dialami oleh Perusahaan B",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jumlah pengguna smartphone di setiap perusahaan selalu berfluktuasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Persentase penurunan terbesar terjadi di Perusahaan B",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perusahaan B memiliki total tiga bulan tertinggi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Perusahaan C memiliki total tiga bulan terendah",
         },
       ],

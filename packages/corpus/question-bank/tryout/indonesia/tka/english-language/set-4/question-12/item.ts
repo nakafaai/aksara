@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "character",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "He stays practical when he has to act in the dark.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "He is annoyed that his grandmother needs his help.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "He is able to joke about his own fear afterwards.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "He tries to make his grandmother feel at ease.",
         },
       ],
     },
   },
-  stimulusKey: "power-cut",
+  stimulus: "power-cut",
 };
 
 export default item;

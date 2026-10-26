@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "membuat bangunan terlihat setua mungkin bagi pengunjung",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mempertahankan setiap bahan lama meskipun tidak aman",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "setia pada bukti asal, bahan, dan perubahan yang benar-benar terjadi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "mengembalikan seluruh bangunan secara seragam ke satu tahun pilihan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menyalin persis gambar lama yang paling populer",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

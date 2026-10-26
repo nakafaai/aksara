@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
     topic: "classification",
   },
-  responses: {
+  versions: {
     en: {
-      categories: ["Plant support", "Water care", "Record keeping"],
-      kind: "category",
+      columns: ["Plant support", "Water care", "Record keeping"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Bamboo frames tied to heavy planters",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Mesh covers on the containers",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "A notebook in a sealed box",
         },
       ],
     },
   },
-  stimulusKey: "rooftop-garden",
+  stimulus: "rooftop-garden",
 };
 
 export default item;

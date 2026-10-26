@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa memesan sehari sebelumnya karena cara memilih di meja saji terbukti selalu gagal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemesanan sehari sebelumnya diterapkan permanen dan pilihan di meja saji tidak digunakan lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memakai pemesanan awal dan pilihan pagi hari tanpa memisahkan kondisi pembanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan pemesanan awal hanya dengan komentar tentang pilihan di meja saji.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, siswa memesan sehari sebelumnya, sedangkan pada sesi pembanding mereka memilih menu di meja saji pada pagi hari.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benang putih tetap berarti kerusakan dari awal sampai akhir, sedangkan perubahan Wulan hanya berkaitan dengan sistem katalog.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benang putih membuktikan semua kostum lama harus dipertahankan karena usia benda selalu menentukan nilainya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benang putih hanya menandai perpindahan gedung dan tidak memengaruhi cara Wulan menilai label lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benang putih memperoleh arti baru semata-mata karena Raka membaca nama Mira, tanpa kaitan dengan keputusan Wulan sebelumnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Benang putih bergerak dari tanda benda yang hendak disingkirkan menjadi tanda hubungan yang dirawat tanpa menyembunyikan kerapuhannya.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

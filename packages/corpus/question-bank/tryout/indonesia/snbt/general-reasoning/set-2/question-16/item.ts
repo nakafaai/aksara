@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jika honor kegiatan dibayarkan, pimpinan dapat menugaskan karyawan membuat laporan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan kegiatan belum diserahkan berarti honor pimpinan tidak dibayarkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jika pimpinan meminta laporan, kegiatan segera dilaksanakan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jika honor tidak ada, kegiatan tidak dapat dilaksanakan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Honor karyawan tidak dibayarkan berarti kegiatan belum dilaksanakan",
         },

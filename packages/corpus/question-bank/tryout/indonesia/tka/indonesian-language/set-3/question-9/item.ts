@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "fiction-evidence",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "noda membuat Laras menganggap peta awal tidak lagi berguna untuk pemeriksaan lapangan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "noda memicu pemeriksaan yang mengubah rasa kesal menjadi kehati-hatian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "noda membuat Laras menganggap jalur lama masih dapat dipakai tanpa pemeriksaan tambahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "noda menyebabkan warga menutup lorong baru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "noda membuat Laras menganggap catatan lapangan tidak dapat dipercaya",
         },
       ],
     },
   },
-  stimulusKey: "mapmakers-ink",
+  stimulus: "mapmakers-ink",
 };
 
 export default item;

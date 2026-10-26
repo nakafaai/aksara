@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defining *plain language* proves that every visitor understands the new captions without further testing.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes *plain language* identical to screen-reader compatibility, so the missing group no longer matters.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *plain language* replaces the measured comparison and visitors' experience with a label that settles the decision.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition requires captions to remove every interpretation and contain observations only.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains the accessibility goal of the revised captions, while the comparison and later screen-reader testing still determine whether that goal is met.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

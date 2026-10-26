@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pesan Resmi dan Suara Pengunjung: Membaca Batas Arsip Pameran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Buku Tamu sebagai Gambaran Lengkap Lima Kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Poster Tahun $$1984$$ yang Membuktikan Pameran Inklusif",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghitung Pendapat Pengunjung tanpa Memeriksa Asal Sumber",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Keluhan Akses yang Membatalkan Seluruh Pesan Penyelenggara",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

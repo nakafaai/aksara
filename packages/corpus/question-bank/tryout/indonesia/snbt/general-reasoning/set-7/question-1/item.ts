@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Makan apel utuh sebelum makan siang selalu mencegah obesitas.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keempat olahan apel menghasilkan tingkat rasa kenyang yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penelitian ini membuktikan bahwa serat saja menyebabkan seluruh perbedaan di antara olahan apel.",
         },

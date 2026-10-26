@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur daya dukung melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan daya dukung penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Daya Dukung dalam Simulasi Keping: Aturan dan Batas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang daya dukung",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan daya dukung tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

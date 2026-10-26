@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "kecewa karena Kakek mengabaikan rangka demi tampilan baru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kagum karena Kakek menutupi setiap bekas perbaikan pada layangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "khawatir karena Kakek mementingkan cerita perbaikan dan mengabaikan hasil uji terbang",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "menghargai kesabaran Kakek yang menuntun Nara sampai ia menemukan makna perbaikan sendiri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kesal karena Kakek memperbaiki rangka tanpa memberi Nara kesempatan belajar",
         },
       ],
     },
   },
-  stimulusKey: "kite-frame",
+  stimulus: "kite-frame",
 };
 
 export default item;

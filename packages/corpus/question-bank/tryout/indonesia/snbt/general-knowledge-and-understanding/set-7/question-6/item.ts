@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "memberi undangan yang sama tanpa menyesuaikan hambatan peserta",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "membuka kesempatan nyata bagi kelompok dengan kebutuhan dan hambatan yang berbeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menerima setiap usulan agar tidak ada kelompok yang kecewa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menyerahkan keputusan sepenuhnya kepada kelompok yang hadir paling banyak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengukur keterlibatan hanya dari jumlah orang yang datang",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

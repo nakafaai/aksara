@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "daily-relevance",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menerapkan jeda lima menit sebagai aturan tetap sebelum memeriksa perbedaan individu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "mengganti latihan tanpa jeda dengan urutan sesi yang sama bagi setiap peserta",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "mencoba jeda terencana sambil memantau hasil pribadi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menyatakan hasil simulasi sebagai nasihat medis",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengabaikan perbedaan kebutuhan peserta",
         },
       ],
     },
   },
-  stimulusKey: "study-breaks",
+  stimulus: "study-breaks",
 };
 
 export default item;

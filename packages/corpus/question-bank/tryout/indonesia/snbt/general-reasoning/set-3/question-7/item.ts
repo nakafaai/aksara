@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penurunan denda minimum akan mempersulit pengembalian kerugian negara.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketentuan yang lebih ringan akan mengurangi efek jera dan mempersulit pengembalian kerugian negara.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sejumlah ketentuan lebih ringan daripada UU Tipikor.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketentuan yang lebih ringan diperkirakan akan mengurangi efek jera dan membuat korupsi semakin marak.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
         },

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Lokasi dekat jalan memiliki banyak laporan sekaligus paling mudah dikunjungi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian relawan mengusulkan agar seluruh pengamatan langsung dimasukkan tanpa pemeriksaan karena jumlah data akan lebih besar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

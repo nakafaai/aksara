@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
     topic: "fact-opinion",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Public organizations should check repairability before replacement.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The passage names three questions for repair decisions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A damaged cable is one example of a repairable fault.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The decision record includes the estimated repair cost.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Unavailable expertise is identified as a possible risk.",
         },
       ],
     },
   },
-  stimulusKey: "repair-first",
+  stimulus: "repair-first",
 };
 
 export default item;

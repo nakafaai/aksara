@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk memastikan kedua kelompok menerima audio melalui perangkat yang sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk mengganti transkrip dengan label audio yang lebih rinci",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "untuk memperpanjang setiap audio",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk menunjukkan bahwa format audio dan transkrip menghasilkan tingkat pemahaman yang sama",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "untuk membandingkan hasil belajar dengan ukuran yang sama",
         },
       ],
     },
   },
-  stimulusKey: "audio-labels",
+  stimulus: "audio-labels",
 };
 
 export default item;

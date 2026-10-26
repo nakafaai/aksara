@@ -1,9 +1,3 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 22",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-10-02",
-};
-
 Es wechseln nur Schüler der Klasse X, die Sport (*olahraga*) gewählt haben, und zwar zu Kunst (*seni*). Deshalb **beziehen sich die <InlineMath math="25\%" /> auf <InlineMath math="48" /> Schüler**, nicht auf <InlineMath math="84" /> oder <InlineMath math="120" /> Schüler. Klasse X hat weiterhin <InlineMath math="120" /> Schüler, denn wer wechselt, bleibt in Klasse X. Es seien <InlineMath math="k" /> die Anzahl der Wechsler und <InlineMath math="S" /> die Anzahl der Schüler der Klasse X, die nach dem Wechsel Kunst wählen.
 
 <BlockMath math="\begin{aligned}
@@ -21,24 +15,13 @@ S&=30+12=42 \\
 
 Die Tabelle bestätigt, dass sich die Schülerzahl der Klasse X nicht ändert. Das Diagramm zeigt die Wahl der Klasse X nach dem Wechsel. Der Balken für Kunst ist jetzt so hoch wie der für NaWi, nämlich <InlineMath math="42" /> von <InlineMath math="120" /> Schülern.
 
-<HistogramChart
+<Chart
   title="Wahl der Klasse X nach dem Wechsel"
   description="Der Balken für Kunst steigt auf die Höhe des Balkens für NaWi, während der Balken für Sport sinkt, weil ein Viertel seiner Schüler zu Kunst gewechselt ist."
-  data={[
-    { name: "Sport", value: 36 },
-    { name: "Kunst", value: 42 },
-    { name: "NaWi", value: 42 },
-  ]}
-  chartConfig={{
-    value: {
-      label: "Anzahl der Schüler",
-      colors: {
-        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
-        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
-      },
-    },
-  }}
-  yAxisLabel="Anzahl der Schüler"
+  bars="touching"
+  categories={["Sport", "Kunst", "NaWi"]}
+  series={[{ label: "Anzahl der Schüler", mark: "bar", values: [36, 42, 42] }]}
+  valueLabel="Anzahl der Schüler"
 />
 
 Nach dem Wechsel wählen also <InlineMath math="35\%" /> der Schüler der Klasse X Kunst.

@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "character",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "She refuses to work with Arif again.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "She values speed more than fairness.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "She remains confident that her first explanation was reasonable despite the later evidence.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "She can reflect on a mistake and revise her judgment.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "She values preserving the recovered notebook more than revising her first judgment.",
         },
       ],
     },
   },
-  stimulusKey: "weather-notebook",
+  stimulus: "weather-notebook",
 };
 
 export default item;

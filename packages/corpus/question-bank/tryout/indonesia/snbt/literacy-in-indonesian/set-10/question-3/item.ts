@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengulang sudut $$45$$ derajat saja pada hari paling cerah agar suhu maksimumnya dapat dipastikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Menguji sudut di sekitar $$45$$ derajat dengan interval lebih rapat, mengacak atau memutar posisi oven, dan mengulangnya pada berbagai kondisi iradiansi sambil mencatat angin serta awan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengubah volume air dan warna wadah pada setiap sudut supaya rancangan menyerupai penggunaan rumah tangga.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menempatkan oven $$45$$ derajat di lokasi tanpa bayangan dan oven lain di lokasi yang tersedia agar hasil terbaik lebih mudah dibedakan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Membandingkan suhu akhir dari hari yang berbeda tanpa mencatat iradiansi karena semua percobaan berlangsung selama $$40$$ menit.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

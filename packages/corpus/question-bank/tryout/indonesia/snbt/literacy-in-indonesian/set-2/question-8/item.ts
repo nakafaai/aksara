@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Uwet berkebun di bawah pohon ceri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uwet mencari siput",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Uwet mencoba mengambil buah ceri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uwet menangkap siput",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uwet menunggu kedatangan Enjin dan Ensi",
         },
       ],

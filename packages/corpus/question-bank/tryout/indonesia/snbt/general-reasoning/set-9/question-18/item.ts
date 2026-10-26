@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Audit telah selesai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Audit dibatalkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Status audit tidak dapat disimpulkan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Audit belum selesai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Audit selesai, tetapi kuota tidak tersedia.",
         },
       ],

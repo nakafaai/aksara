@@ -21,7 +21,6 @@ import {
   canonicalizeContentHead,
   MaterialHeadSchema,
   PageHeadSchema,
-  QuestionHeadSchema,
 } from "#contracts/release/head";
 import {
   ContentDeleteSchema,
@@ -76,20 +75,12 @@ export type RollbackMaterialState = typeof RollbackMaterialStateSchema.Type;
 export const RollbackPageStateSchema = headStateSchema("page", PageHeadSchema);
 export type RollbackPageState = typeof RollbackPageStateSchema.Type;
 
-/** Compact authoritative prior question head protected by one rollback digest. */
-export const RollbackQuestionStateSchema = headStateSchema(
-  "question",
-  QuestionHeadSchema
-);
-export type RollbackQuestionState = typeof RollbackQuestionStateSchema.Type;
-
 /** Complete compact state vocabulary authenticated for one future rollback. */
 export const RollbackSnapshotStateSchema = Schema.Union([
   RollbackAbsentStateSchema,
   RollbackArticleStateSchema,
   RollbackMaterialStateSchema,
   RollbackPageStateSchema,
-  RollbackQuestionStateSchema,
 ]);
 export type RollbackSnapshotState = typeof RollbackSnapshotStateSchema.Type;
 

@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengirim Semua Kotak agar Target Terlihat Selesai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menyembunyikan Ketidakcocokan Label Setelah Kapal Berangkat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menahan Dua Kotak: Akuntabilitas Bima di Gudang Pelabuhan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Akuntabilitas sebagai Definisi Tanpa Tindakan yang Dapat Diperiksa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Delapan Belas Kotak sebagai Satu-satunya Ukuran Kepemimpinan",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

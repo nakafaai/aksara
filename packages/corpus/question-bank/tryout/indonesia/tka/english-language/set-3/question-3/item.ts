@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "main-idea-purpose",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The market closes whenever a shallow channel contains water.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The passage mainly describes how the cooking row changes after rain.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The market adapts its layout and equipment to continue safely after rain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The market's main challenge is replacing information signs damaged by rain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The market is designed mainly for a dry afternoon.",
         },
       ],
     },
   },
-  stimulusKey: "rain-market",
+  stimulus: "rain-market",
 };
 
 export default item;

@@ -1,5 +1,6 @@
 import { Array as Arr, Record as Rec, Schema } from "effect";
 
+import { ChartPropsSchema } from "#contracts/assessment/chart";
 import { AssetIdSchema } from "#contracts/assessment/identity";
 import { RichTextSchema } from "#contracts/assessment/inline";
 import {
@@ -271,10 +272,15 @@ const FigureFields = {
 };
 
 /**
- * The attributes of a figure node: one of the five renderer components and the
+ * The attributes of a figure node: one of the six renderer components and the
  * typed props that component takes.
  */
 export const FigureAttrsSchema = Schema.Union([
+  Schema.Struct({
+    ...FigureFields,
+    component: Schema.Literal("Chart"),
+    props: ChartPropsSchema,
+  }),
   Schema.Struct({
     ...FigureFields,
     component: Schema.Literal("MathVisual"),

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Persemaian", "Penanaman", "Pemantauan"],
-      kind: "category",
+      columns: ["Persemaian", "Penanaman", "Pemantauan"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Mencatat munculnya daun baru",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Mengikat bibit pada penyangga bambu",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Mencari penanda yang terbawa arus",
         },
       ],
     },
   },
-  stimulusKey: "mangrove-nursery",
+  stimulus: "mangrove-nursery",
 };
 
 export default item;

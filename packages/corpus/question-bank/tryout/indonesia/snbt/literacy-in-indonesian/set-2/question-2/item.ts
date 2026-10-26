@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mencuci beras akan mengurangi jumlah beras",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pati bebas pada permukaan butiran beras berkurang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mencuci beras akan merusak bentuk beras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Beras yang dicuci akan mengurangi cita rasa khas dari beras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
         },
       ],

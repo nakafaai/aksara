@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan itu pasti benar karena tutupan lahan hijau berkurang.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan itu mungkin benar karena suhu permukaan lahan meningkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan itu didukung karena partikel di udara dan banjir merupakan hasil yang setara.",
         },

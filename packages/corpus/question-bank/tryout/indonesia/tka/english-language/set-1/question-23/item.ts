@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A single average can represent families because school schedules shape their mornings similarly.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Connected routines may create problems that a meeting does not predict.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "One survey answer is enough to define success.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sports practice can be excluded from the trial because it occurs after lessons.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The overall average is sufficient to show how each subgroup experienced the change.",
         },
       ],
     },
   },
-  stimulusKey: "later-start",
+  stimulus: "later-start",
 };
 
 export default item;

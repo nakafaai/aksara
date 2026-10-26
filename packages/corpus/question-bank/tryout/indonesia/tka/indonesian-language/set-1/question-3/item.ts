@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "warga lebih memilih meja konsultasi daripada menggunakan kartu riwayat saat memilih benih",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kebun sekolah menjadi tujuan utama karena jadwal panennya paling mudah dicatat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "kartu riwayat membantu pemilihan dan pengujian benih",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "petugas memisahkan benih belum teruji sampai hasil satu sampel dianggap cukup mewakili varietasnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "rumah berhalaman sempit tidak dapat ikut program",
         },
       ],
     },
   },
-  stimulusKey: "seed-library",
+  stimulus: "seed-library",
 };
 
 export default item;

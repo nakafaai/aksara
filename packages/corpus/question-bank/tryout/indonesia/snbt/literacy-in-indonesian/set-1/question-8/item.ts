@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Seluruh pantai di Indonesia akan bebas sampah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak akan ada lagi sampah dari kapal dan perikanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua bentuk polusi laut di Seychelles akan hilang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Seychelles tidak lagi mengalami musim penumpukan sampah",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Indonesia diperkirakan menjadi sumber tunggal terbesar sampah berbasis daratan di banyak lokasi Seychelles",
         },

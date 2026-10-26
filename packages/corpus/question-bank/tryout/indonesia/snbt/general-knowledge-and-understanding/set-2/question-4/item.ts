@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "cara kelelawar mencari makan pada malam hari.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "keuntungan bertengger terbalik bagi kelelawar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cara menjatuhkan diri dari tempat bertengger membantu kelelawar terbang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "tempat kelelawar beristirahat pada siang hari.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cara tempat bertengger yang tinggi dapat melindungi kelelawar dari predator.",
         },

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Dua Puluh Empat Lampu yang Pasti Menyala Setiap Malam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tiga Buku Harian sebagai Suara Seluruh Kampung",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Membaca Peta Lampu dan Pengalaman Malam Warga",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Peta Resmi Tidak Berguna bagi Sejarah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penerangan yang Merata di Semua Jalan Kampung",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

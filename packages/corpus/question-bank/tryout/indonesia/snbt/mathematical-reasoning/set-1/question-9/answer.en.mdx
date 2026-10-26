@@ -1,13 +1,6 @@
-export const metadata = {
-  title: "Solution for Question 9",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-11-23",
-  dateModified: "2026-09-12",
-};
-
 We seek values of <InlineMath math="x" /> for which **length, width, and height are all positive**. A zero edge would flatten the box, and a negative length cannot measure an edge.
 
-#### Determining Cuboid Dimensions
+# Determining Cuboid Dimensions
 
 Use **the base perimeter** to derive the length without relying on another question. All dimensions below are in centimeters.
 
@@ -21,39 +14,43 @@ p&=3x-l \\
 - Width (<InlineMath math="l" />) is <InlineMath math="4x - 5" />
 - Height (<InlineMath math="t" />) is <InlineMath math="5 - \frac{1}{3}x" />
 
-#### Positive Dimension Conditions
+# Positive Dimension Conditions
 
 For a nondegenerate box, **every edge dimension must be positive** (<InlineMath math=">0" />).
 
 **Condition 1: <InlineMath math="p > 0" />**
 
-<MathContainer>
-  <BlockMath math="p > 0" />
-  <BlockMath math="5 - x > 0" />
-  <BlockMath math="5 > x" />
-  <BlockMath math="x < 5" />
-</MathContainer>
+<BlockMath math="p > 0" />
+
+<BlockMath math="5 - x > 0" />
+
+<BlockMath math="5 > x" />
+
+<BlockMath math="x < 5" />
 
 **Condition 2: <InlineMath math="l > 0" />**
 
-<MathContainer>
-  <BlockMath math="l > 0" />
-  <BlockMath math="4x - 5 > 0" />
-  <BlockMath math="4x > 5" />
-  <BlockMath math="x > \frac{5}{4}" />
-</MathContainer>
+<BlockMath math="l > 0" />
+
+<BlockMath math="4x - 5 > 0" />
+
+<BlockMath math="4x > 5" />
+
+<BlockMath math="x > \frac{5}{4}" />
 
 **Condition 3: <InlineMath math="t > 0" />**
 
-<MathContainer>
-  <BlockMath math="t > 0" />
-  <BlockMath math="5 - \frac{1}{3}x > 0" />
-  <BlockMath math="5 > \frac{1}{3}x" />
-  <BlockMath math="15 > x" />
-  <BlockMath math="x < 15" />
-</MathContainer>
+<BlockMath math="t > 0" />
 
-#### Determining Set Intersection
+<BlockMath math="5 - \frac{1}{3}x > 0" />
+
+<BlockMath math="5 > \frac{1}{3}x" />
+
+<BlockMath math="15 > x" />
+
+<BlockMath math="x < 15" />
+
+# Determining Set Intersection
 
 Find **the intersection of all three conditions**, so every condition holds at once:
 1. <InlineMath math="x < 5" />
@@ -62,33 +59,31 @@ Find **the intersection of all three conditions**, so every condition holds at o
 
 From conditions 1 and 3, we take the stricter one, which is <InlineMath math="x < 5" />. Combined with condition 2, we get the range:
 
-<ContentStack>
-  <BlockMath math="\frac{5}{4} < x < 5" />
+<BlockMath math="\frac{5}{4} < x < 5" />
 
-  <NumberLine
-    title={<>Solution set <InlineMath math="A" /></>}
-    description={<>The intersection of all positive dimension conditions is <InlineMath math="\frac{5}{4} < x < 5" />.</>}
-    segments={[
-      {
-        end: 1.25,
-        backgroundColor: "transparent"
-      },
-      {
-        start: 1.25,
-        end: 5,
-        label: <InlineMath math="A" />,
-        startLabel: <InlineMath math="\frac{5}{4}" />,
-        endLabel: <InlineMath math="5" />,
-        startInclusive: false,
-        endInclusive: false
-      },
-      {
-        start: 5,
-        backgroundColor: "transparent"
-      }
-    ]}
-  />
-</ContentStack>
+<NumberLine
+  title={<>Solution set <InlineMath math="A" /></>}
+  description={<>The intersection of all positive dimension conditions is <InlineMath math="\frac{5}{4} < x < 5" />.</>}
+  segments={[
+    {
+      end: 1.25,
+      backgroundColor: "transparent"
+    },
+    {
+      start: 1.25,
+      end: 5,
+      label: <InlineMath math="A" />,
+      startLabel: <InlineMath math="\frac{5}{4}" />,
+      endLabel: <InlineMath math="5" />,
+      startInclusive: false,
+      endInclusive: false
+    },
+    {
+      start: 5,
+      backgroundColor: "transparent"
+    }
+  ]}
+/>
 
 So, the set <InlineMath math="A" /> is:
 

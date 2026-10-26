@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "menyusun dugaan sementara yang dapat diuji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menetapkan penyebab sebagai simpulan akhir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menghapus data yang tidak sesuai dengan dugaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "merangkum hasil setelah seluruh uji selesai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengganti pengukuran dengan penilaian peserta",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

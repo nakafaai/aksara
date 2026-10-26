@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
         },

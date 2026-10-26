@@ -1,22 +1,255 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 18",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2026-02-08",
-};
-
 Wir ermitteln die **Höhe des Hubschraubers über dem Hubschrauberlandeplatz** (<InlineMath math="DC" />) mithilfe trigonometrischer Verhältnisse in rechtwinkligen Dreiecken.
 
 Zuerst die Lösungsskizze:
 
-<Set3Question18GraphSolution
+<LineEquation
   title="Lösungsskizze"
   description={
     <>
       Lösungsdarstellung mit Punkten <InlineMath math="A, B, C, D, E" /> und Abstandsmaßen.
     </>
   }
-  labels={{ helicopter: "Hubschrauber", observer: "Beobachter", building: "Gebäude" }}
+  cameraPosition={[3.2, 2.8, 16]}
+  cameraTarget={[3.2, 2.8, 0]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: 2, z: 0 },
+        { x: 0, y: 4, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 0,
+          offset: [-0.192, 0.4, 0],
+        },
+        {
+          text: <InlineMath math="16\\,\\text{m}" />,
+          at: 1,
+          offset: [-0.64, 0, 0],
+        },
+        { text: "Gebäude", at: 1, offset: [-1.152, -1.1, 0] },
+        {
+          text: <InlineMath math="D" />,
+          at: 2,
+          offset: [-0.192, 0, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 4, z: 0 },
+        { x: 0, y: 6.9282032303, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        { text: "Hubschrauber", at: 1, offset: [0.192, 0.8, 0] },
+        {
+          text: <InlineMath math="C" />,
+          at: 1,
+          offset: [-0.192, 0, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 3.4641016151, y: 0, z: 0 },
+        { x: 6.9282032303, y: 0, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="(32 - x)\\,\\text{m}" />,
+          at: 1,
+          offset: [0, -0.6, 0],
+        },
+        {
+          text: <InlineMath math="B" />,
+          at: 2,
+          offset: [0, 0.4, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 6.9282032303, y: 0, z: 0 },
+        { x: 7.4641016151, y: 0, z: 0 },
+        { x: 8, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="x" />,
+          at: 1,
+          offset: [0, -0.6, 0],
+        },
+        {
+          text: <InlineMath math="E" />,
+          at: 2,
+          offset: [0.64, 0.4, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 8, y: 0, z: 0 },
+        { x: 8, y: 0.5, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        { text: "Beobachter", at: 1, offset: [0, 0.6, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 4, z: 0 },
+        { x: 6.9282032303, y: 0, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 6.9282032303, z: 0 },
+        { x: 6.9282032303, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: -1.2, z: 0 },
+        { x: 4, y: -1.2, z: 0 },
+        { x: 8, y: -1.2, z: 0 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      cone: { position: "both" },
+      labels: [
+        {
+          text: <InlineMath math="32\\,\\text{m}" />,
+          at: 1,
+          offset: [0, -0.8, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 5.4282032303, y: 0.8660254038, z: 0 },
+        { x: 5.4169958166, y: 0.8463168159, z: 0 },
+        { x: 5.4060473406, y: 0.826463216, z: 0 },
+        { x: 5.3953596781, y: 0.8064680059, z: 0 },
+        { x: 5.3849346605, y: 0.7863346117, z: 0 },
+        { x: 5.374774074, y: 0.7660664831, z: 0 },
+        { x: 5.3648796596, y: 0.7456670929, z: 0 },
+        { x: 5.3552531127, y: 0.7251399365, z: 0 },
+        { x: 5.3458960826, y: 0.7044885311, z: 0 },
+        { x: 5.3368101727, y: 0.6837164152, z: 0 },
+        { x: 5.3279969399, y: 0.6628271481, z: 0 },
+        { x: 5.3194578941, y: 0.6418243089, z: 0 },
+        { x: 5.3111944986, y: 0.6207114964, z: 0 },
+        { x: 5.3032081692, y: 0.5994923282, z: 0 },
+        { x: 5.2955002744, y: 0.5781704401, z: 0 },
+        { x: 5.2880721348, y: 0.5567494855, z: 0 },
+        { x: 5.2809250232, y: 0.5352331347, z: 0 },
+        { x: 5.2740601642, y: 0.5136250744, z: 0 },
+        { x: 5.2674787342, y: 0.4919290072, z: 0 },
+        { x: 5.2611818607, y: 0.4701486504, z: 0 },
+        { x: 5.2551706228, y: 0.4482877361, z: 0 },
+        { x: 5.2494460504, y: 0.42635001, z: 0 },
+        { x: 5.2440091244, y: 0.404339231, z: 0 },
+        { x: 5.2388607764, y: 0.3822591706, z: 0 },
+        { x: 5.2340018885, y: 0.360113612, z: 0 },
+        { x: 5.2294332933, y: 0.3379063498, z: 0 },
+        { x: 5.2251557736, y: 0.3156411891, z: 0 },
+        { x: 5.2211700623, y: 0.2933219449, z: 0 },
+        { x: 5.2174768423, y: 0.2709524415, z: 0 },
+        { x: 5.2140767465, y: 0.2485365118, z: 0 },
+        { x: 5.2109703575, y: 0.2260779966, z: 0 },
+        { x: 5.2081582074, y: 0.2035807442, z: 0 },
+        { x: 5.2056407783, y: 0.1810486092, z: 0 },
+        { x: 5.2034185013, y: 0.1584854525, z: 0 },
+        { x: 5.2014917573, y: 0.1358951401, z: 0 },
+        { x: 5.1998608764, y: 0.1132815428, z: 0 },
+        { x: 5.1985261381, y: 0.0906485353, z: 0 },
+        { x: 5.1974877711, y: 0.0679999956, z: 0 },
+        { x: 5.1967459533, y: 0.0453398045, z: 0 },
+        { x: 5.1963008117, y: 0.0226718446, z: 0 },
+        { x: 5.1961524227, y: 0, z: 0 },
+      ],
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="30^\\circ" />,
+          at: 20,
+          offset: [-0.384, 0.1, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 5.2135604103, y: 1.7146428199, z: 0 },
+        { x: 5.1802261542, y: 1.6806475364, z: 0 },
+        { x: 5.1475657766, y: 1.6460043313, z: 0 },
+        { x: 5.1155918686, y: 1.6107265601, z: 0 },
+        { x: 5.0843167568, y: 1.5748278232, z: 0 },
+        { x: 5.0537524983, y: 1.5383219602, z: 0 },
+        { x: 5.0239108762, y: 1.5012230448, z: 0 },
+        { x: 4.9948033951, y: 1.4635453793, z: 0 },
+        { x: 4.9664412765, y: 1.4253034893, z: 0 },
+        { x: 4.9388354544, y: 1.3865121176, z: 0 },
+        { x: 4.9119965714, y: 1.3471862191, z: 0 },
+        { x: 4.8859349745, y: 1.3073409546, z: 0 },
+        { x: 4.8606607109, y: 1.2669916854, z: 0 },
+        { x: 4.8361835243, y: 1.2261539667, z: 0 },
+        { x: 4.8125128512, y: 1.1848435423, z: 0 },
+        { x: 4.7896578169, y: 1.1430763382, z: 0 },
+        { x: 4.7676272326, y: 1.1008684564, z: 0 },
+        { x: 4.7464295915, y: 1.0582361688, z: 0 },
+        { x: 4.7260730656, y: 1.0151959111, z: 0 },
+        { x: 4.7065655029, y: 0.971764276, z: 0 },
+        { x: 4.6879144237, y: 0.9279580073, z: 0 },
+        { x: 4.6701270186, y: 0.8837939931, z: 0 },
+        { x: 4.6532101448, y: 0.8392892595, z: 0 },
+        { x: 4.6371703242, y: 0.7944609639, z: 0 },
+        { x: 4.6220137403, y: 0.7493263885, z: 0 },
+        { x: 4.6077462365, y: 0.7039029335, z: 0 },
+        { x: 4.5943733129, y: 0.6582081106, z: 0 },
+        { x: 4.5819001252, y: 0.6122595358, z: 0 },
+        { x: 4.570331482, y: 0.5660749234, z: 0 },
+        { x: 4.5596718433, y: 0.5196720783, z: 0 },
+        { x: 4.5499253185, y: 0.4730688897, z: 0 },
+        { x: 4.5410956651, y: 0.4262833241, z: 0 },
+        { x: 4.5331862871, y: 0.3793334181, z: 0 },
+        { x: 4.5262002338, y: 0.3322372719, z: 0 },
+        { x: 4.5201401983, y: 0.2850130419, z: 0 },
+        { x: 4.515008517, y: 0.2376789339, z: 0 },
+        { x: 4.5108071681, y: 0.1902531962, z: 0 },
+        { x: 4.5075377715, y: 0.1427541122, z: 0 },
+        { x: 4.5052015874, y: 0.0951999938, z: 0 },
+        { x: 4.5037995167, y: 0.047609174, z: 0 },
+        { x: 4.5033320997, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="45^\\circ" />,
+          at: 20,
+          offset: [-0.512, 1, 0],
+        },
+      ],
+    },
+  ]}
 />
 
 Aus der Skizze lesen wir ab:
@@ -25,34 +258,34 @@ Aus der Skizze lesen wir ab:
 - <InlineMath math="AE = 32\text{ m}" /> und <InlineMath math="BE = x" />. Daher gilt <InlineMath math="AB = 32 - x" />.
 - Der Höhenwinkel zur Gebäudespitze beträgt <InlineMath math="30^\circ" /> und zum Helikopter <InlineMath math="45^\circ" />.
 
-#### Horizontalen Abstand berechnen
+# Horizontalen Abstand berechnen
 
 Zuerst berechnen wir den **horizontalen Abstand** <InlineMath math="AB" /> mithilfe von <InlineMath math="\tan(30^\circ)" /> im Dreieck <InlineMath math="ABD" />.
 
-<MathContainer>
-  <BlockMath math="\tan(30^\circ) = \frac{AD}{AB}" />
-  <BlockMath math="\frac{1}{\sqrt{3}} = \frac{16}{AB}" />
-  <BlockMath math="AB = 16\sqrt{3}" />
-</MathContainer>
+<BlockMath math="\tan(30^\circ) = \frac{AD}{AB}" />
+
+<BlockMath math="\frac{1}{\sqrt{3}} = \frac{16}{AB}" />
+
+<BlockMath math="AB = 16\sqrt{3}" />
 
 Damit passen auch die Angaben zum Schatten zusammen: <InlineMath math="x = 32 - 16\sqrt{3}" />. Dieser Wert ist positiv, denn <InlineMath math="16\sqrt{3} < 32" />. Für die gesuchte Höhe des Hubschraubers müssen wir <InlineMath math="x" /> jedoch nicht weiter ausrechnen.
 
-#### Höhe über dem Landeplatz berechnen
+# Höhe über dem Landeplatz berechnen
 
 Nun verwenden wir <InlineMath math="AB" />, um mit <InlineMath math="\tan(45^\circ)" /> im Dreieck <InlineMath math="ABC" /> die **Gesamthöhe des Hubschraubers über dem Boden** (<InlineMath math="AC" />) zu bestimmen.
 
-<MathContainer>
-  <BlockMath math="\tan(45^\circ) = \frac{AC}{AB}" />
-  <BlockMath math="1 = \frac{AC}{16\sqrt{3}}" />
-  <BlockMath math="AC = 16\sqrt{3}" />
-</MathContainer>
+<BlockMath math="\tan(45^\circ) = \frac{AC}{AB}" />
+
+<BlockMath math="1 = \frac{AC}{16\sqrt{3}}" />
+
+<BlockMath math="AC = 16\sqrt{3}" />
 
 Die Höhe des Hubschraubers vom Hubschrauberlandeplatz ist die Differenz zwischen der Gesamthöhe und der Gebäudehöhe.
 
-<MathContainer>
-  <BlockMath math="DC = AC - AD" />
-  <BlockMath math="DC = 16\sqrt{3} - 16" />
-  <BlockMath math="DC = 16(\sqrt{3} - 1)" />
-</MathContainer>
+<BlockMath math="DC = AC - AD" />
+
+<BlockMath math="DC = 16\sqrt{3} - 16" />
+
+<BlockMath math="DC = 16(\sqrt{3} - 1)" />
 
 Somit beträgt die Höhe des Hubschraubers vom Hubschrauberlandeplatz <InlineMath math="16(\sqrt{3} - 1)\text{ Meter}" />.

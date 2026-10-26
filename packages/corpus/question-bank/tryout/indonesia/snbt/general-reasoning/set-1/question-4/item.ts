@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mendanai irigasi, lahan pertanian, alat dan mesin, pupuk, serta benih unggul.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengganti tanaman pangan dalam negeri dengan komoditas impor.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menggunakan seluruh anggaran kementerian hanya untuk produksi padi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menghentikan seluruh impor pertanian melalui undang-undang baru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengurangi luas lahan yang digarap di luar Jawa.",
         },
       ],

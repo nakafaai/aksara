@@ -1,29 +1,305 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 18",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2026-02-17",
-};
-
-#### Relevantes Dreieck erkennen
+# Relevantes Dreieck erkennen
 
 Gesucht ist <InlineMath math="\sin \alpha" /> für <InlineMath math="\alpha = \angle HDF" />. Dazu **betrachten wir das Dreieck** <InlineMath math="HDF" />.
 
-<Set6Question18Graph
+<LineEquation
   title={<>Dreieck <InlineMath math="HDF" /></>}
   description={<>Visualisierung der Position im Würfel.</>}
+  cameraPosition={[-7, 5, 9]}
+  data={[
+    {
+      points: [
+        { x: -2, y: -2, z: 2 },
+        { x: 2, y: -2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: 2 },
+        { x: 2, y: -2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: -2 },
+        { x: -2, y: -2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: -2 },
+        { x: -2, y: -2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: 2 },
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: 2, z: 2 },
+        { x: 2, y: 2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: 2, z: -2 },
+        { x: -2, y: 2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: -2 },
+        { x: -2, y: 2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: 2 },
+        { x: -2, y: 2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: 2 },
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: -2 },
+        { x: 2, y: 2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: -2 },
+        { x: -2, y: 2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: -2 },
+        { x: -2, y: -2, z: -2 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 3,
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: -2 },
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 3,
+    },
+    {
+      points: [
+        { x: 2, y: 2, z: 2 },
+        { x: -2, y: 2, z: -2 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 3,
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: -2 },
+        { x: 0, y: 0, z: 0 },
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="DF" />,
+          at: 1,
+          offset: [0.4, 0.8, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: -2 },
+        { x: 0, y: 2, z: 0 },
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="HF" />,
+          at: 1,
+          offset: [-0.8, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: -2 },
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="D" />,
+          at: 0,
+          offset: [-0.5, -0.5, -0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: -2 },
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="H" />,
+          at: 0,
+          offset: [-0.5, 0.5, -0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: 2, z: 2 },
+      ],
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="F" />,
+          at: 0,
+          offset: [0.5, 0.5, 0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: -2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 0,
+          offset: [-0.5, -0.5, 0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="B" />,
+          at: 0,
+          offset: [0.5, -0.5, 0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: -2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="C" />,
+          at: 0,
+          offset: [0.5, -0.5, -0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: 2, z: 2 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="E" />,
+          at: 0,
+          offset: [-0.5, 0.5, 0.5],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2, y: 2, z: -2 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="G" />,
+          at: 0,
+          offset: [0.5, 0.5, -0.5],
+        },
+      ],
+    },
+  ]}
 />
 
-#### Seitenlängen bestimmen
+# Seitenlängen bestimmen
 
 Die Kantenlänge des Würfels beträgt <InlineMath math="s = 4" />.
 
 <InlineMath math="HF" /> ist eine **Flächendiagonale** der oberen Würfelfläche <InlineMath math="EFGH" />.
 
-<MathContainer>
-  <BlockMath math="HF = \sqrt{EH^2 + EF^2}" />
-  <BlockMath math="\begin{aligned}HF&=\sqrt{4^2+4^2} \\ &=\sqrt{16+16} \\ &=\sqrt{32}=4\sqrt2\end{aligned}" />
-</MathContainer>
+<BlockMath math="HF = \sqrt{EH^2 + EF^2}" />
+
+<BlockMath math="\begin{aligned}HF&=\sqrt{4^2+4^2} \\ &=\sqrt{16+16} \\ &=\sqrt{32}=4\sqrt2\end{aligned}" />
 
 <InlineMath math="HD" /> ist die vertikale Kante des Würfels.
 
@@ -31,12 +307,11 @@ Die Kantenlänge des Würfels beträgt <InlineMath math="s = 4" />.
 
 <InlineMath math="DF" /> ist eine Raumdiagonale des Würfels. Das Dreieck <InlineMath math="HDF" /> ist bei <InlineMath math="H" /> rechtwinklig, denn aus <InlineMath math="HD \perp EFGH" /> folgt insbesondere <InlineMath math="HD \perp HF" />.
 
-<MathContainer>
-  <BlockMath math="DF = \sqrt{HD^2 + HF^2}" />
-  <BlockMath math="\begin{aligned}DF&=\sqrt{4^2+(4\sqrt2)^2} \\ &=\sqrt{16+32} \\ &=\sqrt{48}=4\sqrt3\end{aligned}" />
-</MathContainer>
+<BlockMath math="DF = \sqrt{HD^2 + HF^2}" />
 
-#### Sinus berechnen
+<BlockMath math="\begin{aligned}DF&=\sqrt{4^2+(4\sqrt2)^2} \\ &=\sqrt{16+32} \\ &=\sqrt{48}=4\sqrt3\end{aligned}" />
+
+# Sinus berechnen
 
 Der Winkel <InlineMath math="\alpha" /> liegt am Punkt <InlineMath math="D" />. Der Sinus ist die Länge der **Gegenkathete geteilt durch die Länge der Hypotenuse**. In diesem Dreieck gilt:
 - Die Gegenkathete zum Winkel <InlineMath math="\alpha" /> ist <InlineMath math="HF" />.
@@ -46,16 +321,14 @@ Der Winkel <InlineMath math="\alpha" /> liegt am Punkt <InlineMath math="D" />. 
 
 Wir setzen die berechneten Längen ein:
 
-<MathContainer>
-  <BlockMath math="\sin \alpha = \frac{4\sqrt{2}}{4\sqrt{3}}" />
-  <BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}}" />
-</MathContainer>
+<BlockMath math="\sin \alpha = \frac{4\sqrt{2}}{4\sqrt{3}}" />
+
+<BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}}" />
 
 Zum Rationalisieren des Nenners multiplizieren wir mit <InlineMath math="\frac{\sqrt{3}}{\sqrt{3}}" />:
 
-<MathContainer>
-  <BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}}" />
-  <BlockMath math="\sin \alpha = \frac{\sqrt{6}}{3} = \frac{1}{3}\sqrt{6}" />
-</MathContainer>
+<BlockMath math="\sin \alpha = \frac{\sqrt{2}}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}}" />
+
+<BlockMath math="\sin \alpha = \frac{\sqrt{6}}{3} = \frac{1}{3}\sqrt{6}" />
 
 Damit ist <InlineMath math="\sin \alpha" /> gleich <InlineMath math="\frac{1}{3}\sqrt{6}" />.

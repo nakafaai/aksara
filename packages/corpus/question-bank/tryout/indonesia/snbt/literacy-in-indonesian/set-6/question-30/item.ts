@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Garis yang Pasti Disebabkan Kelembapan Tinggi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perintah Supervisor yang Sudah Dipahami Sepenuhnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sudut Pandang Terbatas sebagai Istilah Tanpa Peran dalam Cerita",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pemindahan Rutin yang Tidak Memerlukan Catatan Lama",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Satu Kartu sebelum Lukisan Dipindahkan",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang menghapus perbedaan tujuan kedua sumber.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan dengan mengikuti sumber yang lebih baru secara otomatis.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan tanpa menilai asal serta tujuan tiap sumber.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

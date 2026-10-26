@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "survei mengidentifikasi hambatan yang kemudian ditanggapi dengan layanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "program peminjaman dilakukan sebelum hambatan diketahui",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "survei menunjukkan siswa yang belum memakai stasiun terutama tidak membawa botol",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "keduanya tidak berkaitan dengan stasiun isi ulang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "program dibuat untuk mengurangi volume air minum",
         },
       ],
     },
   },
-  stimulusKey: "refill-station",
+  stimulus: "refill-station",
 };
 
 export default item;

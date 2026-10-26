@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Bukti genetik berusia sekitar $$1{.}400$$ tahun membantu merekonstruksi sejarah evolusi virus variola.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sampel DNA purba termuda dalam penelitian tersebut berasal dari sekitar tahun $$600$$ M.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sisa arkeologis tersebut tidak mengandung DNA variola yang dapat dideteksi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penelitian tersebut membuktikan bahwa cacar berasal dari Eropa utara pada Zaman Viking.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua pernyataan di atas salah.",
         },
       ],

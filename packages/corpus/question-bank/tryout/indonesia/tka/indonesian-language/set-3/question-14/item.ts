@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Data utama pada tabel", "Penjelasan alternatif"],
-      kind: "category",
+      columns: ["Data utama pada tabel", "Penjelasan alternatif"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "438 liter air pada minggu ketiga",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Kantin berhenti menjual satu merek air kemasan",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Suhu udara meningkat",
         },
       ],
     },
   },
-  stimulusKey: "refill-station",
+  stimulus: "refill-station",
 };
 
 export default item;

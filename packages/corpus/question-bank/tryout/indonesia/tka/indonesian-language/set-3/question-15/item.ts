@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "program dapat dinilai mengurangi kemasan terutama dari jumlah botol yang terlihat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pola tiga minggu sudah cukup untuk menutup kemungkinan penjelasan lain",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kenaikan volume isi ulang menunjukkan sebagian besar siswa menggunakan stasiun secara rutin",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "hasil tiga minggu cukup untuk memprediksi dampak program pada sekolah dengan kondisi serupa",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "data awal menunjukkan penggunaan meningkat dan jumlah botol yang terlihat menurun",
         },
       ],
     },
   },
-  stimulusKey: "refill-station",
+  stimulus: "refill-station",
 };
 
 export default item;

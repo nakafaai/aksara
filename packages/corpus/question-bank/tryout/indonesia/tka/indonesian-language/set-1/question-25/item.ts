@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Memasang contoh nyata pada tutup wadah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menjelaskan masalah lapisan perekat atau pelindung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menggabungkan sisa yang belum teridentifikasi agar petugas dapat memilahnya kemudian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghapus relawan dari meja pengembalian.",
         },
       ],
     },
   },
-  stimulusKey: "food-scraps",
+  stimulus: "food-scraps",
 };
 
 export default item;

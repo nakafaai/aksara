@@ -1,11 +1,65 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 12",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-23",
-  dateModified: "2026-09-07",
-};
-
-<Set6Question12Graph title="Dreieck" description="Geometrische Illustration mit beschrifteten Winkeln." />
+<LineEquation
+  title="Dreieck"
+  description="Geometrische Illustration mit beschrifteten Winkeln."
+  cameraPosition={[0, 0, 15]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 6.3425636392, z: 0 },
+        { x: -2, y: -5, z: 0 },
+        { x: 2, y: -5, z: 0 },
+        { x: 0, y: 6.3425636392, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      smooth: false,
+      labels: [
+        {
+          text: <InlineMath math="a^\\circ" />,
+          at: 0,
+          offset: [0, -1.5, 0],
+        },
+        {
+          text: <InlineMath math="x^\\circ" />,
+          at: 1,
+          offset: [0.8, 1.2, 0],
+        },
+        {
+          text: <InlineMath math="y^\\circ" />,
+          at: 1,
+          offset: [1, 0.3, 0],
+        },
+        {
+          text: <InlineMath math="y^\\circ" />,
+          at: 2,
+          offset: [-0.8, 1.2, 0],
+        },
+        {
+          text: <InlineMath math="x^\\circ" />,
+          at: 2,
+          offset: [-1, 0.3, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: -2, y: -5, z: 0 },
+        { x: 0, y: -3.3218007376, z: 0 },
+        { x: 2, y: -5, z: 0 },
+      ],
+      color: "#0d9488",
+      showPoints: true,
+      smooth: false,
+      labels: [
+        {
+          text: <InlineMath math="100^\\circ" />,
+          at: 1,
+          offset: [0, -0.8, 0],
+        },
+      ],
+    },
+  ]}
+/>
 
 Im **kleinen unteren Dreieck** beträgt die Winkelsumme <InlineMath math="180^\circ" />. Der Scheitelwinkel ist <InlineMath math="100^\circ" /> groß. Daher gilt für die beiden Basiswinkel:
 
@@ -13,11 +67,12 @@ Im **kleinen unteren Dreieck** beträgt die Winkelsumme <InlineMath math="180^\c
 
 Die Basiswinkel des großen Dreiecks sind <InlineMath math="(x+y)" /> und <InlineMath math="(y+x)" />. Da <InlineMath math="x+y=80^\circ" /> gilt, sind beide <InlineMath math="80^\circ" /> groß. Mit der Winkelsumme <InlineMath math="180^\circ" /> folgt:
 
-<MathContainer>
-  <BlockMath math="a + (x+y) + (y+x) = 180^\circ" />
-  <BlockMath math="a + 80^\circ + 80^\circ = 180^\circ" />
-  <BlockMath math="a + 160^\circ = 180^\circ" />
-  <BlockMath math="a = 20^\circ" />
-</MathContainer>
+<BlockMath math="a + (x+y) + (y+x) = 180^\circ" />
+
+<BlockMath math="a + 80^\circ + 80^\circ = 180^\circ" />
+
+<BlockMath math="a + 160^\circ = 180^\circ" />
+
+<BlockMath math="a = 20^\circ" />
 
 Somit ist <InlineMath math="a" /> gleich <InlineMath math="20^\circ" />.

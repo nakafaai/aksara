@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengulang model perpindahan panas dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Menguji beberapa wadah aluminium dan polipropilena dengan bentuk, ketebalan, penutup, volume air, dan suhu awal yang sama serta mengacak posisinya pada setiap pengulangan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

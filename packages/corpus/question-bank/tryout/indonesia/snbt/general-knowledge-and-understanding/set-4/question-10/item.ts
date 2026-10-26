@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dalam perbandingan baru dengan jumlah barang yang sama, jalur digital tetap lebih cepat pada semua kelompok usia.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pencatatan waktu digital dimulai setelah barang dipindai, sedangkan waktu tunai dihitung sejak barang pertama diletakkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setelah papan petunjuk dibuat lebih terlihat, lebih banyak pembeli lansia memilih jalur digital, tetapi waktu layanan terukur per transaksi tetap sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

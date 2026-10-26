@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Meja 1", "Meja 2", "Meja 3"],
-      kind: "category",
+      columns: ["Meja 1", "Meja 2", "Meja 3"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Mencatat gejala dan tanda bahaya",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Memilih pengujian yang aman",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Membandingkan biaya dan kemungkinan umur pakai",
         },
       ],
     },
   },
-  stimulusKey: "repair-clinic",
+  stimulus: "repair-clinic",
 };
 
 export default item;

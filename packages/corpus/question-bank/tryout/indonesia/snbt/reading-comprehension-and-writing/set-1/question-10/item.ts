@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Berapa biaya untuk memulihkan ekosistem yang rusak?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Metode pemulihan ekosistem mana yang paling efektif?",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
         },
       ],

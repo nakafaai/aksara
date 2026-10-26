@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua laporan yang tidak anonim telah diverifikasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian laporan anonim telah diverifikasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada laporan distrik yang anonim.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap laporan yang diarsipkan telah diverifikasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebagian laporan distrik diarsipkan dan bukan laporan anonim.",
         },

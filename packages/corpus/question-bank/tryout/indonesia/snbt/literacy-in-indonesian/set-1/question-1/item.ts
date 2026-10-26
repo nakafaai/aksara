@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengutamakan kenyamanan kerja",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sangat teliti dan ulet",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Berani mengambil risiko",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sosok yang rapi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Peduli terhadap kemanusiaan",
         },
       ],

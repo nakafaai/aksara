@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian pihak menganggap tampilan baru yang bersih akan lebih menarik bagi pengunjung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pemetaan dan sampel menunjukkan sebagian kayu perlu diganti, sedangkan banyak bagian lain dapat diperkuat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

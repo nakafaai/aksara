@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring solute concentration in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating the solute as the sole explanation for the observed result",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A final rule derived from the first solute trial",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A limitation that makes another solute trial unnecessary",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing dissolved salt and the temperature of ice formation",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Masukkan Apa Saja",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tempat Barang yang Tidak Disukai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mungkin Bisa Menjadi Kompos",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Wadah Hijau yang Bagus",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Sisa Nabati Bersih Tanpa Kemasan",
         },
       ],
     },
   },
-  stimulusKey: "food-scraps",
+  stimulus: "food-scraps",
 };
 
 export default item;

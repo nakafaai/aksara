@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembaca mengetahui bahwa penyunting sengaja meremehkan Laras karena seluruh niat tokoh disampaikan oleh narator.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembaca dapat memastikan foto lama di arsip sekolah palsu karena Laras mempertimbangkan untuk menyalinnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembaca memperoleh gambaran objektif tentang semua peristiwa karena sudut pandang Laras tidak membatasi informasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pembaca dekat dengan kecemasan dan pertimbangan Laras, tetapi tidak boleh menganggap tafsir Laras atas pertanyaan penyunting sebagai fakta tentang niat penyunting.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembaca hanya mengetahui tindakan luar Laras sehingga perubahan makna ikon waktu tidak dapat dipahami.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

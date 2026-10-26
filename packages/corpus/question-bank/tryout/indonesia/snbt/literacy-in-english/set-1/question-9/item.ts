@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "a ranking of sports by the calories they burn.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "when and how to seek additional support for stress.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "replacing balanced meals with dietary supplements.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "ways to eliminate every source of stress.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "the history of international nutrition guidance.",
         },
       ],

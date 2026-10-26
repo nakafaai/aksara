@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisa efektivitas peta kecil dengan waktu tempuh di taman kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektifitas peta kecil dengan waktu tempuh di taman kota",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "analisis efektivitas peta kecil dengan waktu tempuh di taman kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisa efektifitas peta kecil dengan waktu tempuh di taman kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas peta kecil dengan waktu tempuh dalam kontek taman kota",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebuah foto bertanggal yang baru ditemukan secara jelas mencatat jam transaksi dan menyelesaikan perbedaan kedua sumber.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dua arsip independen tambahan juga memberikan keterangan yang saling berbeda tentang waktu kegiatan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian pengunjung lebih menyukai label yang lebih pendek.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Museum akan menampilkan riwayat revisi label pameran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

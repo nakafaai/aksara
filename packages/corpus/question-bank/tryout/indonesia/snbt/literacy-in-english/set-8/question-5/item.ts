@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring a truss in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating a truss as the sole explanation for the observed result",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing a triangular truss in a paper bridge model",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A final rule derived from the first comparison of truss designs",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A limitation that makes another test of a truss unnecessary",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

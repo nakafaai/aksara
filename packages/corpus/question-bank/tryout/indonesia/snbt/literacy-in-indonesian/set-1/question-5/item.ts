@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengelolaan sampah yang tidak baik di Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Indonesia penyumbang sampah utama dunia",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kesadaran akan sampah yang ia hasilkan sendiri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Berita buruk Indonesia sebagai penyumbang sampah ke laut Afrika",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Isu lingkungan yang tidak pernah selesai",
         },
       ],

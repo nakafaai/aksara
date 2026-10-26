@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bibit kemungkinan besar hilang karena penandanya tidak ditemukan pada pemantauan itu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bibit dianggap mati karena tidak ditemukan ketika penandanya hilang",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Bibit tidak ditemukan. Status hidup bibit belum dapat dipastikan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemantauan belum dapat digunakan sebelum setiap bibit ditemukan kembali",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Arus dapat dianggap penyebab kematian karena beberapa penanda ikut terbawa",
         },
       ],
     },
   },
-  stimulusKey: "mangrove-nursery",
+  stimulus: "mangrove-nursery",
 };
 
 export default item;

@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label terbukti menjadi satu-satunya penyebab nilai yang lebih tinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap relawan mengalami peningkatan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Nilai awal dan pembanding sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji tersebut menetapkan hasil jangka panjang untuk seluruh pembibitan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nilai bibit yang sampai tanpa dialihkan pada hari uji melebihi nilai awal dan pembanding.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

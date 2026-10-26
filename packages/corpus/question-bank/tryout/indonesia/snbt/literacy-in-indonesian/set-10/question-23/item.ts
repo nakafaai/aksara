@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Permainan menjadi adil karena semua peserta akhirnya melakukan peran yang sama melalui jalur berbeda.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perbaikan muncul melalui siklus mendengar, mengubah, mencoba, dan mencatat lagi, sehingga satu keberhasilan tidak menutup evaluasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Catatan meja akhir menunjukkan perubahan pertama gagal dan permainan seharusnya dikembalikan ke rancangan awal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pilihan tiga anak cukup untuk mewakili kebutuhan semua calon peserta taman bermain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menurunkan keranjang membuktikan seluruh hambatan fisik dapat diselesaikan dengan perubahan ketinggian.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

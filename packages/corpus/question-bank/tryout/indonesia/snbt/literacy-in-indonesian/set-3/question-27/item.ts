@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tindakan Mira membuat lampu beralih dari penanda panggung kosong menjadi undangan membaca, lalu permintaan sopir dan kedatangan penjual menguatkan perubahan itu.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

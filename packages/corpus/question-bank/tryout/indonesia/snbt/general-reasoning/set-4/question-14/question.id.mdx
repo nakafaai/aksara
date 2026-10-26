@@ -1,17 +1,16 @@
-export const metadata = {
-  title: "Soal 14",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-01-20",
-  dateModified: "2026-09-07",
-};
-
 Perhatikan grafik berikut.
 
-<Set4Question14PriceChart
-  description={<> Data harga Mie A, Mie B, dan Mie C dari <InlineMath math="2017" /> hingga <InlineMath math="2020" />. Harga dinyatakan dalam rupiah. </>}
-  seriesLabels={{ mieA: "Mie A", mieB: "Mie B", mieC: "Mie C" }}
+<Chart
   title="Grafik Harga Mie Instan"
-  yAxisLabel="Harga"
+  description={<> Data harga Mie A, Mie B, dan Mie C dari <InlineMath math="2017" /> hingga <InlineMath math="2020" />. Harga dinyatakan dalam rupiah. </>}
+  bars="apart"
+  categories={["2017", "2018", "2019", "2020"]}
+  series={[
+    { label: "Mie A", mark: "bar", values: [3500, 2500, 3350, 3000] },
+    { label: "Mie B", mark: "bar", values: [4500, 4250, 4000, 4500] },
+    { label: "Mie C", mark: "bar", values: [2250, 2500, 2800, 2650] },
+  ]}
+  valueLabel="Harga"
 />
 
 Persentase penurunan tertinggi dialami oleh...

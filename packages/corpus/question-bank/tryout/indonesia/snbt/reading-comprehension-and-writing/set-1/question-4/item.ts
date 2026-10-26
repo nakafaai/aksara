@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kalimat (2) mengandung kesalahan tanda baca.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kalimat (3) menggunakan konjungsi yang salah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pola *Sebagai negara kepulauan, maka ...* membuat kalimat (1) tidak efektif.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kalimat (4) memerlukan tambahan tanda koma.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kalimat (5) mengandung pemborosan kata.",
         },
       ],

@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Keaslian dapat mencakup jejak perubahan lintas masa, bukan tiruan sempurna atas satu tahap sejarah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cat tertua hanya ditemukan di beberapa ruang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keaslian mensyaratkan penghapusan seluruh jejak perawatan yang dilakukan setelah bangunan pertama kali digunakan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

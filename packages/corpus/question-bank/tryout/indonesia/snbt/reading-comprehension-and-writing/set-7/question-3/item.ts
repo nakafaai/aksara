@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data awal membuktikan bahwa pemesanan sehari sebelumnya menyebabkan perbedaan hasil.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji melalui pemesanan menu sehari sebelumnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim perlu mengubah beberapa unsur program sarapan sekaligus sebelum mengukur ulang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pola awal membenarkan pemesanan sehari sebelumnya secara permanen.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

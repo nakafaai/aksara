@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 6",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-08-30",
-  dateModified: "2026-09-19",
-};
-
 Zähle zunächst alle Wege von <InlineMath math="O=(0,0)" /> nach <InlineMath math="T=(6,4)" />. Ziehe danach die Wege durch <InlineMath math="A=(2,2)" /> oder <InlineMath math="B=(4,3)" /> ab. Dabei müssen wir die **doppelte Zählung korrigieren**, wenn ein Weg beide verbotenen Punkte berührt.
 
 <MathVisual
@@ -129,13 +122,13 @@ Zähle zunächst alle Wege von <InlineMath math="O=(0,0)" /> nach <InlineMath ma
   labels={{ o: <InlineMath math="O=(0,0)" />, a: <InlineMath math="A=(2,2)" />, b: <InlineMath math="B=(4,3)" />, t: <InlineMath math="T=(6,4)" /> }}
 />
 
-#### Alle Schrittfolgen zählen
+# Alle Schrittfolgen zählen
 
 Jeder Weg braucht sechs Schritte nach rechts und vier nach oben. Wähle aus zehn Schrittpositionen **vier für die Schritte nach oben**. Die übrigen sechs Positionen sind dann Schritte nach rechts.
 
 <BlockMath math="\binom{10}{4}=\frac{10\times9\times8\times7}{4\times3\times2\times1}=210" />
 
-#### Wege durch verbotene Punkte zählen
+# Wege durch verbotene Punkte zählen
 
 Für jeden Wegabschnitt zählen wir die Schrittfolgen auf dieselbe Weise. Dabei bezeichnet <InlineMath math="R" /> die Anzahl der Schritte nach rechts und <InlineMath math="U" /> die Anzahl der Schritte nach oben.
 
@@ -149,15 +142,15 @@ Für jeden Wegabschnitt zählen wir die Schrittfolgen auf dieselbe Weise. Dabei 
 
 Jeder Weg vor einem Zwischenpunkt lässt sich mit jedem Weg nach diesem Punkt kombinieren. Deshalb **multiplizieren** wir die Anzahlen aufeinanderfolgender Abschnitte.
 
-<MathContainer>
-  <BlockMath math="N_A=6\times15=90" />
-  <BlockMath math="N_B=35\times3=105" />
-  <BlockMath math="N_{A\cap B}=6\times3\times3=54" />
-</MathContainer>
+<BlockMath math="N_A=6\times15=90" />
+
+<BlockMath math="N_B=35\times3=105" />
+
+<BlockMath math="N_{A\cap B}=6\times3\times3=54" />
 
 Ein Weg durch beide Punkte muss zuerst <InlineMath math="A" /> erreichen. Von <InlineMath math="B" /> zurück nach <InlineMath math="A" /> bräuchten wir einen Schritt nach links oder unten.
 
-#### Die doppelte Subtraktion korrigieren
+# Die doppelte Subtraktion korrigieren
 
 Beim Abziehen von <InlineMath math="N_A" /> und <InlineMath math="N_B" /> werden dieselben <InlineMath math="54" /> verbotenen Wege zweimal entfernt. **Addiere diese Anzahl einmal zurück**, damit jeder verbotene Weg genau einmal abgezogen wird.
 

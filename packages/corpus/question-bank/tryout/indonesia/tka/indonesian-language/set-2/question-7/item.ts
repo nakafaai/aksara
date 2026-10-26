@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dara memilih rekaman lama sebagai pengganti siaran suara alumni",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bimo memindahkan kaset berjamur ke ruang siaran sebelum proses digitalisasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kepala sekolah membatalkan laboratorium bahasa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penjaga sekolah menanam pohon baru saat siaran",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Dara menyajikan rekaman lama beserta konteksnya",
         },
       ],
     },
   },
-  stimulusKey: "last-broadcast",
+  stimulus: "last-broadcast",
 };
 
 export default item;

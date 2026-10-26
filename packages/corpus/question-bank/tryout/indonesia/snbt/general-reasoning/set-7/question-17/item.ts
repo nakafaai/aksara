@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Laporan Mira tidak lulus pemeriksaan kelengkapan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengajuan Mira sudah disetujui.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penelaahan analis dilewati untuk laporan Mira.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap laporan dalam antrean akhir disetujui secara otomatis.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Laporan Mira masuk ke antrean keputusan akhir.",
         },
       ],

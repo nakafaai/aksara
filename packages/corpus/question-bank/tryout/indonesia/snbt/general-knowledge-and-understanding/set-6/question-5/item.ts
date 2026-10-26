@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian pedagang menilai kebersihan seharusnya dibiayai dari anggaran acara tanpa mengubah harga wadah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setelah akses loket diperbaiki, selisih tingkat pengembalian antarbagian area mengecil.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

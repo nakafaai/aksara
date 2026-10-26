@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada kelelawar yang dapat lepas landas dari tanah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kelelawar harus terus memakai tenaga otot agar cakarnya mencengkeram tempat bertengger.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap spesies kelelawar memiliki cara bertengger dan lepas landas yang sama persis.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Posisi bertengger terbalik menjamin bahwa tidak ada predator yang dapat menjangkau kelelawar.",
         },

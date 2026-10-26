@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "perlunya peringatan dini bencana guna pengurangan risiko.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "investasi pembangunan sebagai elemen mitigasi bencana.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perlunya pengawasan ketat terhadap kontraktor bangunan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "banyaknya bangunan yang berada di daerah rawan bencana.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "investasi pembangunan dalam kerentanan kemanusiaan.",
         },
       ],

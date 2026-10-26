@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pertumbuhan tetap di atas $$5\\%$$ pada setiap tahun yang disebutkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "PDB pada $$2018$$ sebesar $$\\text{Rp }14{.}837{,}4\\text{ triliun}$$ dan PDB per kapita sekitar $$\\text{Rp }56\\text{ juta}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertumbuhan terendah yang disebutkan adalah $$4{,}88\\%$$ pada $$2015$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17\\%$$",
         },
       ],

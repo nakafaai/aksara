@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1{,}5\\times10^{-9}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$6\\times10^{-9}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$1{,}5\\times10^{3}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1{,}5\\times10^{4}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1{,}5\\times10^{6}$$",
         },
       ],

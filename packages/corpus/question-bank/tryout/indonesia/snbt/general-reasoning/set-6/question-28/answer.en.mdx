@@ -1,19 +1,12 @@
-export const metadata = {
-  title: "Solution to Question 28",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
-};
-
 All <InlineMath math="8! = 40{,}320" /> arrangements are **equally likely**. Count those satisfying the conditions, then divide by this total.
 
-#### Grouping adjacent reports
+# Grouping adjacent reports
 
 Treat C and D as **one block**. Its internal order can be CD or DC, giving <InlineMath math="2" /> possibilities. Together with the other six reports, there are seven objects to arrange:
 
 <BlockMath math="N_0=2\times7!=10{,}080" />
 
-#### Removing forbidden arrangements
+# Removing forbidden arrangements
 
 Let <InlineMath math="N_A" /> count arrangements in which A and B are adjacent. Treat them as a second block. Both blocks have two internal orders, and there are now six objects:
 
@@ -31,7 +24,7 @@ Subtract both forbidden groups and **add their intersection back once**:
 
 <BlockMath math="\begin{aligned}N&amp;=N_0-N_A-N_G+N_{AG}\\&amp;=10{,}080-2{,}880\\&amp;\quad-2{,}880+960\\&amp;=5{,}280\end{aligned}" />
 
-#### Applying the order condition
+# Applying the order condition
 
 **Swapping E and F** preserves the adjacency conditions for A and B and for C and D, as well as G's position. Every arrangement with E before F therefore pairs with exactly one arrangement with F before E. Half satisfy the remaining condition:
 

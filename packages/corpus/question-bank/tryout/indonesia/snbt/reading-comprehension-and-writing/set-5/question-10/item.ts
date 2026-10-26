@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dengan ukuran kesepakatan yang diubah, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dengan ukuran kesepakatan yang sama, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang hanya sesi yang menghasilkan kesepakatan tertinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menerapkan contoh foto secara permanen tanpa pengujian lanjutan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menguji contoh foto hanya pada jenis pohon yang sudah terwakili.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

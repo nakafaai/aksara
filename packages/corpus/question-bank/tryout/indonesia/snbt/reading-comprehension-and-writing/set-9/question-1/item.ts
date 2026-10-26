@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Pengujian Label Lokasi pada Baki Bibit Mangrove",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Catatan Awal Sebelum Label Baki Diuji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengujian Beberapa Perubahan Serentak dalam Pembagian Bibit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tanggapan atas Perancangan Ulang Permanen Pembagian Bibit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evaluasi Menyeluruh atas Seluruh Kegiatan Pembibitan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

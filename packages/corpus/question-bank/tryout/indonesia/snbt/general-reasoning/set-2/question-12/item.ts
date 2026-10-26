@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Musim tanam petani atau musim rendeng menjadi tidak menentu serta petani kekurangan bibit dan pupuk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Realisasi pengadaan beras semakin tidak optimal dan pemerintah terpaksa melakukan impor beras",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bantuan beras Rastra beralih menjadi bantuan pangan nontunai melalui BPNT",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "HPP (harga pembelian pemerintah) menjadi semakin rendah dibandingkan dengan harga di pasar",
         },

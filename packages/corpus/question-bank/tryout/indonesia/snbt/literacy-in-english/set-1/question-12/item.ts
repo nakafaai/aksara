@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "UNESCO works only to protect famous cultural monuments.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "UNESCO mainly writes domestic laws that every government must adopt.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "UNESCO was created to manage the Sustainable Development Goals after 2015.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "UNESCO replaces national education and science institutions with one global system.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
         },

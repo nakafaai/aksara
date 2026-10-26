@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "information-quality",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cukup akurat untuk memilih benih karena berasal dari pengalaman penanam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "baru layak dijadikan petunjuk setelah catatan warga dikonfirmasi dengan satu uji sampel",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "paling tepat digunakan petugas untuk mengelompokkan benih, bukan oleh peminjam",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "berguna sebagai petunjuk, tetapi tidak menjamin hasil yang sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cukup untuk memperkirakan daya tumbuh tanpa melakukan uji sampel tambahan",
         },
       ],
     },
   },
-  stimulusKey: "seed-library",
+  stimulus: "seed-library",
 };
 
 export default item;

@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
     topic: "functions",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Titik puncaknya adalah $$(2,-1)$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Range fungsi adalah $$[-1,\\infty)$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Fungsi menurun pada $$(-\\infty,2]$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Fungsi satu-satu pada $$\\mathbb R$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Jika domain $$f$$ dibatasi menjadi $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },

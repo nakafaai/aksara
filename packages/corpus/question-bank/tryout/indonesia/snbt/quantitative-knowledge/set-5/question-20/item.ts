@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{2x + 12}{x^2 - 4}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$\\frac{x - 4}{x^2 - 4}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{x - 12}{x^2 - 4}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{-x + 12}{x^2 - 4}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{-2x}{x^2 - 4}$$",
         },
       ],

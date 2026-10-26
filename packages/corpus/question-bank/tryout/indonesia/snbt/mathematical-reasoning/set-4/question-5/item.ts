@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{27\\sqrt{6}}{2}\\text{ cm}^2$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$\\frac{27\\sqrt{5}}{2}\\text{ cm}^2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{27\\sqrt{3}}{2}\\text{ cm}^2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{27\\sqrt{2}}{2}\\text{ cm}^2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$27\\text{ cm}^2$$",
         },
       ],

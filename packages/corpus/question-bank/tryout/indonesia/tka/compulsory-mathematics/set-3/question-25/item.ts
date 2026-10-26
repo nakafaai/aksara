@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
     topic: "probability",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Peluang jumlah kedua dadu $$9$$ adalah $$\\frac19$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Peluang dadu merah lebih besar adalah $$\\frac5{12}$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Jika jumlahnya genap, peluang kedua dadu menunjukkan angka ganjil adalah $$\\frac12$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Kejadian dadu merah genap dan jumlah kedua dadu genap saling bebas.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Peluang sedikitnya satu dadu menunjukkan angka enam adalah $$\\frac13$$.",
         },

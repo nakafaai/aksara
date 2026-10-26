@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Nitrogen dan fosfor selalu merusak tanah dataran banjir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dataran banjir hanya dapat melepas bahan dan tidak pernah menahannya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Dataran banjir dapat menahan sedimen dan unsur hara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dataran banjir hanya menumpuk bahan dan tidak pernah kehilangannya akibat erosi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap banjir membuat semua tanah dataran banjir lebih subur",
         },
       ],

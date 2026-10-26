@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Use the same high-effort verification process for low-risk entertainment claims.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Graphs, quotations, and product claims all require evidence questions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Screenshots are original sources by definition.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Check each minor claim in full before continuing the assignment.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Prefer a polished website when the original source is difficult to locate.",
         },
       ],
     },
   },
-  stimulusKey: "source-checking",
+  stimulus: "source-checking",
 };
 
 export default item;

@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mira harus menunggu sepanjang hari di stasiun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mira sebaiknya berhenti mengharapkan kepulangan Seno agar dapat melanjutkan hidup.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Mira boleh berharap sambil tetap menjalani kegiatannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kursi kosong lebih penting daripada festival.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pak Damar ingin mengambil alih bagian biola Seno.",
         },
       ],
     },
   },
-  stimulusKey: "seat-seven",
+  stimulus: "seat-seven",
 };
 
 export default item;

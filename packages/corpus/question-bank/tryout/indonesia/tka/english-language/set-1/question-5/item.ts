@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
     topic: "text-fit",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "New volunteers read the notebook before changing a zone.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The center replaces the zone labels with one roof map because the notebook already records details.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The garden's arrangement becomes fixed after the four zones are first labeled.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Failed experiments are moved to a separate notebook before new volunteers use the zone.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Volunteers tie the tomato frames to the roof railing so the planters remain stable.",
         },
       ],
     },
   },
-  stimulusKey: "rooftop-garden",
+  stimulus: "rooftop-garden",
 };
 
 export default item;

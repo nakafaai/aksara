@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$0{,}88$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$0{,}96$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$0{,}92$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1{,}00$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1{,}04$$",
         },
       ],
     },
   },
-  stimulusKey: "water-tank",
+  stimulus: "water-tank",
 };
 
 export default item;

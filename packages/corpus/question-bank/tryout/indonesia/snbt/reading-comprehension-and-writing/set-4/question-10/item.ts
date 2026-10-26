@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dengan aturan ukur yang sama, tim merencanakan uji label foto yang lebih panjang serta pemisahan data peminjam baru dan lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dengan aturan ukur yang diubah, tim merencanakan uji label foto yang lebih panjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang hanya sesi label foto yang menghasilkan nilai tertinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menerapkan label foto secara permanen sebagai pengganti uji lebih panjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim merencanakan uji lebih panjang dengan menggabungkan data peminjam baru dan lama tanpa membedakannya.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

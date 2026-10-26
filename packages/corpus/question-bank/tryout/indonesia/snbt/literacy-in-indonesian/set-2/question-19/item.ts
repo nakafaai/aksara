@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Luas, terang, dan terbuka langsung ke jalan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mewah, berhias lukisan, dan memiliki banyak pintu",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sempit, tanpa pandangan ke luar, dan berjendela kecil berjeruji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Berada di bawah tanah dan hanya dapat dicapai melalui tangga",
         },
       ],

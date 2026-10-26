@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Everyone should take the largest possible dose of every vitamin.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Supplements always cure an infection after symptoms begin.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A nutrient deficiency has no effect on normal immune function.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Vitamin and mineral supplements prevent every common cold.",
         },
       ],

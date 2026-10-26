@@ -1,12 +1,53 @@
-export const metadata = {
-  title: "Soal 13",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-11-24",
-  dateModified: "2026-09-07",
-};
-
 Perhatikan ilustrasi berikut!
 
-<Set3Question13Illustration />
+<MathVisual
+  title="Tiga kotak berjajar"
+  description="Tiga kotak kosong berjajar dari kiri ke kanan."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 10 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "box-1",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 3, y: 0 },
+          { x: 3, y: 3 },
+          { x: 0, y: 3 },
+        ],
+      },
+      {
+        id: "box-2",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 3, y: 0 },
+          { x: 6, y: 0 },
+          { x: 6, y: 3 },
+          { x: 3, y: 3 },
+        ],
+      },
+      {
+        id: "box-3",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 6, y: 0 },
+          { x: 9, y: 0 },
+          { x: 9, y: 3 },
+          { x: 6, y: 3 },
+        ],
+      },
+    ],
+  }}
+  labels={{}}
+/>
 
 Terdapat <InlineMath math="3" /> kotak yang berjajar. Dua kotak dipilih secara acak dengan peluang yang sama untuk setiap pasangan, lalu masing-masing diisi satu kelereng. Berapa peluang kedua kotak yang terisi tidak bersebelahan?

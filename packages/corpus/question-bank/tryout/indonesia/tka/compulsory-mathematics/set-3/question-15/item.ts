@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$M(3,-2)=(0,2)$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$M$$ mempertahankan jarak.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$M$$ membalik orientasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$M^2(x,y)=(x+1,y+1)$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$M$$ memiliki sedikitnya satu titik tetap.",
         },
       ],

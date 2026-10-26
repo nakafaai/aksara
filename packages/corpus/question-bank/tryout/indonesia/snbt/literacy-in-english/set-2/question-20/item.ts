@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "A biography of the first clerical worker",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Examples of how workers and organizations can adapt tasks through training and social dialogue",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A list of jobs that will certainly disappear next year",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The history of electricity generation",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Instructions for building a language model from scratch",
         },
       ],

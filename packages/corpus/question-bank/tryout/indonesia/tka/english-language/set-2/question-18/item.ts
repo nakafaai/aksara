@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
     topic: "classification",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Two meeting places",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "An out-of-area contact",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Every medical detail shared with the out-of-area contact",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Unverified instructions for a medical device",
         },
       ],
     },
   },
-  stimulusKey: "emergency-plan",
+  stimulus: "emergency-plan",
 };
 
 export default item;

@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Tiga korban yang ditemukan di bagian hunian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Lukisan dinding mewah di atrium rumah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Prasasti pemilihan umum pada dinding bangunan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Oven besar dan wadah untuk mengaduk adonan",
         },
       ],

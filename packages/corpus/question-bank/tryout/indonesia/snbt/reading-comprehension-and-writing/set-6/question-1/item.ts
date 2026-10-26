@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Catatan Awal Sebelum Pengujian Panah Arah",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pengujian Panah Arah pada Rute Pameran Karya Siswa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengujian Beberapa Perubahan Serentak pada Pameran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tanggapan Pengunjung terhadap Perancangan Ulang Permanen Pameran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evaluasi Menyeluruh atas Semua Kegiatan Pameran",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

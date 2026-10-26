@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Semakin banyak konsumen memilih telur ayam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Harga kembali naik pada pekan berikutnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Beberapa jalur distribusi masih tersendat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Produksi telur turun sementara permintaan terus meningkat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Produksi dan pengiriman telur meningkat hingga cukup memenuhi tambahan permintaan",
         },

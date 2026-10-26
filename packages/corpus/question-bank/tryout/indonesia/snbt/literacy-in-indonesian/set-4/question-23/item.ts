@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perubahan terjadi ketika Nisa memecah hambatan menjadi tindakan yang dapat diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

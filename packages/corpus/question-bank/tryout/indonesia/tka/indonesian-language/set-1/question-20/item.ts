@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "lega karena ketekunan Mira akhirnya menjamin Seno akan pulang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kecewa karena pertunjukan tanpa dua pemain dianggap kehilangan makna",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "terharu karena Mira mengubah harapan akan kepulangan menjadi kekuatan untuk tetap tampil",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "marah karena Pak Damar mempertahankan kursi kosong ketika Seno tidak hadir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cemas karena Mira memilih berhenti berlatih setelah panggilan Seno",
         },
       ],
     },
   },
-  stimulusKey: "seat-seven",
+  stimulus: "seat-seven",
 };
 
 export default item;

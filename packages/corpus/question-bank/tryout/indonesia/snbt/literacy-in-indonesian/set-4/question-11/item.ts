@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data pembanding dan masukan pihak terdampak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

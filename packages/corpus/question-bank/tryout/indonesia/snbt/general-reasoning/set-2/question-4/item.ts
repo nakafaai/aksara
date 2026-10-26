@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Anak memperoleh sedikit lemak dan vitamin B6",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Anak tidak akan mendapatkan lemak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian anak yang makan pisang memperoleh sedikit lemak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pisang bukan satu-satunya makanan yang dapat memberikan vitamin B6",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian anak yang makan pisang memperoleh vitamin B6",
         },
       ],

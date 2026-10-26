@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$18$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nilai $$18$$ adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap. Jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

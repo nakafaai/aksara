@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "outline",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Recording visible details",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Linking a newspaper comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Recording a visitor's identification as the main label before finding another source",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Confirming the identity of every person in all forty-two photographs",
         },
       ],
     },
   },
-  stimulusKey: "archive-week",
+  stimulus: "archive-week",
 };
 
 export default item;

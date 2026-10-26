@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Peta baru membantu sebagian kelompok menemukan alat, tetapi hasil yang tidak merata dan batas peserta menunjukkan bahwa akses informasi belum sama dengan desain alat yang inklusif.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peta baru sudah membuat taman inklusif karena setiap kelompok memiliki setidaknya satu keluarga yang berhasil menemukan alat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan kecil pada kelompok sensorik membuktikan keluarga dalam kelompok itu tidak membutuhkan informasi kebisingan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keberhasilan kelompok tanpa kebutuhan akses dapat dipakai untuk menyimpulkan bahwa semua alat mudah digunakan oleh semua anak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena peta lama dan baru diuji pada jam sebanding, peta baru tidak lagi memerlukan pengujian bersama kelompok lain.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

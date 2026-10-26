@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pada keempat baris tersebut, produksi padi yang lebih tinggi berpasangan dengan impor beras yang lebih rendah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada $$1999$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Produksi beras tertinggi terjadi pada baris yang sama dengan pengadaan beras terendah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada $$2004$$.",
         },

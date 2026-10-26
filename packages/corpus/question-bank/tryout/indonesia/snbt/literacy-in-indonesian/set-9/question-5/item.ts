@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Cara Mengubah Selisih Desibel Menjadi Persentase Energi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Waktu Dengung sebagai Satu-satunya Ukuran Mutu Auditorium",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Panel Gabus yang Pasti Cocok untuk Setiap Ruang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengapa Pengukuran pada $$250\\,\\text{Hz}$$ Tidak Lagi Diperlukan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Menguji Pengaruh Panel Gabus terhadap Bunyi dan Waktu Dengung",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

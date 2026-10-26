@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena transkrip hanya diberikan kepada kelompok yang memperoleh hasil pemahaman terendah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena penghilangan transkrip diperlukan agar pengaruh earphone terlihat lebih besar",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "karena transkrip tetap dapat diakses semua kelompok, sedangkan pemberian earphone dibedakan dengan penamaan audio yang dibuat sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena transkrip dianggap hasil pengujian, bukan bagian dari kondisi yang dialami peserta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena semua unsur audio harus diubah sekaligus agar kedua kelompok benar-benar berbeda",
         },
       ],
     },
   },
-  stimulusKey: "audio-labels",
+  stimulus: "audio-labels",
 };
 
 export default item;

@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Dua Belas Jawaban sebagai Ukuran Tunggal Keberhasilan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Memberi Semua Langkah agar Dimas Tidak Pernah Salah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penyangga Belajar sebagai Bantuan yang Tidak Pernah Dikurangi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Dari Contoh ke Pemeriksaan Mandiri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kesalahan Pembagian yang Langsung Dibetulkan Sari",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

@@ -8,6 +8,8 @@ import {
 } from "effect";
 
 import type { ItemVersion } from "#contracts/assessment/item";
+import type { Paper } from "#contracts/assessment/paper";
+import type { ExamProfile } from "#contracts/assessment/profile";
 import type { StimulusVersion } from "#contracts/assessment/stimulus";
 import { Sha256MismatchFields } from "#contracts/errors";
 import { hashText } from "#contracts/hash/text";
@@ -18,6 +20,12 @@ const ITEM_DOMAIN = "nakafa.aksara.assessment-item";
 
 /** Separates the hash of a stimulus version from the hash of any other record. */
 const STIMULUS_DOMAIN = "nakafa.aksara.assessment-stimulus";
+
+/** Separates the hash of an exam profile from the hash of any other record. */
+const PROFILE_DOMAIN = "nakafa.aksara.assessment-profile";
+
+/** Separates the hash of a paper from the hash of any other record. */
+const PAPER_DOMAIN = "nakafa.aksara.assessment-paper";
 
 /**
  * Writes a value that is already known to be JSON as text, with the keys of
@@ -77,6 +85,22 @@ export const hashItemVersion = Effect.fn("AksaraContracts.hashItemVersion")(
 export const hashStimulusVersion = Effect.fn(
   "AksaraContracts.hashStimulusVersion"
 )((body: Omit<StimulusVersion, "hash">) => hashRecord(STIMULUS_DOMAIN, body));
+
+/**
+ * Computes the hash of an exam profile, which a paper names beside its
+ * identifier, so a paper follows one exact profile.
+ */
+export const hashExamProfile = Effect.fn("AksaraContracts.hashExamProfile")(
+  (profile: ExamProfile) => hashRecord(PROFILE_DOMAIN, profile)
+);
+
+/**
+ * Computes the hash of a paper, the name a frozen paper is known by: equal
+ * places, profile, and readings have one hash.
+ */
+export const hashPaper = Effect.fn("AksaraContracts.hashPaper")(
+  (paper: Paper) => hashRecord(PAPER_DOMAIN, paper)
+);
 
 /** Requires an item version to carry the hash of its own content. */
 export const verifyItemVersion = Effect.fn("AksaraContracts.verifyItemVersion")(

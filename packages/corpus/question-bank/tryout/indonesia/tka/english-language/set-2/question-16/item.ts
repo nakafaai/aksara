@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
     topic: "cause-effect",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Use the second meeting place because it is outside the immediate neighborhood.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Remain at the first meeting place because one safe point should replace every other route.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Choose any distant place because greater distance automatically makes it safe for everyone.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Discard the paper cards because they can be used only inside the neighborhood.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Wait for the out-of-area contact to select a new meeting place without consulting the household.",
         },
       ],
     },
   },
-  stimulusKey: "emergency-plan",
+  stimulus: "emergency-plan",
 };
 
 export default item;

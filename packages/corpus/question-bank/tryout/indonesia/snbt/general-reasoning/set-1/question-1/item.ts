@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Aksesi mangga telah ditanam di Cukurgondang sejak Januari $$1941$$, dan luas kebunnya $$11{,}87$$ hektare.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pekan Inovasi Mangga Nasional diselenggarakan di IP2TP Cukurgondang, Pasuruan, Jawa Timur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kementerian menyebut Cukurgondang sebagai kebun koleksi mangga terbesar kedua di dunia.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perkebunan rakyat di Pasuruan membudidayakan setiap aksesi dalam koleksi Cukurgondang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kegiatan tersebut menjadi sarana untuk menyebarluaskan penelitian dan teknologi mangga.",
         },

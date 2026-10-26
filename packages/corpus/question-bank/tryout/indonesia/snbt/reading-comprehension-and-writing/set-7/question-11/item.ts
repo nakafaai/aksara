@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektivitas kode pengembalian pada setiap gagang",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "analisis efektivitas kode pengembalian pada setiap gagang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisis efektifitas kode pengembalian pada setiap gagang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektifitas kode pengembalian pada setiap gagang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas kode pengembalian dalam kontek peminjaman payung",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

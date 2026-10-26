@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas $$P$$ pada angkatan yang sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
         },

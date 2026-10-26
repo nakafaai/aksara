@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola dapat memilih satu nama yang paling mudah dicari dan menghapus sebutan lainnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Foto tanpa nama pembuat beredar, sedangkan label kurator lebih sering dikutip daripada keterangan keluarga.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

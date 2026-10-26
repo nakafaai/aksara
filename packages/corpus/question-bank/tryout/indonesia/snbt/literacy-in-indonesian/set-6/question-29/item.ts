@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sudut pandang terbatas membuat pembaca menilai keputusan dari bukti yang Reno lihat, sambil menahan kepastian tentang niat supervisor dan penyebab garis pada lukisan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *sudut pandang terbatas* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menyamakan *sudut pandang terbatas* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penyebutan *sudut pandang terbatas* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

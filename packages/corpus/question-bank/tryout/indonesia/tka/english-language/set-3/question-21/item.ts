@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keep equipment in service whenever any repair remains technically possible.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Safety guards may be removed to reduce cost.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Assess repair cost without comparing the safety of available replacements.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Repeated failures across identical items provide evidence for choosing a better design.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treat avoiding a new purchase as sufficient evidence of a lower environmental cost.",
         },
       ],
     },
   },
-  stimulusKey: "repair-first",
+  stimulus: "repair-first",
 };
 
 export default item;

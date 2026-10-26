@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Indonesia memproduksi semua jenis plastik yang ditemukan di Seychelles",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Indonesia merupakan negara yang paling dekat dengan Seychelles",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua sampah di Seychelles memiliki label produk Indonesia",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Model memperkirakan Indonesia sebagai negara sumber tunggal terbesar untuk banyak sampah daratan yang lama mengapung",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
         },
       ],

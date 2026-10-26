@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji Aksesibilitas Papan Arah di Hutan Kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Papan Baru yang Berhasil Sama Besar bagi Semua Pengunjung",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Persentase Gabungan Selalu Cukup untuk Menilai Akses",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Peta Raba sebagai Bukti Akhir Jalur yang Aksesibel",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menilai Papan Arah tanpa Memisahkan Kelompok Pengguna",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

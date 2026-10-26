@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perbedaan sumber tidak harus dihapus; museum perlu menjelaskan mana yang terbukti, diingat, dan masih terbuka.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Museum akan menampilkan riwayat revisi label pameran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Museum dapat menetapkan waktu kegiatan secara pasti selama satu keterangan didukung oleh lebih banyak orang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

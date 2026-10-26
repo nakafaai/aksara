@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Tahapan pembuatan motif batik Lasem",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Biografi seluruh pedagang batik dalam arsip",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sejarah pendirian setiap museum di Rembang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perbandingan harga batik lama dan masa kini",
         },
       ],

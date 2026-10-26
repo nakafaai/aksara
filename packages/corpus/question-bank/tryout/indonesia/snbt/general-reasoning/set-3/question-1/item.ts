@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Peminat bola basket meningkat pada setiap jenjang kelas",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Seni tari memiliki prospek paling baik karena peminatnya selalu meningkat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Seni lukis memiliki prospek paling baik karena peminatnya selalu meningkat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
         },

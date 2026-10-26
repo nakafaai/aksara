@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
-  responses: {
+  versions: {
     en: {
-      categories: ["Repair benefit", "Replacement reason"],
-      kind: "category",
+      columns: ["Repair benefit", "Replacement reason"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "A worn wheel can be changed without replacing the whole device.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "An unapproved battery would be required.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Old equipment no longer meets accessibility needs.",
         },
       ],
     },
   },
-  stimulusKey: "repair-first",
+  stimulus: "repair-first",
 };
 
 export default item;

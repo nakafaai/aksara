@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "comparison",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer treated a plausible memory as enough to complete an uncertain label.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer stopped linking supporting evidence.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The writer learned that honest uncertainty can make records more useful.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer concluded that memories and objects are identical sources.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer refused to describe photographs without names.",
         },
       ],
     },
   },
-  stimulusKey: "archive-week",
+  stimulus: "archive-week",
 };
 
 export default item;

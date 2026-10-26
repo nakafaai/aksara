@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Seluruh individu merupakan anggota satu pasukan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penelitian hanya menganalisis satu kerangka manusia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "DNA membuktikan bahwa wabah menewaskan seluruh individu",
         },
       ],

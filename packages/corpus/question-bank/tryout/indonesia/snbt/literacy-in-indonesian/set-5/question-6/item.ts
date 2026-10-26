@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena jenis baterai dijaga sama, perilaku kedua susunan pada model dapat dianggap sama persis dengan perilaku instalasi rumah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bacaan hanya mendefinisikan rangkaian tertutup tanpa membandingkan susunan komponen atau membahas perilaku lampu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbandingan seri dan paralel sudah cukup menjelaskan keselamatan instalasi rumah, sedangkan batas tegangan hanya memengaruhi terang lampu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena tidak meniru instalasi rumah, model tersebut tidak dapat dipakai untuk menjelaskan hubungan susunan komponen dan perilaku lampu.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rangkaian listrik dengan dua lampu menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

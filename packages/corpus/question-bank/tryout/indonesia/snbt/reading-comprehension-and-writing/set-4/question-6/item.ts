@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label foto terbukti menyebabkan kenaikan rata-rata alat yang dikembalikan dengan tepat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap peminjam mengalami peningkatan yang sama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rata-rata pengembalian yang tepat pada sesi uji melebihi rata-rata awal dan sesi pembanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Rata-rata awal dan rata-rata sesi pembanding sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uji singkat memastikan hasil jangka panjang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

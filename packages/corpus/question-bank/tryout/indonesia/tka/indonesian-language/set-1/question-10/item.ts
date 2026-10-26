@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Awalnya lampu mempertahankan ingatan tentang ayahnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Saat hujan, Raka menunggu penjaga pantai menemukan perahu tanpa memberi sinyal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pada akhir cerita, lampu menjadi alasan menjual dermaga.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada akhir cerita, kebiasaan pribadi berkembang menjadi kepedulian bersama.",
         },
       ],
     },
   },
-  stimulusKey: "harbor-lamp",
+  stimulus: "harbor-lamp",
 };
 
 export default item;

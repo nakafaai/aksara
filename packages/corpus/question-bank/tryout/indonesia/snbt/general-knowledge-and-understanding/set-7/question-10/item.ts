@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Inklusif berarti menyediakan cara yang layak agar beragam kelompok dapat dipertimbangkan, bukan menjamin semua tuntutan menang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masukan hanya layak dipertimbangkan jika disampaikan langsung secara lisan dalam pertemuan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

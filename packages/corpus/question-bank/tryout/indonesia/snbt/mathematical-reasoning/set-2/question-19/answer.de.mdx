@@ -1,17 +1,162 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 19",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2026-02-01",
-};
-
-#### Geometrische Analyse der Flugzeugbewegung
+# Geometrische Analyse der Flugzeugbewegung
 
 Da das Flugzeug in **gleichbleibender Höhe** direkt auf den Turm zufliegt, entspricht seine zurückgelegte Strecke der Abnahme des horizontalen Abstands. Mit der Trigonometrie am rechtwinkligen Dreieck bestimmen wir beide Abstände.
 
-<Set2Question19Graph
+<LineEquation
   title="Illustration der Flugzeugbewegung"
   description="Visualisierung der Position des Flugzeugs relativ zum ATC-Turm."
+  cameraPosition={[3.3, 2.1, 12]}
+  cameraTarget={[3.3, 2.1, 0]}
+  data={[
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4.5, y: 0, z: 0 },
+        { x: 7.7942286341, y: 0, z: 0 },
+      ],
+      color: "#4f46e5",
+      labels: [
+        {
+          text: <InlineMath math="A\\;(\\mathrm{ATC})" />,
+          at: 0,
+          offset: [-0.5, -0.5, 0],
+        },
+        {
+          text: <InlineMath math="D" />,
+          at: 1,
+          offset: [0, -0.5, 0],
+        },
+        {
+          text: <InlineMath math="B" />,
+          at: 2,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 4.5, y: 4.5, z: 0 },
+        { x: 7.7942286341, y: 4.5, z: 0 },
+      ],
+      color: "#059669",
+      labels: [
+        {
+          text: <InlineMath math="E" />,
+          at: 0,
+          offset: [0, 0.5, 0],
+        },
+        {
+          text: <InlineMath math="C" />,
+          at: 1,
+          offset: [0, 0.5, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 7.7942286341, y: 4.5, z: 0 },
+      ],
+      color: "#ea580c",
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4.5, y: 4.5, z: 0 },
+      ],
+      color: "#0d9488",
+    },
+    {
+      points: [
+        { x: 7.7942286341, y: 0, z: 0 },
+        { x: 7.7942286341, y: 4.5, z: 0 },
+      ],
+      color: "#4f46e5",
+      labels: [
+        {
+          text: <InlineMath math="3000\\,\\mathrm{m}" />,
+          at: 1,
+          offset: [-1.6, -2.25, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 4.5, y: 0, z: 0 },
+        { x: 4.5, y: 4.5, z: 0 },
+      ],
+      color: "#4f46e5",
+    },
+    {
+      points: [
+        { x: 2.25, y: 0, z: 0 },
+        { x: 2.2492289812, y: 0.0588981337, z: 0 },
+        { x: 2.2469164532, y: 0.1177559015, z: 0 },
+        { x: 2.2430640009, y: 0.1765329654, z: 0 },
+        { x: 2.2376742646, y: 0.2351890424, z: 0 },
+        { x: 2.2307509381, y: 0.2936839325, z: 0 },
+        { x: 2.2222987663, y: 0.3519775463, z: 0 },
+        { x: 2.212323542, y: 0.4100299324, z: 0 },
+        { x: 2.2008321017, y: 0.4678013043, z: 0 },
+        { x: 2.1878323209, y: 0.5252520687, z: 0 },
+        { x: 2.1733331092, y: 0.5823428515, z: 0 },
+        { x: 2.1573444035, y: 0.6390345256, z: 0 },
+        { x: 2.1398771617, y: 0.6952882373, z: 0 },
+        { x: 2.120943355, y: 0.7510654333, z: 0 },
+        { x: 2.1005559596, y: 0.8063278865, z: 0 },
+        { x: 2.0787289482, y: 0.8610377228, z: 0 },
+        { x: 2.0554772797, y: 0.9151574469, z: 0 },
+        { x: 2.0308168898, y: 0.9686499678, z: 0 },
+        { x: 2.0047646794, y: 1.0214786244, z: 0 },
+        { x: 1.9773385035, y: 1.0736072106, z: 0 },
+        { x: 1.9485571585, y: 1.125, z: 0 },
+      ],
+      color: "#7c3aed",
+      labels: [
+        {
+          text: <InlineMath math="30^\\circ" />,
+          at: 10,
+          offset: [0.5, 0, 0],
+        },
+      ],
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2.5980762114, y: 1.5, z: 0 },
+        { x: 2.5782192345, y: 1.5338792582, z: 0 },
+        { x: 2.5579204931, y: 1.5674956941, z: 0 },
+        { x: 2.5371834651, y: 1.6008435477, z: 0 },
+        { x: 2.5160117038, y: 1.633917105, z: 0 },
+        { x: 2.4944088369, y: 1.6667106991, z: 0 },
+        { x: 2.4723785659, y: 1.6992187108, z: 0 },
+        { x: 2.4499246655, y: 1.7314355701, z: 0 },
+        { x: 2.4270509831, y: 1.7633557569, z: 0 },
+        { x: 2.4037614381, y: 1.7949738017, z: 0 },
+        { x: 2.3800600209, y: 1.826284287, z: 0 },
+        { x: 2.3559507926, y: 1.8572818479, z: 0 },
+        { x: 2.3314378844, y: 1.8879611731, z: 0 },
+        { x: 2.3065254962, y: 1.9183170059, z: 0 },
+        { x: 2.2812178968, y: 1.948344145, z: 0 },
+        { x: 2.2555194224, y: 1.9780374453, z: 0 },
+        { x: 2.2294344764, y: 2.0073918191, z: 0 },
+        { x: 2.2029675283, y: 2.0364022366, z: 0 },
+        { x: 2.176123113, y: 2.0650637271, z: 0 },
+        { x: 2.1489058303, y: 2.0933713795, z: 0 },
+        { x: 2.1213203436, y: 2.1213203436, z: 0 },
+      ],
+      color: "#7c3aed",
+      labels: [
+        {
+          text: <InlineMath math="15^\\circ" />,
+          at: 10,
+          offset: [0.5, 0.3, 0],
+        },
+      ],
+      showPoints: false,
+    },
+  ]}
+  showZAxis={false}
 />
 
 Gegeben:
@@ -22,7 +167,7 @@ Gegeben:
 
 Das Flugzeug bewegt sich auf den Turm zu, da der Höhenwinkel von <InlineMath math="30^\circ" /> auf <InlineMath math="45^\circ" /> zunimmt. Wir müssen den horizontalen Abstand des Flugzeugs vom Turm an beiden Positionen ermitteln.
 
-#### Berechnung horizontaler Entfernungen
+# Berechnung horizontaler Entfernungen
 
 Der Tangens ist das **Verhältnis von Gegenkathete zu Ankathete**. Die Gegenkathete ist hier die relative Höhe <InlineMath math="h" />, die Ankathete der horizontale Abstand <InlineMath math="x" />.
 
@@ -36,7 +181,7 @@ Endgültige Distanz (<InlineMath math="x_2" />) wenn <InlineMath math="\theta_2 
 
 <BlockMath math="\begin{aligned}x_2&=\frac{3000}{\tan45^\circ} \\ &=\frac{3000}{1} \\ &=3000\text{ m}\end{aligned}" />
 
-#### Flugzeuggeschwindigkeit berechnen
+# Flugzeuggeschwindigkeit berechnen
 
 Die vom Flugzeug zurückgelegte Strecke (<InlineMath math="\Delta x" />) ist die **Differenz zwischen der anfänglichen und der endgültigen horizontalen Distanz**:
 
@@ -44,10 +189,10 @@ Die vom Flugzeug zurückgelegte Strecke (<InlineMath math="\Delta x" />) ist die
 
 Geschwindigkeit (<InlineMath math="v" />) ist definiert als zurückgelegte Strecke geteilt durch Zeit:
 
-<MathContainer>
-  <BlockMath math="v = \frac{\Delta x}{t}" />
-  <BlockMath math="v = \frac{3000(\sqrt{3} - 1)}{30}" />
-  <BlockMath math="v = 100(\sqrt{3} - 1)\text{ m/s}" />
-</MathContainer>
+<BlockMath math="v = \frac{\Delta x}{t}" />
+
+<BlockMath math="v = \frac{3000(\sqrt{3} - 1)}{30}" />
+
+<BlockMath math="v = 100(\sqrt{3} - 1)\text{ m/s}" />
 
 Somit beträgt die geschätzte Geschwindigkeit des Flugzeugs <InlineMath math="100(\sqrt{3} - 1)\text{ m/s}" />.

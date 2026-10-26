@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Berdasarkan data, sebuah simpulan terbatas tentang uji di studio rekaman sekolah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim yang berdasarkan data menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena tim menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Berdasarkan data, tim menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Berdasarkan data, menarik tentang uji di studio rekaman sekolah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Migration immediately strengthens every bird's immunity.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Bird migration provides direct medical advice for humans.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Greater MHC-I diversity can have benefits but never costs.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "All songbird lineages originated in the Palaearctic.",
         },
       ],

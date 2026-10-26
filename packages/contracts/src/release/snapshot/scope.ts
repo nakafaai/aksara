@@ -5,9 +5,9 @@ import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
 
 /** Fixed structured families selected by the one global release pointer. */
 export const ContentSnapshotKindSchema = Schema.Literals([
+  "assessment",
   "program",
   "quran",
-  "tryout",
 ]);
 export type ContentSnapshotKind = typeof ContentSnapshotKindSchema.Type;
 

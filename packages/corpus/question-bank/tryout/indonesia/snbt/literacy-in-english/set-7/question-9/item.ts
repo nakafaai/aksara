@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defining *actionable information* proves that the alert will work equally well during a real flood.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes the measured comparison and consultation unnecessary.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term applies to any detailed flood description, even when no next action is stated.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains why the safe route is essential: the message must tell households what to do and why the stated flood depth makes that action necessary.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition shows that naming the street alone is enough, even if the alert omits the safe route.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

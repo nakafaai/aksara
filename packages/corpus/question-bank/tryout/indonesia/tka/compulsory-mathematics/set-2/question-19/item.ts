@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Luas minimum yang mungkin adalah $$78{,}21$$ cm².",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Luas maksimum yang mungkin adalah $$81{,}81$$ cm².",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Keliling berada di antara $$35{,}6$$ cm dan $$36{,}4$$ cm.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Galat luas absolut terbesar adalah $$1{,}8$$ cm².",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Galat luas relatif terbesar melebihi $$2{,}2\\%$$.",
         },
       ],

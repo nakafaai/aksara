@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "sejarah papeda di Indonesia bagian timur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "tata cara mengekstraksi pati dari batang sagu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "tujuh subsektor dalam Sensus Pertanian Indonesia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "harga ekspor pati sagu Indonesia.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
         },

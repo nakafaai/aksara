@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Paket itu menggunakan cara penyegelan yang berbeda dari Kelompok A.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Paket itu memiliki semua ciri yang sama dengan paket dalam Kelompok A.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Paket itu memiliki nomor seri yang sama dengan paket dalam Kelompok A.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Paket itu menggunakan cara penyegelan yang sama dengan paket dalam Kelompok A.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Paket itu telah melalui pemeriksaan yang sama dengan paket dalam Kelompok A.",
         },

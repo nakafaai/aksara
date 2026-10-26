@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "cause-effect",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The container will stay cooler because a dark surface reflects more sunlight.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The rain gauge will become less accurate because the container color has changed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The tomato frames will be more likely to pull loose from their heavy planters.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The stored water will probably warm more quickly, repeating the condition linked to the wilted lettuce.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The mesh will stop keeping leaves and insects out of the water.",
         },
       ],
     },
   },
-  stimulusKey: "rooftop-garden",
+  stimulus: "rooftop-garden",
 };
 
 export default item;

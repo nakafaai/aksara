@@ -24,10 +24,14 @@ import { hasSameStructure } from "#contracts/assessment/structure";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentLanguageSchema } from "#contracts/locale";
 
-/** The editorial facts that place an item in a blueprint. */
+/**
+ * The editorial facts that place an item in the blueprint of its exam: its
+ * cognitive level, its content domain, and its topic, the three dimensions of
+ * the official TKA framework.
+ */
 export const ItemBlueprintSchema = Schema.Struct({
   cognitiveLevel: KebabKeySchema,
-  competency: KebabKeySchema,
+  contentDomain: KebabKeySchema,
   topic: KebabKeySchema,
 });
 

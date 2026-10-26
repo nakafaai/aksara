@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Peminjaman, Percakapan, dan Celah Arsip Klub Baca",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengutamakan Sumber Terbaru dalam Kajian kontekstualisasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

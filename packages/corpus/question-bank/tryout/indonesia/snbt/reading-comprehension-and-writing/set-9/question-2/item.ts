@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "menolak seluruh program sebelum mencobanya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menunggu petugas mengubah tujuan program",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "tidak mengetahui hasil akhir yang diinginkan pengelola",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "belum yakin tindakan yang harus dilakukan setelah tahap saat ini",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "memilih langkah berbeda untuk menguji hipotesis",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

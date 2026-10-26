@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition of *selectivity* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes *selectivity* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition broadens *selectivity* from this short investigation to every similar system under any condition.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *selectivity* names the report's limitation rather than the concept represented by the measurements.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition distinguishes collecting the target fragments from simply trapping everything, while the single-material model leaves real-world selectivity untested.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

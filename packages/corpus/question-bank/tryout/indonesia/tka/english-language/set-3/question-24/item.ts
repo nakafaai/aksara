@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To make repair the default even when safety or accessibility evidence is incomplete",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To treat repair cost as the deciding factor before assessing safety",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To present repair as generally cheaper without requiring a documented assessment",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To keep unsupported equipment in service",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To argue for a documented repair check that still permits justified replacement",
         },
       ],
     },
   },
-  stimulusKey: "repair-first",
+  stimulus: "repair-first",
 };
 
 export default item;

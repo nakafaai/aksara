@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "sesi ketika rak hanya memakai kode huruf lama sebagai acuan bagi sesi uji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sesi ketika hasil akhir diumumkan kepada peminjam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sesi pertama sebelum pencatatan nilai awal dimulai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sesi ketika dua perubahan diuji sekaligus",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sesi tanpa kegiatan agar petugas dapat beristirahat",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

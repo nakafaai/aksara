@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Rafi diam-diam menulis banyak not baru",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "diam diisi oleh perhatian dan kesediaan menunggu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penonton sudah memenuhi ruang konser",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ayu tidak lagi memainkan cello",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pelatih mengubah susunan partitur agar jeda tidak lagi muncul pada bagian cello",
         },
       ],
     },
   },
-  stimulusKey: "empty-measure",
+  stimulus: "empty-measure",
 };
 
 export default item;

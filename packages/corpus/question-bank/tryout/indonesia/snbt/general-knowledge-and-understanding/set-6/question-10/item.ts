@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setelah jumlah dan jam loket disamakan, tingkat pengembalian tetap tinggi di seluruh area.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengunjung di satu pintu menunggu lebih lama karena pengembalian deposit diperiksa satu per satu, sedangkan jumlah sampah dicatat dengan cara yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengurangan sampah ternyata berasal dari larangan membawa wadah sekali pakai yang berlaku bersamaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

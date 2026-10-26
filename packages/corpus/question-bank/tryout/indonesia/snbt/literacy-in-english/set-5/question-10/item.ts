@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing date labels for cautious pantry stock rotation",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Stock rotation as the main measure in a service trial",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "From a short comparison to a permanent service change",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Consultation without comparable outcome measures",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A local service trial with no follow-up decision",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

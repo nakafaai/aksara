@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A responsible budget should remain unchanged until every uncertain price becomes final.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Deleting one optional item solved the problem independently of the labels, scenarios, and confirmation dates.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The budget became more useful when uncertainty was recorded, linked to consequences, and assigned a next action.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uncertain figures are safest when they remain inside one balanced total until the planning team can present a final answer.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A contingency is useful mainly because it postpones every unresolved choice until after the event.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

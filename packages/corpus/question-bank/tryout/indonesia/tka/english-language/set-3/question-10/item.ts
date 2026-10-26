@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
     topic: "reader-response",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Disappointment because the archive left several names unresolved",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Concern that stable identification numbers may separate photographs from personal memory",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Anger because the visitor's memory was treated as an object label",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Appreciation for careful records that show both evidence and limits",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Boredom because the week's work refined metadata instead of adding photographs",
         },
       ],
     },
   },
-  stimulusKey: "archive-week",
+  stimulus: "archive-week",
 };
 
 export default item;

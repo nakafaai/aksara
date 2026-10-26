@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Peta Baru yang Membuat Semua Alat Inklusif",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji Peta Akses di Taman Bermain",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Satu Ikon Tenang untuk Semua Kebutuhan Sensorik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menggabungkan Hasil Semua Keluarga dalam Satu Angka",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kecepatan Menemukan Alat sebagai Bukti Akhir Inklusi",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

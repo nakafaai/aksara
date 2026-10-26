@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Harga gabah, GKP (gabah kering panen), di tingkat petani terus mengalami penurunan dari tahun ke tahun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemerintah terpaksa menaikkan harga pembelian gabah petani dan memberikan bantuan pada petani",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pihak terkait harus merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ tentang Penyaluran Bantuan Sosial secara Nontunai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Transaksi penjualan gabah di $$30$$ provinsi selama April $$2019$$ turun $$5{,}37\\%$$ sangat kontras dengan kenaikan harga kebutuhan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
         },

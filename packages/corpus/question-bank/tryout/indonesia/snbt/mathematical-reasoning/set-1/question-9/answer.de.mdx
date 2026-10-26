@@ -1,13 +1,6 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 9",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-11-23",
-  dateModified: "2026-09-12",
-};
-
 Gesucht sind Werte von <InlineMath math="x" />, bei denen **Länge, Breite und Höhe alle positiv** sind. Eine Kantenlänge null würde den Quader abflachen. Negative Längen sind keine möglichen Kantenmaße.
 
-#### Quadermaße ermitteln
+# Quadermaße ermitteln
 
 Leite die Länge aus **dem Grundumfang** her, ohne ein Ergebnis aus einer anderen Aufgabe vorauszusetzen. Alle folgenden Maße sind in Zentimetern angegeben.
 
@@ -21,39 +14,43 @@ p&=3x-l \\
 - Breite (<InlineMath math="l" />) ist <InlineMath math="4x - 5" />
 - Höhe (<InlineMath math="t" />) ist <InlineMath math="5 - \frac{1}{3}x" />
 
-#### Positive Dimensionsbedingungen
+# Positive Dimensionsbedingungen
 
 Damit der Quader ein Volumen ungleich null hat, muss **jedes Kantenmaß positiv** sein (<InlineMath math=">0" />).
 
 **Bedingung 1: <InlineMath math="p > 0" />**
 
-<MathContainer>
-  <BlockMath math="p > 0" />
-  <BlockMath math="5 - x > 0" />
-  <BlockMath math="5 > x" />
-  <BlockMath math="x < 5" />
-</MathContainer>
+<BlockMath math="p > 0" />
+
+<BlockMath math="5 - x > 0" />
+
+<BlockMath math="5 > x" />
+
+<BlockMath math="x < 5" />
 
 **Bedingung 2: <InlineMath math="l > 0" />**
 
-<MathContainer>
-  <BlockMath math="l > 0" />
-  <BlockMath math="4x - 5 > 0" />
-  <BlockMath math="4x > 5" />
-  <BlockMath math="x > \frac{5}{4}" />
-</MathContainer>
+<BlockMath math="l > 0" />
+
+<BlockMath math="4x - 5 > 0" />
+
+<BlockMath math="4x > 5" />
+
+<BlockMath math="x > \frac{5}{4}" />
 
 **Bedingung 3: <InlineMath math="t > 0" />**
 
-<MathContainer>
-  <BlockMath math="t > 0" />
-  <BlockMath math="5 - \frac{1}{3}x > 0" />
-  <BlockMath math="5 > \frac{1}{3}x" />
-  <BlockMath math="15 > x" />
-  <BlockMath math="x < 15" />
-</MathContainer>
+<BlockMath math="t > 0" />
 
-#### Schnittmenge bestimmen
+<BlockMath math="5 - \frac{1}{3}x > 0" />
+
+<BlockMath math="5 > \frac{1}{3}x" />
+
+<BlockMath math="15 > x" />
+
+<BlockMath math="x < 15" />
+
+# Schnittmenge bestimmen
 
 Gesucht ist **die Schnittmenge aller drei Bedingungen**, sodass alle zugleich gelten:
 1. <InlineMath math="x < 5" />
@@ -62,33 +59,31 @@ Gesucht ist **die Schnittmenge aller drei Bedingungen**, sodass alle zugleich ge
 
 Von den Bedingungen 1 und 3 nehmen wir die strengere, nämlich <InlineMath math="x < 5" />. In Kombination mit der Bedingung 2 erhalten wir den Bereich:
 
-<ContentStack>
-  <BlockMath math="\frac{5}{4} < x < 5" />
+<BlockMath math="\frac{5}{4} < x < 5" />
 
-  <NumberLine
-    title={<>Lösungsmenge <InlineMath math="A" /></>}
-    description={<>Die gemeinsame Lösung aller Bedingungen für positive Abmessungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
-    segments={[
-      {
-        end: 1.25,
-        backgroundColor: "transparent"
-      },
-      {
-        start: 1.25,
-        end: 5,
-        label: <InlineMath math="A" />,
-        startLabel: <InlineMath math="\frac{5}{4}" />,
-        endLabel: <InlineMath math="5" />,
-        startInclusive: false,
-        endInclusive: false
-      },
-      {
-        start: 5,
-        backgroundColor: "transparent"
-      }
-    ]}
-  />
-</ContentStack>
+<NumberLine
+  title={<>Lösungsmenge <InlineMath math="A" /></>}
+  description={<>Die gemeinsame Lösung aller Bedingungen für positive Abmessungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
+  segments={[
+    {
+      end: 1.25,
+      backgroundColor: "transparent"
+    },
+    {
+      start: 1.25,
+      end: 5,
+      label: <InlineMath math="A" />,
+      startLabel: <InlineMath math="\frac{5}{4}" />,
+      endLabel: <InlineMath math="5" />,
+      startInclusive: false,
+      endInclusive: false
+    },
+    {
+      start: 5,
+      backgroundColor: "transparent"
+    }
+  ]}
+/>
 
 Die Menge <InlineMath math="A" /> ist also:
 

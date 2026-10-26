@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$47$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$55$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$63$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$67$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$75$$",
         },
       ],

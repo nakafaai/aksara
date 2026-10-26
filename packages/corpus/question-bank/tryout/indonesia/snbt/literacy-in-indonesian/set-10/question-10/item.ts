@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Keluaran Air sebagai Satu-satunya Ukuran Infiltrasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Campuran Organik yang Selalu Menghambat Air Masuk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kolom Pasir sebagai Salinan Semua Lahan Berpasir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengabaikan Air yang Tersimpan di Dalam Tanah",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Membedakan Infiltrasi, Perkolasi, dan Penyimpanan Air",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

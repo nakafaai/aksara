@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kebijakan yang proporsional menyesuaikan konsekuensi dengan lamanya keterlambatan dan dampaknya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterlambatan singkat dan panjang harus selalu dikenai konsekuensi yang sama agar aturan dianggap adil.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

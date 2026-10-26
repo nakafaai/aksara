@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Hamparan diselimuti kristal es.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mereka diselimuti kristal es.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Para pengunjung terpesona.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Terpesona kecantikan hamparan kristal es",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Diselimuti kristal es bening.",
         },
       ],

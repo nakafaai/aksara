@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
     topic: "synthesis",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Older packets contain instructions that later students should follow without checking context.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Check context before acting, and leave clear records for future participants.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The project should test the entire seed reserve at the first checkpoint.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Archive lists make experiments impossible.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Each class should finish its seed experiment without relying on earlier records.",
         },
       ],
     },
   },
-  stimulusKey: "future-seeds",
+  stimulus: "future-seeds",
 };
 
 export default item;

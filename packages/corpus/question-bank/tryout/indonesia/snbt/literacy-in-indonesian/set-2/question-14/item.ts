@@ -1,16 +1,16 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
-        { isCorrect: false, label: "Kamera jebak" },
-        { isCorrect: false, label: "Kompas" },
-        { isCorrect: false, label: "Radio genggam" },
-        { isCorrect: true, label: "GPS Collar" },
+        { correct: false, label: "Kamera jebak" },
+        { correct: false, label: "Kompas" },
+        { correct: false, label: "Radio genggam" },
+        { correct: true, label: "GPS Collar" },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penerima satelit",
         },
       ],

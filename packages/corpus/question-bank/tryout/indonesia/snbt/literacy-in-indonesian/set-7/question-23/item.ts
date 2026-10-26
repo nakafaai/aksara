@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Petunjuk yang memakai ikon selalu dapat berdiri sendiri tanpa arahan petugas atau penjelasan tambahan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Urutan layanan yang paling mudah dipahami harus diterapkan tanpa pengecualian agar pasien tidak bingung.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Alat bantu menjadi lebih aman ketika isinya diperiksa, batas penggunaannya dinyatakan, dan arahan manusia tetap tersedia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesalahan mengikuti panah terjadi semata-mata karena Arum tidak mampu membaca nomor meja yang tersedia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena kartu berhasil membantu nenek Arum, kartu itu sudah terbukti sesuai untuk seluruh pasien klinik.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

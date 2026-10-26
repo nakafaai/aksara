@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektivitas kartu urutan bahan di lokakarya kompos",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "analisis efektivitas kartu urutan bahan di lokakarya kompos",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisis efektifitas kartu urutan bahan di lokakarya kompos",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektifitas kartu urutan bahan di lokakarya kompos",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas kartu urutan bahan dalam kontek lokakarya kompos",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

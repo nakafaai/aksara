@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "tekanan terhadap pasar mobil Indonesia selama 2020.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "jumlah kendaraan yang dikirim pada April.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "titik terendah penjualan pada Mei.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pemulihan penjualan pada Desember.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "turunnya penjualan wholesales dari 2019 ke 2020.",
         },
       ],

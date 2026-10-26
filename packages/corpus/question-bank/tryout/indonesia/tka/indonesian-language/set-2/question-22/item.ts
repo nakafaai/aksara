@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Hasil", "Keterbatasan"],
-      kind: "category",
+      columns: ["Hasil", "Keterbatasan"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Rata-rata bagian akhir lebih tinggi pada sesi berjeda",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Semua peserta menjalani urutan kondisi yang sama",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Peserta berasal dari satu kelas",
         },
       ],
     },
   },
-  stimulusKey: "study-breaks",
+  stimulus: "study-breaks",
 };
 
 export default item;

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Angka itu merupakan kenaikan produksi jagung yang dilaporkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Angka itu merupakan bagian anggaran yang hanya digunakan untuk mengatur impor.",
         },

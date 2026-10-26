@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Ardian pasti mengikuti kedua ujian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Ardian pasti mengikuti Ujian Sekolah, tetapi keikutsertaannya dalam tes masuk bisa benar atau salah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ardian pasti tidak mengikuti kedua ujian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ardian pasti mengikuti tes masuk, tetapi keikutsertaannya dalam Ujian Sekolah belum diketahui.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Simpulan tidak berkaitan dengan informasi tentang Ardian.",
         },
       ],

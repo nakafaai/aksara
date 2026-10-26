@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata hasil uji lebih tinggi. Oleh karena itu, simpulannya tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata hasil uji lebih tinggi. Selain itu, simpulannya tetap dibatasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rata-rata hasil uji lebih tinggi. Namun, simpulannya tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata hasil uji lebih tinggi. Sebelumnya, simpulannya tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata hasil uji lebih tinggi. Akibatnya, simpulannya tetap dibatasi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

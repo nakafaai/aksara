@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Turning uncertain quotes into a workable concert budget",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Waiting for every price before making a decision",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A balanced total with no unanswered questions",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Why contingency means adding money without a reason",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Removing projection equipment from every youth concert",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

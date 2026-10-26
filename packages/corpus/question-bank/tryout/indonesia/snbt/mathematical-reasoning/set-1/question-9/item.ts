@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
 // Date: 2025-11-23
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\{x \\mid x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
         },
       ],

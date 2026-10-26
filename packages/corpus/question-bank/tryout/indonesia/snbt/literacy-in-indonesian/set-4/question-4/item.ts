@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *daya generalisasi* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *daya generalisasi* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut memperluas *daya generalisasi* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *daya generalisasi* menyatakan bahwa hasil simulasi tidak berguna sehingga pengujian pada kondisi lain tidak diperlukan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *daya generalisasi* menjelaskan alasan hasil pada simulasi ini belum dapat langsung diterapkan pada hari berawan atau kondisi angin yang berbeda.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

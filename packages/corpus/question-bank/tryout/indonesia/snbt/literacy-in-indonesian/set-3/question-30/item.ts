@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Poster Baru di Panggung Baca Terminal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sopir yang Menunggu Jadwal Berikutnya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ketika Lampu Baca Menjadi Undangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Panggung Baca Hanya untuk Anak-Anak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hujan Sore yang Menghentikan Kegiatan Membaca",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan memperpanjang uji panah sambil mengubah ukuran penyelesaian rute.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang hanya sesi dengan jumlah penyelesaian rute tertinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menerapkan panah permanen sebagai pengganti pengujian lanjutan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan memperpanjang uji tanpa mencatat titik pengunjung berbalik.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim akan memperpanjang uji panah, mencatat titik pengunjung berbalik, dan mempertahankan ukuran penyelesaian rute.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

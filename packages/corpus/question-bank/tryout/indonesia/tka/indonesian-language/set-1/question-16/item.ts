@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menunjukkan Mira mulai memandang stasiun sebagai tempat bekerja, bukan menunggu",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "menjadi tempat pertemuan antara menunggu dan melanjutkan perjalanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menjelaskan cara membuat biola",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menunjukkan festival diadakan di dalam kereta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "membuat Pak Damar meninggalkan pekerjaannya",
         },
       ],
     },
   },
-  stimulusKey: "seat-seven",
+  stimulus: "seat-seven",
 };
 
 export default item;

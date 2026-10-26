@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mahasiswa yang tidak meraih nilai ujian tinggi tidak mengatur waktunya dengan baik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mahasiswa yang mengatur waktunya dengan baik tidak meraih nilai ujian tinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap mahasiswa yang belajar secara konsisten pasti mengatur waktunya dengan baik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai ujian tinggi menjamin bahwa mahasiswa belajar secara konsisten.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengaturan waktu yang buruk menjamin mahasiswa meraih nilai ujian tinggi.",
         },

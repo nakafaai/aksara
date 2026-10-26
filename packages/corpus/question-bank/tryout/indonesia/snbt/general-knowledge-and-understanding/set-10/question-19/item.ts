@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola dapat menampilkan hanya dokumen yang mudah dibaca mesin agar hasil pencarian tampak bersih.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Surat ketikan lebih mudah ditemukan daripada catatan tangan dan ejaan lama sering tidak muncul.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

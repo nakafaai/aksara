@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Pembahasan Soal 6",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-08-30",
-  dateModified: "2026-09-19",
-};
-
 Kita hitung semua lintasan dari <InlineMath math="O=(0,0)" /> ke <InlineMath math="T=(6,4)" />, lalu keluarkan lintasan yang melewati <InlineMath math="A=(2,2)" /> atau <InlineMath math="B=(4,3)" />. Kuncinya adalah **mengoreksi penghitungan ganda** pada lintasan yang melewati keduanya.
 
 <MathVisual
@@ -129,13 +122,13 @@ Kita hitung semua lintasan dari <InlineMath math="O=(0,0)" /> ke <InlineMath mat
   labels={{ o: <InlineMath math="O=(0,0)" />, a: <InlineMath math="A=(2,2)" />, b: <InlineMath math="B=(4,3)" />, t: <InlineMath math="T=(6,4)" /> }}
 />
 
-#### Menghitung semua urutan langkah
+# Menghitung semua urutan langkah
 
 Setiap lintasan membutuhkan enam langkah ke kanan dan empat langkah ke atas. Dari sepuluh posisi langkah, **pilih empat posisi** untuk langkah ke atas. Enam posisi yang tersisa otomatis diisi langkah ke kanan.
 
 <BlockMath math="\binom{10}{4}=\frac{10\times9\times8\times7}{4\times3\times2\times1}=210" />
 
-#### Menghitung lintasan yang melewati titik terlarang
+# Menghitung lintasan yang melewati titik terlarang
 
 Untuk setiap bagian perjalanan, banyak urutan langkah ditentukan dengan cara yang sama. Huruf <InlineMath math="R" /> menyatakan banyak langkah ke kanan dan <InlineMath math="U" /> banyak langkah ke atas.
 
@@ -149,15 +142,15 @@ Untuk setiap bagian perjalanan, banyak urutan langkah ditentukan dengan cara yan
 
 Setiap pilihan lintasan sebelum titik persinggahan dapat dipasangkan dengan setiap pilihan setelah titik itu. Karena itu, banyak lintasan pada bagian-bagian perjalanan **dikalikan**.
 
-<MathContainer>
-  <BlockMath math="N_A=6\times15=90" />
-  <BlockMath math="N_B=35\times3=105" />
-  <BlockMath math="N_{A\cap B}=6\times3\times3=54" />
-</MathContainer>
+<BlockMath math="N_A=6\times15=90" />
+
+<BlockMath math="N_B=35\times3=105" />
+
+<BlockMath math="N_{A\cap B}=6\times3\times3=54" />
 
 Lintasan yang melewati kedua titik harus mencapai <InlineMath math="A" /> lebih dahulu. Dari <InlineMath math="B" /> kita tidak dapat kembali ke <InlineMath math="A" /> tanpa bergerak ke kiri atau ke bawah.
 
-#### Mengoreksi penghitungan ganda
+# Mengoreksi penghitungan ganda
 
 Saat mengurangi <InlineMath math="N_A" /> dan <InlineMath math="N_B" />, sebanyak <InlineMath math="54" /> lintasan terlarang dikurangi dua kali. **Tambahkan kembali satu kali** agar setiap lintasan terlarang hanya dikeluarkan sekali.
 

@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "menjual layangan kepada juri",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "menguji apakah perbaikan bekerja dalam angin nyata",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menyembunyikan bilah bambu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengganti lomba dengan pertunjukan musik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menunjukkan bahwa kertas baru merupakan faktor utama keberhasilan perbaikan",
         },
       ],
     },
   },
-  stimulusKey: "kite-frame",
+  stimulus: "kite-frame",
 };
 
 export default item;

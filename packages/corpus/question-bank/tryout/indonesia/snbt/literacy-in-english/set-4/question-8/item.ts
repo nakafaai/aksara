@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Because the trial reached $$29$$, compared with a baseline of $$17$$ and a comparison value of $$18$$, revised captions separating observation from interpretation should become permanent before the stated limitation is examined.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The rise to $$29$$, compared with $$17$$ at baseline and $$18$$ in the comparison, supports a limited extension of the revised-caption trial. The follow-up must include screen-reader users, who were absent from the first trial.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The limitation that the trial did not include visitors using screen readers affects delivery details, but it does not restrict who can be covered by the conclusion.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

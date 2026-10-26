@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The hottest air in town is found near the bus terminal.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Many people walk these routes at midday, mostly without shade.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Shop owners have offered to pay for watering the trees.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Shade made the biggest difference on paved surfaces.",
         },
       ],
     },
   },
-  stimulusKey: "shade-trees",
+  stimulus: "shade-trees",
 };
 
 export default item;

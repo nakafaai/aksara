@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Petroleum Jelly Menghentikan Seluruh Transpirasi Daun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan transpirasi penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang transpirasi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Permukaan Daun dan Kehilangan Air: Temuan Awal pada Daun Kacang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan transpirasi tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Penghentian tambang timah ilegal pasti akan merusak DAS.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena penambang ilegal beroperasi secara terbuka, banjir tidak mungkin terjadi pada musim hujan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kerusakan DAS dan sedimentasi tambang tidak mengancam masyarakat di sekitarnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sedimentasi tambang memperbaiki aliran sungai dan mencegah alurnya terganggu.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sedimentasi tambang dan alur yang terganggu dapat mengurangi kapasitas sungai serta meningkatkan risiko banjir pada musim hujan.",
         },

@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
     topic: "data",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$46$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$47$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$48{,}5$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$50$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$54$$",
         },
       ],

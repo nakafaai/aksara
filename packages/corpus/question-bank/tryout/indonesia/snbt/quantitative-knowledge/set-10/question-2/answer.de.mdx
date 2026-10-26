@@ -1,13 +1,63 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 2",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
-};
-
-<Set10Question2Graph
+<LineEquation
   title="Winkelanalyse"
   description="Beziehung zwischen sich schneidenden Winkeln."
+  cameraPosition={[0, 0, 13.5]}
+  data={[
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+    },
+    {
+      points: [
+        { x: -3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="x^\\circ" />,
+          at: 1,
+          offset: [-1.2, 0.4, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: -3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="y^\\circ" />,
+          at: 1,
+          offset: [1.2, 0.4, 0],
+          fontSize: 0.6,
+        },
+        {
+          text: <InlineMath math="z^\\circ" />,
+          at: 1,
+          offset: [0, -0.8, 0],
+          fontSize: 0.6,
+        },
+      ],
+    },
+  ]}
 />
 
 Der Winkel zwischen den beiden Diagonalen oberhalb des Schnittpunkts ist der **Scheitelwinkel** zu <InlineMath math="z^\circ" />. Scheitelwinkel sind gleich groß, daher misst auch der obere Winkel <InlineMath math="z^\circ" />.
@@ -18,10 +68,10 @@ Die drei benachbarten Winkel <InlineMath math="x^\circ" />, <InlineMath math="z^
 
 Wegen <InlineMath math="x^\circ = y^\circ" /> kann <InlineMath math="y" /> durch <InlineMath math="x" /> ersetzt werden:
 
-<MathContainer>
-  <BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
-</MathContainer>
+<BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
 
 Der Winkel <InlineMath math="z" /> misst somit <InlineMath math="180 - 2x" /> Grad.

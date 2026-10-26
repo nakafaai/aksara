@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Catatan pembangunan independen juga membedakan tanggal perpindahan kelas dan tanggal peresmian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Surat dari masa perpindahan yang baru ditemukan dan telah diverifikasi menunjukkan bahwa semua kelas pindah pada hari yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengunjung lebih jarang tertukar antara kedua tanggal ketika keterangan diletakkan tepat di bawah foto yang bersangkutan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

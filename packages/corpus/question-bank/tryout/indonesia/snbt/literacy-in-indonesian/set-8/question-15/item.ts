@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengubah Semua Catatan Sumur Menjadi Meter",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Formulir Baru yang Menyamakan Setiap Kedalaman Air",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pendapat Warga sebagai Pengganti Uji Keterbandingan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghapus Nilai Asli setelah Konversi Satuan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Perbandingan Catatan Sumur tanpa Menghapus Jejak Asli",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengujian Pengelompokan Bahan menurut Tahap Resep di Kelas Memasak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Catatan Awal Sebelum Susunan Bahan Diuji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengujian Beberapa Perubahan Serentak di Kelas Memasak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tanggapan terhadap Perancangan Ulang Permanen Kelas Memasak",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evaluasi Menyeluruh atas Semua Kegiatan Kelas Memasak",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

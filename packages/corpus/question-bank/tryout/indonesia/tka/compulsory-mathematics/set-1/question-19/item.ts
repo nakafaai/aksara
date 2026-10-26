@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Luas sisi $$pl$$ dikalikan $$6$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Luas sisi $$lt$$ dikalikan $$\\frac32$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Volume dikalikan $$3$$.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Setiap diagonal ruang dikalikan $$2$$.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Luas permukaan total selalu dikalikan $$3$$.",
         },
       ],

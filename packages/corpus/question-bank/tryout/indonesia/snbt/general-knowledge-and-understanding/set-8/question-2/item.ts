@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan diberi status sementara sampai pengulangan dengan sampel lebih luas selesai.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
         },

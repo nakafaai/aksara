@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Norma Jeane menolak tinggal bersama ibunya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
         },
       ],

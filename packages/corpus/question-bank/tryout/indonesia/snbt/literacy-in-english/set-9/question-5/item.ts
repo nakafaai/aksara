@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing mesh size in a filter for floating plastic",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring selectivity in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating selectivity as the sole explanation for the observed result",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A final rule derived from the first comparison of selectivity",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A limitation that makes another test of selectivity unnecessary",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

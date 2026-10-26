@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Cara Lila Menenangkan Seluruh Aula Pameran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jawaban Lila atas Percobaan Cahaya dan Bayangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Bunyi Pameran yang Tidak Pernah Berubah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu Kosong sebagai Tanda Gagal Bertanya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Satu Pertanyaan di Tengah Riuh Pameran",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
+  stimulus: "passage-6",
 };
 
 export default item;

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Lima Penanda yang Berhasil Difoto Laras",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Bingkai Kosong dalam Esai Laras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penyunting yang Menolak Karya Tidak Selesai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Rekaman Suara sebagai Pengganti Semua Foto",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cara Menghapus Batas Pengalaman dari Sebuah Esai",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

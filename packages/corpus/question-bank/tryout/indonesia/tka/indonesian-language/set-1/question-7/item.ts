@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "berani mengambil risiko tanpa memeriksa akibatnya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "tanggap memanfaatkan alat yang tersedia saat rencana pertama gagal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "setia mempertahankan kebiasaan walaupun keadaan sudah berubah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "bergantung pada orang dewasa untuk memulai pertolongan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "keras kepala menolak alat baru yang ditawarkan kampung",
         },
       ],
     },
   },
-  stimulusKey: "harbor-lamp",
+  stimulus: "harbor-lamp",
 };
 
 export default item;

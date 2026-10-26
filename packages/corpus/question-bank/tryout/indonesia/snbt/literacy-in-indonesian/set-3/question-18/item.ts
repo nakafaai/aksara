@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena surat dan foto sama-sama berkaitan dengan kegiatan baca, keduanya pasti dibuat untuk tujuan yang sama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Surat menjelaskan tujuan pendirian panggung, sedangkan foto menunjukkan penggunaannya di ruang tunggu. Keduanya mendukung keberadaan kegiatan baca, tetapi tidak menjelaskan alasan setiap penumpang membaca.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Foto penumpang membuktikan bahwa alasan panitia mendirikan panggung diterima oleh seluruh penumpang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Foto harus menjadi sumber utama karena merekam tindakan langsung, sedangkan surat hanya berisi rencana panitia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setelah informasi surat dan foto digabungkan, asal serta waktu pembuatan masing-masing sumber tidak lagi penting.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
+  stimulus: "passage-4",
 };
 
 export default item;

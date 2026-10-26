@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$x^2+\\frac1{x^2}=7$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$(x-\\frac1x)^2=5$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$x$$ merupakan akar $$t^2-3t+1=0$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$x$$ merupakan bilangan rasional.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$x^3+\\frac1{x^3}=18$$",
         },
       ],

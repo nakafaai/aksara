@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengganti Petugas Klinik dengan Kartu Bergambar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Empat Tahap yang Berlaku bagi Setiap Pasien",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dari Salah Meja ke Kartu yang Diperiksa: Literasi Kesehatan Arum",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Literasi Kesehatan sebagai Kemampuan Membaca Nomor Meja",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Panah Lantai sebagai Penyebab Tunggal Kesalahan Pasien",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

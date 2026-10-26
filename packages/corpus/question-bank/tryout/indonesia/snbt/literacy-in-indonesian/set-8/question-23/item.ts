@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap nilai menyimpang harus dimasukkan ke perhitungan agar peneliti tidak dituduh memilih data.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap nilai menyimpang harus dihapus setelah pengukuran ulang menghasilkan angka yang lebih berdekatan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Median tiga pengukuran selalu menjadi nilai benar sehingga ketelitian alat tidak perlu dilaporkan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nilai menyimpang perlu diselidiki, diberi status berdasarkan bukti, dan tetap disimpan agar keputusan memasukkan atau mengecualikannya dapat diaudit.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dua hasil yang berbeda sebaiknya langsung dirata-ratakan sebelum penyebab perbedaannya diperiksa.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

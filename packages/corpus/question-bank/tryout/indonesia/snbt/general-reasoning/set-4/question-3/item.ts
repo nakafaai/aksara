@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Sedikitnya satu hidangan tidak sekaligus asam dan pedas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sedikitnya satu hidangan tidak asam dan tidak pedas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap hidangan mengandung sayuran mentah",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sedikitnya satu hidangan tidak mengandung sayuran mentah serta terasa asam dan pedas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada hidangan yang mengandung sayuran mentah",
         },
       ],

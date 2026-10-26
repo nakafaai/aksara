@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Beras merupakan bahan pangan pokok bagi masyarakat Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pasokan beras di Indonesia sedang menipis",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengolahan beras mengundang pertanyaan di setiap dapur",
         },
       ],

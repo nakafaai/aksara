@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "peringkat nama berdasarkan seberapa sering dicari pengguna",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penyatuan semua sebutan menjadi satu nama baku",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perkiraan umur objek dari bentuk motifnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pengelompokan anonim tanpa mencatat pemberi keterangan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pencantuman pihak atau sumber yang bertanggung jawab atas suatu nama, karya, atau keterangan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu digunakan karena undangan umum terbukti gagal dalam setiap keadaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu diterapkan permanen dan undangan umum tidak dipakai lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu dan undangan umum digunakan tanpa kondisi pembanding terpisah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, setiap meja memuat kartu dengan dua pertanyaan khusus untuk demonstrasinya, sedangkan sesi pembanding memakai undangan umum sebelumnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan penggunaan kartu hanya dengan komentar tentang undangan umum.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

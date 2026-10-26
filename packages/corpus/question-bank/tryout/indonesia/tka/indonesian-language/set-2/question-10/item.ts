@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "kecewa karena Dara menghancurkan arsip",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cemas karena pemindahan kaset dapat memutus konteks dari ruang siaran lama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "marah karena laboratorium bahasa dibatalkan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "optimistis karena sebuah media dapat berubah bentuk tanpa kehilangan ingatannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ragu karena arsip digital belum menjamin konteks suara lama terpelihara",
         },
       ],
     },
   },
-  stimulusKey: "last-broadcast",
+  stimulus: "last-broadcast",
 };
 
 export default item;

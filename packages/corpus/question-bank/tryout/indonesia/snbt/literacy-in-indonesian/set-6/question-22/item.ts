@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mengurangi bantuan pada tiap soal memberi Dimas ruang mengambil alih penalaran, sehingga Sari beralih dari pemberi langkah menjadi perancang dukungan sementara.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
+  stimulus: "passage-5",
 };
 
 export default item;

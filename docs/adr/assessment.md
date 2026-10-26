@@ -130,7 +130,7 @@ interaction.
 ### Items, stimuli, and versions
 
 - An item family has a language-neutral identifier, its blueprint facts
-  (competency, topic, cognitive level), and an optional stimulus. An item
+  (content domain, topic, cognitive level), and an optional stimulus. An item
   version is one family in one content language (a canonical BCP 47 tag, see
   Widenings in 0.50.0): prompt, interactions, scoring overrides, the joint rule
   when its answers depend on each other, the stimulus version it was written

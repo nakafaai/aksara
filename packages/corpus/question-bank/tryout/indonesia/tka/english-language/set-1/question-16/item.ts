@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
     topic: "classification",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Choose a quiet period.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Check whether essential equipment uses water.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Start the irrigation once before the reading to verify that its timer works.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Break a wall to find the pipe.",
         },
       ],
     },
   },
-  stimulusKey: "leak-test",
+  stimulus: "leak-test",
 };
 
 export default item;

@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
     topic: "explicit-information",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The prints are sealed under fruit covers. White lights dry the paper while price cards hold it flat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The prints bridge the stone channels. Yellow edges protect them from customers' wet shoes.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The prints surround the blue drain circle. Nearby chairs stop water from reaching them.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The prints hang in the cooking row. Steam softens them while warm lamps prevent wind damage.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The prints are placed on vertical racks beneath deep awnings. A wall gap limits trapped dampness and clips resist wind.",
         },
       ],
     },
   },
-  stimulusKey: "rain-market",
+  stimulus: "rain-market",
 };
 
 export default item;

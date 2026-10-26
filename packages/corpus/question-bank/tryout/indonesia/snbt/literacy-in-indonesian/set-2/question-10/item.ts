@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Bagaimana cara mengambil buah ceri dengan pohon berduri?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa buah ceri rasanya enak sekali?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Enjin dan Ensi belum datang?",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Mengapa siput bisa berjalan di atas duri?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kenapa pohon ceri berduri?",
         },
       ],

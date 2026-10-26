@@ -1,23 +1,14 @@
-export const metadata = {
-  title: "Soal 9",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-01-26",
-};
-
 Berikut ini adalah data pengunjung dua fasilitas di SMA MMM pada bulan September pada minggu pertama dari hari Senin hingga Jumat.
 
-<Set7Question9VisitorChart
-  dayLabels={{
-    friday: "Jumat",
-    monday: "Senin",
-    thursday: "Kamis",
-    tuesday: "Selasa",
-    wednesday: "Rabu",
-  }}
-  description="Jumlah pengunjung Perpustakaan dan Laboratorium (Senin-Jumat)."
-  seriesLabels={{ laboratory: "Laboratorium", library: "Perpustakaan" }}
+<Chart
   title="Data Pengunjung Fasilitas SMA MMM"
-  yAxisLabel="Jumlah Pengunjung"
+  description="Jumlah pengunjung Perpustakaan dan Laboratorium (Senin-Jumat)."
+  categories={["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]}
+  series={[
+    { label: "Perpustakaan", mark: "line", values: [150, 135, 100, 140, 165] },
+    { label: "Laboratorium", mark: "line", values: [250, 210, 140, 170, 120] },
+  ]}
+  valueLabel="Jumlah Pengunjung"
 />
 
 Pada hari apa jumlah gabungan pengunjung kedua fasilitas mencapai nilai tertinggi kedua?

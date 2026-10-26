@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap produk herbal berizin edar terbukti dapat menyembuhkan penyakit.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Izin edar menjamin bahwa suatu produk herbal cocok untuk setiap orang dan setiap kondisi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Konsumen tidak perlu lagi memeriksa label setelah suatu produk herbal memperoleh izin edar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengawasan pemerintah berakhir begitu suatu produk herbal memperoleh izin edar.",
         },

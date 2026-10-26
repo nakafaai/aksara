@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan waktu transaksi dapat dipengaruhi jenis barang dan bukan hanya cara pembayaran.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setelah data dipisahkan, keunggulan waktu hampir hilang pada transaksi dengan banyak barang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

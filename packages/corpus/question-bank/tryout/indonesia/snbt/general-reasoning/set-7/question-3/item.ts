@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Sensor mengalami gangguan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Lampu peringatan menyala.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Residu tertinggal pada sensor.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pembersihan harian yang dijadwalkan dilewatkan.",
         },
       ],

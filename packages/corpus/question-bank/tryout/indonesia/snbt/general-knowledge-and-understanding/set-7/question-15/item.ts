@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "keduanya membandingkan dua jenis laboratorium",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "paragraf kedua berisi simpulan, paragraf ketiga berisi definisi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "keduanya menjelaskan alasan program dihentikan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "paragraf kedua memaparkan masalah yang membuat solusi pada paragraf ketiga kurang relevan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "paragraf kedua menyatakan masalah, paragraf ketiga menunjukkan dampak perbaikannya",
         },
       ],
     },
   },
-  stimulusKey: "seed-library",
+  stimulus: "seed-library",
 };
 
 export default item;

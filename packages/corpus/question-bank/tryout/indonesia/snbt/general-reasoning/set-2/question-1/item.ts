@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mahasiswa baru mencari perguruan tinggi swasta dengan fasilitas yang lengkap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kualitas dosen yang baik dapat meningkatkan banyaknya mahasiswa baru yang mendaftar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mahasiswa baru memilih perguruan tinggi swasta yang biayanya murah",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mahasiswa baru akan tetap memilih perguruan tinggi swasta yang baik meskipun biayanya mahal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perguruan tinggi yang baik memiliki dosen yang baik dan fasilitas yang memadai",
         },

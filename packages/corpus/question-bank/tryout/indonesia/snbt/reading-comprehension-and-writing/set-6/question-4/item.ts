@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dipilih agar penyelesaian rute tidak perlu diukur lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dipilih agar banyak unsur pameran dapat diubah sekaligus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dipilih karena semua nilai pembanding telah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Panah dipilih untuk membantu pengunjung mengikuti rute di lorong bercabang.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

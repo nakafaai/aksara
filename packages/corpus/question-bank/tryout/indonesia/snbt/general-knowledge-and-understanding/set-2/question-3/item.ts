@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Hanya bangunan sekolah yang memerlukan pengurangan risiko bencana karena infrastruktur lain sudah aman.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sistem peringatan dini dapat menggantikan perencanaan berbasis risiko dan penegakan aturan dalam pembangunan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Risiko bencana baru perlu diperhitungkan setelah investasi pembangunan selesai dijalankan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penguatan bangunan sudah cukup meskipun tanpa regulasi, pengawasan, atau latihan kesiapsiagaan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan agar bangunan lebih aman dan warga lebih siap menghadapi bencana.",
         },

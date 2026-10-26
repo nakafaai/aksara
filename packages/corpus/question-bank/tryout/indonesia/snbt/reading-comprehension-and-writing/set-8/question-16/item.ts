@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Pelapor barang hilang memberikan komentar singkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pelapor barang hilang memberikan komentar singkat yang tidak panjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pelapor barang hilang memberikan komentar singkat sebagai pelapor yang melaporkan barang hilang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pelapor barang hilang memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pelapor barang hilang memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

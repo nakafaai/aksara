@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Ia mula-mula menambah not pada birama kosong.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ia menahan diri agar Ayu menemukan tempo.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ia masih mengisi ruang melodi Ayu ketika merasa bagian klarinet terlalu singkat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ia menulis kata ‘dengarkan’ pada partitur.",
         },
       ],
     },
   },
-  stimulusKey: "empty-measure",
+  stimulus: "empty-measure",
 };
 
 export default item;

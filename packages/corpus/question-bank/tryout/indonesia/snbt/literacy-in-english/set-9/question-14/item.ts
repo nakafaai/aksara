@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *systems thinking* proves that the character's first estimate was correct before any accountable action was taken.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition reduces *systems thinking* to the recurring object, so the character's choice and development no longer matter.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains why Hana follows the bag across steps: the visible error at the bin may be produced by an earlier connection in the process.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *systems thinking* describes the final outcome as certain, even though the narrative presents a gradual change.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
+  stimulus: "passage-3",
 };
 
 export default item;

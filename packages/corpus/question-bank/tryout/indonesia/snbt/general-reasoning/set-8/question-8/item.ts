@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Paket M dikirim ke penyimpanan berpendingin.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Paket berlabel merah dikirim ke pemeriksaan manual.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Paket M tidak dikirim ke pemeriksaan manual.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada paket yang dikirim ke kedua jalur.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
         },

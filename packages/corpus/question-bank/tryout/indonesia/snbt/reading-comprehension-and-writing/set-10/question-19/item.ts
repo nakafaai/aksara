@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim merubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim mengrubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim hanya mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim mengubah terhadap satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
+  stimulus: "passage-2",
 };
 
 export default item;

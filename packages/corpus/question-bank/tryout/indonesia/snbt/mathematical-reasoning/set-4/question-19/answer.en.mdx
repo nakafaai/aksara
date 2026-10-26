@@ -1,11 +1,4 @@
-export const metadata = {
-  title: "Solution Question 19",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2026-02-08",
-};
-
-<Set4Question19Graph
+<LineEquation
   title="Ship Position Illustration"
   description={
     <>
@@ -13,14 +6,106 @@ export const metadata = {
       <InlineMath math="C" /> with a <InlineMath math="60^\circ" /> angle.
     </>
   }
+  cameraPosition={[1, 2.3, 8.4]}
+  cameraTarget={[1, 2.3, 0]}
+  data={[
+    {
+      points: [
+        { x: 2.7777777778, y: 0, z: 0 },
+        { x: 2.7777777778, y: 2.4056261216, z: 0 },
+        { x: 2.7777777778, y: 4.8112522432, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 0,
+          offset: [0.25, -0.35, 0],
+        },
+        {
+          text: <InlineMath math="B" />,
+          at: 2,
+          offset: [0.25, 0.25, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2.7777777778, y: 0, z: 0 },
+        { x: 1.3888888889, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="C" />,
+          at: 2,
+          offset: [-0.2, -0.35, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 2.7777777778, y: 4.8112522432, z: 0 },
+        { x: 1.3888888889, y: 2.4056261216, z: 0 },
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="BC = 500\\,\\text{m}" />,
+          at: 1,
+          offset: [-1.15, 0.55, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 1.3888888889, y: 0, z: 0 },
+        { x: 1.3869854649, y: 0.0726888281, z: 0 },
+        { x: 1.3812804102, y: 0.1451784212, z: 0 },
+        { x: 1.3717893619, y: 0.2172700903, z: 0 },
+        { x: 1.3585383344, y: 0.2887662372, z: 0 },
+        { x: 1.3415636476, y: 0.359470896, z: 0 },
+        { x: 1.3209118282, y: 0.42919027, z: 0 },
+        { x: 1.2966394812, y: 0.4977332633, z: 0 },
+        { x: 1.2688131356, y: 0.5649120043, z: 0 },
+        { x: 1.2375090614, y: 0.6305423607, z: 0 },
+        { x: 1.2028130608, y: 0.6944444444, z: 0 },
+        { x: 1.1648202333, y: 0.7564431042, z: 0 },
+        { x: 1.1236347144, y: 0.816368406, z: 0 },
+        { x: 1.0793693909, y: 0.8740560987, z: 0 },
+        { x: 1.0321455909, y: 0.9293480644, z: 0 },
+        { x: 0.9820927516, y: 0.9820927516, z: 0 },
+        { x: 0.9293480644, y: 1.0321455909, z: 0 },
+        { x: 0.8740560987, y: 1.0793693909, z: 0 },
+        { x: 0.816368406, y: 1.1236347144, z: 0 },
+        { x: 0.7564431042, y: 1.1648202333, z: 0 },
+        { x: 0.6944444444, y: 1.2028130608, z: 0 },
+      ],
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="60^\\circ" />,
+          at: 10,
+          offset: [0.4, 0.2, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
 />
 
 Triangle <InlineMath math="ABC" /> is right-angled at <InlineMath math="A" />, so <InlineMath math="BC" /> is the **hypotenuse**. The included angle at <InlineMath math="C" /> is <InlineMath math="60^\circ" />, so the sine ratio gives <InlineMath math="AB" /> directly.
 
-<MathContainer>
-  <BlockMath math="\sin 60^\circ = \frac{AB}{BC}" />
-  <BlockMath math="\frac{\sqrt{3}}{2} = \frac{AB}{500}" />
-  <BlockMath math="\begin{aligned}AB &=500\cdot\frac{\sqrt3}{2} \\ &=250\sqrt3\end{aligned}" />
-</MathContainer>
+<BlockMath math="\sin 60^\circ = \frac{AB}{BC}" />
+
+<BlockMath math="\frac{\sqrt{3}}{2} = \frac{AB}{500}" />
+
+<BlockMath math="\begin{aligned}AB &=500\cdot\frac{\sqrt3}{2} \\ &=250\sqrt3\end{aligned}" />
 
 Thus, the distance from ship <InlineMath math="A" /> to ship <InlineMath math="B" /> is <InlineMath math="250\sqrt{3}\text{ m}" />.

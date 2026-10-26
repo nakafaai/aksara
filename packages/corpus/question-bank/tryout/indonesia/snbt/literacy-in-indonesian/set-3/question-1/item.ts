@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

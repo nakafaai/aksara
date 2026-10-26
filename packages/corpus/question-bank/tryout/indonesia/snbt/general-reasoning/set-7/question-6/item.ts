@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lampu itu lebih tahan lama dan lebih mahal daripada lampu teras.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lampu itu kurang tahan lama, tetapi lebih mahal daripada lampu teras.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lampu itu lebih tahan lama, tetapi lebih murah daripada lampu teras.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lampu itu sama tahan lama dan sama mahalnya dengan lampu teras.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Lampu itu kurang tahan lama dan lebih murah daripada lampu teras.",
         },

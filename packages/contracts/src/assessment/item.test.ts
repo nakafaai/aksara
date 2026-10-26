@@ -80,7 +80,7 @@ describe("item versions of today's corpus", () => {
   });
 
   it("carries the blueprint facts of the family, and none when the corpus has none", () => {
-    expect(decodeStrict(ItemFamilySchema, FAMILY).blueprint?.competency).toBe(
+    expect(decodeStrict(ItemFamilySchema, FAMILY).blueprint?.contentDomain).toBe(
       "geometry-measurement"
     );
     expect(

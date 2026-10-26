@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Sesi Arin berlanjut tanpa dihentikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu akses Arin tetap aktif selama peninjauan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kartu akses Arin ditangguhkan sampai peninjauan selesai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu akses pengawas ditangguhkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mesin pemotong laser dikeluarkan secara permanen dari laboratorium.",
         },

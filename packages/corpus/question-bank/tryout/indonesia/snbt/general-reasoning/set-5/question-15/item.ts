@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Pertemuan berlangsung di Istana Negara",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bacaan membuktikan bahwa perang dagang secara permanen menyebabkan defisit perdagangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bacaan menyatakan dunia usaha dapat menghadapi tantangan mendatang tanpa pemerintah",
         },

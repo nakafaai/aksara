@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Peluang pertumbuhan ekonomi karena besarnya proporsi penduduk usia produktif",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Letak geografis Indonesia yang strategis",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Keunggulan produk pertanian Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Peningkatan produktivitas Indonesia",
         },
       ],

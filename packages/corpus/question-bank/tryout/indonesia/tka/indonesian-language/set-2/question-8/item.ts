@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Ruang radio akan dipakai sebagai laboratorium bahasa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua kaset lama langsung diputar sebelum kondisinya diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rekaman yang konteksnya belum jelas dipindahkan tanpa pencatatan awal.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Guru sejarah menawarkan penyimpanan kering.",
         },
       ],
     },
   },
-  stimulusKey: "last-broadcast",
+  stimulus: "last-broadcast",
 };
 
 export default item;

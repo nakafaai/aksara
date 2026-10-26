@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring enzyme concentration in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating the enzyme as the sole explanation for the observed result",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A final rule derived from the first enzyme trial",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing temperature and enzyme activity in a classroom model",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A limitation that makes another enzyme trial unnecessary",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

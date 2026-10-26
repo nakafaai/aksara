@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "zat gizi yang disediakan susu dan produk olahannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "setiap orang harus mengonsumsi produk susu dalam jumlah yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "laktase mengubah laktosa menjadi gas di usus besar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "produk susu fermentasi selalu bebas laktosa.",
         },
       ],

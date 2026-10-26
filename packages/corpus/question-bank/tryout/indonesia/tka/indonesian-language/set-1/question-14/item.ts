@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pohon kemungkinan merupakan penyebab utama karena lokasi di bawahnya paling sejuk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pengukuran suhu sekolah tidak dapat digunakan sama sekali",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "data awal berguna untuk keputusan praktis, tetapi belum cukup menjelaskan sebab",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ruang baca sebaiknya ditutup pada jam terpanas sampai pengukuran lebih lengkap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "bangku sebaiknya dipindahkan ke lokasi dengan suhu rata-rata terendah pada lima hari itu",
         },
       ],
     },
   },
-  stimulusKey: "heat-map",
+  stimulus: "heat-map",
 };
 
 export default item;

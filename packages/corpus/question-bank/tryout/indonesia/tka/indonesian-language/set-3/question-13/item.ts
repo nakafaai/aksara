@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "loanwords",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "perangkat lunak pada kartu siswa untuk mencatat botol",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "urutan acara OSIS untuk mengumumkan hasil survei",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "jadwal pengisian tangki setelah kegiatan olahraga",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "rangkaian kegiatan terencana yang menyediakan botol bagi siswa yang membutuhkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "daftar seluruh siswa yang wajib membawa botol sendiri",
         },
       ],
     },
   },
-  stimulusKey: "refill-station",
+  stimulus: "refill-station",
 };
 
 export default item;

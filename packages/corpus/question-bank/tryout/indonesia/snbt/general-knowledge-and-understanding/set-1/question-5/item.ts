@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "asal mula virus corona.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cacar merupakan penyakit yang berbahaya dibandingkan virus corona.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penyebab hilangnya orang Viking.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penyebab punahnya cacar purba.",
         },
       ],

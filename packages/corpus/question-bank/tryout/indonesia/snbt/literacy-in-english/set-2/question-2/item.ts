@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Water exercise can be helpful for some people with arthritis.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Water exercise may improve older adults' quality of life.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Swimming may improve mood for some people.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Swimming has health benefits and therefore carries no risks.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A balanced decision includes suitable safety measures.",
         },
       ],

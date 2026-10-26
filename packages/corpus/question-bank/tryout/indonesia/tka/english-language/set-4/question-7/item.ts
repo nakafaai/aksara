@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "explicit-information",
   },
-  responses: {
+  versions: {
     en: {
-      categories: ["True", "False"],
-      kind: "category",
+      columns: ["True", "False"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Before the first rehearsal, the writer practiced every evening on a saron at home.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "The group had to stop twice because the writer's speed did not match theirs.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Bu Ratna told the writer to count the beats more carefully in the next piece.",
         },
       ],
     },
   },
-  stimulusKey: "gamelan-rehearsal",
+  stimulus: "gamelan-rehearsal",
 };
 
 export default item;

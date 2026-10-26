@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tafsir terbaik saat ini tetap terbuka untuk koreksi karena sumber sejarah tidak merekam masa lalu secara sempurna.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tafsir yang telah dimuat dalam pameran tidak boleh diubah meskipun ditemukan bukti baru.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

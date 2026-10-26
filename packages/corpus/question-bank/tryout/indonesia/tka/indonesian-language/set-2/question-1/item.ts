@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "agar siswa dapat melewati pemeriksaan keselamatan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "agar langkah yang sama tidak diulang tanpa alasan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "agar benda yang berhasil diuji dapat langsung dinyatakan layak tanpa catatan tambahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "agar pemilik tidak mengetahui biaya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "agar fasilitator dapat membuang komponen",
         },
       ],
     },
   },
-  stimulusKey: "repair-clinic",
+  stimulus: "repair-clinic",
 };
 
 export default item;

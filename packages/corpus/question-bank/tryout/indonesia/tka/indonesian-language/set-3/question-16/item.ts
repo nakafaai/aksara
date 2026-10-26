@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "marah karena Ayu mengambil partitur Rafi tanpa memahami dukungan yang sedang ia perlukan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "takut karena penghentian konser membuat hubungan kedua tokoh berakhir tanpa penyelesaian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kecewa karena kerusakan klarinet menghalangi kedua tokoh menyampaikan dukungan melalui musik",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "hangat karena keduanya saling memahami bentuk dukungan yang tidak diucapkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "bingung karena orkes tidak membungkuk sehingga respons kedua tokoh pada akhir cerita tidak dapat ditafsirkan",
         },
       ],
     },
   },
-  stimulusKey: "empty-measure",
+  stimulus: "empty-measure",
 };
 
 export default item;

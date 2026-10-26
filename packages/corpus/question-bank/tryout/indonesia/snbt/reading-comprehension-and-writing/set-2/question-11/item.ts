@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Potret dari Sensus Pertanian Indonesia 2023",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perkembangan Pertanian Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penurunan Usaha Pertanian Perorangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sensus Pertanian 2023 Dilaksanakan di Seluruh Indonesia",
         },
       ],

@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Gajah betina selalu menjaga anaknya sendirian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Gajah betina jumlahnya lebih banyak daripada jantan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Gajah betina selalu menempuh perjalanan paling jauh",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Gajah betina selalu dikawal oleh gajah jantan",
         },
       ],

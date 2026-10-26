@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling other factors and reporting a limitation.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
+  stimulus: "passage-1",
 };
 
 export default item;

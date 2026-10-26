@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "supporting-detail",
   },
-  responses: {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "The project listed checkpoints from 2024 to 2040.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The greenhouse had a loose board.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The envelope looked faded.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The exhibition concerned future food.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Twelve days passed before seedlings appeared.",
         },
       ],
     },
   },
-  stimulusKey: "future-seeds",
+  stimulus: "future-seeds",
 };
 
 export default item;
