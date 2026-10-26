@@ -1,3 +1,4 @@
+import type { MarksSchema } from "@nakafa/aksara-contracts/assessment/scoring";
 import { Array as Arr, Effect, Option, Schema } from "effect";
 
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
@@ -10,9 +11,7 @@ import type {
 type ReadinessSection = AssessmentReadiness["sections"][number];
 
 /** Writes optional marks as one comparable readiness fact. */
-function marksFact(
-  marks: { blank: number; correct: number; wrong: number } | undefined
-) {
+function marksFact(marks: typeof MarksSchema.Type | undefined) {
   return marks === undefined
     ? "none"
     : `${marks.correct}/${marks.wrong}/${marks.blank}`;

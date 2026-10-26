@@ -119,15 +119,6 @@ const assembleSet = Effect.fn("AksaraPublisher.assembleSet")(function* (
   return { items, stimuli };
 });
 
-/** A planned paper does not satisfy the paper contract. */
-export class AssessmentPaperError extends Schema.TaggedError<
-  AssessmentPaperError,
-  { readonly brand: unique symbol }
->()("AssessmentPaperError", {
-  cause: Schema.Unknown,
-  paper: Schema.String,
-}) {}
-
 /**
  * Freezes the paper of one plan: each section places the version of each of
  * its questions in the section's language, and the paper lists the readings
@@ -165,11 +156,7 @@ const freezePaper = Effect.fn("AksaraPublisher.freezePaper")(function* (
       stimuli,
       (left, right) => left.id === right.id && left.hash === right.hash
     ),
-  }).pipe(
-    Effect.mapError(
-      (cause) => new AssessmentPaperError({ cause, paper: plan.id })
-    )
-  );
+  });
   yield* verifyPaperStimuli(paper, versions);
   return {
     assembled: Arr.map(sections, ({ assembled }) => assembled),
@@ -209,7 +196,7 @@ export interface PreparedAssessmentSnapshot {
 /** Every failure of preparing the assessment snapshot. */
 export type PrepareAssessmentSnapshotError =
   | AssembleItemError
-  | AssessmentPaperError
+  | Schema.SchemaError
   | Effect.Error<ReturnType<typeof compileContentDocument>>
   | Effect.Error<ReturnType<typeof hashStimulusVersion>>
   | Effect.Error<ReturnType<typeof verifyPaperStimuli>>

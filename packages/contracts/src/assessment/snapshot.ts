@@ -1,4 +1,4 @@
-import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Option, Order, Schema, Stream } from "effect";
 
 import {
   CatalogRowSchema,
@@ -14,6 +14,7 @@ import { ItemKeySchema } from "#contracts/assessment/key";
 import { PaperSchema } from "#contracts/assessment/paper";
 import { ExamProfileSchema } from "#contracts/assessment/profile";
 import { StimulusVersionSchema } from "#contracts/assessment/stimulus";
+import { canonicalOrder } from "#contracts/canonical";
 import { DigestStream } from "#contracts/hash/stream";
 import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
@@ -146,8 +147,9 @@ export function assessmentRowIdentity(row: AssessmentRow) {
 
 /** Orders rows as a snapshot streams them: by kind, then by identity. */
 export const AssessmentRowOrder: Order.Order<AssessmentRow> = Order.combine(
-  Order.mapInput(Order.Number, (row: AssessmentRow) =>
-    ASSESSMENT_ROW_KINDS.indexOf(row.kind)
+  Order.mapInput(
+    canonicalOrder(ASSESSMENT_ROW_KINDS),
+    (row: AssessmentRow) => row.kind
   ),
   Order.mapInput(Order.make(compareCodeUnits), assessmentRowIdentity)
 );
@@ -169,13 +171,6 @@ export class AssessmentRowsError extends Schema.TaggedError<
   reason: Schema.Literals(["hash", "order"]),
 }) {}
 
-/** The running state of a digest over a row stream. */
-interface DigestState {
-  readonly counts: AssessmentCounts;
-  readonly previous: AssessmentRow | undefined;
-  readonly stream: DigestStream;
-}
-
 /**
  * Digests one row stream in canonical order. Each row must carry the hash of
  * its own canonical encoding and follow the row before it, so a stream that
@@ -187,7 +182,7 @@ export const digestAssessmentRows = Effect.fn(
 )(function* <E, R>(records: Stream.Stream<AssessmentRecord, E, R>) {
   const stream = new DigestStream();
   stream.add(`${ROWS_DOMAIN}\n`);
-  const initial: DigestState = {
+  const initial = {
     counts: AssessmentCountsSchema.make({
       catalog: 0,
       explanation: 0,
@@ -198,8 +193,7 @@ export const digestAssessmentRows = Effect.fn(
       profile: 0,
       stimulus: 0,
     }),
-    previous: undefined,
-    stream,
+    previous: Option.none<AssessmentRow>(),
   };
   const state = yield* records.pipe(
     Stream.runFoldEffect(
@@ -208,8 +202,8 @@ export const digestAssessmentRows = Effect.fn(
         Effect.gen(function* () {
           const identity = assessmentRowIdentity(record.row);
           if (
-            current.previous !== undefined &&
-            AssessmentRowOrder(current.previous, record.row) >= 0
+            Option.isSome(current.previous) &&
+            AssessmentRowOrder(current.previous.value, record.row) >= 0
           ) {
             return yield* new AssessmentRowsError({
               identity,
@@ -227,19 +221,18 @@ export const digestAssessmentRows = Effect.fn(
               reason: "hash",
             });
           }
-          current.stream.add(`${canonical}\0${record.rowHash}\n`);
+          stream.add(`${canonical}\0${record.rowHash}\n`);
           return {
             counts: {
               ...current.counts,
               [record.row.kind]: current.counts[record.row.kind] + 1,
             },
-            previous: record.row,
-            stream: current.stream,
+            previous: Option.some(record.row),
           };
         })
     )
   );
-  return { counts: state.counts, rowDigest: yield* state.stream.digest() };
+  return { counts: state.counts, rowDigest: yield* stream.digest() };
 });
 
 /** Creates one complete content-addressed snapshot from its facts. */

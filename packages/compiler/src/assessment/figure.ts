@@ -4,7 +4,14 @@ import type {
   ContentTreeProps,
   ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
-import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Option,
+  Predicate,
+  Record as Rec,
+  Schema,
+} from "effect";
 import {
   type AssessmentSite,
   type AssessmentSourceError,
@@ -25,6 +32,10 @@ export const FIGURE_COMPONENTS = [
   "NumberLine",
   "UnitCircle",
 ] as const;
+
+/** One renderer component that a document draws as a figure. */
+const FigureComponentSchema = Schema.Literals(FIGURE_COMPONENTS);
+type FigureComponent = typeof FigureComponentSchema.Type;
 
 /** Converted members of a props object, which the figure contract then decodes. */
 type Members = Readonly<Record<string, unknown>>;
@@ -96,10 +107,12 @@ function listMember(
  * Converts the members of one figure component that its contract takes as rich
  * text. A scene without label anchors is authored without labels, so a missing
  * `labels` is the empty record that the contract checks against the scene; the
- * authoring policy refuses labels that are no object.
+ * authoring policy refuses labels that are no object. A number line segment
+ * authored without a start or an end is a ray to the edge of the axis, as the
+ * renderer draws it, which the contract names minus or plus infinity.
  */
 function componentMembers(
-  component: (typeof FIGURE_COMPONENTS)[number],
+  component: FigureComponent,
   props: ContentTreeProps,
   site: AssessmentSite
 ): Effect.Effect<Members, AssessmentSourceError> {
@@ -112,7 +125,19 @@ function componentMembers(
   }
   if (component === "NumberLine") {
     return listMember(props, "segments", (segment) =>
-      richMembers(segment, ["endLabel", "label", "startLabel"], component, site)
+      Effect.map(
+        richMembers(
+          segment,
+          ["endLabel", "label", "startLabel"],
+          component,
+          site
+        ),
+        (members) => ({
+          end: segment.end ?? "infinity",
+          start: segment.start ?? "-infinity",
+          ...members,
+        })
+      )
     );
   }
   const labels = props.labels ?? {};
@@ -127,7 +152,7 @@ function componentMembers(
 
 /** Converts the props of one figure component into the props its contract takes. */
 function figureProps(
-  component: (typeof FIGURE_COMPONENTS)[number],
+  component: FigureComponent,
   props: ContentTreeProps,
   site: AssessmentSite
 ): Effect.Effect<Members, AssessmentSourceError> {
@@ -158,13 +183,9 @@ function altOf(element: ContentTreeElement, site: AssessmentSite) {
   return Effect.map(richText(description, element.name, site), plainText);
 }
 
-/** Checks whether an element names one of the figure components. */
-export function isFigure(
-  element: ContentTreeElement
-): element is ContentTreeElement & {
-  readonly name: (typeof FIGURE_COMPONENTS)[number];
-} {
-  return Arr.contains(FIGURE_COMPONENTS, element.name);
+/** Reads the figure component that an element names, if it names one. */
+export function figureComponent(element: ContentTreeElement) {
+  return Option.liftPredicate(element.name, Schema.is(FigureComponentSchema));
 }
 
 /**
@@ -172,17 +193,16 @@ export function isFigure(
  * text alternative, and no caption. The contract checks the props.
  */
 export const figureNode = Effect.fn("AksaraCompiler.figureNode")(function* (
-  element: ContentTreeElement & {
-    readonly name: (typeof FIGURE_COMPONENTS)[number];
-  },
+  element: ContentTreeElement,
+  component: FigureComponent,
   site: AssessmentSite
 ) {
   const { alt: _alt, ...authored } = element.props;
-  const props = yield* figureProps(element.name, authored, site);
+  const props = yield* figureProps(component, authored, site);
   const alt = yield* altOf(element, site);
   return yield* Schema.decodeUnknownEffect(FigureNodeSchema)(
     {
-      attrs: { alt, caption: null, component: element.name, props },
+      attrs: { alt, caption: null, component, props },
       type: "figure",
     },
     { onExcessProperty: "error" }

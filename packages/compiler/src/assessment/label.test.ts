@@ -3,7 +3,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { labelDocument } from "#compiler/assessment/label";
 
 const site = {
@@ -46,21 +46,24 @@ describe("labelDocument", () => {
     () =>
       Effect.gen(function* () {
         const document = yield* labelDocument(
-          [
-            "1. *one*",
-            "",
-            "> [site](https://nakafa.com)  ",
-            "> next",
-            "",
-            "| A |",
-            "| - |",
-            "| 1 |",
-          ].join("\n"),
+          Arr.join(
+            [
+              "1. *one*",
+              "",
+              "> [site](https://nakafa.com)  ",
+              "> next",
+              "",
+              "| A |",
+              "| - |",
+              "| 1 |",
+            ],
+            "\n"
+          ),
           site
         );
 
         assert.deepStrictEqual(
-          document.content.map(({ type }) => type),
+          Arr.map(document.content, ({ type }) => type),
           ["orderedList", "blockquote", "table"]
         );
       })

@@ -11,7 +11,7 @@ import type {
 } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Option, Predicate } from "effect";
 import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
-import { figureNode, isFigure } from "#compiler/assessment/figure";
+import { figureComponent, figureNode } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
 
 type BlockError = ReturnType<typeof sourceError>;
@@ -204,8 +204,11 @@ function blockElement(
   if (element.name === "fragment") {
     return blockChildren(element.children, site);
   }
-  if (isFigure(element)) {
-    return Effect.map(figureNode(element, site), (figure) => [figure]);
+  const component = figureComponent(element);
+  if (Option.isSome(component)) {
+    return Effect.map(figureNode(element, component.value, site), (figure) => [
+      figure,
+    ]);
   }
   if (element.name === "p") {
     return Effect.map(inlineContent(element.children, site), (content) =>

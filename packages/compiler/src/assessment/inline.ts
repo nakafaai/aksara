@@ -1,6 +1,7 @@
 import {
   type InlineNode,
   type Mark,
+  MarkOrder,
   MarkSchema,
   type RichText,
   RichTextSchema,
@@ -15,23 +16,11 @@ import {
   Effect,
   Equal,
   Option,
-  Order,
   Predicate,
   Record as Rec,
   Schema,
 } from "effect";
 import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
-
-/** The one order of marks on a text node, as the document contract keeps it. */
-const MARK_ORDER = [
-  "bold",
-  "italic",
-  "underline",
-  "code",
-  "subscript",
-  "superscript",
-  "link",
-];
 
 /** The mark each authored element adds to its text. */
 const ELEMENT_MARKS: Readonly<Record<string, Exclude<Mark["type"], "link">>> = {
@@ -45,17 +34,12 @@ const ELEMENT_MARKS: Readonly<Record<string, Exclude<Mark["type"], "link">>> = {
 /** A soft line break and the indentation around it, which read as one space. */
 const SOFT_BREAK = /[ \t]*\n[ \t]*/gu;
 
-/** Orders marks as the document contract does. */
-const markOrder = Order.mapInput(Order.Number, (mark: Mark) =>
-  MARK_ORDER.indexOf(mark.type)
-);
-
 /** Adds one mark to a set, once, in the canonical order. */
 function withMark(marks: readonly Mark[], mark: Mark) {
   if (Arr.some(marks, ({ type }) => type === mark.type)) {
     return marks;
   }
-  return Arr.sort(Arr.append(marks, mark), markOrder);
+  return Arr.sort(Arr.append(marks, mark), MarkOrder);
 }
 
 /** Builds one text node with its marks, leaving out an empty mark set. */
@@ -74,7 +58,7 @@ function latexOf(element: ContentTreeElement, site: AssessmentSite) {
   return Effect.succeed(math.trim());
 }
 
-/** Reads the link mark of one anchor, which must point to an absolute HTTPS address. */
+/** Reads the link mark of one anchor, which must point to an absolute HTTPS address or a site path. */
 function linkMark(element: ContentTreeElement, site: AssessmentSite) {
   const mark = { attrs: { href: element.props.href }, type: "link" };
   if (!Schema.is(MarkSchema)(mark)) {

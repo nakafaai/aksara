@@ -17,7 +17,10 @@ describe("loadTryoutContent", () => {
         const { exams, papers, sets } = yield* content;
         const questions = Arr.flatMap(sets, (set) => set.questions);
 
-        expect(exams.map(({ examKey }) => examKey)).toEqual(["snbt", "tka"]);
+        expect(Arr.map(exams, ({ examKey }) => examKey)).toEqual([
+          "snbt",
+          "tka",
+        ]);
         expect(sets).toHaveLength(81);
         expect(questions).toHaveLength(1875);
         expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(159);

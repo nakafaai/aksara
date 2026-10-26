@@ -2,8 +2,11 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
-import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import {
+  type ContentSnapshotSet,
+  ContentSnapshotSetSchema,
+} from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   type ProgramRowError,
   type ProgramSnapshotError,
@@ -15,15 +18,17 @@ import {
 } from "@nakafa/aksara-corpus/quran/snapshot";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
-import { Array as Arr, Effect, type Scope, Stream } from "effect";
+import { Array as Arr, Effect, Schema, type Scope, Stream } from "effect";
 import { prepareAssessmentSnapshot } from "#publisher/assessment/snapshot";
 
+const ReleaseSnapshotInputSchema = Schema.Struct({
+  checkoutRoot: Schema.String,
+  families: PublicationScopeSchema.fields.snapshots,
+  previousSnapshots: Schema.NullOr(ContentSnapshotSetSchema),
+});
+
 /** Exact sources required to prepare structured state for one Git release. */
-export interface ReleaseSnapshotInput {
-  readonly checkoutRoot: string;
-  readonly families: PublicationScope["snapshots"];
-  readonly previousSnapshots: ContentSnapshotSet | null;
-}
+export type ReleaseSnapshotInput = typeof ReleaseSnapshotInputSchema.Type;
 
 /** Replayable changed snapshots selected by one global release. */
 export interface PreparedReleaseSnapshots {

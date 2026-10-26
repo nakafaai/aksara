@@ -10,17 +10,20 @@ import {
 import { labelDocument } from "@nakafa/aksara-compiler/assessment/label";
 import { ItemExplanationSchema } from "@nakafa/aksara-contracts/assessment/explanation";
 import { hashItemVersion } from "@nakafa/aksara-contracts/assessment/hash";
-import type {
-  ItemFamilyId,
-  StimulusId,
+import {
+  ItemFamilyIdSchema,
+  StimulusIdSchema,
 } from "@nakafa/aksara-contracts/assessment/identity";
 import {
   ItemFamilySchema,
   ItemVersionBodySchema,
   ItemVersionSchema,
-  type StimulusReference,
+  StimulusReferenceSchema,
 } from "@nakafa/aksara-contracts/assessment/item";
-import { ItemKeySchema } from "@nakafa/aksara-contracts/assessment/key";
+import {
+  InteractionKeySchema,
+  ItemKeySchema,
+} from "@nakafa/aksara-contracts/assessment/key";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -34,7 +37,7 @@ import {
   type InteractionSource,
   itemVersions,
 } from "@nakafa/aksara-corpus/question-bank/item";
-import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
+import { QuestionSourceSchema } from "@nakafa/aksara-corpus/question-bank/source";
 import {
   Array as Arr,
   Effect,
@@ -55,6 +58,15 @@ const ANSWER_LABELS = {
   en: "Answer",
   id: "Jawaban",
 } satisfies Record<AppLocaleCode, string>;
+
+/**
+ * The body of one item version and the key of its one interaction, which one
+ * version's assembly checks together before it hashes the body.
+ */
+const VersionSourceSchema = Schema.Struct({
+  answer: InteractionKeySchema,
+  body: ItemVersionBodySchema,
+});
 
 /** The extension of an authored document, which its content key leaves out. */
 const MDX_EXTENSION = /\.mdx$/u;
@@ -166,17 +178,23 @@ export const AssembledItemSchema = Schema.Struct({
 });
 export type AssembledItem = typeof AssembledItemSchema.Type;
 
-/** One authored question and the reading of its set, as its assembly takes them. */
-export interface AssembleItemInput {
-  readonly checkoutRoot: string;
-  readonly familyId: ItemFamilyId;
-  readonly question: QuestionSource;
-  /** The reading of the set that the question shares, with its version in each language. */
-  readonly reading: Option.Option<{
-    readonly id: StimulusId;
-    readonly versions: Readonly<Record<string, StimulusReference>>;
-  }>;
-}
+const AssembleItemInputSchema = Schema.Struct({
+  checkoutRoot: Schema.String,
+  familyId: ItemFamilyIdSchema,
+  question: QuestionSourceSchema,
+  reading: Schema.Option(
+    Schema.Struct({
+      id: StimulusIdSchema,
+      versions: Schema.Record(Schema.String, StimulusReferenceSchema),
+    })
+  ),
+});
+
+/**
+ * One authored question and the reading of its set, as its assembly takes
+ * them: the reading carries its version in each language.
+ */
+export type AssembleItemInput = typeof AssembleItemInputSchema.Type;
 
 /** Every failure of assembling one question. */
 export type AssembleItemError =
@@ -244,44 +262,40 @@ export const assembleItem: (
         const reading = Option.flatMap(input.reading, ({ versions }) =>
           Rec.get(versions, language)
         );
-        const body = yield* Schema.decodeUnknownEffect(ItemVersionBodySchema)({
-          deliveryLanguage: language,
-          family: input.familyId,
-          interactions: [interaction],
-          prompt: {
-            content: [
-              ...stem,
-              { attrs: { interaction: interaction.id }, type: "interaction" },
-            ],
-            type: "doc",
+        const { answer, body } = yield* Schema.decodeUnknownEffect(
+          VersionSourceSchema
+        )({
+          answer: key,
+          body: {
+            deliveryLanguage: language,
+            family: input.familyId,
+            interactions: [interaction],
+            prompt: {
+              content: [
+                ...stem,
+                { attrs: { interaction: interaction.id }, type: "interaction" },
+              ],
+              type: "doc",
+            },
+            scoring: [],
+            ...Option.match(reading, {
+              onNone: () => ({}),
+              onSome: (stimulus) => ({ stimulus }),
+            }),
           },
-          scoring: [],
-          ...Option.match(reading, {
-            onNone: () => ({}),
-            onSome: (stimulus) => ({ stimulus }),
-          }),
         }).pipe(
           Effect.mapError((cause) =>
             sourceError(source, "item", "document", cause)
           )
         );
-        const version = yield* Schema.decodeEffect(ItemVersionSchema)({
+        const version = ItemVersionSchema.make({
           ...body,
           hash: yield* hashItemVersion(body),
-        }).pipe(
-          Effect.mapError((cause) =>
-            sourceError(source, "item", "document", cause)
-          )
-        );
-        const itemKey = yield* Schema.decodeUnknownEffect(ItemKeySchema)({
-          answers: [key],
-          version: version.hash,
-        }).pipe(
-          Effect.mapError((cause) =>
-            sourceError(source, "item", "document", cause)
-          )
-        );
-        return { key: itemKey, version };
+        });
+        return {
+          key: ItemKeySchema.make({ answers: [answer], version: version.hash }),
+          version,
+        };
       })
   );
   return {

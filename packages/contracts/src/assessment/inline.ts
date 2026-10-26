@@ -1,8 +1,8 @@
-import { Array as Arr, Equal, Schema } from "effect";
+import { Array as Arr, Equal, Order, Schema } from "effect";
 
 import { LocalIdSchema } from "#contracts/assessment/identity";
 import { LatexSchema } from "#contracts/assessment/scalar";
-import { hasCanonicalOrder } from "#contracts/canonical";
+import { canonicalOrder, hasCanonicalOrder } from "#contracts/canonical";
 import { isHttpsUrl } from "#contracts/text/syntax";
 
 /** A mark that carries no attribute: it only changes how its text looks. */
@@ -17,12 +17,28 @@ const PlainMarkSchema = Schema.Struct({
   ]),
 });
 
-/** A link mark. Only absolute HTTPS addresses are links. */
+/**
+ * A path on the site that shows the document, such as a lesson: one slash and
+ * no whitespace, never two slashes that would name another host.
+ */
+const SITE_PATH_PATTERN = /^\/(?![/\\])\S*$/u;
+
+/** Checks that a link names an absolute HTTPS address or a path on the site. */
+function isLinkTarget(href: string) {
+  return isHttpsUrl(href) || SITE_PATH_PATTERN.test(href);
+}
+
+/**
+ * A link mark: an absolute HTTPS address, or a path on the site, which the
+ * renderer resolves on the host that shows the document, so a School host keeps
+ * its learners.
+ */
 const LinkMarkSchema = Schema.Struct({
   attrs: Schema.Struct({
     href: Schema.String.check(
-      Schema.makeFilter(isHttpsUrl, {
-        message: "Expected an absolute HTTPS address without whitespace.",
+      Schema.makeFilter(isLinkTarget, {
+        message:
+          "Expected an absolute HTTPS address or a site path, without whitespace.",
       })
     ),
   }),
@@ -41,6 +57,12 @@ export type Mark = typeof MarkSchema.Type;
 const MARK_ORDER = Arr.append(
   PlainMarkSchema.fields.type.literals,
   LinkMarkSchema.fields.type.literal
+);
+
+/** Orders marks as a text node keeps them. */
+export const MarkOrder: Order.Order<Mark> = Order.mapInput(
+  canonicalOrder(MARK_ORDER),
+  (mark: Mark) => mark.type
 );
 
 /** Checks that marks appear once each, in the one canonical order. */

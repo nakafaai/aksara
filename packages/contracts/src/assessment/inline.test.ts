@@ -13,16 +13,29 @@ import {
 } from "#contracts/test/assessment/document";
 
 describe("text marks", () => {
-  it("keeps marks in one order, each once, and links on HTTPS only", () => {
+  it("keeps marks in one order, each once, and links on HTTPS or the site", () => {
     expect(failsStrict(InlineContentSchema, [text("x", "bold", "link")])).toBe(
       false
     );
+    expect(
+      failsStrict(InlineContentSchema, [
+        {
+          marks: [
+            { attrs: { href: "/en/subjects/mathematics" }, type: "link" },
+          ],
+          text: "x",
+          type: "text",
+        },
+      ])
+    ).toBe(false);
     for (const marks of [
       [{ type: "italic" }, { type: "bold" }],
       [{ type: "bold" }, { type: "bold" }],
       [],
       [{ attrs: { href: "http://nakafa.com" }, type: "link" }],
       [{ attrs: { href: "javascript:alert(1)" }, type: "link" }],
+      [{ attrs: { href: "//example.com/lesson" }, type: "link" }],
+      [{ attrs: { href: "/en/a lesson" }, type: "link" }],
       [{ type: "strike" }],
     ]) {
       expect(

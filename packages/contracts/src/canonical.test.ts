@@ -1,10 +1,18 @@
 import { describe, expect, it } from "@effect/vitest";
 
-import { hasCanonicalOrder } from "#contracts/canonical";
+import { Array as Arr } from "effect";
+
+import { canonicalOrder, hasCanonicalOrder } from "#contracts/canonical";
 
 const CANONICAL = ["en", "id", "de"];
 
 describe("canonical order", () => {
+  it("sorts members by their place in the canonical list", () => {
+    expect(
+      Arr.sort(["de", "en", "id", "en"], canonicalOrder(["en", "id", "de"]))
+    ).toEqual(["en", "en", "id", "de"]);
+  });
+
   it.each([
     { canonical: true, name: "an empty list", values: [] },
     {

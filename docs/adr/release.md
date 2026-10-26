@@ -4,6 +4,8 @@
 - Date: 2026-07-23
 - Amended: 2026-10-25, zero-legacy: the bootstrap switch is one way, and the
   Nakafa web host replaces Vercel.
+- Amended: 2026-10-26, a manifest generation change crosses by genesis (see
+  Bootstrap over a retired generation).
 
 ## Context
 
@@ -174,6 +176,15 @@ inverse rule:
   cannot return to it by rollback or by a forward release. A later correction is
   an ordinary forward release under the current generation, with its own
   verified inverse.
+
+A bootstrap still reads the active release manifest. When the new generation
+cannot decode that manifest at all, as contracts 2.0.0 cannot read a 1.x
+manifest whose snapshot set names `tryout`, nothing can name the active release.
+The target then deletes its stored release state in the same deploy that reads
+the new generation, and the first release of that generation is a genesis: no
+base, every family in scope, and no recovery. The content a target serves is
+empty between that deploy and the genesis activation, which the one-step
+contract change accepts.
 
 ### Failure and cleanup
 

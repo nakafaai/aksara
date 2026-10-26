@@ -143,10 +143,11 @@ export const NumberLinePropsSchema = Schema.Struct({
 /** Whether the first or last point of a line belongs to it. */
 const EndpointStateSchema = Schema.Literals(["open", "closed"]);
 
-/** A label on a line: rich text at one of its points, nudged by an offset. */
+/** A label on a line: rich text at one of its points, nudged by an offset, at an optional size. */
 const LineLabelSchema = Schema.Struct({
   anchorX: Schema.optionalKey(Schema.Literals(["center", "left", "right"])),
   at: Schema.optionalKey(NonNegativeIntSchema),
+  fontSize: Schema.optionalKey(PositiveMeasureSchema),
   offset: Schema.optionalKey(TripleSchema),
   text: RichTextSchema,
 });

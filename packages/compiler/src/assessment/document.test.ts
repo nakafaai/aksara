@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { compileContentDocument } from "#compiler/assessment/document";
 import { blocks, reason, site } from "#compiler/test/assessment";
 
@@ -44,25 +44,28 @@ describe("compileAssessmentBlocks", () => {
   it.effect("writes headings, block math, lists, quotes, and tables", () =>
     Effect.gen(function* () {
       const result = yield* blocks(
-        [
-          "# First",
-          "",
-          "## Second",
-          "",
-          '<BlockMath math="a=b" />',
-          "",
-          "- one",
-          "- two",
-          "",
-          "3. three",
-          "4. four",
-          "",
-          "> quoted",
-          "",
-          "| A | B |",
-          "| --- | --- |",
-          "| 1 | |",
-        ].join("\n")
+        Arr.join(
+          [
+            "# First",
+            "",
+            "## Second",
+            "",
+            '<BlockMath math="a=b" />',
+            "",
+            "- one",
+            "- two",
+            "",
+            "3. three",
+            "4. four",
+            "",
+            "> quoted",
+            "",
+            "| A | B |",
+            "| --- | --- |",
+            "| 1 | |",
+          ],
+          "\n"
+        )
       );
 
       assert.deepStrictEqual(result, [

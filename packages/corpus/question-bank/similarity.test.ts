@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Schema } from "effect";
+import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
 import { type ItemSource, ItemSourceSchema } from "#corpus/question-bank/item";
 import {
   QUESTION_BANK_ROOT,
@@ -62,13 +62,22 @@ function scan(
         reading === undefined ? [] : [reading]
       )
     );
+    const keys = HashMap.fromIterable(
+      Arr.map(readings, (text, n) => [text, `passage-${n + 1}`] as const)
+    );
     return [
       ...Arr.flatMap(questions, ({ item = TEST_ITEM, prompt, reading }, n) =>
         questionFiles(
           n + 1,
-          reading === undefined
-            ? item
-            : { ...item, stimulus: `passage-${readings.indexOf(reading) + 1}` },
+          Option.match(
+            Option.flatMap(Option.fromUndefinedOr(reading), (text) =>
+              HashMap.get(keys, text)
+            ),
+            {
+              onNone: () => item,
+              onSome: (stimulus) => ({ ...item, stimulus }),
+            }
+          ),
           prompt,
           path
         )

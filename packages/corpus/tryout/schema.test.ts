@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, Exit, Schema } from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 import {
   testEnglishSection as english,
   testReasoningSection as reasoning,
@@ -27,14 +27,15 @@ describe("exam source", () => {
     Effect.gen(function* () {
       const exam = yield* defineExamSource(testExamInput);
 
-      expect(exam.tracks.map(({ key }) => key)).toEqual([
+      expect(Arr.map(exam.tracks, ({ key }) => key)).toEqual([
         "test-subject",
         "2027",
       ]);
-      expect(exam.tracks[1]?.profile.sections.map(({ key }) => key)).toEqual([
-        "test-reasoning",
-        "test-english",
-      ]);
+      expect(
+        Arr.map(exam.tracks, ({ profile }) =>
+          Arr.map(profile.sections, ({ key }) => key)
+        )
+      ).toEqual([["test-subject"], ["test-reasoning", "test-english"]]);
     })
   );
 
@@ -117,7 +118,9 @@ describe("exam source", () => {
         (input) => defineExamSource(input).pipe(Effect.flip)
       );
 
-      expect(errors.map((error) => "scope" in error && error.scope)).toEqual([
+      expect(
+        Arr.map(errors, (error) => "scope" in error && error.scope)
+      ).toEqual([
         "test-exam:tracks",
         "test-exam:2027:sets",
         "test-exam:2027:sections",

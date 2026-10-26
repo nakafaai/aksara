@@ -1,4 +1,14 @@
-import { Array as Arr } from "effect";
+import { Array as Arr, Order, Record as Rec } from "effect";
+
+/** Orders the members of one canonical list by their place in it. */
+export function canonicalOrder<A extends string>(
+  canonical: readonly A[]
+): Order.Order<A> {
+  const places = Rec.fromEntries(
+    Arr.map(canonical, (member, index) => [member, index] as const)
+  );
+  return Order.mapInput(Order.Number, (member: A) => places[member]);
+}
 
 /**
  * Checks that a list names members of one canonical list, each at most once,

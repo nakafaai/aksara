@@ -9,11 +9,7 @@ import {
   Stream,
 } from "effect";
 
-import {
-  type CatalogRow,
-  catalogRowIdentity,
-} from "#contracts/assessment/catalog";
-import type { ItemFamily, ItemVersion } from "#contracts/assessment/item";
+import { catalogRowIdentity } from "#contracts/assessment/catalog";
 import type { Paper } from "#contracts/assessment/paper";
 import { verifyPaperStimuli } from "#contracts/assessment/paper";
 import type { ExamProfile } from "#contracts/assessment/profile";
@@ -47,84 +43,67 @@ export class AssessmentClosureError extends Schema.TaggedError<
   reason: AssessmentClosureReasonSchema,
 }) {}
 
-/** Every row of a snapshot, gathered by kind for the reference checks. */
-interface Rows {
-  readonly catalog: readonly CatalogRow[];
-  readonly explanations: HashSet.HashSet<string>;
-  readonly families: HashMap.HashMap<string, ItemFamily>;
-  readonly items: HashMap.HashMap<string, ItemVersion>;
-  readonly keys: HashSet.HashSet<string>;
-  readonly papers: HashMap.HashMap<string, { hash: string; paper: Paper }>;
-  readonly profiles: HashMap.HashMap<
-    string,
-    { hash: string; profile: ExamProfile }
-  >;
-  readonly stimuli: HashSet.HashSet<string>;
-}
-
-const EMPTY_ROWS: Rows = {
-  catalog: [],
-  explanations: HashSet.empty(),
-  families: HashMap.empty(),
-  items: HashMap.empty(),
-  keys: HashSet.empty(),
-  papers: HashMap.empty(),
-  profiles: HashMap.empty(),
-  stimuli: HashSet.empty(),
-};
-
-/** Adds one record to the rows gathered so far. */
-function gather(rows: Rows, { row }: AssessmentRecord): Rows {
-  if (row.kind === "catalog") {
-    return { ...rows, catalog: Arr.append(rows.catalog, row.row) };
-  }
-  if (row.kind === "profile") {
-    return {
-      ...rows,
-      profiles: HashMap.set(rows.profiles, row.profile.id, {
-        hash: row.hash,
-        profile: row.profile,
-      }),
-    };
-  }
-  if (row.kind === "paper") {
-    return {
-      ...rows,
-      papers: HashMap.set(rows.papers, row.paper.id, {
-        hash: row.hash,
-        paper: row.paper,
-      }),
-    };
-  }
-  if (row.kind === "family") {
-    return {
-      ...rows,
-      families: HashMap.set(rows.families, row.family.id, row.family),
-    };
-  }
-  if (row.kind === "item") {
-    return {
-      ...rows,
-      items: HashMap.set(rows.items, row.version.hash, row.version),
-    };
-  }
-  if (row.kind === "stimulus") {
-    return {
-      ...rows,
-      stimuli: HashSet.add(rows.stimuli, stimulusIdentity(row.version)),
-    };
-  }
-  if (row.kind === "key") {
-    return { ...rows, keys: HashSet.add(rows.keys, row.key.version) };
-  }
+/** Gathers the rows of a snapshot by kind for the reference checks. */
+function indexRows(records: readonly AssessmentRecord[]) {
+  const rows = Arr.map(records, ({ row }) => row);
   return {
-    ...rows,
-    explanations: HashSet.add(
-      rows.explanations,
-      `${row.explanation.version}\0${row.explanation.language}`
+    catalog: Arr.filterMap(rows, (row) =>
+      row.kind === "catalog" ? Result.succeed(row.row) : Result.failVoid
+    ),
+    explanations: HashSet.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "explanation"
+          ? Result.succeed(
+              `${row.explanation.version}\0${row.explanation.language}`
+            )
+          : Result.failVoid
+      )
+    ),
+    families: HashMap.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "family"
+          ? Result.succeed([row.family.id, row.family] as const)
+          : Result.failVoid
+      )
+    ),
+    items: HashMap.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "item"
+          ? Result.succeed([row.version.hash, row.version] as const)
+          : Result.failVoid
+      )
+    ),
+    keys: HashSet.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "key" ? Result.succeed(row.key.version) : Result.failVoid
+      )
+    ),
+    papers: HashMap.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "paper"
+          ? Result.succeed([row.paper.id, row] as const)
+          : Result.failVoid
+      )
+    ),
+    profiles: HashMap.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "profile"
+          ? Result.succeed([row.profile.id, row] as const)
+          : Result.failVoid
+      )
+    ),
+    stimuli: HashSet.fromIterable(
+      Arr.filterMap(rows, (row) =>
+        row.kind === "stimulus"
+          ? Result.succeed(stimulusIdentity(row.version))
+          : Result.failVoid
+      )
     ),
   };
 }
+
+/** The rows of a snapshot, gathered by kind. */
+type Rows = ReturnType<typeof indexRows>;
 
 /** The identity of one stimulus version: its identifier and its hash. */
 function stimulusIdentity(version: Pick<StimulusVersion, "hash" | "id">) {
@@ -310,9 +289,7 @@ export const verifyAssessmentClosure = Effect.fn(
   readonly activeAppLocales: ActiveAppLocaleList;
   readonly records: Stream.Stream<AssessmentRecord, E, R>;
 }) {
-  const rows = yield* input.records.pipe(
-    Stream.runFold(() => EMPTY_ROWS, gather)
-  );
+  const rows = indexRows(yield* Stream.runCollect(input.records));
   yield* verifyCatalog(rows, input.activeAppLocales);
   yield* verifyPapers(rows);
   yield* verifyItems(rows, input.activeAppLocales);

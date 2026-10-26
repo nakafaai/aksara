@@ -62,10 +62,10 @@ describe("planTryoutPapers", () => {
       const papers = yield* plan(yield* readSets(testExamFiles));
 
       expect(
-        papers.map(({ id, profile, sections, setKey, trackKey }) => ({
+        Arr.map(papers, ({ id, profile, sections, setKey, trackKey }) => ({
           id,
           profile,
-          sections: sections.map(({ key, language, set }) => [
+          sections: Arr.map(sections, ({ key, language, set }) => [
             key,
             language,
             set.questions.length,
@@ -123,7 +123,7 @@ describe("planTryoutPapers", () => {
         ).pipe(Effect.flip);
 
         expect(
-          [missing, items, language].map((error) =>
+          Arr.map([missing, items, language], (error) =>
             "reason" in error ? error.reason : error._tag
           )
         ).toEqual(["missing", "items", "language"]);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Exit, Schema } from "effect";
+import { Array as Arr, Exit, Schema } from "effect";
 import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
 
 const decode = Schema.decodeUnknownExit(ItemSourceSchema);
@@ -57,12 +57,12 @@ describe("item source", () => {
       { en: choice, id: matrix },
       {
         en: choice,
-        id: { ...choice, options: [...choice.options].reverse() },
+        id: { ...choice, options: Arr.reverse(choice.options) },
       },
       { en: matrix, id: { ...matrix, columns: ["A", "B", "C"] } },
       {
         en: matrix,
-        id: { ...matrix, statements: [...matrix.statements].reverse() },
+        id: { ...matrix, statements: Arr.reverse(matrix.statements) },
       },
     ]) {
       expect(Exit.isFailure(decode({ versions }))).toBe(true);

@@ -141,16 +141,13 @@ export class ExamSourceDuplicateError extends Schema.TaggedError<
 }) {}
 
 /** Rejects duplicate stable keys within one authored scope. */
-function requireUniqueKeys(
-  entries: readonly { readonly key: string }[],
-  scope: string
-) {
-  const keys = MutableHashSet.empty<string>();
-  for (const { key } of entries) {
-    if (MutableHashSet.has(keys, key)) {
+function requireUniqueKeys(keys: readonly string[], scope: string) {
+  const seen = MutableHashSet.empty<string>();
+  for (const key of keys) {
+    if (MutableHashSet.has(seen, key)) {
       return Effect.fail(new ExamSourceDuplicateError({ key, scope }));
     }
-    MutableHashSet.add(keys, key);
+    MutableHashSet.add(seen, key);
   }
   return Effect.void;
 }
@@ -161,14 +158,17 @@ export const defineExamSource = Effect.fn("AksaraCorpus.defineExamSource")(
     const source = yield* Schema.decodeEffect(ExamSourceSchema)(input, {
       onExcessProperty: "error",
     }).pipe(Effect.mapError((cause) => new ExamSourceDecodeError({ cause })));
-    yield* requireUniqueKeys(source.tracks, `${source.examKey}:tracks`);
+    yield* requireUniqueKeys(
+      Arr.map(source.tracks, ({ key }) => key),
+      `${source.examKey}:tracks`
+    );
     for (const track of source.tracks) {
       yield* requireUniqueKeys(
-        track.sets,
+        Arr.map(track.sets, ({ key }) => key),
         `${source.examKey}:${track.key}:sets`
       );
       yield* requireUniqueKeys(
-        track.profile.sections,
+        Arr.map(track.profile.sections, ({ key }) => key),
         `${source.examKey}:${track.key}:sections`
       );
     }

@@ -35,7 +35,9 @@ describe("projectTryoutCatalog", () => {
       const english = Arr.filter(rows, ({ appLocale }) => appLocale === "en");
 
       expect(rows).toHaveLength(9 * ACTIVE_APP_LOCALES.length);
-      expect(english.map((row) => [row.kind, row.publicPath ?? null])).toEqual([
+      expect(
+        Arr.map(english, (row) => [row.kind, row.publicPath ?? null])
+      ).toEqual([
         ["country", "try-out/test-country"],
         ["exam", "try-out/test-country/test-exam"],
         ["track", "try-out/test-country/test-exam/test-subject"],

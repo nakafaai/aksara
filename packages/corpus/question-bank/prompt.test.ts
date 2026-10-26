@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { setSourcePath } from "#corpus/question-bank/path";
 import { readQuestionPrompts } from "#corpus/question-bank/prompt";
 import { readQuestionSets } from "#corpus/question-bank/source";
@@ -27,7 +27,7 @@ describe("readQuestionPrompts", () => {
       const prompts = yield* readQuestionPrompts(CHECKOUT, sets);
 
       expect(
-        prompts.map(({ language, path, rawMdx }) => ({
+        Arr.map(prompts, ({ language, path, rawMdx }) => ({
           language,
           path,
           rawMdx,

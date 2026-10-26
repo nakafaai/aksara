@@ -11,8 +11,13 @@ import {
   Path,
   PlatformError,
   Result,
+  Schema,
 } from "effect";
-import { type ItemSource, itemVersions } from "#corpus/question-bank/item";
+import {
+  type ItemSource,
+  ItemSourceSchema,
+  itemVersions,
+} from "#corpus/question-bank/item";
 import {
   type SetPath,
   SetPathSchema,
@@ -43,9 +48,12 @@ export const TEST_ITEM: ItemSource = {
 /** One virtual file: its repository path and its text. */
 type File = readonly [path: string, text: string];
 
+/** Writes one item as the JSON text that an item module holds. */
+const encodeItem = Schema.encodeSync(Schema.fromJsonString(ItemSourceSchema));
+
 /** The text of the item module that holds one item. */
 export function itemModule(item: ItemSource) {
-  return `import type { ItemSource } from "#corpus/question-bank/item";\n\nconst item: ItemSource = ${JSON.stringify(item)};\n\nexport default item;\n`;
+  return `import type { ItemSource } from "#corpus/question-bank/item";\n\nconst item: ItemSource = ${encodeItem(item)};\n\nexport default item;\n`;
 }
 
 /**

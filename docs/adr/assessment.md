@@ -35,7 +35,9 @@ document later. Its nodes are `doc`, `paragraph`, `heading` (levels 1 to 3),
 `tableCell`, `blockquote`, `codeBlock`, `mathBlock`, `figure`, `image`,
 `interaction`, `text`, `mathInline`, `hardBreak`, and `inlineInteraction`. Its
 marks are `bold`, `italic`, `underline`, `code`, `subscript`, `superscript`, and
-`link` (an absolute HTTPS address).
+`link` (an absolute HTTPS address, or a site path such as a lesson route, which
+the renderer resolves on the host that shows the document, so a School host
+keeps its learners).
 
 - One document has one encoding. An attribute that a node declares is always
   present and is `null` when unset, marks appear once each in a fixed order, text
@@ -432,6 +434,13 @@ it. It holds steps 1 to 3 of this record and deletes the old generation.
   per-set graphs were `LineEquation` cards already and became `LineEquation`
   figures with the exact points their code computed; the one number line became a
   `NumberLine`, and the illustration of three boxes a `MathVisual`.
+- An optional `fontSize` on a line label, as Nakafa's line labels take it: one
+  item sizes the two angle labels of its figure.
+- A link to a site path besides an absolute HTTPS address: three explanations
+  link to the lesson they rely on, and a School host must keep its learners.
+- A number line ray is authored without its `start` or its `end`, as the
+  renderer draws one, and the compiler writes `-infinity` or `infinity`, which
+  JSON cannot hold as numbers.
 - The `language` of an explanation. The corpus explains every item in every app
   locale, while the item is asked in the language of its section, so one version
   has an explanation in each locale.
@@ -463,6 +472,10 @@ bundle with its transport and its signing, and the protected runtime that served
 frozen question bodies of a retained snapshot. An item version is named by its
 hash, so Nakafa keeps each version while an attempt names it; no separate bundle
 proves which bodies an attempt saw.
+
+The 2.0.0 manifest cannot be read by a 1.x reader, nor a 1.x manifest by 2.0.0,
+so Nakafa deletes its stored release state in the deploy that reads 2.0.0 and
+Aksara then publishes a genesis release, as the release record describes.
 
 ### Authoring
 

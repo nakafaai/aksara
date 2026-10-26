@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ItemSourceSchema } from "@nakafa/aksara-corpus/question-bank/item";
 import { SetPathSchema } from "@nakafa/aksara-corpus/question-bank/path";
-import { Effect, Layer, Option, Path, Schema } from "effect";
+import { Array as Arr, Effect, Layer, Option, Path, Schema } from "effect";
 import { assembleItem } from "#publisher/assessment/item";
 import { testFileLayer } from "#test/files";
 
@@ -137,7 +137,7 @@ describe("assembleItem", () => {
           },
         ]);
         assert.deepStrictEqual(
-          assembled.explanations.map(({ language, version: hash }) => [
+          Arr.map(assembled.explanations, ({ language, version: hash }) => [
             language,
             hash,
           ]),

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect } from "effect";
+import { Array as Arr, Effect } from "effect";
 import { setSourcePath } from "#corpus/question-bank/path";
 import { readQuestionSets } from "#corpus/question-bank/source";
 import {
@@ -37,15 +37,20 @@ describe("readQuestionSets", () => {
           ...stimulusFiles("passage-1", "Bacaan bersama."),
         ]);
 
-        expect(set?.path).toBe(TEST_SET);
-        expect(set?.questions.map(({ number }) => number)).toEqual([1, 2, 3]);
-        expect(set?.questions[0]).toEqual({
+        if (set === undefined) {
+          return expect.unreachable("Expected the one test set.");
+        }
+        expect(set.path).toBe(TEST_SET);
+        expect(Arr.map(set.questions, ({ number }) => number)).toEqual([
+          1, 2, 3,
+        ]);
+        expect(set.questions[0]).toEqual({
           item: onReading,
           number: 1,
           set: TEST_SET,
           sourceRoot: setSourcePath(TEST_SET, "question-1"),
         });
-        expect(set?.stimuli).toEqual([
+        expect(set.stimuli).toEqual([
           {
             key: "passage-1",
             languages: ["id"],
@@ -93,10 +98,13 @@ describe("readQuestionSets", () => {
     () =>
       Effect.gen(function* () {
         const withoutItem = yield* reject(
-          questionFiles(1).filter(([path]) => !path.endsWith("/item.ts"))
+          Arr.filter(questionFiles(1), ([path]) => !path.endsWith("/item.ts"))
         );
         const withoutAnswer = yield* reject(
-          questionFiles(1).filter(([path]) => !path.endsWith("answer.de.mdx"))
+          Arr.filter(
+            questionFiles(1),
+            ([path]) => !path.endsWith("answer.de.mdx")
+          )
         );
         const extraPrompt = yield* reject([
           ...questionFiles(1),

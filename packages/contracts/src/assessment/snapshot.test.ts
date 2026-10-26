@@ -78,7 +78,7 @@ describe("assessment snapshot", () => {
       ).pipe(Effect.flip);
 
       assert.deepStrictEqual(
-        [swapped, repeated, tampered].map((error) =>
+        Arr.map([swapped, repeated, tampered], (error) =>
           "reason" in error ? error.reason : error._tag
         ),
         ["order", "order", "hash"]
