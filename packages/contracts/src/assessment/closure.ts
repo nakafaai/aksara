@@ -54,7 +54,10 @@ function indexRows(records: readonly AssessmentRecord[]) {
       Arr.filterMap(rows, (row) =>
         row.kind === "explanation"
           ? Result.succeed([
-              `${row.explanation.version}\0${row.explanation.language}`,
+              explanationIdentity(
+                row.explanation.version,
+                row.explanation.language
+              ),
               row.explanation.version,
             ] as const)
           : Result.failVoid
@@ -105,6 +108,11 @@ function indexRows(records: readonly AssessmentRecord[]) {
 
 /** The rows of a snapshot, gathered by kind. */
 type Rows = ReturnType<typeof indexRows>;
+
+/** The identity of one explanation: the version it explains and its language. */
+function explanationIdentity(version: string, language: string): string {
+  return `${version}\0${language}`;
+}
 
 /** The identity of one stimulus version: its identifier and its hash. */
 function stimulusIdentity(version: Pick<StimulusVersion, "hash" | "id">) {
@@ -200,10 +208,11 @@ const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
         version.hash
       ), "unplaced", version.hash);
       for (const language of activeAppLocales) {
+        const identity = explanationIdentity(version.hash, language);
         yield* require(HashMap.has(
           rows.explanations,
-          `${version.hash}\0${language}`
-        ), "explanation", `${version.hash}\0${language}`);
+          identity
+        ), "explanation", identity);
       }
     }
     const familiesWithVersions = HashSet.fromIterable(
