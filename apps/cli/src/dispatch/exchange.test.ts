@@ -2,6 +2,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
 import { HttpClientError } from "effect/http";
 import { dispatchNakafaDeploy } from "#cli/dispatch/exchange";
+import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const TOKEN = Redacted.make("dispatch-token");
@@ -38,6 +39,7 @@ describe("release dispatch exchange", () => {
         expect(request.headers).toMatchObject({
           accept: "application/vnd.github+json",
           authorization: "Bearer dispatch-token",
+          "user-agent": "nakafa-aksara",
           "x-github-api-version": "2022-11-28",
         });
         expect(requestJson(request)).toEqual({
@@ -49,12 +51,68 @@ describe("release dispatch exchange", () => {
 
   it.effect("retries throttling and server faults only", () =>
     Effect.gen(function* () {
-      expect(yield* failureFor(429)).toMatchObject({ retryable: true });
-      expect(yield* failureFor(503)).toMatchObject({ retryable: true });
-      expect(yield* failureFor(404)).toMatchObject({ retryable: false });
-      expect(yield* failureFor(422)).toMatchObject({ retryable: false });
-      expect(yield* failureFor(200)).toMatchObject({ retryable: false });
+      expect(yield* failureFor(429)).toMatchObject({
+        retryable: true,
+        status: 429,
+      });
+      expect(yield* failureFor(503)).toMatchObject({
+        retryable: true,
+        status: 503,
+      });
+      expect(yield* failureFor(404)).toMatchObject({
+        retryable: false,
+        status: 404,
+      });
+      expect(yield* failureFor(422)).toMatchObject({
+        retryable: false,
+        status: 422,
+      });
+      expect(yield* failureFor(200)).toMatchObject({
+        detail: null,
+        retryable: false,
+        status: 200,
+      });
     })
+  );
+
+  it.effect(
+    "keeps GitHub's reason for a refusal, from its JSON message or its plain text",
+    () =>
+      Effect.gen(function* () {
+        /** Returns the failure of one dispatch that GitHub refused with this status and body. */
+        const refusal = (status: number, body: string) =>
+          Effect.flip(
+            dispatchNakafaDeploy(
+              captureClient((request) =>
+                Effect.succeed(webResponse(request, body, { status }))
+              ).client,
+              TOKEN
+            )
+          );
+        expect(
+          yield* refusal(
+            403,
+            encodeJsonText({
+              documentation_url: "https://docs.github.com/rest",
+              message: "Resource not accessible by integration",
+            })
+          )
+        ).toMatchObject({
+          detail: "Resource not accessible by integration",
+          retryable: false,
+          status: 403,
+        });
+        expect(
+          yield* refusal(
+            403,
+            "Request forbidden by administrative rules. Please make sure your request has a User-Agent header"
+          )
+        ).toMatchObject({
+          detail:
+            "Request forbidden by administrative rules. Please make sure your request has a User-Agent header",
+          status: 403,
+        });
+      })
   );
 
   it.effect("treats a redirect as a non-retryable failure", () =>
@@ -69,7 +127,7 @@ describe("release dispatch exchange", () => {
       );
       expect(
         yield* Effect.flip(dispatchNakafaDeploy(captured.client, TOKEN))
-      ).toMatchObject({ retryable: false });
+      ).toMatchObject({ detail: null, retryable: false, status: 302 });
     })
   );
 
@@ -84,7 +142,7 @@ describe("release dispatch exchange", () => {
       );
       expect(
         yield* Effect.flip(dispatchNakafaDeploy(captured.client, TOKEN))
-      ).toMatchObject({ retryable: true });
+      ).toMatchObject({ detail: null, retryable: true, status: null });
     })
   );
 });

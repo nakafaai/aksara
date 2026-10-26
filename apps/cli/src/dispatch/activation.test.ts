@@ -1,6 +1,15 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
-import { Effect, Fiber, MutableList, Redacted, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Fiber,
+  Logger,
+  MutableList,
+  Redacted,
+  References,
+  Stream,
+} from "effect";
 import { HttpClientError } from "effect/http";
 import { TestClock } from "effect/testing";
 import {
@@ -99,6 +108,48 @@ describe("production release dispatch", () => {
         phase: "cache",
         releaseId: RELEASE.manifest.releaseId,
       });
+    })
+  );
+
+  it.effect("logs GitHub's status and reason when the dispatch fails", () =>
+    Effect.gen(function* () {
+      const captured = captureClient((request) =>
+        Effect.succeed(
+          webResponse(
+            request,
+            encodeJsonText({
+              message: "Resource not accessible by integration",
+            }),
+            { status: 403 }
+          )
+        )
+      );
+      const dispatch = makeProductionReleaseDispatch({
+        client: captured.client,
+        token: TOKEN,
+      });
+      let logs: Readonly<Record<string, unknown>>[] = [];
+      const logger = Logger.make(({ fiber, message }) => {
+        logs = Arr.append(logs, {
+          ...fiber.getRef(References.CurrentLogAnnotations),
+          message,
+        });
+      });
+      expect(
+        yield* Effect.flip(
+          runAfter(dispatch(dispatchInput()), 0).pipe(
+            Effect.provide(Logger.layer([logger]))
+          )
+        )
+      ).toMatchObject({ _tag: "PublicationActivationError", phase: "cache" });
+      expect(logs).toEqual([
+        {
+          detail: "Resource not accessible by integration",
+          message: ["Nakafa deploy dispatch failed."],
+          retryable: false,
+          status: 403,
+        },
+      ]);
     })
   );
 
