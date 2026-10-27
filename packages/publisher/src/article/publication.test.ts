@@ -13,7 +13,6 @@ const familyCases = [
   ["contentKey", { contentKey: "material/lesson/test" }],
   ["publicPath", { publicPath: "articles/politics/other-article" }],
   ["publicPath", { publicPath: "articles/politics" }],
-  ["publicPath", { publicPath: undefined }],
   ["rendererDomain", { rendererDomain: "mathematics" }],
   ["sourcePath", { sourcePath: "packages/corpus/material/lesson/test/en.mdx" }],
   [

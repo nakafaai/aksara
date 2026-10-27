@@ -22,6 +22,7 @@ const published = Schema.decodeSync(MaterialHeadSchema)({
   delivery: "public",
   family: "material",
   projectionHash: `sha256:${"c".repeat(64)}`,
+  publicPath: "subjects/test/published",
   rendererDomain: "mathematics",
   sourceHash: `sha256:${"d".repeat(64)}`,
   sourcePath: "packages/corpus/test/published/en.mdx",

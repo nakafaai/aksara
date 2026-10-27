@@ -35,7 +35,6 @@ import {
 const MaterialFamilyFieldSchema = Schema.Literals([
   "contentKey",
   "artifactLocale",
-  "publicPath",
   "sourcePath",
 ]);
 
@@ -109,9 +108,6 @@ function mismatchedFamilyField(
 ): typeof MaterialFamilyFieldSchema.Type | undefined {
   if (!head.contentKey.startsWith("material/lesson/")) {
     return "contentKey";
-  }
-  if (head.publicPath === undefined) {
-    return "publicPath";
   }
   if (!head.sourcePath.startsWith("packages/corpus/material/lesson/")) {
     return "sourcePath";

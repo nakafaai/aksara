@@ -138,7 +138,7 @@ function mismatchedFamilyField(
     return "contentKey";
   }
   const [routeFamily, routeCategory, routeSlug, routeRemainder] =
-    head.publicPath?.split("/") ?? [];
+    head.publicPath.split("/");
   if (
     routeFamily !== "articles" ||
     routeCategory === undefined ||

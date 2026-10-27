@@ -128,9 +128,6 @@ function validateResultRoute(
   routes: MutableHashSet.MutableHashSet<string>,
   head: ContentHead
 ) {
-  if (head.publicPath === undefined) {
-    return Effect.succeed(Tuple.make(routes, [head]));
-  }
   const identity = routeIdentity({
     appLocale: AppLocaleSchema.make(head.artifactLocale),
     publicPath: head.publicPath,

@@ -4,7 +4,6 @@ import {
   canonicalizeContentHead,
   HeadPageRequestSchema,
   HeadPageSchema,
-  MaterialHeadSchema,
   PageHeadSchema,
 } from "#contracts/release/head";
 import { articleHead, materialHead, pageHead } from "#contracts/test/head";
@@ -23,24 +22,16 @@ function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
 }
 
 describe("content head pages", () => {
-  it("pins the canonical bytes of routed and route-free heads", () => {
+  it("pins the canonical bytes of every head, each with its route", () => {
     const routed = materialHead("test:routed");
-    const routeFree = Schema.decodeSync(MaterialHeadSchema)({
-      ...routed,
-      publicPath: undefined,
-    });
 
     expect(decodeJson(canonicalizeContentHead(routed))).toEqual(routed);
-    expect(decodeJson(canonicalizeContentHead(routeFree))).toEqual(routeFree);
     const article = articleHead("articles/politics/test");
     expect(decodeJson(canonicalizeContentHead(article))).toEqual(article);
     const page = pageHead("pages/privacy-policy");
     expect(decodeJson(canonicalizeContentHead(page))).toEqual(page);
     expect(canonicalizeContentHead(routed)).toBe(
       '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","publicPath":"subjects/test/test-routed","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
-    );
-    expect(canonicalizeContentHead(routeFree)).toBe(
-      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
     );
   });
 
@@ -234,14 +225,13 @@ describe("content head pages", () => {
     }
   });
 
-  it("requires public routes on page heads", () => {
-    const result = Schema.decodeExit(PageHeadSchema)({
-      ...pageHead("pages/privacy-policy"),
-      publicPath: undefined,
-    });
-
-    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
-      "Expected page heads to retain their public path."
+  it("requires a public route on every head", () => {
+    const { publicPath: _publicPath, ...withoutRoute } = pageHead(
+      "pages/privacy-policy"
     );
+
+    expect(
+      Exit.isFailure(Schema.decodeUnknownExit(PageHeadSchema)(withoutRoute))
+    ).toBe(true);
   });
 });

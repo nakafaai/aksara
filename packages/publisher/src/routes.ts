@@ -89,9 +89,7 @@ export function routeTransitionForContent(
       : {
           appLocale: AppLocaleSchema.make(transition.prior.head.artifactLocale),
           contentKey: transition.prior.head.contentKey,
-          ...("publicPath" in transition.prior.head
-            ? { publicPath: transition.prior.head.publicPath }
-            : {}),
+          publicPath: transition.prior.head.publicPath,
         };
   const { change } = transition.record;
   const publicPath =

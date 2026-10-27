@@ -40,7 +40,6 @@ const familyCases = [
     "content key",
     (head: MaterialHead) => ({ ...head, contentKey: "article:test" }),
   ],
-  ["public path", ({ publicPath: _publicPath, ...head }: MaterialHead) => head],
   [
     "source path",
     (head: MaterialHead) => ({
