@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Uji Awal Pencahayaan Enam Jam pada Perkecambahan Kacang Hijau",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur variabel kontrol melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan variabel kontrol penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kaidah akhir dari perbandingan pertama tentang variabel kontrol",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan variabel kontrol tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

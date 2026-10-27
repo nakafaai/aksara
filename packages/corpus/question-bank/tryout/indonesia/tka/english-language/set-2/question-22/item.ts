@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
     topic: "fact-opinion",
   },
-  responses: {
+  stimulus: "source-checking",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The passage lists three initial checking steps.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Medical advice is named as a higher-risk example.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Treating source checking as a task only for language or computer classes is unrealistic.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Geography is mentioned in the fourth paragraph.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The routine includes a stopping rule.",
         },
       ],
     },
   },
-  stimulusKey: "source-checking",
 };
 
 export default item;

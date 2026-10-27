@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto dipilih agar kesepakatan pencatat tidak perlu diukur lagi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Contoh foto dipilih untuk memperjelas kategori tertulis yang sebelumnya menghasilkan perbedaan penilaian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto dipilih agar beberapa unsur pendataan dapat diubah sekaligus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto dipilih hanya karena hasil akhir pengujian sudah dipastikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

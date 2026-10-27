@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label foto dipilih agar keberhasilan pengembalian tidak perlu diukur lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label foto dipilih agar tim dapat mengubah banyak kondisi sekaligus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label foto dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label foto dipilih hanya karena hasil akhir uji sudah dipastikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Label foto dipilih untuk membantu peminjam mengenali rak pengembalian yang tepat.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

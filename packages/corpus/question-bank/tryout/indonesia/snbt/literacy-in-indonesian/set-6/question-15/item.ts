@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "dukungan sebaya sebagai ukuran utama dalam uji layanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kartu Tujuan dalam Dukungan Sebaya: Uji Dua Minggu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

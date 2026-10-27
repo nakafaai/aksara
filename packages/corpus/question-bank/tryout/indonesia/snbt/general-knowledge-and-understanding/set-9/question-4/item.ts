@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
         },

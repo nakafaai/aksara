@@ -1,22 +1,22 @@
 import { assert, describe, it } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import { Effect } from "effect";
-import { validateQuestionLabels } from "#corpus/question-bank/label";
+import type { ItemSource } from "#corpus/question-bank/item";
+import { validateItemLabels } from "#corpus/question-bank/label";
 
 const sourcePath = CorpusSourcePathSchema.make(
   "packages/corpus/question-bank/tryout/indonesia/tka/compulsory-mathematics/test-set/question-1/item.ts"
 );
 
 /** Builds one valid source item around the label being inspected. */
-function choice(label: string): QuestionItem {
+function choice(label: string): ItemSource {
   return {
-    responses: {
+    versions: {
       en: {
-        kind: "single-choice",
+        kind: "choice",
         options: [
-          { isCorrect: true, label },
-          { isCorrect: false, label: "Another response" },
+          { correct: true, label },
+          { correct: false, label: "Another response" },
         ],
       },
       id: undefined,
@@ -24,7 +24,7 @@ function choice(label: string): QuestionItem {
   };
 }
 
-describe("question label source validation", () => {
+describe("item label source validation", () => {
   it.effect.each([
     "The result is $$x=4$$.",
     "$$\\frac{1}{3}$$",
@@ -50,7 +50,7 @@ describe("question label source validation", () => {
     "<https://example.org/\\(x\\)>",
     "Opening \\(\n\n```text\nexample\n```\n\nclosing \\)",
   ])("preserves inline math and protected Markdown in %s", (label) =>
-    validateQuestionLabels(choice(label), sourcePath)
+    validateItemLabels(choice(label), sourcePath)
   );
 
   it.effect.each([
@@ -105,115 +105,40 @@ describe("question label source validation", () => {
   ])("rejects the broken or display label $label", ({ label, reason }) =>
     Effect.gen(function* () {
       const failure = yield* Effect.flip(
-        validateQuestionLabels(choice(label), sourcePath)
+        validateItemLabels(choice(label), sourcePath)
       );
       assert.strictEqual(failure._tag, "QuestionLabelError");
       assert.strictEqual(failure.reason, reason);
       assert.strictEqual(failure.sourcePath, sourcePath);
-      assert.strictEqual(failure.labelPath, "responses.en.options[0].label");
+      assert.strictEqual(failure.labelPath, "versions.en.options[0].label");
     })
   );
 
-  it.effect("checks both category names and statement labels", () =>
+  it.effect("checks both column names and statement labels", () =>
     Effect.gen(function* () {
-      const item: QuestionItem = {
-        responses: {
+      const item: ItemSource = {
+        versions: {
           id: {
-            categories: ["Benar", "Salah"],
-            kind: "category",
-            statements: [{ correctCategoryOrder: 1, label: "$$x=3$$" }],
+            columns: ["Benar", "Salah"],
+            kind: "matrix",
+            statements: [{ column: 1, label: "$$x=3$$" }],
           },
         },
       };
-      yield* validateQuestionLabels(item, sourcePath);
-      const response = item.responses.id;
-      assert.ok(response?.kind === "category");
-      response.statements[0] = { correctCategoryOrder: 1, label: "$x=3$" };
+      yield* validateItemLabels(item, sourcePath);
+      const interaction = item.versions.id;
+      assert.ok(interaction?.kind === "matrix");
+      interaction.statements[0] = { column: 1, label: "$x=3$" };
       const statement = yield* Effect.flip(
-        validateQuestionLabels(item, sourcePath)
+        validateItemLabels(item, sourcePath)
       );
       assert.strictEqual(
         statement.labelPath,
-        "responses.id.statements[0].label"
+        "versions.id.statements[0].label"
       );
-      response.categories[1] = "$0$";
-      const category = yield* Effect.flip(
-        validateQuestionLabels(item, sourcePath)
-      );
-      assert.strictEqual(category.labelPath, "responses.id.categories[1]");
+      interaction.columns[1] = "$0$";
+      const column = yield* Effect.flip(validateItemLabels(item, sourcePath));
+      assert.strictEqual(column.labelPath, "versions.id.columns[1]");
     })
-  );
-
-  it.effect("checks every locale of rubric criterion and level labels", () =>
-    Effect.gen(function* () {
-      const item: QuestionItem = {
-        responses: {
-          de: {
-            criteria: [
-              {
-                label: { de: "Ansatz", en: "Approach", id: "Pendekatan" },
-                levels: [
-                  {
-                    label: { de: "fehlt", en: "missing", id: "tidak ada" },
-                    points: 0,
-                  },
-                  {
-                    label: {
-                      de: "Ableitung $$f'(x)=2x$$",
-                      en: "Derivative $$f'(x)=2x$$",
-                      id: "Turunan $$f'(x)=2x$$",
-                    },
-                    points: 2,
-                  },
-                ],
-              },
-            ],
-            kind: "rubric",
-          },
-        },
-      };
-      yield* validateQuestionLabels(item, sourcePath);
-      const response = item.responses.de;
-      assert.ok(response?.kind === "rubric");
-      const [criterion] = response.criteria;
-      assert.ok(criterion !== undefined);
-      criterion.levels[1] = {
-        label: { de: "richtig", en: "right", id: "Turunan $f'(x)$" },
-        points: 2,
-      };
-      const level = yield* Effect.flip(
-        validateQuestionLabels(item, sourcePath)
-      );
-      assert.strictEqual(
-        level.labelPath,
-        "responses.de.criteria[0].levels[1].label.id"
-      );
-      criterion.label = { ...criterion.label, en: "$x$" };
-      const label = yield* Effect.flip(
-        validateQuestionLabels(item, sourcePath)
-      );
-      assert.strictEqual(label.labelPath, "responses.de.criteria[0].label.en");
-    })
-  );
-
-  it.effect(
-    "leaves plain accepted short-answer text to the answer contract",
-    () =>
-      validateQuestionLabels(
-        {
-          responses: {
-            en: {
-              key: {
-                acceptedAnswers: ["$5"],
-                collapseWhitespace: false,
-                ignoreCase: false,
-                kind: "text",
-              },
-              kind: "short-answer",
-            },
-          },
-        },
-        sourcePath
-      )
   );
 });

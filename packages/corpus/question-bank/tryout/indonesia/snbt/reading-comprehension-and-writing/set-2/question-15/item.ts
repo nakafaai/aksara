@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sensus tersebut membuktikan bahwa sebagian besar petani Indonesia masih muda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penurunan usaha pertanian perorangan membuktikan bahwa sektor pertanian Indonesia sedang menyusut.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertanian perkotaan kini menjadi bentuk pertanian terbesar di Indonesia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penerapan standar sensus internasional dengan sendirinya akan meningkatkan kesejahteraan petani.",
         },

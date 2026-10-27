@@ -47,21 +47,17 @@ const reject = Effect.fn("RollbackCatalogTest.reject")(
 );
 
 describe("mergeRollbackResult", () => {
-  it.effect(
-    "keeps untouched heads, including body-only heads without routes",
-    () =>
-      Effect.gen(function* () {
-        const { current } = yield* fixtures;
-        const { publicPath: _publicPath, ...bodyOnlyFields } = current.head;
-        const bodyOnly = MaterialHeadSchema.make(bodyOnlyFields);
+  it.effect("keeps an untouched head", () =>
+    Effect.gen(function* () {
+      const { current } = yield* fixtures;
 
-        expect(
-          yield* collect({
-            active: Stream.make(bodyOnly),
-            transitions: Stream.empty,
-          })
-        ).toEqual([bodyOnly]);
-      })
+      expect(
+        yield* collect({
+          active: Stream.make(current.head),
+          transitions: Stream.empty,
+        })
+      ).toEqual([current.head]);
+    })
   );
 
   it.effect(
@@ -144,8 +140,7 @@ describe("mergeRollbackResult", () => {
         contentKey: "test:catalog:b",
         hashCharacter: "c",
         index: 1,
-        publicPath:
-          restored.head.publicPath ?? "subjects/test/catalog/restored",
+        publicPath: restored.head.publicPath,
       });
 
       expect(

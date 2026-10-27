@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Oleh karena itu, simpulan tentang ruang latihan musik tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Selain itu, simpulan tentang ruang latihan musik tetap dibatasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Namun, simpulan tentang ruang latihan musik tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Sebelumnya, simpulan tentang ruang latihan musik tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Akibatnya, simpulan tentang ruang latihan musik tetap dibatasi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

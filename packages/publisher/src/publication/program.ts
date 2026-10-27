@@ -17,9 +17,6 @@ import type {
   RouteVerificationError,
   SignedReleaseVerificationError,
   SnapshotVerificationError,
-  TryoutRuntimeBundleSigningError,
-  TryoutRuntimeBundleSourceVerificationError,
-  TryoutRuntimeBundleVerificationError,
 } from "#publisher/publication/failure";
 import type {
   PublicationActivation,
@@ -58,10 +55,7 @@ export type PublishContentReleaseError<E> =
   | RendererManifestValidationError
   | ArtifactVerificationError
   | SignedReleaseVerificationError
-  | TryoutRuntimeBundleVerificationError
-  | TryoutRuntimeBundleSourceVerificationError
   | ArtifactSigningError
-  | TryoutRuntimeBundleSigningError
   | CompileContentError
   | ContractDecodeError
   | ContentSigningError

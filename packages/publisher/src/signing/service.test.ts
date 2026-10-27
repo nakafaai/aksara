@@ -9,7 +9,6 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-contracts/tryout/runtime/canonical";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import { encodeJsonText } from "#publisher/text/json";
@@ -18,10 +17,8 @@ import {
   generateRsaPrivateKeyPem,
   signingManifest as manifest,
   signingPayload as payload,
-  signingRuntimeBundle,
   TEST_ARTIFACT_SIGNATURE,
   TEST_RELEASE_SIGNATURE,
-  TEST_RUNTIME_BUNDLE_SIGNATURE,
   verifyRecorded,
   verifyWithPublicKeyPem,
 } from "#test/signing";
@@ -48,13 +45,6 @@ describe("Ed25519 publication signing", () => {
         const { publicKeyPem, signer } = yield* makeSigner();
         const artifact = yield* signer.signArtifact(payload);
         const release = yield* signer.signRelease(manifest);
-        expect(manifest.origin.kind).toBe("git");
-        if (manifest.origin.kind !== "git") {
-          return;
-        }
-        const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
-          yield* signingRuntimeBundle(release, manifest.origin.sha)
-        );
 
         expect(artifact.keyId).toBe("test-signing-key");
         expect(
@@ -76,17 +66,6 @@ describe("Ed25519 publication signing", () => {
               release.manifest
             ),
             release.signature
-          )
-        ).toBe(true);
-        expect(runtimeBundle.keyId).toBe(release.keyId);
-        expect(
-          yield* verifyWithPublicKeyPem(
-            publicKeyPem,
-            canonicalizeTryoutRuntimeBundleSigningInput(
-              runtimeBundle.bundleHash,
-              runtimeBundle.payload
-            ),
-            runtimeBundle.signature
           )
         ).toBe(true);
         expect(
@@ -202,21 +181,9 @@ describe("Ed25519 publication signature vectors", () => {
       const { signer } = yield* makeSigner();
       const artifact = yield* signer.signArtifact(payload);
       const release = yield* signer.signRelease(manifest);
-      expect(manifest.origin.kind).toBe("git");
-      if (manifest.origin.kind !== "git") {
-        return;
-      }
-      const runtimeBundle = yield* signer.signTryoutRuntimeBundle(
-        yield* signingRuntimeBundle(release, manifest.origin.sha)
-      );
-      expect([
-        artifact.artifactHash,
-        release.manifestHash,
-        runtimeBundle.bundleHash,
-      ]).toEqual([
+      expect([artifact.artifactHash, release.manifestHash]).toEqual([
         "sha256:ea361ee31f9369675a115b986903ba6efd3bc5a1b0970cdffcbe10541f70325e",
-        "sha256:2a0b8a7be69f28b0700181d26d5946f97ea99ee4d321857aea90aacf3a385cd7",
-        "sha256:66f4dd92fbf1acb8bd5d42f65e18cb5d629fdb66300b85d34be6d592b40dbe58",
+        "sha256:3496ac28c1a6b0ed3a1badaf1c1c90c0aee85da5d3a412fab2f0e023b9ed18e8",
       ]);
       const artifactInput = canonicalizeContentArtifactSigningInput(
         artifact.artifactHash,
@@ -226,18 +193,10 @@ describe("Ed25519 publication signature vectors", () => {
         release.manifestHash,
         release.manifest
       );
-      const runtimeBundleInput = canonicalizeTryoutRuntimeBundleSigningInput(
-        runtimeBundle.bundleHash,
-        runtimeBundle.payload
-      );
       expect([
         yield* verifyRecorded(artifactInput, TEST_ARTIFACT_SIGNATURE),
         yield* verifyRecorded(releaseInput, TEST_RELEASE_SIGNATURE),
-        yield* verifyRecorded(
-          runtimeBundleInput,
-          TEST_RUNTIME_BUNDLE_SIGNATURE
-        ),
-      ]).toEqual([true, true, true]);
+      ]).toEqual([true, true]);
       expect([
         yield* verifyRecorded(
           changeOneByte(artifactInput),
@@ -247,11 +206,7 @@ describe("Ed25519 publication signature vectors", () => {
           changeOneByte(releaseInput),
           TEST_RELEASE_SIGNATURE
         ),
-        yield* verifyRecorded(
-          changeOneByte(runtimeBundleInput),
-          TEST_RUNTIME_BUNDLE_SIGNATURE
-        ),
-      ]).toEqual([false, false, false]);
+      ]).toEqual([false, false]);
     })
   );
 });

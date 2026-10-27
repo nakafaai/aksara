@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim akan mengulang uji tanda genre untuk memperoleh bukti yang lebih kuat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang kembali uji tanda genre untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Untuk memperoleh bukti yang lebih kuat, uji tanda genre akan diulang kembali oleh tim.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan melakukan kegiatan berupa pengulangan uji tanda genre demi memperoleh bukti yang lebih kuat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang tanda genre yang telah diuji sebelumnya.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

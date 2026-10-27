@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Making disagreement safe to discuss",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Waiting for someone else to complete the next step",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hiding unresolved evidence in a larger project",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Psychological safety as a definition without a reviewable action",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A complete plan without a small accountable step",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

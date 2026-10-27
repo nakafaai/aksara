@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal membandingkan dua cara pembayaran pada pengguna yang setara, lalu bagian berikutnya memperluas hasil itu ke seluruh pasar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal memutuskan penghapusan jalur digital, lalu bagian berikutnya hanya merinci jadwal perbaikan jaringan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menemukan keunggulan pada belanja besar, lalu bagian berikutnya menjelaskan perluasan digital untuk kelompok tersebut.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menyajikan keberatan pengguna, lalu bagian berikutnya mengatasinya dengan mewajibkan kepemilikan perangkat digital.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Data awal memunculkan usulan kebijakan, lalu pemisahan data mengungkap batas usulan dan mengarahkan keputusan campuran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

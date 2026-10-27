@@ -4,12 +4,11 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { loadQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import {
   type SimilarityMatch,
   scanQuestionSimilarity,
 } from "@nakafa/aksara-corpus/question-bank/similarity";
-import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
+import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Console, Effect, Path, Schema } from "effect";
 
 const DEFAULT_THRESHOLD = 0.5;
@@ -66,11 +65,10 @@ const runCli = Effect.fn("SimilarityCheck.runCli")(function* (
   const path = yield* Path.Path;
   const root = yield* Effect.sync(() => process.cwd());
   const target = path.relative(root, path.resolve(root, options.target));
-  const tryoutSources = yield* decodeTryoutRegistry();
-  const { sources } = yield* loadQuestionContent(root, tryoutSources);
+  const { sets } = yield* loadTryoutContent(root);
   const report = yield* scanQuestionSimilarity(
     root,
-    sources,
+    sets,
     target,
     options.threshold
   );

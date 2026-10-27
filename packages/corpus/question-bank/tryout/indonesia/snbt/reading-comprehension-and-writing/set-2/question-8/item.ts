@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemerintah DKI Jakarta mulai memberlakukan PSBB pada 10 April 2020.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "PSBB diumumkan oleh Pemerintah DKI Jakarta pada 10 April 2020.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pada 10 April 2020, aturan PSBB diumumkan di DKI Jakarta.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Warga DKI Jakarta mulai mengikuti PSBB pada 10 April 2020.",
         },
       ],

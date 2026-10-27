@@ -1,12 +1,6 @@
-export const metadata = {
-  title: "Solution to Question 3",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-10-02",
-};
-
 Let a sheet of size A<InlineMath math="n" /> have long side <InlineMath math="a_n" /> and short side <InlineMath math="b_n" />, both in meters. Every statement can be judged once you know how **the sides and the area change** from one size to the next.
 
-#### The cutting rule
+# The cutting rule
 
 A cut parallel to the short side **halves the long side**. The new sheet measures <InlineMath math="b_n" /> by <InlineMath math="\frac{a_n}{2}" />. Since <InlineMath math="a_n=\sqrt2\,b_n" />, the value <InlineMath math="\frac{a_n}{2}=\frac{b_n}{\sqrt2}" /> is smaller than <InlineMath math="b_n" />. So the long side of the new sheet is the short side of the old one.
 
@@ -17,7 +11,7 @@ b_{n+1}&=\frac{a_n}{2}=\frac{b_n}{\sqrt2}
 
 Each cut halves the area and multiplies every side by <InlineMath math="\frac{1}{\sqrt2}" />. That is why all sizes in the A series are similar rectangles.
 
-#### The starting size and the whole series
+# The starting size and the whole series
 
 For A0 the product of the sides is <InlineMath math="1" />, and the long side is <InlineMath math="\sqrt2" /> times the short side. Substitute the second relation into the first equation.
 
@@ -107,7 +101,7 @@ By the cutting rule, **each step lowers the power of two by <InlineMath math="\f
 
 As a check, <InlineMath math="a_4=2^{-\frac74}\approx0.297\text{ m}" /> and <InlineMath math="b_4=2^{-\frac94}\approx0.210\text{ m}" />. That matches the A4 paper you know, which measures about <InlineMath math="297\text{ mm}" /> by <InlineMath math="210\text{ mm}" />.
 
-#### Judging each statement
+# Judging each statement
 
 1. The area of A4 is <InlineMath math="\frac1{16}\text{ m}^2" />, so this statement is true. Going from A0 to A4 takes four cuts, giving an area of <InlineMath math="1\times\left(\frac12\right)^4=\frac1{16}\text{ m}^2" />.
 2. The statement that the long side of A3 equals the short side of A2 is true. The cutting rule gives <InlineMath math="a_3=b_2" />, and the table shows <InlineMath math="2^{-\frac54}\text{ m}" /> for both.

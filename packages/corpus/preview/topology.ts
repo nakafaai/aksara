@@ -1,44 +1,22 @@
 import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
-import { Array as Arr, Cache, Effect } from "effect";
+import { Cache, Effect } from "effect";
 import { discoverSourceDependencies } from "#corpus/preview/dependency";
-import type { PreviewDependency } from "#corpus/preview/source";
 
 export type RestartDependencyLookup = (
   sourcePath: CorpusSourcePath
-) => ReturnType<typeof restartDependencies>;
+) => ReturnType<typeof discoverSourceDependencies>;
 
-/** Converts one static source-module closure into restart dependencies. */
-const restartDependencies = Effect.fn(
-  "AksaraCorpus.restartPreviewDependencies"
-)(function* (corpusRoot: string, sourcePath: CorpusSourcePath) {
-  const dependencies = yield* discoverSourceDependencies(
-    corpusRoot,
-    sourcePath
-  );
-  const [first, ...remaining] = dependencies;
-  return [
-    {
-      mode: "restart",
-      sourcePath: first,
-    },
-    ...Arr.map(
-      remaining,
-      (dependency): PreviewDependency => ({
-        mode: "restart",
-        sourcePath: dependency,
-      })
-    ),
-  ] satisfies readonly [PreviewDependency, ...PreviewDependency[]];
-});
-
-/** Creates one concurrent-safe dependency lookup scoped to a preview batch. */
+/**
+ * Creates one concurrent-safe lookup of the static source-module closure of a
+ * file, whose every member restarts preview, scoped to a preview batch.
+ */
 export const makeRestartDependencyLookup = Effect.fn(
   "AksaraCorpus.makeRestartDependencyLookup"
 )(function* (corpusRoot: string) {
   const cache = yield* Cache.make({
     capacity: Number.MAX_SAFE_INTEGER,
     lookup: (sourcePath: CorpusSourcePath) =>
-      restartDependencies(corpusRoot, sourcePath),
+      discoverSourceDependencies(corpusRoot, sourcePath),
   });
   return (sourcePath: CorpusSourcePath) => Cache.get(cache, sourcePath);
 });

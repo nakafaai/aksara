@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "How to calculate the construction cost of an office",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Why email should replace every meeting",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The history of corporate architecture",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "How to decorate a private office",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Evidence and trade-offs in choosing an office layout",
         },
       ],

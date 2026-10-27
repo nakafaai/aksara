@@ -10,7 +10,7 @@ describe("publication scope", () => {
   it("decodes only non-empty canonical unique families", () => {
     const scope = Schema.decodeSync(PublicationScopeSchema)({
       families: ["article", "material"],
-      snapshots: ["program", "tryout"],
+      snapshots: ["assessment", "program"],
     });
     expect(canonicalizePublicationScope(scope)).toEqual(scope);
 
@@ -18,10 +18,10 @@ describe("publication scope", () => {
       [
         { families: [], snapshots: [] },
         { families: ["material", "material"], snapshots: [] },
-        { families: ["question", "article"], snapshots: [] },
+        { families: ["material", "article"], snapshots: [] },
         { families: ["unknown"], snapshots: [] },
         { families: [], snapshots: ["program", "program"] },
-        { families: [], snapshots: ["tryout", "quran"] },
+        { families: [], snapshots: ["quran", "assessment"] },
         { families: [], snapshots: ["unknown"] },
       ],
       (invalid) => Schema.decodeUnknownExit(PublicationScopeSchema)(invalid)
@@ -38,11 +38,11 @@ describe("publication scope", () => {
   it("pins the canonical JSON of a family and snapshot scope", () => {
     const scope = Schema.decodeSync(PublicationScopeSchema)({
       families: ["article", "material"],
-      snapshots: ["program", "tryout"],
+      snapshots: ["assessment", "program"],
     });
 
     expect(encodeJsonText(canonicalizePublicationScope(scope))).toBe(
-      '{"families":["article","material"],"snapshots":["program","tryout"]}'
+      '{"families":["article","material"],"snapshots":["assessment","program"]}'
     );
   });
 

@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
     topic: "information-validity",
   },
-  responses: {
+  stimulus: "emergency-plan",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The document uses the longest possible wording.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The plan is usable when its organizer can quickly find the cards during practice.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The practice checks the route but leaves the accessibility of alerts untested.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Household members can reach the meeting point and state the contact during practice.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The plan has not changed for many years.",
         },
       ],
     },
   },
-  stimulusKey: "emergency-plan",
 };
 
 export default item;

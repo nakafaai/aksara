@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan sosial hanya disebabkan oleh hubungan antarindividu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kontak dari luar merupakan satu-satunya sumber perubahan sosial",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peneliti harus mengkaji semua perubahan tanpa menentukan perubahan utama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat hanya berubah ketika dipengaruhi oleh masyarakat lain",
         },

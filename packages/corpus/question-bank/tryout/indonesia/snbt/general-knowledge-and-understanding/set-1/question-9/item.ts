@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "peningkatan minat terhadap olahraga selama pandemi COVID-19.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "dampak positif berolahraga bagi tubuh kita.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "ragam kegiatan olahraga pada masa pandemi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "perlunya membedakan panduan olahraga berbasis bukti dari mitos selama pandemi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "olahraga merupakan satu di antara cara mencegah corona.",
         },
       ],

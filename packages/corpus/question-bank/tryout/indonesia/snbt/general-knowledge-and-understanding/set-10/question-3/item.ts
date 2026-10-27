@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },

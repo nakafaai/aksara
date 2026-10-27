@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nia pasti tidak tertular karena paparan tidak menimbulkan risiko infeksi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nia mungkin tidak tertular, tetapi tertular maupun tidak tertular masih sesuai dengan informasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nia pasti tertular karena setiap paparan selalu menyebabkan infeksi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan tidak relevan karena bacaan tidak membahas penularan influenza.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak ada informasi tentang apakah Nia terpapar partikel dari orang yang flu.",
         },

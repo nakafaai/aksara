@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
     topic: "explicit-information",
   },
-  responses: {
+  stimulus: "last-bus",
+  versions: {
     en: {
-      categories: ["Planned", "Live", "Direct"],
-      kind: "category",
+      columns: ["Planned", "Live", "Direct"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "The printed timetable",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "The official service page",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "The clinic receptionist",
         },
       ],
     },
   },
-  stimulusKey: "last-bus",
 };
 
 export default item;

@@ -77,7 +77,6 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
-    stageTryoutRuntimeBundle,
   } = makeStageWriters(rows);
   /** Applies one authenticated group while preserving child transaction order. */
   const stageGroup = vi.fn(({ requests }: StageGroupInput) =>
@@ -176,7 +175,6 @@ export function makeTarget(release: {
       active,
       candidate,
       recovery,
-      tryoutRuntimeBundle: null,
     })
   );
   const target = PublicationTarget.of({
@@ -225,7 +223,6 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
-    stageTryoutRuntimeBundle,
     status: ({ manifestHash, releaseId }) => {
       const phase =
         Option.getOrUndefined(MutableHashMap.get(phases, releaseId)) ??
@@ -274,7 +271,6 @@ export function makeTarget(release: {
     stageRouteBatch,
     stageSnapshot,
     stageSnapshotBatch,
-    stageTryoutRuntimeBundle,
     target,
     verify,
   };

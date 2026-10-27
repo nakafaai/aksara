@@ -1,12 +1,22 @@
+import { CatalogRevisionSchema } from "@nakafa/aksara-contracts/assessment/catalog";
+import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
+import { MarksSchema } from "@nakafa/aksara-contracts/assessment/scoring";
 import { DateOnlySchema } from "@nakafa/aksara-contracts/date";
-import { QuestionResponseKindSchema } from "@nakafa/aksara-contracts/question/response";
 import { isHttpsUrl } from "@nakafa/aksara-contracts/text/syntax";
-import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import {
-  TryoutMarksSchema,
-  TryoutSourceRevisionSchema,
-} from "@nakafa/aksara-contracts/tryout/spec";
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
+
+/**
+ * The response formats of the official frameworks: a single choice, a choice
+ * of several answers, and a category table. An authored choice with one correct
+ * option is a single choice, with several a multiple choice, and a matrix is a
+ * category table.
+ */
+export const ResponseFormatSchema = Schema.Literals([
+  "category",
+  "multiple-choice",
+  "single-choice",
+]);
+export type ResponseFormat = typeof ResponseFormatSchema.Type;
 
 const PositiveCountSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThan(0))
@@ -16,14 +26,14 @@ const NonNegativeCountSchema = Schema.Int.pipe(
 );
 
 const ReadinessEvidenceSchema = Schema.Struct({
-  key: TryoutKeySchema,
+  key: KebabKeySchema,
   label: Schema.Trimmed.check(Schema.isNonEmpty()),
   retrievedAt: DateOnlySchema,
   url: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
 
 const OfficialProvenanceSchema = Schema.Struct({
-  evidenceKey: TryoutKeySchema,
+  evidenceKey: KebabKeySchema,
   kind: Schema.Literal("official"),
 });
 const ExpectationProvenanceSchema = Schema.Union([
@@ -40,27 +50,27 @@ const ScheduleExpectationSchema = Schema.Struct({
  */
 const MarksExpectationSchema = Schema.Struct({
   provenance: OfficialProvenanceSchema,
-  value: TryoutMarksSchema,
+  value: MarksSchema,
 });
 const CoverageMinimumSchema = Schema.Struct({
   editorialMinimum: PositiveCountSchema,
-  key: TryoutKeySchema,
+  key: KebabKeySchema,
 });
 const ResponseMinimumSchema = Schema.Struct({
   editorialMinimum: PositiveCountSchema,
-  kind: QuestionResponseKindSchema,
+  kind: ResponseFormatSchema,
 });
 const TopicMinimumSchema = Schema.Struct({
-  cognitiveLevels: Schema.NonEmptyArray(TryoutKeySchema),
-  contentDomains: Schema.NonEmptyArray(TryoutKeySchema),
+  cognitiveLevels: Schema.NonEmptyArray(KebabKeySchema),
+  contentDomains: Schema.NonEmptyArray(KebabKeySchema),
   editorialMinimum: PositiveCountSchema,
-  key: TryoutKeySchema,
+  key: KebabKeySchema,
 });
 
 const SectionBlueprintSchema = Schema.Struct({
   cognitiveLevels: Schema.NonEmptyArray(CoverageMinimumSchema),
   contentDomains: Schema.NonEmptyArray(CoverageMinimumSchema),
-  evidenceKey: TryoutKeySchema,
+  evidenceKey: KebabKeySchema,
   groupedStimulusEditorialMinimum: NonNegativeCountSchema,
   responseMinimums: Schema.NonEmptyArray(ResponseMinimumSchema),
   topics: Schema.NonEmptyArray(TopicMinimumSchema),
@@ -71,19 +81,19 @@ const SectionBlueprintSchema = Schema.Struct({
  */
 const ReadinessSectionSchema = Schema.Struct({
   blueprint: Schema.optionalKey(SectionBlueprintSchema),
-  key: TryoutKeySchema,
+  key: KebabKeySchema,
   marks: Schema.optionalKey(MarksExpectationSchema),
   order: PositiveCountSchema,
   questionCount: ScheduleExpectationSchema,
   timeLimitSeconds: ScheduleExpectationSchema,
 });
 const AssessmentReadinessFieldsSchema = Schema.Struct({
-  countryKey: TryoutKeySchema,
+  countryKey: KebabKeySchema,
   evidence: Schema.NonEmptyArray(ReadinessEvidenceSchema),
-  examKey: TryoutKeySchema,
+  examKey: KebabKeySchema,
   sections: Schema.NonEmptyArray(ReadinessSectionSchema),
-  sourceRevision: TryoutSourceRevisionSchema,
-  trackKey: TryoutKeySchema,
+  sourceRevision: CatalogRevisionSchema,
+  trackKey: KebabKeySchema,
 });
 type AssessmentReadinessFields = typeof AssessmentReadinessFieldsSchema.Type;
 
@@ -158,7 +168,7 @@ export const AssessmentReadinessSchema = AssessmentReadinessFieldsSchema.pipe(
     })
   )
 );
-type AssessmentReadinessInput = typeof AssessmentReadinessSchema.Encoded;
+export type AssessmentReadinessInput = typeof AssessmentReadinessSchema.Encoded;
 export type AssessmentReadiness = typeof AssessmentReadinessSchema.Type;
 
 export class AssessmentReadinessDecodeError extends Schema.TaggedError<

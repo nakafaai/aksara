@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Banjir dapat mencemari sumber air minum",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Genangan air tidak pernah menjadi tempat berkembang biak nyamuk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
         },

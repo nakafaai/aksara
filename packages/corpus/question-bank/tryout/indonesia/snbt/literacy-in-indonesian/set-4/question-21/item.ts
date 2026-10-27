@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan memahami advokasi diri sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Nisa mengubah kesulitan melewati lorong pasar menjadi catatan rute dan usulan tanda akses, lalu diminta menilai tanda yang diuji pengelola.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

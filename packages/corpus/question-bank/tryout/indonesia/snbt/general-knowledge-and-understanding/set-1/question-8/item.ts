@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "perubahan secara dramatis.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "perubahan garis keturunan virus dari generasi ke generasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perkembangan yang pesat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perubahan yang terjadi secara cepat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pertumbuhan.",
         },
       ],

@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "information-quality",
   },
-  responses: {
+  stimulus: "repair-clinic",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "menggambarkan kegiatan peserta, tetapi tidak dapat digeneralisasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menunjukkan bahwa sekitar 28 persen benda sejenis dapat diperbaiki pada kegiatan berikutnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menunjukkan perbaikan lebih hemat untuk benda yang berhasil dikembalikan ke penggunaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "angka 28 cukup untuk menilai peluang perbaikan benda yang tidak pernah dibawa peserta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "membuktikan hasil yang sama akan terjadi di sekolah lain",
         },
       ],
     },
   },
-  stimulusKey: "repair-clinic",
 };
 
 export default item;

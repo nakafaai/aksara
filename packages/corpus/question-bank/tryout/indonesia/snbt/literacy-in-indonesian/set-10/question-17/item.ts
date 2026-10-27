@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peta membuktikan lampu menyala, sedangkan buku harian hanya menggambarkan perasaan yang tidak dapat dibandingkan dengan lokasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Buku harian menunjukkan seluruh lokasi lampu, sedangkan peta menjelaskan berapa lama setiap lampu menyala.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Peta menunjukkan status dan sebaran pemasangan, sedangkan buku harian menunjukkan bagaimana beberapa warga mengalami penerangan pada rute serta waktu tertentu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kedua sumber memberi informasi yang sama karena titik peta dan lokasi dalam catatan dapat disejajarkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan tujuan membuat kedua sumber tidak dapat dipakai bersama dalam satu penyelidikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

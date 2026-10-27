@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
     topic: "explicit-information",
   },
-  responses: {
+  stimulus: "weather-notebook",
+  versions: {
     en: {
-      categories: ["Before it was found", "After it was found"],
-      kind: "category",
+      columns: ["Before it was found", "After it was found"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Mina blamed Arif.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "The pages were placed between clean sheets.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "A shared digital copy was created.",
         },
       ],
     },
   },
-  stimulusKey: "weather-notebook",
 };
 
 export default item;

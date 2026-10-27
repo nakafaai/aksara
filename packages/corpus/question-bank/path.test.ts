@@ -1,241 +1,71 @@
 import { describe, expect, it } from "@effect/vitest";
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { DeliveryLanguageSchema } from "@nakafa/aksara-contracts/locale";
-import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Array as Arr, Effect, Schema } from "effect";
-
+import { Exit, Option, Schema } from "effect";
 import {
-  decodeQuestionDocumentPath,
-  decodeQuestionPath,
-  indexQuestionBanks,
-  locateQuestionEntry,
-  questionSourceFiles,
+  readBankEntry,
+  SetPathSchema,
+  setPath,
+  setSourcePath,
 } from "#corpus/question-bank/path";
-import { questionPathFixtures, rejectQuestionPath } from "#corpus/test/tryout";
 
-describe("question path", () => {
-  it("derives the exact active files without translating assessed-language prompts", () => {
-    expect(questionSourceFiles({ kind: "app-locale" })).toEqual([
-      "answer.de.mdx",
-      "answer.en.mdx",
-      "answer.id.mdx",
-      "item.ts",
-      "question.de.mdx",
-      "question.en.mdx",
-      "question.id.mdx",
-    ]);
-    expect(
-      questionSourceFiles({
-        kind: "fixed",
-        language: DeliveryLanguageSchema.make("en"),
-      })
-    ).toEqual([
-      "answer.de.mdx",
-      "answer.en.mdx",
-      "answer.id.mdx",
-      "item.ts",
-      "question.en.mdx",
-    ]);
-  });
+const set = "test-country/test-exam/test-section/test-set";
 
-  it("locates the terminal question below a question-prefixed bank", () => {
-    expect(
-      locateQuestionEntry(
-        "germany/abitur/question-writing/foundation-set/question-1/item.ts",
-        "/"
-      )
-    ).toEqual({
-      file: "item.ts",
-      root: "germany/abitur/question-writing/foundation-set/question-1",
+describe("question bank path", () => {
+  it("builds a set path and the repository path of its files", () => {
+    const path = setPath({
+      countryKey: "test-country",
+      examKey: "test-exam",
+      sectionKey: "test-section",
+      setKey: "test-set",
     });
-    expect(locateQuestionEntry("germany/abitur/question-writing", "/")).toBe(
-      undefined
+
+    expect(path).toBe(set);
+    expect(setSourcePath(path, "question-1", "item.ts")).toBe(
+      `packages/corpus/question-bank/tryout/${set}/question-1/item.ts`
     );
   });
 
-  it.effect(
-    "derives renderer ownership from the canonical try-out sections",
-    () =>
-      Effect.gen(function* () {
-        const { questionBanks } = yield* questionPathFixtures;
-        const [plain, mathematics] = yield* Effect.all([
-          decodeQuestionPath(
-            questionBanks,
-            "indonesia/snbt/reading-comprehension-and-writing/set-1/question-1"
-          ),
-          decodeQuestionPath(
-            questionBanks,
-            "indonesia/tka/compulsory-mathematics/set-3/question-40"
-          ),
-        ]);
-
-        expect(plain).toMatchObject({
-          rendererDomain: "snbt-plain",
-          setKey:
-            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1",
-        });
-        expect(mathematics).toMatchObject({
-          questionNumber: 40,
-          rendererDomain: "tka-math",
-        });
-      })
-  );
-
-  it.effect(
-    "accepts a registered future country, exam, and generic set key",
-    () =>
-      Effect.gen(function* () {
-        const { futureBanks } = yield* questionPathFixtures;
-        const location = yield* decodeQuestionPath(
-          futureBanks,
-          "germany/abitur/mathematics/foundation-set/question-1"
-        );
-
-        expect(location).toMatchObject({
-          questionKey:
-            "question-bank/tryout/germany/abitur/mathematics/foundation-set/question-1",
-          rendererDomain: "mathematics",
-          setKey:
-            "question-bank/tryout/germany/abitur/mathematics/foundation-set",
-        });
-      })
-  );
-
-  it.effect("fails closed for unknown or conflicting renderer ownership", () =>
-    Effect.gen(function* () {
-      const { questionBanks, tryoutSources } = yield* questionPathFixtures;
-      const snbt = yield* Effect.fromOption(
-        Arr.findFirst(tryoutSources, ({ examKey }) => examKey === "snbt")
-      );
-      const track = yield* Effect.fromNullishOr(snbt.tracks[0]);
-      const firstSet = yield* Effect.fromNullishOr(track.sets[0]);
-      const firstSection = yield* Effect.fromOption(
-        Arr.findFirst(
-          firstSet.sections,
-          ({ key }) => key === "general-reasoning"
-        )
-      );
-      const conflictingDomain =
-        yield* Schema.decodeEffect(RendererDomainSchema)("snbt-plain");
-      const rendererConflict = {
-        ...snbt,
-        tracks: [
-          {
-            ...track,
-            sets: [
-              {
-                ...firstSet,
-                sections: Arr.map(firstSet.sections, (section) =>
-                  section === firstSection
-                    ? { ...section, rendererDomain: conflictingDomain }
-                    : section
-                ),
-              },
-              ...Arr.drop(track.sets, 1),
-            ],
-          },
-        ],
-      };
-      const languageConflict = {
-        ...snbt,
-        tracks: [
-          {
-            ...track,
-            sets: [
-              {
-                ...firstSet,
-                sections: Arr.map(firstSet.sections, (section) =>
-                  section === firstSection
-                    ? {
-                        ...section,
-                        languagePolicy: {
-                          kind: "fixed" as const,
-                          language: DeliveryLanguageSchema.make("en"),
-                        },
-                      }
-                    : section
-                ),
-              },
-              ...Arr.drop(track.sets, 1),
-            ],
-          },
-        ],
-      };
-      const [unknown, renderer, language] = yield* Effect.all([
-        rejectQuestionPath(
-          questionBanks,
-          "indonesia/snbt/unsupported/set-1/question-1"
-        ),
-        indexQuestionBanks([
-          rendererConflict,
-          ...Arr.filter(tryoutSources, (source) => source !== snbt),
-        ]).pipe(Effect.flip),
-        indexQuestionBanks([
-          languageConflict,
-          ...Arr.filter(tryoutSources, (source) => source !== snbt),
-        ]).pipe(Effect.flip),
-      ]);
-
-      expect([unknown, renderer, language]).toEqual([
-        expect.objectContaining({
-          _tag: "QuestionPathError",
-          reason: "renderer",
-        }),
-        expect.objectContaining({
-          _tag: "QuestionPathError",
-          reason: "renderer",
-        }),
-        expect.objectContaining({
-          _tag: "QuestionPathError",
-          reason: "language",
-        }),
-      ]);
-    })
-  );
-
-  it.effect("rejects malformed physical and localized document paths", () =>
-    Effect.gen(function* () {
-      const { questionBanks } = yield* questionPathFixtures;
-      const malformed = yield* Effect.forEach(
-        [
-          "indonesia/snbt/general-reasoning/set-1/question-x",
-          "indonesia/snbt/reading-and/Writing-skills/set-1/question-1",
-          `indonesia/snbt/general-reasoning/set-${"9".repeat(600)}/question-1`,
-        ],
-        (path) => rejectQuestionPath(questionBanks, path)
-      );
-      const bodyPath = CorpusSourcePathSchema.make(
-        "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.id.mdx"
-      );
-      const [body, invalidDocument, itemDocument] = yield* Effect.all([
-        decodeQuestionDocumentPath(questionBanks, bodyPath),
-        decodeQuestionDocumentPath(
-          questionBanks,
-          CorpusSourcePathSchema.make(
-            "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/notes.mdx"
-          )
-        ).pipe(Effect.flip),
-        decodeQuestionDocumentPath(
-          questionBanks,
-          CorpusSourcePathSchema.make(
-            "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/item.ts"
-          )
-        ).pipe(Effect.flip),
-      ]);
-
-      expect(body).toMatchObject({
-        artifactLocale: "id",
-        bodyKind: "question",
-        rendererDomain: "snbt-general",
-        sourcePath: bodyPath,
-      });
-      expect([invalidDocument, itemDocument]).toEqual([
-        expect.objectContaining({ reason: "grammar" }),
-        expect.objectContaining({ reason: "grammar" }),
-      ]);
-      expect(Arr.every(malformed, ({ reason }) => reason === "grammar")).toBe(
+  it("accepts only four lower kebab keys as a set", () => {
+    for (const candidate of [
+      "test-country/test-exam/test-set",
+      "test-country/test-exam/test-section/test-set/extra",
+      "test-country/Test-exam/test-section/test-set",
+    ]) {
+      expect(Exit.isFailure(Schema.decodeExit(SetPathSchema)(candidate))).toBe(
         true
       );
-    })
-  );
+    }
+  });
+
+  it("reads the files of a question and the documents of a reading", () => {
+    expect(readBankEntry(`${set}/question-12/item.ts`)).toEqual(
+      Option.some({ file: "item.ts", kind: "question", number: 12, set })
+    );
+    expect(readBankEntry(`${set}/question-1/answer.de.mdx`)).toEqual(
+      Option.some({ file: "answer.de.mdx", kind: "question", number: 1, set })
+    );
+    expect(readBankEntry(`${set}/passage-1/stimulus.id.mdx`)).toEqual(
+      Option.some({
+        file: "stimulus.id.mdx",
+        key: "passage-1",
+        kind: "stimulus",
+        set,
+      })
+    );
+  });
+
+  it("reads any other path as no part of the bank", () => {
+    for (const path of [
+      set,
+      `${set}/question-1`,
+      `${set}/question-1/notes.md`,
+      `${set}/question-0/item.ts`,
+      `${set}/question-1/stimulus.id.mdx`,
+      `${set}/passage-1/question.id.mdx`,
+      `${set}/Passage/stimulus.id.mdx`,
+      `${set}/question-1/item.ts/extra`,
+      "Test/test-exam/test-section/test-set/question-1/item.ts",
+    ]) {
+      expect(readBankEntry(path)).toEqual(Option.none());
+    }
+  });
 });

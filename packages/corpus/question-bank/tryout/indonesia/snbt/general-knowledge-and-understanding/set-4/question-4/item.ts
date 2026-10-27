@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },

@@ -4,9 +4,7 @@ import {
   CompileDocumentSourceSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
-import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import {
   type ContentChange,
   ContentChangeSchema,
@@ -17,11 +15,6 @@ import { digestItems } from "@nakafa/aksara-contracts/release/digest";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import {
-  TRYOUT_RUNTIME_BUNDLE_FORMAT,
-  type TryoutRuntimeBundlePayload,
-} from "@nakafa/aksara-contracts/tryout/runtime/spec";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 import { Base64, Base64Url } from "effect/encoding";
 
@@ -114,41 +107,17 @@ export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   upsertCount: items.length,
 });
 
-/** Builds the try-out runtime bundle payload that signing tests pin. */
-export const signingRuntimeBundle = Effect.fn(
-  "PublisherTest.signingRuntimeBundle"
-)(function* (release: SignedContentRelease, sourceGitSha: GitCommitSha) {
-  return {
-    format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
-    rendererManifestHash: signingManifest.rendererManifestHash,
-    snapshot: yield* makeTryoutSnapshot({
-      activeAppLocales: signingManifest.activeAppLocales,
-      catalogDigest: signingManifest.itemsDigest,
-      counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-      placementCount: 1,
-      placementDigest: signingManifest.resultDigest,
-      routeCount: 1,
-    }),
-    sourceGitSha,
-    sourceManifestHash: release.manifestHash,
-    sourceReleaseId: signingManifest.releaseId,
-  } satisfies TryoutRuntimeBundlePayload;
-});
-
 /** Test-only Ed25519 public key that verifies every recorded publication signature below. */
 export const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEA6bluAPQKbm/+GpJAhIAPbVbebFNcTaRo4bL6q7dimLM=
+MCowBQYDK2VwAyEABR1A4DeiPj/dGfndt4rIqvuoLnfK9KRt6PFVS+0ZIBI=
 -----END PUBLIC KEY-----
 `;
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_ARTIFACT_SIGNATURE =
-  "YtgMyawppe5wAJcDQ6MmKv4Yp2yGyKfBW_AY44KZC6jItc_MxYM1xJ17OtvViv1ONiCD4_Gm0OaOCKQun58LCQ";
+  "-gxFpKst3xDPEqe0flYQA3tWq4NKnpjhPPY6V4Nf8B5BVQW8e4nuctFi_D9yG2nqg-Z6uVUTH3PTgtHyi9BwCw";
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_RELEASE_SIGNATURE =
-  "-_xu7pIKZlRSa5bEoxTcGX7IJAVffm5ST9IyzUs3EBSnL1ZqZUhR_JLNG_-BUzBBnxyB6qJ9PuqGp632z7lLAA";
-// Record again: create a key, sign the same input, and replace the public key and signature literals below.
-export const TEST_RUNTIME_BUNDLE_SIGNATURE =
-  "g1rYCPq8NSYPwKCPxSUI28L_Bdt2aHWHz5zW1gUquBNf_uDWgmEd37AlVWjCmBQiUB_R42kkZJIZ1aCIFRFhDA";
+  "zWqEjwBkKcNqavQ7Sqjas7QtqhfcY5v2KARVH7LFfQ7hKjJnsVEq3YguBSUd4WYnPniEF0wh0aVnfuYvmSDzBg";
 
 /** Imports one Ed25519 SPKI public key from its PEM text for Web Crypto verification. */
 export const importEd25519PublicKeyPem = Effect.fn(

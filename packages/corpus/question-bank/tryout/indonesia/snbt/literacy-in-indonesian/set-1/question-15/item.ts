@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Warna jingga yang tampak di langit",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Waktu setengah gelap setelah matahari terbenam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Saat matahari tepat menyentuh cakrawala",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tanda bahwa seluruh kegiatan harus berakhir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Suasana yang selalu tenang dan damai",
         },
       ],

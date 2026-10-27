@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "AFI menempatkannya sebagai legenda film perempuan dan beberapa filmnya masuk National Film Registry",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ia pernah bekerja di sebuah pabrik pada masa perang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Namanya berubah dari Norma Jeane menjadi Marilyn Monroe",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ia menikah pada usia enam belas tahun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ia menjadi model setelah bertemu seorang fotografer",
         },
       ],

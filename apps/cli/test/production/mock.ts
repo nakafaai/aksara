@@ -8,17 +8,13 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/current/state";
-import {
-  MaterialHeadSchema,
-  QuestionHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import {
   PublicationRetentionSchema,
   type PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
-import type { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";
@@ -39,23 +35,6 @@ const MATERIAL_HEAD = MaterialHeadSchema.make({
     "packages/corpus/test/material/en.mdx"
   ),
 });
-const QUESTION_HEAD = QuestionHeadSchema.make({
-  artifactHash: HEAD_HASH,
-  artifactLocale: ArtifactLocaleSchema.make("id"),
-  compilerConfigHash: HEAD_HASH,
-  contentKey: ContentKeySchema.make(
-    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question"
-  ),
-  delivery: "authenticated",
-  family: "question",
-  projectionHash: HEAD_HASH,
-  rendererDomain: "snbt-general",
-  sourceHash: HEAD_HASH,
-  sourcePath: CorpusSourcePathSchema.make(
-    "packages/corpus/question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question.id.mdx"
-  ),
-});
-
 const TargetCallsSchema = Schema.Struct({
   catalogCalls: Schema.mutableKey(Schema.Finite),
   catalogRebuild: Schema.mutableKey(Schema.UndefinedOr(Schema.Boolean)),
@@ -81,10 +60,6 @@ const TargetCallsSchema = Schema.Struct({
     Schema.UndefinedOr(RendererManifestEnvelopeSchema)
   ),
   rootReads: Schema.mutableKey(Schema.Finite),
-  runtimeBundleRefreshes: Schema.mutableKey(Schema.Finite),
-  runtimeResultSnapshotId: Schema.mutableKey(
-    Schema.UndefinedOr(Schema.NullOr(Schema.String))
-  ),
   signingSecretReads: Schema.mutableKey(Schema.Finite),
   snapshotCalls: Schema.mutableKey(Schema.Finite),
   sourceLayers: Schema.mutableKey(Schema.Finite),
@@ -231,7 +206,7 @@ export function catalogMock(calls: TargetCalls) {
       calls.checkoutRoot = input.checkoutRoot;
       return Effect.succeed({
         records: Stream.empty,
-        result: Stream.make(MATERIAL_HEAD, QUESTION_HEAD),
+        result: Stream.make(MATERIAL_HEAD),
         routes: Stream.empty,
       });
     },
@@ -241,26 +216,9 @@ export function catalogMock(calls: TargetCalls) {
 /** Exposes unchanged structured state for CLI orchestration tests. */
 export function snapshotMock(calls: TargetCalls) {
   return {
-    prepareReleaseSnapshots: (input: {
-      /** Replays the catalog narrowed by production preparation. */
-      readonly questionHeads: Stream.Stream<unknown>;
-      readonly runtime: Pick<
-        Parameters<typeof prepareReleaseSnapshots>[0]["runtime"],
-        "kind"
-      >;
-    }) => {
+    prepareReleaseSnapshots: () => {
       calls.snapshotCalls += 1;
-      if (input.runtime.kind === "refresh") {
-        calls.runtimeBundleRefreshes += 1;
-      }
-      return input.questionHeads.pipe(
-        Stream.runDrain,
-        Effect.as({
-          manifests: Stream.empty,
-          rows: Stream.empty,
-          tryoutRuntimeSnapshot: null,
-        })
-      );
+      return Effect.succeed({ manifests: Stream.empty, rows: Stream.empty });
     },
   };
 }

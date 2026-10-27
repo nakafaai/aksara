@@ -4,7 +4,6 @@ import {
   ArticleHeadSchema,
   MaterialHeadSchema,
   PageHeadSchema,
-  QuestionHeadSchema,
 } from "#contracts/release/head";
 
 const hash = `sha256:${"a".repeat(64)}`;
@@ -62,20 +61,6 @@ export function pageHead(
     family: "page",
     publicPath: contentKey.replace("pages/", ""),
     rendererDomain: "site",
-    sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
-  });
-}
-
-/** Builds one strict route-free question-head sample. */
-export function questionHead(
-  contentKey: string,
-  artifactLocale: AppLocaleCode = "en"
-) {
-  return Schema.decodeSync(QuestionHeadSchema)({
-    ...headIdentity(contentKey, artifactLocale),
-    delivery: "authenticated",
-    family: "question",
-    rendererDomain: "snbt-general",
     sourcePath: `packages/corpus/${contentKey}/${artifactLocale}.mdx`,
   });
 }

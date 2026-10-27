@@ -1,25 +1,25 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
-        { isCorrect: false, label: "Desa wisata" },
+        { correct: false, label: "Desa wisata" },
         {
-          isCorrect: false,
+          correct: false,
           label: "Laut yang menjadi objek wisata",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Perkampungan yang terletak di pesisir pantai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Proyek pemerintah yang sedang dibangun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pantai yang sedang ada perbaikan tanggul",
         },
       ],

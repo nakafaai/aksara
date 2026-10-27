@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "To prove that yoga cures every chronic illness.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To persuade readers to replace medical care with yoga.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To compare the religious traditions behind different yoga styles.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "To teach a complete sequence of advanced yoga poses.",
         },
       ],

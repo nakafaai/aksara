@@ -42,9 +42,9 @@ export type ContentSnapshotState = typeof ContentSnapshotStateSchema.Type;
 
 /** Fixed snapshot states prevent a release from omitting one owned family. */
 export const ContentSnapshotSetSchema = Schema.Struct({
+  assessment: ContentSnapshotStateSchema,
   program: ContentSnapshotStateSchema,
   quran: ContentSnapshotStateSchema,
-  tryout: ContentSnapshotStateSchema,
 });
 export type ContentSnapshotSet = typeof ContentSnapshotSetSchema.Type;
 
@@ -103,18 +103,20 @@ export function inheritContentSnapshot(
 /** Builds fixed inherited states from the prior release's result identities. */
 export function inheritContentSnapshots(previous: ContentSnapshotSet | null) {
   return ContentSnapshotSetSchema.make({
+    assessment: inheritContentSnapshot(
+      previous?.assessment.resultSnapshotId ?? null
+    ),
     program: inheritContentSnapshot(previous?.program.resultSnapshotId ?? null),
     quran: inheritContentSnapshot(previous?.quran.resultSnapshotId ?? null),
-    tryout: inheritContentSnapshot(previous?.tryout.resultSnapshotId ?? null),
   });
 }
 
 /** Reconstructs inherited prior state from one signed transition's base IDs. */
 export function baseContentSnapshots(snapshots: ContentSnapshotSet) {
   return ContentSnapshotSetSchema.make({
+    assessment: inheritContentSnapshot(snapshots.assessment.baseSnapshotId),
     program: inheritContentSnapshot(snapshots.program.baseSnapshotId),
     quran: inheritContentSnapshot(snapshots.quran.baseSnapshotId),
-    tryout: inheritContentSnapshot(snapshots.tryout.baseSnapshotId),
   });
 }
 
@@ -156,9 +158,9 @@ export function invertContentSnapshots(snapshots: ContentSnapshotSet) {
       ? inheritContentSnapshot(state.resultSnapshotId)
       : restoreContentSnapshot(state.resultSnapshotId, state.baseSnapshotId);
   return ContentSnapshotSetSchema.make({
+    assessment: invert(snapshots.assessment),
     program: invert(snapshots.program),
     quran: invert(snapshots.quran),
-    tryout: invert(snapshots.tryout),
   });
 }
 
@@ -183,9 +185,9 @@ export function hasGitSnapshotModes(snapshots: ContentSnapshotSet) {
 /** Returns the number of rows that must be staged for this release. */
 export function snapshotRowCount(snapshots: ContentSnapshotSet) {
   return (
+    snapshots.assessment.rowCount +
     snapshots.program.rowCount +
-    snapshots.quran.rowCount +
-    snapshots.tryout.rowCount
+    snapshots.quran.rowCount
   );
 }
 
@@ -203,9 +205,9 @@ export function canonicalizeContentSnapshotState(state: ContentSnapshotState) {
 /** Serializes all fixed snapshot families with stable signed field order. */
 export function canonicalizeContentSnapshotSet(snapshots: ContentSnapshotSet) {
   return {
+    assessment: canonicalizeContentSnapshotState(snapshots.assessment),
     program: canonicalizeContentSnapshotState(snapshots.program),
     quran: canonicalizeContentSnapshotState(snapshots.quran),
-    tryout: canonicalizeContentSnapshotState(snapshots.tryout),
   };
 }
 

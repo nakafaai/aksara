@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *integritas ilmiah* menjelaskan mengapa Dito menyimpan nilai menyimpang, mencatat alasan pengecualian, dan melaporkan ketidakpastian pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *integritas ilmiah* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu membatasi *integritas ilmiah* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penyebutan *integritas ilmiah* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

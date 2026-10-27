@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengirim bahan baku batik dari Atapupu ke Lasem",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Membangun Museum Nyah Lasem pada masa perang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Membuka jaringan dagang menuju Mediterania",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menetapkan arsip sebagai Memori Kolektif Bangsa",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Berorganisasi dan menyediakan dapur umum bagi tentara republik",
         },

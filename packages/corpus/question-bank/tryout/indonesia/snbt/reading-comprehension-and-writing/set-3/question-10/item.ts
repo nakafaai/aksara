@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dengan aturan pengukuran yang diubah, tim akan menguji simbol lebih lama pada beberapa kelompok.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim hanya akan mengulang sesi yang mencatat hasil tertinggi untuk simbol baru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menerapkan simbol baru secara permanen sebagai pengganti pengujian lanjutan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dengan aturan pengukuran yang sama, tim akan menguji simbol lebih lama pada beberapa kelompok.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim akan menguji simbol lebih lama pada satu kelompok saja tanpa pembanding.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains why completing a repair efficiently matters: a successful repair can keep a product useful for longer.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defining *product-life extension* proves that the tool card alone caused every completed repair.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes differences in repair difficulty irrelevant to the follow-up.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *product-life extension* replaces the measured comparison and consultation evidence.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition shows that every attempted repair will keep a product useful for the same length of time.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

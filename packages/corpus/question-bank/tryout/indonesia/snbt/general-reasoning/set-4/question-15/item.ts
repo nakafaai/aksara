@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Harga Mie A tidak pernah turun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Harga Mie B naik pada setiap periode",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap produk lebih sering naik daripada turun",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Harga Mie A selalu di bawah $$\\text{Rp}\\,3000$$ setiap tahun",
         },

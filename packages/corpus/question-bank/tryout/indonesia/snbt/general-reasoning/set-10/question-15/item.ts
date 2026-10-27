@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Sebagian koleksi riset bukan dataset publik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua koleksi riset terenkripsi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian dataset publik merupakan arsip terenkripsi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap dataset yang memerlukan kunci adalah koleksi riset.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada koleksi riset yang bersifat publik.",
         },
       ],

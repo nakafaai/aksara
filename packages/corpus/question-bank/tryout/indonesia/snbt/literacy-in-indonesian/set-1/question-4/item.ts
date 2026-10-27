@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap orang memiliki kisah yang berbeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Mungkin setiap orang akan mengalami fase ini juga",
         },
       ],

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kementerian menggunakan seluruh anggarannya untuk menjamin kenaikan permanen pada setiap tanaman pangan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Produksi jagung meningkat lebih sedikit daripada produksi padi pada periode yang dilaporkan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kementerian memprioritaskan dukungan produksi, dan publikasi tahun $$2017$$ melaporkan kenaikan historis produksi padi dan jagung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Angka-angka tersebut membuktikan bahwa perubahan arah anggaran merupakan satu-satunya penyebab kenaikan produksi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sisa anggaran kementerian tidak digunakan.",
         },
       ],

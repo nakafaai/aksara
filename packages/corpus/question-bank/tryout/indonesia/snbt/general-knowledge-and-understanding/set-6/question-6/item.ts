@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

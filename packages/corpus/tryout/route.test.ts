@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect } from "effect";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { Array as Arr, Effect, Option } from "effect";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 import {
@@ -8,9 +9,11 @@ import {
   validateTryoutRoutes,
 } from "#corpus/tryout/route";
 
-/** Projects the complete authored catalog into its signed localized rows. */
+const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+
+/** Projects the complete authored catalog into its localized rows, every set with a test paper. */
 const catalogRows = Effect.flatMap(decodeTryoutRegistry(), (sources) =>
-  projectTryoutCatalog(sources)
+  projectTryoutCatalog(sources, (id) => Option.some({ hash, id }))
 );
 
 describe("tryout routes", () => {
@@ -48,10 +51,8 @@ describe("tryout routes", () => {
   it.effect("spells every public route from the title its page shows", () =>
     Effect.gen(function* () {
       const rows = yield* catalogRows;
-      const paths = Arr.flatMap(rows, (row) =>
-        "publicPath" in row && row.publicPath !== undefined
-          ? [row.publicPath]
-          : []
+      const paths = Arr.flatMap(rows, ({ publicPath }) =>
+        publicPath === undefined ? [] : [publicPath]
       );
 
       expect(paths).toContain(

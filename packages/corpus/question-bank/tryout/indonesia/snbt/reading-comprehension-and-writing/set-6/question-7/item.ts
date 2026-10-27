@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dipasang karena rute lama terbukti tidak berguna dalam semua keadaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah diterapkan permanen dan kondisi tanpa panah tidak digunakan lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panah dan kondisi tanpa panah diuji tanpa memisahkan kelompok sesi pembanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sesi dengan panah hanya dibandingkan dengan komentar tentang rute lama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, panah dipasang di setiap persimpangan, sedangkan sesi pembanding berlangsung tanpa panah tambahan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

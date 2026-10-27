@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  stimulus: "heat-map",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kebun belakang paling layak menjadi lokasi belajar karena suhu rata-ratanya terendah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Lima hari pengukuran belum mewakili seluruh musim dan kondisi cuaca.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bangku baru meningkatkan kenyamanan siswa berdasarkan pengamatan singkat tim.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pohon dapat dianggap penyebab utama karena lokasi di bawahnya lebih sejuk.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Angka pada tabel cukup kuat untuk menentukan lokasi bangku tanpa pengukuran lanjutan.",
         },
       ],
     },
   },
-  stimulusKey: "heat-map",
 };
 
 export default item;

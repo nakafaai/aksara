@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Namun, sayangnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Akhirnya, orang menganggap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Walaupun demikian, banyak orang yang beranggapan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Di balik semua itu, ada peran pemerintah secara agregat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Meskipun memiliki daya tarik universal",
         },
       ],

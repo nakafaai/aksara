@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap peserta memilih teh dengan tambahan gula.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap peminum teh menambahkan gula.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tidak ada peserta yang meminum teh tanpa tambahan gula.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sekurang-kurangnya satu peserta meminum teh tanpa tambahan gula.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap peserta yang memilih minuman memilih teh.",
         },
       ],

@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  stimulus: "food-scraps",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kesalahan menurun setelah contoh nyata dan penjelasan ditambahkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kantin menghasilkan sisa makanan setiap hari",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "lubang biopori diperiksa secara berkala",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "relawan berdiri di dekat wadah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "uji coba berlangsung empat minggu",
         },
       ],
     },
   },
-  stimulusKey: "food-scraps",
 };
 
 export default item;

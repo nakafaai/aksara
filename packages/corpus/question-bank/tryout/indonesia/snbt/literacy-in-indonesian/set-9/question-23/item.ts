@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keduanya menunjukkan bahwa kemampuan teknis Laras belum cukup untuk menghasilkan esai yang layak diterbitkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keduanya menjadi cara Laras meminta pembaca melengkapi sendiri bukti yang gagal ia peroleh di lapangan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keduanya membuktikan bahwa karya yang tidak selesai selalu lebih menarik daripada dokumentasi yang lengkap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keduanya menutupi jalur yang ditutup dengan simbol agar pembaca tidak mempertanyakan kekurangan data Laras.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Keduanya menandai batas pengamatan, sehingga ketidaklengkapan menjadi bagian jujur dari esai, bukan celah yang disamarkan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

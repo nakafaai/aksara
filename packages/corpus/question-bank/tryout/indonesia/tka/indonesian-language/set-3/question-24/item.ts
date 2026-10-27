@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "daily-relevance",
   },
-  responses: {
+  stimulus: "mangrove-nursery",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "gunakan perkiraan numerik agar lokasi yang datanya hilang tetap dapat dibandingkan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "bedakan antara tidak terlihat dan terbukti gagal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "utamakan jumlah bibit yang ditemukan tanpa membedakan kondisi tiap lokasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "gunakan indikator pertumbuhan yang sama tanpa mencatat perbedaan arus dan genangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "hentikan pemeriksaan setelah minggu pertama",
         },
       ],
     },
   },
-  stimulusKey: "mangrove-nursery",
 };
 
 export default item;

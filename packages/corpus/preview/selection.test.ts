@@ -1,15 +1,12 @@
-import { expect, layer } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, Layer, Path } from "effect";
+import { Effect } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
-import {
-  corpusRoot,
-  makeQuestionLayer,
-  realQuestionCorpusLayer,
-} from "#corpus/test/question";
+import { corpusRoot } from "#corpus/test/root";
 
 const articlePath =
   "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
@@ -23,10 +20,8 @@ const pageRestartSourcePaths = [
   "packages/corpus/pages/schema.ts",
   "packages/corpus/locale/source.ts",
 ];
-const questionRoot =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1";
-const promptPath = `${questionRoot}/question.id.mdx`;
-const answerPath = `${questionRoot}/answer.en.mdx`;
+const questionPath =
+  "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/question.id.mdx";
 
 /** Selects one real-corpus preview document for native Effect tests. */
 function selectDocument(sourcePath: string, appLocale?: AppLocaleCode) {
@@ -37,23 +32,20 @@ function selectDocument(sourcePath: string, appLocale?: AppLocaleCode) {
       sourcePath,
       appLocale === undefined ? undefined : AppLocaleSchema.make(appLocale)
     );
-  }).pipe(Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)));
+  }).pipe(Effect.provide(NodeServices.layer));
 }
 
-layer(realQuestionCorpusLayer)("preview selection", (it) => {
+describe("preview selection", () => {
   it.effect(
-    "selects each real family with its exact ordered source closure",
+    "selects each public family with its exact ordered source closure",
     () =>
       Effect.gen(function* () {
-        const [article, material, page, germanPage, prompt, answer] =
-          yield* Effect.all([
-            selectDocument(articlePath, "en"),
-            selectDocument(materialPath, "id"),
-            selectDocument(pagePath, "en"),
-            selectDocument(germanPagePath, "de"),
-            selectDocument(promptPath, "en"),
-            selectDocument(answerPath),
-          ]);
+        const [article, material, page, germanPage] = yield* Effect.all([
+          selectDocument(articlePath, "en"),
+          selectDocument(materialPath, "id"),
+          selectDocument(pagePath, "en"),
+          selectDocument(germanPagePath, "de"),
+        ]);
 
         expect(article).toMatchObject({
           document: {
@@ -61,39 +53,17 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             family: "article",
             sourcePath: articlePath,
           },
-          sources: [
-            {
-              dependencies: [
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/articles/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath:
-                    "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/articles/politics/category.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath:
-                    "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/articles/schema.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/locale/source.ts",
-                },
-              ],
-              family: "article",
-            },
-          ],
+          source: {
+            dependencies: [
+              "packages/corpus/articles/source.ts",
+              "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
+              "packages/corpus/articles/politics/category.ts",
+              "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
+              "packages/corpus/articles/schema.ts",
+              "packages/corpus/locale/source.ts",
+            ],
+            family: "article",
+          },
         });
         expect(material).toMatchObject({
           document: {
@@ -101,38 +71,17 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             family: "material",
             sourcePath: materialPath,
           },
-          sources: [
-            {
-              dependencies: [
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/material/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath:
-                    "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/material/schema.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/locale/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/material/description.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/route/schema.ts",
-                },
-              ],
-              family: "material",
-            },
-          ],
+          source: {
+            dependencies: [
+              "packages/corpus/material/source.ts",
+              "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
+              "packages/corpus/material/schema.ts",
+              "packages/corpus/locale/source.ts",
+              "packages/corpus/material/description.ts",
+              "packages/corpus/route/schema.ts",
+            ],
+            family: "material",
+          },
         });
         expect(page).toMatchObject({
           document: {
@@ -140,7 +89,7 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             family: "page",
             sourcePath: pagePath,
           },
-          sources: [{ family: "page" }],
+          source: { family: "page" },
         });
         expect(germanPage).toMatchObject({
           document: {
@@ -148,97 +97,10 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             family: "page",
             sourcePath: germanPagePath,
           },
-          sources: [{ family: "page" }],
+          source: { family: "page" },
         });
-        expect(
-          Arr.map(page.sources[0].dependencies, ({ sourcePath }) => sourcePath)
-        ).toEqual(pageRestartSourcePaths);
-        expect(
-          Arr.map(
-            germanPage.sources[0].dependencies,
-            ({ sourcePath }) => sourcePath
-          )
-        ).toEqual(pageRestartSourcePaths);
-        expect(prompt).toMatchObject({
-          document: {
-            delivery: "authenticated",
-            family: "question",
-            identity: { bodyKind: "question" },
-            sourcePath: promptPath,
-          },
-          sources: [
-            {
-              dependencies: [
-                {
-                  mode: "reload",
-                  sourcePath: `${questionRoot}/item.ts`,
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/registry.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/indonesia/snbt/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/indonesia/country.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath:
-                    "packages/corpus/tryout/indonesia/snbt/readiness.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/readiness/validation.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/schema.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/tryout/readiness/schema.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/locale/source.ts",
-                },
-                {
-                  mode: "restart",
-                  sourcePath: "packages/corpus/route/schema.ts",
-                },
-              ],
-              directories: [
-                {
-                  files: [
-                    "answer.de.mdx",
-                    "answer.en.mdx",
-                    "answer.id.mdx",
-                    "item.ts",
-                    "question.id.mdx",
-                  ],
-                  sourcePath: questionRoot,
-                },
-              ],
-              entry: { sourcePath: promptPath },
-              family: "question",
-            },
-          ],
-        });
-        expect(answer).toMatchObject({
-          document: {
-            delivery: "entitled",
-            family: "question",
-            identity: { bodyKind: "answer" },
-            sourcePath: answerPath,
-          },
-        });
-        expect(
-          Arr.map(answer.sources, ({ entry }) => entry.sourcePath)
-        ).toEqual([promptPath, answerPath]);
+        expect(page.source.dependencies).toEqual(pageRestartSourcePaths);
+        expect(germanPage.source.dependencies).toEqual(pageRestartSourcePaths);
       }),
     { timeout: 30_000 }
   );
@@ -275,7 +137,7 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
             "packages/corpus/articles/politics/missing/article/en.mdx",
             "packages/corpus/material/lesson/mathematics/missing/lesson/en.mdx",
             "packages/corpus/pages/missing/en.mdx",
-            `${questionRoot}/missing.en.mdx`,
+            questionPath,
           ],
           (sourcePath) => selectDocument(sourcePath).pipe(Effect.flip)
         );
@@ -286,7 +148,7 @@ layer(realQuestionCorpusLayer)("preview selection", (it) => {
           { _tag: "PreviewSelectionError", reason: "missing" },
           { _tag: "PreviewSelectionError", reason: "missing" },
           { _tag: "PreviewSelectionError", reason: "missing" },
-          { _tag: "QuestionPathError", reason: "grammar" },
+          { _tag: "PreviewSelectionError", reason: "missing" },
         ]);
       }),
     { timeout: 30_000 }

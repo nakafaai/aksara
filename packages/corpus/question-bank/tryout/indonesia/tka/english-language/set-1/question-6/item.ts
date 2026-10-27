@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "outline",
   },
-  responses: {
+  stimulus: "repair-workshop",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Listening to an owner's description before touching the bicycle",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Replacing the child's chain without testing it",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Sorting mixed bolts by using notes and measurements",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Giving a new volunteer the repair answer before asking what the rider noticed",
         },
       ],
     },
   },
-  stimulusKey: "repair-workshop",
 };
 
 export default item;

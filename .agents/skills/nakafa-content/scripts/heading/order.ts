@@ -44,7 +44,7 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
  * Enforces the two authored heading levels owned by each document genre.
  *
  * Lessons and articles use H2 and H3, including their worked solutions.
- * Standalone question-bank answers use H4 and H5 beneath the app-owned H3.
+ * Question-bank explanations are documents of their own and use H1 and H2.
  */
 export function findHeadingOrderIssues(
   source: string,
@@ -52,10 +52,6 @@ export function findHeadingOrderIssues(
   bodyHeadingDepth = BODY_HEADING_DEPTH,
   lessonLocale?: LessonVoiceLocale
 ): LessonVoiceIssue[] {
-  const children = tree.children ?? [];
-  if (!children.some((node) => node.type === "mdxjsEsm")) {
-    return [];
-  }
   const headings: {
     depth: number;
     line: number;

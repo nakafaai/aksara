@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Banyaknya peserta tidak cukup untuk membuktikan keterwakilan jika akses antarkelompok berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

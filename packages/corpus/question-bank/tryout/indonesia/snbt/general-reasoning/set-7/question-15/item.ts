@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Seluruh $$120$$ bibit tomat bertahan hidup selama bulan pertama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Seluruh $$96$$ bibit yang bertahan hidup menghasilkan daun baru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
         },

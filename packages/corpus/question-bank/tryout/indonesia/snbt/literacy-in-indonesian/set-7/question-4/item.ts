@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *hipotesis* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *hipotesis* menempatkan dugaan tentang hubungan suhu dan gas sebagai penjelasan yang diuji oleh data, bukan kesimpulan yang kebal terhadap hasil $$20^\\circ\\text{C}$$ dan $$50^\\circ\\text{C}$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *hipotesis* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut memperluas *hipotesis* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *hipotesis* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

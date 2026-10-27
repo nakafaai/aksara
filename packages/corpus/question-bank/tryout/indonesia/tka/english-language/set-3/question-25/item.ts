@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  responses: {
+  stimulus: "repair-first",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Assess safety.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Estimate additional useful life.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ignore the replacement option.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Record the reason for the final choice.",
         },
       ],
     },
   },
-  stimulusKey: "repair-first",
 };
 
 export default item;

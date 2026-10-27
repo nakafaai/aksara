@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rencana media keluarga perlu menetapkan batas bagi anak, karena orang dewasa juga perlu memiliki batas penggunaan media.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rencana media keluarga perlu menetapkan batas bagi anak, ketika orang dewasa juga perlu memiliki batas penggunaan media.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rencana media keluarga perlu menetapkan batas bagi anak, orang dewasa juga perlu memiliki batas penggunaan media.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rencana media keluarga perlu menetapkan batas bagi anak; oleh karena itu, orang dewasa juga perlu memiliki batas penggunaan media.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rencana media keluarga perlu menetapkan batas bagi anak, tetapi orang dewasa juga perlu memiliki batas penggunaan media.",
         },

@@ -1,5 +1,6 @@
 import { Array as Arr, Record as Rec, Schema } from "effect";
 
+import { ChartPropsSchema } from "#contracts/assessment/chart";
 import { AssetIdSchema } from "#contracts/assessment/identity";
 import { RichTextSchema } from "#contracts/assessment/inline";
 import {
@@ -142,10 +143,11 @@ export const NumberLinePropsSchema = Schema.Struct({
 /** Whether the first or last point of a line belongs to it. */
 const EndpointStateSchema = Schema.Literals(["open", "closed"]);
 
-/** A label on a line: rich text at one of its points, nudged by an offset. */
+/** A label on a line: rich text at one of its points, nudged by an offset, at an optional size. */
 const LineLabelSchema = Schema.Struct({
   anchorX: Schema.optionalKey(Schema.Literals(["center", "left", "right"])),
   at: Schema.optionalKey(NonNegativeIntSchema),
+  fontSize: Schema.optionalKey(PositiveMeasureSchema),
   offset: Schema.optionalKey(TripleSchema),
   text: RichTextSchema,
 });
@@ -271,10 +273,15 @@ const FigureFields = {
 };
 
 /**
- * The attributes of a figure node: one of the five renderer components and the
+ * The attributes of a figure node: one of the six renderer components and the
  * typed props that component takes.
  */
 export const FigureAttrsSchema = Schema.Union([
+  Schema.Struct({
+    ...FigureFields,
+    component: Schema.Literal("Chart"),
+    props: ChartPropsSchema,
+  }),
   Schema.Struct({
     ...FigureFields,
     component: Schema.Literal("MathVisual"),

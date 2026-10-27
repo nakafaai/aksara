@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "hanya memuat kelompok yang jumlahnya paling besar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "membagi jumlah responden sama rata tanpa melihat komposisi populasi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "cukup mencerminkan ragam kelompok yang hendak dijelaskan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "mengutamakan kelompok yang paling mudah dijangkau pengumpul data",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "memiliki responden banyak meskipun ragam kelompok penting tidak tercakup",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

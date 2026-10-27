@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pilihan pelanggan atas jahitan merah menunjukkan perubahan dari keinginan menghapus bekas kerusakan menuju penerimaan riwayat perawatan blus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Serapan dalam negeri dan impor beras digambarkan bergerak searah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bacaan tidak menggambarkan hubungan antara serapan dalam negeri dan impor beras",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Serapan dalam negeri dan impor beras digambarkan bergerak berlawanan arah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Serapan dalam negeri dan ekspor beras digambarkan bergerak berlawanan arah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Solusi merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ akan mengubah alokasi anggaran",
         },

@@ -66,7 +66,6 @@ export function retryPublicationTarget(
     stageRouteBatch: retryOperation(target.stageRouteBatch),
     stageSnapshot: retryOperation(target.stageSnapshot),
     stageSnapshotBatch: retryOperation(target.stageSnapshotBatch),
-    stageTryoutRuntimeBundle: retryOperation(target.stageTryoutRuntimeBundle),
     status: retryOperation(target.status),
     verify: retryOperation(target.verify),
   });

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena 28 lebih tinggi daripada 18 dan 20, tim menetapkan tanda genre sebagai susunan permanen.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan 28, 18, dan 20 serta merencanakan uji di lebih banyak acara tanpa membatasi cakupan simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membatasi simpulan pada beberapa sesi pasar tukar buku dan merencanakan uji lanjutan tanpa melaporkan hasil perbandingan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim membandingkan rata-rata 28, 18, dan 20, membatasi simpulan pada beberapa sesi singkat, serta merencanakan uji di lebih banyak acara dengan batas waktu pencarian yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai 28, 18, dan 20 tidak menunjukkan pola yang relevan sehingga tim akan mengubah batas waktu pencarian.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

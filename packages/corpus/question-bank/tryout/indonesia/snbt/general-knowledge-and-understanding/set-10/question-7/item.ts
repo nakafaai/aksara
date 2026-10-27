@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kemampuan mengikuti asal, perpindahan, dan penanganan sesuatu melalui catatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pencetakan satu nama tempat pada bagian depan kemasan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perhitungan harga jual dari seluruh biaya produksi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "jaminan bahwa setiap produk di rantai pasok selalu bermutu baik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pengurutan produk menurut nama secara alfabetis",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

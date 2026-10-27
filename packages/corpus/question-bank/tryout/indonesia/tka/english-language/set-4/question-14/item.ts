@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "prediction",
   },
-  responses: {
+  stimulus: "power-cut",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Stay where he is until the electricity comes back on",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Wait in the kitchen for his grandmother to bring a candle",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Search the dark house for the matches and the candles",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Call his parents to ask where the candles are kept",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Take the flashlight from the drawer and go to his grandmother",
         },
       ],
     },
   },
-  stimulusKey: "power-cut",
 };
 
 export default item;

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The Kīholo Bay fishery can be harvested without ecological limits.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Commercial sales records alone would greatly underestimate the fishery's value to the community.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Every small-scale reef fishery distributes its catch in exactly the same way.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Most of the Kīholo Bay catch was sold through commercial markets.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sharing seafood at cultural events has no social value.",
         },
       ],

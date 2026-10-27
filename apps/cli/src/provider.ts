@@ -66,17 +66,14 @@ export interface PreviewProvider {
   readonly pending: (
     repositories: PreviewRepositories
   ) => Effect.Effect<number, PreviewProviderError>;
-  /** Atomically exposes all ordered signed artifacts and their projections. */
+  /** Atomically exposes the signed artifact and its projection. */
   readonly ready: (input: {
     readonly generation: number;
     readonly rendererManifestHash: Sha256Hash;
     readonly repositories: PreviewRepositories;
-    readonly results: readonly [PreviewReadyResult, ...PreviewReadyResult[]];
+    readonly result: PreviewReadyResult;
   }) => Effect.Effect<boolean, PreviewProviderError>;
 }
-
-/** Ordered values exposed only after every required body succeeds together. */
-type PreviewReadyInput = Parameters<PreviewProvider["ready"]>[0];
 
 /** Encodes one exact manifest before it can become visible to HTTP callbacks. */
 const encodeManifest = Effect.fn("AksaraCli.encodePreviewManifest")(
@@ -101,14 +98,6 @@ function artifactReference(result: PreviewReadyResult): PreviewArtifact {
     artifactPath: localPreviewArtifactPath(result.artifact.artifactHash),
     projection: result.projection,
   };
-}
-
-/** Preserves the compiler's non-empty artifact order in the ready manifest. */
-function artifactReferences(
-  results: PreviewReadyInput["results"]
-): readonly [PreviewArtifact, ...PreviewArtifact[]] {
-  const [first, ...rest] = results;
-  return [artifactReference(first), ...Arr.map(rest, artifactReference)];
 }
 
 /** Converts one signed result into an immutable hash-keyed wire entry. */
@@ -230,11 +219,7 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
           if (ready.generation !== generation) {
             return Effect.succeed(false);
           }
-          if (
-            !Arr.every(ready.results, (result) =>
-              hasCoherentReadyResult(input.document, result)
-            )
-          ) {
+          if (!hasCoherentReadyResult(input.document, ready.result)) {
             return Effect.fail(
               new PreviewProviderError({ stage: "coherence" })
             );
@@ -243,13 +228,13 @@ export const openPreviewProvider = Effect.fn("AksaraCli.openPreviewProvider")(
             ready.generation,
             {
               ...base,
-              artifacts: artifactReferences(ready.results),
+              artifacts: [artifactReference(ready.result)],
               rendererManifestHash: ready.rendererManifestHash,
               repositories: ready.repositories,
               revision: state.manifest.revision + 1,
               status: "ready",
             },
-            ready.results
+            [ready.result]
           );
         }),
     } satisfies PreviewProvider;

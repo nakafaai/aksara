@@ -2,10 +2,6 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-import type {
-  ContentHead,
-  QuestionHead,
-} from "@nakafa/aksara-contracts/release/head";
 import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
@@ -14,7 +10,6 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import {
   type ContentCatalogPublication,
   prepareContentCatalog,
@@ -43,14 +38,10 @@ import {
   selectSourceBase,
   validateRecoveryBase,
 } from "#cli/production/base";
-import { verifyBaseTryoutRuntimeBundle } from "#cli/production/bundle";
 import { selectRendererManifest } from "#cli/production/renderer";
-import { selectTryoutRuntimeRefresh } from "#cli/production/runtime";
-import { selectTryoutRuntimeTransition } from "#cli/production/transition";
 import { validateRecoveryRevision } from "#cli/recovery";
 
 const GitPreparationBaseSchema = Schema.Struct({
-  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
   checkoutRoot: Schema.String,
   rebuild: Schema.optional(Schema.Boolean),
   releaseId: ReleaseIdSchema,
@@ -94,27 +85,20 @@ type PrepareProductionGit = (
   input: GitPreparationInput
 ) => Effect.Effect<PreparedGit, ProductionError, PreparationServices>;
 
-/** Streams no prior heads for genesis and both exact target-owned families later. */
+/** Streams no prior heads for genesis and every exact target-owned family later. */
 function publishedContentHeads(base: ActiveCatalogIdentity | null) {
   if (base === null) {
     return {
       article: Stream.empty,
       material: Stream.empty,
       page: Stream.empty,
-      question: Stream.empty,
     };
   }
   return {
     article: streamContentHeads(base.releaseId, base.manifestHash, "article"),
     material: streamContentHeads(base.releaseId, base.manifestHash, "material"),
     page: streamContentHeads(base.releaseId, base.manifestHash, "page"),
-    question: streamContentHeads(base.releaseId, base.manifestHash, "question"),
   };
-}
-
-/** Narrows the complete desired catalog to try-out-owned question heads. */
-function isQuestionHead(head: ContentHead): head is QuestionHead {
-  return head.family === "question";
 }
 
 /** Prepares a Git publication and restores its stored envelope on recovery. */
@@ -133,12 +117,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       base = selectRecoveryBase(input.bundle);
       yield* validateRecoveryBase(base, selectSourceBase(verifiedBaseBundle));
     }
-    const verifiedBaseTryoutRuntimeBundle =
-      yield* verifyBaseTryoutRuntimeBundle(
-        input.baseTryoutRuntimeBundle,
-        verifiedBaseBundle,
-        base
-      );
     const aksaraSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
@@ -154,12 +132,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         : yield* validateRendererManifestHash(input.bundle.rendererManifest);
     const baseRendererManifestHash =
       verifiedBaseBundle?.rendererManifest.hash ?? null;
-    const runtime = yield* selectTryoutRuntimeRefresh({
-      base,
-      bundle: verifiedBaseTryoutRuntimeBundle,
-      rendererManifest,
-      scope: input.scope,
-    });
     const catalog = yield* prepareContentCatalog({
       base:
         base === null
@@ -176,29 +148,14 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
     });
     const snapshots =
-      input.scope.snapshots.length === 0 && runtime.kind === "stable"
-        ? {
-            manifests: Stream.empty,
-            rows: Stream.empty,
-            tryoutRuntimeSnapshot: null,
-          }
+      input.scope.snapshots.length === 0
+        ? { manifests: Stream.empty, rows: Stream.empty }
         : yield* prepareReleaseSnapshots({
             checkoutRoot: input.checkoutRoot,
             families: input.scope.snapshots,
             previousSnapshots: base?.snapshots ?? null,
-            questionHeads: catalog.result.pipe(Stream.filter(isQuestionHead)),
-            rendererManifest,
-            runtime,
           });
-    const tryoutRuntime = yield* selectTryoutRuntimeTransition({
-      base,
-      bundle: verifiedBaseTryoutRuntimeBundle,
-      snapshot:
-        snapshots.tryoutRuntimeSnapshot ??
-        verifiedBaseTryoutRuntimeBundle?.payload.snapshot ??
-        null,
-    });
-    const prepared = yield* prepareContentRelease({
+    const prepared = yield* prepareContentRelease<PreparedSourceError, never>({
       aksaraSha,
       baseActiveAppLocales: base?.activeAppLocales ?? null,
       baseManifestHash: base === null ? null : base.manifestHash,
@@ -216,7 +173,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       scope: input.scope,
       snapshotManifests: snapshots.manifests,
       snapshotRows: snapshots.rows,
-      tryoutRuntime,
     });
     const preparedSha = yield* readCleanAksaraRevision(input.checkoutRoot);
     yield* validateStableAksaraRevision(aksaraSha, preparedSha);

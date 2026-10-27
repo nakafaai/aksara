@@ -18,7 +18,7 @@ import {
   discoverSourceDependencies,
   SourceDependencyError,
 } from "#corpus/preview/dependency";
-import { corpusRoot } from "#corpus/test/question";
+import { corpusRoot } from "#corpus/test/root";
 
 /** Loads checked-in corpus TypeScript through the Node Effect services. */
 const loadCorpusSources = Effect.fn("AksaraCorpus.test.loadCorpusSources")(

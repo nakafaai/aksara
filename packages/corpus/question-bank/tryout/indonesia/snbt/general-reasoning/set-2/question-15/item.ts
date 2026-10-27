@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Harga pembelian pemerintah terhadap gabah, GKP, petani selalu mengalami penurunan dari Januari hingga April",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Harga gabah di tingkat petani selalu mengalami naik turun (fluktuasi) selama empat bulan terakhir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Selisih harga gabah dengan harga pembelian pemerintah sama besar pada Maret dan April",
         },

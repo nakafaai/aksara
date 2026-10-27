@@ -1,5 +1,4 @@
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type PageHead,
   PageHeadSchema,
@@ -45,7 +44,7 @@ const makePageHead = Effect.fn("AksaraPublisher.makePageHead")(function* (
     delivery: change.delivery,
     family: "page",
     projectionHash: yield* hashContentProjection(projection),
-    publicPath: projectionPublicPath(projection),
+    publicPath: projection.publicPath,
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,

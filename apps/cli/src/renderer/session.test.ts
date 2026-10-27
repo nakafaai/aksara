@@ -108,7 +108,7 @@ layer(NodeServices.layer)("renderer session", (it) => {
         selection: { kind: "catalog" },
       });
 
-      expect(result.selected.sources[0].family).toBe("material");
+      expect(result.selected.source.family).toBe("material");
       expect(result.selected.document.family).toBe("material");
       if (result.selected.document.family === "material") {
         expect(result.selected.document.route.contentKey).toMatch(

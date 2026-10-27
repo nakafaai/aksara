@@ -48,17 +48,20 @@ describe("structured snapshot domain verification", () => {
           (manifest) => verify(manifest, snapshotData.rows)
         );
 
-        expect(counts).toEqual([588, 1542, 18]);
+        expect(counts).toEqual([24, 588, 1542]);
       }),
     30_000
   );
 
-  it.effect("rejects mismatched program and try-out signed evidence", () =>
+  it.effect("rejects mismatched program and assessment signed evidence", () =>
     Effect.gen(function* () {
       const snapshotData = yield* makeSnapshotTestData();
       const program = yield* manifestFor(snapshotData.manifests, "program");
-      const tryout = yield* manifestFor(snapshotData.manifests, "tryout");
-      if (program.family !== "program" || tryout.family !== "tryout") {
+      const assessment = yield* manifestFor(
+        snapshotData.manifests,
+        "assessment"
+      );
+      if (program.family !== "program" || assessment.family !== "assessment") {
         return yield* Effect.die("Expected narrowed test manifests.");
       }
       const programError = yield* reject(
@@ -68,12 +71,15 @@ describe("structured snapshot domain verification", () => {
         },
         snapshotData.rows
       );
-      const tryoutError = yield* reject(
+      const assessmentError = yield* reject(
         {
-          ...tryout,
+          ...assessment,
           manifest: {
-            ...tryout.manifest,
-            routeCount: tryout.manifest.routeCount + 1,
+            ...assessment.manifest,
+            counts: {
+              ...assessment.manifest.counts,
+              item: assessment.manifest.counts.item + 1,
+            },
           },
         },
         snapshotData.rows
@@ -84,10 +90,10 @@ describe("structured snapshot domain verification", () => {
         family: "program",
         field: "rowDigest",
       });
-      expect(tryoutError).toMatchObject({
+      expect(assessmentError).toMatchObject({
         _tag: "SnapshotEvidenceError",
-        family: "tryout",
-        field: "routeCount",
+        family: "assessment",
+        field: "itemCount",
       });
     })
   );
@@ -104,11 +110,7 @@ describe("structured snapshot domain verification", () => {
         return yield* Effect.die("Expected Quran test values.");
       }
       const firstQuran = snapshotData.rows[firstQuranIndex.value];
-      if (
-        quran.family !== "quran" ||
-        firstQuran?.family !== "quran" ||
-        "rowKind" in firstQuran
-      ) {
+      if (quran.family !== "quran" || firstQuran?.family !== "quran") {
         return yield* Effect.die("Expected Quran test values.");
       }
       const rows = Arr.copy(snapshotData.rows);
@@ -141,7 +143,7 @@ describe("structured snapshot domain verification", () => {
             manifest: { ...quran.manifest, snapshotId: unrelatedHash },
           },
           Arr.map(snapshotData.rows, (row) =>
-            row.family === "quran" && !("rowKind" in row)
+            row.family === "quran"
               ? {
                   ...row,
                   record: { ...row.record, snapshotId: unrelatedHash },
@@ -166,11 +168,14 @@ describe("structured snapshot domain verification", () => {
         const snapshotData = yield* makeSnapshotTestData();
         const program = yield* manifestFor(snapshotData.manifests, "program");
         const quran = yield* manifestFor(snapshotData.manifests, "quran");
-        const tryout = yield* manifestFor(snapshotData.manifests, "tryout");
+        const assessment = yield* manifestFor(
+          snapshotData.manifests,
+          "assessment"
+        );
         if (
           program.family !== "program" ||
           quran.family !== "quran" ||
-          tryout.family !== "tryout"
+          assessment.family !== "assessment"
         ) {
           return yield* Effect.die("Expected narrowed test manifests.");
         }
@@ -191,8 +196,8 @@ describe("structured snapshot domain verification", () => {
           ),
           reject(
             {
-              ...tryout,
-              manifest: { ...tryout.manifest, catalogDigest: unrelatedHash },
+              ...assessment,
+              manifest: { ...assessment.manifest, rowDigest: unrelatedHash },
             },
             snapshotData.rows
           ),
@@ -205,7 +210,7 @@ describe("structured snapshot domain verification", () => {
         ).toEqual([
           "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
           "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
-          "sha256:fdff06d2385b467397d6b7e7ed8651504debeacd6b652cd5e4a55da9ecc773b0",
+          "sha256:556a7889b3703a5c6d1aa6c428944a9d8debb8d477b3f6b255edad463e41dcbe",
         ]);
       }),
     30_000

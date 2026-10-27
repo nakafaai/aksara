@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Ketika hujan turun, jalan menjadi basah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jika makan malam sudah siap, anak-anak dapat makan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebelum matahari terbit, burung berkicau nyaring.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
         },
       ],

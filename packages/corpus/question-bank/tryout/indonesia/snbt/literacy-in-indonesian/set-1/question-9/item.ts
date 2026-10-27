@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua benda plastik yang diproduksi di daratan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sampah yang masuk ke laut melalui sungai atau langsung dari pesisir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sampah yang terdampar kembali di daratan suatu negara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua sampah nonorganik yang ditemukan di laut",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sampah yang tidak dapat terurai secara alami",
         },
       ],

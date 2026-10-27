@@ -98,10 +98,10 @@ export const LIVE_RENDERER = await Effect.runPromise(
     publishedDomains: RENDERER_MANIFEST.publishedDomains,
   })
 );
-/** Every content family and the try-out snapshot, the scope that closes a renderer change. */
+/** Every content family, the scope that closes a renderer change. */
 export const BOOTSTRAP_SCOPE = PublicationScopeSchema.make({
-  families: ["article", "material", "page", "question"],
-  snapshots: ["tryout"],
+  families: ["article", "material", "page"],
+  snapshots: [],
 });
 
 const TestRepositoriesSchema = Schema.Struct({

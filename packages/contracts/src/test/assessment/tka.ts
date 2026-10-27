@@ -78,6 +78,7 @@ export const tkaMultipleExplanation = {
       text(".")
     )
   ),
+  language: "id",
   version: tkaMultiple.hash,
 };
 
@@ -85,7 +86,7 @@ export const tkaMultipleExplanation = {
 export const tkaMultipleFamily = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    competency: "geometry-measurement",
+    contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
   id: tkaMultiple.family,

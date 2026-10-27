@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
     topic: "classification",
   },
-  responses: {
+  stimulus: "egret-hide",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The sign asking visitors to stop talking",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "The reed screens along the end of the boardwalk",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "The wooden flaps over the viewing slits",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The waist-high rail on the upper platform",
         },
       ],
     },
   },
-  stimulusKey: "egret-hide",
 };
 
 export default item;

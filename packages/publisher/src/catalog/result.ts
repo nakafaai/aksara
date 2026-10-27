@@ -8,8 +8,6 @@ import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   type ContentHead,
   ContentHeadSchema,
-  type QuestionHead,
-  QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import {
   createResultCatalogDigest,
@@ -39,9 +37,6 @@ interface CatalogResultEvidence {
   readonly heads: Stream.Stream<ContentHead, ReplaySpoolError>;
   readonly materialCount: number;
   readonly pageCount: number;
-  readonly questionCount: number;
-  /** Replays only validated question heads for structured try-out binding. */
-  readonly questionHeads: Stream.Stream<QuestionHead, ReplaySpoolError>;
   readonly totalCount: number;
 }
 
@@ -67,7 +62,6 @@ const CatalogResultStateSchema = Schema.Struct({
   index: Schema.Finite,
   materialCount: Schema.Finite,
   pageCount: Schema.Finite,
-  questionCount: Schema.Finite,
   totalCount: Schema.Finite,
 });
 
@@ -78,7 +72,6 @@ const EMPTY_RESULT_STATE: CatalogResultState = {
   index: 0,
   materialCount: 0,
   pageCount: 0,
-  questionCount: 0,
   totalCount: 0,
 };
 
@@ -142,18 +135,13 @@ function validateHead(
           ...counted,
           pageCount: state.pageCount + 1,
         }),
-      question: () =>
-        Effect.succeed({
-          ...counted,
-          questionCount: state.questionCount + 1,
-        }),
     })
   );
 }
 
 /**
  * Validates identities and digest in one result replay while sealing the
- * complete catalog and question subset needed by downstream verification.
+ * complete catalog needed by downstream verification.
  */
 export const validateCatalogResult = Effect.fn(
   "AksaraPublisher.validateCatalogResult"
@@ -176,13 +164,6 @@ export const validateCatalogResult = Effect.fn(
     schema: ContentHeadSchema,
     stream: validated,
   });
-  const questions = yield* createReplaySpool({
-    prefix: "aksara-catalog-questions-",
-    schema: QuestionHeadSchema,
-    stream: heads.replay.pipe(
-      Stream.filter((head): head is QuestionHead => head.family === "question")
-    ),
-  });
   const state = yield* Ref.get(counts);
   const resultDigest = yield* finalizeResultCatalogDigest(
     CHECK_RELEASE_ID,
@@ -195,8 +176,6 @@ export const validateCatalogResult = Effect.fn(
     heads: heads.replay,
     materialCount: state.materialCount,
     pageCount: state.pageCount,
-    questionCount: state.questionCount,
-    questionHeads: questions.replay,
     totalCount: state.totalCount,
   } satisfies CatalogResultEvidence;
 });

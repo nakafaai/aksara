@@ -1,295 +1,134 @@
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it, test } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, Schema } from "effect";
-import { importCorpusModules } from "#corpus/test/imports";
 import {
-  defineTryoutExamSource,
-  TryoutDecodeError,
-  TryoutDuplicateError,
-  TryoutExamSourceSchema,
-} from "#corpus/tryout/schema";
+  testEnglishSection as english,
+  testReasoningSection as reasoning,
+  testSubjectTrack as subject,
+  testExamInput,
+  testSet,
+  testSubjectSection,
+  testYearTrack as year,
+} from "#corpus/test/exam";
+import { importCorpusModules } from "#corpus/test/imports";
+import { defineExamSource, ExamSourceSchema } from "#corpus/tryout/schema";
 
-type TryoutExamInput = typeof TryoutExamSourceSchema.Encoded;
-type TryoutSectionInput =
-  TryoutExamInput["tracks"][number]["sets"][number]["sections"][number];
+const decode = Schema.decodeUnknownExit(ExamSourceSchema, {
+  onExcessProperty: "error",
+});
 
-const section = {
-  key: "general-reasoning",
-  languagePolicy: { kind: "fixed", language: "id" },
-  order: 1,
-  questionCount: 20,
-  questionSourcePath:
-    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
-  rendererDomain: "snbt-general",
-  routeSlugs: { en: "general-reasoning", id: "penalaran-umum" },
-  timeLimitSeconds: 1800,
-  translations: {
-    en: { title: "General Reasoning" },
-    id: { title: "Penalaran Umum" },
-  },
-} as const;
-
-const tryoutSource = {
-  countryCode: "ID",
-  countryKey: "indonesia",
-  countryOrder: 1,
-  countryRevision: "2026-07-05",
-  countryRouteSlugs: { en: "indonesia", id: "indonesia" },
-  countryTranslations: {
-    en: { title: "Indonesia" },
-    id: { title: "Indonesia" },
-  },
-  examKey: "snbt",
-  examOrder: 1,
-  examRouteSlugs: { en: "snbt", id: "snbt" },
-  examTranslations: {
-    en: { title: "SNBT" },
-    id: { title: "SNBT" },
-  },
-  scoringStrategy: "irt",
-  sourceRevision: "2026-07-05",
-  tracks: [
-    {
-      key: "2027",
-      kind: "year",
-      order: 1,
-      routeSlugs: { en: "2027", id: "2027" },
-      sets: [
-        {
-          key: "set-1",
-          order: 1,
-          routeSlugs: { en: "set-1", id: "set-1" },
-          sections: [section],
-          translations: {
-            en: { title: "Set 1" },
-            id: { title: "Set 1" },
-          },
-        },
-      ],
-      translations: {
-        en: { title: "Year 2027" },
-        id: { title: "Tahun 2027" },
-      },
-    },
-  ],
-} as const;
-
-const marks = { blank: 0, correct: 4, wrong: -1 };
-const marksMessage =
-  "Every section of a penalized exam, and no other section, needs marks.";
-
-/** Builds one direct-entry section from the same reviewed section fields. */
-function directEntrySection(key: string = section.key): TryoutSectionInput {
-  return { ...section, key, visibility: "internal-entry" };
+/** The test exam input with its year track replaced. */
+function withYear(change: Partial<typeof year>) {
+  return { ...testExamInput, tracks: [subject, { ...year, ...change }] };
 }
 
-/** Builds one ordinary visible section from the same reviewed fields. */
-function visibleSection(key: string = section.key): TryoutSectionInput {
-  return { ...section, key };
-}
-
-/** Replaces the bounded set sections while retaining all other real fields. */
-function withSections(sections: readonly TryoutSectionInput[]) {
-  return {
-    ...tryoutSource,
-    tracks: [
-      {
-        ...tryoutSource.tracks[0],
-        sets: [{ ...tryoutSource.tracks[0].sets[0], sections }],
-      },
-    ],
-  };
-}
-
-describe("tryout schema", () => {
-  it.effect("decodes visible and single direct-entry try-out sources", () =>
+describe("exam source", () => {
+  it.effect("decodes an exam with its tracks, profiles, and sets", () =>
     Effect.gen(function* () {
-      const [visible, directEntry] = yield* Effect.all([
-        defineTryoutExamSource(tryoutSource),
-        defineTryoutExamSource(withSections([directEntrySection()])),
-      ]);
+      const exam = yield* defineExamSource(testExamInput);
 
-      expect(visible.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
-        "visible"
-      );
-      expect(directEntry.tracks[0]?.sets[0]?.sections[0]?.visibility).toBe(
-        "internal-entry"
-      );
-    })
-  );
-
-  it.effect("reports duplicate keys at their exact authored scope", () =>
-    Effect.gen(function* () {
-      const duplicate = yield* defineTryoutExamSource(
-        withSections([visibleSection(), visibleSection()])
-      ).pipe(Effect.flip);
-
-      expect(duplicate).toBeInstanceOf(TryoutDuplicateError);
-      expect(duplicate).toMatchObject({
-        _tag: "TryoutDuplicateError",
-        key: "general-reasoning",
-        scope: "snbt:2027:set-1:sections",
-      });
-    })
-  );
-
-  it.effect("maps strict decoding failures into the typed domain error", () =>
-    Effect.gen(function* () {
-      const failure = yield* defineTryoutExamSource({
-        ...tryoutSource,
-        examKey: "SNBT",
-      }).pipe(Effect.flip);
-
-      expect(failure).toBeInstanceOf(TryoutDecodeError);
-      expect(failure._tag).toBe("TryoutDecodeError");
-      expect(String(failure.cause)).toContain("Invalid try-out key.");
-    })
-  );
-
-  it.effect("validates both complete authored exam catalogs", () =>
-    Effect.gen(function* () {
-      const { snbtTryoutSource } = yield* Effect.promise(
-        () => import("#corpus/tryout/indonesia/snbt/source")
-      );
-      const { tkaTryoutSource } = yield* Effect.promise(
-        () => import("#corpus/tryout/indonesia/tka/source")
-      );
-      const sources = yield* Effect.all([snbtTryoutSource, tkaTryoutSource]);
-
-      expect(Arr.map(sources, ({ examKey }) => examKey)).toEqual([
-        "snbt",
-        "tka",
+      expect(Arr.map(exam.tracks, ({ key }) => key)).toEqual([
+        "test-subject",
+        "2027",
       ]);
       expect(
-        Arr.every(
-          sources,
-          (source) =>
-            source.countryRouteSlugs.de !== undefined &&
-            source.examRouteSlugs.de !== undefined &&
-            Arr.every(
-              source.tracks,
-              (track) =>
-                track.routeSlugs.de !== undefined &&
-                Arr.every(
-                  track.sets,
-                  (set) =>
-                    set.routeSlugs.de !== undefined &&
-                    Arr.every(
-                      set.sections,
-                      (entry) => entry.routeSlugs.de !== undefined
-                    )
-                )
-            )
+        Arr.map(exam.tracks, ({ profile }) =>
+          Arr.map(profile.sections, ({ key }) => key)
         )
-      ).toBe(true);
+      ).toEqual([["test-subject"], ["test-reasoning", "test-english"]]);
     })
   );
 
-  test.each([
-    {
-      field: "app-dependent exam language",
-      input: withSections([
-        { ...section, languagePolicy: { kind: "app-locale" } },
-      ]),
-      message: "Exam language must be fixed independently of the app locale.",
-    },
-    {
-      field: "exam key",
-      input: { ...tryoutSource, examKey: "SNBT" },
-      message: "Invalid try-out key.",
-    },
-    {
-      field: "country code",
-      input: { ...tryoutSource, countryCode: "indonesia" },
-      message: "Invalid country code.",
-    },
-    {
-      field: "source path",
-      input: withSections([
-        { ...section, questionSourcePath: "tryout/indonesia/snbt/set-1" },
-      ]),
-      message: "Invalid try-out question-set key.",
-    },
-    {
-      field: "penalized exam without section marks",
-      input: { ...tryoutSource, scoringStrategy: "penalized" as const },
-      message: marksMessage,
-    },
-    {
-      field: "section marks outside a penalized exam",
-      input: withSections([{ ...section, marks }]),
-      message: marksMessage,
-    },
-  ])("rejects an invalid $field", ({ input, message }) => {
-    const result = Schema.decodeExit(TryoutExamSourceSchema)(input);
+  it("routes a visible section and only a visible one", () => {
+    const { routeSlugs: _routeSlugs, ...unrouted } = reasoning;
 
-    expect(Exit.isFailure(result)).toBe(true);
-    if (Exit.isFailure(result)) {
-      expect(String(result.cause)).toContain(message);
-    }
+    expect(
+      Exit.isFailure(
+        decode(
+          withYear({
+            profile: { ...year.profile, sections: [unrouted, english] },
+          })
+        )
+      )
+    ).toBe(true);
+    expect(
+      Exit.isFailure(
+        decode({
+          ...testExamInput,
+          tracks: [
+            {
+              ...subject,
+              profile: {
+                ...subject.profile,
+                sections: [
+                  { ...testSubjectSection, routeSlugs: reasoning.routeSlugs },
+                ],
+              },
+            },
+          ],
+        })
+      )
+    ).toBe(true);
   });
 
-  it.effect.each([
-    {
-      name: "country and exam",
-      questionSourcePath:
-        "question-bank/tryout/germany/abitur/general-reasoning/set-1",
-    },
-    {
-      name: "section",
-      questionSourcePath:
-        "question-bank/tryout/indonesia/snbt/other-section/set-1",
-    },
-    {
-      name: "set",
-      questionSourcePath:
-        "question-bank/tryout/indonesia/snbt/general-reasoning/other-set",
-    },
-  ])(
-    "rejects contradictory question-source $name ownership",
-    ({ questionSourcePath }) =>
-      Effect.gen(function* () {
-        const failure = yield* defineTryoutExamSource(
-          withSections([{ ...section, questionSourcePath }])
-        ).pipe(Effect.flip);
+  it("enters a set through one section only when it is the set's only section", () => {
+    const internal = testSubjectSection;
 
-        expect(failure).toBeInstanceOf(TryoutDecodeError);
-        expect(failure._tag).toBe("TryoutDecodeError");
-        expect(String(failure.cause)).toContain(
-          "Question sources must match their country, exam, section, and set."
-        );
-      })
+    expect(
+      Exit.isFailure(
+        decode(
+          withYear({
+            profile: { ...year.profile, sections: [reasoning, internal] },
+          })
+        )
+      )
+    ).toBe(true);
+    expect(
+      Exit.isFailure(
+        decode(
+          withYear({
+            profile: { ...year.profile, sections: [internal, internal] },
+          })
+        )
+      )
+    ).toBe(true);
+  });
+
+  it.effect("names the first failure of a strict decode", () =>
+    Effect.gen(function* () {
+      const error = yield* defineExamSource({
+        ...testExamInput,
+        examKey: "Test Exam",
+      }).pipe(Effect.flip);
+
+      expect(error._tag).toBe("ExamSourceDecodeError");
+    })
   );
 
-  test.each([
-    {
-      name: "one direct-entry section beside a visible section",
-      sections: [
-        directEntrySection(),
-        visibleSection("quantitative-reasoning"),
-      ],
-    },
-    {
-      name: "multiple direct-entry sections",
-      sections: [
-        directEntrySection(),
-        directEntrySection("quantitative-reasoning"),
-      ],
-    },
-  ])("rejects $name", ({ sections }) => {
-    const result = Schema.decodeExit(TryoutExamSourceSchema)(
-      withSections(sections)
-    );
-
-    expect(Exit.isFailure(result)).toBe(true);
-    if (Exit.isFailure(result)) {
-      expect(String(result.cause)).toContain(
-        "Internal-entry try-out sections must be the only section in a set."
+  it.effect("refuses a key repeated among tracks, sets, or sections", () =>
+    Effect.gen(function* () {
+      const errors = yield* Effect.forEach(
+        [
+          { ...testExamInput, tracks: [subject, { ...subject, order: 2 }] },
+          withYear({ sets: [testSet(1), { ...testSet(1), order: 2 }] }),
+          withYear({
+            profile: { ...year.profile, sections: [reasoning, reasoning] },
+          }),
+        ],
+        (input) => defineExamSource(input).pipe(Effect.flip)
       );
-    }
-  });
 
-  it.effect("loads every authored try-out catalog module", () =>
+      expect(
+        Arr.map(errors, (error) => "scope" in error && error.scope)
+      ).toEqual([
+        "test-exam:tracks",
+        "test-exam:2027:sets",
+        "test-exam:2027:sections",
+      ]);
+    })
+  );
+
+  it.effect("loads every authored try-out exam module", () =>
     Effect.gen(function* () {
       const files = yield* importCorpusModules("tryout/**/source.ts");
 

@@ -34,7 +34,6 @@ function statusResponse(
     active: null,
     candidate: null,
     recovery: null,
-    tryoutRuntimeBundle: null,
   }
 ) {
   return webResponse(

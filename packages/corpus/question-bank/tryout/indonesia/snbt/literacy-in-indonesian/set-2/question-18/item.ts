@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjaga pintu masuk rumah dari pencuri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Membawa hasil panen dari luar kota",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghias bagian hunian dengan lukisan dinding",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjual roti langsung kepada pembeli di jalan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
         },
       ],

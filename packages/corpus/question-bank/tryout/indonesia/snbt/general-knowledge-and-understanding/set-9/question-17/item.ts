@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dokumen berbeda mengaitkan 1912 dengan konstruksi, 1914 dengan penggunaan, dan 1916 dengan peresmian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemerintah kota dapat memilih tanggal yang paling tua agar monumen tampak lebih bersejarah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

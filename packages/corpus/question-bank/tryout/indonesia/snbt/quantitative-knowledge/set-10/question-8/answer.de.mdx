@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 8",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-27",
-  dateModified: "2026-09-12",
-};
-
 Gesucht sind die Intervalle, in denen das **Produkt der beiden Faktoren positiv** ist:
 
 <BlockMath math="x^2 + x - 6 > 0" />
@@ -19,9 +12,35 @@ Die beiden Faktoren werden an folgenden Randpunkten null:
 
 Diese Punkte teilen den Zahlenstrahl in drei Intervalle. Prüfe aus jedem Intervall einen Wert:
 
-<Set10Question8Graph
+<NumberLine
   title="Zahlenstrahl"
   description="Lösungsmenge der Ungleichung auf dem Zahlenstrahl."
+  max={4}
+  min={-5}
+  segments={[
+    {
+      end: -3,
+      endInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+++" />,
+    },
+    {
+      start: -3,
+      end: 2,
+      startInclusive: false,
+      endInclusive: false,
+      shaded: false,
+      label: <InlineMath math="---" />,
+      startLabel: <InlineMath math="-3" />,
+      endLabel: <InlineMath math="2" />,
+    },
+    {
+      start: 2,
+      startInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+++" />,
+    },
+  ]}
 />
 
 | Intervall | Testwert | Produkt |

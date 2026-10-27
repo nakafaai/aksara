@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Ayu dan pelanggan menjadikan warna jahitan merah lama sebagai dasar pola reparasi yang terlihat untuk mempertemukan riwayat blus dengan keinginan memperbaikinya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bacaan memakai konflik sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

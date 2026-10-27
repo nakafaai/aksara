@@ -1,5 +1,11 @@
-import { QuestionBodyKindSchema } from "@nakafa/aksara-contracts/question/identity";
 import { Schema } from "effect";
+
+/**
+ * The role of one question-bank document: an assessed prompt, a shared
+ * reading, or an explanation. Prompts and readings keep their source wording.
+ */
+const BodyKindSchema = Schema.Literals(["answer", "question", "stimulus"]);
+export type BodyKind = typeof BodyKindSchema.Type;
 
 const PATH_SEPARATOR = /[\\/]/u;
 const MDX_SUFFIX = /\.mdx$/u;
@@ -7,7 +13,7 @@ const MDX_SUFFIX = /\.mdx$/u;
 /** The authored contract that controls which checks inspect one document. */
 type DocumentProfile = "article" | "lesson" | "question" | "answer";
 
-/** Reads the contract-owned question body role from a locale-qualified file. */
+/** Reads the question-bank role of a locale-qualified file. */
 function questionBodyKind(file: string): "question" | "answer" | undefined {
   const stem = file
     .split(PATH_SEPARATOR)
@@ -15,7 +21,10 @@ function questionBodyKind(file: string): "question" | "answer" | undefined {
     .join("")
     .replace(MDX_SUFFIX, "");
   const kind = stem.slice(0, stem.lastIndexOf("."));
-  return Schema.is(QuestionBodyKindSchema)(kind) ? kind : undefined;
+  if (!Schema.is(BodyKindSchema)(kind)) {
+    return;
+  }
+  return kind === "answer" ? "answer" : "question";
 }
 
 /**

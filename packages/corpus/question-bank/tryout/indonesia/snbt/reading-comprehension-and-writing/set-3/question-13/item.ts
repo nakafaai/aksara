@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "kerja sama tim dalam pengujian kartu urutan bahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kerjasama tim dalam pengujian kartu urutan bahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kerja-sama tim dalam pengujian kartu urutan bahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kerja samah tim dalam pengujian kartu urutan bahan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kerja sama-sama tim dalam pengujian kartu urutan bahan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

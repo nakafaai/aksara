@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  responses: {
+  stimulus: "later-start",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Use several outcome measures.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Look for effects hidden by an average.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treat a higher overall mean as enough to justify permanent adoption.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Keep the change reversible.",
         },
       ],
     },
   },
-  stimulusKey: "later-start",
 };
 
 export default item;

@@ -72,7 +72,6 @@ export function acceptanceTargetMock(calls: AcceptancePublicationCalls) {
               ? { ...PREEXISTING_BUNDLE, phase: "staging" }
               : null,
           recovery: null,
-          tryoutRuntimeBundle: null,
         };
       });
       return Effect.succeed(

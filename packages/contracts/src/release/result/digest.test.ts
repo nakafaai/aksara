@@ -169,18 +169,18 @@ describe("result catalog digest", () => {
         expect(whole).toEqual({
           count: 3,
           digest:
-            "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+            "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484",
         });
         expect(split).toEqual({
           count: 3,
           digest:
-            "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+            "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484",
         });
         expect(emptyIncremental).toBe(
           "sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd"
         );
         expect(incremental).toBe(
-          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+          "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484"
         );
       })
   );
@@ -190,7 +190,7 @@ describe("result catalog digest", () => {
       const summary = yield* verifyResultCatalog({
         expectedCount: 3,
         expectedDigest: Sha256HashSchema.make(
-          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+          "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484"
         ),
         heads: Stream.fromIterable(catalog),
         releaseId,
@@ -205,13 +205,13 @@ describe("result catalog digest", () => {
       expect(summary).toEqual({
         count: 3,
         digest:
-          "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604",
+          "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484",
       });
       expect(error).toMatchObject({
         _tag: "ResultCatalogDigestMismatchError",
       });
       expect("actualDigest" in error ? error.actualDigest : undefined).toBe(
-        "sha256:d0a400a80958362d96b028e3dbcea99dec4f47bf37bee795b8b6e137d2647604"
+        "sha256:608aa14c5c70194fd4e9332e2c59e01ca6d7b055a4159cc78e16f59f41f85484"
       );
     })
   );

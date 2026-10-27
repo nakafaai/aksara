@@ -48,27 +48,6 @@ export class PreparedSnapshotScopeError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("PreparedSnapshotScopeError", { family: ContentSnapshotKindSchema }) {}
 
-/** A runtime bundle snapshot differs from the release's resulting try-out state. */
-export class PreparedTryoutRuntimeSnapshotError extends Schema.TaggedError<
-  PreparedTryoutRuntimeSnapshotError,
-  { readonly brand: unique symbol }
->()("PreparedTryoutRuntimeSnapshotError", {
-  actualSnapshotId: Sha256HashSchema,
-  expectedSnapshotId: Schema.NullOr(Sha256HashSchema),
-}) {}
-
-/** A try-out replacement omitted the runtime pair required for activation. */
-export class PreparedTryoutRuntimeMissingError extends Schema.TaggedError<
-  PreparedTryoutRuntimeMissingError,
-  { readonly brand: unique symbol }
->()("PreparedTryoutRuntimeMissingError", {}) {}
-
-/** Candidate and recovery runtime snapshots do not form one valid transition. */
-export class PreparedTryoutRuntimeTransitionError extends Schema.TaggedError<
-  PreparedTryoutRuntimeTransitionError,
-  { readonly brand: unique symbol }
->()("PreparedTryoutRuntimeTransitionError", { snapshotId: Sha256HashSchema }) {}
-
 /** One authored record failed its exact current schema. */
 export class PreparedContentDecodeError extends Schema.TaggedError<
   PreparedContentDecodeError,

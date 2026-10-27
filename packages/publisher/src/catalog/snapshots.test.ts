@@ -11,9 +11,9 @@ import {
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
-import { Array as Arr, Effect, MutableRef, Stream } from "effect";
+import { Array as Arr, Effect, MutableRef } from "effect";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
-import { catalogTryoutManifest } from "#test/snapshot";
+import { catalogAssessmentManifest } from "#test/snapshot";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const quranChunkCount = 1;
@@ -53,11 +53,19 @@ const quranManifest = QuranSnapshotSchema.make({
   tafsirLocales: ["id"],
   verseCount: QURAN_VERSE_COUNT,
 });
-const completeManifests: readonly ContentSnapshotManifest[] = [
-  { family: "program", manifest: programManifest },
-  { family: "quran", manifest: quranManifest },
-  { family: "tryout", manifest: catalogTryoutManifest },
-];
+const assessment: ContentSnapshotManifest = {
+  family: "assessment",
+  manifest: catalogAssessmentManifest,
+};
+const program: ContentSnapshotManifest = {
+  family: "program",
+  manifest: programManifest,
+};
+const quran: ContentSnapshotManifest = {
+  family: "quran",
+  manifest: quranManifest,
+};
+const completeManifests = [assessment, program, quran];
 
 /** Scenario switches that the mocked release and verification modules read when they are called. */
 const decodeFailure = MutableRef.make(false);
@@ -122,56 +130,50 @@ const configureControl = Effect.fn("CatalogSnapshotsTest.configureControl")(
 
 /** Builds structured validation under the suite's scoped platform layer. */
 const validate = Effect.fn("CatalogSnapshotsTest.validate")(() =>
-  Effect.scoped(
-    validateCatalogSnapshots({
-      checkoutRoot: "/code/aksara",
-      questionHeads: Stream.empty,
-      rendererManifest: {},
-    })
-  )
+  Effect.scoped(validateCatalogSnapshots("/code/aksara"))
 );
 
 layer(NodeServices.layer)("catalog snapshots", (it) => {
-  it.effect("reports current Program, Quran, and Try-out source evidence", () =>
-    Effect.gen(function* () {
-      yield* configureControl();
-      const evidence = yield* validate();
+  it.effect(
+    "reports current assessment, program, and Quran source evidence",
+    () =>
+      Effect.gen(function* () {
+        yield* configureControl();
+        const evidence = yield* validate();
 
-      expect(evidence).toEqual({
-        program: {
-          rowCount: programManifest.rowCount,
-          rowDigest: hash,
-          sitemapCount: programManifest.sitemapCount,
-          snapshotId: hash,
-        },
-        quran: {
-          projectionCount: quranManifest.projectionCount,
-          projectionDigest: hash,
-          provenanceDigest: hash,
-          provenanceStatus: "blocked",
-          runtimeCount: quranManifest.runtimeCount,
-          searchCount: quranSearchCount,
-          snapshotId: hash,
-          sourceDigest: hash,
-        },
-        stagedRows: 1415,
-        tryout: {
-          catalogCount: 12,
-          catalogDigest: hash,
-          placementCount: 8,
-          placementDigest: hash,
-          routeCount: 10,
-          snapshotId: catalogTryoutManifest.snapshotId,
-        },
-      });
-    })
+        expect(evidence).toEqual({
+          assessment: {
+            counts: catalogAssessmentManifest.counts,
+            rowDigest: hash,
+            snapshotId: catalogAssessmentManifest.snapshotId,
+          },
+          program: {
+            rowCount: programManifest.rowCount,
+            rowDigest: hash,
+            sitemapCount: programManifest.sitemapCount,
+            snapshotId: hash,
+          },
+          quran: {
+            projectionCount: quranManifest.projectionCount,
+            projectionDigest: hash,
+            provenanceDigest: hash,
+            provenanceStatus: "blocked",
+            runtimeCount: quranManifest.runtimeCount,
+            searchCount: quranSearchCount,
+            snapshotId: hash,
+            sourceDigest: hash,
+          },
+          stagedRows: 1415,
+        });
+      })
   );
 
   it.effect.each([
     { manifests: [] },
-    { manifests: Arr.take(Arr.drop(completeManifests, 1), 1) },
-    { manifests: Arr.take(completeManifests, 1) },
-    { manifests: Arr.take(completeManifests, 2) },
+    { manifests: [program, quran] },
+    { manifests: [assessment] },
+    { manifests: [assessment, quran] },
+    { manifests: [assessment, program] },
   ])("rejects an incomplete structured family set %#", ({ manifests }) =>
     Effect.gen(function* () {
       yield* configureControl({ manifests });

@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "salinan kata demi kata dari satu ingatan yang dipilih",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pengisian bagian yang hilang dengan cerita rekaan tanpa penanda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "daftar peristiwa menurut tanggal tanpa membandingkan sumber",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "penyusunan kembali penjelasan masa lalu dari jejak yang tersedia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perbaikan fisik benda lama agar kembali tampak baru",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

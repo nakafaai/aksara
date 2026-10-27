@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  stimulus: "refill-station",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "terdapat pola yang mendukung perbaikan layanan, tetapi faktor lain masih perlu diukur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kenaikan volume air isi ulang dapat langsung diterjemahkan menjadi jumlah botol yang dihindari",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "penghitungan pada satu jam yang sama dipakai sebagai perkiraan harian tanpa sampel waktu lain",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "suhu tidak mungkin memengaruhi kebutuhan minum",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "stasiun isi ulang harus dihentikan",
         },
       ],
     },
   },
-  stimulusKey: "refill-station",
 };
 
 export default item;

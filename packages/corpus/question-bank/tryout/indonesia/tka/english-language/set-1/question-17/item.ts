@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
     topic: "outline",
   },
-  responses: {
+  stimulus: "leak-test",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Inspect visible pipes, replace the meter, wait, and compare the new reading.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Take one photograph and immediately declare the leak's location.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Prepare the period, record, wait, compare, repeat if needed, and report safely.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Run the irrigation system, wait, and ignore the meter.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Disconnect essential equipment before checking the display.",
         },
       ],
     },
   },
-  stimulusKey: "leak-test",
 };
 
 export default item;

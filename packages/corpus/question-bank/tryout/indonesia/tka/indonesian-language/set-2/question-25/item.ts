@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "language-suitability",
   },
-  responses: {
+  stimulus: "study-breaks",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Perbandingan Hasil Dua Paket Latihan dengan dan tanpa Jeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengaruh Jeda Lima Menit terhadap Ketelitian Dua Belas Siswa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pola Ketelitian pada Dua Sesi Latihan dengan Urutan Berbeda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ketelitian Belajar setelah Empat Puluh Menit Latihan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uji Efektivitas Jeda pada Siswa Sekolah Menengah",
         },
       ],
     },
   },
-  stimulusKey: "study-breaks",
 };
 
 export default item;

@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "aturan moral tentang perilaku yang seharusnya dilakukan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "gambaran mengenai perilaku yang lazim dilakukan orang dalam suatu kelompok",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sanksi hukum bagi perilaku yang dilarang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kesukaan pribadi seorang penumpang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "catatan tentang tindakan satu orang pada satu perjalanan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

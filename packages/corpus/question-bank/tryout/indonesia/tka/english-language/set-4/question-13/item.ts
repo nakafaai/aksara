@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
     topic: "outline",
   },
-  responses: {
+  stimulus: "power-cut",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "A power cut scares Bayu, his grandmother calls, he gets her stick and a candle, and he prepares for next time.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bayu lights a candle, the tall man appears, his grandmother calls him, and his parents come home early.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "His parents call from the wedding, Bayu finds the candles, the lights go out, and his grandmother falls asleep.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The lights go out, Bayu's grandmother finds the candles herself, Bayu tells her a story, and the power returns.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bayu waits on the sofa until the power comes back, and only then does he put out two flashlights.",
         },
       ],
     },
   },
-  stimulusKey: "power-cut",
 };
 
 export default item;

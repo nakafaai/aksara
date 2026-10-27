@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Option } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
@@ -94,49 +94,42 @@ describe("SNBT readiness", () => {
       })
   );
 
-  it.effect("keeps every active 2027 set aligned with that baseline", () =>
-    Effect.gen(function* () {
-      const source = yield* snbtTryoutSource;
-      const track = yield* Effect.fromOption(
-        Arr.findFirst(source.tracks, ({ key }) => key === "2027")
-      );
+  it.effect(
+    "keeps the 2027 profile and its ten sets aligned with that baseline",
+    () =>
+      Effect.gen(function* () {
+        const source = yield* snbtTryoutSource;
+        const track = yield* Effect.fromOption(
+          Arr.findFirst(source.tracks, ({ key }) => key === "2027")
+        );
 
-      expect(track.sets).toHaveLength(10);
-      expect(Arr.map(track.sets, ({ key }) => key)).toEqual(
-        Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
-      );
-      expect(
-        Arr.every(
-          track.sets,
-          (set) =>
-            Arr.reduce(
-              set.sections,
-              0,
-              (total, section) => total + section.questionCount
-            ) === 160 &&
-            Arr.reduce(
-              set.sections,
-              0,
-              (total, section) => total + section.timeLimitSeconds
-            ) ===
-              195 * 60
-        )
-      ).toBe(true);
-      expect(
-        Option.getOrUndefined(
-          Option.map(Arr.head(track.sets), (set) =>
-            Arr.map(set.sections, ({ key }) => key)
+        expect(track.sets).toHaveLength(10);
+        expect(Arr.map(track.sets, ({ key }) => key)).toEqual(
+          Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
+        );
+        expect(
+          Arr.reduce(
+            track.profile.sections,
+            0,
+            (total, { items }) => total + items
           )
-        )
-      ).toEqual([
-        "general-reasoning",
-        "general-knowledge-and-understanding",
-        "reading-comprehension-and-writing",
-        "quantitative-knowledge",
-        "literacy-in-indonesian",
-        "literacy-in-english",
-        "mathematical-reasoning",
-      ]);
-    })
+        ).toBe(160);
+        expect(
+          Arr.reduce(
+            track.profile.sections,
+            0,
+            (total, { seconds }) => total + seconds
+          )
+        ).toBe(195 * 60);
+        expect(Arr.map(track.profile.sections, ({ key }) => key)).toEqual([
+          "general-reasoning",
+          "general-knowledge-and-understanding",
+          "reading-comprehension-and-writing",
+          "quantitative-knowledge",
+          "literacy-in-indonesian",
+          "literacy-in-english",
+          "mathematical-reasoning",
+        ]);
+      })
   );
 });

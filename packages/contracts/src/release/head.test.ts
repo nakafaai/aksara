@@ -4,16 +4,9 @@ import {
   canonicalizeContentHead,
   HeadPageRequestSchema,
   HeadPageSchema,
-  MaterialHeadSchema,
   PageHeadSchema,
-  QuestionHeadSchema,
 } from "#contracts/release/head";
-import {
-  articleHead,
-  materialHead,
-  pageHead,
-  questionHead,
-} from "#contracts/test/head";
+import { articleHead, materialHead, pageHead } from "#contracts/test/head";
 import { JsonTextSchema } from "#contracts/text/json";
 import { MAX_HEAD_PAGE_COUNT } from "#contracts/transport/limits";
 
@@ -29,29 +22,16 @@ function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
 }
 
 describe("content head pages", () => {
-  it("pins the canonical bytes of routed, route-free, and question heads", () => {
+  it("pins the canonical bytes of every head, each with its route", () => {
     const routed = materialHead("test:routed");
-    const routeFree = Schema.decodeSync(MaterialHeadSchema)({
-      ...routed,
-      publicPath: undefined,
-    });
 
     expect(decodeJson(canonicalizeContentHead(routed))).toEqual(routed);
-    expect(decodeJson(canonicalizeContentHead(routeFree))).toEqual(routeFree);
     const article = articleHead("articles/politics/test");
     expect(decodeJson(canonicalizeContentHead(article))).toEqual(article);
-    const question = questionHead("question-bank/test/question");
-    expect(decodeJson(canonicalizeContentHead(question))).toEqual(question);
     const page = pageHead("pages/privacy-policy");
     expect(decodeJson(canonicalizeContentHead(page))).toEqual(page);
     expect(canonicalizeContentHead(routed)).toBe(
       '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","publicPath":"subjects/test/test-routed","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
-    );
-    expect(canonicalizeContentHead(routeFree)).toBe(
-      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"test:routed","delivery":"public","family":"material","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rendererDomain":"mathematics","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/test/test-routed/en.mdx"}'
-    );
-    expect(canonicalizeContentHead(question)).toBe(
-      '{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","contentKey":"question-bank/test/question","delivery":"authenticated","family":"question","projectionHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rendererDomain":"snbt-general","sourceHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sourcePath":"packages/corpus/question-bank/test/question/en.mdx"}'
     );
   });
 
@@ -62,7 +42,7 @@ describe("content head pages", () => {
       cursor: null,
       limit: 1,
     };
-    for (const family of ["article", "material", "page", "question"]) {
+    for (const family of ["article", "material", "page"]) {
       expect(accepts(HeadPageRequestSchema, { ...request, family })).toBe(true);
     }
     expect(
@@ -172,20 +152,6 @@ describe("content head pages", () => {
     expect(
       accepts(HeadPageSchema, {
         ...base,
-        family: "question",
-        heads: [questionHead("question-bank/test/question")],
-      })
-    ).toBe(true);
-    expect(
-      accepts(HeadPageSchema, {
-        ...base,
-        family: "question",
-        heads: [articleHead("articles/politics/test")],
-      })
-    ).toBe(false);
-    expect(
-      accepts(HeadPageSchema, {
-        ...base,
         family: "material",
         heads: [articleHead("articles/politics/test")],
       })
@@ -259,36 +225,13 @@ describe("content head pages", () => {
     }
   });
 
-  it("rejects public routes on question heads", () => {
-    const routeError = Schema.decodeExit(QuestionHeadSchema)({
-      ...questionHead("question-bank/test/question"),
-      publicPath: "questions/test",
-    });
+  it("requires a public route on every head", () => {
+    const { publicPath: _publicPath, ...withoutRoute } = pageHead(
+      "pages/privacy-policy"
+    );
+
     expect(
-      Exit.isFailure(routeError) ? String(routeError.cause) : ""
-    ).toContain("Expected question heads to remain route-free.");
-    const pageError = Schema.decodeExit(HeadPageSchema)({
-      activeManifestHash: manifestHash,
-      activeReleaseId: releaseId,
-      cursor: null,
-      done: false,
-      family: "question",
-      heads: [],
-      nextCursor: null,
-    });
-    expect(Exit.isFailure(pageError) ? String(pageError.cause) : "").toContain(
-      "Expected canonical question heads with coherent cursor progress."
-    );
-  });
-
-  it("requires public routes on page heads", () => {
-    const result = Schema.decodeExit(PageHeadSchema)({
-      ...pageHead("pages/privacy-policy"),
-      publicPath: undefined,
-    });
-
-    expect(Exit.isFailure(result) ? String(result.cause) : "").toContain(
-      "Expected page heads to retain their public path."
-    );
+      Exit.isFailure(Schema.decodeUnknownExit(PageHeadSchema)(withoutRoute))
+    ).toBe(true);
   });
 });

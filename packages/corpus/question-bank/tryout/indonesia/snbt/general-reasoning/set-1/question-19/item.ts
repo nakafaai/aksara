@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Makanan pendamping umumnya mulai diberikan sekitar usia $$6$$ bulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemberian ASI dapat dilanjutkan setelah makanan pendamping mulai diberikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Makanan pendamping harus cukup, aman, dan padat gizi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Buah dan sayuran merupakan bagian dari makanan pendamping yang beragam.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sayuran saja menyediakan seluruh kelompok makanan yang dibutuhkan bayi setelah usia $$6$$ bulan.",
         },

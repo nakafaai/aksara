@@ -1,247 +1,177 @@
+import {
+  SectionVisibilitySchema,
+  TrackKindSchema,
+} from "@nakafa/aksara-contracts/assessment/catalog";
+import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
+import { InteractionKindSchema } from "@nakafa/aksara-contracts/assessment/interaction";
+import { ReportFormSchema } from "@nakafa/aksara-contracts/assessment/profile";
+import {
+  ScoreScaleSchema,
+  ScoringStrategySchema,
+} from "@nakafa/aksara-contracts/assessment/scoring";
 import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
-import {
-  QuestionSetKeySchema,
-  questionSetKeyParts,
-} from "@nakafa/aksara-contracts/question/identity";
-import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
-import { AssessmentLanguagePolicySchema } from "@nakafa/aksara-contracts/tryout/language";
-import {
-  TryoutMarksSchema,
-  TryoutScoringSchema,
-  TryoutTrackKindSchema,
-  TryoutVisibilitySchema,
-} from "@nakafa/aksara-contracts/tryout/spec";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
-
 import {
   PublicRouteSegmentSchema,
   PublicRouteSlugMapSchema,
 } from "#corpus/route/schema";
 
-const DEFAULT_SECTION_VISIBILITY = "visible";
+const PositiveIntSchema = Schema.Int.check(Schema.isGreaterThan(0));
 
-const TryoutTranslationMapSchema = localizedSourceMapSchema(
+const TranslationMapSchema = localizedSourceMapSchema(
   Schema.Struct({
     description: Schema.optional(Schema.String),
     title: Schema.String,
   })
 );
 
-export const TryoutSectionSourceSchema = Schema.Struct({
-  key: TryoutKeySchema,
-  languagePolicy: AssessmentLanguagePolicySchema.check(
-    Schema.makeFilter((policy) => policy.kind === "fixed", {
-      message: "Exam language must be fixed independently of the app locale.",
-    })
-  ),
-  marks: Schema.optionalKey(TryoutMarksSchema),
-  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  questionCount: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  questionSourcePath: QuestionSetKeySchema,
-  rendererDomain: RendererDomainSchema,
-  routeSlugs: PublicRouteSlugMapSchema,
-  timeLimitSeconds: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  translations: TryoutTranslationMapSchema,
-  visibility: TryoutVisibilitySchema.pipe(
-    Schema.withDecodingDefaultKey(Effect.succeed(DEFAULT_SECTION_VISIBILITY))
-  ),
-});
-export type TryoutSectionSourceInput = typeof TryoutSectionSourceSchema.Encoded;
-
-/** Requires visible sections or one direct-entry section in a try-out set. */
-function hasReachableTryoutSections(source: TryoutSetSourceFields): boolean {
-  const internalEntryCount = Arr.filter(
-    source.sections,
-    (section) => section.visibility === "internal-entry"
-  ).length;
-  if (internalEntryCount === 0) {
-    return true;
-  }
-  return internalEntryCount === 1 && source.sections.length === 1;
-}
-
-const TryoutSetSourceFieldsSchema = Schema.Struct({
-  key: TryoutKeySchema,
-  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  routeSlugs: PublicRouteSlugMapSchema,
-  sections: Schema.Array(TryoutSectionSourceSchema),
-  translations: TryoutTranslationMapSchema,
-});
-type TryoutSetSourceFields = typeof TryoutSetSourceFieldsSchema.Type;
-
-export const TryoutSetSourceSchema = TryoutSetSourceFieldsSchema.pipe(
-  Schema.check(
-    Schema.makeFilter(hasReachableTryoutSections, {
-      message:
-        "Internal-entry try-out sections must be the only section in a set.",
-    })
+/**
+ * One section of an exam profile: the language its items are asked in, how
+ * many items it has, how long it lasts, the interactions it allows, and its
+ * names and routes. Every set of the track sits the same sections in this
+ * order, each with its own items.
+ */
+export const SectionSourceSchema = Schema.Struct({
+  interactions: Schema.NonEmptyArray(InteractionKindSchema),
+  items: PositiveIntSchema,
+  key: KebabKeySchema,
+  language: AppLocaleCodeSchema,
+  routeSlugs: Schema.optionalKey(PublicRouteSlugMapSchema),
+  seconds: PositiveIntSchema,
+  translations: TranslationMapSchema,
+  visibility: SectionVisibilitySchema,
+}).check(
+  Schema.makeFilter(
+    ({ routeSlugs, visibility }) =>
+      (visibility === "visible") === (routeSlugs !== undefined),
+    { message: "Expected route slugs on a visible section only." }
   )
 );
+export type SectionSource = typeof SectionSourceSchema.Type;
+export type SectionSourceInput = typeof SectionSourceSchema.Encoded;
 
-export const TryoutTrackSourceSchema = Schema.Struct({
-  key: TryoutKeySchema,
-  kind: TryoutTrackKindSchema,
-  order: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  routeSlugs: PublicRouteSlugMapSchema,
-  sets: Schema.Array(TryoutSetSourceSchema),
-  translations: TryoutTranslationMapSchema,
-});
-export type TryoutTrackSourceInput = typeof TryoutTrackSourceSchema.Encoded;
-
-const TryoutCountrySourceSchema = Schema.Struct({
-  countryCode: CountryCodeSchema,
-  countryKey: TryoutKeySchema,
-  countryOrder: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  countryRevision: PublicRouteSegmentSchema,
-  countryRouteSlugs: PublicRouteSlugMapSchema,
-  countryTranslations: TryoutTranslationMapSchema,
-});
-export type TryoutCountrySourceInput = typeof TryoutCountrySourceSchema.Encoded;
-
-const TryoutExamSourceFieldsSchema = Schema.Struct({
-  ...TryoutCountrySourceSchema.fields,
-  examKey: TryoutKeySchema,
-  examOrder: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
-  examRouteSlugs: PublicRouteSlugMapSchema,
-  examTranslations: TryoutTranslationMapSchema,
-  scoringStrategy: TryoutScoringSchema,
-  sourceRevision: PublicRouteSegmentSchema,
-  tracks: Schema.Array(TryoutTrackSourceSchema),
-});
-
-type TryoutExamSourceFields = typeof TryoutExamSourceFieldsSchema.Type;
-
-/** Checks every section path against its exact country, exam, section, and set. */
-function hasOwnedQuestionSources(source: TryoutExamSourceFields) {
-  return Arr.every(source.tracks, (track) =>
-    Arr.every(track.sets, (set) =>
-      Arr.every(set.sections, (section) => {
-        const parts = questionSetKeyParts(section.questionSourcePath);
-        return (
-          parts.countryKey === source.countryKey &&
-          parts.examKey === source.examKey &&
-          parts.sectionKey === section.key &&
-          parts.setKey === set.key
-        );
-      })
-    )
-  );
-}
-
-/** Requires marks on every section of a penalized exam and on no other. */
-function hasScoringMarks(source: TryoutExamSourceFields) {
-  const penalized = source.scoringStrategy === "penalized";
-  return Arr.every(source.tracks, (track) =>
-    Arr.every(track.sets, (set) =>
-      Arr.every(
-        set.sections,
-        (section) => (section.marks !== undefined) === penalized
-      )
-    )
-  );
+/** Requires visible sections, or one section entered from its set. */
+function hasReachableSections(sections: readonly SectionSource[]) {
+  const internal = Arr.filter(
+    sections,
+    ({ visibility }) => visibility === "internal-entry"
+  ).length;
+  return internal === 0 || (internal === 1 && sections.length === 1);
 }
 
 /**
- * Complete active contract for one imported try-out exam source. A penalized
- * exam keeps each section's marks here, beside its question count and time
- * limit, so they are source-controlled and signed into the section row; its
- * readiness gate records the official evidence for the same values.
+ * The exam profile of one track, as authored: its names, its scoring and
+ * report, and its sections. The facts that every Nakafa try-out shares, such
+ * as the deadline allowances and the tools, are in `tryout/profile`.
  */
-export const TryoutExamSourceSchema = TryoutExamSourceFieldsSchema.pipe(
-  Schema.check(
-    Schema.makeFilter(hasOwnedQuestionSources, {
+export const ProfileSourceSchema = Schema.Struct({
+  names: TranslationMapSchema,
+  report: ReportFormSchema,
+  scale: Schema.optionalKey(ScoreScaleSchema),
+  scoring: ScoringStrategySchema,
+  sections: Schema.NonEmptyArray(SectionSourceSchema).check(
+    Schema.makeFilter(hasReachableSections, {
       message:
-        "Question sources must match their country, exam, section, and set.",
+        "Expected visible sections, or one section entered from its set.",
     })
   ),
-  Schema.check(
-    Schema.makeFilter(hasScoringMarks, {
-      message:
-        "Every section of a penalized exam, and no other section, needs marks.",
-    })
-  )
-);
-type TryoutExamSourceInput = typeof TryoutExamSourceSchema.Encoded;
-export type TryoutExamSource = typeof TryoutExamSourceSchema.Type;
+});
+export type ProfileSource = typeof ProfileSourceSchema.Type;
 
-/** One authored try-out catalog failed strict schema decoding. */
-export class TryoutDecodeError extends Schema.TaggedError<
-  TryoutDecodeError,
-  { readonly brand: unique symbol }
->()("TryoutDecodeError", {
-  cause: Schema.Unknown,
-  message: Schema.Trimmed.check(Schema.isNonEmpty()),
-}) {}
+/** One set of a track: its names and routes. Its paper sits the track's sections. */
+export const SetSourceSchema = Schema.Struct({
+  key: KebabKeySchema,
+  order: PositiveIntSchema,
+  routeSlugs: PublicRouteSlugMapSchema,
+  translations: TranslationMapSchema,
+});
+export type SetSource = typeof SetSourceSchema.Type;
 
-/** One authored try-out scope contains the same stable key twice. */
-export class TryoutDuplicateError extends Schema.TaggedError<
-  TryoutDuplicateError,
+/** One track of an exam: a year, a subject, or an institution, with its profile and sets. */
+export const TrackSourceSchema = Schema.Struct({
+  key: KebabKeySchema,
+  kind: TrackKindSchema,
+  order: PositiveIntSchema,
+  profile: ProfileSourceSchema,
+  routeSlugs: PublicRouteSlugMapSchema,
+  sets: Schema.Array(SetSourceSchema),
+  translations: TranslationMapSchema,
+});
+export type TrackSource = typeof TrackSourceSchema.Type;
+export type TrackSourceInput = typeof TrackSourceSchema.Encoded;
+
+const CountrySourceSchema = Schema.Struct({
+  countryCode: CountryCodeSchema,
+  countryKey: KebabKeySchema,
+  countryOrder: PositiveIntSchema,
+  countryRevision: PublicRouteSegmentSchema,
+  countryRouteSlugs: PublicRouteSlugMapSchema,
+  countryTranslations: TranslationMapSchema,
+});
+export type CountrySourceInput = typeof CountrySourceSchema.Encoded;
+
+/** One authored try-out exam: its country, its names and routes, and its tracks. */
+export const ExamSourceSchema = Schema.Struct({
+  ...CountrySourceSchema.fields,
+  examKey: KebabKeySchema,
+  examOrder: PositiveIntSchema,
+  examRouteSlugs: PublicRouteSlugMapSchema,
+  examTranslations: TranslationMapSchema,
+  sourceRevision: PublicRouteSegmentSchema,
+  tracks: Schema.Array(TrackSourceSchema),
+});
+export type ExamSourceInput = typeof ExamSourceSchema.Encoded;
+export type ExamSource = typeof ExamSourceSchema.Type;
+
+/** One authored try-out exam failed strict schema decoding. */
+export class ExamSourceDecodeError extends Schema.TaggedError<
+  ExamSourceDecodeError,
   { readonly brand: unique symbol }
->()("TryoutDuplicateError", {
-  key: TryoutKeySchema,
+>()("ExamSourceDecodeError", { cause: Schema.Unknown }) {}
+
+/** One authored scope contains the same stable key twice. */
+export class ExamSourceDuplicateError extends Schema.TaggedError<
+  ExamSourceDuplicateError,
+  { readonly brand: unique symbol }
+>()("ExamSourceDuplicateError", {
+  key: KebabKeySchema,
   scope: Schema.Trimmed.check(Schema.isNonEmpty()),
 }) {}
 
-/** An authored try-out source that carries a stable key: a track, a set, or a section. */
-type TryoutKeyedSource =
-  | typeof TryoutTrackSourceSchema.Type
-  | typeof TryoutSetSourceSchema.Type
-  | typeof TryoutSectionSourceSchema.Type;
-
-/** Returns the first duplicated key in one ordered authored scope. */
-function findDuplicateKey(
-  entries: readonly Pick<TryoutKeyedSource, "key">[]
-): string | undefined {
-  const keys = MutableHashSet.empty<string>();
-  for (const entry of entries) {
-    if (MutableHashSet.has(keys, entry.key)) {
-      return entry.key;
+/** Rejects duplicate stable keys within one authored scope. */
+function requireUniqueKeys(keys: readonly string[], scope: string) {
+  const seen = MutableHashSet.empty<string>();
+  for (const key of keys) {
+    if (MutableHashSet.has(seen, key)) {
+      return Effect.fail(new ExamSourceDuplicateError({ key, scope }));
     }
-    MutableHashSet.add(keys, entry.key);
+    MutableHashSet.add(seen, key);
   }
+  return Effect.void;
 }
 
-/** Rejects duplicate stable keys within one authored try-out scope. */
-function validateUniqueKeys(
-  entries: readonly Pick<TryoutKeyedSource, "key">[],
-  scope: string
-) {
-  const duplicate = findDuplicateKey(entries);
-  if (duplicate === undefined) {
-    return Effect.void;
-  }
-  return new TryoutDuplicateError({ key: duplicate, scope });
-}
-
-/** Strictly decodes one active try-out exam and validates stable identities. */
-export const defineTryoutExamSource = Effect.fn(
-  "AksaraCorpus.defineTryoutExamSource"
-)(function* (input: TryoutExamSourceInput) {
-  const source = yield* Schema.decodeEffect(TryoutExamSourceSchema)(input, {
-    onExcessProperty: "error",
-  }).pipe(
-    Effect.mapError(
-      (cause) =>
-        new TryoutDecodeError({
-          cause,
-          message: "Try-out source decoding failed.",
-        })
-    )
-  );
-  yield* validateUniqueKeys(source.tracks, `${source.examKey}:tracks`);
-  for (const track of source.tracks) {
-    yield* validateUniqueKeys(
-      track.sets,
-      `${source.examKey}:${track.key}:sets`
+/** Strictly decodes one try-out exam and validates its stable keys. */
+export const defineExamSource = Effect.fn("AksaraCorpus.defineExamSource")(
+  function* (input: ExamSourceInput) {
+    const source = yield* Schema.decodeEffect(ExamSourceSchema)(input, {
+      onExcessProperty: "error",
+    }).pipe(Effect.mapError((cause) => new ExamSourceDecodeError({ cause })));
+    yield* requireUniqueKeys(
+      Arr.map(source.tracks, ({ key }) => key),
+      `${source.examKey}:tracks`
     );
-    for (const set of track.sets) {
-      yield* validateUniqueKeys(
-        set.sections,
-        `${source.examKey}:${track.key}:${set.key}:sections`
+    for (const track of source.tracks) {
+      yield* requireUniqueKeys(
+        Arr.map(track.sets, ({ key }) => key),
+        `${source.examKey}:${track.key}:sets`
+      );
+      yield* requireUniqueKeys(
+        Arr.map(track.profile.sections, ({ key }) => key),
+        `${source.examKey}:${track.key}:sections`
       );
     }
+    return source;
   }
-  return source;
-});
+);

@@ -1,13 +1,63 @@
-export const metadata = {
-  title: "Solution for Question 2",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
-};
-
-<Set10Question2Graph
+<LineEquation
   title="Angle Analysis"
   description="Relationship between intersecting angles."
+  cameraPosition={[0, 0, 13.5]}
+  data={[
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+    },
+    {
+      points: [
+        { x: -3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="x^\circ" />,
+          at: 1,
+          offset: [-1.2, 0.4, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: -3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="y^\circ" />,
+          at: 1,
+          offset: [1.2, 0.4, 0],
+          fontSize: 0.6,
+        },
+        {
+          text: <InlineMath math="z^\circ" />,
+          at: 1,
+          offset: [0, -0.8, 0],
+          fontSize: 0.6,
+        },
+      ],
+    },
+  ]}
 />
 
 The angle between the two diagonal lines above the intersection is **vertically opposite** <InlineMath math="z^\circ" />. Vertically opposite angles are equal, so that upper angle also measures <InlineMath math="z^\circ" />.
@@ -18,10 +68,10 @@ The three adjacent angles <InlineMath math="x^\circ" />, <InlineMath math="z^\ci
 
 Because <InlineMath math="x^\circ = y^\circ" />, replace <InlineMath math="y" /> with <InlineMath math="x" />:
 
-<MathContainer>
-  <BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
-</MathContainer>
+<BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
 
 Thus, angle <InlineMath math="z" /> measures <InlineMath math="180 - 2x" /> degrees.

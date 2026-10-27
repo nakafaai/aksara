@@ -10,7 +10,7 @@ import {
 } from "#corpus/material/preview";
 import { selectMaterialEntry } from "#corpus/preview/public";
 import { lessonMaterialSource } from "#corpus/test/material";
-import { corpusRoot } from "#corpus/test/question";
+import { corpusRoot } from "#corpus/test/root";
 
 const englishPath = CorpusSourcePathSchema.make(
   "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/function-concept/en.mdx"
@@ -86,11 +86,9 @@ layer(NodeServices.layer)("material preview projection", (it) => {
 
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);
-        expect(selection.sources[0].dependencies).toContainEqual({
-          mode: "restart",
-          sourcePath:
-            "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
-        });
+        expect(selection.source.dependencies).toContainEqual(
+          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts"
+        );
       })
   );
 });

@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "alasan hubungan yang tidak biasa dapat terasa wajar di dalam mimpi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kesulitan mengetahui secara pasti pengalaman hewan yang sedang tidur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "peran tidur REM dalam mengurangi pengendalian sadar saja.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "anjuran agar anak-anak tidur setiap selesai belajar.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
         },

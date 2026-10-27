@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dengan membagi pemeriksaan dan menahan dua kotak yang meragukan, Bima beralih dari mengejar hasil lengkap menuju koordinasi yang dapat dipertanggungjawabkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

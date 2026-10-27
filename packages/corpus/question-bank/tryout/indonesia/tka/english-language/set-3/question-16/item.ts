@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
     topic: "information-validity",
   },
-  responses: {
+  stimulus: "fair-discussion",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "One speaker contributed most of the evidence and invited others only near the end.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Participants retained their original positions after restating another view.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The fastest response was accepted without evidence.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The focused question was first given to participants who volunteered quickly.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Restatements were accurate, evidence supported claims, and invitations respected choice.",
         },
       ],
     },
   },
-  stimulusKey: "fair-discussion",
 };
 
 export default item;

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Aturan yang Sama untuk Semua Peserta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tiga Jawaban yang Menyelesaikan Semua Hambatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Permainan Sempurna setelah Peluit Diganti",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Tari Mengubah Aturan setelah Mendengar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Meja Tinggi sebagai Satu-satunya Masalah Taman",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

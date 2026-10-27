@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Alat merekam perubahan kecil, tetapi perubahan itu tetap berada dalam rentang ketidakpastian pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
         },

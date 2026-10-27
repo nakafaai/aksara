@@ -1,7 +1,12 @@
 # ADR 0003: Production CLI preparation stays one decision per module
 
-- Status: Accepted
+- Status: Superseded on 2026-10-26 by contracts 2.0.0
 - Date: 2026-09-18
+
+Contracts 2.0.0 publishes try-outs as the `assessment` snapshot and deletes the
+signed try-out runtime bundle, so the three runtime modules this record keeps no
+longer exist and `prepareProductionGit` has no runtime decision left to
+delegate.
 
 ## Context
 

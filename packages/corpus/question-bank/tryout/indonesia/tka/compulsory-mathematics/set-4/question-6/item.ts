@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
     topic: "functions",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$1\\text{ tahun}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$5\\text{ tahun}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$20\\text{ tahun}$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$25\\text{ tahun}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$30\\text{ tahun}$$",
         },
       ],

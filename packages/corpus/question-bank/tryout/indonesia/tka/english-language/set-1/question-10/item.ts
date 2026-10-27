@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
     topic: "reader-response",
   },
-  responses: {
+  stimulus: "repair-workshop",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Speed should take priority when a repair initially appears routine.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Service notes make practical work less reliable.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A mentor best protects safety by giving the solution before the learner tests an idea.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Patience can prevent unnecessary repairs and repeated mistakes.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Measurements are unnecessary when replacement parts look identical.",
         },
       ],
     },
   },
-  stimulusKey: "repair-workshop",
 };
 
 export default item;

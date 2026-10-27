@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "audio-labels",
+  versions: {
     id: {
-      categories: ["Mengurangi gangguan", "Memperjelas isi", "Menjaga akses"],
-      kind: "category",
+      columns: ["Mengurangi gangguan", "Memperjelas isi", "Menjaga akses"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Menyediakan earphone",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Mengganti nama audio menjadi pertanyaan",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Menambahkan transkrip",
         },
       ],
     },
   },
-  stimulusKey: "audio-labels",
 };
 
 export default item;

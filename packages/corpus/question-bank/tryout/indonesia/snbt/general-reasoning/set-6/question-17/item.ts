@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak terjadi kejahatan di Kampung Bambu pada hari Minggu lalu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak terjadi pencurian di Kampung Bambu pada hari Minggu lalu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peningkatan keamanan mencegah seluruh kejahatan pada hari Minggu lalu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak terjadi kejahatan di Kampung Bambu sejak hari Minggu lalu.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Terjadi pencurian di Kampung Bambu pada hari Minggu lalu.",
         },
       ],

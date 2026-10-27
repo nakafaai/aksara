@@ -1,7 +1,4 @@
-import {
-  ReleaseIdSchema,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import {
   type RollbackSignedContentRelease,
   RollbackSignedContentReleaseSchema,
@@ -21,8 +18,6 @@ import {
   type PublicationResponse,
   PublicationResponseSchema,
 } from "@nakafa/aksara-contracts/transport/response";
-import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
-import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Schema } from "effect";
 import {
   transportArtifactHash,
@@ -32,7 +27,6 @@ import {
 } from "#test/content";
 import { headRequest } from "#test/head";
 import { testRendererDomains } from "#test/renderer";
-import { makeTransportRuntimeBundle } from "#test/transport/runtime";
 import {
   transportSnapshot,
   transportSnapshotRow,
@@ -119,44 +113,9 @@ const transportRoute = ContentRouteItemSchema.make({
   releaseId: transportRelease.manifest.releaseId,
 });
 
-export const transportRuntimeBundle = await Effect.runPromise(
-  makeTransportRuntimeBundle({
-    artifactHash: transportArtifactHash,
-    release: transportRelease,
-    rendererManifest: transportRenderer,
-  })
-);
-
-/** Recovery try-out runtime bundle that pins an empty snapshot for the same release. */
-export const transportRecoveryRuntimeBundle = await Effect.runPromise(
-  Effect.gen(function* () {
-    const snapshot = yield* makeTryoutSnapshot({
-      activeAppLocales: transportRelease.manifest.activeAppLocales,
-      catalogDigest: transportRelease.manifest.itemsDigest,
-      counts: { country: 0, exam: 0, section: 0, set: 0, track: 0 },
-      placementCount: 0,
-      placementDigest: transportRelease.manifest.resultDigest,
-      routeCount: 0,
-    });
-    return yield* Schema.decodeEffect(SignedTryoutRuntimeBundleSchema)({
-      ...transportRuntimeBundle,
-      bundleHash: Sha256HashSchema.make(`sha256:${"5".repeat(64)}`),
-      payload: {
-        ...transportRuntimeBundle.payload,
-        snapshot,
-      },
-    });
-  })
-);
-
 const transportStageRequests = Schema.decodeUnknownSync(
   Schema.NonEmptyArray(StageOperationSchema)
 )([
-  {
-    bundle: transportRuntimeBundle,
-    operation: "stageTryoutRuntimeBundle",
-    releaseId: transportReleaseId,
-  },
   {
     operation: "stageSnapshot",
     releaseId: transportReleaseId,

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghitung Keberhasilan Klinik dari Satu Ukuran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Dari Uji Singkat Menuju Sistem Klinik yang Tetap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Masukan Pasien sebagai Pengganti Data Perbandingan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji Penanda Alur Klinik: Hasil, Batas, dan Perbaikan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perbedaan Kebutuhan Medis yang Membatalkan Penanda Baru",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

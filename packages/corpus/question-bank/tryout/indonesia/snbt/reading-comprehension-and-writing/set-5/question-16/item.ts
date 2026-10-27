@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Operator studio rekaman sekolah memberikan komentar singkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Operator studio rekaman sekolah memberikan komentar singkat yang tidak panjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Operator studio rekaman sekolah memberikan komentar singkat di studio rekaman sekolah tempat mereka bertugas.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Operator studio rekaman sekolah memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Operator studio rekaman sekolah memberikan komentar yang singkat, yaitu komentar yang pendek.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

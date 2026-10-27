@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
     topic: "information-validity",
   },
-  responses: {
+  stimulus: "shade-trees",
+  versions: {
     en: {
-      categories: ["Supported", "Not supported"],
-      kind: "category",
+      columns: ["Supported", "Not supported"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "The trees lowered the air temperature across the town center.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Asphalt in the sun is hotter than grass in the sun at every hour of the day.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "On the day of the test, concrete in full sun was hotter than grass in full sun.",
         },
       ],
     },
   },
-  stimulusKey: "shade-trees",
 };
 
 export default item;

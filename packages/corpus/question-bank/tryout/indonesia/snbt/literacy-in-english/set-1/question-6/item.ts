@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "technology should replace established classroom practice whenever a digital option is available.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "reducing all technology use automatically improves every child's learning experience.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "successful integration depends on educators making informed judgments about when and how to use a tool.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "drawing on a touch screen always produces stronger learning than drawing on paper.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "traditional art materials should be removed once digital tools become available.",
         },

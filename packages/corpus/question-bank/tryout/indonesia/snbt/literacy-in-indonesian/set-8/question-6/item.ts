@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Percobaan membuktikan bahwa konduksi merupakan satu-satunya mekanisme yang menurunkan suhu air di kedua wadah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Air dalam aluminium mendingin lebih cepat daripada dalam polipropilena, tetapi perbedaan bahan belum terpisah dari ketebalan dinding dan mekanisme perpindahan panas lain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan suhu akhir membuktikan bahwa aluminium selalu menjadi wadah yang lebih buruk untuk setiap penggunaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesamaan volume dan suhu awal sudah cukup mengisolasi bahan sebagai penyebab tunggal perbedaan laju pendinginan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena wadah berbeda ketebalan, tabel suhu tidak dapat digunakan untuk menyusun hipotesis apa pun tentang perpindahan panas.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

@@ -1,4 +1,19 @@
-import { Array as Arr } from "effect";
+import { Array as Arr, Option, Order } from "effect";
+
+/**
+ * Orders values by their place in one canonical list. A value outside the list
+ * sorts after every member.
+ */
+export function canonicalOrder<A extends string>(
+  canonical: readonly A[]
+): Order.Order<A> {
+  return Order.mapInput(Order.Number, (value: A) =>
+    Option.getOrElse(
+      Arr.findFirstIndex(canonical, (member) => member === value),
+      () => canonical.length
+    )
+  );
+}
 
 /**
  * Checks that a list names members of one canonical list, each at most once,

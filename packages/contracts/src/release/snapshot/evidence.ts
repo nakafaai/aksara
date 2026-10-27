@@ -1,10 +1,10 @@
 import { Effect } from "effect";
 
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
+import { verifyAssessmentSnapshotRows } from "#contracts/release/snapshot/evidence/assessment";
 import { verifyProgramSnapshotRows } from "#contracts/release/snapshot/evidence/program";
 import { verifyQuranSnapshotRows } from "#contracts/release/snapshot/evidence/quran";
 import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
-import { verifyTryoutSnapshotRows } from "#contracts/release/snapshot/evidence/tryout";
 
 /** Authenticates one replacement manifest through fresh structured-row replays. */
 export const verifySnapshotRows = Effect.fn(
@@ -19,5 +19,5 @@ export const verifySnapshotRows = Effect.fn(
   if (snapshot.family === "quran") {
     return yield* verifyQuranSnapshotRows(snapshot, rows);
   }
-  return yield* verifyTryoutSnapshotRows(snapshot, rows);
+  return yield* verifyAssessmentSnapshotRows(snapshot, rows);
 });

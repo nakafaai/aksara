@@ -3,15 +3,16 @@ import {
   ACTIVE_APP_LOCALES,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
-import { loadSelectedQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
+import { readQuestionSets } from "@nakafa/aksara-corpus/question-bank/source";
 import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
-import { validateAssessmentReadinessRegistry } from "@nakafa/aksara-corpus/tryout/readiness/registry";
+import {
+  examSetPaths,
+  planTryoutPapers,
+} from "@nakafa/aksara-corpus/tryout/projection";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import {
   Array as Arr,
@@ -81,22 +82,21 @@ const selectEntries = Effect.fn("AksaraPublisher.selectAcceptanceEntries")(
   }
 );
 
-/** Loads one complete reviewed set per track, including every prompt and answer locale. */
-type AcceptanceTryout = Pick<
-  Effect.Success<ReturnType<typeof loadTryoutContent>>,
-  "entries" | "projection" | "sources"
->;
+/** The try-out content of an acceptance release: the first set of every track. */
+type AcceptanceTryout = Effect.Success<ReturnType<typeof loadTryoutContent>>;
 type AcceptanceTryoutError =
   | AcceptanceSourceError
   | Effect.Error<ReturnType<typeof decodeTryoutRegistry>>
-  | Effect.Error<ReturnType<typeof loadSelectedQuestionContent>>
-  | Effect.Error<ReturnType<typeof validateAssessmentReadinessRegistry>>
-  | Effect.Error<ReturnType<typeof projectTryoutSources>>;
+  | Effect.Error<ReturnType<typeof readQuestionSets>>
+  | Effect.Error<ReturnType<typeof planTryoutPapers>>;
 type AcceptanceSourceServices = Effect.Services<
-  ReturnType<typeof loadSelectedQuestionContent>
+  ReturnType<typeof readQuestionSets>
 >;
 
-/** Loads complete reviewed set-one inputs without scanning unrelated question banks. */
+/**
+ * Loads the first set of every track with its paper plan, reading only the
+ * question-bank sets those papers sit.
+ */
 export const loadAcceptanceTryout: (
   checkoutRoot: string
 ) => Effect.Effect<
@@ -107,7 +107,7 @@ export const loadAcceptanceTryout: (
   checkoutRoot: string
 ) {
   const registry = yield* decodeTryoutRegistry();
-  const selection = yield* Effect.forEach(registry, (source) =>
+  const exams = yield* Effect.forEach(registry, (source) =>
     Effect.gen(function* () {
       const tracks = yield* Effect.forEach(source.tracks, (track) =>
         Effect.gen(function* () {
@@ -123,27 +123,9 @@ export const loadAcceptanceTryout: (
       return { ...source, tracks };
     })
   );
-  const questionKeys = Arr.flatMap(selection, ({ tracks }) =>
-    Arr.flatMap(tracks, ({ sets }) =>
-      Arr.flatMap(sets, ({ sections }) =>
-        Arr.flatMap(sections, (section) =>
-          Array.from({ length: section.questionCount }, (_, index) =>
-            QuestionKeySchema.make(
-              `${section.questionSourcePath}/question-${index + 1}`
-            )
-          )
-        )
-      )
-    )
-  );
-  const { entries, sources } = yield* loadSelectedQuestionContent(
-    checkoutRoot,
-    selection,
-    questionKeys
-  );
-  yield* validateAssessmentReadinessRegistry(selection, sources);
-  const projection = yield* projectTryoutSources(selection, sources);
-  return { entries, projection, sources };
+  const sets = yield* readQuestionSets(checkoutRoot, examSetPaths(exams));
+  const papers = yield* planTryoutPapers(exams, sets);
+  return { exams, papers, sets };
 });
 
 /** Resolves the finite acceptance selection from the pinned authored checkout. */

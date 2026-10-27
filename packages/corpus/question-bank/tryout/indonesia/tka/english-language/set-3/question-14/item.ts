@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "character",
   },
-  responses: {
+  stimulus: "future-seeds",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "She wants the 2036 class to guess what happened.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "She accepts responsibility for making her work usable by others.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "She regrets checking the archive.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "She believes the backup seeds should be hidden.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "She values completing the 2024 test more than preserving continuity for later classes.",
         },
       ],
     },
   },
-  stimulusKey: "future-seeds",
 };
 
 export default item;

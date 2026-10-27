@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *indikator* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *indikator* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut memperluas *indikator* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *indikator* menjelaskan bahwa persentase cahaya mewakili kejernihan visual, sehingga ukuran itu belum cukup untuk menyatakan air aman diminum.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *indikator* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

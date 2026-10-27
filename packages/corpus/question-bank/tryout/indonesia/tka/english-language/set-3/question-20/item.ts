@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
     topic: "classification",
   },
-  responses: {
+  stimulus: "fair-discussion",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Provide quiet writing time.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Invite someone who has not spoken.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Allow an invited person to pass.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Prioritize speakers who can respond immediately so the discussion keeps moving.",
         },
       ],
     },
   },
-  stimulusKey: "fair-discussion",
 };
 
 export default item;

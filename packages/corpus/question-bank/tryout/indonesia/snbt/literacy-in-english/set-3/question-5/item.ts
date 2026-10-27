@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "How seed orientation may influence early root growth",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring gravitropism in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating gravitropism as the sole explanation for the observed result",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A final rule derived from the first comparison of gravitropism",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A limitation that makes another test of gravitropism unnecessary",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

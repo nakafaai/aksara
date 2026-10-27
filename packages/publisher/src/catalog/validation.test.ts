@@ -16,27 +16,27 @@ import { testRendererDomains } from "#test/renderer";
 
 const IDENTITY_FAILURE = { _tag: "ContentCatalogIdentityError" };
 const control = vi.hoisted(() => ({
-  actual: { article: 2, material: 3, page: 1, question: 4 },
+  actual: { article: 2, material: 3, page: 1 },
   catalogFailure: false,
   countMismatch: "none",
   expectedRouteConflict: false,
   identityMismatch: "none",
   recordFailure: false,
-  records: 10,
+  records: 6,
   registryFailure: false,
   resultCalls: 0,
   resultFailure: false,
   routeFailure: false,
   routeMode: "complete",
   snapshotFailure: false,
-  source: { article: 2, material: 3, page: 1, question: 4 },
+  source: { article: 2, material: 3, page: 1 },
 }));
 
 vi.mock("#publisher/catalog/expectation", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies independently source-derived expectation controls. */
-    readContentCatalogExpectation: () => {
+    readContentCatalogExpectation: TestEffect.suspend(() => {
       if (control.registryFailure) {
         return TestEffect.fail("registry");
       }
@@ -84,13 +84,10 @@ vi.mock("#publisher/catalog/expectation", async () => {
           (control.countMismatch === "material" ? 1 : 0),
         pageCount:
           control.source.page + (control.countMismatch === "page" ? 1 : 0),
-        questionCount:
-          control.source.question +
-          (control.countMismatch === "question" ? 1 : 0),
         routes,
         totalCount: catalogTotal(control.source),
       });
-    },
+    }),
   };
 });
 
@@ -151,20 +148,20 @@ const rendererManifestProgram = createRendererManifest({
 });
 
 beforeEach(() => {
-  control.actual = { article: 2, material: 3, page: 1, question: 4 };
+  control.actual = { article: 2, material: 3, page: 1 };
   control.catalogFailure = false;
   control.countMismatch = "none";
   control.expectedRouteConflict = false;
   control.identityMismatch = "none";
   control.recordFailure = false;
-  control.records = 10;
+  control.records = 6;
   control.registryFailure = false;
   control.resultCalls = 0;
   control.resultFailure = false;
   control.routeFailure = false;
   control.routeMode = "complete";
   control.snapshotFailure = false;
-  control.source = { article: 2, material: 3, page: 1, question: 4 };
+  control.source = { article: 2, material: 3, page: 1 };
 });
 
 /** Builds full-catalog validation through scoped platform requirements. */
@@ -194,21 +191,20 @@ describe("content catalog validation", () => {
         articleCount: 2,
         materialCount: 3,
         pageCount: 1,
-        questionCount: 4,
-        recordCount: 10,
+        recordCount: 6,
         rendererManifestHash: rendererManifest.hash,
         resultDigest:
-          "sha256:72c630a3cc3fbd839fa9ffb426e143340a55f9d21b405840ff9ba30538626690",
+          "sha256:578a1b185a1156e9fbe88e9443f703c9992dc69694bab4c22f3d1c709ab5b43c",
         routeCount: 6,
         routeDigest:
           "sha256:a8524abdccbf6327948aaef6aacf3d3e7eee3ae63d20ba6ad99d09217d8449a6",
         snapshots: catalogSnapshotEvidence,
-        totalCount: 10,
+        totalCount: 6,
       });
       expect(control.resultCalls).toBe(1);
     })
   );
-  it.effect.each(["article", "material", "page", "question"] as const)(
+  it.effect.each(["article", "material", "page"] as const)(
     "rejects an incomplete %s result family",
     (kind) => {
       control.countMismatch = kind;
@@ -229,17 +225,17 @@ describe("content catalog validation", () => {
         control.identityMismatch = "content";
         expect(yield* rejectValidation()).toMatchObject(IDENTITY_FAILURE);
         control.identityMismatch = "none";
-        control.source.question -= 1;
+        control.source.page -= 1;
         expect(yield* rejectValidation()).toMatchObject(IDENTITY_FAILURE);
       })
   );
   it.effect("rejects a mismatched transition record count", () => {
-    control.records = 9;
+    control.records = 5;
     return rejectValidation().pipe(
       Effect.map((error) =>
         expect(error).toMatchObject({
           _tag: "ContentCatalogCountError",
-          actualCount: 9,
+          actualCount: 5,
           kind: "records",
         })
       )

@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  stimulus: "mapmakers-ink",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kesal karena noda membuktikan Laras ceroboh dan tidak layak membuat peta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ragu karena peta yang pernah dikoreksi pasti tidak aman digunakan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "bangga karena noda menjadi tanda tempat berkumpul yang baru",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "menghargai keberanian Laras mengakui kekeliruan dan memperbaikinya melalui pemeriksaan nyata",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cemas karena Laras sengaja membiarkan jalur tetap sulit dibaca",
         },
       ],
     },
   },
-  stimulusKey: "mapmakers-ink",
 };
 
 export default item;

@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peminjam payung memberikan komentar singkat yang tidak panjang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peminjam payung memberikan komentar singkat sebagai peminjam yang meminjam payung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peminjam payung memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Peminjam payung memberikan komentar singkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peminjam payung memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

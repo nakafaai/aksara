@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata laporan dengan waktu lengkap lebih tinggi. Oleh karena itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata laporan dengan waktu lengkap lebih tinggi. Selain itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata laporan dengan waktu lengkap lebih tinggi. Sebelumnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rata-rata laporan dengan waktu lengkap lebih tinggi. Namun, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Rata-rata laporan dengan waktu lengkap lebih tinggi. Akibatnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

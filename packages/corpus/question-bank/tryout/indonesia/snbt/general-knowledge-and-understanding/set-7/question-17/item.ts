@@ -1,38 +1,38 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian pemain ingin mempertahankan seluruh dialog lama agar pertunjukan dianggap setia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tiga rekaman lisan berbeda dalam tokoh, urutan peristiwa, dan akhir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

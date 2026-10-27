@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "comparison",
   },
-  responses: {
+  stimulus: "egret-hide",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The platform is busiest in the evening, while the ground floor is busiest at sunrise.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The platform gives a wider view, but birds notice people there more easily.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The platform is closer to the hunting herons than the bench downstairs is.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The platform stays open in strong wind, while the ground floor then closes.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The platform has viewing slits with flaps, while the ground floor has an open rail.",
         },
       ],
     },
   },
-  stimulusKey: "egret-hide",
 };
 
 export default item;

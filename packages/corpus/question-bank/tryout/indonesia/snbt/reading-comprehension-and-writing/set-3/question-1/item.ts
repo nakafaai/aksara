@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Catatan Awal Sebelum Pengujian Simbol Evakuasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengujian Beberapa Perubahan Serentak pada Peta Evakuasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tanggapan Peserta terhadap Perancangan Ulang Permanen Peta Evakuasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evaluasi Menyeluruh atas Semua Unsur Peta Evakuasi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pengujian Simbol Titik Kumpul yang Lebih Kontras",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

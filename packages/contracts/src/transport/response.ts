@@ -17,7 +17,6 @@ import {
 import { StageBatchReceiptSchema } from "#contracts/transport/batch";
 import { PublicationFailureSchema } from "#contracts/transport/failure";
 import { StageGroupSuccessSchema } from "#contracts/transport/group";
-import { StageTryoutRuntimeBundleReceiptSchema } from "#contracts/transport/runtime";
 import {
   StageSnapshotBatchReceiptSchema,
   StageSnapshotReceiptSchema,
@@ -86,12 +85,6 @@ export const StageSnapshotSuccessSchema = successSchema(
 export const StageSnapshotBatchSuccessSchema = successSchema(
   "stageSnapshotBatch",
   StageSnapshotBatchReceiptSchema
-);
-
-/** Confirms the idempotent outcome of one permanent runtime bundle. */
-export const StageTryoutRuntimeBundleSuccessSchema = successSchema(
-  "stageTryoutRuntimeBundle",
-  StageTryoutRuntimeBundleReceiptSchema
 );
 
 /** Confirms the idempotent outcome of one ordered item batch. */
@@ -171,7 +164,6 @@ export const PublicationSuccessSchema = Schema.Union([
   StageRecoverySuccessSchema,
   StageSnapshotSuccessSchema,
   StageSnapshotBatchSuccessSchema,
-  StageTryoutRuntimeBundleSuccessSchema,
   StageGroupSuccessSchema,
   StageItemBatchSuccessSchema,
   StageRouteBatchSuccessSchema,

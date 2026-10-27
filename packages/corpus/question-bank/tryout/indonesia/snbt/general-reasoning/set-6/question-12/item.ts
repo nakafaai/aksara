@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kedua indikator ekonomi tersebut meningkat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama meningkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hanya upah riil buruh tani yang tidak meningkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama menurun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Model tersebut tidak memberikan simpulan tentang kemiskinan atau ketimpangan.",
         },

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "menyebabkan nilai awal menjadi lebih rendah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menggantikan nilai pembanding dalam perhitungan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "memiliki nilai numerik yang lebih tinggi daripada",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "berada di luar rentang yang boleh diukur",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "membuktikan perubahan sebagai satu-satunya penyebab",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

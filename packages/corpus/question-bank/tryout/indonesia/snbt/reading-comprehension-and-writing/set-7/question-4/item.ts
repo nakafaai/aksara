@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemesanan awal dipilih agar kesesuaian pesanan tidak perlu diukur lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemesanan awal dipilih agar banyak unsur program dapat diubah sekaligus.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pemesanan sehari sebelumnya dipilih agar pilihan siswa diketahui sebelum mereka tiba di meja saji.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemesanan awal dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemesanan awal dipilih hanya karena hasil akhir pengujiannya sudah dipastikan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

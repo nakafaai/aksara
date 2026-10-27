@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kecepatan yang tampak pada rata-rata perlu diuji lagi pada kelompok transaksi yang benar-benar sebanding.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pada uji berikutnya, rata-rata lama cukup dipakai tanpa menyamakan jumlah barang dalam transaksi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

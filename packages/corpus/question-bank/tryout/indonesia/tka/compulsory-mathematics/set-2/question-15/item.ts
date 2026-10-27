@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T(x,y)=(y,x)$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T(2,-3)=(-3,2)$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T^2$$ adalah identitas.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Semua titik tetap T terletak pada $$y=x$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$T$$ mempertahankan orientasi.",
         },
       ],

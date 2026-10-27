@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Defining *system alignment* proves that matching symbols alone caused every correctly sorted bag.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes evening-to-evening variation irrelevant to the follow-up.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *system alignment* replaces the measured comparison and consultation evidence.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains why permits and bins need the same symbols: the disposal decision begins at the stall and must remain consistent at collection.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition shows that correctly coloured bins are enough even when stall permits use different symbols.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

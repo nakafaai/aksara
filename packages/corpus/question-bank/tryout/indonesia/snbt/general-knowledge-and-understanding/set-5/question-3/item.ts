@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },

@@ -30,7 +30,7 @@ const ContentHeadFields = {
   contentKey: ContentKeySchema,
   delivery: ContentDeliveryClassSchema,
   projectionHash: Sha256HashSchema,
-  publicPath: Schema.optional(PublicPathSchema),
+  publicPath: PublicPathSchema,
   rendererDomain: RendererDomainSchema,
   sourceHash: Sha256HashSchema,
   sourcePath: CorpusSourcePathSchema,
@@ -54,34 +54,14 @@ export type MaterialHead = typeof MaterialHeadSchema.Type;
 export const PageHeadSchema = Schema.Struct({
   ...ContentHeadFields,
   family: Schema.Literal("page"),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ publicPath }) => publicPath !== undefined, {
-      message: "Expected page heads to retain their public path.",
-    })
-  )
-);
+});
 export type PageHead = typeof PageHeadSchema.Type;
-
-/** Compact authoritative identity used to diff one published question body. */
-export const QuestionHeadSchema = Schema.Struct({
-  ...ContentHeadFields,
-  family: Schema.Literal("question"),
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(({ publicPath }) => publicPath === undefined, {
-      message: "Expected question heads to remain route-free.",
-    })
-  )
-);
-export type QuestionHead = typeof QuestionHeadSchema.Type;
 
 /** Complete compact-head vocabulary backed by implemented content families. */
 export const ContentHeadSchema = Schema.Union([
   ArticleHeadSchema,
   MaterialHeadSchema,
   PageHeadSchema,
-  QuestionHeadSchema,
 ]);
 export type ContentHead = typeof ContentHeadSchema.Type;
 
@@ -95,7 +75,7 @@ export function canonicalizeContentHead(head: ContentHead) {
     delivery: head.delivery,
     family: head.family,
     projectionHash: head.projectionHash,
-    ...(head.publicPath === undefined ? {} : { publicPath: head.publicPath }),
+    publicPath: head.publicPath,
     rendererDomain: head.rendererDomain,
     sourceHash: head.sourceHash,
     sourcePath: head.sourcePath,
@@ -168,6 +148,5 @@ export const HeadPageSchema = Schema.Union([
   headPageSchema("article", ArticleHeadSchema),
   headPageSchema("material", MaterialHeadSchema),
   headPageSchema("page", PageHeadSchema),
-  headPageSchema("question", QuestionHeadSchema),
 ]);
 export type HeadPage = typeof HeadPageSchema.Type;

@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Menunggu orang lain menyelesaikan langkah berikutnya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Langkah Kecil Raka di Ruang Arsip Sekolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "metakognisi sebagai definisi tanpa tindakan yang dapat diperiksa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

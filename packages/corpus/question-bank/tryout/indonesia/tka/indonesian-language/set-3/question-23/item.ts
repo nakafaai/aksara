@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "mangrove-nursery",
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Lama genangan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kekuatan arus.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Jenis mangrove alami di sekitar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Warna polibag yang paling cerah.",
         },
       ],
     },
   },
-  stimulusKey: "mangrove-nursery",
 };
 
 export default item;

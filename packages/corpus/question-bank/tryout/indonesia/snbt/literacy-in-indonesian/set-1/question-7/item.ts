@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Daftar seluruh produk plastik yang dibuat di Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sejarah terbentuknya kepulauan Seychelles",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perbandingan jumlah penduduk Indonesia dan Seychelles",
         },
       ],

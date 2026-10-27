@@ -199,15 +199,6 @@ export function createLifecycleRows() {
         nextCursor: null,
       } satisfies HeadPage;
     }
-    if (request.family === "question") {
-      return {
-        ...request,
-        done: true,
-        family: "question",
-        heads: [],
-        nextCursor: null,
-      } satisfies HeadPage;
-    }
     const heads = yield* Effect.forEach(
       MutableList.toArray(forRelease(request.activeReleaseId).items),
       materialHead

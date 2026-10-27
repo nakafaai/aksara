@@ -6,11 +6,28 @@ Question directories live below:
 
 ```text
 packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{question}/
+packages/corpus/question-bank/tryout/{country}/{exam}/{section}/{set}/{reading}/
 ```
 
-The exact required file set is derived by the contracts and corpus reader. Do
-not copy a list of locale suffixes into this skill, and do not add a local
-override file or language mapping.
+A question folder holds its `item.ts`, a prompt `question.{language}.mdx` for
+each language it is asked in, and an explanation `answer.{locale}.mdx` for each
+application locale. A reading folder, named by its key, holds the shared reading
+of the set as `stimulus.{language}.mdx`. The exact required file set is derived
+by the corpus reader. Do not copy a list of locale suffixes into this skill,
+and do not add a local override file or language mapping.
+
+Aksara compiles every prompt, reading, explanation, and option label into an
+Assessment Document, the data that Nakafa renders and Tiptap edits. These files
+therefore hold no `export const metadata` and no module code, and they use only
+Markdown, `InlineMath`, `BlockMath`, and the six figures: `Chart`,
+`LineEquation`, `MathVisual`, `Mermaid`, `NumberLine`, and `UnitCircle`. Mark a
+decisive phrase with `**phrase**`; `<Highlight>`, `<MathContainer>`,
+`<ContentStack>`, and `<AgentContext>` belong to lessons only. Consecutive
+`BlockMath` blocks render as one derivation. A figure says in words what it
+shows: its `description` is its text alternative, and an `alt` prop replaces
+it when the figure needs a fuller description, such as the letters of a pattern
+that the description must not give away. Draw a bar chart, line chart, or
+histogram with `Chart` and its data, never with a component of its own.
 
 Every exam section owns its real assessment language, independent of the
 application locale. Indonesian SNBT and TKA sections use Indonesian, except
@@ -85,9 +102,10 @@ New try-out sets also follow [try-out sets](sets.md).
 - Use math components consistently with [mathematics and code](math.md).
 - Every question must contain the information needed to answer it. Never depend
   on an unstated intermediate value from a preceding question.
-- Every question and locale sibling with the same `stimulusKey` must present
-  the exact same stimulus. Question-specific instructions may differ, but may
-  not shorten, enrich, or otherwise change the shared evidence.
+- A shared reading lives once, in its reading folder, and every question that
+  uses it names it with `stimulus`. Its prompt holds only the question's own
+  stem, never a copy of the reading. Question-specific instructions may
+  differ, but may not shorten, enrich, or otherwise change the shared evidence.
 
 ## Answer rules
 
@@ -99,51 +117,39 @@ consistent with the prompt. Use the [heading rules](headings.md):
 answer sections start at `####` and name real subgoals. Never delete reasoning
 to reduce line count.
 
-## Response items
+## Items
 
-- Author exactly one `item.ts` beside the question and answer MDX files. Import
-  only the `QuestionItem` type from
-  `@nakafa/aksara-contracts/question/item`, assign one literal `item` constant,
-  and export it as default. The corpus reader deliberately rejects executable
-  values, helper imports, spreads, computed keys, duplicate keys, and additional
-  statements.
-- Put responses under their exact artifact locale. Include every locale derived
-  from the stable section language policy and no others.
-- Use the stable response kinds `single-choice`, `multiple-choice`, and
-  `category`. Array position is the authoring order. Publication derives stable
-  option, statement, and category keys once, so authors must not duplicate those
-  runtime identities.
-- A response label is one non-empty rich Markdown string rendered by Nakafa's
-  canonical `MarkdownContent` surface. Plain prose needs no wrapper. Use
-  no-space `$$...$$` for inline math, such as `The result is $$x=4$$.`.
-  Response choices, category names, and statements keep mathematics inline.
-  Never use display math, a fenced `math` block, or single-dollar math in a
-  response label. Keep substantial derivations in the prompt or worked answer.
+- Author exactly one `item.ts` beside the prompt and explanation files. Import
+  only the `ItemSource` type from `#corpus/question-bank/item`, assign one
+  literal `item` constant, and export it as default. The corpus reader
+  deliberately rejects executable values, helper imports, spreads, computed
+  keys, duplicate keys, and additional statements.
+- Put the interaction under `versions`, once for each language the item is
+  asked in: the section's fixed language. Locale siblings may translate their
+  labels, but they ask the same task: the same kind, the same number of parts,
+  and the same correct parts.
+- A `choice` lists `options`, each with its `label` and whether it is
+  `correct`. One correct option makes a single choice; two or more make a
+  choice of several answers, which keeps at least one option that is not
+  correct. A `matrix` lists its `columns`, such as true and false, and its
+  `statements`, each with its `label` and the one-based number of its correct
+  `column`. Array position is the authoring order. Publication derives every
+  option, column, and statement identifier once, so authors never write them.
+- A label is one non-empty rich Markdown string that becomes a document. Plain
+  prose needs no wrapper. Use no-space `$$...$$` for inline math, such as
+  `The result is $$x=4$$.`. Options, columns, and statements keep mathematics
+  inline. Never use display math, a fenced `math` block, or single-dollar math
+  in a label. Keep substantial derivations in the prompt or explanation.
   Escape LaTeX backslashes in TypeScript strings. For a literal currency dollar
   in prose, use an escaped Markdown dollar or the explicit currency code.
   Write percentage signs as `\%` inside LaTeX, with the backslash escaped in
   TypeScript. A bare `%` starts a LaTeX comment and can silently hide the sign
-  or the rest of a response. Comments have no place in a response formula.
-  Do not wrap math in inline code or use alternate LaTeX delimiters such as
-  `\(...\)` and `\[...\]`. Raw HTML and MDX math components are not response
-  syntax. Renderer preprocessing can otherwise change their meaning before
-  Markdown parsing, so source validation rejects these forms.
-- Markdown emphasis, lists, tables, and other supported syntax use that same
-  string. Never add a plain-versus-rich mode, text-versus-math union, fragment
-  array, renderer-specific AST, or second response-label renderer. MDX
-  components belong in the prompt or answer, not in these labels.
-- A `single-choice` response has at least two options and exactly one correct
-  option. A `multiple-choice` response has at least two correct options and at
-  least one distractor. A `category` response has at least two categories and
-  one or more statements whose one-based `correctCategoryOrder` refers to an
-  existing category.
-- Locale siblings may translate their labels, but they must preserve the same
-  response kind, array structure, and answer key. An assessed-language section
-  owns one response in that assessed language instead of duplicating it for the
-  application locale.
-- When an official blueprint applies, record `cognitiveLevel`, `contentDomain`,
-  and `topic` on the item. Use one `stimulusKey` for a contiguous grouped
-  stimulus and preserve it across every localized placement.
+  or the rest of a label. Do not wrap math in inline code or use alternate
+  LaTeX delimiters such as `\(...\)` and `\[...\]`. Raw HTML and MDX
+  components are not label syntax; source validation rejects them.
+- When an official blueprint applies, record `cognitiveLevel`,
+  `contentDomain`, and `topic` under `blueprint`. Name the shared reading of a
+  contiguous group with `stimulus`, its folder's key.
 
 ## Assessment review
 
@@ -182,4 +188,4 @@ to reduce line count.
 - Across each active set, section, locale, and option-count cohort, balance
   correct positions so frequencies differ by at most one. Keep their question
   order unpredictable and preserve distractor meaning across locales. Never
-  move only the `isCorrect` marker to manufacture balance.
+  move only the `correct` marker to manufacture balance.

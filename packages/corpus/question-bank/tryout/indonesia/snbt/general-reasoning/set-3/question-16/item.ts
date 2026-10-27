@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bengkuang memberikan energi $$14\\,\\text{kkal}$$ lebih sedikit daripada apel.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bengkuang mengandung protein $$0{,}46\\,\\text{g}$$ lebih banyak daripada apel.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kedua pangan mengandung protein kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kedua pangan mengandung lemak kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
         },

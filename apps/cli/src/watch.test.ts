@@ -1,13 +1,11 @@
 import { NodeServices } from "@effect/platform-node";
-import { assert, expect, layer } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
-  Array as Arr,
   Deferred,
   Effect,
   Fiber,
   FileSystem,
-  HashMap,
   Path,
   PlatformError,
   Ref,
@@ -24,10 +22,8 @@ import {
 import { runWatch } from "#test/session";
 
 const repositories = makeRepositoryTracker();
-const questionPath =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/question.id.mdx";
-const answerPath =
-  "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/answer.en.mdx";
+const articlePath =
+  "packages/corpus/articles/politics/dynastic-politics/asian-values/en.mdx";
 
 /** Acquires one repository pair and removes it when the test scope closes. */
 const acquireRepository = Effect.fn("AksaraCliTest.acquireRepository")(
@@ -119,10 +115,9 @@ layer(NodeServices.layer)("selected document watch", (it) => {
         const repository = yield* acquireRepository();
         const selected = yield* selectRepositoryDocument(repository);
         const focused = {
-          directories: [],
           document: selected.document,
           files: [selected.files[0]],
-          sources: [selected.sources[0]],
+          source: selected.source,
         } satisfies typeof selected;
         const event = updateEvent(path.basename(focused.files[0].absolutePath));
         const firstStarted = yield* Deferred.make<void>();
@@ -170,7 +165,6 @@ layer(NodeServices.layer)("selected document watch", (it) => {
           focused,
           events,
           refresh,
-          HashMap.empty(),
           invalidate
         ).pipe(Effect.forkChild({ startImmediately: true }));
         yield* TestClock.adjust("100 millis");
@@ -188,90 +182,51 @@ layer(NodeServices.layer)("selected document watch", (it) => {
       })
   );
 
-  it.effect(
-    "watches one question body closure and its source-owned item dependency",
-    () =>
-      Effect.gen(function* () {
-        const selected = yield* selectRealDocument(answerPath);
-        const events = Stream.concat(
-          Stream.make(updateEvent("item.ts")),
-          Stream.never
-        );
-        const count = yield* Ref.make(0);
-        const watcher = yield* runWatch(selected, events, () =>
-          Ref.update(count, (value) => value + 1)
-        ).pipe(Effect.forkChild({ startImmediately: true }));
-        const refreshes = yield* awaitRefresh(count);
-        yield* Fiber.interrupt(watcher);
-        expect(Arr.map(selected.files, (file) => file.sourcePath)).toEqual([
-          questionPath,
-          "packages/corpus/question-bank/tryout/indonesia/snbt/general-knowledge-and-understanding/set-2/question-1/item.ts",
-          "packages/corpus/tryout/registry.ts",
-          "packages/corpus/tryout/indonesia/snbt/source.ts",
-          "packages/corpus/tryout/indonesia/country.ts",
-          "packages/corpus/tryout/indonesia/snbt/readiness.ts",
-          "packages/corpus/tryout/readiness/validation.ts",
-          "packages/corpus/tryout/schema.ts",
-          "packages/corpus/tryout/readiness/schema.ts",
-          "packages/corpus/locale/source.ts",
-          "packages/corpus/route/schema.ts",
-          answerPath,
-        ]);
-        expect(refreshes).toBe(1);
-      }),
-    { timeout: 30_000 }
+  it.effect("refreshes once when a selected body changes", () =>
+    Effect.gen(function* () {
+      const selected = yield* selectRealDocument(articlePath);
+      const events = Stream.concat(
+        Stream.make(updateEvent("en.mdx")),
+        Stream.never
+      );
+      const count = yield* Ref.make(0);
+      const watcher = yield* runWatch(selected, events, () =>
+        Ref.update(count, (value) => value + 1)
+      ).pipe(Effect.forkChild({ startImmediately: true }));
+      const refreshes = yield* awaitRefresh(count);
+      yield* Fiber.interrupt(watcher);
+
+      expect(refreshes).toBe(1);
+    })
   );
 
   it.effect("requires a restart instead of compiling stale topology", () =>
     Effect.gen(function* () {
-      const selected = yield* selectRealDocument(questionPath);
+      const selected = yield* selectRealDocument(articlePath);
       const refreshes = yield* Ref.make(0);
       const error = yield* runWatch(
         selected,
-        Stream.make(updateEvent("source.ts")),
+        Stream.make(updateEvent("category.ts")),
         () => Ref.update(refreshes, (value) => value + 1)
       ).pipe(Effect.flip);
       expect(error).toMatchObject({
         _tag: "PreviewRestartError",
-        sourcePath: "packages/corpus/tryout/indonesia/snbt/source.ts",
+        sourcePath: "packages/corpus/articles/politics/category.ts",
       });
       expect(yield* Ref.get(refreshes)).toBe(0);
     })
   );
 
-  it.effect("rejects persistent strict-directory membership changes", () =>
+  it.effect("ignores events for files outside the selected closure", () =>
     Effect.gen(function* () {
-      const selected = yield* selectRealDocument(questionPath);
-      const [directory] = selected.directories;
-      assert(directory !== undefined, "Expected one selected directory.");
-      const changedFiles = HashMap.fromIterable([
-        [directory.absolutePath, [...directory.files, "draft.mdx"]],
-      ]);
+      const selected = yield* selectRealDocument(articlePath);
       const error = yield* runWatch(
         selected,
         Stream.make(createEvent("draft.mdx")),
-        () => Effect.void,
-        changedFiles
+        () => Effect.die("refresh must not run")
       ).pipe(Effect.flip);
-      expect(error).toMatchObject({
-        _tag: "PreviewRestartError",
-        sourcePath: directory.sourcePath,
-      });
+      expect(error).toMatchObject({ reason: "ended" });
     })
-  );
-
-  it.effect(
-    "ignores unselected events after stable membership is restored",
-    () =>
-      Effect.gen(function* () {
-        const selected = yield* selectRealDocument(questionPath);
-        const error = yield* runWatch(
-          selected,
-          Stream.make(createEvent("draft.mdx")),
-          () => Effect.die("refresh must not run")
-        ).pipe(Effect.flip);
-        expect(error).toMatchObject({ reason: "ended" });
-      })
   );
 
   it.effect(

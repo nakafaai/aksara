@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
     topic: "probability",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Peluang jumlah kedua angka ganjil adalah $$\\frac47$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Peluang kedua kartu bernomor prima adalah $$\\frac3{14}$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Jika kartu pertama genap, peluang kartu kedua ganjil adalah $$\\frac47$$.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Kejadian kartu pertama genap dan kartu kedua ganjil saling bebas.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Peluang angka yang lebih besar adalah $$8$$ sebesar $$\\frac14$$.",
         },

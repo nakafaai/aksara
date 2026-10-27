@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian roti Pabrik X tidak mengandung karbohidrat maupun energi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua roti Pabrik X menggunakan tepung terigu protein tinggi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sebagian roti berprotein tinggi tidak mengandung karbohidrat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebagian roti Pabrik X menggunakan tepung terigu protein rendah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak ada roti Pabrik X yang menggunakan tepung protein tinggi",
         },

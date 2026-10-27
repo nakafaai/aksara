@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mengacak urutan pemasangan panel, mengulang nada pada beberapa posisi mikrofon dan beberapa ruang, lalu membandingkan tingkat bunyi serta waktu dengung pada setiap kondisi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menambah jumlah panel sambil menaikkan volume pengeras suara agar selisih desibel lebih besar dan lebih mudah terlihat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Memilih hanya posisi mikrofon yang menghasilkan penurunan terbesar, kemudian mengulang pengukuran pada posisi tersebut.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengganti tiga nada uji dengan musik yang berbeda pada setiap kondisi tanpa mencatat tingkat bunyi awalnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menanyakan pendapat pendengar tentang kenyamanan ruang tanpa mengulang pengukuran akustik yang menjadi dasar dugaan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

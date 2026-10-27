@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Memiliki penduduk yang berpengetahuan sangat luas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Berada di wilayah pesisir yang mudah dicapai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Telah berkembang menjadi kota yang sepenuhnya modern",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menutup diri dari pengaruh budaya luar",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
         },

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Panas langsung merupakan cara terbaik untuk menangani hipotermia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Orang yang masih sadar tidak memerlukan pertolongan medis.",
         },
       ],

@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "the architectural history of UNESCO's offices.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "a list of the capitals of UNESCO Member States.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "an unrelated comparison of national budgets.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "a personal biography of one UNESCO employee.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "a current UNESCO initiative that puts its mission into practice.",
         },

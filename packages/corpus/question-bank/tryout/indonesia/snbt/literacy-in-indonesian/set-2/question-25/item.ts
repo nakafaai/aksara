@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Seluruh individu meninggal dalam badai yang sama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kelompok Mediterania timur merupakan kelompok tertua",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua individu Asia Selatan meninggal pada hari yang sama",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penanggalan radiokarbon membuktikan penyebab kematian",
         },
       ],

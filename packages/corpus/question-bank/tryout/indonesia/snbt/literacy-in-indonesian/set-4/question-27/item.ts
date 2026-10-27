@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Retakan dan serpihan yang semula tampak sebagai kerusakan berubah menjadi jalur menuju pintu lama, lalu bidang yang disisakan menegaskan nilainya sebagai bukti sejarah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

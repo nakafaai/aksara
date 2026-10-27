@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  responses: {
+  stimulus: "source-checking",
+  versions: {
     en: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Trace a claim to its source.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Match checking effort to possible harm.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treat professional design as evidence that the source has already been verified.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Use source checking across different subjects.",
         },
       ],
     },
   },
-  stimulusKey: "source-checking",
 };
 
 export default item;

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Plak yang tidak dibersihkan dapat mengeras menjadi karang gigi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Karang gigi di bawah garis gusi dapat mengiritasi gusi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Gusi merah, bengkak, atau berdarah dapat menjadi tanda gingivitis.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setiap kasus gusi bengkak hanya disebabkan oleh plak atau karang gigi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tenaga kesehatan gigi harus membersihkan karang gigi yang sudah terbentuk.",
         },

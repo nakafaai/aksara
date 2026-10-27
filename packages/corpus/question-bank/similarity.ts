@@ -1,4 +1,3 @@
-import type { QuestionResponseSource } from "@nakafa/aksara-contracts/question/item";
 import {
   Array as Arr,
   Effect,
@@ -7,12 +6,14 @@ import {
   MutableList,
   Option,
   Order,
-  Predicate,
   pipe,
   Record as Rec,
   Schema,
-  Struct,
 } from "effect";
+import {
+  type InteractionSource,
+  itemVersions,
+} from "#corpus/question-bank/item";
 import {
   type QuestionPrompt,
   readQuestionPrompts,
@@ -23,9 +24,8 @@ import {
   score,
   shingles,
 } from "#corpus/question-bank/similarity/print";
-import type { QuestionSource } from "#corpus/question-bank/source";
+import type { QuestionSet } from "#corpus/question-bank/source";
 
-const METADATA_PATTERN = /^export const metadata = \{[\s\S]*?\};\s*/u;
 const MATH_ATTRIBUTE_PATTERN = /math="([^"]*)"/gu;
 const TAG_PATTERN = /<[^>]+>/gu;
 const PARAGRAPH_PATTERN = /\n\s*\n/u;
@@ -86,25 +86,21 @@ type Unit = typeof UnitSchema.Type;
 /** Reads the visible paragraphs of one prompt, math included. */
 function paragraphs(rawMdx: string) {
   const text = rawMdx
-    .replace(METADATA_PATTERN, "")
     .replace(MATH_ATTRIBUTE_PATTERN, " $1 ")
     .replace(TAG_PATTERN, " ");
   const parts = Arr.map(text.split(PARAGRAPH_PATTERN), (part) => part.trim());
   return Arr.filter(parts, (part) => part.length > 0);
 }
 
-/** Lists every option, category, and statement a learner reads with the prompt. */
-function labels(response: QuestionResponseSource): readonly string[] {
-  if (response.kind === "category") {
+/** Lists every option, column, and statement a learner reads with the prompt. */
+function labels(interaction: InteractionSource): readonly string[] {
+  if (interaction.kind === "matrix") {
     return [
-      ...response.categories,
-      ...Arr.map(response.statements, ({ label }) => label),
+      ...interaction.columns,
+      ...Arr.map(interaction.statements, ({ label }) => label),
     ];
   }
-  if (response.kind === "rubric" || response.kind === "short-answer") {
-    return [];
-  }
-  return Arr.map(response.options, ({ label }) => label);
+  return Arr.map(interaction.options, ({ label }) => label);
 }
 
 /** Names the set directory that owns one question directory. */
@@ -116,7 +112,7 @@ function setOf(root: string) {
 function units(prompts: readonly QuestionPrompt[]) {
   const groups = MutableHashMap.empty<string, QuestionPrompt[]>();
   for (const prompt of prompts) {
-    const key = `${setOf(prompt.source.sourceRoot)}\n${prompt.locale}`;
+    const key = `${setOf(prompt.source.sourceRoot)}\n${prompt.language}`;
     MutableHashMap.set(groups, key, [
       ...Option.getOrElse(MutableHashMap.get(groups, key), () => []),
       prompt,
@@ -139,16 +135,14 @@ function units(prompts: readonly QuestionPrompt[]) {
     const isShared = (part: string) =>
       Option.getOrUndefined(MutableHashMap.get(counts, part)) !== 1;
     return Arr.map(read, ({ list, prompt }): Omit<Unit, "id"> => {
-      const answers = pipe(
-        Struct.keys(prompt.source.item.responses),
-        Arr.map((key) => prompt.source.item.responses[key]),
-        Arr.filter(Predicate.isNotUndefined),
-        Arr.flatMap(labels)
+      const answers = Arr.flatMap(
+        itemVersions(prompt.source.item.versions),
+        ({ interaction }) => labels(interaction)
       );
       const own = Arr.filter(list, (part) => !isShared(part));
       return {
         full: print(Arr.join([...list, ...answers], " ")),
-        locale: prompt.locale,
+        locale: prompt.language,
         own: print(Arr.join([...own, ...answers], " ")),
         root: prompt.source.sourceRoot,
         set: setOf(prompt.source.sourceRoot),
@@ -304,11 +298,11 @@ export const scanQuestionSimilarity = Effect.fn(
   "AksaraCorpus.scanQuestionSimilarity"
 )(function* (
   corpusRoot: string,
-  sources: readonly QuestionSource[],
+  sets: readonly QuestionSet[],
   target: string,
   threshold: number
 ) {
-  const prompts = yield* readQuestionPrompts(corpusRoot, sources);
+  const prompts = yield* readQuestionPrompts(corpusRoot, sets);
   const all = Arr.map(units(prompts), (unit, id): Unit => ({ ...unit, id }));
   /** Targets the directory itself and everything beneath it. */
   const isTarget = (root: string) =>

@@ -1,17 +1,10 @@
-export const metadata = {
-  title: "Solution to Question 28",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-08-30",
-  dateModified: "2026-09-07",
-};
-
-#### Combine consecutive pairs
+# Combine consecutive pairs
 
 Blocks <InlineMath math="\text{AB}" /> and <InlineMath math="\text{CD}" /> have **fixed internal order**. Together with reports <InlineMath math="E,F,G,H" />, they form six movable units. The number of arrangements of these units is:
 
 <BlockMath math="6!=720" />
 
-#### Remove arrangements with adjacent blocks
+# Remove arrangements with adjacent blocks
 
 When the two blocks are adjacent, treat them as **one combined unit**. There are then five units to arrange, with two internal orders for the combined unit: <InlineMath math="\text{ABCD}" /> or <InlineMath math="\text{CDAB}" />.
 
@@ -21,7 +14,7 @@ Subtract those arrangements from the total for six units. The remaining arrangem
 
 <BlockMath math="720-240=480" />
 
-#### Apply the order of E and F
+# Apply the order of E and F
 
 **Swapping the positions** of <InlineMath math="E" /> and <InlineMath math="F" /> preserves both blocks and their separation. Each arrangement with <InlineMath math="E" /> before <InlineMath math="F" /> pairs with one having the reverse order. Exactly half of the remaining arrangements therefore meet the last condition.
 

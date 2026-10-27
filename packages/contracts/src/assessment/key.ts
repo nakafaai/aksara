@@ -1,5 +1,9 @@
 import { Array as Arr, Schema } from "effect";
-
+import {
+  DecimalSchema,
+  TextKeySchema,
+  ToleranceSchema,
+} from "#contracts/assessment/answer";
 import { hasDistinctIds, LocalIdSchema } from "#contracts/assessment/identity";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { LatexSchema, PlainTextSchema } from "#contracts/assessment/scalar";
@@ -9,11 +13,6 @@ import {
   PositiveMeasureSchema,
   samePlanePoint,
 } from "#contracts/math/base";
-import {
-  QuestionDecimalSchema,
-  QuestionTextKeySchema,
-  QuestionToleranceSchema,
-} from "#contracts/question/answer";
 
 const DISTINCT_MESSAGE = "Expected no part to be named twice.";
 
@@ -78,12 +77,12 @@ const InlineChoiceKeySchema = Schema.Struct({
 });
 
 /**
- * The accepted texts with their normalization. They are the text key of
- * `question/answer`, so one grammar and one matcher grade both generations.
+ * The accepted texts with their normalization, graded by `matchesAnswerKey`
+ * of `assessment/answer`, the one grammar and matcher of typed answers.
  */
 const TextEntryKeySchema = Schema.Struct({
   ...KeyFields,
-  accepted: QuestionTextKeySchema,
+  accepted: TextKeySchema,
   kind: Schema.Literal("textEntry"),
 });
 
@@ -91,8 +90,8 @@ const TextEntryKeySchema = Schema.Struct({
 const NumericEntryKeySchema = Schema.Struct({
   ...KeyFields,
   kind: Schema.Literal("numericEntry"),
-  tolerance: Schema.optionalKey(QuestionToleranceSchema),
-  value: QuestionDecimalSchema,
+  tolerance: Schema.optionalKey(ToleranceSchema),
+  value: DecimalSchema,
 }).check(
   Schema.makeFilter(
     ({ tolerance, value }) => tolerance?.kind !== "relative" || value !== "0",

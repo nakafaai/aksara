@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
     topic: "supporting-detail",
   },
-  responses: {
+  stimulus: "last-bus",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The timetable above Niko's desk",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The bus normally arriving at 9:20",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The receptionist answering the phone",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The notes added the next day",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Heavy rain and a route without streetlights",
         },
       ],
     },
   },
-  stimulusKey: "last-bus",
 };
 
 export default item;

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Setiap orang yang mengalami delirium pasti terinfeksi SARS-CoV-2.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Delirium dapat terjadi pada penyakit akut selain COVID-19.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian orang lanjut usia dengan COVID-19 dapat mengalami delirium.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Delirium muncul secara akut dan tanda-tandanya dapat berfluktuasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dugaan delirium perlu diperiksa untuk mencari penyebab dasarnya.",
         },

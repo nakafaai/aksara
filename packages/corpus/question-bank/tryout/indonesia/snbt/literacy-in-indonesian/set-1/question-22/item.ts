@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Percakapan tanpa tujuan di dalam suatu kelompok",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kerja sama yang menghapus seluruh perbedaan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pemungutan suara untuk menentukan pihak yang menang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Penyerahan penuh satu pihak kepada pihak lain",
         },
       ],

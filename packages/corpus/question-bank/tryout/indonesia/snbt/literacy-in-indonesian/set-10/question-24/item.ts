@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Menunjukkan bahwa empati perlu tampak dalam pemeriksaan asumsi dan respons terhadap umpan balik, bukan berhenti pada niat merasa peduli.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Membuktikan Tari dapat memahami kebutuhan anak hanya dengan membayangkan dirinya berada dalam situasi mereka.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengubah semua permintaan peserta menjadi aturan tetap yang tidak boleh diuji kembali.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menetapkan bahwa pencatatan hambatan merupakan tanda kegagalan empati karena masalah masih tersisa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjelaskan perasaan tiga anak secara lengkap meskipun cerita hanya menunjukkan beberapa pilihan mereka.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

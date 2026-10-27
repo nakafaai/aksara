@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji Susunan Bahan pada Model Penyaringan Air Keruh",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur indikator melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan indikator penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang indikator",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan indikator tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  stimulus: "heat-map",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk menguji apakah suhu kanopi dapat mewakili suhu kebun belakang",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "untuk membandingkan efek peneduh tanpa langsung melibatkan pohon",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk menjadikan data kanopi sebagai pengganti pengukuran kebun belakang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "untuk menunjukkan bahwa perbedaan suhu tetap muncul ketika kipas digunakan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "untuk mengurangi jumlah lokasi pengukuran",
         },
       ],
     },
   },
-  stimulusKey: "heat-map",
 };
 
 export default item;

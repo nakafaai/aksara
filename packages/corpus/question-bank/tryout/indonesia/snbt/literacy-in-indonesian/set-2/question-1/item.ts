@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Harga beras di Indonesia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Beras memiliki daya tarik universal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengolahan beras",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evangeline Mantzioris, ahli diet terakreditasi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Mencuci beras sebelum dimasak",
         },
       ],

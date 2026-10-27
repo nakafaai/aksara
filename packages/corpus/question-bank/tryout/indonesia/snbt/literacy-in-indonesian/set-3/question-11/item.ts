@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

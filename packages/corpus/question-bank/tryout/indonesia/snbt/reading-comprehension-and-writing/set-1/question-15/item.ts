@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sanitasi yang tidak aman mencemari sumber air.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pencemaran sumber air berkaitan erat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
         },

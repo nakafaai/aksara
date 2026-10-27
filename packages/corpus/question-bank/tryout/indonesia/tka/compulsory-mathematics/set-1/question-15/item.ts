@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T(1,-2)=(4,2)$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T$$ menggandakan setiap panjang.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T$$ mengalikan setiap luas dengan $$4$$.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$T$$ membalik orientasi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$T^2(x,y)=(-4x,-4y)$$.",
         },
       ],

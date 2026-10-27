@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni. Keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Denah tiga periode sudah cukup menjelaskan pengalaman seluruh penghuni karena perubahan ruang menentukan fungsi bangunan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Wawancara harus diutamakan karena mantan penghuni mengalami bangunan secara langsung, sedangkan denah hanya bersifat teknis.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesamaan fungsi pada beberapa periode membuktikan bahwa pengalaman penghuni tidak berubah ketika denah direnovasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan antara denah dan wawancara menunjukkan bahwa salah satu sumber keliru dan harus dikeluarkan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

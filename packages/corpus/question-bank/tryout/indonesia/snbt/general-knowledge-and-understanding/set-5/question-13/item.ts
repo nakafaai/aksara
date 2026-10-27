@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "memberi konsekuensi yang sama untuk setiap keterlambatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "memilih konsekuensi terberat yang diizinkan aturan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menentukan konsekuensi hanya dari besarnya pendapatan denda",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengubah konsekuensi secara acak untuk setiap pengguna",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "sebanding dengan tingkat kesalahan dan dampak yang ditimbulkan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

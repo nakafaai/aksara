@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             'Ganti tanda titik dua setelah kata "yaitu" dengan tanda titik koma.',
         },
         {
-          isCorrect: false,
+          correct: false,
           label: 'Hapus tanda koma sebelum kata "yaitu".',
         },
         {
-          isCorrect: true,
+          correct: true,
           label: 'Hapus tanda titik dua setelah kata "yaitu".',
         },
         {
-          isCorrect: false,
+          correct: false,
           label: 'Tambahkan tanda titik dua tepat setelah kata "lembaga".',
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Ganti setiap tanda koma dalam perincian dengan tanda titik.",
         },
       ],

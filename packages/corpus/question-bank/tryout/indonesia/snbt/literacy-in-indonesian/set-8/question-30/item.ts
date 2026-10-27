@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mira Menjawab Seluruh Pertanyaan Jati",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Buku Tipis yang Membuat Jati Menjadi Pembaca Mahir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Dua Tafsir yang Menentukan Satu Jawaban Pasti",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Dari Pembatas Kosong ke Pertanyaan yang Dibawa Pulang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pertanyaan yang Membuktikan Jati Gagal Memahami Buku",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

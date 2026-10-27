@@ -3,10 +3,7 @@ import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/v
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  ContentProjectionSchema,
-  projectionPublicPath,
-} from "@nakafa/aksara-contracts/projection/spec";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import {
   ContentDeleteSchema,
   ContentReleaseItemSchema,
@@ -193,7 +190,7 @@ export const snapshotRollbackState = Effect.fn(
     contentKey: change.contentKey,
     delivery: change.delivery,
     projectionHash: yield* hashContentProjection(state.projection),
-    publicPath: projectionPublicPath(state.projection),
+    publicPath: state.projection.publicPath,
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,
@@ -210,15 +207,9 @@ export const snapshotRollbackState = Effect.fn(
       state: "material",
     } satisfies RollbackSnapshotState;
   }
-  if (change.family === "page") {
-    return {
-      head: { ...head, family: "page" },
-      state: "page",
-    } satisfies RollbackSnapshotState;
-  }
-  const questionFamily: "question" = change.family;
+  const pageFamily: "page" = change.family;
   return {
-    head: { ...head, family: questionFamily },
-    state: questionFamily,
+    head: { ...head, family: pageFamily },
+    state: pageFamily,
   } satisfies RollbackSnapshotState;
 });

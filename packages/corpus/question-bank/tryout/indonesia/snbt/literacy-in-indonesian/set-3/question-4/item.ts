@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *variabel kontrol* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *variabel kontrol* pengganti data pengamatan sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *variabel kontrol* menjelaskan alasan jenis benih, volume air, dan ukuran wadah dijaga sama agar perbandingan pencahayaan lebih wajar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut memperluas *variabel kontrol* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *variabel kontrol* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

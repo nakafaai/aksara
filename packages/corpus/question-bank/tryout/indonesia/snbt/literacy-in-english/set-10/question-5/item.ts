@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Potential difference in a classroom circuit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Why parallel cells always produce the greatest terminal voltage",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "How cell arrangement changed terminal voltage under one load",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Proving that two cells in series double a circuit's power",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A universal voltage law derived from one resistor value",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

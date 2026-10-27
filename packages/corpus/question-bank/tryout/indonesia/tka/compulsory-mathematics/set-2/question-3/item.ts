@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$ab=1$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$a-b=4$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$a^2+b^2=18$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$a+b=4$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$a^2-4a-1=0$$",
         },
       ],

@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Pabrik $$Z$$ menjual $$250{.}000$$ unit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pabrik $$X$$ menjual $$500{.}000$$ unit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pabrik $$Y$$ menjual $$5{.}200{.}000$$ unit",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Prediksi penjualan Pabrik $$Y$$ empat kali penjualan Pabrik $$X$$ pada $$2016$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pabrik $$X$$ menjual $$800{.}000$$ unit lebih sedikit daripada pada $$2016$$",
         },

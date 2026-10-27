@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektivitas jadwal digital setelah pembatalan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisis efektifitas jadwal digital setelah pembatalan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektifitas jadwal digital setelah pembatalan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "analisis efektivitas jadwal digital setelah pembatalan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas jadwal digital dalam kontek ruang latihan musik",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

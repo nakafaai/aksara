@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition of *truss* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes *truss* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition broadens *truss* from this short investigation to every similar system under any condition.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition explains the structural idea being tested: connected triangles distribute forces, while the washer count measures how the paper model performs.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *truss* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

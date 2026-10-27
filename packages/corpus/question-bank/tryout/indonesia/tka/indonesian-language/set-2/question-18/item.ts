@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "meaning-relations",
   },
-  responses: {
+  stimulus: "kite-frame",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kakek meminta lomba segera dihentikan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "layangan lain menggunakan rangka yang belum pernah diperbaiki",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "rangka telah pulih dan pelajaran Kakek dipahami Nara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Nara harus membeli rangka baru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "juri memilih hiasan paling indah",
         },
       ],
     },
   },
-  stimulusKey: "kite-frame",
 };
 
 export default item;

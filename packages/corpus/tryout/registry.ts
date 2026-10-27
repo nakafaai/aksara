@@ -10,10 +10,7 @@ import {
 } from "effect";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
-import {
-  type TryoutExamSource,
-  TryoutExamSourceSchema,
-} from "#corpus/tryout/schema";
+import { type ExamSource, ExamSourceSchema } from "#corpus/tryout/schema";
 
 const tryoutPrograms = [snbtTryoutSource, tkaTryoutSource];
 
@@ -33,7 +30,7 @@ export class TryoutRegistryConflictError extends Schema.TaggedError<
 }) {}
 
 /** Serializes the shared country facts that every exam must agree on. */
-function countrySignature(source: TryoutExamSource) {
+function countrySignature(source: ExamSource) {
   return Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))({
     countryCode: source.countryCode,
     countryKey: source.countryKey,
@@ -47,21 +44,15 @@ function countrySignature(source: TryoutExamSource) {
 const codeUnitOrder = Order.make(compareCodeUnits);
 /** Orders sources by country, then by exam, with the source-owned keys. */
 const tryoutSourceOrder = Order.combineAll([
-  Order.mapInput(
-    Order.Number,
-    (source: TryoutExamSource) => source.countryOrder
-  ),
-  Order.mapInput(
-    codeUnitOrder,
-    (source: TryoutExamSource) => source.countryKey
-  ),
-  Order.mapInput(Order.Number, (source: TryoutExamSource) => source.examOrder),
-  Order.mapInput(codeUnitOrder, (source: TryoutExamSource) => source.examKey),
+  Order.mapInput(Order.Number, (source: ExamSource) => source.countryOrder),
+  Order.mapInput(codeUnitOrder, (source: ExamSource) => source.countryKey),
+  Order.mapInput(Order.Number, (source: ExamSource) => source.examOrder),
+  Order.mapInput(codeUnitOrder, (source: ExamSource) => source.examKey),
 ]);
 
 /** Rejects duplicate exams and conflicting shared-country source facts. */
 const validateTryoutRegistry = Effect.fn("AksaraCorpus.validateTryoutRegistry")(
-  function* (sources: readonly TryoutExamSource[]) {
+  function* (sources: readonly ExamSource[]) {
     const countries = MutableHashMap.empty<string, string>();
     const countryCodes = MutableHashMap.empty<string, string>();
     const exams = MutableHashSet.empty<string>();
@@ -114,7 +105,7 @@ export const decodeTryoutRegistry = Effect.fn(
   const sources =
     input === undefined
       ? yield* Effect.all(tryoutPrograms)
-      : yield* Schema.decodeUnknownEffect(Schema.Array(TryoutExamSourceSchema))(
+      : yield* Schema.decodeUnknownEffect(Schema.Array(ExamSourceSchema))(
           input,
           { onExcessProperty: "error" }
         ).pipe(

@@ -1,4 +1,5 @@
 import { Effect, MutableRef, Option, Schema, Stream } from "effect";
+import { assessmentRowCount } from "#contracts/assessment/snapshot";
 import {
   type ContentSnapshotManifest,
   ContentSnapshotManifestSchema,
@@ -17,7 +18,6 @@ import {
   replaceContentSnapshot,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
-import { tryoutSnapshotRowEvidence } from "#contracts/tryout/snapshot/hash";
 
 const StreamIndexSchema = Schema.Int.pipe(
   Schema.check(Schema.isGreaterThanOrEqualTo(0))
@@ -80,9 +80,9 @@ export type VerifiedContentSnapshots =
   typeof VerifiedContentSnapshotsSchema.Type;
 
 const familyOrder: Readonly<Record<ContentSnapshotKind, number>> = {
-  program: 0,
-  quran: 1,
-  tryout: 2,
+  assessment: 0,
+  program: 1,
+  quran: 2,
 };
 
 /** The family of the last accepted manifest of one stream, read to check the next one. */
@@ -102,7 +102,10 @@ function snapshotRowEvidence(snapshot: ContentSnapshotManifest) {
       rowDigest: snapshot.manifest.projectionDigest,
     });
   }
-  return tryoutSnapshotRowEvidence(snapshot.manifest);
+  return Effect.succeed({
+    rowCount: assessmentRowCount(snapshot.manifest.counts),
+    rowDigest: snapshot.manifest.rowDigest,
+  });
 }
 
 /** Strictly decodes one manifest and advances canonical family order. */

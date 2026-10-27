@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
     topic: "prediction",
   },
-  responses: {
+  stimulus: "leak-test",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Continuous flow is still suspected, so keep the records and contact the responsible manager or a qualified plumber.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The leak must be behind the nearest wall, so that section should be opened immediately.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The repeated movement proves the meter is faulty, so replace it before recording the result.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dry visible fixtures rule out continuous flow, so no further action is needed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Delete the first readings because they cannot help a later inspection locate the problem.",
         },
       ],
     },
   },
-  stimulusKey: "leak-test",
 };
 
 export default item;

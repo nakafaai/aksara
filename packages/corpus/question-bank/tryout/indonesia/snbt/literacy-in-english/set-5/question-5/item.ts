@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Measuring friction in one preliminary comparison",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Treating friction as the sole explanation for the observed result",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A final rule derived from the first comparison of friction",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "A limitation that makes another test of friction unnecessary",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Testing how ramp texture affects travel time",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

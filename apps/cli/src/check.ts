@@ -1,3 +1,4 @@
+import { assessmentRowCount } from "@nakafa/aksara-contracts/assessment/snapshot";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validation";
 import { Effect, Schema } from "effect";
@@ -38,18 +39,17 @@ export const runCheckCommand = Effect.fn("AksaraCli.runCheckCommand")(
     yield* Effect.logInfo("Complete content catalog validation finished.").pipe(
       Effect.annotateLogs({
         articleCount: validation.articleCount,
+        assessmentRows: assessmentRowCount(
+          validation.snapshots.assessment.counts
+        ),
         materialCount: validation.materialCount,
         pageCount: validation.pageCount,
         programRows: validation.snapshots.program.rowCount,
-        questionCount: validation.questionCount,
         quranProvenance: validation.snapshots.quran.provenanceStatus,
         quranRows: validation.snapshots.quran.projectionCount,
         rendererManifestHash: validation.rendererManifestHash,
         resultDigest: validation.resultDigest,
         routeCount: validation.routeCount,
-        tryoutRows:
-          validation.snapshots.tryout.catalogCount +
-          validation.snapshots.tryout.placementCount,
       })
     );
     if (validation.snapshots.quran.provenanceStatus === "blocked") {

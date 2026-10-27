@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat disebabkan hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat yang hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat jika hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat karena hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat pesisir memperoleh manfaat dari hutan mangrove yang sehat, tetapi hutan tersebut mengurangi energi gelombang dan menyediakan daerah asuhan bagi ikan serta krustasea.",
         },

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Repeat the three arrangements with more cells but keep the same single resistor. This alone would establish their current, power, and operating time under every load.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Use a different resistor, meter, cell pack, and measurement interval for each arrangement so that the follow-up covers more conditions at once.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Test several resistor values while measuring voltage, current, and each cell's internal resistance. This would show whether the series pattern persists and clarify what it implies for power.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Measure the open-circuit voltage more precisely but omit current and load resistance, because terminal voltage alone determines operating time.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Repeat only the series arrangement until its mean is exactly twice $$1.46\\,\\text{V}$$, then treat that equality as evidence that the original limitation no longer matters.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

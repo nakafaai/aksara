@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebagian penurunan keluhan awal mungkin berasal dari kehadiran relawan atau pengarahan pengemudi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

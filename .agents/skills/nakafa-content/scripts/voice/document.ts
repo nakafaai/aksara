@@ -23,7 +23,12 @@ import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuat
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
-/** Applies structural checks to assessed prompts and authored voice to explanations. */
+/**
+ * Applies structural checks to assessed prompts and authored voice to
+ * explanations. A bank document compiles to an assessment document, which has
+ * no MathContainer, so it writes each formula as a block of its own and the
+ * math stack rule applies to lessons and articles only.
+ */
 export function findDocumentIssues(
   file: string,
   locale: LessonVoiceLocale,
@@ -31,8 +36,9 @@ export function findDocumentIssues(
   tree: MdxNode
 ) {
   const profile = documentProfile(file);
+  const bank = profile === "question" || profile === "answer";
   const structural = [
-    ...findMathStackIssues(source, tree),
+    ...(bank ? [] : findMathStackIssues(source, tree)),
     ...findExternalLinkPlacementIssues(source, tree),
     ...findInternalLinkIssues(source, tree),
     ...findHighlightNestingIssues(source, tree),
@@ -76,7 +82,7 @@ export function findDocumentIssues(
     ...findHeadingOrderIssues(
       source,
       tree,
-      profile === "answer" ? 4 : 2,
+      profile === "answer" ? 1 : 2,
       profile === "answer" ? undefined : locale
     ),
     ...(profile === "answer"

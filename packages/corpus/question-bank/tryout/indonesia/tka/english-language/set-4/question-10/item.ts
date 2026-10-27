@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
     topic: "reader-response",
   },
-  responses: {
+  stimulus: "gamelan-rehearsal",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Practicing alone at home is a waste of time for musicians who play in a group.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Playing in a group takes both a well-learned part and attention to the person who leads.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Good musicians should trust their own counting, whatever the other players are doing.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Teachers should stop a rehearsal every time one player makes a mistake in the melody.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A concert goes well when the players are free to choose their own speed.",
         },
       ],
     },
   },
-  stimulusKey: "gamelan-rehearsal",
 };
 
 export default item;

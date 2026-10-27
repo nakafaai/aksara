@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },

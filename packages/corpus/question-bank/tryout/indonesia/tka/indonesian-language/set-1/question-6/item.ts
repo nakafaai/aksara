@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "emotional-response",
   },
-  responses: {
+  stimulus: "harbor-lamp",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "marah karena Raka menerima lampu baru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "datar karena perubahan fungsi lampu hanya bersifat praktis",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "cemas karena keterlibatan warga dapat menggeser makna pribadi kenangan Raka",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kecewa karena perahu ayah Raka kembali",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "lega karena kenangan Raka memperoleh makna baru",
         },
       ],
     },
   },
-  stimulusKey: "harbor-lamp",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *motif* confirms one final outcome and therefore removes the need to interpret the ending.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition treats *motif* as the physical object itself rather than as a feature of the narrative ending.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *motif* makes the reader's personal impression sufficient even when it conflicts with story details.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition of *motif* identifies how the recurring stamp links the missing package date, Samira's action, and the next volunteer's response into one idea.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

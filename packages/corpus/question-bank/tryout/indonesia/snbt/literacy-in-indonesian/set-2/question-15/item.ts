@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Tahapan mengidentifikasi gajah sasaran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perkiraan populasi gajah sumatra di Riau",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pemanfaatan GPS Collar untuk memitigasi interaksi negatif manusia dan gajah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Peran BBKSDA Riau dalam konservasi satwa liar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kerja sama masyarakat dalam memulihkan habitat gajah",
         },
       ],

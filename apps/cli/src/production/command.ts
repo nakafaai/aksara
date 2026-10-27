@@ -186,7 +186,6 @@ export const runProductionCommand: (input: {
       ).pipe(Effect.mapError(mapProductionError("renderer")));
       publishable = yield* prepareProductionGit({
         baseBundle: action.baseBundle,
-        baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
         checkoutRoot,
         kind: "new",
         rebuild: input.args.rebuild,
@@ -202,7 +201,6 @@ export const runProductionCommand: (input: {
       const bundle = yield* verifyPendingBundle(action, keyResolver);
       publishable = yield* prepareProductionGit({
         baseBundle: action.baseBundle,
-        baseTryoutRuntimeBundle: action.baseTryoutRuntimeBundle,
         bundle,
         checkoutRoot,
         kind: "rebuild",

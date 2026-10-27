@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kegemaran basket adalah paling banyak diminati",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Jumlah siswa gemar seni peran adalah $$65$$ siswa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jumlah siswa kelas $$\\text{XII}$$ sesuai kegemaran adalah $$306$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Jumlah siswa gemar melukis adalah $$160$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{X}$$",
         },

@@ -5,16 +5,14 @@ import {
   TryoutRegistryConflictError,
   TryoutRegistryDecodeError,
 } from "#corpus/tryout/registry";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import type { ExamSource } from "#corpus/tryout/schema";
 
 /** Rehomes one decoded source to test cross-country registry ownership. */
 function rehomeSource(
-  source: TryoutExamSource,
+  source: ExamSource,
   countryCode: string,
   countryOrder = 2
 ) {
-  const sourcePrefix = `question-bank/tryout/${source.countryKey}/${source.examKey}/`;
-  const targetPrefix = "question-bank/tryout/germany/abitur/";
   return {
     ...source,
     countryCode,
@@ -33,19 +31,6 @@ function rehomeSource(
       en: { title: "Abitur" },
       id: { title: "Abitur" },
     },
-    tracks: Arr.map(source.tracks, (track) => ({
-      ...track,
-      sets: Arr.map(track.sets, (set) => ({
-        ...set,
-        sections: Arr.map(set.sections, (section) => ({
-          ...section,
-          questionSourcePath: section.questionSourcePath.replace(
-            sourcePrefix,
-            targetPrefix
-          ),
-        })),
-      })),
-    })),
   };
 }
 

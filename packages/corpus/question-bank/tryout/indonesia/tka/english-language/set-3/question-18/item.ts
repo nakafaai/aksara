@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
     topic: "cause-effect",
   },
-  responses: {
+  stimulus: "fair-discussion",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Joko should be allowed to correct the restatement so the response begins from his actual meaning.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Maya's evidence should be rejected because an inaccurate restatement makes later evidence unusable.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The participation list should award Joko another turn and record it as a higher score.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Maya should repeat the dominant view, even if it differs from the point Joko made.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The group should redefine the original question so Maya's restatement becomes accurate.",
         },
       ],
     },
   },
-  stimulusKey: "fair-discussion",
 };
 
 export default item;

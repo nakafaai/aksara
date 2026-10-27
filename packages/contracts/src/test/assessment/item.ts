@@ -1,8 +1,9 @@
+import { Sha256HashSchema } from "#contracts/ids";
 import { doc, note, paragraph } from "#contracts/test/assessment/document";
 
 /** Builds a test-only SHA-256 hash from one hexadecimal digit. */
 export function hash(digit: string) {
-  return `sha256:${digit.repeat(64)}`;
+  return Sha256HashSchema.make(`sha256:${digit.repeat(64)}`);
 }
 
 /** Builds one option or statement labeled by a document of one paragraph. */

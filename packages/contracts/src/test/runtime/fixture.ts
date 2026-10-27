@@ -9,13 +9,11 @@ import {
 import { hashText } from "#contracts/hash/text";
 import {
   type ContentKey,
-  GitCommitShaSchema,
   type Sha256Hash,
   SigningKeyIdSchema,
 } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
-import { replaceContentSnapshot } from "#contracts/release/snapshot/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
@@ -28,17 +26,9 @@ import {
 } from "#contracts/signature/spec";
 import { testRendererDomains } from "#contracts/test/renderer";
 import {
-  hash,
   artifact as unsignedArtifact,
   release as unsignedRelease,
 } from "#contracts/test/request";
-import { canonicalizeTryoutRuntimeBundleSigningInput } from "#contracts/tryout/runtime/canonical";
-import { hashTryoutRuntimeBundlePayload } from "#contracts/tryout/runtime/hash";
-import {
-  SignedTryoutRuntimeBundleSchema,
-  TRYOUT_RUNTIME_BUNDLE_FORMAT,
-} from "#contracts/tryout/runtime/spec";
-import { makeTryoutSnapshot } from "#contracts/tryout/snapshot/hash";
 
 const keyId = SigningKeyIdSchema.make("test-runtime-key");
 const signingKeys = await Effect.runPromise(generateEd25519KeyPem());
@@ -80,44 +70,11 @@ export const createSignedArtifact = Effect.fn(
   });
 });
 
-const protectedCatalogDigest = await Effect.runPromise(
-  hashText("protected-catalog")
-);
-const protectedPlacementDigest = await Effect.runPromise(
-  hashText("protected-placement")
-);
-export const protectedSnapshot = await Effect.runPromise(
-  makeTryoutSnapshot({
-    activeAppLocales: unsignedRelease.manifest.activeAppLocales,
-    catalogDigest: protectedCatalogDigest,
-    counts: { country: 1, exam: 1, section: 1, set: 1, track: 1 },
-    placementCount: 1,
-    placementDigest: protectedPlacementDigest,
-    routeCount: 5,
-  })
-);
-export const protectedSnapshotId = protectedSnapshot.snapshotId;
 /** Signs one runtime release against its exact frozen renderer manifest. */
 export const createSignedRuntimeRelease = Effect.fn(
   "AksaraContractsTest.createSignedRuntimeRelease"
 )(function* (rendererManifestHash: Sha256Hash) {
-  const manifest = {
-    ...unsignedRelease.manifest,
-    rendererManifestHash,
-    scope: {
-      ...unsignedRelease.manifest.scope,
-      snapshots: ["program", "tryout"],
-    },
-    snapshots: {
-      ...unsignedRelease.manifest.snapshots,
-      tryout: replaceContentSnapshot({
-        baseSnapshotId: null,
-        resultSnapshotId: protectedSnapshotId,
-        rowCount: 1,
-        rowDigest: hash,
-      }),
-    },
-  } as const;
+  const manifest = { ...unsignedRelease.manifest, rendererManifestHash };
   const manifestHash = yield* hashContentReleaseManifest(manifest);
   return SignedContentReleaseSchema.make({
     keyId,
@@ -132,31 +89,6 @@ export const createSignedRuntimeRelease = Effect.fn(
 export const release = await Effect.runPromise(
   createSignedRuntimeRelease(unsignedRelease.manifest.rendererManifestHash)
 );
-
-const runtimeBundlePayload = {
-  format: TRYOUT_RUNTIME_BUNDLE_FORMAT,
-  rendererManifestHash: unsignedRelease.manifest.rendererManifestHash,
-  snapshot: protectedSnapshot,
-  sourceGitSha: GitCommitShaSchema.make("a".repeat(40)),
-  sourceManifestHash: release.manifestHash,
-  sourceReleaseId: release.manifest.releaseId,
-} as const;
-const runtimeBundleHash = await Effect.runPromise(
-  hashTryoutRuntimeBundlePayload(runtimeBundlePayload)
-);
-export const runtimeBundle = SignedTryoutRuntimeBundleSchema.make({
-  bundleHash: runtimeBundleHash,
-  keyId,
-  payload: runtimeBundlePayload,
-  signature: await Effect.runPromise(
-    signRuntimeValue(
-      canonicalizeTryoutRuntimeBundleSigningInput(
-        runtimeBundleHash,
-        runtimeBundlePayload
-      )
-    )
-  ),
-});
 
 export const trustedResolver = ContentVerificationKeyResolver.of({
   /** Resolves only the runtime fixture's exact signing key. */

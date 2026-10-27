@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Caleb waited for every supplier to provide a final figure before allowing the team to make any budget decision.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Caleb exposed uncertainty in a concert budget, turned it into labelled scenarios and assigned questions, and helped the team protect a necessary deposit.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Caleb solved the budget mainly by adding an unexplained contingency amount large enough to absorb every possible change.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The budget became reliable when the venue and supplier assumed responsibility for choosing which optional cost to remove.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The main improvement was that the revised spreadsheet looked less tidy, regardless of whether it clarified the team's next decision.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

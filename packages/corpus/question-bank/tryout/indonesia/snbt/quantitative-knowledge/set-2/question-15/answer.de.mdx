@@ -1,32 +1,24 @@
-export const metadata = {
-  title: "Lösung zu Aufgabe 15",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-11-22",
-};
-
 Gesucht ist ein exakter Ausdruck für die **Differenz zweier aufeinanderfolgender Glieder**. Aus <InlineMath math="a_4 = 85" /> erhalten wir durch Rückwärtsrechnen
 
-<MathContainer>
-  <BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
-  <BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
-  <BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
-</MathContainer>
+<BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
 
-#### Die Differenzformel herleiten
+<BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+
+<BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+
+# Die Differenzformel herleiten
 
 Wir multiplizieren die Rekursion mit <InlineMath math="3" /> und addieren <InlineMath math="1" />:
 
-<MathContainer>
-  <BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
-  <BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
-</MathContainer>
+<BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+
+<BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
 
 Wegen <InlineMath math="3a_1 + 1 = 4" /> gilt somit <InlineMath math="3a_n + 1 = 4^n" />. Aus der ursprünglichen Rekursion folgt nun
 
-<MathContainer>
-  <BlockMath math="a_{n+1} - a_n = 4a_n + 1 - a_n" />
-  <BlockMath math="a_{n+1} - a_n = 3a_n + 1 = 4^n" />
-</MathContainer>
+<BlockMath math="a_{n+1} - a_n = 4a_n + 1 - a_n" />
+
+<BlockMath math="a_{n+1} - a_n = 3a_n + 1 = 4^n" />
 
 Für <InlineMath math="n = 2024" /> ergibt sich
 

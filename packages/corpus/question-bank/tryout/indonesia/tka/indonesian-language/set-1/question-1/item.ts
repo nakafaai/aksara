@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "loanwords",
   },
-  responses: {
+  stimulus: "seed-library",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "karena benih bergerak dari lemari ke kebun lalu sebagian hasilnya kembali, sehingga terjadi putaran pertukaran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena semua benih harus tetap berada di lemari sampai masa simpannya berakhir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena setiap benih diuji di laboratorium sebelum boleh berpindah tangan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena pengelola mengganti semua varietas lama dengan varietas yang lebih cepat tumbuh",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "karena kartu riwayat menjamin hasil panen yang sama di setiap kebun",
         },
       ],
     },
   },
-  stimulusKey: "seed-library",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data awal telah membuktikan bahwa kartu pertanyaan menyebabkan perbedaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim perlu mengubah beberapa unsur tur sekaligus sebelum mengukur ulang.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Oleh karena itu, dugaan tentang kegunaan kartu pertanyaan perlu diuji pada setiap meja demonstrasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pola awal membenarkan penggunaan kartu pertanyaan secara permanen.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

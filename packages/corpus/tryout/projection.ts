@@ -1,235 +1,188 @@
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
+import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
+import { Array as Arr, Effect, Option, Result, Schema } from "effect";
+import { itemVersions } from "#corpus/question-bank/item";
 import {
-  compareTryoutCatalog,
-  makeTryoutCatalogRecord,
-} from "@nakafa/aksara-contracts/tryout/hash/catalog";
-import { compareTryoutPlacements } from "@nakafa/aksara-contracts/tryout/identity";
-import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
+  type SetPath,
+  SetPathSchema,
+  setPath,
+} from "#corpus/question-bank/path";
 import {
-  Array as Arr,
-  Effect,
-  MutableHashMap,
-  MutableList,
-  Option,
-  Order,
-  Schema,
-} from "effect";
-import type { QuestionSource } from "#corpus/question-bank/source";
-import { projectTryoutCatalog } from "#corpus/tryout/catalog";
-import {
-  makeTryoutPlacement,
-  type TryoutPlacementContext,
-} from "#corpus/tryout/placement";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+  type QuestionSet,
+  QuestionSetSchema,
+} from "#corpus/question-bank/source";
+import { paperId } from "#corpus/tryout/exam";
+import { profileId } from "#corpus/tryout/profile";
+import type {
+  ExamSource,
+  SectionSource,
+  SetSource,
+  TrackSource,
+} from "#corpus/tryout/schema";
 
-/** One active catalog references a reviewed question that does not exist. */
-export class TryoutQuestionMissingError extends Schema.TaggedError<
-  TryoutQuestionMissingError,
-  { readonly brand: unique symbol }
->()("TryoutQuestionMissingError", { questionKey: QuestionKeySchema }) {}
+/** One section of a planned paper: the bank set it places, in the section's language. */
+const PlannedSectionSchema = Schema.Struct({
+  key: KebabKeySchema,
+  language: AppLocaleCodeSchema,
+  set: QuestionSetSchema,
+});
 
-/** One projected identity is repeated before a snapshot can be signed. */
-export class TryoutQuestionDuplicateError extends Schema.TaggedError<
-  TryoutQuestionDuplicateError,
-  { readonly brand: unique symbol }
->()("TryoutQuestionDuplicateError", { questionKey: QuestionKeySchema }) {}
+/**
+ * The plan of one paper: the exam, track, and set it belongs to, the profile
+ * it follows, and for each section of the profile the questions it places.
+ */
+export const PaperPlanSchema = Schema.Struct({
+  examKey: KebabKeySchema,
+  id: Schema.String,
+  profile: Schema.String,
+  sections: Schema.Array(PlannedSectionSchema),
+  setKey: KebabKeySchema,
+  trackKey: KebabKeySchema,
+});
+export type PaperPlan = typeof PaperPlanSchema.Type;
 
-/** One grouped stimulus is isolated or interrupted inside its active section. */
-export class TryoutStimulusGroupError extends Schema.TaggedError<
-  TryoutStimulusGroupError,
+/** A section of a set does not place what its profile asks for. */
+export class PaperPlanError extends Schema.TaggedError<
+  PaperPlanError,
   { readonly brand: unique symbol }
->()("TryoutStimulusGroupError", {
-  questionKey: QuestionKeySchema,
-  reason: Schema.Literals(["isolated", "noncontiguous"]),
-  stimulusKey: TryoutKeySchema,
+>()("PaperPlanError", {
+  reason: Schema.Literals(["items", "language", "missing"]),
+  set: SetPathSchema,
 }) {}
 
-/** Indexes physical question sources and rejects repeated logical identities. */
-const indexQuestions = Effect.fn("AksaraCorpus.indexTryoutQuestions")(
-  function* (sources: readonly QuestionSource[]) {
-    const questions = MutableHashMap.empty<
-      QuestionSource["questionKey"],
-      QuestionSource
-    >();
-    for (const source of sources) {
-      if (MutableHashMap.has(questions, source.questionKey)) {
-        return yield* new TryoutQuestionDuplicateError({
-          questionKey: source.questionKey,
-        });
-      }
-      MutableHashMap.set(questions, source.questionKey, source);
-    }
-    return questions;
-  }
-);
+/** A shared reading is used by one question alone, or by questions that do not follow each other. */
+export class StimulusGroupError extends Schema.TaggedError<
+  StimulusGroupError,
+  { readonly brand: unique symbol }
+>()("StimulusGroupError", {
+  key: KebabKeySchema,
+  reason: Schema.Literals(["isolated", "noncontiguous"]),
+  set: SetPathSchema,
+}) {}
 
-/** Flattens active source-owned sections while preserving their hierarchy. */
-function activeSections(sources: readonly TryoutExamSource[]) {
-  return Arr.flatMap(sources, (source) =>
-    Arr.flatMap(source.tracks, (track) =>
+/** The bank set that fills one section of one set of an exam. */
+function sectionSet(
+  exam: ExamSource,
+  section: SectionSource,
+  set: SetSource
+): SetPath {
+  return setPath({
+    countryKey: exam.countryKey,
+    examKey: exam.examKey,
+    sectionKey: section.key,
+    setKey: set.key,
+  });
+}
+
+/** Every bank set that an active exam sits, in source order. */
+export function examSetPaths(exams: readonly ExamSource[]) {
+  return Arr.flatMap(exams, (exam) =>
+    Arr.flatMap(exam.tracks, (track) =>
       Arr.flatMap(track.sets, (set) =>
-        Arr.map(set.sections, (section) => ({
-          section,
-          set,
-          source,
-          track,
-        }))
+        Arr.map(track.profile.sections, (section) =>
+          sectionSet(exam, section, set)
+        )
       )
     )
   );
 }
 
-/** Starts one shared-stimulus group at its first question, in section order. */
-function startGroup(
-  question: QuestionSource,
-  stimulusKey: NonNullable<QuestionSource["item"]["stimulusKey"]>
-) {
-  return {
-    first: question,
-    rest: MutableList.make<QuestionSource>(),
-    stimulusKey,
-  };
-}
-
-type StimulusGroup = ReturnType<typeof startGroup>;
-
-/** Requires every shared-stimulus group to contain contiguous sibling items, checked in section order. */
-const validateStimulusGroups = Effect.fn(
-  "AksaraCorpus.validateTryoutStimulusGroups"
-)(function* (questions: readonly QuestionSource[]) {
-  const groups = MutableHashMap.empty<
-    StimulusGroup["stimulusKey"],
-    StimulusGroup
-  >();
-  const groupsInOrder = MutableList.make<StimulusGroup>();
-  for (const question of questions) {
-    const { stimulusKey } = question.item;
-    if (stimulusKey === undefined) {
-      continue;
-    }
-    const group = Option.getOrUndefined(
-      MutableHashMap.get(groups, stimulusKey)
-    );
-    if (group === undefined) {
-      const created = startGroup(question, stimulusKey);
-      MutableHashMap.set(groups, stimulusKey, created);
-      MutableList.append(groupsInOrder, created);
-    } else {
-      MutableList.append(group.rest, question);
-    }
-  }
-  for (const { first, rest, stimulusKey } of MutableList.toArray(
-    groupsInOrder
-  )) {
-    const group = [first, ...MutableList.toArray(rest)];
-    if (group.length < 2) {
-      return yield* new TryoutStimulusGroupError({
-        questionKey: first.questionKey,
-        reason: "isolated",
-        stimulusKey,
-      });
-    }
-    if (
-      Arr.some(
-        group,
-        ({ questionNumber }, index) =>
-          questionNumber !== first.questionNumber + index
-      )
-    ) {
-      return yield* new TryoutStimulusGroupError({
-        questionKey: first.questionKey,
-        reason: "noncontiguous",
-        stimulusKey,
-      });
-    }
-  }
-  return questions;
-});
-
-/** Builds localized placement rows for one exact active section. */
-const projectSection = Effect.fn("AksaraCorpus.projectTryoutSection")(
-  function* (
-    context: TryoutPlacementContext,
-    questions: MutableHashMap.MutableHashMap<
-      QuestionSource["questionKey"],
-      QuestionSource
-    >
-  ) {
-    const { section, set, source, track } = context;
-    const collected = MutableList.make<QuestionSource>();
-    for (
-      let questionOrder = 1;
-      questionOrder <= section.questionCount;
-      questionOrder += 1
-    ) {
-      const questionKey = QuestionKeySchema.make(
-        `${section.questionSourcePath}/question-${questionOrder}`
-      );
-      const question = Option.getOrUndefined(
-        MutableHashMap.get(questions, questionKey)
-      );
-      if (question === undefined) {
-        return yield* new TryoutQuestionMissingError({ questionKey });
-      }
-      MutableList.append(collected, question);
-    }
-    const selected = MutableList.toArray(collected);
-    yield* validateStimulusGroups(selected);
-    const rows = yield* Effect.forEach(selected, (question) =>
-      Effect.forEach(ACTIVE_APP_LOCALES, (appLocale) =>
-        makeTryoutPlacement(
-          { section, set, source, track },
-          question,
-          appLocale
-        )
-      )
-    );
-    return Arr.flatten(rows);
-  }
-);
-
-/** Expands only source-selected sets into locale placement expectations. */
-const projectPlacements = Effect.fn("AksaraCorpus.projectTryoutPlacements")(
-  function* (
-    sources: readonly TryoutExamSource[],
-    questionSources: readonly QuestionSource[]
-  ) {
-    const questions = yield* indexQuestions(questionSources);
-    const rows = yield* Effect.forEach(activeSections(sources), (section) =>
-      projectSection(section, questions)
-    );
-    return Arr.flatten(rows);
-  }
-);
-
 /**
- * Projects decoded sources into strict active-only snapshot inputs: the exact
- * active try-out hierarchy and the server-only placement expectations.
+ * Requires every shared reading of a section to be used by two questions or
+ * more that follow each other, so a learner reads one passage once, beside
+ * all of its questions.
  */
-export const projectTryoutSources = Effect.fn(
-  "AksaraCorpus.projectTryoutSources"
-)(function* (
-  sources: readonly TryoutExamSource[],
-  questionSources: readonly QuestionSource[]
-) {
-  const catalogRows = yield* projectTryoutCatalog(sources);
-  const placementRows = yield* projectPlacements(sources, questionSources);
-  const catalog = yield* Effect.forEach(
-    Arr.sort(catalogRows, Order.make(compareTryoutCatalog)),
-    makeTryoutCatalogRecord
-  );
-  const sortedPlacements = Arr.sort(
-    placementRows,
-    Order.make(compareTryoutPlacements)
-  );
+const requireStimulusGroups = Effect.fn("AksaraCorpus.requireStimulusGroups")(
+  function* (set: QuestionSet) {
+    const keys = Arr.map(set.questions, ({ item }) => item.stimulus);
+    for (const stimulus of set.stimuli) {
+      const places = Arr.filterMap(keys, (key, index) =>
+        key === stimulus.key ? Result.succeed(index) : Result.failVoid
+      );
+      if (places.length < 2) {
+        return yield* new StimulusGroupError({
+          key: stimulus.key,
+          reason: "isolated",
+          set: set.path,
+        });
+      }
+      if (
+        Arr.some(
+          Arr.zip(places, Arr.drop(places, 1)),
+          ([place, next]) => next !== place + 1
+        )
+      ) {
+        return yield* new StimulusGroupError({
+          key: stimulus.key,
+          reason: "noncontiguous",
+          set: set.path,
+        });
+      }
+    }
+  }
+);
 
-  return {
-    catalog,
-    placements: sortedPlacements,
-    routeCount: Arr.filter(
-      catalog,
-      ({ row }) => "publicPath" in row && row.publicPath !== undefined
-    ).length,
-  };
+/** Plans one section: its bank set, with exactly its items, each asked in its language. */
+const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
+  exam: ExamSource,
+  section: SectionSource,
+  set: SetSource,
+  sets: readonly QuestionSet[]
+) {
+  const path = sectionSet(exam, section, set);
+  const found = Arr.findFirst(sets, (candidate) => candidate.path === path);
+  if (Option.isNone(found)) {
+    return yield* new PaperPlanError({ reason: "missing", set: path });
+  }
+  const { questions } = found.value;
+  if (questions.length !== section.items) {
+    return yield* new PaperPlanError({ reason: "items", set: path });
+  }
+  if (
+    !Arr.every(questions, ({ item }) =>
+      Arr.some(
+        itemVersions(item.versions),
+        ({ language }) => language === section.language
+      )
+    )
+  ) {
+    return yield* new PaperPlanError({ reason: "language", set: path });
+  }
+  yield* requireStimulusGroups(found.value);
+  return { key: section.key, language: section.language, set: found.value };
 });
+
+/** Plans the paper of one set of a track. */
+const planPaper = Effect.fn("AksaraCorpus.planPaper")(function* (
+  exam: ExamSource,
+  track: TrackSource,
+  set: SetSource,
+  sets: readonly QuestionSet[]
+) {
+  const sections = yield* Effect.forEach(track.profile.sections, (section) =>
+    planSection(exam, section, set, sets)
+  );
+  const profile = profileId(exam, track);
+  return PaperPlanSchema.make({
+    examKey: exam.examKey,
+    id: paperId(exam, track, set),
+    profile,
+    sections,
+    setKey: set.key,
+    trackKey: track.key,
+  });
+});
+
+/** Plans the paper of every set of every active exam. */
+export const planTryoutPapers = Effect.fn("AksaraCorpus.planTryoutPapers")(
+  function* (exams: readonly ExamSource[], sets: readonly QuestionSet[]) {
+    return yield* Effect.forEach(
+      Arr.flatMap(exams, (exam) =>
+        Arr.flatMap(exam.tracks, (track) =>
+          Arr.map(track.sets, (set) => ({ exam, set, track }))
+        )
+      ),
+      ({ exam, set, track }) => planPaper(exam, track, set, sets)
+    );
+  }
+);

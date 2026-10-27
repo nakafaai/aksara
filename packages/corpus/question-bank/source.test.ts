@@ -1,225 +1,152 @@
-import { expect, layer } from "@effect/vitest";
-import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, HashSet, MutableHashMap, Option } from "effect";
-import { decodeQuestionPath } from "#corpus/question-bank/path";
+import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr, Effect } from "effect";
+import { setSourcePath } from "#corpus/question-bank/path";
+import { readQuestionSets } from "#corpus/question-bank/source";
 import {
-  indexQuestionItems,
-  readQuestionSource,
-} from "#corpus/question-bank/source";
-import {
-  corpusRoot,
-  discoverSyntheticQuestionSources,
-  generalQuestionSourceFiles,
-  invalidQuestionItemSources,
-  itemForQuestion,
-  makeQuestionSourceLayer,
-  questionEntries,
-  questionRendererCounts,
-  questionTestSourceRoot,
-  realQuestionBanks,
-  realQuestionCorpusLayer,
-  realQuestionEntries,
-  realQuestionItems,
-  rejectSyntheticQuestionSources,
-} from "#corpus/test/question";
+  CHECKOUT,
+  checkoutLayer,
+  questionFiles,
+  stimulusFiles,
+  TEST_ITEM,
+  TEST_SET,
+} from "#corpus/test/bank";
 
-layer(realQuestionCorpusLayer)("question source", (it) => {
+const onReading = { ...TEST_ITEM, stimulus: "passage-1" };
+
+/** Reads the one test set from a virtual checkout of the given files. */
+function read(files: Iterable<readonly [string, string]>) {
+  return readQuestionSets(CHECKOUT, [TEST_SET]).pipe(
+    Effect.provide(checkoutLayer(files))
+  );
+}
+
+/** Reads the one test set and returns the failure it reads with. */
+function reject(files: Iterable<readonly [string, string]>) {
+  return read(files).pipe(Effect.flip);
+}
+
+describe("readQuestionSets", () => {
   it.effect(
-    "discovers and validates all 1875 real question directories",
+    "reads the questions of a set in order and the readings they share",
     () =>
       Effect.gen(function* () {
-        const sources = yield* discoverSyntheticQuestionSources(
-          yield* realQuestionEntries,
-          yield* realQuestionItems
-        );
-        const itemsByRoot = indexQuestionItems(sources);
-        const first = yield* Effect.orDie(Effect.fromNullishOr(sources[0]));
+        const [set] = yield* read([
+          ...questionFiles(2, onReading),
+          ...questionFiles(1, onReading),
+          ...questionFiles(3),
+          ...stimulusFiles("passage-1", "Bacaan bersama."),
+        ]);
 
-        expect(sources).toHaveLength(1875);
-        expect(MutableHashMap.size(itemsByRoot)).toBe(1875);
-        expect(
-          Option.getOrUndefined(
-            MutableHashMap.get(itemsByRoot, first.sourceRoot)
-          )
-        ).toBe(first.item);
-        expect(
-          HashSet.size(
-            HashSet.fromIterable(Arr.map(sources, ({ setKey }) => setKey))
-          )
-        ).toBe(81);
-        for (const { count, rendererDomain } of questionRendererCounts) {
-          expect(
-            Arr.filter(
-              sources,
-              (source) => source.rendererDomain === rendererDomain
-            )
-          ).toHaveLength(count);
+        if (set === undefined) {
+          return expect.unreachable("Expected the one test set.");
         }
-        expect(
-          Option.getOrUndefined(
-            Arr.findFirst(sources, ({ questionKey }) =>
-              questionKey.endsWith(
-                "snbt/reading-comprehension-and-writing/set-1/question-1"
-              )
-            )
-          )
-        ).toMatchObject({
-          questionKey:
-            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1",
-          setKey:
-            "question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1",
-          sourceRoot:
-            "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1",
+        expect(set.path).toBe(TEST_SET);
+        expect(Arr.map(set.questions, ({ number }) => number)).toEqual([
+          1, 2, 3,
+        ]);
+        expect(set.questions[0]).toEqual({
+          item: onReading,
+          number: 1,
+          set: TEST_SET,
+          sourceRoot: setSourcePath(TEST_SET, "question-1"),
         });
-      }),
-    30_000
+        expect(set.stimuli).toEqual([
+          {
+            key: "passage-1",
+            languages: ["id"],
+            set: TEST_SET,
+            sourceRoot: setSourcePath(TEST_SET, "passage-1"),
+          },
+        ]);
+      })
   );
 
-  it.effect("allows an empty checkout without inventing question sources", () =>
+  it.effect("refuses a set folder that is missing or holds a stray file", () =>
     Effect.gen(function* () {
-      expect(yield* discoverSyntheticQuestionSources([], [])).toEqual([]);
-    })
-  );
+      const missing = yield* reject([]);
+      const stray = yield* reject([
+        ...questionFiles(1),
+        [setSourcePath(TEST_SET, "notes.md"), "Notes."],
+      ]);
 
-  it.effect("rejects files outside the canonical question hierarchy", () =>
-    Effect.gen(function* () {
-      const error = yield* rejectSyntheticQuestionSources(["notes.ts"], []);
-
-      expect(error).toMatchObject({
-        _tag: "QuestionPathError",
-        reason: "grammar",
+      expect(missing._tag).toBe("QuestionReadError");
+      expect(stray).toMatchObject({
+        _tag: "QuestionBankPathError",
+        path: `${TEST_SET}/notes.md`,
       });
     })
   );
 
-  it.effect("maps directory and item reads to typed failures", () =>
+  it.effect("requires questions numbered from one without a gap", () =>
     Effect.gen(function* () {
-      const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const directoryError = yield* rejectSyntheticQuestionSources(
-        [],
-        [],
-        true
-      );
-      const location = yield* decodeQuestionPath(
-        yield* realQuestionBanks,
-        root
-      );
-      const selectedDirectoryError = yield* readQuestionSource(
-        yield* corpusRoot,
-        location
-      ).pipe(
-        Effect.provide([
-          makeQuestionSourceLayer([], [], true),
-          TypeScriptParser.layer,
-        ]),
-        Effect.flip
-      );
-      const itemError = yield* rejectSyntheticQuestionSources(
-        questionEntries(root, generalQuestionSourceFiles),
-        []
-      );
+      const gap = yield* reject([...questionFiles(1), ...questionFiles(3)]);
+      const none = yield* reject(stimulusFiles("passage-1", "Bacaan."));
 
-      expect(directoryError).toMatchObject({
-        _tag: "QuestionReadError",
-        path: questionTestSourceRoot,
-      });
-      expect(selectedDirectoryError).toMatchObject({
-        _tag: "QuestionReadError",
-        path: `${questionTestSourceRoot}/${root}`,
-      });
-      expect(itemError).toMatchObject({
-        _tag: "QuestionReadError",
-        path: `${questionTestSourceRoot}/${root}/item.ts`,
-      });
-    })
-  );
-  it.effect("rejects missing, replaced, and nested companion files", () =>
-    Effect.gen(function* () {
-      const root = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const [missing, replaced, nested, missingAssessedPrompt] =
-        yield* Effect.all(
-          [
-            rejectSyntheticQuestionSources(
-              questionEntries(root, Arr.drop(generalQuestionSourceFiles, 1)),
-              []
-            ),
-            rejectSyntheticQuestionSources(
-              questionEntries(root, [
-                ...Arr.take(generalQuestionSourceFiles, 4),
-                "wrong.mdx",
-              ]),
-              []
-            ),
-            rejectSyntheticQuestionSources(
-              questionEntries(root, [
-                ...generalQuestionSourceFiles,
-                "nested/extra.mdx",
-              ]),
-              []
-            ),
-            rejectSyntheticQuestionSources(
-              questionEntries(
-                root,
-                Arr.filter(
-                  generalQuestionSourceFiles,
-                  (file) => file !== "question.id.mdx"
-                )
-              ),
-              []
-            ),
-          ],
-          { concurrency: "unbounded" }
-        );
-
-      expect(missing._tag).toBe("QuestionFileSetError");
-      expect(replaced._tag).toBe("QuestionFileSetError");
-      expect(nested).toMatchObject({
-        _tag: "QuestionFileSetError",
-        sourcePath: `${questionTestSourceRoot}/${root}`,
-      });
-      expect(missingAssessedPrompt._tag).toBe("QuestionFileSetError");
-    })
-  );
-  it.effect("rejects unevaluable and invalid localized item catalogs", () =>
-    Effect.gen(function* () {
-      const errors = yield* Effect.forEach(
-        invalidQuestionItemSources,
-        (source, index) =>
-          Effect.gen(function* () {
-            const root = `indonesia/snbt/general-reasoning/set-1/question-${index + 1}`;
-            return yield* rejectSyntheticQuestionSources(
-              questionEntries(root, generalQuestionSourceFiles),
-              yield* itemForQuestion(root, source)
-            );
-          }),
-        { concurrency: "unbounded" }
-      );
-
-      expect(
-        Arr.every(errors, ({ _tag }) => _tag === "QuestionItemError")
-      ).toBe(true);
-    })
-  );
-
-  it.effect("rejects non-contiguous numbering within each logical set", () =>
-    Effect.gen(function* () {
-      const first = "indonesia/snbt/general-reasoning/set-1/question-1";
-      const third = "indonesia/snbt/general-reasoning/set-1/question-3";
-      const entries = [
-        ...questionEntries(first, generalQuestionSourceFiles),
-        ...questionEntries(third, generalQuestionSourceFiles),
-      ];
-      const items = [
-        ...(yield* itemForQuestion(first)),
-        ...(yield* itemForQuestion(third)),
-      ];
-      const error = yield* rejectSyntheticQuestionSources(entries, items);
-
-      expect(error).toMatchObject({
+      expect(gap).toMatchObject({
         _tag: "QuestionSequenceError",
-        questionNumbers: [1, 3],
-        setPath: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+        numbers: [1, 3],
+      });
+      expect(none).toMatchObject({
+        _tag: "QuestionSequenceError",
+        numbers: [],
       });
     })
+  );
+
+  it.effect(
+    "requires each question to hold exactly the files its item names",
+    () =>
+      Effect.gen(function* () {
+        const withoutItem = yield* reject(
+          Arr.filter(questionFiles(1), ([path]) => !path.endsWith("/item.ts"))
+        );
+        const withoutAnswer = yield* reject(
+          Arr.filter(
+            questionFiles(1),
+            ([path]) => !path.endsWith("answer.de.mdx")
+          )
+        );
+        const extraPrompt = yield* reject([
+          ...questionFiles(1),
+          [setSourcePath(TEST_SET, "question-1", "question.en.mdx"), "Extra."],
+        ]);
+
+        expect(withoutItem._tag).toBe("QuestionReadError");
+        expect(withoutAnswer._tag).toBe("QuestionFileSetError");
+        expect(extraPrompt).toMatchObject({
+          _tag: "QuestionFileSetError",
+          sourcePath: setSourcePath(TEST_SET, "question-1"),
+        });
+      })
+  );
+
+  it.effect(
+    "requires every named reading to exist in each language and to be used",
+    () =>
+      Effect.gen(function* () {
+        const missing = yield* reject(questionFiles(1, onReading));
+        const unused = yield* reject([
+          ...questionFiles(1),
+          ...stimulusFiles("passage-1", "Bacaan."),
+        ]);
+        const extraLanguage = yield* reject([
+          ...questionFiles(1, onReading),
+          ...stimulusFiles("passage-1", "Bacaan.", ["en", "id"]),
+        ]);
+
+        expect(missing).toMatchObject({
+          _tag: "StimulusReferenceError",
+          key: "passage-1",
+          reason: "missing",
+        });
+        expect(unused).toMatchObject({
+          _tag: "StimulusReferenceError",
+          reason: "unused",
+        });
+        expect(extraLanguage).toMatchObject({
+          _tag: "QuestionFileSetError",
+          sourcePath: setSourcePath(TEST_SET, "passage-1"),
+        });
+      })
   );
 });

@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "(2)-(4)-(1)-(3)",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "(4)-(1)-(2)-(3)",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "(4)-(2)-(3)-(1)",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "(3)-(4)-(2)-(1)",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

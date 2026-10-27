@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Satu Usia Aman untuk Gawai Pertama Anak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Semua Waktu Layar Berbahaya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cara Membeli Ponsel Pertama Anak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Penggunaan Media Keluarga Sesuai Usia.",
         },
       ],

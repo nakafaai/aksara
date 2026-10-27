@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Berhenti sejenak dari kegiatan dan menyaksikan keindahan matahari terbenam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menghentikan seluruh pekerjaan untuk beristirahat sepanjang hari",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengabaikan keadaan sekitar agar dapat menikmati hidup",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjauhi semua kesibukan di kota secara permanen",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghitung waktu yang tersisa sebelum malam",
         },
       ],

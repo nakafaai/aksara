@@ -1,303 +1,200 @@
-import { expect, layer } from "@effect/vitest";
-import { questionResponseFor } from "@nakafa/aksara-contracts/question/item";
-import { Array as Arr, Effect, HashSet, Record as Rec } from "effect";
-import type { QuestionSource } from "#corpus/question-bank/source";
-import { realQuestionCorpusLayer } from "#corpus/test/question";
+import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr, Effect } from "effect";
+import type { QuestionSet } from "#corpus/question-bank/source";
+import { readQuestionSets } from "#corpus/question-bank/source";
 import {
-  hasValidQuestionResponse,
-  loadTryoutProjectionContent,
-  loadTryoutProjectionSources,
-} from "#corpus/test/tryout";
-import { projectTryoutSources } from "#corpus/tryout/projection";
+  CHECKOUT,
+  checkoutLayer,
+  questionFiles,
+  stimulusFiles,
+  TEST_ITEM,
+} from "#corpus/test/bank";
+import {
+  testExam,
+  testExamFiles,
+  testExamInput,
+  testSectionSet,
+  testSubjectSection,
+  testSubjectTrack,
+  testYearTrack,
+} from "#corpus/test/exam";
+import { examSetPaths, planTryoutPapers } from "#corpus/tryout/projection";
+import { defineExamSource } from "#corpus/tryout/schema";
 
-const COMPULSORY_TRACK = "compulsory-mathematics";
-const COMPULSORY_SET_ONE_PATH = "/tka/compulsory-mathematics/set-1/";
+const subjectSet = testSectionSet("test-subject");
 
-/** Finds one question of the compulsory mathematics set 1 by its number. */
-function compulsoryQuestion(
-  questions: readonly QuestionSource[],
-  number: number
-) {
-  return Effect.fromOption(
-    Arr.findFirst(questions, ({ questionKey }) =>
-      questionKey.includes(`${COMPULSORY_SET_ONE_PATH}question-${number}`)
-    )
-  );
+/** Reads the bank sets of the test exam from the given files. */
+function readSets(files: Iterable<readonly [string, string]>) {
+  return Effect.gen(function* () {
+    const exam = yield* testExam;
+    return yield* readQuestionSets(CHECKOUT, examSetPaths([exam]));
+  }).pipe(Effect.provide(checkoutLayer(files)));
 }
 
-/** Copies one question with its shared stimulus replaced by the given key. */
-function withStimulus(
-  question: QuestionSource,
-  stimulusKey: QuestionSource["item"]["stimulusKey"]
-) {
-  return { ...question, item: { ...question.item, stimulusKey } };
+/** Plans the papers of the test exam over the given bank sets. */
+function plan(sets: readonly QuestionSet[]) {
+  return Effect.flatMap(testExam, (exam) => planTryoutPapers([exam], sets));
 }
 
-/** Copies one question without its shared stimulus. */
-function withoutStimulus(question: QuestionSource) {
-  const { stimulusKey: _stimulusKey, ...item } = question.item;
-  return { ...question, item };
+/** The test bank with the subject set replaced by the given files. */
+function withSubject(files: readonly (readonly [string, string])[]) {
+  return [
+    ...Arr.filter(testExamFiles, ([path]) => !path.includes(subjectSet)),
+    ...files,
+  ];
 }
 
-layer(realQuestionCorpusLayer)("tryout projection", (it) => {
-  it.effect(
-    "projects the exact active hierarchy and localized placements",
-    () =>
-      Effect.gen(function* () {
-        const { projection } = yield* loadTryoutProjectionContent();
-        const counts = Rec.fromEntries(
-          Arr.map(["country", "exam", "track", "set", "section"], (kind) => [
-            kind,
-            Arr.filter(projection.catalog, ({ row }) => row.kind === kind)
-              .length,
-          ])
-        );
-        const bodyHeads = HashSet.fromIterable(
-          Arr.flatMap(projection.placements, (row) => [
-            `${row.questionContentKey}\0${row.appLocale}`,
-            `${row.answerContentKey}\0${row.appLocale}`,
-          ])
-        );
+describe("examSetPaths", () => {
+  it.effect("lists the bank set of every section of every set", () =>
+    Effect.gen(function* () {
+      expect(examSetPaths([yield* testExam])).toEqual([
+        subjectSet,
+        testSectionSet("test-reasoning"),
+        testSectionSet("test-english"),
+      ]);
+    })
+  );
+});
 
-        expect(counts).toEqual({
-          country: 3,
-          exam: 6,
-          section: 243,
-          set: 63,
-          track: 12,
-        });
-        expect(projection.catalog).toHaveLength(327);
-        expect(projection.routeCount).toBe(294);
-        expect(projection.placements).toHaveLength(5625);
-        const questionKeys = Arr.map(
-          projection.placements,
-          ({ questionContentKey }) => questionContentKey
-        );
-        expect(HashSet.size(HashSet.fromIterable(questionKeys))).toBe(1875);
-        expect(HashSet.size(bodyHeads)).toBe(11_250);
-        expect(
-          Arr.every(
-            projection.placements,
-            ({ response, scope }) =>
-              scope === "server" && hasValidQuestionResponse(response)
-          )
-        ).toBe(true);
-      }),
-    { timeout: 30_000 }
+describe("planTryoutPapers", () => {
+  it.effect("plans one paper for each set, each section in its language", () =>
+    Effect.gen(function* () {
+      const papers = yield* plan(yield* readSets(testExamFiles));
+
+      expect(
+        Arr.map(papers, ({ id, profile, sections, setKey, trackKey }) => ({
+          id,
+          profile,
+          sections: Arr.map(sections, ({ key, language, set }) => [
+            key,
+            language,
+            set.questions.length,
+          ]),
+          setKey,
+          trackKey,
+        }))
+      ).toEqual([
+        {
+          id: "test-country/test-exam/test-subject/set-1",
+          profile: "test-country/test-exam/test-subject",
+          sections: [["test-subject", "id", 2]],
+          setKey: "set-1",
+          trackKey: "test-subject",
+        },
+        {
+          id: "test-country/test-exam/2027/set-1",
+          profile: "test-country/test-exam/2027",
+          sections: [
+            ["test-reasoning", "id", 1],
+            ["test-english", "en", 1],
+          ],
+          setKey: "set-1",
+          trackKey: "2027",
+        },
+      ]);
+    })
   );
 
   it.effect(
-    "reuses the exact assessed-language response across app locales",
+    "refuses a missing set, a wrong item count, and a missing language",
     () =>
       Effect.gen(function* () {
-        const { projection, sources: questions } =
-          yield* loadTryoutProjectionContent();
-        const english = Arr.filter(
-          projection.placements,
-          ({ questionContentKey }) =>
-            questionContentKey.includes("/snbt/literacy-in-english/")
-        );
-        const placement = yield* Effect.fromOption(
-          Arr.findFirst(english, ({ appLocale }) => appLocale === "en")
-        );
-        const peer = yield* Effect.fromOption(
-          Arr.findFirst(
-            english,
-            ({ appLocale, questionContentKey }) =>
-              appLocale === "id" &&
-              questionContentKey === placement.questionContentKey
+        const sets = yield* readSets(testExamFiles);
+        const missing = yield* plan(
+          Arr.filter(sets, ({ path }) => path !== subjectSet)
+        ).pipe(Effect.flip);
+        const items = yield* plan(
+          yield* readSets(
+            withSubject(questionFiles(1, TEST_ITEM, "Satu.", subjectSet))
           )
-        );
-        const source = yield* Effect.fromOption(
-          Arr.findFirst(
-            questions,
-            ({ questionKey }) =>
-              `${questionKey}/question` === placement.questionContentKey
+        ).pipe(Effect.flip);
+        const language = yield* plan(
+          yield* readSets(
+            withSubject([
+              ...questionFiles(1, TEST_ITEM, "Satu.", subjectSet),
+              ...questionFiles(
+                2,
+                { versions: { en: TEST_ITEM.versions.id } },
+                "Two.",
+                subjectSet
+              ),
+            ])
           )
-        );
-        const englishResponse = yield* questionResponseFor(
-          source.item,
-          placement.questionArtifactLocale
-        );
+        ).pipe(Effect.flip);
 
-        expect(placement.response).toEqual(englishResponse);
-        expect(peer.response).toEqual(englishResponse);
-        expect(source.item.responses.id).toBeUndefined();
-        expect("questionLanguage" in placement).toBe(false);
-      }),
-    { timeout: 30_000 }
+        expect(
+          Arr.map([missing, items, language], (error) =>
+            "reason" in error ? error.reason : error._tag
+          )
+        ).toEqual(["missing", "items", "language"]);
+      })
   );
 
   it.effect(
-    "projects every complete active SNBT and TKA set",
+    "requires a shared reading to sit beside two questions or more in a row",
     () =>
       Effect.gen(function* () {
-        const { projection } = yield* loadTryoutProjectionContent();
-        const snbt = Arr.filter(
-          projection.placements,
-          ({ examKey }) => examKey === "snbt"
-        );
-        const tka = Arr.filter(
-          projection.placements,
-          ({ examKey }) => examKey === "tka"
-        );
-
-        expect(snbt).toHaveLength(4800);
-        expect(tka).toHaveLength(825);
-        expect(
-          Arr.map(
-            Array.from({ length: 10 }, (_, index) => `set-${index + 1}`),
-            (setKey) =>
-              Arr.filter(
-                snbt,
-                ({ appLocale, setKey: placementSetKey }) =>
-                  appLocale === "en" && placementSetKey === setKey
-              ).length
+        const onReading = { ...TEST_ITEM, stimulus: "passage-1" };
+        const isolated = yield* plan(
+          yield* readSets(
+            withSubject([
+              ...questionFiles(1, onReading, "Satu.", subjectSet),
+              ...questionFiles(2, TEST_ITEM, "Dua.", subjectSet),
+              ...stimulusFiles("passage-1", "Bacaan.", ["id"], subjectSet),
+            ])
           )
-        ).toEqual(Array.from({ length: 10 }, () => 160));
-        expect(
-          Arr.map(
-            [COMPULSORY_TRACK, "indonesian-language", "english-language"],
-            (trackKey) =>
-              Arr.filter(
-                tka,
-                ({ appLocale, trackKey: placementTrackKey }) =>
-                  appLocale === "en" && placementTrackKey === trackKey
-              ).length
-          )
-        ).toEqual([100, 75, 100]);
-        expect(
-          HashSet.fromIterable(Arr.map(snbt, ({ setKey }) => setKey))
-        ).toEqual(
-          HashSet.fromIterable(
-            Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
+        ).pipe(Effect.flip);
+        const grouped = yield* plan(
+          yield* readSets(
+            withSubject([
+              ...questionFiles(1, onReading, "Satu.", subjectSet),
+              ...questionFiles(2, onReading, "Dua.", subjectSet),
+              ...stimulusFiles("passage-1", "Bacaan.", ["id"], subjectSet),
+            ])
           )
         );
-        expect(
-          HashSet.fromIterable(Arr.map(tka, ({ setKey }) => setKey))
-        ).toEqual(HashSet.make("set-1", "set-2", "set-3", "set-4"));
-      }),
-    { timeout: 30_000 }
-  );
 
-  it.effect(
-    "rejects missing, duplicate, malformed, and colliding source facts",
-    () =>
-      Effect.gen(function* () {
-        const [sources, questions] = yield* loadTryoutProjectionSources();
-        const active = yield* Effect.fromOption(
-          Arr.findFirst(questions, ({ questionKey }) =>
-            questionKey.includes("/snbt/general-reasoning/set-1/question-1")
-          )
-        );
-        const activeIndonesianResponse = yield* Effect.fromNullishOr(
-          active.item.responses.id
-        );
-        const invalidItems = Arr.map(questions, (question) =>
-          question.questionKey === active.questionKey
-            ? {
-                ...question,
-                item: {
-                  responses: {
-                    en: activeIndonesianResponse,
-                  },
-                },
-              }
-            : question
-        );
-        const failures = yield* Effect.all([
-          projectTryoutSources(
-            sources,
-            Arr.filter(
-              questions,
-              ({ questionKey }) => questionKey !== active.questionKey
-            )
-          ).pipe(Effect.flip),
-          projectTryoutSources(sources, [...questions, active]).pipe(
-            Effect.flip
-          ),
-          projectTryoutSources(sources, invalidItems).pipe(Effect.flip),
-        ]);
-
-        expect(Arr.map(failures, ({ _tag }) => _tag)).toEqual([
-          "TryoutQuestionMissingError",
-          "TryoutQuestionDuplicateError",
-          "TryoutPlacementError",
-        ]);
-      }),
-    { timeout: 30_000 }
-  );
-
-  it.effect(
-    "rejects isolated and noncontiguous shared stimuli",
-    () =>
-      Effect.gen(function* () {
-        const [sources, questions] = yield* loadTryoutProjectionSources();
-        const fifth = yield* compulsoryQuestion(questions, 5);
-        const sixth = yield* compulsoryQuestion(questions, 6);
-        const seventh = yield* compulsoryQuestion(questions, 7);
-        const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
-        const withoutSixth = Arr.map(questions, (question) =>
-          question === sixth ? withoutStimulus(question) : question
-        );
-        const noncontiguous = Arr.map(withoutSixth, (question) =>
-          question === seventh ? withStimulus(question, stimulusKey) : question
-        );
-        const [isolated, separated] = yield* Effect.all([
-          projectTryoutSources(sources, withoutSixth).pipe(Effect.flip),
-          projectTryoutSources(sources, noncontiguous).pipe(Effect.flip),
-        ]);
-
-        expect([isolated, separated]).toEqual([
-          expect.objectContaining({
-            _tag: "TryoutStimulusGroupError",
-            reason: "isolated",
-            stimulusKey,
-          }),
-          expect.objectContaining({
-            _tag: "TryoutStimulusGroupError",
-            reason: "noncontiguous",
-            stimulusKey,
-          }),
-        ]);
-      }),
-    { timeout: 30_000 }
-  );
-
-  it.effect.each([
-    ["stationery-bundles", "park-and-pond"],
-    ["park-and-pond", "stationery-bundles"],
-  ] as const)(
-    "reports the earlier invalid shared stimulus with stimulus keys %s",
-    ([fifthKey, seventeenthKey]) =>
-      Effect.gen(function* () {
-        const [sources, questions] = yield* loadTryoutProjectionSources();
-        const fifth = yield* compulsoryQuestion(questions, 5);
-        const sixth = yield* compulsoryQuestion(questions, 6);
-        const seventeenth = yield* compulsoryQuestion(questions, 17);
-        const eighteenth = yield* compulsoryQuestion(questions, 18);
-        const withStimuli = Arr.map(questions, (question) => {
-          if (question === fifth) {
-            return withStimulus(question, fifthKey);
-          }
-          if (question === seventeenth) {
-            return withStimulus(question, seventeenthKey);
-          }
-          return question === sixth || question === eighteenth
-            ? withoutStimulus(question)
-            : question;
-        });
-        const failure = yield* projectTryoutSources(sources, withStimuli).pipe(
-          Effect.flip
-        );
-
-        expect(failure).toMatchObject({
-          _tag: "TryoutStimulusGroupError",
-          questionKey: fifth.questionKey,
+        expect(isolated).toMatchObject({
+          _tag: "StimulusGroupError",
+          key: "passage-1",
           reason: "isolated",
-          stimulusKey: fifthKey,
         });
-      }),
-    { timeout: 30_000 }
+        expect(grouped).toHaveLength(2);
+      })
+  );
+
+  it.effect(
+    "requires the questions of a shared reading to follow each other",
+    () =>
+      Effect.gen(function* () {
+        const exam = yield* defineExamSource({
+          ...testExamInput,
+          tracks: [
+            {
+              ...testSubjectTrack,
+              profile: {
+                ...testSubjectTrack.profile,
+                sections: [{ ...testSubjectSection, items: 3 }],
+              },
+            },
+            testYearTrack,
+          ],
+        });
+        const onReading = { ...TEST_ITEM, stimulus: "passage-1" };
+        const sets = yield* readSets(
+          withSubject([
+            ...questionFiles(1, onReading, "Satu.", subjectSet),
+            ...questionFiles(2, TEST_ITEM, "Dua.", subjectSet),
+            ...questionFiles(3, onReading, "Tiga.", subjectSet),
+            ...stimulusFiles("passage-1", "Bacaan.", ["id"], subjectSet),
+          ])
+        );
+        const error = yield* planTryoutPapers([exam], sets).pipe(Effect.flip);
+
+        expect(error).toMatchObject({
+          _tag: "StimulusGroupError",
+          reason: "noncontiguous",
+        });
+      })
   );
 });

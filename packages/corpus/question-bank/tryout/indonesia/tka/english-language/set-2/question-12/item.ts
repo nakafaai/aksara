@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
     topic: "synthesis",
   },
-  responses: {
+  stimulus: "last-bus",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Printed timetables should be replaced whenever a live service page is available.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Cycling in a storm is the fastest solution.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Phone battery level is unrelated to the usefulness of the service information.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Use current information and choose a safe action during a disruption.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Road closures make clinic staff unreliable.",
         },
       ],
     },
   },
-  stimulusKey: "last-bus",
 };
 
 export default item;

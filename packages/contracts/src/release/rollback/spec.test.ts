@@ -13,11 +13,11 @@ import {
 } from "#contracts/release/rollback/spec";
 import {
   absentEntry,
+  articleEntry,
   artifact,
   deletion,
   materialEntry,
   projection,
-  questionEntry,
   record,
   reverseRecord,
   richRecord,
@@ -62,7 +62,7 @@ describe("rollback contracts", () => {
     ).toBe(true);
   });
   it("canonically serializes absent and implemented snapshot states", () => {
-    const entries = [absentEntry, materialEntry, questionEntry];
+    const entries = [absentEntry, materialEntry, articleEntry];
     expect(
       Arr.map(
         Arr.map(entries, canonicalizeRollbackSnapshotEntry),
@@ -217,9 +217,9 @@ describe("rollback contracts", () => {
     );
   });
 
-  it("pins the canonical bytes of a route-free question rollback snapshot entry", () => {
-    expect(canonicalizeRollbackSnapshotEntry(questionEntry)).toBe(
-      '{"index":2,"releaseId":"release-active","snapshot":{"head":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","contentKey":"test:rollback","delivery":"authenticated","family":"question","projectionHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","rendererDomain":"snbt-general","sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","sourcePath":"packages/corpus/test/rollback/en.mdx"},"state":"question"}}'
+  it("pins the canonical bytes of an article rollback snapshot entry", () => {
+    expect(canonicalizeRollbackSnapshotEntry(articleEntry)).toBe(
+      '{"index":2,"releaseId":"release-active","snapshot":{"head":{"artifactHash":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","artifactLocale":"en","compilerConfigHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","contentKey":"test:rollback","delivery":"public","family":"article","projectionHash":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","publicPath":"articles/test/rollback","rendererDomain":"politics","sourceHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","sourcePath":"packages/corpus/test/rollback/en.mdx"},"state":"article"}}'
     );
   });
 

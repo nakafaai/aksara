@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  stimulus: "rain-garden",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "taman dapat dianggap menghilangkan genangan karena dua hujan berikutnya surut lebih cepat",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "dua pengamatan setelah pembangunan mendukung manfaat praktis, tetapi belum membuktikan penyebab tunggal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pembersihan selokan tidak mungkin memengaruhi hasil",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "empat kejadian hujan cukup untuk mewakili pola satu musim di sekolah tersebut",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "taman harus dibongkar karena datanya terbatas",
         },
       ],
     },
   },
-  stimulusKey: "rain-garden",
 };
 
 export default item;

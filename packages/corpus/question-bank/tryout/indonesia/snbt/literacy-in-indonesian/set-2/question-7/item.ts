@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua bacaannya merupakan karya terkenal",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Bacaan tersedia dalam berbagai bahasa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua fitur dapat digunakan tanpa berlangganan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Aplikasi dapat digunakan tanpa perangkat digital",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Aplikasi tidak memerlukan ruang penyimpanan",
         },
       ],

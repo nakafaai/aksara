@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Stunting berarti berat badan rendah menurut tinggi badan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Stunting hanya dapat disebabkan oleh faktor genetik",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Stunting selalu menyebabkan disabilitas kognitif",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kelebihan gizi adalah satu-satunya penyebab stunting",
         },
       ],

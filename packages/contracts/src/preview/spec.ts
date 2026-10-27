@@ -1,6 +1,5 @@
 import { Schema } from "effect";
 import { GitCommitShaSchema, Sha256HashSchema } from "#contracts/ids";
-import type { ArtifactLocale } from "#contracts/locale";
 import { PreviewArtifactSchema } from "#contracts/preview/artifact";
 import {
   type ArticlePreviewDocument,
@@ -13,12 +12,7 @@ import { PreviewRouteSchema } from "#contracts/preview/target";
 import type { ArticleProjection } from "#contracts/projection/article";
 import type { MaterialLessonProjection } from "#contracts/projection/material";
 import type { PublicPageProjection } from "#contracts/projection/page";
-import type { QuestionBodyProjection } from "#contracts/projection/question";
 import type { ContentProjection } from "#contracts/projection/spec";
-import type {
-  QuestionAnswerIdentity,
-  QuestionBodyIdentity,
-} from "#contracts/question/identity";
 
 /** Stable protocol implemented by the loopback-only authoring provider. */
 export const LOCAL_PREVIEW_FORMAT = "aksara-local-preview";
@@ -30,15 +24,8 @@ export const PreviewRepositorySchema = Schema.Struct({
 });
 export type PreviewRepository = typeof PreviewRepositorySchema.Type;
 
-const PreviewArtifactListSchema = Schema.NonEmptyArray(
-  PreviewArtifactSchema
-).pipe(
-  Schema.check(
-    Schema.makeFilter((artifacts) => artifacts.length <= 2, {
-      message: "Expected at most two preview artifacts.",
-    })
-  )
-);
+/** The one signed artifact that renders a preview document. */
+const PreviewArtifactListSchema = Schema.Tuple([PreviewArtifactSchema]);
 type PreviewArtifactList = typeof PreviewArtifactListSchema.Type;
 
 /** Checks one article projection against its selected registry route. */
@@ -91,84 +78,19 @@ function matchesPageDocument(
   );
 }
 
-/** Checks one question projection against an exact prompt or answer identity. */
-function matchesQuestionIdentity(
-  projection: ContentProjection,
-  identity: QuestionBodyIdentity
-): projection is QuestionBodyProjection {
-  return (
-    projection.kind === "question-body" &&
-    projection.bodyKind === identity.bodyKind &&
-    projection.contentKey === identity.contentKey &&
-    projection.artifactLocale === identity.artifactLocale &&
-    projection.peerContentKey === identity.peerContentKey &&
-    projection.questionKey === identity.questionKey &&
-    projection.questionNumber === identity.questionNumber &&
-    projection.setKey === identity.setKey
-  );
-}
-
-/** Checks the ordered prompt required before one entitled answer artifact. */
-function matchesAnswerPrompt(
-  projection: ContentProjection,
-  input: {
-    readonly identity: QuestionAnswerIdentity;
-    readonly questionArtifactLocale: ArtifactLocale;
-  }
-) {
-  const { identity } = input;
-  return (
-    projection.kind === "question-body" &&
-    projection.bodyKind === "question" &&
-    projection.contentKey === identity.peerContentKey &&
-    projection.artifactLocale === input.questionArtifactLocale &&
-    projection.peerContentKey === identity.contentKey &&
-    projection.questionKey === identity.questionKey &&
-    projection.questionNumber === identity.questionNumber &&
-    projection.setKey === identity.setKey
-  );
-}
-
-/** Checks family-specific artifact count, order, identity, and projection kind. */
+/** Checks that the one artifact projects exactly the selected document. */
 function hasCoherentReadyArtifacts(input: {
   readonly artifacts: PreviewArtifactList;
   readonly document: PreviewDocument;
 }) {
-  const first = input.artifacts[0].projection;
+  const [{ projection }] = input.artifacts;
   if (input.document.family === "article") {
-    return (
-      input.artifacts.length === 1 &&
-      matchesArticleDocument(input.document, first)
-    );
+    return matchesArticleDocument(input.document, projection);
   }
   if (input.document.family === "material") {
-    return (
-      input.artifacts.length === 1 &&
-      matchesMaterialDocument(input.document, first)
-    );
+    return matchesMaterialDocument(input.document, projection);
   }
-  if (input.document.family === "page") {
-    return (
-      input.artifacts.length === 1 && matchesPageDocument(input.document, first)
-    );
-  }
-  if (input.document.identity.bodyKind === "question") {
-    return (
-      input.artifacts.length === 1 &&
-      matchesQuestionIdentity(first, input.document.identity)
-    );
-  }
-  const second = input.artifacts[1]?.projection;
-  return (
-    input.artifacts.length === 2 &&
-    matchesAnswerPrompt(first, {
-      identity: input.document.identity,
-      questionArtifactLocale:
-        input.document.target.placement.questionArtifactLocale,
-    }) &&
-    second !== undefined &&
-    matchesQuestionIdentity(second, input.document.identity)
-  );
+  return matchesPageDocument(input.document, projection);
 }
 
 const PreviewBaseSchema = Schema.Struct({

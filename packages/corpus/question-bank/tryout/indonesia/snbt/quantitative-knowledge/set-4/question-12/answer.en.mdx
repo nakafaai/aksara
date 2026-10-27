@@ -1,13 +1,6 @@
-export const metadata = {
-    title: "Explanation for Question 12",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-11-26",
-  dateModified: "2026-09-07",
-};
-
 Find the **bounds on students who like both subjects**, given 800 students in total, 400 who like Mathematics, and 500 who like Physics.
 
-#### Finding the Maximum Intersection
+# Finding the Maximum Intersection
 
 The number of students who like both will be maximum if the **smaller set is contained in the larger set**.
 Here, the number of students who like Mathematics (<InlineMath math="400" />) is less than those who like Physics (<InlineMath math="500" />).
@@ -15,7 +8,7 @@ So, the maximum value of the intersection is the number of students in the small
 
 <BlockMath math="x = 400" />
 
-#### Finding the Minimum Intersection
+# Finding the Minimum Intersection
 
 The intersection is smallest when the **union is as large as possible**. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
 
@@ -28,14 +21,15 @@ n(M\cup F)&=n(M)+n(F) \\
 
 The smallest possible intersection occurs when the union reaches that upper bound. This is feasible when every student likes at least one of the two subjects.
 
-<MathContainer>
-  <BlockMath math="800 = 400 + 500 - y" />
-  <BlockMath math="800 = 900 - y" />
-  <BlockMath math="y = 900 - 800" />
-  <BlockMath math="y = 100" />
-</MathContainer>
+<BlockMath math="800 = 400 + 500 - y" />
 
-#### Calculating the Difference
+<BlockMath math="800 = 900 - y" />
+
+<BlockMath math="y = 900 - 800" />
+
+<BlockMath math="y = 100" />
+
+# Calculating the Difference
 
 Both bounds are attainable using these **nonoverlapping student groups**. Each row counts every student exactly once.
 

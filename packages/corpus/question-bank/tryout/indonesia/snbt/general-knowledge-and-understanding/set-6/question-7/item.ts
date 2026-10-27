@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "larangan yang menghapus seluruh pilihan tindakan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "rangsangan yang membuat suatu tindakan lebih menarik atau menguntungkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "informasi yang tidak mengubah biaya atau manfaat tindakan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "hukuman setelah tindakan lain yang tidak berkaitan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "standar untuk mengukur hasil tanpa memengaruhi keputusan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

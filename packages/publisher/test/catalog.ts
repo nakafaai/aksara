@@ -18,7 +18,6 @@ import {
   type ContentHead,
   MaterialHeadSchema,
   PageHeadSchema,
-  QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { Array as Arr, Schema } from "effect";
 
@@ -26,6 +25,20 @@ const CATALOG_HASH = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
 /** Stable structured evidence for full-catalog validation tests. */
 export const catalogSnapshotEvidence = {
+  assessment: {
+    counts: {
+      catalog: 327,
+      explanation: 5625,
+      family: 1875,
+      item: 1875,
+      key: 1875,
+      paper: 21,
+      profile: 4,
+      stimulus: 159,
+    },
+    rowDigest: CATALOG_HASH,
+    snapshotId: CATALOG_HASH,
+  },
   program: {
     rowCount: 591,
     rowDigest: CATALOG_HASH,
@@ -43,21 +56,12 @@ export const catalogSnapshotEvidence = {
     sourceDigest: CATALOG_HASH,
   },
   stagedRows: 3534,
-  tryout: {
-    catalogCount: 81,
-    catalogDigest: CATALOG_HASH,
-    placementCount: 1320,
-    placementDigest: CATALOG_HASH,
-    routeCount: 72,
-    snapshotId: CATALOG_HASH,
-  },
 };
 
 const TestCatalogCountsSchema = Schema.Struct({
   article: Schema.Finite,
   material: Schema.Finite,
   page: Schema.Finite,
-  question: Schema.Finite,
 });
 
 /** Compact family counts used by catalog orchestration tests. */
@@ -67,7 +71,7 @@ const TestCatalogIdentitySchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,
   contentKey: Schema.String,
   family: ContentFamilySchema,
-  publicPath: Schema.optionalKey(Schema.String),
+  publicPath: Schema.String,
 });
 
 /** Stable source identity used without inventing educational fixture bodies. */
@@ -80,9 +84,6 @@ function localeFor(index: number): TestCatalogIdentity["artifactLocale"] {
 
 /** Returns the renderer domain owned by one compact catalog fixture family. */
 function rendererDomainFor(family: ContentFamily) {
-  if (family === "question") {
-    return "snbt-general";
-  }
   if (family === "page") {
     return "site";
   }
@@ -113,18 +114,11 @@ export function catalogIdentities(
         publicPath: `subjects/mathematics/test-lesson-${index}`,
       };
     }
-    if (family === "page") {
-      return {
-        artifactLocale,
-        contentKey: `pages/test-page-${index}`,
-        family,
-        publicPath: `test-page-${index}`,
-      };
-    }
     return {
       artifactLocale,
-      contentKey: `question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-${index + 1}/question`,
+      contentKey: `pages/test-page-${index}`,
       family,
+      publicPath: `test-page-${index}`,
     };
   });
 }
@@ -135,22 +129,18 @@ export function catalogHeads(counts: TestCatalogCounts) {
     ...catalogIdentities("article", counts.article),
     ...catalogIdentities("material", counts.material),
     ...catalogIdentities("page", counts.page),
-    ...catalogIdentities("question", counts.question),
   ];
 }
 
 /** Returns the complete body count for one compact family inventory. */
 export function catalogTotal(counts: TestCatalogCounts) {
-  return counts.article + counts.material + counts.page + counts.question;
+  return counts.article + counts.material + counts.page;
 }
 
 /** Builds prepared identities in canonical result-catalog order. */
 export function catalogResult(counts: TestCatalogCounts) {
   return Arr.map(catalogHeads(counts), (identity): ContentHead => {
     const sourcePath = (() => {
-      if (identity.family === "question") {
-        return `packages/corpus/${identity.contentKey}.${identity.artifactLocale}.mdx`;
-      }
       if (identity.family === "page") {
         return `packages/corpus/${identity.contentKey}/${identity.artifactLocale}.mdx`;
       }
@@ -161,16 +151,13 @@ export function catalogResult(counts: TestCatalogCounts) {
       artifactLocale: identity.artifactLocale,
       compilerConfigHash: CATALOG_HASH,
       contentKey: ContentKeySchema.make(identity.contentKey),
-      delivery: identity.family === "question" ? "authenticated" : "public",
+      delivery: "public",
       family: identity.family,
       projectionHash: CATALOG_HASH,
       rendererDomain: rendererDomainFor(identity.family),
       sourceHash: CATALOG_HASH,
       sourcePath: CorpusSourcePathSchema.make(sourcePath),
     } as const;
-    if (identity.publicPath === undefined) {
-      return common;
-    }
     return {
       ...common,
       publicPath: PublicPathSchema.make(identity.publicPath),
@@ -178,20 +165,12 @@ export function catalogResult(counts: TestCatalogCounts) {
   });
 }
 
-/** Projects public identities into genesis route transitions. */
+/** Projects identities into genesis route transitions. */
 export function catalogRoutes(
   rows: readonly TestCatalogIdentity[],
   replaceLast: boolean
 ) {
-  const publicRows = Arr.filter(
-    rows,
-    (
-      row
-    ): row is TestCatalogIdentity &
-      Required<Pick<TestCatalogIdentity, "publicPath">> =>
-      row.publicPath !== undefined
-  );
-  return Arr.map(publicRows, (row, index) => ({
+  return Arr.map(rows, (row, index) => ({
     current: {
       appLocale: AppLocaleSchema.make(row.artifactLocale),
       contentKey: row.contentKey,
@@ -200,7 +179,7 @@ export function catalogRoutes(
       appLocale: AppLocaleSchema.make(row.artifactLocale),
       contentKey: row.contentKey,
       publicPath:
-        replaceLast && index === publicRows.length - 1
+        replaceLast && index === rows.length - 1
           ? "subjects/mathematics/test-replaced-route"
           : row.publicPath,
     },
@@ -220,7 +199,6 @@ const CatalogTestInputSchema = Schema.Struct({
   ),
   material: Schema.optionalKey(Schema.Array(MaterialHeadSchema)),
   page: Schema.optionalKey(Schema.Array(PageHeadSchema)),
-  question: Schema.optionalKey(Schema.Array(QuestionHeadSchema)),
 });
 
 export type CatalogTestInput = typeof CatalogTestInputSchema.Type;

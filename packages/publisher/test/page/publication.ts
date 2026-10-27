@@ -1,5 +1,4 @@
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type PageHead,
   PageHeadSchema,
@@ -154,7 +153,7 @@ const derivePageHeads = Effect.fn("PageTest.deriveHeads")(function* (
           delivery: record.change.delivery,
           family: "page",
           projectionHash,
-          publicPath: projectionPublicPath(record.projection),
+          publicPath: record.projection.publicPath,
           rendererDomain: record.change.rendererDomain,
           sourceHash: record.payload.sourceHash,
           sourcePath: record.change.sourcePath,

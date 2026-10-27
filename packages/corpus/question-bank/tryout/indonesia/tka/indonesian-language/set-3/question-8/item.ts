@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "continuation",
   },
-  responses: {
+  stimulus: "mapmakers-ink",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laras mengganti catatan lapangan dengan salinan peta yang sudah diperbarui",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "peta lama dipasang tanpa perubahan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "warga memeriksa kembali jalur secara berkala dengan melibatkan pengguna yang beragam",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "jembatan rusak dinyatakan aman tanpa pemeriksaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "warga menunda perubahan jalur sampai peta baru selesai dicetak",
         },
       ],
     },
   },
-  stimulusKey: "mapmakers-ink",
 };
 
 export default item;

@@ -23,7 +23,6 @@ import {
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { materialGraph } from "#contracts/test/graph";
 import { testRendererDomains } from "#contracts/test/renderer";
-import { makeTestRuntimeBundle } from "#contracts/test/runtime/bundle";
 import { makeSnapshotTestData } from "#contracts/test/snapshot";
 import { StageOperationSchema } from "#contracts/transport/group";
 
@@ -197,43 +196,35 @@ export const route = Schema.decodeSync(ContentRouteItemSchema)({
 
 const snapshotData = await Effect.runPromise(makeSnapshotTestData());
 
-/** One current try-out manifest used only by transport contract tests. */
+/** One current assessment manifest used only by transport contract tests. */
 export const snapshotManifest = Schema.decodeUnknownSync(
   ContentSnapshotManifestSchema
 )(
   Option.getOrUndefined(
-    Arr.findFirst(snapshotData.manifests, ({ family }) => family === "tryout")
+    Arr.findFirst(
+      snapshotData.manifests,
+      ({ family }) => family === "assessment"
+    )
   )
 );
 
-/** One current hierarchy row used only by transport contract tests. */
+/** One current catalog row used only by transport contract tests. */
 export const snapshotRow = Schema.decodeUnknownSync(ContentSnapshotRowSchema)(
   Option.getOrUndefined(
     Arr.findFirst(
       snapshotData.rows,
-      (row) => row.family === "tryout" && row.rowKind === "catalog"
+      (row) => row.family === "assessment" && row.record.row.kind === "catalog"
     )
   )
 );
-export const tryoutRuntimeBundle = makeTestRuntimeBundle({
-  release,
-  rendererManifest,
-  snapshot: snapshotManifest.manifest,
-  sourceGitSha: "a".repeat(40),
-});
 
 const stageOperations = Schema.decodeSync(
   Schema.NonEmptyArray(StageOperationSchema)
 )([
-  {
-    bundle: tryoutRuntimeBundle,
-    operation: "stageTryoutRuntimeBundle",
-    releaseId,
-  },
   { operation: "stageSnapshot", releaseId, snapshot: snapshotManifest },
   {
     batchIndex: 0,
-    family: "tryout",
+    family: "assessment",
     operation: "stageSnapshotBatch",
     releaseId,
     rows: [snapshotRow],

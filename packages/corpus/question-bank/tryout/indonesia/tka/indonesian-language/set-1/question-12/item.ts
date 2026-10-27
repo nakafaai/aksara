@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "meaning-relations",
   },
-  responses: {
+  stimulus: "heat-map",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "kalimat ketiga menyangkal adanya perbedaan suhu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kalimat kedua menjelaskan prosedur pada kalimat ketiga",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kedua kalimat menyimpulkan bahwa perbedaan lokasi tidak lagi memengaruhi suhu",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kalimat ketiga memberi contoh alasan simpulan awal belum kuat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "kalimat kedua dan ketiga tidak berkaitan",
         },
       ],
     },
   },
-  stimulusKey: "heat-map",
 };
 
 export default item;

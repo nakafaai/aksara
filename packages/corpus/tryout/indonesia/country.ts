@@ -1,7 +1,7 @@
-import type { TryoutCountrySourceInput } from "#corpus/tryout/schema";
+import type { CountrySourceInput } from "#corpus/tryout/schema";
 
 /** Shared source-controlled identity for every Indonesian try-out exam. */
-export const indonesiaTryoutCountry: TryoutCountrySourceInput = {
+export const indonesiaTryoutCountry: CountrySourceInput = {
   countryCode: "ID",
   countryKey: "indonesia",
   countryOrder: 1,

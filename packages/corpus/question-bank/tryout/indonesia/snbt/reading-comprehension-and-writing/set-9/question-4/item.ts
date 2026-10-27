@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label baki membuat jumlah bibit yang sampai tanpa dialihkan tidak perlu diukur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label baki memungkinkan banyak unsur distribusi diubah sekaligus.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Label pada baki menunjukkan petak tujuan ketika relawan harus memilih arah di percabangan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

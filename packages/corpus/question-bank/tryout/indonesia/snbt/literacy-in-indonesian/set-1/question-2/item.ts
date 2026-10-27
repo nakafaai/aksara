@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Bumi akan kembali persis seperti pada masa lampau",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Seluruh bentuk polusi udara akan hilang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kehidupan baru pasti tercipta tanpa campur tangan manusia",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Keadaan Bumi akan menjadi tidak terkendali",
         },
       ],

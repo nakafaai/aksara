@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebagian pola pada peta awal mungkin mencerminkan perilaku pengamat, bukan hanya perubahan mangrove.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

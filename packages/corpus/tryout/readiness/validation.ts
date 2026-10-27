@@ -1,20 +1,27 @@
-import { canonicalTryoutMarks } from "@nakafa/aksara-contracts/tryout/spec";
+import type { MarksSchema } from "@nakafa/aksara-contracts/assessment/scoring";
 import { Array as Arr, Effect, Option, Schema } from "effect";
 
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
-import type { TryoutExamSource } from "#corpus/tryout/schema";
+import type {
+  ExamSource,
+  ProfileSource,
+  SectionSource,
+} from "#corpus/tryout/schema";
 
 type ReadinessSection = AssessmentReadiness["sections"][number];
-type TryoutTrack = TryoutExamSource["tracks"][number];
-type TryoutSection = TryoutTrack["sets"][number]["sections"][number];
 
-/** Serializes optional section marks into one comparable readiness fact. */
-function marksFact(marks: TryoutSection["marks"]) {
+/** Writes optional marks as one comparable readiness fact. */
+function marksFact(marks: typeof MarksSchema.Type | undefined) {
   return marks === undefined
     ? "none"
-    : Schema.encodeSync(Schema.fromJsonString(Schema.Unknown))(
-        canonicalTryoutMarks(marks)
-      );
+    : `${marks.correct}/${marks.wrong}/${marks.blank}`;
+}
+
+/** The marks a profile scores with: those of a penalized exam, and none for any other. */
+function profileMarks(profile: ProfileSource) {
+  return profile.scoring.kind === "penalized"
+    ? profile.scoring.marks
+    : undefined;
 }
 
 export class AssessmentReadinessMismatchError extends Schema.TaggedError<
@@ -47,7 +54,7 @@ export function validateReadinessField(
 /** Resolves the one active track named by the readiness contract. */
 export const requireReadinessTrack = Effect.fn(
   "AksaraCorpus.requireReadinessTrack"
-)(function* (source: TryoutExamSource, readiness: AssessmentReadiness) {
+)(function* (source: ExamSource, readiness: AssessmentReadiness) {
   const track = Arr.findFirst(
     source.tracks,
     ({ key }) => key === readiness.trackKey
@@ -67,27 +74,32 @@ export const requireReadinessTrack = Effect.fn(
 export const requireReadinessSection = Effect.fn(
   "AksaraCorpus.requireReadinessSection"
 )(function* (
-  sections: readonly TryoutSection[],
+  sections: readonly SectionSource[],
   expected: ReadinessSection,
   index: number,
   scope: string
 ) {
-  const section = sections[index];
-  if (section !== undefined) {
-    return section;
-  }
-  return yield* new AssessmentReadinessMismatchError({
-    actual: "missing",
-    expected: expected.key,
-    field: "sectionKey",
-    scope,
-  });
+  return yield* Effect.fromOption(Arr.get(sections, index)).pipe(
+    Effect.mapError(
+      () =>
+        new AssessmentReadinessMismatchError({
+          actual: "missing",
+          expected: expected.key,
+          field: "sectionKey",
+          scope,
+        })
+    )
+  );
 });
 
-/** Validates active hierarchy, source revision, and every scheduled set. */
+/**
+ * Validates one exam source against its readiness: the country, exam, and
+ * revision, active sets, and each section of the track's profile with its
+ * official items, seconds, and marks.
+ */
 export const validateAssessmentSourceReadiness = Effect.fn(
   "AksaraCorpus.validateAssessmentSourceReadiness"
-)(function* (source: TryoutExamSource, readiness: AssessmentReadiness) {
+)(function* (source: ExamSource, readiness: AssessmentReadiness) {
   yield* validateReadinessField(
     source.countryKey,
     readiness.countryKey,
@@ -107,64 +119,57 @@ export const validateAssessmentSourceReadiness = Effect.fn(
     source.examKey
   );
   const track = yield* requireReadinessTrack(source, readiness);
+  const trackScope = `${source.examKey}:${track.key}`;
   yield* validateReadinessField(
     track.sets.length > 0 ? "present" : "missing",
     "present",
     "activeSets",
-    `${source.examKey}:${track.key}`
+    trackScope
   );
-  for (const set of track.sets) {
-    const setScope = `${source.examKey}:${track.key}:${set.key}`;
-    yield* Effect.forEach(
-      readiness.sections,
-      (expected, index) =>
-        Effect.gen(function* () {
-          const actual = yield* requireReadinessSection(
-            set.sections,
-            expected,
-            index,
-            setScope
-          );
-          const scope = `${setScope}:${expected.key}`;
-          yield* validateReadinessField(
-            actual.key,
-            expected.key,
-            "sectionKey",
-            scope
-          );
-          yield* validateReadinessField(
-            actual.order,
-            expected.order,
-            "order",
-            scope
-          );
-          yield* validateReadinessField(
-            actual.questionCount,
-            expected.questionCount.value,
-            "questionCount",
-            scope
-          );
-          yield* validateReadinessField(
-            actual.timeLimitSeconds,
-            expected.timeLimitSeconds.value,
-            "timeLimitSeconds",
-            scope
-          );
-          yield* validateReadinessField(
-            marksFact(actual.marks),
-            marksFact(expected.marks?.value),
-            "marks",
-            scope
-          );
-        }),
-      { discard: true }
-    );
-    yield* validateReadinessField(
-      set.sections.length,
-      readiness.sections.length,
-      "sectionCount",
-      setScope
-    );
-  }
+  const { sections } = track.profile;
+  yield* Effect.forEach(
+    readiness.sections,
+    (expected, index) =>
+      Effect.gen(function* () {
+        const actual = yield* requireReadinessSection(
+          sections,
+          expected,
+          index,
+          trackScope
+        );
+        const scope = `${trackScope}:${expected.key}`;
+        yield* validateReadinessField(
+          actual.key,
+          expected.key,
+          "sectionKey",
+          scope
+        );
+        yield* validateReadinessField(
+          actual.items,
+          expected.questionCount.value,
+          "questionCount",
+          scope
+        );
+        yield* validateReadinessField(
+          actual.seconds,
+          expected.timeLimitSeconds.value,
+          "timeLimitSeconds",
+          scope
+        );
+        yield* validateReadinessField(
+          marksFact(profileMarks(track.profile)),
+          marksFact(expected.marks?.value),
+          "marks",
+          scope
+        );
+      }),
+    { discard: true }
+  );
+  yield* validateReadinessField(
+    sections.length,
+    readiness.sections.length,
+    "sectionCount",
+    trackScope
+  );
   return source;
 });

@@ -96,7 +96,6 @@ function prepareDeletion<E>(
         },
       }),
       scope: { ...publicationScope, snapshots },
-      tryoutRuntime: null,
       ...snapshotSources,
     });
   });
@@ -121,7 +120,6 @@ const prepareProgramOnly = Effect.fn("AksaraPublisherTest.prepareProgramOnly")(
       }),
       snapshotManifests: snapshot.snapshotManifests,
       snapshotRows: snapshot.snapshotRows,
-      tryoutRuntime: null,
       ...snapshotPolicyBase("test-plan-program-base"),
       baseRendererManifestHash: rendererManifest.hash,
     });

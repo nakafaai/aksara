@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perkembangan Jati terlihat karena jumlah pertanyaannya berkurang setelah Mira menjelaskan kalimat tersebut.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perkembangan Jati ditandai oleh perubahan cara memperlakukan pertanyaan: dari sesuatu yang disembunyikan menjadi bahan penafsiran yang dapat diuji bersama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kesediaan membuka pertemuan berikutnya membuktikan bahwa Jati sudah menjadi pembaca paling mahir dalam kelompok.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dua pertanyaan pada akhir cerita menunjukkan bahwa Jati gagal berkembang karena masalahnya bertambah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan Jati hanya disebabkan oleh pujian Mira, meskipun cerita tidak menyebut adanya pujian.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

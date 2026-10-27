@@ -124,11 +124,12 @@ it("preserves exact quotations, pure notation, and unheaded introductions", () =
       []
     );
   }
+});
+
+it("checks a document without metadata, as a bank explanation is written", () => {
   assert.deepEqual(
-    findBodyHighlightIssues(
-      parseLessonMdx("## Unowned source\n\nExact wording.")
-    ),
-    []
+    findBodyHighlightIssues(parseLessonMdx("## Source\n\nExact wording.")),
+    [{ column: 1, excerpt: "Source", line: 1, rule: "section-body-highlight" }]
   );
 });
 

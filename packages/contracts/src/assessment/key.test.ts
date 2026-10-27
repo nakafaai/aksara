@@ -40,7 +40,7 @@ describe("answer keys", () => {
 
     expect(failsStrict(ItemKeySchema, itemKey)).toBe(false);
     expect(failsStrict(ItemKeySchema, unbound)).toBe(true);
-    for (const version of ["1", "sha256:abc", hash("A")]) {
+    for (const version of ["1", "sha256:abc", `sha256:${"A".repeat(64)}`]) {
       expect(failsStrict(ItemKeySchema, { ...itemKey, version })).toBe(true);
     }
   });

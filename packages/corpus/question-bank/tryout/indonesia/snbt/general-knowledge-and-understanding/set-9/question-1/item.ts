@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Unit tambahan terakhir hanya menambah sedikit manfaat pada manfaat yang sudah diperoleh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
         },

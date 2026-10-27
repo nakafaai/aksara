@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pernyataan (1) saja cukup untuk menjawab pertanyaan tetapi pernyataan (2) saja tidak cukup.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pernyataan (2) saja cukup untuk menjawab pertanyaan tetapi pernyataan (1) saja tidak cukup.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },

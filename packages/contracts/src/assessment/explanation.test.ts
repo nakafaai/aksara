@@ -29,11 +29,33 @@ describe("explanations", () => {
     const { version: _version, ...unbound } = tkaMultipleExplanation;
 
     expect(failsStrict(ItemExplanationSchema, unbound)).toBe(true);
-    for (const version of ["1", "sha256:abc", hash("A")]) {
+    for (const version of ["1", "sha256:abc", `sha256:${"A".repeat(64)}`]) {
       expect(
         failsStrict(ItemExplanationSchema, {
           ...tkaMultipleExplanation,
           version,
+        })
+      ).toBe(true);
+    }
+  });
+
+  it("names the language it explains in, which may differ from the version's", () => {
+    const { language: _language, ...unnamed } = tkaMultipleExplanation;
+
+    expect(failsStrict(ItemExplanationSchema, unnamed)).toBe(true);
+    for (const language of ["de", "en", "ar"]) {
+      expect(
+        failsStrict(ItemExplanationSchema, {
+          ...tkaMultipleExplanation,
+          language,
+        })
+      ).toBe(false);
+    }
+    for (const language of ["EN", "en_US", ""]) {
+      expect(
+        failsStrict(ItemExplanationSchema, {
+          ...tkaMultipleExplanation,
+          language,
         })
       ).toBe(true);
     }
@@ -54,7 +76,7 @@ describe("explanations", () => {
     ).toBe(false);
   });
 
-  it("holds its document and the version it explains, and nothing else", () => {
+  it("holds its document, its language, and the version it explains, and nothing else", () => {
     for (const change of [
       { hash: hash("1") },
       { answers: [] },
@@ -73,6 +95,7 @@ describe("explanations", () => {
     /** Builds an explanation whose document holds the given text. */
     const explaining = (filler: string) => ({
       document: note(filler),
+      language: "id",
       version: hash("1"),
     });
 

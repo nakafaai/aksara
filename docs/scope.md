@@ -5,8 +5,8 @@ whole-catalog release.
 
 The production scope has two independent selectors:
 
-- `families`: whole body families: `article`, `material`, `page`, or `question`
-- `snapshots`: structured families such as `program`
+- `families`: whole body families: `article`, `material`, or `page`
+- `snapshots`: structured families: `assessment`, `program`, or `quran`
 
 A whole-family selection is compact even when the family contains thousands of
 documents. Signed scopes contain only `families` and `snapshots`. Individual
@@ -33,7 +33,8 @@ arguments inside the exact reviewed checkout. Selector order must already be
 canonical; duplicates, unknown values, empty scopes, and implicit full releases
 fail before preparation.
 
-A release that adopts a new renderer manifest hash must select every family and
-the `tryout` snapshot, because the renderer contract is proved against the
-complete canonical domain set. A release that keeps the active renderer
-manifest hash may select a subset.
+A release that adopts a new renderer manifest hash must select every body
+family, because the renderer contract is proved against the complete canonical
+domain set. Assessment documents name only the components of their own
+contract, so a renderer change never needs the `assessment` snapshot. A release
+that keeps the active renderer manifest hash may select a subset.

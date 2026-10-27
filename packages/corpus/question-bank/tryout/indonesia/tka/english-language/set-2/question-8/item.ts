@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "sequence",
   },
-  responses: {
+  stimulus: "accessible-fair",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The pale lettering on the original signs would have become darker by itself during rain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The robotics symbols could be understood before a parent finished reading.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The alternative entrance had a step, while its portable ramp was stored in a locked room.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The moved displays made the original doorway wider than the alternative entrance.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The fair would necessarily start early because fewer visitors would use the nearest entrance.",
         },
       ],
     },
   },
-  stimulusKey: "accessible-fair",
 };
 
 export default item;

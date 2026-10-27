@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Who invented the first electronic computer?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Which country has the cheapest office rent?",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "How could GenAI transform occupational tasks, and what factors shape the outcome?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "How can every human task be removed immediately?",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Why should all workers avoid digital tools?",
         },
       ],

@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "kata yang ejaan dan urutannya harus sama persis dalam dua bahasa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ringkasan yang menghapus tingkat bahaya dan tindakan yang diminta",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "peringatan tambahan yang tidak terdapat dalam pesan sumber",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "ungkapan dalam bahasa sasaran yang membawa fungsi makna yang sebanding",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "panduan pelafalan tanpa pemindahan fungsi makna",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

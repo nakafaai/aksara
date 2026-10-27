@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap busana tradisional harus dibuat oleh anggota keluarga",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Busana tradisional hanya dikenakan dalam perayaan publik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perajin lokal tidak berperan karena pengetahuan hanya diwariskan dalam keluarga",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penggunaan beragam busana tradisional menghalangi orang untuk merasa saling mengenali",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
         },

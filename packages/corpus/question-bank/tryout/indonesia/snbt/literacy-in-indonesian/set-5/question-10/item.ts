@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Kegunaan dan Batas Model Rangkaian Listrik Dua Lampu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur rangkaian tertutup melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan rangkaian tertutup penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kaidah akhir dari perbandingan pertama tentang rangkaian tertutup",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan rangkaian tertutup tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

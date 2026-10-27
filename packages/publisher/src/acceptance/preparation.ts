@@ -1,8 +1,4 @@
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
-import type {
-  ContentHead,
-  QuestionHead,
-} from "@nakafa/aksara-contracts/release/head";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import type {
   ContentSnapshotManifest,
@@ -17,14 +13,9 @@ import {
 import { prepareQuranSnapshot } from "@nakafa/aksara-corpus/quran/snapshot";
 import { Effect, type FileSystem, type Path, type Scope, Stream } from "effect";
 import { prepareAcceptanceCatalog } from "#publisher/acceptance/catalog";
+import { prepareAssessmentSnapshot } from "#publisher/assessment/snapshot";
 import { prepareContentRelease } from "#publisher/preparation";
 import type { ReplaySpoolError } from "#publisher/replay/error";
-import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
-
-/** Selects question heads for exact try-out artifact binding. */
-function isQuestion(head: ContentHead): head is QuestionHead {
-  return head.family === "question";
-}
 
 type AcceptanceReleaseRowsError =
   | ReplaySpoolError
@@ -40,9 +31,7 @@ type AcceptancePreparationError =
   | Effect.Error<ReturnType<typeof prepareAcceptanceCatalog>>
   | Effect.Error<ReturnType<typeof prepareProgramSnapshot>>
   | Effect.Error<ReturnType<typeof prepareQuranSnapshot>>
-  | Effect.Error<
-      ReturnType<typeof prepareTryoutSnapshot<ReplaySpoolError, never>>
-    >;
+  | Effect.Error<ReturnType<typeof prepareAssessmentSnapshot>>;
 
 /** Prepares an independent signed genesis publication for isolated acceptance, with canonical signed evidence. */
 export const prepareAcceptanceRelease: (input: {
@@ -66,20 +55,23 @@ export const prepareAcceptanceRelease: (input: {
   const quran = yield* prepareQuranSnapshot({
     checkoutRoot: input.checkoutRoot,
   });
-  const tryout = yield* prepareTryoutSnapshot({
+  const assessment = yield* prepareAssessmentSnapshot({
     checkoutRoot: input.checkoutRoot,
     content: catalog.tryout,
-    questionHeads: catalog.result.pipe(Stream.filter(isQuestion)),
-    rendererManifest,
   });
   const manifests: readonly ContentSnapshotManifest[] = [
+    assessment.manifest,
     { family: "program", manifest: program.manifest },
     { family: "quran", manifest: quran.manifest },
-    tryout.manifest,
   ];
-  const rows = program.rows.pipe(
-    Stream.map(
-      (record) => ({ family: "program", record }) satisfies ContentSnapshotRow
+  const rows = assessment.rows.pipe(
+    Stream.concat(
+      program.rows.pipe(
+        Stream.map(
+          (record) =>
+            ({ family: "program", record }) satisfies ContentSnapshotRow
+        )
+      )
     ),
     Stream.concat(
       quran.rows.pipe(
@@ -87,10 +79,9 @@ export const prepareAcceptanceRelease: (input: {
           (record) => ({ family: "quran", record }) satisfies ContentSnapshotRow
         )
       )
-    ),
-    Stream.concat(tryout.rows)
+    )
   );
-  return yield* prepareContentRelease({
+  return yield* prepareContentRelease<AcceptanceReleaseRowsError, never>({
     ...input,
     baseActiveAppLocales: null,
     baseManifestHash: null,
@@ -104,11 +95,10 @@ export const prepareAcceptanceRelease: (input: {
     result: catalog.result,
     routes: catalog.routes,
     scope: {
-      families: ["article", "material", "page", "question"],
+      families: ["article", "material", "page"],
       snapshots: ContentSnapshotKindSchema.literals,
     },
     snapshotManifests: Stream.fromIterable(manifests),
     snapshotRows: rows,
-    tryoutRuntime: { recovery: null, result: tryout.manifest.manifest },
   });
 });

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menetapkan waktu kegiatan pasar, lalu bagian berikutnya menjelaskan cara menyebarluaskan hasil yang sudah pasti.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Perbedaan awal mendorong pemeriksaan sumber, lalu hasil pemeriksaan menentukan cara museum menulis label secara transparan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal membandingkan rencana digitalisasi, lalu bagian berikutnya memilih sumber yang paling mudah disimpan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal mengumpulkan kesaksian, lalu bagian berikutnya mengganti dokumen tertulis dengan versi mayoritas narasumber.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menilai daya tarik cerita, lalu bagian berikutnya merancang label untuk mengurangi jumlah rincian sejarah.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

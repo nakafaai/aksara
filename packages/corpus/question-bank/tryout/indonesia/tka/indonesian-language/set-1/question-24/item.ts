@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "daily-relevance",
   },
-  responses: {
+  stimulus: "food-scraps",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "sebagian besar sampah rumah tangga akan berkurang setelah pemilahan organik diterapkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "sisa hewani dapat dimasukkan tanpa batas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pembersihan wadah dapat ditunda selama label bahan tetap terbaca",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "anggota keluarga lebih mudah memisahkan bahan yang dapat diolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pengolahan tidak memerlukan pemantauan",
         },
       ],
     },
   },
-  stimulusKey: "food-scraps",
 };
 
 export default item;

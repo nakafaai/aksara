@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Merata-ratakan Semua Angka agar Laporan Cepat Selesai",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Angka Menyimpang yang Tidak Dihapus Dito",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Membuktikan Kedalaman Sumur Tepat $$4{,}81$$ Meter",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Integritas Ilmiah sebagai Alasan Memakai Semua Pengukuran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Bekas Lumpur yang Membuat Pengukuran Tidak Berguna",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

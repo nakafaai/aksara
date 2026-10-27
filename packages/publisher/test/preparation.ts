@@ -30,7 +30,6 @@ export const inheritedSnapshots = {
   previousSnapshots: inheritContentSnapshots(null),
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
-  tryoutRuntime: null,
 } as const;
 
 /** Empty genesis snapshot sources for preparation failure assertions. */
@@ -38,7 +37,6 @@ export const emptySnapshots = {
   previousSnapshots: null,
   snapshotManifests: Stream.empty,
   snapshotRows: Stream.empty,
-  tryoutRuntime: null,
 } as const;
 
 /** Prior locale policy used to exercise complete replacement requirements. */

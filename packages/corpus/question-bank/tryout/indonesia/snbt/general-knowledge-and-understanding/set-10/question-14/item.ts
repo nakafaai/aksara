@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Otomatisasi memperluas akses, tetapi keluaran perlu disertai batas, bukti asli, dan mekanisme revisi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Otomatisasi bermanfaat karena dapat menggantikan gambar asli dengan keluaran yang tidak perlu diperiksa lagi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

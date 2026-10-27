@@ -33,7 +33,6 @@ interface VerificationPlanState {
   readonly activate: typeof PublicationTarget.Service.activate;
   readonly plan: PublicationPlan<never, never>;
   /** Records each runtime-pair replay before verification. */
-  readonly runtimes: () => void;
   /** Records each execution of the plan-owned staging effect. */
   readonly stage: () => void;
   readonly stageRecovery: typeof PublicationTarget.Service.stageRecovery;
@@ -65,7 +64,6 @@ export function makeVerificationPlan(
   const selected = selectedBundle.release;
   const selectedManifest = selected.manifest;
   const stage = vi.fn();
-  const runtimes = vi.fn();
   const stageRelease = vi.fn(() => Effect.void);
   const stageRecovery = vi.fn(() => Effect.void);
   const status = vi.fn(() => Effect.succeed(statusFor(phase, selected)));
@@ -92,7 +90,6 @@ export function makeVerificationPlan(
     projectionSummary: { count: selectedManifest.projectionCount },
     rendererPreflight: "exact",
     routeSummary: { count: selectedManifest.routeCount },
-    runtimes: Effect.sync(runtimes),
     snapshotSummary: {
       snapshots: selectedManifest.snapshots,
       stagedRows: snapshotRowCount(selectedManifest.snapshots),
@@ -103,12 +100,10 @@ export function makeVerificationPlan(
       upsertCount: selectedManifest.upsertCount,
     },
     target,
-    tryoutRuntimeBundles: [],
   };
   return {
     activate,
     plan,
-    runtimes,
     stage,
     stageRecovery,
     stageRelease,

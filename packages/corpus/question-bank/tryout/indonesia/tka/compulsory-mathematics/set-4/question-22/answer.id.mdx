@@ -1,9 +1,3 @@
-export const metadata = {
-  title: "Pembahasan Soal 22",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-10-02",
-};
-
 Hanya siswa kelas X yang memilih olahraga yang berpindah, jadi **dasar perhitungan <InlineMath math="25\%" /> adalah <InlineMath math="48" /> siswa**, bukan <InlineMath math="84" /> atau <InlineMath math="120" /> siswa. Banyak siswa kelas X tetap <InlineMath math="120" />, karena siswa yang berpindah pilihan tetap siswa kelas X. Misalkan <InlineMath math="k" /> adalah banyak siswa yang berpindah dan <InlineMath math="S" /> adalah banyak siswa kelas X yang memilih seni setelah perpindahan.
 
 <BlockMath math="\begin{aligned}
@@ -21,24 +15,13 @@ S&=30+12=42 \\
 
 Tabel itu memeriksa bahwa jumlah siswa kelas X tidak berubah. Grafik berikut menunjukkan pilihan siswa kelas X setelah perpindahan. Batang seni kini sama tinggi dengan batang sains, yaitu <InlineMath math="42" /> dari <InlineMath math="120" /> siswa.
 
-<HistogramChart
+<Chart
   title="Pilihan siswa kelas X setelah perpindahan"
   description="Batang seni naik setinggi batang sains, sedangkan batang olahraga turun karena seperempat peminatnya berpindah ke seni."
-  data={[
-    { name: "Olahraga", value: 36 },
-    { name: "Seni", value: 42 },
-    { name: "Sains", value: 42 },
-  ]}
-  chartConfig={{
-    value: {
-      label: "Banyak siswa",
-      colors: {
-        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
-        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)"],
-      },
-    },
-  }}
-  yAxisLabel="Banyak siswa"
+  bars="touching"
+  categories={["Olahraga", "Seni", "Sains"]}
+  series={[{ label: "Banyak siswa", mark: "bar", values: [36, 42, 42] }]}
+  valueLabel="Banyak siswa"
 />
 
 Jadi, setelah perpindahan, <InlineMath math="35\%" /> siswa kelas X memilih seni.

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertanyaan itu memindahkan seluruh tanggung jawab desain kepada anak sehingga Tari tidak perlu menilai hasil perubahan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertanyaan itu memastikan jawaban pertama setiap anak pasti berlaku pada seluruh situasi berikutnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pertanyaan itu mengganti tebakan Tari dengan pilihan yang dinyatakan peserta, lalu memberi dasar untuk menguji apakah perubahan benar-benar membantu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertanyaan itu hanya memperlambat permainan karena hambatan sudah dapat diketahui dari penampilan setiap anak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pertanyaan itu membuktikan Tari telah memahami seluruh sudut pandang peserta sebelum permainan dimulai.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

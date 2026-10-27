@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
     topic: "prediction",
   },
-  responses: {
+  stimulus: "emergency-plan",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keep the existing wording and ask the child to memorise it more carefully.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Clarify how the meeting places are described, then practise that part again.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Wait for a real emergency to determine which meeting-place description was confusing.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Remove the second meeting place because the contact information was remembered correctly.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ask the out-of-area contact to choose both places without reviewing household needs.",
         },
       ],
     },
   },
-  stimulusKey: "emergency-plan",
 };
 
 export default item;

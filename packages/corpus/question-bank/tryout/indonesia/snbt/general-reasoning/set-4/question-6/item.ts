@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Alokasi anggaran pendidikan meningkat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Banyak mahasiswa berprestasi dapat berkuliah di universitas terkemuka dalam negeri",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
         },

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "heat-map",
+  versions: {
     id: {
-      categories: ["Sudah dikendalikan", "Perlu dikendalikan"],
-      kind: "category",
+      columns: ["Sudah dikendalikan", "Perlu dikendalikan"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Model termometer",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Waktu tunggu sebelum pencatatan",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Penggunaan kipas di ruang baca",
         },
       ],
     },
   },
-  stimulusKey: "heat-map",
 };
 
 export default item;

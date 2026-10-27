@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
     topic: "geometry-objects",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$6\\text{ cm}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$\\frac{13}{2}\\text{ cm}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$2\\sqrt{13}\\text{ cm}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$6\\sqrt{2}\\text{ cm}$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$3\\sqrt{13}\\text{ cm}$$",
         },
       ],

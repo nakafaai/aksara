@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "main-idea-purpose",
   },
-  responses: {
+  stimulus: "rooftop-garden",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The roof is mainly organized to maximize the number of edible plants it produces.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "A rooftop garden uses different zones to respond to practical conditions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The garden is mainly designed to be seen from the street.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Volunteers avoid recording experiments that fail.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The hottest western zone is the central focus because it contains the water supply.",
         },
       ],
     },
   },
-  stimulusKey: "rooftop-garden",
 };
 
 export default item;

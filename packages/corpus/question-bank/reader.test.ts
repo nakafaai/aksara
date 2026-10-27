@@ -3,32 +3,32 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect } from "effect";
 
-import { decodeQuestionItemSource } from "#corpus/question-bank/reader";
+import { decodeItemSource } from "#corpus/question-bank/reader";
 
 const sourcePath = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/example/item.ts"
+  "packages/corpus/question-bank/tryout/test-country/test-exam/test-section/test-set/question-1/item.ts"
 );
 const itemObject = `{
-  "responses": {
+  "versions": {
     "en": {
-      "kind": "single-choice",
+      "kind": "choice",
       "options": [
-        { "isCorrect": true, "label": \`A\` },
-        { isCorrect: false, label: "B" },
+        { "correct": true, "label": \`A\` },
+        { correct: false, label: "B" },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
-        { isCorrect: true, label: "A (ID)" },
-        { isCorrect: false, label: "B (ID)" },
+        { correct: true, label: "A (ID)" },
+        { correct: false, label: "B (ID)" },
       ],
     },
   },
 }`;
 const typeImport =
-  'import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";';
-const declaration = `const item: QuestionItem = ${itemObject};`;
+  'import type { ItemSource } from "#corpus/question-bank/item";';
+const declaration = `const item: ItemSource = ${itemObject};`;
 const exportAssignment = "export default item;";
 
 /** Builds a complete item module around one syntax variant. */
@@ -46,29 +46,25 @@ function expectRejections(sources: readonly string[]) {
     sources,
     (source) =>
       Effect.gen(function* () {
-        const error = yield* decodeQuestionItemSource(source, sourcePath).pipe(
+        const error = yield* decodeItemSource(source, sourcePath).pipe(
           Effect.flip
         );
 
-        expect(error).toMatchObject({
-          _tag: "QuestionItemError",
-          sourcePath,
-        });
+        expect(error).toMatchObject({ _tag: "ItemSourceError", sourcePath });
       }),
     { discard: true }
   );
 }
 
-layer(TypeScriptParser.layer)("question item source", (it) => {
+layer(TypeScriptParser.layer)("item source", (it) => {
   it.effect("rejects literal dollars before accepting an authored item", () =>
     Effect.gen(function* () {
       const source = itemModule().replace('label: "A (ID)"', 'label: "$3$"');
-      const error = yield* Effect.flip(
-        decodeQuestionItemSource(source, sourcePath)
-      );
+      const error = yield* Effect.flip(decodeItemSource(source, sourcePath));
+
       expect(error).toMatchObject({
         _tag: "QuestionLabelError",
-        labelPath: "responses.id.options[0].label",
+        labelPath: "versions.id.options[0].label",
         reason: "dollar",
         sourcePath,
       });
@@ -77,34 +73,22 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
 
   it.effect("decodes reviewed literal data without executing the module", () =>
     Effect.gen(function* () {
-      const item = yield* decodeQuestionItemSource(itemModule(), sourcePath);
+      const item = yield* decodeItemSource(itemModule(), sourcePath);
 
       expect(item).toEqual({
-        responses: {
+        versions: {
           en: {
-            kind: "single-choice",
+            kind: "choice",
             options: [
-              {
-                isCorrect: true,
-                label: "A",
-              },
-              {
-                isCorrect: false,
-                label: "B",
-              },
+              { correct: true, label: "A" },
+              { correct: false, label: "B" },
             ],
           },
           id: {
-            kind: "single-choice",
+            kind: "choice",
             options: [
-              {
-                isCorrect: true,
-                label: "A (ID)",
-              },
-              {
-                isCorrect: false,
-                label: "B (ID)",
-              },
+              { correct: true, label: "A (ID)" },
+              { correct: false, label: "B (ID)" },
             ],
           },
         },
@@ -112,50 +96,26 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
     })
   );
 
-  it.effect("decodes authored short answers, points, and rubrics", () =>
+  it.effect("decodes a matrix with its blueprint and shared reading", () =>
     Effect.gen(function* () {
-      const shortAnswer = yield* decodeQuestionItemSource(
+      const item = yield* decodeItemSource(
         itemModule(
           typeImport,
-          `const item: QuestionItem = {
-  points: 2,
-  responses: {
-    id: {
-      key: {
-        acceptsFractions: true,
-        kind: "number",
-        tolerance: { kind: "absolute", value: "0.05" },
-        value: "-2.5",
-      },
-      kind: "short-answer",
-    },
+          `const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "algebra",
+    topic: "functions",
   },
-};`
-        ),
-        sourcePath
-      );
-      const rubric = yield* decodeQuestionItemSource(
-        itemModule(
-          typeImport,
-          `const item: QuestionItem = {
-  responses: {
-    de: {
-      criteria: [
-        {
-          finalAnswer: {
-            acceptedAnswers: ["streng monoton steigend"],
-            collapseWhitespace: true,
-            ignoreCase: true,
-            kind: "text",
-          },
-          label: { de: "Ergebnis", en: "Result", id: "Hasil" },
-          levels: [
-            { label: { de: "falsch", en: "wrong", id: "salah" }, points: 0 },
-            { label: { de: "richtig", en: "right", id: "benar" }, points: 1 },
-          ],
-        },
+  stimulus: "passage-1",
+  versions: {
+    id: {
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Satu" },
+        { column: 2, label: "Dua" },
       ],
-      kind: "rubric",
     },
   },
 };`
@@ -163,14 +123,10 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
         sourcePath
       );
 
-      expect(shortAnswer.points).toBe(2);
-      expect(shortAnswer.responses.id).toMatchObject({
-        key: { value: "-2.5" },
-        kind: "short-answer",
-      });
-      expect(rubric.responses.de).toMatchObject({
-        criteria: [{ levels: [{ points: 0 }, { points: 1 }] }],
-        kind: "rubric",
+      expect(item).toMatchObject({
+        blueprint: { topic: "functions" },
+        stimulus: "passage-1",
+        versions: { id: { kind: "matrix", statements: [{ column: 1 }, {}] } },
       });
     })
   );
@@ -179,17 +135,17 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
     "rejects imports that expand the authoring module capability",
     () => {
       const invalidImports = [
-        'import "@nakafa/aksara-contracts/question/item";',
-        'import { QuestionItem } from "@nakafa/aksara-contracts/question/item";',
-        'import { type QuestionItem } from "@nakafa/aksara-contracts/question/item";',
-        'import type QuestionItem from "@nakafa/aksara-contracts/question/item";',
-        'import type * as QuestionItem from "@nakafa/aksara-contracts/question/item";',
-        'import type { QuestionItem, Other } from "@nakafa/aksara-contracts/question/item";',
-        'import type { Other } from "@nakafa/aksara-contracts/question/item";',
-        'import type { QuestionItem as Renamed } from "@nakafa/aksara-contracts/question/item";',
-        'import type { QuestionItem } from "@nakafa/aksara-contracts/projection/material";',
-        'import type { QuestionItem } from "@nakafa/aksara-contracts/question/item" with { type: "json" };',
-        "import type { QuestionItem } from source;",
+        'import "#corpus/question-bank/item";',
+        'import { ItemSource } from "#corpus/question-bank/item";',
+        'import { type ItemSource } from "#corpus/question-bank/item";',
+        'import type ItemSource from "#corpus/question-bank/item";',
+        'import type * as ItemSource from "#corpus/question-bank/item";',
+        'import type { ItemSource, Other } from "#corpus/question-bank/item";',
+        'import type { Other } from "#corpus/question-bank/item";',
+        'import type { ItemSource as Renamed } from "#corpus/question-bank/item";',
+        'import type { ItemSource } from "#corpus/question-bank/path";',
+        'import type { ItemSource } from "#corpus/question-bank/item" with { type: "json" };',
+        "import type { ItemSource } from source;",
         "const first = 1;",
       ];
 
@@ -202,14 +158,14 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
   it.effect("rejects declarations other than one typed item constant", () => {
     const invalidDeclarations = [
       "function item() {}",
-      `let item: QuestionItem = ${itemObject};`,
-      `const item: QuestionItem = ${itemObject}, other = {};`,
-      `const { item }: QuestionItem = ${itemObject};`,
-      `const other: QuestionItem = ${itemObject};`,
-      "const item: QuestionItem;",
+      `let item: ItemSource = ${itemObject};`,
+      `const item: ItemSource = ${itemObject}, other = {};`,
+      `const { item }: ItemSource = ${itemObject};`,
+      `const other: ItemSource = ${itemObject};`,
+      "const item: ItemSource;",
       `const item = ${itemObject};`,
       `const item: string = ${itemObject};`,
-      `const item: Namespace.QuestionItem = ${itemObject};`,
+      `const item: Namespace.ItemSource = ${itemObject};`,
       `const item: Other = ${itemObject};`,
     ];
 
@@ -222,34 +178,40 @@ layer(TypeScriptParser.layer)("question item source", (it) => {
     "rejects executable, computed, incomplete, and invalid item values",
     () => {
       const label = '"A"';
-      const correctOption = `{ isCorrect: true, label: ${label} }`;
-      const distractor = `{ isCorrect: false, label: ${label} }`;
-      const response = `{ kind: "single-choice", options: [${correctOption}, ${distractor}] }`;
+      const correct = `{ correct: true, label: ${label} }`;
+      const wrong = `{ correct: false, label: ${label} }`;
+      const choice = `{ kind: "choice", options: [${correct}, ${wrong}] }`;
       const invalidObjects = [
         "[]",
         "{}",
         "{ ...other }",
-        "{ responses: {}, responses: {} }",
-        "{ responses: {} }",
-        `{ responses: { en: ${response}, fr: ${response} } }`,
-        "{ responses: call() }",
-        '{ responses: { en: ["A"] } }',
-        "{ responses: { en: { ...other } } }",
-        `{ responses: { en: { kind: "single-choice", options: [{ label: ${label} }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${label}, other: "A" }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: 1 }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: 1, label: ${label} }, ${distractor}] } } }`,
-        `{ responses: { [locale]: ${response} } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, label: ${label}, label: ${label} }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [{ isCorrect: true, isCorrect: false, label: ${label} }, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [${distractor}, ${distractor}] } } }`,
-        `{ responses: { en: { kind: "single-choice", options: [${correctOption}, ${correctOption}] } } }`,
+        "{ versions: {}, versions: {} }",
+        "{ versions: {} }",
+        `{ versions: { en: ${choice}, fr: ${choice} } }`,
+        "{ versions: call() }",
+        '{ versions: { en: ["A"] } }',
+        "{ versions: { en: { ...other } } }",
+        `{ versions: { en: { kind: "choice", options: [{ label: ${label} }, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [{ correct: true }, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [{ correct: true, label: ${label}, other: "A" }, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [{ correct: true, label: 1 }, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [{ correct: 1, label: ${label} }, ${wrong}] } } }`,
+        `{ versions: { [locale]: ${choice} } }`,
+        `{ versions: { en: { kind: "choice", options: [{ correct: true, label: ${label}, label: ${label} }, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [${wrong}, ${wrong}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [${correct}, ${correct}] } } }`,
+        `{ versions: { en: { kind: "choice", options: [${correct}] } } }`,
+        `{ versions: { en: ${choice}, id: { kind: "choice", options: [${wrong}, ${correct}] } } }`,
+        `{ versions: { en: ${choice}, id: { columns: ["A", "B"], kind: "matrix", statements: [{ column: 1, label: ${label} }] } } }`,
+        `{ versions: { en: { columns: ["A"], kind: "matrix", statements: [{ column: 1, label: ${label} }] } } }`,
+        `{ versions: { en: { columns: ["A", "B"], kind: "matrix", statements: [] } } }`,
+        `{ versions: { en: { columns: ["A", "B"], kind: "matrix", statements: [{ column: 3, label: ${label} }] } } }`,
+        `{ stimulus: "Passage 1", versions: { en: ${choice} } }`,
       ];
 
       return expectRejections(
         Arr.map(invalidObjects, (object) =>
-          itemModule(typeImport, `const item: QuestionItem = ${object};`)
+          itemModule(typeImport, `const item: ItemSource = ${object};`)
         )
       );
     }

@@ -1,20 +1,14 @@
-export const metadata = {
-  title: "Soal 1",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-01-29",
-  dateModified: "2026-09-07",
-};
-
-<Set8Question1SalesChart
-  description="Pendapatan tiga toko bunga di wilayah X selama lima tahun terakhir."
-  seriesLabels={{
-    A: "A",
-    B: "B",
-    C: "C",
-  }}
+<Chart
   title="Data Penjualan Toko Bunga"
-  yAxisLabel="Pendapatan"
-  yearLabel="Tahun ke-"
+  description="Pendapatan tiga toko bunga di wilayah X selama lima tahun terakhir."
+  bars="apart"
+  categories={["Tahun ke-1", "Tahun ke-2", "Tahun ke-3", "Tahun ke-4", "Tahun ke-5"]}
+  series={[
+    { label: "A", mark: "bar", values: [260, 390, 425, 450, 520] },
+    { label: "B", mark: "bar", values: [250, 275, 350, 385, 450] },
+    { label: "C", mark: "bar", values: [225, 280, 320, 400, 495] },
+  ]}
+  valueLabel="Pendapatan"
 />
 
 Grafik di atas menunjukkan data pendapatan tiga toko bunga di wilayah X selama lima tahun terakhir. Berdasarkan data tersebut, berapa persentase peningkatan pendapatan toko C pada tahun ke-<InlineMath math="3" /> dibanding tahun sebelumnya?

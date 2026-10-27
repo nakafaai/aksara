@@ -1,13 +1,35 @@
 import { Array as Arr } from "effect";
-
-import { TKA_QUESTION_ROOT } from "#corpus/tryout/indonesia/tka/identity";
-import type { TryoutTrackSourceInput } from "#corpus/tryout/schema";
+import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Bahasa Indonesia sets. */
 export const tkaIndonesianTrack = {
   key: "indonesian-language",
   kind: "subject",
   order: 2,
+  profile: {
+    names: {
+      de: { title: "TKA Indonesisch" },
+      en: { title: "TKA Indonesian" },
+      id: { title: "TKA Bahasa Indonesia" },
+    },
+    report: { sections: false, standardError: false, total: true },
+    scoring: { kind: "raw" },
+    sections: [
+      {
+        interactions: ["choice", "matrix"],
+        items: 25,
+        key: "indonesian-language",
+        language: "id",
+        seconds: 4500,
+        translations: {
+          de: { title: "Indonesisch" },
+          en: { title: "Indonesian" },
+          id: { title: "Bahasa Indonesia" },
+        },
+        visibility: "internal-entry",
+      },
+    ],
+  },
   routeSlugs: {
     de: "indonesisch",
     en: "indonesian",
@@ -23,28 +45,6 @@ export const tkaIndonesianTrack = {
         en: setKey,
         id: setKey,
       },
-      sections: [
-        {
-          key: "indonesian-language",
-          languagePolicy: { kind: "fixed" as const, language: "id" as const },
-          order: 1,
-          questionCount: 25,
-          questionSourcePath: `${TKA_QUESTION_ROOT}/indonesian-language/${setKey}`,
-          rendererDomain: "snbt-plain" as const,
-          routeSlugs: {
-            de: "indonesisch",
-            en: "indonesian",
-            id: "bahasa-indonesia",
-          },
-          timeLimitSeconds: 4500,
-          translations: {
-            de: { title: "Indonesisch" },
-            en: { title: "Indonesian" },
-            id: { title: "Bahasa Indonesia" },
-          },
-          visibility: "internal-entry" as const,
-        },
-      ],
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
@@ -57,4 +57,4 @@ export const tkaIndonesianTrack = {
     en: { title: "Indonesian" },
     id: { title: "Bahasa Indonesia" },
   },
-} satisfies TryoutTrackSourceInput;
+} satisfies TrackSourceInput;

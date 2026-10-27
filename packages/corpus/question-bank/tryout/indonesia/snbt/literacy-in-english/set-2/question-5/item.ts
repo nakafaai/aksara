@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Every participant lost exactly $$1.24\\text{ kg}$$ and kept it off.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Only one of the $$35$$ studies reported any weight change.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Average weight increased during Ramadan and fell afterward.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Participants lost $$1.24\\text{ kg}$$ on average during Ramadan, but most of it was regained within weeks.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The review prescribed a fixed calorie target for all participants.",
         },

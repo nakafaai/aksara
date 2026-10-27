@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Suhu putaran ketiga membuktikan reflektor $$45$$ derajat menghasilkan suhu $$66$$ derajat Celsius pada semua tingkat iradiansi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kenaikan suhu antarputaran terutama menunjukkan bahwa pemutaran posisi oven membuat reflektor semakin efektif.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Reflektor $$45$$ derajat menghasilkan suhu tertinggi pada setiap putaran uji, tetapi sudut, bentuk oven, dan kondisi cuaca yang terbatas belum menetapkan sudut terbaik secara umum.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data menunjukkan iradiansi menentukan suhu akhir sepenuhnya sehingga perbedaan sudut reflektor tidak perlu ditafsirkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tujuan utama percobaan adalah membuktikan semua reflektor lebih baik daripada tanpa reflektor, bukan membandingkan sudutnya.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

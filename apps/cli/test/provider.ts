@@ -55,7 +55,7 @@ function acquirePreviewReady() {
 export function makeIncoherentResults(
   ready: Effect.Success<ReturnType<typeof makePreviewReady>>
 ) {
-  const [compiled] = ready.result.results;
+  const compiled = ready.result.result;
   const artifacts = [
     Schema.decodeSync(SignedContentArtifactSchema)({
       ...compiled.artifact,

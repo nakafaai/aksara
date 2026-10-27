@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa memakai $$240$$ catatan buku tamu untuk membuktikan bahwa seluruh pengunjung di lima kota mengalami pameran dengan cara yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa menolak poster sebagai sumber sejarah karena bahan promosi tidak dapat memberi informasi tentang tujuan penyelenggara.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Siswa membandingkan citra inklusif pada lima poster dengan tanggapan sukarela dari dua kota, lalu membatasi simpulan karena tidak ada data seluruh pengunjung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa menganggap buku tamu lebih akurat daripada poster karena dibuat setelah pameran berlangsung dan memuat lebih banyak kata.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Siswa menyimpulkan bahwa keluhan akses membatalkan seluruh komentar positif karena kedua jenis tanggapan tidak dapat muncul bersama.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

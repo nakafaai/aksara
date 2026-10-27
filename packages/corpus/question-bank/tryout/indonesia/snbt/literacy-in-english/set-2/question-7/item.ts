@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "The anatomy of songbird wings",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Methods for treating immune disease in birds",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The seasonal routes of every European bird species",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Human medical advice based on bird migration",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The relationship between movement across pathogen regions and the evolution of MHC-I diversity",
         },

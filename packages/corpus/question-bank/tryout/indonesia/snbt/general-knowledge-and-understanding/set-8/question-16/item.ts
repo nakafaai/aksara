@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pemeriksaan hasil terhadap acuan agar hasil dapat ditafsirkan secara tepat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menambah jumlah laporan tanpa memeriksa ketepatannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menghapus semua hasil yang berbeda dari dugaan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "merata-ratakan seluruh pengamatan tanpa memperhitungkan peluang kunjungan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menganggap penilaian ahli selalu benar dan tidak perlu diuji",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

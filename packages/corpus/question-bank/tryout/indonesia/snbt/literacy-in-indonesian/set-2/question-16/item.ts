@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Membuktikan bahwa semua catatan Romawi keliru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menetapkan harga setiap benda peninggalan Romawi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
         },
       ],

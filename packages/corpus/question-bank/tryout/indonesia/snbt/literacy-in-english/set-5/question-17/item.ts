@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Samira wrote the entry date on the last unmarked package. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dating the final unmarked package changes the blue stamp into a cue for shared care, and the next volunteer's response shows that meaning being carried forward.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Samira wrote the entry date on the last unmarked package. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Samira wrote the entry date on the last unmarked package. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Samira wrote the entry date on the last unmarked package. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

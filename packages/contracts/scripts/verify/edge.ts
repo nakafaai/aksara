@@ -21,6 +21,8 @@ import {
 import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
+  "assessment/catalog",
+  "assessment/identity",
   "graph/family",
   "release/canonical",
   "release/snapshot/data",
@@ -29,8 +31,6 @@ export const EDGE_CONTRACT_EXPORTS = [
   "transport/request",
   "transport/response",
   "transport/snapshot",
-  "tryout/catalog",
-  "tryout/identity",
 ] as const;
 const PRIVATE_PREFIX = "#contracts/";
 

@@ -1,31 +1,40 @@
-import { expect, layer } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
-import {
-  corpusRoot,
-  questionLayer,
-  realQuestionCorpusLayer,
-} from "#corpus/test/question";
+import { corpusRoot } from "#corpus/test/root";
 import { loadTryoutContent } from "#corpus/tryout/content";
 
-layer(realQuestionCorpusLayer)("tryout content", (it) => {
+/** Loads the whole authored try-out bank of this checkout. */
+const content = Effect.flatMap(corpusRoot, loadTryoutContent).pipe(
+  Effect.provide(NodeServices.layer)
+);
+
+describe("loadTryoutContent", () => {
   it.effect(
-    "projects one discovered question source set into entries and placements",
+    "reads, checks, and plans every question of every active exam",
     () =>
       Effect.gen(function* () {
-        const repositoryRoot = yield* corpusRoot;
-        const content = yield* loadTryoutContent(repositoryRoot).pipe(
-          Effect.provide(questionLayer)
-        );
+        const { exams, papers, sets } = yield* content;
+        const questions = Arr.flatMap(sets, (set) => set.questions);
 
-        expect(content.entries).toHaveLength(7500);
-        expect(content.projection.placements).toHaveLength(5625);
+        expect(Arr.map(exams, ({ examKey }) => examKey)).toEqual([
+          "snbt",
+          "tka",
+        ]);
+        expect(sets).toHaveLength(81);
+        expect(questions).toHaveLength(1875);
+        expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(159);
+        expect(papers).toHaveLength(21);
         expect(
-          Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "question")
-        ).toHaveLength(1875);
-        expect(
-          Arr.filter(content.entries, ({ bodyKind }) => bodyKind === "answer")
-        ).toHaveLength(5625);
+          Arr.reduce(papers, 0, (total, { sections }) =>
+            Arr.reduce(
+              sections,
+              total,
+              (sum, { set }) => sum + set.questions.length
+            )
+          )
+        ).toBe(1875);
       }),
-    { timeout: 30_000 }
+    120_000
   );
 });

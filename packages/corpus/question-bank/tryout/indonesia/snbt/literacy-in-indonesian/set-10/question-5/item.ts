@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Sudut $$45$$ Derajat sebagai Aturan untuk Semua Oven Surya",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji Sudut Reflektor pada Oven Surya Model",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengabaikan Iradiansi dalam Perbandingan Suhu Air",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Putaran Ketiga yang Menentukan Sudut Terbaik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Posisi Oven Tidak Perlu Diputar",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

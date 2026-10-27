@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Penjualan jenis kerudung segiempat adalah sebanyak $$42$$ buah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kerudung jenis pasmina paling banyak terjual yaitu sebesar $$35$$ buah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kerudung jenis pasmina lebih sedikit terjual dibandingkan kerudung jenis bergo.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kerudung jenis bergo adalah kerudung yang paling banyak terjual.",
         },

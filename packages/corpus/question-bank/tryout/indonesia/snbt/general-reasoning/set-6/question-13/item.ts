@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Peternak ayam mandiri mengalami kerugian.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mitra dagang telah membatasi ekspor negara tersebut.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebuah putusan dagang secara langsung menyebabkan penurunan harga di tingkat peternak.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Retaliasi merupakan satu-satunya faktor yang menentukan neraca perdagangan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Impor ayam yang diusulkan telah masuk ke pasar lokal.",
         },
       ],

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lonjakan muncul pada waktu yang tidak teratur tanpa pola selang yang tetap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
         },

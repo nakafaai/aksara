@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Sebagian warga Jakarta memiliki akta kelahiran dan KTP",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua warga Jakarta memiliki akta kelahiran dan KTP",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua warga Jakarta hanya memiliki salah satu dari akta kelahiran atau KTP",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Ada warga Jakarta di atas $$17$$ tahun tidak memiliki akta kelahiran namun memiliki KTP",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian warga Jakarta tidak memiliki akta kelahiran namun mempunyai KTP",
         },

@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Solution to Problem 11",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-23",
-  dateModified: "2026-09-07",
-};
-
 Given:
 - <InlineMath math="700" /> students in total.
 - <InlineMath math="350" /> students choosing sports.
@@ -12,21 +5,20 @@ Given:
 
 We want to find the value of <InlineMath math="P" /> (**maximum intersection**) and <InlineMath math="Q" /> (minimum intersection).
 
-#### Maximum intersection
+# Maximum intersection
 The maximum number of students participating in both occurs if the **smaller set is contained in the larger set** (or as many members of the smaller set as possible are included in the larger set).
 
 <BlockMath math="P = \min(350, 450) = 350 " />
 
-#### Minimum intersection
+# Minimum intersection
 The minimum number of students participating in both occurs if the **union is as large as possible** (equal to the total universe, which is <InlineMath math="700" />).
 Using the Inclusion-Exclusion Principle:
 
-<MathContainer>
-  <BlockMath math="Q = (350 + 450) - 700" />
-  <BlockMath math="Q = 800 - 700 = 100 " />
-</MathContainer>
+<BlockMath math="Q = (350 + 450) - 700" />
 
-#### Difference between the bounds
+<BlockMath math="Q = 800 - 700 = 100 " />
+
+# Difference between the bounds
 
 Both bounds are attainable. These **nonoverlapping groups** account for all 700 students in each case.
 

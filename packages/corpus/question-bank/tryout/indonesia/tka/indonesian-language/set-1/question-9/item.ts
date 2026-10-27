@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "fiction-evidence",
   },
-  responses: {
+  stimulus: "harbor-lamp",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "ia memantulkan cahaya dengan cermin hingga bantuan datang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "orang-orang mengira ia menjaga kebiasaan lama",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "garis laut berubah gelap",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "ketua kampung memujinya pada pagi hari",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "lampu lama diletakkan di rak dermaga",
         },
       ],
     },
   },
-  stimulusKey: "harbor-lamp",
 };
 
 export default item;

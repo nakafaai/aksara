@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Satuan, aturan pembulatan, dan batas setiap kategori ditetapkan sebelum pencatatan dimulai.",
         },

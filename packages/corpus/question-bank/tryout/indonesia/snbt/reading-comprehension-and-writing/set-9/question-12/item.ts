@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "pada Senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pada Senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pada senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pada Senin, Tim menguji jadwal digital setelah pembatalan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pada Senin tim menguji jadwal digital setelah pembatalan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Mengukur jaring-jaring makanan melalui satu perbandingan awal",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kegunaan dan Batas Model Jaring-Jaring Makanan di Kebun Sekolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan jaring-jaring makanan penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kaidah akhir dari perbandingan pertama tentang jaring-jaring makanan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan jaring-jaring makanan tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

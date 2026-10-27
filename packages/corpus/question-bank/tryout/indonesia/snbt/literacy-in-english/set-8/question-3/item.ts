@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Because the models held $$39$$ washers on average, compared with $$24$$ and $$25$$, holding paper mass, bridge span, and weight placement constant isolates forming connected triangles in the paper bridge as the only possible cause.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The strongest follow-up would change both forming connected triangles in the paper bridge and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The limitation that paper fibres and folds varied slightly between models affects numerical precision, but it does not restrict how widely the finding can be applied.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of the triangular truss and the load held by the paper bridge.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The truss models held $$39$$ washers on average, compared with $$24$$ and $$25$$. This supports an association under the tested conditions, but more standardised paper and folds are needed before a broader claim.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

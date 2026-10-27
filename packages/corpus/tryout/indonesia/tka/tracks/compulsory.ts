@@ -1,13 +1,35 @@
 import { Array as Arr } from "effect";
-
-import { TKA_QUESTION_ROOT } from "#corpus/tryout/indonesia/tka/identity";
-import type { TryoutTrackSourceInput } from "#corpus/tryout/schema";
+import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Compulsory Mathematics sets. */
 export const tkaCompulsoryMathematicsTrack = {
   key: "compulsory-mathematics",
   kind: "subject",
   order: 1,
+  profile: {
+    names: {
+      de: { title: "TKA Pflichtmathematik" },
+      en: { title: "TKA Compulsory Mathematics" },
+      id: { title: "TKA Matematika Wajib" },
+    },
+    report: { sections: false, standardError: false, total: true },
+    scoring: { kind: "raw" },
+    sections: [
+      {
+        interactions: ["choice", "matrix"],
+        items: 25,
+        key: "compulsory-mathematics",
+        language: "id",
+        seconds: 4500,
+        translations: {
+          de: { title: "Pflichtmathematik" },
+          en: { title: "Compulsory Mathematics" },
+          id: { title: "Matematika Wajib" },
+        },
+        visibility: "internal-entry",
+      },
+    ],
+  },
   routeSlugs: {
     de: "pflichtmathematik",
     en: "compulsory-mathematics",
@@ -23,28 +45,6 @@ export const tkaCompulsoryMathematicsTrack = {
         en: setKey,
         id: setKey,
       },
-      sections: [
-        {
-          key: "compulsory-mathematics",
-          languagePolicy: { kind: "fixed" as const, language: "id" as const },
-          order: 1,
-          questionCount: 25,
-          questionSourcePath: `${TKA_QUESTION_ROOT}/compulsory-mathematics/${setKey}`,
-          rendererDomain: "tka-math" as const,
-          routeSlugs: {
-            de: "pflichtmathematik",
-            en: "compulsory-mathematics",
-            id: "matematika-wajib",
-          },
-          timeLimitSeconds: 4500,
-          translations: {
-            de: { title: "Pflichtmathematik" },
-            en: { title: "Compulsory Mathematics" },
-            id: { title: "Matematika Wajib" },
-          },
-          visibility: "internal-entry" as const,
-        },
-      ],
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
@@ -57,4 +57,4 @@ export const tkaCompulsoryMathematicsTrack = {
     en: { title: "Compulsory Mathematics" },
     id: { title: "Matematika Wajib" },
   },
-} satisfies TryoutTrackSourceInput;
+} satisfies TrackSourceInput;

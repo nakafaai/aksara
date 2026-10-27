@@ -229,13 +229,6 @@ export const prepareRollback: PrepareRollback = Effect.fn(
           policy.active.manifestHash,
           "page"
         )
-      ),
-      Stream.concat(
-        streamContentHeads(
-          policy.active.releaseId,
-          policy.active.manifestHash,
-          "question"
-        )
       )
     ),
   });

@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "sequence",
   },
-  responses: {
+  stimulus: "repair-workshop",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The mistake showed that every repair should use new parts, so the writer later replaced the noisy brake immediately.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The mistake convinced the writer that service notes slow repairs, so the writer stopped recording observations.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The mistake showed that similar-looking parts still require records and measurements, a method the writer later applied before advising another volunteer.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The mistake mattered only because it took an hour, whereas the final-day decision was based on speed alone.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The mistake taught the writer to let Sari make uncertain decisions, which is why the writer avoided guiding the new volunteer.",
         },
       ],
     },
   },
-  stimulusKey: "repair-workshop",
 };
 
 export default item;

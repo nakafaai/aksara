@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Model jaring-jaring makanan di kebun sekolah menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Model menggambarkan pengaruh musim dan penyakit secara lengkap sehingga pola pada kartu dapat langsung diterapkan di kebun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Model hanya membantu menghafal nama makhluk hidup tanpa menunjukkan hubungan makan antarpopulasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengulangan langkah pada model memastikan bahwa seluruh keadaan lapangan akan menghasilkan pola yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Faktor yang tidak digambarkan membuat model tidak berguna untuk menjelaskan prinsip atau menyusun pertanyaan baru.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

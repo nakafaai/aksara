@@ -5,15 +5,15 @@ import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 const AUTHORED = "export const metadata = {};\n\n";
 
-it("keeps a standalone answer inside the app-owned explanation heading", () => {
-  const valid = `${AUTHORED}#### Menentukan laju\n\n##### Satuan laju\n\n#### Menghitung waktu`;
-  assert.deepEqual(findHeadingOrderIssues(valid, parseLessonMdx(valid), 4), []);
-  const invalid = `${AUTHORED}##### Laju\n\n#### Waktu\n\n### Keluar dari pembahasan`;
+it("keeps a bank explanation in its own two heading levels", () => {
+  const valid = "# Menentukan laju\n\n## Satuan laju\n\n# Menghitung waktu";
+  assert.deepEqual(findHeadingOrderIssues(valid, parseLessonMdx(valid), 1), []);
+  const invalid = "## Laju\n\n# Waktu\n\n### Keluar dari pembahasan";
   assert.deepEqual(
-    findHeadingOrderIssues(invalid, parseLessonMdx(invalid), 4).map(
+    findHeadingOrderIssues(invalid, parseLessonMdx(invalid), 1).map(
       ({ line }) => line
     ),
-    [3, 7]
+    [1, 5]
   );
 });
 
@@ -101,10 +101,12 @@ it("rejects deep lesson solutions even when no level is skipped", () => {
   );
 });
 
-it("ignores documents without authored metadata", () => {
+it("checks documents without authored metadata, as bank explanations are", () => {
   assert.deepEqual(
-    findHeadingOrderIssues("## Bagian\n\n#### Melompat\n\nTeks."),
-    []
+    findHeadingOrderIssues("## Bagian\n\n#### Melompat\n\nTeks.").map(
+      ({ excerpt }) => excerpt
+    ),
+    ["#### Melompat"]
   );
   assert.deepEqual(findHeadingOrderIssues("", parseLessonMdx("")), []);
   assert.deepEqual(findHeadingOrderIssues("", { type: "root" }), []);

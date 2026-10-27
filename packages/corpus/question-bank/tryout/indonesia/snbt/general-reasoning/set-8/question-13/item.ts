@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Banyak siswa menyatakan bahwa pengingat membantu mereka mengingat tenggat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kelas pembanding tanpa aplikasi tidak mengalami peningkatan pengumpulan tepat waktu.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sekolah menggunakan definisi “tepat waktu” yang sama pada kedua periode.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada minggu yang sama, tenggat pengumpulan diperpanjang dari pukul $$17.00$$ hingga tengah malam.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Aplikasi mengirim pengingat sehari sebelum setiap tenggat.",
         },
       ],

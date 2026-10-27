@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data di kumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data dikumpulkan dipusat informasi taman kota dan kemudian dibandingkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data mengumpulkan di pusat informasi taman kota dan kemudian membandingkan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Data dikumpulkan pada di pusat informasi taman kota lalu di bandingkan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Data dikumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

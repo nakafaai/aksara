@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pencatat memakai contoh foto karena deskripsi lama telah terbukti tidak berguna dalam semua keadaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto diterapkan secara permanen dan deskripsi lama tidak dipakai lagi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pencatat memakai foto dan deskripsi lama tanpa memisahkan kondisi uji dan pembanding.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada sesi uji, pencatat memakai contoh foto tambahan, sedangkan pada sesi pembanding mereka hanya memakai deskripsi tertulis lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan sesi yang memakai contoh foto hanya dengan komentar tentang deskripsi lama.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

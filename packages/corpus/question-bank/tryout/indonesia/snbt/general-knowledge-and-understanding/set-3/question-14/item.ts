@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menguji versi revisi, lalu bagian berikutnya menjelaskan mengapa terjemahan harfiah dipilih kembali.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal membandingkan tiga rute evakuasi, lalu bagian berikutnya menetapkan rute yang berlaku untuk semua kampung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal mengubah istilah teknis, lalu bagian berikutnya menguji hasil revisi pada peserta yang sama untuk menilai daya ingat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bagian awal menemukan gangguan sinyal, lalu bagian berikutnya memperbaiki pemancar tanpa mengubah isi pesan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Kegagalan versi harfiah menjadi dasar perancangan bersama, lalu uji kedua menyediakan bukti untuk menilai hasil revisi.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

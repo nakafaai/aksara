@@ -1,37 +1,14 @@
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
-import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import {
-  Array as Arr,
-  Effect,
-  type FileSystem,
-  MutableHashMap,
-  Path,
-} from "effect";
+import { Array as Arr, Effect, type FileSystem, Path } from "effect";
 import {
   captureSelectedFiles,
   PreviewRepositoryError,
   type PreviewRestartError,
-  type SelectedDirectory,
   type SelectedDocument,
   type SelectedFileCandidate,
-  verifySelectedDirectory,
 } from "#cli/integrity";
-
-/** Retains restart semantics when one selected file has multiple owners. */
-function recordSelectedPath(
-  files: MutableHashMap.MutableHashMap<
-    SelectedFileCandidate["sourcePath"],
-    SelectedFileCandidate["mode"]
-  >,
-  sourcePath: SelectedFileCandidate["sourcePath"],
-  mode: SelectedFileCandidate["mode"]
-) {
-  if (mode === "restart" || !MutableHashMap.has(files, sourcePath)) {
-    MutableHashMap.set(files, sourcePath, mode);
-  }
-}
 
 /** Selects only an exact realpath-backed document and its registry closure. */
 export const selectPreviewDocument: (
@@ -77,69 +54,28 @@ export const selectPreviewDocument: (
         })
     )
   );
-  const [first, ...remaining] = selection.sources;
-  const firstPath = first.entry.sourcePath;
-  const directoriesByPath = MutableHashMap.empty<
-    SelectedDirectory["sourcePath"],
-    SelectedDirectory["files"]
-  >();
-  const remainingPaths = MutableHashMap.empty<
-    PreviewSource["entry"]["sourcePath"],
-    SelectedFileCandidate["mode"]
-  >();
-  for (const source of selection.sources) {
-    for (const directory of source.directories) {
-      MutableHashMap.set(
-        directoriesByPath,
-        directory.sourcePath,
-        directory.files
-      );
-    }
-    if (source.entry.sourcePath !== firstPath) {
-      recordSelectedPath(remainingPaths, source.entry.sourcePath, "reload");
-    }
-    for (const dependency of source.dependencies) {
-      recordSelectedPath(
-        remainingPaths,
-        dependency.sourcePath,
-        dependency.mode
-      );
-    }
-  }
+  const { source } = selection;
+  const bodyPath = source.entry.sourcePath;
   const candidates = [
     {
-      absolutePath: path.resolve(aksaraRoot, firstPath),
+      absolutePath: path.resolve(aksaraRoot, bodyPath),
       mode: "reload",
-      sourcePath: firstPath,
+      sourcePath: bodyPath,
     },
     ...Arr.map(
-      [...remainingPaths],
-      ([sourcePath, mode]): SelectedFileCandidate => {
-        const selectedPath = path.resolve(aksaraRoot, sourcePath);
-        if (mode === "reload") {
-          return { absolutePath: selectedPath, mode: "reload", sourcePath };
-        }
-        return { absolutePath: selectedPath, mode: "restart", sourcePath };
-      }
+      Arr.dedupe(source.dependencies),
+      (sourcePath): SelectedFileCandidate => ({
+        absolutePath: path.resolve(aksaraRoot, sourcePath),
+        mode: "restart",
+        sourcePath,
+      })
     ),
   ] satisfies readonly [SelectedFileCandidate, ...SelectedFileCandidate[]];
   const files = yield* captureSelectedFiles(candidates);
-  const directories = Arr.map(
-    [...directoriesByPath],
-    ([sourcePath, expectedFiles]): SelectedDirectory => ({
-      absolutePath: path.resolve(aksaraRoot, sourcePath),
-      files: expectedFiles,
-      sourcePath,
-    })
-  );
-  yield* Effect.forEach(directories, verifySelectedDirectory, {
-    discard: true,
-  });
   const selected = {
-    directories,
     document: selection.document,
     files,
-    sources: [first, ...remaining],
+    source,
   } satisfies SelectedDocument;
   return selected;
 });

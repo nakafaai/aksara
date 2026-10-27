@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "penggambaran batas wilayah tanpa memeriksa nama yang dipakai masyarakat",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pengukuran jarak perjalanan antara dua lokasi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kajian dan pencatatan nama tempat beserta asal serta konteks pemakaiannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penyeragaman seluruh nama tempat menjadi satu bentuk resmi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "daftar nama baru tanpa riwayat asal dan konteks pemakaiannya",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

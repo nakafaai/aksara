@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Impor naik dan turun dari tahun ke tahun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Produksi, konsumsi, dan impor bertambah dengan jumlah yang sama setiap tahun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Konsumsi tertinggi terjadi pada tahun A.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Impor melebihi produksi dalam negeri pada setiap tahun yang tercantum.",
         },

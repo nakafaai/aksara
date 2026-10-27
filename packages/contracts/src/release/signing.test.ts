@@ -16,14 +16,14 @@ import { encodeJsonText } from "#contracts/text/json";
 
 /** Test-only Ed25519 public key that verifies the pinned release signature below. */
 const testPublicKeyPem = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEAgCI4g0xGIYe6KCmUuuCfBLq4QIP7z5P+Fd4dgGRbJF0=
+MCowBQYDK2VwAyEAIy9gDOrxSWb2JvlHFvwW8yMjuqsa17V5qkSAaVjzqlk=
 -----END PUBLIC KEY-----
 `;
 
 /** Ed25519 signature of the pinned release signing input, made by the test-only key. */
 // Record again: create a key, sign the same input, and replace the public key and signature literals.
 const pinnedSignature =
-  "nFwTAzLPhAPe7od0cRFc7rzVivz_3dYuoV0r7fBuRwxpQru7rJS9QyWio4yIHOiD_WycVo_U6F7RERDGDteMBw";
+  "Dap_k-bU2BnXbB1del6o-MPeGIaljjRDLGTJ37JnleO8B4Ck92S6yF66E14vlFGSbccGlns0PL9ZnD-wEjvxDA";
 
 const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id", "de"],
@@ -49,6 +49,13 @@ const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   routeDigest: `sha256:${"6".repeat(64)}`,
   scope: { families: ["material"], snapshots: ["program"] },
   snapshots: {
+    assessment: {
+      baseSnapshotId: null,
+      mode: "inherit",
+      resultSnapshotId: null,
+      rowCount: 0,
+      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+    },
     program: {
       baseSnapshotId: null,
       mode: "replace",
@@ -57,13 +64,6 @@ const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
       rowDigest: `sha256:${"8".repeat(64)}`,
     },
     quran: {
-      baseSnapshotId: null,
-      mode: "inherit",
-      resultSnapshotId: null,
-      rowCount: 0,
-      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
-    },
-    tryout: {
       baseSnapshotId: null,
       mode: "inherit",
       resultSnapshotId: null,
@@ -96,8 +96,15 @@ const rollbackManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   rollbackDigest: `sha256:${"1".repeat(64)}`,
   routeCount: 0,
   routeDigest: `sha256:${"2".repeat(64)}`,
-  scope: { families: ["material"], snapshots: ["tryout"] },
+  scope: { families: ["material"], snapshots: ["assessment"] },
   snapshots: {
+    assessment: {
+      baseSnapshotId: `sha256:${"3".repeat(64)}`,
+      mode: "restore",
+      resultSnapshotId: null,
+      rowCount: 0,
+      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
+    },
     program: {
       baseSnapshotId: null,
       mode: "inherit",
@@ -108,13 +115,6 @@ const rollbackManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
     quran: {
       baseSnapshotId: null,
       mode: "inherit",
-      resultSnapshotId: null,
-      rowCount: 0,
-      rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
-    },
-    tryout: {
-      baseSnapshotId: `sha256:${"3".repeat(64)}`,
-      mode: "restore",
       resultSnapshotId: null,
       rowCount: 0,
       rowDigest: EMPTY_SNAPSHOT_ROW_DIGEST,
@@ -160,13 +160,13 @@ describe("release signing", () => {
 
   it("pins the canonical bytes of a genesis release manifest", () => {
     expect(canonicalizeContentReleaseManifest(genesisManifest)).toBe(
-      '{"activeAppLocales":["en","id","de"],"baseActiveAppLocales":null,"baseManifestHash":null,"baseReleaseId":null,"baseResultCount":0,"baseResultDigest":"sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","origin":{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"},"projectionCount":1,"projectionDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","releaseId":"test-release-genesis","rendererManifestHash":"sha256:3333333333333333333333333333333333333333333333333333333333333333","resultCount":1,"resultDigest":"sha256:4444444444444444444444444444444444444444444444444444444444444444","rollbackCount":2,"rollbackDigest":"sha256:5555555555555555555555555555555555555555555555555555555555555555","routeCount":1,"routeDigest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","scope":{"families":["material"],"snapshots":["program"]},"snapshots":{"program":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:7777777777777777777777777777777777777777777777777777777777777777","rowCount":1,"rowDigest":"sha256:8888888888888888888888888888888888888888888888888888888888888888"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"tryout":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
+      '{"activeAppLocales":["en","id","de"],"baseActiveAppLocales":null,"baseManifestHash":null,"baseReleaseId":null,"baseResultCount":0,"baseResultDigest":"sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","origin":{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"},"projectionCount":1,"projectionDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","releaseId":"test-release-genesis","rendererManifestHash":"sha256:3333333333333333333333333333333333333333333333333333333333333333","resultCount":1,"resultDigest":"sha256:4444444444444444444444444444444444444444444444444444444444444444","rollbackCount":2,"rollbackDigest":"sha256:5555555555555555555555555555555555555555555555555555555555555555","routeCount":1,"routeDigest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","scope":{"families":["material"],"snapshots":["program"]},"snapshots":{"assessment":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"program":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:7777777777777777777777777777777777777777777777777777777777777777","rowCount":1,"rowDigest":"sha256:8888888888888888888888888888888888888888888888888888888888888888"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
     );
   });
 
   it("pins the canonical bytes of a rollback release manifest", () => {
     expect(canonicalizeContentReleaseManifest(rollbackManifest)).toBe(
-      '{"activeAppLocales":["en","id"],"baseActiveAppLocales":["en","id"],"baseManifestHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","baseReleaseId":"release-active","baseResultCount":1,"baseResultDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","origin":{"kind":"rollback","releaseId":"release-active"},"projectionCount":1,"projectionDigest":"sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","releaseId":"test-release-recovery","rendererManifestHash":"sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","resultCount":1,"resultDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rollbackCount":2,"rollbackDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","routeCount":0,"routeDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","scope":{"families":["material"],"snapshots":["tryout"]},"snapshots":{"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"tryout":{"baseSnapshotId":"sha256:3333333333333333333333333333333333333333333333333333333333333333","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
+      '{"activeAppLocales":["en","id"],"baseActiveAppLocales":["en","id"],"baseManifestHash":"sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","baseReleaseId":"release-active","baseResultCount":1,"baseResultDigest":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","origin":{"kind":"rollback","releaseId":"release-active"},"projectionCount":1,"projectionDigest":"sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee","releaseId":"test-release-recovery","rendererManifestHash":"sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff","resultCount":1,"resultDigest":"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","rollbackCount":2,"rollbackDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","routeCount":0,"routeDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","scope":{"families":["material"],"snapshots":["assessment"]},"snapshots":{"assessment":{"baseSnapshotId":"sha256:3333333333333333333333333333333333333333333333333333333333333333","mode":"restore","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"program":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
     );
   });
 
@@ -176,7 +176,7 @@ describe("release signing", () => {
     expect(
       canonicalizeContentReleaseSigningInput(manifestHash, genesisManifest)
     ).toBe(
-      'nakafa.aksara.localized-content-release\nsha256:9999999999999999999999999999999999999999999999999999999999999999\n{"activeAppLocales":["en","id","de"],"baseActiveAppLocales":null,"baseManifestHash":null,"baseReleaseId":null,"baseResultCount":0,"baseResultDigest":"sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","origin":{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"},"projectionCount":1,"projectionDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","releaseId":"test-release-genesis","rendererManifestHash":"sha256:3333333333333333333333333333333333333333333333333333333333333333","resultCount":1,"resultDigest":"sha256:4444444444444444444444444444444444444444444444444444444444444444","rollbackCount":2,"rollbackDigest":"sha256:5555555555555555555555555555555555555555555555555555555555555555","routeCount":1,"routeDigest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","scope":{"families":["material"],"snapshots":["program"]},"snapshots":{"program":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:7777777777777777777777777777777777777777777777777777777777777777","rowCount":1,"rowDigest":"sha256:8888888888888888888888888888888888888888888888888888888888888888"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"tryout":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
+      'nakafa.aksara.localized-content-release\nsha256:9999999999999999999999999999999999999999999999999999999999999999\n{"activeAppLocales":["en","id","de"],"baseActiveAppLocales":null,"baseManifestHash":null,"baseReleaseId":null,"baseResultCount":0,"baseResultDigest":"sha256:ed7d49e237dadbd311a1599264b00852ae18657d123c8f9cbc26c1c62c8f81cd","deleteCount":1,"format":"localized-content-release","itemCount":2,"itemsDigest":"sha256:1111111111111111111111111111111111111111111111111111111111111111","origin":{"kind":"git","sha":"0123456789abcdef0123456789abcdef01234567"},"projectionCount":1,"projectionDigest":"sha256:2222222222222222222222222222222222222222222222222222222222222222","releaseId":"test-release-genesis","rendererManifestHash":"sha256:3333333333333333333333333333333333333333333333333333333333333333","resultCount":1,"resultDigest":"sha256:4444444444444444444444444444444444444444444444444444444444444444","rollbackCount":2,"rollbackDigest":"sha256:5555555555555555555555555555555555555555555555555555555555555555","routeCount":1,"routeDigest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","scope":{"families":["material"],"snapshots":["program"]},"snapshots":{"assessment":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"},"program":{"baseSnapshotId":null,"mode":"replace","resultSnapshotId":"sha256:7777777777777777777777777777777777777777777777777777777777777777","rowCount":1,"rowDigest":"sha256:8888888888888888888888888888888888888888888888888888888888888888"},"quran":{"baseSnapshotId":null,"mode":"inherit","resultSnapshotId":null,"rowCount":0,"rowDigest":"sha256:eb27aa7f59e41b14a3f76d951c5a50cb954a19f3f6e6c44bc21a733f606e888f"}},"upsertCount":1}'
     );
   });
 
@@ -186,7 +186,7 @@ describe("release signing", () => {
       Effect.gen(function* () {
         const message = canonicalizeContentReleaseSigningInput(
           Sha256HashSchema.make(
-            "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
+            "sha256:9ac286f3b056213a8189323e40dc61f4faf9c88fad737fe5bc51914794f5e155"
           ),
           verificationManifest
         );

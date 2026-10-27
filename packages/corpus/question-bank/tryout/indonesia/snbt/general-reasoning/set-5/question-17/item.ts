@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sumbangan konsumsi rumah tangga tetap tepat $$2{,}74$$ poin persentase",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sumbangan konsumsi rumah tangga berada di bawah $$2{,}74$$ poin persentase",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sumbangan investasi pasti turun di bawah $$2{,}17$$ poin persentase",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pertumbuhan ekonomi total pasti menjadi negatif",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Konsumsi rumah tangga tidak memberikan sumbangan sama sekali",
         },
       ],

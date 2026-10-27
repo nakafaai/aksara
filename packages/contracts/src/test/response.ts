@@ -124,7 +124,6 @@ export const successes = [
       active: null,
       candidate: { phase: "staging", release, rendererManifest },
       recovery: null,
-      tryoutRuntimeBundle: null,
     },
   },
   {

@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu menunjukkan kadar air tinggi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu menunjukkan karbohidrat rendah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu menunjukkan kadar lemak rendah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kartu tidak menunjukkan karbohidrat tinggi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Kartu menunjukkan kadar lemak tinggi",
         },
       ],

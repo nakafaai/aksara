@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pemakaian melebihi batas dan aliran listrik terputus",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jika aliran listrik tidak terputus, pemakaian tidak melebihi batas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pemakaian tidak melebihi batas atau aliran listrik terputus",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak benar bahwa pemakaian melebihi batas sementara listrik tetap menyala",
         },

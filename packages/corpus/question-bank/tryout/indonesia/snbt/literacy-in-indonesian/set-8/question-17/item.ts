@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Daftar peminjaman lebih tepat untuk mengetahui pemahaman peserta karena mencatat $$18$$ bulan, jauh lebih banyak daripada tujuh pertemuan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Catatan fasilitator mewakili seluruh peserta karena dibuat langsung saat percakapan klub berlangsung.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Daftar peminjaman menunjukkan buku yang tercatat keluar, sedangkan catatan fasilitator memberi sebagian pengalaman peserta yang berbicara. Keduanya menjawab pertanyaan yang berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menggabungkan kedua sumber membuktikan bahwa setiap peminjaman setelah jadwal berubah dilakukan oleh pekerja muda yang baru bergabung.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan tujuan pencatatan tidak memengaruhi simpulan selama kedua sumber berasal dari klub yang sama.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

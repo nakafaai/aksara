@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition of *friction* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition makes *friction* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition broadens *friction* from this short investigation to every similar system under any condition.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition of *friction* clarifies the force being investigated, while the travel-time comparison and possible surface wear determine what the results support.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *friction* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

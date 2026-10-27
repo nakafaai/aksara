@@ -17,7 +17,6 @@ import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
@@ -51,13 +50,11 @@ export class ProductionStateError extends Schema.TaggedError<
 
 const NewActionSchema = Schema.Struct({
   baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
-  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
   kind: Schema.Literal("new"),
   scope: PublicationScopeSchema,
 });
 const RebuildActionSchema = Schema.Struct({
   baseBundle: Schema.NullOr(ContentReleaseBundleSchema),
-  baseTryoutRuntimeBundle: Schema.NullOr(SignedTryoutRuntimeBundleSchema),
   candidate: StagedContentReleaseSchema,
   kind: Schema.Literal("rebuild"),
   scope: PublicationScopeSchema,
@@ -169,7 +166,6 @@ const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
     }
     return {
       baseBundle: current.active === null ? null : activeBundle(current.active),
-      baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
       candidate,
       kind: "rebuild",
       scope: stored.scope,
@@ -229,7 +225,6 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
   }
   return {
     baseBundle: active === null ? null : activeBundle(active),
-    baseTryoutRuntimeBundle: current.tryoutRuntimeBundle,
     kind: "new",
     scope: args.scope,
   };

@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengendapan bersih dapat menahan sedimen dan unsur hara di dataran banjir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Erosi dapat membawa sedimen dan unsur hara keluar dari dataran banjir",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Unsur hara yang tertahan dapat mendukung pertumbuhan tanaman jika pengendapan melebihi erosi",
         },

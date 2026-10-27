@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Kantor baru lebih jauh dari rumah sebagian besar karyawan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perpindahan itu menggandakan rata-rata waktu perjalanan ke kantor.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Biaya sewa kantor baru lebih rendah daripada kantor lama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Perusahaan pindah setelah masa sewa gedung lama berakhir.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Sebagian besar surat pengunduran diri telah diajukan sebelum rencana perpindahan diumumkan.",
         },

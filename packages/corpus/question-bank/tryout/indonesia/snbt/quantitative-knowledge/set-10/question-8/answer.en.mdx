@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Solution for Question 8",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-27",
-  dateModified: "2026-09-12",
-};
-
 Find the intervals where the **product of the two factors is positive** in this inequality:
 
 <BlockMath math="x^2 + x - 6 > 0" />
@@ -19,9 +12,35 @@ The factors are zero at the two boundary points:
 
 These points divide the number line into three intervals. Test one value from each interval:
 
-<Set10Question8Graph
+<NumberLine
   title="Number Line"
   description="Visualization of the inequality solution region."
+  max={4}
+  min={-5}
+  segments={[
+    {
+      end: -3,
+      endInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+++" />,
+    },
+    {
+      start: -3,
+      end: 2,
+      startInclusive: false,
+      endInclusive: false,
+      shaded: false,
+      label: <InlineMath math="---" />,
+      startLabel: <InlineMath math="-3" />,
+      endLabel: <InlineMath math="2" />,
+    },
+    {
+      start: 2,
+      startInclusive: false,
+      shaded: true,
+      label: <InlineMath math="+++" />,
+    },
+  ]}
 />
 
 | Interval | Test value | Product |

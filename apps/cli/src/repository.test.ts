@@ -88,7 +88,7 @@ layer(NodeServices.layer)("preview repository selection", (it) => {
         { concurrency: "unbounded" }
       );
       expect(relativeDocument).toEqual(absoluteDocument);
-      expect(relativeDocument.sources[0].entry).toEqual(ENGLISH_ENTRY);
+      expect(relativeDocument.source.entry).toEqual(ENGLISH_ENTRY);
     })
   );
 
@@ -114,7 +114,7 @@ layer(NodeServices.layer)("preview repository selection", (it) => {
     () =>
       Effect.gen(function* () {
         const selected = yield* selectCatalogDocument(REPOSITORY_ROOT);
-        expect(selected.sources[0].family).toBe("material");
+        expect(selected.source.family).toBe("material");
         registryControl.empty = true;
         const empty = yield* selectCatalogDocument(REPOSITORY_ROOT).pipe(
           Effect.flip

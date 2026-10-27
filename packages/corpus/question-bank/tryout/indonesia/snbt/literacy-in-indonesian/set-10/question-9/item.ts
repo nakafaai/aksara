@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menjadikan volume keluaran bawah sebagai ukuran tunggal bagi semua proses air di dalam kolom.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Membuktikan bahwa air yang telah masuk pasti segera keluar sehingga penyimpanan tidak mungkin terjadi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menunjukkan bahwa kedua istilah dapat dipakai bergantian selama volume awalnya sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menghapus kebutuhan menghitung air tersimpan karena perkolasi sudah mencakup seluruh air di dalam tanah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mencegah pembaca menyamakan air yang masuk dari permukaan dengan air yang telah bergerak sampai ke bawah kolom.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

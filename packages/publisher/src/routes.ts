@@ -5,7 +5,6 @@ import {
   type ReleaseId,
 } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ContentRouteChange,
   ContentRouteChangeSchema,
@@ -90,14 +89,12 @@ export function routeTransitionForContent(
       : {
           appLocale: AppLocaleSchema.make(transition.prior.head.artifactLocale),
           contentKey: transition.prior.head.contentKey,
-          ...("publicPath" in transition.prior.head
-            ? { publicPath: transition.prior.head.publicPath }
-            : {}),
+          publicPath: transition.prior.head.publicPath,
         };
   const { change } = transition.record;
   const publicPath =
     "projection" in transition.record
-      ? projectionPublicPath(transition.record.projection)
+      ? transition.record.projection.publicPath
       : undefined;
   const next: RouteVersion =
     "projection" in transition.record &&

@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
     topic: "cause-effect",
   },
-  responses: {
+  stimulus: "library-boat",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "The usual river access changes when the water level falls.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To attract readers back after a fixed village library reduced its opening hours",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The crew wants a stronger internet signal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The folding ramp is stored in that village.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The boat's blue roof becomes too hot.",
         },
       ],
     },
   },
-  stimulusKey: "library-boat",
 };
 
 export default item;

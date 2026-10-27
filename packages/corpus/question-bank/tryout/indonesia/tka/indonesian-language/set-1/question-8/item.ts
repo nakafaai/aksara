@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "continuation",
   },
-  responses: {
+  stimulus: "harbor-lamp",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "remaja kampung merawat tanda darurat secara bergiliran",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Raka menyerahkan pemantauan laut kepada remaja setelah sistem darurat dipasang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "penjaga pantai membatasi penggunaan dermaga sampai tanda darurat diperiksa",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "warga melarang penggunaan lampu baru",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Raka menyimpan lampu lama tanpa melanjutkan sistem darurat bersama remaja kampung",
         },
       ],
     },
   },
-  stimulusKey: "harbor-lamp",
 };
 
 export default item;

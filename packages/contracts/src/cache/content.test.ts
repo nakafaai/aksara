@@ -91,10 +91,9 @@ describe("pinned content cache tags", () => {
       "content-scope:article",
       "content-scope:material",
       "content-scope:page",
-      "content-scope:question",
+      "content-scope:assessment",
       "content-scope:program",
       "content-scope:quran",
-      "content-scope:tryout",
     ]);
   });
 

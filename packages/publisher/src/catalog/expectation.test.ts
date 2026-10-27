@@ -35,13 +35,6 @@ const control = vi.hoisted(() => ({
       },
     },
   ],
-  questions: [
-    {
-      artifactLocale: "en",
-      contentKey:
-        "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-    },
-  ],
 }));
 
 vi.mock("@nakafa/aksara-corpus/articles/registry", async () => {
@@ -68,14 +61,6 @@ vi.mock("@nakafa/aksara-corpus/pages/registry", async () => {
   return {
     /** Supplies controlled page identities without authored fixtures. */
     decodePageRegistry: () => TestEffect.succeed(control.pages),
-  };
-});
-
-vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    /** Supplies controlled question identities from one try-out scan. */
-    loadTryoutContent: () => TestEffect.succeed({ entries: control.questions }),
   };
 });
 
@@ -111,18 +96,11 @@ beforeEach(() => {
       },
     },
   ];
-  control.questions = [
-    {
-      artifactLocale: "en",
-      contentKey:
-        "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-    },
-  ];
 });
 
 /** Runs source expectation discovery through its platform boundary. */
-const readExpectation = Effect.fn("CatalogExpectationTest.read")(() =>
-  readContentCatalogExpectation("/code/aksara")
+const readExpectation = Effect.fn("CatalogExpectationTest.read")(
+  () => readContentCatalogExpectation
 );
 
 layer(NodeServices.layer)("content catalog expectation", (it) => {
@@ -146,16 +124,9 @@ layer(NodeServices.layer)("content catalog expectation", (it) => {
             contentKey: "pages/privacy-policy",
             family: "page",
           },
-          {
-            artifactLocale: "en",
-            contentKey:
-              "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
-            family: "question",
-          },
         ],
         materialCount: 1,
         pageCount: 1,
-        questionCount: 1,
         routes: [
           {
             current: {
@@ -191,7 +162,7 @@ layer(NodeServices.layer)("content catalog expectation", (it) => {
             },
           },
         ],
-        totalCount: 4,
+        totalCount: 3,
       });
     })
   );
@@ -202,19 +173,21 @@ layer(NodeServices.layer)("content catalog expectation", (it) => {
       Effect.gen(function* () {
         yield* Effect.sync(() => {
           control.articles = [];
-          control.questions = Arr.append(control.questions, {
-            artifactLocale: "id",
-            contentKey:
-              "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-2/question",
+          control.pages = Arr.append(control.pages, {
+            route: {
+              appLocale: "en",
+              artifactLocale: "en",
+              contentKey: "pages/terms-of-service",
+              publicPath: "terms-of-service",
+            },
           });
         });
 
         expect(yield* readExpectation()).toMatchObject({
           articleCount: 0,
           materialCount: 1,
-          pageCount: 1,
-          questionCount: 2,
-          totalCount: 4,
+          pageCount: 2,
+          totalCount: 3,
         });
       })
   );

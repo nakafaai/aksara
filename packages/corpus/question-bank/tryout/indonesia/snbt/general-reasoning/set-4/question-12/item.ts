@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Spesies ini hanya berasal dari Papua",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Spesies ini merupakan herba, bukan pohon",
         },
       ],

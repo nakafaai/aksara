@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "$$4\\pi+9$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$80-4\\pi$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$71+4\\pi$$",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$71-4\\pi$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$80-9\\pi$$",
         },
       ],

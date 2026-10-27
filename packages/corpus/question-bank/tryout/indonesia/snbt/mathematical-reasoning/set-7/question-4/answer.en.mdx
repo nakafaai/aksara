@@ -1,20 +1,330 @@
-export const metadata = {
-  title: "Solution to Question 4",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  dateModified: "2026-09-07",
-  datePublished: "2025-06-11",
-};
-
-#### Problem Visualization
+# Problem Visualization
 
 Here is an illustration of the spotlight positions (at the top corners) and the **intersection point of their beams**.
 
-<Set7Question4Graph
+<LineEquation
   title={<>Podcast Studio Visualization</>}
   description={<>The intersection point of the spotlight beams is at the center of the cube.</>}
+  cameraPosition={[-8, 5, 10]}
+  data={[
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: 2.5 },
+        { x: 2.5, y: -2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: 2.5 },
+        { x: 2.5, y: -2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: -2.5 },
+        { x: -2.5, y: -2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: -2.5 },
+        { x: -2.5, y: -2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: 2.5, z: 2.5 },
+        { x: 2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: 2.5, z: 2.5 },
+        { x: 2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: 2.5, z: -2.5 },
+        { x: -2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: 2.5, z: -2.5 },
+        { x: -2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: 2.5 },
+        { x: -2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: 2.5 },
+        { x: 2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: -2.5 },
+        { x: 2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: -2.5 },
+        { x: -2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: 2.5 },
+        { x: 2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: 2.5 },
+        { x: -2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: -2.5 },
+        { x: -2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: -2.5 },
+        { x: 2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      lineWidth: 2,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 0, y: -1.25, z: 0 },
+        { x: 0, y: -2.5, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: false,
+      lineWidth: 3,
+      labels: [
+        {
+          text: <InlineMath math="\frac{5}{2}\,\text{m}" />,
+          at: 1,
+          offset: [-1.2, 0, -0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -2.5, z: 0 },
+      ],
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="A" />,
+          at: 0,
+          offset: [-0.5, -0.5, 0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="B" />,
+          at: 0,
+          offset: [0.5, -0.5, 0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: -2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="C" />,
+          at: 0,
+          offset: [0.5, -0.5, -0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: -2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="D" />,
+          at: 0,
+          offset: [-0.5, -0.5, -0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="E" />,
+          at: 0,
+          offset: [-0.5, 0.5, 0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: 2.5, z: 2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="F" />,
+          at: 0,
+          offset: [0.5, 0.5, 0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="G" />,
+          at: 0,
+          offset: [0.5, 0.5, -0.5],
+        },
+      ],
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -2.5, y: 2.5, z: -2.5 },
+      ],
+      color: "#4f46e5",
+      showPoints: true,
+      labels: [
+        {
+          text: <InlineMath math="H" />,
+          at: 0,
+          offset: [-0.5, 0.5, -0.5],
+        },
+      ],
+      smooth: false,
+    },
+  ]}
 />
 
-#### Geometric Analysis
+# Geometric Analysis
 
 The spotlights at the four top corners are points <InlineMath math="E" />, <InlineMath math="F" />, <InlineMath math="G" />, and <InlineMath math="H" /> in the figure. Each beam runs to the diagonally opposite bottom corner, so all four beams are **space diagonals**. Every space diagonal joins opposite vertices, so its midpoint lies halfway along each of the three dimensions. All four therefore share the same midpoint, the cube's center.
 

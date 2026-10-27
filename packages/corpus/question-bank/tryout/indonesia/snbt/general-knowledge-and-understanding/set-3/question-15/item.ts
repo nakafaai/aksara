@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pesan darurat perlu mempertahankan makna dan tindakan melalui bahasa yang dipahami warga, bukan sekadar menyalin urutan kata resmi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

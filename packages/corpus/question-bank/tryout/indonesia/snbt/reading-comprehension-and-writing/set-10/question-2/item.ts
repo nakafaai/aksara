@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "nilai terendah yang wajib dicapai agar uji dinyatakan berhasil",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "rata-rata gabungan dari pertemuan uji dan pertemuan pembanding",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "perkiraan yang dibuat sebelum pencatatan dimulai",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "nilai yang telah dikoreksi setelah peserta memberi tanggapan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "nilai yang dicatat sebelum perubahan uji dan dipakai sebagai salah satu acuan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

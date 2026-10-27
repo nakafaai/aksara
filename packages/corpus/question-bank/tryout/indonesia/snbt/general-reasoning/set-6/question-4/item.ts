@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "menurunkan tekanan darah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mencegah penyakit kardiovaskular",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "meningkatkan tekanan darah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mempercepat pencernaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menghilangkan kebutuhan tubuh akan kalium",
         },
       ],

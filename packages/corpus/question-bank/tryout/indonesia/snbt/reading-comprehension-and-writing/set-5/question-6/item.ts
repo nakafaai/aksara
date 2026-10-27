@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Contoh foto terbukti menjadi satu-satunya penyebab rata-rata kesepakatan yang lebih tinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap pasangan pencatat mengalami peningkatan kesepakatan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Nilai awal dan nilai sesi pembanding sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Uji tersebut menetapkan tingkat kesepakatan jangka panjang.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Rata-rata kesepakatan pada sesi uji lebih tinggi daripada nilai awal dan nilai sesi pembanding.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

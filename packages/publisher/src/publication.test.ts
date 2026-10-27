@@ -276,13 +276,12 @@ describe("content publication", () => {
   it.effect.each([
     { declared: "test-other-base", reason: "base", survivors: 0 },
     { declared: "test-base", reason: "replacement", survivors: 1 },
-    { declared: "test-base", reason: "snapshot", survivors: 0, tryout: true },
   ])(
     "rejects a bootstrap refused for its $reason",
-    ({ declared, reason, survivors, tryout }) =>
+    ({ declared, reason, survivors }) =>
       Effect.gen(function* () {
         const bootstrap = yield* Effect.promise(() =>
-          makeBootstrapRelease("test-refusal", "test-base", survivors, tryout)
+          makeBootstrapRelease("test-refusal", "test-base", survivors)
         );
         const state = makeTarget(bootstrap);
         const error = yield* publishBootstrap(

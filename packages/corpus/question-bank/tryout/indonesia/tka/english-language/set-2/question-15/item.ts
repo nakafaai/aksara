@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  responses: {
+  stimulus: "last-bus",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story is realistic mainly because every problem is resolved by one official website.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story becomes unrealistic when Niko keeps the timetable after the disruption.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Each source provides only information it could realistically know, so the characters combine them.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The exact time and named location make every event a verified historical report.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The story becomes fantasy when Niko reads the timetable as if its numbers could explain the delay.",
         },
       ],
     },
   },
-  stimulusKey: "last-bus",
 };
 
 export default item;

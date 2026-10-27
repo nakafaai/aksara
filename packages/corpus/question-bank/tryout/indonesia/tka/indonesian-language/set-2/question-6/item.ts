@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "fiction",
     topic: "continuation",
   },
-  responses: {
+  stimulus: "last-broadcast",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "mengganti label tanggal dengan urutan digital agar arsip lebih mudah dipindahkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "mempertahankan kaset di ruang siaran agar konteks aslinya tidak hilang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "memutar paksa kaset yang rapuh",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "membantu mendata rekaman sebelum proses digitalisasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "mengambil alih laboratorium bahasa",
         },
       ],
     },
   },
-  stimulusKey: "last-broadcast",
 };
 
 export default item;

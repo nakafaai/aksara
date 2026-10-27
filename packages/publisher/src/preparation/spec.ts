@@ -41,14 +41,8 @@ import type {
   PreparedReleaseBaseIdentityError,
   PreparedReleaseIdentityError,
   PreparedSnapshotScopeError,
-  PreparedTryoutRuntimeMissingError,
-  PreparedTryoutRuntimeSnapshotError,
-  PreparedTryoutRuntimeTransitionError,
 } from "#publisher/preparation/errors";
-import type {
-  PreparedGitRelease,
-  PreparedTryoutRuntimeTransition,
-} from "#publisher/preparation/prepared";
+import type { PreparedGitRelease } from "#publisher/preparation/prepared";
 import type { QuranProvenanceBlockedError } from "#publisher/preparation/provenance";
 import type {
   PreparedSnapshotStreamError,
@@ -118,8 +112,6 @@ export interface PrepareContentReleaseInput<E, R>
   readonly result: PreparedResultCatalogSource<E, R>;
   readonly routes: PreparedRouteSource<E, R>;
   readonly scope: PublicationScope;
-  /** Candidate runtime pair plus an optional distinct retained inverse. */
-  readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
 
 type SourceHashError = Effect.Error<
@@ -192,9 +184,6 @@ type PrepareContentReleaseError<E, R> =
   | PreparedReleaseBaseIdentityError
   | PreparedReleaseIdentityError
   | PreparedSnapshotScopeError
-  | PreparedTryoutRuntimeMissingError
-  | PreparedTryoutRuntimeSnapshotError
-  | PreparedTryoutRuntimeTransitionError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError

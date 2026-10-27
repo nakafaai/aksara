@@ -1,5 +1,4 @@
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import { projectionPublicPath } from "@nakafa/aksara-contracts/projection/spec";
 import {
   type ArticleHead,
   ArticleHeadSchema,
@@ -45,7 +44,7 @@ const makeArticleHead = Effect.fn("AksaraPublisher.makeArticleHead")(function* (
     delivery: change.delivery,
     family: "article",
     projectionHash: yield* hashContentProjection(projection),
-    publicPath: projectionPublicPath(projection),
+    publicPath: projection.publicPath,
     rendererDomain: change.rendererDomain,
     sourceHash: payload.sourceHash,
     sourcePath: change.sourcePath,

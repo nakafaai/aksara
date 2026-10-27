@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektivitas contoh pencatatan waktu suara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisis efektifitas contoh pencatatan waktu suara",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "analisis efektivitas contoh pencatatan waktu suara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektifitas contoh pencatatan waktu suara",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas contoh pencatatan dalam kontek kebisingan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

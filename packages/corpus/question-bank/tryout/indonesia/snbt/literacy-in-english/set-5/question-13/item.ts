@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Progress depends on completing the larger task before asking another person to review it.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The object or setting shapes the outcome more strongly than the character's specific choice.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Mina's progress began when the difficulty was turned into a specific, reviewable action.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The unresolved evidence should remain private until the character can offer a complete result.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The small action matters mainly because it postpones the unresolved part of the conflict.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

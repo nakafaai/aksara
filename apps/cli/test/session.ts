@@ -7,8 +7,6 @@ import {
   Array as Arr,
   Effect,
   FileSystem,
-  HashMap,
-  Option,
   Path,
   type PlatformError,
   type Stream,
@@ -86,25 +84,12 @@ export function runWatch(
     PreviewProviderError,
     FileSystem.FileSystem | Path.Path
   >,
-  directoryFiles: HashMap.HashMap<string, readonly string[]> = HashMap.empty(),
   invalidate: Effect.Effect<number, PreviewProviderError> = Effect.succeed(1)
 ) {
-  const selectedFiles = HashMap.fromIterable(
-    Arr.map(selected.directories, (directory) => [
-      directory.absolutePath,
-      directory.files,
-    ])
-  );
   return openSelectedWatcher(selected, invalidate, refresh).pipe(
     Effect.flatMap((watcher) => watcher.run),
     Effect.provide([
       FileSystem.layerNoop({
-        readDirectory: (directory) =>
-          Effect.succeed([
-            ...(Option.getOrUndefined(HashMap.get(directoryFiles, directory)) ??
-              Option.getOrUndefined(HashMap.get(selectedFiles, directory)) ??
-              []),
-          ]),
         realPath: (path) => Effect.succeed(path),
         watch: () => stream,
       }),

@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
     topic: "explicit-information",
   },
-  responses: {
+  stimulus: "later-start",
+  versions: {
     en: {
-      categories: ["Outcome to measure", "Potential unequal effect"],
-      kind: "category",
+      columns: ["Outcome to measure", "Potential unequal effect"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Late arrivals",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Transport delays",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Difficulty collecting a younger sibling",
         },
       ],
     },
   },
-  stimulusKey: "later-start",
 };
 
 export default item;

@@ -1,36 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
     topic: "classification",
   },
-  responses: {
+  stimulus: "pinhole-projector",
+  versions: {
     en: {
-      categories: [
-        "Adjusting the image",
-        "Making the projector",
-        "Setting it up",
-      ],
-      kind: "category",
+      columns: ["Adjusting the image", "Making the projector", "Setting it up"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Holding the foil card above your shoulder",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Moving the screen farther from the foil",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Pushing a pin through the center of the foil",
         },
       ],
     },
   },
-  stimulusKey: "pinhole-projector",
 };
 
 export default item;

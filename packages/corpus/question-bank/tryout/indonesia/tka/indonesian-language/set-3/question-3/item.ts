@@ -1,41 +1,41 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "main-supporting-ideas",
   },
-  responses: {
+  stimulus: "audio-labels",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "hasil minggu kedua membaik, tetapi penyebab perubahannya belum dapat dipisahkan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "pengunjung cenderung menghindari audio karena labelnya tidak berbentuk pertanyaan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "nama berkas lama harus dipertahankan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "transkrip menyebabkan jumlah peserta turun",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "minggu pertama dan kedua memakai peserta yang sama",
         },
       ],
     },
   },
-  stimulusKey: "audio-labels",
 };
 
 export default item;

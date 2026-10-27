@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "marine businesses earn profits in every country",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "oceans benefit people only by producing rainfall",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ocean exploration should expand so people can extract more resources",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "coastal ecosystems provide communities with several forms of value",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "every person depends on exactly the same marine resource",
         },
       ],

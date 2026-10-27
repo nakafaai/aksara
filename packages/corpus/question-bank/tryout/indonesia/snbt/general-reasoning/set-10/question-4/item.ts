@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan pasti benar karena hujan yang sama selalu menghasilkan vegetasi yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan pasti salah karena vegetasi tidak mungkin tumbuh di gurun.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Simpulan tidak relevan karena tidak ada hubungan antara hujan dan vegetasi dalam bacaan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Simpulan masuk akal berdasarkan pengamatan sebelumnya, tetapi hasilnya belum pasti.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tidak ada bukti yang relevan karena bacaan tidak melaporkan vegetasi setelah hujan sebelumnya.",
         },

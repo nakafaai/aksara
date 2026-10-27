@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "summary",
   },
-  responses: {
+  stimulus: "accessible-fair",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class postponed the fair until the originally planned route could be restored.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Repeated route testing revealed barriers and improved the fair, while exposing remaining problems.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The class focused its revisions on the robotics display because it received the most visitors.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The rain showed that accessibility planning was mainly useful in dry weather.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer considered the first route adequate because it followed the shortest path.",
         },
       ],
     },
   },
-  stimulusKey: "accessible-fair",
 };
 
 export default item;

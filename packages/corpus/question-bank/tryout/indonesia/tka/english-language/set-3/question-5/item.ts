@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
     topic: "classification",
   },
-  responses: {
+  stimulus: "rain-market",
+  versions: {
     en: {
-      categories: ["Safe movement", "Product protection", "Drainage"],
-      kind: "category",
+      columns: ["Safe movement", "Product protection", "Drainage"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Yellow-edged wooden bridges",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Vertical racks beneath deep awnings",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "A blue circle kept clear of chairs",
         },
       ],
     },
   },
-  stimulusKey: "rain-market",
 };
 
 export default item;

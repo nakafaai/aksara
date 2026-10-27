@@ -1,13 +1,63 @@
-export const metadata = {
-  title: "Pembahasan Soal 2",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2025-12-27",
-  dateModified: "2026-09-07",
-};
-
-<Set10Question2Graph
+<LineEquation
   title="Analisis Sudut"
   description="Hubungan antara sudut bertolak belakang dan sudut pelurus."
+  cameraPosition={[0, 0, 13.5]}
+  data={[
+    {
+      points: [
+        { x: -5, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 5, y: 0, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+    },
+    {
+      points: [
+        { x: -3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: 3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="x^\circ" />,
+          at: 1,
+          offset: [-1.2, 0.4, 0],
+        },
+      ],
+    },
+    {
+      points: [
+        { x: 3.8302222156, y: 3.2139380484, z: 0 },
+        { x: 0, y: 0, z: 0 },
+        { x: -3.8302222156, y: -3.2139380484, z: 0 },
+      ],
+      color: "#4f46e5",
+      showPoints: false,
+      smooth: false,
+      cone: { position: "both", size: 0.5 },
+      labels: [
+        {
+          text: <InlineMath math="y^\circ" />,
+          at: 1,
+          offset: [1.2, 0.4, 0],
+          fontSize: 0.6,
+        },
+        {
+          text: <InlineMath math="z^\circ" />,
+          at: 1,
+          offset: [0, -0.8, 0],
+          fontSize: 0.6,
+        },
+      ],
+    },
+  ]}
 />
 
 Sudut di antara dua garis diagonal pada bagian atas titik potong **bertolak belakang** dengan <InlineMath math="z^\circ" />. Sudut bertolak belakang sama besar, sehingga sudut di bagian atas juga sebesar <InlineMath math="z^\circ" />.
@@ -18,10 +68,10 @@ Ketiga sudut yang bersebelahan, yaitu <InlineMath math="x^\circ" />, <InlineMath
 
 Karena <InlineMath math="x^\circ = y^\circ" />, ganti <InlineMath math="y" /> dengan <InlineMath math="x" />:
 
-<MathContainer>
-  <BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
-  <BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
-</MathContainer>
+<BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
+
+<BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
 
 Jadi, besar sudut <InlineMath math="z" /> adalah <InlineMath math="180 - 2x" /> derajat.

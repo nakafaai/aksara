@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "seed-library",
+  versions: {
     id: {
-      categories: ["Masukan", "Proses", "Keluaran"],
-      kind: "category",
+      columns: ["Masukan", "Proses", "Keluaran"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Persediaan benih di dalam lemari sebelum dipinjam",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Pengeringan benih setelah panen",
         },
         {
-          correctCategoryOrder: 3,
+          column: 3,
           label: "Kartu riwayat yang telah diisi",
         },
       ],
     },
   },
-  stimulusKey: "seed-library",
 };
 
 export default item;

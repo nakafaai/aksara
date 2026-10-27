@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Bahan disusun menurut tahap resep karena susunan abjad terbukti gagal dalam setiap keadaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Susunan baru diterapkan permanen dan susunan abjad tidak digunakan lagi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pada pertemuan uji, bahan disusun menurut tahap resep, sedangkan pada pertemuan pembanding bahan tetap diurutkan menurut abjad di meja bersama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Susunan baru dan susunan abjad digunakan tanpa kondisi pembanding terpisah.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membandingkan susunan baru hanya dengan komentar tentang susunan abjad.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

@@ -42,7 +42,6 @@ function makeTarget(
     stageRouteBatch: unused,
     stageSnapshot: unused,
     stageSnapshotBatch: unused,
-    stageTryoutRuntimeBundle: unused,
     status: unused,
     verify: unused,
   });
@@ -122,7 +121,6 @@ describe("publication transport retry", () => {
                   active: null,
                   candidate: null,
                   recovery: null,
-                  tryoutRuntimeBundle: null,
                 });
           })
         );
@@ -147,7 +145,6 @@ describe("publication transport retry", () => {
           [retried.stageRouteBatch, target.stageRouteBatch],
           [retried.stageSnapshot, target.stageSnapshot],
           [retried.stageSnapshotBatch, target.stageSnapshotBatch],
-          [retried.stageTryoutRuntimeBundle, target.stageTryoutRuntimeBundle],
           [retried.status, target.status],
           [retried.verify, target.verify],
         ];
@@ -156,7 +153,6 @@ describe("publication transport retry", () => {
           active: null,
           candidate: null,
           recovery: null,
-          tryoutRuntimeBundle: null,
         });
         expect(attempts).toBe(2);
         expect(

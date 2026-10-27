@@ -1,14 +1,11 @@
 import { NodeServices } from "@effect/platform-node";
-import { afterEach, expect, layer } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, Layer, Option } from "effect";
 import {
-  loadPreviewSources,
+  loadPreviewSource,
   projectPreviewSource,
 } from "#publisher/preview/source";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
@@ -18,34 +15,17 @@ import {
   materialTestLayer,
 } from "#test/material/spec";
 import { PageTestFixtures, pageTestLayer } from "#test/page/spec";
-import { questionManifest } from "#test/question/renderer";
-import { questionEntries } from "#test/question/spec";
 
-/** Selects complete real preview closures through platform and article layers. */
+/** Selects complete real preview closures through platform and family layers. */
 const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
   Effect.gen(function* () {
     const article = yield* ArticleTestFixtures;
     const material = yield* MaterialTestFixtures;
     const page = yield* PageTestFixtures;
-    const questionRenderer = yield* questionManifest();
     const articleEntry = Option.getOrUndefined(
       Arr.findFirst(
         article.entries,
         ({ route }) => route.artifactLocale === "en"
-      )
-    );
-    const promptEntry = Option.getOrUndefined(
-      Arr.findFirst(
-        questionEntries,
-        ({ bodyKind, artifactLocale }) =>
-          bodyKind === "question" && artifactLocale === "id"
-      )
-    );
-    const answerEntry = Option.getOrUndefined(
-      Arr.findFirst(
-        questionEntries,
-        ({ bodyKind, artifactLocale }) =>
-          bodyKind === "answer" && artifactLocale === "en"
       )
     );
     const pageEntry = Option.getOrUndefined(
@@ -55,67 +35,26 @@ const previewSources = Effect.fn("PreviewSourceTest.sources")(() =>
           route.pageKey === "privacy-policy" && route.artifactLocale === "en"
       )
     );
-    if (!(articleEntry && pageEntry && promptEntry && answerEntry)) {
-      return yield* Effect.die(
-        "Expected real article, material, page, prompt, and answer entries."
-      );
+    if (!(articleEntry && pageEntry)) {
+      return yield* Effect.die("Expected real article and page entries.");
     }
-
-    const [
-      articleSelection,
-      materialSelection,
-      pageSelection,
-      promptSelection,
-      answerSelection,
-    ] = yield* Effect.all(
-      [
-        selectPreviewDocument(article.checkoutRoot, articleEntry.sourcePath),
-        selectPreviewDocument(material.checkoutRoot, englishPath),
-        selectPreviewDocument(article.checkoutRoot, pageEntry.sourcePath),
-        selectPreviewDocument(
-          article.checkoutRoot,
-          promptEntry.sourcePath,
-          AppLocaleSchema.make("en")
-        ),
-        selectPreviewDocument(article.checkoutRoot, answerEntry.sourcePath),
-      ],
-      { concurrency: 5 }
-    );
-    const [articleSource] = articleSelection.sources;
-    const [materialSource] = materialSelection.sources;
-    const [pageSource] = pageSelection.sources;
-    const [promptSource] = promptSelection.sources;
-    const [answerPromptSource, answerSource] = answerSelection.sources;
-    if (
-      !(
-        articleSource &&
-        materialSource &&
-        pageSource &&
-        promptSource &&
-        answerPromptSource &&
-        answerSource
-      )
-    ) {
-      return yield* Effect.die(
-        "Expected complete real preview source closures."
+    const [articleSelection, materialSelection, pageSelection] =
+      yield* Effect.all(
+        [
+          selectPreviewDocument(article.checkoutRoot, articleEntry.sourcePath),
+          selectPreviewDocument(material.checkoutRoot, englishPath),
+          selectPreviewDocument(article.checkoutRoot, pageEntry.sourcePath),
+        ],
+        { concurrency: 3 }
       );
-    }
-
     return {
-      answerPromptSource,
-      answerSource,
       articleRenderer: article.rendererManifest,
-      articleSource,
+      articleSource: articleSelection.source,
       checkoutRoot: article.checkoutRoot,
-      itemPath: CorpusSourcePathSchema.make(
-        promptEntry.sourceRoot.concat("/item.ts")
-      ),
       materialRenderer: material.rendererManifest,
-      materialSource,
+      materialSource: materialSelection.source,
       pageRenderer: page.rendererManifest,
-      pageSource,
-      promptSource,
-      questionRenderer,
+      pageSource: pageSelection.source,
     };
   })
 );
@@ -127,7 +66,7 @@ function projectSource(
   rendererManifest: unknown
 ) {
   return Effect.gen(function* () {
-    const [loaded] = yield* loadPreviewSources(checkoutRoot, [source]);
+    const loaded = yield* loadPreviewSource(checkoutRoot, source);
     const inspection = yield* inspectContentSource({
       ...loaded.body,
       rendererManifest,
@@ -144,24 +83,10 @@ const previewTestLayer = Layer.mergeAll(
 );
 
 layer(previewTestLayer)("preview source", (it) => {
-  afterEach(() => vi.restoreAllMocks());
-
-  it.effect("loads MDX-only families without acquiring a native parser", () =>
-    Effect.gen(function* () {
-      const fixture = yield* previewSources();
-      const parser = vi.spyOn(TypeScriptParser, "of");
-      yield* Effect.forEach(
-        [fixture.articleSource, fixture.materialSource, fixture.pageSource],
-        (source) => loadPreviewSources(fixture.checkoutRoot, [source])
-      );
-      expect(parser).not.toHaveBeenCalled();
-    })
-  );
-
   it.effect("loads and projects every supported real content family", () =>
     Effect.gen(function* () {
       const fixture = yield* previewSources();
-      const [article, material, page, question] = yield* Effect.all(
+      const [article, material, page] = yield* Effect.all(
         [
           projectSource(
             fixture.checkoutRoot,
@@ -178,13 +103,8 @@ layer(previewTestLayer)("preview source", (it) => {
             fixture.pageSource,
             fixture.pageRenderer
           ),
-          projectSource(
-            fixture.checkoutRoot,
-            fixture.promptSource,
-            fixture.questionRenderer
-          ),
         ],
-        { concurrency: 4 }
+        { concurrency: 3 }
       );
 
       expect(article).toMatchObject({ artifactLocale: "en", kind: "article" });
@@ -196,53 +116,6 @@ layer(previewTestLayer)("preview source", (it) => {
         artifactLocale: "en",
         kind: "public-page",
       });
-      expect(question).toMatchObject({
-        artifactLocale: "id",
-        bodyKind: "question",
-        kind: "question-body",
-      });
     })
-  );
-
-  it.effect("parses one shared item source for an ordered answer closure", () =>
-    Effect.gen(function* () {
-      const fixture = yield* previewSources();
-      const parser = vi.spyOn(TypeScriptParser, "of");
-      const loaded = yield* loadPreviewSources(fixture.checkoutRoot, [
-        fixture.answerPromptSource,
-        fixture.answerSource,
-      ]);
-      const [prompt, answer] = loaded;
-      if (!(prompt.family === "question" && answer?.family === "question")) {
-        return yield* Effect.die(
-          "Expected the real prompt and answer closure."
-        );
-      }
-
-      expect(loaded).toHaveLength(2);
-      expect(Arr.map(loaded, ({ source }) => source.sourcePath)).toEqual([
-        fixture.answerPromptSource.entry.sourcePath,
-        fixture.answerSource.entry.sourcePath,
-      ]);
-      expect(prompt.source.item).toBe(answer.source.item);
-      expect(parser).toHaveBeenCalledTimes(1);
-    })
-  );
-
-  it.effect(
-    "maps a missing item dependency to the preview source boundary",
-    () =>
-      Effect.gen(function* () {
-        const { itemPath, promptSource } = yield* previewSources();
-        const error = yield* loadPreviewSources("/missing", [
-          promptSource,
-        ]).pipe(Effect.flip);
-
-        expect(error).toMatchObject({
-          _tag: "PreviewItemSourceError",
-          checkoutRoot: "/missing",
-          sourcePath: itemPath,
-        });
-      })
   );
 });

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sebagian panitia mengusulkan agar semua warga cukup menyampaikan pendapat melalui formulir daring.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Warga perbukitan harus pergi sebelum keputusan dan peserta Tuli tidak mendapat juru bahasa isyarat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

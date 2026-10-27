@@ -1,10 +1,3 @@
-export const metadata = {
-  title: "Solution to Question 6",
-  authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-08-30",
-  dateModified: "2026-09-19",
-};
-
 Count all paths from <InlineMath math="O=(0,0)" /> to <InlineMath math="T=(6,4)" />, then remove those through <InlineMath math="A=(2,2)" /> or <InlineMath math="B=(4,3)" />. The key is to **correct the double counting** of paths through both forbidden points.
 
 <MathVisual
@@ -129,13 +122,13 @@ Count all paths from <InlineMath math="O=(0,0)" /> to <InlineMath math="T=(6,4)"
   labels={{ o: <InlineMath math="O=(0,0)" />, a: <InlineMath math="A=(2,2)" />, b: <InlineMath math="B=(4,3)" />, t: <InlineMath math="T=(6,4)" /> }}
 />
 
-#### Counting every step order
+# Counting every step order
 
 Every path needs six steps right and four steps up. **Choose four of the ten step positions** for the upward steps. The other six positions must then be rightward steps.
 
 <BlockMath math="\binom{10}{4}=\frac{10\times9\times8\times7}{4\times3\times2\times1}=210" />
 
-#### Counting paths through forbidden points
+# Counting paths through forbidden points
 
 Count the step orders for each part of the journey in the same way. Let <InlineMath math="R" /> be the number of rightward steps and <InlineMath math="U" /> the number of upward steps.
 
@@ -149,15 +142,15 @@ Count the step orders for each part of the journey in the same way. Let <InlineM
 
 Every path choice before an intermediate point can be paired with every choice after that point. Therefore, **multiply** the counts for successive journey segments.
 
-<MathContainer>
-  <BlockMath math="N_A=6\times15=90" />
-  <BlockMath math="N_B=35\times3=105" />
-  <BlockMath math="N_{A\cap B}=6\times3\times3=54" />
-</MathContainer>
+<BlockMath math="N_A=6\times15=90" />
+
+<BlockMath math="N_B=35\times3=105" />
+
+<BlockMath math="N_{A\cap B}=6\times3\times3=54" />
 
 A path through both points must reach <InlineMath math="A" /> first. Returning from <InlineMath math="B" /> to <InlineMath math="A" /> would require a leftward or downward step.
 
-#### Correcting the double subtraction
+# Correcting the double subtraction
 
 Subtracting <InlineMath math="N_A" /> and <InlineMath math="N_B" /> removes the same <InlineMath math="54" /> forbidden paths twice. **Add them back once** so that each forbidden path is removed exactly once.
 

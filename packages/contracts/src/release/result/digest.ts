@@ -123,10 +123,7 @@ export function updateResultCatalogDigest(
       })
     );
   }
-  if (
-    head.publicPath !== undefined &&
-    !state.claimRoute(head.artifactLocale, head.publicPath)
-  ) {
+  if (!state.claimRoute(head.artifactLocale, head.publicPath)) {
     return Effect.fail(
       new ResultCatalogRouteError({
         artifactLocale: head.artifactLocale,

@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Katalog baru dan label lama dapat hidup berdampingan karena pembaruan sistem tidak harus menghapus jejak penggunaan sebelumnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kartu katalog baru lebih bernilai daripada label lama karena dibuat saat kelompok teater memasuki gedung baru.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Label lama hanya boleh dipertahankan jika tidak memerlukan perbaikan atau perubahan pada kostum.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pencatatan modern selalu merusak makna benda lama karena menambahkan informasi yang sebelumnya tidak ada.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Riwayat kostum menjadi lengkap dan pasti setelah kartu $$2026$$ diletakkan di depan label tahun $$1998$$.",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

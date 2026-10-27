@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Kekeringan dan banjir yang dapat merusak tanaman.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pergeseran musim yang menyulitkan penentuan masa tanam dan panen.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kenaikan muka laut dan banjir pesisir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Meningkatnya risiko hama atau penyakit tanaman.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kenaikan suhu yang menekan produksi pangan.",
         },
       ],

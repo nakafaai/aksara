@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Danau tersebut dahulu menjadi lokasi peperangan",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Semua jasad terbukti meninggal akibat badai es",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Danau tersebut pernah menjadi permukiman kuno",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Satu kelompok peziarah menamai danau tersebut",
         },
       ],

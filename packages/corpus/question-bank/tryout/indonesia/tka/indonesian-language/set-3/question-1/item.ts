@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "information-quality",
   },
-  responses: {
+  stimulus: "audio-labels",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "earphone terbukti menjadi satu-satunya penyebab",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "transkrip mungkin tidak memengaruhi hasil karena peserta tidak diminta melaporkan penggunaannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "jumlah peserta yang sama menunjukkan kelompok minggu pertama dan kedua identik",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "angka tersebut membuktikan museum lain akan mendapat hasil sama",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "kenaikan terjadi setelah paket perubahan, tetapi belum menunjukkan penyebab tertentu",
         },
       ],
     },
   },
-  stimulusKey: "audio-labels",
 };
 
 export default item;

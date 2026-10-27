@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Laporan hanya membandingkan biaya total dan manfaat rata-rata tanpa membedakan kebutuhan pengguna.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
         },

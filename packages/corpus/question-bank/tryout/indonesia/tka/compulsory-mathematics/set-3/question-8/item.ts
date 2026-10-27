@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
     topic: "functions",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Titik potong kedua asimtot adalah $$(1,2)$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "$$f$$ menurun ketat pada setiap interval domainnya.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Jika $$x>1$$, maka $$f(x)>2$$.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Persamaan $$f(x)=x$$ memiliki dua solusi real.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$f^{-1}=f$$.",
         },
       ],

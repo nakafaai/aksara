@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "memeriksa satu sumber berulang kali sampai keterangannya tampak konsisten",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "memilih kisah yang paling hidup tanpa menilai asal dan proses pembentukannya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "memberi bobot yang sama kepada semua sumber tanpa melihat konteksnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "menyunting perbedaan kata sampai seluruh keterangan tampak seragam",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "membandingkan beberapa sumber yang berdiri sendiri sebelum menetapkan kesimpulan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

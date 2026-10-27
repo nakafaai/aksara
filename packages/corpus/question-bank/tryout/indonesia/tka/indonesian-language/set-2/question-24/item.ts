@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "study-breaks",
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Membagi peserta ke dalam dua urutan kondisi.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menguji kesetaraan paket pada kelompok lain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menghapus pencatatan jawaban bagian akhir.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Memastikan setiap peserta memulai dari kondisi tanpa jeda sebelum kondisi lain.",
         },
       ],
     },
   },
-  stimulusKey: "study-breaks",
 };
 
 export default item;

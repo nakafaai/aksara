@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
     topic: "outline",
   },
-  responses: {
+  stimulus: "food-scraps",
+  versions: {
     id: {
-      categories: ["Boleh", "Tidak boleh"],
-      kind: "category",
+      columns: ["Boleh", "Tidak boleh"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Potongan sayur",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "Kuah berminyak",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "Daun kering",
         },
       ],
     },
   },
-  stimulusKey: "food-scraps",
 };
 
 export default item;

@@ -49,7 +49,7 @@ describe("publication failures", () => {
       accepts({
         batchIndex: 2,
         code: "CONTENT_RELEASE_CONFLICT",
-        family: "tryout",
+        family: "assessment",
         kind: "conflict",
         operation: "stageSnapshotBatch",
         releaseId,
@@ -59,7 +59,7 @@ describe("publication failures", () => {
     expect(
       accepts({
         code: "CONTENT_RELEASE_CONFLICT",
-        family: "tryout",
+        family: "assessment",
         kind: "conflict",
         operation: "stageSnapshot",
         releaseId,

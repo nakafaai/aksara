@@ -1,42 +1,42 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
     topic: "comparison",
   },
-  responses: {
+  stimulus: "repair-workshop",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer relied on symptoms from each bicycle instead of asking owners for details.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer began by replacing the noisy brake before asking what the rider had noticed.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer stopped using service notes.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The writer still depended on Sari to identify each fault before taking action.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "The writer asked questions before suggesting a change.",
         },
       ],
     },
   },
-  stimulusKey: "repair-workshop",
 };
 
 export default item;

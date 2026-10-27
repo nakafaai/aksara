@@ -9,7 +9,6 @@ import type {
 import { RendererPreflightSchema } from "@nakafa/aksara-contracts/release/policy";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { TryoutSnapshotSchema } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
 import { Schema, type Stream } from "effect";
 
 import type { PreparedSnapshotSources } from "#publisher/preparation/snapshot";
@@ -34,19 +33,9 @@ interface PreparedContentReleaseBase<E, R>
   readonly [PreparedContentReleaseTypeId]: true;
 }
 
-const PreparedTryoutRuntimeTransitionSchema = Schema.Struct({
-  recovery: Schema.NullOr(TryoutSnapshotSchema),
-  result: TryoutSnapshotSchema,
-});
-
-/** Candidate result plus an optional distinct base pair retained for recovery. */
-export type PreparedTryoutRuntimeTransition =
-  typeof PreparedTryoutRuntimeTransitionSchema.Type;
-
 const PreparedGitReleaseFieldsSchema = Schema.Struct({
   kind: Schema.Literal("git"),
   rendererPreflight: RendererPreflightSchema,
-  tryoutRuntime: Schema.NullOr(PreparedTryoutRuntimeTransitionSchema),
 });
 
 /** Exact-Git release whose artifacts must be reproducibly recompiled. */

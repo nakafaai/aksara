@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Dismissive of all nutritional advice",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Certain that one food can prevent every infection",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Practical and evidence-based",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Alarmist about eating any sugar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Indifferent to dietary habits",
         },
       ],

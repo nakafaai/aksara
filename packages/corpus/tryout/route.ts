@@ -1,5 +1,5 @@
+import type { CatalogRow } from "@nakafa/aksara-contracts/assessment/catalog";
 import { PublicRouteFields } from "@nakafa/aksara-contracts/preview/target";
-import type { TryoutCatalogRow } from "@nakafa/aksara-contracts/tryout/catalog";
 import { Effect, MutableHashSet, Schema } from "effect";
 
 /** Two source-derived nodes claim one locale-specific public route. */
@@ -38,7 +38,7 @@ function toTitleSlug(title: string) {
  * Reads whether a route ends in the slug of its page title. A year track is
  * the exception: its route segment is the year itself.
  */
-function spellsTitle(row: TryoutCatalogRow, publicPath: string) {
+function spellsTitle(row: CatalogRow, publicPath: string) {
   if (row.kind === "track" && row.trackKind === "year") {
     return true;
   }
@@ -52,10 +52,10 @@ function spellsTitle(row: TryoutCatalogRow, publicPath: string) {
  */
 export const validateTryoutRoutes = Effect.fn(
   "AksaraCorpus.validateTryoutRoutes"
-)(function* (rows: readonly TryoutCatalogRow[]) {
+)(function* (rows: readonly CatalogRow[]) {
   const routes = MutableHashSet.empty<string>();
   for (const row of rows) {
-    if (!("publicPath" in row) || row.publicPath === undefined) {
+    if (row.publicPath === undefined) {
       continue;
     }
     const identity = `${row.appLocale}\0${row.publicPath}`;

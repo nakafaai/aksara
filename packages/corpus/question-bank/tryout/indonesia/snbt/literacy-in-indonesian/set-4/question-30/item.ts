@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-6",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengecatan Putih pada Hari Terakhir",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Jejak Biru di Balik Dinding Putih",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Foto Tahun $$1978$$ di Ruang Arsip",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengapa Semua Lapisan Lama Harus Ditutup",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Retakan yang Tidak Berkaitan dengan Sejarah",
         },
       ],
     },
   },
-  stimulusKey: "passage-6",
 };
 
 export default item;

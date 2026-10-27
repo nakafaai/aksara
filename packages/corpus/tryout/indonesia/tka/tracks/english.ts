@@ -1,13 +1,35 @@
 import { Array as Arr } from "effect";
-
-import { TKA_QUESTION_ROOT } from "#corpus/tryout/indonesia/tka/identity";
-import type { TryoutTrackSourceInput } from "#corpus/tryout/schema";
+import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA English sets. */
 export const tkaEnglishTrack = {
   key: "english-language",
   kind: "subject",
   order: 3,
+  profile: {
+    names: {
+      de: { title: "TKA Englisch" },
+      en: { title: "TKA English" },
+      id: { title: "TKA Bahasa Inggris" },
+    },
+    report: { sections: false, standardError: false, total: true },
+    scoring: { kind: "raw" },
+    sections: [
+      {
+        interactions: ["choice", "matrix"],
+        items: 25,
+        key: "english-language",
+        language: "en",
+        seconds: 4500,
+        translations: {
+          de: { title: "Englisch" },
+          en: { title: "English" },
+          id: { title: "Bahasa Inggris" },
+        },
+        visibility: "internal-entry",
+      },
+    ],
+  },
   routeSlugs: {
     de: "englisch",
     en: "english",
@@ -23,28 +45,6 @@ export const tkaEnglishTrack = {
         en: setKey,
         id: setKey,
       },
-      sections: [
-        {
-          key: "english-language",
-          languagePolicy: { kind: "fixed" as const, language: "en" as const },
-          order: 1,
-          questionCount: 25,
-          questionSourcePath: `${TKA_QUESTION_ROOT}/english-language/${setKey}`,
-          rendererDomain: "snbt-plain" as const,
-          routeSlugs: {
-            de: "englisch",
-            en: "english",
-            id: "bahasa-inggris",
-          },
-          timeLimitSeconds: 4500,
-          translations: {
-            de: { title: "Englisch" },
-            en: { title: "English" },
-            id: { title: "Bahasa Inggris" },
-          },
-          visibility: "internal-entry" as const,
-        },
-      ],
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
@@ -57,4 +57,4 @@ export const tkaEnglishTrack = {
     en: { title: "English" },
     id: { title: "Bahasa Inggris" },
   },
-} satisfies TryoutTrackSourceInput;
+} satisfies TrackSourceInput;

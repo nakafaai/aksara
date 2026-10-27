@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penyebutan *keterbandingan* membuktikan bahwa setiap hasil konversi pada formulir baru sudah benar.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu membatasi *keterbandingan* pada kesamaan satuan sehingga titik acuan dan waktu dapat diabaikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *keterbandingan* membuat nilai asli tidak perlu disimpan setelah semua angka diubah ke meter.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut hanya menjelaskan mengapa uji dilakukan pada $$30$$ pasangan, bukan cara menilai catatan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *keterbandingan* menjelaskan mengapa satuan dan titik acuan perlu diselaraskan, tetapi konteks waktu juga harus cukup setara sebelum dua kedalaman dibandingkan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

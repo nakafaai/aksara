@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Deforestasi dapat membuat tanah lebih rentan terhadap erosi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada $$2019$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Masyarakat yang menggunakan kayu bakar menjadi salah satu yang terdampak deforestasi",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Deforestasi mengancam habitat satwa liar",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Sektor penggunaan lahan mencakup lebih dari deforestasi saja",
         },
       ],

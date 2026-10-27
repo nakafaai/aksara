@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
-  responses: {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "$$x\\ge0,\\ 2x+y\\le8,\\ 2y-3x\\ge2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$x\\ge0,\\ 2x+y\\ge8,\\ 2y-3x\\ge2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$x\\ge0,\\ 2x+y\\le8,\\ 2y-3x\\le2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$x\\le0,\\ 2x+y\\le8,\\ 2y-3x\\ge2$$",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "$$x\\ge0,\\ 2x+y\\le8,\\ 3x-2y\\ge2$$",
         },
       ],

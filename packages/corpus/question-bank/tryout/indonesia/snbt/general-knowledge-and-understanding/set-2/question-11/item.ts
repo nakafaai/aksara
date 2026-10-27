@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "produk susu yang dijamin tidak mengandung laktosa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "produk susu yang hanya ditujukan bagi lansia.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "obat untuk menangani penyakit pencernaan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "produk susu yang dicampur oksigen sebelum diminum.",
         },
       ],

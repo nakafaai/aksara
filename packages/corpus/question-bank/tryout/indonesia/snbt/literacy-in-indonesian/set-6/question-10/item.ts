@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengukur erosi melalui satu perbandingan awal",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Menjadikan erosi penjelasan tunggal atas hasil pengamatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Kaidah akhir dari perbandingan pertama tentang erosi",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Penutup Permukaan dalam Model Erosi: Hasil dan Batas",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Keterbatasan yang membuat uji lanjutan erosi tidak diperlukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

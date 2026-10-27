@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *periode* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *periode* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut memperluas *periode* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *periode* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *periode* menjelaskan mengapa waktu sepuluh ayunan perlu dibagi sepuluh agar setiap nilai menyatakan waktu satu ayunan lengkap.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

@@ -46,8 +46,7 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
         const count =
           fixture.sources.article.length +
           fixture.sources.material.length +
-          fixture.sources.page.length +
-          fixture.sources.tryout.entries.length;
+          fixture.sources.page.length;
         expect(items).toHaveLength(count);
         expect(prepared.manifest).toMatchObject({
           activeAppLocales: ACTIVE_APP_LOCALES,
@@ -58,21 +57,30 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
           releaseId: identity.releaseId,
           resultCount: count,
           scope: {
-            families: ["article", "material", "page", "question"],
-            snapshots: ["program", "quran", "tryout"],
+            families: ["article", "material", "page"],
+            snapshots: ["assessment", "program", "quran"],
           },
         });
         expect(Arr.map(manifests, ({ family }) => family)).toEqual([
+          "assessment",
           "program",
           "quran",
-          "tryout",
         ]);
-        const tryout = Option.getOrUndefined(
-          Arr.findFirst(manifests, ({ family }) => family === "tryout")
+        const assessment = Option.getOrUndefined(
+          Arr.findFirst(manifests, ({ family }) => family === "assessment")
         );
-        expect(tryout).toMatchObject({
+        expect(assessment).toMatchObject({
           manifest: {
-            placementCount: fixture.sources.tryout.projection.placements.length,
+            counts: {
+              catalog: 5 * ACTIVE_APP_LOCALES.length,
+              explanation: 25 * ACTIVE_APP_LOCALES.length,
+              family: 25,
+              item: 25,
+              key: 25,
+              paper: 1,
+              profile: 1,
+              stimulus: 3,
+            },
           },
         });
         yield* verifyContentReleaseItems({

@@ -1,8 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
 
 import {
   InlineContentSchema,
   InlineInteractionNodeSchema,
+  MarkOrder,
   RichTextSchema,
 } from "#contracts/assessment/inline";
 import {
@@ -13,16 +15,45 @@ import {
 } from "#contracts/test/assessment/document";
 
 describe("text marks", () => {
-  it("keeps marks in one order, each once, and links on HTTPS only", () => {
+  it("orders marks as a text node keeps them, the link last", () => {
+    expect(
+      Arr.map(
+        Arr.sort(
+          [
+            { attrs: { href: "https://nakafa.com" }, type: "link" },
+            { type: "code" },
+            { type: "bold" },
+          ] as const,
+          MarkOrder
+        ),
+        ({ type }) => type
+      )
+    ).toEqual(["bold", "code", "link"]);
+  });
+
+  it("keeps marks in one order, each once, and links on HTTPS or the site", () => {
     expect(failsStrict(InlineContentSchema, [text("x", "bold", "link")])).toBe(
       false
     );
+    expect(
+      failsStrict(InlineContentSchema, [
+        {
+          marks: [
+            { attrs: { href: "/en/subjects/mathematics" }, type: "link" },
+          ],
+          text: "x",
+          type: "text",
+        },
+      ])
+    ).toBe(false);
     for (const marks of [
       [{ type: "italic" }, { type: "bold" }],
       [{ type: "bold" }, { type: "bold" }],
       [],
       [{ attrs: { href: "http://nakafa.com" }, type: "link" }],
       [{ attrs: { href: "javascript:alert(1)" }, type: "link" }],
+      [{ attrs: { href: "//example.com/lesson" }, type: "link" }],
+      [{ attrs: { href: "/en/a lesson" }, type: "link" }],
       [{ type: "strike" }],
     ]) {
       expect(

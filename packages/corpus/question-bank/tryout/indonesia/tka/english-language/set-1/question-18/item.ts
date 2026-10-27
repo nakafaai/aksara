@@ -1,44 +1,44 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
     topic: "cause-effect",
   },
-  responses: {
+  stimulus: "leak-test",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To make the meter move faster so the second test can locate a hidden pipe",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "To separate evidence of ongoing flow from the one known accidental use",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To prove that any second movement must come from the exact pipe behind the wall",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To reset the irrigation timer after the test, regardless of whether it was scheduled to run",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "To stop the first recorded number from mathematically influencing the later reading",
         },
       ],
     },
   },
-  stimulusKey: "leak-test",
 };
 
 export default item;

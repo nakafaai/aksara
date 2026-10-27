@@ -1,40 +1,40 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
     topic: "fiction-evidence",
   },
-  responses: {
+  stimulus: "seat-seven",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "ia tetap menyiapkan kursi ketujuh sebelum setiap latihan dan pertunjukan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "ia hampir menyimpan biolanya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "telepon Seno sempat tidak aktif",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "ia mampu menyelesaikan pertunjukan meski Seno belum pulang",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pak Damar berdiri di pintu",
         },
       ],
     },
   },
-  stimulusKey: "seat-seven",
 };
 
 export default item;

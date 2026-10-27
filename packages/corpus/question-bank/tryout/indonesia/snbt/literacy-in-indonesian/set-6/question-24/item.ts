@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *penyangga belajar* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu membatasi *penyangga belajar* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *penyangga belajar* menjelaskan pola contoh, pertanyaan pemandu, dan kerja mandiri sebagai bantuan yang sengaja dikurangi ketika kendali Dimas meningkat.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Penyebutan *penyangga belajar* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

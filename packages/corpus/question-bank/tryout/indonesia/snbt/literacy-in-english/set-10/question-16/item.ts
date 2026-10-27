@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The ledger mainly establishes the hall as a realistic setting, while Iris's questions have little effect on its meaning.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Iris reaches a final budget decision, and that completed result removes the uncertainty attached to the ledger.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The open ending matters mainly because the supplier fails to respond, independently of Iris's changes to the ledger.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The teammates settle the conflict by adding deadlines, so the remaining blank line no longer carries interpretive weight.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Iris turns a ledger that displayed false certainty into a shared record of open questions, while the ending leaves the final budget unresolved.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

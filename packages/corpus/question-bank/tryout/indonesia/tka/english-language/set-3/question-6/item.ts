@@ -1,43 +1,43 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
     topic: "summary",
   },
-  responses: {
+  stimulus: "archive-week",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A volunteer completes the identifications before attaching source notes.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The archivist stores contributor notes separately to keep the main database consistent.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "A box of photographs is discarded because most names are unknown.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "A volunteer learns to separate observation, memory, and uncertainty in archive records.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The writer spends the week repairing a railway station.",
         },
       ],
     },
   },
-  stimulusKey: "archive-week",
 };
 
 export default item;

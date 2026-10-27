@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-3",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jonas kept two translations and added a note describing where each was appropriate. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jonas kept two translations and added a note describing where each was appropriate. The action transfers responsibility for the unresolved task to another character.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jonas kept two translations and added a note describing where each was appropriate. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Keeping both translations with a scope note shows Jonas treating meaning as context-dependent rather than hiding the ambiguity behind one choice.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Jonas kept two translations and added a note describing where each was appropriate. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },
   },
-  stimulusKey: "passage-3",
 };
 
 export default item;

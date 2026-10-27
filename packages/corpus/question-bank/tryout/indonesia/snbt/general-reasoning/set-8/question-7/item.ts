@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Setiap komponen di rak C telah lolos pemeriksaan awal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Komponen yang gagal dalam pemeriksaan awal tidak pernah menjalani uji ketahanan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Setiap komponen bersegel biru ditempatkan di rak C.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hanya komponen bersegel biru yang menjalani uji ketahanan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap komponen yang diperiksa pada tahap awal mendapat segel biru.",
         },

@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "fiction",
     topic: "setting-character-phenomenon",
   },
-  responses: {
+  stimulus: "mapmakers-ink",
+  versions: {
     id: {
-      kind: "multiple-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Jembatan bambu patah.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Papan penyeberangan licin.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Pagar baru menutup jalan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Lebar jalur pada peta dianggap cukup untuk memperkirakan akses kursi roda.",
         },
       ],
     },
   },
-  stimulusKey: "mapmakers-ink",
 };
 
 export default item;

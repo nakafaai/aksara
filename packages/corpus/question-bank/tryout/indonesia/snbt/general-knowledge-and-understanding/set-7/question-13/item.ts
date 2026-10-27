@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "penyalinan kata demi kata tanpa perubahan medium",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "karya baru yang hanya meminjam judul sumber",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "pengolahan karya ke bentuk baru dengan perubahan yang sesuai tujuan dan mediumnya",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "penggabungan semua versi tanpa mencatat asal setiap bagian",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "pemendekan cerita tanpa mempertimbangkan tujuan pertunjukan",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

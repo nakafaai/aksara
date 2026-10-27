@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "the conditions under which technology can support education.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "the rapid growth of internet access worldwide.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "the replacement of teachers by digital tools.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "the superiority of online learning over classrooms.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "the features of one educational device.",
         },
       ],

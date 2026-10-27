@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
     topic: "sequences-series",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "$$u_4=54$$",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "$$S_4=80$$",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label: "$$u_6=243$$",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label: "$$\\frac{u_6}{u_3}=27$$",
         },
       ],

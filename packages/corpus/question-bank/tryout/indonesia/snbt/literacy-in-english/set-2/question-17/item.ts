@@ -1,29 +1,29 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label: "Removing walls always increases face-to-face collaboration.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Open layouts may reduce visual and acoustic privacy.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Private offices received the highest satisfaction ratings in one study.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The two field studies found more electronic communication.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "The best layout may depend on tasks and communication needs.",
         },
       ],

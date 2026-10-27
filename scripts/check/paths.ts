@@ -44,6 +44,7 @@ const QUESTION_BANK_PREFIX = [...QUESTION_BANK_ROOT, "tryout"];
 const QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
 const QUESTION_SOURCE_PATTERN =
   /^(?:item\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
+const STIMULUS_SOURCE_PATTERN = /^stimulus\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx$/u;
 const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
 /** Returns the semantic words in one folder name or extensionless file name. */
@@ -72,8 +73,11 @@ function hasPrefix(segments: readonly string[], prefix: readonly string[]) {
   );
 }
 
-/** Recognizes a complete generic question source without owning exam inventory. */
-function isQuestionSource(segments: readonly string[]) {
+/**
+ * Recognizes a complete generic bank source without owning exam inventory: a
+ * file of a numbered question, or a reading that the questions of a set share.
+ */
+function isBankSource(segments: readonly string[]) {
   if (!hasPrefix(segments, QUESTION_BANK_PREFIX)) {
     return false;
   }
@@ -82,16 +86,20 @@ function isQuestionSource(segments: readonly string[]) {
     Arr.drop(segments, QUESTION_BANK_PREFIX.length),
     2
   );
-  const question = Arr.get(segments, segments.length - 2);
+  const folder = Arr.get(segments, segments.length - 2);
   const source = Arr.last(segments);
+  const isQuestion =
+    Option.exists(folder, (segment) =>
+      QUESTION_SEGMENT_PATTERN.test(segment)
+    ) && Option.exists(source, (name) => QUESTION_SOURCE_PATTERN.test(name));
+  const isStimulus =
+    Option.exists(folder, (segment) => SOURCE_KEY_PATTERN.test(segment)) &&
+    Option.exists(source, (name) => STIMULUS_SOURCE_PATTERN.test(name));
 
   return (
     hierarchy.length >= 4 &&
     Arr.every(hierarchy, (segment) => SOURCE_KEY_PATTERN.test(segment)) &&
-    Option.exists(question, (segment) =>
-      QUESTION_SEGMENT_PATTERN.test(segment)
-    ) &&
-    Option.exists(source, (name) => QUESTION_SOURCE_PATTERN.test(name))
+    (isQuestion || isStimulus)
   );
 }
 
@@ -120,7 +128,7 @@ function isIdentity(segments: readonly string[], index: number) {
   ) {
     return true;
   }
-  return isQuestionSource(segments) && index >= QUESTION_BANK_PREFIX.length;
+  return isBankSource(segments) && index >= QUESTION_BANK_PREFIX.length;
 }
 
 /** Allows toolchain files and uppercase repository documents by convention. */

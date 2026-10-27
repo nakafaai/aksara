@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi *kondensasi* membuktikan bahwa hasil model selalu sama dengan kondisi atmosfer di alam.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi itu menjadikan *kondensasi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Istilah *kondensasi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Definisi *kondensasi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

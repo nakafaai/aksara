@@ -1,35 +1,35 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-2",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektivitas tanda genre di pasar tukar buku",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "analisis efektivitas tanda genre di pasar tukar buku",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisis efektifitas tanda genre di pasar tukar buku",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "analisa efektifitas tanda genre di pasar tukar buku",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "analisis efektivitas tanda genre dalam kontek pasar tukar buku",
         },
       ],
     },
   },
-  stimulusKey: "passage-2",
 };
 
 export default item;

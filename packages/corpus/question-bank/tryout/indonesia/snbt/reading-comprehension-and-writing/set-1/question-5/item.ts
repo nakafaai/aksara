@@ -1,28 +1,28 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Bentuk Kapal pada Sarkofagus Tomok.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Tinggalan Megalitik di Sekitar Danau Toba.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Figur Pelindung pada Kubur Batak Toba.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Sarkofagus Tomok dalam Tradisi Megalitik Batak Toba.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Adat Penguburan di Pulau Samosir.",
         },
       ],

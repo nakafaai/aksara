@@ -1,34 +1,34 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "Mantel M-17 yang Pasti Bertahan Selama Dua Puluh Satu Tahun",
         },
         {
-          isCorrect: true,
+          correct: true,
           label: "Menelusuri Mantel Teater melalui Foto dan Catatan Perawatan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Mengisi Celah Arsip dengan Kemiripan Visual",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Buku Perawatan sebagai Bukti Lengkap Penggunaan Panggung",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Foto Publikasi yang Lebih Netral daripada Catatan Internal",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

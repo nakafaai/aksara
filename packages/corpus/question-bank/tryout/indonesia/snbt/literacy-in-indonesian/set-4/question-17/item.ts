@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kedua sumber membantu menjelaskan fungsi bangunan pada masa yang berbeda. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Denah dan wawancara sama-sama membantu melacak fungsi bangunan, tetapi perubahan ruang tidak identik dengan pengalaman dua mantan penghuni.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

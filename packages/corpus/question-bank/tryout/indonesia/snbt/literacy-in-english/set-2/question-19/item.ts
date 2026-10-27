@@ -1,31 +1,31 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "GenAI has already eliminated one quarter of all jobs worldwide.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Only low-income countries have occupations exposed to GenAI.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The ILO index predicts the exact date on which each worker will lose a job.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Infrastructure and worker skills have no influence on technology adoption.",
         },

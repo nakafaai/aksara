@@ -1,30 +1,30 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label: "mendorong pembeli untuk membeli mobil penumpang.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "memaparkan skala dan perjalanan penurunan serta pemulihan penjualan wholesales mobil Indonesia pada 2020.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "membandingkan keuntungan mobil penumpang dan kendaraan niaga.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "menjelaskan sejarah dan struktur organisasi GAIKINDO.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "meramalkan jumlah kendaraan yang akan terjual pada 2021.",
         },
       ],

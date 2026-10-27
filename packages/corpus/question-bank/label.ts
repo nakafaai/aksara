@@ -1,17 +1,16 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
-import type {
-  QuestionItem,
-  QuestionResponseSource,
-} from "@nakafa/aksara-contracts/question/item";
-import type { QuestionRubricLabel } from "@nakafa/aksara-contracts/question/rubric";
-import { Array as Arr, Effect, Schema, Struct } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { InlineCode, Nodes, Text } from "mdast";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { EXIT, visit } from "unist-util-visit";
+import {
+  type InteractionSource,
+  type ItemSource,
+  itemVersions,
+} from "#corpus/question-bank/item";
 
 const markdown = unified()
   .use(remarkParse)
@@ -161,70 +160,40 @@ function labelViolation(label: string) {
   return reason;
 }
 
-/** Lists one rubric label in every active app locale with its source path. */
-function rubricLabels(label: QuestionRubricLabel, path: string) {
-  return Arr.map(ACTIVE_APP_LOCALE_CODES, (locale) => ({
-    label: label[locale],
-    path: `${path}.label.${locale}`,
-  }));
-}
-
-/** Lists every rendered Markdown label authored in one response. */
-function responseLabels(response: QuestionResponseSource) {
-  if (response.kind === "category") {
+/** Lists every rendered Markdown label authored in one interaction. */
+function interactionLabels(interaction: InteractionSource) {
+  if (interaction.kind === "matrix") {
     return [
-      ...Arr.map(response.categories, (label, index) => ({
+      ...Arr.map(interaction.columns, (label, index) => ({
         label,
-        path: `categories[${index}]`,
+        path: `columns[${index}]`,
       })),
-      ...Arr.map(response.statements, ({ label }, index) => ({
+      ...Arr.map(interaction.statements, ({ label }, index) => ({
         label,
         path: `statements[${index}].label`,
       })),
     ];
   }
-  if (response.kind === "rubric") {
-    return Arr.flatMap(response.criteria, ({ label, levels }, index) => [
-      ...rubricLabels(label, `criteria[${index}]`),
-      ...Arr.flatMap(levels, (level, levelIndex) =>
-        rubricLabels(level.label, `criteria[${index}].levels[${levelIndex}]`)
-      ),
-    ]);
-  }
-  if (response.kind === "short-answer") {
-    return [];
-  }
-  return Arr.map(response.options, ({ label }, index) => ({
+  return Arr.map(interaction.options, ({ label }, index) => ({
     label,
     path: `options[${index}].label`,
   }));
 }
 
-/**
- * Rejects malformed math at source ingestion before any signed publication.
- * Accepted short-answer text is plain text that graders compare, never
- * Markdown that renders, so only Markdown labels pass through this check.
- */
-export const validateQuestionLabels = Effect.fn(
-  "AksaraCorpus.validateQuestionLabels"
-)(function* (
-  item: QuestionItem,
-  sourcePath: typeof CorpusSourcePathSchema.Type
-) {
-  for (const locale of Struct.keys(item.responses)) {
-    const response = item.responses[locale];
-    if (response === undefined) {
-      continue;
-    }
-    for (const { label, path } of responseLabels(response)) {
-      const reason = labelViolation(label);
-      if (reason !== undefined) {
-        return yield* new QuestionLabelError({
-          labelPath: `responses.${locale}.${path}`,
-          reason,
-          sourcePath,
-        });
+/** Rejects malformed math in every label before any signed publication. */
+export const validateItemLabels = Effect.fn("AksaraCorpus.validateItemLabels")(
+  function* (item: ItemSource, sourcePath: typeof CorpusSourcePathSchema.Type) {
+    for (const { interaction, language } of itemVersions(item.versions)) {
+      for (const { label, path } of interactionLabels(interaction)) {
+        const reason = labelViolation(label);
+        if (reason !== undefined) {
+          return yield* new QuestionLabelError({
+            labelPath: `versions.${language}.${path}`,
+            reason,
+            sourcePath,
+          });
+        }
       }
     }
   }
-});
+);

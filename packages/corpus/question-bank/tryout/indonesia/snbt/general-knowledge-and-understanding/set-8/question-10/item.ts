@@ -1,37 +1,37 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Sesudah sumber nama ditampilkan, keluarga dan perajin dapat menunjukkan label yang salah tanpa mengurangi keberhasilan pencarian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Penelitian arsip membuktikan bahwa semua nama lokal muncul setelah label kurator dan sengaja menyalinnya.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pemindai baru membuat label yang pudar lebih mudah dibaca, tetapi tidak mengubah asal maupun urutan waktu kemunculan nama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

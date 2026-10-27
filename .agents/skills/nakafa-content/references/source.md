@@ -4,7 +4,9 @@
 
 - Inspect the owning registry and schema before editing metadata. Aksara families
   deliberately have different metadata contracts.
-- Keep the compiler-owned static `export const metadata = { ... }` declaration.
+- Keep the compiler-owned static `export const metadata = { ... }` declaration
+  in lessons, articles, and pages. Question-bank files hold none: they compile
+  into Assessment Documents (see [questions](questions.md)).
 - Do not add dynamic metadata, executable imports, or arbitrary module syntax.
 - Raw MDX remains trusted executable source. Aksara evaluates it once at publish
   time into a signed content tree, which Nakafa's React renderer draws.

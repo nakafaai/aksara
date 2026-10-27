@@ -21,10 +21,9 @@ describe("allContentCacheChanges", () => {
           { scope: "article" },
           { scope: "material" },
           { scope: "page" },
-          { scope: "question" },
+          { scope: "assessment" },
           { scope: "program" },
           { scope: "quran" },
-          { scope: "tryout" },
         ]);
       })
   );
@@ -38,15 +37,15 @@ describe("allContentCacheChanges", () => {
         const newId = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
         const changes = yield* contentSnapshotCacheChanges({
           ...empty,
+          assessment: restoreContentSnapshot(oldId, newId),
           program: restoreContentSnapshot(oldId, newId),
           quran: restoreContentSnapshot(oldId, newId),
-          tryout: restoreContentSnapshot(oldId, newId),
         }).pipe(Stream.runCollect);
 
         expect([...changes]).toEqual([
+          { scope: "assessment" },
           { scope: "program" },
           { scope: "quran" },
-          { scope: "tryout" },
         ]);
         expect(
           yield* contentSnapshotCacheChanges(empty).pipe(Stream.runCount)

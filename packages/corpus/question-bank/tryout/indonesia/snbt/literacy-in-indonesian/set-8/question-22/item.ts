@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-5",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tiga pengukuran yang berdekatan membuktikan bahwa $$4{,}81$$ meter adalah kedalaman air yang tepat tanpa ketidakpastian.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Bekas lumpur pada $$4{,}35$$ meter dan pengukuran ulang yang mengelompok di sekitar $$4{,}81$$ meter mendukung pengecualian nilai pertama, sedangkan penandaan mempertahankan alasan yang dapat diperiksa.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dito memilih untuk mengulang pengukuran dari titik acuan yang sama dan menandai catatan yang meragukan. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Dito memilih untuk mengulang pengukuran dari titik acuan yang sama dan menandai catatan yang meragukan. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Definisi integritas ilmiah membuat pemeriksaan pita ukur dan pengulangan pengukuran tidak lagi diperlukan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-5",
 };
 
 export default item;

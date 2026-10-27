@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Dalam simulasi, catatan berlapis mempersempit produk yang harus ditarik dibanding label satu lokasi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Pengelola pasar mengusulkan satu label asal berdasarkan tempat produk terakhir dikemas.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;

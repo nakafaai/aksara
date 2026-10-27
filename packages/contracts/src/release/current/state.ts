@@ -5,7 +5,6 @@ import {
   ActiveContentReleaseSchema,
   hasSameAppLocales,
 } from "#contracts/release/current/evidence";
-import { hasCurrentTryoutRuntimeBundle } from "#contracts/release/current/runtime";
 import {
   ContentReleaseBundleSchema,
   type RollbackContentReleaseBundle,
@@ -15,11 +14,6 @@ import {
   hasSameContentSnapshots,
   invertContentSnapshots,
 } from "#contracts/release/snapshot/spec";
-import { SignedTryoutRuntimeBundleSchema } from "#contracts/tryout/runtime/spec";
-
-const TryoutRuntimeBundleSchema = Schema.NullOr(
-  SignedTryoutRuntimeBundleSchema
-);
 
 const StagedReleasePhaseSchema = Schema.Literals([
   "staging",
@@ -141,14 +135,10 @@ function hasCoherentCurrentState(input: {
   readonly active: ActiveContentRelease | null;
   readonly candidate: StagedContentRelease | null;
   readonly recovery: StagedRollbackContentRelease | null;
-  readonly tryoutRuntimeBundle:
-    | typeof SignedTryoutRuntimeBundleSchema.Type
-    | null;
 }) {
   return (
     hasCoherentCandidate(input.active, input.candidate) &&
-    hasCoherentRecovery(input) &&
-    hasCurrentTryoutRuntimeBundle(input.active, input.tryoutRuntimeBundle)
+    hasCoherentRecovery(input)
   );
 }
 
@@ -157,7 +147,6 @@ export const ContentReleaseCurrentSchema = Schema.Struct({
   active: Schema.NullOr(ActiveContentReleaseSchema),
   candidate: Schema.NullOr(StagedContentReleaseSchema),
   recovery: Schema.NullOr(StagedRollbackContentReleaseSchema),
-  tryoutRuntimeBundle: TryoutRuntimeBundleSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentCurrentState, {

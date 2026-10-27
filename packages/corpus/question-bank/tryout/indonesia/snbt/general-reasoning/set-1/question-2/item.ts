@@ -1,32 +1,32 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
         },
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
         },

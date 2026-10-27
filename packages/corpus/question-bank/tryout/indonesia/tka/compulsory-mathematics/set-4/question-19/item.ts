@@ -1,33 +1,33 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
+const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  responses: {
+  versions: {
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
       statements: [
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Satu putaran pedal memindahkan sepeda sejauh $$6{,}6\\text{ m}$$.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Untuk menempuh jarak $$1{,}32\\text{ km}$$, pedal harus diputar $$600$$ kali.",
         },
         {
-          correctCategoryOrder: 2,
+          column: 2,
           label:
             "Jika gir belakang diganti dengan gir $$24$$ gigi, satu putaran pedal memindahkan sepeda sejauh $$9{,}9\\text{ m}$$.",
         },
         {
-          correctCategoryOrder: 1,
+          column: 1,
           label:
             "Jika pedal diputar $$60$$ kali setiap menit, kelajuan sepeda adalah $$23{,}76\\text{ km/jam}$$.",
         },

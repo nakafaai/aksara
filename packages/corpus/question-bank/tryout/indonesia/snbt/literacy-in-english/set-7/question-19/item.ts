@@ -1,39 +1,39 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-4",
+  versions: {
     en: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "The definition identifies the story's driving struggle: the alert contains accurate knowledge but fails to direct action before time runs out.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *narrative conflict* confirms one final outcome and therefore removes the need to interpret the ending.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition treats *narrative conflict* as the physical object itself rather than as a feature of the narrative ending.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The term *narrative conflict* makes the reader's personal impression sufficient even when it conflicts with story details.",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },
   },
-  stimulusKey: "passage-4",
 };
 
 export default item;

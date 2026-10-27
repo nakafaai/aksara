@@ -1,36 +1,36 @@
-import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
+import type { ItemSource } from "#corpus/question-bank/item";
 
-const item: QuestionItem = {
-  responses: {
+const item: ItemSource = {
+  stimulus: "passage-1",
+  versions: {
     id: {
-      kind: "single-choice",
+      kind: "choice",
       options: [
         {
-          isCorrect: true,
+          correct: true,
           label:
             "Pengujian Pemesanan Menu Sehari Sebelumnya dalam Program Sarapan Sekolah",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Pengujian Beberapa Perubahan Serentak pada Program Sarapan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Catatan Awal Sebelum Pemesanan Sehari Sebelumnya Diuji",
         },
         {
-          isCorrect: false,
+          correct: false,
           label:
             "Tanggapan Siswa terhadap Perancangan Ulang Permanen Program Sarapan",
         },
         {
-          isCorrect: false,
+          correct: false,
           label: "Evaluasi Menyeluruh atas Semua Kegiatan Program Sarapan",
         },
       ],
     },
   },
-  stimulusKey: "passage-1",
 };
 
 export default item;
