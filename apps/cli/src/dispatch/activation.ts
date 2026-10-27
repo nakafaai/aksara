@@ -47,7 +47,9 @@ export function makeAbsentReleaseDispatch() {
 /**
  * Creates the bounded post-commit dispatch of one activated release. A release
  * that changes no content dispatches nothing, and any other release dispatches
- * once, with the retry policy and the timeout of this operation.
+ * once, with the retry policy and the timeout of this operation. A dispatch that
+ * still fails logs GitHub's status and reason before the activation error,
+ * which names only the phase.
  */
 export function makeProductionReleaseDispatch(settings: {
   readonly client: HttpClient.HttpClient;
@@ -72,8 +74,23 @@ export function makeProductionReleaseDispatch(settings: {
       Effect.timeoutOrElse({
         duration: REQUEST_TIMEOUT,
         orElse: () =>
-          Effect.fail(new ReleaseDispatchError({ retryable: false })),
+          Effect.fail(
+            new ReleaseDispatchError({
+              detail: null,
+              retryable: false,
+              status: null,
+            })
+          ),
       }),
+      Effect.tapError((error) =>
+        Effect.logError("Nakafa deploy dispatch failed.").pipe(
+          Effect.annotateLogs({
+            detail: error.detail,
+            retryable: error.retryable,
+            status: error.status,
+          })
+        )
+      ),
       Effect.mapError(
         () => new PublicationActivationError({ phase: "cache", releaseId })
       )
