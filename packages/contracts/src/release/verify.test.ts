@@ -44,16 +44,16 @@ function verifyRollbackBundle(input: unknown) {
 }
 /** Pinned manifest hash of the fixture that the test-only Ed25519 key signs. */
 const pinnedManifestHash = Sha256HashSchema.make(
-  "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
+  "sha256:9ac286f3b056213a8189323e40dc61f4faf9c88fad737fe5bc51914794f5e155"
 );
 
 /** Test-only Ed25519 public key. Its private key in signing.test.ts signs the pinned fixture. */
 const pinnedPublicKeyPem =
-  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAgCI4g0xGIYe6KCmUuuCfBLq4QIP7z5P+Fd4dgGRbJF0=\n-----END PUBLIC KEY-----\n";
+  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAIy9gDOrxSWb2JvlHFvwW8yMjuqsa17V5qkSAaVjzqlk=\n-----END PUBLIC KEY-----\n";
 
 /** Ed25519 signature of the pinned fixture, made by the test-only private key. */
 const pinnedSignature =
-  "nFwTAzLPhAPe7od0cRFc7rzVivz_3dYuoV0r7fBuRwxpQru7rJS9QyWio4yIHOiD_WycVo_U6F7RERDGDteMBw";
+  "Dap_k-bU2BnXbB1del6o-MPeGIaljjRDLGTJ37JnleO8B4Ck92S6yF66E14vlFGSbccGlns0PL9ZnD-wEjvxDA";
 
 const pinnedResolver = ContentVerificationKeyResolver.of({
   resolve: () => Effect.succeed(pinnedPublicKeyPem),

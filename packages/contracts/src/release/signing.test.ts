@@ -16,14 +16,14 @@ import { encodeJsonText } from "#contracts/text/json";
 
 /** Test-only Ed25519 public key that verifies the pinned release signature below. */
 const testPublicKeyPem = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEAN6D7Io/keg3FmkiQI0O78U4EvrTLysiRNpXMu28cDEM=
+MCowBQYDK2VwAyEAIy9gDOrxSWb2JvlHFvwW8yMjuqsa17V5qkSAaVjzqlk=
 -----END PUBLIC KEY-----
 `;
 
 /** Ed25519 signature of the pinned release signing input, made by the test-only key. */
 // Record again: create a key, sign the same input, and replace the public key and signature literals.
 const pinnedSignature =
-  "7tj7x7-c3kFkuIxTnxa_s-ER1WNNHDA8a04-yIjIANEhzVS5qxe9ZkknhluiCZjPHB-k_BfsMbgKWucXzzJOCA";
+  "Dap_k-bU2BnXbB1del6o-MPeGIaljjRDLGTJ37JnleO8B4Ck92S6yF66E14vlFGSbccGlns0PL9ZnD-wEjvxDA";
 
 const genesisManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   activeAppLocales: ["en", "id", "de"],
@@ -186,7 +186,7 @@ describe("release signing", () => {
       Effect.gen(function* () {
         const message = canonicalizeContentReleaseSigningInput(
           Sha256HashSchema.make(
-            "sha256:3870397f05155a746ba3547365b857ced09710824de414458922b83d19dc8c56"
+            "sha256:9ac286f3b056213a8189323e40dc61f4faf9c88fad737fe5bc51914794f5e155"
           ),
           verificationManifest
         );
