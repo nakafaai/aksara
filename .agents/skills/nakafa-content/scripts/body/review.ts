@@ -1,7 +1,6 @@
 import { Predicate } from "effect";
 import {
   hasMarkedPhrase,
-  isAuthoredLesson,
   splitHighlightSections,
 } from "#nakafa-content/highlight/section";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
@@ -187,9 +186,6 @@ export function findBodyHighlightIssues(
   tree: MdxNode,
   includeOpening = false
 ): LessonVoiceIssue[] {
-  if (!isAuthoredLesson(tree)) {
-    return [];
-  }
   return reviewTeachingSections(tree)
     .filter(
       ({ heading, signals }) =>

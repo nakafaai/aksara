@@ -101,10 +101,17 @@ it("rejects deep lesson solutions even when no level is skipped", () => {
   );
 });
 
-it("ignores documents without authored metadata", () => {
+it("checks documents without authored metadata, as bank explanations are", () => {
   assert.deepEqual(
     findHeadingOrderIssues("## Bagian\n\n#### Melompat\n\nTeks."),
-    []
+    [
+      {
+        column: 1,
+        excerpt: "#### Melompat",
+        line: 3,
+        rule: "heading-order",
+      },
+    ]
   );
   assert.deepEqual(findHeadingOrderIssues("", parseLessonMdx("")), []);
   assert.deepEqual(findHeadingOrderIssues("", { type: "root" }), []);

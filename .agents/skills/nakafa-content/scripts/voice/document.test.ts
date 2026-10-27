@@ -6,14 +6,14 @@ import { documentProfile } from "#nakafa-content/voice/profile";
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
 
-it("blocks unwrapped math stacks in every authored document profile", () => {
+it("blocks unwrapped math stacks in lessons and articles, not in bank documents", () => {
   const source = `${METADATA}<BlockMath math="x+2=5" />\n\n<BlockMath math="x=3" />\n\n<MathContainer>\nA condition belongs outside the formula cards.\n</MathContainer>`;
-  for (const file of [
-    "question.en.mdx",
-    "answer.en.mdx",
-    "/corpus/articles/topic/en.mdx",
-    "en.mdx",
-  ]) {
+  for (const [file, count] of [
+    ["question.en.mdx", 0],
+    ["answer.en.mdx", 0],
+    ["/corpus/articles/topic/en.mdx", 2],
+    ["en.mdx", 2],
+  ] as const) {
     const issues = findDocumentIssues(
       file,
       "en",
@@ -24,7 +24,7 @@ it("blocks unwrapped math stacks in every authored document profile", () => {
       ({ rule }) =>
         rule === "unwrapped-math-stack" || rule === "math-stack-content"
     );
-    assert.equal(stack.length, 2, file);
+    assert.equal(stack.length, count, file);
     assert.ok(stack.every(isBlockingLessonVoiceIssue));
   }
 });
@@ -56,12 +56,14 @@ it("preserves assessed language while checking broken question math and emphasis
 });
 
 it("checks authored answer voice without treating passage analysis as lesson narration", () => {
-  const valid = `${METADATA}#### Membandingkan gagasan\n\n**Gagasan utama** paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.`;
+  const valid =
+    "# Membandingkan gagasan\n\n**Gagasan utama** paragraf menjelaskan tujuan percobaan. Bagian berikutnya menyebut hasil pengukuran.";
   assert.deepEqual(
     findDocumentIssues("answer.id.mdx", "id", valid, parseLessonMdx(valid)),
     []
   );
-  const invalid = `${METADATA}#### Menghitung massa\n\nAnda mengkonversi satuan.\n\n## Judul yang keluar dari pembahasan`;
+  const invalid =
+    "# Menghitung massa\n\nAnda mengkonversi satuan.\n\n### Judul yang keluar dari pembahasan";
   assert.deepEqual(
     findDocumentIssues(
       "answer.id.mdx",
@@ -76,7 +78,8 @@ it("checks authored answer voice without treating passage analysis as lesson nar
       "heading-order",
     ]
   );
-  const german = `${METADATA}#### Masse berechnen\n\nZiehen Sie die fehlerhaften Einheiten ab.`;
+  const german =
+    "# Masse berechnen\n\nZiehen Sie die fehlerhaften Einheiten ab.";
   assert.deepEqual(
     findDocumentIssues(
       "answer.de.mdx",
