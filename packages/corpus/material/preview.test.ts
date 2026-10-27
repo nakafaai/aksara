@@ -86,11 +86,9 @@ layer(NodeServices.layer)("material preview projection", (it) => {
 
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);
-        expect(selection.source.dependencies).toContainEqual({
-          mode: "restart",
-          sourcePath:
-            "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
-        });
+        expect(selection.source.dependencies).toContainEqual(
+          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts"
+        );
       })
   );
 });

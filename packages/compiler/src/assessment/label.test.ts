@@ -69,6 +69,21 @@ describe("labelDocument", () => {
       })
   );
 
+  it.effect(
+    "writes display math as a block and a dash list as a bullet list",
+    () =>
+      Effect.gen(function* () {
+        const math = yield* labelDocument("$$\nx=1\n$$", site);
+        const list = yield* labelDocument("- one\n- two", site);
+
+        assert.deepStrictEqual(math, {
+          content: [{ attrs: { latex: "x=1" }, type: "mathBlock" }],
+          type: "doc",
+        });
+        assert.strictEqual(list.content[0]?.type, "bulletList");
+      })
+  );
+
   it.effect("refuses Markdown that a document has no node for", () =>
     Effect.gen(function* () {
       const html = yield* labelDocument("<b>bold</b>", site).pipe(Effect.flip);

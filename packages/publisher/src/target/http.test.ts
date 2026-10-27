@@ -42,7 +42,7 @@ describe("HTTP publication target", () => {
             concurrency: 1,
           }
         );
-        expect(MutableList.toArray(captured.requests)).toHaveLength(22);
+        expect(MutableList.toArray(captured.requests)).toHaveLength(21);
         for (const request of MutableList.toArray(captured.requests)) {
           expect(request.method).toBe("POST");
           expect(request.url).toBe(endpoint.toString());

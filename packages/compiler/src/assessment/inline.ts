@@ -209,18 +209,12 @@ export const richText = Effect.fn("AksaraCompiler.richText")(function* (
   return content satisfies RichText;
 });
 
-/** Writes inline content as plain text, each formula as its LaTeX. */
-export function plainText(nodes: readonly InlineNode[]) {
+/** Writes rich text as plain text, each formula as its LaTeX. */
+export function plainText(nodes: RichText) {
   return Arr.join(
-    Arr.map(nodes, (node) => {
-      if (node.type === "text") {
-        return node.text;
-      }
-      if (node.type === "mathInline") {
-        return node.attrs.latex;
-      }
-      return " ";
-    }),
+    Arr.map(nodes, (node) =>
+      node.type === "text" ? node.text : node.attrs.latex
+    ),
     ""
   ).trim();
 }

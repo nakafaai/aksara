@@ -4,7 +4,7 @@ import {
   type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect } from "effect";
+import { Effect } from "effect";
 import { selectPreviewDocument } from "#corpus/preview/selection";
 import { corpusRoot } from "#corpus/test/root";
 
@@ -55,32 +55,12 @@ describe("preview selection", () => {
           },
           source: {
             dependencies: [
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/articles/source.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath:
-                  "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/articles/politics/category.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath:
-                  "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/articles/schema.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/locale/source.ts",
-              },
+              "packages/corpus/articles/source.ts",
+              "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
+              "packages/corpus/articles/politics/category.ts",
+              "packages/corpus/articles/politics/dynastic-politics/asian-values/ref.ts",
+              "packages/corpus/articles/schema.ts",
+              "packages/corpus/locale/source.ts",
             ],
             family: "article",
           },
@@ -93,31 +73,12 @@ describe("preview selection", () => {
           },
           source: {
             dependencies: [
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/material/source.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath:
-                  "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/material/schema.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/locale/source.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/material/description.ts",
-              },
-              {
-                mode: "restart",
-                sourcePath: "packages/corpus/route/schema.ts",
-              },
+              "packages/corpus/material/source.ts",
+              "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts",
+              "packages/corpus/material/schema.ts",
+              "packages/corpus/locale/source.ts",
+              "packages/corpus/material/description.ts",
+              "packages/corpus/route/schema.ts",
             ],
             family: "material",
           },
@@ -138,15 +99,8 @@ describe("preview selection", () => {
           },
           source: { family: "page" },
         });
-        expect(
-          Arr.map(page.source.dependencies, ({ sourcePath }) => sourcePath)
-        ).toEqual(pageRestartSourcePaths);
-        expect(
-          Arr.map(
-            germanPage.source.dependencies,
-            ({ sourcePath }) => sourcePath
-          )
-        ).toEqual(pageRestartSourcePaths);
+        expect(page.source.dependencies).toEqual(pageRestartSourcePaths);
+        expect(germanPage.source.dependencies).toEqual(pageRestartSourcePaths);
       }),
     { timeout: 30_000 }
   );

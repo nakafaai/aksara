@@ -3,7 +3,7 @@ import type {
   ContentTreeChild,
   ContentTreeElement,
 } from "@nakafa/aksara-contracts/tree";
-import { Array as Arr, Effect, Option, Record as Rec, Schema } from "effect";
+import { Array as Arr, Effect, Schema } from "effect";
 import type { Nodes, Parents } from "mdast";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -18,16 +18,14 @@ const markdown = unified()
   .use(remarkMath, { singleDollarTextMath: false })
   .freeze();
 
-/** The element each Markdown node is, when it is one element with its children. */
-const ELEMENT_NAMES: Readonly<Record<string, string>> = {
+/** The element each Markdown parent is, holding its converted children. */
+const ELEMENT_NAMES = {
   blockquote: "blockquote",
   emphasis: "em",
   listItem: "li",
   paragraph: "p",
   strong: "strong",
-  table: "table",
-  tableRow: "tr",
-};
+} as const;
 
 /** Builds one element of the tree. */
 function element(
@@ -86,11 +84,16 @@ function treeChild(node: Nodes): readonly ContentTreeChild[] {
   if (node.type === "table") {
     return [element("table", {}, tableRows(node))];
   }
-  return Option.match(Rec.get(ELEMENT_NAMES, node.type), {
-    onNone: () => [element(node.type, {}, [])],
-    onSome: (name) =>
-      "children" in node ? [element(name, {}, childrenOf(node))] : [],
-  });
+  if (
+    node.type === "blockquote" ||
+    node.type === "emphasis" ||
+    node.type === "listItem" ||
+    node.type === "paragraph" ||
+    node.type === "strong"
+  ) {
+    return [element(ELEMENT_NAMES[node.type], {}, childrenOf(node))];
+  }
+  return [element(node.type, {}, [])];
 }
 
 /**

@@ -80,10 +80,7 @@ export const FIXED_SELECTION: SelectedDocument = {
     },
   ],
   source: {
-    dependencies: [
-      { mode: "reload", sourcePath: TEST_PAGE.sourcePath },
-      { mode: "reload", sourcePath: TEST_ITEM_PATH },
-    ],
+    dependencies: [TEST_PAGE.sourcePath, TEST_ITEM_PATH],
     entry: TEST_PAGE,
     family: "page",
   },

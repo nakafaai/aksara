@@ -72,11 +72,9 @@ layer(NodeServices.layer)("article preview projection", (it) => {
 
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);
-        expect(selection.source.dependencies).toContainEqual({
-          mode: "restart",
-          sourcePath:
-            "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts",
-        });
+        expect(selection.source.dependencies).toContainEqual(
+          "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts"
+        );
         expect(repeated.source.dependencies).toEqual(
           selection.source.dependencies
         );

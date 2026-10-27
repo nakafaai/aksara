@@ -9,20 +9,14 @@ import { ArticleEntrySchema } from "#corpus/articles/registry";
 import { MaterialEntrySchema } from "#corpus/material/registry";
 import { PageEntrySchema } from "#corpus/pages/registry";
 
-/** One selected file whose change either reloads or restarts preview safely. */
-const PreviewDependencySchema = Schema.Struct({
-  mode: Schema.Literals(["reload", "restart"]),
-  sourcePath: CorpusSourcePathSchema,
-});
-export type PreviewDependency = typeof PreviewDependencySchema.Type;
-
 /** Builds the Schema of one selected source of a family. */
 function previewSourceSchema<Entry extends Schema.Top, Family extends string>(
   family: Family,
   entry: Entry
 ) {
   return Schema.Struct({
-    dependencies: Schema.NonEmptyArray(PreviewDependencySchema),
+    /** The source modules the document's registry reads; a change to one restarts preview. */
+    dependencies: Schema.NonEmptyArray(CorpusSourcePathSchema),
     entry,
     family: Schema.Literal(family),
   });

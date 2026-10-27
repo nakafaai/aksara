@@ -104,6 +104,11 @@ export function blockChildren(
   );
 }
 
+/** The failure of a list, table, row, or quote that holds nothing. */
+function emptyError(element: ContentTreeElement, site: AssessmentSite) {
+  return () => sourceError(site, element.name, "document");
+}
+
 /** Returns the element children of one element, leaving out the space between them. */
 function elementChildren(element: ContentTreeElement) {
   return Arr.filter(
@@ -135,11 +140,7 @@ function listItems(
     item.name === "li"
       ? listItem(item, site)
       : Effect.fail(sourceError(site, item.name, "placement"))
-  ).pipe(
-    Effect.filterOrFail(Arr.isArrayNonEmpty, () =>
-      sourceError(site, element.name, "document")
-    )
-  );
+  ).pipe(Effect.filterOrFail(Arr.isArrayNonEmpty, emptyError(element, site)));
 }
 
 /** Reads the first number of an ordered list, one unless the author set it. */
@@ -148,14 +149,14 @@ function listStart(element: ContentTreeElement) {
   return Number.isInteger(start) && start > 0 ? start : 1;
 }
 
-/** Converts one table cell: its inline content is one paragraph. */
+/**
+ * Converts one cell of a Markdown table row, a `th` or a `td`, as GFM writes
+ * every cell: its inline content is one paragraph.
+ */
 function tableCell(
   element: ContentTreeElement,
   site: AssessmentSite
 ): Effect.Effect<TableCellNode, BlockError> {
-  if (element.name !== "td" && element.name !== "th") {
-    return Effect.fail(sourceError(site, element.name, "placement"));
-  }
   const type = element.name === "th" ? "tableHeader" : "tableCell";
   return Effect.map(inlineContent(element.children, site), (content) => ({
     attrs: { colspan: 1, rowspan: 1 },
@@ -169,30 +170,28 @@ function tableRow(
   element: ContentTreeElement,
   site: AssessmentSite
 ): Effect.Effect<TableRowNode, BlockError> {
-  return Effect.flatMap(
-    Effect.forEach(elementChildren(element), (cell) => tableCell(cell, site)),
-    (cells) =>
-      Arr.isReadonlyArrayNonEmpty(cells)
-        ? Effect.succeed({ content: cells, type: "tableRow" })
-        : Effect.fail(sourceError(site, element.name, "document"))
+  return Effect.forEach(elementChildren(element), (cell) =>
+    tableCell(cell, site)
+  ).pipe(
+    Effect.filterOrFail(Arr.isArrayNonEmpty, emptyError(element, site)),
+    Effect.map((cells) => ({ content: cells, type: "tableRow" }))
   );
 }
 
-/** Converts a table: the rows of its head and its body, in order. */
-function table(element: ContentTreeElement, site: AssessmentSite) {
+/**
+ * Converts a table: its rows in order. A Markdown document writes them inside
+ * its head and body, as GFM does; a label writes them directly.
+ */
+function table(
+  element: ContentTreeElement,
+  site: AssessmentSite
+): Effect.Effect<BlockNode, BlockError> {
   const rows = Arr.flatMap(elementChildren(element), (section) =>
     section.name === "tr" ? [section] : elementChildren(section)
   );
-  return Effect.flatMap(
-    Effect.forEach(rows, (row) =>
-      row.name === "tr"
-        ? tableRow(row, site)
-        : Effect.fail(sourceError(site, row.name, "placement"))
-    ),
-    (converted) =>
-      Arr.isReadonlyArrayNonEmpty(converted)
-        ? Effect.succeed<BlockNode>({ content: converted, type: "table" })
-        : Effect.fail(sourceError(site, element.name, "document"))
+  return Effect.forEach(rows, (row) => tableRow(row, site)).pipe(
+    Effect.filterOrFail(Arr.isArrayNonEmpty, emptyError(element, site)),
+    Effect.map((converted) => ({ content: converted, type: "table" }))
   );
 }
 
@@ -246,10 +245,12 @@ function blockElement(
     ]);
   }
   if (element.name === "blockquote") {
-    return Effect.flatMap(blockChildren(element.children, site), (content) =>
-      Arr.isReadonlyArrayNonEmpty(content)
-        ? Effect.succeed([{ content, type: "blockquote" }])
-        : Effect.fail(sourceError(site, element.name, "document"))
+    return blockChildren(element.children, site).pipe(
+      Effect.filterOrFail(
+        Arr.isReadonlyArrayNonEmpty,
+        emptyError(element, site)
+      ),
+      Effect.map((content) => [{ content, type: "blockquote" }])
     );
   }
   if (element.name === "table") {

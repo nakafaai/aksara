@@ -94,7 +94,7 @@ const buildArticleEntry = Effect.fn("AksaraCorpus.buildPreviewArticleEntry")(
       document,
       source: {
         dependencies: [
-          { mode: "restart", sourcePath: ARTICLE_OWNER },
+          ARTICLE_OWNER,
           ...(yield* dependenciesFor(sourceModule)),
         ],
         entry,
@@ -152,7 +152,7 @@ const buildMaterialEntry = Effect.fn("AksaraCorpus.buildPreviewMaterialEntry")(
       document,
       source: {
         dependencies: [
-          { mode: "restart", sourcePath: MATERIAL_OWNER },
+          MATERIAL_OWNER,
           ...(yield* dependenciesFor(sourceModule)),
         ],
         entry,

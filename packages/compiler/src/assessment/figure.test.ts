@@ -99,6 +99,20 @@ describe("figureNode", () => {
   it.effect("refuses a figure whose props its contract refuses", () =>
     Effect.gen(function* () {
       assert.strictEqual(
+        yield* reason('<NumberLine title="Interval" description="None." />'),
+        "props"
+      );
+      assert.strictEqual(
+        yield* reason('<LineEquation title="L" description="D" data={[1]} />'),
+        "props"
+      );
+      assert.strictEqual(
+        yield* reason(
+          '<UnitCircle title="" description="Angle." angle={30} />'
+        ),
+        "props"
+      );
+      assert.strictEqual(
         yield* reason('<Mermaid title="Flow" description="A to B." />'),
         "props"
       );

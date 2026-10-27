@@ -1,14 +1,7 @@
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
-import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
-import {
-  Array as Arr,
-  Effect,
-  type FileSystem,
-  MutableHashMap,
-  Path,
-} from "effect";
+import { Array as Arr, Effect, type FileSystem, Path } from "effect";
 import {
   captureSelectedFiles,
   PreviewRepositoryError,
@@ -16,20 +9,6 @@ import {
   type SelectedDocument,
   type SelectedFileCandidate,
 } from "#cli/integrity";
-
-/** Retains restart semantics when one selected file has multiple owners. */
-function recordSelectedPath(
-  files: MutableHashMap.MutableHashMap<
-    SelectedFileCandidate["sourcePath"],
-    SelectedFileCandidate["mode"]
-  >,
-  sourcePath: SelectedFileCandidate["sourcePath"],
-  mode: SelectedFileCandidate["mode"]
-) {
-  if (mode === "restart" || !MutableHashMap.has(files, sourcePath)) {
-    MutableHashMap.set(files, sourcePath, mode);
-  }
-}
 
 /** Selects only an exact realpath-backed document and its registry closure. */
 export const selectPreviewDocument: (
@@ -77,13 +56,6 @@ export const selectPreviewDocument: (
   );
   const { source } = selection;
   const bodyPath = source.entry.sourcePath;
-  const dependencyPaths = MutableHashMap.empty<
-    PreviewSource["entry"]["sourcePath"],
-    SelectedFileCandidate["mode"]
-  >();
-  for (const dependency of source.dependencies) {
-    recordSelectedPath(dependencyPaths, dependency.sourcePath, dependency.mode);
-  }
   const candidates = [
     {
       absolutePath: path.resolve(aksaraRoot, bodyPath),
@@ -91,14 +63,12 @@ export const selectPreviewDocument: (
       sourcePath: bodyPath,
     },
     ...Arr.map(
-      [...dependencyPaths],
-      ([sourcePath, mode]): SelectedFileCandidate => {
-        const selectedPath = path.resolve(aksaraRoot, sourcePath);
-        if (mode === "reload") {
-          return { absolutePath: selectedPath, mode: "reload", sourcePath };
-        }
-        return { absolutePath: selectedPath, mode: "restart", sourcePath };
-      }
+      Arr.dedupe(source.dependencies),
+      (sourcePath): SelectedFileCandidate => ({
+        absolutePath: path.resolve(aksaraRoot, sourcePath),
+        mode: "restart",
+        sourcePath,
+      })
     ),
   ] satisfies readonly [SelectedFileCandidate, ...SelectedFileCandidate[]];
   const files = yield* captureSelectedFiles(candidates);
