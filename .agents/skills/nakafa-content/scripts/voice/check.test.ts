@@ -229,7 +229,7 @@ checkTest(
   "prints clean text and JSON reports",
   Effect.gen(function* () {
     const root = yield* temporaryRoot({
-      "answer.en.mdx": "A vector has magnitude and direction.",
+      "answer.en.mdx": "A vector has **magnitude and direction**.",
       "en.mdx": '**Magnitude** is the length.\n\n<BlockMath math="A=3" />',
       "question.en.mdx": "**A quoted question remains exactly as written.**",
     });
@@ -253,7 +253,11 @@ checkTest(
     );
     assert.equal(yield* runCli(["--root", root, "--pedagogy-review"]), 0);
     const logs = yield* loggedLines;
-    assert.ok(logs.some((line) => line.includes("[manual] unmarked-body")));
+    assert.ok(
+      logs.some((line) =>
+        line.includes("answer.en.mdx:1 [manual] prose-without-representation")
+      )
+    );
     assert.ok(logs.at(-1)?.includes("contextual review"));
   })
 );
