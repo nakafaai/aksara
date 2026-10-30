@@ -75,7 +75,7 @@ type QuranTranslationSource = typeof QuranTranslationSourceSchema.Type;
 /** Reads every numeric marker without treating editorial brackets as notes. */
 function readMarkers(source: string) {
   const markers = MutableList.make<Marker>();
-  for (const match of source.matchAll(/\[(\d+)\]/gu)) {
+  for (const match of source.matchAll(/\[\d+\]/gu)) {
     const rawNumber = match[0].slice(1, -1);
     const start = match.index;
     const number = Number(rawNumber);

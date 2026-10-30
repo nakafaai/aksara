@@ -1,6 +1,6 @@
 import { DateTime, Schema } from "effect";
 
-const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/u;
+const DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/u;
 
 /** Checks a source-authored date against the real ISO calendar. */
 function isDateOnly(value: string) {

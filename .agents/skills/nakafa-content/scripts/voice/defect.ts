@@ -13,9 +13,9 @@ export const DEFECT_VOICE_RULES = [
   {
     id: "duplicate-adjacent-word",
     patterns: {
-      de: /\b(?!(?:acht|alle|das|dem|den|der|des|die|ein|eine|einem|einen|einer|eines|mit|und|von|zwischen)\b)([\p{L}]{3,})[ \t]+\1\b/iu,
-      en: /\b(?!(?:and|between|eight|from|had|that|the|with)\b)([\p{L}]{3,})[ \t]+\1\b/iu,
-      id: /\b(?!(?:antara|dan|dari|delapan|dengan|jari|rata)\b)([\p{L}]{3,})[ \t]+\1\b/iu,
+      de: /\b(?!(?:acht|alle|das|dem|den|der|des|die|ein|eine|einem|einen|einer|eines|mit|und|von|zwischen)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
+      en: /\b(?!(?:and|between|eight|from|had|that|the|with)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
+      id: /\b(?!(?:antara|dan|dari|delapan|dengan|jari|rata)\b)(?<word>[\p{L}]{3,})[ \t]+\k<word>\b/iu,
     },
   },
   {

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import type { SourceRange } from "#nakafa-content/mdx/parse";
 import type { StaticStringCandidate } from "#nakafa-content/mdx/static";
 
-const LINE_BOUNDARY_PATTERN = /(\r\n?|\n)/u;
+const LINE_BOUNDARY_PATTERN = /(?<boundary>\r\n?|\n)/u;
 const MDX_CONTINUATION_PREFIX_PATTERN = /^[\t >]*$/u;
 
 /** Reads the source width and cooked UTF-16 width of a validated escape. */

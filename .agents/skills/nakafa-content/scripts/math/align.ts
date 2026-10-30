@@ -54,7 +54,7 @@ const CONJUNCTION_PATTERN =
 const BARE_TERM_PATTERN =
   /^(?:\\[A-Za-z]+|[A-Za-z])(?:_\{[^}]{1,8}\}|_[A-Za-z0-9]|\^\{[^}]{1,8}\}|\^[A-Za-z0-9])*(?:'|\\prime)*$/u;
 
-const ENVIRONMENT_PATTERN = /\\(begin|end)\{([^}]*)\}/gu;
+const ENVIRONMENT_PATTERN = /\\(?<side>begin|end)\{[^}]*\}/gu;
 
 interface AlignedBlock {
   readonly rows: readonly string[];

@@ -2,7 +2,7 @@ const URI_SCHEME_PATTERN = /^[A-Za-z][A-Za-z\d+.-]*:/u;
 const PROTOCOL_RELATIVE_PATTERN = /^\/\//u;
 const EXPLICIT_EXTERNAL_PATTERN = /(?:(?:https?|ftp):\/\/|(?:mailto|tel):)/iu;
 const EMBEDDED_PROTOCOL_RELATIVE_PATTERN =
-  /(?:^|[\s("'=])(\/\/(?=[A-Za-z\d.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)))/iu;
+  /(?:^|[\s("'=])(?<value>\/\/(?=[A-Za-z\d.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)))/iu;
 const SRCSET_EXTERNAL_PATTERN = /(?:^|[\s,])(?:[A-Za-z][A-Za-z\d+.-]*:|\/\/)/iu;
 const SRCSET_VALUE_PATTERN = /[A-Za-z/]/u;
 const NON_WHITESPACE_PATTERN = /\S/u;

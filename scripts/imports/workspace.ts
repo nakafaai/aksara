@@ -11,7 +11,8 @@ import {
 } from "effect";
 
 const JsonText = Schema.fromJsonString(Schema.Unknown);
-const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
+const WORKSPACE_SOURCE_PATTERN =
+  /^(?<root>apps|packages)\/(?<workspace>[^/]+)\//u;
 const IMPORT_WILDCARD_PATTERN = /\*$/u;
 
 const WorkspaceIdentitySchema = Schema.Struct({

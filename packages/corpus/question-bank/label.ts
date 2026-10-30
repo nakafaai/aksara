@@ -24,7 +24,7 @@ const ALTERNATE_MATH_DELIMITER = /\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/u;
 const MATH_COMPONENT =
   /<math>[\s\S]*?<\/math>|<(?:InlineMath|BlockMath)\s+math=["'][^"']*?["']\s*\/?>/u;
 const WRAPPED_CODE_MATH = /^\s*\$[\s\S]*\$\s*$/u;
-const CODE_DOLLAR_SPAN = /(^|[^$\\])\$[^$\n]+\$(?!\$)/gu;
+const CODE_DOLLAR_SPAN = /(?:^|[^$\\])\$[^$\n]+\$(?!\$)/gu;
 const CODE_MATH_NOTATION = /\\[a-zA-Z]+|[=^_{}<>≤≥√∞±×÷∑∫]/u;
 const CODE_MATH_OPERATION = /[\p{L}\p{N}]\s*[+\-*/]\s*[\p{L}\p{N}]/u;
 const CODE_MATH_VARIABLE = /^[A-Za-z]$/u;

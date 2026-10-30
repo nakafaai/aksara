@@ -6,7 +6,7 @@ const METADATA_DESCRIPTION_PATTERN =
 const METADATA_DESCRIPTION_KEY_PATTERN = /^\s*description:\s*$/u;
 const METADATA_STRING_VALUE_PATTERN = /^\s*"(?:[^"\\]|\\.)*"\s*,?\s*$/u;
 const METADATA_END_PATTERN = /^\s*\};\s*$/u;
-const CODE_FENCE_PATTERN = /^\s*(```|~~~)/u;
+const CODE_FENCE_PATTERN = /^\s*(?:```|~~~)/u;
 const UNESCAPED_BACKTICK_PATTERN = /(?<!\\)`/gu;
 
 /** Creates the mutable parser state used across lesson source lines. */

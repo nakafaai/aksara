@@ -8,7 +8,7 @@ export const QUESTION_BANK_ROOT = CorpusSourcePathSchema.make(
 );
 
 /** One question folder name, `question-<n>` with n from one. */
-const QUESTION_FOLDER = /^question-([1-9]\d*)$/u;
+const QUESTION_FOLDER = /^question-(?<number>[1-9]\d*)$/u;
 
 /** One authored file of a question: its item, a prompt, or an explanation. */
 const QUESTION_FILE = /^(?:item\.ts|(?:question|answer)\.[a-z]{2}\.mdx)$/u;

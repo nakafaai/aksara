@@ -45,7 +45,7 @@ const WorkflowSchema = Schema.StructWithRest(
 
 export type WorkflowJob = typeof JobSchema.Type;
 
-const SHELL_COMMENT = /(^|[ \t])#.*$/u;
+const SHELL_COMMENT = /(?<lead>^|[ \t])#.*$/u;
 
 /** Removes disabled shell comments from one decoded program. */
 export function executableSource(run: string | undefined) {

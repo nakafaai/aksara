@@ -22,7 +22,7 @@ import {
 const LONG_DECIMAL_DIGITS = 4;
 
 const COORDINATE_NAMES: ReadonlySet<string> = new Set(["x", "y", "z"]);
-const DECIMAL_LITERAL = /^\d*\.?(\d*)(?:e([+-]?\d+))?$/iu;
+const DECIMAL_LITERAL = /^\d*\.?(?<fraction>\d*)(?:e(?<exponent>[+-]?\d+))?$/iu;
 const TRAILING_ZEROS = /0+$/u;
 
 /** Counts the fractional digits of a literal once its trailing zeros drop. */

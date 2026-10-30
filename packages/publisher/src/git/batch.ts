@@ -14,7 +14,8 @@ import {
 
 export const MAX_GIT_BATCH_BLOBS = 128;
 const MAX_BATCH_HEADER_BYTES = 96;
-const BLOB_HEADER_PATTERN = /^([a-f\d]{40}) blob ([1-9]\d*|0)$/u;
+const BLOB_HEADER_PATTERN =
+  /^(?<objectId>[a-f\d]{40}) blob (?<byteLength>[1-9]\d*|0)$/u;
 
 const GitBlobMetadataSchema = Schema.Struct({
   byteLength: Schema.Number.check(

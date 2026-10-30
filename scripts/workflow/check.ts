@@ -24,7 +24,7 @@ const FULL_GATE_PATTERN =
 const CONDITIONAL_GATE_PATTERN =
   /Decide exact archive release[\s\S]*Verify repository[\s\S]*if: steps\.decision\.outputs\.mode == 'create'[\s\S]*bun run lint/u;
 const CONTRACT_TRIGGER_PATTERN =
-  /push:[\s\S]*branches: \[main\][\s\S]*workflow_dispatch:/u;
+  /push:[\s\S]*branches: \[ main \][\s\S]*workflow_dispatch:/u;
 const CONTRACT_PATH_TRIGGER_PATTERN = /\bpaths(?:-ignore)?:/u;
 const RELEASE_IDENTITY_PATTERN =
   /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*\.assets\[\][\s\S]*nakafa-aksara-contracts-[\s\S]*@tsv[\s\S]*release\/command\.ts describe[\s\S]*--releases[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release\/command\.ts "\$\{arguments\[@\]\}"/u;
@@ -35,7 +35,7 @@ const ARCHIVE_IDENTITY_PATTERN =
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
 const RELEASE_JOB_PATTERN =
-  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified package[\s\S]*contract-package[\s\S]*Upload publication verifier[\s\S]*contract-verifier[\s\S]*publish:[\s\S]*needs: build[\s\S]*environment: npm-production[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*id-token: write[\s\S]*Download verified package[\s\S]*contract-package[\s\S]*verify:[\s\S]*needs: \[build, publish\][\s\S]*permissions: \{\}[\s\S]*Download publication verifier[\s\S]*contract-verifier[\s\S]*finalize:[\s\S]*needs: \[build, publish, verify\][\s\S]*contents: write/u;
+  /build:[\s\S]*attestations: write[\s\S]*contents: read[\s\S]*Upload verified package[\s\S]*contract-package[\s\S]*Upload publication verifier[\s\S]*contract-verifier[\s\S]*publish:[\s\S]*needs: build[\s\S]*environment: npm-production[\s\S]*attestations: read[\s\S]*contents: write[\s\S]*id-token: write[\s\S]*Download verified package[\s\S]*contract-package[\s\S]*verify:[\s\S]*needs: \[ build, publish \][\s\S]*permissions: \{\}[\s\S]*Download publication verifier[\s\S]*contract-verifier[\s\S]*finalize:[\s\S]*needs: \[ build, publish, verify \][\s\S]*contents: write/u;
 const IMMUTABLE_SETTING_PATTERN =
   /repos\/\$GITHUB_REPOSITORY\/immutable-releases/u;
 const IDEMPOTENT_RELEASE_PATTERN =

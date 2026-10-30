@@ -14,9 +14,10 @@ import { sameBytes } from "#scripts/release/bytes";
 
 const CONTRACT_NAME = "@nakafa/aksara-contracts";
 const FIRST_VERSION = "0.1.0";
-const VERSION_PATTERN = /^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/u;
+const VERSION_PATTERN =
+  /^(?<major>0|[1-9][0-9]*)\.(?<minor>0|[1-9][0-9]*)\.(?<patch>0|[1-9][0-9]*)$/u;
 const ARCHIVE_PATTERN =
-  /^nakafa-aksara-contracts-((?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))\.tgz$/u;
+  /^nakafa-aksara-contracts-(?<version>(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))\.tgz$/u;
 const LINE_PATTERN = /\r?\n/u;
 
 const PackageIdentitySchema = Schema.fromJsonString(

@@ -5,6 +5,7 @@ import { Array as Arr, Effect, FileSystem, Option, Ref } from "effect";
 import { makeBumpDependenciesProgram } from "#scripts/dependencies/bump";
 import type { BunRunner } from "#scripts/dependencies/command";
 import {
+  approved,
   approvedManifest,
   createConfig,
   GATED_RELEASE,
@@ -146,7 +147,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       () =>
         Effect.gen(function* () {
           const config = yield* createConfig({
-            manifest: approvedManifest({ omit: "ultracite" }),
+            manifest: approvedManifest({ omit: "@effect/tsgo" }),
           });
           const error = yield* makeBumpDependenciesProgram(
             config,
@@ -156,7 +157,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
             error.message.includes(
-              "ultracite declares missing; approved 8.0.2."
+              `@effect/tsgo declares missing; approved ${approved("@effect/tsgo")}.`
             )
           );
         })
