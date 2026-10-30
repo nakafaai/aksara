@@ -1,7 +1,6 @@
 import { digestSha256 } from "@nakafa/aksara-contracts/hash/digest";
 import { Array as Arr, Effect } from "effect";
 import { Hex } from "effect/encoding";
-import { digestFailure } from "#corpus/quran/source/failure";
 
 /** Encodes one named source as the exact parts that a domain-separated bundle digest covers. */
 export function bundleParts(name: string, bytes: Uint8Array) {
@@ -28,11 +27,7 @@ function concatBytes(parts: readonly Uint8Array[]) {
 /** Digests the ordered parts of one bundle, which the loader already holds in memory. */
 export const digestBundle = Effect.fn("AksaraCorpus.digestQuranBundle")(
   function* (parts: readonly Uint8Array[]) {
-    const digest = yield* digestSha256(concatBytes(parts)).pipe(
-      Effect.mapError(
-        digestFailure("Could not digest a pinned Quran source bundle.")
-      )
-    );
+    const digest = yield* digestSha256(concatBytes(parts));
     return Hex.encode(digest);
   }
 );

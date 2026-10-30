@@ -8,10 +8,7 @@ import type {
   QuranRowPayload,
   QuranSnapshotRow,
 } from "#contracts/quran/snapshot/row";
-import {
-  hashQuranRow,
-  QuranRowHashError,
-} from "#contracts/quran/snapshot/row/hash";
+import { hashQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { quranSourceIds } from "#contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,
@@ -265,8 +262,7 @@ class QuranDigestState {
         runtimeCount: this.runtimeCount,
         searchCount: this.searchCount,
         ...digests,
-      })),
-      Effect.mapError(() => new QuranRowHashError({ scope: "row" }))
+      }))
     );
   }
 }

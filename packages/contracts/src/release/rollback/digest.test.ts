@@ -12,7 +12,6 @@ import {
 import { RollbackSnapshotEntrySchema } from "#contracts/release/rollback/spec";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
 import { ContentReleaseManifestSchema } from "#contracts/release/spec";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   digestArticleEntry,
   digestMaterialEntry,
@@ -78,11 +77,8 @@ describe("rollback snapshot digest", () => {
       const value = entry();
       const initial = yield* createRollbackSnapshotDigest;
       const updated = yield* updateRollbackSnapshotDigest(initial, value);
-      const digest = yield* finalizeRollbackSnapshotDigest(releaseId, updated);
-      const summary = yield* digestRollbackSnapshot(
-        releaseId,
-        Stream.make(value)
-      );
+      const digest = yield* finalizeRollbackSnapshotDigest(updated);
+      const summary = yield* digestRollbackSnapshot(Stream.make(value));
 
       expect(summary).toEqual({ count: 1, digest });
       expect(updated.count).toBe(1);
@@ -93,7 +89,7 @@ describe("rollback snapshot digest", () => {
     Effect.gen(function* () {
       const value = entry();
       const stream = Stream.make(value);
-      const summary = yield* digestRollbackSnapshot(releaseId, stream);
+      const summary = yield* digestRollbackSnapshot(stream);
       const verified = yield* verifyRollbackSnapshot({
         entries: stream,
         manifest: manifest(summary.count, summary.digest),
@@ -117,31 +113,13 @@ describe("rollback snapshot digest", () => {
   );
 
   it.effect(
-    "maps a rejected Web Crypto digest to a rollback snapshot hash error",
-    () =>
-      Effect.gen(function* () {
-        const state = yield* createRollbackSnapshotDigest;
-        const failure = yield* withNextDigestFailure(
-          finalizeRollbackSnapshotDigest(releaseId, state)
-        ).pipe(Effect.flip);
-
-        expect(failure).toMatchObject({
-          _tag: "RollbackSnapshotHashError",
-          releaseId,
-        });
-      })
-  );
-
-  it.effect(
     "pins one digest for the whole stream, one-element chunks, and the incremental fold of the same rollback snapshot",
     () =>
       Effect.gen(function* () {
         const whole = yield* digestRollbackSnapshot(
-          releaseId,
           Stream.fromIterable(rollbackEntries)
         );
         const split = yield* digestRollbackSnapshot(
-          releaseId,
           Stream.fromIterable(rollbackEntries).pipe(Stream.rechunk(1))
         );
         const initial = yield* createRollbackSnapshotDigest;
@@ -150,10 +128,7 @@ describe("rollback snapshot digest", () => {
           () => initial,
           (state, value) => updateRollbackSnapshotDigest(state, value)
         );
-        const incremental = yield* finalizeRollbackSnapshotDigest(
-          releaseId,
-          updated
-        );
+        const incremental = yield* finalizeRollbackSnapshotDigest(updated);
 
         expect(whole).toEqual({
           count: 3,

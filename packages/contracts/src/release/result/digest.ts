@@ -23,12 +23,6 @@ import {
 } from "#contracts/release/mismatch";
 import { RESULT_CATALOG_DIGEST_DOMAIN } from "#contracts/release/result/spec";
 
-/** SHA-256 computation failed before result-catalog integrity was established. */
-export class ResultCatalogHashError extends Schema.TaggedError<
-  ResultCatalogHashError,
-  { readonly brand: unique symbol }
->()("ResultCatalogHashError", { releaseId: ReleaseIdSchema }) {}
-
 /** A result catalog is duplicated or outside canonical content-head order. */
 export class ResultCatalogOrderError extends Schema.TaggedError<
   ResultCatalogOrderError,
@@ -140,16 +134,11 @@ export function updateResultCatalogDigest(
 }
 
 /** Finalizes one incremental result-catalog digest. */
-export function finalizeResultCatalogDigest(
-  releaseId: ReleaseId,
-  state: ResultCatalogDigestState
-) {
-  return state
-    .digest()
-    .pipe(Effect.mapError(() => new ResultCatalogHashError({ releaseId })));
+export function finalizeResultCatalogDigest(state: ResultCatalogDigestState) {
+  return state.digest();
 }
 
-/** Digests one complete compact-head stream. Its canonical bytes are held until one Web Crypto digest runs. */
+/** Digests one complete compact-head stream. Its canonical bytes are held until one digest runs. */
 export const digestResultCatalog = Effect.fn(
   "AksaraContracts.digestResultCatalog"
 )(function* <E, R>(
@@ -163,7 +152,7 @@ export const digestResultCatalog = Effect.fn(
       (current, head) => updateResultCatalogDigest(releaseId, current, head)
     )
   );
-  const digest = yield* finalizeResultCatalogDigest(releaseId, state);
+  const digest = yield* finalizeResultCatalogDigest(state);
   return { count: state.count, digest };
 });
 

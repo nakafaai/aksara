@@ -8,7 +8,6 @@ import {
   verifyQuranSnapshotHash,
 } from "#contracts/quran/snapshot/hash";
 import { QuranSnapshotFactsSchema } from "#contracts/quran/snapshot/spec";
-import { withNextDigestFailure } from "#contracts/test/digest";
 
 const digest = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const facts = Schema.decodeSync(QuranSnapshotFactsSchema)({
@@ -63,15 +62,6 @@ describe("Quran snapshot hashing", () => {
       ).toMatchObject(facts);
       expect(first.snapshotId).toBe(second.snapshotId);
       expect(yield* verifyQuranSnapshotHash(first)).toBe(first.snapshotId);
-    })
-  );
-
-  it.effect("maps a failed digest to the typed contract error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        makeQuranSnapshot(facts).pipe(Effect.flip)
-      );
-      expect(error._tag).toBe("QuranSnapshotHashError");
     })
   );
 });

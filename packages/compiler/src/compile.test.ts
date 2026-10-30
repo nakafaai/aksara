@@ -9,7 +9,7 @@ import { compileContent } from "#compiler/compile";
 import { createTestRendererManifest } from "#compiler/test/content";
 import { sceneEndingAt } from "#compiler/test/math";
 
-const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
+const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/u;
 const VALID_METADATA = "export const metadata = {}";
 const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 

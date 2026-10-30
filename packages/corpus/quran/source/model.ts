@@ -34,13 +34,13 @@ const VerseSchema = Schema.Struct({
   translation: localizedSourceMapSchema(QuranTranslationSchema),
 });
 /** Encoded metadata emitted before the corpus schema applies its brands. */
-type QuranSurahMetadata = Schema.Codec.Encoded<typeof QuranSurahMetadataSchema>;
+type QuranSurahMetadata = typeof QuranSurahMetadataSchema.Encoded;
 
 const SurahMetadataSchema = Schema.Struct({
   ...QuranSurahMetadataSchema.fields,
   start: Schema.Finite,
 });
-export type SurahMetadata = Schema.Codec.Encoded<typeof SurahMetadataSchema>;
+export type SurahMetadata = typeof SurahMetadataSchema.Encoded;
 
 const SurahVersesSchema = Schema.Struct({
   verses: Schema.Array(VerseSchema),

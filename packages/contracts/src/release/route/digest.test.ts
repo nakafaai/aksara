@@ -8,7 +8,6 @@ import {
   updateRouteDigest,
 } from "#contracts/release/route/digest";
 import { ContentRouteItemSchema } from "#contracts/release/route/spec";
-import { withNextDigestFailure } from "#contracts/test/digest";
 
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-route-digest");
 
@@ -32,22 +31,11 @@ describe("route digest", () => {
       const value = route();
       const initial = yield* createRouteDigest;
       const updated = yield* updateRouteDigest(initial, value);
-      const digest = yield* completeRouteDigest(releaseId, updated);
-      const summary = yield* digestRoutes(releaseId, Stream.make(value));
+      const digest = yield* completeRouteDigest(updated);
+      const summary = yield* digestRoutes(Stream.make(value));
 
       expect(summary).toEqual({ count: 1, digest });
       expect(updated.count).toBe(1);
-    })
-  );
-
-  it.effect("maps a rejected Web Crypto digest to a route hash error", () =>
-    Effect.gen(function* () {
-      const state = yield* createRouteDigest;
-      const failure = yield* withNextDigestFailure(
-        completeRouteDigest(releaseId, state)
-      ).pipe(Effect.flip);
-
-      expect(failure).toMatchObject({ _tag: "RouteHashError", releaseId });
     })
   );
 
@@ -65,18 +53,14 @@ describe("route digest", () => {
           index: 1,
           releaseId,
         });
-        const whole = yield* digestRoutes(
-          releaseId,
-          Stream.make(bind, deletion)
-        );
+        const whole = yield* digestRoutes(Stream.make(bind, deletion));
         const split = yield* digestRoutes(
-          releaseId,
           Stream.make(bind, deletion).pipe(Stream.rechunk(1))
         );
         const initial = yield* createRouteDigest;
         const withBind = yield* updateRouteDigest(initial, bind);
         const withDelete = yield* updateRouteDigest(withBind, deletion);
-        const incremental = yield* completeRouteDigest(releaseId, withDelete);
+        const incremental = yield* completeRouteDigest(withDelete);
 
         expect(whole).toEqual({
           count: 2,

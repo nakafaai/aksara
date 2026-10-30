@@ -1,4 +1,4 @@
-import { Array as Arr, Effect, Schema } from "effect";
+import { Array as Arr, Effect } from "effect";
 
 import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { hashText } from "#contracts/hash/text";
@@ -13,12 +13,6 @@ import type { QuranTafsirAccess } from "#contracts/quran/source";
 import { encodeJsonText } from "#contracts/text/json";
 
 const ROW_DOMAIN = "nakafa.aksara.quran-row";
-
-/** Node could not compute a deterministic Quran row identity. */
-export class QuranRowHashError extends Schema.TaggedError<
-  QuranRowHashError,
-  { readonly brand: unique symbol }
->()("QuranRowHashError", { scope: Schema.Literals(["digest", "row"]) }) {}
 
 /** Serializes one published translation list in signed field order. */
 function canonicalizeTranslations(
@@ -122,9 +116,7 @@ export function canonicalizeQuranRow(payload: QuranRowPayload) {
 /** Computes one current row's domain-separated identity. */
 export const hashQuranRow = Effect.fn("AksaraContracts.hashQuranRow")(
   (payload: QuranRowPayload) =>
-    hashText(`${ROW_DOMAIN}\n${canonicalizeQuranRow(payload)}`).pipe(
-      Effect.mapError(() => new QuranRowHashError({ scope: "row" }))
-    )
+    hashText(`${ROW_DOMAIN}\n${canonicalizeQuranRow(payload)}`)
 );
 
 /** Creates one snapshot-bound current row. */

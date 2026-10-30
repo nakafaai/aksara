@@ -128,12 +128,6 @@ export const selectRendererDomainCapability = Effect.fn(
   return capability.value;
 });
 
-/** SHA-256 could not be calculated for the renderer contract bytes. */
-export class RendererManifestHashComputeError extends Schema.TaggedError<
-  RendererManifestHashComputeError,
-  { readonly brand: unique symbol }
->()("RendererManifestHashComputeError", { cause: Schema.Unknown }) {}
-
 /** The renderer envelope hash does not authenticate its canonical tuple. */
 export class RendererManifestHashMismatchError extends Schema.TaggedError<
   RendererManifestHashMismatchError,

@@ -1,6 +1,5 @@
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
-import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import {
   CompiledContentPayloadSchema,
   compareContentHeads,
@@ -120,7 +119,6 @@ function validateRecordCoherence(
   recordIndex: number
 ): Effect.Effect<
   PreparedContentRecord,
-  | ArtifactHashComputationError
   | Effect.Error<ReturnType<typeof verifyCompiledContentSourceHash>>
   | PreparedContentCoherenceError
 > {

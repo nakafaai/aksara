@@ -14,7 +14,6 @@ import {
 } from "#contracts/program/snapshot/hash";
 import { ProgramSnapshotFactsSchema } from "#contracts/program/snapshot/spec";
 import { LearningProgramSchema } from "#contracts/program/spec";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   makeTestCurriculumRoot,
   makeTestProgram,
@@ -133,15 +132,6 @@ describe("program snapshot hashing", () => {
       expect(yield* verifyProgramSnapshotHash(first)).toBe(first.snapshotId);
     })
   );
-
-  it.effect("maps a failed digest to the typed contract error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        makeProgramSnapshot(facts).pipe(Effect.flip)
-      );
-      expect(error._tag).toBe("ProgramSnapshotHashError");
-    })
-  );
 });
 
 describe("program snapshot row hashing", () => {
@@ -160,18 +150,6 @@ describe("program snapshot row hashing", () => {
       expect(yield* verifyProgramSnapshotRowHash(curriculumRecord)).toBe(
         curriculumRecord.rowHash
       );
-    })
-  );
-
-  it.effect("maps a failed digest to the typed row error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        makeProgramSnapshotRow(makeTestProgram(1)).pipe(Effect.flip)
-      );
-      expect(error).toMatchObject({
-        _tag: "ProgramRowHashError",
-        scope: "row",
-      });
     })
   );
 });

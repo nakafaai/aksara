@@ -3,7 +3,6 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
-import { withNextDigestFailure } from "#contracts/test/digest";
 
 describe("UTF-8 text hashing", () => {
   it.effect("pins SHA-256 digests of exact UTF-8 text", () =>
@@ -28,16 +27,6 @@ describe("UTF-8 text hashing", () => {
       expect(yield* hashText("Pelajaran é ✓ 数学\n\n- satu\n- dua")).toBe(
         "sha256:4f6d1d56c579dfce19f0c186e79bd9dd9ed504ccf9ec1b6048b936489a396583"
       );
-    })
-  );
-
-  it.effect("maps Web Crypto failures into the typed error channel", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        hashText("failure").pipe(Effect.flip)
-      );
-
-      expect(error._tag).toBe("TextHashError");
     })
   );
 });

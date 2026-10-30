@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   compareVersions,
   decideArchive,
@@ -246,23 +245,6 @@ describe("pinned release identities", () => {
           size: 18,
         });
       })
-  );
-
-  it.effect("maps a failed archive digest into an archive error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        decideArchive(
-          { current: yield* parseVersion("0.1.0"), latest: undefined },
-          new TextEncoder().encode("Arsip"),
-          undefined
-        )
-      ).pipe(Effect.flip);
-
-      expect(error).toMatchObject({
-        detail: "The current contract archive cannot be hashed.",
-        reason: "archive",
-      });
-    })
   );
 
   it.effect(

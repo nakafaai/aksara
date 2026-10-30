@@ -160,12 +160,10 @@ export const validateContentCatalog: (input: {
         Stream.runCount,
         Effect.mapError((cause) => validationError("result", cause))
       ),
+      digestRoutes(makeRouteItems(CHECK_RELEASE_ID, publication.routes)).pipe(
+        Effect.mapError((cause) => validationError("routes", cause))
+      ),
       digestRoutes(
-        CHECK_RELEASE_ID,
-        makeRouteItems(CHECK_RELEASE_ID, publication.routes)
-      ).pipe(Effect.mapError((cause) => validationError("routes", cause))),
-      digestRoutes(
-        CHECK_RELEASE_ID,
         makeRouteItems(
           CHECK_RELEASE_ID,
           Stream.fromIterable(expectation.routes)

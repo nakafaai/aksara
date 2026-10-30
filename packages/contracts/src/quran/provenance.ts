@@ -178,12 +178,6 @@ export class QuranProvenanceCoverageError extends Schema.TaggedError<
   actualScopes: Schema.Array(QuranProvenanceScopeSchema),
 }) {}
 
-/** Node could not compute the deterministic provenance digest. */
-export class QuranProvenanceHashError extends Schema.TaggedError<
-  QuranProvenanceHashError,
-  { readonly brand: unique symbol }
->()("QuranProvenanceHashError", {}) {}
-
 const PROVENANCE_DOMAIN = "nakafa.aksara.quran-provenance";
 
 /** Produces stable JSON for one reviewed Quran provenance record. */
@@ -207,9 +201,7 @@ export const hashQuranProvenance = Effect.fn(
   for (const record of input.records) {
     canonical += `${canonicalizeQuranProvenance(record)}\n`;
   }
-  return yield* hashText(canonical).pipe(
-    Effect.mapError(() => new QuranProvenanceHashError())
-  );
+  return yield* hashText(canonical);
 });
 
 /** Builds a snapshot provenance gate from exact reviewed source records. */

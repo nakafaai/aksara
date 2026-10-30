@@ -4,7 +4,6 @@ import {
   finalizeProjectionDigest,
   updateProjectionDigest,
 } from "@nakafa/aksara-contracts/projection/digest";
-import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import { ContentReleaseManifestSchema } from "@nakafa/aksara-contracts/release";
 import {
@@ -76,7 +75,6 @@ interface BuildRollbackReleaseInput<E, R> {
 
 type BuildRollbackReleaseError<E, R> =
   | E
-  | ContentProjectionHashError
   | Effect.Error<ReturnType<typeof finalizeProjectionDigest>>
   | Effect.Error<ReturnType<typeof updateProjectionDigest>>
   | Effect.Error<ReturnType<typeof finalizeReleaseItemsDigest>>
@@ -165,23 +163,11 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
       updateResultCatalogDigest(input.releaseId, resultState, head)
     )
   );
-  const itemsDigest = yield* finalizeReleaseItemsDigest(
-    input.releaseId,
-    itemState
-  );
-  const projectionDigest = yield* finalizeProjectionDigest(
-    input.releaseId,
-    projectionState
-  );
-  const resultDigest = yield* finalizeResultCatalogDigest(
-    input.releaseId,
-    resultState
-  );
-  const rollbackDigest = yield* finalizeRollbackSnapshotDigest(
-    input.releaseId,
-    rollbackState
-  );
-  const routeSummary = yield* digestRoutes(input.releaseId, routes);
+  const itemsDigest = yield* finalizeReleaseItemsDigest(itemState);
+  const projectionDigest = yield* finalizeProjectionDigest(projectionState);
+  const resultDigest = yield* finalizeResultCatalogDigest(resultState);
+  const rollbackDigest = yield* finalizeRollbackSnapshotDigest(rollbackState);
+  const routeSummary = yield* digestRoutes(routes);
   const manifest = ContentReleaseManifestSchema.make({
     activeAppLocales: input.target.activeAppLocales,
     baseActiveAppLocales: input.active.activeAppLocales,

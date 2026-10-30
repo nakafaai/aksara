@@ -1,5 +1,6 @@
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
+import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Array as Arr, Effect, HashSet, Redacted } from "effect";
 import { Base64, Hex } from "effect/encoding";
 import {
@@ -26,32 +27,44 @@ const failFirstImport = Effect.acquireRelease(
   Effect.sync(() =>
     vi
       .spyOn(globalThis.crypto.subtle, "importKey")
-      .mockRejectedValueOnce(new TypeError("Test-only key generation failure."))
+      .mockRejectedValueOnce(
+        new DOMException("Test-only key generation failure.", "DataError")
+      )
   ),
   () => Effect.sync(() => vi.restoreAllMocks())
 );
 
-/** Scopes one importKey fault so the second key import of credential creation fails. */
-const failSignerImport = Effect.acquireRelease(
-  Effect.sync(() => {
-    let imports = 0;
-    const realImportKey = globalThis.crypto.subtle.importKey.bind(
-      globalThis.crypto.subtle
-    );
-    return vi
-      .spyOn(globalThis.crypto.subtle, "importKey")
-      .mockImplementation((...parameters) => {
-        imports += 1;
-        if (imports === 2) {
-          return Promise.reject(
-            new TypeError("Test-only signer import failure.")
-          );
-        }
-        return realImportKey(...parameters);
-      });
-  }),
-  () => Effect.sync(() => vi.restoreAllMocks())
-);
+/**
+ * Scopes one importKey fault at the first key import after the key pair is
+ * generated, which the signer makes. The generation's own imports are counted
+ * first, so the fault follows Effect's key handling instead of a fixed count.
+ */
+const failSignerImport = Effect.gen(function* () {
+  const counter = vi.spyOn(globalThis.crypto.subtle, "importKey");
+  yield* generateEd25519KeyPem();
+  const generationImports = counter.mock.calls.length;
+  counter.mockRestore();
+  yield* Effect.acquireRelease(
+    Effect.sync(() => {
+      let imports = 0;
+      const realImportKey = globalThis.crypto.subtle.importKey.bind(
+        globalThis.crypto.subtle
+      );
+      return vi
+        .spyOn(globalThis.crypto.subtle, "importKey")
+        .mockImplementation((...parameters) => {
+          imports += 1;
+          if (imports === generationImports + 1) {
+            return Promise.reject(
+              new DOMException("Test-only signer import failure.", "DataError")
+            );
+          }
+          return realImportKey(...parameters);
+        });
+    }),
+    () => Effect.sync(() => vi.restoreAllMocks())
+  );
+});
 
 describe("preview credentials", () => {
   it("keeps the key identity and the renderer token read-only", () => {
@@ -105,27 +118,6 @@ describe("preview credentials", () => {
         expect(Hex.encode(spki.slice(0, 12))).toBe(ED25519_SPKI_PREFIX);
         expect(first.publicKeyPem).not.toContain("PRIVATE KEY");
       })
-  );
-
-  it.effect("maps a rejected public key digest to the generate stage", () =>
-    Effect.gen(function* () {
-      yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only public key digest failure.")
-            )
-        ),
-        () => Effect.sync(() => vi.restoreAllMocks())
-      );
-      const error = yield* makePreviewCredentials().pipe(Effect.flip);
-
-      expect(error).toMatchObject({
-        _tag: "PreviewCredentialError",
-        stage: "generate",
-      });
-    })
   );
 
   it.effect("derives the key identity from the generated public key", () =>

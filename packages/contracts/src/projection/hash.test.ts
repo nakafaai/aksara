@@ -2,7 +2,6 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { materialGraph } from "#contracts/test/graph";
 
 const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
@@ -25,18 +24,6 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   sectionKey: "test-projection",
   sitemap: true,
   topicTitle: "Test Projection Topic",
-});
-
-describe("content projection hash failures", () => {
-  it.effect("maps a failed digest to the typed projection error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        hashContentProjection(projection).pipe(Effect.flip)
-      );
-
-      expect(error._tag).toBe("ContentProjectionHashError");
-    })
-  );
 });
 
 describe("content projection hash", () => {

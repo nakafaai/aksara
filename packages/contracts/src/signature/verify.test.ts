@@ -53,7 +53,7 @@ function reject(
 /** Installs one scoped Web Crypto rejection spy. */
 function rejectCryptoCall<T extends "importKey" | "verify">(
   method: T,
-  failure: TypeError
+  failure: DOMException
 ) {
   return Effect.acquireRelease(
     Effect.sync(() =>
@@ -126,7 +126,7 @@ describe("verifyEd25519Signature", () => {
         });
         yield* rejectCryptoCall(
           "importKey",
-          new TypeError("injected key import failure")
+          new DOMException("injected key import failure", "DataError")
         );
 
         const error = yield* reject(resolver, fixture.signature);
@@ -179,7 +179,10 @@ describe("verifyEd25519Signature", () => {
         });
         yield* rejectCryptoCall(
           "verify",
-          new TypeError("injected signature check failure")
+          new DOMException(
+            "injected signature check failure",
+            "NotSupportedError"
+          )
         );
         const error = yield* reject(
           resolver,

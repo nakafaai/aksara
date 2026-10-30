@@ -1,7 +1,7 @@
 import { Array as Arr, Order, Schema } from "effect";
 import { compareCodeUnits } from "#contracts/text/order";
 
-const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/;
+const COMPONENT_NAME_PATTERN = /^[A-Za-z][A-Za-z0-9]*$/u;
 
 /** Renderer names identify one current implementation, never member paths. */
 export const RendererComponentNameSchema = Schema.String.check(

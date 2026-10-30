@@ -67,25 +67,6 @@ describe("npm trusted publication digest", () => {
     }).pipe(Effect.provide(NodeServices.layer))
   );
 
-  it.effect("refuses a publish job whose digest cannot be computed", () =>
-    Effect.gen(function* () {
-      const source = yield* readSource(".github/workflows/cli.yml");
-      const refusal = yield* Effect.acquireUseRelease(
-        Effect.sync(() =>
-          vi
-            .spyOn(globalThis.crypto.subtle, "digest")
-            .mockRejectedValueOnce(
-              new TypeError("Test-only publish digest failure.")
-            )
-        ),
-        () => workflowFailure(verifyNpmWorkflow(source, contract)),
-        (mock) => Effect.sync(() => mock.mockRestore())
-      );
-
-      expect(refusal).toBe("npm publication could not be hashed");
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-
   it.effect("refuses a workflow that lacks one of its three release jobs", () =>
     Effect.gen(function* () {
       const source = yield* readSource(".github/workflows/cli.yml");

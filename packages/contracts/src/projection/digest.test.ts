@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
-import { ReleaseIdSchema } from "#contracts/ids";
 import {
   createProjectionDigest,
   digestProjections,
@@ -8,10 +7,7 @@ import {
   updateProjectionDigest,
 } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { materialGraph } from "#contracts/test/graph";
-
-const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-projection");
 
 /** Builds one unmistakably test-only material projection. */
 function projection(contentKey = "test:projection") {
@@ -42,32 +38,12 @@ describe("projection digest", () => {
       const value = projection();
       const initial = yield* createProjectionDigest;
       const updated = yield* updateProjectionDigest(initial, value);
-      const digest = yield* finalizeProjectionDigest(releaseId, updated);
-      const summary = yield* digestProjections(releaseId, Stream.make(value));
+      const digest = yield* finalizeProjectionDigest(updated);
+      const summary = yield* digestProjections(Stream.make(value));
 
       expect(summary).toEqual({ count: 1, digest });
       expect(updated.count).toBe(1);
     })
-  );
-
-  it.effect(
-    "maps a rejected Web Crypto digest to a projection hash error",
-    () =>
-      Effect.gen(function* () {
-        const state = yield* updateProjectionDigest(
-          yield* createProjectionDigest,
-          projection()
-        );
-
-        const failure = yield* withNextDigestFailure(
-          finalizeProjectionDigest(releaseId, state)
-        ).pipe(Effect.flip);
-
-        expect(failure).toMatchObject({
-          _tag: "ProjectionHashError",
-          releaseId,
-        });
-      })
   );
 });
 
@@ -113,21 +89,14 @@ describe("pinned projection digest", () => {
     "pins one digest for one stream, a chunked stream, and incremental updates",
     () =>
       Effect.gen(function* () {
-        const oneChunk = yield* digestProjections(
-          releaseId,
-          Stream.make(first, second)
-        );
+        const oneChunk = yield* digestProjections(Stream.make(first, second));
         const twoChunks = yield* digestProjections(
-          releaseId,
           Stream.make(first).pipe(Stream.concat(Stream.make(second)))
         );
         const initial = yield* createProjectionDigest;
         const afterFirst = yield* updateProjectionDigest(initial, first);
         const afterSecond = yield* updateProjectionDigest(afterFirst, second);
-        const incremental = yield* finalizeProjectionDigest(
-          releaseId,
-          afterSecond
-        );
+        const incremental = yield* finalizeProjectionDigest(afterSecond);
 
         expect(oneChunk).toEqual({
           count: 2,
@@ -147,9 +116,7 @@ describe("pinned projection digest", () => {
 
   it.effect("pins a different digest when the caller changes order", () =>
     Effect.gen(function* () {
-      expect(
-        yield* digestProjections(releaseId, Stream.make(second, first))
-      ).toEqual({
+      expect(yield* digestProjections(Stream.make(second, first))).toEqual({
         count: 2,
         digest:
           "sha256:e895fc67a8acb93dca6f4648a3d81d3a1f4ddb5de4bf8e1ab6ece11d9db008a6",

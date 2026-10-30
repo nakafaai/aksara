@@ -11,7 +11,6 @@ import {
   type PinnedQuranFile,
   QURAN_SOURCE_POLICY,
 } from "#corpus/quran/source/policy";
-import { withNextSourceDigestFailure } from "#corpus/test/digest";
 import {
   QuranSyncFixture,
   quranSyncFixtureLayer,
@@ -82,22 +81,6 @@ layer(quranSyncFixtureLayer)("German Quran source download", (it) => {
           failure: { phase: "integrity", source: source.name },
         }))
       );
-    })
-  );
-
-  it.effect("reports a failed source digest as an integrity failure", () =>
-    Effect.gen(function* () {
-      const fixture = yield* QuranSyncFixture;
-      const result = yield* downloadResult(
-        QURAN_SOURCE_POLICY.data.translations.de,
-        GERMAN_QURAN_SOURCE_URL,
-        sourceClient(fixture.sources, {})
-      ).pipe(withNextSourceDigestFailure);
-
-      expect(result).toMatchObject({
-        _tag: "Failure",
-        failure: { phase: "integrity" },
-      });
     })
   );
 

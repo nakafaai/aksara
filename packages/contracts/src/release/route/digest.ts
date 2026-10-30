@@ -1,18 +1,11 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   type ContentRouteItem,
   canonicalizeContentRouteItem,
 } from "#contracts/release/route/spec";
 
 const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes";
-
-/** SHA-256 computation failed before route integrity was established. */
-export class RouteHashError extends Schema.TaggedError<
-  RouteHashError,
-  { readonly brand: unique symbol }
->()("RouteHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps incremental route digest state private to one release preparation. */
 class RouteDigestState {
@@ -52,22 +45,14 @@ export function updateRouteDigest(
   });
 }
 
-/** Completes one incremental route digest with typed hash failures. */
-export function completeRouteDigest(
-  releaseId: ReleaseId,
-  state: RouteDigestState
-) {
-  return state
-    .digest()
-    .pipe(Effect.mapError(() => new RouteHashError({ releaseId })));
+/** Completes one incremental route digest. */
+export function completeRouteDigest(state: RouteDigestState) {
+  return state.digest();
 }
 
-/** Digests a canonical route stream. Its canonical bytes are held until one Web Crypto digest runs. */
+/** Digests a canonical route stream. Its canonical bytes are held until one digest runs. */
 export const digestRoutes = Effect.fn("AksaraContracts.digestRoutes")(
-  function* <E, R>(
-    releaseId: ReleaseId,
-    routes: Stream.Stream<ContentRouteItem, E, R>
-  ) {
+  function* <E, R>(routes: Stream.Stream<ContentRouteItem, E, R>) {
     const initial = yield* createRouteDigest;
     const state = yield* routes.pipe(
       Stream.runFoldEffect(
@@ -75,7 +60,7 @@ export const digestRoutes = Effect.fn("AksaraContracts.digestRoutes")(
         (current, route) => updateRouteDigest(current, route)
       )
     );
-    const digest = yield* completeRouteDigest(releaseId, state);
+    const digest = yield* completeRouteDigest(state);
     return { count: state.count, digest };
   }
 );

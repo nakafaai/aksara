@@ -123,7 +123,10 @@ describe("Ed25519 publication signing", () => {
     Effect.gen(function* () {
       const { signer } = yield* makeSigner();
       vi.spyOn(globalThis.crypto.subtle, "sign").mockRejectedValueOnce(
-        new Error("Test-controlled signing failure.")
+        new DOMException(
+          "Test-controlled signing failure.",
+          "NotSupportedError"
+        )
       );
       const error = yield* signer.signRelease(manifest).pipe(Effect.flip);
 

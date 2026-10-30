@@ -1,5 +1,4 @@
 import { canonicalizeCompiledContentPayload } from "@nakafa/aksara-contracts/content";
-import type { TextHashError } from "@nakafa/aksara-contracts/hash/text";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import {
   ContentKeySchema,
@@ -207,37 +206,37 @@ function lookupCache(input: unknown, identity: CompileIdentity) {
 export const compileIncremental: (
   request: unknown,
   cache?: unknown
-) => Effect.Effect<IncrementalResult, CompileContentError | TextHashError> =
-  Effect.fn("AksaraCompiler.compileIncremental")(
-    (request: unknown, cache?: unknown) =>
-      inspectContentSource(request).pipe(
-        Effect.flatMap((inspection) => {
-          const identity = makeIdentity(inspection);
-          return lookupCache(cache, identity).pipe(
-            Effect.flatMap((lookup) => {
-              if (lookup.kind === "hit") {
-                return Effect.succeed<IncrementalResult>({
-                  cache: lookup.entry,
-                  kind: "unchanged",
-                  result: lookup.entry.result,
-                });
-              }
-              return compileContent(request).pipe(
-                Effect.flatMap((result) =>
-                  makeCache(identity, result).pipe(
-                    Effect.map(
-                      (cacheValue): IncrementalResult => ({
-                        cache: cacheValue,
-                        kind: "compiled",
-                        reason: lookup.reason,
-                        result,
-                      })
-                    )
-                  )
+) => Effect.Effect<IncrementalResult, CompileContentError> = Effect.fn(
+  "AksaraCompiler.compileIncremental"
+)((request: unknown, cache?: unknown) =>
+  inspectContentSource(request).pipe(
+    Effect.flatMap((inspection) => {
+      const identity = makeIdentity(inspection);
+      return lookupCache(cache, identity).pipe(
+        Effect.flatMap((lookup) => {
+          if (lookup.kind === "hit") {
+            return Effect.succeed<IncrementalResult>({
+              cache: lookup.entry,
+              kind: "unchanged",
+              result: lookup.entry.result,
+            });
+          }
+          return compileContent(request).pipe(
+            Effect.flatMap((result) =>
+              makeCache(identity, result).pipe(
+                Effect.map(
+                  (cacheValue): IncrementalResult => ({
+                    cache: cacheValue,
+                    kind: "compiled",
+                    reason: lookup.reason,
+                    result,
+                  })
                 )
-              );
-            })
+              )
+            )
           );
         })
-      )
-  );
+      );
+    })
+  )
+);

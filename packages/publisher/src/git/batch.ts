@@ -14,14 +14,14 @@ import {
 
 export const MAX_GIT_BATCH_BLOBS = 128;
 const MAX_BATCH_HEADER_BYTES = 96;
-const BLOB_HEADER_PATTERN = /^([a-f\d]{40}) blob ([1-9]\d*|0)$/;
+const BLOB_HEADER_PATTERN = /^([a-f\d]{40}) blob ([1-9]\d*|0)$/u;
 
 const GitBlobMetadataSchema = Schema.Struct({
   byteLength: Schema.Number.check(
     Schema.isInt(),
     Schema.isGreaterThanOrEqualTo(0)
   ),
-  objectId: Schema.String.check(Schema.isPattern(/^[a-f\d]{40}$/)).pipe(
+  objectId: Schema.String.check(Schema.isPattern(/^[a-f\d]{40}$/u)).pipe(
     Schema.brand("GitBlobObjectId")
   ),
   sourcePath: CorpusSourcePathSchema,

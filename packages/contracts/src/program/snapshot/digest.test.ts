@@ -12,7 +12,6 @@ import {
   reject,
   routeRejectionInputs,
 } from "#contracts/test/closure";
-import { withDigestFailureFor } from "#contracts/test/digest";
 import {
   curriculumRows,
   makeProgramTestRecords,
@@ -212,23 +211,6 @@ describe("program aggregate digest", () => {
             error._tag === "ProgramDigestError" ? error.code : error._tag
           )
         ).toEqual(["program", "program", "root", "parent", "route"]);
-      })
-  );
-
-  it.effect(
-    "maps a rejected aggregate digest to a program row hash error",
-    () =>
-      Effect.gen(function* () {
-        const records = yield* makeProgramTestRecords();
-        const error = yield* withDigestFailureFor(
-          "nakafa.aksara.program-rows",
-          reject(records)
-        );
-
-        expect(error).toMatchObject({
-          _tag: "ProgramRowHashError",
-          scope: "digest",
-        });
       })
   );
 });

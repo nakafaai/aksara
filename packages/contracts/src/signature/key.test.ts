@@ -4,7 +4,6 @@ import { Base64, Base64Url } from "effect/encoding";
 
 import {
   Ed25519KeyError,
-  ed25519PublicKeyBytes,
   ed25519PublicKeyPem,
   generateEd25519KeyPem,
   signEd25519Message,
@@ -123,6 +122,26 @@ describe("Ed25519 keys from PEM", () => {
       })
   );
 
+  it.effect("fails the generation when Web Crypto refuses the new seed", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(crypto.subtle, "importKey")
+            .mockRejectedValueOnce(
+              new DOMException("injected seed import failure", "DataError")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* generateEd25519KeyPem().pipe(Effect.flip);
+
+      expect(error).toBeInstanceOf(Ed25519KeyError);
+      expect(error.stage).toBe("derive");
+    })
+  );
+
   it.effect("rejects text that is not an unencrypted PKCS#8 PEM", () =>
     Effect.gen(function* () {
       const error = yield* signEd25519Message("not a key", MESSAGE_TEXT).pipe(
@@ -182,11 +201,25 @@ describe("Ed25519 keys from PEM", () => {
   it.effect("fails the derivation when Web Crypto refuses the export", () =>
     Effect.gen(function* () {
       yield* Effect.acquireRelease(
-        Effect.sync(() =>
-          vi
+        Effect.sync(() => {
+          // The private key's PEM import exports its seed first; the second
+          // export reads the public key, which the derivation needs.
+          let exports = 0;
+          const exportKey = crypto.subtle.exportKey.bind(crypto.subtle);
+          return vi
             .spyOn(crypto.subtle, "exportKey")
-            .mockRejectedValueOnce(new TypeError("injected export failure"))
-        ),
+            .mockImplementation((format, key) => {
+              exports += 1;
+              return exports === 2
+                ? Promise.reject(
+                    new DOMException(
+                      "injected export failure",
+                      "NotSupportedError"
+                    )
+                  )
+                : exportKey(format, key);
+            });
+        }),
         (mock) => Effect.sync(() => mock.mockRestore())
       );
 
@@ -198,38 +231,15 @@ describe("Ed25519 keys from PEM", () => {
     })
   );
 
-  it.effect("reads the 32 public-key bytes from a JSON Web Key", () =>
-    Effect.gen(function* () {
-      const x = Base64Url.encode(SEED);
-      const bytes = yield* ed25519PublicKeyBytes(x);
-
-      expect(Base64Url.encode(bytes)).toBe(x);
-    })
-  );
-
-  it.effect("rejects a JSON Web Key without a usable public key", () =>
-    Effect.gen(function* () {
-      const missing = yield* ed25519PublicKeyBytes(undefined).pipe(Effect.flip);
-      const notBase64Url = yield* ed25519PublicKeyBytes("!!!").pipe(
-        Effect.flip
-      );
-      const wrongLength = yield* ed25519PublicKeyBytes(
-        Base64Url.encode(new Uint8Array(31))
-      ).pipe(Effect.flip);
-
-      expect(missing.stage).toBe("derive");
-      expect(notBase64Url.stage).toBe("derive");
-      expect(wrongLength.stage).toBe("derive");
-    })
-  );
-
-  it.effect("maps a rejected Web Crypto signature into the sign stage", () =>
+  it.effect("maps a refused Web Crypto signature into the sign stage", () =>
     Effect.gen(function* () {
       yield* Effect.acquireRelease(
         Effect.sync(() =>
           vi
             .spyOn(crypto.subtle, "sign")
-            .mockRejectedValueOnce(new TypeError("injected signing failure"))
+            .mockRejectedValueOnce(
+              new DOMException("injected signing failure", "NotSupportedError")
+            )
         ),
         (mock) => Effect.sync(() => mock.mockRestore())
       );

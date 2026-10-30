@@ -7,8 +7,6 @@ import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshot,
   makeProgramSnapshotRow,
-  type ProgramRowHashError,
-  type ProgramSnapshotHashError,
 } from "@nakafa/aksara-contracts/program/snapshot/hash";
 import {
   type ProgramCounts,
@@ -78,15 +76,12 @@ function streamPreparedProgramRows({
 }
 
 /** Errors emitted while replaying source-decoded aggregate program records. */
-export type ProgramRowError =
-  | Effect.Error<ReturnType<typeof prepareProgramSources>>
-  | ProgramRowHashError;
+export type ProgramRowError = Effect.Error<
+  ReturnType<typeof prepareProgramSources>
+>;
 
 /** Failures emitted while deriving the aggregate manifest and row stream. */
-export type ProgramSnapshotError =
-  | ProgramDigestError
-  | ProgramRowError
-  | ProgramSnapshotHashError;
+export type ProgramSnapshotError = ProgramDigestError | ProgramRowError;
 
 /** Streams catalog rows followed by canonical localized curriculum rows. */
 export function streamProgramRows(programInput?: unknown) {

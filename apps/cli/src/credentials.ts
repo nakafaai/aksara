@@ -1,10 +1,10 @@
-import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PreviewRendererSecretSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { makeEd25519PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import { Effect, Redacted, Schema } from "effect";
+import { SecureRandom } from "effect/crypto";
 import { Base64Url } from "effect/encoding";
 
 const RendererCredentialsSchema = Schema.Struct({
@@ -25,9 +25,9 @@ export class PreviewCredentialError extends Schema.TaggedError<
 
 /** Creates one unpredictable 32-byte token in unpadded base64url form. */
 const randomToken = Effect.fn("AksaraCli.randomToken")(function* () {
-  const bytes = yield* webCryptoService.randomBytes(32).pipe(Effect.orDie);
-  return Base64Url.encode(bytes);
-});
+  const random = yield* SecureRandom.SecureRandom;
+  return Base64Url.encode(yield* random.randomBytes(32));
+}, Effect.provide(SecureRandom.layerWebCrypto));
 
 /** Generates one process-local signer and independent preview credentials. */
 export const makePreviewCredentials = Effect.fn(
@@ -36,9 +36,7 @@ export const makePreviewCredentials = Effect.fn(
   const { privateKeyPem, publicKeyPem } = yield* generateEd25519KeyPem().pipe(
     Effect.mapError(() => new PreviewCredentialError({ stage: "generate" }))
   );
-  const digest = yield* hashText(publicKeyPem).pipe(
-    Effect.mapError(() => new PreviewCredentialError({ stage: "generate" }))
-  );
+  const digest = yield* hashText(publicKeyPem);
   const renderer: RendererCredentials = {
     secret: Redacted.make(
       PreviewRendererSecretSchema.make(yield* randomToken())

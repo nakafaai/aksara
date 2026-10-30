@@ -76,7 +76,7 @@ const items = makeItems(
 );
 
 const itemSummary = await Effect.runPromise(
-  digestItems(releaseId, Stream.fromIterable(items))
+  digestItems(Stream.fromIterable(items))
 );
 
 /** Current release manifest used by publication signer tests. */

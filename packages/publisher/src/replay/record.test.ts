@@ -11,7 +11,6 @@ import {
   validateReplaySpoolUsage,
 } from "#publisher/replay/record";
 import { encodeJsonText } from "#publisher/text/json";
-import { withNextDigestFailure } from "#test/digest";
 
 const ReplayEntrySchema = Schema.Struct({
   sequence: Schema.Finite,
@@ -105,43 +104,6 @@ describe("replay record", () => {
         )
       ).toMatchObject({ index: 6, operation: "hash" });
     })
-  );
-
-  it.effect("maps a failed record digest into a hash spool failure", () =>
-    Effect.gen(function* () {
-      const error = yield* reject(encodeReplayRecord(entry, 3)).pipe(
-        withNextDigestFailure
-      );
-
-      expect(error).toMatchObject({
-        _tag: "ReplaySpoolError",
-        index: 3,
-        operation: "hash",
-      });
-    })
-  );
-
-  it.effect(
-    "maps a failed record digest during decoding into a hash spool failure",
-    () =>
-      Effect.gen(function* () {
-        const encoded = yield* encodeReplayRecord(entry, 5);
-
-        const error = yield* reject(
-          decodeReplayRecord({
-            data: encoded.data,
-            hash: encoded.hash,
-            index: 5,
-            schema: ReplayEntrySchema,
-          })
-        ).pipe(withNextDigestFailure);
-
-        expect(error).toMatchObject({
-          _tag: "ReplaySpoolError",
-          index: 5,
-          operation: "hash",
-        });
-      })
   );
 
   it.effect("rejects digest tampering before parsing", () =>

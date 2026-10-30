@@ -16,7 +16,7 @@ import {
 const checkoutRoot = Effect.map(Path.Path, (path) =>
   path.resolve(process.cwd(), "..", "..")
 );
-const firstSetSuffix = /:set-1$/;
+const firstSetSuffix = /:set-1$/u;
 // Lessons the Nakafa home page reads in every locale, so the release must hold them.
 const homeLessonKeys = [
   "material/lesson/physics/kinematics/parabolic-movement",

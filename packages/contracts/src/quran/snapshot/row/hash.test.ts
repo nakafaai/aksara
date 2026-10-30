@@ -5,7 +5,6 @@ import {
   canonicalizeQuranRow,
   hashQuranRow,
 } from "#contracts/quran/snapshot/row/hash";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { quranRepresentativePayloads } from "#contracts/test/quran";
 
 describe("Quran row golden identities", () => {
@@ -59,23 +58,4 @@ describe("Quran row hashing", () => {
       '"meaning":{"de":"Technische Sure 1","en":"Test Surah 1","id":"Surah Teknis 1"}'
     );
   });
-
-  it.effect("maps current row hashing failures to the typed error", () =>
-    Effect.gen(function* () {
-      const payload = yield* Effect.fromOption(
-        Arr.findFirst(
-          quranRepresentativePayloads(),
-          (candidate) => candidate.kind === "quran-surah"
-        )
-      );
-      const error = yield* withNextDigestFailure(
-        hashQuranRow(payload).pipe(Effect.flip)
-      );
-
-      expect(error).toMatchObject({
-        _tag: "QuranRowHashError",
-        scope: "row",
-      });
-    })
-  );
 });

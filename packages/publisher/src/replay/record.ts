@@ -90,7 +90,6 @@ export function encodeReplayRecord<A>(value: A, index: number) {
         );
       }
       return hashText(data).pipe(
-        Effect.mapError((cause) => replaySpoolFailure("hash", cause, index)),
         Effect.flatMap((hash) => {
           const bytes = utf8Length(data) + utf8Length(hash);
           return validateReplaySpoolUsage({
@@ -128,9 +127,6 @@ export function decodeReplayRecord<A, I>(input: {
     ),
     Effect.flatMap((expectedHash) =>
       hashText(input.data).pipe(
-        Effect.mapError((cause) =>
-          replaySpoolFailure("hash", cause, input.index)
-        ),
         Effect.filterOrFail(
           (actualHash) => actualHash === expectedHash,
           (actualHash) =>

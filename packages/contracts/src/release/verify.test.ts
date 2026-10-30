@@ -12,7 +12,6 @@ import {
   verifySignedContentRelease,
 } from "#contracts/release/verify";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
-import { withDigestFailureFor } from "#contracts/test/digest";
 import { replacementSnapshots } from "#contracts/test/request";
 import {
   verificationBaseReleaseId as baseReleaseId,
@@ -84,27 +83,6 @@ describe("server-only release verification", () => {
         });
         expect(error).toBeInstanceOf(ReleaseVerificationDecodeError);
       })
-  );
-  it.effect("maps current decoding and hashing failures", () =>
-    Effect.gen(function* () {
-      const release = yield* signRelease();
-      const [decodeError, hashError] = yield* Effect.all([
-        reject({ unexpected: true }),
-        withDigestFailureFor(
-          '"releaseId":"hash-failure"',
-          reject({
-            ...release,
-            manifest: { ...release.manifest, releaseId: "hash-failure" },
-          })
-        ),
-      ]);
-
-      expect(decodeError).toBeInstanceOf(ReleaseVerificationDecodeError);
-      expect(hashError).toMatchObject({
-        _tag: "ReleaseHashComputationError",
-        releaseId: "hash-failure",
-      });
-    })
   );
   it.effect(
     "authenticates the signed release and frozen renderer as one bundle",
@@ -236,23 +214,6 @@ describe("server-only release verification", () => {
       expect(encodeJsonText(error)).not.toContain(sensitiveSource);
     })
   );
-  it.effect("maps manifest hashing failures to the release identity", () =>
-    Effect.gen(function* () {
-      const release = yield* signRelease();
-      const error = yield* withDigestFailureFor(
-        '"releaseId":"hash-failure"',
-        reject({
-          ...release,
-          manifest: { ...release.manifest, releaseId: "hash-failure" },
-        })
-      );
-      expect(error).toMatchObject({
-        _tag: "ReleaseHashComputationError",
-        releaseId: "hash-failure",
-      });
-    })
-  );
-
   it.effect(
     "accepts the pinned Ed25519 signature and rejects a wrong hash",
     () =>

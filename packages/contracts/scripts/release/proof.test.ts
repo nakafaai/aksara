@@ -1,9 +1,16 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import { Array as Arr, Effect, FileSystem, Option, Path, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Option,
+  Path,
+  Redacted,
+  Schema,
+} from "effect";
 import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import {
   type ContractProofInput,
   proveContractRelease,
@@ -109,6 +116,13 @@ const proofFixture = Effect.fn("ReleaseProofTest.proofFixture")(function* (
   return { archive, input, release: pinnedRelease, root };
 });
 
+/** Reads the plain text of each command word; the proof program redacts none. */
+function plainWords(args: ChildProcess.StandardCommand["args"]) {
+  return Arr.map(args, (word) =>
+    Redacted.isRedacted(word) ? Redacted.value(word) : word
+  );
+}
+
 /** Reads the argument that follows one flag, or undefined when the flag has none. */
 function valueAfterFlag(args: readonly string[], flag: string) {
   const flagIndex = Arr.findFirstIndex(args, (arg) => arg === flag);
@@ -129,6 +143,7 @@ function makeFakeSpawner(
       if (command._tag !== "StandardCommand") {
         return yield* Effect.die("Unexpected piped release proof command");
       }
+      const args = plainWords(command.args);
       if (command.command === "tar") {
         return yield* live.spawn(command);
       }
@@ -138,17 +153,17 @@ function makeFakeSpawner(
       if (command.command !== "gh") {
         return yield* Effect.die(`Unexpected executable: ${command.command}`);
       }
-      if (command.args[0] === "api") {
-        const output = command.args[1]?.includes("/releases/")
+      if (args[0] === "api") {
+        const output = args[1]?.includes("/releases/")
           ? encodeJsonText(input.release)
           : encodeJsonText(input.tag);
         return makeProcessHandle(output, input.failApi === true ? 1 : 0);
       }
-      if (command.args[0] !== "release" || command.args[1] !== "download") {
+      if (args[0] !== "release" || args[1] !== "download") {
         return makeProcessHandle("");
       }
-      const directory = valueAfterFlag(command.args, "--dir");
-      const name = valueAfterFlag(command.args, "--pattern");
+      const directory = valueAfterFlag(args, "--dir");
+      const name = valueAfterFlag(args, "--pattern");
       if (directory === undefined || name === undefined) {
         return yield* Effect.die("Malformed release download fixture command");
       }
@@ -192,23 +207,6 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
           size: 383,
         });
       })
-  );
-
-  it.effect("maps a failed archive digest into a release error", () =>
-    Effect.gen(function* () {
-      const fixture = yield* proofFixture("aksara-proof-digest-");
-      const error = yield* withNextDigestFailure(
-        proveWithCommands(
-          fixture.input,
-          fakeCommands(fixture.archive, fixture.release)
-        )
-      ).pipe(Effect.flip);
-
-      expect(error).toMatchObject({
-        detail: "The current contract archive cannot be hashed.",
-        reason: "release",
-      });
-    })
   );
 
   it.effect("rejects malformed proof inputs and remote metadata", () =>

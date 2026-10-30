@@ -1,9 +1,7 @@
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { describe, expect, layer } from "@effect/vitest";
-import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import {
   Array as Arr,
-  Crypto,
   Effect,
   FileSystem,
   Layer,
@@ -12,6 +10,7 @@ import {
   Schema,
   Stream,
 } from "effect";
+import { SecureRandom } from "effect/crypto";
 import { Hex } from "effect/encoding";
 import { createReplaySpool } from "#publisher/replay/spool";
 
@@ -24,15 +23,14 @@ const secondEntry = { sequence: 2, value: "test-second" };
 const entries = [firstEntry, secondEntry];
 const nodeLayer = Layer.merge(NodeFileSystem.layer, NodePath.layer);
 
-/** Returns one unique temporary-name prefix drawn from the Effect Crypto service. */
-const uniquePrefix = Effect.fn("ReplaySpoolTest.uniquePrefix")(
-  function* (label: string) {
-    const crypto = yield* Crypto.Crypto;
-    const bytes = yield* crypto.randomBytes(16);
-    return `${label}-${Hex.encode(bytes)}-`;
-  },
-  Effect.provideService(Crypto.Crypto, webCryptoService)
-);
+/** Returns one unique temporary-name prefix drawn from Effect's secure random source. */
+const uniquePrefix = Effect.fn("ReplaySpoolTest.uniquePrefix")(function* (
+  label: string
+) {
+  const random = yield* SecureRandom.SecureRandom;
+  const bytes = yield* random.randomBytes(16);
+  return `${label}-${Hex.encode(bytes)}-`;
+}, Effect.provide(SecureRandom.layerWebCrypto));
 
 /** Finds the platform temporary root as the parent of one probe directory it creates. */
 const temporaryRoot = Effect.fn("ReplaySpoolTest.temporaryRoot")(function* (

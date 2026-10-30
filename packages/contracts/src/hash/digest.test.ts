@@ -1,30 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, PlatformError } from "effect";
+import { Effect } from "effect";
 import { Hex } from "effect/encoding";
 
-import {
-  digestSha256,
-  hashBytes,
-  webCryptoService,
-} from "#contracts/hash/digest";
-import { withNextDigestFailure } from "#contracts/test/digest";
+import { digestSha256, hashBytes } from "#contracts/hash/digest";
 
-describe("Web Crypto random bytes", () => {
-  it.effect("fills every byte, including the bytes past one random chunk", () =>
-    Effect.gen(function* () {
-      const first = yield* webCryptoService.randomBytes(70_000);
-      const second = yield* webCryptoService.randomBytes(70_000);
-
-      expect(first.byteLength).toBe(70_000);
-      expect(Hex.encode(first.subarray(65_536))).not.toBe(
-        Hex.encode(second.subarray(65_536))
-      );
-      expect(Hex.encode(first)).not.toBe(Hex.encode(second));
-    })
-  );
-});
-
-describe("SHA-256 digests through Effect's Crypto service", () => {
+describe("SHA-256 digests through Effect's Digest service", () => {
   it.effect("pins the digest bytes of exact byte sequences", () =>
     Effect.gen(function* () {
       expect(Hex.encode(yield* digestSha256(new Uint8Array()))).toBe(
@@ -52,17 +32,6 @@ describe("SHA-256 digests through Effect's Crypto service", () => {
       expect(yield* hashBytes(new TextEncoder().encode("abc"))).toBe(
         "sha256:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
       );
-    })
-  );
-
-  it.effect("maps a rejected digest into the platform error channel", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        digestSha256(new Uint8Array()).pipe(Effect.flip)
-      );
-
-      expect(error).toBeInstanceOf(PlatformError.PlatformError);
-      expect(error.reason.module).toBe("Crypto");
     })
   );
 });

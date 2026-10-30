@@ -1,6 +1,5 @@
 import { Effect, Schema, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,
@@ -12,12 +11,6 @@ import {
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const ROLLBACK_SNAPSHOT_DIGEST_DOMAIN = "nakafa.aksara.rollback-snapshot";
-
-/** SHA-256 computation failed before rollback-state integrity was established. */
-export class RollbackSnapshotHashError extends Schema.TaggedError<
-  RollbackSnapshotHashError,
-  { readonly brand: unique symbol }
->()("RollbackSnapshotHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** A replayed rollback snapshot has a different signed entry count. */
 export class RollbackSnapshotCountMismatchError extends Schema.TaggedError<
@@ -73,23 +66,17 @@ export function updateRollbackSnapshotDigest(
   });
 }
 
-/** Finalizes one rollback snapshot digest with a typed hash failure. */
+/** Finalizes one rollback snapshot digest. */
 export function finalizeRollbackSnapshotDigest(
-  releaseId: ReleaseId,
   state: RollbackSnapshotDigestState
 ) {
-  return state
-    .digest()
-    .pipe(Effect.mapError(() => new RollbackSnapshotHashError({ releaseId })));
+  return state.digest();
 }
 
-/** Digests one rollback snapshot stream. Its canonical bytes are held until one Web Crypto digest runs. */
+/** Digests one rollback snapshot stream. Its canonical bytes are held until one digest runs. */
 export const digestRollbackSnapshot = Effect.fn(
   "AksaraContracts.digestRollbackSnapshot"
-)(function* <E, R>(
-  releaseId: ReleaseId,
-  entries: Stream.Stream<RollbackSnapshotEntry, E, R>
-) {
+)(function* <E, R>(entries: Stream.Stream<RollbackSnapshotEntry, E, R>) {
   const initial = yield* createRollbackSnapshotDigest;
   const state = yield* entries.pipe(
     Stream.runFoldEffect(
@@ -97,7 +84,7 @@ export const digestRollbackSnapshot = Effect.fn(
       (current, entry) => updateRollbackSnapshotDigest(current, entry)
     )
   );
-  const digest = yield* finalizeRollbackSnapshotDigest(releaseId, state);
+  const digest = yield* finalizeRollbackSnapshotDigest(state);
   return { count: state.count, digest };
 });
 
@@ -108,10 +95,7 @@ export const verifyRollbackSnapshot = Effect.fn(
   readonly entries: Stream.Stream<RollbackSnapshotEntry, E, R>;
   readonly manifest: ContentReleaseManifest;
 }) {
-  const summary = yield* digestRollbackSnapshot(
-    input.manifest.releaseId,
-    input.entries
-  );
+  const summary = yield* digestRollbackSnapshot(input.entries);
   if (summary.count !== input.manifest.rollbackCount) {
     return yield* new RollbackSnapshotCountMismatchError({
       actualCount: summary.count,

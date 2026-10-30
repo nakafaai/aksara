@@ -188,7 +188,6 @@ describe("content publication", () => {
         )
       );
       const changedSummary = yield* digestProjections(
-        release.manifest.releaseId,
         Stream.make(changedProjection)
       );
       const state = makeTarget(release);

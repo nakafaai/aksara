@@ -6,7 +6,7 @@ import { createTestRendererManifest } from "#compiler/test/content";
 
 const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 
-const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
+const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/u;
 const RAW_MDX = `export const metadata = {
   zeta: [true, null, 2, "test", { enabled: false }],
   alpha: "compiler protocol",

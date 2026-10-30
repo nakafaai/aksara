@@ -1,5 +1,4 @@
 import type { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
-import type { ArtifactHashComputationError } from "@nakafa/aksara-contracts/artifact/spec";
 import {
   CompileDocumentSourceSchema,
   CompiledContentPayloadSchema,
@@ -120,7 +119,6 @@ type SourceHashError = Effect.Error<
 
 /** Failures possible on every replay of the one authored record source. */
 export type PreparedContentStreamError<E> =
-  | ArtifactHashComputationError
   | E
   | PreparedContentCoherenceError
   | PreparedContentDecodeError

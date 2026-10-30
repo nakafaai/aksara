@@ -22,7 +22,11 @@ const INSTALL_ARGUMENTS = ["install", "--frozen-lockfile"];
 const COMMIT_PATTERN = /^[0-9a-f]{40}$/u;
 
 /** One command that the fake spawner received, with its executable, arguments, and working directory. */
-type Call = readonly [string, readonly string[], string | undefined];
+type Call = readonly [
+  string,
+  ChildProcess.StandardCommand["args"],
+  string | undefined,
+];
 
 /** Answers one command with a completed process handle or with a platform failure. */
 type Responder = (

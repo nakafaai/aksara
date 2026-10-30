@@ -35,16 +35,7 @@ export const downloadGermanQuranSource = Effect.fn(
           })
       )
     );
-    const digest = yield* sha256Hex(bytes).pipe(
-      Effect.mapError(
-        (cause) =>
-          new GermanQuranSourceSyncError({
-            cause,
-            phase: "integrity",
-            source: source.name,
-          })
-      )
-    );
+    const digest = yield* sha256Hex(bytes);
     if (
       bytes.byteLength !== source.artifact.byteCount ||
       digest !== source.artifact.digest.slice("sha256:".length)

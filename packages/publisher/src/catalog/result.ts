@@ -165,10 +165,7 @@ export const validateCatalogResult = Effect.fn(
     stream: validated,
   });
   const state = yield* Ref.get(counts);
-  const resultDigest = yield* finalizeResultCatalogDigest(
-    CHECK_RELEASE_ID,
-    digest
-  );
+  const resultDigest = yield* finalizeResultCatalogDigest(digest);
 
   return {
     articleCount: state.articleCount,

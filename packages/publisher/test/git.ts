@@ -1,5 +1,4 @@
 import { NodeServices } from "@effect/platform-node";
-import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
@@ -17,7 +16,6 @@ import {
 } from "@nakafa/aksara-utilities/process/exact";
 import {
   Array as Arr,
-  Crypto,
   Effect,
   FileSystem,
   MutableHashMap,
@@ -26,7 +24,7 @@ import {
   Path,
   Schema,
 } from "effect";
-import { Hex } from "effect/encoding";
+import { Digest } from "effect/crypto";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 
 export const TEST_COMMIT_SHA = GitCommitShaSchema.make("b".repeat(40));
@@ -64,16 +62,13 @@ function outputBytes(value: string | Uint8Array | undefined) {
 }
 
 /** Derives the real Git object identity of test-only bytes through the SHA-1 digest. */
-export const testBlobId = Effect.fn("GitTest.blobId")(
-  function* (bytes: Uint8Array) {
-    const crypto = yield* Crypto.Crypto;
-    const header = new TextEncoder().encode(`blob ${bytes.byteLength}\0`);
-    const object = joinGitFrames([header, bytes]);
-    const digest = yield* crypto.digest("SHA-1", object).pipe(Effect.orDie);
-    return Hex.encode(digest);
-  },
-  Effect.provideService(Crypto.Crypto, webCryptoService)
-);
+export const testBlobId = Effect.fn("GitTest.blobId")(function* (
+  bytes: Uint8Array
+) {
+  const digest = yield* Digest.Digest;
+  const header = new TextEncoder().encode(`blob ${bytes.byteLength}\0`);
+  return yield* digest.digestHex(Digest.sha1, joinGitFrames([header, bytes]));
+}, Effect.provide(Digest.layerWebCrypto));
 
 /** Concatenates exact protocol bytes without text normalization. */
 export function joinGitFrames(frames: readonly Uint8Array[]) {

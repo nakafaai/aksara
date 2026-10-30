@@ -1,4 +1,6 @@
-import { Effect } from "effect";
+import { Effect, Layer } from "effect";
+import { KeyFormat, SecureRandom, Signature } from "effect/crypto";
+import { Base64, Base64Url, Hex } from "effect/encoding";
 import type { Ed25519Signature, SigningKeyId } from "#contracts/ids";
 import {
   type ContentSignatureSubject,
@@ -11,23 +13,18 @@ import {
 
 const PUBLIC_KEY_HEADER = "-----BEGIN PUBLIC KEY-----\n";
 const PUBLIC_KEY_FOOTER = "-----END PUBLIC KEY-----";
+/** The DER header of one Ed25519 SubjectPublicKeyInfo, before its 32-byte key. */
 const ED25519_SPKI_PREFIX = "302a300506032b6570032100";
-const PUBLIC_KEY_BASE64_PATTERN = /^[A-Za-z0-9+/]+={0,2}$/u;
+const ED25519_SPKI_BYTES = 44;
 
-/** Decodes canonical base64 text without a Node Buffer dependency. */
-function decodeBase64(value: string) {
-  const decoded = atob(value);
-  return Uint8Array.from(decoded, (character) => character.charCodeAt(0));
-}
-
-/** Encodes bytes as lowercase hexadecimal for one exact key-type check. */
-function encodeHex(value: Uint8Array) {
-  let hex = "";
-  for (const byte of value) {
-    hex += byte.toString(16).padStart(2, "0");
-  }
-  return hex;
-}
+/**
+ * Ed25519 verification on Web Crypto. Every runtime that Aksara contracts run
+ * in has `crypto.subtle`, so the layer is provided here and callers need no
+ * runtime layer.
+ */
+const SignatureLayer = Signature.layerWebCrypto.pipe(
+  Layer.provide(SecureRandom.layerWebCrypto)
+);
 
 /** Reads the reviewed SPKI bytes from one exact public-key PEM. */
 function decodePublicKeyPem(
@@ -49,40 +46,36 @@ function decodePublicKeyPem(
     .replace(PUBLIC_KEY_FOOTER, "")
     .replaceAll("\n", "")
     .trim();
-  if (!PUBLIC_KEY_BASE64_PATTERN.test(body) || body.length % 4 !== 0) {
-    return Effect.fail(new PublicKeyParseError({ keyId, subject }));
-  }
-  return Effect.succeed(decodeBase64(body));
+  return Effect.fromResult(Base64.decode(body)).pipe(
+    Effect.mapError(() => new PublicKeyParseError({ keyId, subject }))
+  );
 }
 
-/** Imports one exact Ed25519 SPKI key through Web Crypto. */
-function importEd25519PublicKey(
+/** Imports one exact Ed25519 SPKI key, refusing a key of any other type before it reaches Web Crypto. */
+const importEd25519PublicKey = Effect.fn(
+  "AksaraContracts.importEd25519PublicKey"
+)(function* (
   keyId: SigningKeyId,
   publicKeyPem: string,
   subject: ContentSignatureSubject
 ) {
-  return Effect.gen(function* () {
-    const bytes = yield* decodePublicKeyPem(keyId, publicKeyPem, subject);
-    if (
-      bytes.byteLength !== 44 ||
-      !encodeHex(bytes.slice(0, 12)).startsWith(ED25519_SPKI_PREFIX)
-    ) {
-      return yield* new PublicKeyTypeError({ keyId, subject });
-    }
-    return yield* Effect.tryPromise({
-      catch: () => new PublicKeyParseError({ keyId, subject }),
-      try: () =>
-        crypto.subtle.importKey("spki", bytes, { name: "Ed25519" }, false, [
-          "verify",
-        ]),
-    });
-  });
-}
+  const der = yield* decodePublicKeyPem(keyId, publicKeyPem, subject);
+  if (
+    der.byteLength !== ED25519_SPKI_BYTES ||
+    !Hex.encode(der).startsWith(ED25519_SPKI_PREFIX)
+  ) {
+    return yield* new PublicKeyTypeError({ keyId, subject });
+  }
+  return yield* KeyFormat.decodePublic(
+    KeyFormat.spki,
+    Signature.ed25519,
+    der
+  ).pipe(Effect.mapError(() => new PublicKeyParseError({ keyId, subject })));
+});
 
-/** Decodes one unpadded base64url Ed25519 signature. */
+/** Decodes one unpadded base64url Ed25519 signature, which its schema has already checked. */
 function decodeSignature(signature: Ed25519Signature) {
-  const base64 = signature.replaceAll("-", "+").replaceAll("_", "/");
-  return decodeBase64(base64.padEnd(Math.ceil(base64.length / 4) * 4, "="));
+  return Effect.fromResult(Base64Url.decode(signature)).pipe(Effect.orDie);
 }
 
 /** Resolves trust and verifies domain-separated canonical bytes with Ed25519. */
@@ -101,20 +94,22 @@ export const verifyEd25519Signature = Effect.fn(
     publicKeyPem,
     input.subject
   );
-  const valid = yield* Effect.tryPromise({
-    catch: () =>
-      new SignatureCheckError({
-        keyId: input.keyId,
-        subject: input.subject,
-      }),
-    try: () =>
-      crypto.subtle.verify(
-        "Ed25519",
-        publicKey,
-        decodeSignature(input.signature),
-        new TextEncoder().encode(input.message)
-      ),
-  });
+  const signature = yield* Signature.Signature;
+  const valid = yield* signature
+    .verify(
+      publicKey,
+      yield* decodeSignature(input.signature),
+      new TextEncoder().encode(input.message)
+    )
+    .pipe(
+      Effect.mapError(
+        () =>
+          new SignatureCheckError({
+            keyId: input.keyId,
+            subject: input.subject,
+          })
+      )
+    );
   if (valid) {
     return;
   }
@@ -122,4 +117,4 @@ export const verifyEd25519Signature = Effect.fn(
     keyId: input.keyId,
     subject: input.subject,
   });
-});
+}, Effect.provide(SignatureLayer));

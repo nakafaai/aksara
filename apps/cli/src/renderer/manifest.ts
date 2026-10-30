@@ -1,4 +1,3 @@
-import { webCryptoService } from "@nakafa/aksara-contracts/hash/digest";
 import {
   PreviewRendererNonceSchema,
   PreviewRendererResponseSchema,
@@ -7,6 +6,7 @@ import {
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted, Schedule, Schema } from "effect";
+import { SecureRandom } from "effect/crypto";
 import { Base64Url } from "effect/encoding";
 import type { HttpClient } from "effect/http";
 import type { RendererCredentials } from "#cli/credentials";
@@ -31,9 +31,11 @@ type FetchRenderer = (
 /** Creates one unpredictable renderer challenge without exposing crypto errors. */
 const makeRendererNonce = Effect.fn("AksaraCli.makeRendererNonce")(
   function* () {
-    const bytes = yield* webCryptoService.randomBytes(32).pipe(Effect.orDie);
+    const random = yield* SecureRandom.SecureRandom;
+    const bytes = yield* random.randomBytes(32);
     return PreviewRendererNonceSchema.make(Base64Url.encode(bytes));
-  }
+  },
+  Effect.provide(SecureRandom.layerWebCrypto)
 );
 
 /** Fetches and authenticates one local renderer manifest response. */

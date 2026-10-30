@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 import type { CurriculumRoute } from "#contracts/program/curriculum";
@@ -21,18 +21,6 @@ import { encodeJsonText } from "#contracts/text/json";
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-program-snapshot";
 const ROW_DOMAIN = "nakafa.aksara.program-row";
 
-/** Node could not compute a deterministic program snapshot identity. */
-export class ProgramSnapshotHashError extends Schema.TaggedError<
-  ProgramSnapshotHashError,
-  { readonly brand: unique symbol }
->()("ProgramSnapshotHashError", {}) {}
-
-/** Node could not compute one deterministic program row identity. */
-export class ProgramRowHashError extends Schema.TaggedError<
-  ProgramRowHashError,
-  { readonly brand: unique symbol }
->()("ProgramRowHashError", { scope: Schema.Literals(["digest", "row"]) }) {}
-
 /** Serializes current program facts in stable signed field order. */
 export function canonicalizeProgramSnapshot(input: ProgramSnapshotFacts) {
   return encodeJsonText({
@@ -53,7 +41,7 @@ export const makeProgramSnapshot = Effect.fn(
 )(function* (input: ProgramSnapshotFacts) {
   const snapshotId = yield* hashText(
     `${SNAPSHOT_DOMAIN}\n${canonicalizeProgramSnapshot(input)}`
-  ).pipe(Effect.mapError(() => new ProgramSnapshotHashError()));
+  );
   return ProgramSnapshotSchema.make({
     ...input,
     format: PROGRAM_SNAPSHOT_FORMAT,
@@ -71,9 +59,7 @@ export function verifyProgramSnapshotHash(snapshot: ProgramSnapshot) {
 
 /** Hashes one current program or curriculum row. */
 function hashProgramRow(record: ProgramSnapshotRowInput) {
-  return hashText(
-    `${ROW_DOMAIN}\n${canonicalizeProgramSnapshotRow(record)}`
-  ).pipe(Effect.mapError(() => new ProgramRowHashError({ scope: "row" })));
+  return hashText(`${ROW_DOMAIN}\n${canonicalizeProgramSnapshotRow(record)}`);
 }
 
 /** Creates one authenticated current program record. */

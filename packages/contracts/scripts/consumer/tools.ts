@@ -128,7 +128,6 @@ export function createConsumerSource(
 
   return `${Arr.join(typeImports, "\n")}
 import { createRendererManifest } from "${packageName}/renderer/manifest";
-import type { RendererManifestHashComputeError } from "${packageName}/renderer/contract";
 import type { RendererDomain } from "${packageName}/renderer/domain";
 
 type EffectError<Value> = Value extends import("effect").Effect.Effect<
@@ -160,9 +159,6 @@ export type RendererManifestErrorIsPresent = Expect<
 >;
 export type RendererManifestErrorRejectsUnknown = Expect<
   unknown extends ManifestError ? false : true
->;
-export type RendererManifestErrorIncludesHashFailure = Expect<
-  RendererManifestHashComputeError extends ManifestError ? true : false
 >;
 
 export type InstalledContractSurface = [${Arr.join(typeReferences, ", ")}];

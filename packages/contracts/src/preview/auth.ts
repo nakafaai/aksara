@@ -1,4 +1,5 @@
-import { Effect, Schema } from "effect";
+import { Effect, Layer, Schema } from "effect";
+import { Mac, SecureRandom } from "effect/crypto";
 import { Base64Url } from "effect/encoding";
 import type { Sha256HashSchema } from "#contracts/ids";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
@@ -54,25 +55,25 @@ export function canonicalizePreviewRendererAuth(input: {
   ]);
 }
 
-/** Imports the process-local secret as one HMAC-SHA256 key through Web Crypto. */
-const importPreviewRendererKey = Effect.fn(
-  "AksaraContracts.importPreviewRendererKey"
-)(function* (secret: PreviewRendererSecret) {
-  const raw = yield* Effect.fromResult(Base64Url.decode(secret)).pipe(
+/**
+ * HMAC on Web Crypto. Every runtime that Aksara contracts run in has
+ * `crypto.subtle`, so the layer is provided here and callers need no runtime
+ * layer.
+ */
+const MacLayer = Mac.layerWebCrypto.pipe(
+  Layer.provide(SecureRandom.layerWebCrypto)
+);
+
+/**
+ * Reads the process-local secret as one HMAC-SHA256 key. Its schema admits
+ * only the 43-character base64url text of 32 bytes, so it always decodes.
+ */
+function previewRendererKey(secret: PreviewRendererSecret) {
+  return Effect.fromResult(Base64Url.decode(secret)).pipe(
+    Effect.flatMap((raw) => Mac.key(Mac.hmacSha256, raw)),
     Effect.orDie
   );
-  return yield* Effect.tryPromise({
-    catch: () => new PreviewRendererAuthError({ reason: "compute" }),
-    try: () =>
-      globalThis.crypto.subtle.importKey(
-        "raw",
-        raw,
-        { hash: "SHA-256", name: "HMAC" },
-        false,
-        ["sign", "verify"]
-      ),
-  });
-});
+}
 
 /** Computes one renderer response proof from a process-local secret. */
 export const computePreviewRendererProof = Effect.fn(
@@ -82,18 +83,17 @@ export const computePreviewRendererProof = Effect.fn(
   readonly nonce: PreviewRendererNonce;
   readonly secret: PreviewRendererSecret;
 }) {
-  const key = yield* importPreviewRendererKey(input.secret);
-  const message = new TextEncoder().encode(
-    canonicalizePreviewRendererAuth(input)
-  );
-  const tag = yield* Effect.tryPromise({
-    catch: () => new PreviewRendererAuthError({ reason: "compute" }),
-    try: () => globalThis.crypto.subtle.sign("HMAC", key, message),
-  });
-  return PreviewRendererProofSchema.make(Base64Url.encode(new Uint8Array(tag)));
-});
+  const key = yield* previewRendererKey(input.secret);
+  const mac = yield* Mac.Mac;
+  const tag = yield* mac
+    .sign(key, new TextEncoder().encode(canonicalizePreviewRendererAuth(input)))
+    .pipe(
+      Effect.mapError(() => new PreviewRendererAuthError({ reason: "compute" }))
+    );
+  return PreviewRendererProofSchema.make(Base64Url.encode(tag));
+}, Effect.provide(MacLayer));
 
-/** Verifies one proof with the HMAC verification of Web Crypto, which compares in constant time. */
+/** Verifies one proof with Effect's HMAC verification, which compares in constant time. */
 export const verifyPreviewRendererProof = Effect.fn(
   "AksaraContracts.verifyPreviewRendererProof"
 )(function* (input: {
@@ -102,19 +102,22 @@ export const verifyPreviewRendererProof = Effect.fn(
   readonly proof: PreviewRendererProof;
   readonly secret: PreviewRendererSecret;
 }) {
-  const key = yield* importPreviewRendererKey(input.secret);
-  const message = new TextEncoder().encode(
-    canonicalizePreviewRendererAuth(input)
-  );
+  const key = yield* previewRendererKey(input.secret);
   const tag = yield* Effect.fromResult(Base64Url.decode(input.proof)).pipe(
     Effect.orDie
   );
-  const valid = yield* Effect.tryPromise({
-    catch: () => new PreviewRendererAuthError({ reason: "compute" }),
-    try: () => globalThis.crypto.subtle.verify("HMAC", key, tag, message),
-  });
+  const mac = yield* Mac.Mac;
+  const valid = yield* mac
+    .verify(
+      key,
+      tag,
+      new TextEncoder().encode(canonicalizePreviewRendererAuth(input))
+    )
+    .pipe(
+      Effect.mapError(() => new PreviewRendererAuthError({ reason: "compute" }))
+    );
   if (valid) {
     return;
   }
   return yield* new PreviewRendererAuthError({ reason: "invalid" });
-});
+}, Effect.provide(MacLayer));

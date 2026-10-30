@@ -75,10 +75,7 @@ export const items = makeReleaseItems(fixtureReleaseId, fixtureChanges);
 /** Builds the signed manifest identity for the canonical item fixture. */
 export const makeManifest = Effect.fn("AksaraContractsTest.makeItemManifest")(
   function* () {
-    const itemSummary = yield* digestItems(
-      fixtureReleaseId,
-      Stream.fromIterable(items)
-    );
+    const itemSummary = yield* digestItems(Stream.fromIterable(items));
     return yield* Schema.decodeEffect(ContentReleaseManifestSchema)({
       activeAppLocales: ACTIVE_APP_LOCALES,
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
@@ -140,10 +137,7 @@ export const makeCandidate = Effect.fn("AksaraContractsTest.makeItemCandidate")(
       Schema.Array(ContentChangeSchema)
     )(candidateChanges);
     const candidateItems = makeReleaseItems(manifest.releaseId, decoded);
-    const summary = yield* digestItems(
-      manifest.releaseId,
-      Stream.fromIterable(candidateItems)
-    );
+    const summary = yield* digestItems(Stream.fromIterable(candidateItems));
     const candidateManifest = yield* Schema.decodeEffect(
       ContentReleaseManifestSchema
     )({

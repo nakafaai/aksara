@@ -13,7 +13,6 @@ import type {
 import {
   bindQuranRow,
   hashQuranRow,
-  type QuranRowHashError,
 } from "@nakafa/aksara-contracts/quran/snapshot/row/hash";
 import {
   type QuranSnapshot,
@@ -32,7 +31,7 @@ import {
 } from "#corpus/quran/projection";
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
-type PreparedQuranRowError = QuranRowHashError | QuranProjectionError;
+type PreparedQuranRowError = QuranProjectionError;
 
 /** Replayable complete snapshot prepared from one exact Quran source. */
 export interface PreparedQuranSnapshot {

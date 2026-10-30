@@ -97,11 +97,14 @@ describe("preview renderer authentication", () => {
   );
 
   it.effect(
-    "maps Web Crypto HMAC failures into the typed authentication error",
+    "maps a refused Web Crypto HMAC into the typed authentication error",
     () =>
       Effect.gen(function* () {
         vi.spyOn(globalThis.crypto.subtle, "sign").mockRejectedValueOnce(
-          new TypeError("Test-only renderer HMAC failure.")
+          new DOMException(
+            "Test-only renderer HMAC failure.",
+            "NotSupportedError"
+          )
         );
         const error = yield* computePreviewRendererProof({
           manifestHash: manifest.hash,
@@ -118,10 +121,10 @@ describe("preview renderer authentication", () => {
 });
 
 describe("preview renderer Web Crypto failures", () => {
-  it.effect("maps a rejected key import into the compute error", () =>
+  it.effect("maps a refused key import into the compute error", () =>
     Effect.gen(function* () {
       vi.spyOn(globalThis.crypto.subtle, "importKey").mockRejectedValueOnce(
-        new TypeError("Test-only renderer key import failure.")
+        new DOMException("Test-only renderer key import failure.", "DataError")
       );
       const error = yield* computePreviewRendererProof({
         manifestHash: manifest.hash,
@@ -136,7 +139,7 @@ describe("preview renderer Web Crypto failures", () => {
     })
   );
 
-  it.effect("maps a rejected verification into the compute error", () =>
+  it.effect("maps a refused verification into the compute error", () =>
     Effect.gen(function* () {
       const proof = yield* computePreviewRendererProof({
         manifestHash: manifest.hash,
@@ -144,7 +147,10 @@ describe("preview renderer Web Crypto failures", () => {
         secret,
       });
       vi.spyOn(globalThis.crypto.subtle, "verify").mockRejectedValueOnce(
-        new TypeError("Test-only renderer verification failure.")
+        new DOMException(
+          "Test-only renderer verification failure.",
+          "NotSupportedError"
+        )
       );
       const error = yield* verifyPreviewRendererProof({
         manifestHash: manifest.hash,
