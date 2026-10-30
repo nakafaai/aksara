@@ -3,3 +3,8 @@
 # that names the dependency path and why the advisory cannot be exploited.
 # Each entry expires on its ignoreUntil date and the audit fails again, so it is reviewed
 # then; delete it as soon as a patched release ships.
+
+[[IgnoredVulns]]
+id = "GHSA-gcqx-w48m-w2h4"
+ignoreUntil = 2026-11-13
+reason = "deepmerge 4.3.1 is the newest release and the advisory lists no fix. Only the root devDependency ultracite reaches it (ultracite -> deepmerge), which merges its own preset objects while it writes or checks lint configuration, so no untrusted object reaches mergeObject. Checked on 30 October 2026: ultracite 8.1.0 still depends on deepmerge ^4.3.1."
