@@ -83,7 +83,7 @@ layer(NodeServices.layer)("compiler config", (it) => {
         "mdast-util-to-string": "4.0.0",
         "remark-gfm": "4.0.1",
         "remark-math": "6.0.0",
-        "unist-util-visit": "5.1.0",
+        "unist-util-visit": "5.2.0",
       });
     })
   );

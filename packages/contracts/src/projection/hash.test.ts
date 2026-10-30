@@ -26,8 +26,6 @@ const projection = Schema.decodeSync(MaterialLessonProjectionSchema)({
   topicTitle: "Test Projection Topic",
 });
 
-describe("content projection hash failures", () => {});
-
 describe("content projection hash", () => {
   it.effect("hashes canonical projection bytes with one stable identity", () =>
     Effect.gen(function* () {

@@ -39,7 +39,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
-            error.message.includes("effect declares 4.0.6; approved 4.0.5.")
+            error.message.includes("effect declares 4.0.6; approved 4.1.0.")
           );
           const recorded = yield* Ref.get(commands);
           assert.strictEqual(
@@ -62,8 +62,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             config,
             makeRunner({
               effect: releaseTimes({
-                "4.0.6": PAST_RELEASE,
-                "4.0.7": PAST_RELEASE,
+                "4.1.0": PAST_RELEASE,
+                "4.1.1": PAST_RELEASE,
               }),
             })
           ).pipe(Effect.flip);
@@ -71,7 +71,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
             error.message.includes(
-              "effect upstream is 4.0.7; last reviewed 4.0.6."
+              "effect upstream is 4.1.1; last reviewed 4.1.0."
             )
           );
         })
@@ -86,8 +86,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             config,
             makeRunner({
               effect: releaseTimes({
-                "4.0.6": PAST_RELEASE,
-                "4.0.7": GATED_RELEASE,
+                "4.1.0": PAST_RELEASE,
+                "4.1.1": GATED_RELEASE,
               }),
             })
           );
@@ -95,7 +95,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
 
-          assert.strictEqual(effectReport?.latest, "4.0.6");
+          assert.strictEqual(effectReport?.latest, "4.1.0");
         })
     );
 
@@ -108,8 +108,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             config,
             makeRunner({
               effect: releaseTimes({
-                "4.0.5": PAST_RELEASE,
-                "4.0.6": GATED_RELEASE,
+                "4.0.7": PAST_RELEASE,
+                "4.1.0": GATED_RELEASE,
               }),
             })
           );
@@ -117,7 +117,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
 
-          assert.strictEqual(effectReport?.latest, "4.0.5");
+          assert.strictEqual(effectReport?.latest, "4.0.7");
         })
     );
 

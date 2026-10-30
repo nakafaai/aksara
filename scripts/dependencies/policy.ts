@@ -133,7 +133,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "8.0.2",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
-    reason: "Formatter behavior is reviewed as one linting cohort. 8.1.0 moves with Biome 2.6, as the Biome entry describes.",
+    reason:
+      "Formatter behavior is reviewed as one linting cohort. 8.1.0 moves with Biome 2.6, as the Biome entry describes.",
     registry: "ultracite@latest",
     reviewedLatest: "8.1.0",
     source: "root-dev-dependency",

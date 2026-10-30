@@ -122,6 +122,26 @@ describe("Ed25519 keys from PEM", () => {
       })
   );
 
+  it.effect("fails the generation when Web Crypto refuses the new seed", () =>
+    Effect.gen(function* () {
+      yield* Effect.acquireRelease(
+        Effect.sync(() =>
+          vi
+            .spyOn(crypto.subtle, "importKey")
+            .mockRejectedValueOnce(
+              new DOMException("injected seed import failure", "DataError")
+            )
+        ),
+        (mock) => Effect.sync(() => mock.mockRestore())
+      );
+
+      const error = yield* generateEd25519KeyPem().pipe(Effect.flip);
+
+      expect(error).toBeInstanceOf(Ed25519KeyError);
+      expect(error.stage).toBe("derive");
+    })
+  );
+
   it.effect("rejects text that is not an unencrypted PKCS#8 PEM", () =>
     Effect.gen(function* () {
       const error = yield* signEd25519Message("not a key", MESSAGE_TEXT).pipe(
