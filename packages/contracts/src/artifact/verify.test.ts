@@ -12,7 +12,6 @@ import {
   pinnedResolver,
   verifyPinnedSignature,
 } from "#contracts/test/artifact";
-import { withDigestFailureFor } from "#contracts/test/digest";
 import { testRendererDomains } from "#contracts/test/renderer";
 import {
   basePayload,
@@ -139,16 +138,6 @@ describe("server-only artifact verification", () => {
     {
       expectedTag: "ArtifactRendererComponentMissingError",
       program: rejectArtifact(missingComponentArtifact),
-    },
-    {
-      expectedTag: "ArtifactHashComputationError",
-      program: withDigestFailureFor(
-        "hash:payload",
-        rejectArtifact({
-          ...validArtifact,
-          payload: { ...validArtifact.payload, contentKey: "hash:payload" },
-        })
-      ),
     },
   ] as const)(
     "rejects invalid artifact state with $expectedTag",

@@ -2,9 +2,7 @@ import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/in
 import { validateArtifactByteIntegrity } from "@nakafa/aksara-contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifact/source";
 import type {
-  ArtifactHashComputationError,
   ArtifactPayloadFieldByteLimitError,
-  ArtifactSourceHashComputationError,
   ArtifactSourceHashMismatchError,
   ArtifactVerificationByteLimitError,
 } from "@nakafa/aksara-contracts/artifact/spec";
@@ -20,10 +18,7 @@ import {
   type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import {
-  hashContentReleaseManifest,
-  type ReleaseHashComputationError,
-} from "@nakafa/aksara-contracts/release/hash";
+import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Effect, Schema } from "effect";
@@ -37,8 +32,6 @@ export interface PublicationSigner {
     payload: CompiledContentPayload
   ) => Effect.Effect<
     SignedContentArtifact,
-    | ArtifactHashComputationError
-    | ArtifactSourceHashComputationError
     | ArtifactSourceHashMismatchError
     | ArtifactPayloadFieldByteLimitError
     | ArtifactVerificationByteLimitError
@@ -47,10 +40,7 @@ export interface PublicationSigner {
   /** Signs one canonical release manifest. */
   readonly signRelease: (
     manifest: ContentReleaseManifest
-  ) => Effect.Effect<
-    SignedContentRelease,
-    ContentSigningError | ReleaseHashComputationError
-  >;
+  ) => Effect.Effect<SignedContentRelease, ContentSigningError>;
 }
 
 type PublicationSignerFactory = (input: {

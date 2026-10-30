@@ -214,16 +214,7 @@ export const decideArchive = Effect.fn("AksaraContracts.decideArchive")(
     currentBytes: Uint8Array,
     previousBytes: Uint8Array | undefined
   ) {
-    const sha256 = Hex.encode(
-      yield* digestSha256(currentBytes).pipe(
-        Effect.mapError(() =>
-          releaseError(
-            "archive",
-            "The current contract archive cannot be hashed."
-          )
-        )
-      )
-    );
+    const sha256 = Hex.encode(yield* digestSha256(currentBytes));
     const size = currentBytes.byteLength;
     if (!plan.latest) {
       if (previousBytes !== undefined) {

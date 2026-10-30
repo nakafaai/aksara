@@ -22,7 +22,7 @@ import {
 import { AppLocaleSchema, ArtifactLocaleSchema } from "#contracts/locale";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 
-const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
+const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/u;
 
 const TEST_HEADING = "Protocol Test Heading";
 

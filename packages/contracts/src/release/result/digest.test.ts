@@ -9,7 +9,6 @@ import {
   updateResultCatalogDigest,
   verifyResultCatalog,
 } from "#contracts/release/result/digest";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { catalog, firstHead, heads, secondHead } from "#contracts/test/result";
 
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-result-digest");
@@ -28,7 +27,7 @@ describe("result catalog digest", () => {
         first,
         secondHead
       );
-      const digest = yield* finalizeResultCatalogDigest(releaseId, updated);
+      const digest = yield* finalizeResultCatalogDigest(updated);
       const summary = yield* digestResultCatalog(
         releaseId,
         Stream.fromIterable(heads)
@@ -116,22 +115,6 @@ describe("result catalog digest", () => {
   );
 
   it.effect(
-    "maps a rejected Web Crypto digest to a result catalog hash error",
-    () =>
-      Effect.gen(function* () {
-        const state = yield* createResultCatalogDigest;
-        const failure = yield* withNextDigestFailure(
-          finalizeResultCatalogDigest(releaseId, state)
-        ).pipe(Effect.flip);
-
-        expect(failure).toMatchObject({
-          _tag: "ResultCatalogHashError",
-          releaseId,
-        });
-      })
-  );
-
-  it.effect(
     "pins the empty and mixed result catalog digests in whole and one-head chunks and through the incremental API",
     () =>
       Effect.gen(function* () {
@@ -145,10 +128,7 @@ describe("result catalog digest", () => {
           Stream.fromIterable(catalog).pipe(Stream.rechunk(1))
         );
         const emptyState = yield* createResultCatalogDigest;
-        const emptyIncremental = yield* finalizeResultCatalogDigest(
-          releaseId,
-          emptyState
-        );
+        const emptyIncremental = yield* finalizeResultCatalogDigest(emptyState);
         const initial = yield* createResultCatalogDigest;
         const updated = yield* Effect.reduce(
           catalog,
@@ -156,10 +136,7 @@ describe("result catalog digest", () => {
           (state, catalogHead) =>
             updateResultCatalogDigest(releaseId, state, catalogHead)
         );
-        const incremental = yield* finalizeResultCatalogDigest(
-          releaseId,
-          updated
-        );
+        const incremental = yield* finalizeResultCatalogDigest(updated);
 
         expect(empty).toEqual({
           count: 0,

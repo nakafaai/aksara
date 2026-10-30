@@ -1,12 +1,14 @@
-import type { Server } from "node:http";
 import type { NodeHttpServer } from "@effect/platform-node";
 import { Array as Arr, Effect, MutableRef, Schema } from "effect";
 import { unixPathAddress } from "effect/net/NetAddress";
 
+/** One Node server that the platform listener creates: HTTP/1.1, or HTTP/2 with or without TLS. */
+type ListenServer = ReturnType<Parameters<typeof NodeHttpServer.make>[0]>;
+
 /** How the mocked loopback listener behaves in the current test, and every server it created. */
 export const listenPlan = {
   fail: MutableRef.make<boolean>(false),
-  servers: Arr.empty<Server>(),
+  servers: Arr.empty<ListenServer>(),
   unix: MutableRef.make<boolean>(false),
 };
 

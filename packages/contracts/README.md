@@ -6,12 +6,12 @@ package, its immutable release archive, and the renderer manifest that its
 releases sign.
 
 This package contains schemas, branded identifiers, canonical wire encodings,
-and Web Crypto signature verification. It contains no corpus, renderer
+and Ed25519 signature verification on Effect's `effect/crypto` services. It contains no corpus, renderer
 implementation, signing key, deployment credential, or browser-side MDX
 runtime.
 
 Consumers install the exact `@nakafa/aksara-contracts` version from npm and
-commit its pnpm lockfile integrity. npm provenance and the matching immutable
+commit its `bun.lock` integrity. npm provenance and the matching immutable
 GitHub Release bind those package bytes to the reviewed Aksara source. A contract
 change ships with the Nakafa renderer that consumes it, in one step.
 

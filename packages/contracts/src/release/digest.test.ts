@@ -8,7 +8,6 @@ import {
   updateReleaseItemsDigest,
 } from "#contracts/release/digest";
 import { ContentReleaseItemSchema } from "#contracts/release/spec";
-import { withNextDigestFailure } from "#contracts/test/digest";
 
 const releaseId = Schema.decodeSync(ReleaseIdSchema)("test-release-digest");
 
@@ -32,11 +31,8 @@ describe("release digest", () => {
       const value = item();
       const initial = yield* createReleaseItemsDigest;
       const updated = yield* updateReleaseItemsDigest(initial, value);
-      const digest = yield* finalizeReleaseItemsDigest(
-        value.releaseId,
-        updated
-      );
-      const summary = yield* digestItems(releaseId, Stream.make(value));
+      const digest = yield* finalizeReleaseItemsDigest(updated);
+      const summary = yield* digestItems(Stream.make(value));
 
       expect(summary).toEqual({
         count: 1,
@@ -50,25 +46,6 @@ describe("release digest", () => {
         upsertCount: 0,
       });
     })
-  );
-
-  it.effect(
-    "maps a rejected Web Crypto digest to a hash computation error",
-    () =>
-      Effect.gen(function* () {
-        const state = yield* updateReleaseItemsDigest(
-          yield* createReleaseItemsDigest,
-          item()
-        );
-        const failure = yield* withNextDigestFailure(
-          finalizeReleaseItemsDigest(releaseId, state)
-        ).pipe(Effect.flip);
-
-        expect(failure).toMatchObject({
-          _tag: "ReleaseItemsHashComputationError",
-          releaseId,
-        });
-      })
   );
 
   it.effect(
@@ -99,12 +76,8 @@ describe("release digest", () => {
           index: 1,
           releaseId,
         });
-        const whole = yield* digestItems(
-          releaseId,
-          Stream.make(upsert, deletion)
-        );
+        const whole = yield* digestItems(Stream.make(upsert, deletion));
         const split = yield* digestItems(
-          releaseId,
           Stream.make(upsert, deletion).pipe(Stream.rechunk(1))
         );
         const initial = yield* createReleaseItemsDigest;
@@ -113,10 +86,7 @@ describe("release digest", () => {
           withUpsert,
           deletion
         );
-        const incremental = yield* finalizeReleaseItemsDigest(
-          releaseId,
-          withDelete
-        );
+        const incremental = yield* finalizeReleaseItemsDigest(withDelete);
 
         expect(whole).toEqual({
           count: 2,

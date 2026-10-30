@@ -1,17 +1,10 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import { canonicalizeContentReleaseItem } from "#contracts/release/canonical";
 import type { ContentReleaseItem } from "#contracts/release/spec";
 
 const CONTENT_RELEASE_ITEMS_DIGEST_DOMAIN =
   "nakafa.aksara.content-release-items";
-
-/** SHA-256 computation failed before item integrity was established. */
-export class ReleaseItemsHashComputationError extends Schema.TaggedError<
-  ReleaseItemsHashComputationError,
-  { readonly brand: unique symbol }
->()("ReleaseItemsHashComputationError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps the digest stream private while exposing canonical operation counts. */
 class ReleaseItemsDigestState {
@@ -60,23 +53,16 @@ export function updateReleaseItemsDigest(
   });
 }
 
-/** Finalizes one incremental release-item digest with typed hash failures. */
-export function finalizeReleaseItemsDigest(
-  releaseId: ReleaseId,
-  state: ReleaseItemsDigestState
-) {
-  return state
-    .digest()
-    .pipe(
-      Effect.mapError(() => new ReleaseItemsHashComputationError({ releaseId }))
-    );
+/** Finalizes one incremental release-item digest. */
+export function finalizeReleaseItemsDigest(state: ReleaseItemsDigestState) {
+  return state.digest();
 }
 
-/** Digests a release-item stream. Its canonical bytes are held until one Web Crypto digest runs. */
+/** Digests a release-item stream. Its canonical bytes are held until one digest runs. */
 export const digestItems = Effect.fn("AksaraContracts.digestItems")(function* <
   E,
   R,
->(releaseId: ReleaseId, items: Stream.Stream<ContentReleaseItem, E, R>) {
+>(items: Stream.Stream<ContentReleaseItem, E, R>) {
   const initial = yield* createReleaseItemsDigest;
   const state = yield* items.pipe(
     Stream.runFoldEffect(
@@ -84,7 +70,7 @@ export const digestItems = Effect.fn("AksaraContracts.digestItems")(function* <
       (current, item) => updateReleaseItemsDigest(current, item)
     )
   );
-  const digest = yield* finalizeReleaseItemsDigest(releaseId, state);
+  const digest = yield* finalizeReleaseItemsDigest(state);
   return {
     count: state.count,
     deleteCount: state.deleteCount,

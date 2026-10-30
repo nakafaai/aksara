@@ -7,7 +7,7 @@ const MAX_PUBLIC_LENGTH = 512;
 
 /** Keeps one author-facing diagnostic single-line and within its wire bound. */
 function boundDiagnostic(value: string, maxLength: number) {
-  return value.replaceAll(/\s+/g, " ").trim().slice(0, maxLength);
+  return value.replaceAll(/\s+/gu, " ").trim().slice(0, maxLength);
 }
 
 /** Returns the safest authored identity carried by one typed failure. */

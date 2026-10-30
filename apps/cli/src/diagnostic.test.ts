@@ -17,10 +17,10 @@ import { RENDERER_MANIFEST } from "#test/real";
 
 const CONTENT_KEY = "test:diagnostic";
 const BYTE_DIAGNOSTIC_PATTERN =
-  /^ContentByteLimitExceededError at test:diagnostic \(rawMdx is \d+ bytes; maximum is \d+\)\.$/;
+  /^ContentByteLimitExceededError at test:diagnostic \(rawMdx is \d+ bytes; maximum is \d+\)\.$/u;
 const MDX_DIAGNOSTIC_PATTERN =
-  /^MdxCompilationError at test:diagnostic \(.+\)\.$/;
-const POLICY_LIMIT_PATTERN = /process \(process\).+1 more/;
+  /^MdxCompilationError at test:diagnostic \(.+\)\.$/u;
+const POLICY_LIMIT_PATTERN = /process \(process\).+1 more/u;
 const SOURCE_PATH = CorpusSourcePathSchema.make(
   "packages/corpus/test/source.ts"
 );

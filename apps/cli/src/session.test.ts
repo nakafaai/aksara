@@ -19,7 +19,7 @@ import { makeApp, makeProvider, runLocal } from "#test/session";
 
 const repositories = makeRepositoryTracker();
 const POLICY_DIAGNOSTIC_PATTERN =
-  /^ExecutablePolicyError at material\/.+ \(rejected executable syntax: process \(process\)\)\.$/;
+  /^ExecutablePolicyError at material\/.+ \(rejected executable syntax: process \(process\)\)\.$/u;
 type ProviderControl = Parameters<typeof makeProvider>[0];
 /** Creates pristine provider transition counts for one behavior test. */
 function makeControl(): ProviderControl {

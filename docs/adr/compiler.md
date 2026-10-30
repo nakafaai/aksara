@@ -31,6 +31,11 @@ reason, as its own rule record, `docs/adr/0021-rules.md`, says.
 - Do not brand `ProvenanceVerificationError` in this copy alone: `bun run native`
   compares it byte for byte with nakafa.com's file.
 - `bun run native` also compares the Effect cohort pins of both repositories, so the
-  nakafa.com cohort moves before Aksara's cohort does.
+  nakafa.com cohort moves before Aksara's cohort does. The one exception is an Effect
+  release that removes an API the published contracts call, as Effect 4.1 removed
+  `effect/Crypto`: no consumer can run that release until a contracts build on it is
+  published, so the contracts lead. The pin in `scripts/check/native.ts` then names the
+  nakafa.com commit that moves its cohort pins, and nakafa.com adopts the new
+  contracts release in that change.
 - `bun run native` also requires both repositories to give `schemaClassMissingBrand`
   the same severity, so the rule moves to `error` in both or in neither.

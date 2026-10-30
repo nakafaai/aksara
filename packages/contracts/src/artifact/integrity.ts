@@ -2,7 +2,6 @@ import { Array as Arr, Effect, Option, Schema } from "effect";
 import { validateArtifactByteIntegrity } from "#contracts/artifact/limits";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import {
-  ArtifactHashComputationError,
   ArtifactHashMismatchError,
   ArtifactTreeComponentUnlistedError,
   ArtifactVerificationDecodeError,
@@ -23,11 +22,7 @@ import { contentTreeComponentNames } from "#contracts/tree";
 export const hashCompiledContentPayload = Effect.fn(
   "AksaraContracts.hashCompiledContentPayload"
 )((payload: CompiledContentPayload) =>
-  hashText(canonicalizeCompiledContentPayload(payload)).pipe(
-    Effect.mapError(
-      () => new ArtifactHashComputationError({ contentKey: payload.contentKey })
-    )
-  )
+  hashText(canonicalizeCompiledContentPayload(payload))
 );
 
 /** Confirms that an artifact envelope identifies its canonical payload. */

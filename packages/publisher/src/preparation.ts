@@ -160,23 +160,11 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       updateResultCatalogDigest(input.releaseId, resultState, head)
     )
   );
-  const itemsDigest = yield* finalizeReleaseItemsDigest(
-    input.releaseId,
-    itemState
-  );
-  const projectionDigest = yield* finalizeProjectionDigest(
-    input.releaseId,
-    projectionState
-  );
-  const rollbackDigest = yield* finalizeRollbackSnapshotDigest(
-    input.releaseId,
-    rollbackState
-  );
-  const resultDigest = yield* finalizeResultCatalogDigest(
-    input.releaseId,
-    resultState
-  );
-  const routeSummary = yield* digestRoutes(input.releaseId, routes);
+  const itemsDigest = yield* finalizeReleaseItemsDigest(itemState);
+  const projectionDigest = yield* finalizeProjectionDigest(projectionState);
+  const rollbackDigest = yield* finalizeRollbackSnapshotDigest(rollbackState);
+  const resultDigest = yield* finalizeResultCatalogDigest(resultState);
+  const routeSummary = yield* digestRoutes(routes);
   const manifest = ContentReleaseManifestSchema.make({
     activeAppLocales: ACTIVE_APP_LOCALES,
     baseActiveAppLocales: input.baseActiveAppLocales,

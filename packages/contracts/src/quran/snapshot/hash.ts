@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect";
+import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 import {
@@ -10,12 +10,6 @@ import {
 import { encodeJsonText } from "#contracts/text/json";
 
 const SNAPSHOT_DOMAIN = "nakafa.aksara.localized-quran-snapshot";
-
-/** Node could not compute a deterministic Quran snapshot identity. */
-export class QuranSnapshotHashError extends Schema.TaggedError<
-  QuranSnapshotHashError,
-  { readonly brand: unique symbol }
->()("QuranSnapshotHashError", {}) {}
 
 /** Serializes Quran snapshot facts in stable signed field order. */
 export function canonicalizeQuranSnapshot(input: QuranSnapshotFacts) {
@@ -46,7 +40,7 @@ export const makeQuranSnapshot = Effect.fn("AksaraContracts.makeQuranSnapshot")(
   function* (input: QuranSnapshotFacts) {
     const snapshotId = yield* hashText(
       `${SNAPSHOT_DOMAIN}\n${canonicalizeQuranSnapshot(input)}`
-    ).pipe(Effect.mapError(() => new QuranSnapshotHashError()));
+    );
     return QuranSnapshotSchema.make({
       ...input,
       format: QURAN_SNAPSHOT_FORMAT,

@@ -18,9 +18,9 @@ import remarkMath from "remark-math";
 import { MDX_PROVIDER_SOURCE } from "#compiler/config";
 
 /** Capitalized JSX tags name the renderer components that a document uses. */
-const COMPONENT_TAG = /<([A-Z][A-Za-z0-9]*)[\s/>]/g;
+const COMPONENT_TAG = /<([A-Z][A-Za-z0-9]*)[\s/>]/gu;
 /** Inline function attributes compute their props, so the runtime evaluates them. */
-const DATA_COMPUTING_ATTRIBUTE = /[=]\{\s*\(/;
+const DATA_COMPUTING_ATTRIBUTE = /[=]\{\s*\(/u;
 /** Type that the reference runtime gives to a fragment. */
 const FRAGMENT = Symbol("reference.fragment");
 /** Calls that the reference runtime recorded, so that prop data can never pass for one. */

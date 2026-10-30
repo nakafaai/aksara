@@ -121,9 +121,9 @@ export const verifyContentProjections = Effect.fn(
   readonly manifest: ContentReleaseManifest;
   readonly projections: Stream.Stream<unknown, E, R>;
 }) {
-  const summary = yield* digestProjections(
-    input.manifest.releaseId,
-    decodeContentProjections(input.projections)
+  const summary = yield* input.projections.pipe(
+    decodeContentProjections,
+    digestProjections
   );
   if (summary.count !== input.manifest.projectionCount) {
     return yield* new ProjectionCountError({

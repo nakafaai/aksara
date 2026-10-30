@@ -13,7 +13,6 @@ import {
   quranProvenanceScopes,
   quranSourceForProvenanceScope,
 } from "#contracts/quran/provenance";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { reverseObjectKeys } from "#contracts/test/order";
 import {
   goldenArabicRecord,
@@ -237,19 +236,6 @@ describe("Quran provenance", () => {
       ).toContain(
         "Expected Quran provenance status to match its complete evidence."
       );
-    })
-  );
-
-  it.effect("maps a failed digest to the typed provenance error", () =>
-    Effect.gen(function* () {
-      const error = yield* withNextDigestFailure(
-        hashQuranProvenance({
-          activeAppLocales: ACTIVE_APP_LOCALES,
-          records: records("approved"),
-        }).pipe(Effect.flip)
-      );
-
-      expect(error._tag).toBe("QuranProvenanceHashError");
     })
   );
 });

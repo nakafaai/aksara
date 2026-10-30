@@ -20,7 +20,6 @@ import { mapLocalizedSource } from "#corpus/locale/source";
 import { bundleParts, digestBundle } from "#corpus/quran/source/bundle";
 import { decodeSource } from "#corpus/quran/source/decode";
 import {
-  digestFailure,
   QuranSourceFileError,
   QuranSourceLocaleError,
 } from "#corpus/quran/source/failure";
@@ -81,11 +80,7 @@ const readSourceFile = Effect.fn("AksaraCorpus.readQuranSourceFile")(function* (
 /** Authenticates one source-controlled artifact against its pinned identity. */
 const authenticateSource = Effect.fn("AksaraCorpus.authenticateQuranSource")(
   function* (source: PinnedQuranFile, bytes: Uint8Array) {
-    const digest = yield* sha256Hex(bytes).pipe(
-      Effect.mapError(
-        digestFailure(`Could not digest pinned source ${source.name}.`)
-      )
-    );
+    const digest = yield* sha256Hex(bytes);
     if (
       bytes.byteLength !== source.artifact.byteCount ||
       digest !== source.artifact.digest.slice("sha256:".length)

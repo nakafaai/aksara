@@ -1,18 +1,18 @@
 import { Schema } from "effect";
 
-const HEX_40_PATTERN = /^[a-f\d]{40}$/;
-const SHA256_PATTERN = /^sha256:[a-f\d]{64}$/;
-const ED25519_SIGNATURE_PATTERN = /^[A-Za-z0-9_-]{85}[AQgw]$/;
-const SIGNING_KEY_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,63}$/;
+const HEX_40_PATTERN = /^[a-f\d]{40}$/u;
+const SHA256_PATTERN = /^sha256:[a-f\d]{64}$/u;
+const ED25519_SIGNATURE_PATTERN = /^[A-Za-z0-9_-]{85}[AQgw]$/u;
+const SIGNING_KEY_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,63}$/u;
 /** Maximum wire length shared by every published content identity. */
 export const CONTENT_KEY_MAX_LENGTH = 512;
 
-const CONTENT_KEY_PATTERN = /^[a-z0-9][a-z0-9._:/-]*$/;
-const RELEASE_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,127}$/;
+const CONTENT_KEY_PATTERN = /^[a-z0-9][a-z0-9._:/-]*$/u;
+const RELEASE_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{0,127}$/u;
 const PUBLIC_PATH_PATTERN =
-  /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
+  /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u;
 const CORPUS_SOURCE_PATH_PATTERN =
-  /^packages\/corpus\/[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)+$/;
+  /^packages\/corpus\/[a-z0-9][a-z0-9._-]*(?:\/[a-z0-9][a-z0-9._-]*)+$/u;
 
 /** Checks whether a value is a complete lowercase Git commit SHA. */
 function isGitCommitSha(value: string): value is `${string}` {

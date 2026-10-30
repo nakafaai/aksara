@@ -1,48 +1,20 @@
-import { Crypto, Effect, PlatformError } from "effect";
+import { Effect } from "effect";
+import { Digest } from "effect/crypto";
 import { Hex } from "effect/encoding";
 import { Sha256HashSchema } from "#contracts/ids";
 
-/** Largest byte count that one `crypto.getRandomValues` call accepts. */
-const RANDOM_CHUNK_BYTES = 65_536;
-
 /**
- * Web Crypto behind Effect's `Crypto` service. Every runtime that Aksara
- * contracts run in has `crypto.subtle`, so digests need no runtime layer.
+ * Computes the SHA-256 digest bytes of one byte sequence through Effect's
+ * `Digest` service on Web Crypto. Every runtime that Aksara contracts run in
+ * has `crypto.subtle`, so digests need no runtime layer, and a runtime without
+ * it is a defect rather than an expected failure.
  */
-export const webCryptoService = Crypto.make({
-  digest: (algorithm, data) =>
-    Effect.tryPromise({
-      catch: (cause) =>
-        PlatformError.systemError({
-          _tag: "Unknown",
-          cause,
-          description: "Could not compute digest",
-          method: "digest",
-          module: "Crypto",
-        }),
-      try: () =>
-        globalThis.crypto.subtle
-          .digest(algorithm, new Uint8Array(data))
-          .then((digest) => new Uint8Array(digest)),
-    }),
-  randomBytes: (size) => {
-    const bytes = new Uint8Array(size);
-    for (let offset = 0; offset < size; offset += RANDOM_CHUNK_BYTES) {
-      globalThis.crypto.getRandomValues(
-        bytes.subarray(offset, offset + RANDOM_CHUNK_BYTES)
-      );
-    }
-    return bytes;
-  },
-});
-
-/** Computes the SHA-256 digest bytes of one byte sequence through Effect's Crypto service. */
 export const digestSha256 = Effect.fn("AksaraContracts.digestSha256")(
   function* (bytes: Uint8Array) {
-    const crypto = yield* Crypto.Crypto;
-    return yield* crypto.digest("SHA-256", bytes);
+    const digest = yield* Digest.Digest;
+    return yield* digest.digest(Digest.sha256, bytes);
   },
-  Effect.provideService(Crypto.Crypto, webCryptoService)
+  Effect.provide(Digest.layerWebCrypto)
 );
 
 /** Computes the `sha256:` identity of one byte sequence, the form every stored hash uses. */

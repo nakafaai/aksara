@@ -25,43 +25,43 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.0.5",
+    approvedCurrent: "4.1.0",
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.0.6 is reviewed here, but nakafa.com still pins 4.0.5, and docs/adr/compiler.md requires the nakafa.com cohort to move before this one, so the cohort stays on 4.0.5 until nakafa.com moves.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.1.0 replaces effect/Crypto with the effect/crypto services, so a contracts build on 4.0.5 cannot run on 4.1. The contracts therefore lead the cohort (docs/adr/compiler.md): this release peers 4.1.0, and nakafa.com moves to 4.1.0 when it adopts it.",
     registry: "effect@latest",
-    reviewedLatest: "4.0.6",
+    reviewedLatest: "4.1.0",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.5",
+    approvedCurrent: "4.1.0",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason:
-      "All Effect ecosystem packages must use one exact cohort. The cohort moves with nakafa.com as described on the effect entry.",
+      "All Effect ecosystem packages must use one exact cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.0.6",
+    reviewedLatest: "4.1.0",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.5",
+    approvedCurrent: "4.1.0",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason:
-      "The test adapter must match the installed Effect cohort. The cohort moves with nakafa.com as described on the effect entry.",
+      "The test adapter must match the installed Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.0.6",
+    reviewedLatest: "4.1.0",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.0.5",
+    approvedCurrent: "4.1.0",
     cohort: "Effect",
     dependency: "@effect/platform-node-shared",
     reason:
-      "An override that pins the shared platform package to the Effect cohort. The cohort moves with nakafa.com as described on the effect entry.",
+      "An override that pins the shared platform package to the Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node-shared@latest",
-    reviewedLatest: "4.0.6",
+    reviewedLatest: "4.1.0",
     source: "override",
   },
   {
@@ -83,13 +83,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.56.0",
+    approvedCurrent: "0.63.0",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect; 0.49 keeps TypeScript 7.0.2 supported through adapters for the legacy provider, 0.50 adds the apiStabilityLeak diagnostic, which is off by default, 0.52 adds schemaClassMissingBrand, whose default severity is suggestion and which base.json keeps off until the change that brands the last Schema error class (docs/adr/compiler.md), with effectSleepZeroToYieldNow, flatMapToTap, and three opt-in rules, and 0.53 adds errorPayloadShadowsName and two opt-in import-style rules. 0.53.3 makes effect-tsgo diagnostics report related locations. 0.53.4 only moves the TypeScript next tag, which Aksara does not use, and the one-day minimum release age admits it on 18 October 2026. Every rule is decided in packages/typescript-config/base.json. @effect/tsgo 0.56.0 adds preferEffectString (off by default) and schemaClassObjectLiteral (warning by default) and changes no existing rule. base.json decides both as nakafa.com's rule record does: preferEffectString stays off, and schemaClassObjectLiteral is error. The compiler moves to 0.56.0 with nakafa.com's upgrade lane. 0.56.1, the reviewed upstream release, moves in its own change once the one-day minimum release age admits it. Every later version must decide its new rules in base.json in the same change, and that rule block must match nakafa.com (docs/adr/compiler.md).",
+      "Compiler patching is reviewed with native TypeScript and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.52 added schemaClassMissingBrand, which base.json keeps off until the change that brands the last Schema error class, and 0.56 added preferEffectString (off) and schemaClassObjectLiteral (error). 0.57 adds the experimental tsrs build and 0.59 the effect-tsgo tsc, tsrs and oxlint proxy commands, which Aksara does not use: it patches the installed compiler. 0.61 adds flatMapIdentityToFlatten, 0.62 mapConstToAs, and 0.63 failCauseToConstructor and manualMetricTapToTrack, each a style suggestion by default that base.json sets to error, and the opt-in mapMapErrorToMapBoth, which base.json keeps off as upstream does. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.56.1",
+    reviewedLatest: "0.63.0",
     source: "root-dev-dependency",
   },
   {
@@ -102,12 +102,12 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "24.22.1",
+    approvedCurrent: "24.22.2",
     cohort: "Node 24",
     dependency: "node",
     reason: "Aksara supports the current Node 24 runtime line only.",
     registry: "node@24",
-    reviewedLatest: "24.22.1",
+    reviewedLatest: "24.22.2",
     source: "node-runtime",
   },
   {
@@ -124,18 +124,18 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Biome and Ultracite",
     dependency: "@biomejs/biome",
     reason:
-      "Formatter behavior is reviewed as one linting cohort. Ultracite 8.0.2 still configures the useSortedClasses rule, which Biome 2.6 no longer knows, so Biome 2.6.x fails the lint configuration with an unknown key. The hold lifts when Ultracite's configuration supports the 2.6 line.",
+      "Formatter behavior is reviewed as one linting cohort. Ultracite 8.1.0 peers Biome ^2.6.2 and renames useSortedClasses to useTailwindSortedClasses, so the 2.6 line loads now. It also turns on the rules that Biome 2.6 made stable and formats YAML: measured on 30 October 2026, Aksara then reports 60 findings (50 unnamed capture groups, 4 loop functions, 4 regular expressions without the unicode flag, 1 empty block, 1 import after code) and rewrites every workflow file, whose trusted publish jobs are pinned by digest. The cohort moves in its own change that fixes those findings and re-reviews the workflow digests.",
     registry: "@biomejs/biome@latest",
-    reviewedLatest: "2.6.3",
+    reviewedLatest: "2.6.4",
     source: "root-dev-dependency",
   },
   {
     approvedCurrent: "8.0.2",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
-    reason: "Formatter behavior is reviewed as one linting cohort.",
+    reason: "Formatter behavior is reviewed as one linting cohort. 8.1.0 moves with Biome 2.6, as the Biome entry describes.",
     registry: "ultracite@latest",
-    reviewedLatest: "8.0.2",
+    reviewedLatest: "8.1.0",
     source: "root-dev-dependency",
   },
   {

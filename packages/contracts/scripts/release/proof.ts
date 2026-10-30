@@ -137,16 +137,7 @@ export const proveContractRelease = Effect.fn(
       "The contract release must contain exactly the expected archive and size"
     );
   }
-  const sha256 = Hex.encode(
-    yield* digestSha256(currentBytes).pipe(
-      Effect.mapError(() =>
-        releaseError(
-          "release",
-          "The current contract archive cannot be hashed."
-        )
-      )
-    )
-  );
+  const sha256 = Hex.encode(yield* digestSha256(currentBytes));
   if (asset.digest !== `sha256:${sha256}`) {
     return yield* releaseError(
       "release",

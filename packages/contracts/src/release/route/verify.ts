@@ -113,10 +113,7 @@ export const verifyContentRoutes = Effect.fn(
   readonly manifest: ContentReleaseManifest;
   readonly routes: Stream.Stream<unknown, E, R>;
 }) {
-  const summary = yield* digestRoutes(
-    input.manifest.releaseId,
-    decodeContentRoutes(input)
-  );
+  const summary = yield* digestRoutes(decodeContentRoutes(input));
   if (summary.count !== input.manifest.routeCount) {
     return yield* new RouteCountError({
       actualCount: summary.count,

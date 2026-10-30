@@ -6,7 +6,7 @@ const ELEMENT_KEY = "$node";
 /** Name of the element that renders its children without an element of its own. */
 const FRAGMENT_NAME = "fragment";
 /** Renderer components are capitalized JSX names, never intrinsic tags. */
-const COMPONENT_NAME_PATTERN = /^[A-Z][A-Za-z0-9]*$/;
+const COMPONENT_NAME_PATTERN = /^[A-Z][A-Za-z0-9]*$/u;
 
 /** Intrinsic HTML tags that the Markdown and MDX pipeline may emit, in code-unit order. */
 export const CONTENT_TREE_INTRINSIC_TAGS = [

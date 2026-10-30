@@ -3,7 +3,6 @@ import { Effect, Schema } from "effect";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import { CompiledContentPayloadSchema } from "#contracts/content";
 import { hashText } from "#contracts/hash/text";
-import { withDigestFailureFor } from "#contracts/test/digest";
 
 /** Builds one compiled payload with an authenticated raw source hash. */
 const payload = Effect.fn("AksaraContracts.test.sourcePayload")(function* (
@@ -58,28 +57,6 @@ describe("artifact source", () => {
         )
       ).pipe(Effect.flip);
       expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
-    })
-  );
-
-  it.effect("maps mismatch and computation failures to typed errors", () =>
-    Effect.gen(function* () {
-      const mismatchPayload = yield* payload(
-        "## Source",
-        `sha256:${"f".repeat(64)}`
-      );
-      const failingPayload = yield* payload(
-        "hash-source",
-        `sha256:${"f".repeat(64)}`
-      );
-      const [mismatch, computation] = yield* Effect.all([
-        verifyCompiledContentSourceHash(mismatchPayload).pipe(Effect.flip),
-        withDigestFailureFor(
-          "hash-source",
-          verifyCompiledContentSourceHash(failingPayload).pipe(Effect.flip)
-        ),
-      ]);
-      expect(mismatch._tag).toBe("ArtifactSourceHashMismatchError");
-      expect(computation._tag).toBe("ArtifactSourceHashComputationError");
     })
   );
 });

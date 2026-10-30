@@ -86,10 +86,7 @@ describe("release spec", () => {
     "requires forward rollback provenance and permits rollback of rollback",
     () =>
       Effect.gen(function* () {
-        const itemSummary = yield* digestItems(
-          releaseId,
-          Stream.fromIterable(items)
-        );
+        const itemSummary = yield* digestItems(Stream.fromIterable(items));
         const manifest = yield* Schema.decodeEffect(
           ContentReleaseManifestSchema
         )({
@@ -123,7 +120,6 @@ describe("release spec", () => {
           yield* Schema.decodeEffect(ReleaseIdSchema)("rollback-first");
         const firstItems = makeReleaseItems(firstId, []);
         const firstSummary = yield* digestItems(
-          firstId,
           Stream.fromIterable(firstItems)
         );
         const first = yield* Schema.decodeEffect(ContentReleaseManifestSchema)({

@@ -59,7 +59,7 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
   function* (source: string, metadata: readonly SurahMetadata[]) {
     const translationRows = MutableList.make<QuranTranslation>();
     const suraRows = [
-      ...source.matchAll(/<sura number="(\d+)">([\s\S]*?)<\/sura>/g),
+      ...source.matchAll(/<sura number="(\d+)">([\s\S]*?)<\/sura>/gu),
     ];
     yield* Effect.forEach(
       suraRows,
@@ -74,7 +74,7 @@ const parseTranslation = Effect.fn("AksaraCorpus.parseQuranTranslation")(
             );
           }
           const ayaRows = [
-            ...body.matchAll(/<aya number="(\d+)">([\s\S]*?)<\/aya>/g),
+            ...body.matchAll(/<aya number="(\d+)">([\s\S]*?)<\/aya>/gu),
           ];
           if (ayaRows.length !== expected.numberOfVerses) {
             return yield* quranGenerationFailure(

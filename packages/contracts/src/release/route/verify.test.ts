@@ -30,7 +30,7 @@ function route(index: number, publicPath = `subjects/test/${index}`) {
 const manifest = Effect.fn("RouteVerificationTest.manifest")(function* (
   routes: readonly ReturnType<typeof route>[]
 ) {
-  const summary = yield* digestRoutes(releaseId, Stream.fromIterable(routes));
+  const summary = yield* digestRoutes(Stream.fromIterable(routes));
   return {
     ...release.manifest,
     routeCount: summary.count,

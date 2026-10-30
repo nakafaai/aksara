@@ -2,7 +2,6 @@ import {
   CompiledContentPayloadSchema,
   type decodeCompileDocumentRequest,
 } from "@nakafa/aksara-contracts/content";
-import type { TextHashError } from "@nakafa/aksara-contracts/hash/text";
 import type { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";
@@ -43,8 +42,7 @@ export type CompileContentError =
   | ContentTreePolicyError
   | MdxCompilationError
   | RendererComponentMissingError
-  | SourcePolicyError
-  | TextHashError;
+  | SourcePolicyError;
 
 /** Compiles trusted authored MDX without executing the emitted function body. */
 export const compileContent: (

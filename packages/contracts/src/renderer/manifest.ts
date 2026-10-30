@@ -11,7 +11,6 @@ import {
   RendererManifestDomainsSchema,
   type RendererManifestEnvelope,
   RendererManifestEnvelopeSchema,
-  RendererManifestHashComputeError,
   RendererManifestHashMismatchError,
   sortRendererDomains,
 } from "#contracts/renderer/contract";
@@ -35,12 +34,7 @@ const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
       RendererManifestEnvelope,
       "base" | "domains" | "publishedDomains"
     >
-  ) =>
-    hashText(canonicalizeRendererManifestContract(input)).pipe(
-      Effect.mapError(
-        ({ cause }) => new RendererManifestHashComputeError({ cause })
-      )
-    )
+  ) => hashText(canonicalizeRendererManifestContract(input))
 );
 
 /** Creates a complete authenticated manifest from one current name set. */

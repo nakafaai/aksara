@@ -14,7 +14,6 @@ import {
 import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import { QuranSurahRowSchema } from "#contracts/quran/spec";
-import { withDigestFailureFor } from "#contracts/test/digest";
 import { makeQuranTestRecords } from "#contracts/test/quran";
 
 const activeAppLocales = ACTIVE_APP_LOCALES;
@@ -201,21 +200,6 @@ describe("Quran aggregate digest", () => {
       expect(incompleteError).toMatchObject({
         _tag: "QuranRowOrderError",
         expected: "end",
-      });
-    })
-  );
-
-  it.effect("maps a rejected aggregate digest to a Quran row hash error", () =>
-    Effect.gen(function* () {
-      const records = yield* makeQuranTestRecords();
-      const error = yield* withDigestFailureFor(
-        "nakafa.aksara.quran-projection",
-        reject(records)
-      );
-
-      expect(error).toMatchObject({
-        _tag: "QuranRowHashError",
-        scope: "row",
       });
     })
   );

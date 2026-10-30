@@ -1,18 +1,11 @@
-import { Effect, Schema, Stream } from "effect";
+import { Effect, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
 import {
   type ContentProjection,
   canonicalizeContentProjection,
 } from "#contracts/projection/spec";
 
 const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections";
-
-/** SHA-256 computation failed before projection integrity was established. */
-export class ProjectionHashError extends Schema.TaggedError<
-  ProjectionHashError,
-  { readonly brand: unique symbol }
->()("ProjectionHashError", { releaseId: ReleaseIdSchema }) {}
 
 /** Keeps the digest stream private while exposing only canonical counters. */
 class ProjectionDigestState {
@@ -54,22 +47,14 @@ export function updateProjectionDigest(
   });
 }
 
-/** Finalizes one projection digest with a typed hash failure. */
-export function finalizeProjectionDigest(
-  releaseId: typeof ReleaseIdSchema.Type,
-  state: ProjectionDigestState
-) {
-  return state
-    .digest()
-    .pipe(Effect.mapError(() => new ProjectionHashError({ releaseId })));
+/** Finalizes one projection digest. */
+export function finalizeProjectionDigest(state: ProjectionDigestState) {
+  return state.digest();
 }
 
-/** Digests a projection stream. Its canonical bytes are held until one Web Crypto digest runs. */
+/** Digests a projection stream. Its canonical bytes are held until one digest runs. */
 export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
-  function* <E, R>(
-    releaseId: ReleaseId,
-    projections: Stream.Stream<ContentProjection, E, R>
-  ) {
+  function* <E, R>(projections: Stream.Stream<ContentProjection, E, R>) {
     const initial = yield* createProjectionDigest;
     const state = yield* projections.pipe(
       Stream.runFoldEffect(
@@ -77,7 +62,7 @@ export const digestProjections = Effect.fn("AksaraContracts.digestProjections")(
         (current, projection) => updateProjectionDigest(current, projection)
       )
     );
-    const digest = yield* finalizeProjectionDigest(releaseId, state);
+    const digest = yield* finalizeProjectionDigest(state);
     return { count: state.count, digest };
   }
 );

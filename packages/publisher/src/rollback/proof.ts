@@ -4,7 +4,6 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
-import type { ContentProjectionHashError } from "@nakafa/aksara-contracts/projection/hash";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseManifest,
@@ -132,8 +131,7 @@ type VerifyRollbackProofError =
     >
   | Effect.Error<
       ReturnType<typeof verifyRollbackSnapshot<ReplaySpoolError, never>>
-    >
-  | ContentProjectionHashError;
+    >;
 
 type VerifyRollbackProof = (input: {
   readonly manifest: ContentReleaseManifest;

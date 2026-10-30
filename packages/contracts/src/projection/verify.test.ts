@@ -51,7 +51,6 @@ const releaseId = Schema.decodeSync(ReleaseIdSchema)(
 const makeManifest = Effect.fn("AksaraContractsTest.makeProjectionManifest")(
   function* () {
     const projectionSummary = yield* digestProjections(
-      releaseId,
       Stream.fromIterable(projections)
     );
     return yield* Schema.decodeEffect(ContentReleaseManifestSchema)({

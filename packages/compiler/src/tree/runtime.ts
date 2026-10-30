@@ -6,7 +6,7 @@ export const TREE_FRAGMENT = Symbol("aksara.content-tree.fragment");
 /** Renderer component name of each placeholder that one evaluation created. */
 const COMPONENT_NAMES = new WeakMap<object, string>();
 /** Capitalized JSX names are renderer components; lowercase names are intrinsic tags. */
-const CAPITALIZED_NAME = /^[A-Z]/;
+const CAPITALIZED_NAME = /^[A-Z]/u;
 
 /** One call of the compiled body's JSX runtime, kept as data until it is serialized. */
 export class TreeCall {

@@ -14,10 +14,7 @@ import {
   type CurriculumRoute,
   curriculumNamespace,
 } from "#contracts/program/curriculum";
-import {
-  ProgramRowHashError,
-  verifyProgramSnapshotRowHash,
-} from "#contracts/program/snapshot/hash";
+import { verifyProgramSnapshotRowHash } from "#contracts/program/snapshot/hash";
 import {
   canonicalizeProgramSnapshotRow,
   type ProgramSnapshotRow,
@@ -157,11 +154,7 @@ class ProgramDigestState {
 
   /** Digests the complete canonical stream once. */
   digest() {
-    return this.#stream
-      .digest()
-      .pipe(
-        Effect.mapError(() => new ProgramRowHashError({ scope: "digest" }))
-      );
+    return this.#stream.digest();
   }
 
   /** Adds one catalog row before any current curriculum records. */

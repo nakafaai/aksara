@@ -16,7 +16,7 @@ import { encodeJsonText } from "#contracts/text/json";
 
 const MATERIAL_KEY_PATTERN =
   /^lesson\.[a-z0-9]+(?:-[a-z0-9]+)*\.[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const SECTION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SEARCH_TITLE_MAX_LENGTH = 70;
 const SINGLE_SPACED_LINE_PATTERN =
   /^[^\p{Cc}\p{Cf}\s]+(?: [^\p{Cc}\p{Cf}\s]+)*$/u;

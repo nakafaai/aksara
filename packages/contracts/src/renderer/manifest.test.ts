@@ -8,7 +8,6 @@ import {
   createRendererManifest,
   validateRendererManifestHash,
 } from "#contracts/renderer/manifest";
-import { withNextDigestFailure } from "#contracts/test/digest";
 import { testRendererDomains } from "#contracts/test/renderer";
 
 const input = {
@@ -152,14 +151,6 @@ describe("renderer manifest", () => {
         }).pipe(Effect.flip);
         expect(errorFromWire._tag).toBe("ContractDecodeError");
       })
-  );
-
-  it.effect("maps hashing failures to a typed error", () =>
-    withNextDigestFailure(createRendererManifest(input).pipe(Effect.flip)).pipe(
-      Effect.map((error) =>
-        expect(error._tag).toBe("RendererManifestHashComputeError")
-      )
-    )
   );
 });
 

@@ -178,10 +178,7 @@ export const verifyContentReleaseItems = Effect.fn(
   readonly items: Stream.Stream<unknown, E, R>;
   readonly manifest: ContentReleaseManifest;
 }) {
-  const summary = yield* digestItems(
-    input.manifest.releaseId,
-    decodeContentReleaseItems(input)
-  );
+  const summary = yield* digestItems(decodeContentReleaseItems(input));
   if (summary.count !== input.manifest.itemCount) {
     return yield* new ReleaseItemCountMismatchError({
       actualCount: summary.count,

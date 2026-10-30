@@ -60,12 +60,6 @@ export class ArtifactPayloadFieldByteLimitError extends Schema.TaggedError<
   ),
 }) {}
 
-/** SHA-256 computation failed before authenticity could be established. */
-export class ArtifactHashComputationError extends Schema.TaggedError<
-  ArtifactHashComputationError,
-  { readonly brand: unique symbol }
->()("ArtifactHashComputationError", { contentKey: ContentKeySchema }) {}
-
 /** Fields that name one content hash, its content key, and the hash that failed. */
 const ContentHashMismatchFields = {
   actualHash: Sha256HashSchema,
@@ -78,12 +72,6 @@ export class ArtifactHashMismatchError extends Schema.TaggedError<
   ArtifactHashMismatchError,
   { readonly brand: unique symbol }
 >()("ArtifactHashMismatchError", { ...ContentHashMismatchFields }) {}
-
-/** SHA-256 could not be calculated for the authenticated authored source. */
-export class ArtifactSourceHashComputationError extends Schema.TaggedError<
-  ArtifactSourceHashComputationError,
-  { readonly brand: unique symbol }
->()("ArtifactSourceHashComputationError", { contentKey: ContentKeySchema }) {}
 
 /** The authenticated source hash does not identify the complete raw MDX. */
 export class ArtifactSourceHashMismatchError extends Schema.TaggedError<

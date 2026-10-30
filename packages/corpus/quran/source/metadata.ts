@@ -28,7 +28,7 @@ function attribute(row: string, name: string) {
 /** Lists all exact self-closing XML rows for one Tanzil metadata tag. */
 function xmlRows(source: string, tag: string) {
   return Arr.map(
-    [...source.matchAll(new RegExp(`<${tag} [^>]+/>`, "g"))],
+    [...source.matchAll(new RegExp(`<${tag} [^>]+/>`, "gu"))],
     ([row]) => row
   );
 }
