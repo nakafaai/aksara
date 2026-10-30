@@ -10,9 +10,12 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * The nakafa.com commit whose source check runs here. Move this pin on purpose,
  * only after the source check reports zero findings here at that commit. The
  * Effect cohort pins and the compiler rule block move with the pin, in the same
- * change, because `bun run native` compares them with nakafa.com.
+ * change, because `bun run native` compares them with nakafa.com. This pin names
+ * the commit that moves nakafa.com's cohort pins to Effect 4.1.0, which the
+ * contracts lead (docs/adr/compiler.md); it moves to a main commit once
+ * nakafa.com has adopted the contracts built on 4.1.
  */
-export const NAKAFA_COMMIT = "2359c75ad04fc7c9615bc688fbbf6a8f9c599fe0";
+export const NAKAFA_COMMIT = "30bca9ab5adc157466b6fd302345f340ade76250";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
