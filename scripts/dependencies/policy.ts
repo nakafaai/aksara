@@ -120,26 +120,6 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "2.5.15",
-    cohort: "Biome and Ultracite",
-    dependency: "@biomejs/biome",
-    reason:
-      "Formatter behavior is reviewed as one linting cohort. Ultracite 8.1.0 peers Biome ^2.6.2 and renames useSortedClasses to useTailwindSortedClasses, so the 2.6 line loads now. It also turns on the rules that Biome 2.6 made stable and formats YAML: measured on 30 October 2026, Aksara then reports 60 findings (50 unnamed capture groups, 4 loop functions, 4 regular expressions without the unicode flag, 1 empty block, 1 import after code) and rewrites every workflow file, whose trusted publish jobs are pinned by digest. The cohort moves in its own change that fixes those findings and re-reviews the workflow digests.",
-    registry: "@biomejs/biome@latest",
-    reviewedLatest: "2.6.4",
-    source: "root-dev-dependency",
-  },
-  {
-    approvedCurrent: "8.0.2",
-    cohort: "Biome and Ultracite",
-    dependency: "ultracite",
-    reason:
-      "Formatter behavior is reviewed as one linting cohort. 8.1.0 moves with Biome 2.6, as the Biome entry describes.",
-    registry: "ultracite@latest",
-    reviewedLatest: "8.1.0",
-    source: "root-dev-dependency",
-  },
-  {
     approvedCurrent: "1.4.4",
     cohort: "Bun",
     dependency: "bun",

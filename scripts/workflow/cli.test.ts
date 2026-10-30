@@ -102,7 +102,7 @@ layer(workflowSourcesLayer)("CLI workflow policy", (layered) => {
             mutateJob(
               source,
               "verify",
-              "    needs: [build, publish]",
+              "    needs: [ build, publish ]",
               "    needs: publish"
             )
           )

@@ -84,16 +84,17 @@ export function hasMarkedPhrase(node: MdxNode): boolean {
     ) {
       expressions.push(current.data.estree);
     }
+    const markHighlight: Parameters<typeof walkEstreeDeep>[1] = (child) => {
+      if (
+        child.type === "JSXElement" &&
+        isHighlightComponentName(jsxComponentName(child)) &&
+        estreeChildren(child.children).some(hasExpressionText)
+      ) {
+        marked = true;
+      }
+    };
     for (const expression of expressions) {
-      walkEstreeDeep(expression, (child) => {
-        if (
-          child.type === "JSXElement" &&
-          isHighlightComponentName(jsxComponentName(child)) &&
-          estreeChildren(child.children).some(hasExpressionText)
-        ) {
-          marked = true;
-        }
-      });
+      walkEstreeDeep(expression, markHighlight);
     }
   });
   return marked;

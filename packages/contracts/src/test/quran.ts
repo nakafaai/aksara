@@ -201,9 +201,10 @@ export function quranTestPayloads() {
     );
     for (let firstVerse = 1; firstVerse <= numberOfVerses; firstVerse += 6) {
       const lastVerse = Math.min(firstVerse + 5, numberOfVerses);
+      const firstInQuran = inQuran;
       const verses = Array.from(
         { length: lastVerse - firstVerse + 1 },
-        (_, offset) => quranVerse(firstVerse + offset, inQuran + offset)
+        (_, offset) => quranVerse(firstVerse + offset, firstInQuran + offset)
       );
       const [first, ...rest] = verses;
       if (first === undefined) {

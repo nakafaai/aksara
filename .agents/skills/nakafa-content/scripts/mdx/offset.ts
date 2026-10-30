@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import type { SourceRange } from "#nakafa-content/mdx/parse";
 import type { StaticStringCandidate } from "#nakafa-content/mdx/static";
 
-const LINE_BOUNDARY_PATTERN = /(\r\n?|\n)/u;
+const LINE_BOUNDARY_PATTERN = /(?<boundary>\r\n?|\n)/u;
 const MDX_CONTINUATION_PREFIX_PATTERN = /^[\t >]*$/u;
 
 /** Reads the source width and cooked UTF-16 width of a validated escape. */
@@ -76,10 +76,11 @@ function tokenSourceOffsets(
     assert.ok(
       MDX_CONTINUATION_PREFIX_PATTERN.test(sourceLine.slice(0, prefix))
     );
+    const lineStart = sourceStart;
     offsets.push(
       ...Array.from(
         { length: line.length },
-        (_, column) => sourceStart + prefix + column
+        (_, column) => lineStart + prefix + column
       )
     );
     const newline = rawParts[index + 1] ?? "";
@@ -87,7 +88,7 @@ function tokenSourceOffsets(
     offsets.push(
       ...Array.from(
         { length: newline.length },
-        () => sourceStart + sourceLine.length
+        () => lineStart + sourceLine.length
       )
     );
     sourceStart += sourceLine.length + sourceNewline.length;

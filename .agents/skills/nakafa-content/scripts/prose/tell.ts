@@ -5,7 +5,7 @@ export const AI_ARTIFACT_RULES = [
   {
     id: "chatbot-artifact",
     patterns: {
-      de: /\b(?:Ich hoffe,? das hilft|Bei weiteren Fragen|gern(e)? wieder|meldet euch einfach)\b/iu,
+      de: /\b(?:Ich hoffe,? das hilft|Bei weiteren Fragen|gerne? wieder|meldet euch einfach)\b/iu,
       en: /\b(?:Certainly!|Great question!|(?:I hope this helps|let me know if|feel free to ask)\b)/iu,
       id: /\b(?:Tentu saja!|Pertanyaan bagus!|(?:Semoga ini membantu|kabari aku jika|jangan ragu bertanya)\b)/iu,
     },

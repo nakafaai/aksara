@@ -14,9 +14,9 @@ import {
 import { TOOLCHAIN_SETUP_ACTION } from "#scripts/workflow/toolchain";
 
 const OPERATION_HISTORY_INPUT =
-  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
+  /(?<step>^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*?)^ {10}fetch-depth: 0$/mu;
 const OPERATION_SETUP_INPUT =
-  /(^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
+  /(?<step>^ {2}operate:\n[\s\S]*?^ {6}- name: Setup toolchain\n[\s\S]*?^ {10}install: false)$/mu;
 
 /** Expects the verifier to refuse the sources with the changed sources, with one reason. */
 const refused = (

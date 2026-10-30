@@ -38,7 +38,7 @@ const RELEASE_RETENTION_PATTERN =
 const RELEASE_BOOTSTRAP_ENV_PATTERN =
   /- name: Publish release[\s\S]*?BOOTSTRAP_OVER: \$\{\{ inputs\.bootstrap_over \}\}/u;
 const CONTENT_CONTRACT_PATTERN =
-  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*bun run --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[contracts, verify\][\s\S]*needs\.contracts\.result == 'success'/u;
+  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*bun run --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[ contracts, verify \][\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup Node\.js$/mu;
 

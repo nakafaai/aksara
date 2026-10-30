@@ -4,8 +4,8 @@ import { enforceViolations, trackedFiles } from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
-const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;
-const ACRONYM_WORD_PATTERN = /(\p{Lu}+)(\p{Lu}\p{Ll})/gu;
+const CAMEL_WORD_PATTERN = /(?<lower>[\p{Ll}\d])(?<upper>\p{Lu})/gu;
+const ACRONYM_WORD_PATTERN = /(?<acronym>\p{Lu}+)(?<word>\p{Lu}\p{Ll})/gu;
 const NUMBER_PATTERN = /^\d+$/u;
 const EXTENSION_PATTERN = /(?<=[^.])\.[^.]+$/u;
 const DOCUMENT_PATTERN = /^[A-Z][A-Z\d]*(?:_[A-Z\d]+)+(?:\.md)?$/u;

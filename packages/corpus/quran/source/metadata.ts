@@ -22,7 +22,7 @@ const EXPECTED_VERSES = 6236;
 
 /** Extracts one exact XML attribute without decoding or normalizing it. */
 function attribute(row: string, name: string) {
-  return row.match(new RegExp(`${name}="([^"]*)"`))?.[1];
+  return row.match(new RegExp(`${name}="([^"]*)"`, "u"))?.[1];
 }
 
 /** Lists all exact self-closing XML rows for one Tanzil metadata tag. */

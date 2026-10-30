@@ -60,7 +60,7 @@ const SignalTerminationSchema = Schema.TaggedStruct("SignalTermination", {
 type SignalTermination = typeof SignalTerminationSchema.Type;
 
 const signalMessage =
-  /^Process interrupted due to receipt of signal: '(SIG[A-Z0-9]+)'$/u;
+  /^Process interrupted due to receipt of signal: '(?<signal>SIG[A-Z0-9]+)'$/u;
 
 /** Reads the signal retained by the pinned Effect Node process adapter. */
 export function readExitSignal(error: unknown): Option.Option<NodeSignal> {

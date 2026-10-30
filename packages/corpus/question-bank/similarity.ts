@@ -26,10 +26,10 @@ import {
 } from "#corpus/question-bank/similarity/print";
 import type { QuestionSet } from "#corpus/question-bank/source";
 
-const MATH_ATTRIBUTE_PATTERN = /math="([^"]*)"/gu;
+const MATH_ATTRIBUTE_PATTERN = /math="(?<math>[^"]*)"/gu;
 const TAG_PATTERN = /<[^>]+>/gu;
 const PARAGRAPH_PATTERN = /\n\s*\n/u;
-const COMMAND_PATTERN = /\\([a-z]+)/gu;
+const COMMAND_PATTERN = /\\(?<command>[a-z]+)/gu;
 const SYMBOL_PATTERN = /[{}()[\]$^_=+\-*/,.;:!?"'`|<>“”„‘’]/gu;
 const NUMBER_PATTERN = /\d+/gu;
 const SPACE_PATTERN = /\s+/u;

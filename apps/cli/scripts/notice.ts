@@ -39,7 +39,7 @@ const packageLocation = (input: string, root: string, path: Path.Path) => {
   const absolute = path.resolve(root, input);
   const matches = [
     ...absolute.matchAll(
-      /[/\\]node_modules[/\\]((?:@[^/\\]+[/\\])?[^/\\]+)[/\\]/gu
+      /[/\\]node_modules[/\\](?<name>(?:@[^/\\]+[/\\])?[^/\\]+)[/\\]/gu
     ),
   ];
   const match = Arr.last(matches);

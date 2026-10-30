@@ -39,7 +39,7 @@ const FORBIDDEN_CREDENTIAL = /NODE_AUTH_TOKEN|NPM_TOKEN|_authToken/u;
 const FORBIDDEN_SOURCE =
   /@base64d|bundle\.dsseEnvelope\.payload|is_exact_provenance\(\)/u;
 const PUBLICATION_WINDOW_PATTERN =
-  /PUBLICATION_WINDOW_SECONDS=([3-9][0-9]{2}|[1-9][0-9]{3,})/gu;
+  /PUBLICATION_WINDOW_SECONDS=(?:[3-9][0-9]{2}|[1-9][0-9]{3,})/gu;
 const PUBLICATION_DEADLINE_PATTERN =
   /publication_deadline=\$\(\(SECONDS \+ PUBLICATION_WINDOW_SECONDS\)\)[\s\S]{0,400}?"\$SECONDS" -ge "\$publication_deadline"/gu;
 

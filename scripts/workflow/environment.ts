@@ -10,8 +10,8 @@ import {
 
 const TOOLCHAIN_ENV_NAMES = HashSet.make("BUN_VERSION", "NODE_VERSION");
 const ENVIRONMENT_ALIAS_PATTERNS = [
-  /\$\{\{\s*env\.([A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
-  /\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))/gu,
+  /\$\{\{\s*env\.(?<name>[A-Za-z_][A-Za-z0-9_]*)\s*\}\}/gu,
+  /\$(?:\{(?<braced>[A-Za-z_][A-Za-z0-9_]*)\}|(?<bare>[A-Za-z_][A-Za-z0-9_]*))/gu,
 ] as const;
 
 /** Returns the environment entry that one YAML pair declares, or none when its value is not text. */

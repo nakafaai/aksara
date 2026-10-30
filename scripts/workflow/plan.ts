@@ -11,7 +11,7 @@ import {
 import { parseDocument } from "yaml";
 import { WorkflowError, yamlData } from "#scripts/workflow/requirement";
 
-const EXPRESSION_PATTERN = /^\$\{\{\s*([\s\S]*?)\s*\}\}$/u;
+const EXPRESSION_PATTERN = /^\$\{\{\s*(?<expression>[\s\S]*?)\s*\}\}$/u;
 const PLAN_CONTEXTS = ["github", "inputs", "needs"];
 const PAIRED_ACCEPTANCE_STEP = "Verify paired acceptance";
 const PAIRED_OPERATIONS = ["release", "accept"];

@@ -17,7 +17,7 @@ import type {
 } from "#nakafa-content/voice/types";
 
 const REFERENCE =
-  /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung)\s+(\d+)\b/iu;
+  /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung)\s+(?<number>\d+)\b/iu;
 const NUMBER_COLUMN = /^(?:Soal|Problem|Question|Aufgabe)$/iu;
 const NUMBER = /^\d+$/u;
 const HTML_HEADING = /^h[1-6]$/u;

@@ -62,7 +62,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         assert.match(
           result.error[0] ?? "",
           new RegExp(
-            `^${LESSON}:\\d+:\\d+ \\[literal-points\\] 9 literal points`
+            `^${LESSON}:\\d+:\\d+ \\[literal-points\\] 9 literal points`,
+            "u"
           )
         );
         assert.match(result.error[1] ?? "", FAILED_SUMMARY);
@@ -253,7 +254,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         assert.strictEqual(base.code, 2);
         assert.match(
           base.error[0] ?? "",
-          new RegExp(`Cannot parse ${LESSON} at [0-9a-f]{7}`)
+          new RegExp(`Cannot parse ${LESSON} at [0-9a-f]{7}`, "u")
         );
       })
     );

@@ -110,7 +110,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
           mutateJob(
             source,
             "verify",
-            "    needs: [build, publish]",
+            "    needs: [ build, publish ]",
             "    needs: publish"
           ),
           "npm verification must consume build and publication",
@@ -119,7 +119,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
           mutateJob(
             source,
             "finalize",
-            "    needs: [build, publish, verify]",
+            "    needs: [ build, publish, verify ]",
             "    needs: verify"
           ),
           "Contract finalization must consume every release gate",
