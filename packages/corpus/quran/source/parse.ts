@@ -46,7 +46,7 @@ const TafsirJsonSchema = Schema.fromJsonString(TafsirResponseSchema);
 /** Reads one exact CDATA or empty XML element without whitespace cleanup. */
 function xmlText(source: string, tag: "footnotes" | "translation") {
   const cdata = source.match(
-    new RegExp(`<${tag}><!\\[CDATA\\[([\\s\\S]*?)\\]\\]></${tag}>`)
+    new RegExp(`<${tag}><!\\[CDATA\\[([\\s\\S]*?)\\]\\]></${tag}>`, "u")
   );
   if (cdata) {
     return cdata[1];

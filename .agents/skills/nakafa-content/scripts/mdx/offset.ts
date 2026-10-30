@@ -76,10 +76,11 @@ function tokenSourceOffsets(
     assert.ok(
       MDX_CONTINUATION_PREFIX_PATTERN.test(sourceLine.slice(0, prefix))
     );
+    const lineStart = sourceStart;
     offsets.push(
       ...Array.from(
         { length: line.length },
-        (_, column) => sourceStart + prefix + column
+        (_, column) => lineStart + prefix + column
       )
     );
     const newline = rawParts[index + 1] ?? "";
@@ -87,7 +88,7 @@ function tokenSourceOffsets(
     offsets.push(
       ...Array.from(
         { length: newline.length },
-        () => sourceStart + sourceLine.length
+        () => lineStart + sourceLine.length
       )
     );
     sourceStart += sourceLine.length + sourceNewline.length;

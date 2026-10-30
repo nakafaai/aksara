@@ -2,6 +2,7 @@ import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import { syncGermanQuranSources } from "@nakafa/aksara-corpus/quran/source/sync";
 import { Array as Arr, Effect, Path } from "effect";
+import { makeQuranSourceSyncProgram } from "#scripts/quran/sync";
 
 vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
   syncGermanQuranSources: vi.fn(() =>
@@ -19,8 +20,6 @@ vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
     })
   ),
 }));
-
-import { makeQuranSourceSyncProgram } from "#scripts/quran/sync";
 
 describe("German Quran source sync command", () => {
   it.effect(

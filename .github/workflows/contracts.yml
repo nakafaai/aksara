@@ -2,7 +2,7 @@ name: Release contracts
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions: {}
@@ -468,7 +468,7 @@ jobs:
           fi
 
   verify:
-    needs: [build, publish]
+    needs: [ build, publish ]
     if: github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -632,7 +632,7 @@ jobs:
           exit 1
 
   finalize:
-    needs: [build, publish, verify]
+    needs: [ build, publish, verify ]
     if: always() && needs.build.result == 'success' && github.event_name == 'workflow_dispatch' && needs.build.outputs.mode == 'create'
     runs-on: ubuntu-latest
     timeout-minutes: 10
