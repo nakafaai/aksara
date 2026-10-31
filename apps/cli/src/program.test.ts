@@ -195,7 +195,7 @@ describe("CLI program", () => {
           args: {
             command: "release",
             releaseId: "release-next",
-            retention: { kind: "inverse", recoveryId: "recovery-next" },
+            retention: { recoveryId: "recovery-next" },
           },
           cwd: "/code/aksara",
         });

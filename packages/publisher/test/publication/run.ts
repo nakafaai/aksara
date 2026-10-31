@@ -10,7 +10,6 @@ import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapsho
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Path, Redacted, Schema, Stream } from "effect";
 import {
-  makePreparedGitRelease,
   makePreparedRollbackRelease,
   type PreparedGitRelease,
   type PreparedRollbackRelease,
@@ -108,31 +107,6 @@ export async function makeSignedBundle(releaseId: string) {
   return { release, rendererManifest };
 }
 
-/** Try-out snapshot that a base names, which a bootstrap must not keep. */
-
-/**
- * Prepares one exact-Git release over a declared base. Unless some base heads
- * survive, every result is one of its own upserts, so it replaces the base.
- */
-export async function makeBootstrapRelease(
-  releaseId: string,
-  baseReleaseId: string,
-  survivingHeads = 0
-) {
-  const git = await makeRelease(releaseId);
-  const manifest = ContentReleaseManifestSchema.make({
-    ...git.manifest,
-    baseActiveAppLocales: git.manifest.activeAppLocales,
-    baseManifestHash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-    baseReleaseId: ReleaseIdSchema.make(baseReleaseId),
-    resultCount: git.manifest.resultCount + survivingHeads,
-  });
-  return {
-    manifest,
-    prepared: makePreparedGitRelease({ ...git.prepared, manifest }),
-  };
-}
-
 /** Runs one prepared release with an explicitly supplied exact-Git source. */
 export function publishFromSource<E, R>(
   prepared: PreparedGitRelease<E, R>,
@@ -140,7 +114,6 @@ export function publishFromSource<E, R>(
   source: typeof PublicationSource.Service,
   currentKeyId = signingKey.keyId,
   retention: PublicationRetentionDecision = {
-    kind: "inverse",
     recoveryId: ReleaseIdSchema.make(`${prepared.manifest.releaseId}-recovery`),
   },
   activationService = activation
@@ -178,26 +151,7 @@ export function publishPrepared<E, R>(
       loadExactRevision: () => Stream.make({ ...publicationSource, rawMdx }),
     }),
     currentKeyId,
-    { kind: "inverse", recoveryId },
-    activationService
-  );
-}
-
-/** Runs one prepared release as a bootstrap that declares its retired base. */
-export function publishBootstrap<E, R>(
-  prepared: PreparedGitRelease<E, R>,
-  target: typeof PublicationTarget.Service,
-  baseReleaseId: string,
-  activationService = activation
-) {
-  return publishFromSource(
-    prepared,
-    target,
-    PublicationSource.of({
-      loadExactRevision: () => Stream.make(publicationSource),
-    }),
-    signingKey.keyId,
-    { baseReleaseId: ReleaseIdSchema.make(baseReleaseId), kind: "bootstrap" },
+    { recoveryId },
     activationService
   );
 }

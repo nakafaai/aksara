@@ -34,7 +34,6 @@ const DISPATCH_GUARDS: ReadonlyArray<
   [
     "Validate operation",
     {
-      BOOTSTRAP_OVER: "bootstrap_over",
       OPERATION: "operation",
       RECOVERY_ID: "recovery_id",
       RELEASE_ID: "release_id",

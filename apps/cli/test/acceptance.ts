@@ -110,8 +110,7 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
         const resolver = yield* ContentVerificationKeyResolver;
         const activation = yield* PublicationActivation;
         const retention = yield* PublicationRetention;
-        calls.recoveryId =
-          retention.kind === "inverse" ? retention.recoveryId : "";
+        calls.recoveryId = retention.recoveryId;
         yield* PublicationSource;
         const target = yield* PublicationTarget;
         const resolved = yield* resolver.resolve(

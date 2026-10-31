@@ -123,21 +123,6 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     `NAKAFA_DEPLOY_TOKEN: ${expression("secrets.NAKAFA_DEPLOY_TOKEN")}`,
     "Release and recovery must read the deploy app's installation token",
   ],
-  [
-    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          OPERATION`,
-    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          OPERATION`,
-    "Validate operation must read the dispatched bootstrap_over",
-  ],
-  [
-    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          RECOVERY_ID`,
-    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          RECOVERY_ID`,
-    "Release must read the dispatched bootstrap base",
-  ],
-  [
-    'retention_args=(--bootstrap-over "$BOOTSTRAP_OVER")',
-    'retention_args=(--recovery-id "$BOOTSTRAP_OVER")',
-    "Content releases must pass exactly one retained decision",
-  ],
 ];
 
 /** Conditions of the final parity job whose removal would let it run when it must not, with the refusal each must meet. */

@@ -17,10 +17,7 @@ import {
 import { streamContentHeads } from "@nakafa/aksara-publisher/heads";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
-import {
-  PublicationRetentionSchema,
-  type PublicationTarget,
-} from "@nakafa/aksara-publisher/publication/spec";
+import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import {
   type PreparedReleaseSnapshots,
   prepareReleaseSnapshots,
@@ -45,7 +42,6 @@ const GitPreparationBaseSchema = Schema.Struct({
   checkoutRoot: Schema.String,
   rebuild: Schema.optional(Schema.Boolean),
   releaseId: ReleaseIdSchema,
-  retention: PublicationRetentionSchema,
   scope: PublicationScopeSchema,
 });
 
@@ -126,7 +122,6 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
         ? yield* selectRendererManifest({
             baseBundle: verifiedBaseBundle,
             rendererManifest: input.rendererManifest,
-            retention: input.retention,
             scope: input.scope,
           })
         : yield* validateRendererManifestHash(input.bundle.rendererManifest);

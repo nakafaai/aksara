@@ -95,7 +95,7 @@ export function isProductionCommand(
 /** Decodes one release identifier while preserving its owning option. */
 function decodeReleaseId(
   command: ProductionCommand,
-  option: "--bootstrap-over" | "--recovery-id" | "--release-id",
+  option: "--recovery-id" | "--release-id",
   value: string
 ) {
   return Schema.decodeEffect(ReleaseIdSchema)(value).pipe(
@@ -103,44 +103,21 @@ function decodeReleaseId(
   );
 }
 
-/**
- * Decodes the one retention decision a release names: its retained inverse, or
- * the retired base that it bootstraps over. The two options exclude each other.
- */
+/** Decodes the retained inverse that a release names. */
 const parseReleaseRetention = Effect.fn("AksaraCli.parseReleaseRetention")(
   function* (options: RawProductionOptions, releaseId: ReleaseId) {
-    if (options.bootstrapOver === undefined) {
-      if (options.recoveryId === undefined) {
-        return yield* argumentError("release", "--recovery-id", "missing");
-      }
-      const recoveryId = yield* decodeReleaseId(
-        "release",
-        "--recovery-id",
-        options.recoveryId
-      );
-      if (recoveryId === releaseId) {
-        return yield* argumentError("release", "--recovery-id", "identity");
-      }
-      return {
-        kind: "inverse",
-        recoveryId,
-      } satisfies PublicationRetentionDecision;
+    if (options.recoveryId === undefined) {
+      return yield* argumentError("release", "--recovery-id", "missing");
     }
-    if (options.recoveryId !== undefined) {
-      return yield* argumentError("release", "--bootstrap-over", "conflict");
-    }
-    const baseReleaseId = yield* decodeReleaseId(
+    const recoveryId = yield* decodeReleaseId(
       "release",
-      "--bootstrap-over",
-      options.bootstrapOver
+      "--recovery-id",
+      options.recoveryId
     );
-    if (baseReleaseId === releaseId) {
-      return yield* argumentError("release", "--bootstrap-over", "identity");
+    if (recoveryId === releaseId) {
+      return yield* argumentError("release", "--recovery-id", "identity");
     }
-    return {
-      baseReleaseId,
-      kind: "bootstrap",
-    } satisfies PublicationRetentionDecision;
+    return { recoveryId } satisfies PublicationRetentionDecision;
   }
 );
 
