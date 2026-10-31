@@ -84,6 +84,7 @@ export function hasMarkedPhrase(node: MdxNode): boolean {
     ) {
       expressions.push(current.data.estree);
     }
+    /** Marks the section once an expression holds a Highlight component that wraps expression text. */
     const markHighlight: Parameters<typeof walkEstreeDeep>[1] = (child) => {
       if (
         child.type === "JSXElement" &&
