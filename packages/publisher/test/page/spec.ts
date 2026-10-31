@@ -31,6 +31,9 @@ export const pageFamilyScope = PublicationScopeSchema.make({
   snapshots: [],
 });
 export const pageFixtureIdentities = [
+  ["pages/data-processing-agreement", "de"],
+  ["pages/data-processing-agreement", "en"],
+  ["pages/data-processing-agreement", "id"],
   ["pages/developers", "de"],
   ["pages/developers", "en"],
   ["pages/developers", "id"],

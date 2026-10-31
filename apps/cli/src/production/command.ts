@@ -21,6 +21,7 @@ import {
 import { resumeContentRelease } from "@nakafa/aksara-publisher/resume";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import type { FileSystem, Path } from "effect";
 import { Effect } from "effect";
 import type { HttpClient } from "effect/http";
@@ -46,7 +47,6 @@ import {
   type ProductionRebuildAction,
   selectProductionAction,
 } from "#cli/state";
-import { encodeJsonText } from "#cli/text/json";
 
 type ProductionServices =
   | FileSystem.FileSystem
@@ -191,7 +191,6 @@ export const runProductionCommand: (input: {
         rebuild: input.args.rebuild,
         releaseId: input.args.releaseId,
         rendererManifest,
-        retention: input.args.retention,
         scope: action.scope,
       }).pipe(
         Effect.provideService(ContentVerificationKeyResolver, keyResolver),
@@ -206,7 +205,6 @@ export const runProductionCommand: (input: {
         kind: "rebuild",
         rebuild: input.args.rebuild,
         releaseId: input.args.releaseId,
-        retention: input.args.retention,
         scope: action.scope,
         sha: action.sha,
       }).pipe(

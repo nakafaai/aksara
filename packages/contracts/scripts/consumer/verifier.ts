@@ -7,6 +7,7 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   readConsumerCommand,
   runConsumerCommand,
@@ -23,7 +24,6 @@ import {
   createInstallRunner,
 } from "#scripts/consumer/tools";
 import { parseOptions } from "#scripts/options";
-import { encodeJsonText } from "#scripts/text/json";
 import {
   type InstallInspection,
   verifyInstalledPackage,

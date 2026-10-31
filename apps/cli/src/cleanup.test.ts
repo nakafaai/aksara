@@ -1,10 +1,10 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runCleanupCommand } from "#cli/cleanup";
-import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const releaseId = ReleaseIdSchema.make("release-cleanup");

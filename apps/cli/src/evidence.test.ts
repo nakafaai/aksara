@@ -7,13 +7,13 @@ import {
   ExactProcessError,
   type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, MutableList, Schema } from "effect";
 import {
   readCleanAksaraRevision,
   readRepositoryEvidence,
   validateStableAksaraRevision,
 } from "#cli/evidence";
-import { encodeJsonText } from "#cli/text/json";
 
 const COMMIT_SHA = "a".repeat(40);
 

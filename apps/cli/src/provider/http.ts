@@ -10,6 +10,7 @@ import {
   LocalPreviewManifestSchema,
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Deferred,
   Duration,
@@ -26,7 +27,6 @@ import {
   stream as streamResponse,
   text as textResponse,
 } from "effect/http/HttpServerResponse";
-import { encodeJsonText } from "#cli/text/json";
 
 export const PREVIEW_MANIFEST_PATH = "/manifest";
 export const PREVIEW_EVENTS_PATH = "/events";

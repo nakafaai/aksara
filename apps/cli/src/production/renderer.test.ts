@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
-import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Effect,
@@ -17,7 +16,6 @@ import {
   fetchProductionRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
-import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import { stateBundle } from "#test/state";
@@ -26,14 +24,6 @@ const ENDPOINT = new URL(
   "https://www.example.test/api/internal/content/renderer"
 );
 const TOKEN = Redacted.make("renderer-test-token");
-const BOOTSTRAP_RETENTION: PublicationRetentionDecision = {
-  baseReleaseId: ReleaseIdSchema.make("release-retired"),
-  kind: "bootstrap",
-};
-const INVERSE_RETENTION: PublicationRetentionDecision = {
-  kind: "inverse",
-  recoveryId: ReleaseIdSchema.make("release-recovery"),
-};
 
 /** Creates one valid no-store renderer response for a chosen status. */
 function rendererResponse(
@@ -79,7 +69,6 @@ describe("production renderer", () => {
         yield* selectRendererManifest({
           baseBundle,
           rendererManifest: live,
-          retention: INVERSE_RETENTION,
           scope: FUNCTION_SCOPE,
         }).pipe(Effect.provide(Logger.layer([logger])))
       ).toEqual(baseBundle.rendererManifest);
@@ -105,7 +94,6 @@ describe("production renderer", () => {
         yield* selectRendererManifest({
           baseBundle,
           rendererManifest: live,
-          retention: BOOTSTRAP_RETENTION,
           scope: { families: ["article", "material", "page"], snapshots: [] },
         })
       ).toEqual(live);
@@ -202,43 +190,6 @@ describe("production renderer", () => {
       );
 
       expect(timeout).toMatchObject({ reason: "timeout" });
-    })
-  );
-
-  it.effect(
-    "refuses a bootstrap that would fall back to the base renderer",
-    () =>
-      Effect.gen(function* () {
-        const live = yield* createRendererManifest({
-          base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
-          domains: RENDERER_MANIFEST.domains,
-          publishedDomains: RENDERER_MANIFEST.publishedDomains,
-        });
-        expect(
-          yield* selectRendererManifest({
-            baseBundle: stateBundle("release-renderer-bootstrap"),
-            rendererManifest: live,
-            retention: BOOTSTRAP_RETENTION,
-            scope: FUNCTION_SCOPE,
-          }).pipe(Effect.flip)
-        ).toMatchObject({
-          _tag: "BootstrapRendererError",
-          rendererManifestHash: live.hash,
-        });
-      })
-  );
-
-  it.effect("keeps a bootstrap on a live renderer equal to the base", () =>
-    Effect.gen(function* () {
-      const baseBundle = stateBundle("release-renderer-same");
-      expect(
-        yield* selectRendererManifest({
-          baseBundle,
-          rendererManifest: baseBundle.rendererManifest,
-          retention: BOOTSTRAP_RETENTION,
-          scope: FUNCTION_SCOPE,
-        })
-      ).toEqual(baseBundle.rendererManifest);
     })
   );
 });

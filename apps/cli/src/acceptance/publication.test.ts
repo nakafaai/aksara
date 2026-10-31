@@ -5,6 +5,7 @@ import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { prepareAcceptanceRelease } from "@nakafa/aksara-publisher/acceptance/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, HashSet } from "effect";
 import { publishAcceptance } from "#cli/acceptance/publication";
 import {
@@ -14,7 +15,6 @@ import {
 import { readCleanAksaraRevision } from "#cli/evidence";
 import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
-import { encodeJsonText } from "#cli/text/json";
 import type { AcceptancePublicationCalls } from "#test/acceptance";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";

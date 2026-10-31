@@ -3,6 +3,7 @@ import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/cur
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Order, Schema } from "effect";
 import {
   type PublicationEnvironment,
@@ -11,7 +12,6 @@ import {
 import { mapProductionError } from "#cli/failure";
 import type { ParityArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
-import { encodeJsonText } from "#cli/text/json";
 
 /** Paired targets cannot be accepted while their current content differs. */
 export class PublicationParityError extends Schema.TaggedError<

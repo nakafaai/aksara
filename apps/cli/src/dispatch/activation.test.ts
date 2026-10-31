@@ -1,5 +1,6 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Effect,
@@ -16,7 +17,6 @@ import {
   makeAbsentReleaseDispatch,
   makeProductionReleaseDispatch,
 } from "#cli/dispatch/activation";
-import { encodeJsonText } from "#cli/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { STAGED_RELEASE_BUNDLE } from "#test/target";
 

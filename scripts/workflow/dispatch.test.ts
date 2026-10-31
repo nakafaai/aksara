@@ -136,7 +136,6 @@ const validateOperation = Effect.fn("WorkflowTest.validateOperation")(
     return yield* runProgram(
       yield* contractsStepProgram(release, "Validate operation"),
       {
-        BOOTSTRAP_OVER: "",
         OPERATION: "release",
         PUBLICATION_SCOPE: '["family:material"]',
         REBUILD: "false",
@@ -158,50 +157,10 @@ layer(NodeServices.layer)("dispatch operation validation", (test) => {
       stderr: "",
     },
     {
-      dispatch: { BOOTSTRAP_OVER: "release-retired" },
-      exitCode: 0,
-      name: "accepts a release that bootstraps over its retired base",
-      stderr: "",
-    },
-    {
-      dispatch: { BOOTSTRAP_OVER: "release-retired", TARGET: "both" },
-      exitCode: 1,
-      name: "refuses a bootstrap that names both targets",
-      stderr: "A bootstrap takes one target, not both.\n",
-    },
-    {
-      dispatch: {
-        BOOTSTRAP_OVER: "release-retired",
-        RECOVERY_ID: "recovery-next",
-      },
-      exitCode: 1,
-      name: "refuses a bootstrap that also names a retained inverse",
-      stderr:
-        "A release names either its retained inverse or its bootstrap base, not both.\n",
-    },
-    {
-      dispatch: { BOOTSTRAP_OVER: "release-next" },
-      exitCode: 1,
-      name: "refuses a bootstrap base equal to the release",
-      stderr: "Release and bootstrap base identities must differ.\n",
-    },
-    {
       dispatch: {},
       exitCode: 1,
-      name: "refuses a release that names neither retention",
-      stderr:
-        "A release must name its exact retained inverse or the retired base it bootstraps over.\n",
-    },
-    {
-      dispatch: {
-        BOOTSTRAP_OVER: "release-retired",
-        OPERATION: "accept",
-        PUBLICATION_SCOPE: "",
-        RECOVERY_ID: "recovery-next",
-      },
-      exitCode: 1,
-      name: "refuses a bootstrap base on accept",
-      stderr: "Only release may bootstrap over a retired base.\n",
+      name: "refuses a release that names no retained inverse",
+      stderr: "The operation must name its exact retained inverse.\n",
     },
     {
       dispatch: {

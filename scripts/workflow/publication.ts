@@ -34,9 +34,7 @@ const TERMINAL_GATE_PATTERN =
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
 const RELEASE_RETENTION_PATTERN =
-  /if \[\[ -n "\$BOOTSTRAP_OVER" \]\]; then\n\s+retention_args=\(--bootstrap-over "\$BOOTSTRAP_OVER"\)\n\s+else\n\s+retention_args=\(--recovery-id "\$RECOVERY_ID"\)\n\s+fi\n\s+bun run release -- --release-id "\$RELEASE_ID" \\\n\s+"\$\{retention_args\[@\]\}" "\$\{scope_args\[@\]\}"/u;
-const RELEASE_BOOTSTRAP_ENV_PATTERN =
-  /- name: Publish release[\s\S]*?BOOTSTRAP_OVER: \$\{\{ inputs\.bootstrap_over \}\}/u;
+  /bun run release -- --release-id "\$RELEASE_ID" --recovery-id "\$RECOVERY_ID"/u;
 const CONTENT_CONTRACT_PATTERN =
   /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*bun run --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: \[ contracts, verify \][\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
@@ -127,11 +125,7 @@ export const verifyPublicationWorkflow = Effect.fn(
   );
   yield* ensure(
     RELEASE_RETENTION_PATTERN.test(release),
-    "Content releases must pass exactly one retained decision: the inverse or the bootstrap base"
-  );
-  yield* ensure(
-    RELEASE_BOOTSTRAP_ENV_PATTERN.test(release),
-    "Release must read the dispatched bootstrap base"
+    "Content releases must pass their retained inverse"
   );
   yield* ensure(
     Arr.filter(all, (source) => OPERATION_PATTERN.test(source)).length === 1,

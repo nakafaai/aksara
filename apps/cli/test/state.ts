@@ -13,7 +13,6 @@ import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/curr
 import {
   type ContentReleaseCurrent,
   ContentReleaseCurrentSchema,
-  type StagedContentRelease,
 } from "@nakafa/aksara-contracts/release/current/state";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
@@ -194,21 +193,3 @@ export function completedOver(id: string) {
     receipt: stateCompleted(id).receipt,
   };
 }
-
-/** Creates a candidate in one phase that bootstraps over the retired release. */
-export function candidateOverRetired(phase: StagedContentRelease["phase"]) {
-  return {
-    ...stateBundle(
-      "release-candidate",
-      undefined,
-      ReleaseIdSchema.make("release-retired")
-    ),
-    phase,
-  } satisfies StagedContentRelease;
-}
-
-/** The completed retired release that a bootstrap replaces. */
-export const RETIRED_STATE = stateCompleted("release-retired");
-
-/** The completed bootstrap release whose base is the retired release. */
-export const BOOTSTRAPPED_STATE = completedOver("release-bootstrap");

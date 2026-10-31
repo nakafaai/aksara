@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { Array as Arr, Schema } from "effect";
-import { encodeJsonText, encodePrettyJsonText } from "#scripts/text/json";
+import { encodeJsonText } from "#contracts/text/json";
+import { encodePrettyJsonText } from "#scripts/text/json";
 
 /**
  * The pnpm release that packs and installs the isolated consumer. Runners do

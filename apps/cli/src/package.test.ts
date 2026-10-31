@@ -1,6 +1,7 @@
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Effect,
@@ -16,7 +17,6 @@ import {
   REQUIRED_PACKED_FILES,
   readPackageVersion,
 } from "#cli/package";
-import { JsonTextSchema } from "#cli/text/json";
 
 /** An isolated npm smoke command returned a non-zero exit status. */
 class CliTestCommandError extends Schema.TaggedError<

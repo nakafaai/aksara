@@ -10,8 +10,6 @@ import {
 
 /** Writes one workflow expression as the text that the workflow file holds. */
 const expression = (body: string) => `\${{ ${body} }}`;
-/** Writes one dispatched workflow input as the expression text that the workflow reads. */
-const inputExpression = (input: string) => expression(`inputs.${input}`);
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]
@@ -122,21 +120,6 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     `NAKAFA_DEPLOY_TOKEN: ${expression("steps.nakafa-deploy.outputs.token")}`,
     `NAKAFA_DEPLOY_TOKEN: ${expression("secrets.NAKAFA_DEPLOY_TOKEN")}`,
     "Release and recovery must read the deploy app's installation token",
-  ],
-  [
-    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          OPERATION`,
-    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          OPERATION`,
-    "Validate operation must read the dispatched bootstrap_over",
-  ],
-  [
-    `BOOTSTRAP_OVER: ${inputExpression("bootstrap_over")}\n          RECOVERY_ID`,
-    `BOOTSTRAP_OVER: ${inputExpression("recovery_id")}\n          RECOVERY_ID`,
-    "Release must read the dispatched bootstrap base",
-  ],
-  [
-    'retention_args=(--bootstrap-over "$BOOTSTRAP_OVER")',
-    'retention_args=(--recovery-id "$BOOTSTRAP_OVER")',
-    "Content releases must pass exactly one retained decision",
   ],
 ];
 

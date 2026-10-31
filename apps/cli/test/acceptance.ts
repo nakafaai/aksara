@@ -12,8 +12,8 @@ import {
   PublicationTarget,
 } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Redacted, Schema, Stream } from "effect";
-import { encodeJsonText } from "#cli/text/json";
 import {
   completedBundle,
   gitBundle,
@@ -110,8 +110,7 @@ export function acceptancePublicationMock(calls: AcceptancePublicationCalls) {
         const resolver = yield* ContentVerificationKeyResolver;
         const activation = yield* PublicationActivation;
         const retention = yield* PublicationRetention;
-        calls.recoveryId =
-          retention.kind === "inverse" ? retention.recoveryId : "";
+        calls.recoveryId = retention.recoveryId;
         yield* PublicationSource;
         const target = yield* PublicationTarget;
         const resolved = yield* resolver.resolve(

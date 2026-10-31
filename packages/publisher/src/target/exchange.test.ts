@@ -3,6 +3,7 @@ import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spe
 import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Duration,
@@ -20,7 +21,6 @@ import {
 import { TestClock } from "effect/testing";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
-import { encodeJsonText } from "#publisher/text/json";
 import { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 

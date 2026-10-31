@@ -9,11 +9,11 @@ import {
   PublicationTargetTransportError,
   PublicationTransportDetailSchema,
 } from "@nakafa/aksara-publisher/target/errors";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Option, Predicate, Schema } from "effect";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 import { NakafaAppError } from "#cli/error";
 import { ProductionStateError } from "#cli/state";
-import { encodeJsonText } from "#cli/text/json";
 
 const ProductionStageSchema = Schema.Literals([
   "abort",
@@ -21,7 +21,6 @@ const ProductionStageSchema = Schema.Literals([
   "cleanup",
   "environment",
   "keys",
-  "migration",
   "prepare",
   "publish",
   "renderer",

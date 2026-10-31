@@ -1,6 +1,5 @@
 import {
   GitCommitShaSchema,
-  type ReleaseId,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 
@@ -17,10 +16,9 @@ import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
-import { encodeJsonText } from "#cli/text/json";
 
 /**
  * Durable publication state does not permit the requested production command.
@@ -38,7 +36,6 @@ export class ProductionStateError extends Schema.TaggedError<
   candidateReleaseId: Schema.optional(ReleaseIdSchema),
   reason: Schema.Literals([
     "aborting",
-    "bootstrap-base",
     "mode-mismatch",
     "candidate-conflict",
     "recovery-conflict",
@@ -97,13 +94,6 @@ function activeBundle(active: NonNullable<ContentReleaseCurrent["active"]>) {
   return bundle;
 }
 
-/** Names the one retained inverse a retention decision expects, if it keeps one. */
-function expectedRecoveryId(
-  retention: PublicationRetentionDecision
-): ReleaseId | null {
-  return retention.kind === "inverse" ? retention.recoveryId : null;
-}
-
 /** Returns stored provenance only when command mode and identity match it. */
 const validateStoredCommand: ValidateStoredCommand = Effect.fn(
   "AksaraCli.validateStoredCommand"
@@ -144,20 +134,8 @@ const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
         reason: "aborting",
       });
     }
-    if (
-      args.retention.kind === "bootstrap" &&
-      candidate.release.manifest.baseReleaseId !== args.retention.baseReleaseId
-    ) {
-      return yield* new ProductionStateError({
-        candidateReleaseId: candidate.release.manifest.releaseId,
-        reason: "bootstrap-base",
-      });
-    }
     const retainedId = current.recovery?.release.manifest.releaseId ?? null;
-    if (
-      retainedId !== null &&
-      retainedId !== expectedRecoveryId(args.retention)
-    ) {
+    if (retainedId !== null && retainedId !== args.retention.recoveryId) {
       return yield* new ProductionStateError({
         candidateReleaseId: candidate.release.manifest.releaseId,
         reason: "recovery-conflict",
@@ -187,17 +165,8 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
     const bundle = activeBundle(active);
     const stored = yield* validateStoredCommand(args, bundle);
     if (
-      args.retention.kind === "bootstrap" &&
-      bundle.release.manifest.baseReleaseId !== args.retention.baseReleaseId
-    ) {
-      return yield* new ProductionStateError({
-        activeReleaseId: active.release.manifest.releaseId,
-        reason: "bootstrap-base",
-      });
-    }
-    if (
       recovery !== null &&
-      recovery.release.manifest.releaseId !== expectedRecoveryId(args.retention)
+      recovery.release.manifest.releaseId !== args.retention.recoveryId
     ) {
       return yield* new ProductionStateError({
         activeReleaseId: active.release.manifest.releaseId,
@@ -212,15 +181,6 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
       activeReleaseId: active?.release.manifest.releaseId,
       reason: "recovery-retained",
       recoveryReleaseId: recovery.release.manifest.releaseId,
-    });
-  }
-  if (
-    args.retention.kind === "bootstrap" &&
-    active?.release.manifest.releaseId !== args.retention.baseReleaseId
-  ) {
-    return yield* new ProductionStateError({
-      activeReleaseId: active?.release.manifest.releaseId,
-      reason: "bootstrap-base",
     });
   }
   return {

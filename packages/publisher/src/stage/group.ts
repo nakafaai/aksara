@@ -8,9 +8,9 @@ import {
   MAX_STAGE_GROUP_BYTES,
   MAX_STAGE_GROUP_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "#publisher/text/json";
 
 /** Serializes the exact grouped request body used by the HTTP target. */
 export function canonicalizeStageGroup(group: StageGroupInput) {

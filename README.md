@@ -169,14 +169,10 @@ structured snapshot family. One global release owns the complete locale set,
 so a page-only release cannot safely move production from English and
 Indonesian to English, Indonesian, and German.
 
-The first release of a new content contract generation replaces a base that
-the new renderer cannot read, so no inverse can protect it. Such a release
-names the retired active release with `--bootstrap-over <active-release-id>`
-in place of `--recovery-id`, and it selects every family and snapshot because
-it must replace every head. A live renderer change must be closed by that
-scope, or the command refuses before any write. It takes one target and has no
-accept or recover step. The switch is one way: the retired generation is never
-restored. See [`docs/adr/release.md`](docs/adr/release.md).
+The first release of a new content contract generation is a genesis: the target
+deletes its stored release state in the deploy that reads the new generation,
+and the genesis has no base and no recovery. See
+[`docs/adr/release.md`](docs/adr/release.md).
 
 Production publication runs from an exact Git revision after the contracts
 archive, renderer, corpus, provenance, rollback, and target gates pass. It does

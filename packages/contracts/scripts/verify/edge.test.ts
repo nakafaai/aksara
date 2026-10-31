@@ -10,7 +10,7 @@ import {
   Path,
   Record as Rec,
 } from "effect";
-import { encodeJsonText } from "#scripts/text/json";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   EDGE_CONTRACT_EXPORTS,
   EdgeVerificationError,

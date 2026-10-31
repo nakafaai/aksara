@@ -6,8 +6,8 @@ import {
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { TrustedKeySchema } from "@nakafa/aksara-contracts/signature/trusted";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import { Config, Effect, FileSystem, Redacted, Schema } from "effect";
-import { JsonTextSchema } from "#cli/text/json";
 
 /** Acceptance publication cannot escape its exact isolated source and target. */
 export class AcceptanceEnvironmentError extends Schema.TaggedError<

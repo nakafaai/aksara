@@ -60,14 +60,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const error = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseVersions(["4.1.0", "4.1.1"]),
+              effect: releaseVersions(["4.1.1", "4.1.2"]),
             })
           ).pipe(Effect.flip);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
             error.message.includes(
-              "effect upstream is 4.1.1; last reviewed 4.1.0."
+              "effect upstream is 4.1.2; last reviewed 4.1.1."
             )
           );
         })

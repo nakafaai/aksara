@@ -29,9 +29,9 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.1.0 replaces effect/Crypto with the effect/crypto services, so a contracts build on 4.0.5 cannot run on 4.1. The contracts therefore lead the cohort (docs/adr/compiler.md): this release peers 4.1.0, and nakafa.com moves to 4.1.0 when it adopts it.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.1.0 replaces effect/Crypto with the effect/crypto services, so a contracts build on 4.0.5 cannot run on 4.1. The contracts therefore lead the cohort (docs/adr/compiler.md): contracts 3.0 peers 4.1.0, and nakafa.com moves to 4.1.0 when it adopts it. 4.1.1 (30 October 2026) needs a contracts release that peers it, so it moves with the next contracts release, after the assessment genesis release, together with nakafa.com's move to 4.1.",
     registry: "effect@latest",
-    reviewedLatest: "4.1.0",
+    reviewedLatest: "4.1.1",
     source: "catalog",
   },
   {
@@ -41,7 +41,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     reason:
       "All Effect ecosystem packages must use one exact cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.1.0",
+    reviewedLatest: "4.1.1",
     source: "catalog",
   },
   {
@@ -51,7 +51,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     reason:
       "The test adapter must match the installed Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.1.0",
+    reviewedLatest: "4.1.1",
     source: "catalog",
   },
   {
@@ -61,7 +61,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     reason:
       "An override that pins the shared platform package to the Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node-shared@latest",
-    reviewedLatest: "4.1.0",
+    reviewedLatest: "4.1.1",
     source: "override",
   },
   {
@@ -105,7 +105,8 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     approvedCurrent: "26.13.0",
     cohort: "Node 26",
     dependency: "node",
-    reason: "Aksara runs on the current Node 26 LTS line, which nakafa.com also runs. The published contracts and CLI admit Node 24 and 26, so a Node 24 consumer, such as a Convex Node action, still loads them.",
+    reason:
+      "Aksara runs on the current Node 26 LTS line, which nakafa.com also runs. The published contracts and CLI admit Node 24 and 26, so a Node 24 consumer, such as a Convex Node action, still loads them.",
     registry: "node@26",
     reviewedLatest: "26.13.0",
     source: "node-runtime",

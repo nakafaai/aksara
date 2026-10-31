@@ -15,7 +15,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * contracts lead (docs/adr/compiler.md); it moves to a main commit once
  * nakafa.com has adopted the contracts built on 4.1.
  */
-export const NAKAFA_COMMIT = "30bca9ab5adc157466b6fd302345f340ade76250";
+export const NAKAFA_COMMIT = "38a66238ebb3a8c689d676e3b9da42c8d33e7674";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);

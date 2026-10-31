@@ -6,7 +6,7 @@ import {
   productionCalls,
   productionProgram,
 } from "#test/production/harness";
-import { BOOTSTRAP_SCOPE, FUNCTION_SCOPE, LIVE_RENDERER } from "#test/real";
+import { FUNCTION_SCOPE } from "#test/real";
 import {
   completedBundle,
   currentState,
@@ -27,21 +27,8 @@ function runInverse(id: string, recovery: string) {
   return productionProgram({
     command: "release",
     releaseId: releaseId(id),
-    retention: { kind: "inverse", recoveryId: releaseId(recovery) },
+    retention: { recoveryId: releaseId(recovery) },
     scope: FUNCTION_SCOPE,
-  });
-}
-
-/** Runs one bootstrap that replaces the active release within the given scope. */
-function runBootstrap(scope: typeof BOOTSTRAP_SCOPE) {
-  return productionProgram({
-    command: "release",
-    releaseId: releaseId("release-bootstrap"),
-    retention: {
-      baseReleaseId: releaseId("release-active"),
-      kind: "bootstrap",
-    },
-    scope,
   });
 }
 
@@ -247,46 +234,6 @@ describe("production command", () => {
         snapshotCalls: 0,
         sourceLayers: 0,
       });
-    })
-  );
-
-  it.effect("bootstraps over the active release", () =>
-    Effect.gen(function* () {
-      calls.rendererManifestOverride = LIVE_RENDERER;
-      const receipt = yield* runBootstrap(BOOTSTRAP_SCOPE);
-      expect(receipt).toMatchObject({ releaseId: "release-bootstrap" });
-      expect(calls).toMatchObject({
-        publicationRetention: { kind: "bootstrap" },
-        publishCalls: 1,
-      });
-    })
-  );
-
-  it.effect("refuses a bootstrap that cannot close its renderer", () =>
-    Effect.gen(function* () {
-      calls.rendererManifestOverride = LIVE_RENDERER;
-      const error = yield* runBootstrap(FUNCTION_SCOPE).pipe(Effect.flip);
-      expect(error).toMatchObject({ failure: "BootstrapRendererError" });
-      expect(calls).toMatchObject({ publishCalls: 0, rendererCalls: 1 });
-    })
-  );
-
-  it.effect("resumes a bootstrap candidate on the active renderer", () =>
-    Effect.gen(function* () {
-      const active = yield* gitBundle("release-active");
-      const candidate = yield* gitBundle("release-bootstrap", {
-        baseManifestHash: active.release.manifestHash,
-        baseReleaseId: releaseId("release-active"),
-        scope: BOOTSTRAP_SCOPE,
-      });
-      calls.current = currentState({
-        active: yield* completedBundle(active),
-        candidate: { ...candidate, phase: "verifying" },
-        recovery: null,
-      });
-      const receipt = yield* runBootstrap(BOOTSTRAP_SCOPE);
-      expect(receipt).toMatchObject({ releaseId: "release-bootstrap" });
-      expect(calls).toMatchObject({ publishCalls: 1, rendererCalls: 0 });
     })
   );
 });

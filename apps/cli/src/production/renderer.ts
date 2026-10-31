@@ -1,11 +1,9 @@
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type Redacted, Result, Schedule, Schema } from "effect";
+import { Effect, type Redacted, Result, Schedule } from "effect";
 import type { HttpClient } from "effect/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
@@ -51,30 +49,14 @@ export const fetchProductionRenderer: (
 });
 
 /**
- * A bootstrap whose scope cannot close the live renderer change would fall back
- * to the base renderer. That fallback is refused: the bootstrap must publish under
- * the live renderer. A live renderer equal to the base is fine, because the
- * manifest lists components and the content generation lives in each artifact's
- * payload format.
- */
-export class BootstrapRendererError extends Schema.TaggedError<
-  BootstrapRendererError,
-  { readonly brand: unique symbol }
->()("BootstrapRendererError", {
-  rendererManifestHash: Sha256HashSchema,
-}) {}
-
-/**
- * Selects the live renderer only when this release proves its full closure. An
- * inverse release falls back to the base renderer otherwise; a bootstrap is
- * refused there, because it must publish under the live renderer.
+ * Selects the live renderer only when this release proves its full closure, and
+ * the base renderer otherwise.
  */
 export const selectRendererManifest = Effect.fn(
   "AksaraCli.selectRendererManifest"
 )(function* (input: {
   readonly baseBundle: ContentReleaseBundle | null;
   readonly rendererManifest: unknown;
-  readonly retention: PublicationRetentionDecision;
   readonly scope: PublicationScope;
 }) {
   const liveRenderer = yield* validateRendererManifestHash(
@@ -93,11 +75,6 @@ export const selectRendererManifest = Effect.fn(
     scope: input.scope,
   }).pipe(Effect.result);
   if (Result.isFailure(transition)) {
-    if (input.retention.kind === "bootstrap") {
-      return yield* new BootstrapRendererError({
-        rendererManifestHash: liveRenderer.hash,
-      });
-    }
     yield* Effect.logInfo(
       "Content publication retained the base renderer manifest."
     ).pipe(

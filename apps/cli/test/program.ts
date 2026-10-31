@@ -16,13 +16,7 @@ const RecoveryCommandSchema = Schema.Struct({
   releaseId: Schema.String,
 });
 
-const RetentionSchema = Schema.Union([
-  Schema.Struct({ kind: Schema.Literal("inverse"), recoveryId: Schema.String }),
-  Schema.Struct({
-    baseReleaseId: Schema.String,
-    kind: Schema.Literal("bootstrap"),
-  }),
-]);
+const RetentionSchema = Schema.Struct({ recoveryId: Schema.String });
 
 const ProgramCallsSchema = Schema.Struct({
   abort: Schema.mutableKey(Schema.UndefinedOr(ReleaseCommandSchema)),

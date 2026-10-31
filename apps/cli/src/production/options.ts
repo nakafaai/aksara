@@ -8,7 +8,6 @@ import {
 } from "#cli/production/error";
 
 const RawProductionOptionsSchema = Schema.Struct({
-  bootstrapOver: Schema.mutableKey(Schema.optionalKey(Schema.String)),
   rebuild: Schema.mutableKey(Schema.Boolean),
   recoveryId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
   releaseId: Schema.mutableKey(Schema.optionalKey(Schema.String)),
@@ -22,7 +21,6 @@ type ValueProductionOption = Exclude<ProductionOption, "--rebuild">;
 type UniqueProductionOption = Exclude<ValueProductionOption, "--scope">;
 
 const OPTION_KEYS = {
-  "--bootstrap-over": "bootstrapOver",
   "--recovery-id": "recoveryId",
   "--release-id": "releaseId",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
@@ -39,9 +37,6 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
     return command === "release";
   }
   if (option === "--scope") {
-    return command === "release";
-  }
-  if (option === "--bootstrap-over") {
     return command === "release";
   }
   if (option === "--recovery-id") {

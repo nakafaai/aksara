@@ -17,10 +17,8 @@ import type { PublishGitRelease } from "#publisher/publication/program";
 import { stageRecoveryRelease } from "#publisher/publication/recovery";
 import {
   PublicationActivation,
-  PublicationBootstrapError,
   PublicationRecoveryIdentityError,
   PublicationRetention,
-  type PublicationRetentionDecision,
   PublicationSource,
 } from "#publisher/publication/spec";
 import { stageCandidateRelease } from "#publisher/publication/verification";
@@ -52,61 +50,16 @@ function validateRecoveryIdentity(
   return Effect.void;
 }
 
-/**
- * Accepts a bootstrap only as a full replacement of its exact declared base.
- * Every head of that base must be superseded, because no inverse can restore it.
- */
-function validateBootstrap(
-  manifest: ContentReleaseManifest,
-  baseReleaseId: ReleaseId
-): Effect.Effect<void, PublicationBootstrapError> {
-  if (manifest.baseReleaseId !== baseReleaseId) {
-    return Effect.fail(
-      new PublicationBootstrapError({
-        baseReleaseId,
-        manifestBaseReleaseId: manifest.baseReleaseId,
-        reason: "base",
-        releaseId: manifest.releaseId,
-      })
-    );
-  }
-  if (manifest.resultCount !== manifest.upsertCount) {
-    return Effect.fail(
-      new PublicationBootstrapError({
-        baseReleaseId,
-        manifestBaseReleaseId: manifest.baseReleaseId,
-        reason: "replacement",
-        releaseId: manifest.releaseId,
-      })
-    );
-  }
-  return Effect.void;
-}
-
-/** Validates the retention decision against the manifest before any target write. */
-function validateRetention(
-  manifest: ContentReleaseManifest,
-  retention: PublicationRetentionDecision
-): Effect.Effect<
-  void,
-  PublicationRecoveryIdentityError | PublicationBootstrapError
-> {
-  if (retention.kind === "inverse") {
-    return validateRecoveryIdentity(manifest, retention.recoveryId);
-  }
-  return validateBootstrap(manifest, retention.baseReleaseId);
-}
-
-/**
- * Stages a candidate and, unless it bootstraps over a retired base, its signed
- * inverse before one atomic activation.
- */
+/** Stages a candidate and its signed inverse before one atomic activation. */
 const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
   function* <E, R>(invocation: PublicationInvocation<E, R>) {
     const retention = yield* PublicationRetention;
-    yield* validateRetention(invocation.input.manifest, retention);
+    yield* validateRecoveryIdentity(
+      invocation.input.manifest,
+      retention.recoveryId
+    );
     const candidate = yield* preparePublicationPlan(invocation);
-    /** Removes only this attempt's candidate and, for an inverse, its retained inverse. */
+    /** Removes only this attempt's candidate and its retained inverse. */
     const discard = () =>
       discardFailedCandidate(
         candidate.target,
@@ -126,24 +79,22 @@ const publishReleaseScoped = Effect.fn("AksaraPublisher.publishReleaseScoped")(
       return candidateStage.receipt;
     }
 
-    if (retention.kind === "inverse") {
-      yield* discardOnFailure(
-        Effect.gen(function* () {
-          const recovery = yield* prepareRollback({
-            proofBundle: candidate.bundle,
-            releaseId: retention.recoveryId,
-            rendererManifest: candidate.bundle.rendererManifest,
-            rollbackOf: candidate.bundle.release.manifest.releaseId,
-          });
-          const plan = yield* preparePublicationPlan({
-            input: recovery,
-            kind: "rollback",
-          });
-          yield* stageRecoveryRelease(plan);
-        }),
-        discard
-      );
-    }
+    yield* discardOnFailure(
+      Effect.gen(function* () {
+        const recovery = yield* prepareRollback({
+          proofBundle: candidate.bundle,
+          releaseId: retention.recoveryId,
+          rendererManifest: candidate.bundle.rendererManifest,
+          rollbackOf: candidate.bundle.release.manifest.releaseId,
+        });
+        const plan = yield* preparePublicationPlan({
+          input: recovery,
+          kind: "rollback",
+        });
+        yield* stageRecoveryRelease(plan);
+      }),
+      discard
+    );
     yield* discardOnFailure(verifyCandidateActivation(candidate), discard);
     return yield* activateCandidateRelease(candidate);
   }

@@ -2,6 +2,7 @@ import { assert, describe, expect, it } from "@effect/vitest";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { PreviewRendererNonceSchema } from "@nakafa/aksara-contracts/preview/auth";
 import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, MutableList, Redacted, Result } from "effect";
 import {
   FetchHttpClient,
@@ -10,7 +11,6 @@ import {
   HttpClientRequest,
 } from "effect/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
-import { encodeJsonText } from "#cli/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 

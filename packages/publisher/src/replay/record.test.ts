@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Schema } from "effect";
 import {
   decodeReplayRecord,
@@ -10,7 +11,6 @@ import {
   MAX_REPLAY_TOTAL_BYTES,
   validateReplaySpoolUsage,
 } from "#publisher/replay/record";
-import { encodeJsonText } from "#publisher/text/json";
 
 const ReplayEntrySchema = Schema.Struct({
   sequence: Schema.Finite,

@@ -20,6 +20,15 @@ const DEVELOPER_PAGE_KEY = "developers";
 
 const pageSourceInputs: readonly PageSourceInput[] = [
   {
+    pageKey: "data-processing-agreement",
+    publicPaths: {
+      de: "data-processing-agreement",
+      en: "data-processing-agreement",
+      id: "data-processing-agreement",
+    },
+    sourceRoot: "pages/data-processing",
+  },
+  {
     pageKey: DEVELOPER_PAGE_KEY,
     publicPaths: {
       de: "developers",
