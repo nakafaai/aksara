@@ -238,7 +238,7 @@ layer(catalogTestLayer)("content catalog publication", (it) => {
       expect(Arr.map(initialHeads, ({ family }) => family)).toEqual([
         ...Array.from({ length: 21 }, () => "article"),
         ...Array.from({ length: 4 }, () => "material"),
-        ...Array.from({ length: 15 }, () => "page"),
+        ...Array.from({ length: 18 }, () => "page"),
       ]);
     })
   );

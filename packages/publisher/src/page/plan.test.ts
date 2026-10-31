@@ -121,8 +121,8 @@ layer(publishedPageTestLayer)("page plan", (it) => {
             rebuild,
             scope: pageFamilyScope,
           })
-        ).toHaveLength(rebuild ? 15 : 0);
-        expect(compilerState.calls).toBe(rebuild ? 15 : 0);
+        ).toHaveLength(rebuild ? 18 : 0);
+        expect(compilerState.calls).toBe(rebuild ? 18 : 0);
       })
   );
 
