@@ -37,7 +37,7 @@ const PreviewDocumentResultSchema = Schema.Struct({
   result: PreviewCompileResultSchema,
 });
 /** Type of the atomic compilation result for the selected preview document. */
-export type PreviewDocumentResult = typeof PreviewDocumentResultSchema.Type;
+type PreviewDocumentResult = typeof PreviewDocumentResultSchema.Type;
 
 /** Every expected failure from one selected-document compilation closure. */
 export type PreviewDocumentError =

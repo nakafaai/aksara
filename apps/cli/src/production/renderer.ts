@@ -13,7 +13,7 @@ const RENDERER_TIMEOUT = "3 minutes";
 const RENDERER_PATH = "/api/internal/content/renderer";
 
 /** Proves one exact production renderer endpoint cannot leak credentials. */
-export function isRendererEndpoint(endpoint: URL) {
+function isRendererEndpoint(endpoint: URL) {
   return (
     endpoint.protocol === "https:" &&
     endpoint.username === "" &&
