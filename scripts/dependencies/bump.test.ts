@@ -7,12 +7,10 @@ import {
   approved,
   approvedManifest,
   createConfig,
-  GATED_RELEASE,
   installFakeBun,
   makeRunner,
   output,
-  PAST_RELEASE,
-  releaseTimes,
+  releaseVersions,
   reviewedHoldReleases,
 } from "#scripts/dependencies/fixture";
 import { DEPENDENCY_HOLDS } from "#scripts/dependencies/policy";
@@ -32,9 +30,9 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const config = yield* createConfig();
           const path = yield* installFakeBun(config.root, {
             ...reviewedHoldReleases,
-            esbuild: { "0.28.2": PAST_RELEASE, "0.28.3": PAST_RELEASE },
-            "source-map-js": { "1.2.2": PAST_RELEASE, "1.2.3": PAST_RELEASE },
-            yaml: { "2.9.1": PAST_RELEASE, "2.9.2": PAST_RELEASE },
+            esbuild: ["0.28.2", "0.28.3"],
+            "source-map-js": ["1.2.2", "1.2.3"],
+            yaml: ["2.9.1", "2.9.2"],
           });
           vi.stubEnv("PATH", path);
 
@@ -55,7 +53,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
     );
 
     it.effect(
-      "keeps a routine declaration on its last release while a newer one is inside the release-age gate",
+      "keeps a routine declaration on its last stable release while a newer prerelease is out",
       () =>
         Effect.gen(function* () {
           const fileSystem = yield* FileSystem.FileSystem;
@@ -64,37 +62,29 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              esbuild: releaseTimes({
-                "0.28.2": PAST_RELEASE,
-                "0.28.3": GATED_RELEASE,
-              }),
+              esbuild: releaseVersions(["0.28.2", "0.29.0-beta.1"]),
             })
           );
           const manifest = yield* fileSystem.readFileString(config.manifest);
 
           assert.ok(manifest.includes('"esbuild":"0.28.2"'));
-          assert.strictEqual(manifest.includes('"esbuild":"0.28.3"'), false);
+          assert.strictEqual(manifest.includes("0.29.0-beta.1"), false);
         })
     );
 
-    it.effect(
-      "fails when no stable release of a routine declaration is older than the release-age gate",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig();
-          const error = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner({
-              yaml: releaseTimes({ "2.9.2": GATED_RELEASE }),
-            })
-          ).pipe(Effect.flip);
+    it.effect("fails when a routine declaration has no stable release", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const error = yield* makeBumpDependenciesProgram(
+          config,
+          makeRunner({
+            yaml: releaseVersions(["3.0.0-rc.1"]),
+          })
+        ).pipe(Effect.flip);
 
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.strictEqual(
-            error.message,
-            "yaml has no stable release older than the one-day release-age gate."
-          );
-        })
+        assert.strictEqual(error._tag, "DependencyPolicyError");
+        assert.strictEqual(error.message, "yaml has no stable release.");
+      })
     );
 
     it.effect(
@@ -114,14 +104,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              "@scope/tool": releaseTimes({
-                "2.0.0": PAST_RELEASE,
-                "2.0.1": PAST_RELEASE,
-              }),
-              leaf: releaseTimes({
-                "1.0.0": PAST_RELEASE,
-                "1.0.1": PAST_RELEASE,
-              }),
+              "@scope/tool": releaseVersions(["2.0.0", "2.0.1"]),
+              leaf: releaseVersions(["1.0.0", "1.0.1"]),
             })
           );
           const manifest = yield* fileSystem.readFileString(config.manifest);
@@ -142,8 +126,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
-              yaml: releaseTimes({ "2.9.1": PAST_RELEASE }),
+              esbuild: releaseVersions(["0.28.2"]),
+              yaml: releaseVersions(["2.9.1"]),
             })
           );
 
@@ -161,7 +145,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const error = yield* makeBumpDependenciesProgram(
           config,
           makeRunner({
-            esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
+            esbuild: releaseVersions(["0.28.2"]),
             yaml: output(2, "", "registry unavailable"),
           })
         ).pipe(Effect.flip);
@@ -180,11 +164,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             config,
             makeRunner(
               {
-                esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
-                yaml: releaseTimes({
-                  "2.9.1": PAST_RELEASE,
-                  "2.9.2": PAST_RELEASE,
-                }),
+                esbuild: releaseVersions(["0.28.2"]),
+                yaml: releaseVersions(["2.9.1", "2.9.2"]),
               },
               output(2, "", "update failed")
             )
@@ -202,8 +183,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           config,
           makeRunner(
             {
-              esbuild: releaseTimes({ "0.28.2": PAST_RELEASE }),
-              yaml: releaseTimes({ "2.9.1": PAST_RELEASE }),
+              esbuild: releaseVersions(["0.28.2"]),
+              yaml: releaseVersions(["2.9.1"]),
             },
             output(2)
           )
