@@ -1,7 +1,6 @@
 import { BigDecimal, Exit, Option, Schema } from "effect";
 
 import { readNumberAnswer } from "#contracts/assessment/answer";
-import type { AppLocaleCode } from "#contracts/locale";
 
 /** Returns whether one unknown input fails strict schema decoding. */
 export function rejects(
@@ -14,9 +13,9 @@ export function rejects(
 }
 
 /** Returns one read learner number as `numerator/denominator` text. */
-export function reading(input: string, language: AppLocaleCode) {
+export function reading(input: string) {
   return Option.map(
-    readNumberAnswer(input, language),
+    readNumberAnswer(input),
     ({ denominator, fraction, numerator }) =>
       `${BigDecimal.format(numerator)}/${BigDecimal.format(denominator)}${fraction ? " fraction" : ""}`
   );

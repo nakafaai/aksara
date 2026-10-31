@@ -102,23 +102,31 @@ describe("answer key", () => {
 });
 
 describe("typed learner answer", () => {
-  it("reads decimals with the delivery language's separator and fractions in any language", () => {
-    for (const [input, language, expected] of [
-      ["0,75", "id", "0.75/1"],
-      ["-2,5", "de", "-2.5/1"],
-      ["\u22122.5", "en", "-2.5/1"],
-      ["+7", "en", "7/1"],
-      [".5", "en", "0.5/1"],
-      ["5.", "en", "5/1"],
-      [",5", "de", "0.5/1"],
-      ["007", "id", "7/1"],
-      [" 3,50 ", "id", "3.5/1"],
-      ["\u00a04\u200b2", "en", "42/1"],
-      ["6/8", "en", "6/8 fraction"],
-      ["\u22123 / 4", "de", "-3/4 fraction"],
-      ["-3/4", "id", "-3/4 fraction"],
+  it("reads any decimal separator and Arabic-Indic digits in every language, and fractions", () => {
+    for (const [input, expected] of [
+      ["0,75", "0.75/1"],
+      ["0.75", "0.75/1"],
+      ["\u0660\u066b\u0667\u0665", "0.75/1"],
+      ["\u06f2\u066b\u06f5", "2.5/1"],
+      ["\u0663,\u0665", "3.5/1"],
+      ["\u0661\u0662.5", "12.5/1"],
+      ["\u061c-\u0661\u0662\u200f", "-12/1"],
+      ["-2,5", "-2.5/1"],
+      ["\u22122.5", "-2.5/1"],
+      ["+7", "7/1"],
+      [".5", "0.5/1"],
+      ["5.", "5/1"],
+      [",5", "0.5/1"],
+      ["\u066b5", "0.5/1"],
+      ["007", "7/1"],
+      [" 3,50 ", "3.5/1"],
+      ["\u00a04\u200b2", "42/1"],
+      ["6/8", "6/8 fraction"],
+      ["\u0666/\u0668", "6/8 fraction"],
+      ["\u22123 / 4", "-3/4 fraction"],
+      ["-3/4", "-3/4 fraction"],
     ] as const) {
-      expect(Option.getOrNull(reading(input, language))).toBe(expected);
+      expect(Option.getOrNull(reading(input))).toBe(expected);
     }
   });
 
@@ -129,32 +137,36 @@ describe("typed learner answer", () => {
   });
 
   it("reads nothing outside the one documented number grammar", () => {
-    for (const [input, language] of [
-      ["", "en"],
-      ["   ", "id"],
-      ["-", "en"],
-      [".", "en"],
-      [",", "de"],
-      ["0.5", "id"],
-      ["0,5", "en"],
-      ["1.234,5", "de"],
-      ["1,234.5", "en"],
-      ["1 234", "de"],
-      ["1e3", "en"],
-      ["- 5", "en"],
-      ["5-", "en"],
-      ["--5", "en"],
-      ["\u20135", "en"],
-      ["\uff15", "en"],
-      ["1 1/2", "en"],
-      ["3/-4", "en"],
-      ["1,5/2", "id"],
-      ["6/0", "en"],
-      ["6/", "en"],
-      ["/8", "en"],
-      ["x", "en"],
-    ] as const) {
-      expect(Option.isNone(readNumberAnswer(input, language))).toBe(true);
+    for (const input of [
+      "",
+      "   ",
+      "-",
+      ".",
+      ",",
+      "\u066b",
+      "1.234,5",
+      "1,234.5",
+      "1,2,3",
+      "1\u066b2.3",
+      "1\u066c234",
+      "1 234",
+      "1e3",
+      "- 5",
+      "5-",
+      "--5",
+      "\u20135",
+      "\uff15",
+      "\u0967",
+      "1 1/2",
+      "3/-4",
+      "1,5/2",
+      "6/0",
+      "\u0666/\u0660",
+      "6/",
+      "/8",
+      "x",
+    ]) {
+      expect(Option.isNone(readNumberAnswer(input))).toBe(true);
     }
   });
 
@@ -171,31 +183,34 @@ describe("typed learner answer", () => {
       value: "-20",
     } as const;
     const cases = [
-      [exact, "2,5", "id", true],
-      [exact, "2.50", "en", true],
-      [exact, "2,5", "en", false],
-      [exact, "2.6", "en", false],
-      [exact, "5/2", "en", false],
-      [{ ...exact, acceptsFractions: true }, "5/2", "en", true],
-      [{ ...exact, acceptsFractions: true }, "10 / 4", "de", true],
-      [third, "1/3", "en", true],
-      [third, "0.334", "en", true],
-      [third, "0.3345", "en", false],
-      [third, "1/2", "en", false],
-      [relative, "-22", "en", true],
-      [relative, "-18", "en", true],
-      [relative, "-17.9", "en", false],
-      [relative, "-22.1", "en", false],
-      [{ ...exact, value: "0" }, "", "en", false],
-      [{ ...exact, value: "0" }, "0", "en", true],
-      [{ ...exact, value: "0" }, "-0", "en", true],
+      [exact, "2,5", true],
+      [exact, "2.50", true],
+      [exact, "\u0662\u066b\u0665", true],
+      [exact, "\u06f2,\u06f5\u06f0", true],
+      [exact, "2.6", false],
+      [exact, "\u0662\u066b\u0666", false],
+      [exact, "5/2", false],
+      [exact, "\u0665/\u0662", false],
+      [{ ...exact, acceptsFractions: true }, "5/2", true],
+      [{ ...exact, acceptsFractions: true }, "\u0665/\u0662", true],
+      [{ ...exact, acceptsFractions: true }, "10 / 4", true],
+      [third, "1/3", true],
+      [third, "0,334", true],
+      [third, "0.3345", false],
+      [third, "1/2", false],
+      [relative, "-22", true],
+      [relative, "-18", true],
+      [relative, "-17,9", false],
+      [relative, "-22.1", false],
+      [{ ...exact, value: "0" }, "", false],
+      [{ ...exact, value: "0" }, "0", true],
+      [{ ...exact, value: "0" }, "-0", true],
+      [{ ...exact, value: "0" }, "\u0660", true],
     ] as const;
 
     expect(
-      Arr.map(cases, ([key, answer, language]) =>
-        matchesAnswerKey(key, answer, language)
-      )
-    ).toEqual(Arr.map(cases, ([, , , expected]) => expected));
+      Arr.map(cases, ([key, answer]) => matchesAnswerKey(key, answer))
+    ).toEqual(Arr.map(cases, ([, , expected]) => expected));
   });
 
   it("grades text through the key's rules after reading it as visible text", () => {
@@ -223,7 +238,7 @@ describe("typed learner answer", () => {
     ] as const;
 
     expect(
-      Arr.map(cases, ([key, answer]) => matchesAnswerKey(key, answer, "en"))
+      Arr.map(cases, ([key, answer]) => matchesAnswerKey(key, answer))
     ).toEqual(Arr.map(cases, ([, , expected]) => expected));
   });
 });

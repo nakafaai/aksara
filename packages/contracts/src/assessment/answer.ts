@@ -7,24 +7,18 @@ import {
   String as Str,
 } from "effect";
 
-import type { AppLocaleCode } from "#contracts/locale";
-
 const DECIMAL_PATTERN = /^(?:0|-?[1-9]\d*|-?(?:0|[1-9]\d*)\.\d*[1-9])$/u;
 const UNTYPABLE_CHARACTER_PATTERN = /[\p{Cc}\p{Cf}]|[^\S ]/u;
 const FORMAT_CHARACTER_PATTERN = /\p{Cf}/gu;
 const WHITESPACE_PATTERN = /\s/gu;
 const SPACE_RUN_PATTERN = / {2,}/gu;
-const COMMA_NUMBER_PATTERN = /^[+\u2212-]?(?:\d+(?:,\d*)?|,\d+)$/u;
-const DOT_NUMBER_PATTERN = /^[+\u2212-]?(?:\d+(?:\.\d*)?|\.\d+)$/u;
+/** Arabic-Indic digits U+0660 to U+0669 and Eastern Arabic-Indic digits U+06F0 to U+06F9. */
+const ARABIC_DIGIT_PATTERN = /[\u0660-\u0669\u06f0-\u06f9]/gu;
+/** The comma and the Arabic decimal separator U+066B, which a decimal may use for the dot. */
+const DECIMAL_SEPARATOR_PATTERN = /[,\u066b]/u;
+const NUMBER_PATTERN = /^[+\u2212-]?(?:\d+(?:[.,\u066b]\d*)?|[.,\u066b]\d+)$/u;
 const FRACTION_PATTERN = /^[+\u2212-]?\d+ *\/ *\d+$/u;
 const ONE = BigDecimal.fromBigInt(1n);
-
-/** Typed decimal notation of each delivery language. */
-const NUMBER_PATTERNS = {
-  de: COMMA_NUMBER_PATTERN,
-  en: DOT_NUMBER_PATTERN,
-  id: COMMA_NUMBER_PATTERN,
-} satisfies Record<AppLocaleCode, RegExp>;
 
 /**
  * One exact decimal in its only canonical spelling: an optional minus sign, an
@@ -70,7 +64,7 @@ export type Tolerance = typeof ToleranceSchema.Type;
 
 /**
  * Deterministic numeric answer key. A learner number, read by
- * `readNumberAnswer` in the delivery language, matches when its exact value
+ * `readNumberAnswer`, matches when its exact value
  * equals `value`, or lies within `tolerance` when present. A fraction such as
  * `6/8` matches only when `acceptsFractions` is true.
  */
@@ -188,15 +182,24 @@ function readSigned(text: string) {
   return BigDecimal.fromString(text.trim().replace("\u2212", "-"));
 }
 
-/** Reads one typed decimal in the notation of its delivery language. */
-function readDecimal(
-  typed: string,
-  language: AppLocaleCode
-): Option.Option<NumberAnswer> {
-  if (!NUMBER_PATTERNS[language].test(typed)) {
+/**
+ * Writes each Arabic-Indic or Eastern Arabic-Indic digit as its ASCII digit.
+ * Both runs start at a code point whose last hexadecimal digit is zero, so a
+ * digit's value is its code point modulo 16.
+ */
+function asciiDigits(text: string) {
+  return text.replace(ARABIC_DIGIT_PATTERN, (digit) =>
+    String(digit.charCodeAt(0) % 16)
+  );
+}
+
+/** Reads one typed decimal whose separator is a dot, a comma, or U+066B. */
+function readDecimal(typed: string): Option.Option<NumberAnswer> {
+  if (!NUMBER_PATTERN.test(typed)) {
     return Option.none();
   }
-  return Option.map(readSigned(typed.replace(",", ".")), (numerator) => ({
+  const dotted = typed.replace(DECIMAL_SEPARATOR_PATTERN, ".");
+  return Option.map(readSigned(dotted), (numerator) => ({
     denominator: ONE,
     fraction: false,
     numerator,
@@ -234,17 +237,21 @@ export function isBlankAnswer(answer: string) {
 /**
  * Reads one typed learner number exactly, under the single grammar every
  * runtime grades with. The input is first read as visible text, as for text
- * answers. A decimal is an optional sign (`+`, `-`, or the minus sign U+2212)
- * and ASCII digits with at most one decimal separator, a comma for `id` and
- * `de` and a dot for `en`, and at least one digit, so `.5` and `5.` read in
- * English. A fraction is an optionally signed integer numerator, a slash with
- * optional spaces on each side, and a nonzero integer denominator. Grouping
- * separators, exponents, mixed numbers such as `1 1/2`, and empty input are
- * not numbers.
+ * answers, so a right-to-left mark around an Arabic number is no character.
+ * Digits are ASCII, Arabic-Indic (`٠` to `٩`), or Eastern Arabic-Indic (`۰` to
+ * `۹`), in any mix. A decimal is an optional sign (`+`, `-`, or the minus sign
+ * U+2212) and digits with at most one decimal separator and at least one
+ * digit, so `.5` and `5.` read. The separator is a dot, a comma, or the Arabic
+ * decimal separator `٫` in every language, because a school's paper names no
+ * language and a learner's decimal point is never wrong: `0.75`, `0,75`, and
+ * `٠٫٧٥` read the same. A fraction is an optionally signed integer numerator,
+ * a slash with optional spaces on each side, and a nonzero integer
+ * denominator. Grouping separators, a second separator, exponents, mixed
+ * numbers such as `1 1/2`, and empty input are not numbers.
  */
-export function readNumberAnswer(input: string, language: AppLocaleCode) {
-  const typed = visibleText(input);
-  return Option.orElse(readDecimal(typed, language), () => readFraction(typed));
+export function readNumberAnswer(input: string) {
+  const typed = asciiDigits(visibleText(input));
+  return Option.orElse(readDecimal(typed), () => readFraction(typed));
 }
 
 /**
@@ -279,15 +286,10 @@ function matchesNumberKey(key: NumberKey, answer: NumberAnswer) {
 /**
  * Grades one typed learner answer against its key, as every runtime must. A
  * text key matches when the answer normalizes to one accepted answer. A
- * numeric key reads the answer with `readNumberAnswer` in the delivery
- * language and compares its exact value, so an unreadable or empty answer
- * never matches.
+ * numeric key reads the answer with `readNumberAnswer` and compares its exact
+ * value, so an unreadable or empty answer never matches.
  */
-export function matchesAnswerKey(
-  key: AnswerKey,
-  answer: string,
-  language: AppLocaleCode
-) {
+export function matchesAnswerKey(key: AnswerKey, answer: string) {
   if (key.kind === "text") {
     const typed = normalizeTextAnswer(answer, key);
     return Arr.some(
@@ -295,7 +297,7 @@ export function matchesAnswerKey(
       (accepted) => normalizeTextAnswer(accepted, key) === typed
     );
   }
-  return Option.exists(readNumberAnswer(answer, language), (number) =>
+  return Option.exists(readNumberAnswer(answer), (number) =>
     matchesNumberKey(key, number)
   );
 }
