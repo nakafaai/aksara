@@ -2,7 +2,6 @@ import { generateKeyPairSync, sign } from "node:crypto";
 import {
   Ed25519SignatureSchema,
   GitCommitShaSchema,
-  ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import {
@@ -185,11 +184,3 @@ export const signedActiveState = Effect.fn("StateTest.signedActiveState")(
     return { resolver, value };
   }
 );
-
-/** Creates a completed git release that replaced the retired release in full. */
-export function completedOver(id: string) {
-  return {
-    ...stateBundle(id, undefined, ReleaseIdSchema.make("release-retired")),
-    receipt: stateCompleted(id).receipt,
-  };
-}

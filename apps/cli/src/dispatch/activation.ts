@@ -16,7 +16,6 @@ const REQUEST_TIMEOUT = "30 seconds";
  * A development or acceptance target dispatches nothing.
  */
 export const ReleaseSurfaceSchema = Schema.Literals(["deployed", "none"]);
-export type ReleaseSurface = typeof ReleaseSurfaceSchema.Type;
 
 /** The dispatch that one target runs: nothing, or a production dispatch with its token. */
 export const ReleaseDispatchSchema = Schema.Union([
