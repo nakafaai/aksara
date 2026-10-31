@@ -85,6 +85,7 @@ layer(Path.layer)("public page source", (it) => {
         const injected = yield* decodePageSources([pageSource()]);
 
         expect(Arr.map(defaults, ({ pageKey }) => pageKey)).toEqual([
+          "data-processing-agreement",
           "developers",
           "imprint",
           "privacy-policy",
@@ -194,6 +195,7 @@ layer(Path.layer)("public page source", (it) => {
         const corpusRoot = yield* resolveCorpusRoot;
         const registry = yield* decodePageRegistry();
         for (const pageKey of [
+          "data-processing-agreement",
           "imprint",
           "privacy-policy",
           "security-policy",
