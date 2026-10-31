@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Array as Arr, Effect, Ref, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 const releaseId = ReleaseIdSchema.make("test-batch-core");
 

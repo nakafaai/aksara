@@ -3,7 +3,7 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema } from "effect";
 import { replaySpoolFailure } from "#publisher/replay/error";
-import { encodeJsonText, JsonTextSchema } from "#publisher/text/json";
+import { encodeJsonText, JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 
 /** Counts the UTF-8 bytes that one text occupies in the spool. */
 function utf8Length(value: string) {

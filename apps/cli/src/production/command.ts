@@ -46,7 +46,7 @@ import {
   type ProductionRebuildAction,
   selectProductionAction,
 } from "#cli/state";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 type ProductionServices =
   | FileSystem.FileSystem

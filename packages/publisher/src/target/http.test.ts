@@ -14,7 +14,7 @@ import {
 } from "effect";
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   capturedClient,
   endpoint,

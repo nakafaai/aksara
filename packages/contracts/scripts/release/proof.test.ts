@@ -11,12 +11,12 @@ import {
 } from "effect";
 import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   type ContractProofInput,
   proveContractRelease,
 } from "#scripts/release/proof";
 import { makeProcessHandle } from "#scripts/test/process";
-import { encodeJsonText } from "#scripts/text/json";
 
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);

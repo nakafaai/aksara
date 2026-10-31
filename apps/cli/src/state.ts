@@ -20,7 +20,7 @@ import {
 import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /**
  * Durable publication state does not permit the requested production command.

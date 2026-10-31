@@ -11,7 +11,7 @@ import {
 import type { StageSnapshotBatchInput } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** One structured row is not owned by its declared snapshot envelope. */
 export class SnapshotBatchBindingError extends Schema.TaggedError<

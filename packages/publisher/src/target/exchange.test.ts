@@ -20,7 +20,7 @@ import {
 import { TestClock } from "effect/testing";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 

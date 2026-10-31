@@ -9,7 +9,7 @@ import {
   canonicalizeStageGroup,
   makeStageGroups,
 } from "#publisher/stage/group";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { transportRequests } from "#test/transport/spec";
 
 describe("makeStageGroups", () => {

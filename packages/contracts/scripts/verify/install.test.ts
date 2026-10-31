@@ -2,7 +2,7 @@ import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import { encodeJsonText } from "#scripts/text/json";
+import { encodeJsonText } from "#contracts/text/json";
 import {
   type InstallInspection,
   type InstallVerificationInput,

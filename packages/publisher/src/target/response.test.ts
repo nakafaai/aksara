@@ -4,7 +4,7 @@ import { PublicationStatusRequestSchema } from "@nakafa/aksara-contracts/transpo
 import { Array as Arr, Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import { readPublicationResponse } from "#publisher/target/response";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { transportRelease } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 

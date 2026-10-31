@@ -14,7 +14,7 @@ import {
 import { readCleanAksaraRevision } from "#cli/evidence";
 import { ProductionError } from "#cli/failure";
 import { PUBLICATION_TARGET_TIMEOUT } from "#cli/retry";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import type { AcceptancePublicationCalls } from "#test/acceptance";
 import { unusedExactProcess } from "#test/process";
 import { RENDERER_MANIFEST } from "#test/real";

@@ -24,7 +24,6 @@ import {
 import { syntaxNodesSkippingTypes } from "#scripts/check/syntax";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;
-const LEGACY_ADAPTER = "@nakafa/testing/effect";
 const EFFECT_MODULES = HashSet.fromIterable(
   "effect effect/Effect effect/ManagedRuntime".split(" ")
 );
@@ -94,7 +93,6 @@ function runtimeImports(nodes: readonly Node[]) {
   const contributions = Arr.map(nodes, runtimeContribution);
   return {
     bindings: Arr.flatMap(contributions, ({ bindings }) => bindings),
-    legacy: Arr.some(nodes, (node) => importedModule(node) === LEGACY_ADAPTER),
     runtime: Arr.some(contributions, ({ runtime }) => runtime),
   };
 }
@@ -178,7 +176,7 @@ function hasReservedRunner(
   });
 }
 
-/** Reports authored tests that retain the adapter or reserved runners. */
+/** Reports authored tests that retain reserved runners. */
 export const effectTestViolations = Effect.fn("AksaraPolicy.effectTests")(
   function* (file: string, sourceText: string) {
     if (!TEST_MODULE_PATTERN.test(file)) {
@@ -191,9 +189,6 @@ export const effectTestViolations = Effect.fn("AksaraPolicy.effectTests")(
         const nodes = syntaxNodesSkippingTypes(sourceFile);
         const imports = runtimeImports(nodes);
         return [
-          ...(imports.legacy
-            ? [`${file}: import Effect test APIs directly from @effect/vitest.`]
-            : []),
           ...(imports.runtime &&
           hasReservedRunner(nodes, HashSet.fromIterable(imports.bindings))
             ? [`${file}: use @effect/vitest instead of Effect runtime runners.`]

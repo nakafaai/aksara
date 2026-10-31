@@ -19,7 +19,7 @@ import {
   readAcceptanceRenderer,
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";

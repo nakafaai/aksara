@@ -7,7 +7,7 @@ import {
   Predicate,
   Schema,
 } from "effect";
-import { JsonTextSchema } from "#cli/text/json";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 
 /** A required Aksara or Nakafa checkout failed exact identity validation. */
 export class PreviewCheckoutError extends Schema.TaggedError<

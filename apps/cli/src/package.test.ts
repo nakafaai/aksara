@@ -16,7 +16,7 @@ import {
   REQUIRED_PACKED_FILES,
   readPackageVersion,
 } from "#cli/package";
-import { JsonTextSchema } from "#cli/text/json";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 
 /** An isolated npm smoke command returned a non-zero exit status. */
 class CliTestCommandError extends Schema.TaggedError<

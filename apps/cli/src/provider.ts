@@ -24,7 +24,7 @@ import {
   PREVIEW_MANIFEST_PATH,
   type PreviewHttpState,
 } from "#cli/provider/http";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Loopback provider startup or state encoding failed safely. */
 export class PreviewProviderError extends Schema.TaggedError<
