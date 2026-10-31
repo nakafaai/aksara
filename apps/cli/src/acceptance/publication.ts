@@ -105,7 +105,6 @@ export const publishAcceptance: Effect.Effect<
       privateKeyPem: settings.privateKeyPem,
     }),
     Effect.provideService(PublicationRetention, {
-      kind: "inverse",
       recoveryId: settings.recoveryId,
     }),
     Effect.provideService(PublicationActivation, activation),

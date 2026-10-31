@@ -2,10 +2,10 @@
 
 - Status: Accepted
 - Date: 2026-07-23
-- Amended: 2026-10-25, zero-legacy: the bootstrap switch is one way, and the
-  Nakafa web host replaces Vercel.
-- Amended: 2026-10-26, a manifest generation change crosses by genesis (see
-  Bootstrap over a retired generation).
+- Amended: 2026-10-25, zero-legacy: the Nakafa web host replaces Vercel.
+- Amended: 2026-10-26, a manifest generation change crosses by genesis.
+- Amended: 2026-10-31, the declared bootstrap is deleted: genesis is the one way
+  across a generation.
 
 ## Context
 
@@ -102,8 +102,7 @@ signature or release state.
    Convex transaction.
 3. Recompute and verify every signed candidate count and digest.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
-   operator-selected recovery ID, unless the candidate is a declared bootstrap
-   over a retired generation (see the bootstrap section below).
+   operator-selected recovery ID.
 5. Re-fetch the deployed Nakafa renderer manifest. Require an exact hash for a
    renderer-changing candidate, or prove directional compatibility with the
    retained frozen manifest for a scoped content-only candidate.
@@ -144,47 +143,16 @@ evidence for the exact active and recovery pair. A matching completed receipt
 is authenticated and returned without a second activation. A missing lookup
 continues from current state. A different identity fails closed.
 
-### Bootstrap over a retired generation
+### A generation change crosses by genesis
 
 A content contract generation change can make the active release unreadable by
 the new decoder and renderer. Its artifacts cannot be restored under the new
-generation, so no inverse can protect the switch. The first release of the new
-generation is therefore a declared bootstrap, the only exception to the verified
-inverse rule:
-
-- The operator names the retired active release with `--bootstrap-over <id>` in
-  place of `--recovery-id`. The protected workflow takes the same declaration as
-  `bootstrap_over`, and a bootstrap takes exactly one target.
-- The publisher checks the declaration before any target write. The candidate's
-  base must be that release, and the candidate must replace every head of its
-  base: `resultCount` equals `upsertCount`, so no base head survives. The CLI
-  also requires the candidate to carry the live renderer manifest. An inverse
-  release may keep the base renderer when its scope cannot close the renderer
-  change, but a bootstrap refuses that fallback. The publisher then stages and
-  verifies the candidate, runs the renderer preflight, and activates. It never
-  derives, stages, or verifies an inverse.
-- Nakafa receives no declaration from the publisher. It decides eligibility from
-  its own state and the signed manifest. A candidate is a bootstrap only when its
-  base is the active release, the target records the active generation as
-  retired, the replacement counts hold, the renderer manifest hash differs from
-  the active release's, and no recovery is staged. The candidate stores that
-  decision, and activation skips the recovery requirement only for a stored
-  bootstrap.
-- A bootstrap has no accept or recover step. Accept and recover refuse it, and
-  parity does not run for it because it runs on one target.
-- The switch is one way. The retired generation is never restored: the target
-  cannot return to it by rollback or by a forward release. A later correction is
-  an ordinary forward release under the current generation, with its own
-  verified inverse.
-
-A bootstrap still reads the active release manifest. When the new generation
-cannot decode that manifest at all, as contracts 2.0.0 cannot read a 1.x
-manifest whose snapshot set names `tryout`, nothing can name the active release.
-The target then deletes its stored release state in the same deploy that reads
-the new generation, and the first release of that generation is a genesis: no
-base, every family in scope, and no recovery. The content a target serves is
-empty between that deploy and the genesis activation, which the one-step
-contract change accepts.
+generation, so no inverse can protect the switch, and a stored manifest may not
+decode at all. The target deletes its stored release state in the same deploy
+that reads the new generation, and the first release of that generation is a
+genesis: no base, every family in scope, and no recovery. The content a target
+serves is empty between that deploy and the genesis activation, which the
+one-step contract change accepts. The switch is one way.
 
 ### Failure and cleanup
 
@@ -241,8 +209,7 @@ source repository is public.
 ## Consequences
 
 - Every release and explicit rollback has a verified recovery path before it
-  becomes visible, except a declared bootstrap over a retired generation, which
-  is one way.
+  becomes visible, except a genesis, which is one way.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additional components in existing renderer domains can deploy before
@@ -253,14 +220,12 @@ source repository is public.
 - A deployment that understands a newly published domain remains the rollback
   target until that content has been rolled back or superseded.
 - Lost responses and runner crashes resume from durable state.
-- New candidates wait until retained recovery is accepted or activated. A
-  bootstrap retains no recovery, so it needs no such wait.
+- New candidates wait until retained recovery is accepted or activated.
 - Cleanup remains bounded and cannot become a hidden finalization phase.
 
 ## Rejected
 
-- Activating a candidate before its inverse is verified, except the declared
-  bootstrap over a retired generation.
+- Activating a candidate before its inverse is verified.
 - A mutable `live` copy followed by a long finalization loop.
 - Rewinding a global pointer as rollback.
 - Sharing one release ID between candidate and recovery.

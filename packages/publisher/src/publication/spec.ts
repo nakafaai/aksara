@@ -127,21 +127,6 @@ export class PublicationRecoveryIdentityError extends Schema.TaggedError<
   releaseId: ReleaseIdSchema,
 }) {}
 
-/**
- * A declared bootstrap does not name the candidate's base, does not replace every
- * head of that base, or leaves a try-out snapshot of that base in place, so it
- * cannot skip the retained inverse.
- */
-export class PublicationBootstrapError extends Schema.TaggedError<
-  PublicationBootstrapError,
-  { readonly brand: unique symbol }
->()("PublicationBootstrapError", {
-  baseReleaseId: ReleaseIdSchema,
-  manifestBaseReleaseId: Schema.NullOr(ReleaseIdSchema),
-  reason: Schema.Literals(["base", "replacement"]),
-  releaseId: ReleaseIdSchema,
-}) {}
-
 /** Activation steps that can fail closed: renderer preflight and cache convergence. */
 export const PublicationActivationPhaseSchema = Schema.Literals([
   "cache",
@@ -166,20 +151,10 @@ export class PublicationSigningKey extends Context.Service<
   }
 >()("@nakafa/aksara-publisher/publication/spec/PublicationSigningKey") {}
 
-/**
- * The one release that protects a candidate until activation: either a signed
- * inverse, or a declared bootstrap over a retired base, which keeps no inverse.
- */
-export const PublicationRetentionSchema = Schema.Union([
-  Schema.Struct({
-    kind: Schema.Literal("inverse"),
-    recoveryId: ReleaseIdSchema,
-  }),
-  Schema.Struct({
-    baseReleaseId: ReleaseIdSchema,
-    kind: Schema.Literal("bootstrap"),
-  }),
-]);
+/** The signed inverse that protects a candidate until activation. */
+export const PublicationRetentionSchema = Schema.Struct({
+  recoveryId: ReleaseIdSchema,
+});
 
 /** One validated retention decision for a single publication. */
 export type PublicationRetentionDecision =

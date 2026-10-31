@@ -44,7 +44,7 @@ describe("production preparation", () => {
       const receipt = yield* productionProgram({
         command: "release",
         releaseId: releaseId("release-next"),
-        retention: { kind: "inverse", recoveryId: releaseId("recovery-next") },
+        retention: { recoveryId: releaseId("recovery-next") },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-next" });
@@ -87,7 +87,6 @@ describe("production preparation", () => {
           rebuild: true,
           releaseId: releaseId("release-rebuild"),
           retention: {
-            kind: "inverse",
             recoveryId: releaseId("recovery-rebuild"),
           },
           scope: FUNCTION_SCOPE,
@@ -107,7 +106,7 @@ describe("production preparation", () => {
       const receipt = yield* productionProgram({
         command: "release",
         releaseId: releaseId("release-first"),
-        retention: { kind: "inverse", recoveryId: releaseId("recovery-first") },
+        retention: { recoveryId: releaseId("recovery-first") },
         scope: FUNCTION_SCOPE,
       });
       expect(receipt).toMatchObject({ releaseId: "release-first" });
@@ -131,7 +130,6 @@ describe("production preparation", () => {
         command: "release",
         releaseId: releaseId("release-snapshot"),
         retention: {
-          kind: "inverse",
           recoveryId: releaseId("recovery-snapshot"),
         },
         scope: assessmentScope,
@@ -167,7 +165,6 @@ describe("production preparation", () => {
           command: "release",
           releaseId: releaseId("release-renderer-partial"),
           retention: {
-            kind: "inverse",
             recoveryId: releaseId("recovery-renderer-partial"),
           },
           scope: FUNCTION_SCOPE,
@@ -182,7 +179,6 @@ describe("production preparation", () => {
           command: "release",
           releaseId: releaseId("release-renderer"),
           retention: {
-            kind: "inverse",
             recoveryId: releaseId("recovery-renderer"),
           },
           scope: rendererScope,
@@ -209,7 +205,6 @@ describe("production preparation", () => {
         command: "release",
         releaseId: releaseId("release-candidate"),
         retention: {
-          kind: "inverse",
           recoveryId: releaseId("recovery-candidate"),
         },
         scope: FUNCTION_SCOPE,

@@ -149,7 +149,6 @@ describe("production arguments", () => {
         command: "release",
         releaseId: "release-2026-07-23",
         retention: {
-          kind: "inverse",
           recoveryId: "recovery-2026-07-23",
         },
         scope: {

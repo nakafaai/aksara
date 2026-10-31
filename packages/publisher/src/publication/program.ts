@@ -21,7 +21,6 @@ import type {
 import type {
   PublicationActivation,
   PublicationActivationError,
-  PublicationBootstrapError,
   PublicationModeMismatchError,
   PublicationRecoveryIdentityError,
   PublicationReleaseAbortedError,
@@ -63,7 +62,6 @@ export type PublishContentReleaseError<E> =
   | PublicationBatchLimitError
   | SnapshotBatchBindingError
   | PublicationActivationError
-  | PublicationBootstrapError
   | PublicationReceiptMismatchError
   | PublicationRecoveryIdentityError
   | PublicationModeMismatchError

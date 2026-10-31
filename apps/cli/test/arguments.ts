@@ -31,7 +31,7 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
     return Effect.succeed({
       command: "release",
       releaseId: "release-next",
-      retention: { kind: "inverse", recoveryId: "recovery-next" },
+      retention: { recoveryId: "recovery-next" },
     });
   }
   if (args[0] === "recover") {
