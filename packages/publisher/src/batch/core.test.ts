@@ -22,7 +22,7 @@ function serializeBatch(batch: ReturnType<typeof buildBatch>) {
 
 /** Measures one body as the target's Node action receives it, as one JSON string argument. */
 function transportBytes(text: string) {
-  return new TextEncoder().encode(JSON.stringify(text)).byteLength;
+  return new TextEncoder().encode(encodeJsonText(text)).byteLength;
 }
 
 describe("streamBatches", () => {
