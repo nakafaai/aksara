@@ -45,9 +45,13 @@ export class PublicationBatchLimitError extends Schema.TaggedError<
   ),
 }) {}
 
-/** Measures one canonical string using its transmitted UTF-8 representation. */
+/**
+ * Measures one canonical body as the target's Node action receives it: Nakafa hands the
+ * body to that action as one JSON string argument, so every quote and backslash in the
+ * body is escaped once more before the 5 MiB argument cap applies.
+ */
 function utf8Bytes(value: string) {
-  return new TextEncoder().encode(value).byteLength;
+  return new TextEncoder().encode(JSON.stringify(value)).byteLength;
 }
 
 /** Verifies one formed batch against complete envelope count and bytes. */
