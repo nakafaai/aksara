@@ -73,7 +73,7 @@ See:
 
 ## Requirements
 
-- Node 24
+- Node 26
 - Bun 1.4.4
 
 The exact supported runtime and package-manager versions live in
@@ -86,7 +86,7 @@ bun install --frozen-lockfile
 
 Bun does not enforce the `engines` or `devEngines` fields, so a local install
 on another Node.js major succeeds without an error. CI selects Node.js from
-`package.json` through `actions/setup-node`; a local checkout must run Node 24
+`package.json` through `actions/setup-node`; a local checkout must run Node 26
 itself.
 
 ## Development

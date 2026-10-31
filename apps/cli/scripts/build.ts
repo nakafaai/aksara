@@ -95,7 +95,7 @@ const readManifest = Effect.fn("AksaraCliBuild.readManifest")(function* () {
   );
 });
 
-/** Produces one checkout-bound Node 24 launcher for npm consumers. */
+/** Produces one checkout-bound Node launcher for npm consumers. */
 const buildCli = Effect.fn("AksaraCliBuild.build")(function* () {
   const fileSystem = yield* FileSystem.FileSystem;
   const manifest = yield* readManifest();

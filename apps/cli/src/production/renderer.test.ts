@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Effect,
@@ -15,7 +16,6 @@ import {
   fetchProductionRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import { stateBundle } from "#test/state";

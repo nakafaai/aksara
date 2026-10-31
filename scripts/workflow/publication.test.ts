@@ -10,8 +10,6 @@ import {
 
 /** Writes one workflow expression as the text that the workflow file holds. */
 const expression = (body: string) => `\${{ ${body} }}`;
-/** Writes one dispatched workflow input as the expression text that the workflow reads. */
-const inputExpression = (input: string) => expression(`inputs.${input}`);
 
 const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
   readonly [string, string, string]

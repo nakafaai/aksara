@@ -4,12 +4,12 @@ import {
   MAX_STAGE_GROUP_BYTES,
   MAX_STAGE_GROUP_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeStageGroup,
   makeStageGroups,
 } from "#publisher/stage/group";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { transportRequests } from "#test/transport/spec";
 
 describe("makeStageGroups", () => {

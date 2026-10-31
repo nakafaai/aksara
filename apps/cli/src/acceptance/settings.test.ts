@@ -5,6 +5,7 @@ import {
   ed25519PublicKeyPem,
   generateEd25519KeyPem,
 } from "@nakafa/aksara-contracts/signature/key";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   ConfigProvider,
@@ -19,7 +20,6 @@ import {
   readAcceptanceRenderer,
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";

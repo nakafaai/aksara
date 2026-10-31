@@ -9,9 +9,9 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import type { StageSnapshotBatchInput } from "@nakafa/aksara-contracts/transport/snapshot";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** One structured row is not owned by its declared snapshot envelope. */
 export class SnapshotBatchBindingError extends Schema.TaggedError<

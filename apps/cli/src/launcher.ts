@@ -112,7 +112,7 @@ const launcherMessage = (error: CliLaunchError) => {
   if (error.reason === "missing") {
     return `Aksara CLI source is missing at ${error.path}. Reinstall or restore the checkout.`;
   }
-  return `Aksara CLI could not start from ${error.path}. Verify the checkout and Node 24 installation.`;
+  return `Aksara CLI could not start from ${error.path}. Verify the checkout and its Node installation.`;
 };
 
 /** Prints one typed outer-boundary failure without exposing its cause. */

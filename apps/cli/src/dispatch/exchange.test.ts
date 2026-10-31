@@ -1,8 +1,8 @@
 import { assert, describe, expect, it } from "@effect/vitest";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Redacted } from "effect";
 import { HttpClientError } from "effect/http";
 import { dispatchNakafaDeploy } from "#cli/dispatch/exchange";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const TOKEN = Redacted.make("dispatch-token");

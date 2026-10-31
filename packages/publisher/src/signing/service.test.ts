@@ -9,9 +9,9 @@ import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_SIGNED_ARTIFACT_BYTES } from "@nakafa/aksara-contracts/limits";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   changeOneByte,
   generateRsaPrivateKeyPem,

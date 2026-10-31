@@ -1,5 +1,6 @@
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Match, MutableList, Redacted, Schema } from "effect";
 import {
   HttpClient,
@@ -9,7 +10,6 @@ import {
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { HttpPublicationTargetConfig } from "#publisher/target/config";
 import { makeHttpPublicationTarget } from "#publisher/target/http";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import type { transportRequests } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 

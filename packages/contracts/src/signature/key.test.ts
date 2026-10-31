@@ -64,7 +64,12 @@ function verifiesWithPublicKeyPem(
   return importEd25519PublicKeyPem(publicKeyPem).pipe(
     Effect.flatMap((publicKey) =>
       Effect.promise(() =>
-        crypto.subtle.verify("Ed25519", publicKey, signature, message)
+        crypto.subtle.verify(
+          "Ed25519",
+          publicKey,
+          new Uint8Array(signature),
+          new Uint8Array(message)
+        )
       )
     )
   );

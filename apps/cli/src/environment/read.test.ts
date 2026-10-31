@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import {
   ConfigProvider,
   Effect,
@@ -15,7 +16,6 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
-import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import {
   makeEnvironmentFixture,
   provideConfig,

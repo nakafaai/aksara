@@ -18,12 +18,12 @@ import {
   MAX_SNAPSHOT_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 import {
   canonicalizeSnapshotBatch,
   makeSnapshotBatches,
 } from "#publisher/snapshot/batch";
-import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import { materialGraph } from "#test/graph";
 import { assessmentFamilyRecord } from "#test/snapshot";
 

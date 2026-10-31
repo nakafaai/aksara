@@ -4,12 +4,12 @@ import {
   PREVIEW_RENDERER_AUTH_FORMAT,
   PreviewRendererNonceSchema,
 } from "@nakafa/aksara-contracts/preview/auth";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Redacted } from "effect";
 import { HttpClient } from "effect/http";
 import { makePreviewCredentials } from "#cli/credentials";
 import { NakafaApp, NakafaAppLive } from "#cli/nakafa";
 import type { PreviewProvider } from "#cli/provider";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 

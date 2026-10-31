@@ -1,10 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
 import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import { PublicationStatusRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect } from "effect";
 import { HttpClientRequest, HttpClientResponse } from "effect/http";
 import { readPublicationResponse } from "#publisher/target/response";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { transportRelease } from "#test/transport/spec";
 import { transportSuccess } from "#test/transport/success";
 

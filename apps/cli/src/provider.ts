@@ -16,6 +16,7 @@ import {
   LocalPreviewManifestSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, HashMap, Redacted, Schema } from "effect";
 import { isInetAddress } from "effect/net/NetAddress";
 import {
@@ -24,7 +25,6 @@ import {
   PREVIEW_MANIFEST_PATH,
   type PreviewHttpState,
 } from "#cli/provider/http";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Loopback provider startup or state encoding failed safely. */
 export class PreviewProviderError extends Schema.TaggedError<

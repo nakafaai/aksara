@@ -8,9 +8,9 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, type Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Serializes one projection batch in deterministic wire field order. */
 export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {

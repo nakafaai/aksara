@@ -22,9 +22,9 @@ import {
   MAX_ROUTE_BATCH_BYTES,
   MAX_ROUTE_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, type Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Serializes one complete release-item batch in deterministic wire order. */
 export function canonicalizeReleaseItemBatch(batch: StageItemBatchInput) {

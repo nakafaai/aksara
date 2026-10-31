@@ -129,7 +129,7 @@ export const importEd25519PublicKeyPem = Effect.fn(
   return yield* Effect.promise(() =>
     globalThis.crypto.subtle.importKey(
       "spki",
-      der,
+      new Uint8Array(der),
       { name: "Ed25519" },
       false,
       ["verify"]
@@ -147,7 +147,7 @@ export const verifyWithPublicKeyPem = Effect.fn(
     globalThis.crypto.subtle.verify(
       "Ed25519",
       publicKey,
-      signatureBytes,
+      new Uint8Array(signatureBytes),
       new TextEncoder().encode(input)
     )
   );

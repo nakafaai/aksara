@@ -4,6 +4,7 @@ import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PUBLICATION_REQUEST_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   Array as Arr,
   Effect,
@@ -14,7 +15,6 @@ import {
 } from "effect";
 import { HttpClient, HttpClientError, HttpClientResponse } from "effect/http";
 import { TestClock } from "effect/testing";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   capturedClient,
   endpoint,

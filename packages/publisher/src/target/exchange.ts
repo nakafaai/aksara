@@ -13,7 +13,7 @@ import {
   PublicationRequestSchema,
 } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
-
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
@@ -32,7 +32,6 @@ import {
   transientPublicationError,
 } from "#publisher/target/protocol";
 import { readPublicationResponse } from "#publisher/target/response";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 const REQUEST_BYTE_LIMITS: Readonly<{
   [Operation in

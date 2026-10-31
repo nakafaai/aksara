@@ -16,9 +16,9 @@ import {
   canonicalizePublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
-import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /**
  * Durable publication state does not permit the requested production command.
