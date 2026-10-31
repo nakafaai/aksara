@@ -174,7 +174,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
           mutateJob(
             source,
             "verify",
-            "          node-version: 24.22.0",
+            "          node-version: 26.13.0",
             "          node-version: 22.0.0"
           ),
           "npm verification must use the repository Node runtime",

@@ -36,7 +36,7 @@ function currentVersion(hold: DependencyHold, manifest: RootManifest) {
   return manifest.packageManager;
 }
 
-/** Returns the release line that a hold's registry spec names: `24` for `node@24`, none for `@latest`. */
+/** Returns the release line that a hold's registry spec names: `26` for `node@26`, none for `@latest`. */
 function holdLine(hold: DependencyHold): string | undefined {
   const spec = hold.registry.slice(hold.dependency.length + 1);
   return spec === "latest" ? undefined : spec;

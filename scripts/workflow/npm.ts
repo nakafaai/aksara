@@ -239,7 +239,7 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
         Arr.findFirst(job.steps, ({ uses }) => uses === SETUP_NODE_ACTION)
       );
       yield* ensure(
-        setup?.with?.["node-version"] === "24.22.0",
+        setup?.with?.["node-version"] === "26.13.0",
         `npm ${owner} must use the repository Node runtime`
       );
       yield* ensure(
