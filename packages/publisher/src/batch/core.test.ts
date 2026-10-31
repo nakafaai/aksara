@@ -20,6 +20,11 @@ function serializeBatch(batch: ReturnType<typeof buildBatch>) {
   return encodeJsonText(batch);
 }
 
+/** Measures one body as the target's Node action receives it, as one JSON string argument. */
+function transportBytes(text: string) {
+  return new TextEncoder().encode(JSON.stringify(text)).byteLength;
+}
+
 describe("streamBatches", () => {
   it.effect("preserves an empty stream without inventing an envelope", () =>
     Effect.gen(function* () {
@@ -46,11 +51,11 @@ describe("streamBatches", () => {
       const values = Array.from({ length: 10 }, (_, index) =>
         index.toString().padStart(2, "0")
       );
-      const maxBytes = new TextEncoder().encode(
+      const maxBytes = transportBytes(
         serializeBatch(
           buildBatch(Arr.take(values, 3), Number.MAX_SAFE_INTEGER, releaseId)
         )
-      ).byteLength;
+      );
       const batches = yield* streamBatches({
         build: buildBatch,
         count: (batch) => batch.values.length,
@@ -77,9 +82,7 @@ describe("streamBatches", () => {
       expect(
         Arr.every(
           batches,
-          (batch) =>
-            new TextEncoder().encode(serializeBatch(batch)).byteLength <=
-            maxBytes
+          (batch) => transportBytes(serializeBatch(batch)) <= maxBytes
         )
       ).toBe(true);
     })
@@ -92,11 +95,11 @@ describe("streamBatches", () => {
         const values = Array.from({ length: 64 }, (_, index) =>
           `${index}`.padEnd(32, "x")
         );
-        const maxBytes = new TextEncoder().encode(
+        const maxBytes = transportBytes(
           serializeBatch(
             buildBatch(Arr.take(values, 1), Number.MAX_SAFE_INTEGER, releaseId)
           )
-        ).byteLength;
+        );
         const consumption = yield* Ref.make(0);
         const batches = yield* streamBatches({
           build: buildBatch,
@@ -167,7 +170,7 @@ describe("streamBatches", () => {
           buildBatch([...values, ...values], batchIndex, batchReleaseId),
         count: (batch) => batch.values.length,
         kind: "release-item",
-        maxBytes: 100,
+        maxBytes: 200,
         maxCount: 1,
         releaseId,
         serialize: serializeBatch,
@@ -176,5 +179,30 @@ describe("streamBatches", () => {
 
       expect(error).toMatchObject({ actualCount: 2, expectedCount: 1 });
     })
+  );
+
+  it.effect(
+    "measures a body by its escaped size, as the target's Node action receives it",
+    () =>
+      Effect.gen(function* () {
+        const quoted = '"'.repeat(40);
+        const escaped = transportBytes(
+          serializeBatch(
+            buildBatch([quoted], Number.MAX_SAFE_INTEGER, releaseId)
+          )
+        );
+        const error = yield* streamBatches({
+          build: buildBatch,
+          count: (batch) => batch.values.length,
+          kind: "release-item",
+          maxBytes: escaped - 1,
+          maxCount: 1,
+          releaseId,
+          serialize: serializeBatch,
+          values: Stream.make(quoted),
+        }).pipe(Stream.runCollect, Effect.flip);
+
+        expect(error).toMatchObject({ actualBytes: escaped, itemOffset: 0 });
+      })
   );
 });
