@@ -41,7 +41,7 @@ export function addRenderedSemicolonsInRange(
         continue;
       }
     }
-    const offset = range.rendered
+    const offset: number | undefined = range.rendered
       ? range.rendered.offsets[match.index]
       : start + match.index;
     assert.ok(offset !== undefined);

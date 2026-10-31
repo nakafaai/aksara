@@ -6,7 +6,7 @@ import { ensure, WorkflowError } from "#scripts/workflow/requirement";
 const CONTRACT_WORKFLOW = {
   packageArtifact: "contract-package",
   publishSha256:
-    "e5f6c6aa24cbf52c0c0dc318110d0cf95dfa3e031a63694d453903f6769aebb9",
+    "d3613d4e9d1feb8594e86f96ea521ce945cff02b9a5bf20fdd52958102609f30",
   repository: "nakafaai/aksara",
   verifierArtifact: "contract-verifier",
   workflowPath: ".github/workflows/contracts.yml",
