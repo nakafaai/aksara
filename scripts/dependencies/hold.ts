@@ -7,9 +7,9 @@ import {
   DependencyHoldSchema,
   declaredVersion,
 } from "#scripts/dependencies/policy";
-import { admittedLatest, isNewerRelease } from "#scripts/dependencies/release";
+import { isNewerRelease, latestStable } from "#scripts/dependencies/release";
 
-/** A reviewed hold with the version the manifest declares and the newest admitted upstream release. */
+/** A reviewed hold with the version the manifest declares and the newest stable upstream release. */
 const HoldReviewSchema = Schema.Struct({
   ...DependencyHoldSchema.fields,
   current: Schema.String,
@@ -42,14 +42,14 @@ function holdLine(hold: DependencyHold): string | undefined {
   return spec === "latest" ? undefined : spec;
 }
 
-/** Reads the declared version and the newest admitted upstream release of one reviewed hold. */
+/** Reads the declared version and the newest stable upstream release of one reviewed hold. */
 export const reviewHold = Effect.fn("DependencyPolicy.reviewHold")(function* (
   hold: DependencyHold,
   manifest: RootManifest,
   root: string,
   runner: BunRunner
 ) {
-  const latest = yield* admittedLatest(
+  const latest = yield* latestStable(
     hold.dependency,
     holdLine(hold),
     root,
@@ -64,8 +64,7 @@ export const reviewHold = Effect.fn("DependencyPolicy.reviewHold")(function* (
 
 /**
  * Lists every way one reviewed hold differs from its approval and its reviewed
- * upstream. A reviewed release that the gate has not admitted yet is current;
- * an admitted release newer than the review must be reviewed.
+ * upstream: a stable release newer than the review must be reviewed.
  */
 export function holdProblems(review: HoldReview): readonly string[] {
   return [

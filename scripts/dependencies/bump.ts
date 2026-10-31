@@ -16,7 +16,7 @@ import {
   DEPENDENCY_HOLDS,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
-import { admittedLatest } from "#scripts/dependencies/release";
+import { latestStable } from "#scripts/dependencies/release";
 import { runEntry } from "#scripts/entry";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
@@ -102,7 +102,7 @@ function routineDependencies(
   return [...catalog, ...direct, ...overridden];
 }
 
-/** Keeps the routine declarations whose newest admitted release differs from the manifest. */
+/** Keeps the routine declarations whose newest stable release differs from the manifest. */
 const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
   function* (
     dependencies: readonly RoutineDependency[],
@@ -113,7 +113,7 @@ const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
       dependencies,
       (dependency) =>
         Effect.gen(function* () {
-          const latest = yield* admittedLatest(
+          const latest = yield* latestStable(
             dependency.packageName,
             undefined,
             root,

@@ -19,43 +19,31 @@ export function output(exitCode = 0, stdout = "", stderr = ""): CommandOutput {
   return { exitCode, stderr, stdout };
 }
 
-/** A release published long before any test runs, so the one-day release-age gate admits it. */
-export const PAST_RELEASE = "2020-01-01T00:00:00.000Z";
+/** The reviewed upstream release of every hold, keyed by package name. */
+export const reviewedHoldReleases: Readonly<Record<string, readonly string[]>> =
+  Rec.fromEntries(
+    Arr.map(
+      DEPENDENCY_HOLDS,
+      (hold) => [hold.dependency, [hold.reviewedLatest]] as const
+    )
+  );
 
-/** A release published in the future, so the one-day release-age gate never admits it. */
-export const GATED_RELEASE = "2099-01-01T00:00:00.000Z";
-
-/** The publish times of the reviewed upstream release of every hold, keyed by package name. */
-export const reviewedHoldReleases: Readonly<
-  Record<string, Readonly<Record<string, string>>>
-> = Rec.fromEntries(
-  Arr.map(
-    DEPENDENCY_HOLDS,
-    (hold) =>
-      [hold.dependency, { [hold.reviewedLatest]: PAST_RELEASE }] as const
-  )
-);
-
-/** The publish times that Bun reports for every routine declaration in the approved manifest. */
-export const reviewedReleases: Readonly<
-  Record<string, Readonly<Record<string, string>>>
-> = {
-  esbuild: { "0.28.2": PAST_RELEASE },
-  "source-map-js": { "1.2.2": PAST_RELEASE },
-  yaml: { "2.9.1": PAST_RELEASE },
+/** The releases that Bun lists for every routine declaration in the approved manifest. */
+export const reviewedReleases: Readonly<Record<string, readonly string[]>> = {
+  esbuild: ["0.28.2"],
+  "source-map-js": ["1.2.2"],
+  yaml: ["2.9.1"],
 };
 
-/** Creates the output of `bun info <name> time --json` for one table of release times. */
-export function releaseTimes(
-  times: Readonly<Record<string, string>>
-): CommandOutput {
-  return output(0, Schema.encodeSync(JsonText)(times));
+/** Creates the output of `bun info <name> versions --json` for one list of releases. */
+export function releaseVersions(versions: readonly string[]): CommandOutput {
+  return output(0, Schema.encodeSync(JsonText)(versions));
 }
 
-/** The Bun answer for every reviewed hold and every routine package: its release times, keyed by package name. */
+/** The Bun answer for every reviewed hold and every routine package: its releases, keyed by package name. */
 const REVIEWED_ANSWERS: Readonly<Record<string, CommandOutput>> = {
-  ...Rec.map(reviewedHoldReleases, releaseTimes),
-  ...Rec.map(reviewedReleases, releaseTimes),
+  ...Rec.map(reviewedHoldReleases, releaseVersions),
+  ...Rec.map(reviewedReleases, releaseVersions),
 };
 
 /** Builds deterministic Bun output for one policy test, answering each package name. */

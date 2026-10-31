@@ -8,10 +8,8 @@ import {
   approved,
   approvedManifest,
   createConfig,
-  GATED_RELEASE,
   makeRunner,
-  PAST_RELEASE,
-  releaseTimes,
+  releaseVersions,
 } from "#scripts/dependencies/fixture";
 
 layer(NodeServices.layer, { excludeTestServices: true })(
@@ -62,10 +60,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const error = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseTimes({
-                "4.1.0": PAST_RELEASE,
-                "4.1.1": PAST_RELEASE,
-              }),
+              effect: releaseVersions(["4.1.0", "4.1.1"]),
             })
           ).pipe(Effect.flip);
 
@@ -79,17 +74,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
     );
 
     it.effect(
-      "keeps a reviewed hold while its newer upstream is inside the release-age gate",
+      "keeps a reviewed hold while its only newer upstream is a prerelease",
       () =>
         Effect.gen(function* () {
           const config = yield* createConfig();
           const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseTimes({
-                "4.1.0": PAST_RELEASE,
-                "4.1.1": GATED_RELEASE,
-              }),
+              effect: releaseVersions(["4.1.0", "4.2.0-beta.1"]),
             })
           );
           const effectReport = Option.getOrUndefined(
@@ -100,46 +92,19 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         })
     );
 
-    it.effect(
-      "keeps a reviewed hold that was reviewed before its release passed the gate",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig();
-          const reports = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner({
-              effect: releaseTimes({
-                "4.0.7": PAST_RELEASE,
-                "4.1.0": GATED_RELEASE,
-              }),
-            })
-          );
-          const effectReport = Option.getOrUndefined(
-            Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
-          );
+    it.effect("fails when a reviewed hold has no stable release", () =>
+      Effect.gen(function* () {
+        const config = yield* createConfig();
+        const error = yield* makeBumpDependenciesProgram(
+          config,
+          makeRunner({
+            effect: releaseVersions(["4.2.0-rc.1"]),
+          })
+        ).pipe(Effect.flip);
 
-          assert.strictEqual(effectReport?.latest, "4.0.7");
-        })
-    );
-
-    it.effect(
-      "fails when every stable release of a reviewed hold is inside the release-age gate",
-      () =>
-        Effect.gen(function* () {
-          const config = yield* createConfig();
-          const error = yield* makeBumpDependenciesProgram(
-            config,
-            makeRunner({
-              effect: releaseTimes({ "4.0.6": GATED_RELEASE }),
-            })
-          ).pipe(Effect.flip);
-
-          assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.strictEqual(
-            error.message,
-            "effect has no stable release older than the one-day release-age gate."
-          );
-        })
+        assert.strictEqual(error._tag, "DependencyPolicyError");
+        assert.strictEqual(error.message, "effect has no stable release.");
+      })
     );
 
     it.effect(
