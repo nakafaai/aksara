@@ -1,7 +1,7 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Effect, Array as EffectArray, Option, Schema, Stream } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Publication batch kinds, each with its own count and byte ceilings. */
 const PublicationBatchKindSchema = Schema.Literals([

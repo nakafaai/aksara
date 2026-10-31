@@ -11,7 +11,7 @@ import {
 import { mapProductionError } from "#cli/failure";
 import type { ParityArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Paired targets cannot be accepted while their current content differs. */
 export class PublicationParityError extends Schema.TaggedError<

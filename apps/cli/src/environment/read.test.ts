@@ -15,7 +15,7 @@ import {
   readPublicationEnvironment,
   readRecoveryEnvironment,
 } from "#cli/environment/read";
-import { JsonTextSchema } from "#cli/text/json";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import {
   makeEnvironmentFixture,
   provideConfig,

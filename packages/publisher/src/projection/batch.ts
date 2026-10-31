@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import { Array as Arr, type Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Serializes one projection batch in deterministic wire field order. */
 export function canonicalizeProjectionBatch(batch: StageProjectionBatchInput) {

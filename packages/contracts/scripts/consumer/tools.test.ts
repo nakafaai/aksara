@@ -2,6 +2,7 @@ import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Record as Rec, Schema } from "effect";
+import { encodeJsonText, JsonTextSchema } from "#contracts/text/json";
 import { readConsumerCommand } from "#scripts/consumer/command";
 import {
   createConsumerManifest,
@@ -10,7 +11,6 @@ import {
   createInstallRunner,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
-import { encodeJsonText, JsonTextSchema } from "#scripts/text/json";
 import type { InstallInspection } from "#scripts/verify/install";
 
 const packageName = "@nakafa/test-package";

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
+import { encodeJsonText, JsonTextSchema } from "#contracts/text/json";
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
@@ -9,7 +10,6 @@ import {
   parsePackageManifest,
   textField,
 } from "#scripts/manifest";
-import { encodeJsonText, JsonTextSchema } from "#scripts/text/json";
 
 const packageManifest = {
   dependencies: { runtime: "1.0.0" },

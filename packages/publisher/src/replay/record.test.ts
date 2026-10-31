@@ -10,7 +10,7 @@ import {
   MAX_REPLAY_TOTAL_BYTES,
   validateReplaySpoolUsage,
 } from "#publisher/replay/record";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 const ReplayEntrySchema = Schema.Struct({
   sequence: Schema.Finite,

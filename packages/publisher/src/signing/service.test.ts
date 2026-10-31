@@ -11,7 +11,7 @@ import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts
 import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Effect } from "effect";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   changeOneByte,
   generateRsaPrivateKeyPem,

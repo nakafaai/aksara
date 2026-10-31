@@ -19,7 +19,7 @@ import {
 import { HttpClient } from "effect/http";
 import { runParityCommand, verifyPublicationParity } from "#cli/parity";
 import type { ParityArguments } from "#cli/production/arguments";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { parityConfig } from "#test/parity";
 import {

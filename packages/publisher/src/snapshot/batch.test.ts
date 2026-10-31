@@ -23,7 +23,7 @@ import {
   canonicalizeSnapshotBatch,
   makeSnapshotBatches,
 } from "#publisher/snapshot/batch";
-import { JsonTextSchema } from "#publisher/text/json";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 import { materialGraph } from "#test/graph";
 import { assessmentFamilyRecord } from "#test/snapshot";
 

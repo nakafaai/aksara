@@ -4,7 +4,7 @@ import { ConfigProvider, Effect, MutableHashMap, Record as Rec } from "effect";
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runAbortCommand } from "#cli/abort";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 
 const releaseId = ReleaseIdSchema.make("release-abort");

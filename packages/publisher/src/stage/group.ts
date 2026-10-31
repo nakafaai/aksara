@@ -10,7 +10,7 @@ import {
 } from "@nakafa/aksara-contracts/transport/limits";
 import type { Stream } from "effect";
 import { streamBatches } from "#publisher/batch/core";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Serializes the exact grouped request body used by the HTTP target. */
 export function canonicalizeStageGroup(group: StageGroupInput) {

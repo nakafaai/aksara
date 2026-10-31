@@ -13,7 +13,7 @@ import { HttpClient } from "effect/http";
 import { TestClock } from "effect/testing";
 import type { RendererCredentials } from "#cli/credentials";
 import { fetchRendererManifest, waitForRenderer } from "#cli/renderer/manifest";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 

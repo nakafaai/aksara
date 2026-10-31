@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect } from "effect";
 import { RecoveryBaseMismatchError } from "#cli/recovery";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 /** Selects the authenticated base catalog represented by one source bundle. */
 export function selectSourceBase(bundle: null): null;

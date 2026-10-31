@@ -13,7 +13,7 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
 import { Array as Arr, Effect, Redacted, Schema, Stream } from "effect";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import {
   completedBundle,
   gitBundle,

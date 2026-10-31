@@ -12,7 +12,7 @@ import {
 import type { HttpClientRequest } from "effect/http";
 import { HttpClient } from "effect/http";
 import { runStatusCommand } from "#cli/status";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { stateBundle, stateCurrent, stateRecovery } from "#test/state";
 

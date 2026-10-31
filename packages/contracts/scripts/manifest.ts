@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { Array as Arr, Record as Rec, Schema } from "effect";
 import { isObject } from "effect/Predicate";
-import { encodePrettyJsonText, JsonTextSchema } from "#scripts/text/json";
+import { JsonTextSchema } from "#contracts/text/json";
+import { encodePrettyJsonText } from "#scripts/text/json";
 
 const DEPENDENCY_SECTIONS = [
   "dependencies",

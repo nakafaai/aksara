@@ -32,7 +32,7 @@ import {
   transientPublicationError,
 } from "#publisher/target/protocol";
 import { readPublicationResponse } from "#publisher/target/response";
-import { encodeJsonText } from "#publisher/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 const REQUEST_BYTE_LIMITS: Readonly<{
   [Operation in

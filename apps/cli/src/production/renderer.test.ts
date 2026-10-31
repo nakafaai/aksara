@@ -17,7 +17,7 @@ import {
   fetchProductionRenderer,
   selectRendererManifest,
 } from "#cli/production/renderer";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
 import { stateBundle } from "#test/state";

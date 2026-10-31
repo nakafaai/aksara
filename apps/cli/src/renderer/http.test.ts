@@ -10,7 +10,7 @@ import {
   HttpClientRequest,
 } from "effect/http";
 import { fetchRendererBody, fetchRendererEndpoint } from "#cli/renderer/http";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, webResponse } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
 

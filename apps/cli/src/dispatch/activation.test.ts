@@ -16,7 +16,7 @@ import {
   makeAbsentReleaseDispatch,
   makeProductionReleaseDispatch,
 } from "#cli/dispatch/activation";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { STAGED_RELEASE_BUNDLE } from "#test/target";
 

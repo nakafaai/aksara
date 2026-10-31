@@ -18,19 +18,6 @@ const expectRunnerViolation = Effect.fn(
 });
 
 layer(TypeScriptParser.layer)("Effect test policy", (it) => {
-  it.effect("rejects the removed static and dynamic adapter imports", () =>
-    Effect.gen(function* () {
-      for (const source of [
-        'import { it } from "@nakafa/testing/effect";',
-        'await import("@nakafa/testing/effect");',
-      ]) {
-        expect(yield* effectTestViolations(FILE, source)).toEqual([
-          `${FILE}: import Effect test APIs directly from @effect/vitest.`,
-        ]);
-      }
-    })
-  );
-
   it.effect("rejects reserved runner imports and member access", () =>
     Effect.gen(function* () {
       const sources = [

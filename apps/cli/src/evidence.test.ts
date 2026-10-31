@@ -13,7 +13,7 @@ import {
   readRepositoryEvidence,
   validateStableAksaraRevision,
 } from "#cli/evidence";
-import { encodeJsonText } from "#cli/text/json";
+import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 
 const COMMIT_SHA = "a".repeat(40);
 

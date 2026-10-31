@@ -7,7 +7,7 @@ import {
   type HttpClientResponse,
   HttpClientResponse as Response,
 } from "effect/http";
-import { JsonTextSchema } from "#cli/text/json";
+import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
 
 /** Builds one official Effect HTTP response around an explicit web body. */
 export function webResponse(
