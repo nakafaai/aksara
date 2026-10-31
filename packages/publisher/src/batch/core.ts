@@ -1,6 +1,7 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Effect, Array as EffectArray, Option, Schema, Stream } from "effect";
 import type { NonEmptyReadonlyArray } from "effect/Array";
+import { encodeJsonText } from "#publisher/text/json";
 
 /** Publication batch kinds, each with its own count and byte ceilings. */
 const PublicationBatchKindSchema = Schema.Literals([
@@ -51,7 +52,7 @@ export class PublicationBatchLimitError extends Schema.TaggedError<
  * body is escaped once more before the 5 MiB argument cap applies.
  */
 function utf8Bytes(value: string) {
-  return new TextEncoder().encode(JSON.stringify(value)).byteLength;
+  return new TextEncoder().encode(encodeJsonText(value)).byteLength;
 }
 
 /** Verifies one formed batch against complete envelope count and bytes. */
