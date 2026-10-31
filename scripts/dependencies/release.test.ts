@@ -1,27 +1,21 @@
 import { describe, expect, it } from "@effect/vitest";
-import { DateTime, Effect, Option } from "effect";
+import { Effect, Option } from "effect";
 
-import { output, releaseTimes } from "#scripts/dependencies/fixture";
+import { output, releaseVersions } from "#scripts/dependencies/fixture";
 import {
-  decodeReleaseTimes,
-  newestAdmittedRelease,
-  RELEASE_AGE_MILLIS,
+  decodeReleaseVersions,
+  newestStableRelease,
 } from "#scripts/dependencies/release";
 
-/** The instant that every release in these tests is judged against: 1 January 2050, midnight UTC. */
-const NOW = 2_524_608_000_000;
-const OLD = "2049-01-01T00:00:00.000Z";
-const INSIDE_GATE = "2049-12-31T12:00:00.000Z";
-
-/** Decodes one release-time table exactly as `bun info <name> time --json` prints it. */
-function timesOf(entries: Readonly<Record<string, string>>) {
-  return decodeReleaseTimes(releaseTimes(entries), "example");
+/** Decodes one release list exactly as `bun info <name> versions --json` prints it. */
+function versionsOf(versions: readonly string[]) {
+  return decodeReleaseVersions(releaseVersions(versions), "example");
 }
 
-describe("release age gate", () => {
+describe("newest stable release", () => {
   it.effect("types a failed bun info command with its standard error", () =>
     Effect.gen(function* () {
-      const error = yield* decodeReleaseTimes(
+      const error = yield* decodeReleaseVersions(
         output(1, "", "registry unavailable\n"),
         "esbuild"
       ).pipe(Effect.flip);
@@ -33,7 +27,7 @@ describe("release age gate", () => {
 
   it.effect("names a failed bun info command that prints nothing", () =>
     Effect.gen(function* () {
-      const error = yield* decodeReleaseTimes(output(2), "esbuild").pipe(
+      const error = yield* decodeReleaseVersions(output(2), "esbuild").pipe(
         Effect.flip
       );
 
@@ -41,104 +35,75 @@ describe("release age gate", () => {
     })
   );
 
-  it.effect("types release times that are not a map of dates", () =>
+  it.effect("types release versions that are not a list of strings", () =>
     Effect.gen(function* () {
-      const notAMap = yield* decodeReleaseTimes(
-        output(0, "[]"),
+      const notAList = yield* decodeReleaseVersions(
+        output(0, '{"0.28.2":"2026-01-01T00:00:00.000Z"}'),
         "esbuild"
       ).pipe(Effect.flip);
-      const notADate = yield* timesOf({ "0.28.2": "not a date" }).pipe(
-        Effect.flip
-      );
+      const notAString = yield* decodeReleaseVersions(
+        output(0, "[1]"),
+        "esbuild"
+      ).pipe(Effect.flip);
 
-      expect(notAMap.message).toBe("esbuild returned no release times.");
-      expect(notADate.message).toBe("example returned no release times.");
+      expect(notAList.message).toBe("esbuild returned no release versions.");
+      expect(notAString.message).toBe("esbuild returned no release versions.");
     })
   );
 
-  it.effect(
-    "chooses the newest stable release that the gate admits by its numeric parts",
-    () =>
-      Effect.gen(function* () {
-        const times = yield* timesOf({
-          "0.28.2": OLD,
-          "0.28.9": OLD,
-          "0.28.10": OLD,
-          "0.28.11": INSIDE_GATE,
-        });
+  it.effect("chooses the newest stable release by its numeric parts", () =>
+    Effect.gen(function* () {
+      const versions = yield* versionsOf(["0.28.2", "0.28.10", "0.28.9"]);
 
-        expect(Option.getOrUndefined(newestAdmittedRelease(times, NOW))).toBe(
-          "0.28.10"
-        );
-      })
+      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
+        "0.28.10"
+      );
+    })
   );
 
-  it.effect("ignores prereleases and the created and modified keys", () =>
+  it.effect("ignores prereleases", () =>
     Effect.gen(function* () {
-      const times = yield* timesOf({
-        "0.9.0": OLD,
-        "1.0.0-beta.1": OLD,
-        created: OLD,
-        modified: OLD,
-      });
+      const versions = yield* versionsOf(["0.9.0", "1.0.0-beta.1"]);
 
-      expect(Option.getOrUndefined(newestAdmittedRelease(times, NOW))).toBe(
+      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
         "0.9.0"
       );
     })
   );
 
-  it.effect("admits a release exactly one release age old", () =>
+  it.effect("reports nothing when no release is stable", () =>
     Effect.gen(function* () {
-      const exactlyOneAgeOld = DateTime.formatIso(
-        DateTime.makeUnsafe(NOW - RELEASE_AGE_MILLIS)
-      );
-      const times = yield* timesOf({ "1.0.0": exactlyOneAgeOld });
+      const versions = yield* versionsOf(["2.0.1-rc.1"]);
 
-      expect(Option.getOrUndefined(newestAdmittedRelease(times, NOW))).toBe(
-        "1.0.0"
-      );
+      expect(newestStableRelease(versions)).toEqual(Option.none());
     })
-  );
-
-  it.effect(
-    "reports nothing when every stable release is inside the gate",
-    () =>
-      Effect.gen(function* () {
-        const times = yield* timesOf({
-          "2.0.0": INSIDE_GATE,
-          "2.0.1-rc.1": OLD,
-        });
-
-        expect(newestAdmittedRelease(times, NOW)).toEqual(Option.none());
-      })
   );
 
   it.effect("keeps only the release line that a hold names", () =>
     Effect.gen(function* () {
-      const times = yield* timesOf({
-        "24.22.0": OLD,
-        "24.22.1": OLD,
-        "24.23.0": INSIDE_GATE,
-        "25.0.0": OLD,
-      });
+      const versions = yield* versionsOf([
+        "24.22.0",
+        "24.22.1",
+        "24.23.0-rc.1",
+        "25.0.0",
+      ]);
 
-      expect(
-        Option.getOrUndefined(newestAdmittedRelease(times, NOW, "24"))
-      ).toBe("24.22.1");
-      expect(Option.getOrUndefined(newestAdmittedRelease(times, NOW))).toBe(
+      expect(Option.getOrUndefined(newestStableRelease(versions, "24"))).toBe(
+        "24.22.1"
+      );
+      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
         "25.0.0"
       );
     })
   );
 
   it.effect(
-    "reports nothing when no admitted release is in the release line",
+    "reports nothing when no stable release is in the release line",
     () =>
       Effect.gen(function* () {
-        const times = yield* timesOf({ "24.0.0": INSIDE_GATE, "25.0.0": OLD });
+        const versions = yield* versionsOf(["24.0.0-rc.1", "25.0.0"]);
 
-        expect(newestAdmittedRelease(times, NOW, "24")).toEqual(Option.none());
+        expect(newestStableRelease(versions, "24")).toEqual(Option.none());
       })
   );
 });
