@@ -70,7 +70,7 @@ export const verifyPinnedSignature = Effect.fn(
         crypto.subtle.verify(
           "Ed25519",
           publicKey,
-          signature,
+          new Uint8Array(signature),
           new TextEncoder().encode(text)
         )
       )
