@@ -30,7 +30,7 @@ import {
 } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
-import type { Root } from "mdast";
+import type { Nodes, Root } from "mdast";
 import { toString as mdastToString } from "mdast-util-to-string";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -56,12 +56,26 @@ type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
   | Effect.Error<ReturnType<typeof validateRendererManifestHash>>;
 
-/** Captures the searchable plain-text projection from the parsed MDX tree. */
+/** The blocks whose children are one run of inline text. */
+const TEXT_BLOCKS: readonly string[] = ["heading", "paragraph", "tableCell"];
+
+/** Reads the text of each block under a node, in document order. */
+function readBlockTexts(node: Nodes): readonly string[] {
+  if (!("children" in node) || Arr.contains(TEXT_BLOCKS, node.type)) {
+    return Arr.filter([mdastToString(node)], (text) => text.length > 0);
+  }
+  return Arr.flatMap(node.children, readBlockTexts);
+}
+
+/**
+ * Captures the searchable plain-text projection from the parsed MDX tree, one
+ * block to a line, so a heading never runs into the paragraph after it.
+ */
 function capturePlainText(
   setPlainText: (value: string) => void
 ): Plugin<[], Root> {
   return () => (tree) => {
-    setPlainText(mdastToString(tree));
+    setPlainText(Arr.join(readBlockTexts(tree), "\n"));
   };
 }
 
