@@ -137,10 +137,7 @@ describe("plain text", () => {
     "keeps each block on its own line, so no two blocks run together",
     () =>
       Effect.gen(function* () {
-        const rendererManifest = yield* createTestRendererManifest({
-          components: ["BlockMath", "InlineMath"],
-          domains: { mathematics: [] },
-        });
+        const manifest = yield* rendererManifest;
         const request = yield* validateCompileRequest({
           artifactLocale: "en",
           contentKey: "test:engine-text",
@@ -159,7 +156,7 @@ Grouping starts with **one** criterion.
 
 > A quoted line.`,
           rendererDomain: "mathematics",
-          rendererManifest,
+          rendererManifest: manifest,
           sourcePath: "packages/corpus/test/engine/text.mdx",
         });
         const { payload } = yield* compileValidatedContent(request);

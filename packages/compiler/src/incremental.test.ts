@@ -239,7 +239,7 @@ describe("incremental compilation", () => {
           rawMdx: VECTOR_MDX,
         });
         expect(cache.identityHash).toMatchInlineSnapshot(
-          `"sha256:8a44ecc2716475676ae301596e2fbb40c23863dc2f5c9e58565b10a7a66f0b01"`
+          `"sha256:eda5383d692e34dc8860dccede1206076261872760cf307f8fd41d9d29c3b6b0"`
         );
         expect(cache.resultHash).toMatchInlineSnapshot(
           `"sha256:03ead3001522fde9ff303d805e35047d74e9cde1d67edfeba784cdc1a7baf5bb"`

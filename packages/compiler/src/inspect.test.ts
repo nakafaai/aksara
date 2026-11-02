@@ -136,7 +136,7 @@ describe("content source inspection", () => {
         );
         assert.strictEqual(
           current.compilerConfigHash,
-          "sha256:95481f9ffd0ed77eb685f5a0f5bb69572a8ac7ef0ed7840251ccc4397c6fd196"
+          "sha256:82842341097d720723e9f31a3c8c71fe1c78200c2903ba9ee89ecd04368e02ad"
         );
       })
   );
