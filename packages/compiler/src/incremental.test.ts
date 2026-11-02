@@ -242,7 +242,7 @@ describe("incremental compilation", () => {
           `"sha256:eda5383d692e34dc8860dccede1206076261872760cf307f8fd41d9d29c3b6b0"`
         );
         expect(cache.resultHash).toMatchInlineSnapshot(
-          `"sha256:03ead3001522fde9ff303d805e35047d74e9cde1d67edfeba784cdc1a7baf5bb"`
+          `"sha256:13edcf996e54e69aa3bcb343949204bf4d1dcb88c5be45c58cdfd2f99b9f24d0"`
         );
       })
   );
