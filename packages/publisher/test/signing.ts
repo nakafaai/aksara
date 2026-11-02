@@ -109,15 +109,15 @@ export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
 
 /** Test-only Ed25519 public key that verifies every recorded publication signature below. */
 export const TEST_PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
-MCowBQYDK2VwAyEABR1A4DeiPj/dGfndt4rIqvuoLnfK9KRt6PFVS+0ZIBI=
+MCowBQYDK2VwAyEA8oh6UnrAEZ1s2QeJM7QdkM0+4+JtjVKXYgkGRc7XvAc=
 -----END PUBLIC KEY-----
 `;
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_ARTIFACT_SIGNATURE =
-  "-gxFpKst3xDPEqe0flYQA3tWq4NKnpjhPPY6V4Nf8B5BVQW8e4nuctFi_D9yG2nqg-Z6uVUTH3PTgtHyi9BwCw";
+  "H24eCR0y7Arl0WZ1QEeK2PYRPwBOsSX6BCUdkS-mKfpMinljdaPaosAmR1_0kS5DblEDnBcAs1SXzxq20OzKDw";
 // Record again: create a key, sign the same input, and replace the public key and signature literals below.
 export const TEST_RELEASE_SIGNATURE =
-  "zWqEjwBkKcNqavQ7Sqjas7QtqhfcY5v2KARVH7LFfQ7hKjJnsVEq3YguBSUd4WYnPniEF0wh0aVnfuYvmSDzBg";
+  "nWok645yjFC8_y_OefDNe9rPyCw82YmRRFFC5zlJYtRLxNU2REmieHHfzG2NzY4Lrq8jLqwTUwl8cL-jngBOAA";
 
 /** Imports one Ed25519 SPKI public key from its PEM text for Web Crypto verification. */
 export const importEd25519PublicKeyPem = Effect.fn(
