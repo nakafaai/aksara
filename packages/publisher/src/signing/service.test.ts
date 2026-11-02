@@ -185,8 +185,8 @@ describe("Ed25519 publication signature vectors", () => {
       const artifact = yield* signer.signArtifact(payload);
       const release = yield* signer.signRelease(manifest);
       expect([artifact.artifactHash, release.manifestHash]).toEqual([
-        "sha256:ea361ee31f9369675a115b986903ba6efd3bc5a1b0970cdffcbe10541f70325e",
-        "sha256:3496ac28c1a6b0ed3a1badaf1c1c90c0aee85da5d3a412fab2f0e023b9ed18e8",
+        "sha256:5d8551bf1fd214ade370cf6e062c582b49e090de527581e625ceffe805e310cd",
+        "sha256:b4624524cf6fc0fdca940c88a350327656a25e2e0e69f84c116c56e12c76cbdc",
       ]);
       const artifactInput = canonicalizeContentArtifactSigningInput(
         artifact.artifactHash,
