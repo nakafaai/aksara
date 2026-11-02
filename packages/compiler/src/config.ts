@@ -23,6 +23,7 @@ const COMPILER_CONFIG = encodeJson({
   format: "mdx",
   mdxCompilerVersion: MDX_COMPILER_VERSION,
   outputFormat: "function-body",
+  plainText: "line-per-block",
   providerImportSource: MDX_PROVIDER_SOURCE,
   remarkGfm: true,
   remarkMath: { singleDollarTextMath: false },

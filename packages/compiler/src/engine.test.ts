@@ -101,7 +101,7 @@ describe("compileValidatedContent", () => {
             )
           )
         ).toMatchInlineSnapshot(
-          `"d637147adc343c5e4a561ca8c688b2b300db0a559ad6995b0a66610287249fe1"`
+          `"f327f6325ba970454f2c7015bfb7465c9a4764cd32c3aeb569f6ce8d763208f1"`
         );
       })
   );
@@ -129,6 +129,54 @@ const rejectDocument = Effect.fn("TreeTest.rejectDocument")(function* (
       rendererManifest: manifest,
       sourcePath: "packages/corpus/test/serialize/en.mdx",
     })
+  );
+});
+
+describe("plain text", () => {
+  it.effect(
+    "keeps each block on its own line, so no two blocks run together",
+    () =>
+      Effect.gen(function* () {
+        const rendererManifest = yield* createTestRendererManifest({
+          components: ["BlockMath", "InlineMath"],
+          domains: { mathematics: [] },
+        });
+        const request = yield* validateCompileRequest({
+          artifactLocale: "en",
+          contentKey: "test:engine-text",
+          rawMdx: `export const metadata = { title: "Grouping" }
+
+## Basis for Grouping
+
+Grouping starts with **one** criterion.
+
+- A first item
+- A second item
+
+| Name | Value |
+| --- | --- |
+| Left | Right |
+
+> A quoted line.`,
+          rendererDomain: "mathematics",
+          rendererManifest,
+          sourcePath: "packages/corpus/test/engine/text.mdx",
+        });
+        const { payload } = yield* compileValidatedContent(request);
+        expect(payload.plainText).toBe(
+          [
+            "Basis for Grouping",
+            "Grouping starts with one criterion.",
+            "A first item",
+            "A second item",
+            "Name",
+            "Value",
+            "Left",
+            "Right",
+            "A quoted line.",
+          ].join("\n")
+        );
+      })
   );
 });
 
