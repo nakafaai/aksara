@@ -26,7 +26,7 @@ import {
   type SourceFile,
   type Statement,
   SyntaxKind,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 import { ItemSourceSchema } from "#corpus/question-bank/item";
 import { validateItemLabels } from "#corpus/question-bank/label";
 

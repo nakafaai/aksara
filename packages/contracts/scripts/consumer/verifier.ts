@@ -195,7 +195,7 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       ),
     ]);
     yield* run(
-      path.resolve(staged.workspaceRoot, "node_modules/.bin/tsc"),
+      path.resolve(staged.workspaceRoot, "node_modules/.bin/tsrs"),
       ["--project", "."],
       "Consumer type verification",
       staged.consumerDirectory

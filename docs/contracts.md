@@ -56,7 +56,7 @@ source conditions, scripts, and development dependencies and replaces
 workspace protocols with portable exact versions.
 
 The same verifier installs that exact archive in a credential-free isolated
-pnpm consumer, typechecks every public export with TypeScript 7, executes every
+pnpm consumer, typechecks every public export with tsrs, executes every
 runtime export, and rejects missing files, private source targets, nested Effect
 runtimes, or a mismatched license.
 

@@ -20,7 +20,7 @@ import {
   isVariableDeclaration,
   type Node,
   SyntaxKind,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 import { syntaxNodesSkippingTypes } from "#scripts/check/syntax";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;

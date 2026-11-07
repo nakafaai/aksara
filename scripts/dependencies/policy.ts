@@ -83,22 +83,23 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.63.0",
+    approvedCurrent: "0.67.5",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.52 added schemaClassMissingBrand, which base.json keeps off until the change that brands the last Schema error class, and 0.56 added preferEffectString (off) and schemaClassObjectLiteral (error). 0.57 adds the experimental tsrs build and 0.59 the effect-tsgo tsc, tsrs and oxlint proxy commands, which Aksara does not use: it patches the installed compiler. 0.61 adds flatMapIdentityToFlatten, 0.62 mapConstToAs, and 0.63 failCauseToConstructor and manualMetricTapToTrack, each a style suggestion by default that base.json sets to error, and the opt-in mapMapErrorToMapBoth, which base.json keeps off as upstream does. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.67.5 patches tsrs 0.23.0-ts7.1.0-beta, which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides the twelve rules 0.64 to 0.67 add and replaces the deprecated preferSchemaOverJson with globalJsonInEffect. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.63.0",
+    reviewedLatest: "0.67.5",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "7.0.2",
+    approvedCurrent: "0.23.0-ts7.1.0-beta",
     cohort: "TypeScript",
-    dependency: "typescript",
-    reason: "The native compiler, AST API, and Effect patch move together.",
-    registry: "typescript@latest",
-    reviewedLatest: "7.0.2",
+    dependency: "tsrs",
+    reason:
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to the release @effect/tsgo 0.67.5 patches. A new release lands with the @effect/tsgo release that supports it.",
+    registry: "tsrs@latest",
+    reviewedLatest: "0.23.0-ts7.1.0-beta",
     source: "catalog",
   },
   {

@@ -25,7 +25,7 @@ import {
   isUnionTypeNode,
   type Node,
   type NodeArray,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 
 import {
   enforceViolations,

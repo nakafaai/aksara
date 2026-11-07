@@ -1,9 +1,5 @@
 import { MutableList } from "effect";
-import {
-  isTypeNode,
-  type Node,
-  type SourceFile,
-} from "typescript/unstable/ast";
+import { isTypeNode, type Node, type SourceFile } from "tsrs/ast";
 
 /** Lists a module's syntax nodes breadth first, starting with the module itself. */
 export function syntaxNodes(sourceFile: SourceFile): readonly Node[] {

@@ -17,7 +17,7 @@ import {
   isStringLiteral,
   type Node,
   SyntaxKind,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [

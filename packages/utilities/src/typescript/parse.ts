@@ -1,14 +1,7 @@
-import {
-  Context,
-  Effect,
-  Layer,
-  MutableHashMap,
-  Option,
-  Schema,
-  Semaphore,
-} from "effect";
-import type { SourceFile } from "typescript/unstable/ast";
-import { API, type Project } from "typescript/unstable/sync";
+import { Context, Effect, Layer, Schema, Semaphore } from "effect";
+import type { SourceFile } from "tsrs/ast";
+import { createFileSystem } from "tsrs/fs";
+import { API, type Project } from "tsrs/sync";
 
 const ROOT = "/aksara-typescript";
 /** Plain JSON codec whose text is byte-identical to JSON.stringify. */
@@ -64,29 +57,20 @@ export class TypeScriptParser extends Context.Service<
   static readonly layer = Layer.effect(
     TypeScriptParser,
     Effect.gen(function* () {
-      const files = MutableHashMap.empty<string, string>();
       const permit = yield* Semaphore.make(1);
       const api = yield* Effect.acquireRelease(
         Effect.try({
           catch: (cause) => new TypeScriptCompilerError({ cause }),
-          try: () =>
-            new API({
-              cwd: ROOT,
-              fs: {
-                directoryExists: (path) =>
-                  path === "/" || path === ROOT || path.startsWith(`${ROOT}/`),
-                fileExists: (path) => MutableHashMap.has(files, path),
-                readFile: (path) =>
-                  Option.getOrNull(MutableHashMap.get(files, path)),
-              },
-            }),
+          try: () => new API({ cwd: ROOT }),
         }),
         (resource) => Effect.sync(() => resource.close())
       );
       let revision = 0;
-      let previousProject: string | undefined;
 
-      /** Gives each source immutable identity and releases the previous project. */
+      /**
+       * Gives each source immutable identity in a snapshot of its own files. A
+       * full request filesystem is total, so no host file is visible to it.
+       */
       const inspect = Effect.fn("AksaraUtilities.inspectTypeScript")(
         function* <A>(
           input: typeof TypeScriptSource.Type,
@@ -110,15 +94,13 @@ export class TypeScriptParser extends Context.Service<
             Effect.try({
               catch: failure,
               try: () => {
-                MutableHashMap.clear(files);
-                MutableHashMap.set(files, filePath, input.source);
-                MutableHashMap.set(files, configPath, config);
-                const next = api.updateSnapshot({
-                  closeProjects:
-                    previousProject === undefined ? [] : [previousProject],
+                const next = api.createSnapshot({
+                  fileSystem: createFileSystem([
+                    [filePath, input.source],
+                    [configPath, config],
+                  ]),
                   openProjects: [configPath],
                 });
-                previousProject = configPath;
                 revision += 1;
                 return next;
               },
@@ -128,7 +110,7 @@ export class TypeScriptParser extends Context.Service<
           const parsed = yield* Effect.try({
             catch: failure,
             try: () => {
-              const project = snapshot.getProject(configPath);
+              const project = snapshot.getConfiguredProject(configPath);
               return {
                 project,
                 sourceFile: project?.program.getSourceFile(filePath),
