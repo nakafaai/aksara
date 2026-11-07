@@ -18,7 +18,7 @@ import {
   type SourceFile,
   type StringLiteralLikeNode,
   SyntaxKind,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 import { syntaxNodes } from "#scripts/check/syntax";
 
 /** Returns the statically knowable module specifier owned by one syntax node. */

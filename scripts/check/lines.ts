@@ -9,7 +9,7 @@ import {
   MutableHashMap,
   MutableHashSet,
 } from "effect";
-import { isJSDoc, type SourceFile } from "typescript/unstable/ast";
+import { isJSDoc, type SourceFile } from "tsrs/ast";
 
 import {
   enforceViolations,

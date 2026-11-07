@@ -24,7 +24,7 @@ import {
   isVariableDeclaration,
   type Node,
   type SourceFile,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 
 import {
   enforceViolations,

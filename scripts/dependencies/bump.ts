@@ -16,7 +16,7 @@ import {
   DEPENDENCY_HOLDS,
   expectedIgnoredDependencies,
 } from "#scripts/dependencies/policy";
-import { latestStable } from "#scripts/dependencies/release";
+import { latestRelease } from "#scripts/dependencies/release";
 import { runEntry } from "#scripts/entry";
 
 const BumpDependenciesConfigSchema = Schema.Struct({
@@ -113,7 +113,7 @@ const planRoutineUpdates = Effect.fn("DependencyPolicy.planRoutineUpdates")(
       dependencies,
       (dependency) =>
         Effect.gen(function* () {
-          const latest = yield* latestStable(
+          const latest = yield* latestRelease(
             dependency.packageName,
             undefined,
             root,

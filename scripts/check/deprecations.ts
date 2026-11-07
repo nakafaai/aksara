@@ -1,6 +1,6 @@
 import { Array as Arr, Effect, HashSet, Order, Path, Schema } from "effect";
-import { computeLineStarts } from "typescript/unstable/ast";
-import { API, type Diagnostic } from "typescript/unstable/sync";
+import { computeLineStarts } from "tsrs/ast";
+import { API, type Diagnostic } from "tsrs/sync";
 
 import {
   enforceViolations,
@@ -66,13 +66,13 @@ export const auditProjectDeprecations = Effect.fn(
   const snapshot = yield* Effect.acquireRelease(
     Effect.try({
       catch: failure,
-      try: () => api.updateSnapshot({ openProjects: [configPath] }),
+      try: () => api.createSnapshot({ openProjects: [configPath] }),
     }),
     (resource) => Effect.sync(() => resource.dispose())
   );
   const project = yield* Effect.try({
     catch: failure,
-    try: () => snapshot.getProject(configPath),
+    try: () => snapshot.getConfiguredProject(configPath),
   });
   if (project === undefined) {
     return yield* failure("The native TypeScript project could not be opened.");
@@ -85,7 +85,7 @@ export const auditProjectDeprecations = Effect.fn(
       if (configDiagnostics.length > 0) {
         return configDiagnostics;
       }
-      return Arr.flatMap(project.rootFiles, (file) =>
+      return Arr.flatMap(project.parsedCommandLine.fileNames, (file) =>
         Arr.filter(
           project.program.getSuggestionDiagnostics(file),
           (diagnostic) => diagnostic.reportsDeprecated === true
@@ -98,7 +98,7 @@ export const auditProjectDeprecations = Effect.fn(
       Effect.mapError(failure)
     )
   );
-  return { fileNames: project.rootFiles, violations };
+  return { fileNames: project.parsedCommandLine.fileNames, violations };
 }, Effect.scoped);
 
 /** Reports authored TypeScript files absent from every audited project. */

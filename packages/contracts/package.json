@@ -1,6 +1,6 @@
 {
   "name": "@nakafa/aksara-contracts",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "Schemas and verification contracts for Nakafa content releases.",
   "homepage": "https://github.com/nakafaai/aksara#readme",
   "license": "SEE LICENSE IN LICENSE",
@@ -635,9 +635,9 @@
   },
   "scripts": {
     "clean": "git clean -xdf dist coverage",
-    "build": "git clean -xdf dist && tsc --project tsconfig.build.json",
+    "build": "git clean -xdf dist && tsrs --project tsconfig.build.json",
     "test": "vitest run",
-    "typecheck": "tsc --project tsconfig.json",
+    "typecheck": "tsrs --project tsconfig.json",
     "verify:consumer": "bun run build && node --conditions=aksara-source scripts/verify/edge.ts && node scripts/verify/consumer.ts"
   },
   "devDependencies": {
@@ -648,7 +648,7 @@
     "@nakafa/typescript-config": "workspace:*",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",
-    "typescript": "catalog:",
+    "tsrs": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {

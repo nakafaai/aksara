@@ -15,10 +15,7 @@ export class StructureScanError extends Schema.TaggedError<
 /** Returns true for symbolic links, which scans never follow. */
 const isSymbolicLink = Effect.fn("StructureIntegrity.isSymbolicLink")(
   function* (fileSystem: FileSystem.FileSystem, file: string) {
-    return yield* Effect.match(fileSystem.readLink(file), {
-      onFailure: () => false,
-      onSuccess: () => true,
-    });
+    return yield* Effect.isSuccess(fileSystem.readLink(file));
   }
 );
 
@@ -27,10 +24,7 @@ const isDirectory = Effect.fn("StructureIntegrity.isDirectory")(function* (
   fileSystem: FileSystem.FileSystem,
   file: string
 ) {
-  return yield* Effect.match(fileSystem.readDirectory(file), {
-    onFailure: () => false,
-    onSuccess: () => true,
-  });
+  return yield* Effect.isSuccess(fileSystem.readDirectory(file));
 });
 
 /** Collects text files below one source root without following links. */
