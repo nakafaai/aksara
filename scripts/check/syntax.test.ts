@@ -1,7 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect } from "effect";
-import { SyntaxKind } from "typescript/unstable/ast";
+import { SyntaxKind } from "tsrs/ast";
 import { syntaxNodes, syntaxNodesSkippingTypes } from "#scripts/check/syntax";
 
 layer(TypeScriptParser.layer)("syntax nodes", (it) => {

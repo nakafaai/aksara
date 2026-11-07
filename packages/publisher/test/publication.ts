@@ -1,7 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
-import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
+import {
+  CompileDocumentSourceSchema,
+  type CompiledContentPayload,
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -51,9 +54,13 @@ export const publicationSource = CompileDocumentSourceSchema.make({
   ),
 });
 
-export const { payload: publicationPayload } = await Effect.runPromise(
+const publicationCompilation = await Effect.runPromise(
   compileContent({ ...publicationSource, rendererManifest })
 );
+
+/** The compiled payload of the publication fixture, typed by its public contract. */
+export const publicationPayload: CompiledContentPayload =
+  publicationCompilation.payload;
 
 const publicationAppLocale = AppLocaleSchema.make("en");
 

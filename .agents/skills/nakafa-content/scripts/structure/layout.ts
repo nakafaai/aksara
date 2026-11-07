@@ -16,10 +16,7 @@ const isSymbolicLink = Effect.fn("ScriptLayout.isSymbolicLink")(function* (
   fileSystem: FileSystem.FileSystem,
   file: string
 ) {
-  return yield* Effect.match(fileSystem.readLink(file), {
-    onFailure: () => false,
-    onSuccess: () => true,
-  });
+  return yield* Effect.isSuccess(fileSystem.readLink(file));
 });
 
 /** Returns true for directories; files and missing entries read as files. */
@@ -27,10 +24,7 @@ const isDirectory = Effect.fn("ScriptLayout.isDirectory")(function* (
   fileSystem: FileSystem.FileSystem,
   file: string
 ) {
-  return yield* Effect.match(fileSystem.readDirectory(file), {
-    onFailure: () => false,
-    onSuccess: () => true,
-  });
+  return yield* Effect.isSuccess(fileSystem.readDirectory(file));
 });
 
 /** Collects every directory and TypeScript file below the checker root. */

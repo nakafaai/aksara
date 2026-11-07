@@ -228,7 +228,7 @@ attested archive for independent byte and source verification.
 
 ## Toolchain notes
 
-- TypeScript 7 provides the repository CLI compiler and native AST API.
+- tsrs, the Rust port of the TypeScript 7.1 compiler, provides the repository compiler, language server, and native AST API.
   Source inspection uses scoped native compiler snapshots. The compiler,
   unstable API, and Effect patch are pinned and upgraded together.
 - Effect work uses the version-matched read-only source under `repos/effect`.

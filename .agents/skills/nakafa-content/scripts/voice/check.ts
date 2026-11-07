@@ -41,10 +41,7 @@ const isSymbolicLink = Effect.fn("LessonVoiceCheck.isSymbolicLink")(function* (
   fileSystem: FileSystem.FileSystem,
   file: string
 ) {
-  return yield* Effect.match(fileSystem.readLink(file), {
-    onFailure: () => false,
-    onSuccess: () => true,
-  });
+  return yield* Effect.isSuccess(fileSystem.readLink(file));
 });
 
 /** Returns true for directories; files and missing entries read as files. */
@@ -52,10 +49,7 @@ const isDirectory = Effect.fn("LessonVoiceCheck.isDirectory")(function* (
   fileSystem: FileSystem.FileSystem,
   file: string
 ) {
-  return yield* Effect.match(fileSystem.readDirectory(file), {
-    onFailure: () => false,
-    onSuccess: () => true,
-  });
+  return yield* Effect.isSuccess(fileSystem.readDirectory(file));
 });
 
 /** Collects locale-qualified lesson files without validating them twice. */

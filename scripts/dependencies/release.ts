@@ -1,4 +1,12 @@
-import { Array as Arr, Effect, type Option, Order, pipe, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  Option,
+  Order,
+  pipe,
+  Schema,
+  String as Str,
+} from "effect";
 import {
   type BunRunner,
   type CommandOutput,
@@ -6,20 +14,35 @@ import {
 } from "#scripts/dependencies/command";
 import { DependencyPolicyError } from "#scripts/dependencies/manifest";
 
-/** A stable release number such as 0.28.10. Prereleases do not match. */
-const STABLE_RELEASE_PATTERN = /^\d+\.\d+\.\d+$/u;
+/** A release number such as 0.28.10, with its prerelease channel after a hyphen, such as ts7.1.0-beta. */
+const RELEASE_PATTERN = /^\d+\.\d+\.\d+(?:-.+)?$/u;
+/** The prerelease channel of a release, from its first hyphen on. */
+const CHANNEL_SUFFIX = /-.*$/u;
 
-/** Pads every numeric part to twelve digits, so string order matches release order: 0.28.10 follows 0.28.9. */
+/** Pads every numeric part of the release number to twelve digits, so string order matches release order: 0.28.10 follows 0.28.9. */
 function releaseSortKey(version: string): string {
+  const number = version.replace(CHANNEL_SUFFIX, "");
   return Arr.join(
-    Arr.map(version.split("."), (part) => part.padStart(12, "0")),
+    Arr.map(number.split("."), (part) => part.padStart(12, "0")),
     "."
   );
 }
 
+/** Whether two releases share one channel, stable or prerelease. */
+const sameChannel = Option.makeEquivalence(Str.Equivalence);
+
+/**
+ * Returns the prerelease channel of a release: `ts7.1.0-beta` for
+ * `0.23.0-ts7.1.0-beta`, and none for a stable release.
+ */
+export function releaseChannel(version: string): Option.Option<string> {
+  const hyphen = version.indexOf("-");
+  return hyphen < 0 ? Option.none() : Option.some(version.slice(hyphen + 1));
+}
+
 const ReleaseOrder = Order.mapInput(Order.String, releaseSortKey);
 
-/** Reports whether one stable release is newer than another in release order. */
+/** Reports whether one release is newer than another of its channel in release order. */
 export function isNewerRelease(candidate: string, reviewed: string): boolean {
   return ReleaseOrder(candidate, reviewed) > 0;
 }
@@ -49,40 +72,46 @@ export function decodeReleaseVersions(output: CommandOutput, name: string) {
 }
 
 /**
- * Returns the newest stable release. A release line such as `24` keeps only the
- * versions that start with `24.`. Nothing is returned when no stable release is
- * in it.
+ * Returns the newest release of one channel: stable releases for none, or the
+ * prereleases of one channel, such as the tsrs releases built on one TypeScript
+ * release. A release line such as `24` keeps only the versions that start with
+ * `24.`. Nothing is returned when no release of the channel is in it.
  */
-export function newestStableRelease(
+export function newestRelease(
   versions: ReleaseVersions,
-  line?: string
+  line?: string,
+  channel: Option.Option<string> = Option.none()
 ): Option.Option<string> {
-  const stable = pipe(
+  const releases = pipe(
     versions,
     Arr.filter(
       (version) =>
-        STABLE_RELEASE_PATTERN.test(version) &&
+        RELEASE_PATTERN.test(version) &&
+        sameChannel(releaseChannel(version), channel) &&
         (line === undefined || version.startsWith(`${line}.`))
     )
   );
-  return Arr.last(Arr.sort(stable, ReleaseOrder));
+  return Arr.last(Arr.sort(releases, ReleaseOrder));
 }
 
-/** Reads the newest stable release of one package, within an optional release line. */
-export const latestStable = Effect.fn("DependencyPolicy.latestStable")(
+/** Reads the newest release of one package in one channel, within an optional release line. */
+export const latestRelease = Effect.fn("DependencyPolicy.latestRelease")(
   function* (
     name: string,
     line: string | undefined,
     root: string,
-    runner: BunRunner
+    runner: BunRunner,
+    channel: Option.Option<string> = Option.none()
   ) {
     const output = yield* runner(root, ["info", name, "versions", "--json"]);
     const versions = yield* decodeReleaseVersions(output, name);
-    return yield* Effect.fromOption(newestStableRelease(versions, line)).pipe(
+    return yield* Effect.fromOption(
+      newestRelease(versions, line, channel)
+    ).pipe(
       Effect.mapError(
         () =>
           new DependencyPolicyError({
-            message: `${name} has no stable release.`,
+            message: `${name} has no ${Option.getOrElse(channel, () => "stable")} release.`,
           })
       )
     );

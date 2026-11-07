@@ -24,7 +24,7 @@ import {
   type Node,
   type SourceFile,
   SyntaxKind,
-} from "typescript/unstable/ast";
+} from "tsrs/ast";
 
 const CORPUS_ALIAS = "#corpus/";
 const MAX_SOURCE_FILES = 128;

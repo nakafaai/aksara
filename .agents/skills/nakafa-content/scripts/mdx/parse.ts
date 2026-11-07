@@ -57,7 +57,9 @@ export interface MdxNode {
   value?: unknown;
 }
 
-export interface EstreeNode extends Schema.Schema.Type<typeof EstreeNodeShape> {
+type EstreeNodeFields = typeof EstreeNodeShape.Type;
+
+export interface EstreeNode extends EstreeNodeFields {
   [key: string]: unknown;
 }
 

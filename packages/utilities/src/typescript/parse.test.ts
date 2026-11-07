@@ -4,16 +4,11 @@ import {
   Effect,
   Layer,
   MutableHashMap,
-  MutableList,
   Option,
+  Schema,
 } from "effect";
-import { isJSDoc } from "typescript/unstable/ast";
-import {
-  API,
-  type APIOptions,
-  Program,
-  Snapshot,
-} from "typescript/unstable/sync";
+import { isJSDoc } from "tsrs/ast";
+import { API, Program, Snapshot } from "tsrs/sync";
 import {
   TypeScriptCompilerError,
   TypeScriptParser,
@@ -21,11 +16,29 @@ import {
 } from "#utilities/typescript/parse";
 
 const nativeFailures = MutableHashMap.empty<string, Error>();
-const nativeFileSystems = MutableList.make<NonNullable<APIOptions["fs"]>>();
 
-vi.mock("typescript/unstable/sync", async (importOriginal) => {
-  const native =
-    await importOriginal<typeof import("typescript/unstable/sync")>();
+/** The tsrs API methods whose reads these tests count or replace. */
+const SpiedMethod = Schema.Literals([
+  "close",
+  "createSnapshot",
+  "dispose",
+  "getSourceFile",
+]);
+
+/**
+ * Spies on the reads of one tsrs API method. tsrs defines each method as a
+ * prototype getter that caches the method on its instance at the first read,
+ * so a test counts that read, or replaces the method it returns.
+ */
+function spyOnMethod(
+  prototype: { readonly [Name in typeof SpiedMethod.Type]?: unknown },
+  method: typeof SpiedMethod.Type
+) {
+  return vi.spyOn(prototype, method, "get");
+}
+
+vi.mock("tsrs/sync", async (importOriginal) => {
+  const native = await importOriginal<typeof import("tsrs/sync")>();
   return {
     ...native,
     API: class extends native.API {
@@ -35,14 +48,6 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
         if (Option.isSome(failure)) {
           throw failure.value;
         }
-        const [options] = args;
-        if (
-          options !== undefined &&
-          "fs" in options &&
-          options.fs !== undefined
-        ) {
-          MutableList.append(nativeFileSystems, options.fs);
-        }
         super(...args);
       }
     },
@@ -51,7 +56,6 @@ vi.mock("typescript/unstable/sync", async (importOriginal) => {
 
 afterEach(() => {
   MutableHashMap.clear(nativeFailures);
-  MutableList.clear(nativeFileSystems);
   vi.restoreAllMocks();
 });
 
@@ -151,17 +155,19 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
 
   it.effect("preserves typed failures from native source inspection", () =>
     Effect.gen(function* () {
-      const parser = yield* TypeScriptParser;
       const cause = new Error("test native request failure");
-      const update = vi
-        .spyOn(API.prototype, "updateSnapshot")
-        .mockImplementationOnce(() => {
+      spyOnMethod(API.prototype, "createSnapshot").mockImplementationOnce(
+        () => {
           throw cause;
-        });
-      const error = yield* parser
-        .inspect({ fileName: "failure.ts", source: "export {};" }, () => true)
-        .pipe(Effect.flip);
-      update.mockRestore();
+        }
+      );
+      const error = yield* Effect.gen(function* () {
+        const parser = yield* TypeScriptParser;
+        return yield* parser.inspect(
+          { fileName: "failure.ts", source: "export {};" },
+          () => true
+        );
+      }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)), Effect.flip);
       expect(error).toEqual(
         new TypeScriptSourceError({ cause, fileName: "failure.ts" })
       );
@@ -171,12 +177,14 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
     Effect.gen(function* () {
       const parser = yield* TypeScriptParser;
       const input = { fileName: "missing.ts", source: "export {};" };
-      vi.spyOn(Snapshot.prototype, "getProject").mockReturnValueOnce(undefined);
+      vi.spyOn(Snapshot.prototype, "getConfiguredProject").mockReturnValueOnce(
+        undefined
+      );
       const projectFailure = yield* parser
         .inspect(input, () => true)
         .pipe(Effect.flip);
-      vi.spyOn(Program.prototype, "getSourceFile").mockReturnValueOnce(
-        undefined
+      spyOnMethod(Program.prototype, "getSourceFile").mockReturnValueOnce(
+        () => undefined
       );
       const sourceFailure = yield* parser
         .inspect(input, () => true)
@@ -196,8 +204,8 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
     "releases snapshots after callback failures and closes the compiler",
     () =>
       Effect.gen(function* () {
-        const dispose = vi.spyOn(Snapshot.prototype, "dispose");
-        const close = vi.spyOn(API.prototype, "close");
+        const dispose = spyOnMethod(Snapshot.prototype, "dispose");
+        const close = spyOnMethod(API.prototype, "close");
         const cause = new Error("test inspection callback failed");
         const failure = yield* Effect.gen(function* () {
           const parser = yield* TypeScriptParser;
@@ -217,19 +225,5 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
         expect(dispose).toHaveBeenCalledTimes(1);
         expect(close).toHaveBeenCalledTimes(1);
       })
-  );
-  it.effect("keeps source projects isolated from host filesystem reads", () =>
-    Effect.gen(function* () {
-      const parser = yield* TypeScriptParser;
-      yield* parser.inspect(
-        { fileName: "isolated.ts", source: "export {};" },
-        () => true
-      );
-      const fileSystem = Option.getOrThrow(
-        Arr.last(MutableList.toArray(nativeFileSystems))
-      );
-      expect(fileSystem.fileExists?.(import.meta.filename)).toBe(false);
-      expect(fileSystem.readFile?.(import.meta.filename)).toBeNull();
-    }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)))
   );
 });

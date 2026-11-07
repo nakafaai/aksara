@@ -25,43 +25,43 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.1.0 replaces effect/Crypto with the effect/crypto services, so a contracts build on 4.0.5 cannot run on 4.1. The contracts therefore lead the cohort (docs/adr/compiler.md): contracts 3.0 peers 4.1.0, and nakafa.com moves to 4.1.0 when it adopts it. 4.1.1 (30 October 2026) needs a contracts release that peers it, so it moves with the next contracts release, after the assessment genesis release, together with nakafa.com's move to 4.1.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.1 and 4.1.2 are patch releases with fixes only, and contracts 4.1.1 peers 4.1.2.",
     registry: "effect@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason:
       "All Effect ecosystem packages must use one exact cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason:
       "The test adapter must match the installed Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/platform-node-shared",
     reason:
       "An override that pins the shared platform package to the Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node-shared@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "override",
   },
   {
@@ -83,22 +83,23 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "0.63.0",
+    approvedCurrent: "0.67.5",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with native TypeScript and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.52 added schemaClassMissingBrand, which base.json keeps off until the change that brands the last Schema error class, and 0.56 added preferEffectString (off) and schemaClassObjectLiteral (error). 0.57 adds the experimental tsrs build and 0.59 the effect-tsgo tsc, tsrs and oxlint proxy commands, which Aksara does not use: it patches the installed compiler. 0.61 adds flatMapIdentityToFlatten, 0.62 mapConstToAs, and 0.63 failCauseToConstructor and manualMetricTapToTrack, each a style suggestion by default that base.json sets to error, and the opt-in mapMapErrorToMapBoth, which base.json keeps off as upstream does. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.67.5 patches tsrs 0.23.0-ts7.1.0-beta, which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides the twelve rules 0.64 to 0.67 add and replaces the deprecated preferSchemaOverJson with globalJsonInEffect. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.63.0",
+    reviewedLatest: "0.67.5",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "7.0.2",
+    approvedCurrent: "0.23.0-ts7.1.0-beta",
     cohort: "TypeScript",
-    dependency: "typescript",
-    reason: "The native compiler, AST API, and Effect patch move together.",
-    registry: "typescript@latest",
-    reviewedLatest: "7.0.2",
+    dependency: "tsrs",
+    reason:
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to the release @effect/tsgo 0.67.5 patches. A new release lands with the @effect/tsgo release that supports it.",
+    registry: "tsrs@latest",
+    reviewedLatest: "0.23.0-ts7.1.0-beta",
     source: "catalog",
   },
   {
