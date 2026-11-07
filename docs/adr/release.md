@@ -2,7 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-07-23
-- Amended: 2026-10-25, zero-legacy: the Nakafa web host replaces Vercel.
+- Amended: 2026-10-25, zero-legacy: the Nakafa web host is Cloudflare Workers.
 - Amended: 2026-10-26, a manifest generation change crosses by genesis.
 - Amended: 2026-10-31, the declared bootstrap is deleted: genesis is the one way
   across a generation.
