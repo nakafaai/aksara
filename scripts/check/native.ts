@@ -14,7 +14,7 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * the nakafa.com main commit that moves every typecheck to tsrs and decides the
  * rules of @effect/tsgo 0.67.5 (nakafa.com#2183).
  */
-export const NAKAFA_COMMIT = "d876586348cb314f55eef44906a21aae6dcf3d3a";
+export const NAKAFA_COMMIT = "d89410e21547892fe6ebd574af1a537a14374ae5";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
