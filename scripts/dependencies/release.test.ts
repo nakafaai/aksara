@@ -4,7 +4,8 @@ import { Effect, Option } from "effect";
 import { output, releaseVersions } from "#scripts/dependencies/fixture";
 import {
   decodeReleaseVersions,
-  newestStableRelease,
+  newestRelease,
+  releaseChannel,
 } from "#scripts/dependencies/release";
 
 /** Decodes one release list exactly as `bun info <name> versions --json` prints it. */
@@ -55,9 +56,7 @@ describe("newest stable release", () => {
     Effect.gen(function* () {
       const versions = yield* versionsOf(["0.28.2", "0.28.10", "0.28.9"]);
 
-      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
-        "0.28.10"
-      );
+      expect(Option.getOrUndefined(newestRelease(versions))).toBe("0.28.10");
     })
   );
 
@@ -65,9 +64,7 @@ describe("newest stable release", () => {
     Effect.gen(function* () {
       const versions = yield* versionsOf(["0.9.0", "1.0.0-beta.1"]);
 
-      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
-        "0.9.0"
-      );
+      expect(Option.getOrUndefined(newestRelease(versions))).toBe("0.9.0");
     })
   );
 
@@ -75,7 +72,7 @@ describe("newest stable release", () => {
     Effect.gen(function* () {
       const versions = yield* versionsOf(["2.0.1-rc.1"]);
 
-      expect(newestStableRelease(versions)).toEqual(Option.none());
+      expect(newestRelease(versions)).toEqual(Option.none());
     })
   );
 
@@ -88,12 +85,32 @@ describe("newest stable release", () => {
         "25.0.0",
       ]);
 
-      expect(Option.getOrUndefined(newestStableRelease(versions, "24"))).toBe(
+      expect(Option.getOrUndefined(newestRelease(versions, "24"))).toBe(
         "24.22.1"
       );
-      expect(Option.getOrUndefined(newestStableRelease(versions))).toBe(
-        "25.0.0"
+      expect(Option.getOrUndefined(newestRelease(versions))).toBe("25.0.0");
+    })
+  );
+
+  it.effect("keeps the prereleases of one channel apart from the others", () =>
+    Effect.gen(function* () {
+      const versions = yield* versionsOf([
+        "0.22.0-ts7.1.0-beta",
+        "0.23.0-ts7.1.0-beta",
+        "0.30.0-ts7.2.0-beta",
+        "1.0.0",
+      ]);
+
+      expect(releaseChannel("0.23.0-ts7.1.0-beta")).toEqual(
+        Option.some("ts7.1.0-beta")
       );
+      expect(releaseChannel("1.0.0")).toEqual(Option.none());
+      expect(
+        Option.getOrUndefined(
+          newestRelease(versions, undefined, Option.some("ts7.1.0-beta"))
+        )
+      ).toBe("0.23.0-ts7.1.0-beta");
+      expect(Option.getOrUndefined(newestRelease(versions))).toBe("1.0.0");
     })
   );
 
@@ -103,7 +120,7 @@ describe("newest stable release", () => {
       Effect.gen(function* () {
         const versions = yield* versionsOf(["24.0.0-rc.1", "25.0.0"]);
 
-        expect(newestStableRelease(versions, "24")).toEqual(Option.none());
+        expect(newestRelease(versions, "24")).toEqual(Option.none());
       })
   );
 });

@@ -92,6 +92,45 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         })
     );
 
+    it.effect(
+      "reviews a prerelease hold within the channel of its approved release",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          const reports = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({
+              tsrs: releaseVersions([approved("tsrs"), "0.30.0-ts7.2.0-beta"]),
+            })
+          );
+          const tsrsReport = Option.getOrUndefined(
+            Arr.findFirst(reports, ({ dependency }) => dependency === "tsrs")
+          );
+
+          assert.strictEqual(tsrsReport?.latest, approved("tsrs"));
+        })
+    );
+
+    it.effect(
+      "fails when a prerelease hold has no release in its channel",
+      () =>
+        Effect.gen(function* () {
+          const config = yield* createConfig();
+          const error = yield* makeBumpDependenciesProgram(
+            config,
+            makeRunner({
+              tsrs: releaseVersions(["0.30.0-ts7.2.0-beta"]),
+            })
+          ).pipe(Effect.flip);
+
+          assert.strictEqual(error._tag, "DependencyPolicyError");
+          assert.strictEqual(
+            error.message,
+            "tsrs has no ts7.1.0-beta release."
+          );
+        })
+    );
+
     it.effect("fails when a reviewed hold has no stable release", () =>
       Effect.gen(function* () {
         const config = yield* createConfig();

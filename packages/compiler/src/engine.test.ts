@@ -161,17 +161,20 @@ Grouping starts with **one** criterion.
         });
         const { payload } = yield* compileValidatedContent(request);
         expect(payload.plainText).toBe(
-          [
-            "Basis for Grouping",
-            "Grouping starts with one criterion.",
-            "A first item",
-            "A second item",
-            "Name",
-            "Value",
-            "Left",
-            "Right",
-            "A quoted line.",
-          ].join("\n")
+          Arr.join(
+            [
+              "Basis for Grouping",
+              "Grouping starts with one criterion.",
+              "A first item",
+              "A second item",
+              "Name",
+              "Value",
+              "Left",
+              "Right",
+              "A quoted line.",
+            ],
+            "\n"
+          )
         );
       })
   );

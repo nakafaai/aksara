@@ -7,7 +7,11 @@ import {
   DependencyHoldSchema,
   declaredVersion,
 } from "#scripts/dependencies/policy";
-import { isNewerRelease, latestStable } from "#scripts/dependencies/release";
+import {
+  isNewerRelease,
+  latestRelease,
+  releaseChannel,
+} from "#scripts/dependencies/release";
 
 /** A reviewed hold with the version the manifest declares and the newest stable upstream release. */
 const HoldReviewSchema = Schema.Struct({
@@ -42,18 +46,19 @@ function holdLine(hold: DependencyHold): string | undefined {
   return spec === "latest" ? undefined : spec;
 }
 
-/** Reads the declared version and the newest stable upstream release of one reviewed hold. */
+/** Reads the declared version and the newest upstream release of one reviewed hold, in the channel of its approved release. */
 export const reviewHold = Effect.fn("DependencyPolicy.reviewHold")(function* (
   hold: DependencyHold,
   manifest: RootManifest,
   root: string,
   runner: BunRunner
 ) {
-  const latest = yield* latestStable(
+  const latest = yield* latestRelease(
     hold.dependency,
     holdLine(hold),
     root,
-    runner
+    runner,
+    releaseChannel(hold.approvedCurrent)
   );
   return {
     ...hold,
