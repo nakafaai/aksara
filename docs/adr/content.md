@@ -159,12 +159,12 @@ implementations.
 
 ### Renderer bundle-isolation topology
 
-Measurements on the former Next.js 16.2.10 app with Turbopack (2026-07-21,
-before the move to TanStack Start) rejected a single global implementation
-registry. Direct imports, `next/dynamic`, `React.lazy`, shared server registries
-with literal dynamic imports, and the same registry behind `connection()` all
-caused a plain content route to preload unrelated client implementations from
-the shared route module graph.
+Measurements on the former web app (2026-07-21, before the move to TanStack
+Start) rejected a single global implementation registry. Direct imports, the
+framework's dynamic wrapper, `React.lazy`, shared server registries with literal
+dynamic imports, and the same registry behind a request-time boundary all caused
+a plain content route to preload unrelated client implementations from the
+shared route module graph.
 
 A standalone production proof then gave each physical route entrypoint its own
 static implementation registry while keeping official `@mdx-js/mdx/run` and

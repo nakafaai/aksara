@@ -173,9 +173,8 @@ and are therefore intentionally preserved.
 ## Bounded safety scan
 
 The complete filtered history was searched without printing file contents for
-common private-key headers and common GitHub, Stripe, Slack, npm, Convex,
-Vercel, and AWS credential patterns (Nakafa left Vercel on 25 Oct 2026). That
-bounded scan found no matching path.
+common private-key headers and common GitHub, Stripe, Slack, npm, Convex, AWS,
+and former hosting credential patterns. That bounded scan found no matching path.
 It does not replace GitHub secret scanning or a dedicated secret scanner before
 push.
 
