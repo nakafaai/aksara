@@ -38,7 +38,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
-            error.message.includes("effect declares 4.0.6; approved 4.1.0.")
+            error.message.includes("effect declares 4.0.6; approved 4.1.2.")
           );
           const recorded = yield* Ref.get(commands);
           assert.strictEqual(
@@ -60,14 +60,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const error = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseVersions(["4.1.1", "4.1.2"]),
+              effect: releaseVersions(["4.1.2", "4.1.3"]),
             })
           ).pipe(Effect.flip);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
           assert.ok(
             error.message.includes(
-              "effect upstream is 4.1.2; last reviewed 4.1.1."
+              "effect upstream is 4.1.3; last reviewed 4.1.2."
             )
           );
         })
@@ -81,14 +81,14 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const reports = yield* makeBumpDependenciesProgram(
             config,
             makeRunner({
-              effect: releaseVersions(["4.1.0", "4.2.0-beta.1"]),
+              effect: releaseVersions(["4.1.2", "4.2.0-beta.1"]),
             })
           );
           const effectReport = Option.getOrUndefined(
             Arr.findFirst(reports, ({ dependency }) => dependency === "effect")
           );
 
-          assert.strictEqual(effectReport?.latest, "4.1.0");
+          assert.strictEqual(effectReport?.latest, "4.1.2");
         })
     );
 
