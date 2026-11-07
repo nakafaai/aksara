@@ -25,43 +25,43 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort. Effect 4.1.0 replaces effect/Crypto with the effect/crypto services, so a contracts build on 4.0.5 cannot run on 4.1. The contracts therefore lead the cohort (docs/adr/compiler.md): contracts 3.0 peers 4.1.0, and nakafa.com moves to 4.1.0 when it adopts it. 4.1.1 (30 October 2026) needs a contracts release that peers it, so it moves with the next contracts release, after the assessment genesis release, together with nakafa.com's move to 4.1.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.1 and 4.1.2 are patch releases with fixes only, and contracts 4.1.1 peers 4.1.2.",
     registry: "effect@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason:
       "All Effect ecosystem packages must use one exact cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason:
       "The test adapter must match the installed Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.0",
+    approvedCurrent: "4.1.2",
     cohort: "Effect",
     dependency: "@effect/platform-node-shared",
     reason:
       "An override that pins the shared platform package to the Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node-shared@latest",
-    reviewedLatest: "4.1.1",
+    reviewedLatest: "4.1.2",
     source: "override",
   },
   {
