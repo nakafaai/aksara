@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bristol adopted London time for everyday life well before London itself did.",
+            "Bristol's station kept local time until Parliament changed the law in 1880.",
         },
         {
           correct: false,

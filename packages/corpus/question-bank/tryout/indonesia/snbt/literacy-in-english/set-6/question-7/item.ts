@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Supporters say curving corrects for tests that are harder than intended.",
+            "The author grants that the concerns of curving's supporters are real.",
         },
         {
           column: 2,

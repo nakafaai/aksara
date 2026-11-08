@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Faster journeys meant several local times in one timetable caused confusion.",
+            "With faster trains, one timetable holding several local times caused confusion.",
         },
         {
           correct: false,
