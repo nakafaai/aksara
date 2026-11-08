@@ -1,23 +1,20 @@
-Wir bestimmen zuerst die **tatsächliche Länge** aus Fläche und Breite und rechnen sie anschließend in die Zeichnungslänge um.
+Ein Produkt ist gerade, wenn **mindestens eine Zahl gerade ist**. Dieses Ereignis umfasst zwei Fälle, deshalb zählst du schneller das Gegenereignis: Das Produkt ist nur dann ungerade, wenn beide Zahlen ungerade sind.
 
-# Ermitteln der tatsächlichen Länge
+# Ergebnisraum und Gegenereignis
 
-Mit der **Flächenformel** <InlineMath math="A = p \times \ell" /> folgt
+Es gibt 9 Zahlen, davon 5 ungerade (1, 3, 5, 7, 9) und 4 gerade. Zwei Zahlen werden gleichzeitig gezogen, die Reihenfolge spielt also keine Rolle, und jedes Paar **ist gleich wahrscheinlich**.
 
-<BlockMath math="810 = p \times 18" />
+<BlockMath math="\begin{aligned}
+n(S)&=\binom92=36\\
+n(\text{beide ungerade})&=\binom52=10
+\end{aligned}" />
 
-<BlockMath math="p = \frac{810}{18}" />
+# Wahrscheinlichkeit berechnen
 
-<BlockMath math="p = 45 \text{ m}" />
+<BlockMath math="P(\text{gerades Produkt})=1-\frac{10}{36}=\frac{26}{36}=\frac{13}{18}" />
 
-# Den Maßstab anwenden
+**Direktes Abzählen** liefert dasselbe: Es gibt <InlineMath math="4\times5=20" /> Paare gerade-ungerade und <InlineMath math="\binom42=6" /> Paare gerade-gerade, zusammen 26.
 
-Sei <InlineMath math="d" /> die Länge in der Zeichnung. Da im Maßstab **verschiedene Einheiten** vorkommen, schreiben wir sie in der Proportion mit:
+Der Wert <InlineMath math="\tfrac5{18}" /> ist die Wahrscheinlichkeit des Gegenereignisses, noch nicht von 1 abgezogen. Der Wert <InlineMath math="\tfrac59" /> zählt nur die 20 Paare gerade-ungerade und vergisst die 6 Paare gerade-gerade. Der Wert <InlineMath math="\tfrac16" /> zählt nur die Paare gerade-gerade. Der Wert <InlineMath math="\tfrac{56}{81}" /> lässt zu, dass eine Zahl zweimal gezogen wird, <InlineMath math="1-\left(\tfrac59\right)^2" />.
 
-<BlockMath math="\frac{d}{45 \text{ m}} = \frac{3 \text{ cm}}{90 \text{ m}}" />
-
-<BlockMath math="d = \frac{3 \text{ cm}}{90 \text{ m}} \times 45 \text{ m}" />
-
-<BlockMath math="d = 1{,}5 \text{ cm}" />
-
-Das Rechteck ist in der Zeichnung also <InlineMath math="1{,}5 \text{ cm}" /> lang.
+Die Wahrscheinlichkeit für ein gerades Produkt ist also <InlineMath math="\tfrac{13}{18}" />.

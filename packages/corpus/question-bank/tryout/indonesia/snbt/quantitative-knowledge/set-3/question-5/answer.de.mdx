@@ -1,30 +1,28 @@
-Der Umfang ist die Summe **aller vier Rechteckseiten**. Beide Längen sind gleich, ebenso beide Breiten.
+Das Vorzeichen von <InlineMath math="x+1" /> ist unbekannt, deshalb **darfst du nicht sofort mit <InlineMath math="x+1" /> multiplizieren**. Bringe alle Terme auf eine Seite und untersuche das Vorzeichen des entstehenden Bruchs.
 
-Dabei sind <InlineMath math="K,p,l" /> die Zahlenwerte von Umfang, Länge und Breite in Zentimetern.
+# Einen einzigen Bruch bilden
 
-<MathVisual
- title="Gegenüberliegende Rechteckseiten"
- description="Die Skizze ist nicht maßstabsgetreu. Jede Seitenlänge in Zentimetern kommt im Umfang zweimal vor, da gegenüberliegende Seiten gleich lang sind."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:7},y:{min:-1,max:4}},view:{kind:"fit",padding:0.2},objects:[{id:"rectangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:6,y:0},{x:6,y:3},{x:0,y:3}]}],labels:[{key:"length",objectId:"rectangle",at:{x:3,y:0},placement:"below"},{key:"width",objectId:"rectangle",at:{x:6,y:1.5},placement:"right"}]}}
- labels={{length:<InlineMath math="8y+5" />,width:<InlineMath math="6y+1" />}}
-/>
+<BlockMath math="\begin{aligned}
+\frac{x-3}{x+1}-2&\ge0\\
+\frac{x-3-2(x+1)}{x+1}&\ge0\\
+\frac{-x-5}{x+1}&\ge0\\
+\frac{x+5}{x+1}&\le0
+\end{aligned}" />
 
-Die Formel für den Umfang eines Rechtecks lautet <InlineMath math="K = 2(p + l)" />. Wir setzen die bekannten Werte in die Formel ein.
+In der letzten Zeile wird mit <InlineMath math="-1" /> multipliziert, deshalb **dreht sich das Ungleichheitszeichen um**.
 
-<BlockMath math="x = 2((8y + 5) + (6y + 1))" />
+# Vorzeichen prüfen
 
-<BlockMath math="x = 2(14y + 6)" />
+Der Zähler ist bei <InlineMath math="x=-5" /> null, der Nenner bei <InlineMath math="x=-1" />.
 
-<BlockMath math="x = 28y + 12" />
+| Intervall | Vorzeichen von <InlineMath math="x+5" /> | Vorzeichen von <InlineMath math="x+1" /> | Vorzeichen des Bruchs |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-5" /> | negativ | negativ | positiv |
+| <InlineMath math="-5<x<-1" /> | positiv | negativ | negativ |
+| <InlineMath math="x>-1" /> | positiv | positiv | positiv |
 
-Nun stellen wir die Gleichung nach <InlineMath math="y" /> um.
+Der Bruch ist auf <InlineMath math="-5<x<-1" /> negativ und bei <InlineMath math="x=-5" /> null. Die Stelle <InlineMath math="x=-1" /> **gehört nicht dazu**, weil dort der Nenner null ist. Probe mit <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
 
-<BlockMath math="28y = x - 12" />
+Die Menge <InlineMath math="x\le-5" /> entsteht, wenn beide Seiten mit <InlineMath math="x+1" /> multipliziert werden, als wäre es positiv. Die Menge mit <InlineMath math="-5<x" /> lässt <InlineMath math="x=-5" /> weg, obwohl die linke Seite dort genau 2 ist. Die Menge mit <InlineMath math="x\le-1" /> nimmt die Stelle mit Nenner null auf. Die Menge <InlineMath math="x\le-5" /> oder <InlineMath math="x>-1" /> ist der Bereich mit dem umgekehrten Vorzeichen.
 
-<BlockMath math="y = \frac{x - 12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{3}{7}" />
-
-Damit ist der dimensionslose Wert von <InlineMath math="y" /> gleich <InlineMath math="\frac{x}{28} - \frac{3}{7}" />.
+Die Lösungsmenge ist also <InlineMath math="\{x\mid -5\le x<-1\}" />.

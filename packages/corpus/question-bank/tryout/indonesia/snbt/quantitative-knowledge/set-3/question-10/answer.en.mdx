@@ -1,41 +1,21 @@
-Given the data: <InlineMath math="55, a, 73, b" />.
-The **mean of these four values** is <InlineMath math="68" />.
+Quadrilateral <InlineMath math="DBCE" /> is triangle <InlineMath math="ABC" /> minus triangle <InlineMath math="ADE" />. So you only need the area of <InlineMath math="ADE" />, which **shares angle <InlineMath math="A" />** with triangle <InlineMath math="ABC" />.
 
-<BlockMath math="\frac{55 + a + 73 + b}{4} = 68" />
+# Area ratio with a shared angle
 
-<BlockMath math="128 + a + b = 272" />
+The area of a triangle can be written as <InlineMath math="\tfrac12\cdot\text{side}\cdot\text{side}\cdot\sin A" />. Since angle <InlineMath math="A" /> is the same, the area ratio is **the product of the ratios of the two sides that enclose that angle**.
 
-<BlockMath math="a + b = 272 - 128" />
+<BlockMath math="\frac{[ADE]}{[ABC]}=\frac{\tfrac12\,AD\cdot AE\sin A}{\tfrac12\,AB\cdot AC\sin A}=\frac{AD}{AB}\cdot\frac{AE}{AC}" />
 
-<BlockMath math="a + b = 144 \quad \ldots \text{(1)}" />
+From <InlineMath math="AD:DB=1:2" /> we get <InlineMath math="\frac{AD}{AB}=\frac13" />, and from <InlineMath math="AE:EC=3:1" /> we get <InlineMath math="\frac{AE}{AC}=\frac34" />.
 
-The difference between <InlineMath math="b" /> and <InlineMath math="a" /> is <InlineMath math="22" />.
+<BlockMath math="[ADE]=\frac13\cdot\frac34\cdot48=12" />
 
-<BlockMath math="b - a = 22 \quad \ldots \text{(2)}" />
+# Computing the quadrilateral
 
-We **eliminate the first variable** by adding equations (1) and (2).
+The quadrilateral is **what remains of the triangle after <InlineMath math="ADE" /> is removed**.
 
-<BlockMath math="\begin{aligned} a + b &= 144 \\ -a + b &= 22 \end{aligned}" />
+<BlockMath math="[DBCE]=48-12=36\text{ cm}^2" />
 
-Add both equations:
+The value 12 is the area of triangle <InlineMath math="ADE" />, not yet subtracted from 48. The value 30 reads <InlineMath math="AD:DB=1:2" /> as <InlineMath math="\frac{AD}{AB}=\frac12" />. The value 44 uses <InlineMath math="\frac{AE}{AC}=\frac14" />, which is the part <InlineMath math="EC" />, not <InlineMath math="AE" />. The value 24 takes only half the area of the triangle.
 
-<BlockMath math="2b = 166 \Rightarrow b = 83" />
-
-Substitute <InlineMath math="b = 83" /> into equation (1):
-
-<BlockMath math="a + 83 = 144" />
-
-<BlockMath math="a = 144 - 83" />
-
-<BlockMath math="a = 61" />
-
-Thus, the four numbers are <InlineMath math="55, 61, 73, 83" />. These are already ordered.
-The median is the middle value of the sorted data. For <InlineMath math="4 \text{ data points}" />, the median is the **mean of the two middle values**, the <InlineMath math="2" />nd and <InlineMath math="3" />rd values.
-
-<BlockMath math="\text{Median} = \frac{a + 73}{2} = \frac{61 + 73}{2}" />
-
-<BlockMath math="= \frac{134}{2}" />
-
-<BlockMath math="= 67" />
-
-So, the median of the four data points is <InlineMath math="67" />.
+So the area of quadrilateral <InlineMath math="DBCE" /> is **<InlineMath math="36\text{ cm}^2" />**.
