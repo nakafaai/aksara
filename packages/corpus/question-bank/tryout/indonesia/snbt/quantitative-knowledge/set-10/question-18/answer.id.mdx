@@ -1,17 +1,20 @@
-Tuliskan anggota himpunan <InlineMath math="A" />. Anggotanya adalah **bilangan bulat** yang lebih besar dari batas bawah dan lebih kecil dari batas atas, yaitu di antara <InlineMath math="-3" /> dan <InlineMath math="8" />:
+Jabatannya berbeda, jadi urutan pemilihan diperhatikan dan ini soal **permutasi**. Syarat larangan lebih mudah ditangani dengan menghitung semua susunan lalu **membuang susunan yang memuat Ani dan Budi sekaligus**.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# Semua susunan tanpa syarat
 
-Himpunan <InlineMath math="B" /> berisi setiap bilangan bulat yang kurang dari atau sama dengan <InlineMath math="7" />:
+<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+# Susunan yang dilarang
 
-Irisan dari dua himpunan (<InlineMath math="A \cap B" />) adalah himpunan yang berisi anggota yang ada di kedua himpunan tersebut.
+Jika Ani dan Budi sama-sama terpilih, pengurus ketiga dipilih dari 5 calon lain. Ketiga orang itu lalu dibagi ke tiga jabatan dalam <InlineMath math="3!" /> cara.
 
-Karena semua anggota himpunan <InlineMath math="A" /> (mulai dari <InlineMath math="-2" /> sampai <InlineMath math="7" />) juga terdapat di dalam himpunan <InlineMath math="B" />, maka irisan keduanya adalah himpunan <InlineMath math="A" /> itu sendiri:
+<BlockMath math="\begin{aligned}
+\text{dilarang}&=5\cdot3!=30\\
+\text{banyak cara}&=210-30=180
+\end{aligned}" />
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+Pemeriksaan dengan cara langsung: tanpa Ani dan Budi ada <InlineMath math="P(5,3)=60" /> cara, dan dengan tepat salah satu dari mereka ada <InlineMath math="2\cdot\binom52\cdot3!=120" /> cara. Jumlahnya <InlineMath math="60+120=180" />.
 
-Jika kita ubah kembali ke dalam notasi pembentuk himpunan, anggotanya adalah bilangan bulat yang lebih besar dari <InlineMath math="-3" /> dan kurang dari atau sama dengan <InlineMath math="7" />:
+Nilai 210 mengabaikan syarat larangan. Nilai 150 membuang 60 susunan, karena menghitung pasangan Ani dan Budi dua kali.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+Jadi, banyak cara memilih ketiga pengurus adalah **180**.

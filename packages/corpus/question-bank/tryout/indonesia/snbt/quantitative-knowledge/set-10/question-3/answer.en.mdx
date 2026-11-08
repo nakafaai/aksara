@@ -1,11 +1,13 @@
-Counting the cases in which either sibling wins can count the case in which both win twice. The **complement**, where neither sibling is selected, is cleaner.
+The quantity <InlineMath math="P" /> is **an infinite geometric series** with first term <InlineMath math="\tfrac13" /> and ratio <InlineMath math="\tfrac13" />. It converges because the ratio lies between <InlineMath math="-1" /> and 1.
 
-Removing the two siblings leaves <InlineMath math="2998" /> other participants.
+# Sum of the series
 
-Let <InlineMath math="E" /> be the event that neither sibling wins. The event that at least one wins is its complement, <InlineMath math="E^c" />.
+<BlockMath math="P=\frac{a}{1-r}=\frac{1/3}{1-1/3}=\frac{1/3}{2/3}=\frac12" />
 
-<BlockMath math="\begin{aligned} P(E) &= \frac{\binom{2998}{20}}{\binom{3000}{20}} \\ &= \frac{2998!\,2980!}{2978!\,3000!} \\ &= \frac{2980}{3000}\cdot\frac{2979}{2999} \end{aligned}" />
+# Check with partial sums
 
-<BlockMath math="\begin{aligned} P(E^c) &= 1-P(E) \\ &= 1-\frac{2980\cdot2979}{3000\cdot2999} \\ &= \frac{8997000-8877420}{8997000} \\ &= \frac{119580}{8997000} \\ &= \frac{1993}{149950} \\ &\approx 0.0133 \end{aligned}" />
+The sum of the first four terms is <InlineMath math="\tfrac{27+9+3+1}{81}=\tfrac{40}{81}\approx0.494" />. The partial sums **keep approaching 0.5 but never pass it**, and the sum of the infinite series is that limit, exactly 0.5.
 
-The probability that at least one sibling wins is approximately <InlineMath math="0.0133" />, or <InlineMath math="1.33\%" />.
+Adding only a few terms may suggest <InlineMath math="P<Q" />. But the series never ends, so its value is exactly equal to <InlineMath math="Q" />.
+
+So the correct relation is **<InlineMath math="P=Q" />**.

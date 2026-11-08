@@ -1,17 +1,20 @@
-Liste zuerst die Elemente von <InlineMath math="A" /> auf. Es sind die **ganzen Zahlen**, die echt zwischen <InlineMath math="-3" /> und <InlineMath math="8" /> liegen:
+Die Ämter sind verschieden, die Reihenfolge zählt also, und es geht um **Permutationen**. Die Einschränkung behandelst du am einfachsten, indem du alle Besetzungen zählst und dann **die Besetzungen mit Ani und Budi zugleich abziehst**.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# Alle Besetzungen ohne Bedingung
 
-Die Menge <InlineMath math="B" /> enthält alle ganzen Zahlen, die kleiner oder gleich <InlineMath math="7" /> sind:
+<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+# Verbotene Besetzungen
 
-Die Schnittmenge <InlineMath math="A \cap B" /> enthält genau die Elemente, die in beiden Mengen liegen.
+Sind Ani und Budi beide gewählt, kommt die dritte Person aus den anderen 5 Kandidaten. Diese drei Personen werden dann auf <InlineMath math="3!" /> Arten auf die drei Ämter verteilt.
 
-Alle Elemente von <InlineMath math="A" />, also die ganzen Zahlen von <InlineMath math="-2" /> bis <InlineMath math="7" />, liegen auch in <InlineMath math="B" />. Daher ist die Schnittmenge gleich <InlineMath math="A" />:
+<BlockMath math="\begin{aligned}
+\text{verboten}&=5\cdot3!=30\\
+\text{Möglichkeiten}&=210-30=180
+\end{aligned}" />
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+Direkte Kontrolle: Ohne Ani und Budi gibt es <InlineMath math="P(5,3)=60" /> Möglichkeiten, mit genau einem der beiden <InlineMath math="2\cdot\binom52\cdot3!=120" />. Zusammen sind das <InlineMath math="60+120=180" />.
 
-In Mengenschreibweise sind dies alle ganzen Zahlen, die größer als <InlineMath math="-3" /> und höchstens <InlineMath math="7" /> sind:
+Der Wert 210 übersieht die Einschränkung. Der Wert 150 zieht 60 Besetzungen ab und zählt das Paar Ani und Budi doppelt.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+Es gibt also **180** Möglichkeiten, die drei Ämter zu besetzen.

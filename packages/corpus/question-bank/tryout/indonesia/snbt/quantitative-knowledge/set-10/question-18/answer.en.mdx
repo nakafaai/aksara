@@ -1,17 +1,20 @@
-List the members of <InlineMath math="A" />. They are the **integers strictly between** <InlineMath math="-3" /> and <InlineMath math="8" />:
+The positions are different, so the order matters and this is **a permutation** problem. The restriction is easiest to handle by counting all arrangements and then **removing those that contain both Ani and Budi**.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# All arrangements without the condition
 
-Set <InlineMath math="B" /> contains every integer less than or equal to <InlineMath math="7" />:
+<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+# Forbidden arrangements
 
-The intersection of two sets (<InlineMath math="A \cap B" />) is the set containing elements that are present in both sets.
+If Ani and Budi are both chosen, the third officer comes from the other 5 candidates. These three people are then assigned to the three positions in <InlineMath math="3!" /> ways.
 
-Since all members of set <InlineMath math="A" /> (from <InlineMath math="-2" /> to <InlineMath math="7" />) are also contained in set <InlineMath math="B" />, the intersection is set <InlineMath math="A" /> itself:
+<BlockMath math="\begin{aligned}
+\text{forbidden}&=5\cdot3!=30\\
+\text{ways}&=210-30=180
+\end{aligned}" />
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+Direct check: without Ani and Budi there are <InlineMath math="P(5,3)=60" /> ways, and with exactly one of them there are <InlineMath math="2\cdot\binom52\cdot3!=120" /> ways. The total is <InlineMath math="60+120=180" />.
 
-Converting this back to set-builder notation, the elements are integers greater than <InlineMath math="-3" /> and less than or equal to <InlineMath math="7" />:
+The value 210 ignores the restriction. The value 150 removes 60 arrangements, counting the pair Ani and Budi twice.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+So the number of ways to choose the three officers is **180**.
