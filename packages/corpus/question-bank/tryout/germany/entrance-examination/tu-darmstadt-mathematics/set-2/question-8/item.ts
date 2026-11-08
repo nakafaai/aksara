@@ -15,7 +15,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$(-1\\mid0)$$",
+          label: "$$(0\\mid2{,}5)$$",
         },
         {
           correct: false,
@@ -27,7 +27,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$(1\\mid3)$$",
+          label: "$$(0\\mid7)$$",
         },
       ],
     },
