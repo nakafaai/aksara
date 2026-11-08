@@ -60,7 +60,7 @@ Bei diesem Würfel ist <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6}
 
 ## Unvereinbare Ereignisse erkennen
 
-Stell dir eine Frage: Gibt es ein Ergebnis, das **beide Ereignisse zugleich** erfüllt? Gibt es keines, sind die Ereignisse unvereinbar. In den folgenden Beispielen sind alle Grundergebnisse gleich wahrscheinlich.
+Stell dir eine Frage: Gibt es ein Ergebnis, das **beide Ereignisse zugleich** erfüllt? Gibt es keines, sind die Ereignisse unvereinbar. Jedes Zufallsexperiment in dieser Tabelle hat gleichwahrscheinliche Grundergebnisse.
 
 | Zufallsexperiment | Zwei Ereignisse | Wahrscheinlichkeit der Vereinigung |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ Die letzte Zeile ist unvereinbar, weil alle Kreuzkarten schwarz sind. Rote Karte
 
 ## Warum die Wahrscheinlichkeiten einfach addiert werden dürfen
 
-Ist die Schnittmenge leer, wird kein Ergebnis doppelt gezählt. Bei einem Ergebnisraum mit gleich wahrscheinlichen Ergebnissen ist die Anzahl der Elemente der Vereinigung die Summe der Anzahlen beider Ereignisse:
+Für zwei Ereignisse mit leerer Schnittmenge gilt immer <InlineMath math="P(A \cup B) = P(A) + P(B)" />, weil kein Ergebnis doppelt gezählt wird. Bei einem Ergebnisraum mit gleichwahrscheinlichen Ergebnissen kannst du den Grund direkt abzählen: Die Anzahl der Elemente der Vereinigung ist die Summe der Anzahlen beider Ereignisse.
 
 <BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(\Omega)} = P(A) + P(B)" />
 
@@ -86,7 +86,7 @@ Ein Ereignis <InlineMath math="A" /> und sein Gegenereignis <InlineMath math="\o
 
 <BlockMath math="P(\overline{A}) = 1 - P(A)" />
 
-Die Regel für das Gegenereignis spart Arbeit, wenn das gesuchte Ereignis viele Ergebnisse hat. Die Wahrscheinlichkeit, dass ein Würfel keine 6 zeigt, ist <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, ohne fünf Wahrscheinlichkeiten zu addieren.
+Die Regel für das Gegenereignis spart Arbeit, wenn das gesuchte Ereignis viele Ergebnisse hat. Die Wahrscheinlichkeit, dass ein Würfel keine 6 zeigt, ist <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, ohne fünf Wahrscheinlichkeiten zu addieren. Probe durch Aufzählen: Die Ergebnisse außer 6 sind <InlineMath math="\{1, 2, 3, 4, 5\}" />, also 5 von 6 Ergebnissen.
 
 ## Beispiel mit der Augensumme zweier Würfel
 
@@ -130,21 +130,19 @@ Probe durch Aufzählen. Die Summe 7 entsteht aus (1, 6), (2, 5), (3, 4), (4, 3),
 
 ## Unvereinbar ist nicht dasselbe wie unabhängig
 
-Die Begriffe unvereinbar und unabhängig werden oft verwechselt. **Unvereinbar** heißt, dass die Ereignisse nicht zusammen eintreten können. [Unabhängig](/de/faecher/mathematik/kombinatorik/unabhaengige-ereignisse) heißt, dass das Eintreten des einen die Wahrscheinlichkeit des anderen nicht ändert, also <InlineMath math="P(A \cap B) = P(A)\,P(B)" />.
+Die Begriffe unvereinbar und unabhängig werden oft verwechselt. **Unvereinbar** heißt, dass die Ereignisse nicht zusammen eintreten können. [Unabhängig](/de/faecher/mathematik/kombinatorik/unabhaengige-ereignisse) ist durch <InlineMath math="P(A \cap B) = P(A)\,P(B)" /> festgelegt. Ist <InlineMath math="P(A) > 0" />, heißt das, dass das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> nicht ändert.
 
-Ist <InlineMath math="P(A) > 0" /> und <InlineMath math="P(B) > 0" />, können unvereinbare Ereignisse **nicht** unabhängig sein. Ihre Schnittmenge hat die Wahrscheinlichkeit <InlineMath math="0" />, während <InlineMath math="P(A)\,P(B) > 0" /> ist. Beim Würfel senkt das Wissen, dass eine 1 gefallen ist, die Wahrscheinlichkeit von <InlineMath math="B = \{5, 6\}" /> von <InlineMath math="\frac{1}{3}" /> auf <InlineMath math="0" />, die Ereignisse beeinflussen sich also.
+Ist <InlineMath math="P(A) > 0" /> und <InlineMath math="P(B) > 0" />, können unvereinbare Ereignisse **nicht** unabhängig sein. Ihre Schnittmenge hat die Wahrscheinlichkeit <InlineMath math="0" />, während <InlineMath math="P(A)\,P(B) > 0" /> ist. Weißt du beim Würfel, dass <InlineMath math="A" /> eingetreten ist, gilt für die bedingte Wahrscheinlichkeit <InlineMath math="P(B \mid A) = 0" />, während <InlineMath math="P(B) = \frac{1}{3}" /> ist. Die Ereignisse beeinflussen sich also.
 
 ## Typische Fehler
 
 | Fehler | Warum er scheitert | So prüfst du |
 | --- | --- | --- |
-| Wahrscheinlichkeiten sich überschneidender Ereignisse addieren | Ergebnisse in der Schnittmenge werden doppelt gezählt | Schreibe zuerst die Schnittmenge auf, sie muss leer sein |
+| Wahrscheinlichkeiten sich überschneidender Ereignisse addieren | Ergebnisse in der Schnittmenge werden doppelt gezählt | **Schreibe zuerst die Schnittmenge auf**, sie muss leer sein |
 | Unvereinbar mit unabhängig verwechseln | Unvereinbar liefert <InlineMath math="P(A \cap B) = 0" />, unabhängig liefert <InlineMath math="P(A)P(B)" /> | Vergleiche <InlineMath math="P(A \cap B)" /> mit <InlineMath math="P(A)P(B)" /> |
 | Rote Karten und Könige für unvereinbar halten | Herzkönig und Karokönig gehören zu beiden | Suche ein Ergebnis, das beide Bedingungen erfüllt |
 | Drei Ereignisse addieren, die nur teilweise unvereinbar sind | Die Summenregel verlangt, dass je zwei unvereinbar sind | Prüfe alle Paare, nicht nur eines |
-| Eine Wahrscheinlichkeit der Vereinigung über 1 erhalten | Das zeigt, dass sich die Ereignisse überschneiden | Unvereinbare Ereignisse ergeben nie eine Summe über 1 |
-
-Die schnellste Probe ist, **alle Ergebnisse der Vereinigung aufzuzählen**. Stimmt ihre Anzahl mit der Summe der Anzahlen beider Ereignisse überein, wurde nichts doppelt gezählt.
+| Eine Wahrscheinlichkeit der Vereinigung über 1 erhalten | Das zeigt, dass Wahrscheinlichkeiten sich überschneidender Ereignisse addiert wurden und die Schnittmenge doppelt zählt | Unvereinbare Ereignisse ergeben nie eine Summe über 1 |
 
 ## Übungsaufgaben
 

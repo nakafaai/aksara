@@ -60,7 +60,7 @@ Pada dadu itu, <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac
 
 ## Mengenali Kejadian Saling Lepas
 
-Tanyakan satu hal: adakah satu hasil yang memenuhi **kedua kejadian sekaligus**? Jika tidak ada, kedua kejadian saling lepas. Pada contoh berikut, setiap hasil dasar sama mungkin.
+Tanyakan satu hal: adakah satu hasil yang memenuhi **kedua kejadian sekaligus**? Jika tidak ada, kedua kejadian saling lepas. Setiap percobaan dalam tabel ini punya hasil dasar yang sama mungkin.
 
 | Percobaan | Dua kejadian | Peluang gabungan |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ Baris terakhir saling lepas karena semua kartu keriting berwarna hitam. Sebalikn
 
 ## Mengapa Peluangnya Boleh Langsung Dijumlahkan
 
-Jika irisannya kosong, tidak ada hasil yang terhitung dua kali. Untuk ruang sampel yang hasilnya sama mungkin, banyak anggota gabungan adalah jumlah banyak anggota kedua kejadian:
+Untuk dua kejadian apa pun yang irisannya kosong berlaku <InlineMath math="P(A \cup B) = P(A) + P(B)" />, karena tidak ada hasil yang terhitung dua kali. Pada ruang sampel yang setiap hasilnya sama mungkin, alasannya bisa dihitung langsung: banyak anggota gabungan adalah jumlah banyak anggota kedua kejadian.
 
 <BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(S)} = P(A) + P(B)" />
 
@@ -86,7 +86,7 @@ Kejadian <InlineMath math="A" /> dan komplemennya <InlineMath math="A^c" /> (buk
 
 <BlockMath math="P(A^c) = 1 - P(A)" />
 
-Rumus komplemen ini menghemat hitungan saat kejadian yang ditanyakan punya banyak hasil. Peluang dadu tidak menghasilkan mata 6 adalah <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, tanpa perlu menjumlahkan lima peluang.
+Rumus komplemen ini menghemat hitungan saat kejadian yang ditanyakan punya banyak hasil. Peluang dadu tidak menghasilkan mata 6 adalah <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, tanpa perlu menjumlahkan lima peluang. Periksa dengan mendaftar: hasil selain 6 adalah <InlineMath math="\{1, 2, 3, 4, 5\}" />, yaitu 5 dari 6 hasil.
 
 ## Contoh Jumlah Mata Dua Dadu
 
@@ -130,21 +130,19 @@ Periksa dengan mendaftar. Jumlah 7 berasal dari (1, 6), (2, 5), (3, 4), (4, 3), 
 
 ## Saling Lepas Tidak Sama dengan Saling Bebas
 
-Istilah saling lepas dan saling bebas sering tertukar. **Saling lepas** berarti kedua kejadian tidak bisa terjadi bersamaan. [Saling bebas](/id/materi/matematika/kombinatorik/peluang-kejadian-majemuk-saling-bebas) berarti terjadinya satu kejadian tidak mengubah peluang kejadian lain, yaitu <InlineMath math="P(A \cap B) = P(A)\,P(B)" />.
+Istilah saling lepas dan saling bebas sering tertukar. **Saling lepas** berarti kedua kejadian tidak bisa terjadi bersamaan. [Saling bebas](/id/materi/matematika/kombinatorik/peluang-kejadian-majemuk-saling-bebas) didefinisikan dengan <InlineMath math="P(A \cap B) = P(A)\,P(B)" />. Jika <InlineMath math="P(A) > 0" />, definisi ini sama dengan mengatakan bahwa terjadinya <InlineMath math="A" /> tidak mengubah peluang <InlineMath math="B" />.
 
-Jika <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, kejadian saling lepas **tidak mungkin** saling bebas. Irisannya berpeluang <InlineMath math="0" />, padahal <InlineMath math="P(A)\,P(B) > 0" />. Pada dadu, mengetahui hasilnya 1 membuat peluang <InlineMath math="B = \{5, 6\}" /> turun dari <InlineMath math="\frac{1}{3}" /> menjadi <InlineMath math="0" />, jadi kedua kejadian saling memengaruhi.
+Jika <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, kejadian saling lepas **tidak mungkin** saling bebas. Irisannya berpeluang <InlineMath math="0" />, padahal <InlineMath math="P(A)\,P(B) > 0" />. Pada dadu, mengetahui bahwa <InlineMath math="A" /> terjadi membuat peluang bersyarat <InlineMath math="P(B \mid A) = 0" />, padahal <InlineMath math="P(B) = \frac{1}{3}" />, jadi kedua kejadian saling memengaruhi.
 
 ## Kesalahan yang Sering Terjadi
 
 | Kesalahan | Mengapa salah | Cara memeriksa |
 | --- | --- | --- |
-| Menjumlahkan peluang kejadian yang beririsan | Hasil di irisan terhitung dua kali | Tulis irisannya dulu, harus kosong |
+| Menjumlahkan peluang kejadian yang beririsan | Hasil di irisan terhitung dua kali | **Tulis irisannya dulu**, harus kosong |
 | Menganggap saling lepas sama dengan saling bebas | Saling lepas memberi <InlineMath math="P(A \cap B) = 0" />, saling bebas memberi <InlineMath math="P(A)P(B)" /> | Bandingkan <InlineMath math="P(A \cap B)" /> dengan <InlineMath math="P(A)P(B)" /> |
 | Menganggap kartu merah dan king saling lepas | King hati dan king wajik termasuk keduanya | Cari satu hasil yang memenuhi kedua syarat |
 | Menjumlahkan tiga kejadian yang hanya sebagian saling lepas | Rumus jumlah butuh setiap pasangan saling lepas | Periksa semua pasangan, bukan hanya satu |
-| Mendapat peluang gabungan lebih dari 1 | Itu tanda kejadiannya beririsan | Kejadian saling lepas tidak pernah memberi jumlah lebih dari 1 |
-
-Pemeriksaan paling cepat adalah **mendaftar semua hasil gabungan**. Jika banyak hasilnya sama dengan jumlah banyak hasil kedua kejadian, tidak ada yang terhitung dua kali.
+| Mendapat peluang gabungan lebih dari 1 | Itu tanda peluang kejadian yang beririsan dijumlahkan, sehingga irisannya terhitung dua kali | Kejadian saling lepas tidak pernah memberi jumlah lebih dari 1 |
 
 ## Latihan Soal
 
