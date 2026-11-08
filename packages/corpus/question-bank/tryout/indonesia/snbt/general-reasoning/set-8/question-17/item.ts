@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
+  stimulus: "lagu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Tahun ke-$$2$$",
-        },
-        {
-          correct: false,
-          label: "Tahun ke-$$3$$",
-        },
-        {
-          correct: false,
-          label: "Tahun ke-$$4$$",
-        },
-        {
           correct: true,
-          label: "Tahun ke-$$1$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "Tahun ke-$$5$$",
+          label: "$$9$$",
+        },
+        {
+          correct: false,
+          label: "$$10$$",
+        },
+        {
+          correct: false,
+          label: "$$11$$",
+        },
+        {
+          correct: false,
+          label: "$$12$$",
         },
       ],
     },

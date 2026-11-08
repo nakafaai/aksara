@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "spatial-reasoning",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1{.}268$$ dan $$293$$ orang",
+          label: "Rumah Dedi berada di sebelah timur laut rumah Budi.",
+        },
+        {
+          correct: false,
+          label: "Rumah Dedi berada tepat di sebelah selatan rumah Ani.",
+        },
+        {
+          correct: false,
+          label: "Rumah Budi berada di sebelah barat laut rumah Dedi.",
         },
         {
           correct: true,
-          label: "$$1{.}268$$ dan $$266$$ orang",
+          label: "Rumah Cici berada di sebelah timur laut rumah Budi.",
         },
         {
           correct: false,
-          label: "$$1{.}270$$ dan $$281$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$1{.}270$$ dan $$264$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$1{.}272$$ dan $$281$$ orang",
+          label:
+            "Rumah Ani dan rumah Dedi berada pada satu garis utara dan selatan.",
         },
       ],
     },

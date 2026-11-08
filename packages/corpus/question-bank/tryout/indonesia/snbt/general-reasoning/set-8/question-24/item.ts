@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "motor",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{20}{3}$$",
+          column: 2,
+          label:
+            "Bensin yang terpakai oleh keempat motor dalam minggu itu lebih dari $$40$$ liter.",
         },
         {
-          correct: false,
-          label: "$$7$$",
+          column: 1,
+          label:
+            "Motor R menempuh jarak paling pendek, tetapi paling hemat bensin.",
         },
         {
-          correct: true,
-          label: "$$\\frac{23}{3}$$",
+          column: 1,
+          label:
+            "Jika harga bensin $$\\text{Rp}10{.}000$$ per liter, biaya bensin motor S selama minggu itu adalah $$\\text{Rp}100{.}000$$.",
         },
         {
-          correct: false,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{25}{3}$$",
+          column: 2,
+          label:
+            "Efisiensi gabungan keempat motor lebih dari $$42$$ km per liter.",
         },
       ],
     },
