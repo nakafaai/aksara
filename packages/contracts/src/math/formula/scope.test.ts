@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Option, Schema } from "effect";
+import { Array as Arr, Option, Schema } from "effect";
 import type { SampleBox } from "#contracts/math/formula/box";
 import {
   formulaScopeIssues,
@@ -23,10 +23,13 @@ describe("formula fields", () => {
   it("names the variables each plane formula may read", () => {
     /** The path and readable variables of each formula of one decoded object. */
     const variables = (object: unknown) =>
-      planeFormulaFields(plane(object)).map(({ path, variables: each }) => [
-        path.join("."),
-        each.join(","),
-      ]);
+      Arr.map(
+        planeFormulaFields(plane(object)),
+        ({ path, variables: each }) => [
+          Arr.join(Arr.map(path, String), "."),
+          Arr.join(each, ","),
+        ]
+      );
 
     assert.deepStrictEqual(
       variables({ ...fields, formula: "x", kind: "function" }),
@@ -82,10 +85,13 @@ describe("formula fields", () => {
   it("names the variables each space formula may read", () => {
     /** The path and readable variables of each formula of one decoded object. */
     const variables = (object: unknown) =>
-      spaceFormulaFields(space(object)).map(({ path, variables: each }) => [
-        path.join("."),
-        each.join(","),
-      ]);
+      Arr.map(
+        spaceFormulaFields(space(object)),
+        ({ path, variables: each }) => [
+          Arr.join(Arr.map(path, String), "."),
+          Arr.join(each, ","),
+        ]
+      );
 
     assert.deepStrictEqual(
       variables({

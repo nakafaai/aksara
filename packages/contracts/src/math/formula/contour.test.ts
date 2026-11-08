@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Array as Arr } from "effect";
+import { Array as Arr, Option } from "effect";
 import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import { contourFill, contourLines } from "#contracts/math/formula/contour";
 
@@ -27,16 +27,12 @@ describe("contourLines", () => {
     for (const { x, y } of line) {
       assert.closeTo(Math.hypot(x, y), 2, 0.01);
     }
-    const [first] = line;
-    const last = line.at(-1);
-    assert.isTrue(first !== undefined && last !== undefined);
-    assert.closeTo(
-      Math.hypot(
-        (first?.x ?? 0) - (last?.x ?? 0),
-        (first?.y ?? 0) - (last?.y ?? 0)
-      ),
-      0,
-      1e-9
+    const ends = Option.all([Arr.head(line), Arr.last(line)]);
+    assert.isTrue(
+      Option.exists(
+        ends,
+        ([first, last]) => Math.hypot(first.x - last.x, first.y - last.y) < 1e-9
+      )
     );
   });
 

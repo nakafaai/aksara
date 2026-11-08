@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Array as Arr } from "effect";
+import { Array as Arr, Option } from "effect";
 
 import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import {
@@ -34,8 +34,12 @@ describe("sampleCurve", () => {
     assert.isTrue(Arr.every(branch, inside));
     assert.isTrue(Arr.some(branch, ({ x, y }) => x === 0 && y === -4));
     assert.isTrue(Arr.some(branch, ({ x }) => x === 1 / 3));
-    assert.closeTo(branch[0]?.y ?? 0, 5, 1e-9);
-    assert.closeTo(branch.at(-1)?.y ?? 0, 5, 1e-9);
+    assert.deepStrictEqual(
+      Arr.map([Arr.head(branch), Arr.last(branch)], (end) =>
+        Option.exists(end, ({ y }) => Math.abs(y - 5) < 1e-9)
+      ),
+      [true, true]
+    );
   });
 
   it("splits at an asymptote and keeps every branch dense", () => {
@@ -108,7 +112,9 @@ describe("sampleCurve", () => {
 
     assert.strictEqual(branches.length, 1);
     const [branch = []] = branches;
-    assert.closeTo(branch.at(-1)?.z ?? 0, 2, 1e-9);
+    assert.isTrue(
+      Option.exists(Arr.last(branch), ({ z }) => Math.abs(z - 2) < 1e-9)
+    );
     assert.isTrue(Arr.every(branch, ({ z }) => z >= 0 && z <= 2));
   });
 

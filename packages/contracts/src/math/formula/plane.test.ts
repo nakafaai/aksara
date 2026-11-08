@@ -128,6 +128,10 @@ describe("planeFormulaGeometry", () => {
         )
       );
       assert.isAbove(solid.length, 0);
+      assert.isBelow(sampled.boundary.length, 12);
+      assert.isTrue(
+        Arr.every(sampled.boundary, (edge) => edge.points.length >= 2)
+      );
     }
   });
 

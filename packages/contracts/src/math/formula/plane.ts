@@ -1,4 +1,11 @@
-import { Array as Arr, Option, Order, Result, Schema } from "effect";
+import {
+  Array as Arr,
+  MutableList,
+  Option,
+  Order,
+  Result,
+  Schema,
+} from "effect";
 import type { PlaneCurveObjectSchemas } from "#contracts/math/curve";
 import {
   type SampleBox,
@@ -73,6 +80,47 @@ const ConstraintGapSchema = Schema.Struct({
 });
 type ConstraintGap = typeof ConstraintGapSchema.Type;
 
+/** One piece of a region's outline, between two consecutive samples. */
+const EdgePieceSchema = Schema.Struct({
+  next: SamplePointSchema,
+  point: SamplePointSchema,
+  strict: Schema.Boolean,
+});
+type EdgePiece = typeof EdgePieceSchema.Type;
+
+/** One run of an outline that is all strict or all inclusive. */
+const EdgeRunSchema = Schema.Struct({
+  points: Schema.Array(SamplePointSchema),
+  strict: Schema.Boolean,
+});
+type EdgeRun = typeof EdgeRunSchema.Type;
+
+/**
+ * Joins consecutive outline pieces of the same kind into one line, so a
+ * renderer draws a few dashed and solid edges instead of every short piece.
+ */
+function edgeRuns(pieces: readonly EdgePiece[]) {
+  const runs = MutableList.make<EdgeRun>();
+  let points = MutableList.make<SamplePoint>();
+  let strict = false;
+  Arr.forEach(pieces, (piece, index) => {
+    if (index === 0 || piece.strict !== strict) {
+      if (index > 0) {
+        MutableList.append(runs, {
+          points: MutableList.toArray(points),
+          strict,
+        });
+      }
+      points = MutableList.make<SamplePoint>();
+      MutableList.append(points, piece.point);
+      strict = piece.strict;
+    }
+    MutableList.append(points, piece.next);
+  });
+  MutableList.append(runs, { points: MutableList.toArray(points), strict });
+  return MutableList.toArray(runs);
+}
+
 /** The signed room an inequality leaves at a point: positive where it holds. */
 function margin(text: string) {
   return Result.map(readRelation(text), ({ comparison, left, right }) => {
@@ -128,10 +176,13 @@ function regionGeometry(
       );
     };
     const boundary = Arr.flatMap(contourLines(field, box), (line) =>
-      Arr.zipWith(line, Arr.drop(line, 1), (point, next) => ({
-        points: [point, next],
-        strict: strictAt(point, next),
-      }))
+      edgeRuns(
+        Arr.zipWith(line, Arr.drop(line, 1), (point, next) => ({
+          next,
+          point,
+          strict: strictAt(point, next),
+        }))
+      )
     );
     return {
       boundary,
