@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multipliziere Matrizen nach dem Zeile-mal-Spalte-Prinzip und nutze Dimensionen, Rechengesetze und vollständig gelöste Anwendungen sicher.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -95,6 +95,94 @@ Die Matrix <InlineMath math="B" /> hat das Format <InlineMath math="3 \times 2" 
 Die Anzahl der Spalten in der Matrix <InlineMath math="B" /> (das ist <InlineMath math="2" />) ist **nicht gleich** der Anzahl der Zeilen in der Matrix <InlineMath math="A" /> (das ist <InlineMath math="3" />).
 
 Daher ist das Produkt <InlineMath math="BA" /> **nicht definiert**. Schon die Vertauschung der Faktoren kann also darüber entscheiden, ob ein Produkt überhaupt existiert.
+
+Ein Matrixprodukt kann eine ganze Figur auf einmal bewegen. Schreib die Ecken eines Dreiecks als Spalten von <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" /> und multipliziere mit <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Jeder Eintrag von <InlineMath math="MT" /> ist weiterhin eine Zeile von <InlineMath math="M" /> mal eine Spalte von <InlineMath math="T" />. Zeile 1 mal Spalte 2 ergibt <InlineMath math="2(2) + (-1)(0) = 4" />, Zeile 2 mal Spalte 2 ergibt <InlineMath math="1(2) + 1(0) = 2" />. Die Ecke <InlineMath math="(2, 0)" /> wandert also nach <InlineMath math="(4, 2)" />. Genauso wandert die Ecke <InlineMath math="(1, 2)" /> nach <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> bewegt jede Ecke, die in <InlineMath math="T" /> steht</>}
+  description={<>Die Spalten von <InlineMath math="T" /> sind die Ecken eines Dreiecks. Jede Spalte von <InlineMath math="MT" /> ist die passende Ecke nach der Multiplikation mit <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Die Reihenfolge zählt. Nimm <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}" /> und den Punkt <InlineMath math="(1, 1)" />. Zufällig schicken ihn <InlineMath math="N" /> und <InlineMath math="M" /> beide zuerst nach <InlineMath math="(1, 2)" />. <InlineMath math="MN" /> wendet erst <InlineMath math="N" /> und dann <InlineMath math="M" /> an und landet bei <InlineMath math="(0, 3)" />. <InlineMath math="NM" /> wendet erst <InlineMath math="M" /> und dann <InlineMath math="N" /> an und landet bei <InlineMath math="(1, 4)" />. Verschiedene Punkte, also <InlineMath math="MN \neq NM" />.
+
+<MathVisual
+  title={<><InlineMath math="MN" /> und <InlineMath math="NM" /> schicken <InlineMath math="(1, 1)" /> an verschiedene Punkte</>}
+  description={<>Von <InlineMath math="(1, 1)" /> aus führen beide Reihenfolgen über <InlineMath math="(1, 2)" />, dann endet <InlineMath math="MN" /> bei <InlineMath math="(0, 3)" /> und <InlineMath math="NM" /> bei <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    start: <InlineMath math="(1, 1)" />,
+    middle: <InlineMath math="(1, 2)" />,
+    mn: <InlineMath math="MN: (0, 3)" />,
+    nm: <InlineMath math="NM: (1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "mn", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "nm", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "start", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "middle", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Größen entscheiden, ob ein Produkt existiert. Im Beispiel ist <InlineMath math="A" /> eine <InlineMath math="3 \times 3" />- und <InlineMath math="B" /> eine <InlineMath math="3 \times 2" />-Matrix: Die inneren Größen, <InlineMath math="3" /> Spalten von <InlineMath math="A" /> und <InlineMath math="3" /> Zeilen von <InlineMath math="B" />, passen. Das Produkt behält die äußeren Größen, <InlineMath math="AB" /> ist also <InlineMath math="3 \times 2" />, ein Eintrag für jede Zeile von <InlineMath math="A" /> und jede Spalte von <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Die inneren Größen passen, die äußeren bleiben</>}
+  description={<>Blöcke für <InlineMath math="A" />, 3 mal 3, <InlineMath math="B" />, 3 mal 2, und das Produkt <InlineMath math="AB" />, 3 mal 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Eigenschaften der Matrixmultiplikation
 
