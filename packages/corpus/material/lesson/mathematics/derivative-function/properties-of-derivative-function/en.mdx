@@ -3,7 +3,7 @@ export const metadata = {
   description: "Combine the constant, power, sum, product, quotient, and chain rules in worked derivatives.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Derivative Functions",
 };
 
@@ -41,6 +41,41 @@ Let <InlineMath math="u(x)" /> and <InlineMath math="v(x)" /> be differentiable 
 
    <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ f'(x)&amp;=u'(x)\pm v'(x) \end{aligned}" />
 
+Slopes add like the functions do. At <InlineMath math="x = 1" /> the tangent of <InlineMath math="x^2" /> has slope <InlineMath math="2" /> and the tangent of <InlineMath math="x" /> has slope <InlineMath math="1" />. The tangent of their sum <InlineMath math="x^2 + x" /> has slope <InlineMath math="2 + 1 = 3" />, which is the linear combination rule at work.
+
+<MathVisual
+  title={<>The slope of a sum is the sum of the slopes</>}
+  description={<>The curves <InlineMath math="x^2" />, <InlineMath math="x" /> and <InlineMath math="x^2 + x" /> with their tangents at <InlineMath math="x = 1" />, of slopes 2, 1 and 3.</>}
+  labels={{
+    square: <InlineMath math="x^2" />,
+    identity: <InlineMath math="x" />,
+    sum: <InlineMath math="x^2 + x" />,
+    "t-square": <InlineMath math="m = 2" />,
+    "t-sum": <InlineMath math="m = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -0.8, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "primary" },
+      { id: "identity", kind: "segment", from: { x: -0.5, y: -0.5 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "construction" },
+      { id: "t-square", kind: "segment", from: { x: 0.5, y: 0 }, to: { x: 1.5, y: 2 }, appearance: "primary" },
+      { id: "t-sum", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1.5, y: 3.5 }, appearance: "construction" },
+      { id: "p-square", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p-sum", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "identity", objectId: "identity", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "t-square", objectId: "t-square", at: { x: 0.5, y: 0 }, placement: "left" },
+      { key: "t-sum", objectId: "t-sum", at: { x: 1.5, y: 3.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Product Quotient and Chain Rules
 
 Some expressions cannot be differentiated term by term. Each rule exists because the derivative of a combination is not the combination of the derivatives. In a product you **differentiate one factor** while the other stays fixed and add the two results, a quotient introduces a denominator, and a composition multiplies the outer derivative by the inner one.
@@ -57,6 +92,36 @@ Let <InlineMath math="u(x)=x^2" /> and <InlineMath math="v(x)=x+1" />. We need *
 
 You can check the result by expanding the original function to <InlineMath math="x^3+x^2" />. Differentiating these two terms gives <InlineMath math="3x^2+2x" /> again.
 
+Here is where the product rule comes from. A rectangle with sides <InlineMath math="u = 2" /> and <InlineMath math="v = 3" /> has area <InlineMath math="uv" />. Let both sides grow a little, by <InlineMath math="\Delta u" /> and <InlineMath math="\Delta v" />: the new area is the old one plus two strips, <InlineMath math="\Delta u \cdot v" /> and <InlineMath math="u \cdot \Delta v" />, plus a tiny corner <InlineMath math="\Delta u \Delta v" />. Divide by <InlineMath math="\Delta x" /> and shrink it: the corner vanishes and <InlineMath math="(uv)' = u'v + uv'" /> remains.
+
+<MathVisual
+  title={<>The product rule as a growing rectangle</>}
+  description={<>A rectangle of area <InlineMath math="uv" /> grows by the strips <InlineMath math="\Delta u \cdot v" /> and <InlineMath math="u \cdot \Delta v" /> and a small corner <InlineMath math="\Delta u \Delta v" />.</>}
+  labels={{
+    uv: <InlineMath math="uv" />,
+    du: <InlineMath math="\Delta u \cdot v" />,
+    dv: <InlineMath math="u \cdot \Delta v" />,
+    corner: <InlineMath math="\Delta u \Delta v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 4.25 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "uv", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "du", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2.5, y: 0 }, { x: 2.5, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "dv", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 3.75 }, { x: 0, y: 3.75 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 2.5, y: 3 }, { x: 2.5, y: 3.75 }, { x: 2, y: 3.75 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "du", objectId: "du", at: { x: 2.5, y: 1.5 }, placement: "right" },
+      { key: "dv", objectId: "dv", at: { x: 1, y: 3.75 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 2.5, y: 3.75 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ### Quotient Rule
 
 For a quotient, <Highlight>the order in the numerator matters</Highlight>. The denominator <InlineMath math="v(x)" /> must also be nonzero wherever the original function is defined.
@@ -68,6 +133,16 @@ For <InlineMath math="f(x)=\frac{x+1}{x-1}" />, choose <InlineMath math="u=x+1" 
 <BlockMath math="\begin{aligned}f'(x)&=\frac{1(x-1)-(x+1)1}{(x-1)^2}\\&=\frac{x-1-x-1}{(x-1)^2}\\&=\frac{-2}{(x-1)^2}\end{aligned}" />
 
 The restriction <InlineMath math="x\ne1" /> applies to both the function and its derivative. Reversing the two numerator terms would give the wrong sign.
+
+Check the sign of <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> on both sides of the excluded input <InlineMath math="1" />. Every bar is negative, so <InlineMath math="f" /> falls on each side. The bars are symmetric because <InlineMath math="(x-1)^2" /> takes the same value at <InlineMath math="0" /> and <InlineMath math="2" />, at <InlineMath math="-1" /> and <InlineMath math="3" />, and at <InlineMath math="-2" /> and <InlineMath math="4" />.
+
+<BarChart
+  title={<>Slopes of <InlineMath math="f(x) = \frac{x+1}{x-1}" /> around <InlineMath math="x = 1" /></>}
+  description={<>Bars of <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> for <InlineMath math="x = -2, -1, 0, 2, 3, 4" />, all negative and steepest next to 1.</>}
+  yAxisLabel="Slope"
+  data={[-2, -1, 0, 2, 3, 4].map((x) => ({ name: String(x), value: -2 / (x - 1) ** 2 }))}
+  chartConfig={{ value: { label: "Slope", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Chain Rule
 

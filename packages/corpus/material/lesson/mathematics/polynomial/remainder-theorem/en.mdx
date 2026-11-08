@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use and prove the Remainder Theorem to find polynomial remainders without long division.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynomial",
 };
 
@@ -22,6 +22,31 @@ To find the **remainder** when <InlineMath math="P(x)" /> is divided by <InlineM
 For <InlineMath math="P(x) = 2x^2 - 3x + 4" /> divided by <InlineMath math="x - 2" />, the remainder is <InlineMath math="P(2) = 6" />, so you can answer the question with one substitution.
 
 <BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
+The theorem says the remainder is simply a height on the graph. For <InlineMath math="P(x) = 2x^2 - 3x + 4" /> divided by <InlineMath math="x - 2" />, go to <InlineMath math="x = 2" /> on the curve: the height there is <InlineMath math="P(2) = 6" />, which is the remainder.
+
+<MathVisual
+  title={<>The remainder is P(2)</>}
+  description={<>The parabola <InlineMath math="2x^2 - 3x + 4" /> with the point <InlineMath math="(2, 6)" />: its height is the remainder of division by <InlineMath math="x - 2" />.</>}
+  labels={{
+    p: <InlineMath math="P(x)" />,
+    r: <InlineMath math="P(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.5, max: 2.5 }, appearance: "primary" },
+      { id: "drop", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -0.5, y: 6 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Why the Remainder Theorem Holds
 
@@ -59,6 +84,39 @@ For the earlier quadratic, the product of the divisor and quotient **vanishes wh
 
 For a divisor of degree two, the remainder may be linear. One polynomial value is therefore insufficient to determine the entire remainder in that case.
 
+Split <InlineMath math="P" /> into its two parts. The violet curve <InlineMath math="(x - 2)(2x + 1)" /> is divisible by <InlineMath math="x - 2" /> and passes through <InlineMath math="(2, 0)" />. Adding the remainder lifts it by <InlineMath math="6" /> everywhere and gives the orange <InlineMath math="P(x)" />. That is why only the remainder is left at <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Divisible part plus remainder</>}
+  description={<>The curves <InlineMath math="(x - 2)(2x + 1)" /> and <InlineMath math="P(x) = (x - 2)(2x + 1) + 6" />, which are always 6 apart.</>}
+  labels={{
+    whole: <InlineMath math="P(x)" />,
+    part: <InlineMath math="(x - 2)(2x + 1)" />,
+    gap: <InlineMath math="6" />,
+    top: <InlineMath math="(2, 6)" />,
+    foot: <InlineMath math="(2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 3.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "whole", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.75, max: 2.5 }, appearance: "primary" },
+      { id: "part", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -0.75, max: 2.5 }, appearance: "secondary" },
+      { id: "gap", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 2.5, y: 9 }, placement: "right" },
+      { key: "part", objectId: "part", at: { x: 2.5, y: 3 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Calculating with the Remainder Theorem
 
 The theorem **determines the remainder directly** and also explains why polynomial evaluation appears in division problems. Substituting the value that makes the divisor zero turns the division into a single evaluation, which is usually the faster route.
@@ -86,6 +144,16 @@ From Horner's method, we get:
 
 - Quotient: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
 - Remainder: <InlineMath math="S = \boxed{6}" />
+
+Each number in the bottom row comes from the one before it: multiply by <InlineMath math="c = -4" /> and add the next coefficient. The first five bars are the quotient coefficients <InlineMath math="2, -3, 2, 1, -4" />, and the last bar is the remainder <InlineMath math="6" />.
+
+<BarChart
+  title={<>The bottom row of Horner's scheme for <InlineMath math="c = -4" /></>}
+  description={<>Bars of the bottom row <InlineMath math="2, -3, 2, 1, -4" /> and the remainder <InlineMath math="6" />, each found as the next coefficient plus <InlineMath math="-4" /> times the bar before.</>}
+  yAxisLabel="Value"
+  data={[["degree 4", 2], ["degree 3", 5 - 4 * 2], ["degree 2", -10 - 4 * -3], ["degree 1", 9 - 4 * 2], ["degree 0", 0 - 4 * 1], ["remainder", -10 - 4 * -4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Using the Remainder Theorem
 
