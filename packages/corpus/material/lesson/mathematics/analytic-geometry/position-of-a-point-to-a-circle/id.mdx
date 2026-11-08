@@ -1,43 +1,23 @@
 export const metadata = {
-  title: "Kedudukan Suatu Titik Terhadap Lingkaran",
-  description: "Menentukan apakah titik berada di dalam, pada, atau di luar lingkaran menggunakan metode kuasa titik dengan contoh bertahap.",
+  title: "Kedudukan Titik terhadap Lingkaran",
+  description: "Titik bisa di dalam, pada, atau di luar lingkaran. Tentukan dengan jarak ke pusat atau tanda kuasa titik, lengkap dengan contoh dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
+## Tiga Kedudukan Titik terhadap Lingkaran
 
+Sebuah titik selalu berada **di dalam lingkaran**, **tepat pada lingkaran**, atau **di luar lingkaran**. Untuk mengetahuinya, bandingkan jarak titik ke pusat <InlineMath math="d" /> dengan jari-jari <InlineMath math="r" />, atau hitung **kuasa titik** <InlineMath math="K" />. Untuk titik <InlineMath math="A(x_0, y_0)" /> dan lingkaran berpusat <InlineMath math="(a, b)" />:
 
-## Memeriksa Jangkauan dengan Model Lingkaran
+<BlockMath math="K_A = (x_0 - a)^2 + (y_0 - b)^2 - r^2" />
 
-Untuk sebuah lingkaran dan satu titik, hanya ada tiga kemungkinan: titik berada di dalam lingkaran, tepat pada kelilingnya, atau di luar lingkaran.
-
-<Highlight>Perbandingan yang sama muncul pada model jangkauan sederhana</Highlight>, misalnya ketika kita memeriksa apakah suatu lokasi berada dalam jangkauan sinyal atau radar yang dimodelkan sebagai lingkaran. Persamaan lingkaran dan koordinat titik kemudian menentukan posisi lokasi tersebut secara tepat.
-
-## Konsep Kuasa Titik
-
-Untuk menentukan kedudukan titik, kita memakai <Highlight>kuasa titik terhadap lingkaran</Highlight>. Besaran aljabar ini dapat bernilai positif, nol, atau negatif. Jarak biasa selalu bernilai nol atau positif. Untuk lingkaran berpusat di <InlineMath math="(a,b)" /> dengan jari-jari <InlineMath math="r" />:
-
-<BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
-
-Untuk titik <InlineMath math="A(x_0, y_0)" /> dan lingkaran umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, kuasa titik <InlineMath math="A" /> adalah:
-
-<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
-
-Satu kali substitusi menghasilkan nilai <InlineMath math="K_A" />. **Tanda kuasa titik** menentukan kedudukan titik terhadap lingkaran.
-
-## Tiga Kemungkinan Posisi Titik
-
-Berdasarkan nilai kuasa titik, ada tiga kemungkinan posisi:
-
-| Kuasa titik | Kedudukan |
-| --- | --- |
-| <InlineMath math="K_A<0" /> | **Di dalam** |
-| <InlineMath math="K_A=0" /> | **Pada lingkaran** |
-| <InlineMath math="K_A>0" /> | **Di luar** |
-
-Ketiga kemungkinan tersebut tampak pada grafik berikut:
+| Kuasa titik | Jarak ke pusat | Kedudukan |
+| --- | --- | --- |
+| <InlineMath math="K_A < 0" /> | <InlineMath math="d < r" /> | Di dalam lingkaran |
+| <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | Pada lingkaran |
+| <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Di luar lingkaran |
 
 <LineEquation
   title="Posisi Titik Terhadap Lingkaran"
@@ -148,7 +128,7 @@ Ketiga kemungkinan tersebut tampak pada grafik berikut:
   cameraTarget={[0.7, 0, 0]}
 />
 
-Pada diagram, pusat berada di <InlineMath math="(0,0)" /> dan jari-jari bernilai <InlineMath math="3" />. Kita dapat memeriksa ketiga titik dengan **mengurangi kuadrat jarak dengan sembilan**:
+Pada grafik, pusatnya <InlineMath math="(0, 0)" /> dan jari-jarinya <InlineMath math="3" />, jadi kuasa setiap titik adalah kuadrat jaraknya ke pusat dikurangi sembilan:
 
 | Titik | Kuasa titik | Kedudukan |
 | --- | --- | --- |
@@ -156,91 +136,164 @@ Pada diagram, pusat berada di <InlineMath math="(0,0)" /> dan jari-jari bernilai
 | <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | Pada lingkaran |
 | <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Di luar |
 
-## Cara Menentukan Kedudukan Titik
+## Kuasa Titik dan Jarak ke Pusat
 
-Identifikasi persamaan lingkaran dan koordinat titik, lalu substitusikan koordinat titik ke rumus kuasa titik untuk memperoleh <InlineMath math="K_A" />.
+Rumus kuasa titik adalah **kuadrat jarak ke pusat dikurangi kuadrat jari-jari**, <InlineMath math="K_A = d^2 - r^2" />. Faktorkan bentuk itu menjadi <InlineMath math="K_A = (d - r)(d + r)" />. Faktor <InlineMath math="d + r" /> selalu positif, jadi tanda <InlineMath math="K_A" /> sama dengan tanda <InlineMath math="d - r" />. Itulah sebabnya kamu tidak perlu menarik akar: tanda kuasa titik sudah cukup.
 
-Untuk titik <InlineMath math="A(1, -2)" /> dan lingkaran <InlineMath math="x^2 + y^2 = 25" />, hitung dahulu **kuadrat jarak ke pusat**. Setelah itu, kurangi kuadrat jarak tersebut dengan <InlineMath math="r^2" />:
+Untuk lingkaran bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, ruas kirinya adalah hasil penjabaran <InlineMath math="(x - a)^2 + (y - b)^2 - r^2" />. Jadi kuasa titik didapat dengan **langsung menyubstitusikan koordinat titik** ke ruas kiri:
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
-  <BlockMath math="K_A = d_A^2-r^2 = 5-25 = -20" />
-</MathContainer>
+<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
-Karena <InlineMath math="K_A = -20 < 0" />, titik <InlineMath math="A(1, -2)" /> berada di dalam lingkaran.
+Rumus ini hanya berlaku jika koefisien <InlineMath math="x^2" /> dan <InlineMath math="y^2" /> sama dengan <InlineMath math="1" />. Pusat dan jari-jari bentuk umum dibaca dengan melengkapkan kuadrat, seperti pada [persamaan lingkaran](/id/materi/matematika/geometri-analitik/persamaan-lingkaran).
 
-> Untuk <InlineMath math="x^2 + y^2 = r^2" />, membandingkan <InlineMath math="d_A^2" /> dengan <InlineMath math="r^2" /> setara dengan memeriksa tanda <InlineMath math="K_A=d_A^2-r^2" />.
+## Arti Kuasa Titik di Luar Lingkaran
 
-## Aplikasi untuk Bentuk Umum
+Untuk titik di luar lingkaran, kuasa titik punya arti panjang. Tarik garis singgung dari titik <InlineMath math="C" /> ke lingkaran dan sebut titik singgungnya <InlineMath math="T" />. Jari-jari <InlineMath math="OT" /> tegak lurus garis singgung, jadi segitiga <InlineMath math="OTC" /> siku-siku di <InlineMath math="T" />, dan teorema Pythagoras memberi
 
-Untuk lingkaran berbentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, hitung <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. **Tanda** <InlineMath math="K_A" /> menentukan apakah titik berada di dalam, pada, atau di luar lingkaran.
+<BlockMath math="CT^2 = OC^2 - OT^2 = d^2 - r^2 = K_C" />
 
-Contohnya, untuk titik <InlineMath math="A(1, -2)" /> dan lingkaran <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
+Jadi **kuasa titik sama dengan kuadrat panjang garis singgung** dari titik itu.
+
+<MathVisual
+  title="Panjang garis singgung dari titik di luar lingkaran"
+  description={<>Lingkaran <InlineMath math="x^2 + y^2 = 9" /> dan titik <InlineMath math="C(5, 0)" />. Segitiga <InlineMath math="OTC" /> siku-siku di titik singgung <InlineMath math="T" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 5, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "secondary" },
+      { id: "distance", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 9 / 5, y: 12 / 5 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 17 / 5, y: 6 / 5 }, placement: "above-right" },
+      { key: "radius", objectId: "radius", at: { x: 9 / 10, y: 6 / 5 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="C" />,
+    touch: <InlineMath math="T" />,
+    center: <InlineMath math="O" />,
+    tangent: <InlineMath math="CT = 4" />,
+    radius: <InlineMath math="r = 3" />,
+    distance: <InlineMath math="d = 5" />,
+  }}
+/>
+
+Untuk <InlineMath math="C(5, 0)" />, kuasanya <InlineMath math="K_C = 5^2 + 0^2 - 9 = 16" />, jadi panjang garis singgungnya <InlineMath math="CT = \sqrt{16} = 4" />. Periksa dengan titik singgung <InlineMath math="T\left(\frac95, \frac{12}5\right)" />: titik itu terletak pada lingkaran karena <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />, dan <InlineMath math="CT^2 = \left(\frac{16}5\right)^2 + \left(\frac{12}5\right)^2 = 16" />. Dari titik di luar lingkaran selalu ada dua [garis singgung lingkaran](/id/materi/matematika/geometri-analitik/persamaan-garis-singgung-lingkaran) yang sama panjang, karena kedua segitiga siku-sikunya punya sisi miring <InlineMath math="OC" /> dan sisi <InlineMath math="r" /> yang sama. Perbandingan jarak dengan jari-jari yang serupa juga menentukan [kedudukan garis terhadap lingkaran](/id/materi/matematika/geometri-analitik/kedudukan-garis-terhadap-lingkaran).
+
+## Contoh Titik terhadap Lingkaran Bentuk Umum
+
+Tentukan kedudukan titik <InlineMath math="A(1, -2)" /> terhadap lingkaran <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />.
+
+Substitusikan koordinat <InlineMath math="A" /> langsung ke ruas kiri:
 
 <MathContainer>
   <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
   <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
 </MathContainer>
 
-Karena <InlineMath math="K_A = -7 < 0" />, maka titik <InlineMath math="A(1, -2)" /> berada di dalam lingkaran.
+Karena <InlineMath math="K_A = -7 < 0" />, titik <InlineMath math="A" /> berada **di dalam lingkaran**.
 
-## Latihan
+<MathVisual
+  title="Titik A di dalam lingkaran berpusat (4, 1)"
+  description={<>Lingkaran berpusat <InlineMath math="P(4, 1)" /> dengan jari-jari <InlineMath math="5" />. Jarak <InlineMath math="PA = 3\sqrt{2}" /> lebih pendek dari jari-jari.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 10 }, y: { min: -5, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: 5, appearance: "primary" },
+      { id: "distance", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 4, y: 1 }, to: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 4, y: 1 }, placement: "above" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "radius", objectId: "radius", at: { x: 13 / 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="A" />,
+    center: <InlineMath math="P" />,
+    distance: <InlineMath math="3\sqrt{2}" />,
+    radius: <InlineMath math="r = 5" />,
+  }}
+/>
 
-Setiap soal memberikan sebuah titik dan sebuah lingkaran, dan jawabannya adalah apakah titik itu berada di dalam, pada, atau di luar lingkaran. **Bandingkan jarak titik ke pusat** dengan jari-jarinya.
+Periksa dengan jarak ke pusat. Melengkapkan kuadrat memberi <InlineMath math="(x - 4)^2 + (y - 1)^2 = 25" />, jadi pusatnya <InlineMath math="P(4, 1)" /> dan <InlineMath math="r = 5" />. Kuadrat jaraknya <InlineMath math="PA^2 = (1 - 4)^2 + (-2 - 1)^2 = 18" />, sehingga <InlineMath math="K_A = 18 - 25 = -7" />, sama dengan hasil substitusi langsung.
 
-1. Tentukan kedudukan titik <InlineMath math="A(3, 4)" /> terhadap lingkaran <InlineMath math="x^2 + y^2 = 16" />.
+## Contoh Mencari Koordinat agar Titik pada Lingkaran
+
+Titik <InlineMath math="Q(k, 3)" /> dan lingkaran <InlineMath math="x^2 + y^2 - 4x + 2y - 20 = 0" /> diketahui. Tentukan nilai <InlineMath math="k" /> agar <InlineMath math="Q" /> terletak pada lingkaran, lalu tentukan kapan <InlineMath math="Q" /> berada di dalamnya.
+
+Titik pada lingkaran berarti **kuasanya nol**:
+
+<MathContainer>
+  <BlockMath math="K_Q = k^2 + 9 - 4k + 6 - 20 = k^2 - 4k - 5" />
+  <BlockMath math="k^2 - 4k - 5 = (k - 5)(k + 1) = 0" />
+  <BlockMath math="k = 5 \quad \text{atau} \quad k = -1" />
+</MathContainer>
+
+Titik <InlineMath math="Q" /> berada di dalam lingkaran ketika <InlineMath math="K_Q < 0" />, yaitu <InlineMath math="(k - 5)(k + 1) < 0" />. Hasil kali itu negatif di antara kedua akarnya, jadi <InlineMath math="-1 < k < 5" />. Periksa: lingkaran berpusat <InlineMath math="(2, -1)" /> dengan <InlineMath math="r = 5" />, dan untuk <InlineMath math="k = 5" /> jaraknya <InlineMath math="\sqrt{3^2 + 4^2} = 5" />. Untuk <InlineMath math="k = 2" />, kuasanya <InlineMath math="-9" />, dan memang <InlineMath math="2" /> berada di antara <InlineMath math="-1" /> dan <InlineMath math="5" />.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Membandingkan <InlineMath math="d^2" /> dengan <InlineMath math="r" /> | Kuadrat jarak harus dibandingkan dengan kuadrat jari-jari | Untuk <InlineMath math="x^2 + y^2 = 16" />, bandingkan <InlineMath math="d^2" /> dengan <InlineMath math="16" /> |
+| Membaca pusat dengan tanda terbalik | <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" /> berpusat di <InlineMath math="(3, -2)" /> | Pusat adalah nilai yang membuat setiap kurung bernilai nol |
+| Menyubstitusikan ke <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> tanpa membagi | Hasilnya dua kali kuasa titik, jadi panjang garis singgungnya salah | Bagi dulu sampai koefisien <InlineMath math="x^2" /> menjadi <InlineMath math="1" /> |
+| Menganggap kuasa titik sebagai jarak | <InlineMath math="K" /> bisa negatif, sedangkan jarak tidak pernah negatif | Ingat <InlineMath math="K = d^2 - r^2" /> |
+| Menyamakan titik pada lingkaran dengan titik di dalam lingkaran | Pada lingkaran berarti tepat di kelilingnya, <InlineMath math="K = 0" /> | Cek apakah kuasanya tepat nol |
+
+Pemeriksaan paling cepat adalah **memakai kedua cara sekaligus**: kuasa titik dari substitusi langsung harus sama dengan <InlineMath math="d^2 - r^2" /> yang dihitung dari pusat dan jari-jari.
+
+## Latihan Soal
+
+Hitung kuasa setiap titik, lalu **periksa dengan jarak titik ke pusat**.
+
+1. Tentukan kedudukan titik <InlineMath math="A(3, 4)" /> terhadap lingkaran <InlineMath math="x^2 + y^2 = 16" />, lalu hitung panjang garis singgung dari <InlineMath math="A" />.
 
 2. Selidiki apakah titik <InlineMath math="B(6, -8)" /> berada pada lingkaran <InlineMath math="x^2 + y^2 = 100" />.
 
 3. Tentukan kedudukan titik <InlineMath math="C(2, 1)" /> terhadap lingkaran <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
 
-4. Sebuah lingkaran memiliki persamaan <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />. Tentukan kedudukan titik <InlineMath math="D(7, 2)" /> terhadap lingkaran tersebut.
+4. Tentukan semua nilai <InlineMath math="p" /> agar titik <InlineMath math="D(p, 2)" /> berada di dalam lingkaran <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />.
 
 ### Pembahasan
 
-**Pembahasan 1**:
+**Soal 1**. Kuasanya <InlineMath math="K_A = 3^2 + 4^2 - 16 = 9" />. Karena <InlineMath math="K_A > 0" />, titik <InlineMath math="A" /> berada **di luar lingkaran**, dan panjang garis singgungnya <InlineMath math="\sqrt{9} = 3" />. Periksa: jarak ke pusat <InlineMath math="d = 5" /> lebih besar dari <InlineMath math="r = 4" />, dan <InlineMath math="3^2 + 4^2 = 5^2" /> cocok dengan segitiga siku-siku <InlineMath math="OTA" />.
 
-Substitusi koordinat titik <InlineMath math="A(3, 4)" /> ke persamaan lingkaran <InlineMath math="x^2 + y^2 = 16" />:
+**Soal 2**. Kuasanya <InlineMath math="K_B = 6^2 + (-8)^2 - 100 = 36 + 64 - 100 = 0" />. Jadi titik <InlineMath math="B" /> berada **tepat pada lingkaran**. Periksa: jaraknya ke pusat <InlineMath math="\sqrt{100} = 10" />, sama dengan jari-jari.
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
-  <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
-</MathContainer>
-
-Karena <InlineMath math="K_A = 9 > 0" />, titik <InlineMath math="A(3, 4)" /> berada **di luar lingkaran**.
-
-**Pembahasan 2**:
-
-Substitusi koordinat titik <InlineMath math="B(6, -8)" /> ke persamaan lingkaran <InlineMath math="x^2 + y^2 = 100" />:
-
-<MathContainer>
-  <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
-  <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
-</MathContainer>
-
-Karena <InlineMath math="K_B = 0" />, titik <InlineMath math="B(6, -8)" /> berada **tepat pada lingkaran**.
-
-**Pembahasan 3**:
-
-Substitusi koordinat titik <InlineMath math="C(2, 1)" /> ke persamaan lingkaran <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />:
+**Soal 3**. Substitusikan langsung:
 
 <MathContainer>
   <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
   <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
 </MathContainer>
 
-Karena <InlineMath math="K_C = -9 < 0" />, maka titik <InlineMath math="C(2, 1)" /> berada **di dalam lingkaran**.
+Karena <InlineMath math="K_C < 0" />, titik <InlineMath math="C" /> berada **di dalam lingkaran**. Periksa: lingkaran berpusat <InlineMath math="(2, -3)" /> dengan <InlineMath math="r^2 = 4 + 9 + 12 = 25" />, dan <InlineMath math="d^2 = 0^2 + 4^2 = 16" />, sehingga <InlineMath math="d^2 - r^2 = -9" />.
 
-**Pembahasan 4**:
-
-Untuk lingkaran <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> dengan pusat <InlineMath math="(3, -2)" /> dan jari-jari <InlineMath math="r = 5" />.
-
-Substitusi titik <InlineMath math="D(7, 2)" />:
+**Soal 4**. Titik di dalam lingkaran berarti kuasanya negatif:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
-  <BlockMath math="d_D^2 = 16 + 16 = 32" />
-  <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+  <BlockMath math="(p - 3)^2 + (2 + 2)^2 - 25 < 0" />
+  <BlockMath math="(p - 3)^2 < 9" />
+  <BlockMath math="-3 < p - 3 < 3 \quad\Longrightarrow\quad 0 < p < 6" />
 </MathContainer>
 
-Karena <InlineMath math="K_D = 7 > 0" />, titik <InlineMath math="D(7, 2)" /> berada **di luar lingkaran**.
+Periksa: untuk <InlineMath math="p = 3" />, kuasanya <InlineMath math="0 + 16 - 25 = -9 < 0" />. Untuk <InlineMath math="p = 6" />, kuasanya <InlineMath math="9 + 16 - 25 = 0" />, jadi titik itu tepat pada lingkaran dan tidak termasuk.
