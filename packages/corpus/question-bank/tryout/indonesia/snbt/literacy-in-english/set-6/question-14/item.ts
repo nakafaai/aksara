@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "water-meters",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The term *metadata* proves that the character's first estimate was correct before any accountable action was taken.",
+            "Installing smart meters in Area C as well, starting halfway through the trial",
+        },
+        {
+          correct: false,
+          label:
+            "Asking households in Areas A and B whether they liked the app",
+        },
+        {
+          correct: false,
+          label:
+            "Reading the ordinary meters in Areas C and D once a year instead",
+        },
+        {
+          correct: false,
+          label:
+            "Raising water prices in all four areas during the second summer",
         },
         {
           correct: true,
           label:
-            "The definition explains why Theo's note about the uncertain date belongs to the photograph's record and supports later verification.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition reduces *metadata* to the recurring object, so the character's choice and development no longer matter.",
-        },
-        {
-          correct: false,
-          label:
-            "The term *metadata* describes the final outcome as certain, even though the narrative presents a gradual change.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition is included only to name the setting and has no connection to the character's decision.",
+            "Choosing at random which similar areas receive meters, not by application",
         },
       ],
     },

@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "railway-time",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Bristol's clockmakers were unable to build a clock that kept accurate time.",
+        },
+        {
           correct: true,
           label:
-            "The gold thread gains meaning through the owner's wish to hide damage, Miles's visible seam, and the line of light at the ending.",
+            "For a time, people in Bristol lived with both local time and railway time.",
         },
         {
           correct: false,
           label:
-            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+            "Bristol adopted London time for everyday life well before London itself did.",
         },
         {
           correct: false,
           label:
-            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
+            "The clock was built in 1880 to celebrate the new law on Greenwich time.",
         },
         {
           correct: false,
           label:
-            "The object's meaning remains fixed even though the character uses it differently.",
-        },
-        {
-          correct: false,
-          label:
-            "The final action matters because it confirms the interpretation established at the start.",
+            "Visitors to Bristol might have used the clock to time their journeys by sea.",
         },
       ],
     },
