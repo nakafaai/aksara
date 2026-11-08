@@ -1,15 +1,22 @@
-Seluruh susunan memiliki peluang sama, sehingga penyebut peluangnya adalah <InlineMath math="6!=720" />. Hitung susunan yang memenuhi ketentuan secara bertahap.
+Tuliskan biaya setiap paket sebagai fungsi pemakaian <InlineMath math="u" /> GB. Biaya tambahan baru muncul **setelah kuota yang sudah termasuk habis**.
 
-Pertama, tempatkan <InlineMath math="E" /> di salah satu dari <InlineMath math="4" /> posisi tengah. Lima laporan lain dapat diatur dalam <InlineMath math="5!" /> cara, jadi ada <InlineMath math="4\times5!=480" /> susunan.
+<BlockMath math="\begin{aligned}
+A(u) &= 50{.}000+6{.}000(u-10) &&\text{untuk } u>10 \\
+B(u) &= 80{.}000 &&\text{untuk } u\le 20 \\
+B(u) &= 80{.}000+4{.}000(u-20) &&\text{untuk } u>20
+\end{aligned}" />
 
-Dari susunan itu, kurangkan susunan ketika <InlineMath math="A" /> dan <InlineMath math="B" /> bersebelahan. Anggap kedua laporan sebagai **satu blok**. Dua urutan di dalam blok adalah <InlineMath math="AB" /> dan <InlineMath math="BA" />. Ada <InlineMath math="2\times5!" /> susunan blok, tetapi <InlineMath math="2\times2\times4!" /> di antaranya menempatkan <InlineMath math="E" /> di ujung.
+**Pernyataan 1** bernilai Salah. Untuk <InlineMath math="15" /> GB, <InlineMath math="A(15)=50{.}000+5\times6{.}000=80{.}000" /> dan <InlineMath math="B(15)=80{.}000" />. Biayanya sama, jadi Paket A tidak lebih murah.
 
-Pada hitungan ujung, faktor pertama <InlineMath math="2" /> memilih urutan dalam blok, faktor kedua <InlineMath math="2" /> memilih ujung untuk <InlineMath math="E" />, dan <InlineMath math="4!" /> mengatur empat objek yang tersisa.
+**Pernyataan 2** bernilai Benar. <InlineMath math="A(12)=50{.}000+2\times6{.}000=62{.}000" />, lebih murah daripada <InlineMath math="80{.}000" />.
 
-<BlockMath math="\begin{aligned} N_{AB} &amp;=2\times5!-2\times2\times4! \\ &amp;=240-96=144 \\ N &amp;=480-144=336 \end{aligned}" />
+**Pernyataan 3** bernilai Salah. <InlineMath math="A(25)=50{.}000+15\times6{.}000=140{.}000" /> dan <InlineMath math="B(25)=80{.}000+5\times4{.}000=100{.}000" />. Selisihnya <InlineMath math="\text{Rp}40{.}000" />.
 
-Setelah syarat <InlineMath math="A" /> dan <InlineMath math="B" /> tidak bersebelahan serta <InlineMath math="E" /> di tengah dipenuhi, menukar <InlineMath math="C" /> dengan <InlineMath math="D" /> memasangkan setiap susunan dengan susunan yang urutannya terbalik. Tepat separuh memiliki <InlineMath math="C" /> sebelum <InlineMath math="D" />.
+**Pernyataan 4** bernilai Benar. Periksa dua rentang pemakaian:
 
-<BlockMath math="\begin{aligned} N_{\mathrm{valid}} &amp;=336\div2=168 \\ P &amp;=\frac{168}{720}=\frac{7}{30} \end{aligned}" />
+- Untuk <InlineMath math="16\le u\le 20" />, <InlineMath math="A(u)" /> paling kecil <InlineMath math="A(16)=86{.}000" />, sedangkan <InlineMath math="B(u)=80{.}000" />.
+- Untuk <InlineMath math="u>20" />, selisihnya <InlineMath math="A(u)-B(u)=(6{.}000u-10{.}000)-4{.}000u=2{.}000u-10{.}000" />, yang positif karena <InlineMath math="u>5" />.
 
-Peluang memenuhi semua ketentuan adalah <InlineMath math="\frac{7}{30}" />.
+Pada kedua rentang, Paket B lebih murah.
+
+Jadi, pernyataan 2 dan 4 benar, sedangkan pernyataan 1 dan 3 salah.

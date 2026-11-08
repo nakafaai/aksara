@@ -1,13 +1,20 @@
-Rechne in Tausend Rupiah. Kehre die Preisänderungen in **umgekehrter Reihenfolge** um: zuerst die Steuer, danach den Gutscheinabzug und zuletzt den Preisaufschlag.
+Die Aufgabe braucht **den Wochentag des ersten Februartags**, denn er legt fest, welche Daten auf einen Sonntag fallen. Danach prüfst du, ob ein Sonntag zugleich ein Vielfaches von <InlineMath math="5" /> ist, damit kein Ruhetag doppelt gezählt wird.
 
-Die Steuer wird auf den Preis nach dem Gutscheinabzug berechnet. Der Endpreis beträgt daher <InlineMath math="110\%" /> dieses Preises. Durch Division durch <InlineMath math="1{,}10" /> erhältst du den Preis vor der Steuer.
+Der Januar hat <InlineMath math="31" /> Tage, also liegt der 1. Februar <InlineMath math="31" /> Tage nach dem 1. Januar. Eine Woche hat <InlineMath math="7" /> Tage, entscheidend ist also der Rest:
 
-Vor der Steuer von <InlineMath math="10\%" /> betrug der Preis nach dem Gutscheinabzug
+<BlockMath math="31=4\times7+3" />
 
-<BlockMath math="605\div1{,}10=550" />
+Vom Freitag aus geht es <InlineMath math="3" /> Tage weiter bis Montag. Der 1. Februar <InlineMath math="2027" /> ist also ein Montag.
 
-Addiere den Gutscheinwert von <InlineMath math="50" /> Tausend Rupiah wieder und teile danach durch den Aufschlagsfaktor <InlineMath math="1{,}20" />.
+Der Februar <InlineMath math="2027" /> hat <InlineMath math="28" /> Tage. Die Sonntage sind der 7., 14., 21. und 28. Die Vielfachen von <InlineMath math="5" /> sind der 5., 10., 15., 20. und 25. Kein Datum steht in beiden Listen, also **wird kein Ruhetag doppelt gezählt**.
 
-<BlockMath math="\begin{aligned} 550+50 &amp;=600 \\ P_0 &amp;=600\div1{,}20=500 \\ 605-P_0 &amp;=605-500=105 \end{aligned}" />
+<BlockMath math="\text{Öffnungstage}=28-4-5=19" />
 
-Der Endpreis liegt somit <InlineMath math="105" /> Tausend Rupiah über dem Ausgangspreis.
+Die anderen Optionen entstehen aus diesen Fehlern:
+
+- <InlineMath math="24" /> entsteht, wenn nur die Sonntage abgezogen werden.
+- <InlineMath math="23" /> entsteht, wenn nur die Vielfachen von <InlineMath math="5" /> abgezogen werden.
+- <InlineMath math="20" /> entsteht, wenn der 1. Februar ein Freitag bleibt. Dann wären die Sonntage der 3., 10., 17. und 24., der 10. zählte nur einmal, und es wären nur <InlineMath math="8" /> Ruhetage.
+- <InlineMath math="18" /> entsteht, wenn man fünf Sonntage annimmt.
+
+Die Bäckerei hat im Februar <InlineMath math="2027" /> also an <InlineMath math="19" /> Tagen geöffnet.

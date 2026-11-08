@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "meja",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\frac{149}{30}$$",
-        },
-        {
           correct: true,
-          label: "$$\\frac{139}{28}$$",
+          label: "P duduk bersebelahan dengan K.",
         },
         {
           correct: false,
-          label: "$$\\frac{154}{31}$$",
+          label: "N duduk berhadapan dengan P.",
         },
         {
           correct: false,
-          label: "$$\\frac{159}{32}$$",
+          label: "L duduk di kursi bernomor genap.",
         },
         {
           correct: false,
-          label: "$$\\frac{164}{33}$$",
+          label: "O duduk berhadapan dengan K.",
+        },
+        {
+          correct: false,
+          label: "M tidak duduk bersebelahan dengan O.",
         },
       ],
     },

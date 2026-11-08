@@ -1,34 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "meja",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
+          column: 1,
+          label: "N duduk di kursi $$3$$ atau kursi $$4$$.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mie instan menyediakan seluruh zat gizi yang dibutuhkan tubuh jika dimakan setiap hari.",
+            "Salah satu dari L dan M duduk di kursi bernomor genap, sedangkan yang lain duduk di kursi bernomor ganjil.",
         },
         {
-          correct: false,
-          label:
-            "Mengganti air rebusan menghilangkan seluruh natrium dari mie instan.",
+          column: 2,
+          label: "O duduk di kursi bernomor ganjil.",
         },
         {
-          correct: false,
-          label:
-            "Memasak mie instan dengan minyak zaitun membuat porsi tanpa batas menjadi sehat.",
-        },
-        {
-          correct: false,
-          label:
-            "Menambahkan sayuran sepenuhnya meniadakan natrium dalam bumbu.",
+          column: 2,
+          label: "P duduk berhadapan dengan L atau dengan M.",
         },
       ],
     },

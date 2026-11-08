@@ -1,13 +1,22 @@
-Perbandingan akan lebih mudah jika **faktor desimal** setiap pilihan disamakan menjadi <InlineMath math="0{,}44" />. Ubah terlebih dahulu bentuk bilangan pada soal:
+Tulis pernyataan itu dengan lambang agar bentuknya terlihat jelas. Misalkan <InlineMath math="p" />: tiket kereta habis, <InlineMath math="q" />: Rani naik bus, dan <InlineMath math="r" />: Rani menunda perjalanan. Pernyataannya adalah <InlineMath math="p \Rightarrow (q \vee r)" />.
 
-<BlockMath math="0{,}44 \times \frac{17}{18} = 0{,}44 \times \frac{34}{36}" />
+Sebuah implikasi hanya salah ketika bagian "jika" benar dan bagian "maka" salah. Jadi, pernyataan ini **hanya dilanggar ketika tiket habis, Rani tidak naik bus, dan Rani tidak menunda perjalanan**. Pernyataan yang setara harus dilanggar tepat pada keadaan yang sama.
 
-# Menyamakan bentuk setiap pilihan
+Ubah bentuknya secara aljabar:
 
-**Mengalikan satu faktor dan membagi faktor lainnya** dengan bilangan yang sama tidak mengubah hasil kali. Faktor pengali yang dipakai harus tak nol. Untuk pilihan pertama, faktor desimal dikalikan empat dan faktor pecahan dibagi empat:
+<BlockMath math="\begin{aligned}
+p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
+&\equiv \neg(p \wedge \neg q) \vee r \\
+&\equiv (p \wedge \neg q) \Rightarrow r
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}0{,}11\times\frac{35}{9}&amp;=(0{,}11\times4)\times\left(\frac{35}{9}\div4\right)\\&amp;=0{,}44\times\frac{35}{36}\end{aligned}" />
+Bentuk terakhir berbunyi: jika tiket kereta habis dan Rani tidak naik bus, Rani menunda perjalanan. Bentuk ini juga hanya dilanggar ketika tiket habis, Rani tidak naik bus, dan Rani tidak menunda perjalanan.
 
-<BlockMath math="\begin{aligned} 0{,}11 \times \frac{35}{9} &amp;= 0{,}44 \times \frac{35}{36} \\ 0{,}22 \times \frac{17}{9} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}33 \times \frac{34}{27} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}55 \times \frac{34}{45} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}66 \times \frac{17}{27} &amp;= 0{,}44 \times \frac{17}{18} \end{aligned}" />
+Pilihan lain tidak setara:
 
-Empat bentuk dengan koefisien selain <InlineMath math="0{,}11" /> sama dengan bilangan pada soal. Bentuk berkoefisien <InlineMath math="0{,}11" /> memiliki faktor positif <InlineMath math="0{,}44" /> yang sama, tetapi <InlineMath math="\frac{35}{36} > \frac{34}{36}" />. Jadi, satu-satunya bilangan yang lebih besar adalah <InlineMath math="0{,}11 \times \frac{35}{9}" />.
+- "Jika Rani naik bus atau menunda perjalanan, tiket habis" adalah konvers. Konvers dilanggar ketika Rani naik bus padahal tiket masih ada, keadaan yang tidak melanggar pernyataan semula.
+- "Jika tiket tidak habis, Rani tidak naik bus dan tidak menunda" adalah invers, yang juga tidak setara dengan implikasi semula.
+- "Jika Rani tidak naik bus atau tidak menunda, tiket tidak habis" salah menegasikan <InlineMath math="q \vee r" />. Negasi yang benar adalah "tidak naik bus **dan** tidak menunda".
+- "Tiket habis, tetapi Rani tidak naik bus dan tidak menunda" adalah negasi pernyataan semula, bukan pernyataan yang setara.
+
+Jadi, pernyataan yang setara adalah "jika tiket kereta habis dan Rani tidak naik bus, Rani menunda perjalanan".
