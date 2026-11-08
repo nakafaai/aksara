@@ -17,7 +17,7 @@ Eine gemeinsame Tangente ist eine Gerade, die **zwei Kreise gleichzeitig berühr
   <BlockMath math="l_{\text{innen}} = \sqrt{d^2 - (r_1 + r_2)^2}" />
 </MathContainer>
 
-Die äußere Tangente nutzt die **Differenz der Radien**, die innere die **Summe der Radien**. Das Diagramm zur äußeren Tangente zeigt zwei Kreise mit dem Mittelpunktsabstand <InlineMath math="8" /> und den Radien <InlineMath math="2" /> und <InlineMath math="3" />. Achte auf das rechtwinklige Dreieck <InlineMath math="AHB" />, aus dem die erste Formel stammt.
+Die äußere Tangente nutzt die **Differenz der Radien**, die innere die **Summe der Radien**. Die äußere Formel gilt für <InlineMath math="d > r_2 - r_1" />, die innere braucht <InlineMath math="d \ge r_1 + r_2" />. Das Diagramm zur äußeren Tangente zeigt zwei Kreise mit dem Mittelpunktsabstand <InlineMath math="8" /> und den Radien <InlineMath math="2" /> und <InlineMath math="3" />. Achte auf das rechtwinklige Dreieck <InlineMath math="AHB" />, aus dem die erste Formel stammt.
 
 <LineEquation
   title="Äußere gemeinsame Tangenten"
@@ -187,7 +187,7 @@ cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-Für dieses Kreispaar ist <InlineMath math="l_{\text{außen}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Die Formel liefert die Länge der Strecke zwischen den beiden Berührpunkten. Die Gleichung der Tangente zu finden, ist eine andere Aufgabe, die bei der [Tangentengleichung am Kreis](/de/faecher/mathematik/analytische-geometrie/tangentengleichung-am-kreis) vorkommt.
+Für dieses Kreispaar ist <InlineMath math="l_{\text{außen}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Die Formel liefert die Länge der Strecke zwischen den beiden Berührpunkten. Suchst du stattdessen die Gleichung der Geraden, brauchst du die [Tangentengleichung am Kreis](/de/faecher/mathematik/analytische-geometrie/tangentengleichung-am-kreis), die mit dem Berührpunkt oder der Steigung arbeitet statt mit einer Länge.
 
 ## Länge der äußeren gemeinsamen Tangente
 
@@ -197,7 +197,7 @@ Zeichne im Diagramm zur äußeren Tangente die Hilfsstrecke <InlineMath math="AH
 
 <BlockMath math="l^2 + (r_2 - r_1)^2 = d^2 \quad\Longrightarrow\quad l = \sqrt{d^2 - (r_2 - r_1)^2}" />
 
-Nenne den größeren Radius <InlineMath math="r_2" />, damit die Differenz positiv ist. Das Quadrat der Differenz ist zwar in beiden Reihenfolgen gleich, aber feste Namen erleichtern die Kontrolle. Der äußere Tangentenabschnitt hat eine positive Länge, solange <InlineMath math="d > r_2 - r_1" /> gilt, solange also der kleine Kreis nicht im großen liegt.
+Nenne den größeren Radius <InlineMath math="r_2" />, damit die Differenz positiv ist. Das Quadrat der Differenz ist zwar in beiden Reihenfolgen gleich, aber feste Namen erleichtern die Kontrolle. Der äußere Tangentenabschnitt hat eine positive Länge, wenn <InlineMath math="d > r_2 - r_1" /> gilt, das heißt, wenn der kleine Kreis nicht im großen liegt.
 
 **Beispiel**. Der erste Kreis hat den Mittelpunkt <InlineMath math="A(-3, 0)" /> und den Radius <InlineMath math="1{,}5" />, der zweite den Mittelpunkt <InlineMath math="B(3, 0)" /> und den Radius <InlineMath math="2{,}5" />. Bestimme die Länge der äußeren gemeinsamen Tangente.
 
@@ -488,7 +488,7 @@ Eine innere Tangente **schneidet die Verbindungsstrecke der Mittelpunkte**, die 
 cameraPosition={[0, 0, 15]}
 />
 
-Verlängere im Diagramm zur inneren Tangente den Radius vom Mittelpunkt <InlineMath math="B" /> über den Berührpunkt hinaus bis zum Hilfspunkt <InlineMath math="H" />, wobei <InlineMath math="AH" /> parallel zur Tangente liegt. Die Verlängerung ist so lang wie der Radius des Kreises um <InlineMath math="A" />, also gilt <InlineMath math="BH = r_1 + r_2" />. Das Dreieck <InlineMath math="AHB" /> ist bei <InlineMath math="H" /> rechtwinklig:
+Verlängere im Diagramm zur inneren Tangente den Radius vom Mittelpunkt <InlineMath math="B" /> über den Berührpunkt hinaus bis zum Hilfspunkt <InlineMath math="H" />, wobei <InlineMath math="AH" /> parallel zur Tangente liegt. Die Strecke <InlineMath math="BH" /> besteht aus dem Radius <InlineMath math="r_2" /> von <InlineMath math="B" /> bis zum Berührpunkt und der Verlängerung der Länge <InlineMath math="r_1" />, also gilt <InlineMath math="BH = r_1 + r_2" />. Das Dreieck <InlineMath math="AHB" /> ist bei <InlineMath math="H" /> rechtwinklig:
 
 <MathContainer>
   <BlockMath math="l^2 + (r_1 + r_2)^2 = d^2" />
@@ -1100,11 +1100,11 @@ Der Mittelpunktsabstand ist <InlineMath math="d = 4" />, und die Radien sind gle
   <BlockMath math="l_{\text{innen}} = \sqrt{4^2 - (1{,}5 + 1{,}5)^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2{,}65" />
 </MathContainer>
 
-Hier ist der Unterschied viel größer, weil die Summe der Radien <InlineMath math="3" /> fast so groß ist wie der Mittelpunktsabstand.
+Hier ist der Unterschied viel größer, weil das Quadrat der Radiensumme, <InlineMath math="9" />, schon mehr als die Hälfte von <InlineMath math="d^2 = 16" /> ausmacht.
 
 ## Anzahl der gemeinsamen Tangenten
 
-Wie viele gemeinsame Tangenten es gibt, hängt vom **Mittelpunktsabstand im Vergleich zu den Radien** ab. Derselbe Vergleich bestimmt die [Lage zweier Kreise](/de/faecher/mathematik/analytische-geometrie/lage-zweier-kreise), die Tabelle verrät dir also auch, wie die Kreise zueinander liegen.
+Wie viele gemeinsame Tangenten es gibt, hängt vom **Mittelpunktsabstand im Vergleich zu den Radien** ab. Derselbe Vergleich bestimmt die [Lage zweier Kreise](/de/faecher/mathematik/analytische-geometrie/lage-zweier-kreise), die Anzahl der gemeinsamen Tangenten verrät dir also auch, wie die Kreise zueinander liegen.
 
 | Bedingung für den Mittelpunktsabstand | Gemeinsame Tangenten | Lage der Kreise |
 | --- | ---: | --- |
@@ -1114,18 +1114,18 @@ Wie viele gemeinsame Tangenten es gibt, hängt vom **Mittelpunktsabstand im Verg
 | <InlineMath math="d = \lvert r_1 - r_2 \rvert" /> | <InlineMath math="1" /> | berühren sich von innen |
 | <InlineMath math="d < \lvert r_1 - r_2 \rvert" /> | <InlineMath math="0" /> | ein Kreis liegt im anderen |
 
-Die Tabelle gilt für zwei Kreise, die nicht zusammenfallen. Rücken die Kreise näher zusammen, verschwinden zuerst die beiden inneren Tangenten, denn eine innere Tangente braucht eine Lücke zwischen den Kreisen.
+Diese Einteilung gilt für zwei Kreise, die nicht zusammenfallen. Rücken die Kreise näher zusammen, verschwinden zuerst die beiden inneren Tangenten, denn eine innere Tangente braucht eine Lücke zwischen den Kreisen.
 
 ## Häufige Fehler
 
-Bevor du Zahlen einsetzt, klärst du, **welche Art von Tangente** gesucht ist. Die Tabelle ordnet häufigen Fehlern jeweils eine Prüfung zu.
+Bevor du Zahlen einsetzt, klärst du, **welche Art von Tangente** gesucht ist.
 
 | Fehler | Warum er falsch ist | So prüfst du |
 | --- | --- | --- |
-| Für die äußere Tangente die Summe der Radien nehmen | Die senkrechte Seite des Hilfsdreiecks ist bei der äußeren Tangente die Differenz der Radien | Die äußere Tangente muss länger sein als die innere |
-| <InlineMath math="l = d - (r_2 - r_1)" /> schreiben | Die Formel stammt aus dem Satz des Pythagoras, abgezogen werden also Quadrate | Prüfe, ob <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> gilt |
+| Für die äußere Tangente die Summe der Radien nehmen | Die Kathete <InlineMath math="BH" /> des Hilfsdreiecks ist bei der äußeren Tangente die Differenz der Radien | Die äußere Tangente muss länger sein als die innere |
+| <InlineMath math="l = d - (r_2 - r_1)" /> schreiben | Die Formel stammt aus dem Satz des Pythagoras, von <InlineMath math="d^2" /> wird also das Quadrat der Radiendifferenz abgezogen | Prüfe, ob <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> gilt |
 | Einen Durchmesser als Radius verwenden | Die Formel braucht den Abstand vom Mittelpunkt zum Berührpunkt | Lies nach, ob Radien oder Durchmesser gegeben sind |
-| Eine innere Tangente für sich schneidende Kreise berechnen | Eine innere Tangente gibt es nur für <InlineMath math="d \ge r_1 + r_2" /> | Vergleiche zuerst <InlineMath math="d" /> mit <InlineMath math="r_1 + r_2" /> |
+| Eine innere Tangente für Kreise berechnen, die sich schneiden | Eine innere Tangente gibt es nur für <InlineMath math="d \ge r_1 + r_2" /> | Vergleiche zuerst <InlineMath math="d" /> mit <InlineMath math="r_1 + r_2" /> |
 
 Den letzten Fehler verraten die Zahlen. Ist <InlineMath math="d < r_1 + r_2" />, wird der Wert unter der Wurzel negativ, und das zeigt dir, dass es keine innere Tangente gibt.
 
@@ -1170,7 +1170,7 @@ Ein Abstand ist positiv, also entfällt der Wert <InlineMath math="-10" />. Prob
   <BlockMath math="r^2 = 16 \quad\Longrightarrow\quad r = 4" />
 </MathContainer>
 
-Die Radien sind <InlineMath math="4" /> und <InlineMath math="8" />. Ihre Summe <InlineMath math="12" /> ist gleich dem Mittelpunktsabstand, die Kreise **berühren sich also von außen** und haben <InlineMath math="3" /> gemeinsame Tangenten.
+Ein Radius ist positiv, also entfällt <InlineMath math="r = -4" />. Die Radien sind <InlineMath math="4" /> und <InlineMath math="8" />. Ihre Summe <InlineMath math="12" /> ist gleich dem Mittelpunktsabstand, die Kreise **berühren sich also von außen** und haben <InlineMath math="3" /> gemeinsame Tangenten.
 
 **Aufgabe 4**. Der Kreis <InlineMath math="x^2 + y^2 = 4" /> hat den Mittelpunkt <InlineMath math="(0, 0)" /> und den Radius <InlineMath math="2" />. Der Mittelpunktsabstand <InlineMath math="d = 5" /> ist gleich <InlineMath math="2 + 3" />, die Kreise berühren sich also von außen und haben <InlineMath math="3" /> gemeinsame Tangenten. Für die äußere Tangente gilt:
 

@@ -17,7 +17,7 @@ A common tangent is a line that **touches two circles at once**. A common extern
   <BlockMath math="l_{\text{int}} = \sqrt{d^2 - (r_1 + r_2)^2}" />
 </MathContainer>
 
-The external tangent uses the **difference of the radii**, and the internal tangent uses the **sum of the radii**. The external tangent diagram shows two circles whose centers are <InlineMath math="8" /> apart, with radii <InlineMath math="2" /> and <InlineMath math="3" />. Look at the right triangle <InlineMath math="AHB" />, which is where the first formula comes from.
+The external tangent uses the **difference of the radii**, and the internal tangent uses the **sum of the radii**. The external formula holds while <InlineMath math="d > r_2 - r_1" />, and the internal formula needs <InlineMath math="d \ge r_1 + r_2" />. The external tangent diagram shows two circles whose centers are <InlineMath math="8" /> apart, with radii <InlineMath math="2" /> and <InlineMath math="3" />. Look at the right triangle <InlineMath math="AHB" />, which is where the first formula comes from.
 
 <LineEquation
   title="Common External Tangents"
@@ -187,7 +187,7 @@ cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-For that pair of circles, <InlineMath math="l_{\text{ext}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. The formula gives the length of the segment between the two points of tangency. Finding the equation of the line is a different task, covered in [the equation of a tangent line to a circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle).
+For that pair of circles, <InlineMath math="l_{\text{ext}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. The formula gives the length of the segment between the two points of tangency. If you need the equation of the line instead, that calls for [the equation of a tangent line to a circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle), which works with the point of tangency or the slope rather than a length.
 
 ## Length of a Common External Tangent
 
@@ -488,7 +488,7 @@ An internal tangent **crosses the segment joining the two centers**, so the circ
 cameraPosition={[0, 0, 15]}
 />
 
-In the internal tangent diagram, extend the radius from center <InlineMath math="B" /> past the point of tangency to the helper point <InlineMath math="H" />, with <InlineMath math="AH" /> parallel to the tangent. The extension is as long as the radius of circle <InlineMath math="A" />, so <InlineMath math="BH = r_1 + r_2" />. Triangle <InlineMath math="AHB" /> has a right angle at <InlineMath math="H" />:
+In the internal tangent diagram, extend the radius from center <InlineMath math="B" /> past the point of tangency to the helper point <InlineMath math="H" />, with <InlineMath math="AH" /> parallel to the tangent. Segment <InlineMath math="BH" /> is the radius <InlineMath math="r_2" /> from <InlineMath math="B" /> to the point of tangency plus the extension of length <InlineMath math="r_1" />, so <InlineMath math="BH = r_1 + r_2" />. Triangle <InlineMath math="AHB" /> has a right angle at <InlineMath math="H" />:
 
 <MathContainer>
   <BlockMath math="l^2 + (r_1 + r_2)^2 = d^2" />
@@ -1100,11 +1100,11 @@ The centers are <InlineMath math="d = 4" /> apart and the radii are equal, so th
   <BlockMath math="l_{\text{int}} = \sqrt{4^2 - (1.5 + 1.5)^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2.65" />
 </MathContainer>
 
-Here the gap between the two lengths is much larger, because the sum of the radii, <InlineMath math="3" />, comes close to the distance between the centers.
+Here the gap between the two lengths is much larger, because the squared sum of the radii, <InlineMath math="9" />, is already more than half of <InlineMath math="d^2 = 16" />.
 
 ## How Many Common Tangents Two Circles Have
 
-The number of common tangents depends on **the distance between the centers compared with the radii**. The same comparison decides the [position of two circles](/en/subjects/mathematics/analytic-geometry/position-of-two-circles), so the table also tells you how the circles sit.
+The number of common tangents depends on **the distance between the centers compared with the radii**. The same comparison decides the [position of two circles](/en/subjects/mathematics/analytic-geometry/position-of-two-circles), so the number of common tangents also tells you how the circles sit.
 
 | Condition on the center distance | Common tangents | Position of the circles |
 | --- | ---: | --- |
@@ -1114,16 +1114,16 @@ The number of common tangents depends on **the distance between the centers comp
 | <InlineMath math="d = \lvert r_1 - r_2 \rvert" /> | <InlineMath math="1" /> | touching internally |
 | <InlineMath math="d < \lvert r_1 - r_2 \rvert" /> | <InlineMath math="0" /> | one circle inside the other |
 
-The table holds for two circles that do not coincide. As the circles move closer, the two internal tangents disappear first, because an internal tangent needs a gap between the circles.
+This classification holds for two circles that do not coincide. As the circles move closer, the two internal tangents disappear first, because an internal tangent needs a gap between the circles.
 
 ## Common Mistakes
 
-Before you substitute any numbers, decide **which kind of tangent** the problem asks for. The table pairs common mistakes with a way to check for each one.
+Before you substitute any numbers, decide **which kind of tangent** the problem asks for.
 
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
-| Using the sum of the radii for an external tangent | The vertical side of the helper triangle for an external tangent is the difference of the radii | The external tangent must be longer than the internal one |
-| Writing <InlineMath math="l = d - (r_2 - r_1)" /> | The formula comes from the Pythagorean theorem, so squares are subtracted | Check that <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
+| Using the sum of the radii for an external tangent | Leg <InlineMath math="BH" /> of the helper triangle for an external tangent is the difference of the radii | The external tangent must be longer than the internal one |
+| Writing <InlineMath math="l = d - (r_2 - r_1)" /> | The formula comes from the Pythagorean theorem, so the square of the radius difference is subtracted from <InlineMath math="d^2" /> | Check that <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
 | Using a diameter as the radius | The formula uses the distance from a center to its point of tangency | Reread whether the problem gives radii or diameters |
 | Computing an internal tangent for intersecting circles | An internal tangent exists only when <InlineMath math="d \ge r_1 + r_2" /> | Compare <InlineMath math="d" /> with <InlineMath math="r_1 + r_2" /> first |
 
@@ -1170,7 +1170,7 @@ A distance is positive, so the value <InlineMath math="-10" /> is rejected. Chec
   <BlockMath math="r^2 = 16 \quad\Longrightarrow\quad r = 4" />
 </MathContainer>
 
-The radii are <InlineMath math="4" /> and <InlineMath math="8" />. Their sum is <InlineMath math="12" />, equal to the distance between the centers, so the circles **touch externally** and have <InlineMath math="3" /> common tangents.
+A radius is positive, so <InlineMath math="r = -4" /> is rejected. The radii are <InlineMath math="4" /> and <InlineMath math="8" />. Their sum is <InlineMath math="12" />, equal to the distance between the centers, so the circles **touch externally** and have <InlineMath math="3" /> common tangents.
 
 **Problem 4**. The circle <InlineMath math="x^2 + y^2 = 4" /> has center <InlineMath math="(0, 0)" /> and radius <InlineMath math="2" />. The centers are <InlineMath math="d = 5" /> apart, which equals <InlineMath math="2 + 3" />, so the circles touch externally and have <InlineMath math="3" /> common tangents. The external tangent length is:
 

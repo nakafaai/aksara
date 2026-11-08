@@ -77,7 +77,8 @@ Im Diagramm zum Zusammenhang enden die Schenkel des Mittelpunktswinkels <InlineM
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -87,11 +88,12 @@ Im Diagramm zum Zusammenhang enden die Schenkel des Mittelpunktswinkels <InlineM
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -101,7 +103,7 @@ Im Diagramm zum Zusammenhang enden die Schenkel des Mittelpunktswinkels <InlineM
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -113,7 +115,7 @@ Der Mittelpunktswinkel in diesem Diagramm misst <InlineMath math="45^\circ" />. 
 
 ## Mittelpunktswinkel und Umfangswinkel unterscheiden
 
-Du unterscheidest die beiden Winkel an der **Lage des Scheitels** und an den Strecken, die die Schenkel bilden. Der Bogen eines Winkels ist der [Kreisbogen](/de/faecher/mathematik/kreisgeometrie/kreis-und-kreisbogen) zwischen den beiden Punkten, in denen die Schenkel den Kreis schneiden. Dieser Bogen verbindet die beiden Winkelarten, deshalb bestimmst du ihn vor jeder Rechnung.
+Du unterscheidest die beiden Winkel an der **Lage des Scheitels** und an den Strecken, die die Schenkel bilden. Der Bogen eines Winkels ist der [Kreisbogen](/de/faecher/mathematik/kreisgeometrie/kreis-und-kreisbogen) im Inneren des Winkels, zwischen den beiden Punkten, in denen die Schenkel den Kreis schneiden. Dieser Bogen verbindet die beiden Winkelarten, deshalb bestimmst du ihn vor jeder Rechnung.
 
 ### Mittelpunktswinkel
 
@@ -121,7 +123,7 @@ Ein Mittelpunktswinkel wird von zwei Radien gebildet, sein Scheitel liegt also *
 
 <LineEquation
   title="Mittelpunktswinkel"
-  description={<>Die Schenkel <InlineMath math="OA" /> und <InlineMath math="OB" /> sind Radien, der Scheitel von <InlineMath math="\alpha" /> liegt also im Mittelpunkt <InlineMath math="O" />.</>}
+  description={<>Die Schenkel <InlineMath math="OA" /> und <InlineMath math="OB" /> sind Radien, der Scheitel von <InlineMath math="\angle AOB" /> liegt also im Mittelpunkt <InlineMath math="O" />.</>}
   data={[
     {
       smooth: false,
@@ -161,7 +163,8 @@ Ein Mittelpunktswinkel wird von zwei Radien gebildet, sein Scheitel liegt also *
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -171,7 +174,7 @@ Ein Mittelpunktswinkel wird von zwei Radien gebildet, sein Scheitel liegt also *
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -405,7 +408,7 @@ Mit denselben Bezeichnungen gilt <InlineMath math="\angle ACB = y - x" />. Die A
 
 <BlockMath math="\angle AOB = \angle BOD - \angle AOD = 2y - 2x = 2(y - x) = 2 \times \angle ACB" />
 
-Im Diagramm zum zweiten Fall ist <InlineMath math="x = 20^\circ" /> und <InlineMath math="y = 45^\circ" />, also <InlineMath math="\angle ACB = 25^\circ" /> und <InlineMath math="\angle AOB = 50^\circ" />. Im dritten Fall liegt der Durchmesser auf einem Schenkel, und du brauchst nur ein gleichschenkliges Dreieck. Alle drei Fälle führen zum selben Ergebnis, solange beide Winkel über demselben Bogen stehen.
+Im Diagramm zum zweiten Fall gilt <InlineMath math="x = 20^\circ" /> und <InlineMath math="y = 45^\circ" />, also <InlineMath math="\angle ACB = 25^\circ" /> und <InlineMath math="\angle AOB = 50^\circ" />. Im dritten Fall liegt der Durchmesser auf einem Schenkel, und du brauchst nur ein gleichschenkliges Dreieck. Alle drei Fälle führen zum selben Ergebnis, solange beide Winkel über demselben Bogen stehen.
 
 ## Umfangswinkel über einem Durchmesser
 
@@ -477,7 +480,8 @@ Ein Durchmesser teilt den Kreis in zwei Halbkreise, und der Mittelpunktswinkel �
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
-        return Array.from({ length: 16 }, (_, i) => {
+        return Array.from({ length: 211 }, (_, sampleIndex) => {
+          const i = sampleIndex / 14;
           const t = i / 15;
           const angle = angleCA + t * (angleCB - angleCA);
           return {
@@ -489,7 +493,7 @@ Ein Durchmesser teilt den Kreis in zwei Halbkreise, und der Mittelpunktswinkel �
       })(),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 98, offset: [0.5, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -575,7 +579,8 @@ Ein Umfangswinkel hängt von seinem Bogen ab, nicht von der Lage seines Scheitel
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -585,7 +590,7 @@ Ein Umfangswinkel hängt von seinem Bogen ab, nicht von der Lage seines Scheitel
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -664,8 +669,8 @@ Jedes Beispiel beginnt damit, **den gemeinsamen Bogen** der beiden Winkel zu bes
     },
     {
       smooth: false,
-      points: Array.from({ length: 103 }, (_, sampleIndex) => {
-        const i = sampleIndex / 6;
+      points: Array.from({ length: 205 }, (_, sampleIndex) => {
+        const i = sampleIndex / 12;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -675,7 +680,7 @@ Jedes Beispiel beginnt damit, **den gemeinsamen Bogen** der beiden Winkel zu bes
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 120, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -697,7 +702,7 @@ Prüfe das Ergebnis rückwärts. Das Doppelte von <InlineMath math="40^\circ" />
   <BlockMath math="\angle AOB = 2 \times 35^\circ = 70^\circ" />
 </MathContainer>
 
-Über demselben Bogen muss der Mittelpunktswinkel größer sein als der Umfangswinkel, und <InlineMath math="70^\circ" /> ist tatsächlich größer als <InlineMath math="35^\circ" />.
+Prüfe rückwärts: Die Hälfte von <InlineMath math="70^\circ" /> sind <InlineMath math="35^\circ" />, also genau der gegebene Umfangswinkel.
 
 **Beispiel 3**. Der Mittelpunktswinkel ist <InlineMath math="\angle AOB = 100^\circ" />, aber der Punkt <InlineMath math="C" /> liegt auf dem kleinen Bogen <InlineMath math="AB" />. Bestimme <InlineMath math="\angle ACB" />.
 
@@ -708,11 +713,11 @@ Ein Scheitel auf dem kleinen Bogen steht über dem **großen Bogen** <InlineMath
   <BlockMath math="\angle ACB = \frac{1}{2} \times 260^\circ = 130^\circ" />
 </MathContainer>
 
-Prüfe mit einem Punkt <InlineMath math="D" /> auf dem großen Bogen. Dort gilt <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, und <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. Diese Summe passt zum Sehnenviereck <InlineMath math="ACBD" />, das zusammen mit weiteren Regeln bei den [Winkelsätzen am Kreis](/de/faecher/mathematik/kreisgeometrie/winkelsaetze-am-kreis) vorkommt.
+Prüfe mit einem Punkt <InlineMath math="D" /> auf dem großen Bogen. Dort gilt <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, und <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. Diese Summe ist die Regel für gegenüberliegende Winkel im Sehnenviereck <InlineMath math="ACBD" />, einer der [Winkelsätze am Kreis](/de/faecher/mathematik/kreisgeometrie/winkelsaetze-am-kreis).
 
 ## Häufige Fehler
 
-Bevor du rechnest, kläre, **über welchem Bogen jeder Winkel steht**. Die Tabelle ordnet häufigen Fehlern bei Mittelpunktswinkeln und Umfangswinkeln jeweils eine Prüfung zu.
+Bevor du rechnest, kläre, **über welchem Bogen jeder Winkel steht**.
 
 | Fehler | Warum er falsch ist | So prüfst du |
 | --- | --- | --- |

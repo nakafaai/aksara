@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Der Kreis und seine Teile
 
-Ein Kreis ist die Menge aller Punkte einer Ebene, die **von einem Punkt gleich weit entfernt** sind. Dieser Punkt ist der Mittelpunkt, und der gemeinsame Abstand ist der Radius. Ein Kreisbogen ist der Teil der Kreislinie zwischen zwei Punkten auf dem Kreis, und seine Länge ist proportional zu seinem Mittelpunktswinkel.
+Ein Kreis ist die Menge aller Punkte einer Ebene, die **von einem Punkt gleich weit entfernt** sind. Dieser Punkt ist der Mittelpunkt, und der gemeinsame Abstand ist der Radius. Ein Kreisbogen ist der Teil der Kreislinie zwischen zwei Punkten auf dem Kreis, und auf demselben Kreis ist seine Länge proportional zu seinem Mittelpunktswinkel: <InlineMath math="b = \frac{\alpha}{360^\circ} \times 2\pi r" />.
 
-Das Diagramm zu den Teilen des Kreises zeigt die vier Teile, die du in fast jeder Aufgabe brauchst: den Mittelpunkt <InlineMath math="O" />, den Radius <InlineMath math="r" />, einen Durchmesser und eine Sehne. Ordne jede Beschriftung der Definition unter dem Diagramm zu.
+Das Diagramm zu den Teilen des Kreises zeigt die vier Teile, die du in fast jeder Aufgabe brauchst: den Mittelpunkt <InlineMath math="O" />, den Radius <InlineMath math="r" />, einen Durchmesser und eine Sehne.
 
 <LineEquation
   title="Teile des Kreises"
@@ -84,7 +84,8 @@ Zwei Punkte auf einem Kreis teilen ihn in **zwei Bögen zugleich**. Der kürzere
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 91 }, (_, i) => {
+      points: Array.from({ length: 271 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -95,7 +96,7 @@ Zwei Punkte auf einem Kreis teilen ihn in **zwei Bögen zugleich**. Der kürzere
       color: "#7c3aed",
       pointIndices: [0, 90],
       showPoints: true,
-      labels: [{ text: "Kleiner Bogen", at: 45, offset: [0.7, 1.45, 0] }],
+      labels: [{ text: "Kleiner Bogen", at: 135, offset: [0.7, 1.45, 0] }],
     },
     {
       smooth: false,
@@ -123,13 +124,13 @@ Zwei Punkte auf einem Kreis teilen ihn in **zwei Bögen zugleich**. Der kürzere
 
 Im Diagramm zu kleinem und großem Bogen umfasst der kleine Bogen <InlineMath math="90^\circ" /> und der große Bogen den Rest, <InlineMath math="270^\circ" />. Die Maße beider Bögen ergeben zusammen immer <InlineMath math="360^\circ" />.
 
-| Art des Bogens | Bogenmaß in Grad | Anteil am Kreis |
+| Art des Bogens | Gradmaß | Anteil am Kreis |
 | --- | --- | --- |
 | Kleiner Bogen | Weniger als <InlineMath math="180^\circ" /> | Weniger als die Hälfte |
 | Halbkreis | Genau <InlineMath math="180^\circ" /> | Genau die Hälfte |
 | Großer Bogen | Mehr als <InlineMath math="180^\circ" /> | Mehr als die Hälfte |
 
-Einen kleinen Bogen benennst du mit zwei Buchstaben, etwa <InlineMath math="\overset{\frown}{AB}" />. Einen großen Bogen benennst du mit drei Buchstaben, etwa <InlineMath math="\overset{\frown}{ACB}" />, weil der mittlere Punkt <InlineMath math="C" /> zeigt, welcher Bogen gemeint ist. Ohne dritten Buchstaben meint <InlineMath math="\overset{\frown}{AB}" /> immer den kleinen Bogen.
+Einen kleinen Bogen benennst du mit zwei Buchstaben, etwa <InlineMath math="\overset{\frown}{AB}" />. Einen großen Bogen benennst du mit drei Buchstaben, etwa <InlineMath math="\overset{\frown}{ACB}" />, weil der Punkt <InlineMath math="C" /> zwischen <InlineMath math="A" /> und <InlineMath math="B" /> zeigt, welcher Bogen gemeint ist. Ohne dritten Buchstaben meint <InlineMath math="\overset{\frown}{AB}" /> immer den kleinen Bogen.
 
 ## Der Bogen misst so viel wie sein Mittelpunktswinkel
 
@@ -177,7 +178,8 @@ Jeder Bogen hat zwei verschiedene Größen. Sein Maß in Grad ist **gleich dem M
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -187,11 +189,12 @@ Jeder Bogen hat zwei verschiedene Größen. Sein Maß in Grad ist **gleich dem M
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -201,13 +204,13 @@ Jeder Bogen hat zwei verschiedene Größen. Sein Maß in Grad ist **gleich dem M
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-Im Diagramm zum Mittelpunktswinkel ist <InlineMath math="\angle AOB = \alpha = 45^\circ" />, also misst auch der Bogen <InlineMath math="\overset{\frown}{AB}" /> <InlineMath math="45^\circ" />. Bögen mit gleichem Maß können verschieden lang sein. Die Tabelle vergleicht einen Bogen von <InlineMath math="60^\circ" /> auf zwei Kreisen:
+Im Diagramm zum Mittelpunktswinkel ist <InlineMath math="\angle AOB = \alpha = 45^\circ" />, also misst auch der Bogen <InlineMath math="\overset{\frown}{AB}" /> <InlineMath math="45^\circ" />. Bögen mit gleichem Maß können verschieden lang sein, etwa ein Bogen von <InlineMath math="60^\circ" /> auf Kreisen mit den Radien <InlineMath math="3\text{ cm}" /> und <InlineMath math="6\text{ cm}" />:
 
 | Radius | Maß des Bogens | Bogenlänge |
 | --- | --- | --- |
@@ -262,7 +265,8 @@ Ein Umfangswinkel hat seinen Scheitel auf dem Kreis, und seine Schenkel sind Seh
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -272,7 +276,7 @@ Ein Umfangswinkel hat seinen Scheitel auf dem Kreis, und seine Schenkel sind Seh
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       points: [
@@ -297,10 +301,10 @@ Ein Umfangswinkel hat seinen Scheitel auf dem Kreis, und seine Schenkel sind Seh
   cameraPosition={[0, 0, 10]}
 />
 
-Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über dem Bogen <InlineMath math="\overset{\frown}{AB}" />, der <InlineMath math="45^\circ" /> misst, also <InlineMath math="\angle ACB = 22{,}5^\circ" />. Das zweite Diagramm nutzt einen größeren Bogen mit dem Mittelpunktswinkel <InlineMath math="80^\circ" />.
+Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über dem Bogen <InlineMath math="\overset{\frown}{AB}" />, der <InlineMath math="45^\circ" /> misst, also <InlineMath math="\angle ACB = 22{,}5^\circ" />. Das zweite Diagramm nutzt einen Bogen von <InlineMath math="80^\circ" />.
 
 <LineEquation
-  title="Umfangswinkel über einem größeren Bogen"
+  title={<>Umfangswinkel über einem Bogen von <InlineMath math="80^\circ" /></>}
   description={<>Der Bogen <InlineMath math="\overset{\frown}{AB}" /> misst <InlineMath math="80^\circ" />, also gilt für den Umfangswinkel <InlineMath math="\angle ACB = 40^\circ" />.</>}
   data={[
     {
@@ -360,7 +364,8 @@ Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über
     },
     {
       smooth: false,
-      points: Array.from({ length: 81 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -373,8 +378,8 @@ Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -384,7 +389,7 @@ Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 100, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -444,7 +449,8 @@ In beiden Formeln ist <InlineMath math="b" /> die Bogenlänge, <InlineMath math=
     },
     {
       smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -454,13 +460,13 @@ In beiden Formeln ist <InlineMath math="b" /> die Bogenlänge, <InlineMath math=
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: "Sektor", at: 30, offset: [-1.35, -0.75, 0] }],
+      labels: [{ text: "Sektor", at: 120, offset: [-1.35, -0.75, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-Der Sektor im Diagramm hat den Radius <InlineMath math="3" /> und den Mittelpunktswinkel <InlineMath math="60^\circ" />, sein Anteil ist also <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Die Bogenlänge beträgt <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> und die Fläche <InlineMath math="\frac{1}{6} \times 9\pi = 1{,}5\pi" />. Beide Größen hängen auch ohne den Winkel zusammen, wie bei [Bogenlänge und Sektorfläche](/de/faecher/mathematik/kreisboegen-und-kreissektoren/bogenlaenge-und-sektorflaeche) gezeigt.
+Der Sektor im Diagramm hat den Radius <InlineMath math="3" /> und den Mittelpunktswinkel <InlineMath math="60^\circ" />, sein Anteil ist also <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Die Bogenlänge beträgt <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> und die Fläche <InlineMath math="\frac{1}{6} \times 9\pi = 1{,}5\pi" />. Auch ohne Winkel liefert der Zusammenhang von [Bogenlänge und Sektorfläche](/de/faecher/mathematik/kreisboegen-und-kreissektoren/bogenlaenge-und-sektorflaeche) dasselbe Ergebnis: <InlineMath math="A = \frac{1}{2} b r = \frac{1}{2} \times \pi \times 3 = 1{,}5\pi" />.
 
 ## Beispiele zu Bogen und Sektor
 
@@ -490,7 +496,7 @@ Prüfe rückwärts. Ein Bogen von <InlineMath math="60^\circ" /> beim Radius <In
 
 ## Häufige Fehler
 
-Bevor du rechnest, trennst du **das Maß des Bogens von seiner Länge**. Die Tabelle ordnet häufigen Fehlern bei Bögen jeweils eine Prüfung zu.
+Bevor du rechnest, trennst du **das Maß des Bogens von seiner Länge**.
 
 | Fehler | Warum er falsch ist | So prüfst du |
 | --- | --- | --- |
@@ -499,7 +505,7 @@ Bevor du rechnest, trennst du **das Maß des Bogens von seiner Länge**. Die Tab
 | Für einen großen Bogen den Winkel des kleinen nehmen | Ein großer Bogen umfasst <InlineMath math="360^\circ" /> minus den kleinen Bogen | Ein großer Bogen muss länger sein als der halbe Umfang |
 | Sektor und Segment verwechseln | Ein Sektor wird von zwei Radien begrenzt, ein [Kreissegment](/de/faecher/mathematik/kreisboegen-und-kreissektoren/kreissegment) von einer Sehne | Sieh nach, ob die Fläche von Radien oder einer Sehne begrenzt wird |
 
-Den Fehler mit dem Durchmesser verrät das Ergebnis. Ein Bogen, der länger ist als der Umfang, ist immer falsch, denn ein Bogen ist nur ein Teil des Kreises.
+Der Fehler mit dem Durchmesser verdoppelt die Bogenlänge, aber das Ergebnis sieht nicht immer falsch aus. Schreibe deshalb als ersten Schritt <InlineMath math="r = \frac{d}{2}" />, sobald eine Aufgabe einen Durchmesser nennt.
 
 ## Übungen zu Kreisbögen
 
@@ -507,7 +513,7 @@ Bestimme bei jeder Aufgabe zuerst **den Anteil an einer vollen Drehung**, den Bo
 
 1. Ein Kreis hat den Durchmesser <InlineMath math="20\text{ cm}" />. Der Umfangswinkel über dem Bogen <InlineMath math="\overset{\frown}{AB}" /> misst <InlineMath math="30^\circ" />. Bestimme das Maß des Bogens <InlineMath math="\overset{\frown}{AB}" /> und seine Länge.
 
-2. Auf einem Kreis mit dem Radius <InlineMath math="21\text{ cm}" /> hat der Bogen <InlineMath math="\overset{\frown}{AB}" /> den Mittelpunktswinkel <InlineMath math="120^\circ" />. Berechne die Länge des Bogens <InlineMath math="\overset{\frown}{AB}" /> und die Fläche des Sektors <InlineMath math="AOB" />.
+2. Auf einem Kreis mit dem Radius <InlineMath math="21\text{ cm}" /> hat der Bogen <InlineMath math="\overset{\frown}{PQ}" /> den Mittelpunktswinkel <InlineMath math="120^\circ" />. Berechne die Länge des Bogens <InlineMath math="\overset{\frown}{PQ}" /> und die Fläche des Sektors <InlineMath math="POQ" />.
 
 3. Auf einem Kreis mit dem Radius <InlineMath math="10\text{ cm}" /> hat der kleine Bogen <InlineMath math="\overset{\frown}{AB}" /> den Mittelpunktswinkel <InlineMath math="72^\circ" />. Bestimme die Länge des großen Bogens <InlineMath math="\overset{\frown}{ACB}" />.
 

@@ -17,7 +17,7 @@ Garis singgung persekutuan adalah garis yang **menyinggung dua lingkaran sekalig
   <BlockMath math="l_{\text{dalam}} = \sqrt{d^2 - (r_1 + r_2)^2}" />
 </MathContainer>
 
-Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai **jumlah jari-jari**. Diagram garis singgung luar memperlihatkan dua lingkaran dengan jarak pusat <InlineMath math="8" /> dan jari-jari <InlineMath math="2" /> serta <InlineMath math="3" />. Perhatikan segitiga siku-siku <InlineMath math="AHB" /> yang menjadi asal rumus pertama.
+Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai **jumlah jari-jari**. Rumus luar berlaku selama <InlineMath math="d > r_2 - r_1" />, dan rumus dalam memerlukan <InlineMath math="d \ge r_1 + r_2" />. Diagram garis singgung luar memperlihatkan dua lingkaran dengan jarak pusat <InlineMath math="8" /> dan jari-jari <InlineMath math="2" /> dan <InlineMath math="3" />. Perhatikan segitiga siku-siku <InlineMath math="AHB" />, tempat rumus pertama diturunkan.
 
 <LineEquation
   title="Garis Singgung Persekutuan Luar"
@@ -187,7 +187,7 @@ cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-Untuk pasangan lingkaran itu, <InlineMath math="l_{\text{luar}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Rumus ini memberi panjang ruas antara dua titik singgung. Kalau yang dicari adalah persamaan garisnya, langkahnya berbeda dan dipelajari pada [persamaan garis singgung lingkaran](/id/materi/matematika/geometri-analitik/persamaan-garis-singgung-lingkaran).
+Untuk pasangan lingkaran itu, <InlineMath math="l_{\text{luar}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Rumus ini memberi panjang ruas antara dua titik singgung. Kalau yang dicari adalah persamaan garisnya, kamu memerlukan [persamaan garis singgung lingkaran](/id/materi/matematika/geometri-analitik/persamaan-garis-singgung-lingkaran), yang bekerja dengan titik singgung atau gradien, bukan dengan panjang ruas.
 
 ## Panjang Garis Singgung Persekutuan Luar
 
@@ -488,7 +488,7 @@ Garis singgung dalam **memotong ruas yang menghubungkan kedua pusat**, sehingga 
 cameraPosition={[0, 0, 15]}
 />
 
-Pada diagram garis singgung dalam, perpanjang jari-jari dari pusat <InlineMath math="B" /> melewati titik singgung sampai titik bantu <InlineMath math="H" />, dengan <InlineMath math="AH" /> sejajar garis singgung. Panjang perpanjangan itu sama dengan jari-jari lingkaran <InlineMath math="A" />, jadi <InlineMath math="BH = r_1 + r_2" />. Segitiga <InlineMath math="AHB" /> siku-siku di <InlineMath math="H" />:
+Pada diagram garis singgung dalam, perpanjang jari-jari dari pusat <InlineMath math="B" /> melewati titik singgung sampai titik bantu <InlineMath math="H" />, dengan <InlineMath math="AH" /> sejajar garis singgung. Ruas <InlineMath math="BH" /> terdiri atas jari-jari <InlineMath math="r_2" /> dari <InlineMath math="B" /> sampai titik singgung dan perpanjangan sepanjang <InlineMath math="r_1" />, jadi <InlineMath math="BH = r_1 + r_2" />. Segitiga <InlineMath math="AHB" /> siku-siku di <InlineMath math="H" />:
 
 <MathContainer>
   <BlockMath math="l^2 + (r_1 + r_2)^2 = d^2" />
@@ -1100,11 +1100,11 @@ Jarak pusatnya <InlineMath math="d = 4" />, dan jari-jarinya sama, jadi garis si
   <BlockMath math="l_{\text{dalam}} = \sqrt{4^2 - (1{,}5 + 1{,}5)^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2{,}65" />
 </MathContainer>
 
-Di sini selisih keduanya jauh lebih besar, karena jumlah jari-jari <InlineMath math="3" /> hampir menyamai jarak pusat.
+Di sini selisih keduanya jauh lebih besar, karena kuadrat jumlah jari-jari, <InlineMath math="9" />, sudah lebih dari separuh <InlineMath math="d^2 = 16" />.
 
 ## Banyak Garis Singgung Persekutuan
 
-Banyaknya garis singgung persekutuan ditentukan oleh **jarak pusat dibandingkan dengan jari-jari**. Perbandingan yang sama menentukan [kedudukan dua lingkaran](/id/materi/matematika/geometri-analitik/kedudukan-dua-lingkaran), sehingga tabel ini juga membaca posisi kedua lingkaran.
+Banyaknya garis singgung persekutuan ditentukan oleh **jarak pusat dibandingkan dengan jari-jari**. Perbandingan yang sama menentukan [kedudukan dua lingkaran](/id/materi/matematika/geometri-analitik/kedudukan-dua-lingkaran), jadi banyak garis singgung sekaligus menunjukkan posisi kedua lingkaran.
 
 | Syarat jarak pusat | Banyak garis singgung | Posisi lingkaran |
 | --- | ---: | --- |
@@ -1114,16 +1114,16 @@ Banyaknya garis singgung persekutuan ditentukan oleh **jarak pusat dibandingkan 
 | <InlineMath math="d = \lvert r_1 - r_2 \rvert" /> | <InlineMath math="1" /> | bersinggungan di dalam |
 | <InlineMath math="d < \lvert r_1 - r_2 \rvert" /> | <InlineMath math="0" /> | satu lingkaran di dalam yang lain |
 
-Tabel ini berlaku untuk dua lingkaran yang tidak berimpit. Dua garis singgung dalam hilang lebih dulu ketika lingkaran saling mendekat, karena garis singgung dalam membutuhkan celah di antara kedua lingkaran.
+Klasifikasi ini berlaku untuk dua lingkaran yang tidak berimpit. Dua garis singgung dalam hilang lebih dulu ketika lingkaran saling mendekat, karena garis singgung dalam membutuhkan celah di antara kedua lingkaran.
 
 ## Kesalahan yang Sering Terjadi
 
-Sebelum memasukkan angka, tentukan dulu **jenis garis singgungnya**. Tabel ini memasangkan kesalahan yang umum dengan cara memeriksanya.
+Sebelum memasukkan angka, tentukan dulu **jenis garis singgungnya**.
 
 | Kesalahan | Mengapa salah | Cara memeriksa |
 | --- | --- | --- |
-| Memakai jumlah jari-jari untuk garis singgung luar | Sisi tegak segitiga bantu garis singgung luar adalah selisih jari-jari | Garis singgung luar harus lebih panjang daripada garis singgung dalam |
-| Menulis <InlineMath math="l = d - (r_2 - r_1)" /> | Rumusnya berasal dari Pythagoras, jadi yang dikurangkan adalah kuadrat | Periksa apakah <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
+| Memakai jumlah jari-jari untuk garis singgung luar | Kaki <InlineMath math="BH" /> segitiga bantu garis singgung luar adalah selisih jari-jari | Garis singgung luar harus lebih panjang daripada garis singgung dalam |
+| Menulis <InlineMath math="l = d - (r_2 - r_1)" /> | Rumusnya berasal dari Pythagoras, jadi yang dikurangkan dari <InlineMath math="d^2" /> adalah kuadrat selisih jari-jari | Periksa apakah <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
 | Memakai diameter sebagai jari-jari | Rumus memakai jarak dari pusat ke titik singgung | Baca ulang apakah soal memberi jari-jari atau diameter |
 | Menghitung garis singgung dalam untuk lingkaran yang berpotongan | Garis singgung dalam hanya ada jika <InlineMath math="d \ge r_1 + r_2" /> | Bandingkan <InlineMath math="d" /> dengan <InlineMath math="r_1 + r_2" /> lebih dulu |
 
@@ -1170,7 +1170,7 @@ Jarak <InlineMath math="d" /> pasti positif, jadi nilai <InlineMath math="-10" /
   <BlockMath math="r^2 = 16 \quad\Longrightarrow\quad r = 4" />
 </MathContainer>
 
-Jari-jarinya <InlineMath math="4" /> dan <InlineMath math="8" />. Jumlahnya <InlineMath math="12" />, sama dengan jarak pusat, jadi kedua lingkaran **bersinggungan di luar** dan punya <InlineMath math="3" /> garis singgung persekutuan.
+Jari-jari harus positif, jadi <InlineMath math="r = -4" /> dibuang. Jari-jarinya <InlineMath math="4" /> dan <InlineMath math="8" />. Jumlahnya <InlineMath math="12" />, sama dengan jarak pusat, jadi kedua lingkaran **bersinggungan di luar** dan punya <InlineMath math="3" /> garis singgung persekutuan.
 
 **Soal 4**. Lingkaran <InlineMath math="x^2 + y^2 = 4" /> berpusat di <InlineMath math="(0, 0)" /> dengan jari-jari <InlineMath math="2" />. Jarak pusatnya <InlineMath math="d = 5" />, sama dengan <InlineMath math="2 + 3" />, jadi kedua lingkaran bersinggungan di luar dan punya <InlineMath math="3" /> garis singgung persekutuan. Panjang garis singgung luarnya:
 

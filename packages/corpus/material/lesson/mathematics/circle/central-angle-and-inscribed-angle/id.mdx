@@ -14,7 +14,7 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran. Sudut ke
 
 <BlockMath math="\angle AOB = 2 \times \angle ACB" />
 
-Pada diagram hubungan di bawah, kaki-kaki sudut pusat <InlineMath math="\angle AOB" /> dan kaki-kaki sudut keliling <InlineMath math="\angle ACB" /> berakhir di titik yang sama, yaitu <InlineMath math="A" /> dan <InlineMath math="B" />. Kedua titik itu adalah ujung busur <InlineMath math="AB" />. Ikuti setiap kaki sampai ke ujung busur, lalu bandingkan besar kedua sudut.
+Pada diagram hubungan sudut pusat dan sudut keliling, kaki-kaki sudut pusat <InlineMath math="\angle AOB" /> dan kaki-kaki sudut keliling <InlineMath math="\angle ACB" /> berakhir di titik yang sama, yaitu <InlineMath math="A" /> dan <InlineMath math="B" />. Kedua titik itu adalah ujung busur <InlineMath math="AB" />. Ikuti setiap kaki sampai ke ujung busur, lalu bandingkan besar kedua sudut.
 
 <LineEquation
   title="Hubungan Sudut Pusat dan Sudut Keliling"
@@ -77,7 +77,8 @@ Pada diagram hubungan di bawah, kaki-kaki sudut pusat <InlineMath math="\angle A
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -87,11 +88,12 @@ Pada diagram hubungan di bawah, kaki-kaki sudut pusat <InlineMath math="\angle A
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -101,7 +103,7 @@ Pada diagram hubungan di bawah, kaki-kaki sudut pusat <InlineMath math="\angle A
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -113,7 +115,7 @@ Sudut pusat pada diagram itu besarnya <InlineMath math="45^\circ" />. Sudut keli
 
 ## Cara Mengenali Sudut Pusat dan Sudut Keliling
 
-Dua sudut ini dibedakan dari **letak titik sudutnya** dan dari garis yang menjadi kakinya. Busur yang dihadapi sebuah sudut adalah [busur lingkaran](/id/materi/matematika/lingkaran/lingkaran-dan-busur-lingkaran) di antara dua titik tempat kaki-kaki sudut memotong lingkaran. Busur itulah yang menghubungkan kedua jenis sudut, jadi tentukan busurnya dulu sebelum menghitung.
+Dua sudut ini dibedakan dari **letak titik sudutnya** dan dari garis yang menjadi kakinya. Busur yang dihadapi sebuah sudut adalah [busur lingkaran](/id/materi/matematika/lingkaran/lingkaran-dan-busur-lingkaran) yang terletak di dalam sudut itu, di antara dua titik tempat kaki-kakinya memotong lingkaran. Busur itulah yang menghubungkan kedua jenis sudut, jadi tentukan busurnya dulu sebelum menghitung.
 
 ### Sudut Pusat
 
@@ -121,7 +123,7 @@ Sudut pusat dibentuk oleh dua jari-jari, sehingga titik sudutnya berada **tepat 
 
 <LineEquation
   title="Sudut Pusat"
-  description={<>Kaki <InlineMath math="OA" /> dan <InlineMath math="OB" /> adalah jari-jari, jadi titik sudut <InlineMath math="\alpha" /> berada di pusat <InlineMath math="O" />.</>}
+  description={<>Kaki <InlineMath math="OA" /> dan <InlineMath math="OB" /> adalah jari-jari, jadi titik sudut <InlineMath math="\angle AOB" /> berada di pusat <InlineMath math="O" />.</>}
   data={[
     {
       smooth: false,
@@ -161,7 +163,8 @@ Sudut pusat dibentuk oleh dua jari-jari, sehingga titik sudutnya berada **tepat 
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -171,7 +174,7 @@ Sudut pusat dibentuk oleh dua jari-jari, sehingga titik sudutnya berada **tepat 
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -237,7 +240,7 @@ Titik pusat <InlineMath math="O" /> tidak menjadi titik sudut <InlineMath math="
 
 ## Mengapa Sudut Pusat Dua Kali Sudut Keliling
 
-Buktinya memakai satu garis bantu, yaitu diameter yang melalui titik <InlineMath math="C" /> dan pusat <InlineMath math="O" />. Diameter ini membelah bangun menjadi dua **segitiga sama kaki**, karena dua sisinya sama-sama jari-jari.
+Buktinya memakai satu garis bantu, yaitu diameter yang melalui titik <InlineMath math="C" /> dan pusat <InlineMath math="O" />. Diameter ini membelah bangun menjadi dua **segitiga sama kaki**, karena dua sisi setiap segitiga sama-sama jari-jari.
 
 <LineEquation
   title="Pembuktian dengan Garis Bantu"
@@ -477,7 +480,8 @@ Diameter membagi lingkaran menjadi dua setengah lingkaran, dan sudut pusat yang 
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
-        return Array.from({ length: 16 }, (_, i) => {
+        return Array.from({ length: 211 }, (_, sampleIndex) => {
+          const i = sampleIndex / 14;
           const t = i / 15;
           const angle = angleCA + t * (angleCB - angleCA);
           return {
@@ -489,7 +493,7 @@ Diameter membagi lingkaran menjadi dua setengah lingkaran, dan sudut pusat yang 
       })(),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 98, offset: [0.5, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -575,7 +579,8 @@ Sudut keliling ditentukan oleh busur yang dihadapinya, bukan oleh letak titik su
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -585,7 +590,7 @@ Sudut keliling ditentukan oleh busur yang dihadapinya, bukan oleh letak titik su
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -601,7 +606,7 @@ Syaratnya, kedua titik sudut harus berada pada busur yang sama. Titik sudut yang
 
 Setiap contoh dimulai dengan **menentukan busur yang dihadapi** kedua sudut. Setelah busurnya jelas, sudut keliling tinggal dibagi atau dikali dua.
 
-**Contoh 1**. Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Titik <InlineMath math="C" /> berada pada busur besar, sehingga <InlineMath math="\angle ACB" /> menghadap busur kecil <InlineMath math="AB" /> yang sama dengan sudut pusat. Tentukan besar <InlineMath math="\angle ACB" />.
+**Contoh 1**. Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Titik <InlineMath math="C" /> berada pada busur besar, sehingga <InlineMath math="\angle ACB" /> menghadap busur kecil <InlineMath math="AB" /> yang juga dihadapi sudut pusat. Tentukan besar <InlineMath math="\angle ACB" />.
 
 <LineEquation
   title={<>Sudut Pusat <InlineMath math="80^\circ" /></>}
@@ -664,8 +669,8 @@ Setiap contoh dimulai dengan **menentukan busur yang dihadapi** kedua sudut. Set
     },
     {
       smooth: false,
-      points: Array.from({ length: 103 }, (_, sampleIndex) => {
-        const i = sampleIndex / 6;
+      points: Array.from({ length: 205 }, (_, sampleIndex) => {
+        const i = sampleIndex / 12;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -675,7 +680,7 @@ Setiap contoh dimulai dengan **menentukan busur yang dihadapi** kedua sudut. Set
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 120, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -697,7 +702,7 @@ Periksa dengan arah sebaliknya. Dua kali <InlineMath math="40^\circ" /> adalah <
   <BlockMath math="\angle AOB = 2 \times 35^\circ = 70^\circ" />
 </MathContainer>
 
-Sudut pusat harus lebih besar daripada sudut keliling pada busur yang sama, dan <InlineMath math="70^\circ" /> memang lebih besar daripada <InlineMath math="35^\circ" />.
+Periksa dengan arah sebaliknya: setengah dari <InlineMath math="70^\circ" /> adalah <InlineMath math="35^\circ" />, sama dengan sudut keliling yang diketahui.
 
 **Contoh 3**. Sudut pusat <InlineMath math="\angle AOB = 100^\circ" />, tetapi titik <InlineMath math="C" /> berada pada busur kecil <InlineMath math="AB" />. Tentukan besar <InlineMath math="\angle ACB" />.
 
@@ -708,11 +713,11 @@ Titik <InlineMath math="C" /> pada busur kecil menghadap **busur besar** <Inline
   <BlockMath math="\angle ACB = \frac{1}{2} \times 260^\circ = 130^\circ" />
 </MathContainer>
 
-Periksa dengan titik <InlineMath math="D" /> pada busur besar. Sudut <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, dan <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. Jumlah <InlineMath math="180^\circ" /> ini cocok dengan sifat segi empat tali busur <InlineMath math="ACBD" />, yang dibahas bersama sudut lain pada [sifat sudut dalam lingkaran](/id/materi/matematika/lingkaran/sifat-sudut-dalam-lingkaran).
+Periksa dengan titik <InlineMath math="D" /> pada busur besar. Sudut <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, dan <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. Jumlah <InlineMath math="180^\circ" /> ini adalah sifat sudut berhadapan pada segi empat tali busur <InlineMath math="ACBD" />, salah satu [sifat sudut dalam lingkaran](/id/materi/matematika/lingkaran/sifat-sudut-dalam-lingkaran).
 
 ## Kesalahan yang Sering Terjadi
 
-Sebelum menghitung, pastikan kamu tahu **busur mana yang dihadapi** setiap sudut. Tabel ini memasangkan kesalahan yang umum pada soal sudut pusat dan sudut keliling dengan cara memeriksanya.
+Sebelum menghitung, pastikan kamu tahu **busur mana yang dihadapi** setiap sudut.
 
 | Kesalahan | Mengapa salah | Cara memeriksa |
 | --- | --- | --- |

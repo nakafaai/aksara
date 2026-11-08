@@ -10,9 +10,9 @@ export const metadata = {
 
 ## A Circle and Its Parts
 
-A circle is the set of all points in a plane that are **the same distance from one point**. That point is the center, and the shared distance is the radius. An arc is the part of the circle between two points on it, and its length is proportional to its central angle.
+A circle is the set of all points in a plane that are **the same distance from one point**. That point is the center, and the shared distance is the radius. An arc is the part of the circle between two points on it, and on the same circle its length is proportional to its central angle: <InlineMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />.
 
-The parts of a circle diagram labels the four parts you need in almost every problem: the center <InlineMath math="O" />, the radius <InlineMath math="r" />, a diameter, and a chord. Match each label with its definition below the diagram.
+The diagram of a circle's parts labels the four parts you need in almost every problem: the center <InlineMath math="O" />, the radius <InlineMath math="r" />, a diameter, and a chord.
 
 <LineEquation
   title="Parts of a Circle"
@@ -84,7 +84,8 @@ Two points on a circle split it into **two arcs at once**. The shorter one is th
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 91 }, (_, i) => {
+      points: Array.from({ length: 271 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -95,7 +96,7 @@ Two points on a circle split it into **two arcs at once**. The shorter one is th
       color: "#7c3aed",
       pointIndices: [0, 90],
       showPoints: true,
-      labels: [{ text: "Minor arc", at: 45, offset: [0.7, 1.45, 0] }],
+      labels: [{ text: "Minor arc", at: 135, offset: [0.7, 1.45, 0] }],
     },
     {
       smooth: false,
@@ -129,7 +130,7 @@ In the minor and major arc diagram, the minor arc covers <InlineMath math="90^\c
 | Semicircle | Exactly <InlineMath math="180^\circ" /> | Exactly half |
 | Major arc | More than <InlineMath math="180^\circ" /> | More than half |
 
-A minor arc is named with two letters, such as <InlineMath math="\overset{\frown}{AB}" />. A major arc is named with three letters, such as <InlineMath math="\overset{\frown}{ACB}" />, because the middle point <InlineMath math="C" /> shows which arc is meant. Without a third letter, <InlineMath math="\overset{\frown}{AB}" /> always means the minor arc.
+A minor arc is named with two letters, such as <InlineMath math="\overset{\frown}{AB}" />. A major arc is named with three letters, such as <InlineMath math="\overset{\frown}{ACB}" />, because point <InlineMath math="C" />, between <InlineMath math="A" /> and <InlineMath math="B" />, shows which arc is meant. Without a third letter, <InlineMath math="\overset{\frown}{AB}" /> always means the minor arc.
 
 ## Arc Measure Equals the Central Angle
 
@@ -177,7 +178,8 @@ Every arc has two different sizes. Its arc measure is given in degrees and is **
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -187,11 +189,12 @@ Every arc has two different sizes. Its arc measure is given in degrees and is **
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -201,13 +204,13 @@ Every arc has two different sizes. Its arc measure is given in degrees and is **
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-In the central angle diagram, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, so arc <InlineMath math="\overset{\frown}{AB}" /> also measures <InlineMath math="45^\circ" />. Arcs with the same measure can have different lengths. The table compares a <InlineMath math="60^\circ" /> arc on two circles:
+In the central angle diagram, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, so arc <InlineMath math="\overset{\frown}{AB}" /> also measures <InlineMath math="45^\circ" />. Arcs with the same measure can have different lengths, for example a <InlineMath math="60^\circ" /> arc on circles of radius <InlineMath math="3\text{ cm}" /> and <InlineMath math="6\text{ cm}" />:
 
 | Radius | Arc measure | Arc length |
 | --- | --- | --- |
@@ -262,7 +265,8 @@ An inscribed angle has its vertex on the circle, and its arms are chords. An ins
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -272,7 +276,7 @@ An inscribed angle has its vertex on the circle, and its arms are chords. An ins
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       points: [
@@ -297,10 +301,10 @@ An inscribed angle has its vertex on the circle, and its arms are chords. An ins
   cameraPosition={[0, 0, 10]}
 />
 
-In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, which measures <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />. The second diagram uses a larger arc, with central angle <InlineMath math="80^\circ" />.
+In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, which measures <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />. The second diagram uses an <InlineMath math="80^\circ" /> arc.
 
 <LineEquation
-  title="Inscribed Angle on a Larger Arc"
+  title={<>Inscribed Angle on an <InlineMath math="80^\circ" /> Arc</>}
   description={<>Arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="80^\circ" />, so the inscribed angle <InlineMath math="\angle ACB = 40^\circ" />.</>}
   data={[
     {
@@ -360,7 +364,8 @@ In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <In
     },
     {
       smooth: false,
-      points: Array.from({ length: 81 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -373,8 +378,8 @@ In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <In
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -384,7 +389,7 @@ In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <In
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 100, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -444,7 +449,8 @@ In both formulas, <InlineMath math="l" /> is the arc length, <InlineMath math="A
     },
     {
       smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -454,13 +460,13 @@ In both formulas, <InlineMath math="l" /> is the arc length, <InlineMath math="A
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: "Sector", at: 30, offset: [-1.35, -0.75, 0] }],
+      labels: [{ text: "Sector", at: 120, offset: [-1.35, -0.75, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-The sector in the diagram has radius <InlineMath math="3" /> and central angle <InlineMath math="60^\circ" />, so its share is <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Its arc length is <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> and its area is <InlineMath math="\frac{1}{6} \times 9\pi = 1.5\pi" />. The two quantities are also linked without the angle, as shown in [the relationship between arc length and sector area](/en/subjects/mathematics/circle-arc-sector/relationship-between-arc-length-and-sector-area).
+The sector in the diagram has radius <InlineMath math="3" /> and central angle <InlineMath math="60^\circ" />, so its share is <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Its arc length is <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> and its area is <InlineMath math="\frac{1}{6} \times 9\pi = 1.5\pi" />. Even without the angle, [the relationship between arc length and sector area](/en/subjects/mathematics/circle-arc-sector/relationship-between-arc-length-and-sector-area) gives the same result: <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times \pi \times 3 = 1.5\pi" />.
 
 ## Worked Examples on Arcs and Sectors
 
@@ -490,7 +496,7 @@ Check it in the other direction. A <InlineMath math="60^\circ" /> arc on a radiu
 
 ## Common Mistakes
 
-Before you calculate, separate **arc measure from arc length**. The table pairs common arc mistakes with a way to check for each one.
+Before you calculate, separate **arc measure from arc length**.
 
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
@@ -499,7 +505,7 @@ Before you calculate, separate **arc measure from arc length**. The table pairs 
 | Using the minor arc angle for a major arc | A major arc covers <InlineMath math="360^\circ" /> minus the minor arc | A major arc must be longer than half the circumference |
 | Treating a sector as a segment | A sector is bounded by two radii, a [segment](/en/subjects/mathematics/circle-arc-sector/segment) by a chord | Look at whether the region's edges are radii or a chord |
 
-The diameter mistake shows up in the answer. An arc longer than the circumference is always wrong, because an arc is only part of the circle.
+The diameter mistake doubles the arc length, but the result does not always look wrong. So write <InlineMath math="r = \frac{d}{2}" /> as the first step whenever a problem gives a diameter.
 
 ## Practice on Arcs of a Circle
 
@@ -507,7 +513,7 @@ For each problem, first find **the share of a full turn** the arc or sector take
 
 1. A circle has diameter <InlineMath math="20\text{ cm}" />. The inscribed angle that intercepts arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="30^\circ" />. Find the measure of arc <InlineMath math="\overset{\frown}{AB}" /> and its length.
 
-2. On a circle of radius <InlineMath math="21\text{ cm}" />, arc <InlineMath math="\overset{\frown}{AB}" /> has a central angle of <InlineMath math="120^\circ" />. Find the length of arc <InlineMath math="\overset{\frown}{AB}" /> and the area of sector <InlineMath math="AOB" />.
+2. On a circle of radius <InlineMath math="21\text{ cm}" />, arc <InlineMath math="\overset{\frown}{PQ}" /> has a central angle of <InlineMath math="120^\circ" />. Find the length of arc <InlineMath math="\overset{\frown}{PQ}" /> and the area of sector <InlineMath math="POQ" />.
 
 3. On a circle of radius <InlineMath math="10\text{ cm}" />, the minor arc <InlineMath math="\overset{\frown}{AB}" /> has a central angle of <InlineMath math="72^\circ" />. Find the length of the major arc <InlineMath math="\overset{\frown}{ACB}" />.
 
