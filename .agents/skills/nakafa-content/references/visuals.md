@@ -106,6 +106,17 @@ For assessed content, also apply the
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
+## Math in visual text
+
+A visual's title, description, labels, facts, and legends are JSX nodes, never
+strings, so every mathematical or chemical expression in them renders through
+`<InlineMath />`: `title={<>Fungsi <InlineMath math="f(x) = x^2" /></>}`. The
+[mathematics rules](math.md) own what counts as math. `LineEquation`,
+`Triangle`, `UnitCircle`, `NumberLine`, `Inequality`, and `VectorChart` are
+retired: draw with `MathVisual` (D36). The voice gate reports each string text
+prop as `string-visual-text`, each retired visual as `retired-visual`, and each
+plain-text expression as `plain-math-text`.
+
 ## Computed and exact visuals
 
 These rules cover every value a formula draws, because a single wrong or jagged

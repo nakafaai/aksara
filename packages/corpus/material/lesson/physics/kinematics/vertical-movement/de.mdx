@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Vertikale Bewegung",
-  description:
-    "Vertikale Bewegung ist eine eindimensionale gleichmäßig beschleunigte Bewegung mit nach unten gerichteter Gravitationsbeschleunigung.",
+  title: "Senkrechter Wurf und freier Fall",
+  description: "Beim senkrechten Wurf und beim freien Fall wirkt nur die Erdbeschleunigung. Berechne Steigzeit, maximale Höhe und Geschwindigkeit mit Beispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematik",
 };
 
+## Senkrechte Bewegung und Erdbeschleunigung
 
-## Eine vertikale Achse benötigt eine positive Richtung
-
-Vertikale Bewegung ist eine Aufwärts- oder Abwärtsbewegung entlang <Highlight>einer senkrechten Geraden</Highlight>. Um die Zeichen klar zu halten, wählen wir nach oben als positiv und nach unten als negativ.
-
-Im Modell des freien Falls nahe der Erdoberfläche wird die Gravitationsbeschleunigung als <InlineMath math="-g" /> geschrieben, weil sie bei dieser Vorzeichenkonvention nach unten zeigt.
+Eine senkrechte Bewegung ist die Bewegung eines Körpers nach oben oder unten entlang **einer einzigen senkrechten Linie**, bei der nur die Schwerkraft seine Geschwindigkeit ändert. Die Beschleunigung ist konstant, hat den Betrag <InlineMath math="g" /> und zeigt immer nach unten. Wählst du nach oben als positive Richtung, gelten für Ort <InlineMath math="y" /> und Geschwindigkeit <InlineMath math="v_y" /> zur Zeit <InlineMath math="t" /> drei Gleichungen:
 
 <MathContainer>
   <BlockMath math="y=y_0+v_0t-\frac{1}{2}gt^2" />
@@ -21,7 +17,11 @@ Im Modell des freien Falls nahe der Erdoberfläche wird die Gravitationsbeschleu
   <BlockMath math="v_y^2=v_0^2-2g(y-y_0)" />
 </MathContainer>
 
-> Diese Gleichungen modellieren eine Bewegung nahe der Erdoberfläche mit konstantem <InlineMath math="g" /> und ohne Luftwiderstand. Der [Standardwert](https://physics.nist.gov/cuu/pdf/sp811.pdf) beträgt <InlineMath math="g_n=9{,}80665\text{ m/s}^2" />. Für einfachere Rechnungen von Hand wird <InlineMath math="g=10\text{ m/s}^2" /> verwendet.
+Dabei ist <InlineMath math="y_0" /> der Startort und <InlineMath math="v_0" /> die Anfangsgeschwindigkeit. Eine senkrechte Bewegung ist eine [gleichmäßig beschleunigte Bewegung](/de/faecher/physik/kinematik/ungleichfoermige-geradlinige-bewegung) mit der Beschleunigung <InlineMath math="-g" />, es sind also dieselben Gleichungen.
+
+> Diese Gleichungen gelten nahe der Erdoberfläche mit konstantem <InlineMath math="g" /> und ohne Luftwiderstand. Die [Normfallbeschleunigung](https://physics.nist.gov/cuu/pdf/sp811.pdf) beträgt <InlineMath math="g_n=9{,}80665\text{ m/s}^2" />. Die Rechnungen auf dieser Seite nutzen <InlineMath math="g=10\text{ m/s}^2" />, damit die Zahlen glatt werden.
+
+Die Simulation des Balls zeigt beide Arten, wie sich der Ball in Bewegung setzen kann. Wähle den Wurf nach oben oder das Fallenlassen und beobachte, wie sich Höhe und Geschwindigkeit ändern.
 
 <VerticalMovementLab
   decimalSeparator="comma"
@@ -46,69 +46,199 @@ Im Modell des freien Falls nahe der Erdoberfläche wird die Gravitationsbeschleu
   }}
 />
 
-## Die Gravitation wirkt auch während des Aufstiegs
+## Drei Arten senkrechter Bewegung
 
-Wird ein Objekt nach oben geworfen, ist seine Anfangsgeschwindigkeit positiv. Danach <Highlight>verringert die Gravitation seine Vertikalgeschwindigkeit</Highlight>, bis das Objekt am höchsten Punkt für einen Moment stillsteht.
+Alle drei Arten senkrechter Bewegung nutzen dieselben Gleichungen. Es unterscheiden sich nur **Vorzeichen und Betrag der Anfangsgeschwindigkeit** <InlineMath math="v_0" />.
 
-> Am höchsten Punkt ist die Vertikalgeschwindigkeit vorübergehend Null, die Erdbeschleunigung zeigt jedoch immer noch nach unten.
+| Art der Bewegung | Anfangsgeschwindigkeit | Beispiel |
+| --- | --- | --- |
+| Senkrechter Wurf nach oben | <InlineMath math="v_0 > 0" /> | Ein Ball wird senkrecht hochgeworfen |
+| Freier Fall | <InlineMath math="v_0 = 0" /> | Eine Frucht löst sich vom Stiel |
+| Senkrechter Wurf nach unten | <InlineMath math="v_0 < 0" /> | Ein Stein wird von einer Brücke nach unten geworfen |
 
-Am höchsten Punkt verschwindet die Erdbeschleunigung nicht. Die Vertikalgeschwindigkeit ist dort für einen Moment null, während die Beschleunigung weiterhin <InlineMath math="-g" /> beträgt.
+Bei allen dreien bleibt die Beschleunigung während der ganzen Bewegung <InlineMath math="-g" />, auch im höchsten Punkt. Das Minus kommt von der Wahl der positiven Richtung nach oben, nicht von einer Schwerkraft, die ihre Richtung wechselt.
 
-## Ein Aufwärtswurf stoppt für einen Moment
+<Mermaid
+  title="Die Art der vertikalen Bewegung wählen"
+  description="Die Richtung der Anfangsgeschwindigkeit bestimmt die Bewegungsart, die Gleichungen bleiben dieselben."
+  chart={`flowchart TD
+  A{"Richtung der Anfangsgeschwindigkeit?"} -->|"nach oben"| B["Wurf nach oben, v₀ positiv"]
+  A -->|"null"| C["Freier Fall, v₀ = 0"]
+  A -->|"nach unten"| D["Wurf nach unten, v₀ negativ"]
+  B --> E["v = v₀ - gt und y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
 
-Angenommen, ein Ball wird mit der Anfangsgeschwindigkeit <InlineMath math="20\text{ m/s}" /> von der Position <InlineMath math="y_0=0" /> nach oben geworfen. Verwende <InlineMath math="g=10\text{ m/s}^2" />. Am höchsten Punkt beträgt seine Vertikalgeschwindigkeit <InlineMath math="v_y=0" />.
+## Senkrechter Wurf nach oben
+
+Beim Wurf nach oben ist die Geschwindigkeit zuerst positiv und **nimmt durch die Schwerkraft ständig ab**, bis sie im höchsten Punkt null ist. Aus <InlineMath math="v_y = 0" /> folgen Steigzeit und maximale Höhe über dem Abwurfpunkt:
 
 <MathContainer>
-  <BlockMath math="v_y=v_0-gt" />
-  <BlockMath math="0=20-10t" />
-  <BlockMath math="t=2\text{ s}" />
+  <BlockMath math="t_{\text{Steig}} = \frac{v_0}{g}" />
+  <BlockMath math="h_{\text{max}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-Die **maximale Höhe über dem Startpunkt** kann aus der Positionsgleichung ermittelt werden.
+Angenommen, ein Ball wird mit <InlineMath math="v_0 = 20\text{ m/s}" /> nach oben geworfen. Seine Steigzeit beträgt <InlineMath math="\frac{20}{10} = 2\text{ s}" />, seine maximale Höhe <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. Die Ortsgleichung liefert dasselbe:
 
-<BlockMath math="\begin{aligned}
-y-y_0&=v_0t-\frac{1}{2}gt^2\\
-&=20(2)-\frac{1}{2}(10)(2^2)\\
-&=20\text{ m}
-\end{aligned}" />
+<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
 
-Der Ball benötigt also <InlineMath math="2\text{ s}" />, um den höchsten Punkt zu erreichen, und steigt <InlineMath math="20\text{ m}" /> über seinen Startpunkt.
+Im höchsten Punkt ist die Geschwindigkeit des Balls kurz null, seine Beschleunigung aber weiterhin <InlineMath math="-g" />. Setze einige Werte von <InlineMath math="t" /> in <InlineMath math="y = 20t - 5t^2" /> und <InlineMath math="v_y = 20 - 10t" /> ein, um Auf- und Abstieg zu verfolgen:
 
-## Das Zeichen der Geschwindigkeit lesen
-
-Das Vorzeichen von <InlineMath math="v_y" /> gibt die **Bewegungsrichtung in diesem Moment** an. Ein positiver Wert bedeutet eine Bewegung nach oben, ein negativer Wert eine Bewegung nach unten und null einen momentanen Stillstand.
-
-Die Höhe <InlineMath math="y" /> gibt nicht automatisch die Bewegungsrichtung an. Ein Objekt kann sich beim Aufstieg und beim Abstieg auf derselben Höhe befinden, doch die Vorzeichen seiner Geschwindigkeit sind verschieden.
-
-Für denselben Aufwärtswurf setzen wir die Zeiten in <InlineMath math="y=20t-5t^2" /> und <InlineMath math="v_y=20-10t" /> ein. Bei <InlineMath math="t=1\text{ s}" /> erhalten wir beispielsweise <InlineMath math="y=20-5=15\text{ m}" /> und <InlineMath math="v_y=20-10=10\text{ m/s}" />.
-
-| Zeit | Höhe | Vertikalgeschwindigkeit | Bewegung |
+| Zeit | Höhe | Geschwindigkeit | Richtung |
 | --- | --- | --- | --- |
 | <InlineMath math="0\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="20\text{ m/s}" /> | Aufwärts |
 | <InlineMath math="1\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="10\text{ m/s}" /> | Aufwärts |
-| <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Momentaner Stillstand |
+| <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Kurz in Ruhe |
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Abwärts |
-| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Unmittelbar vor der Rückkehr zur Abwurfhöhe |
+| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Zurück am Abwurfpunkt |
 
-## Ein Ball wird aus einer Höhe fallen gelassen
+Die Bewegung ist symmetrisch. Der Ball ist nach <InlineMath math="1\text{ s}" /> und nach <InlineMath math="3\text{ s}" /> in <InlineMath math="15\text{ m}" /> Höhe, mit gleicher Schnelligkeit, aber entgegengesetzter Richtung, und kommt mit seiner Anfangsschnelligkeit wieder am Abwurfpunkt an.
 
-Angenommen, ein Ball wird aus einer Höhe von <InlineMath math="20\text{ m}" /> **ohne Anfangsgeschwindigkeit** fallen gelassen. Mit <InlineMath math="g=10\text{ m/s}^2" /> beträgt die Zeit bis zum Erreichen des Bodens:
+## Freier Fall
 
-<BlockMath math="\begin{aligned}
-0&=20-\frac{1}{2}(10)t^2\\
-5t^2&=20\\
-t^2&=4\\
-t&=\sqrt{4}=2\text{ s}
-\end{aligned}" />
+Im Schulunterricht heißt freier Fall, dass ein Körper **ohne Anfangsgeschwindigkeit** losgelassen wird, also <InlineMath math="v_0 = 0" />. Manche Bücher nennen jede Bewegung unter alleiniger Schwerkraft freien Fall, Würfe eingeschlossen, diese Seite nutzt aber die erste Bedeutung. Für eine Fallhöhe <InlineMath math="h" /> gelten Fallzeit und Aufprallgeschwindigkeit:
 
-Die Geschwindigkeit kurz vor Erreichen des Bodens beträgt:
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
+  <BlockMath math="v = \sqrt{2gh}" />
+</MathContainer>
 
-<BlockMath math="v_y=0-10(2)=-20\text{ m/s}" />
+Ein Ball, der aus <InlineMath math="20\text{ m}" /> Höhe fallen gelassen wird, erreicht den Boden nach <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Seine Geschwindigkeit in diesem Moment ist:
 
-Das negative Vorzeichen zeigt die Abwärtsrichtung an. Der Geschwindigkeitsbetrag ist <InlineMath math="20\text{ m/s}" />, die Bewegungsrichtung jedoch abwärts.
+<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
-Dieses Beispiel zeigt, warum das Vorzeichen bei vertikaler Bewegung nicht ignoriert werden darf. Der Geschwindigkeitsbetrag gibt an, wie schnell sich der Ball bewegt, während das Vorzeichen die Bewegungsrichtung angibt.
+Das Minus bedeutet, dass sich der Ball nach unten bewegt. Prüfe den Betrag mit der zweiten Formel: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Genau diese Schnelligkeit hat auch ein mit <InlineMath math="20\text{ m/s}" /> hochgeworfener Ball, wenn er wieder am Abwurfpunkt ankommt, denn beide fallen <InlineMath math="20\text{ m}" /> aus dem Stillstand.
 
-## Von der vertikalen Bewegung zur Projektilbewegung
+## Senkrechter Wurf nach unten
 
-Dieselben Gleichungen des freien Falls beschreiben die vertikale Komponente eines geworfenen Balls, eines Projektils oder eines Wasserstrahls. Beim [schrägen Wurf](/de/faecher/physik/kinematik/parabelfoermige-bewegung) bleibt die **horizontale Geschwindigkeit konstant**, während die vertikale Geschwindigkeit sich nach den Gleichungen der Gravitation ändert.
+Ein nach unten geworfener Körper hat schon eine Anfangsgeschwindigkeit nach unten, **seine Anfangsgeschwindigkeit ist also negativ**. Die Schwerkraft erhöht seine Schnelligkeit von Anfang an, und er erreicht den Boden früher als ein Körper, der aus derselben Höhe fallen gelassen wird.
+
+Angenommen, ein Stein wird aus <InlineMath math="30\text{ m}" /> Höhe mit <InlineMath math="5\text{ m/s}" /> nach unten geworfen. Mit <InlineMath math="y_0 = 30" /> und <InlineMath math="v_0 = -5" /> erreicht er den Boden bei <InlineMath math="y = 0" />:
+
+<MathContainer>
+  <BlockMath math="0 = 30 - 5t - 5t^2" />
+  <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
+  <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+</MathContainer>
+
+Der Wert <InlineMath math="t = -3" /> läge drei Sekunden vor dem Abwurf, also entfällt er, und der Stein landet nach <InlineMath math="2\text{ s}" />. Probe mit der dritten Gleichung: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, die Schnelligkeit beträgt also <InlineMath math="25\text{ m/s}" />.
+
+## Senkrechte Bewegung im schiefen Wurf
+
+Ohne Luftwiderstand beschreiben dieselben Gleichungen den senkrechten Anteil eines schräg geworfenen Balls. Bei der [parabelförmigen Bewegung](/de/faecher/physik/kinematik/parabelfoermige-bewegung) bleibt **die waagerechte Geschwindigkeit konstant**, während sich die senkrechte Geschwindigkeit genau wie beim Wurf nach oben ändert.
+
+Deshalb ergibt sich die Flugzeit eines schräg geworfenen Körpers allein aus seiner senkrechten Bewegung. Ein schräg geschossener Ball mit einer senkrechten Anfangsgeschwindigkeit von <InlineMath math="20\text{ m/s}" /> steigt ebenfalls <InlineMath math="2\text{ s}" /> lang und landet nach <InlineMath math="4\text{ s}" /> auf ebenem Boden, genau wie ein Ball, der mit <InlineMath math="20\text{ m/s}" /> senkrecht hochgeworfen wird.
+
+<LineEquation
+  title="Zwei Bälle mit derselben vertikalen Anfangsgeschwindigkeit"
+  description="Ein Kästchen steht für 5 m. Der türkise Ball wird mit v_x = 10 m/s und v_0y = 20 m/s geschossen, der orange Ball mit 20 m/s senkrecht nach oben geworfen. Die grauen Linien verbinden ihre Orte zum selben Zeitpunkt, und die Höhen stimmen immer überein."
+  showZAxis={false}
+  cameraPosition={[4, 2, 12]}
+  cameraTarget={[4, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * index) / 400;
+        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{schräg geschossen}" />, at: 400, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{senkrecht nach oben}" />, at: 2, offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    }
+  ]}
+/>
+
+## Häufige Fehler
+
+Bevor du rechnest, legst du **die positive Richtung** fest und behältst sie bis zum Ende bei.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| Die Beschleunigung im höchsten Punkt für null halten | Nur die Geschwindigkeit ist null, die Schwerkraft wirkt weiter | Die Beschleunigung ist immer <InlineMath math="-g" /> |
+| <InlineMath math="h = \frac{1}{2}gt^2" /> für einen Wurf nach oben verwenden | Diese Formel gilt nur für den freien Fall mit <InlineMath math="v_0 = 0" /> | Prüfe, ob eine Anfangsgeschwindigkeit gegeben ist |
+| Beim Wurf nach unten eine positive Anfangsgeschwindigkeit ansetzen | Nach unten ist negativ, wenn nach oben positiv ist | Das Vorzeichen von <InlineMath math="v_0" /> muss zur Wurfrichtung passen |
+| Geschwindigkeit und Schnelligkeit verwechseln | Die Geschwindigkeit hat ein Vorzeichen, die Schnelligkeit ist immer positiv | Beim Fallen muss die Geschwindigkeit negativ sein |
+
+Vorzeichenfehler findest du am leichtesten am Ende. Ein Körper, der sich nach unten bewegt, muss ein negatives <InlineMath math="v_y" /> haben, und eine negative Zeit entfällt immer.
+
+## Übungen zur senkrechten Bewegung
+
+Nutze <InlineMath math="g = 10\text{ m/s}^2" /> und wähle nach oben als positiv. Lege bei jeder Aufgabe zuerst **das Vorzeichen der Anfangsgeschwindigkeit** und den Startort fest.
+
+1. Ein Ball wird mit <InlineMath math="15\text{ m/s}" /> senkrecht nach oben geworfen. Bestimme Steigzeit und maximale Höhe.
+
+2. Eine Kokosnuss fällt von einer <InlineMath math="45\text{ m}" /> hohen Palme. Bestimme die Fallzeit und ihre Schnelligkeit beim Aufprall.
+
+3. Ein Ball wird vom Dach eines <InlineMath math="25\text{ m}" /> hohen Gebäudes mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen. Wann trifft er auf den Boden, und welche Geschwindigkeit hat er dann?
+
+4. Ein Stein wird von einer <InlineMath math="15\text{ m}" /> hohen Brücke mit <InlineMath math="10\text{ m/s}" /> nach unten geworfen. Bestimme die Zeit bis zum Wasser und seine Schnelligkeit.
+
+### Lösungen
+
+**Aufgabe 1**. Im höchsten Punkt ist **die Geschwindigkeit null**, also:
+
+<MathContainer>
+  <BlockMath math="t_{\text{Steig}} = \frac{15}{10} = 1{,}5\text{ s}" />
+  <BlockMath math="h_{\text{max}} = \frac{15^2}{2 \times 10} = 11{,}25\text{ m}" />
+</MathContainer>
+
+Probe mit der Ortsgleichung: <InlineMath math="15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />.
+
+**Aufgabe 2**. Die Kokosnuss fällt **ohne Anfangsgeschwindigkeit**:
+
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+</MathContainer>
+
+Probe: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, die Schnelligkeit beträgt also <InlineMath math="30\text{ m/s}" />.
+
+**Aufgabe 3**. Nimm das Dach als <InlineMath math="y_0 = 25" />, der Boden ist dann <InlineMath math="y = 0" />. Die Ortsgleichung ergibt **eine quadratische Gleichung in** <InlineMath math="t" />:
+
+<MathContainer>
+  <BlockMath math="0 = 25 + 20t - 5t^2" />
+  <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
+  <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+</MathContainer>
+
+Die negative Zeit entfällt, der Ball trifft also nach <InlineMath math="5\text{ s}" /> mit <InlineMath math="30\text{ m/s}" /> nach unten auf. Probe: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+
+**Aufgabe 4**. Die Anfangsgeschwindigkeit ist **negativ**, <InlineMath math="v_0 = -10" />, und <InlineMath math="y_0 = 15" />:
+
+<MathContainer>
+  <BlockMath math="0 = 15 - 10t - 5t^2" />
+  <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
+  <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+</MathContainer>
+
+Der Stein erreicht das Wasser nach <InlineMath math="1\text{ s}" /> mit einer Schnelligkeit von <InlineMath math="20\text{ m/s}" />. Probe: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.

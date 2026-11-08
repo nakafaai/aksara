@@ -1,29 +1,27 @@
 export const metadata = {
-  title: "Position of a Line Relative to a Circle",
-  description: "Use discriminants, intersection points, and tangent conditions to determine whether a line intersects, touches, or misses a circle.",
+  title: "Line and Circle Intersection",
+  description: "A line can cut a circle at two points, touch it at one, or miss it. Decide which with the discriminant or the distance from the center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Analytic Geometry",
 };
 
+## Three Ways a Line Can Meet a Circle
 
+A line and a circle in the same plane have only three possibilities. The line **cuts the circle at two points**, **touches the circle at exactly one point**, or **does not meet the circle at all**. A line that cuts the circle twice is called a secant, and a line that touches it once is called a tangent.
 
-## Counting Intersections Between a Line and a Circle
+You can decide which case you have in two ways, and both always give the same answer:
 
-Draw a circle and a straight line in the same plane. <Highlight>Exactly three positional relationships are possible</Highlight>.
-
-The line can **intersect the circle at two points**, **be tangent at one point**, or **miss the circle entirely**. Place a pencil across a ring: depending on its position, it crosses the ring, touches only the rim, or remains outside it.
-
-Substituting the line equation into the circle equation produces a quadratic equation. Two real solutions mean two intersections, one repeated solution means tangency, and no real solution means the line misses the circle. The same test can model whether a planned road crosses a circular protected area or whether a path reaches a defined zone.
-
-## Three Possible Positions
-
-The visualization compares all three cases:
+| Position | Discriminant after substitution | Distance from center to line |
+| --- | --- | --- |
+| Cuts at two points | <InlineMath math="\Delta > 0" /> | <InlineMath math="d < r" /> |
+| Touches at one point | <InlineMath math="\Delta = 0" /> | <InlineMath math="d = r" /> |
+| Does not meet | <InlineMath math="\Delta < 0" /> | <InlineMath math="d > r" /> |
 
 <LineEquation
-  title="Position of Line to Circle"
-  description="Visualization of three possible positions of a line relative to a circle."
+  title="Three horizontal lines and a circle of radius 3"
+  description={<>The line <InlineMath math="y = 1" /> cuts the circle, the line <InlineMath math="y = 3" /> touches it at <InlineMath math="(0, 3)" />, and the line <InlineMath math="y = 4.5" /> misses it.</>}
   data={[
     {
       smooth: false,
@@ -132,21 +130,11 @@ The visualization compares all three cases:
   cameraPosition={[0, 0, 14]}
 />
 
-The upper line has no point in common with the circle. The middle line touches it once. The lower line passes through the circle and therefore has two intersection points.
+The circle in the graph has center <InlineMath math="P(0, 0)" /> and radius <InlineMath math="3" />. The line <InlineMath math="y = 1" /> lies at distance <InlineMath math="1" /> from the center, closer than the radius, so it passes through the inside of the circle. The line <InlineMath math="y = 3" /> lies at distance exactly <InlineMath math="3" /> and only touches the point <InlineMath math="(0, 3)" />. The line <InlineMath math="y = 4.5" /> passes above the circle without touching it.
 
-1. A **secant** passes through the interior and meets the circumference at two different points.
+## Why the Discriminant Counts Intersection Points
 
-2. A **tangent** touches the circumference at exactly one point.
-
-3. An **exterior line** lies completely outside the circle and has no intersection point with it.
-
-## Discriminant Method
-
-To determine the number of intersection points algebraically, substitute the line equation into the circle equation. The substitution produces a quadratic equation. The sign of its **discriminant** determines whether the line and circle have two, one, or no real intersection points.
-
-Suppose we have a line with equation <InlineMath math="y = mx + c" /> and a circle with equation <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
-
-Replace every <InlineMath math="y" /> in the circle equation with <InlineMath math="mx+c" />:
+An intersection point of the line and the circle must satisfy **both equations at once**. So substitute the line <InlineMath math="y = mx + c" /> into the circle <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />. The result is a quadratic equation in <InlineMath math="x" />:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;x^2 + (mx + c)^2 + Dx \\ &amp;\quad{}+ E(mx + c) + F = 0 \end{aligned}" />
@@ -154,7 +142,7 @@ Replace every <InlineMath math="y" /> in the circle equation with <InlineMath ma
   <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + (2mc + D + Em)x \\ &amp;\quad{}+ (c^2 + Ec + F) = 0 \end{aligned}" />
 </MathContainer>
 
-This substitution result forms a quadratic equation in the form <InlineMath math="Ax^2 + Bx + C = 0" />. Capital letters keep these coefficients distinct from the line intercept <InlineMath math="c" />:
+The coefficients use capital letters so they are not confused with the line's constant <InlineMath math="c" />:
 
 <MathContainer>
   <BlockMath math="A = 1 + m^2" />
@@ -162,27 +150,62 @@ This substitution result forms a quadratic equation in the form <InlineMath math
   <BlockMath math="C = c^2 + Ec + F" />
 </MathContainer>
 
-Now calculate the **discriminant** from the coefficients <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> above:
+Each real root <InlineMath math="x" /> gives exactly one intersection point, because the line's equation gives its matching <InlineMath math="y" /> at once. So the number of intersection points equals the number of distinct real roots, and the **discriminant** tells you that number:
 
 <BlockMath math="\Delta = B^2 - 4AC" />
 
-> For a **vertical line**, the form <InlineMath math="y=mx+c" /> does not apply. Substitute <InlineMath math="x=k" /> directly into the circle equation and solve the quadratic in <InlineMath math="y" />. For example, <InlineMath math="x=3" /> in <InlineMath math="x^2+y^2=9" /> gives <InlineMath math="9+y^2=9" />, so <InlineMath math="y=0" />. The line is tangent at <InlineMath math="(3,0)" />.
+The coefficient <InlineMath math="A = 1 + m^2" /> is never zero, so the substitution always gives a quadratic equation. Its sign rule is the rule for the [types of roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-types-of-root): two different real roots, one repeated root, or no real root.
 
-## Interpretation of Discriminant Value
+A vertical line <InlineMath math="x = k" /> cannot be written as <InlineMath math="y = mx + c" />. For such a line, substitute <InlineMath math="x = k" /> and solve the quadratic equation in <InlineMath math="y" />. For example, <InlineMath math="x = 3" /> in <InlineMath math="x^2 + y^2 = 9" /> gives <InlineMath math="9 + y^2 = 9" />, so <InlineMath math="y = 0" /> is a repeated root. The line <InlineMath math="x = 3" /> touches the circle at <InlineMath math="(3, 0)" />. Check: the distance from the center <InlineMath math="(0, 0)" /> to the line <InlineMath math="x = 3" /> is <InlineMath math="3 = r" />.
 
-Each real solution for <InlineMath math="x" /> corresponds to an intersection point. The discriminant therefore gives three cases:
+## Comparing the Distance from the Center with the Radius
 
-| Discriminant | Real roots | Line position |
-| --- | --- | --- |
-| <InlineMath math="\Delta>0" /> | Two distinct roots | **Two intersections** |
-| <InlineMath math="\Delta=0" /> | One repeated root | **Tangent at one point** |
-| <InlineMath math="\Delta<0" /> | None | **No intersection** |
+The second way uses geometry. A tangent is always **perpendicular to the radius at the point of contact**, so the shortest distance from the center to a tangent equals the radius. A line closer to the center must pass through the inside of the circle, and a line farther away must pass outside it.
 
-## Classifying a Secant with the Discriminant
+For a circle with center <InlineMath math="(a, b)" /> and the line <InlineMath math="px + qy + s = 0" />, the distance from the center to the line is
 
-Determine the position of line <InlineMath math="y=2x-1" /> relative to circle <InlineMath math="x^2+y^2-4x+2y-4=0" />.
+<BlockMath math="d = \frac{|pa + qb + s|}{\sqrt{p^2 + q^2}}" />
 
-We substitute <InlineMath math="y = 2x - 1" /> into the circle equation:
+Compare <InlineMath math="d" /> with the radius <InlineMath math="r" />: <InlineMath math="d < r" /> means two intersection points, <InlineMath math="d = r" /> means one point of contact, and <InlineMath math="d > r" /> means no common point. This way needs no substitution, so it suits a question that only asks for the position. The same idea decides the [position of a point relative to a circle](/en/subjects/mathematics/analytic-geometry/position-of-a-point-to-a-circle), where the distance from one point to the center is compared with <InlineMath math="r" />.
+
+<MathVisual
+  title="Three parallel lines and one perpendicular radius"
+  description={<>The circle <InlineMath math="x^2 + y^2 = 9" /> with the lines <InlineMath math="3x + 4y = 10" />, <InlineMath math="3x + 4y = 15" />, and <InlineMath math="3x + 4y = 20" />. The segment from <InlineMath math="O" /> is perpendicular to all three lines.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "near", kind: "line", through: [{ x: -2, y: 4 }, { x: 2, y: 1 }], appearance: "secondary" },
+      { id: "touch", kind: "line", through: [{ x: 1, y: 3 }, { x: 5, y: 0 }], appearance: "highlight" },
+      { id: "far", kind: "line", through: [{ x: 0, y: 5 }, { x: 4, y: 2 }], appearance: "warning" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 12 / 5, y: 16 / 5 }, appearance: "construction" },
+      { id: "touch-point", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: -2, y: 4 }, placement: "above-right" },
+      { key: "touch", objectId: "touch", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="d = 2" />,
+    touch: <InlineMath math="d = 3" />,
+    far: <InlineMath math="d = 4" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+The three lines are parallel, so their distances from <InlineMath math="O" /> are measured along one perpendicular segment. For <InlineMath math="3x + 4y - 15 = 0" />, the distance is <InlineMath math="d = \frac{|-15|}{\sqrt{3^2 + 4^2}} = \frac{15}{5} = 3 = r" />, so that line is a tangent. The foot of the perpendicular segment, <InlineMath math="\left(\frac{9}{5}, \frac{12}{5}\right)" />, is the point of contact. Check: <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />. With the same formula, <InlineMath math="3x + 4y = 10" /> lies at distance <InlineMath math="2" /> and cuts the circle, while <InlineMath math="3x + 4y = 20" /> lies at distance <InlineMath math="4" /> and misses it.
+
+## Example of a Secant and Its Intersection Points
+
+Find the position of the line <InlineMath math="y = 2x - 1" /> relative to the circle <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />, then find the intersection points.
+
+Substitute <InlineMath math="y = 2x - 1" /> into the circle's equation:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;x^2 + (2x - 1)^2 - 4x \\ &amp;\quad{}+ 2(2x - 1) - 4 = 0 \end{aligned}" />
@@ -190,113 +213,61 @@ We substitute <InlineMath math="y = 2x - 1" /> into the circle equation:
   <BlockMath math="5x^2 - 4x - 5 = 0" />
 </MathContainer>
 
-From the quadratic equation <InlineMath math="5x^2 - 4x - 5 = 0" />, we identify its coefficients: <InlineMath math="a = 5" />, <InlineMath math="b = -4" />, and <InlineMath math="c = -5" />.
+The coefficients are <InlineMath math="A = 5" />, <InlineMath math="B = -4" />, and <InlineMath math="C = -5" />, so
 
-Calculate the discriminant:
+<BlockMath math="\Delta = (-4)^2 - 4(5)(-5) = 16 + 100 = 116" />
 
-<MathContainer>
-  <BlockMath math="\Delta = b^2 - 4ac = (-4)^2 - 4(5)(-5)" />
-  <BlockMath math="\Delta = 16 + 100 = 116" />
-</MathContainer>
-
-Since <InlineMath math="\Delta = 116 > 0" />, the line <InlineMath math="y = 2x - 1" /> **intersects the circle at two points**.
-
-To **find the intersection points**, use the quadratic formula and substitute each horizontal coordinate back into the line equation:
+Since <InlineMath math="\Delta = 116 > 0" />, the line **cuts the circle at two points**. The quadratic formula gives their x-coordinates, and the line's equation gives their y-coordinates:
 
 <MathContainer>
   <BlockMath math="x=\frac{4\pm\sqrt{116}}{10}=\frac{4\pm2\sqrt{29}}{10}=\frac{2\pm\sqrt{29}}5" />
   <BlockMath math="y=2x-1=\frac{4\pm2\sqrt{29}}5-1=\frac{-1\pm2\sqrt{29}}5" />
 </MathContainer>
 
-Pair the upper signs together and the lower signs together. Each coordinate pair satisfies both the line equation and the circle equation.
+The upper signs go together. So the intersection points are <InlineMath math="A\left(\frac{2+\sqrt{29}}5, \frac{-1+2\sqrt{29}}5\right)" /> and <InlineMath math="B\left(\frac{2-\sqrt{29}}5, \frac{-1-2\sqrt{29}}5\right)" />. In decimals, <InlineMath math="A" /> lies near <InlineMath math="x \approx 1.48" /> and <InlineMath math="B" /> near <InlineMath math="x \approx -0.68" />.
 
-> The sign of the discriminant determines the number of intersection points. Its magnitude alone is not a geometric distance from the tangent condition because scaling the equation also scales the discriminant.
+<MathVisual
+  title="A line cutting the circle at A and B"
+  description={<>The circle has center <InlineMath math="C(2, -1)" /> and radius <InlineMath math="3" />. The segment <InlineMath math="d" /> is perpendicular to the line and lands at the midpoint of the chord <InlineMath math="AB" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -5, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 2, y: -1 }, radius: 3, appearance: "primary" },
+      { id: "line", kind: "line", through: [{ x: 0, y: -1 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "distance", kind: "segment", from: { x: 2, y: -1 }, to: { x: 2 / 5, y: -1 / 5 }, appearance: "construction" },
+      { id: "radius", kind: "segment", from: { x: 2, y: -1 }, to: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, placement: "right" },
+      { key: "center", objectId: "center", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "distance", objectId: "distance", at: { x: 6 / 5, y: -3 / 5 }, placement: "below" },
+      { key: "radius", objectId: "radius", at: { x: (12 + Math.sqrt(29)) / 10, y: (-6 + 2 * Math.sqrt(29)) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    center: <InlineMath math="C" />,
+    distance: <InlineMath math="d" />,
+    radius: <InlineMath math="r = 3" />,
+  }}
+/>
 
-## Standard Circle Case
+Check with the distance method. Completing the square gives <InlineMath math="(x - 2)^2 + (y + 1)^2 = 9" />, so the center is <InlineMath math="C(2, -1)" /> and <InlineMath math="r = 3" />, as in the [equation of a circle](/en/subjects/mathematics/analytic-geometry/equation-of-circle). Write the line as <InlineMath math="2x - y - 1 = 0" />, then compute <InlineMath math="d = \frac{|2 \cdot 2 - (-1) - 1|}{\sqrt{5}} = \frac{4}{\sqrt{5}} \approx 1.79" />. Since <InlineMath math="1.79 < 3" />, the distance method also says the line cuts the circle.
 
-For a circle centered at the origin, <InlineMath math="x^2 + y^2 = r^2" />, the **center coordinates are both zero**. Substituting <InlineMath math="y=mx+c" /> therefore produces no horizontal or vertical center terms.
+The foot of the segment <InlineMath math="d" /> lands at <InlineMath math="\left(\frac{2}{5}, -\frac{1}{5}\right)" />. That point is also the midpoint of <InlineMath math="AB" />, because <InlineMath math="CA = CB = r" />, so the perpendicular from <InlineMath math="C" /> splits the chord into two equal parts. The arithmetic agrees: the <InlineMath math="\pm" /> signs cancel when you average the two coordinates. The chord has length <InlineMath math="AB = 2\sqrt{r^2 - d^2} = 2\sqrt{9 - \frac{16}{5}} \approx 4.82" />.
 
-Substitute the line into the circle:
+## Example of the Condition for a Tangent
 
-<MathContainer>
-  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
-  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 = r^2" />
-  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
-</MathContainer>
+Find the values of <InlineMath math="k" /> for which the line <InlineMath math="y = x + k" /> touches the circle <InlineMath math="x^2 + y^2 = 18" />.
 
-The discriminant for this case is:
-
-<BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2)" />
-
-After simplification:
-
-<BlockMath math="\Delta = 4[r^2(1 + m^2) - c^2]" />
-
-The interpretation is the same as before: <InlineMath math="\Delta > 0" /> means the line cuts the circle at two points, <InlineMath math="\Delta = 0" /> means it touches at one point, and <InlineMath math="\Delta < 0" /> means no intersection.
-
-## Practice with Complete Solutions
-
-Each problem gives a line and a circle, and the task is to decide whether they meet twice, touch, or not meet at all. Substitute the line into the circle equation and **read the discriminant**.
-
-1. Determine the position of line <InlineMath math="y = x + 3" /> relative to circle <InlineMath math="x^2 + y^2 = 8" />.
-
-2. Investigate the position of line <InlineMath math="y = -2x + 5" /> relative to circle <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />.
-
-3. Line <InlineMath math="2x + y - 4 = 0" /> and circle <InlineMath math="x^2 + y^2 = 5" />. What is their position relationship?
-
-4. Determine the value of <InlineMath math="k" /> so that line <InlineMath math="y = x + k" /> is tangent to circle <InlineMath math="x^2 + y^2 = 18" />.
-
-### Worked Solutions
-
-**Solution 1**:
-
-Substitute <InlineMath math="y = x + 3" /> into <InlineMath math="x^2 + y^2 = 8" />:
-
-<MathContainer>
-  <BlockMath math="x^2 + (x + 3)^2 = 8" />
-  <BlockMath math="x^2 + x^2 + 6x + 9 = 8" />
-  <BlockMath math="2x^2 + 6x + 1 = 0" />
-</MathContainer>
-
-Discriminant: <InlineMath math="\Delta = 6^2 - 4(2)(1) = 36 - 8 = 28" />
-
-Since <InlineMath math="\Delta = 28 > 0" />, the line **intersects the circle at two points**.
-
-**Solution 2**:
-
-Substitute <InlineMath math="y = -2x + 5" /> into <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;x^2 + (-2x + 5)^2 \\ &amp;\quad{}- 6x + 4(-2x + 5) + 9 = 0 \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 20x + 25 \\ &amp;\quad{}- 6x - 8x + 20 + 9 = 0 \end{aligned}" />
-  <BlockMath math="5x^2 - 34x + 54 = 0" />
-</MathContainer>
-
-Discriminant: <InlineMath math="\Delta = (-34)^2 - 4(5)(54) = 1156 - 1080 = 76" />
-
-Since <InlineMath math="\Delta = 76 > 0" />, the line **intersects the circle at two points**.
-
-**Solution 3**:
-
-Solve the line <InlineMath math="2x + y - 4 = 0" /> for <InlineMath math="y" /> to obtain <InlineMath math="y = -2x + 4" />.
-
-Substitute into <InlineMath math="x^2 + y^2 = 5" />:
-
-<MathContainer>
-  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
-  <BlockMath math="x^2 + 4x^2 - 16x + 16 = 5" />
-  <BlockMath math="5x^2 - 16x + 11 = 0" />
-</MathContainer>
-
-Discriminant: <InlineMath math="\Delta = (-16)^2 - 4(5)(11) = 256 - 220 = 36" />
-
-Since <InlineMath math="\Delta = 36 > 0" />, the line **intersects the circle at two points**.
-
-**Solution 4**:
-
-For the line to be tangent to the circle, the discriminant must equal zero.
-
-Substitute <InlineMath math="y = x + k" /> into <InlineMath math="x^2 + y^2 = 18" />:
+The line is a tangent exactly when **its discriminant is zero**. Substitute the line into the circle:
 
 <MathContainer>
   <BlockMath math="x^2 + (x + k)^2 = 18" />
@@ -304,15 +275,128 @@ Substitute <InlineMath math="y = x + k" /> into <InlineMath math="x^2 + y^2 = 18
   <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
 </MathContainer>
 
-Discriminant: <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = 4k^2 - 8k^2 + 144 = -4k^2 + 144" />
-
-For <InlineMath math="\Delta = 0" />:
+The discriminant is <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = -4k^2 + 144" />. The condition <InlineMath math="\Delta = 0" /> gives:
 
 <MathContainer>
   <BlockMath math="-4k^2 + 144 = 0" />
-  <BlockMath math="4k^2 = 144" />
   <BlockMath math="k^2 = 36" />
-  <BlockMath math="k = \pm 6" />
+  <BlockMath math="k = 6 \quad \text{or} \quad k = -6" />
 </MathContainer>
 
-Therefore the value is <InlineMath math="k = 6" /> or <InlineMath math="k = -6" />.
+For <InlineMath math="k = 6" />, the equation becomes <InlineMath math="2x^2 + 12x + 18 = 0" />, or <InlineMath math="(x + 3)^2 = 0" />, so the point of contact is <InlineMath math="(-3, 3)" />. For <InlineMath math="k = -6" />, the point of contact is <InlineMath math="(3, -3)" />.
+
+<MathVisual
+  title="Two tangents with slope 1"
+  description={<>The circle <InlineMath math="x^2 + y^2 = 18" /> has radius <InlineMath math="3\sqrt{2}" />. The radius to each point of contact is perpendicular to its line.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3 * Math.SQRT2, appearance: "primary" },
+      { id: "upper", kind: "line", through: [{ x: -6, y: 0 }, { x: 0, y: 6 }], appearance: "secondary" },
+      { id: "lower", kind: "line", through: [{ x: 0, y: -6 }, { x: 6, y: 0 }], appearance: "highlight" },
+      { id: "upper-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "lower-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -3 }, appearance: "construction" },
+      { id: "upper-point", kind: "point", at: { x: -3, y: 3 }, appearance: "answer" },
+      { id: "lower-point", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: -6, y: 0 }, placement: "left" },
+      { key: "lower", objectId: "lower", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "upper-point", objectId: "upper-point", at: { x: -3, y: 3 }, placement: "above-left" },
+      { key: "lower-point", objectId: "lower-point", at: { x: 3, y: -3 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    upper: <InlineMath math="y = x + 6" />,
+    lower: <InlineMath math="y = x - 6" />,
+    "upper-point": <InlineMath math="(-3, 3)" />,
+    "lower-point": <InlineMath math="(3, -3)" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+Check with the distance. The line <InlineMath math="x - y + k = 0" /> lies at distance <InlineMath math="\frac{|k|}{\sqrt{2}}" /> from <InlineMath math="O" />. The condition <InlineMath math="d = r" /> gives <InlineMath math="\frac{|k|}{\sqrt{2}} = 3\sqrt{2}" />, so <InlineMath math="|k| = 6" />, the same as the discriminant gave. The point <InlineMath math="(-3, 3)" /> also satisfies <InlineMath math="(-3)^2 + 3^2 = 18" />, and the radius to it is perpendicular to the line, because their slopes <InlineMath math="-1" /> and <InlineMath math="1" /> multiply to <InlineMath math="-1" />.
+
+## A Shortcut for Circles Centered at O
+
+For the circle <InlineMath math="x^2 + y^2 = r^2" />, the coefficients <InlineMath math="D" /> and <InlineMath math="E" /> are zero and <InlineMath math="F = -r^2" />. For a line that is not vertical, substituting <InlineMath math="y = mx + c" /> becomes shorter:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+  <BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2) = 4\left[r^2(1 + m^2) - c^2\right]" />
+</MathContainer>
+
+The factor <InlineMath math="4" /> is always positive, so <InlineMath math="\Delta" /> has the same sign as <InlineMath math="r^2(1 + m^2) - c^2" />. The line is a tangent exactly when <InlineMath math="c^2 = r^2(1 + m^2)" />. Divide both sides by <InlineMath math="1 + m^2" /> and take the square root: <InlineMath math="\frac{|c|}{\sqrt{1 + m^2}} = r" />. The left side is the distance from <InlineMath math="O" /> to the line <InlineMath math="mx - y + c = 0" />, so **this shortcut is the distance test in another form**.
+
+The same condition gives the tangent with slope <InlineMath math="m" />, namely <InlineMath math="y = mx \pm r\sqrt{1 + m^2}" />, the main tool for the [equation of a tangent line to a circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle). For the line <InlineMath math="y = x + k" /> and the circle <InlineMath math="x^2 + y^2 = 18" />, the values <InlineMath math="m = 1" /> and <InlineMath math="r = 3\sqrt{2}" /> give <InlineMath math="c = \pm 3\sqrt{2} \cdot \sqrt{2} = \pm 6" />.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using the line's <InlineMath math="c" /> as the <InlineMath math="C" /> in <InlineMath math="\Delta" /> | The line's constant differs from the quadratic's constant term | Write out <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> before you compute |
+| Comparing <InlineMath math="d" /> with <InlineMath math="r^2" /> | <InlineMath math="d" /> is a length, <InlineMath math="r^2" /> is a squared length | For <InlineMath math="x^2 + y^2 = 9" />, compare <InlineMath math="d" /> with <InlineMath math="3" /> |
+| Reading the center with flipped signs | <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" /> has center <InlineMath math="(2, -1)" />, not <InlineMath math="(-2, 1)" /> | The center is <InlineMath math="\left(-\frac{D}{2}, -\frac{E}{2}\right)" /> |
+| Using the distance formula on <InlineMath math="y = 2x - 1" /> | The formula needs the form <InlineMath math="px + qy + s = 0" /> | Move every term to one side: <InlineMath math="2x - y - 1 = 0" /> |
+| Reading the size of <InlineMath math="\Delta" /> as a distance | Multiplying the quadratic from the substitution by <InlineMath math="2" /> makes <InlineMath math="\Delta" /> four times larger but does not move the line | Only the sign of <InlineMath math="\Delta" /> matters |
+
+The fastest check is the other method. If the discriminant and the distance test give different positions, **one calculation is wrong**, usually the center of the circle or the expansion of a square.
+
+## Practice Problems
+
+Find the position of each line with the discriminant, then **check it with the distance from the center to the line**.
+
+1. Find the position of the line <InlineMath math="y = x + 3" /> relative to the circle <InlineMath math="x^2 + y^2 = 8" />.
+
+2. Find the position of the line <InlineMath math="x + y = 7" /> relative to the circle <InlineMath math="x^2 + y^2 - 2x - 4y + 1 = 0" />.
+
+3. Find the position of the line <InlineMath math="2x + y - 4 = 0" /> relative to the circle <InlineMath math="x^2 + y^2 = 5" />. If they intersect, find the intersection points.
+
+4. Find the values of <InlineMath math="m" /> for which the line <InlineMath math="y = mx + 5" /> touches the circle <InlineMath math="x^2 + y^2 = 5" />, then find the points of contact.
+
+### Solutions
+
+**Problem 1**. Substitute <InlineMath math="y = x + 3" />:
+
+<MathContainer>
+  <BlockMath math="x^2 + (x + 3)^2 = 8" />
+  <BlockMath math="2x^2 + 6x + 1 = 0" />
+  <BlockMath math="\Delta = 6^2 - 4(2)(1) = 28" />
+</MathContainer>
+
+Since <InlineMath math="\Delta = 28 > 0" />, the line **cuts the circle at two points**. Check: the line <InlineMath math="x - y + 3 = 0" /> lies at distance <InlineMath math="\frac{3}{\sqrt{2}} \approx 2.12" /> from the center, less than <InlineMath math="r = \sqrt{8} \approx 2.83" />.
+
+**Problem 2**. Write the line as <InlineMath math="y = 7 - x" />, then substitute:
+
+<MathContainer>
+  <BlockMath math="x^2 + (7 - x)^2 - 2x - 4(7 - x) + 1 = 0" />
+  <BlockMath math="x^2 + 49 - 14x + x^2 - 2x - 28 + 4x + 1 = 0" />
+  <BlockMath math="2x^2 - 12x + 22 = 0" />
+</MathContainer>
+
+The discriminant is <InlineMath math="\Delta = (-12)^2 - 4(2)(22) = 144 - 176 = -32" />. Since <InlineMath math="\Delta < 0" />, the line **does not meet the circle**. Check: the circle has center <InlineMath math="(1, 2)" /> and <InlineMath math="r = \sqrt{1 + 4 - 1} = 2" />, and its distance to the line <InlineMath math="x + y - 7 = 0" /> is <InlineMath math="\frac{|1 + 2 - 7|}{\sqrt{2}} = 2\sqrt{2} \approx 2.83" />, greater than <InlineMath math="2" />.
+
+**Problem 3**. Write the line as <InlineMath math="y = -2x + 4" />, then substitute:
+
+<MathContainer>
+  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
+  <BlockMath math="5x^2 - 16x + 11 = 0" />
+  <BlockMath math="(x - 1)(5x - 11) = 0" />
+</MathContainer>
+
+The discriminant is <InlineMath math="256 - 220 = 36 > 0" />, so the line **cuts the circle at two points**. The root <InlineMath math="x = 1" /> gives <InlineMath math="y = 2" />, and <InlineMath math="x = \frac{11}{5}" /> gives <InlineMath math="y = -\frac{2}{5}" />. Check: <InlineMath math="1^2 + 2^2 = 5" /> and <InlineMath math="\frac{121}{25} + \frac{4}{25} = 5" />, so both points lie on the circle.
+
+**Problem 4**. Use the tangent condition for a circle centered at <InlineMath math="O" />, <InlineMath math="c^2 = r^2(1 + m^2)" />, with <InlineMath math="c = 5" /> and <InlineMath math="r^2 = 5" />:
+
+<MathContainer>
+  <BlockMath math="25 = 5(1 + m^2)" />
+  <BlockMath math="m^2 = 4" />
+  <BlockMath math="m = 2 \quad \text{or} \quad m = -2" />
+</MathContainer>
+
+For <InlineMath math="m = 2" />, substitution gives <InlineMath math="5x^2 + 20x + 20 = 0" />, or <InlineMath math="(x + 2)^2 = 0" />, so the point of contact is <InlineMath math="(-2, 1)" />. For <InlineMath math="m = -2" />, the point of contact is <InlineMath math="(2, 1)" />. Check: <InlineMath math="(-2)^2 + 1^2 = 5" />, and the radius to <InlineMath math="(-2, 1)" /> has slope <InlineMath math="-\frac{1}{2}" />, perpendicular to the line with slope <InlineMath math="2" />.
