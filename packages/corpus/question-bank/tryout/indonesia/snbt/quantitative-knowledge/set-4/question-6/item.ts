@@ -5,26 +5,14 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
+        { correct: false, label: "$$\\{x\\mid x\\ge3\\}$$" },
+        { correct: false, label: "$$\\{x\\mid 1<x<6\\}$$" },
+        { correct: false, label: "$$\\{x\\mid x<1\\ \\text{atau}\\ x>6\\}$$" },
         {
           correct: false,
-          label: "$$y = -x + 1$$",
+          label: "$$\\{x\\mid -3\\le x<1\\ \\text{atau}\\ x>6\\}$$",
         },
-        {
-          correct: false,
-          label: "$$y = 2x - 1$$",
-        },
-        {
-          correct: true,
-          label: "$$y = x + 1$$",
-        },
-        {
-          correct: false,
-          label: "$$y = 2x + 1$$",
-        },
-        {
-          correct: false,
-          label: "$$y = 2x + 2$$",
-        },
+        { correct: true, label: "$$\\{x\\mid x>6\\}$$" },
       ],
     },
   },

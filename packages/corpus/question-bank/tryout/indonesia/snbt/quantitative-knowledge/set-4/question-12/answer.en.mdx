@@ -1,43 +1,20 @@
-Find the **bounds on students who like both subjects**, given 800 students in total, 400 who like Mathematics, and 500 who like Physics.
+Both solids have the same surface area, so compute each one's size from that area and then **compare the volumes exactly**, without rough rounding.
 
-# Finding the Maximum Intersection
+# The volume of the cube
 
-The number of students who like both will be maximum if the **smaller set is contained in the larger set**.
-Here, the number of students who like Mathematics (<InlineMath math="400" />) is less than those who like Physics (<InlineMath math="500" />).
-So, the maximum value of the intersection is the number of students in the smallest group.
+A cube has **6 equal square faces**. From <InlineMath math="6s^2=24" /> we get <InlineMath math="s=2" />, so the volume of the cube is <InlineMath math="Q=2^3=8" />.
 
-<BlockMath math="x = 400" />
+# The volume of the sphere
 
-# Finding the Minimum Intersection
-
-The intersection is smallest when the **union is as large as possible**. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
-
-The number of elements in the union is given by:
+From <InlineMath math="4\pi r^2=24" /> we get <InlineMath math="r^2=\frac6\pi" />. Write the volume of the sphere using <InlineMath math="r^2" /> so that **the result can be compared with 8**.
 
 <BlockMath math="\begin{aligned}
-n(M\cup F)&=n(M)+n(F) \\
-&\quad{}-n(M\cap F)
+P&=\tfrac43\pi r^3=\tfrac43\pi\cdot r^2\cdot r\\
+&=\tfrac43\pi\cdot\frac6\pi\cdot r=8r=8\sqrt{\frac6\pi}
 \end{aligned}" />
 
-The smallest possible intersection occurs when the union reaches that upper bound. This is feasible when every student likes at least one of the two subjects.
+Since <InlineMath math="\pi<6" />, the fraction <InlineMath math="\frac6\pi" /> is greater than 1, so <InlineMath math="\sqrt{\frac6\pi}>1" /> and <InlineMath math="P>8" />. Numerically, <InlineMath math="P\approx8\times1.38\approx11.1" />.
 
-<BlockMath math="800 = 400 + 500 - y" />
+The option <InlineMath math="P=Q" /> assumes that equal surface area means equal volume. The option <InlineMath math="Q>P" /> comes from making the sphere's radius too small, for example by using <InlineMath math="\pi r^2=24" />. For the same surface area, a sphere always holds more volume than a cube.
 
-<BlockMath math="800 = 900 - y" />
-
-<BlockMath math="y = 900 - 800" />
-
-<BlockMath math="y = 100" />
-
-# Calculating the Difference
-
-Both bounds are attainable using these **nonoverlapping student groups**. Each row counts every student exactly once.
-
-| Intersection | Mathematics only | Both subjects | Physics only | Neither |
-| --- | --- | --- | --- | --- |
-| Maximum | 0 | 400 | 100 | 300 |
-| Minimum | 300 | 100 | 400 | 0 |
-
-<BlockMath math="x - y = 400 - 100 = 300" />
-
-So, the value of <InlineMath math="x - y" /> is <InlineMath math="300\text{ people}" />.
+So the correct relation is that **the sphere has the larger volume**, <InlineMath math="P>Q" />.

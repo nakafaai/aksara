@@ -1,49 +1,25 @@
-Untuk menentukan persamaan garis singgung, kita perlu mencari **gradien dan titik singgung** terlebih dahulu.
+Mengkuadratkan kedua ruas hanya aman jika **kedua ruas tidak negatif**. Karena itu tentukan dulu syarat yang membuat pertidaksamaan bermakna, baru kemudian kuadratkan.
 
-# Menentukan Gradien
+# Syarat sebelum mengkuadratkan
 
-Gradien adalah **turunan pertama** dari fungsi kurva (<InlineMath math="y'" />).
+Bentuk akar terdefinisi jika <InlineMath math="x+3\ge0" />, yaitu <InlineMath math="x\ge-3" />. Ruas kiri tidak pernah negatif, jadi ruas kanan harus **positif** agar ruas kiri bisa lebih kecil darinya.
 
-<BlockMath math="y = x^2 - x + 2" />
+<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
 
-<BlockMath math="y' = 2x - 1" />
+Syarat <InlineMath math="x>3" /> sudah mencakup <InlineMath math="x\ge-3" />.
 
-Substitusikan absis <InlineMath math="x = 1" /> ke dalam <InlineMath math="y'" /> untuk mendapatkan gradien.
+# Mengkuadratkan kedua ruas
 
-<BlockMath math="m = y'(1) = 2(1) - 1 = 1" />
+Untuk <InlineMath math="x>3" />, kedua ruas positif, sehingga **pengkuadratan mempertahankan tanda pertidaksamaan**.
 
-# Menentukan Titik Singgung
+<BlockMath math="\begin{aligned}
+x+3&<x^2-6x+9\\
+0&<x^2-7x+6\\
+0&<(x-1)(x-6)
+\end{aligned}" />
 
-Kita cari **koordinat vertikal titik singgung** (<InlineMath math="y" />) saat absis <InlineMath math="x = 1" />.
+Hasil kali positif untuk <InlineMath math="x<1" /> atau <InlineMath math="x>6" />. Irisannya dengan <InlineMath math="x>3" /> adalah <InlineMath math="x>6" />. Cek <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3{,}16<4" />, sedangkan <InlineMath math="x=6" /> memberi <InlineMath math="3<3" /> yang salah.
 
-<BlockMath math="y = (1)^2 - 1 + 2" />
+Himpunan <InlineMath math="x<1" /> atau <InlineMath math="x>6" /> mengkuadratkan tanpa syarat apa pun. Himpunan yang memuat <InlineMath math="-3\le x<1" /> hanya memakai syarat akar, padahal pada selang itu ruas kanan negatif. Himpunan <InlineMath math="1<x<6" /> membalik tanda, dan himpunan <InlineMath math="x\ge3" /> berhenti pada syarat ruas kanan.
 
-<BlockMath math="y = 1 - 1 + 2 = 2" />
-
-Jadi, titik singgungnya adalah <InlineMath math="(1, 2)" />.
-
-# Menentukan Persamaan Garis Singgung
-
-Gunakan **bentuk titik dan gradien** <InlineMath math="y - y_1 = m(x - x_1)" /> dengan <InlineMath math="m = 1" /> dan titik <InlineMath math="(1, 2)" />.
-
-<BlockMath math="y - 2 = 1(x - 1)" />
-
-<BlockMath math="y - 2 = x - 1" />
-
-<BlockMath math="y = x - 1 + 2" />
-
-<BlockMath math="y = x + 1" />
-
-Jadi, persamaan garis singgungnya adalah <InlineMath math="y = x + 1" />.
-
-<LineEquation
- title="Kurva dan garis singgung"
- description="Kurva ungu dan garis oranye melalui titik (1,2) dengan gradien yang sama, yaitu 1."
- cameraPosition={[1,2.5,7]}
- cameraTarget={[1,2.5,0]}
- showZAxis={false}
- data={[
-  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
-  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
- ]}
-/>
+Jadi, himpunan penyelesaiannya adalah <InlineMath math="\{x\mid x>6\}" />.

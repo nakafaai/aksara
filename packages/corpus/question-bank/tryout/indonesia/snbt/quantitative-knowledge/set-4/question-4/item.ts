@@ -3,27 +3,18 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$4x^2 - 2x + 1$$",
+          column: 2,
+          label: "Persamaan $$f(x)=2$$ mempunyai dua penyelesaian real.",
         },
+        { column: 1, label: "$$f(x)\\ge2$$ untuk setiap bilangan real $$x$$." },
+        { column: 1, label: "$$f(2)=\\bigl(f(1)\\bigr)^2-2$$" },
         {
-          correct: true,
-          label: "$$4x^2 - 6x + 2$$",
-        },
-        {
-          correct: false,
-          label: "$$4x^2 - 3x + 1$$",
-        },
-        {
-          correct: false,
-          label: "$$4x^2 - 4x + 2$$",
-        },
-        {
-          correct: false,
-          label: "$$4x^2 - 5x + 2$$",
+          column: 2,
+          label: "$$f(x+1)=2f(x)$$ untuk setiap bilangan real $$x$$.",
         },
       ],
     },

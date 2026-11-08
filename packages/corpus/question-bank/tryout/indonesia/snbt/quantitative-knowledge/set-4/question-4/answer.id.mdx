@@ -1,20 +1,19 @@
-Diketahui fungsi <InlineMath math="f(x) = x^2 - x" /> dan <InlineMath math="g(x) = 2x - 1" />.
-Kita akan menentukan **fungsi komposisi** <InlineMath math="(f \circ g)(x)" />.
+Misalkan <InlineMath math="t=2^x" />, sehingga <InlineMath math="t>0" /> dan <InlineMath math="2^{-x}=\frac1t" />. Fungsi ini menjadi <InlineMath math="f(x)=t+\frac1t" />, yaitu **jumlah bilangan positif dengan kebalikannya**.
 
-<BlockMath math="(f \circ g)(x) = f(g(x))" />
+# Nilai minimum fungsi
 
-Kita substitusikan <InlineMath math="g(x)" /> ke dalam fungsi <InlineMath math="f(x)" />.
+Selisih <InlineMath math="f(x)-2" /> dapat ditulis sebagai kuadrat.
 
-<BlockMath math="(f \circ g)(x) = f(2x - 1)" />
+<BlockMath math="t+\frac1t-2=\frac{t^2-2t+1}{t}=\frac{(t-1)^2}{t}\ge0" />
 
-<BlockMath math="\begin{aligned}(f\circ g)(x)&=(2x-1)^2\\&\quad-(2x-1)\end{aligned}" />
+Pembilang adalah kuadrat dan penyebut positif, jadi **<InlineMath math="f(x)\ge2" /> untuk setiap <InlineMath math="x" />**. Pernyataan kedua benar. Kesamaan hanya terjadi jika <InlineMath math="t=1" />, yaitu <InlineMath math="x=0" />. Jadi persamaan <InlineMath math="f(x)=2" /> hanya punya satu penyelesaian, dan pernyataan pertama salah.
 
-Selanjutnya, kita uraikan bentuk kuadrat dan **gabungkan suku sejenis**.
+# Dua pernyataan lain
 
-<BlockMath math="\begin{aligned}
-(f\circ g)(x)&=4x^2-4x+1 \\
-&\quad{}-2x+1 \\
-&=4x^2-6x+2
-\end{aligned}" />
+Kuadratkan <InlineMath math="f(1)" />. Suku tengahnya <InlineMath math="2\cdot2^1\cdot2^{-1}=2" />, sehingga **mengurangkan 2 menyisakan <InlineMath math="f(2)" />**.
 
-Jadi, <InlineMath math="(f \circ g)(x)" /> sama dengan <InlineMath math="4x^2 - 6x + 2" />.
+<BlockMath math="\bigl(f(1)\bigr)^2-2=\left(2+\tfrac12\right)^2-2=4+2+\tfrac14-2=4\tfrac14=f(2)" />
+
+Pernyataan ketiga benar. Untuk pernyataan keempat, cukup satu contoh penyangkal: <InlineMath math="f(1)=2{,}5" />, sedangkan <InlineMath math="2f(0)=2\cdot2=4" />. Faktor 2 hanya mengalikan suku <InlineMath math="2^x" />, sedangkan suku <InlineMath math="2^{-x}" /> justru menjadi setengahnya. Pernyataan keempat salah.
+
+Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
