@@ -5,6 +5,7 @@ import {
   isPlaneFormulaPoint,
 } from "#contracts/math/formula/field";
 import { expression, strayIssues } from "#contracts/math/formula/scope";
+import type { PlaneLabelAnchor } from "#contracts/math/plane";
 
 /**
  * Reports every label position or readout formula that reads a name other
@@ -12,7 +13,7 @@ import { expression, strayIssues } from "#contracts/math/formula/scope";
  * that repeats an earlier one.
  */
 export function sliderFormulaIssues(
-  labels: readonly { readonly at: unknown }[],
+  labels: readonly PlaneLabelAnchor[],
   readouts: readonly FormulaReadout[],
   parameters: readonly FormulaParameter[]
 ): readonly Schema.FilterIssue[] {

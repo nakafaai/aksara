@@ -7,7 +7,14 @@ describe("sliderFormulaIssues", () => {
   it("lets labels and readouts read only the sliders", () => {
     assert.deepStrictEqual(
       sliderFormulaIssues(
-        [{ at: { x: 1, y: 2 } }, { at: { x: "cos(a)", y: "sin(a) + x" } }],
+        [
+          { at: { x: 1, y: 2 }, key: "fixed", objectId: "o" },
+          {
+            at: { x: "cos(a)", y: "sin(a) + x" },
+            key: "moving",
+            objectId: "o",
+          },
+        ],
         [
           { formula: "cos(a)", key: "cosine" },
           { formula: "t a", key: "speed" },

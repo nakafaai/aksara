@@ -227,29 +227,31 @@ describe("math visual boundary", () => {
       })
   );
 
-  it.effect("names a space scene's anchors and slider labels", () =>
-    Effect.gen(function* () {
-      const visual = yield* decodeMathVisual({
-        frame: {
-          kind: "cartesian",
-          x: { max: 2, min: -2 },
-          y: { max: 2, min: -2 },
-          z: { max: 2, min: -2 },
-        },
-        labels: [{ at: { x: 0, y: 0, z: 0 }, key: "peak", objectId: "bowl" }],
-        objects: [
-          {
-            appearance: "primary",
-            formula: "a (x^2 + y^2) / 4",
-            id: "bowl",
-            kind: "function",
+  it.effect(
+    "names a space scene's anchors, and no key for an unlabeled slider",
+    () =>
+      Effect.gen(function* () {
+        const visual = yield* decodeMathVisual({
+          frame: {
+            kind: "cartesian",
+            x: { max: 2, min: -2 },
+            y: { max: 2, min: -2 },
+            z: { max: 2, min: -2 },
           },
-        ],
-        parameters: [{ label: "depth", max: 1, min: -1, name: "a", value: 1 }],
-        space: "space",
-        view: { kind: "fit" },
-      });
-      expect(mathVisualLabelKeys(visual)).toEqual(["peak", "depth"]);
-    })
+          labels: [{ at: { x: 0, y: 0, z: 0 }, key: "peak", objectId: "bowl" }],
+          objects: [
+            {
+              appearance: "primary",
+              formula: "a (x^2 + y^2) / 4",
+              id: "bowl",
+              kind: "function",
+            },
+          ],
+          parameters: [{ max: 1, min: -1, name: "a", value: 1 }],
+          space: "space",
+          view: { kind: "fit" },
+        });
+        expect(mathVisualLabelKeys(visual)).toEqual(["peak"]);
+      })
   );
 });
