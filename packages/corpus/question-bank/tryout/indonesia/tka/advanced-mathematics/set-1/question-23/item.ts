@@ -15,20 +15,20 @@ const item: ItemSource = {
           label: "$$0$$",
         },
         {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac52$$",
-        },
-        {
           correct: true,
+          label: "$$3$$",
+        },
+        {
+          correct: false,
           label: "$$4$$",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$5$$",
+        },
+        {
+          correct: false,
+          label: "$$\\infty$$",
         },
       ],
     },

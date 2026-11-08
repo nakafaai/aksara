@@ -1,62 +1,62 @@
 A line touches a circle exactly when **its distance from the centre equals the radius**. So first find the centre and the radius by completing the square.
 
 <BlockMath math="\begin{aligned}
-(x^2-6x+9)+(y^2+2y+1)&=15+9+1 \\
-(x-3)^2+(y+1)^2&=25
+(x^2+6x+9)+(y^2-8y+16)&=9+16 \\
+(x+3)^2+(y-4)^2&=25
 \end{aligned}" />
 
-The centre is <InlineMath math="(3,-1)" /> and the radius is <InlineMath math="5" />. The given line has slope <InlineMath math="\frac34" />, so a perpendicular line has slope <InlineMath math="-\frac43" />. Such lines have the form <InlineMath math="4x+3y+c=0" />.
+The centre is <InlineMath math="(-3,4)" /> and the radius is <InlineMath math="5" />. The given line has slope <InlineMath math="\frac43" />, so a perpendicular line has slope <InlineMath math="-\frac34" />. Such lines have the form <InlineMath math="3x+4y+c=0" />.
 
 <BlockMath math="\begin{aligned}
-\frac{|4\cdot3+3\cdot(-1)+c|}{\sqrt{4^2+3^2}}&=5 \\
-|9+c|&=25 \\
-c=16\ \text{or}\ c&=-34
+\frac{|3\cdot(-3)+4\cdot4+c|}{\sqrt{3^2+4^2}}&=5 \\
+|7+c|&=25 \\
+c=18\ \text{or}\ c&=-32
 \end{aligned}" />
 
 <MathVisual
   title="Two tangents perpendicular to the given line"
-  description={<>The circle has centre <InlineMath math="(3,-1)" /> and radius <InlineMath math="5" />. The lines <InlineMath math="4x+3y-34=0" /> and <InlineMath math="4x+3y+16=0" /> touch it at <InlineMath math="(7,2)" /> and <InlineMath math="(-1,-4)" /> and are perpendicular to the line <InlineMath math="3x-4y+1=0" />.</>}
+  description={<>The circle has centre <InlineMath math="(-3,4)" /> and radius <InlineMath math="5" />. The lines <InlineMath math="3x+4y-32=0" /> and <InlineMath math="3x+4y+18=0" /> touch it at <InlineMath math="(0,8)" /> and <InlineMath math="(-6,0)" /> and are perpendicular to the line <InlineMath math="4x-3y+2=0" />.</>}
   labels={{
-    tangent: <InlineMath math="4x+3y-34=0" />,
-    other: <InlineMath math="4x+3y+16=0" />,
-    given: <InlineMath math="3x-4y+1=0" />,
-    "touch-a": <InlineMath math="(7,2)" />,
-    "touch-b": <InlineMath math="(-1,-4)" />,
-    centre: <InlineMath math="(3,-1)" />,
+    tangent: <InlineMath math="3x+4y-32=0" />,
+    other: <InlineMath math="3x+4y+18=0" />,
+    given: <InlineMath math="4x-3y+2=0" />,
+    "touch-a": <InlineMath math="(0,8)" />,
+    "touch-b": <InlineMath math="(-6,0)" />,
+    centre: <InlineMath math="(-3,4)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -6, max: 12 },
-      y: { min: -9, max: 8 },
+      x: { min: -11, max: 6 },
+      y: { min: -6, max: 12 },
     },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -1 }, radius: 5 },
-      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: 4, y: 6 }, to: { x: 10, y: -2 } },
-      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -4, y: 0 }, to: { x: 2, y: -8 } },
-      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 9, y: 7 } },
-      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
-      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -1, y: -4 } },
-      { id: "centre-point", kind: "point", appearance: "reference", at: { x: 3, y: -1 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -3, y: 4 }, radius: 5 },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -4, y: 11 }, to: { x: 4, y: 5 } },
+      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -10, y: 3 }, to: { x: -2, y: -3 } },
+      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -4, y: (4 * -4 + 2) / 3 }, to: { x: 4, y: (4 * 4 + 2) / 3 } },
+      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -6, y: 0 } },
+      { id: "centre-point", kind: "point", appearance: "reference", at: { x: -3, y: 4 } },
     ],
     labels: [
-      { key: "tangent", objectId: "tangent-line", at: { x: 10, y: -2 }, placement: "below" },
-      { key: "other", objectId: "other-line", at: { x: 2, y: -8 }, placement: "right" },
-      { key: "given", objectId: "given-line", at: { x: 9, y: 7 }, placement: "left" },
-      { key: "touch-a", objectId: "touch-a-point", at: { x: 7, y: 2 }, placement: "right" },
-      { key: "touch-b", objectId: "touch-b-point", at: { x: -1, y: -4 }, placement: "left" },
-      { key: "centre", objectId: "centre-point", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "other", objectId: "other-line", at: { x: -2, y: -3 }, placement: "right" },
+      { key: "given", objectId: "given-line", at: { x: 4, y: (4 * 4 + 2) / 3 }, placement: "below-right" },
+      { key: "touch-a", objectId: "touch-a-point", at: { x: 0, y: 8 }, placement: "above-right" },
+      { key: "touch-b", objectId: "touch-b-point", at: { x: -6, y: 0 }, placement: "left" },
+      { key: "centre", objectId: "centre-point", at: { x: -3, y: 4 }, placement: "below" },
     ],
   }}
 />
 
-As a check, the point of contact <InlineMath math="(7,2)" /> lies on the circle, because <InlineMath math="4^2+3^2=25" />, and on the tangent, because <InlineMath math="28+6-34=0" />.
+As a check, the point of contact <InlineMath math="(0,8)" /> lies on the circle, because <InlineMath math="(0+3)^2+(8-4)^2=9+16=25" />, and on the tangent, because <InlineMath math="0+32-32=0" />.
 
-So among the options, <InlineMath math="4x+3y-34=0" /> is one of the required tangents.
+So among the options, <InlineMath math="3x+4y-32=0" /> is one of the required tangents.
 
-- <InlineMath math="4x+3y+34=0" /> has the wrong sign. Its distance from the centre is <InlineMath math="\frac{43}{5}" />, not <InlineMath math="5" />.
-- <InlineMath math="3x-4y+12=0" /> does touch the circle, but it is parallel to the given line instead of perpendicular.
-- <InlineMath math="4x+3y-9=0" /> passes through the centre and therefore cuts the circle at two points.
-- <InlineMath math="4x+3y-4=0" /> comes from <InlineMath math="|9+c|=5" />, when the radius is not multiplied by <InlineMath math="\sqrt{4^2+3^2}=5" />. Its distance from the centre is only <InlineMath math="1" />.
+- <InlineMath math="3x+4y+32=0" /> has the wrong sign. Its distance from the centre is <InlineMath math="\frac{39}{5}" />, not <InlineMath math="5" />.
+- <InlineMath math="4x-3y-1=0" /> does touch the circle, but it is parallel to the given line instead of perpendicular.
+- <InlineMath math="3x+4y-7=0" /> passes through the centre and therefore cuts the circle at two points.
+- <InlineMath math="3x+4y-2=0" /> comes from <InlineMath math="|7+c|=5" />, when the radius is not multiplied by <InlineMath math="\sqrt{3^2+4^2}=5" />. Its distance from the centre is only <InlineMath math="1" />.

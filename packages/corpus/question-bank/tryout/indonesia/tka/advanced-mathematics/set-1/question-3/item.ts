@@ -13,19 +13,19 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "$$\\det(2A)=14$$",
+          label: "$$\\det(3A)=-6$$",
         },
         {
           column: 1,
-          label: "$$A+B=\\begin{pmatrix} 3 & 1 \\\\ 0 & 3 \\end{pmatrix}$$",
+          label: "$$A-B=\\begin{pmatrix} 2 & -6 \\\\ 8 & -4 \\end{pmatrix}$$",
         },
         {
           column: 2,
-          label: "$$A^{-1}=\\frac17\\begin{pmatrix} 3 & -1 \\\\ 1 & 2 \\end{pmatrix}$$",
+          label: "$$A^{-1}=\\frac12\\begin{pmatrix} -4 & 2 \\\\ -5 & 3 \\end{pmatrix}$$",
         },
         {
           column: 1,
-          label: "$$\\det(AB)=14$$",
+          label: "$$\\det(AB)=-24$$",
         },
       ],
     },

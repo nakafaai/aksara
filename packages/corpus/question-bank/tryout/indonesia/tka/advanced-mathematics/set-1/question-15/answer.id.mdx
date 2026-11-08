@@ -1,62 +1,62 @@
 Sebuah garis menyinggung lingkaran tepat ketika **jaraknya dari pusat sama dengan jari-jari**. Karena itu, tentukan dulu pusat dan jari-jari dengan melengkapkan kuadrat.
 
 <BlockMath math="\begin{aligned}
-(x^2-6x+9)+(y^2+2y+1)&=15+9+1 \\
-(x-3)^2+(y+1)^2&=25
+(x^2+6x+9)+(y^2-8y+16)&=9+16 \\
+(x+3)^2+(y-4)^2&=25
 \end{aligned}" />
 
-Pusatnya <InlineMath math="(3,-1)" /> dan jari-jarinya <InlineMath math="5" />. Garis yang diketahui bergradien <InlineMath math="\frac34" />, jadi garis yang tegak lurus padanya bergradien <InlineMath math="-\frac43" />. Garis seperti itu berbentuk <InlineMath math="4x+3y+c=0" />.
+Pusatnya <InlineMath math="(-3,4)" /> dan jari-jarinya <InlineMath math="5" />. Garis yang diketahui bergradien <InlineMath math="\frac43" />, jadi garis yang tegak lurus padanya bergradien <InlineMath math="-\frac34" />. Garis seperti itu berbentuk <InlineMath math="3x+4y+c=0" />.
 
 <BlockMath math="\begin{aligned}
-\frac{|4\cdot3+3\cdot(-1)+c|}{\sqrt{4^2+3^2}}&=5 \\
-|9+c|&=25 \\
-c=16\ \text{atau}\ c&=-34
+\frac{|3\cdot(-3)+4\cdot4+c|}{\sqrt{3^2+4^2}}&=5 \\
+|7+c|&=25 \\
+c=18\ \text{atau}\ c&=-32
 \end{aligned}" />
 
 <MathVisual
   title="Dua garis singgung yang tegak lurus garis yang diketahui"
-  description={<>Lingkaran berpusat di <InlineMath math="(3,-1)" /> dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="4x+3y-34=0" /> dan <InlineMath math="4x+3y+16=0" /> menyinggungnya di <InlineMath math="(7,2)" /> dan <InlineMath math="(-1,-4)" />, dan keduanya tegak lurus garis <InlineMath math="3x-4y+1=0" />.</>}
+  description={<>Lingkaran berpusat di <InlineMath math="(-3,4)" /> dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="3x+4y-32=0" /> dan <InlineMath math="3x+4y+18=0" /> menyinggungnya di <InlineMath math="(0,8)" /> dan <InlineMath math="(-6,0)" />, dan keduanya tegak lurus garis <InlineMath math="4x-3y+2=0" />.</>}
   labels={{
-    tangent: <InlineMath math="4x+3y-34=0" />,
-    other: <InlineMath math="4x+3y+16=0" />,
-    given: <InlineMath math="3x-4y+1=0" />,
-    "touch-a": <InlineMath math="(7,2)" />,
-    "touch-b": <InlineMath math="(-1,-4)" />,
-    centre: <InlineMath math="(3,-1)" />,
+    tangent: <InlineMath math="3x+4y-32=0" />,
+    other: <InlineMath math="3x+4y+18=0" />,
+    given: <InlineMath math="4x-3y+2=0" />,
+    "touch-a": <InlineMath math="(0,8)" />,
+    "touch-b": <InlineMath math="(-6,0)" />,
+    centre: <InlineMath math="(-3,4)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -6, max: 12 },
-      y: { min: -9, max: 8 },
+      x: { min: -11, max: 6 },
+      y: { min: -6, max: 12 },
     },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -1 }, radius: 5 },
-      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: 4, y: 6 }, to: { x: 10, y: -2 } },
-      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -4, y: 0 }, to: { x: 2, y: -8 } },
-      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 9, y: 7 } },
-      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
-      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -1, y: -4 } },
-      { id: "centre-point", kind: "point", appearance: "reference", at: { x: 3, y: -1 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -3, y: 4 }, radius: 5 },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -4, y: 11 }, to: { x: 4, y: 5 } },
+      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -10, y: 3 }, to: { x: -2, y: -3 } },
+      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -4, y: (4 * -4 + 2) / 3 }, to: { x: 4, y: (4 * 4 + 2) / 3 } },
+      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -6, y: 0 } },
+      { id: "centre-point", kind: "point", appearance: "reference", at: { x: -3, y: 4 } },
     ],
     labels: [
-      { key: "tangent", objectId: "tangent-line", at: { x: 10, y: -2 }, placement: "below" },
-      { key: "other", objectId: "other-line", at: { x: 2, y: -8 }, placement: "right" },
-      { key: "given", objectId: "given-line", at: { x: 9, y: 7 }, placement: "left" },
-      { key: "touch-a", objectId: "touch-a-point", at: { x: 7, y: 2 }, placement: "right" },
-      { key: "touch-b", objectId: "touch-b-point", at: { x: -1, y: -4 }, placement: "left" },
-      { key: "centre", objectId: "centre-point", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "other", objectId: "other-line", at: { x: -2, y: -3 }, placement: "right" },
+      { key: "given", objectId: "given-line", at: { x: 4, y: (4 * 4 + 2) / 3 }, placement: "below-right" },
+      { key: "touch-a", objectId: "touch-a-point", at: { x: 0, y: 8 }, placement: "above-right" },
+      { key: "touch-b", objectId: "touch-b-point", at: { x: -6, y: 0 }, placement: "left" },
+      { key: "centre", objectId: "centre-point", at: { x: -3, y: 4 }, placement: "below" },
     ],
   }}
 />
 
-Sebagai pemeriksaan, titik singgung <InlineMath math="(7,2)" /> terletak pada lingkaran, karena <InlineMath math="4^2+3^2=25" />, dan pada garis singgung, karena <InlineMath math="28+6-34=0" />.
+Sebagai pemeriksaan, titik singgung <InlineMath math="(0,8)" /> terletak pada lingkaran, karena <InlineMath math="(0+3)^2+(8-4)^2=9+16=25" />, dan pada garis singgung, karena <InlineMath math="0+32-32=0" />.
 
-Jadi, di antara pilihan yang ada, <InlineMath math="4x+3y-34=0" /> adalah salah satu garis singgung yang dicari.
+Jadi, di antara pilihan yang ada, <InlineMath math="3x+4y-32=0" /> adalah salah satu garis singgung yang dicari.
 
-- <InlineMath math="4x+3y+34=0" /> tandanya salah. Jaraknya dari pusat <InlineMath math="\frac{43}{5}" />, bukan <InlineMath math="5" />.
-- <InlineMath math="3x-4y+12=0" /> memang menyinggung lingkaran, tetapi sejajar dengan garis yang diketahui, bukan tegak lurus.
-- <InlineMath math="4x+3y-9=0" /> melalui pusat lingkaran sehingga memotong lingkaran di dua titik.
-- <InlineMath math="4x+3y-4=0" /> muncul dari <InlineMath math="|9+c|=5" />, yaitu jika jari-jari tidak dikalikan dengan <InlineMath math="\sqrt{4^2+3^2}=5" />. Jaraknya dari pusat hanya <InlineMath math="1" />.
+- <InlineMath math="3x+4y+32=0" /> tandanya salah. Jaraknya dari pusat <InlineMath math="\frac{39}{5}" />, bukan <InlineMath math="5" />.
+- <InlineMath math="4x-3y-1=0" /> memang menyinggung lingkaran, tetapi sejajar dengan garis yang diketahui, bukan tegak lurus.
+- <InlineMath math="3x+4y-7=0" /> melalui pusat lingkaran sehingga memotong lingkaran di dua titik.
+- <InlineMath math="3x+4y-2=0" /> muncul dari <InlineMath math="|7+c|=5" />, yaitu jika jari-jari tidak dikalikan dengan <InlineMath math="\sqrt{3^2+4^2}=5" />. Jaraknya dari pusat hanya <InlineMath math="1" />.

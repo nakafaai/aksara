@@ -1,62 +1,62 @@
 Garis bayangan terdiri atas titik-titik <InlineMath math="(x',y')" /> yang **titik asalnya terletak pada <InlineMath math="g" />**. Karena itu, nyatakan <InlineMath math="x" /> dan <InlineMath math="y" /> dalam <InlineMath math="x'" /> dan <InlineMath math="y'" /> dengan matriks invers.
 
 <BlockMath math="\begin{aligned}
-\det M&=2\cdot1-1\cdot1=1 \\
-M^{-1}&=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} \\
-x=x'-y',&\qquad y=-x'+2y'
+\det M&=3\cdot2-1\cdot5=1 \\
+M^{-1}&=\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} \\
+x=2x'-y',&\qquad y=-5x'+3y'
 \end{aligned}" />
 
 Substitusikan keduanya ke persamaan <InlineMath math="g" />.
 
 <BlockMath math="\begin{aligned}
-(x'-y')+2(-x'+2y')-3&=0 \\
--x'+3y'-3&=0 \\
-x'-3y'+3&=0
+2(2x'-y')-(-5x'+3y')+1&=0 \\
+4x'-2y'+5x'-3y'+1&=0 \\
+9x'-5y'+1&=0
 \end{aligned}" />
 
 <MathVisual
   title="Garis dan bayangannya"
-  description={<>Garis <InlineMath math="x+2y-3=0" /> melalui <InlineMath math="(3,0)" /> dan <InlineMath math="(1,1)" />. Matriks itu memetakan kedua titik ke <InlineMath math="(6,3)" /> dan <InlineMath math="(3,2)" />, dan keduanya terletak pada garis bayangan <InlineMath math="x-3y+3=0" />.</>}
+  description={<>Garis <InlineMath math="2x-y+1=0" /> melalui <InlineMath math="(0,1)" /> dan <InlineMath math="(1,3)" />. Matriks itu memetakan kedua titik ke <InlineMath math="(1,2)" /> dan <InlineMath math="(6,11)" />, dan keduanya terletak pada garis bayangan <InlineMath math="9x-5y+1=0" />.</>}
   labels={{
-    original: <InlineMath math="x+2y-3=0" />,
-    image: <InlineMath math="x-3y+3=0" />,
-    a: <InlineMath math="(3,0)" />,
-    "a-image": <InlineMath math="(6,3)" />,
-    b: <InlineMath math="(1,1)" />,
-    "b-image": <InlineMath math="(3,2)" />,
+    original: <InlineMath math="2x-y+1=0" />,
+    image: <InlineMath math="9x-5y+1=0" />,
+    a: <InlineMath math="(0,1)" />,
+    "a-image": <InlineMath math="(1,2)" />,
+    b: <InlineMath math="(1,3)" />,
+    "b-image": <InlineMath math="(6,11)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -4, max: 7.5 },
-      y: { min: -2, max: 4.5 },
+      x: { min: -5, max: 8 },
+      y: { min: -8, max: 12.5 },
     },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -1, y: 2 }, to: { x: 5, y: -1 } },
-      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -3, y: 0 }, to: { x: 6, y: 3 } },
-      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
-      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
-      { id: "point-b", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
-      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -1, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -4, y: -7 }, to: { x: 6, y: 11 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: 6, y: 11 } },
     ],
     labels: [
-      { key: "original", objectId: "original-line", at: { x: 5, y: -1 }, placement: "below" },
-      { key: "image", objectId: "image-line", at: { x: -3, y: 0 }, placement: "above" },
-      { key: "a", objectId: "point-a", at: { x: 3, y: 0 }, placement: "below" },
-      { key: "a-image", objectId: "point-a-image", at: { x: 6, y: 3 }, placement: "above" },
-      { key: "b", objectId: "point-b", at: { x: 1, y: 1 }, placement: "below-left" },
-      { key: "b-image", objectId: "point-b-image", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "original", objectId: "original-line", at: { x: -1, y: -1 }, placement: "left" },
+      { key: "image", objectId: "image-line", at: { x: -4, y: -7 }, placement: "right" },
+      { key: "a", objectId: "point-a", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a-image", objectId: "point-a-image", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "b", objectId: "point-b", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "b-image", objectId: "point-b-image", at: { x: 6, y: 11 }, placement: "left" },
     ],
   }}
 />
 
-Sebagai pemeriksaan dengan dua titik pada <InlineMath math="g" />, <InlineMath math="M(3,0)=(6,3)" /> dan <InlineMath math="6-9+3=0" />, serta <InlineMath math="M(1,1)=(3,2)" /> dan <InlineMath math="3-6+3=0" />.
+Sebagai pemeriksaan dengan dua titik pada <InlineMath math="g" />, <InlineMath math="M(0,1)=(1,2)" /> dan <InlineMath math="9-10+1=0" />, serta <InlineMath math="M(1,3)=(6,11)" /> dan <InlineMath math="54-55+1=0" />.
 
-Jadi, persamaan bayangan garis <InlineMath math="g" /> adalah <InlineMath math="x-3y+3=0" />.
+Jadi, persamaan bayangan garis <InlineMath math="g" /> adalah <InlineMath math="9x-5y+1=0" />.
 
-- <InlineMath math="4x+3y-3=0" /> memakai <InlineMath math="M" />, bukan <InlineMath math="M^{-1}" />, yaitu <InlineMath math="x=2x'+y'" /> dan <InlineMath math="y=x'+y'" />.
-- <InlineMath math="x-3y-3=0" /> kehilangan tanda konstanta saat menyusun ulang persamaan. Titik bayangan <InlineMath math="(6,3)" /> tidak memenuhinya.
-- <InlineMath math="3x+5y-3=0" /> muncul dari invers yang salah, yaitu ketika elemen diagonal samping tidak berganti tanda.
-- <InlineMath math="3x-y-3=0" /> menukar peran <InlineMath math="x" /> dan <InlineMath math="y" /> pada persamaan yang benar.
+- <InlineMath math="x+1=0" /> memakai <InlineMath math="M" />, bukan <InlineMath math="M^{-1}" />, yaitu <InlineMath math="x=3x'+y'" /> dan <InlineMath math="y=5x'+2y'" />.
+- <InlineMath math="9x-5y-1=0" /> kehilangan tanda konstanta saat menyusun ulang persamaan. Titik bayangan <InlineMath math="(1,2)" /> tidak memenuhinya.
+- <InlineMath math="x+y-1=0" /> muncul dari invers yang salah, yaitu ketika elemen diagonal sekunder tidak berganti tanda.
+- <InlineMath math="5x-9y-1=0" /> menukar peran <InlineMath math="x" /> dan <InlineMath math="y" /> pada persamaan yang benar.

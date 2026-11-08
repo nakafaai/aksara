@@ -1,20 +1,20 @@
-The four statements test **rules for <InlineMath math="2\times2" /> matrices**: the determinant of a multiple, a sum, the inverse and the determinant of a product. Compute the two determinants first, because they are used more than once.
+The four statements test **rules for <InlineMath math="2\times2" /> matrices**: the determinant of a multiple, a difference, the inverse and the determinant of a product. Compute the two determinants first, because they are used more than once.
 
 <BlockMath math="\begin{aligned}
-\det A&=2\cdot3-(-1)\cdot1=7 \\
-\det B&=1\cdot0-2\cdot(-1)=2
+\det A&=3\cdot(-4)-(-2)\cdot5=-12+10=-2 \\
+\det B&=1\cdot0-4\cdot(-3)=12
 \end{aligned}" />
 
-1. The statement <InlineMath math="\det(2A)=14" /> is false. The factor <InlineMath math="2" /> sits in both rows, so <InlineMath math="\det(2A)=2^2\det A=4\cdot7=28" />.
-2. The statement about <InlineMath math="A+B" /> is true, because matrices are added entry by entry.
-3. The statement about <InlineMath math="A^{-1}" /> is false. For the inverse, the entries on the main diagonal swap places, and the entries on the other diagonal only change sign.
-4. The statement <InlineMath math="\det(AB)=14" /> is true, because <InlineMath math="\det(AB)=\det A\cdot\det B=7\cdot2=14" />.
+1. The statement <InlineMath math="\det(3A)=-6" /> is false. The factor <InlineMath math="3" /> sits in both rows, so <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
+2. The statement about <InlineMath math="A-B" /> is true, because matrices are subtracted entry by entry.
+3. The statement about <InlineMath math="A^{-1}" /> is false. For the inverse, you swap the entries on the main diagonal, change the sign of the entries on the other diagonal, and divide by <InlineMath math="\det A=-2" />. The statement divides by <InlineMath math="2" /> instead of <InlineMath math="-2" />, so the sign of the determinant is missing.
+4. The statement <InlineMath math="\det(AB)=-24" /> is true, because <InlineMath math="\det(AB)=\det A\cdot\det B=(-2)\cdot12=-24" />.
 
 The inverse and the product as a check:
 
 <BlockMath math="\begin{aligned}
-A^{-1}&=\frac17\begin{pmatrix} 3 & 1 \\ -1 & 2 \end{pmatrix} \\
-AB&=\begin{pmatrix} 2\cdot1+(-1)\cdot(-1) & 2\cdot2+(-1)\cdot0 \\ 1\cdot1+3\cdot(-1) & 1\cdot2+3\cdot0 \end{pmatrix}=\begin{pmatrix} 3 & 4 \\ -2 & 2 \end{pmatrix},\qquad \det(AB)=6+8=14
+A^{-1}&=\frac{1}{-2}\begin{pmatrix} -4 & 2 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ \frac52 & -\frac32 \end{pmatrix} \\
+AB&=\begin{pmatrix} 3\cdot1+(-2)\cdot(-3) & 3\cdot4+(-2)\cdot0 \\ 5\cdot1+(-4)\cdot(-3) & 5\cdot4+(-4)\cdot0 \end{pmatrix}=\begin{pmatrix} 9 & 12 \\ 17 & 20 \end{pmatrix},\qquad \det(AB)=180-204=-24
 \end{aligned}" />
 
-So the statements about <InlineMath math="A+B" /> and <InlineMath math="\det(AB)" /> are true, and the statements about <InlineMath math="\det(2A)" /> and <InlineMath math="A^{-1}" /> are false.
+So the statements about <InlineMath math="A-B" /> and <InlineMath math="\det(AB)" /> are true, and the statements about <InlineMath math="\det(3A)" /> and <InlineMath math="A^{-1}" /> are false.
