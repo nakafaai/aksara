@@ -1,32 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "city-birdsong",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Measuring a truss in one preliminary comparison",
-        },
-        {
-          correct: false,
           label:
-            "Treating a truss as the sole explanation for the observed result",
+            "The birds will begin singing only during the noisiest middle part of the day.",
         },
         {
           correct: true,
-          label: "Testing a triangular truss in a paper bridge model",
+          label:
+            "The lowest notes of their songs will tend to rise above the noise.",
         },
         {
           correct: false,
           label:
-            "A final rule derived from the first comparison of truss designs",
+            "The lowest notes of their songs will become lower than before.",
         },
         {
           correct: false,
-          label: "A limitation that makes another test of a truss unnecessary",
+          label: "The birds will stop singing completely within a few weeks.",
+        },
+        {
+          correct: false,
+          label: "Females will become more attracted to the males' new songs.",
         },
       ],
     },
