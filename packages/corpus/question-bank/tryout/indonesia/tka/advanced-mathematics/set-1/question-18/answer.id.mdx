@@ -1,51 +1,52 @@
-Tuliskan kedua pencerminan sebagai matriks. Pada komposisi, **matriks yang dikerjakan lebih dulu berada di sebelah kanan**, karena matriks itulah yang pertama bekerja pada titik.
+Tuliskan kedua transformasi sebagai matriks. Pada komposisi, **matriks yang dikerjakan lebih dulu berada di sebelah kanan**, karena matriks itulah yang pertama bekerja pada titik.
 
 <BlockMath math="\begin{aligned}
-S_x&=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix},\qquad S_{y=-x}=\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \\
-T&=S_{y=-x}\,S_x=\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}
+S_{y=x}&=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},\qquad R_{90^\circ}=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \\
+T&=R_{90^\circ}\,S_{y=x}=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}
 \end{aligned}" />
 
-Matriks <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(y,-x)" />. Itulah rotasi <InlineMath math="90^\circ" /> searah jarum jam. Dua pencerminan terhadap garis yang melalui <InlineMath math="O" /> selalu menghasilkan rotasi, di sini sebesar dua kali sudut <InlineMath math="45^\circ" /> antara kedua garis cermin.
+Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-x,y)" />. Itulah pencerminan terhadap sumbu <InlineMath math="y" />. Determinannya <InlineMath math="-1" />, sesuai dengan satu pencerminan yang digabung dengan satu rotasi: hasilnya selalu pencerminan, tidak pernah rotasi.
 
 <MathVisual
-  title="Satu titik di bawah kedua pencerminan"
-  description={<>Titik <InlineMath math="P(3,1)" /> dicerminkan terhadap sumbu <InlineMath math="x" /> menjadi <InlineMath math="P'(3,-1)" />, lalu terhadap garis <InlineMath math="y=-x" /> menjadi <InlineMath math="P''(1,-3)" />. Titik <InlineMath math="P''" /> diperoleh dari <InlineMath math="P" /> dengan rotasi <InlineMath math="90^\circ" /> searah jarum jam terhadap titik asal.</>}
+  title="Satu titik di bawah kedua transformasi"
+  description={<>Titik <InlineMath math="P(3,1)" /> dicerminkan terhadap garis <InlineMath math="y=x" /> menjadi <InlineMath math="P'(1,3)" />, lalu diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal menjadi <InlineMath math="P''(-3,1)" />. Titik <InlineMath math="P''" /> adalah cermin <InlineMath math="P" /> terhadap sumbu <InlineMath math="y" />.</>}
   labels={{
     p: <InlineMath math="P(3,1)" />,
-    "p-one": <InlineMath math="P'(3,-1)" />,
-    "p-two": <InlineMath math="P''(1,-3)" />,
-    mirror: <InlineMath math="y=-x" />,
+    "p-one": <InlineMath math="P'(1,3)" />,
+    "p-two": <InlineMath math="P''(-3,1)" />,
+    mirror: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -3.5, max: 4.5 },
-      y: { min: -4, max: 3 },
+      x: { min: -4.5, max: 4.5 },
+      y: { min: -1.5, max: 4.5 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "mirror-line", kind: "segment", appearance: "construction", from: { x: -3, y: 3 }, to: { x: 3.5, y: -3.5 } },
-      { id: "first-step", kind: "segment", appearance: "reference", from: { x: 3, y: 1 }, to: { x: 3, y: -1 } },
-      { id: "second-step", kind: "segment", appearance: "reference", from: { x: 3, y: -1 }, to: { x: 1, y: -3 } },
+      { id: "mirror-line", kind: "segment", appearance: "construction", from: { x: -1.5, y: -1.5 }, to: { x: 4, y: 4 } },
+      { id: "first-step", kind: "segment", appearance: "reference", from: { x: 3, y: 1 }, to: { x: 1, y: 3 } },
+      { id: "arm-before", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 1, y: 3 } },
+      { id: "arm-after", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -3, y: 1 } },
       { id: "point-p", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
-      { id: "point-p-one", kind: "point", appearance: "secondary", at: { x: 3, y: -1 } },
-      { id: "point-p-two", kind: "point", appearance: "answer", at: { x: 1, y: -3 } },
+      { id: "point-p-one", kind: "point", appearance: "secondary", at: { x: 1, y: 3 } },
+      { id: "point-p-two", kind: "point", appearance: "answer", at: { x: -3, y: 1 } },
     ],
     labels: [
       { key: "p", objectId: "point-p", at: { x: 3, y: 1 }, placement: "right" },
-      { key: "p-one", objectId: "point-p-one", at: { x: 3, y: -1 }, placement: "right" },
-      { key: "p-two", objectId: "point-p-two", at: { x: 1, y: -3 }, placement: "below" },
-      { key: "mirror", objectId: "mirror-line", at: { x: -3, y: 3 }, placement: "right" },
+      { key: "p-one", objectId: "point-p-one", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "p-two", objectId: "point-p-two", at: { x: -3, y: 1 }, placement: "left" },
+      { key: "mirror", objectId: "mirror-line", at: { x: 4, y: 4 }, placement: "right" },
     ],
   }}
 />
 
-Sebagai pemeriksaan dengan satu titik, <InlineMath math="P(3,1)\to P'(3,-1)\to P''(1,-3)" />, dan rotasi searah jarum jam juga memetakan <InlineMath math="(3,1)" /> ke <InlineMath math="(1,-3)" />.
+Sebagai pemeriksaan dengan satu titik, <InlineMath math="P(3,1)\to P'(1,3)\to P''(-3,1)" />, dan pencerminan terhadap sumbu <InlineMath math="y" /> juga memetakan <InlineMath math="(3,1)" /> ke <InlineMath math="(-3,1)" />.
 
-Jadi, <InlineMath math="T" /> sama dengan rotasi <InlineMath math="90^\circ" /> searah jarum jam dengan pusat <InlineMath math="O" />.
+Jadi, <InlineMath math="T" /> sama dengan pencerminan terhadap sumbu <InlineMath math="y" />.
 
-- Rotasi berlawanan arah jarum jam muncul karena urutannya terbalik, yaitu dari <InlineMath math="S_x\,S_{y=-x}=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />.
-- Transformasi itu tidak mungkin pencerminan, karena <InlineMath math="\det T=1" />. Dua pencerminan membalik arah putaran dua kali, sehingga arahnya tetap.
-- Rotasi <InlineMath math="180^\circ" /> memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-3,-1)" />, bukan ke <InlineMath math="(1,-3)" />.
-- Pencerminan terhadap sumbu <InlineMath math="y" /> memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-3,1)" /> dan berdeterminan <InlineMath math="-1" />.
+- Pencerminan terhadap sumbu <InlineMath math="x" /> muncul jika urutannya dibalik, yaitu dari <InlineMath math="S_{y=x}\,R_{90^\circ}=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+- Rotasi <InlineMath math="90^\circ" /> searah jarum jam berdeterminan <InlineMath math="1" />, padahal <InlineMath math="\det T=-1" />.
+- Pencerminan terhadap garis <InlineMath math="y=-x" /> memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-1,-3)" />, bukan ke <InlineMath math="(-3,1)" />.
+- Rotasi <InlineMath math="180^\circ" /> memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-3,-1)" /> dan berdeterminan <InlineMath math="1" />.

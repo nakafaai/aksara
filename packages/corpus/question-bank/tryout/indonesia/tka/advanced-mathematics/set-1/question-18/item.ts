@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
+          label: "pencerminan terhadap sumbu $$y$$",
+        },
+        {
+          correct: false,
+          label: "pencerminan terhadap sumbu $$x$$",
+        },
+        {
+          correct: false,
           label: "rotasi $$90^\\circ$$ searah jarum jam dengan pusat $$O$$",
         },
         {
           correct: false,
-          label: "rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$",
-        },
-        {
-          correct: false,
-          label: "pencerminan terhadap garis $$y=x$$",
+          label: "pencerminan terhadap garis $$y=-x$$",
         },
         {
           correct: false,
           label: "rotasi $$180^\\circ$$ dengan pusat $$O$$",
-        },
-        {
-          correct: false,
-          label: "pencerminan terhadap sumbu $$y$$",
         },
       ],
     },
