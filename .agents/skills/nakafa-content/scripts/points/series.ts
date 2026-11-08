@@ -10,7 +10,7 @@ import {
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
-import { isLiteralPoint } from "#nakafa-content/points/point";
+import { isLiteralPoint } from "#nakafa-content/points/numeric";
 
 /**
  * Most literal points one series may hold. A named exact point, such as a
