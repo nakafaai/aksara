@@ -21,7 +21,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika keluarga itu memakai $$0{,}14\\text{ m}^3$$ air setiap hari, tangki yang penuh cukup untuk 20 hari tanpa hujan.",
+            "Jika keluarga itu memakai $$0{,}14\\text{ m}^3$$ air setiap hari, tangki yang penuh cukup untuk 25 hari tanpa hujan.",
         },
       ],
     },
