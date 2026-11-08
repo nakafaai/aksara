@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "school-distance",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Mengulang model perpindahan panas dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
-        },
-        {
           correct: true,
           label:
-            "Menguji beberapa wadah aluminium dan polipropilena dengan bentuk, ketebalan, penutup, volume air, dan suhu awal yang sama serta mengacak posisinya pada setiap pengulangan.",
+            "aturan jarak dapat menutup peluang anak berprestasi yang jauh dari sekolah",
         },
         {
           correct: false,
           label:
-            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+            "anak-anak di kecamatan itu umumnya memiliki nilai yang kurang baik",
+        },
+        {
+          correct: false,
+          label:
+            "sekolah di kecamatan itu menolak semua pendaftar yang bernilai tinggi",
+        },
+        {
+          correct: false,
+          label:
+            "jarak rumah lebih penting daripada nilai rapor bagi para orang tua di kecamatan itu",
+        },
+        {
+          correct: false,
+          label:
+            "anak-anak di kecamatan itu mungkin lebih suka bersekolah di luar kota",
         },
       ],
     },

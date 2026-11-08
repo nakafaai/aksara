@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "bandung-conference",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Mereka ingin bergabung dengan blok yang dipimpin Amerika Serikat.",
+        },
+        {
+          correct: false,
+          label: "Mereka diundang oleh Uni Soviet untuk membahas Eropa Timur.",
+        },
+        {
+          correct: false,
+          label: "Mereka ingin membangun museum bersama di kota Bandung.",
+        },
+        {
           correct: true,
           label:
-            "Definisi *integritas ilmiah* menjelaskan mengapa Dito menyimpan nilai menyimpang, mencatat alasan pengecualian, dan melaporkan ketidakpastian pengukuran.",
+            "Mereka ingin bekerja sama tanpa bergantung pada blok mana pun.",
         },
         {
           correct: false,
           label:
-            "Istilah *integritas ilmiah* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu membatasi *integritas ilmiah* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
-        },
-        {
-          correct: false,
-          label:
-            "Penyebutan *integritas ilmiah* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
+            "Mereka mungkin ingin membagi wilayah Afrika di antara negara-negara Asia yang hadir.",
         },
       ],
     },

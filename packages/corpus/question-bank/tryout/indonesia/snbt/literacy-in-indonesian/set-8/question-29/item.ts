@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "letter-poem",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Istilah *perkembangan tokoh* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+          label: "aku lirik tidak mampu membeli makanan karena gajinya kecil",
+        },
+        {
+          correct: false,
+          label: "penjual nasi di kota tidak ramah kepada para pembelinya",
         },
         {
           correct: false,
           label:
-            "Definisi itu menyamakan *perkembangan tokoh* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "aku lirik terlalu sibuk bekerja di kantor sehingga lupa makan setiap hari",
         },
         {
           correct: true,
           label:
-            "Definisi *perkembangan tokoh* memberi dasar untuk membandingkan tindakan Jati pada awal dan akhir, tanpa mensyaratkan bahwa ia harus memahami seluruh bacaan.",
+            "di kota, aku lirik kehilangan perhatian sederhana yang dulu ia terima",
         },
         {
           correct: false,
           label:
-            "Penyebutan *perkembangan tokoh* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "teman-teman aku lirik mungkin juga belum makan sepanjang hari",
         },
       ],
     },

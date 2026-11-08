@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "jamu-seller",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tim mengganti seluruh nilai lama dengan hasil konversi agar catatan sumur terlihat seragam dan mudah dibandingkan.",
+            "dari bangga menjadi kecewa karena bakul jamunya ternyata terlalu berat",
         },
         {
           correct: false,
-          label:
-            "Tim menyimpulkan bahwa satuan meter sudah cukup membuat pengukuran dari musim dan waktu berbeda dapat dibandingkan langsung.",
+          label: "dari marah menjadi takut karena para pelanggan menunggu",
+        },
+        {
+          correct: false,
+          label: "dari acuh tak acuh menjadi ingin berhenti kuliah farmasi",
         },
         {
           correct: true,
           label:
-            "Pada formulir baru, lebih banyak pasangan catatan dapat diperiksa tanpa menebak, tetapi tim tetap menyimpan nilai asli dan menyelaraskan waktu pengukuran sebelum penerapan luas.",
+            "dari malu menjadi menghargai pengetahuan dan kepedulian ibunya",
         },
         {
           correct: false,
-          label:
-            "Kenaikan dari $$14$$ menjadi $$27$$ pasangan membuktikan bahwa semua kesalahan pencatatan telah dihilangkan oleh formulir baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Masukan warga menggantikan kebutuhan akan kelompok pembanding karena pengguna mengetahui kondisi sumur masing-masing.",
+          label: "dari kasihan menjadi mungkin ingin menjual jamu di kota",
         },
       ],
     },
