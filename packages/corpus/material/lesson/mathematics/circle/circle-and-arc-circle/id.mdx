@@ -1,30 +1,22 @@
+
 export const metadata = {
-  title: "Lingkaran dan Busur Lingkaran",
-  description:
-    "Lingkaran dibaca dari pusat, jari-jari, diameter, tali busur, dan busur agar siswa bisa menghitung panjang busur dan juring dengan lebih terarah.",
+  title: "Unsur Lingkaran dan Busur Lingkaran",
+  description: "Kenali pusat, jari-jari, diameter, tali busur, dan busur lingkaran, bedakan busur minor dan mayor, lalu hitung panjang busur dan luas juring.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Lingkaran",
 };
 
+## Pengertian Lingkaran dan Unsurnya
 
+Lingkaran adalah kumpulan semua titik pada bidang datar yang **berjarak sama dari satu titik**. Titik itu disebut pusat, dan jarak yang sama itu disebut jari-jari. Busur lingkaran adalah bagian keliling lingkaran di antara dua titik pada lingkaran, dan pada lingkaran yang sama panjangnya sebanding dengan sudut pusatnya: <InlineMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />.
 
-## Pengertian Lingkaran
-
-Lingkaran adalah himpunan semua titik pada bidang datar yang berjarak tetap dari satu titik. Titik itu disebut **pusat lingkaran**, sedangkan jarak tetapnya disebut **jari-jari**.
-
-Jika pusatnya <InlineMath math="O(a,b)" /> dan jari-jarinya <InlineMath math="r > 0" />, rumus jarak menghasilkan persamaan baku:
-
-<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
-
-### Unsur Lingkaran
-
-Diagram berikut menghubungkan definisi tersebut dengan unsur-unsur yang dipakai dalam perhitungan:
+Diagram unsur lingkaran menandai empat unsur yang dipakai di hampir setiap soal: pusat <InlineMath math="O" />, jari-jari <InlineMath math="r" />, diameter, dan tali busur.
 
 <LineEquation
   title="Unsur-unsur Lingkaran"
-  description="Visualisasi pusat, jari-jari, diameter, dan tali busur lingkaran."
+  description={<>Jari-jari <InlineMath math="r = 3" /> berpangkal di pusat <InlineMath math="O" />, diameter sepanjang <InlineMath math="6" /> melalui pusat, dan tali busur tidak melalui pusat.</>}
   data={[
     {
       smooth: false,
@@ -74,26 +66,26 @@ Diagram berikut menghubungkan definisi tersebut dengan unsur-unsur yang dipakai 
   cameraPosition={[0, 0, 10]}
 />
 
-Empat unsur yang perlu dikenali terlebih dahulu:
+Pusat <InlineMath math="O" /> adalah titik acuan semua jari-jari. Jari-jari adalah ruas dari pusat ke satu titik pada lingkaran, dan pada diagram panjangnya <InlineMath math="r = 3" />. [Tali busur](/id/materi/matematika/lingkaran/lingkaran-dan-tali-busur) adalah ruas yang menghubungkan dua titik pada lingkaran. Diameter adalah tali busur terpanjang, yaitu tali busur yang melalui pusat, sehingga <InlineMath math="d = 2r = 6" />.
 
-- **Pusat** (<InlineMath math="O" />): titik tetap yang menjadi acuan setiap jari-jari
-- **Jari-jari** (<InlineMath math="r" />): ruas garis dari pusat ke satu titik pada lingkaran
-- **Diameter** (<InlineMath math="d" />): tali busur yang melalui pusat, sehingga <InlineMath math="d = 2r" />
-- **Tali busur**: ruas garis yang menghubungkan dua titik pada lingkaran
+Definisi jarak yang sama itu juga menghasilkan persamaan lingkaran. Untuk pusat <InlineMath math="(a, b)" /> dan jari-jari <InlineMath math="r > 0" />, rumus jarak dua titik memberi:
 
-## Busur Lingkaran
+<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
-Busur lingkaran adalah <Highlight>bagian dari keliling lingkaran</Highlight> yang dibatasi oleh dua titik pada lingkaran. Busur dilambangkan dengan simbol lengkung di atas huruf, misalnya <InlineMath math="\overset{\frown}{AB}" />. Panjang busur bergantung pada **jari-jari dan sudut pusat**. Ukuran sudut busur dinyatakan dalam derajat, sedangkan panjang busur dinyatakan dalam satuan panjang.
+Pada bidang koordinat, bentuk ini adalah bentuk baku [persamaan lingkaran](/id/materi/matematika/geometri-analitik/persamaan-lingkaran), dan nilai <InlineMath math="a" />, <InlineMath math="b" />, serta <InlineMath math="r" /> bisa dibaca langsung darinya.
 
-### Berbagai Jenis Busur
+## Busur Minor dan Busur Mayor
+
+Dua titik pada lingkaran membagi keliling menjadi **dua busur sekaligus**. Busur yang lebih pendek disebut busur minor atau busur kecil, dan busur yang lebih panjang disebut busur mayor atau busur besar. Kalau kedua titik itu ujung diameter, kedua busur sama panjang dan masing-masing adalah setengah lingkaran.
 
 <LineEquation
   title="Busur Minor dan Busur Mayor"
-  description="Visualisasi perbedaan busur minor dan busur mayor."
+  description={<>Busur minor menempuh <InlineMath math="90^\circ" /> dan busur mayor menempuh <InlineMath math="270^\circ" /> dari keliling yang sama.</>}
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 91 }, (_, i) => {
+      points: Array.from({ length: 271 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -104,7 +96,7 @@ Busur lingkaran adalah <Highlight>bagian dari keliling lingkaran</Highlight> yan
       color: "#7c3aed",
       pointIndices: [0, 90],
       showPoints: true,
-      labels: [{ text: "Busur minor", at: 45, offset: [0.7, 1.45, 0] }],
+      labels: [{ text: "Busur minor", at: 135, offset: [0.7, 1.45, 0] }],
     },
     {
       smooth: false,
@@ -130,27 +122,23 @@ Busur lingkaran adalah <Highlight>bagian dari keliling lingkaran</Highlight> yan
   cameraPosition={[0, 0, 10]}
 />
 
-| Jenis busur | Bagian keliling | Contoh ukuran sudut |
-|---|---|---|
-| **Busur minor** | Kurang dari setengah | <InlineMath math="90^\circ/360^\circ=1/4" /> |
-| **Busur mayor** | Lebih dari setengah | <InlineMath math="270^\circ/360^\circ=3/4" /> |
-| **Setengah lingkaran** | Tepat setengah | <InlineMath math="180^\circ/360^\circ=1/2" /> |
+Pada diagram busur minor dan mayor, busur minor menempuh <InlineMath math="90^\circ" /> dan busur mayor menempuh sisanya, <InlineMath math="270^\circ" />. Jumlah ukuran kedua busur selalu <InlineMath math="360^\circ" />.
 
-## Sudut Pusat dan Sudut Keliling
+| Jenis busur | Ukuran busur | Bagian keliling |
+| --- | --- | --- |
+| Busur minor | Kurang dari <InlineMath math="180^\circ" /> | Kurang dari setengah |
+| Setengah lingkaran | Tepat <InlineMath math="180^\circ" /> | Tepat setengah |
+| Busur mayor | Lebih dari <InlineMath math="180^\circ" /> | Lebih dari setengah |
 
-Sudut pusat berpangkal di titik pusat lingkaran, sedangkan sudut keliling berpangkal pada lingkaran. Jika keduanya menghadap **busur yang sama**, besar sudut pusat adalah dua kali besar sudut keliling.
+Busur minor ditulis dengan dua huruf, misalnya <InlineMath math="\overset{\frown}{AB}" />. Busur mayor ditulis dengan tiga huruf, misalnya <InlineMath math="\overset{\frown}{ACB}" />, karena titik <InlineMath math="C" /> di antara <InlineMath math="A" /> dan <InlineMath math="B" /> menunjukkan busur yang mana yang dimaksud. Tanpa huruf ketiga, <InlineMath math="\overset{\frown}{AB}" /> selalu dibaca sebagai busur minor.
 
-### Sudut Pusat
+## Ukuran Busur Sama dengan Sudut Pusat
 
-Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-kaki sudutnya adalah jari-jari lingkaran.
+Setiap busur punya dua ukuran yang berbeda. Ukuran busur dinyatakan dalam derajat dan **sama dengan sudut pusat** yang menghadapnya. Panjang busur dinyatakan dalam satuan panjang dan bergantung pada jari-jari.
 
 <LineEquation
-  title={
-    <>
-      Sudut Pusat <InlineMath math="\angle AOB" />
-    </>
-  }
-  description="Sudut yang dibentuk oleh dua jari-jari dengan titik sudut di pusat lingkaran."
+  title={<>Sudut Pusat <InlineMath math="\angle AOB" /></>}
+  description={<>Sudut pusat <InlineMath math="\alpha = 45^\circ" /> menghadap busur <InlineMath math="\overset{\frown}{AB}" />, jadi ukuran busur itu juga <InlineMath math="45^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -190,7 +178,8 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -200,11 +189,12 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -214,30 +204,28 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-Sudut pusat dan busur yang dihadapi memiliki **ukuran sudut yang sama**. Namun, ukuran sudut tidak menentukan panjang tanpa informasi jari-jari. Dua lingkaran berikut memiliki sudut yang sama, tetapi panjang busurnya berbeda.
+Pada diagram sudut pusat, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, jadi ukuran <InlineMath math="\overset{\frown}{AB}" /> juga <InlineMath math="45^\circ" />. Ukuran yang sama bisa punya panjang yang berbeda, misalnya busur <InlineMath math="60^\circ" /> pada lingkaran berjari-jari <InlineMath math="3\text{ cm}" /> dan <InlineMath math="6\text{ cm}" />:
 
-| Jari-jari | Sudut pusat | Panjang busur |
-|---|---|---|
+| Jari-jari | Ukuran busur | Panjang busur |
+| --- | --- | --- |
 | <InlineMath math="3\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(3)=\pi\text{ cm}" /> |
 | <InlineMath math="6\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(6)=2\pi\text{ cm}" /> |
 
-### Sudut Keliling
+Jari-jari dua kali lipat membuat panjang busur dua kali lipat, sedangkan ukuran busurnya tetap <InlineMath math="60^\circ" />.
 
-Sudut keliling adalah sudut yang **titik sudutnya berada pada lingkaran** dan kaki-kaki sudutnya adalah tali busur.
+## Sudut Keliling Setengah Ukuran Busur
+
+Sudut keliling adalah sudut yang titik sudutnya berada pada lingkaran dan kakinya tali busur. Sudut keliling besarnya **setengah ukuran busur** yang dihadapinya. Aturan ini sama dengan hubungan [sudut pusat dan sudut keliling](/id/materi/matematika/lingkaran/sudut-pusat-dan-sudut-keliling), tetapi dibaca dari busurnya.
 
 <LineEquation
-  title={
-    <>
-      Sudut Keliling <InlineMath math="\angle ACB" />
-    </>
-  }
-  description="Sudut yang titik sudutnya pada lingkaran dan menghadap busur yang sama."
+  title={<>Sudut Keliling <InlineMath math="\angle ACB" /></>}
+  description={<>Titik <InlineMath math="C" /> menghadap busur <InlineMath math="\overset{\frown}{AB}" /> berukuran <InlineMath math="45^\circ" />, jadi <InlineMath math="\angle ACB = 22{,}5^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -277,7 +265,8 @@ Sudut keliling adalah sudut yang **titik sudutnya berada pada lingkaran** dan ka
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -287,7 +276,7 @@ Sudut keliling adalah sudut yang **titik sudutnya berada pada lingkaran** dan ka
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
     },
     {
       points: [
@@ -312,25 +301,11 @@ Sudut keliling adalah sudut yang **titik sudutnya berada pada lingkaran** dan ka
   cameraPosition={[0, 0, 10]}
 />
 
-## Hubungan Sudut Pusat dan Sudut Keliling
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;\text{Sudut keliling} = \frac{1}{2} \times \text{Sudut pusat} \end{aligned}" />
-  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
-</MathContainer>
-
-Jika [sudut pusat dan sudut keliling](/id/materi/matematika/lingkaran/sudut-pusat-dan-sudut-keliling) menghadap busur yang sama, maka besar sudut keliling adalah setengah dari besar sudut pusat.
-
-**Contoh penerapan**:
+Pada diagram sudut keliling, titik <InlineMath math="C" /> menghadap busur <InlineMath math="\overset{\frown}{AB}" /> yang ukurannya <InlineMath math="45^\circ" />, jadi <InlineMath math="\angle ACB = 22{,}5^\circ" />. Diagram kedua memakai busur <InlineMath math="80^\circ" />.
 
 <LineEquation
-  title="Hubungan Sudut Pusat dan Sudut Keliling"
-  description={
-    <>
-      Jika <InlineMath math="\angle AOB = 80^\circ" />, maka{" "}
-      <InlineMath math="\angle ACB = 40^\circ" />.
-    </>
-  }
+  title={<>Sudut Keliling pada Busur <InlineMath math="80^\circ" /></>}
+  description={<>Busur <InlineMath math="\overset{\frown}{AB}" /> berukuran <InlineMath math="80^\circ" />, jadi sudut keliling <InlineMath math="\angle ACB = 40^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -389,7 +364,8 @@ Jika [sudut pusat dan sudut keliling](/id/materi/matematika/lingkaran/sudut-pusa
     },
     {
       smooth: false,
-      points: Array.from({ length: 81 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -402,8 +378,8 @@ Jika [sudut pusat dan sudut keliling](/id/materi/matematika/lingkaran/sudut-pusa
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -413,45 +389,32 @@ Jika [sudut pusat dan sudut keliling](/id/materi/matematika/lingkaran/sudut-pusa
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 100, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
+Ukuran busur <InlineMath math="\overset{\frown}{AB}" /> pada diagram kedua adalah <InlineMath math="80^\circ" />, sehingga:
+
+<BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ = 40^\circ" />
+
+Membaca dari busur memudahkan soal yang memberi ukuran busur, bukan sudut pusat. Kamu tidak perlu menggambar jari-jari dulu untuk menemukan sudut kelilingnya.
+
 ## Panjang Busur dan Luas Juring
 
-Busur dan juring mengambil **bagian yang sama** dari seluruh lingkaran. Bagian tersebut adalah perbandingan sudut pusat terhadap <InlineMath math="360^\circ" />, sehingga satu perbandingan yang sama menentukan panjang busur dan luas juring.
-
-### Panjang Busur
-
-Panjang busur mengambil **bagian keliling** yang sama dengan bagian satu putaran yang ditempuh sudut pusatnya. Untuk sudut pusat <InlineMath math="\alpha" /> derajat:
+Juring adalah daerah yang dibatasi dua jari-jari dan busur di antaranya. Busur dan juringnya mengambil **bagian yang sama dari satu putaran**, yaitu sudut pusat dibagi <InlineMath math="360^\circ" />. Bagian itu dikalikan dengan keliling untuk panjang busur, dan dengan luas lingkaran untuk luas juring.
 
 <MathContainer>
-  <BlockMath math="\text{Panjang busur} = \frac{\alpha}{360^\circ} \times 2\pi r" />
   <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
-</MathContainer>
-
-Keterangan:
-
-- <InlineMath math="l" /> = panjang busur
-- <InlineMath math="\alpha" /> = besar sudut pusat (dalam derajat)
-- <InlineMath math="r" /> = jari-jari lingkaran
-
-### Luas Juring
-
-Juring adalah daerah yang dibatasi oleh **dua jari-jari dan busur** di antaranya. Bagian luasnya sama dengan bagian satu putaran yang ditempuh sudut pusatnya.
-
-<MathContainer>
-  <BlockMath math="\text{Luas juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
   <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring yang dibatasi ketiganya.
+Pada kedua rumus, <InlineMath math="l" /> adalah panjang busur, <InlineMath math="L" /> adalah luas juring, <InlineMath math="\alpha" /> adalah sudut pusat dalam derajat, dan <InlineMath math="r" /> adalah jari-jari.
 
 <LineEquation
   title="Juring Lingkaran"
-  description="Daerah yang dibatasi oleh dua jari-jari dan busur."
+  description={<>Juring bersudut pusat <InlineMath math="60^\circ" /> pada jari-jari <InlineMath math="3" /> punya panjang busur <InlineMath math="\pi" /> dan luas <InlineMath math="1{,}5\pi" />.</>}
   data={[
     {
       smooth: false,
@@ -486,7 +449,8 @@ Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring ya
     },
     {
       smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
@@ -496,72 +460,93 @@ Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring ya
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: "Juring", at: 30, offset: [-1.35, -0.75, 0] }],
+      labels: [{ text: "Juring", at: 120, offset: [-1.35, -0.75, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
 />
 
-## Menghitung Panjang Busur dan Luas Juring
+Juring pada diagram punya jari-jari <InlineMath math="3" /> dan sudut pusat <InlineMath math="60^\circ" />, jadi bagiannya <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Panjang busurnya <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> dan luas juringnya <InlineMath math="\frac{1}{6} \times 9\pi = 1{,}5\pi" />. Tanpa sudut pun, [hubungan panjang busur dan luas juring](/id/materi/matematika/busur-dan-juring-lingkaran/hubungan-panjang-busur-dan-luas-juring) memberi hasil yang sama: <InlineMath math="L = \frac{1}{2} l r = \frac{1}{2} \times \pi \times 3 = 1{,}5\pi" />.
 
-Sebuah lingkaran memiliki jari-jari <InlineMath math="14 \text{ cm}" />. Jika sudut pusat yang menghadap suatu busur adalah <InlineMath math="90^\circ" />, tentukan:
+## Contoh Soal Busur dan Juring
 
-1. Panjang busur
-2. Luas juring
+Setiap contoh dimulai dengan **mencari bagian satu putaran** yang diambil busur. Setelah bagian itu diketahui, panjang busur dan luas juring tinggal dihitung.
 
-**Penyelesaian**:
+**Contoh 1**. Sebuah lingkaran berjari-jari <InlineMath math="14\text{ cm}" />. Sudut pusat suatu busur <InlineMath math="90^\circ" />. Tentukan panjang busur dan luas juringnya.
 
-Diketahui: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
+Bagian satu putarannya <InlineMath math="\frac{90}{360} = \frac{1}{4}" />:
 
-1. Panjang busur:
+<MathContainer>
+  <BlockMath math="l = \frac{1}{4} \times 2\pi \times 14 = 7\pi \approx 21{,}99\text{ cm}" />
+  <BlockMath math="L = \frac{1}{4} \times \pi \times 14^2 = 49\pi \approx 153{,}94\text{ cm}^2" />
+</MathContainer>
 
-   <MathContainer>
-     <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
-     <BlockMath math="l = \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
-     <BlockMath math="l = \frac{1}{4} \times 28\pi" />
-     <BlockMath math="l = 7\pi \text{ cm} \approx 21{,}99 \text{ cm}" />
-   </MathContainer>
+Periksa dengan hubungan <InlineMath math="L = \frac{1}{2} l r" />. Hasilnya <InlineMath math="\frac{1}{2} \times 7\pi \times 14 = 49\pi" />, sama dengan luas juring di atas.
 
-2. Luas juring:
+**Contoh 2**. Busur sepanjang <InlineMath math="7\pi\text{ cm}" /> berada pada lingkaran berjari-jari <InlineMath math="21\text{ cm}" />. Tentukan sudut pusatnya.
 
-   <MathContainer>
-     <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
-     <BlockMath math="L = \frac{90^\circ}{360^\circ} \times \pi \times 14^2" />
-     <BlockMath math="L = \frac{1}{4} \times 196\pi" />
-     <BlockMath math="L = 49\pi \text{ cm}^2 \approx 153{,}94 \text{ cm}^2" />
-   </MathContainer>
+Bagian satu putaran adalah panjang busur dibagi keliling:
 
-## Latihan Soal
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{7\pi}{2\pi \times 21} = \frac{7\pi}{42\pi} = \frac{1}{6}" />
+  <BlockMath math="\alpha = \frac{1}{6} \times 360^\circ = 60^\circ" />
+</MathContainer>
 
-Soal-soal ini menggabungkan sudut pusat, sudut keliling, dan ukuran busur. Tentukan **hubungan yang dipakai** sebelum memasukkan angkanya.
+Periksa dengan arah sebaliknya. Busur <InlineMath math="60^\circ" /> pada jari-jari <InlineMath math="21" /> panjangnya <InlineMath math="\frac{60}{360} \times 42\pi = 7\pi" />.
 
-1. Sebuah lingkaran memiliki diameter <InlineMath math="20 \text{ cm}" />. Jika sudut keliling yang menghadap suatu busur adalah <InlineMath math="30^\circ" />, tentukan besar sudut pusat yang menghadap busur yang sama!
+## Kesalahan yang Sering Terjadi
 
-2. Pada lingkaran dengan pusat <InlineMath math="O" /> dan jari-jari <InlineMath math="21 \text{ cm}" />, terdapat busur <InlineMath math="AB" /> dengan sudut pusat <InlineMath math="120^\circ" />. Hitung panjang busur <InlineMath math="AB" /> dan luas juring <InlineMath math="AOB" />.
+Sebelum menghitung, bedakan **ukuran busur dan panjang busur**.
 
-3. Dua buah sudut keliling menghadap busur yang sama. Jika salah satu sudut keliling besarnya <InlineMath math="45^\circ" />, tentukan besar sudut keliling yang lain!
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menulis panjang busur dalam derajat | Derajat adalah ukuran busur, panjang busur memakai satuan panjang | Periksa satuan jawaban, misalnya cm |
+| Memakai diameter sebagai <InlineMath math="r" /> | Rumus keliling <InlineMath math="2\pi r" /> sudah memuat angka <InlineMath math="2" /> | Bagi diameter dengan <InlineMath math="2" /> sebelum masuk rumus |
+| Memakai sudut busur minor untuk busur mayor | Busur mayor menempuh <InlineMath math="360^\circ" /> dikurangi busur minor | Panjang busur mayor harus lebih dari setengah keliling |
+| Menyamakan juring dengan tembereng | Juring dibatasi dua jari-jari, [tembereng](/id/materi/matematika/busur-dan-juring-lingkaran/tembereng) dibatasi tali busur | Lihat apakah batas daerahnya jari-jari atau tali busur |
+
+Kesalahan memakai diameter membuat panjang busur dua kali terlalu besar, tetapi hasilnya tidak selalu tampak janggal. Karena itu, tulis <InlineMath math="r = \frac{d}{2}" /> sebagai langkah pertama setiap kali soal memberi diameter.
+
+## Latihan Soal Busur Lingkaran
+
+Untuk setiap soal, tentukan dulu **bagian satu putaran** yang diambil busur atau juring. Soal 4 memerlukan dua langkah.
+
+1. Lingkaran berdiameter <InlineMath math="20\text{ cm}" />. Sudut keliling yang menghadap busur <InlineMath math="\overset{\frown}{AB}" /> besarnya <InlineMath math="30^\circ" />. Tentukan ukuran busur <InlineMath math="\overset{\frown}{AB}" /> dan panjangnya.
+
+2. Pada lingkaran berjari-jari <InlineMath math="21\text{ cm}" />, busur <InlineMath math="\overset{\frown}{PQ}" /> punya sudut pusat <InlineMath math="120^\circ" />. Hitung panjang busur <InlineMath math="\overset{\frown}{PQ}" /> dan luas juring <InlineMath math="POQ" />.
+
+3. Pada lingkaran berjari-jari <InlineMath math="10\text{ cm}" />, busur minor <InlineMath math="\overset{\frown}{AB}" /> punya sudut pusat <InlineMath math="72^\circ" />. Tentukan panjang busur mayor <InlineMath math="\overset{\frown}{ACB}" />.
+
+4. Sebuah juring pada lingkaran berjari-jari <InlineMath math="12\text{ cm}" /> luasnya <InlineMath math="24\pi\text{ cm}^2" />. Tentukan panjang busur juring itu.
 
 ### Pembahasan
 
-**Pembahasan 1**
+**Soal 1**. Ukuran busur dua kali sudut keliling yang menghadapnya, jadi ukuran <InlineMath math="\overset{\frown}{AB}" /> adalah <InlineMath math="60^\circ" />. Jari-jarinya **setengah diameter**, yaitu <InlineMath math="10\text{ cm}" />:
 
-Diameter tidak diperlukan untuk menjawab soal ini. Informasi yang menentukan adalah kedua sudut menghadap **busur yang sama**. Sudut pusat besarnya dua kali sudut keliling:
+<BlockMath math="l = \frac{60}{360} \times 2\pi \times 10 = \frac{10\pi}{3} \approx 10{,}47\text{ cm}" />
 
-<BlockMath math="\begin{aligned} \text{sudut pusat} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
+Periksa besarnya. Keliling lingkaran <InlineMath math="20\pi \approx 62{,}83\text{ cm}" />, dan busur <InlineMath math="60^\circ" /> adalah seperenamnya.
 
-Jadi, besar sudut pusat adalah <InlineMath math="60^\circ" />.
-
-**Pembahasan 2**
-
-Sudut <InlineMath math="120^\circ" /> mencakup sepertiga putaran penuh karena <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Terapkan pecahan itu pada keliling, lalu pada luas lingkaran.
+**Soal 2**. Sudut <InlineMath math="120^\circ" /> mengambil **sepertiga putaran**, karena <InlineMath math="\frac{120}{360} = \frac{1}{3}" />:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43{,}98\text{ cm} \end{aligned}" />
-  <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461{,}81\text{ cm}^2 \end{aligned}" />
+  <BlockMath math="l = \frac{1}{3} \times 2\pi \times 21 = 14\pi \approx 43{,}98\text{ cm}" />
+  <BlockMath math="L = \frac{1}{3} \times \pi \times 21^2 = 147\pi \approx 461{,}81\text{ cm}^2" />
 </MathContainer>
 
-Jadi, panjang busurnya <InlineMath math="14\pi\text{ cm}" /> dan luas juringnya <InlineMath math="147\pi\text{ cm}^2" />.
+Periksa dengan <InlineMath math="L = \frac{1}{2} l r = \frac{1}{2} \times 14\pi \times 21 = 147\pi" />.
 
-**Pembahasan 3**
+**Soal 3**. Busur mayor menempuh **sisa satu putaran**, yaitu <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
 
-Sudut keliling yang menghadap busur yang sama memiliki besar yang sama. Karena sudut pertama <InlineMath math="45^\circ" />, sudut kedua juga <InlineMath math="45^\circ" />.
+<BlockMath math="l = \frac{288}{360} \times 2\pi \times 10 = 16\pi \approx 50{,}27\text{ cm}" />
+
+Periksa dengan busur minor. Panjang busur minor <InlineMath math="\frac{72}{360} \times 20\pi = 4\pi" />, dan <InlineMath math="4\pi + 16\pi = 20\pi" /> adalah keliling lingkaran.
+
+**Soal 4**. Langkah pertama mencari bagian satu putaran dari luas, lalu bagian yang sama dipakai untuk **panjang busur**:
+
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{24\pi}{\pi \times 12^2} = \frac{24\pi}{144\pi} = \frac{1}{6}" />
+  <BlockMath math="l = \frac{1}{6} \times 2\pi \times 12 = 4\pi \approx 12{,}57\text{ cm}" />
+</MathContainer>
+
+Sudut pusatnya <InlineMath math="60^\circ" />. Periksa dengan <InlineMath math="L = \frac{1}{2} l r = \frac{1}{2} \times 4\pi \times 12 = 24\pi" />.
