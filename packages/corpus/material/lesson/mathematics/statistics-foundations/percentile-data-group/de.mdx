@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schätze ein Perzentil gruppierter Daten aus einer Tabelle mit kumulierten Häufigkeiten und erkläre seine Position in der Verteilung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -30,6 +30,16 @@ Perzentile beschreiben <Highlight>die relative Position eines Werts innerhalb ei
 Wie bei Quartilen verwenden wir bei gruppierten Daten eine **Interpolation**, um den Perzentilwert <InlineMath math="P_i" /> innerhalb seines Klassenintervalls zu schätzen.
 
 Das Verfahren besteht aus zwei Schritten.
+
+Addier die Häufigkeiten Klasse für Klasse, dann erhältst du die Summenhäufigkeiten <InlineMath math="4, 14, 30, 40" />. Der letzte Balken ist immer die Gesamtzahl <InlineMath math="40" />, und die Klasse, in der ein Balken eine Zielposition zuerst überschreitet, ist die Klasse zum Interpolieren.
+
+<BarChart
+  title={<>Summenhäufigkeit jeder Klasse</>}
+  description={<>Balken für jede Klasse mit der Anzahl der Werte bis zu ihrer oberen Klassengrenze, bis 40.</>}
+  yAxisLabel="Summenhäufigkeit"
+  data={[["61-70", 4], ["71-80", 4 + 10], ["81-90", 4 + 10 + 16], ["91-100", 4 + 10 + 16 + 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Summenhäufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Position der Perzentilklasse bestimmen
 
@@ -103,6 +113,41 @@ Die kumulierte Häufigkeit erreicht <InlineMath math="F_k = 30" /> bis zur Klass
 </MathContainer>
 
 Das geschätzte <InlineMath math="85" />. Perzentil beträgt <InlineMath math="94{,}5" />. Im interpolierten Modell liegen etwa <InlineMath math="85\%" /> der Werte auf oder unter <InlineMath math="94{,}5" /> und etwa <InlineMath math="15\%" /> darüber.
+
+Die Mathetestergebnisse als Histogramm: Die Klasse <InlineMath math="81\text{-}90" /> enthält die meisten Lernenden, <InlineMath math="16" /> von <InlineMath math="40" />.
+
+<HistogramChart
+  title={<>Mathetestergebnisse nach Klasse</>}
+  description={<>Die Anzahl der Lernenden in jeder Klasse der Testergebnisse.</>}
+  yAxisLabel="Lernende"
+  data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
+  chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Ein Perzentil ist eine Höhe auf der Summenhäufigkeitslinie. <InlineMath math="20\,\%" /> von <InlineMath math="40" /> Lernenden ist die Höhe <InlineMath math="8" />, die die Linie über <InlineMath math="P_{20} = 74{,}5" /> erreicht. <InlineMath math="85\,\%" /> ist die Höhe <InlineMath math="34" />, erreicht über <InlineMath math="P_{85} = 94{,}5" />.
+
+<MathVisual
+  title={<>Perzentile auf der Summenhäufigkeitslinie</>}
+  description={<>Die Summenhäufigkeitslinie der Testergebnisse, abgelesen bei 8 für <InlineMath math="P_{20} = 74{,}5" /> und bei 34 für <InlineMath math="P_{85} = 94{,}5" />.</>}
+  labels={{
+    p20: <InlineMath math="P_{20}" />,
+    p85: <InlineMath math="P_{85}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 101 }, y: { min: -2, max: 41 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 60.5, y: 0 }, { x: 70.5, y: 4 }, { x: 80.5, y: 14 }, { x: 90.5, y: 30 }, { x: 100.5, y: 40 }], appearance: "secondary" },
+      { id: "p20", kind: "polyline", vertices: [{ x: 60.5, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }], appearance: "primary" },
+      { id: "p85", kind: "polyline", vertices: [{ x: 60.5, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "p20", objectId: "p20", at: { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }, placement: "below" },
+      { key: "p85", objectId: "p85", at: { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Übung
 
