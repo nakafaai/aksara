@@ -1,86 +1,215 @@
 export const metadata = {
-  title: "Sich gegenseitig ausschließende Ereignisse A und B",
-  description: "Addiere Wahrscheinlichkeiten gegenseitig ausschließender Ereignisse in Münz-, Würfel- und Kartenbeispielen.",
+  title: "Unvereinbare Ereignisse",
+  description: "Zwei Ereignisse sind unvereinbar, wenn sie nicht zusammen eintreten können, also P(A ∪ B) = P(A) + P(B). Lerne die Merkmale und übe mit zwei Würfeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Wahrscheinlichkeit",
 };
 
-## Zwei Ereignisse können nicht gemeinsam eintreten
+## Unvereinbare Ereignisse und ihre Additionsregel
 
-Angenommen, ein Versuch kann eines von zwei Ereignissen hervorbringen, aber nicht beide. In der Wahrscheinlichkeitsrechnung heißen solche Ereignisse **gegenseitig ausschließend** oder _disjunkt_.
-
-Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **gegenseitig ausschließend**, wenn sie **nicht gemeinsam** in einem Versuch auftreten können. Tritt <InlineMath math="A" /> ein, tritt <InlineMath math="B" /> nicht ein, und umgekehrt.
-
-## Merkmale sich gegenseitig ausschließender Ereignisse
-
-Ihr wesentliches Merkmal ist eine **leere Schnittmenge**: Kein Ergebnis gehört gleichzeitig zu Ereignis <InlineMath math="A" /> und Ereignis <InlineMath math="B" />. Diese Eigenschaft erlaubt es, beide Wahrscheinlichkeiten direkt zu addieren, weil kein Ergebnis doppelt gezählt wird.
-### Wahrscheinlichkeit dass zwei Ereignisse gleichzeitig auftreten
-
-Da die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> nicht gemeinsam auftreten können, ist die Wahrscheinlichkeit ihrer Schnittmenge **null**.
-
-Wir können die Wahrscheinlichkeit des Ereignisses „<InlineMath math="A" /> **und** <InlineMath math="B" />“ (beide treten ein) wie folgt schreiben:
-
-<BlockMath math="P(A \text{ und } B) = 0" />
-
-Oder mit dem Schnittmengensymbol:
-
-<BlockMath math="P(A \cap B) = 0" />
-
-Bei gegenseitig ausschließenden Ereignissen ist die Schnittmenge leer, also hat sie die Wahrscheinlichkeit null.
-
-## Berechnung der kombinierten Wahrscheinlichkeit für sich gegenseitig ausschließende Ereignisse
-
-Für die Wahrscheinlichkeit, dass Ereignis <InlineMath math="A" /> **ODER** Ereignis <InlineMath math="B" /> eintritt, nutzen wir die fehlende Überschneidung.
-
-Die beiden Einzelwahrscheinlichkeiten können **addiert** werden, ohne ein Ergebnis doppelt zu zählen.
-
-Die Formel lautet:
-
-<BlockMath math="P(A \text{ oder } B) = P(A) + P(B)" />
-
-Oder mit dem Vereinigungszeichen:
+Zwei Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unvereinbar**, wenn sie bei einem Versuch nicht zusammen eintreten können. Ihre Schnittmenge ist leer, <InlineMath math="A \cap B = \varnothing" />, also gilt <InlineMath math="P(A \cap B) = 0" />. Für unvereinbare Ereignisse ist die Wahrscheinlichkeit von <InlineMath math="A" /> oder <InlineMath math="B" /> einfach die Summe:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
-Dies ist die **spezielle Additionsregel** <Highlight>für Ereignisse, die sich gegenseitig ausschließen</Highlight>. Bei Ereignissen mit gemeinsamen Ergebnissen muss deren Schnittmenge zusätzlich berücksichtigt werden.
+<MathVisual
+  title="Ein Venn-Diagramm zweier unvereinbarer Ereignisse"
+  description={<>Ein Würfelwurf mit <InlineMath math="A = \{1, 2\}" /> und <InlineMath math="B = \{5, 6\}" />. Die Kreise berühren sich nicht, also gehört kein Ergebnis zu beiden.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -1.7, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.7, y: 0 }, radius: 1.2, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -2.2, y: 0.3 }, appearance: "primary" },
+      { id: "two", kind: "point", at: { x: -1.4, y: -0.3 }, appearance: "primary" },
+      { id: "five", kind: "point", at: { x: 1.4, y: 0.3 }, appearance: "secondary" },
+      { id: "six", kind: "point", at: { x: 2.2, y: -0.3 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -0.3, y: 1.8 }, appearance: "reference" },
+      { id: "four", kind: "point", at: { x: 0.3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.7, y: 1.2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1.7, y: 1.2 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "one", objectId: "one", at: { x: -2.2, y: 0.3 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.4, y: -0.3 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.4, y: 0.3 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 2.2, y: -0.3 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -0.3, y: 1.8 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0.3, y: -1.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="\Omega" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    five: <InlineMath math="5" />,
+    six: <InlineMath math="6" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+  }}
+/>
 
-## Beispiele für sich gegenseitig ausschließende Ereignisse
+Bei diesem Würfel ist <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Probe durch Aufzählen: <InlineMath math="A \cup B = \{1, 2, 5, 6\}" /> enthält 4 der 6 Ergebnisse.
 
-Bei einer fairen Münze, einem fairen Würfel und einem zufälligen Zug aus einem Standardkartenspiel sind alle Elementarereignisse **gleich wahrscheinlich**. Die Tabelle zählt die Ergebnisse jedes Ereignisses. Jedes Ereignispaar hat eine leere Schnittmenge.
+## Unvereinbare Ereignisse erkennen
 
-| Versuch | Zwei Ereignisse | Wahrscheinlichkeit der Vereinigung |
+Stell dir eine Frage: Gibt es ein Ergebnis, das **beide Ereignisse zugleich** erfüllt? Gibt es keines, sind die Ereignisse unvereinbar. Jedes Zufallsexperiment in dieser Tabelle hat gleichwahrscheinliche Grundergebnisse.
+
+| Zufallsexperiment | Zwei Ereignisse | Wahrscheinlichkeit der Vereinigung |
 | --- | --- | --- |
-| Faire Münze | Kopf oder Zahl | <InlineMath math="\frac12+\frac12=1" /> |
-| Fairer Würfel | Drei oder fünf | <InlineMath math="\frac16+\frac16=\frac13" /> |
+| Faire Münze | Zahl oder Kopf | <InlineMath math="\frac12+\frac12=1" /> |
+| Fairer Würfel | Eine Drei oder eine Fünf | <InlineMath math="\frac16+\frac16=\frac13" /> |
 | Fairer Würfel | Gerade oder ungerade | <InlineMath math="\frac36+\frac36=1" /> |
-| Standardkartenspiel | König oder Dame | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
-| Standardkartenspiel | Rot oder Kreuz | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
+| Spielkarten | König oder Dame | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
+| Spielkarten | Rot oder Kreuz | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
 
-Beim Würfel sind <InlineMath math="\{2,4,6\}" /> die geraden und <InlineMath math="\{1,3,5\}" /> die ungeraden Ergebnisse. Zusammen umfassen sie alle Seiten. Alle Kreuzkarten sind schwarz und gehören deshalb nicht zum Ereignis „rote Karte“. Ein Standardkartenspiel enthält <InlineMath math="52" /> Karten, darunter <InlineMath math="4" /> Könige, <InlineMath math="4" /> Damen, <InlineMath math="26" /> rote Karten und <InlineMath math="13" /> Kreuzkarten.
+Die letzte Zeile ist unvereinbar, weil alle Kreuzkarten schwarz sind. Rote Karten und Könige sind dagegen **nicht** unvereinbar, weil Herzkönig und Karokönig zu beiden gehören. Für solche Ereignisse gilt der [Additionssatz für vereinbare Ereignisse](/de/faecher/mathematik/wahrscheinlichkeit/zwei-vereinbare-ereignisse).
 
-## Übung
+## Warum die Wahrscheinlichkeiten einfach addiert werden dürfen
 
-Ein **fairer sechsseitiger Würfel** wird einmal geworfen. Es seien <InlineMath math="A=\{1,2\}" /> und <InlineMath math="B=\{5,6\}" />.
+Für zwei Ereignisse mit leerer Schnittmenge gilt immer <InlineMath math="P(A \cup B) = P(A) + P(B)" />, weil kein Ergebnis doppelt gezählt wird. Bei einem Ergebnisraum mit gleichwahrscheinlichen Ergebnissen kannst du den Grund direkt abzählen: Die Anzahl der Elemente der Vereinigung ist die Summe der Anzahlen beider Ereignisse.
 
-1.  Zeige, dass <InlineMath math="A" /> und <InlineMath math="B" /> sich gegenseitig ausschließen.
-2.  Bestimme <InlineMath math="P(A \cup B)" />.
-3.  Bestimme die Wahrscheinlichkeit, dass keines der beiden Ereignisse eintritt.
-### Ausführliche Lösung
+<BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(\Omega)} = P(A) + P(B)" />
 
-**Aufgabe 1**. Die beiden Ereignisse haben eine **leere Schnittmenge** und damit kein gemeinsames Ergebnis:
+Diese Regel ist ein Sonderfall des allgemeinen [Additionssatzes](/de/faecher/mathematik/wahrscheinlichkeit/additionssatz) <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> mit <InlineMath math="P(A \cap B) = 0" />. Sie gilt auch für mehr als zwei Ereignisse, sofern **je zwei von ihnen unvereinbar sind**: <InlineMath math="P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3)" />.
 
-<BlockMath math="A \cap B=\varnothing" />
+## Ein Ereignis und sein Gegenereignis
 
-Sie schließen sich daher **gegenseitig aus**.
+Ein Ereignis <InlineMath math="A" /> und sein Gegenereignis <InlineMath math="\overline{A}" /> (nicht <InlineMath math="A" />) sind immer unvereinbar, und **zusammen ergeben sie den ganzen Ergebnisraum**. Daher gilt <InlineMath math="P(A) + P(\overline{A}) = P(\Omega) = 1" />, also
 
-**Aufgabe 2**. Jedes Ereignis enthält <InlineMath math="2" /> der <InlineMath math="6" /> gleich wahrscheinlichen Würfelergebnisse. Mit der speziellen Additionsregel folgt
+<BlockMath math="P(\overline{A}) = 1 - P(A)" />
 
-<BlockMath math="\begin{aligned}P(A \cup B)&=P(A)+P(B) \\ &=\frac{2}{6}+\frac{2}{6} \\ &=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+Die Regel für das Gegenereignis spart Arbeit, wenn das gesuchte Ereignis viele Ergebnisse hat. Die Wahrscheinlichkeit, dass ein Würfel keine 6 zeigt, ist <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, ohne fünf Wahrscheinlichkeiten zu addieren. Probe durch Aufzählen: Die Ergebnisse außer 6 sind <InlineMath math="\{1, 2, 3, 4, 5\}" />, also 5 von 6 Ergebnissen.
 
-**Aufgabe 3**. Außerhalb von <InlineMath math="A \cup B=\{1,2,5,6\}" /> liegen die Ergebnisse <InlineMath math="\{3,4\}" />. Somit gilt:
+<MathVisual
+  title="Ein Ereignis A und sein Gegenereignis"
+  description={<>Ein Würfel mit <InlineMath math="A = \{6\}" />. Die fünf Ergebnisse außerhalb des Kreises bilden das Gegenereignis <InlineMath math="\overline{A} = \{1, 2, 3, 4, 5\}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "six-event", kind: "circle", center: { x: 2, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "six", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: -3, y: 1.2 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 1.2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -3, y: -1.2 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: -1.5, y: -1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "six-event", objectId: "six-event", at: { x: 2, y: 1.1 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: 2.4 }, placement: "below-right" },
+      { key: "six", objectId: "six", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3, y: 1.2 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 1.2 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -3, y: -1.2 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: -1.5, y: -1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "six-event": <InlineMath math="A" />,
+    "sample-space": <InlineMath math="\Omega" />,
+    six: <InlineMath math="6" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+    five: <InlineMath math="5" />,
+  }}
+/>
 
-<BlockMath math="P(\text{weder }A\text{ noch }B)=\frac{2}{6}=\frac{1}{3}" />
+## Beispiel mit der Augensumme zweier Würfel
 
-Zur Kontrolle ergeben die Wahrscheinlichkeit der Vereinigung und die Wahrscheinlichkeit ihres Komplements zusammen <InlineMath math="2/3+1/3=1" />.
+Zwei Würfel werden zusammen geworfen. Bestimme die Wahrscheinlichkeit, dass die Augensumme 7 oder 11 ist.
+
+Der Ergebnisraum hat <InlineMath math="6 \times 6 = 36" /> gleich wahrscheinliche Paare. Die Summe 7 entsteht aus <InlineMath math="6" /> Paaren, die Summe 11 aus <InlineMath math="2" /> Paaren. Ein Wurf kann nicht zugleich 7 und 11 ergeben, also sind die Ereignisse **unvereinbar**:
+
+<BlockMath math="P(7 \text{ oder } 11) = \frac{6}{36} + \frac{2}{36} = \frac{8}{36} = \frac{2}{9}" />
+
+<MathVisual
+  title="Würfelpaare mit der Augensumme 7 oder 11"
+  description={<>Jeder Punkt <InlineMath math="(a, b)" /> ist das Ergebnis des ersten und zweiten Würfels. Die Punkte auf den Geraden <InlineMath math="a + b = 7" /> und <InlineMath math="a + b = 11" /> fallen nie zusammen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven", kind: "segment", from: { x: 5, y: 6 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "seven-1", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "seven-2", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "seven-3", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "seven-4", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "seven-5", kind: "point", at: { x: 5, y: 2 }, appearance: "primary" },
+      { id: "seven-6", kind: "point", at: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven-1", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "eleven-2", kind: "point", at: { x: 6, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "eleven", objectId: "eleven", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    seven: <InlineMath math="a + b = 7" />,
+    eleven: <InlineMath math="a + b = 11" />,
+  }}
+/>
+
+Probe durch Aufzählen. Die Summe 7 entsteht aus (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1), die Summe 11 aus (5, 6), (6, 5). Kein Paar steht in beiden Listen, und insgesamt sind es 8 von 36 Paaren.
+
+## Unvereinbar ist nicht dasselbe wie unabhängig
+
+Die Begriffe unvereinbar und unabhängig werden oft verwechselt. **Unvereinbar** heißt, dass die Ereignisse nicht zusammen eintreten können. [Unabhängig](/de/faecher/mathematik/kombinatorik/unabhaengige-ereignisse) ist durch <InlineMath math="P(A \cap B) = P(A)\,P(B)" /> festgelegt. Ist <InlineMath math="P(A) > 0" />, heißt das, dass das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> nicht ändert.
+
+Ist <InlineMath math="P(A) > 0" /> und <InlineMath math="P(B) > 0" />, können unvereinbare Ereignisse **nicht** unabhängig sein. Ihre Schnittmenge hat die Wahrscheinlichkeit <InlineMath math="0" />, während <InlineMath math="P(A)\,P(B) > 0" /> ist. Weißt du beim Würfel, dass <InlineMath math="A" /> eingetreten ist, gilt für die bedingte Wahrscheinlichkeit <InlineMath math="P(B \mid A) = 0" />, während <InlineMath math="P(B) = \frac{1}{3}" /> ist. Die Ereignisse beeinflussen sich also.
+
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Wahrscheinlichkeiten sich überschneidender Ereignisse addieren | Ergebnisse in der Schnittmenge werden doppelt gezählt | **Schreibe zuerst die Schnittmenge auf**, sie muss leer sein |
+| Unvereinbar mit unabhängig verwechseln | Unvereinbar liefert <InlineMath math="P(A \cap B) = 0" />, unabhängig liefert <InlineMath math="P(A)P(B)" /> | Vergleiche <InlineMath math="P(A \cap B)" /> mit <InlineMath math="P(A)P(B)" /> |
+| Rote Karten und Könige für unvereinbar halten | Herzkönig und Karokönig gehören zu beiden | Suche ein Ergebnis, das beide Bedingungen erfüllt |
+| Drei Ereignisse addieren, die nur teilweise unvereinbar sind | Die Summenregel verlangt, dass je zwei unvereinbar sind | Prüfe alle Paare, nicht nur eines |
+| Eine Wahrscheinlichkeit der Vereinigung über 1 erhalten | Das zeigt, dass Wahrscheinlichkeiten sich überschneidender Ereignisse addiert wurden und die Schnittmenge doppelt zählt | Unvereinbare Ereignisse ergeben nie eine Summe über 1 |
+
+## Übungsaufgaben
+
+Stelle zuerst sicher, dass die Schnittmenge leer ist, und **prüfe deine Antwort durch Aufzählen der Ergebnisse**.
+
+1. Ein Würfel wird einmal geworfen mit <InlineMath math="A = \{1, 2\}" /> und <InlineMath math="B = \{5, 6\}" />. Bestimme <InlineMath math="P(A \cup B)" /> und die Wahrscheinlichkeit, dass keines der beiden Ereignisse eintritt.
+
+2. Aus 52 Spielkarten wird eine Karte gezogen. Bestimme die Wahrscheinlichkeit, einen König oder eine Dame zu ziehen.
+
+3. Zwei Würfel werden geworfen. Bestimme die Wahrscheinlichkeit, dass die Augensumme 2 oder 12 ist.
+
+4. Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind unvereinbar mit <InlineMath math="P(A) = 0{,}3" /> und <InlineMath math="P(B) = 0{,}5" />. Bestimme <InlineMath math="P(A \cup B)" />, die Wahrscheinlichkeit, dass keines eintritt, und ob sie unabhängig sind.
+
+### Lösungen
+
+**Aufgabe 1**. Die Schnittmenge ist leer, also <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{2}{3}" />. Die Ergebnisse außerhalb von <InlineMath math="A \cup B" /> sind <InlineMath math="\{3, 4\}" />, also tritt mit der Wahrscheinlichkeit <InlineMath math="\frac{2}{6} = \frac{1}{3}" /> keines der beiden Ereignisse ein. Probe mit dem Gegenereignis: <InlineMath math="1 - \frac{2}{3} = \frac{1}{3}" />.
+
+**Aufgabe 2**. Eine Karte kann nicht zugleich König und Dame sein, also
+
+<BlockMath math="P = \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13}" />
+
+Probe: 8 Karten passen, die 4 Könige und die 4 Damen.
+
+**Aufgabe 3**. Die Summe 2 entsteht nur aus (1, 1) und die Summe 12 nur aus (6, 6). Die Ereignisse sind unvereinbar:
+
+<BlockMath math="P = \frac{1}{36} + \frac{1}{36} = \frac{2}{36} = \frac{1}{18}" />
+
+Probe: 2 der 36 Paare passen.
+
+**Aufgabe 4**. Da sie unvereinbar sind, gilt <InlineMath math="P(A \cup B) = 0{,}3 + 0{,}5 = 0{,}8" />, und keines tritt mit der Wahrscheinlichkeit <InlineMath math="1 - 0{,}8 = 0{,}2" /> ein. Sie sind **nicht unabhängig**, denn <InlineMath math="P(A \cap B) = 0" />, während <InlineMath math="P(A)\,P(B) = 0{,}15" /> ist. Probe: <InlineMath math="0{,}8 + 0{,}2 = 1" />.

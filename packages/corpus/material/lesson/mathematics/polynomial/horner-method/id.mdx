@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Metode Horner",
-  description: "Bagi polinomial dengan metode Horner dan bandingkan langkah Horner dengan pembagian bersusun.",
+  description: "Bagi polinomial dengan metode Horner: kalikan, tambahkan, lalu baca hasil bagi dan sisanya. Periksa sisa dengan P(c) dan grafik polinomialnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
 ## Membagi Polinomial dari Urutan Koefisiennya
 
-Metode Horner <Highlight>membagi polinomial dengan pembagi linear</Highlight> seperti <InlineMath math="(x-c)" /> hanya dari urutan koefisiennya. Pada setiap langkah, hasil terakhir dikalikan dengan <InlineMath math="c" /> lalu ditambah dengan koefisien berikutnya. Karena itu, kita tidak perlu menulis ulang variabel dan pangkat seperti pada pembagian bersusun.
+Metode Horner <Highlight>membagi polinomial dengan pembagi linear</Highlight> seperti <InlineMath math="(x-c)" /> hanya dari urutan koefisiennya. Pada setiap langkah, hasil terakhir dikalikan dengan <InlineMath math="c" /> lalu ditambah dengan koefisien berikutnya. Karena itu, kita tidak perlu menulis ulang variabel dan pangkat seperti pada pembagian bersusun. Angka terakhir pada skema adalah **sisa pembagian**, yang sama dengan nilai <InlineMath math="P(c)" />, dan angka-angka sebelumnya adalah koefisien hasil bagi.
 
 ### Perbandingan dengan Pembagian Bersusun
 
@@ -70,6 +70,18 @@ Pada setiap kolom, **kalikan hasil sebelumnya lalu tambahkan koefisien berikutny
 
 Mulai dari koefisien pertama, yaitu dua. Setelah semua koefisien diproses, hasil terakhir adalah nilai polinomial pada akar pembagi, sehingga sama dengan sisa menurut Teorema Sisa. Hasil sebelumnya adalah koefisien hasil bagi.
 
+<Mermaid
+  title="Alur metode Horner"
+  description="Setiap kolom mengulang langkah kali lalu tambah sampai koefisien habis."
+  chart={`flowchart TD
+  A["Tulis semua koefisien, isi nol untuk suku yang hilang"] --> B["Turunkan koefisien pertama"]
+  B --> C["Kalikan hasil terakhir dengan c"]
+  C --> D["Tambahkan ke koefisien berikutnya"]
+  D --> E{"Masih ada koefisien?"}
+  E -->|"ya"| C
+  E -->|"tidak"| F["Angka terakhir adalah sisa, angka sebelumnya koefisien hasil bagi"]`}
+/>
+
 ## Penggunaan Metode Horner
 
 Bagi <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> dengan <InlineMath math="x+3" /> menggunakan kedua metode.
@@ -114,6 +126,33 @@ Angka terakhir adalah **sisa**, yaitu <InlineMath math="-3" />. Tiga angka sebel
 
 <BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
+Periksa sisanya dengan menghitung nilai polinomial langsung: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. Hasil itu sama dengan sisa, sesuai [teorema sisa](/id/materi/matematika/polinomial/teorema-sisa). Grafik <InlineMath math="y = P(x)" /> memperlihatkan hubungan yang sama: titik grafik pada <InlineMath math="x = -3" /> berada tepat di ketinggian <InlineMath math="-3" />.
+
+<LineEquation
+  title={<>Grafik <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>Nilai grafik di <InlineMath math="x = -3" /> sama dengan sisa pembagian oleh <InlineMath math="x + 3" />, yaitu <InlineMath math="-3" />.</>}
+  cameraPosition={[-1, 2.3, 24]}
+  cameraTarget={[-1, 2.3, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 421 }, (_, i) => {
+        const x = -3.2 + i / 100;
+        return { x, y: 2 * x ** 3 + 5 * x ** 2 + 6, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -3, y: 2 * (-3) ** 3 + 5 * (-3) ** 2 + 6, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(-3, -3)" />, at: 0, offset: [-1.2, -0.8, 0] }],
+    },
+  ]}
+/>
+
 ### Pembagi dengan Koefisien Utama Selain Satu
 
 Jika pembagi berbentuk <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0" />, gunakan <InlineMath math="c=b/a" /> pada skema. Namun, **hasil bagi harus dibagi lagi dengan koefisien utama pembagi**. Sisa tidak berubah.
@@ -122,11 +161,40 @@ Misalnya, skema yang sama dapat digunakan untuk pembagi <InlineMath math="2x+6=2
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
+<Mermaid
+  title="Nilai c dari bentuk pembagi"
+  description="Bentuk pembagi menentukan angka di kiri skema dan apakah hasil bagi perlu dibagi lagi."
+  chart={`flowchart TD
+  A{"Bentuk pembagi?"} -->|"x - c"| B["Pakai c"]
+  A -->|"x + c"| C["Pakai -c"]
+  A -->|"ax - b"| D["Pakai b dibagi a"]
+  D --> E["Bagi koefisien hasil bagi dengan a, sisa tetap"]`}
+/>
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai <InlineMath math="c = 3" /> untuk pembagi <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, jadi <InlineMath math="c = -3" /> | Substitusikan <InlineMath math="x = -3" /> ke <InlineMath math="x + 3" />, hasilnya harus <InlineMath math="0" /> |
+| Melewatkan suku yang tidak tertulis | <InlineMath math="2x^3 + 5x^2 + 6" /> butuh koefisien nol untuk <InlineMath math="x" /> | <InlineMath math="2x^3 + 5x^2 + 6" /> harus punya empat koefisien: <InlineMath math="2, 5, 0, 6" /> |
+| Menjumlahkan sebelum mengalikan | Setiap kolom memakai hasil sebelumnya dikali <InlineMath math="c" /> | Hitung ulang satu kolom: kalikan dulu, lalu tambahkan |
+| Lupa membagi hasil bagi untuk pembagi <InlineMath math="ax - b" /> | Skema memakai <InlineMath math="x - \frac{b}{a}" />, bukan <InlineMath math="ax - b" /> | Kalikan balik pembagi dan hasil bagi, lalu tambahkan sisa |
+
+Pemeriksaan yang sederhana adalah **menghitung <InlineMath math="P(c)" /> langsung**. Hasilnya harus sama dengan angka terakhir pada skema.
+
 ## Latihan
 
 Tentukan **hasil bagi dan sisa** dari pembagian <InlineMath math="x^4 + 4" /> oleh <InlineMath math="x - 1" /> dengan menggunakan metode Horner dan pembagian bersusun.
 
 Nyatakan hasilnya ke dalam bentuk <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />. Kedua metode harus memberi nilai yang sama, dan pemeriksaan derajat memberi tahu berapa banyak suku yang mungkin pada hasil baginya.
+
+Kerjakan juga soal berikut dengan metode Horner, lalu **periksa sisanya dengan <InlineMath math="P(c)" />**.
+
+2. Bagi <InlineMath math="x^3 - 6x^2 + 11x - 6" /> dengan <InlineMath math="x - 2" />.
+
+3. Bagi <InlineMath math="2x^3 - 3x^2 + 4x - 5" /> dengan <InlineMath math="x + 1" />.
+
+4. Bagi <InlineMath math="x^3 + 2x^2 - 5" /> dengan <InlineMath math="2x - 1" />.
 
 ### Kunci Jawaban
 
@@ -173,3 +241,25 @@ x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
 **Penulisan Algoritma Pembagian**:
 
 <BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
+
+**Soal 2**. Skema Horner dengan <InlineMath math="c = 2" />:
+
+<BlockMath math="\begin{array}{c|cccc} 2 & 1 & -6 & 11 & -6 \\ & & 2 & -8 & 6 \\ \hline & 1 & -4 & 3 & \boxed{0} \end{array}" />
+
+Baris bawahnya <InlineMath math="1, -4, 3, 0" />. Hasil baginya <InlineMath math="x^2 - 4x + 3" /> dan sisanya <InlineMath math="0" />. Periksa: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. Sisa nol berarti <InlineMath math="x - 2" /> adalah faktor, sesuai [teorema faktor](/id/materi/matematika/polinomial/teorema-faktor).
+
+**Soal 3**. Pembagi <InlineMath math="x + 1" /> memberi <InlineMath math="c = -1" />:
+
+<BlockMath math="\begin{array}{c|cccc} -1 & 2 & -3 & 4 & -5 \\ & & -2 & 5 & -9 \\ \hline & 2 & -5 & 9 & \boxed{-14} \end{array}" />
+
+Baris bawahnya <InlineMath math="2, -5, 9, -14" />. Hasil baginya <InlineMath math="2x^2 - 5x + 9" /> dan sisanya <InlineMath math="-14" />. Periksa: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Soal 4**. Pakai <InlineMath math="c = \frac12" /> dengan koefisien <InlineMath math="1, 2, 0, -5" />. 
+
+<BlockMath math="\begin{array}{c|cccc} \frac12 & 1 & 2 & 0 & -5 \\ & & \frac12 & \frac54 & \frac58 \\ \hline & 1 & \frac52 & \frac54 & \boxed{-\frac{35}{8}} \end{array}" />
+
+Baris bawahnya <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Karena pembaginya <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, bagi koefisien hasil bagi dengan <InlineMath math="2" />:
+
+<BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
+
+Periksa: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.
