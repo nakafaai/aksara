@@ -30,7 +30,7 @@ const HTML_ELEMENT = /^[a-z]/u;
 
 /** A lesson is one folder below the lesson root with one MDX file per locale. */
 const LESSON_FILE =
-  /(?:^|\/)(packages\/corpus\/material\/lesson\/.+)\/[^/]+\.mdx$/u;
+  /(?:^|\/)(?<folder>packages\/corpus\/material\/lesson\/.+)\/[^/]+\.mdx$/u;
 
 /** Tells whether one renderer component name models a concept interactively. */
 export function isInteractiveVisual(name: string): boolean {
@@ -61,7 +61,7 @@ export function countVisuals(
 
 /** Names the lesson folder of one locale file, or nothing for any other page. */
 export function lessonFolder(file: string): string | undefined {
-  return LESSON_FILE.exec(file)?.[1];
+  return LESSON_FILE.exec(file)?.groups?.folder;
 }
 
 /** A lesson carries at least this many visual cards, Mermaid diagrams included. */
