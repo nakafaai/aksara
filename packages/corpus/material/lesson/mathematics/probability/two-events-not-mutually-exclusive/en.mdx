@@ -9,7 +9,7 @@ export const metadata = {
 
 ## The Probability of A or B When Both Can Happen Together
 
-Two events are **not mutually exclusive** when both can happen on the same outcome, that is, their intersection is not empty, <InlineMath math="A \cap B \ne \varnothing" />. For such events, the probability of <InlineMath math="A" /> or <InlineMath math="B" /> is
+Two events are **not mutually exclusive** when both can happen on the same outcome, that is, their intersection is not empty, <InlineMath math="A \cap B \ne \varnothing" />. For two events <InlineMath math="A" /> and <InlineMath math="B" />, the probability of <InlineMath math="A" /> or <InlineMath math="B" /> comes from the [addition rule](/en/subjects/mathematics/probability/addition-rule):
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
@@ -70,7 +70,7 @@ You can check for an overlap by writing down **the outcomes that meet both condi
 | Roll one die | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
 | Pick one student | Likes mathematics | Likes physics | Likes both |
 
-The opposite case is [mutually exclusive events](/en/subjects/mathematics/probability/two-events-mutually-exclusive), whose intersection is empty, so <InlineMath math="P(A \cap B) = 0" />. The formula above still holds for mutually exclusive events, because the intersection term is zero.
+The opposite case is [mutually exclusive events](/en/subjects/mathematics/probability/two-events-mutually-exclusive), whose intersection is empty, so <InlineMath math="P(A \cap B) = 0" />. The formula <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> still holds for mutually exclusive events, because the intersection term is zero.
 
 ## Why the Intersection Is Subtracted Once
 
@@ -78,7 +78,7 @@ Count with the numbers of elements first. When you add <InlineMath math="n(A)" /
 
 <BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-Divide every term by <InlineMath math="n(S)" /> for a sample space whose outcomes are equally likely, and you get the probability formula. For the die, <InlineMath math="3 + 3 - 2 = 4" /> elements, the same as the list <InlineMath math="\{2, 4, 5, 6\}" />. Without the subtraction, the result is <InlineMath math="\frac{6}{6} = 1" />, as if every roll landed in <InlineMath math="A" /> or <InlineMath math="B" />, although the results 1 and 3 belong to neither.
+Divide every term by <InlineMath math="n(S)" /> for a sample space whose outcomes are equally likely, and you get the probability formula. The probability formula itself holds for any sample space; only the division by <InlineMath math="n(S)" /> needs equally likely outcomes. For the die, <InlineMath math="3 + 3 - 2 = 4" /> elements, the same as the list <InlineMath math="\{2, 4, 5, 6\}" />. Without the subtraction, the value is <InlineMath math="\frac{6}{6} = 1" />, as if every roll landed in <InlineMath math="A" /> or <InlineMath math="B" />, although the results 1 and 3 belong to neither.
 
 ## Example with a Heart or a King
 
@@ -127,7 +127,7 @@ Check by counting each region: 12 hearts other than the king, 1 king of hearts, 
 
 ## Example with Survey Data
 
-Of 40 students, 25 like mathematics, 18 like physics, and 10 like both. One student is picked at random. Find the probability that the student likes mathematics or physics, and the probability that the student likes neither.
+Of 40 students, 25 like mathematics, 18 like physics, and 10 like both. One student is picked at random. Let <InlineMath math="M" /> be the event that the student likes mathematics and <InlineMath math="F" /> the event that the student likes physics. Find the probability that the student likes mathematics or physics, and the probability that the student likes neither.
 
 <MathContainer>
   <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
@@ -140,13 +140,13 @@ The second probability uses the **complement**: a student who likes neither is e
 
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
-| Adding <InlineMath math="P(A) + P(B)" /> without subtracting the intersection | Outcomes in the intersection are counted twice | For the die, the result is <InlineMath math="1" />, although 1 and 3 belong to neither event |
+| Adding <InlineMath math="P(A) + P(B)" /> without subtracting the intersection | Outcomes in the intersection are counted twice | For the die, the value is <InlineMath math="1" />, although 1 and 3 belong to neither event |
 | Subtracting the intersection twice | The intersection is only counted once too often | Count the elements of the union by listing them |
 | Treating not mutually exclusive as independent | Not mutually exclusive is about the intersection, independence is about <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Check the two conditions separately |
 | Forgetting a card that belongs to both events | The king of hearts is both a heart and a king | Write out the intersection before you compute |
 | Getting a probability above 1 | Adding without subtracting can pass 1 | The probability of a union is never more than 1 |
 
-The quickest check is **counting each region of the Venn diagram** and adding them. The total must match the formula.
+The simplest check is **counting each region of the Venn diagram** and adding them. The total must match the formula.
 
 ## Practice Problems
 

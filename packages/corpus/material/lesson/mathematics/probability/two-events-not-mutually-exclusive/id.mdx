@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Peluang A atau B saat Keduanya Bisa Terjadi Bersamaan
 
-Dua kejadian **tidak saling lepas** jika keduanya bisa terjadi pada hasil yang sama, yaitu irisannya tidak kosong, <InlineMath math="A \cap B \ne \varnothing" />. Untuk kejadian seperti ini, peluang <InlineMath math="A" /> atau <InlineMath math="B" /> adalah
+Dua kejadian **tidak saling lepas** jika keduanya bisa terjadi pada hasil yang sama, yaitu irisannya tidak kosong, <InlineMath math="A \cap B \ne \varnothing" />. Untuk dua kejadian <InlineMath math="A" /> dan <InlineMath math="B" />, peluang <InlineMath math="A" /> atau <InlineMath math="B" /> diberikan oleh [aturan penjumlahan](/id/materi/matematika/peluang/aturan-penjumlahan):
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
@@ -70,15 +70,15 @@ Kamu bisa memeriksa irisan dengan mencatat **hasil yang memenuhi kedua syarat se
 | Lempar satu dadu | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
 | Pilih satu siswa | Suka matematika | Suka fisika | Suka keduanya |
 
-Kebalikannya adalah [kejadian saling lepas](/id/materi/matematika/peluang/dua-kejadian-a-dan-b-saling-lepas), yang irisannya kosong sehingga <InlineMath math="P(A \cap B) = 0" />. Rumus di atas tetap berlaku untuk kejadian saling lepas, karena suku irisannya bernilai nol.
+Kebalikannya adalah [kejadian saling lepas](/id/materi/matematika/peluang/dua-kejadian-a-dan-b-saling-lepas), yang irisannya kosong sehingga <InlineMath math="P(A \cap B) = 0" />. Rumus <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> tetap berlaku untuk kejadian saling lepas, karena suku irisannya bernilai nol.
 
 ## Mengapa Irisan Dikurangi Satu Kali
 
-Hitung dulu dengan banyak anggota. Jika <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" /> dijumlahkan, setiap anggota irisan masuk ke kedua hitungan, jadi terhitung **dua kali**. Kurangi irisannya sekali agar setiap anggota tercatat tepat satu kali:
+Hitung dulu banyak anggotanya. Jika <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" /> dijumlahkan, setiap anggota irisan masuk ke kedua hitungan, jadi terhitung **dua kali**. Kurangi irisannya sekali agar setiap anggota tercatat tepat satu kali:
 
 <BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-Bagi setiap suku dengan <InlineMath math="n(S)" /> untuk ruang sampel yang hasilnya sama mungkin, maka diperoleh rumus peluangnya. Untuk dadu, <InlineMath math="3 + 3 - 2 = 4" /> anggota, sama dengan daftar <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa pengurangan, hasilnya <InlineMath math="\frac{6}{6} = 1" />, seolah setiap lemparan pasti masuk <InlineMath math="A" /> atau <InlineMath math="B" />, padahal hasil 1 dan 3 tidak masuk keduanya.
+Bagi setiap suku dengan <InlineMath math="n(S)" /> untuk ruang sampel yang setiap hasilnya sama mungkin, maka diperoleh rumus peluangnya. Rumus peluang itu sendiri berlaku untuk ruang sampel apa pun, hanya pembagian dengan <InlineMath math="n(S)" /> yang memerlukan syarat sama mungkin. Untuk dadu, <InlineMath math="3 + 3 - 2 = 4" /> anggota, sama dengan daftar <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa pengurangan, nilainya <InlineMath math="\frac{6}{6} = 1" />, seolah setiap lemparan pasti masuk <InlineMath math="A" /> atau <InlineMath math="B" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" />.
 
 ## Contoh Kartu Hati atau King
 
@@ -127,7 +127,7 @@ Periksa dengan menghitung setiap daerah: 12 kartu hati selain king, 1 king hati,
 
 ## Contoh dengan Data Survei
 
-Dari 40 siswa, 25 suka matematika, 18 suka fisika, dan 10 suka keduanya. Satu siswa dipilih acak. Tentukan peluang siswa itu suka matematika atau fisika, dan peluang siswa itu tidak suka keduanya.
+Dari 40 siswa, 25 suka matematika, 18 suka fisika, dan 10 suka keduanya. Satu siswa dipilih acak. Misalkan <InlineMath math="M" /> adalah kejadian siswa suka matematika dan <InlineMath math="F" /> kejadian siswa suka fisika. Tentukan peluang siswa itu suka matematika atau fisika, dan peluang siswa itu tidak suka keduanya.
 
 <MathContainer>
   <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
@@ -140,13 +140,13 @@ Peluang kedua memakai **komplemen**: siswa yang tidak suka keduanya adalah semua
 
 | Kesalahan | Mengapa salah | Cara memeriksa |
 | --- | --- | --- |
-| Menjumlahkan <InlineMath math="P(A) + P(B)" /> tanpa mengurangi irisan | Hasil di irisan terhitung dua kali | Untuk dadu, hasilnya <InlineMath math="1" />, padahal hasil 1 dan 3 tidak masuk keduanya |
+| Menjumlahkan <InlineMath math="P(A) + P(B)" /> tanpa mengurangi irisan | Hasil di irisan terhitung dua kali | Untuk dadu, nilainya <InlineMath math="1" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" /> |
 | Mengurangi irisan dua kali | Irisan hanya berlebih satu kali | Hitung banyak anggota gabungan dengan mendaftar |
 | Menyamakan tidak saling lepas dengan saling bebas | Tidak saling lepas membahas irisan, saling bebas membahas <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Periksa kedua syarat secara terpisah |
 | Lupa kartu yang masuk dua kejadian | King hati termasuk kartu hati dan kartu king | Tulis isi irisan sebelum menghitung |
 | Mendapat peluang lebih dari 1 | Penjumlahan tanpa pengurangan bisa melewati 1 | Peluang gabungan tidak pernah lebih dari 1 |
 
-Pemeriksaan paling cepat adalah **menghitung setiap daerah diagram Venn** lalu menjumlahkannya. Hasilnya harus sama dengan rumus.
+Pemeriksaan paling mudah adalah **menghitung setiap daerah diagram Venn** lalu menjumlahkannya. Hasilnya harus sama dengan rumus.
 
 ## Latihan Soal
 
