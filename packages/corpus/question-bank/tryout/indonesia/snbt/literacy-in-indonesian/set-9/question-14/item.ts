@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "water-stunting",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menjadikan keberadaan peta raba sebagai bukti otomatis bahwa jalur dapat digunakan semua orang.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengarahkan pembaca agar hanya memakai persentase gabungan karena aksesibilitas merupakan sifat seluruh jalur.",
+          label: "21,0 persen",
         },
         {
           correct: true,
-          label:
-            "Mengubah tolok ukur dari sekadar kenaikan proporsi gabungan menjadi kemampuan beragam kelompok memakai informasi secara mandiri.",
+          label: "22,4 persen",
         },
         {
           correct: false,
-          label:
-            "Menyamakan akses informasi dengan jumlah peserta sehingga kelompok terbesar otomatis menentukan keberhasilan.",
+          label: "23,8 persen",
         },
         {
           correct: false,
-          label:
-            "Membatasi penilaian pada kemampuan membaca huruf besar tanpa mempertimbangkan penggunaan informasi tersebut.",
+          label: "27,0 persen",
+        },
+        {
+          correct: false,
+          label: "33,0 persen",
         },
       ],
     },
