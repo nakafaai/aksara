@@ -296,6 +296,15 @@ know, so it is not the full id list.
   a label such as `Quick check:`, `Kurzer Check:`, or `Cek cepat:`. A blockquote
   body receives the address rules and this rule, so callout prose is checked,
   while a real quotation with protected bytes stays valid.
+- `jsx-dropped-space` blocks text and an inline element, such as
+  `<InlineMath />`, `<strong>`, or `<a>`, that JSX joins without a space. In a
+  prop, a fragment, or an expression, JSX drops whitespace that holds a line
+  break next to an element, so `five` at the end of a line followed by
+  `<InlineMath math="\mathrm{O_2}" />` rendered as `fiveO2` in the reaction
+  lab. The rule reads the parsed JSX in both directions; keep the space on the
+  element's line or write `{" "}`. A gap after an opening bracket or before
+  closing punctuation stays valid, and Markdown children keep their line
+  breaks as spaces, so they are not checked.
 - `duplicate-adjacent-word` blocks one word repeated next to itself.
   `evidence-carrying-metaphor` blocks a recorded clue, evidence, or observation
   that `carries` a conclusion. `decorative-picture-to-calculation` blocks a
