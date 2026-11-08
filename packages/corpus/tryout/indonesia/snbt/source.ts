@@ -136,6 +136,11 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
   },
 ];
 
+/**
+ * SNBT, grouped by the year of its sitting. Learners prepare for the next
+ * sitting, so the one group is 2027. Its UTBK keeps the year as its track key,
+ * which every attempt, score, and scale of it already holds.
+ */
 const snbtTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
   examKey: "snbt",
@@ -156,11 +161,26 @@ const snbtTryoutCatalog = defineExamSource({
       title: "SNBT",
     },
   },
+  grouping: {
+    axis: "year",
+    groups: [
+      {
+        key: "2027",
+        order: 1,
+        routeSlugs: { de: "2027", en: "2027", id: "2027" },
+        translations: {
+          de: { title: "2027" },
+          en: { title: "2027" },
+          id: { title: "2027" },
+        },
+      },
+    ],
+  },
   sourceRevision: "2026-10-02",
   tracks: [
     {
+      group: "2027",
       key: "2027",
-      kind: "year",
       order: 1,
       profile: {
         names: {
@@ -173,7 +193,7 @@ const snbtTryoutCatalog = defineExamSource({
         scoring: { kind: "irt" },
         sections: snbtSections,
       },
-      routeSlugs: { de: "2027", en: "2027", id: "2027" },
+      routeSlugs: { de: "utbk", en: "utbk", id: "utbk" },
       sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (setNumber) => {
         const setKey = `set-${setNumber}`;
         return {
@@ -192,9 +212,9 @@ const snbtTryoutCatalog = defineExamSource({
         };
       }),
       translations: {
-        de: { title: "Jahr 2027" },
-        en: { title: "Year 2027" },
-        id: { title: "Tahun 2027" },
+        de: { title: "UTBK" },
+        en: { title: "UTBK" },
+        id: { title: "UTBK" },
       },
     },
   ],

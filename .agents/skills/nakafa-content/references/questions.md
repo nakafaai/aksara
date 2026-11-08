@@ -79,8 +79,16 @@ New try-out sets also follow [try-out sets](sets.md).
 - Every localized route slug spells its localized title, with German letters
   written out (`ä` as `ae`, `ö` as `oe`, `ü` as `ue`, `ß` as `ss`), so
   `Matematika Wajib` is `matematika-wajib` and `Leseverständnis und Schreiben`
-  is `leseverstaendnis-und-schreiben`. A year track is the exception: its slug
+  is `leseverstaendnis-und-schreiben`. A year group is the exception: its slug
   is the year. The catalog schema rejects a slug that does not spell its title.
+- Each exam divides its tracks on one axis, and the URL carries the group:
+  `try-out/<country>/<exam>/<group>/<track>/<set>`. UTBK-SNBT is grouped by
+  the `year` of the sitting learners prepare for (2027, with its track
+  `UTBK`). TKA has no year: it is grouped by `grade` (`SMA/MA/SMK` today;
+  `SMP/MTs` and `SD/MI` join as their own groups). The German entrance and
+  assessment examinations are grouped by `institution`, one group per
+  Studienkolleg, never by year or grade. Every track names its group, every
+  group holds a track, and a track key stays unique within its exam.
 - Renaming a published key or slug changes identities. Attempts stay bound to
   the signed snapshot they started on, and Nakafa redirects every retired
   public URL permanently to its successor once the release is live.

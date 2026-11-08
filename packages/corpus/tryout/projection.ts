@@ -11,7 +11,6 @@ import {
   type QuestionSet,
   QuestionSetSchema,
 } from "#corpus/question-bank/source";
-import { paperId } from "#corpus/tryout/exam";
 import { profileId } from "#corpus/tryout/profile";
 import type {
   ExamSource,
@@ -19,6 +18,7 @@ import type {
   SetSource,
   TrackSource,
 } from "#corpus/tryout/schema";
+import { paperId } from "#corpus/tryout/track";
 
 /** One section of a planned paper: the bank set it places, in the section's language. */
 const PlannedSectionSchema = Schema.Struct({
