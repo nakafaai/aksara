@@ -163,19 +163,19 @@ describe("lessons without a visual", () => {
     assert.isUndefined(lessonFolder(`${ROOT}/matrix/readme.md`));
   });
 
-  it("lists a lesson once when any locale falls below the visual bar", () => {
+  it("lists a lesson once when any locale has fewer than three interactive cards", () => {
     const MERMAID = '<Mermaid chart="graph TD; A-->B" />';
-    const bar = parse(LINE, LINE, MERMAID);
-    const bare = lessonsBelowBar([
-      [`${ROOT}/b/en.mdx`, parse(MERMAID)],
-      [`${ROOT}/a/en.mdx`, bar],
+    const three = parse(LINE, LINE, UNIT_CIRCLE);
+    const below = lessonsBelowBar([
+      [`${ROOT}/b/en.mdx`, parse(LINE, LINE, MERMAID)],
+      [`${ROOT}/a/en.mdx`, three],
       [`${ROOT}/a/id.mdx`, parse(LINE)],
-      [`${ROOT}/c/en.mdx`, bar],
-      [`${ROOT}/c/id.mdx`, parse(LINE, LINE, LINE)],
+      [`${ROOT}/c/en.mdx`, three],
+      [`${ROOT}/c/id.mdx`, parse(LINE, LINE, LINE, MERMAID)],
       [`${ROOT}/d/en.mdx`, parse(MERMAID, MERMAID, MERMAID)],
       ["packages/corpus/articles/politics/x/en.mdx", parse()],
     ]);
 
-    assert.deepStrictEqual(bare, [`${ROOT}/a`, `${ROOT}/b`, `${ROOT}/d`]);
+    assert.deepStrictEqual(below, [`${ROOT}/a`, `${ROOT}/b`, `${ROOT}/d`]);
   });
 });

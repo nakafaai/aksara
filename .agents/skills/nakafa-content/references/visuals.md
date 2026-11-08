@@ -231,8 +231,7 @@ graph teaches the wrong mathematics on an education platform.
   `parameters.push(1.9700042649107503)`, and the density of a computed series
   stay review items. The gate also lists every lesson folder with a locale
   file below the [visual bar](#interactive-visual-in-every-lesson), fewer
-  than three visual cards or no interactive card among them, with their
-  count. The list reports without failing until the change that lifts the
+  than three interactive visual cards, with their count. The list reports without failing until the change that lifts the
   last lesson over the bar, which turns it into a finding in the same change;
   no allowlist or baseline file holds lessons back. The local verification runs the gate on both corpus
   roots against `origin/main`, its default base, before a pull request merges.
@@ -258,13 +257,13 @@ and remember a concept they can see and change, and they skim long text. The
 research in the [evidence basis](research.md) governs how the visual is
 designed: it carries a teaching job and never decorates.
 
-- Every lesson in every subject carries at least three visual cards in every
-  locale, and at least one of them is an interactive visual that models its
-  concept: a 3D scene, a p5 animation, an interactive chart, or a
-  formula-driven `MathVisual`, inside its renderer-owned card. A Mermaid
-  diagram counts as a card but never as the interactive one, and a table, a
-  code block, or a video is no card, because none of them lets the learner
-  change, step through, rotate, or run the idea. A learner never meets a
+- Every lesson in every subject carries at least three interactive visual
+  cards in every locale, each modelling part of its concept: a 3D scene, a p5
+  animation, an interactive chart, or a formula-driven `MathVisual`, inside
+  its renderer-owned card. A Mermaid diagram, a table, a code block, or a
+  video never counts toward the three and is never added as filler, because
+  none of them lets the learner change, step through, rotate, or run the
+  idea. A learner never meets a
   lesson of only text and formulas. The [points gate](#computed-and-exact-visuals)
   lists every lesson below this bar.
 

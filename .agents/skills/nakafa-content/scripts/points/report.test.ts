@@ -81,7 +81,7 @@ describe("points report", () => {
 
         assert.strictEqual(result.code, 0);
         assert.deepStrictEqual(result.log, [
-          "2 lesson(s) below the visual bar, which needs at least 3 visual cards and 1 interactive:",
+          "2 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
           "  lessons/a",
           "  lessons/b",
           "Points check passed for 4 files and compared 0 changed files with 0123456.",

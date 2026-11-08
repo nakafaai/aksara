@@ -34,7 +34,7 @@ const printBelowBar = Effect.fn("PointsCheck.printBelowBar")(function* (
     return;
   }
   yield* Console.log(
-    `${belowBar.length} lesson(s) below the visual bar, which needs at least 3 visual cards and 1 interactive:`
+    `${belowBar.length} lesson(s) below the visual bar, which needs at least 3 interactive visual cards:`
   );
   for (const folder of belowBar) {
     yield* Console.log(`  ${folder}`);

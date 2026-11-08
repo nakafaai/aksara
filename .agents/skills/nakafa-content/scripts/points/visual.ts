@@ -64,30 +64,13 @@ export function lessonFolder(file: string): string | undefined {
   return LESSON_FILE.exec(file)?.groups?.folder;
 }
 
-/** A lesson carries at least this many visual cards, Mermaid diagrams included. */
-export const MIN_VISUAL_CARDS = 3;
-
-/**
- * Counts the visual cards of one document: every interactive visual and every
- * Mermaid diagram. A diagram is a card but never the interactive one.
- */
-export function countCards(document: DocumentParts): {
-  readonly cards: number;
-  readonly interactive: number;
-} {
-  const interactive = total(countVisuals(document));
-  let diagrams = 0;
-  for (const name of document.elements) {
-    if (name === "Mermaid") {
-      diagrams += 1;
-    }
-  }
-  return { cards: interactive + diagrams, interactive };
-}
+/** A lesson carries at least this many interactive visual cards. */
+export const MIN_INTERACTIVE_VISUALS = 3;
 
 /**
  * Lists every lesson folder with a locale file below the visual bar, in path
- * order: fewer than three visual cards, or no interactive one among them.
+ * order: fewer than three interactive visual cards. A Mermaid diagram, a
+ * table, or a video never counts toward the bar.
  */
 export function lessonsBelowBar(
   documents: Iterable<readonly [file: string, document: DocumentParts]>
@@ -95,11 +78,10 @@ export function lessonsBelowBar(
   const below = new Set<string>();
   for (const [file, document] of documents) {
     const folder = lessonFolder(file);
-    if (folder === undefined) {
-      continue;
-    }
-    const { cards, interactive } = countCards(document);
-    if (cards < MIN_VISUAL_CARDS || interactive === 0) {
+    if (
+      folder !== undefined &&
+      total(countVisuals(document)) < MIN_INTERACTIVE_VISUALS
+    ) {
       below.add(folder);
     }
   }

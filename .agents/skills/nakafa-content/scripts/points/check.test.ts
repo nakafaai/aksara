@@ -142,7 +142,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
         assert.strictEqual(result.code, 0);
         assert.deepStrictEqual(result.log.slice(0, 2), [
-          "1 lesson(s) below the visual bar, which needs at least 3 visual cards and 1 interactive:",
+          "1 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
           `  ${ROOT}`,
         ]);
         assert.include(
