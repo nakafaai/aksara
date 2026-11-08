@@ -1,32 +1,18 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$P > Q$$",
+          column: 2,
+          label: "Terdapat bilangan real $$x$$ yang memenuhi $$f(x)=2$$.",
         },
-        {
-          correct: false,
-          label: "$$Q > P$$",
-        },
-        {
-          correct: false,
-          label: "$$P = 2Q$$",
-        },
-        {
-          correct: true,
-          label: "$$P = Q$$",
-        },
-        {
-          correct: false,
-          label:
-            "Hubungan antara $$P$$ dan $$Q$$ tidak dapat ditentukan dari informasi yang diberikan.",
-        },
+        { column: 1, label: "$$a=2$$" },
+        { column: 1, label: "$$f^{-1}(x)=f(x)$$ untuk setiap $$x\\ne2$$." },
+        { column: 1, label: "$$(f\\circ f)(5)=5$$" },
       ],
     },
   },

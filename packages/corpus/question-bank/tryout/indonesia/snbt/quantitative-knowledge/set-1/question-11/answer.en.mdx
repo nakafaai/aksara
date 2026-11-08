@@ -1,78 +1,23 @@
-A circle through <InlineMath math="A" /> and <InlineMath math="B" /> has its center equally far from both points. So **the center lies on the perpendicular bisector of <InlineMath math="AB" />**, the line perpendicular to <InlineMath math="AB" /> through its midpoint.
+Two chords that cross inside a circle satisfy **the intersecting chords theorem**: the product of the two parts of one chord equals the product of the two parts of the other.
 
-<MathVisual
-  title={<>Circle through <InlineMath math="A" /> and <InlineMath math="B" /></>}
-  description={<>The center <InlineMath math="O" /> lies on the midline <InlineMath math="MT" />. The radii <InlineMath math="OA" /> and <InlineMath math="OT" /> are equal.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -2, max: 10 },
-      y: { min: -3, max: 9 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "square",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 8, y: 0 },
-          { x: 8, y: 8 },
-          { x: 0, y: 8 },
-        ],
-      },
-      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 5 },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
-      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 0, y: 0 } },
-      { id: "radius-ot", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 4, y: 8 } },
-      { id: "height-om", kind: "segment", appearance: "construction", from: { x: 4, y: 3 }, to: { x: 4, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "square", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "square", at: { x: 8, y: 8 }, placement: "above-right" },
-      { key: "d", objectId: "square", at: { x: 0, y: 8 }, placement: "above-left" },
-      { key: "o", objectId: "center", at: { x: 4, y: 3 }, placement: "right" },
-      { key: "t", objectId: "radius-ot", at: { x: 4, y: 8 }, placement: "above" },
-      { key: "m", objectId: "height-om", at: { x: 4, y: 0 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
-    o: <InlineMath math="O" />,
-    t: <InlineMath math="T" />,
-    m: <InlineMath math="M" />,
-  }}
-/>
+<BlockMath math="AE\cdot EB=CE\cdot ED" />
 
-# Setting up the radius equation
+# Why the products are equal
 
-Let <InlineMath math="M" /> be the midpoint of <InlineMath math="AB" />, <InlineMath math="T" /> the midpoint of <InlineMath math="CD" />, and let the center <InlineMath math="O" /> be at distance <InlineMath math="h" /> from <InlineMath math="AB" />. The circle touches <InlineMath math="CD" />, so **the distance from the center to <InlineMath math="CD" /> equals the radius**.
+Triangles <InlineMath math="AEC" /> and <InlineMath math="DEB" /> are similar. Angles <InlineMath math="AEC" /> and <InlineMath math="DEB" /> are vertical angles, and angles <InlineMath math="CAB" /> and <InlineMath math="CDB" /> stand on the same arc <InlineMath math="CB" />. Similarity gives <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, which **is equivalent to <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
 
-<BlockMath math="r=OT=8-h" />
+# Computing the length of CD
 
-The radius also equals <InlineMath math="OA" />. Triangle <InlineMath math="OMA" /> has a right angle at <InlineMath math="M" />, with <InlineMath math="AM=4" /> and <InlineMath math="OM=h" />.
-
-<BlockMath math="r^2=OA^2=4^2+h^2" />
-
-# Solving the equation
-
-**Set the two expressions** for <InlineMath math="r^2" /> **equal**.
+Write <InlineMath math="CE=3k" /> and <InlineMath math="ED=2k" /> according to the ratio <InlineMath math="3:2" />.
 
 <BlockMath math="\begin{aligned}
-(8-h)^2&=16+h^2\\
-64-16h+h^2&=16+h^2\\
-48&=16h\\
-h&=3
+8\cdot3&=3k\cdot2k\\
+24&=6k^2\\
+k&=2
 \end{aligned}" />
 
-So <InlineMath math="r=8-3=5" />. Check: <InlineMath math="OA=\sqrt{4^2+3^2}=5" />, which matches <InlineMath math="OT=5" />.
+So <InlineMath math="CE=6" />, <InlineMath math="ED=4" />, and <InlineMath math="CD=6+4=10\text{ cm}" />. **Check the products**: <InlineMath math="6\cdot4=24=8\cdot3" />.
 
-The value 4 is the radius of the circle with diameter <InlineMath math="AB" />, which does not reach <InlineMath math="CD" />. The value <InlineMath math="4\sqrt2" /> is the radius of the square's circumcircle, which cuts <InlineMath math="CD" /> at two points. The value 3 is the distance <InlineMath math="h" />, not the radius. The value 8 comes from replacing <InlineMath math="AM" /> with the whole side, as in <InlineMath math="r^2=8^2+(8-r)^2" />.
+The values 6 and 4 are only the parts <InlineMath math="CE" /> and <InlineMath math="ED" />. The value 5 stops at <InlineMath math="5k" /> with <InlineMath math="k=1" />, without using the theorem. The value 11 assumes the two chords are equal, although <InlineMath math="AB=11" /> and <InlineMath math="CD" /> need not match it.
 
-So the radius of the circle is **<InlineMath math="5\text{ cm}" />**.
+So the length of chord <InlineMath math="CD" /> is **<InlineMath math="10\text{ cm}" />**.

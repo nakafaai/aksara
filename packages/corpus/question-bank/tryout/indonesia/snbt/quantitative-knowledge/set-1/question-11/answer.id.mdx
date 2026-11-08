@@ -1,78 +1,23 @@
-Lingkaran yang melalui <InlineMath math="A" /> dan <InlineMath math="B" /> memiliki pusat yang sama jauh dari kedua titik itu. Jadi **pusatnya terletak pada sumbu ruas <InlineMath math="AB" />**, yaitu garis tegak lurus <InlineMath math="AB" /> yang melalui titik tengahnya.
+Dua tali busur yang berpotongan di dalam lingkaran memenuhi **teorema tali busur berpotongan**: hasil kali kedua bagian pada satu tali busur sama dengan hasil kali kedua bagian pada tali busur lain.
 
-<MathVisual
-  title={<>Lingkaran melalui <InlineMath math="A" /> dan <InlineMath math="B" /></>}
-  description={<>Pusat <InlineMath math="O" /> terletak pada garis tengah <InlineMath math="MT" />. Jari-jari <InlineMath math="OA" /> dan <InlineMath math="OT" /> sama panjang.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -2, max: 10 },
-      y: { min: -3, max: 9 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "square",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 8, y: 0 },
-          { x: 8, y: 8 },
-          { x: 0, y: 8 },
-        ],
-      },
-      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 5 },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
-      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 0, y: 0 } },
-      { id: "radius-ot", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 4, y: 8 } },
-      { id: "height-om", kind: "segment", appearance: "construction", from: { x: 4, y: 3 }, to: { x: 4, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "square", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "square", at: { x: 8, y: 8 }, placement: "above-right" },
-      { key: "d", objectId: "square", at: { x: 0, y: 8 }, placement: "above-left" },
-      { key: "o", objectId: "center", at: { x: 4, y: 3 }, placement: "right" },
-      { key: "t", objectId: "radius-ot", at: { x: 4, y: 8 }, placement: "above" },
-      { key: "m", objectId: "height-om", at: { x: 4, y: 0 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
-    o: <InlineMath math="O" />,
-    t: <InlineMath math="T" />,
-    m: <InlineMath math="M" />,
-  }}
-/>
+<BlockMath math="AE\cdot EB=CE\cdot ED" />
 
-# Menyusun persamaan jari-jari
+# Mengapa hasil kalinya sama
 
-Misalkan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />, <InlineMath math="T" /> titik tengah <InlineMath math="CD" />, dan pusat <InlineMath math="O" /> berjarak <InlineMath math="h" /> dari <InlineMath math="AB" />. Lingkaran menyinggung <InlineMath math="CD" />, sehingga **jarak pusat ke <InlineMath math="CD" /> sama dengan jari-jari**.
+Segitiga <InlineMath math="AEC" /> dan <InlineMath math="DEB" /> sebangun. Sudut <InlineMath math="AEC" /> dan <InlineMath math="DEB" /> bertolak belakang, sedangkan sudut <InlineMath math="CAB" /> dan <InlineMath math="CDB" /> menghadap busur <InlineMath math="CB" /> yang sama. Dari kesebangunan, <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, yang **setara dengan <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
 
-<BlockMath math="r=OT=8-h" />
+# Menghitung panjang CD
 
-Jari-jari juga sama dengan <InlineMath math="OA" />. Segitiga <InlineMath math="OMA" /> siku-siku di <InlineMath math="M" /> dengan <InlineMath math="AM=4" /> dan <InlineMath math="OM=h" />.
-
-<BlockMath math="r^2=OA^2=4^2+h^2" />
-
-# Menyelesaikan persamaan
-
-**Samakan kedua bentuk** <InlineMath math="r^2" />.
+Tulis <InlineMath math="CE=3k" /> dan <InlineMath math="ED=2k" /> sesuai perbandingan <InlineMath math="3:2" />.
 
 <BlockMath math="\begin{aligned}
-(8-h)^2&=16+h^2\\
-64-16h+h^2&=16+h^2\\
-48&=16h\\
-h&=3
+8\cdot3&=3k\cdot2k\\
+24&=6k^2\\
+k&=2
 \end{aligned}" />
 
-Jadi <InlineMath math="r=8-3=5" />. Cek: <InlineMath math="OA=\sqrt{4^2+3^2}=5" />, sama dengan <InlineMath math="OT=5" />.
+Jadi <InlineMath math="CE=6" />, <InlineMath math="ED=4" />, dan <InlineMath math="CD=6+4=10\text{ cm}" />. **Cek hasil kalinya**: <InlineMath math="6\cdot4=24=8\cdot3" />.
 
-Nilai 4 adalah jari-jari lingkaran berdiameter <InlineMath math="AB" />, yang tidak menyentuh <InlineMath math="CD" />. Nilai <InlineMath math="4\sqrt2" /> adalah jari-jari lingkaran luar persegi, yang memotong <InlineMath math="CD" /> di dua titik. Nilai 3 adalah jarak <InlineMath math="h" />, bukan jari-jari. Nilai 8 muncul jika <InlineMath math="AM" /> diganti seluruh sisi, yaitu dari <InlineMath math="r^2=8^2+(8-r)^2" />.
+Nilai 6 dan 4 adalah bagian <InlineMath math="CE" /> dan <InlineMath math="ED" /> saja. Nilai 5 berhenti di <InlineMath math="5k" /> dengan <InlineMath math="k=1" />, tanpa memakai teorema. Nilai 11 menganggap kedua tali busur sama panjang, padahal <InlineMath math="AB=11" /> dan <InlineMath math="CD" /> tidak harus sama dengannya.
 
-Jadi, panjang jari-jari lingkaran adalah **<InlineMath math="5\text{ cm}" />**.
+Jadi, panjang tali busur <InlineMath math="CD" /> adalah **<InlineMath math="10\text{ cm}" />**.

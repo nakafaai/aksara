@@ -1,33 +1,22 @@
-Karena <InlineMath math="63=7\times9" /> dan 7 tidak memiliki faktor persekutuan dengan 9 selain 1, kedua syarat sisa menentukan **tepat satu sisa** <InlineMath math="n" /> terhadap 63. Setelah sisa itu diketahui, sisa <InlineMath math="2n+1" /> tinggal dihitung.
+Karena <InlineMath math="55=5\times11" /> dan 5 tidak memiliki faktor persekutuan dengan 11 selain 1, sisa <InlineMath math="n^2+n" /> terhadap 55 **ditentukan oleh sisanya terhadap 5 dan terhadap 11**. Hitung kedua sisa itu, lalu gabungkan.
 
-# Menentukan sisa bilangan
+# Sisa terhadap setiap pembagi
 
-Syarat pembagian oleh 9 berarti <InlineMath math="n=9k+5" /> untuk suatu bilangan bulat <InlineMath math="k\ge0" />. Nilai <InlineMath math="k=0" /> sampai <InlineMath math="k=6" /> sudah mencakup semua sisa yang mungkin terhadap 63, jadi periksa sisa masing-masing terhadap 7.
-
-| <InlineMath math="k" /> | <InlineMath math="9k+5" /> | Sisa jika dibagi 7 |
-| ---: | ---: | ---: |
-| 0 | 5 | 5 |
-| 1 | 14 | 0 |
-| 2 | 23 | 2 |
-| 3 | 32 | 4 |
-| 4 | 41 | 6 |
-| 5 | 50 | 1 |
-| 6 | 59 | 3 |
-
-**Hanya 59** yang bersisa 3 jika dibagi 7. Jadi <InlineMath math="n=63m+59" /> untuk suatu bilangan bulat <InlineMath math="m\ge0" />.
-
-# Menghitung sisa yang ditanyakan
-
-Substitusikan bentuk umum <InlineMath math="n" /> ke <InlineMath math="2n+1" />, lalu pisahkan kelipatan 63.
+Sisa sebuah hasil operasi cukup dihitung dari sisa bilangannya.
 
 <BlockMath math="\begin{aligned}
-2n+1&=2(63m+59)+1\\
-&=126m+119\\
-&=63(2m+1)+56
+n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
+n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
 \end{aligned}" />
 
-Karena <InlineMath math="0\le56<63" />, sisanya 56. Cek dengan <InlineMath math="n=59" />: <InlineMath math="2(59)+1=119=63+56" />.
+Jadi kita mencari bilangan <InlineMath math="r" /> dengan <InlineMath math="0\le r<55" /> yang **bersisa 9 jika dibagi 11 dan bersisa 1 jika dibagi 5**.
 
-Nilai 59 adalah sisa <InlineMath math="n" /> sendiri, belum sisa <InlineMath math="2n+1" />. Nilai 119 belum direduksi, padahal sisa pembagian oleh 63 harus kurang dari 63. Nilai 25 muncul jika kedua sisa tertukar, yaitu dari <InlineMath math="n=12" /> yang bersisa 5 jika dibagi 7 dan bersisa 3 jika dibagi 9. Nilai 11 hanya memakai syarat pembagian oleh 9, yaitu <InlineMath math="2(5)+1" />.
+# Menggabungkan kedua sisa
 
-Jadi, sisa pembagian <InlineMath math="2n+1" /> oleh 63 adalah **56**.
+Calon <InlineMath math="r" /> adalah 9, 20, 31, 42, dan 53. Sisanya jika dibagi 5 berturut-turut 4, 0, 1, 2, dan 3. **Hanya 31** yang bersisa 1, jadi <InlineMath math="r=31" />.
+
+Cek dengan bilangan nyata. Bilangan <InlineMath math="n=37" /> memenuhi kedua syarat, karena <InlineMath math="37=7(5)+2" /> dan <InlineMath math="37=3(11)+4" />. Hasilnya <InlineMath math="37^2+37=1406=25(55)+31" />.
+
+Nilai 37 adalah sisa <InlineMath math="n" /> sendiri. Nilai 49 adalah sisa <InlineMath math="n^2" /> tanpa suku <InlineMath math="n" />. Nilai 6 dan 20 hanya memakai salah satu syarat, yaitu <InlineMath math="2^2+2" /> dan <InlineMath math="4^2+4" />, tanpa digabungkan.
+
+Jadi, sisa pembagian <InlineMath math="n^2+n" /> oleh 55 adalah **31**.

@@ -1,20 +1,24 @@
-Wir bilden vierstellige Zahlen aus <InlineMath math="1,2,3,4,5,6" /> **ohne Ziffernwiederholung**. Ob eine Zahl ungerade ist, hängt nur von der Einerziffer ab. Deshalb wählen wir diese zuerst.
+Eine Parabel mit positivem Koeffizienten vor <InlineMath math="x^2" /> ist nach oben geöffnet. Ihr Graph liegt genau dann für alle <InlineMath math="x" /> oberhalb der <InlineMath math="x" />-Achse, wenn er die <InlineMath math="x" />-Achse **weder schneidet noch berührt**, also wenn die Diskriminante negativ ist.
 
-# Möglichkeiten für jede Stelle
+# Bedingung an die Diskriminante
 
-An der Einerstelle muss eine **ungerade Ziffer** stehen, also <InlineMath math="1,3,5" />. Eine bereits verwendete Ziffer darf nicht erneut gewählt werden. Da keine verfügbare Ziffer null ist, gibt es für die Tausenderstelle keine zusätzliche Einschränkung.
+Mit <InlineMath math="a=1" />, <InlineMath math="b=-2k" /> und <InlineMath math="c=k+6" /> gilt:
 
-| Reihenfolge der Auswahl | Stelle | Möglichkeiten | Begründung |
-| --- | --- | --- | --- |
-| 1 | Einer | <InlineMath math="3" /> | Wähle 1, 3 oder 5 |
-| 2 | Tausender | <InlineMath math="6-1=5" /> | Eine Ziffer ist verwendet |
-| 3 | Hunderter | <InlineMath math="6-2=4" /> | Zwei Ziffern sind verwendet |
-| 4 | Zehner | <InlineMath math="6-3=3" /> | Drei Ziffern sind verwendet |
+<BlockMath math="\begin{aligned}
+D=(-2k)^2-4(1)(k+6)&<0\\
+4k^2-4k-24&<0\\
+k^2-k-6&<0\\
+(k-3)(k+2)&<0
+\end{aligned}" />
 
-# Die Möglichkeiten multiplizieren
+Ein Produkt zweier Faktoren ist negativ, wenn die Faktoren **entgegengesetzte Vorzeichen haben**, also für <InlineMath math="-2<k<3" />.
 
-Wir nutzen die **Produktregel**, weil auf jede Auswahl alle noch verfügbaren Möglichkeiten des nächsten Schritts folgen können. Dass wir die Einerziffer zuerst wählen, ändert ihre Stelle in der fertigen Zahl nicht.
+# Ganze Zahlen addieren
 
-<BlockMath math="N=3\times5\times4\times3=180" />
+Die ganzen Zahlen in diesem Intervall sind <InlineMath math="-1" />, 0, 1 und 2. Die Ränder <InlineMath math="k=-2" /> und <InlineMath math="k=3" /> gehören nicht dazu, weil dort <InlineMath math="D=0" /> gilt und die Parabel die <InlineMath math="x" />-Achse berührt.
 
-Wählen wir beispielsweise zuerst 5 für die Einerstelle, danach 1 für die Tausender-, 2 für die Hunderter- und 3 für die Zehnerstelle, entsteht <InlineMath math="1235" />. Diese Zahl ist ungerade und hat vier verschiedene Ziffern. Insgesamt erfüllen <InlineMath math="180" /> Zahlen die Bedingungen.
+<BlockMath math="-1+0+1+2=2" />
+
+Der Wert 3 nimmt beide Ränder mit. Der Wert 5 nimmt <InlineMath math="k=3" /> mit, der Wert 0 dagegen <InlineMath math="k=-2" />. Der Wert <InlineMath math="-2" /> entsteht aus dem Vorzeichenfehler <InlineMath math="k^2+k-6<0" />, der <InlineMath math="-3<k<2" /> liefert.
+
+Die Summe aller passenden ganzen Zahlen <InlineMath math="k" /> ist also **2**.

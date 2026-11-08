@@ -1,31 +1,22 @@
-Diketahui **rumus rekursif** barisan bilangan:
+Bidang potong memisahkan kerucut kecil di bagian atas dari bagian bawah yang memuat alas. Volume bagian bawah adalah **volume kerucut utuh dikurangi volume kerucut kecil**.
 
-<BlockMath math="a_{n+1} = 4a_n + 1" />
+# Kerucut kecil yang sebangun
 
-Kita diminta mencari nilai <InlineMath math="a_3" /> jika diketahui <InlineMath math="a_4 = 85" />.
+Kerucut kecil memiliki puncak yang sama dengan kerucut utuh dan tinggi <InlineMath math="8-4=4\text{ cm}" />, yaitu setengah tinggi semula. Kedua kerucut **sebangun dengan faktor skala <InlineMath math="\tfrac12" />**, jadi jari-jari alas kerucut kecil adalah 3 cm.
 
-Gunakan rumus rekursif untuk <InlineMath math="n = 3" />:
+<BlockMath math="\begin{aligned}
+V_{\text{utuh}}&=\tfrac13\pi(6)^2(8)=96\pi\\
+V_{\text{kecil}}&=\tfrac13\pi(3)^2(4)=12\pi
+\end{aligned}" />
 
-<BlockMath math="a_{3+1} = 4a_3 + 1" />
+Volume kerucut kecil sama dengan <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> volume kerucut utuh, karena volume berskala dengan pangkat tiga faktor skala.
 
-<BlockMath math="a_4 = 4a_3 + 1" />
+# Menghitung bagian bawah
 
-Substitusikan nilai <InlineMath math="a_4 = 85" />:
+Bagian bawah adalah **sisa kerucut utuh setelah kerucut kecil diambil**.
 
-<BlockMath math="85 = 4a_3 + 1" />
+<BlockMath math="V=96\pi-12\pi=84\pi\text{ cm}^3" />
 
-<BlockMath math="85 - 1 = 4a_3" />
+Nilai 48π menganggap pemotongan di tengah tinggi juga membagi volume menjadi dua. Nilai 72π memakai perbandingan luas <InlineMath math="\tfrac14" /> sebagai perbandingan volume, sehingga mengurangkan <InlineMath math="24\pi" />. Nilai 12π adalah kerucut kecil, sedangkan 96π adalah kerucut utuh.
 
-<BlockMath math="84 = 4a_3" />
-
-Bagi kedua ruas dengan <InlineMath math="4" />:
-
-<BlockMath math="a_3 = \frac{84}{4}" />
-
-<BlockMath math="a_3 = 21" />
-
-Jadi, nilai <InlineMath math="a_3" /> adalah <InlineMath math="21" />.
-
-Periksa kembali dengan memasukkan <InlineMath math="a_3=21" /> ke relasi rekursif:
-
-<BlockMath math="a_4=4(21)+1=84+1=85" />
+Jadi, volume bagian yang memuat alas adalah **<InlineMath math="84\pi\text{ cm}^3" />**.

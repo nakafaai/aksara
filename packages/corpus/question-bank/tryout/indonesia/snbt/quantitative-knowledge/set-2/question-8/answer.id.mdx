@@ -1,75 +1,26 @@
-Kita memeriksa **rumus invers, daerah hasil, dan nilai fungsi** secara berurutan.
+Untuk barisan aritmetika tiga suku, cara paling ringkas adalah menulis sukunya **simetris terhadap suku tengah**: <InlineMath math="u-b" />, <InlineMath math="u" />, dan <InlineMath math="u+b" /> dengan beda <InlineMath math="b>0" />.
 
-# Pernyataan Pertama
+# Suku tengah dari jumlah
 
-Kita akan mencari **fungsi invers** dari <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" />.
+<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
 
-Misalkan <InlineMath math="f(x) = y" />, maka:
+Barisan semula adalah <InlineMath math="6-b" />, 6, dan <InlineMath math="6+b" />. Setelah diubah, **barisan barunya** menjadi <InlineMath math="7-b" />, 6, dan <InlineMath math="13+b" />.
 
-<BlockMath math="y = \frac{2x + 1}{3x - 5}" />
+# Syarat barisan geometri
 
-<BlockMath math="y(3x - 5) = 2x + 1" />
+Pada barisan geometri, **kuadrat suku tengah sama dengan hasil kali suku pertama dan ketiga**.
 
-<BlockMath math="3xy - 5y = 2x + 1" />
+<BlockMath math="\begin{aligned}
+6^2&=(7-b)(13+b)\\
+36&=91-6b-b^2\\
+b^2+6b-55&=0\\
+(b+11)(b-5)&=0
+\end{aligned}" />
 
-<BlockMath math="3xy - 2x = 5y + 1" />
+Karena beda positif, <InlineMath math="b=5" />. Barisan semula adalah 1, 6, dan 11. Cek: barisan baru 2, 6, dan 18 memang geometri dengan rasio 3.
 
-<BlockMath math="x(3y - 2) = 5y + 1" />
+<BlockMath math="1\times6\times11=66" />
 
-<BlockMath math="x = \frac{5y + 1}{3y - 2}" />
+Nilai <InlineMath math="-510" /> berasal dari <InlineMath math="b=-11" />, yang memberi barisan 17, 6, dan <InlineMath math="-5" /> dengan beda negatif. Nilai 216 adalah hasil kali barisan geometri yang baru, <InlineMath math="2\times6\times18" />. Nilai 108 mencampur kedua barisan, yaitu <InlineMath math="1\times6\times18" />.
 
-Jadi, fungsi invers tersebut adalah:
-
-<BlockMath math="f^{-1}(x) = \frac{5x + 1}{3x - 2},\qquad x\ne\frac23" />
-
-Pernyataan 1 benar.
-
-# Pernyataan Kedua
-
-Daerah hasil (range) dari fungsi invers <InlineMath math="f^{-1}(x)" /> adalah sama dengan **daerah asal (domain)** dari fungsi awal <InlineMath math="f(x)" />.
-
-Fungsi <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" /> terdefinisi jika penyebut tidak sama dengan nol:
-
-<BlockMath math="3x - 5 \neq 0" />
-
-<BlockMath math="3x \neq 5" />
-
-<BlockMath math="x \neq \frac{5}{3}" />
-
-Artinya, domain dari <InlineMath math="f(x)" /> adalah semua bilangan real kecuali <InlineMath math="\frac{5}{3}" />.
-
-Oleh karena itu, daerah hasil dari <InlineMath math="f^{-1}(x)" /> adalah semua bilangan real kecuali <InlineMath math="\frac{5}{3}" />.
-
-Jadi, nilai <InlineMath math="y = \frac{5}{3}" /> memang bukan anggota daerah hasil <InlineMath math="f^{-1}(x)" />.
-
-Pernyataan 2 benar.
-
-# Pernyataan Ketiga
-
-Gunakan **masukan yang sama** pada kedua fungsi. Kita cek apakah <InlineMath math="x = \frac{1}{2}" /> memenuhi <InlineMath math="f(x) = f^{-1}(x)" />.
-
-Hitung nilai <InlineMath math="f\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f\left(\frac{1}{2}\right) = \frac{2(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 5}" />
-
-<BlockMath math="= \frac{1 + 1}{\frac{3}{2} - \frac{10}{2}}" />
-
-<BlockMath math="= \frac{2}{-\frac{7}{2}}" />
-
-<BlockMath math="= 2 \times \left(-\frac{2}{7}\right) = -\frac{4}{7}" />
-
-Hitung nilai <InlineMath math="f^{-1}\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f^{-1}\left(\frac{1}{2}\right) = \frac{5(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 2}" />
-
-<BlockMath math="= \frac{\frac{5}{2} + \frac{2}{2}}{\frac{3}{2} - \frac{4}{2}}" />
-
-<BlockMath math="= \frac{\frac{7}{2}}{-\frac{1}{2}}" />
-
-<BlockMath math="= \frac{7}{2} \times (-2) = -7" />
-
-Karena <InlineMath math="-\frac{4}{7} \neq -7" />, maka <InlineMath math="x = \frac{1}{2}" /> tidak memenuhi persamaan tersebut.
-
-Pernyataan 3 salah.
-
-Urutan nilai kebenaran yang tepat adalah **Benar, Benar, Salah**.
+Jadi, hasil kali ketiga bilangan semula adalah **66**.

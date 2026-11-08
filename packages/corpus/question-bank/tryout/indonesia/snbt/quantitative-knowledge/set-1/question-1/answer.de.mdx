@@ -1,33 +1,22 @@
-Wegen <InlineMath math="63=7\times9" /> und weil 7 und 9 außer 1 keinen gemeinsamen Teiler haben, legen die beiden Restbedingungen **genau einen Rest** von <InlineMath math="n" /> bei Division durch 63 fest. Kennst du diesen Rest, folgt der Rest von <InlineMath math="2n+1" /> direkt.
+Wegen <InlineMath math="55=5\times11" /> und weil 5 und 11 außer 1 keinen gemeinsamen Teiler haben, **ist der Rest von <InlineMath math="n^2+n" /> bei Division durch 55 durch die Reste bei Division durch 5 und durch 11 festgelegt**. Berechne beide Reste und füge sie zusammen.
 
-# Rest der Zahl bestimmen
+# Rest für jeden Teiler
 
-Die Bedingung für die Division durch 9 bedeutet <InlineMath math="n=9k+5" /> für eine ganze Zahl <InlineMath math="k\ge0" />. Die Werte <InlineMath math="k=0" /> bis <InlineMath math="k=6" /> decken schon alle möglichen Reste bei Division durch 63 ab. Prüfe deshalb jeden Wert bei Division durch 7.
-
-| <InlineMath math="k" /> | <InlineMath math="9k+5" /> | Rest bei Division durch 7 |
-| ---: | ---: | ---: |
-| 0 | 5 | 5 |
-| 1 | 14 | 0 |
-| 2 | 23 | 2 |
-| 3 | 32 | 4 |
-| 4 | 41 | 6 |
-| 5 | 50 | 1 |
-| 6 | 59 | 3 |
-
-**Nur 59** lässt bei Division durch 7 den Rest 3. Also gilt <InlineMath math="n=63m+59" /> für eine ganze Zahl <InlineMath math="m\ge0" />.
-
-# Gesuchten Rest berechnen
-
-Setze die allgemeine Form von <InlineMath math="n" /> in <InlineMath math="2n+1" /> ein und spalte die Vielfachen von 63 ab.
+Den Rest eines Terms kannst du aus dem Rest der Zahl selbst berechnen.
 
 <BlockMath math="\begin{aligned}
-2n+1&=2(63m+59)+1\\
-&=126m+119\\
-&=63(2m+1)+56
+n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
+n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
 \end{aligned}" />
 
-Wegen <InlineMath math="0\le56<63" /> ist der Rest 56. Zur Probe mit <InlineMath math="n=59" />: <InlineMath math="2(59)+1=119=63+56" />.
+Gesucht ist also die Zahl <InlineMath math="r" /> mit <InlineMath math="0\le r<55" />, die **bei Division durch 11 den Rest 9 und bei Division durch 5 den Rest 1 lässt**.
 
-Der Wert 59 ist der Rest von <InlineMath math="n" /> selbst und noch nicht der Rest von <InlineMath math="2n+1" />. Der Wert 119 ist nicht reduziert, obwohl ein Rest bei Division durch 63 kleiner als 63 sein muss. Der Wert 25 entsteht, wenn die beiden Reste vertauscht werden: Dann wäre <InlineMath math="n=12" />, also Rest 5 bei Division durch 7 und Rest 3 bei Division durch 9. Der Wert 11 nutzt nur die Bedingung für die Division durch 9, nämlich <InlineMath math="2(5)+1" />.
+# Beide Reste zusammenführen
 
-Der Rest von <InlineMath math="2n+1" /> bei Division durch 63 ist also **56**.
+Die Kandidaten für <InlineMath math="r" /> sind 9, 20, 31, 42 und 53. Ihre Reste bei Division durch 5 sind 4, 0, 1, 2 und 3. **Nur 31** lässt den Rest 1, also ist <InlineMath math="r=31" />.
+
+Probe mit einer konkreten Zahl: <InlineMath math="n=37" /> erfüllt beide Bedingungen, denn <InlineMath math="37=7(5)+2" /> und <InlineMath math="37=3(11)+4" />. Damit gilt <InlineMath math="37^2+37=1406=25(55)+31" />.
+
+Der Wert 37 ist der Rest von <InlineMath math="n" /> selbst. Der Wert 49 ist der Rest von <InlineMath math="n^2" /> ohne den Term <InlineMath math="n" />. Die Werte 6 und 20 verwenden jeweils nur eine Bedingung, nämlich <InlineMath math="2^2+2" /> und <InlineMath math="4^2+4" />, ohne sie zusammenzuführen.
+
+Der Rest von <InlineMath math="n^2+n" /> bei Division durch 55 ist also **31**.

@@ -1,80 +1,24 @@
-First, we need to determine the function <InlineMath math="g(x)" />.
+Both quantities depend on <InlineMath math="x" />, and <InlineMath math="x" /> can be any number between 0 and 1. Compare them through **the sign of their difference**.
 
-Given <InlineMath math="f(x) = 2x + 5" /> and <InlineMath math="(f \circ g)(x) = 2x^2 - 6x + 9" />.
+# Simplifying the difference
 
-Based on the definition of **function composition** <InlineMath math="(f \circ g)(x) = f(g(x))" />, we have:
+<BlockMath math="\begin{aligned}
+P-Q&=\frac{x}{1+x}-x^2\\
+&=\frac{x-x^2(1+x)}{1+x}\\
+&=\frac{x\left(1-x-x^2\right)}{1+x}
+\end{aligned}" />
 
-<BlockMath math="f(g(x)) = 2(g(x)) + 5" />
+For <InlineMath math="0<x<1" />, the factor <InlineMath math="x" /> and the denominator <InlineMath math="1+x" /> are positive. So the sign of <InlineMath math="P-Q" /> **is the sign of <InlineMath math="1-x-x^2" />**.
 
-<BlockMath math="2(g(x)) + 5 = 2x^2 - 6x + 9" />
+# Testing two values
 
-<BlockMath math="2(g(x)) = 2x^2 - 6x + 4" />
+The expression <InlineMath math="1-x-x^2" /> is zero at <InlineMath math="x=\frac{\sqrt5-1}{2}\approx0.618" />, positive to the left of that point, and negative to the right. Two examples show that **the relation changes**.
 
-<BlockMath math="g(x) = x^2 - 3x + 2" />
+| <InlineMath math="x" /> | <InlineMath math="P=\frac{x}{1+x}" /> | <InlineMath math="Q=x^2" /> | Relation |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="\tfrac12" /> | <InlineMath math="\tfrac13\approx0.33" /> | <InlineMath math="\tfrac14=0.25" /> | <InlineMath math="P>Q" /> |
+| <InlineMath math="\tfrac45" /> | <InlineMath math="\tfrac49\approx0.44" /> | <InlineMath math="\tfrac{16}{25}=0.64" /> | <InlineMath math="Q>P" /> |
 
-Now, check the truth of each statement.
+At <InlineMath math="x\approx0.618" /> the two quantities are even equal. A single value of <InlineMath math="x" /> cannot decide the relation for every <InlineMath math="x" />.
 
-# Statement One
-
-**Substitute the input** <InlineMath math="x=1" />:
-
-<BlockMath math="\begin{aligned}g(1)&=1^2 - 3(1) + 2\\&=1 - 3 + 2\\&=0\end{aligned}" />
-
-Statement (1) is true.
-
-# Statement Two
-
-To determine the number of intersection points of the quadratic function <InlineMath math="g(x) = x^2 - 3x + 2" /> with the <InlineMath math="x" />-axis, we check the discriminant (<InlineMath math="D = b^2 - 4ac" />).
-
-<BlockMath math="\begin{aligned}a&=1\\b&=-3\\c&=2\end{aligned}" />
-
-<BlockMath math="\begin{aligned}D&=(-3)^2 - 4(1)(2)\\&=9 - 8\\&=1\end{aligned}" />
-
-Since <InlineMath math="D > 0" />, the function <InlineMath math="g" /> intersects the <InlineMath math="x" />-axis at **two distinct points**. The statement says there is only one intersection, so it is false.
-
-Statement (2) is false.
-
-<BlockMath math="g(x)=(x-1)(x-2)" />
-
-<LineEquation
-  title="Two Roots of the Quadratic"
-  description="The curve crosses the horizontal axis at x=1 and x=2, corresponding to factors x−1 and x−2."
-  data={[{ points: Array.from({length:61},(_,i)=>{const x=i/20;return {x,y:(x-1)*(x-2),z:0};}), smooth:false, showPoints:true, pointIndices:[20,40],color:"#9333ea",labels:[{at:20,text:<InlineMath math="(1,0)" />,offset:[-0.3,-0.4,0]},{at:40,text:<InlineMath math="(2,0)" />,offset:[0.3,-0.4,0]}] }]}
-  cameraPosition={[1.5, 0.7, 6]}
-  cameraTarget={[1.5, 0.7, 0]}
-  showZAxis={false}
-/>
-
-# Statement Three
-
-Finding the **inverse function** of <InlineMath math="f(x) = 2x + 5" />:
-
-Let <InlineMath math="f(x) = y" />, then:
-
-<BlockMath math="y = 2x + 5" />
-
-<BlockMath math="2x = y - 5" />
-
-<BlockMath math="x = \frac{y - 5}{2}" />
-
-<BlockMath math="x = \frac{1}{2}y - \frac{5}{2}" />
-
-So the inverse is:
-
-<BlockMath math="f^{-1}(x) = \frac{1}{2}x - \frac{5}{2}" />
-
-Statement (3) is false because the term is <InlineMath math="-\frac{5}{2}" />.
-
-# Statement Four
-
-Add the functions by **collecting like terms**:
-
-<BlockMath math="\begin{aligned}f(x)+g(x)&=(2x+5)\\&\quad+(x^2-3x+2)\end{aligned}" />
-
-<BlockMath math="= x^2 + (2x - 3x) + (5 + 2)" />
-
-<BlockMath math="= x^2 - x + 7" />
-
-Statement (4) is true.
-
-The correct statements are statements (1) and (4). Thus, there are <InlineMath math="2" /> true statements.
+So **the information given is not enough** to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.

@@ -1,31 +1,15 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$10$$",
-        },
-        {
-          correct: true,
-          label: "$$9$$",
-        },
-        {
-          correct: false,
-          label: "$$11$$",
-        },
-        {
-          correct: false,
-          label: "$$12$$",
-        },
+        { correct: false, label: "$$0{,}5\\text{ cm}$$" },
+        { correct: false, label: "$$1\\text{ cm}$$" },
+        { correct: false, label: "$$1{,}5\\text{ cm}$$" },
+        { correct: false, label: "$$5{,}5\\text{ cm}$$" },
+        { correct: true, label: "$$6\\text{ cm}$$" },
       ],
     },
   },

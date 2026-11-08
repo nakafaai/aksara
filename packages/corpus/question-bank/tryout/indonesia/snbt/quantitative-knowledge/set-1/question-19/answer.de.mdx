@@ -1,19 +1,22 @@
-Eine vierstellige Zahl über 4.000 mit verschiedenen Ziffern muss mit 4, 5 oder 6 beginnen, denn 4.000 selbst wiederholt die Ziffer 0. Eine gerade Zahl endet auf 0, 2, 4 oder 6. Erste und letzte Ziffer **beeinflussen sich gegenseitig**, wenn die erste Ziffer gerade ist. Zähle deshalb getrennt nach der ersten Ziffer.
+Zwei Bedingungen beeinflussen sich gegenseitig: Banu und Citra belegen **zwei nebeneinanderliegende Stühle**, und Ayu muss auf einem der mittleren Stühle sitzen. Am sichersten zählst du getrennt nach der Lage des Paares Banu und Citra.
 
-# Nach Fällen zählen
+# Nach der Lage des Paares zählen
 
-Sind erste und letzte Ziffer gewählt, bleiben 5 Ziffern für die beiden mittleren Stellen, also <InlineMath math="5\times4=20" /> Anordnungen.
+Nummeriere die Stühle von 1 bis 5. Das Paar kann die Stühle 1 und 2, 2 und 3, 3 und 4 oder 4 und 5 belegen. Zähle für jede Lage die freien mittleren Stühle für Ayu. Dodi und Eka besetzen die beiden übrigen Stühle dann auf 2 Arten.
 
-| Erste Ziffer | Mögliche letzte Ziffern | Anzahl der Möglichkeiten | Anzahl der Zahlen |
+| Stühle von Banu und Citra | Freie Stühle | Stühle für Ayu | Anordnungen von Ayu, Dodi, Eka |
 | :---: | :---: | :---: | :---: |
-| 4 | 0, 2, 6 | 3 | <InlineMath math="3\times20=60" /> |
-| 5 | 0, 2, 4, 6 | 4 | <InlineMath math="4\times20=80" /> |
-| 6 | 0, 2, 4 | 3 | <InlineMath math="3\times20=60" /> |
+| 1 und 2 | 3, 4, 5 | 3 oder 4 | <InlineMath math="2\times2=4" /> |
+| 2 und 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
+| 3 und 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
+| 4 und 5 | 1, 2, 3 | 2 oder 3 | <InlineMath math="2\times2=4" /> |
 
-Die Ziffern 4 und 6 **dürfen hinten nicht noch einmal stehen**, wenn sie schon die erste Ziffer sind.
+Zusammen sind das <InlineMath math="4+2+2+4=12" />. **Banu und Citra können die Plätze tauschen**, jede Anordnung gibt es also in zwei Reihenfolgen.
 
-<BlockMath math="60+80+60=200" />
+<BlockMath math="12\times2=24" />
 
-Der Wert 240 lässt in jedem Fall vier Endziffern zu, obwohl eine erste Ziffer 4 oder 6 schon eine gerade Ziffer verbraucht. Der Wert 180 lässt in jedem Fall drei Endziffern zu, auch bei der ersten Ziffer 5. Der Wert 140 lässt den Fall mit der ersten Ziffer 4 weg. Der Wert 160 zählt ungerade statt gerade Zahlen.
+# Andere Wahlmöglichkeiten prüfen
 
-Es lassen sich also **200** Zahlen bilden.
+Der Wert 48 zählt die Anordnungen mit Banu und Citra nebeneinander, beachtet aber Ayus Bedingung nicht, also <InlineMath math="4!\times2" />. Der Wert 12 vergisst, dass Banu und Citra tauschen können. Der Wert 16 zählt nur das Paar auf den Stühlen 1 und 2 oder 4 und 5. Der Wert 36 setzt Ayu auf einen der 3 mittleren Stühle und nimmt dann an, dass das Paar **immer in die übrigen Stühle passt**, obwohl Ayu die freien Stühle trennen kann.
+
+Es gibt also **24** mögliche Sitzordnungen.

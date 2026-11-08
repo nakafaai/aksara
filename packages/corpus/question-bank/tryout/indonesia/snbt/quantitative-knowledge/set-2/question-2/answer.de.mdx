@@ -1,69 +1,20 @@
-Die erste Zahl sei <InlineMath math="A" /> und die zweite Zahl sei <InlineMath math="B" />.
+Du könntest jeden Bruch einzeln rational machen. Schneller geht es, wenn du **beide Brüche zuerst auf einen gemeinsamen Nenner bringst**.
 
-Gesucht ist der **größtmögliche Wert der zweiten Zahl** unter allen Paaren, die diese Gleichungen erfüllen:
+<BlockMath math="\frac xy+\frac yx=\frac{x^2+y^2}{xy}" />
 
-1. Das Doppelte der ersten Zahl minus das Dreifache der zweiten Zahl ergibt <InlineMath math="14" />:
+# Zähler und Nenner berechnen
 
-   <BlockMath math="2A - 3B = 14" />
+Der Nenner ist eine Differenz von Quadraten, im Zähler heben sich die **gemischten Glieder** der beiden Quadrate auf.
 
-2. Die erste Zahl multipliziert mit <InlineMath math="k" /> plus dem Doppelten der zweiten Zahl ergibt <InlineMath math="4" />:
+<BlockMath math="\begin{aligned}
+xy&=\left(\sqrt5+\sqrt3\right)\left(\sqrt5-\sqrt3\right)=5-3=2\\
+x^2+y^2&=\left(8+2\sqrt{15}\right)+\left(8-2\sqrt{15}\right)=16
+\end{aligned}" />
 
-   <BlockMath math="Ak + 2B = 4" />
+Also ist <InlineMath math="\frac{x^2+y^2}{xy}=\frac{16}{2}=8" />. Zur Probe mit den einzelnen Brüchen: <InlineMath math="\frac xy=4+\sqrt{15}" /> und <InlineMath math="\frac yx=4-\sqrt{15}" />, zusammen 8.
 
-3. Der Wert der ersten Zahl ist <InlineMath math="2" /> größer als <InlineMath math="k" /> (bedeutet <InlineMath math="A = k + 2" /> oder <InlineMath math="k = A - 2" />).
+# Die falschen Wahlmöglichkeiten
 
-# Gleichungen für beide Zahlen lösen
+Der Wert 16 vergisst die Division durch <InlineMath math="xy" />. Der Wert <InlineMath math="4+\sqrt{15}" /> berechnet nur <InlineMath math="\frac xy" />. Der Wert <InlineMath math="2\sqrt{15}" /> ist die **Differenz** der beiden Brüche und nicht ihre Summe. Der Wert 4 teilt den Zähler durch <InlineMath math="2xy" />.
 
-Wir setzen <InlineMath math="k = A - 2" /> in Gleichung (2) ein:
-
-<BlockMath math="A(A - 2) + 2B = 4" />
-
-<BlockMath math="A^2 - 2A + 2B = 4" />
-
-Nach <InlineMath math="B" /> umgestellt ergibt sich:
-
-<BlockMath math="2B = 4 + 2A - A^2" />
-
-<BlockMath math="B = \frac{-A^2 + 2A + 4}{2}" />
-
-Diesen Ausdruck für <InlineMath math="B" /> setzen wir nun in Gleichung (1) ein:
-
-<BlockMath math="\begin{aligned}&2A-\frac32(-A^2+2A+4)\\&=14\end{aligned}" />
-
-Nach der Multiplikation beider Seiten mit <InlineMath math="2" /> verschwindet der Nenner:
-
-<BlockMath math="4A - 3(-A^2 + 2A + 4) = 28" />
-
-<BlockMath math="4A + 3A^2 - 6A - 12 = 28" />
-
-<BlockMath math="3A^2 - 2A - 12 = 28" />
-
-<BlockMath math="3A^2 - 2A - 40 = 0" />
-
-Die **quadratische Gleichung** lässt sich faktorisieren:
-
-<BlockMath math="(A - 4)(3A + 10) = 0" />
-
-Dies ergibt zwei mögliche Werte für <InlineMath math="A" />:
-
-<BlockMath math="\begin{aligned}A&=4\\\text{oder}\quad A&=-\frac{10}{3}\end{aligned}" />
-
-# Den größten Wert der zweiten Zahl bestimmen
-
-Wir ermitteln den Wert von <InlineMath math="B" /> für jeden Wert von <InlineMath math="A" /> mithilfe der Gleichung
-
-<BlockMath math="\begin{aligned}2A-3B&=14\\3B&=2A-14\\B&=\frac{2A-14}{3}\end{aligned}" />
-
-**Fall 1**: Für <InlineMath math="A = 4" />
-
-<BlockMath math="\begin{aligned}B&=\frac{2(4) - 14}{3}\\&=\frac{8 - 14}{3}\\&=\frac{-6}{3}\\&=-2\end{aligned}" />
-
-**Fall 2**: Für <InlineMath math="A = -\frac{10}{3}" />
-
-<BlockMath math="\begin{aligned}B&=\frac{2(-\frac{10}{3}) - 14}{3}\\&=\frac{-\frac{20}{3} - \frac{42}{3}}{3}\\&=\frac{-\frac{62}{3}}{3}\\&=-\frac{62}{9} \\&\approx  -6{,}89\end{aligned}" />
-
-Die beiden möglichen Werte von <InlineMath math="B" /> sind <InlineMath math="-2" /> und <InlineMath math="-\frac{62}{9}" />.
-
-Der Wert <InlineMath math="-2" /> ist größer als <InlineMath math="-\frac{62}{9}" />.
-
-Somit ist der größtmögliche Wert der zweiten Zahl <InlineMath math="-2" />.
+Der Wert von <InlineMath math="\frac xy+\frac yx" /> ist also **8**.

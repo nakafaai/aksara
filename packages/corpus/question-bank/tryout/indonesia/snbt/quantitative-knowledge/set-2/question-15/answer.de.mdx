@@ -1,27 +1,68 @@
-Gesucht ist ein exakter Ausdruck für die **Differenz zweier aufeinanderfolgender Glieder**. Aus <InlineMath math="a_4 = 85" /> erhalten wir durch Rückwärtsrechnen
+Jede Aussage lässt sich direkt an den Koordinaten prüfen. Die Seite <InlineMath math="AB" /> liegt auf der <InlineMath math="x" />-Achse, deshalb **ist die Höhe auf <InlineMath math="AB" /> die <InlineMath math="y" />-Koordinate von <InlineMath math="C" />**, also 4.
 
-<BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+# Flächeninhalt und Seitenlänge
 
-<BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot AB\cdot h=\tfrac12\cdot6\cdot4=12\\
+AC&=\sqrt{(2-0)^2+(4-0)^2}=\sqrt{20}=2\sqrt5
+\end{aligned}" />
 
-<BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+Die erste und die dritte Aussage sind **wahr**.
 
-# Die Differenzformel herleiten
+# Winkel bei C
 
-Wir multiplizieren die Rekursion mit <InlineMath math="3" /> und addieren <InlineMath math="1" />:
+Der Winkel bei <InlineMath math="C" /> ist ein rechter Winkel, wenn die Vektoren <InlineMath math="\overrightarrow{CA}" /> und <InlineMath math="\overrightarrow{CB}" /> senkrecht stehen, also wenn **ihr Skalarprodukt null ist**.
 
-<BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+<BlockMath math="\overrightarrow{CA}\cdot\overrightarrow{CB}=(-2,-4)\cdot(4,-4)=-8+16=8\ne0" />
 
-<BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
+Der Winkel bei <InlineMath math="C" /> ist kein rechter Winkel, die zweite Aussage ist also falsch.
 
-Wegen <InlineMath math="3a_1 + 1 = 4" /> gilt somit <InlineMath math="3a_n + 1 = 4^n" />. Aus der ursprünglichen Rekursion folgt nun
+# Umkreismittelpunkt
 
-<BlockMath math="a_{n+1} - a_n = 4a_n + 1 - a_n" />
+Der Umkreismittelpunkt ist der Schnittpunkt der Mittelsenkrechten. Die Mittelsenkrechte von <InlineMath math="AB" /> ist die Gerade <InlineMath math="x=3" />. Die Mittelsenkrechte von <InlineMath math="AC" /> geht durch den Mittelpunkt <InlineMath math="(1,2)" /> und steht senkrecht auf <InlineMath math="AC" />, das die Steigung 2 hat, ihre Steigung ist also <InlineMath math="-\tfrac12" />. Setze <InlineMath math="x=3" /> in diese Mittelsenkrechte ein.
 
-<BlockMath math="a_{n+1} - a_n = 3a_n + 1 = 4^n" />
+<BlockMath math="y-2=-\tfrac12(3-1)\quad\Rightarrow\quad y=1" />
 
-Für <InlineMath math="n = 2024" /> ergibt sich
+Der Umkreismittelpunkt ist <InlineMath math="(3,1)" />. **Prüfe die Abstände**: <InlineMath math="OA^2=9+1" />, <InlineMath math="OB^2=9+1" /> und <InlineMath math="OC^2=1+9" /> sind alle 10. Der Punkt <InlineMath math="(3,2)" /> ist von <InlineMath math="A" /> <InlineMath math="\sqrt{13}" />, von <InlineMath math="C" /> aber <InlineMath math="\sqrt5" /> entfernt, die vierte Aussage ist also falsch.
 
-<BlockMath math="a_{2025} - a_{2024} = 4^{2024} = 2^{4048}" />
+<MathVisual
+  title={<>Dreieck <InlineMath math="ABC" /> und sein Umkreis</>}
+  description={<>Der Umkreismittelpunkt <InlineMath math="O(3,1)" /> ist von allen drei Ecken gleich weit entfernt, nämlich <InlineMath math="\sqrt{10}" />.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 9 },
+      y: { min: -3, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "triangle",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 6, y: 0 },
+          { x: 2, y: 4 },
+        ],
+      },
+      { id: "circumcircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "o", objectId: "center", at: { x: 3, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A(0,0)" />,
+    b: <InlineMath math="B(6,0)" />,
+    c: <InlineMath math="C(2,4)" />,
+    o: <InlineMath math="O(3,1)" />,
+  }}
+/>
 
-Diese Zahl besitzt außer <InlineMath math="2" /> keinen weiteren **Primfaktor**. Unter <InlineMath math="3, 4, 5, 6," /> und <InlineMath math="7" /> teilt deshalb nur <InlineMath math="4 = 2^2" /> die Differenz. Der gesuchte Teiler ist also <InlineMath math="4" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

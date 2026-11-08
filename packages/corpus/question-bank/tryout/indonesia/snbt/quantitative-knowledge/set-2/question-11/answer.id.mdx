@@ -1,30 +1,65 @@
-Kita diminta mencari interval nilai <InlineMath math="x" /> di mana nilai fungsi <InlineMath math="f(x)" /> **lebih besar atau sama dengan** <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
+Misalkan pusat kedua lingkaran <InlineMath math="A" /> dan <InlineMath math="B" />, dengan titik potong <InlineMath math="P" /> dan <InlineMath math="Q" />. Tali busur <InlineMath math="PQ" /> membagi daerah irisan menjadi **dua tembereng yang sama besar**, satu milik setiap lingkaran.
 
-Cek setiap bagian dari fungsi tersebut satu per satu:
-
-| Interval | Nilai fungsi | Pemeriksaan | Memenuhi |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | Tidak |
-| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Ya |
-| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Ya |
-| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Ya |
-
-# Gabungan Interval
-
-Kita gabungkan semua interval yang memenuhi syarat:
-
-<BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
-
-Ketiga interval bertemu di <InlineMath math="5" /> dan <InlineMath math="8" />. Setiap titik sambung termasuk dalam interval berikutnya, sehingga **tidak ada celah**. Karena itu, ketiganya membentuk satu interval.
-
-<BlockMath math="[2, 10)" />
-
-Jadi, interval nilai <InlineMath math="x" /> yang memenuhi adalah <InlineMath math="x \in [2, 10)" />.
-
-<NumberLine
- title="Gabungan Interval yang Memenuhi"
- description="Titik 2 disertakan karena f(2)=5. Titik 10 tidak disertakan karena fungsi tidak didefinisikan di sana."
- min={0}
- max={11}
- segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+<MathVisual
+  title={<>Irisan dua lingkaran</>}
+  description={<>Pusat <InlineMath math="A" /> dan <InlineMath math="B" /> berjarak 4 cm. Titik potong <InlineMath math="P" /> dan <InlineMath math="Q" /> membentuk dua segitiga sama sisi bersama kedua pusat, dan tali busur <InlineMath math="PQ" /> membagi irisan menjadi dua tembereng yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "circle-left", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "circle-right", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 4 },
+      {
+        id: "rhombus",
+        kind: "polygon",
+        appearance: "construction",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 2, y: 2 * Math.sqrt(3) },
+          { x: 4, y: 0 },
+          { x: 2, y: -2 * Math.sqrt(3) },
+        ],
+      },
+      { id: "chord-pq", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "a", objectId: "circle-left", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "b", objectId: "circle-right", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "p", objectId: "chord-pq", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "q", objectId: "chord-pq", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+  }}
 />
+
+# Sudut pusat setiap tembereng
+
+Panjang <InlineMath math="AB" />, <InlineMath math="AP" />, dan <InlineMath math="BP" /> semuanya 4 cm, karena setiap lingkaran melalui pusat lingkaran lain. Jadi segitiga <InlineMath math="ABP" /> **sama sisi** dan sudut <InlineMath math="PAB=60^\circ" />. Dengan alasan yang sama untuk <InlineMath math="Q" />, sudut pusat <InlineMath math="PAQ=120^\circ" />.
+
+# Luas satu tembereng
+
+Tembereng adalah juring dikurangi segitiga <InlineMath math="APQ" />.
+
+<BlockMath math="\begin{aligned}
+L_{\text{juring}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot4^2=\frac{16\pi}{3}\\
+L_{\triangle APQ}&=\tfrac12\cdot4\cdot4\cdot\sin120^\circ=4\sqrt3\\
+L_{\text{tembereng}}&=\frac{16\pi}{3}-4\sqrt3
+\end{aligned}" />
+
+Daerah irisan terdiri atas **dua tembereng**.
+
+<BlockMath math="L=2\left(\frac{16\pi}{3}-4\sqrt3\right)=\frac{32\pi}{3}-8\sqrt3" />
+
+Pilihan <InlineMath math="\frac{16\pi}{3}-4\sqrt3" /> hanya menghitung satu tembereng. Pilihan <InlineMath math="\frac{32\pi}{3}-4\sqrt3" /> menggandakan juring tetapi hanya mengurangkan satu segitiga. Pilihan <InlineMath math="\frac{32\pi}{3}-16\sqrt3" /> dan <InlineMath math="\frac{16\pi}{3}-8\sqrt3" /> mengurangkan belah ketupat <InlineMath math="APBQ" /> dari setiap juring, padahal yang dikurangkan hanya segitiga <InlineMath math="APQ" />.
+
+Jadi, luas daerah irisan adalah **<InlineMath math="\left(\frac{32\pi}{3}-8\sqrt3\right)\text{ cm}^2" />**.

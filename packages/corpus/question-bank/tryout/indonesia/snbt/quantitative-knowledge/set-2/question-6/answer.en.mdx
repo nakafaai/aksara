@@ -1,20 +1,24 @@
-Form four-digit numbers from <InlineMath math="1,2,3,4,5,6" /> with **no repeated digits**. Only the units digit determines whether a number is odd, so choose that digit first.
+A parabola with a positive <InlineMath math="x^2" /> coefficient opens upward. Its graph lies above the <InlineMath math="x" />-axis for every <InlineMath math="x" /> exactly when it **neither crosses nor touches the <InlineMath math="x" />-axis**, that is, when its discriminant is negative.
 
-# Counting Choices for Each Position
+# The discriminant condition
 
-The units position requires an **odd digit**, namely <InlineMath math="1,3,5" />. Once a digit has been used, it cannot be selected again. None of the available digits is zero, so the thousands position has no additional restriction.
+With <InlineMath math="a=1" />, <InlineMath math="b=-2k" />, and <InlineMath math="c=k+6" />:
 
-| Selection order | Position | Choices | Reason |
-| --- | --- | --- | --- |
-| 1 | Units | <InlineMath math="3" /> | Choose 1, 3, or 5 |
-| 2 | Thousands | <InlineMath math="6-1=5" /> | One digit has been used |
-| 3 | Hundreds | <InlineMath math="6-2=4" /> | Two digits have been used |
-| 4 | Tens | <InlineMath math="6-3=3" /> | Three digits have been used |
+<BlockMath math="\begin{aligned}
+D=(-2k)^2-4(1)(k+6)&<0\\
+4k^2-4k-24&<0\\
+k^2-k-6&<0\\
+(k-3)(k+2)&<0
+\end{aligned}" />
 
-# Multiplying the Choices
+A product of two factors is negative when the factors **have opposite signs**, which happens for <InlineMath math="-2<k<3" />.
 
-Use the **multiplication rule** because every choice at one stage can be followed by every remaining choice at the next stage. Choosing the units digit first does not change its position in the final number.
+# Adding the integers
 
-<BlockMath math="N=3\times5\times4\times3=180" />
+The integers in that interval are <InlineMath math="-1" />, 0, 1, and 2. The endpoints <InlineMath math="k=-2" /> and <InlineMath math="k=3" /> are excluded because there <InlineMath math="D=0" /> and the parabola touches the <InlineMath math="x" />-axis.
 
-For example, after choosing 5 for the units, choose 1 for the thousands, 2 for the hundreds, and 3 for the tens. The result is <InlineMath math="1235" />, an odd number with four distinct digits. Therefore, <InlineMath math="180" /> numbers satisfy the conditions.
+<BlockMath math="-1+0+1+2=2" />
+
+The value 3 includes both endpoints. The value 5 includes <InlineMath math="k=3" />, while the value 0 includes <InlineMath math="k=-2" />. The value <InlineMath math="-2" /> comes from the sign slip <InlineMath math="k^2+k-6<0" />, which gives <InlineMath math="-3<k<2" />.
+
+So the sum of all integers <InlineMath math="k" /> that work is **2**.

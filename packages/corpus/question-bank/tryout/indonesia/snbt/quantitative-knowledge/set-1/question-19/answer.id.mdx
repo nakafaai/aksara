@@ -1,19 +1,22 @@
-Bilangan empat angka lebih dari 4.000 dengan angka berbeda harus diawali 4, 5, atau 6, karena 4.000 sendiri memakai angka 0 berulang. Bilangan genap harus diakhiri 0, 2, 4, atau 6. Angka pertama dan angka terakhir **saling memengaruhi** jika angka pertama genap, jadi hitung per kasus angka pertama.
+Ada dua syarat yang saling memengaruhi: Banu dan Citra menempati **dua kursi bersebelahan**, sedangkan Ayu harus berada di salah satu kursi tengah. Cara yang paling aman adalah menghitung per posisi pasangan Banu dan Citra.
 
-# Menghitung per kasus
+# Menghitung per posisi pasangan
 
-Setelah angka pertama dan angka terakhir dipilih, tersisa 5 angka untuk dua posisi tengah, sehingga ada <InlineMath math="5\times4=20" /> susunan.
+Beri nomor kursi 1 sampai 5. Pasangan Banu dan Citra dapat menempati kursi 1 dan 2, 2 dan 3, 3 dan 4, atau 4 dan 5. Untuk setiap posisi, hitung kursi tengah yang masih kosong untuk Ayu, lalu Dodi dan Eka mengisi dua kursi sisanya dengan 2 cara.
 
-| Angka pertama | Pilihan angka terakhir | Banyak pilihan | Banyak bilangan |
+| Kursi Banu dan Citra | Kursi kosong | Pilihan kursi Ayu | Susunan Ayu, Dodi, Eka |
 | :---: | :---: | :---: | :---: |
-| 4 | 0, 2, 6 | 3 | <InlineMath math="3\times20=60" /> |
-| 5 | 0, 2, 4, 6 | 4 | <InlineMath math="4\times20=80" /> |
-| 6 | 0, 2, 4 | 3 | <InlineMath math="3\times20=60" /> |
+| 1 dan 2 | 3, 4, 5 | 3 atau 4 | <InlineMath math="2\times2=4" /> |
+| 2 dan 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
+| 3 dan 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
+| 4 dan 5 | 1, 2, 3 | 2 atau 3 | <InlineMath math="2\times2=4" /> |
 
-Angka 4 dan 6 **tidak boleh dipakai lagi** di posisi terakhir jika sudah menjadi angka pertama.
+Jumlahnya <InlineMath math="4+2+2+4=12" />. **Banu dan Citra dapat bertukar tempat**, jadi setiap susunan dihitung dua kali urutannya.
 
-<BlockMath math="60+80+60=200" />
+<BlockMath math="12\times2=24" />
 
-Nilai 240 memberi empat pilihan angka terakhir pada setiap kasus, padahal angka pertama 4 atau 6 sudah memakai satu angka genap. Nilai 180 memberi tiga pilihan pada setiap kasus, termasuk saat angka pertama 5. Nilai 140 membuang kasus angka pertama 4. Nilai 160 menghitung bilangan ganjil, bukan genap.
+# Memeriksa pilihan lain
 
-Jadi, banyak bilangan yang dapat disusun adalah **200**.
+Nilai 48 adalah susunan dengan Banu dan Citra bersebelahan tanpa syarat Ayu, yaitu <InlineMath math="4!\times2" />. Nilai 12 lupa bahwa Banu dan Citra dapat bertukar tempat. Nilai 16 hanya menghitung pasangan di kursi 1 dan 2 atau 4 dan 5. Nilai 36 menempatkan Ayu di salah satu dari 3 kursi tengah lalu menganggap pasangan Banu dan Citra **selalu muat** di sisa kursi, padahal Ayu dapat memisahkan kursi kosong.
+
+Jadi, banyak susunan duduk yang mungkin adalah **24**.

@@ -1,30 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$1$$",
+          column: 1,
+          label:
+            "Penjualan produk $$A$$ naik $$20\\%$$ dari Februari ke Maret.",
         },
         {
-          correct: false,
-          label: "$$2$$",
+          column: 2,
+          label:
+            "Total penjualan kedua produk pada Februari lebih tinggi daripada Januari.",
         },
         {
-          correct: true,
-          label: "$$4$$",
+          column: 2,
+          label:
+            "Penjualan produk $$B$$ turun $$15\\%$$ dari Januari ke Februari.",
         },
         {
-          correct: false,
-          label: "$$3$$",
-        },
-        {
-          correct: false,
-          label: "$$5$$",
+          column: 1,
+          label:
+            "Rata-rata penjualan bulanan produk $$B$$ lebih besar daripada produk $$A$$.",
         },
       ],
     },

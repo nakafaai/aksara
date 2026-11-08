@@ -1,78 +1,23 @@
-Ein Kreis durch <InlineMath math="A" /> und <InlineMath math="B" /> hat seinen Mittelpunkt gleich weit von beiden Punkten entfernt. Deshalb **liegt der Mittelpunkt auf der Mittelsenkrechten von <InlineMath math="AB" />**, also auf der Senkrechten zu <InlineMath math="AB" /> durch deren Mittelpunkt.
+Zwei Sehnen, die sich im Inneren eines Kreises schneiden, erfüllen **den Sehnensatz**: Das Produkt der beiden Abschnitte der einen Sehne ist gleich dem Produkt der beiden Abschnitte der anderen.
 
-<MathVisual
-  title={<>Kreis durch <InlineMath math="A" /> und <InlineMath math="B" /></>}
-  description={<>Der Mittelpunkt <InlineMath math="O" /> liegt auf der Mittellinie <InlineMath math="MT" />. Die Radien <InlineMath math="OA" /> und <InlineMath math="OT" /> sind gleich lang.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -2, max: 10 },
-      y: { min: -3, max: 9 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "square",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 8, y: 0 },
-          { x: 8, y: 8 },
-          { x: 0, y: 8 },
-        ],
-      },
-      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 5 },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
-      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 0, y: 0 } },
-      { id: "radius-ot", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 4, y: 8 } },
-      { id: "height-om", kind: "segment", appearance: "construction", from: { x: 4, y: 3 }, to: { x: 4, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "square", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "square", at: { x: 8, y: 8 }, placement: "above-right" },
-      { key: "d", objectId: "square", at: { x: 0, y: 8 }, placement: "above-left" },
-      { key: "o", objectId: "center", at: { x: 4, y: 3 }, placement: "right" },
-      { key: "t", objectId: "radius-ot", at: { x: 4, y: 8 }, placement: "above" },
-      { key: "m", objectId: "height-om", at: { x: 4, y: 0 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
-    o: <InlineMath math="O" />,
-    t: <InlineMath math="T" />,
-    m: <InlineMath math="M" />,
-  }}
-/>
+<BlockMath math="AE\cdot EB=CE\cdot ED" />
 
-# Gleichung für den Radius aufstellen
+# Warum die Produkte gleich sind
 
-Sei <InlineMath math="M" /> der Mittelpunkt von <InlineMath math="AB" />, <InlineMath math="T" /> der Mittelpunkt von <InlineMath math="CD" />, und der Kreismittelpunkt <InlineMath math="O" /> habe den Abstand <InlineMath math="h" /> von <InlineMath math="AB" />. Der Kreis berührt <InlineMath math="CD" />, also **ist der Abstand des Mittelpunkts zu <InlineMath math="CD" /> gleich dem Radius**.
+Die Dreiecke <InlineMath math="AEC" /> und <InlineMath math="DEB" /> sind ähnlich. Die Winkel <InlineMath math="AEC" /> und <InlineMath math="DEB" /> sind Scheitelwinkel, und die Winkel <InlineMath math="CAB" /> und <InlineMath math="CDB" /> stehen über demselben Bogen <InlineMath math="CB" />. Aus der Ähnlichkeit folgt <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, und das **ist gleichwertig mit <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
 
-<BlockMath math="r=OT=8-h" />
+# Länge von CD berechnen
 
-Der Radius ist auch gleich <InlineMath math="OA" />. Das Dreieck <InlineMath math="OMA" /> ist rechtwinklig bei <InlineMath math="M" />, mit <InlineMath math="AM=4" /> und <InlineMath math="OM=h" />.
-
-<BlockMath math="r^2=OA^2=4^2+h^2" />
-
-# Gleichung lösen
-
-**Setze die beiden Ausdrücke** für <InlineMath math="r^2" /> **gleich**.
+Schreibe <InlineMath math="CE=3k" /> und <InlineMath math="ED=2k" /> entsprechend dem Verhältnis <InlineMath math="3:2" />.
 
 <BlockMath math="\begin{aligned}
-(8-h)^2&=16+h^2\\
-64-16h+h^2&=16+h^2\\
-48&=16h\\
-h&=3
+8\cdot3&=3k\cdot2k\\
+24&=6k^2\\
+k&=2
 \end{aligned}" />
 
-Also ist <InlineMath math="r=8-3=5" />. Probe: <InlineMath math="OA=\sqrt{4^2+3^2}=5" />, passend zu <InlineMath math="OT=5" />.
+Also gilt <InlineMath math="CE=6" />, <InlineMath math="ED=4" /> und <InlineMath math="CD=6+4=10\text{ cm}" />. **Prüfe die Produkte**: <InlineMath math="6\cdot4=24=8\cdot3" />.
 
-Der Wert 4 ist der Radius des Kreises mit dem Durchmesser <InlineMath math="AB" />, der <InlineMath math="CD" /> nicht erreicht. Der Wert <InlineMath math="4\sqrt2" /> ist der Umkreisradius des Quadrats, dieser Kreis schneidet <InlineMath math="CD" /> in zwei Punkten. Der Wert 3 ist der Abstand <InlineMath math="h" /> und nicht der Radius. Der Wert 8 entsteht, wenn <InlineMath math="AM" /> durch die ganze Seite ersetzt wird, also aus <InlineMath math="r^2=8^2+(8-r)^2" />.
+Die Werte 6 und 4 sind nur die Abschnitte <InlineMath math="CE" /> und <InlineMath math="ED" />. Der Wert 5 bleibt bei <InlineMath math="5k" /> mit <InlineMath math="k=1" /> stehen und verwendet den Satz nicht. Der Wert 11 nimmt an, dass beide Sehnen gleich lang sind, obwohl <InlineMath math="AB=11" /> ist und <InlineMath math="CD" /> davon abweichen kann.
 
-Der Radius des Kreises beträgt also **<InlineMath math="5\text{ cm}" />**.
+Die Sehne <InlineMath math="CD" /> ist also **<InlineMath math="10\text{ cm}" />** lang.

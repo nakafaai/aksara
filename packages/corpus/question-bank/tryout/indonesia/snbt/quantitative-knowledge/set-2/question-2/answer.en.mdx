@@ -1,69 +1,20 @@
-Let the first number be <InlineMath math="A" /> and the second number be <InlineMath math="B" />.
+You could rationalize each fraction separately, but it is quicker to **put both fractions over a common denominator** first.
 
-Find the **largest possible second number** among all pairs satisfying these equations:
+<BlockMath math="\frac xy+\frac yx=\frac{x^2+y^2}{xy}" />
 
-1. Twice the first number minus three times the second number equals <InlineMath math="14" />:
+# Computing the numerator and denominator
 
-   <BlockMath math="2A - 3B = 14" />
+The denominator is a difference of squares, and the numerator adds two squares whose **middle terms cancel**.
 
-2. The first number multiplied by <InlineMath math="k" /> plus twice the second number equals <InlineMath math="4" />:
+<BlockMath math="\begin{aligned}
+xy&=\left(\sqrt5+\sqrt3\right)\left(\sqrt5-\sqrt3\right)=5-3=2\\
+x^2+y^2&=\left(8+2\sqrt{15}\right)+\left(8-2\sqrt{15}\right)=16
+\end{aligned}" />
 
-   <BlockMath math="Ak + 2B = 4" />
+So <InlineMath math="\frac{x^2+y^2}{xy}=\frac{16}{2}=8" />. A check with the separate fractions: <InlineMath math="\frac xy=4+\sqrt{15}" /> and <InlineMath math="\frac yx=4-\sqrt{15}" />, which add up to 8.
 
-3. The value of the first number is <InlineMath math="2" /> more than <InlineMath math="k" /> (meaning <InlineMath math="A = k + 2" /> or <InlineMath math="k = A - 2" />).
+# The wrong options
 
-# Solving for Both Numbers
+The value 16 forgets to divide by <InlineMath math="xy" />. The value <InlineMath math="4+\sqrt{15}" /> computes only <InlineMath math="\frac xy" />. The value <InlineMath math="2\sqrt{15}" /> is the **difference** of the two fractions, not their sum. The value 4 divides the numerator by <InlineMath math="2xy" />.
 
-Substitute <InlineMath math="k = A - 2" /> into equation (2):
-
-<BlockMath math="A(A - 2) + 2B = 4" />
-
-<BlockMath math="A^2 - 2A + 2B = 4" />
-
-Rearrange the equation to solve for <InlineMath math="B" />:
-
-<BlockMath math="2B = 4 + 2A - A^2" />
-
-<BlockMath math="B = \frac{-A^2 + 2A + 4}{2}" />
-
-Next, substitute this value of <InlineMath math="B" /> into equation (1):
-
-<BlockMath math="\begin{aligned}&2A-\frac32(-A^2+2A+4)\\&=14\end{aligned}" />
-
-Multiply both sides by <InlineMath math="2" /> to eliminate the denominator:
-
-<BlockMath math="4A - 3(-A^2 + 2A + 4) = 28" />
-
-<BlockMath math="4A + 3A^2 - 6A - 12 = 28" />
-
-<BlockMath math="3A^2 - 2A - 12 = 28" />
-
-<BlockMath math="3A^2 - 2A - 40 = 0" />
-
-Factor the **quadratic equation**:
-
-<BlockMath math="(A - 4)(3A + 10) = 0" />
-
-This gives two possible values for <InlineMath math="A" />:
-
-<BlockMath math="\begin{aligned}A&=4\\\text{or}\quad A&=-\frac{10}{3}\end{aligned}" />
-
-# Determining the Largest Value of the Second Number
-
-We find the value of <InlineMath math="B" /> for each value of <InlineMath math="A" /> using equation
-
-<BlockMath math="\begin{aligned}2A-3B&=14\\3B&=2A-14\\B&=\frac{2A-14}{3}\end{aligned}" />
-
-**Case 1**: For <InlineMath math="A = 4" />
-
-<BlockMath math="\begin{aligned}B&=\frac{2(4) - 14}{3}\\&=\frac{8 - 14}{3}\\&=\frac{-6}{3}\\&=-2\end{aligned}" />
-
-**Case 2**: For <InlineMath math="A = -\frac{10}{3}" />
-
-<BlockMath math="\begin{aligned}B&=\frac{2(-\frac{10}{3}) - 14}{3}\\&=\frac{-\frac{20}{3} - \frac{42}{3}}{3}\\&=\frac{-\frac{62}{3}}{3}\\&=-\frac{62}{9} \\&\approx  -6.89\end{aligned}" />
-
-Compare the two obtained values of <InlineMath math="B" />: <InlineMath math="-2" /> and <InlineMath math="-\frac{62}{9}" />.
-
-The value <InlineMath math="-2" /> is larger than <InlineMath math="-\frac{62}{9}" />.
-
-Thus, the largest possible value of the second number is <InlineMath math="-2" />.
+So the value of <InlineMath math="\frac xy+\frac yx" /> is **8**.

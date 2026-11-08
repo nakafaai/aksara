@@ -8,12 +8,12 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Luas bidang diagonal $$ACGE$$ adalah $$72\\text{ cm}^2$$.",
+          label: "Luas bidang diagonal $$ACGE$$ adalah $$162\\text{ cm}^2$$.",
         },
         {
           column: 1,
           label:
-            "Panjang diagonal ruang $$AG$$ adalah $$6\\sqrt3\\text{ cm}$$.",
+            "Panjang diagonal ruang $$AG$$ adalah $$9\\sqrt3\\text{ cm}$$.",
         },
         {
           column: 2,
@@ -23,7 +23,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jarak titik $$A$$ ke bidang $$BDE$$ adalah $$2\\sqrt3\\text{ cm}$$.",
+            "Jarak titik $$E$$ ke bidang $$BDG$$ adalah $$6\\sqrt3\\text{ cm}$$.",
         },
       ],
     },
