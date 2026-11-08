@@ -17,7 +17,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "_didengar_ diganti _didengarkan_",
+          label: "_gabah_ diganti _padi_",
         },
         {
           correct: false,
