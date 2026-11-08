@@ -28,7 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$350^\\circ$$",
+          label: "$$110^\\circ$$",
         },
       ],
     },

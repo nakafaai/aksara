@@ -12,7 +12,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$120\\text{ cm}$$",
+          label: "sekitar $$156{,}2\\text{ cm}$$",
         },
         {
           correct: false,
@@ -28,7 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$220\\text{ cm}$$",
+          label: "sekitar $$186{,}5\\text{ cm}$$",
         },
       ],
     },

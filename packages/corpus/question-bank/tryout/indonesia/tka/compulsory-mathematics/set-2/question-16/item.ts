@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
+          label: "$$325{.}000$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$300{.}000$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$350{.}000$$ liter",
+        },
+        {
+          correct: false,
           label: "$$375{.}000$$ liter",
         },
         {
           correct: false,
-          label: "$$250{.}000$$ liter",
-        },
-        {
-          correct: false,
-          label: "$$500{.}000$$ liter",
-        },
-        {
-          correct: false,
-          label: "$$750{.}000$$ liter",
-        },
-        {
-          correct: false,
-          label: "$$3{.}750{.}000$$ liter",
+          label: "$$425{.}000$$ liter",
         },
       ],
     },

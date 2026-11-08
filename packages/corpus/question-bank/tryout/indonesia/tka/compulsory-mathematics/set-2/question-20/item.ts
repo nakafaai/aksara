@@ -12,7 +12,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10\\sqrt3\\text{ m}$$",
+          label: "$$10(3-\\sqrt3)\\text{ m}$$",
         },
         {
           correct: false,
@@ -28,7 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$30(\\sqrt3+1)\\text{ m}$$",
+          label: "$$30(2-\\sqrt2)\\text{ m}$$",
         },
       ],
     },

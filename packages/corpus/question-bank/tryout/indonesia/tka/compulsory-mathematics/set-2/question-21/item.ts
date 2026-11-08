@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$65^\\circ\\text{C}$$",
+          label: "sekitar $$32{,}2^\\circ\\text{C}$$",
         },
       ],
     },

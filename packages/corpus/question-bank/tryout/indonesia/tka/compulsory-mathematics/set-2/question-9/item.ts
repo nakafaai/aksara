@@ -12,11 +12,11 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$a>0$$",
+          label: "$$a+b+c=-4$$",
         },
         {
           correct: true,
-          label: "$$c<0$$",
+          label: "$$f(4)=5$$",
         },
         {
           correct: true,
