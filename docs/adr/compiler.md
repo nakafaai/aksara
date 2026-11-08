@@ -14,21 +14,22 @@ instance type is expected.
 
 ## Decision
 
-The target is that every Schema error class carries that brand, so a value with
-the same shape cannot pass for an instance of one of them. Aksara's Schema
-classes, error classes, tagged classes, and Opaque classes take the brand, except
-one: `ProvenanceVerificationError` in `scripts/provenance/schema.ts`. That file is
-shared with nakafa.com and must stay byte-identical to nakafa.com's copy, so the
-brand for that class starts in nakafa.com and this copy follows it.
+Every Schema class carries that brand, so a value with the same shape cannot
+pass for an instance of one of them. Aksara's Schema classes, error classes,
+tagged classes, and Opaque classes take the brand, `ProvenanceVerificationError`
+in `scripts/provenance/schema.ts` included. That file is shared with nakafa.com
+and stays byte-identical to nakafa.com's copy, so its brand landed in nakafa.com
+first (nakafa.com#NAKAFA_PR) and this copy followed it.
 
-`packages/typescript-config/base.json` keeps `schemaClassMissingBrand` at `off`
-until the change that brands the last Schema error class. That change sets the
-rule to `error` in both repositories. nakafa.com keeps the rule off for the same
-reason, as its own rule record, `docs/adr/0021-rules.md`, says.
+`packages/typescript-config/base.json` sets `schemaClassMissingBrand` to `error`,
+as nakafa.com does since that change. nakafa.com's own rule record,
+`docs/adr/0021-rules.md`, says the same.
 
 ## Consequences
 
-- Do not brand `ProvenanceVerificationError` in this copy alone: `bun run native`
+- A new Schema class takes the brand, or the typecheck fails with TS377141.
+  `Data.TaggedError` is not a Schema class and keeps its form.
+- Change `ProvenanceVerificationError` in nakafa.com first: `bun run native`
   compares it byte for byte with nakafa.com's file.
 - `bun run native` also compares the Effect cohort pins of both repositories, so the
   nakafa.com cohort moves before Aksara's cohort does. The one exception is an Effect
@@ -38,4 +39,4 @@ reason, as its own rule record, `docs/adr/0021-rules.md`, says.
   nakafa.com commit that moves its cohort pins, and nakafa.com adopts the new
   contracts release in that change.
 - `bun run native` also requires both repositories to give `schemaClassMissingBrand`
-  the same severity, so the rule moves to `error` in both or in neither.
+  the same severity, so a change to the rule moves in both.
