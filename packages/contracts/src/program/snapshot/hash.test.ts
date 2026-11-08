@@ -2,7 +2,10 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
+import {
+  ActiveAppLocaleListSchema,
+  ActiveAppLocaleSchema,
+} from "#contracts/locale";
 import { CurriculumRouteSchema } from "#contracts/program/curriculum";
 import {
   canonicalizeProgramSnapshot,
@@ -21,8 +24,8 @@ import {
 
 const facts = Schema.decodeSync(ProgramSnapshotFactsSchema)({
   activeAppLocales: ActiveAppLocaleListSchema.make([
-    AppLocaleSchema.make("en"),
-    AppLocaleSchema.make("id"),
+    ActiveAppLocaleSchema.make("en"),
+    ActiveAppLocaleSchema.make("id"),
   ]),
   curriculumRowCount: 390,
   programRowCount: 6,
@@ -138,7 +141,10 @@ describe("program snapshot row hashing", () => {
   it.effect("creates and verifies both authenticated row kinds", () =>
     Effect.gen(function* () {
       const program = makeTestProgram(1);
-      const route = makeTestCurriculumRoot(program, AppLocaleSchema.make("en"));
+      const route = makeTestCurriculumRoot(
+        program,
+        ActiveAppLocaleSchema.make("en")
+      );
       const [programRecord, curriculumRecord] = yield* Effect.all([
         makeProgramSnapshotRow(program),
         makeCurriculumSnapshotRow(route),

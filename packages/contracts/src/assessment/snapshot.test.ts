@@ -24,7 +24,7 @@ describe("assessment snapshot", () => {
       );
 
       assert.deepStrictEqual(counts, {
-        catalog: 5 * ACTIVE_APP_LOCALES.length,
+        catalog: 6 * ACTIVE_APP_LOCALES.length,
         explanation: ACTIVE_APP_LOCALES.length,
         family: 1,
         item: 1,
