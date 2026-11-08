@@ -74,7 +74,7 @@ for (const [root, minimum] of [
       assert.ok(report.fileCount >= minimum);
       assert.deepEqual(report.issues, []);
     }),
-    300_000
+    180_000
   );
 }
 
