@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "cause",
+  },
+  stimulus: "komodo",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
+          label: "komodo terus mengejarnya selama berhari-hari",
         },
         {
           correct: false,
-          label:
-            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan diberi status sementara sampai pengulangan dengan sampel lebih luas selesai.",
+          label: "mangsa itu tidak dapat menemukan sumber air",
         },
         {
           correct: true,
-          label:
-            "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
+          label: "bisa dalam gigitan menghambat pembekuan darah",
         },
         {
           correct: false,
-          label:
-            "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
+          label: "gigi komodo patah dan tertinggal di tubuh mangsa",
+        },
+        {
+          correct: false,
+          label: "mangsa itu tersesat di semak-semak yang lebat",
         },
       ],
     },

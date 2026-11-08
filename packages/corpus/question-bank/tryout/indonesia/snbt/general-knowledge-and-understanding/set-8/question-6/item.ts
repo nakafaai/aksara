@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "lontar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
-        },
-        {
-          correct: false,
-          label:
-            "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain.",
+          label: "dicetak dengan tinta berwarna hitam",
         },
         {
           correct: true,
-          label:
-            "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
+          label: "ditorehkan dengan ujung yang tajam",
         },
         {
           correct: false,
-          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
+          label: "dilukis dengan kuas yang halus",
+        },
+        {
+          correct: false,
+          label: "ditempelkan dengan lem dari getah pohon",
+        },
+        {
+          correct: false,
+          label: "dijahit dengan benang berwarna",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "rumput",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            'Bagian awal mengajukan klaim "Kesepakatan pada foto saat air pasang tetap lebih rendah", lalu bagian kedua memakai "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah" sebagai dukungan utama.',
+            "Rumput laut siap dipanen dalam waktu sekitar satu setengah bulan.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Lonjakan laporan memunculkan dugaan pemulihan, lalu audit akses dan klasifikasi membatasi cara dugaan itu ditafsirkan.",
+            "Budi daya rumput laut memerlukan pakan dan pupuk dalam jumlah besar.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            'Bagian pertama menetapkan "Daerah tanpa laporan pasti tidak memiliki bibit mangrove" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi".',
+            "Perubahan kadar garam air yang mendadak dapat membuat rumput laut sakit.",
         },
         {
-          correct: false,
-          label:
-            'Kedua bagian mempertahankan klaim "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
-        },
-        {
-          correct: false,
-          label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Daerah tanpa laporan pasti tidak memiliki bibit mangrove" dari bukti "Kesepakatan pada foto saat air pasang tetap lebih rendah".',
+          column: 2,
+          label: "Harga rumput laut kering selalu tetap sepanjang tahun.",
         },
       ],
     },
