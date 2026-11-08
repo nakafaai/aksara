@@ -210,26 +210,37 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
   ]}
 />
 
-Putar kisi titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ada dua lapisan sepanjang `axis 0`, tiga baris sepanjang `axis 1`, dan empat kolom sepanjang `axis 2`, jadi `arr.shape` adalah `(2, 3, 4)` dan `arr.ndim` adalah `3`. Hitung titiknya: `2 * 3 * 4 = 24`, dan itulah `arr.size`. Setiap angka di `shape` adalah banyak langkah sepanjang satu panah.
+Putar kisi titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ada dua lapisan sepanjang `axis 0`, tiga baris sepanjang `axis 1`, dan empat kolom sepanjang `axis 2`, jadi `arr.shape` adalah `(2, 3, 4)` dan `arr.ndim` adalah `3`. Hitung titiknya: `2 * 3 * 4 = 24`, dan itulah `arr.size`. Setiap angka di `shape` adalah banyak langkah sepanjang satu ruas.
 
-<LineEquation
+<MathVisual
   title="Array berbentuk (2, 3, 4) dalam tiga dimensi"
   description="Setiap titik adalah satu elemen. Lapisan ungu dan hijau toska adalah axis 0, baris adalah axis 1, dan kolom adalah axis 2."
-  cameraPosition={[6, 5, 7]}
-  cameraTarget={[1.5, 1, 0.5]}
-  data={[
-    ...Array.from({ length: 2 }, (_, layer) =>
-      Array.from({ length: 3 }, (_, row) => ({
-        points: Array.from({ length: 4 }, (_, column) => ({ x: column, y: 2 - row, z: layer })),
-        color: layer === 0 ? "#8242e5" : "#0d9488",
-        smooth: false,
-        showPoints: true,
-      }))
-    ).flat(),
-    { points: [{ x: -0.8, y: 2, z: 0 }, { x: -0.8, y: 2, z: 1.6 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 0", at: 1, offset: [-0.2, 0.3, 0] }] },
-    { points: [{ x: -0.8, y: 2, z: 0 }, { x: -0.8, y: -0.6, z: 0 }], color: "#b98d00", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 1", at: 1, offset: [-0.5, 0, 0] }] },
-    { points: [{ x: -0.8, y: 2.6, z: 0 }, { x: 3.6, y: 2.6, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 2", at: 1, offset: [0.5, 0, 0] }] },
-  ]}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1, max: 3.2 }, z: { min: -0.5, max: 2 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1, z: 0.5 } },
+    objects: [
+      { id: "row-0-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 3, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "row-0-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }], appearance: "secondary" },
+      { id: "row-0-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], appearance: "secondary" },
+      { id: "row-1-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 1 }, { x: 1, y: 2, z: 1 }, { x: 2, y: 2, z: 1 }, { x: 3, y: 2, z: 1 }], appearance: "construction" },
+      { id: "row-1-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 1 }, { x: 1, y: 1, z: 1 }, { x: 2, y: 1, z: 1 }, { x: 3, y: 1, z: 1 }], appearance: "construction" },
+      { id: "row-1-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 1 }, { x: 1, y: 0, z: 1 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 0, z: 1 }], appearance: "construction" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: 2, z: 1.6 }, appearance: "answer" },
+      { id: "axis-one", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: -0.6, z: 0 }, appearance: "highlight" },
+      { id: "axis-two", kind: "segment", from: { x: -0.8, y: 2.6, z: 0 }, to: { x: 3.6, y: 2.6, z: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.8, y: 2, z: 1.6 }, placement: "above" },
+      { key: "axis-one", objectId: "axis-one", at: { x: -0.8, y: -0.6, z: 0 }, placement: "left" },
+      { key: "axis-two", objectId: "axis-two", at: { x: 3.6, y: 2.6, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "axis-zero": "axis 0",
+    "axis-one": "axis 1",
+    "axis-two": "axis 2",
+  }}
 />
 
 ## Konversi dan Manipulasi Tipe Data

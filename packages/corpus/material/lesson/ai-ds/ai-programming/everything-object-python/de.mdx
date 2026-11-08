@@ -548,19 +548,31 @@ print(bool(zero))                    # False`
   }]}
 />
 
-Angenommen, eine Klasse `Vector` hat eine spezielle Methode `__add__`, die die Komponenten addiert. Wenn du `v + w` schreibst, ruft Python eigentlich `v.__add__(w)` auf. Dieses Bild zeigt das Ergebnis für `Vector(2, 1)` und `Vector(1, 2)`: Der Pfeil `w` hängt an der Spitze von `v`, und der magentafarbene Pfeil vom Anfang zum Ende ist das neue Objekt `Vector(3, 3)`. So bekommt der Operator `+` eine Bedeutung für deine eigenen Objekte.
+Angenommen, eine Klasse `Vector` hat eine spezielle Methode `__add__`, die die Komponenten addiert. Wenn du `v + w` schreibst, ruft Python eigentlich `v.__add__(w)` auf. Dieses Bild zeigt das Ergebnis für `Vector(2, 1)` und `Vector(1, 2)`: Die Strecke `w` hängt an der Spitze von `v`, und die magentafarbene Strecke vom Anfang zum Ende ist das neue Objekt `Vector(3, 3)`. So bekommt der Operator `+` eine Bedeutung für deine eigenen Objekte.
 
-<LineEquation
+<MathVisual
   title="Die spezielle Methode __add__ hinter v + w"
-  description="Der violette Pfeil ist v, der türkise Pfeil w an der Spitze von v, und der magentafarbene Pfeil ist das Ergebnis v + w."
-  showZAxis={false}
-  cameraPosition={[1.5, 1.5, 8]}
-  cameraTarget={[1.5, 1.5, 0]}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
-    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
-  ]}
+  description="Die violette Strecke ist v, die türkise Strecke w an der Spitze von v, und die magentafarbene Strecke ist das Ergebnis v + w."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
 />
 
 ## Objektorientierte Programmierpraxis

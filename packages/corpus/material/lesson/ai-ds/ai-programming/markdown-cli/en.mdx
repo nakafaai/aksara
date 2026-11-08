@@ -362,27 +362,47 @@ chmod +x scripts/build-docs.sh
 
 Markdown keeps document structure readable in version control. With a CLI, the same validation and conversion steps can be run again. A trustworthy workflow preserves that boundary: edit the source, verify commands and paths, regenerate output, and review the resulting changes.
 
-Imagine your current working folder is `/home/user`, the magenta point in this tree. `cd projects` moves one level down into a child folder along the teal arrow, and from there `ls` would list `notes.md`. `cd ..` moves back up to the parent along the orange arrow. A relative path like `projects` counts from the working folder, while an absolute path like `/home/user/docs` always starts at the root.
+Imagine your current working folder is `/home/user`, the magenta point in this tree. `cd projects` moves one level down into a child folder along the teal segment, and from there `ls` would list `notes.md`. `cd ..` moves back up to the parent along the orange segment. A relative path like `projects` counts from the working folder, while an absolute path like `/home/user/docs` always starts at the root.
 
-<LineEquation
+<MathVisual
   title="Moving between folders with cd"
-  description="Each point is a folder or a file. The magenta point is the current working folder, the teal arrow is cd projects, and the orange arrow is cd .."
-  showZAxis={false}
-  cameraPosition={[1.5, -1, 8]}
-  cameraTarget={[1.5, -1, 0]}
-  data={[
-    { points: [{ x: 1.5, y: 1, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "/home", at: 0, offset: [0, 0.35, 0] }] },
-    { points: [{ x: 1.5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: "user", at: 0, offset: [0.6, 0.1, 0] }] },
-    { points: [{ x: 0, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "docs", at: 0, offset: [0, -0.4, 0] }] },
-    { points: [{ x: 3, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "projects", at: 0, offset: [0.7, 0.1, 0] }] },
-    { points: [{ x: 3, y: -3, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "notes.md", at: 0, offset: [0, -0.4, 0] }] },
-    { points: [{ x: 1.5, y: 1, z: 0 }, { x: 1.5, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 0, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 3, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 3, y: -1.5, z: 0 }, { x: 3, y: -3, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.8, y: -0.1, z: 0 }, { x: 2.9, y: -1.2, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd projects", at: 0, offset: [0.9, 0.3, 0] }] },
-    { points: [{ x: 2.7, y: -1.6, z: 0 }, { x: 1.6, y: -0.4, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd ..", at: 0, offset: [-0.6, -0.4, 0] }] },
-  ]}
+  description="Each point is a folder or a file. The magenta point is the current working folder, the teal segment is cd projects, and the orange segment is cd .."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "home", kind: "point", at: { x: 1.5, y: 1 }, appearance: "reference" },
+      { id: "user", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "docs", kind: "point", at: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "projects", kind: "point", at: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "notes", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "edge-a", kind: "segment", from: { x: 1.5, y: 1 }, to: { x: 1.5, y: 0 }, appearance: "reference" },
+      { id: "edge-b", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "edge-c", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "edge-d", kind: "segment", from: { x: 3, y: -1.5 }, to: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "down", kind: "segment", from: { x: 1.8, y: -0.1 }, to: { x: 2.9, y: -1.2 }, appearance: "construction" },
+      { id: "up", kind: "segment", from: { x: 2.7, y: -1.6 }, to: { x: 1.6, y: -0.4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "user", objectId: "user", at: { x: 1.5, y: 0 }, placement: "left" },
+      { key: "docs", objectId: "docs", at: { x: 0, y: -1.5 }, placement: "below" },
+      { key: "projects", objectId: "projects", at: { x: 3, y: -1.5 }, placement: "right" },
+      { key: "notes", objectId: "notes", at: { x: 3, y: -3 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2.9, y: -1.2 }, placement: "above-right" },
+      { key: "up", objectId: "up", at: { x: 1.6, y: -0.4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "home": "/home",
+    "user": "user",
+    "docs": "docs",
+    "projects": "projects",
+    "notes": "notes.md",
+    "down": "cd projects",
+    "up": "cd ..",
+  }}
 />
 
 Repeat the loop in this diagram every time you explore folders.

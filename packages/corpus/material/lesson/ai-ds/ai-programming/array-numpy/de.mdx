@@ -349,28 +349,51 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
 
 Vergleich die zwei Punktreihen unten. `np.linspace(0, 10, 5)` teilt das Intervall in fünf gleich weit entfernte Punkte und nimmt das Ende `10` mit. `np.arange(0, 10, 2.5)` geht jedes Mal `2.5` weiter und hört vor `10` auf, also gibt es nur vier Werte. Merk dir die Regel: `linspace` legt die Anzahl der Punkte fest, `arange` die Schrittweite.
 
-<LineEquation
+<MathVisual
   title="np.linspace und np.arange auf dem Zahlenstrahl"
   description="Die obere Zeile ist np.linspace(0, 10, 5), die untere np.arange(0, 10, 2.5). Der Wert 10 fehlt in der unteren Zeile."
-  showZAxis={false}
-  cameraPosition={[5, 0.5, 9]}
-  cameraTarget={[5, 0.5, 0]}
-  data={[
-    ...Array.from({ length: 5 }, (_, index) => (10 * index) / 4).map((value) => ({
-      points: [{ x: value, y: 1, z: 0 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: String(value), at: 0, offset: [0, 0.35, 0] }],
-    })),
-    ...Array.from({ length: Math.ceil(10 / 2.5) }, (_, index) => 2.5 * index).map((value) => ({
-      points: [{ x: value, y: 0, z: 0 }],
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: String(value), at: 0, offset: [0, -0.4, 0] }],
-    })),
-    { points: [{ x: -0.6, y: 1, z: 0 }], color: "#8242e5", showPoints: false, labels: [{ text: "np.linspace(0, 10, 5)", at: 0, offset: [-1.6, 0, 0] }] },
-    { points: [{ x: -0.6, y: 0, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "np.arange(0, 10, 2.5)", at: 0, offset: [-1.6, 0, 0] }] },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lin-a", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "lin-b", kind: "point", at: { x: 5 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-c", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "lin-d", kind: "point", at: { x: 15 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-e", kind: "point", at: { x: 10, y: 1 }, appearance: "secondary" },
+      { id: "ar-a", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "ar-b", kind: "point", at: { x: 5 / 2, y: 0 }, appearance: "construction" },
+      { id: "ar-c", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "ar-d", kind: "point", at: { x: 15 / 2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "lin-a", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "lin-b", objectId: "lin-b", at: { x: 5 / 2, y: 1 }, placement: "above" },
+      { key: "lin-c", objectId: "lin-c", at: { x: 5, y: 1 }, placement: "above" },
+      { key: "lin-d", objectId: "lin-d", at: { x: 15 / 2, y: 1 }, placement: "above" },
+      { key: "lin-e", objectId: "lin-e", at: { x: 10, y: 1 }, placement: "above" },
+      { key: "ar-a", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "ar-b", objectId: "ar-b", at: { x: 5 / 2, y: 0 }, placement: "below" },
+      { key: "ar-c", objectId: "ar-c", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "ar-d", objectId: "ar-d", at: { x: 15 / 2, y: 0 }, placement: "below" },
+      { key: "lin-row", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "ar-row", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "lin-a": "0",
+    "lin-b": "2.5",
+    "lin-c": "5",
+    "lin-d": "7.5",
+    "lin-e": "10",
+    "ar-a": "0",
+    "ar-b": "2.5",
+    "ar-c": "5",
+    "ar-d": "7.5",
+    "lin-row": "np.linspace(0, 10, 5)",
+    "ar-row": "np.arange(0, 10, 2.5)",
+  }}
 />
 
 ## Arrays aus Sequenzen

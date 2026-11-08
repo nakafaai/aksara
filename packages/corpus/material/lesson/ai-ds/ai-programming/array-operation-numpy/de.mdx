@@ -520,27 +520,47 @@ Die Standardisierung verhindert, dass allein unterschiedliche Einheiten große S
 
 Nimm `data = np.array([1, 3, 5, 7, 9])`. Der Mittelwert ist `5`, und die Standardabweichung `np.std(data)` ist `np.sqrt(8)`. Die grauen Linien im Bild zeigen zwei Dinge auf einmal: Das Abziehen des Mittelwerts verschiebt die Mitte auf `0`, und das Teilen durch die Standardabweichung rückt die Punkte enger zusammen. Dadurch landet der Wert `5` genau bei `0`, und die äußersten Werte werden etwa `-1.41` und `1.41`.
 
-<LineEquation
+<MathVisual
   title="Z-Standardisierung der Daten [1, 3, 5, 7, 9]"
   description="Violette Punkte sind die ursprünglichen Daten, magentafarbene Punkte (data - mean) / std, und graue Linien zeigen, wohin jeder Wert wandert."
-  showZAxis={false}
-  cameraPosition={[1.5, 0.75, 9]}
-  cameraTarget={[1.5, 0.75, 0]}
-  data={[
-    ...(() => {
-      const data = [1, 3, 5, 7, 9];
-      const mean = data.reduce((sum, value) => sum + value, 0) / data.length;
-      const std = Math.sqrt(data.reduce((sum, value) => sum + (value - mean) ** 2, 0) / data.length);
-      return data.flatMap((value) => {
-        const z = (value - mean) / std;
-        return [
-          { points: [{ x: value, y: 1.5, z: 0 }, { x: z, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-          { points: [{ x: value, y: 1.5, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: String(value), at: 0, offset: [0, 0.35, 0] }] },
-          { points: [{ x: z, y: 0, z: 0 }], color: "#c026d3", showPoints: true },
-        ];
-      });
-    })(),
-    { points: [{ x: 9.6, y: 1.5, z: 0 }], color: "#8242e5", showPoints: false, labels: [{ text: "data", at: 0, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 1.8, y: 0, z: 0 }], color: "#c026d3", showPoints: false, labels: [{ text: "(data - mean) / std", at: 0, offset: [1.5, 0, 0] }] },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 9.6 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "move-a", kind: "segment", from: { x: 1, y: 1.5 }, to: { x: -Math.SQRT2, y: 0 }, appearance: "reference" },
+      { id: "move-b", kind: "segment", from: { x: 3, y: 1.5 }, to: { x: -Math.SQRT1_2, y: 0 }, appearance: "reference" },
+      { id: "move-c", kind: "segment", from: { x: 5, y: 1.5 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-d", kind: "segment", from: { x: 7, y: 1.5 }, to: { x: Math.SQRT1_2, y: 0 }, appearance: "reference" },
+      { id: "move-e", kind: "segment", from: { x: 9, y: 1.5 }, to: { x: Math.SQRT2, y: 0 }, appearance: "reference" },
+      { id: "data-a", kind: "point", at: { x: 1, y: 1.5 }, appearance: "secondary" },
+      { id: "data-b", kind: "point", at: { x: 3, y: 1.5 }, appearance: "secondary" },
+      { id: "data-c", kind: "point", at: { x: 5, y: 1.5 }, appearance: "secondary" },
+      { id: "data-d", kind: "point", at: { x: 7, y: 1.5 }, appearance: "secondary" },
+      { id: "data-e", kind: "point", at: { x: 9, y: 1.5 }, appearance: "secondary" },
+      { id: "score-a", kind: "point", at: { x: -Math.SQRT2, y: 0 }, appearance: "answer" },
+      { id: "score-b", kind: "point", at: { x: -Math.SQRT1_2, y: 0 }, appearance: "answer" },
+      { id: "score-c", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "score-d", kind: "point", at: { x: Math.SQRT1_2, y: 0 }, appearance: "answer" },
+      { id: "score-e", kind: "point", at: { x: Math.SQRT2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "data-a", objectId: "data-a", at: { x: 1, y: 1.5 }, placement: "above" },
+      { key: "data-b", objectId: "data-b", at: { x: 3, y: 1.5 }, placement: "above" },
+      { key: "data-c", objectId: "data-c", at: { x: 5, y: 1.5 }, placement: "above" },
+      { key: "data-d", objectId: "data-d", at: { x: 7, y: 1.5 }, placement: "above" },
+      { key: "data-e", objectId: "data-e", at: { x: 9, y: 1.5 }, placement: "above" },
+      { key: "data-row", objectId: "data-e", at: { x: 9, y: 1.5 }, placement: "right" },
+      { key: "score-row", objectId: "score-e", at: { x: Math.SQRT2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "data-a": "1",
+    "data-b": "3",
+    "data-c": "5",
+    "data-d": "7",
+    "data-e": "9",
+    "data-row": "data",
+    "score-row": "(data - mean) / std",
+  }}
 />

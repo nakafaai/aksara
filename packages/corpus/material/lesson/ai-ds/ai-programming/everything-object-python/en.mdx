@@ -548,19 +548,31 @@ print(bool(zero))                    # False`
   }]}
 />
 
-Suppose a `Vector` class has a special method `__add__` that adds the components. When you write `v + w`, Python actually calls `v.__add__(w)`. This picture shows the result for `Vector(2, 1)` and `Vector(1, 2)`: the arrow `w` is attached at the tip of `v`, and the magenta arrow from start to end is the new object `Vector(3, 3)`. That is how the `+` operator gets a meaning for your own objects.
+Suppose a `Vector` class has a special method `__add__` that adds the components. When you write `v + w`, Python actually calls `v.__add__(w)`. This picture shows the result for `Vector(2, 1)` and `Vector(1, 2)`: the segment `w` is attached at the tip of `v`, and the magenta segment from start to end is the new object `Vector(3, 3)`. That is how the `+` operator gets a meaning for your own objects.
 
-<LineEquation
+<MathVisual
   title="The special method __add__ behind v + w"
-  description="The violet arrow is v, the teal arrow is w attached at the tip of v, and the magenta arrow is the result v + w."
-  showZAxis={false}
-  cameraPosition={[1.5, 1.5, 8]}
-  cameraTarget={[1.5, 1.5, 0]}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
-    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
-  ]}
+  description="The violet segment is v, the teal segment is w attached at the tip of v, and the magenta segment is the result v + w."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
 />
 
 ## Object Oriented Programming Practice

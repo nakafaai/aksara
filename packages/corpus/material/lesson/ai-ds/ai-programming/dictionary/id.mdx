@@ -303,20 +303,27 @@ print("Hasil get('ann'):", result)
 
 Hitung huruf di kata `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Saat sebuah huruf muncul pertama kali, `get` mengembalikan nilai bawaan `0`, jadi tidak ada `KeyError`. Hasilnya ada di gambar: `{"b": 1, "a": 3, "n": 2}`, dengan urutan kunci sesuai urutan pertama kali muncul. Jumlah tinggi semua batang adalah `6`, sama dengan `len("banana")`.
 
-<LineEquation
+<MathVisual
   title="Menghitung huruf dengan get"
   description="Setiap batang adalah satu kunci dictionary counts untuk kata banana, dan tingginya adalah nilainya."
-  showZAxis={false}
-  cameraPosition={[1, 1.5, 8]}
-  cameraTarget={[1, 1.5, 0]}
-  data={[
-    ...(() => {
-      const letters = Array.from("banana");
-      const keys = letters.filter((char, index) => letters.indexOf(char) === index);
-      return keys.map((char, index) => {
-        const count = letters.filter((other) => other === char).length;
-        return { points: [{ x: index, y: 0, z: 0 }, { x: index, y: count, z: 0 }], color: "#c026d3", smooth: false, showPoints: true, labels: [{ text: `'${char}': ${count}`, at: 1, offset: [0, 0.4, 0] }] };
-      });
-    })(),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 3.7 }, y: { min: -0.3, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "bar-a", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "bar-n", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "bar-b", objectId: "bar-b", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "bar-a", objectId: "bar-a", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bar-n", objectId: "bar-n", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bar-b": "'b': 1",
+    "bar-a": "'a': 3",
+    "bar-n": "'n': 2",
+  }}
 />

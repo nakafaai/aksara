@@ -425,29 +425,38 @@ else:
 - The temperature converter displays Fahrenheit and Kelvin values from the Celsius input.
 - The student profile displays the entered data, entry year, estimated graduation year, and semester-based message.
 
-Fix `number1 = 2` and imagine trying many values of `number2` in the calculator above. Each operator gives its own graph: `+` and `-` are lines tilted in opposite directions, `*` is a steeper line, and `/` is the magenta curve. The division curve has no point at `number2 = 0`, because Python refuses division by zero with a `ZeroDivisionError`. Every other line passes through there without trouble.
+Fix `number1 = 2` and imagine trying many values of `number2` in the calculator above. Each operator gives its own graph: `+` and `-` are lines tilted in opposite directions, `*` is a steeper line, and `/` gives the magenta points. Division has no point at `number2 = 0`, because Python refuses division by zero with a `ZeroDivisionError`, while every line passes through there without trouble.
 
-<LineEquation
+<MathVisual
   title="The four calculator operators for number1 = 2"
-  description="Each line is the calculator result as number2 changes while number1 = 2. The magenta division curve breaks at number2 = 0."
-  showZAxis={false}
-  cameraPosition={[0, 0, 22]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    { points: [{ x: -4, y: -2, z: 0 }, { x: 4, y: 6, z: 0 }], color: "#8242e5", smooth: false, showPoints: false, labels: [{ text: "2 + number2", at: 1, offset: [0.4, 0.6, 0] }] },
-    { points: [{ x: -4, y: 6, z: 0 }, { x: 4, y: -2, z: 0 }], color: "#0d9488", smooth: false, showPoints: false, labels: [{ text: "2 - number2", at: 1, offset: [0.4, -0.6, 0] }] },
-    { points: [{ x: -4, y: -8, z: 0 }, { x: 4, y: 8, z: 0 }], color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: "2 * number2", at: 1, offset: [0.4, 0.6, 0] }] },
-    ...[-1, 1].map((side) => ({
-      points: Array.from({ length: 401 }, (_, index) => {
-        const x = side * (1 / 3 + (index / 400) * (4 - 1 / 3));
-        return { x, y: 2 / x, z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      ...(side === 1 ? { labels: [{ text: "2 / number2", at: 400, offset: [0.6, 0.5, 0] }] } : {}),
-    })),
-  ]}
+  description="Each line is the calculator result as number2 changes while number1 = 2. Magenta points are 2 / number2 for five inputs, and there is none at number2 = 0."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plus", kind: "segment", from: { x: -4, y: -2 }, to: { x: 4, y: 6 }, appearance: "secondary" },
+      { id: "minus", kind: "segment", from: { x: -4, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "times", kind: "segment", from: { x: -4, y: -8 }, to: { x: 4, y: 8 }, appearance: "highlight" },
+      { id: "divide-a", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "divide-b", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "divide-c", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "divide-d", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "divide-e", kind: "point", at: { x: 4, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "minus", objectId: "minus", at: { x: 4, y: -2 }, placement: "below-left" },
+      { key: "times", objectId: "times", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "divide", objectId: "divide-e", at: { x: 4, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "plus": "2 + number2",
+    "minus": "2 - number2",
+    "times": "2 * number2",
+    "divide": "2 / number2",
+  }}
 />
 
 Follow the calculator program from input to output.

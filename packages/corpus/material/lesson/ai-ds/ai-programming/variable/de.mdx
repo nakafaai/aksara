@@ -66,23 +66,43 @@ print(z == x)   # Ausgabe: True
 
 Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe Objekt verweisen. Ein neu erstellter gleicher Wert besteht den Gleichheitsvergleich, kann aber in einem eigenen Objekt liegen. Manche Python-Implementierungen verwenden unveränderliche Objekte wieder, doch korrekter Code hängt nicht von dieser Optimierung ab.
 
-Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Pfeilen. `y = x` kopiert keine Zahl, sondern lässt `y` auf dasselbe Objekt `5` zeigen wie `x`. Wenn `x = 7` läuft, wandert nur der Pfeil von `x` zu einem neuen Objekt, vom grauen zum violetten Pfeil. Der Pfeil von `y` bleibt, wo er war, also zeigt `print(y)` weiterhin `5`.
+Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Streckenn. `y = x` kopiert keine Zahl, sondern lässt `y` auf dasselbe Objekt `5` zeigen wie `x`. Wenn `x = 7` läuft, wandert nur die Strecke von `x` zu einem neuen Objekt, vom grauen zum violetten Strecke. Die Strecke von `y` bleibt, wo er war, also zeigt `print(y)` weiterhin `5`.
 
-<LineEquation
+<MathVisual
   title="Neues Binden von x ändert y nicht"
-  description="Nach x = 5, y = x und x = 7: Der graue Pfeil ist die alte Bindung von x, der violette die neue, und der türkise Pfeil zeigt weiter auf 5."
-  showZAxis={false}
-  cameraPosition={[2, 0, 7]}
-  cameraTarget={[2, 0, 0]}
-  data={[
-    { points: [{ x: 0, y: 0.6, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "x", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 0, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "y", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 4, y: 1.2, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "7", at: 0, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 4, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "5", at: 0, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: 1.2, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 7", at: 0, offset: [1.8, 0.5, 0] }] },
-    { points: [{ x: 0.2, y: -0.6, z: 0 }, { x: 3.8, y: -0.6, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "y = x", at: 0, offset: [1.8, -0.35, 0] }] },
-    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: -0.5, z: 0 }], color: "#64748b", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 5", at: 0, offset: [1.3, -0.15, 0] }] },
-  ]}
+  description="Nach x = 5, y = x und x = 7: Die graue Strecke ist die alte Bindung von x, der violette die neue, und die türkise Strecke zeigt weiter auf 5."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x", kind: "point", at: { x: 0, y: 0.6 }, appearance: "secondary" },
+      { id: "y", kind: "point", at: { x: 0, y: -0.6 }, appearance: "construction" },
+      { id: "seven", kind: "point", at: { x: 4, y: 1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 4, y: -0.6 }, appearance: "construction" },
+      { id: "new", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: 1.2 }, appearance: "secondary" },
+      { id: "copy", kind: "segment", from: { x: 0.2, y: -0.6 }, to: { x: 3.8, y: -0.6 }, appearance: "construction" },
+      { id: "old", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: -0.5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "x", objectId: "x", at: { x: 0, y: 0.6 }, placement: "left" },
+      { key: "y", objectId: "y", at: { x: 0, y: -0.6 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 4, y: 1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 2, y: 0.9 }, placement: "above" },
+      { key: "copy", objectId: "copy", at: { x: 2, y: -0.6 }, placement: "below" },
+      { key: "old", objectId: "old", at: { x: 2, y: 0.6 - 1.8 * 1.1 / 3.6 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "x": "x",
+    "y": "y",
+    "seven": "7",
+    "five": "5",
+    "new": "x = 7",
+    "copy": "y = x",
+    "old": "x = 5",
+  }}
 />
 
 ## Eigenschaften von Variablen in Python

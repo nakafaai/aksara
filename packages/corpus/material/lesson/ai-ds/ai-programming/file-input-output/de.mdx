@@ -234,40 +234,65 @@ Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr
 
 Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Beim Inhalt `"Hi!\nPython\n"` steht die Position nach `open()` am Anfang. `read(3)` nimmt `Hi!` und hält bei Position `3`, das erste `readline()` nimmt den Rest dieser Zeile bis `\n`, und das zweite `readline()` nimmt `Python\n` bis zum Dateiende. Das nächste Lesen liefert einen leeren String, weil die Position schon am Ende steht.
 
-<LineEquation
+<MathVisual
   title="Die Dateiposition beim Lesen"
-  description="Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Pfeile zeigen die Position nach jedem Aufruf."
-  showZAxis={false}
-  cameraPosition={[5, 0.2, 9]}
-  cameraTarget={[5, 0.2, 0]}
-  data={[
-    ...(() => {
-      const text = "Hi!\nPython\n";
-      const firstLine = text.indexOf("\n") + 1;
-      const stops = [
-        { at: 0, label: "open()", color: "#64748b" },
-        { at: 3, label: "read(3)", color: "#8242e5" },
-        { at: firstLine, label: "readline()", color: "#0d9488" },
-        { at: text.length, label: "readline()", color: "#bb6800" },
-      ];
-      return [
-        ...Array.from(text).map((char, index) => ({
-          points: [{ x: index, y: 0, z: 0 }],
-          color: "#64748b",
-          showPoints: true,
-          labels: [{ text: char === "\n" ? "↵" : char, at: 0, offset: [0, 0.35, 0] }],
-        })),
-        ...stops.map(({ at, label, color }, index) => ({
-          points: [{ x: at - 0.5, y: -0.6 - 0.5 * index, z: 0 }, { x: at - 0.5, y: -0.2, z: 0 }],
-          color,
-          cone: { position: "end", size: 0.15 },
-          smooth: false,
-          showPoints: false,
-          labels: [{ text: label, at: 0, offset: [0.6, -0.1, 0] }],
-        })),
-      ];
-    })(),
-  ]}
+  description="Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Strecken zeigen die Position nach jedem Aufruf."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "char-g", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "char-h", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "char-i", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "char-j", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "char-k", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "stop-a", kind: "segment", from: { x: -1 / 2, y: -0.6 }, to: { x: -1 / 2, y: -0.2 }, appearance: "reference" },
+      { id: "stop-b", kind: "segment", from: { x: 5 / 2, y: -1.1 }, to: { x: 5 / 2, y: -0.2 }, appearance: "secondary" },
+      { id: "stop-c", kind: "segment", from: { x: 7 / 2, y: -1.6 }, to: { x: 7 / 2, y: -0.2 }, appearance: "construction" },
+      { id: "stop-d", kind: "segment", from: { x: 21 / 2, y: -2.1 }, to: { x: 21 / 2, y: -0.2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "char-g", objectId: "char-g", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "char-h", objectId: "char-h", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "char-i", objectId: "char-i", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "char-j", objectId: "char-j", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "char-k", objectId: "char-k", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "stop-a", objectId: "stop-a", at: { x: -1 / 2, y: -0.6 }, placement: "right" },
+      { key: "stop-b", objectId: "stop-b", at: { x: 5 / 2, y: -1.1 }, placement: "right" },
+      { key: "stop-c", objectId: "stop-c", at: { x: 7 / 2, y: -1.6 }, placement: "right" },
+      { key: "stop-d", objectId: "stop-d", at: { x: 21 / 2, y: -2.1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "H",
+    "char-b": "i",
+    "char-c": "!",
+    "char-d": "↵",
+    "char-e": "P",
+    "char-f": "y",
+    "char-g": "t",
+    "char-h": "h",
+    "char-i": "o",
+    "char-j": "n",
+    "char-k": "↵",
+    "stop-a": "open()",
+    "stop-b": "read(3)",
+    "stop-c": "readline()",
+    "stop-d": "readline()",
+  }}
 />
 
 ## Sicherer Umgang mit Dateien

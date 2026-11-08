@@ -425,29 +425,38 @@ else:
 - Konverter suhu menampilkan nilai Fahrenheit dan Kelvin dari input Celsius.
 - Profil mahasiswa menampilkan data yang dimasukkan, tahun masuk, perkiraan lulus, dan pesan sesuai semester.
 
-Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalkulator tadi. Setiap operator memberi grafik sendiri: `+` dan `-` adalah garis miring ke arah berlawanan, `*` adalah garis yang lebih curam, dan `/` adalah kurva magenta. Kurva pembagian tidak punya titik di `number2 = 0`, karena Python menolak pembagian dengan nol dengan `ZeroDivisionError`. Semua garis lain lewat tanpa masalah di situ.
+Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalkulator tadi. Setiap operator memberi grafik sendiri: `+` dan `-` adalah garis miring ke arah berlawanan, `*` adalah garis yang lebih curam, dan `/` memberi titik-titik magenta. Pembagian tidak punya titik di `number2 = 0`, karena Python menolak pembagian dengan nol dengan `ZeroDivisionError`, sedangkan semua garis lewat di situ tanpa masalah.
 
-<LineEquation
+<MathVisual
   title="Empat operator kalkulator untuk number1 = 2"
-  description="Setiap garis adalah hasil kalkulator saat number2 berubah dan number1 = 2. Kurva magenta untuk pembagian terputus di number2 = 0."
-  showZAxis={false}
-  cameraPosition={[0, 0, 22]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    { points: [{ x: -4, y: -2, z: 0 }, { x: 4, y: 6, z: 0 }], color: "#8242e5", smooth: false, showPoints: false, labels: [{ text: "2 + number2", at: 1, offset: [0.4, 0.6, 0] }] },
-    { points: [{ x: -4, y: 6, z: 0 }, { x: 4, y: -2, z: 0 }], color: "#0d9488", smooth: false, showPoints: false, labels: [{ text: "2 - number2", at: 1, offset: [0.4, -0.6, 0] }] },
-    { points: [{ x: -4, y: -8, z: 0 }, { x: 4, y: 8, z: 0 }], color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: "2 * number2", at: 1, offset: [0.4, 0.6, 0] }] },
-    ...[-1, 1].map((side) => ({
-      points: Array.from({ length: 401 }, (_, index) => {
-        const x = side * (1 / 3 + (index / 400) * (4 - 1 / 3));
-        return { x, y: 2 / x, z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      ...(side === 1 ? { labels: [{ text: "2 / number2", at: 400, offset: [0.6, 0.5, 0] }] } : {}),
-    })),
-  ]}
+  description="Setiap garis adalah hasil kalkulator saat number2 berubah dan number1 = 2. Titik magenta adalah 2 / number2 untuk lima masukan, dan tidak ada titik di number2 = 0."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plus", kind: "segment", from: { x: -4, y: -2 }, to: { x: 4, y: 6 }, appearance: "secondary" },
+      { id: "minus", kind: "segment", from: { x: -4, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "times", kind: "segment", from: { x: -4, y: -8 }, to: { x: 4, y: 8 }, appearance: "highlight" },
+      { id: "divide-a", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "divide-b", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "divide-c", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "divide-d", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "divide-e", kind: "point", at: { x: 4, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "minus", objectId: "minus", at: { x: 4, y: -2 }, placement: "below-left" },
+      { key: "times", objectId: "times", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "divide", objectId: "divide-e", at: { x: 4, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "plus": "2 + number2",
+    "minus": "2 - number2",
+    "times": "2 * number2",
+    "divide": "2 / number2",
+  }}
 />
 
 Ikuti alur program kalkulator dari masukan sampai keluaran.

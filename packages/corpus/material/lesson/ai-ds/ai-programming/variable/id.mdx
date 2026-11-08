@@ -66,23 +66,43 @@ print(z == x)   # Output: True
 
 Assignment `y = x` membuat kedua nama merujuk pada objek yang sama pada saat itu. Jika kamu membuat nilai lain yang setara, perbandingan dengan `==` akan bernilai benar, tetapi Python tetap dapat menyimpannya sebagai objek terpisah. Beberapa implementasi Python memakai kembali objek immutable tertentu. Kode yang benar tidak boleh bergantung pada optimasi tersebut.
 
-Jalankan `x = 5`, lalu `y = x`, lalu `x = 7`, dan ikuti panahnya. `y = x` tidak menyalin angka, tapi membuat `y` menunjuk objek `5` yang sama dengan `x`. Saat `x = 7` dijalankan, hanya panah `x` yang pindah ke objek baru, dari panah abu-abu ke panah ungu. Panah `y` tidak ikut pindah, jadi `print(y)` tetap menampilkan `5`.
+Jalankan `x = 5`, lalu `y = x`, lalu `x = 7`, dan ikuti ruasnya. `y = x` tidak menyalin angka, tapi membuat `y` menunjuk objek `5` yang sama dengan `x`. Saat `x = 7` dijalankan, hanya ruas `x` yang pindah ke objek baru, dari ruas abu-abu ke ruas ungu. Ruas `y` tidak ikut pindah, jadi `print(y)` tetap menampilkan `5`.
 
-<LineEquation
+<MathVisual
   title="Mengikat ulang x tidak mengubah y"
-  description="Setelah x = 5, y = x, dan x = 7: panah abu-abu adalah ikatan lama x, panah ungu ikatan baru, dan panah hijau toska tetap menunjuk 5."
-  showZAxis={false}
-  cameraPosition={[2, 0, 7]}
-  cameraTarget={[2, 0, 0]}
-  data={[
-    { points: [{ x: 0, y: 0.6, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "x", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 0, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "y", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 4, y: 1.2, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "7", at: 0, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 4, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "5", at: 0, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: 1.2, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 7", at: 0, offset: [1.8, 0.5, 0] }] },
-    { points: [{ x: 0.2, y: -0.6, z: 0 }, { x: 3.8, y: -0.6, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "y = x", at: 0, offset: [1.8, -0.35, 0] }] },
-    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: -0.5, z: 0 }], color: "#64748b", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 5", at: 0, offset: [1.3, -0.15, 0] }] },
-  ]}
+  description="Setelah x = 5, y = x, dan x = 7: ruas abu-abu adalah ikatan lama x, ruas ungu ikatan baru, dan ruas hijau toska tetap menunjuk 5."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x", kind: "point", at: { x: 0, y: 0.6 }, appearance: "secondary" },
+      { id: "y", kind: "point", at: { x: 0, y: -0.6 }, appearance: "construction" },
+      { id: "seven", kind: "point", at: { x: 4, y: 1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 4, y: -0.6 }, appearance: "construction" },
+      { id: "new", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: 1.2 }, appearance: "secondary" },
+      { id: "copy", kind: "segment", from: { x: 0.2, y: -0.6 }, to: { x: 3.8, y: -0.6 }, appearance: "construction" },
+      { id: "old", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: -0.5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "x", objectId: "x", at: { x: 0, y: 0.6 }, placement: "left" },
+      { key: "y", objectId: "y", at: { x: 0, y: -0.6 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 4, y: 1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 2, y: 0.9 }, placement: "above" },
+      { key: "copy", objectId: "copy", at: { x: 2, y: -0.6 }, placement: "below" },
+      { key: "old", objectId: "old", at: { x: 2, y: 0.6 - 1.8 * 1.1 / 3.6 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "x": "x",
+    "y": "y",
+    "seven": "7",
+    "five": "5",
+    "new": "x = 7",
+    "copy": "y = x",
+    "old": "x = 5",
+  }}
 />
 
 ## Karakteristik Variabel Python

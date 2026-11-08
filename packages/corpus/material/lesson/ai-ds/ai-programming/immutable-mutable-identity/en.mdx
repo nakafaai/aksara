@@ -126,24 +126,40 @@ print(a == c)  # True: equal values`
   ]}
 />
 
-Run `a = [1, 2]`, `b = a`, `c = a.copy()`, then `b.append(3)`. This picture shows the result: `a` and `b` are two names for one list object, so `a` changes to `[1, 2, 3]` too and `a is b` is `True`. `c` points to another object that is still `[1, 2]`, so `a is c` is `False` even though their contents were once equal. Identity follows the arrows, not the contents.
+Run `a = [1, 2]`, `b = a`, `c = a.copy()`, then `b.append(3)`. This picture shows the result: `a` and `b` are two names for one list object, so `a` changes to `[1, 2, 3]` too and `a is b` is `True`. `c` points to another object that is still `[1, 2]`, so `a is c` is `False` even though their contents were once equal. Identity follows the segments, not the contents.
 
-<LineEquation
+<MathVisual
   title="Two names for one list, one name for a copy"
-  description="After a = [1, 2], b = a, c = a.copy(), and b.append(3): violet arrows point a and b at the same object, the teal arrow points c at its copy."
-  showZAxis={false}
-  cameraPosition={[2, 0, 7]}
-  cameraTarget={[2, 0, 0]}
-  data={[
-    { points: [{ x: 0, y: 1, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "a", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "b", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 0, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "c", at: 0, offset: [-0.3, 0, 0] }] },
-    { points: [{ x: 4, y: 0.5, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "[1, 2, 3]", at: 0, offset: [0.8, 0, 0] }] },
-    { points: [{ x: 4, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "[1, 2]", at: 0, offset: [0.6, 0, 0] }] },
-    { points: [{ x: 0.2, y: 1, z: 0 }, { x: 3.8, y: 0.55, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
-    { points: [{ x: 0.2, y: 0, z: 0 }, { x: 3.8, y: 0.45, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
-    { points: [{ x: 0.2, y: -1, z: 0 }, { x: 3.8, y: -1, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
-  ]}
+  description="After a = [1, 2], b = a, c = a.copy(), and b.append(3): violet segments point a and b at the same object, the teal segment points c at its copy."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 0, y: -1 }, appearance: "construction" },
+      { id: "shared", kind: "point", at: { x: 4, y: 0.5 }, appearance: "secondary" },
+      { id: "copy", kind: "point", at: { x: 4, y: -1 }, appearance: "construction" },
+      { id: "a-link", kind: "segment", from: { x: 0.2, y: 1 }, to: { x: 3.8, y: 0.55 }, appearance: "secondary" },
+      { id: "b-link", kind: "segment", from: { x: 0.2, y: 0 }, to: { x: 3.8, y: 0.45 }, appearance: "secondary" },
+      { id: "c-link", kind: "segment", from: { x: 0.2, y: -1 }, to: { x: 3.8, y: -1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "c", objectId: "c", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "shared", objectId: "shared", at: { x: 4, y: 0.5 }, placement: "right" },
+      { key: "copy", objectId: "copy", at: { x: 4, y: -1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "a": "a",
+    "b": "b",
+    "c": "c",
+    "shared": "[1, 2, 3]",
+    "copy": "[1, 2]",
+  }}
 />
 
 ## Mutable and Immutable Objects

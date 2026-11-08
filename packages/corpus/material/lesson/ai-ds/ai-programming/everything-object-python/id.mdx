@@ -548,19 +548,31 @@ print(bool(nol))                       # False`
   }]}
 />
 
-Misalkan kelas `Vector` punya metode khusus `__add__` yang menjumlahkan komponen. Saat kamu menulis `v + w`, Python sebenarnya memanggil `v.__add__(w)`. Gambar ini menunjukkan hasilnya untuk `Vector(2, 1)` dan `Vector(1, 2)`: panah `w` ditempel di ujung `v`, dan panah magenta dari pangkal ke ujung adalah objek baru `Vector(3, 3)`. Operator `+` jadi bermakna untuk objekmu sendiri.
+Misalkan kelas `Vector` punya metode khusus `__add__` yang menjumlahkan komponen. Saat kamu menulis `v + w`, Python sebenarnya memanggil `v.__add__(w)`. Gambar ini menunjukkan hasilnya untuk `Vector(2, 1)` dan `Vector(1, 2)`: ruas `w` ditempel di ujung `v`, dan ruas magenta dari pangkal ke ujung adalah objek baru `Vector(3, 3)`. Operator `+` jadi bermakna untuk objekmu sendiri.
 
-<LineEquation
+<MathVisual
   title="Metode khusus __add__ untuk v + w"
-  description="Panah ungu adalah v, panah hijau toska adalah w yang ditempel di ujung v, dan panah magenta adalah hasil v + w."
-  showZAxis={false}
-  cameraPosition={[1.5, 1.5, 8]}
-  cameraTarget={[1.5, 1.5, 0]}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
-    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
-  ]}
+  description="Ruas ungu adalah v, ruas hijau toska adalah w yang ditempel di ujung v, dan ruas magenta adalah hasil v + w."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
 />
 
 ## Praktik Object Oriented Programming

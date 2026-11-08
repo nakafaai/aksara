@@ -362,27 +362,47 @@ chmod +x scripts/build-docs.sh
 
 Markdown membuat struktur dokumen tetap mudah dibaca di version control. CLI dapat menjalankan validasi dan konversi berulang kali. Edit source file Markdown, lalu periksa command dan path. Buat ulang output dan tinjau perubahannya.
 
-Bayangkan folder kerjamu sekarang adalah `/home/user`, titik magenta di pohon ini. `cd projects` turun satu tingkat ke folder anak, mengikuti panah hijau toska, dan dari sana `ls` akan menampilkan `notes.md`. `cd ..` naik kembali ke folder induk lewat panah oranye. Jalur relatif seperti `projects` dihitung dari folder kerja, sedangkan jalur absolut seperti `/home/user/docs` selalu mulai dari akar.
+Bayangkan folder kerjamu sekarang adalah `/home/user`, titik magenta di pohon ini. `cd projects` turun satu tingkat ke folder anak, mengikuti ruas hijau toska, dan dari sana `ls` akan menampilkan `notes.md`. `cd ..` naik kembali ke folder induk lewat ruas oranye. Jalur relatif seperti `projects` dihitung dari folder kerja, sedangkan jalur absolut seperti `/home/user/docs` selalu mulai dari akar.
 
-<LineEquation
+<MathVisual
   title="Berpindah folder dengan cd"
-  description="Setiap titik adalah satu folder atau file. Titik magenta adalah folder kerja sekarang, panah hijau toska adalah cd projects, dan panah oranye adalah cd .."
-  showZAxis={false}
-  cameraPosition={[1.5, -1, 8]}
-  cameraTarget={[1.5, -1, 0]}
-  data={[
-    { points: [{ x: 1.5, y: 1, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "/home", at: 0, offset: [0, 0.35, 0] }] },
-    { points: [{ x: 1.5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: "user", at: 0, offset: [0.6, 0.1, 0] }] },
-    { points: [{ x: 0, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "docs", at: 0, offset: [0, -0.4, 0] }] },
-    { points: [{ x: 3, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "projects", at: 0, offset: [0.7, 0.1, 0] }] },
-    { points: [{ x: 3, y: -3, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "notes.md", at: 0, offset: [0, -0.4, 0] }] },
-    { points: [{ x: 1.5, y: 1, z: 0 }, { x: 1.5, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 0, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 3, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 3, y: -1.5, z: 0 }, { x: 3, y: -3, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 1.8, y: -0.1, z: 0 }, { x: 2.9, y: -1.2, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd projects", at: 0, offset: [0.9, 0.3, 0] }] },
-    { points: [{ x: 2.7, y: -1.6, z: 0 }, { x: 1.6, y: -0.4, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd ..", at: 0, offset: [-0.6, -0.4, 0] }] },
-  ]}
+  description="Setiap titik adalah satu folder atau file. Titik magenta adalah folder kerja sekarang, ruas hijau toska adalah cd projects, dan ruas oranye adalah cd .."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "home", kind: "point", at: { x: 1.5, y: 1 }, appearance: "reference" },
+      { id: "user", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "docs", kind: "point", at: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "projects", kind: "point", at: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "notes", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "edge-a", kind: "segment", from: { x: 1.5, y: 1 }, to: { x: 1.5, y: 0 }, appearance: "reference" },
+      { id: "edge-b", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "edge-c", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "edge-d", kind: "segment", from: { x: 3, y: -1.5 }, to: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "down", kind: "segment", from: { x: 1.8, y: -0.1 }, to: { x: 2.9, y: -1.2 }, appearance: "construction" },
+      { id: "up", kind: "segment", from: { x: 2.7, y: -1.6 }, to: { x: 1.6, y: -0.4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "user", objectId: "user", at: { x: 1.5, y: 0 }, placement: "left" },
+      { key: "docs", objectId: "docs", at: { x: 0, y: -1.5 }, placement: "below" },
+      { key: "projects", objectId: "projects", at: { x: 3, y: -1.5 }, placement: "right" },
+      { key: "notes", objectId: "notes", at: { x: 3, y: -3 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2.9, y: -1.2 }, placement: "above-right" },
+      { key: "up", objectId: "up", at: { x: 1.6, y: -0.4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "home": "/home",
+    "user": "user",
+    "docs": "docs",
+    "projects": "projects",
+    "notes": "notes.md",
+    "down": "cd projects",
+    "up": "cd ..",
+  }}
 />
 
 Ulangi siklus di diagram ini setiap kali kamu menjelajah folder.
