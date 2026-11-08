@@ -28,8 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Songbirds migrating to Africa usually travel alone and at night.",
+          label: "Songbirds migrating to Africa usually travel at night.",
         },
         {
           correct: false,
