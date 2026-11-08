@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "fine-dust",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "dukungan sebaya sebagai ukuran utama dalam uji layanan",
+          column: 2,
+          label:
+            "Angka tertinggi di kedua stasiun tercatat pada jam yang sama.",
         },
         {
-          correct: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          column: 1,
+          label:
+            "Pada setiap jam pengukuran, angka di Stasiun A lebih tinggi daripada di Stasiun B.",
         },
         {
-          correct: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          column: 1,
+          label: "Selisih angka kedua stasiun paling kecil pada pukul 23.00.",
         },
         {
-          correct: true,
-          label: "Kartu Tujuan dalam Dukungan Sebaya: Uji Dua Minggu",
-        },
-        {
-          correct: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+          column: 2,
+          label:
+            "Pada pukul 14.00, angka di Stasiun B lebih rendah daripada angka pedoman WHO.",
         },
       ],
     },

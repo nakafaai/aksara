@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "liquefaction",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Definisi *periode* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu menjadikan *periode* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut memperluas *periode* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
-        },
-        {
-          correct: false,
-          label:
-            "Istilah *periode* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
-        },
-        {
           correct: true,
           label:
-            "Definisi *periode* menjelaskan mengapa waktu sepuluh ayunan perlu dibagi sepuluh agar setiap nilai menyatakan waktu satu ayunan lengkap.",
+            "menunjukkan bahwa perlakuan manusia dapat ikut menentukan kerawanan lahan",
+        },
+        {
+          correct: false,
+          label:
+            "membuktikan bahwa saluran irigasi menjadi penyebab gempa pada 2018",
+        },
+        {
+          correct: false,
+          label:
+            "menyalahkan para petani yang mengairi sawah di lereng-lereng Palu",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan mengapa tanah liat lebih tahan terhadap likuefaksi",
+        },
+        {
+          correct: false,
+          label:
+            "menyarankan agar semua saluran irigasi di Indonesia mungkin perlu ditutup",
         },
       ],
     },

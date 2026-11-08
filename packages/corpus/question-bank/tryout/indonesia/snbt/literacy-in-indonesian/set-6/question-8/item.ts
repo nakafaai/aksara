@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "homework-debate",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mengulang model erosi dalam baki dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
+            "Banyak siswa sekolah menengah atas mengerjakan tugas sampai lewat tengah malam.",
         },
         {
           correct: false,
           label:
-            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+            "Orang tua yang kurang berpendidikan sering kesulitan membantu anaknya mengerjakan tugas.",
         },
         {
           correct: false,
           label:
-            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+            "Murid sekolah dasar yang tidurnya cukup tampak lebih segar ketika belajar di kelas.",
         },
         {
           correct: false,
           label:
-            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+            "Sebagian guru mungkin merasa pekerjaan rumah membantu murid berlatih di rumah.",
         },
         {
           correct: true,
           label:
-            "Membandingkan tanah terbawa dari petak lereng terbuka dan berpenutup yang memiliki kemiringan serta jenis tanah sebanding selama beberapa kejadian hujan.",
+            "Murid SD dari keluarga sibuk dapat mengerjakan tugas sederhana sendiri tanpa tertinggal.",
         },
       ],
     },

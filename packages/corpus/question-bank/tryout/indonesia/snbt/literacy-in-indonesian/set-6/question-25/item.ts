@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "sriwijaya-stones",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Dua Belas Jawaban sebagai Ukuran Tunggal Keberhasilan",
-        },
-        {
-          correct: false,
-          label: "Memberi Semua Langkah agar Dimas Tidak Pernah Salah",
+          label:
+            "semua prasasti Sriwijaya hanya berisi kisah peperangan dan perjalanan pasukan raja",
         },
         {
           correct: false,
           label:
-            "Penyangga Belajar sebagai Bantuan yang Tidak Pernah Dikurangi",
-        },
-        {
-          correct: true,
-          label: "Dari Contoh ke Pemeriksaan Mandiri",
+            "raja Sriwijaya tidak pernah menghadapi pemberontakan selama berkuasa",
         },
         {
           correct: false,
-          label: "Kesalahan Pembagian yang Langsung Dibetulkan Sari",
+          label:
+            "prasasti Sriwijaya hanya dibuat di Pulau Bangka dan bukan di Palembang",
+        },
+        {
+          correct: true,
+          label:
+            "prasasti dipakai raja untuk berbagai tujuan, dari kisah perjalanan hingga ancaman",
+        },
+        {
+          correct: false,
+          label:
+            "taman di Talang Tuo mungkin dibangun untuk menyambut kedatangan I-Tsing",
         },
       ],
     },

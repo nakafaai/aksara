@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "conflict",
+  },
+  stimulus: "boat-race",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kenaikan dari $$16$$ menjadi $$27$$ membuktikan bahwa kartu tujuan menaikkan nilai semester setiap peserta.",
+            "bersekolah setiap hari dan berlatih berlayar di teluk setiap sore",
         },
         {
           correct: false,
-          label:
-            "Karena peserta ikut memberi masukan, kondisi pembanding $$17$$ tidak lagi diperlukan untuk menilai program.",
-        },
-        {
-          correct: false,
-          label:
-            "Jangka uji dua minggu hanya membatasi ketelitian angka dan tidak membatasi jenis hasil belajar yang dapat disimpulkan.",
+          label: "meminta izin kepada ayahnya dan meminjam perahu diam-diam",
         },
         {
           correct: true,
           label:
-            "Selisih $$27$$ dibandingkan $$17$$ mendukung uji lanjutan kartu tujuan dengan kolom revisi, tetapi hasil dua minggu tentang catatan pertemuan belum membuktikan kenaikan nilai semester.",
+            "mengejar kemenangan dan menolong anak yang perahunya terbalik",
         },
         {
           correct: false,
-          label:
-            "Program sebaiknya langsung diterapkan penuh karena mata pelajaran, jadwal, dan kehadiran awal telah dibuat sebanding.",
+          label: "menegur panitia dan menerima bendera yang sudah digulung",
+        },
+        {
+          correct: false,
+          label: "tetap menjadi nelayan dan mungkin belajar menjahit layar",
         },
       ],
     },

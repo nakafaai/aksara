@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "argument-structure",
+  },
+  stimulus: "homework-debate",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Definisi *erosi* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu menjadikan *erosi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Istilah *erosi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
-        },
-        {
           correct: true,
           label:
-            "Definisi *erosi* menjelaskan mengapa massa tanah yang berpindah bersama aliran menjadi hasil ukur, sekaligus membatasi penafsiran pada pemindahan partikel.",
+            "menjawab keberatan yang mungkin diajukan terhadap usul penulis",
         },
         {
           correct: false,
           label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "menyajikan data penelitian baru yang mendukung penghapusan pekerjaan rumah",
+        },
+        {
+          correct: false,
+          label:
+            "mengakui bahwa usul penulis memang dapat memanjakan anak-anak",
+        },
+        {
+          correct: false,
+          label:
+            "mengalihkan pembahasan ke soal beban kerja para guru di kelas",
+        },
+        {
+          correct: false,
+          label:
+            "menyimpulkan bahwa pekerjaan rumah mungkin perlu dihapus di semua jenjang",
         },
       ],
     },

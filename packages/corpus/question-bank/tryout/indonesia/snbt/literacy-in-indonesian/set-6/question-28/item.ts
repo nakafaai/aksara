@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "dawn-market",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "timbangan tua itu sudah rusak sehingga tidak dapat dipakai lagi",
         },
         {
           correct: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "pedagang di pasar itu menolak setiap tawaran yang diajukan pembeli",
         },
         {
           correct: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "suara decit timbangan tua itu lebih keras daripada suara para pembeli di pasar",
         },
         {
           correct: true,
           label:
-            "Bacaan mendukung simpulan bahwa Reno menunda berdasarkan risiko yang tercatat, tetapi tidak membuktikan bahwa kelembapan menyebabkan garis atau supervisor menyetujui keputusan itu.",
+            "timbangan jujur menunjukkan berat, sedangkan orang kerap bersiasat saat menawar",
         },
         {
           correct: false,
           label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+            "pembeli mungkin lebih suka menawar kepada timbangan daripada pedagang",
         },
       ],
     },

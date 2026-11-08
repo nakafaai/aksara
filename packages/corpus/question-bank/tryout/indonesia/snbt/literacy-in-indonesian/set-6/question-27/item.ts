@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "dawn-market",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "hiperbola, karena keramaian pasar dilebih-lebihkan hingga tidak masuk akal",
+        },
+        {
+          correct: false,
+          label:
+            'simile, karena pasar dibandingkan dengan sesuatu memakai kata "seperti"',
         },
         {
           correct: true,
           label:
-            "Catatan $$2019$$, pembacaan ulang, dan nama Reno pada catatan baru mengubah kartu kondisi dari formulir rutin menjadi hubungan tanggung jawab antarpengelola karya.",
+            "personifikasi, karena pasar digambarkan dapat membuka mata seperti manusia",
         },
         {
           correct: false,
           label:
-            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "ironi, karena pasar disebut terjaga padahal sebenarnya masih tertidur",
         },
         {
           correct: false,
           label:
-            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
-        },
-        {
-          correct: false,
-          label:
-            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            'metonimia, karena kata "pasar" mungkin menggantikan nama pemiliknya',
         },
       ],
     },

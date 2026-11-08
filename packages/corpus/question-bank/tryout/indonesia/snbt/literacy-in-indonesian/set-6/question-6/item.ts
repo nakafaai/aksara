@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "homework-debate",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Pekerjaan rumah sebaiknya dihapus di semua jenjang karena hanya membebani anak.",
+        },
+        {
+          correct: false,
+          label:
+            "Pekerjaan rumah perlu ditambah agar murid sekolah dasar terbiasa belajar mandiri.",
+        },
+        {
           correct: true,
           label:
-            "Model baki menunjukkan bahwa penutup serat berkaitan dengan lebih sedikit tanah terbawa pada kondisi terkontrol, tetapi faktor penting pada lereng nyata belum terwakili.",
+            "Pekerjaan rumah dihapus di sekolah dasar, sedangkan di sekolah menengah diubah bentuknya.",
         },
         {
           correct: false,
           label:
-            "Model baki menunjukkan penutup serat selalu menghilangkan erosi karena massa tanah terbawa menjadi nol pada kedua ulangan.",
+            "Pekerjaan rumah sebaiknya diperiksa dulu oleh orang tua sebelum dikumpulkan kepada guru.",
         },
         {
           correct: false,
           label:
-            "Bacaan hanya mendefinisikan erosi tanpa membandingkan massa tanah dari baki terbuka dan berpenutup.",
-        },
-        {
-          correct: false,
-          label:
-            "Bacaan menganggap volume air dan sudut baki tidak perlu dibuat sama karena perbedaan massa tanah sudah cukup membuktikan pengaruh penutup.",
-        },
-        {
-          correct: false,
-          label:
-            "Model baki menentukan besar kehilangan tanah pada semua lereng karena dua ulangan telah mewakili seluruh kondisi lapangan.",
+            "Pekerjaan rumah mungkin paling bermanfaat jika dikerjakan bersama orang tua di rumah.",
         },
       ],
     },

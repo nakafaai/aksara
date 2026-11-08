@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "boat-race",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "ia melarang Ilham ikut lomba lagi karena cuaca tahun depan akan berbahaya",
         },
         {
           correct: true,
           label:
-            "Kartu tujuan menghasilkan $$10$$ catatan lengkap lebih banyak daripada catatan biasa dari jumlah pertemuan yang sama. Hasil itu belum mengukur perubahan nilai semester.",
+            "ia mendukung Ilham ikut lomba lagi dan telah menyiapkan layar yang kuat",
         },
         {
           correct: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "ia meramalkan cuaca tahun depan berdasarkan pengalamannya melaut",
         },
         {
           correct: false,
           label:
-            "Kondisi pembanding menghasilkan $$17$$ catatan lengkap. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "ia menyindir Ilham yang kalah karena layar perahunya terlalu lemah",
+        },
+        {
+          correct: false,
+          label:
+            "ia mungkin ingin menjual perahu itu sebelum musim angin kencang tiba",
         },
       ],
     },
