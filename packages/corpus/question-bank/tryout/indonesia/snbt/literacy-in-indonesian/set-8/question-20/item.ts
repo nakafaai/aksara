@@ -18,7 +18,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "larangan ekspor bijih nikel mentah sudah berlaku sejak 2020",
+          label: "larangan ekspor bijih nikel mentah mulai berlaku pada 2020",
         },
         {
           correct: false,

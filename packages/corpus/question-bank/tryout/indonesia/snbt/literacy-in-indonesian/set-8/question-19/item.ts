@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Teks 1 menyebut bahwa ekspor bijih nikel mentah dilarang sejak 2020.",
+            "Teks 1 menyebut bahwa larangan ekspor bijih nikel mentah mulai berlaku pada 2020.",
         },
         {
           column: 2,

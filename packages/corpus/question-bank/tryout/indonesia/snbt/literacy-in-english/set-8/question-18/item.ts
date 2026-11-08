@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Much of it was told from memory years later, after most notes were lost.",
+            "Much of it was told from memory, years after the events it describes.",
         },
         {
           correct: false,

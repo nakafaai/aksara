@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To explain why Ibn Battuta lost most of his notes on the voyage",
+            "To explain why Ibn Battuta kept so few written records of his voyage",
         },
         {
           correct: false,

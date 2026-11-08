@@ -18,8 +18,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "The lowest notes of their songs will tend to rise above the noise.",
+          label: "The lowest notes of their songs will tend to rise in pitch.",
         },
         {
           correct: false,

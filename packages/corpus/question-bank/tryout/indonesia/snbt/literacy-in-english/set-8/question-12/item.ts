@@ -28,7 +28,7 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "The average trip became longer in every month of the pilot.",
+          label: "Each month's average trip was longer than the month before.",
         },
       ],
     },

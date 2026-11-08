@@ -31,8 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "The birds had been singing loudly mainly because of traffic noise.",
+          label: "Traffic noise had been making the birds sing more loudly.",
         },
       ],
     },
