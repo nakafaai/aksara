@@ -1,4 +1,5 @@
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
+import { kssmProgramSource } from "#corpus/program/kssm";
 
 /** Exact official school-program rows preserved from Nakafa's source registry. */
 export const schoolProgramSources = [
@@ -257,4 +258,5 @@ export const schoolProgramSources = [
     ],
     version: { label: "K-12 standards-aligned pathway" },
   },
+  kssmProgramSource,
 ] as const;
