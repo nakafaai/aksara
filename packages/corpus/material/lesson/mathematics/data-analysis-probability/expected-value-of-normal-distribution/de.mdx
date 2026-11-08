@@ -1,61 +1,118 @@
 export const metadata = {
-   title: "Erwartungswert der Normalverteilung",
-  description: "Deute den Mittelwert einer Normalverteilung als ihren Erwartungswert in statistischen Aufgaben.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
-   subject: "Datenanalyse und Wahrscheinlichkeit",
+  title: "Erwartungswert der Normalverteilung",
+  description: "Der Erwartungswert einer Normalverteilung ist ihr Mittelwert μ. Beweise ihn mit Symmetrie und Integral und nutze ihn für Skalierung, Summen und Aufgaben.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
-## Der Erwartungswert liegt im Zentrum der Verteilung
+## Der Erwartungswert liegt in der Mitte der Kurve
 
-Der **Erwartungswert** ist der mit Wahrscheinlichkeiten gewichtete Mittelwert einer Zufallsvariablen. Er beschreibt auch den langfristigen Durchschnitt vieler unabhängiger Beobachtungen. Im Allgemeinen muss er nicht mit dem häufigsten Wert übereinstimmen. Bei einer Normalverteilung liegen Mittelwert, Median, Modus und Erwartungswert jedoch <Highlight>im selben Zentrum</Highlight>.
-
-Aus dieser Symmetrie folgt eine einfache Regel für den Erwartungswert.
-
-> Gilt <InlineMath math="X \sim N(\mu, \sigma^2)" /> mit <InlineMath math="\sigma>0" />, dann entspricht der Erwartungswert dem Mittelwertparameter <InlineMath math="\mu" />.
-
-Mathematisch können wir schreiben:
+Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" /> und Standardabweichung <InlineMath math="\sigma > 0" />, geschrieben <InlineMath math="X \sim N(\mu, \sigma^2)" />, dann ist der Erwartungswert gleich dem Parameter <InlineMath math="\mu" />:
 
 <BlockMath math="E(X) = \mu" />
 
-Dabei ist <InlineMath math="X" /> eine Zufallsvariable, die der Normalverteilung folgt, und <InlineMath math="\mu" /> der Mittelwertparameter dieser Verteilung.
+Der Erwartungswert ist der **mit den Wahrscheinlichkeiten gewichtete Durchschnitt** aller Werte von <InlineMath math="X" />. Nimmst du sehr viele Beobachtungen aus der Verteilung, kommt ihr Durchschnitt <InlineMath math="\mu" /> immer näher. Die Standardabweichung <InlineMath math="\sigma" /> legt nur die Breite der Kurve fest, also **ändert die Breite der Kurve den Erwartungswert nicht**.
 
-Die folgende Rechnung zeigt, warum das gilt.
+Klausurpunkte mit der Verteilung <InlineMath math="N(75, 10^2)" /> haben den Erwartungswert <InlineMath math="75" />. Bei einer Normalverteilung treffen sich Mittelwert, Median, Modus und Erwartungswert auf der Symmetrieachse der Kurve. Die interaktive Grafik markiert diese Mitte und zwei Paare gleich hoher Werte links und rechts davon.
 
-## Den Erwartungswert aus dem Integral herleiten
+<LineEquation
+  title={<>Paare gleich hoher Werte um <InlineMath math="\mu = 2" /></>}
+  description={<>Die Dichtekurve von <InlineMath math="N(2, 1)" />. Die senkrechten Strecken bei <InlineMath math="x = 1" /> und <InlineMath math="x = 3" /> sind gleich hoch, ebenso die Strecken bei <InlineMath math="x = 0{,}5" /> und <InlineMath math="x = 3{,}5" />, weil sie gleich weit von der Mitte entfernt liegen.</>}
+  showZAxis={false}
+  cameraPosition={[2, 0.2, 5.5]}
+  cameraTarget={[2, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -1.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 1 / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mu = 2" />, at: 1, offset: [0, 0.12, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: Math.exp(-0.5 * (1 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: 3, y: Math.exp(-0.5 * (3 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 0.5, y: 0, z: 0 },
+        { x: 0.5, y: Math.exp(-0.5 * (0.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="0{,}5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3.5, y: 0, z: 0 },
+        { x: 3.5, y: Math.exp(-0.5 * (3.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3{,}5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+  ]}
+/>
 
-Der Erwartungswert einer stetigen Zufallsvariablen ist definiert als:
+## Wertepaare gleichen sich aus
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot f(x) \, dx" />
+Warum liegt der Erwartungswert genau bei <InlineMath math="\mu" />? Die Normalverteilungskurve ist symmetrisch zur Geraden <InlineMath math="x = \mu" />. Jeder Wert <InlineMath math="\mu + d" /> hat einen Partner <InlineMath math="\mu - d" /> mit derselben Dichte, weil die Dichteformel nur das Quadrat <InlineMath math="(x - \mu)^2" /> enthält und <InlineMath math="(+d)^2 = (-d)^2" /> gilt.
 
-Für eine Normalverteilung mit <InlineMath math="\sigma>0" /> lautet die Wahrscheinlichkeitsdichtefunktion:
+Die Abweichungen der beiden Werte von der Mitte sind <InlineMath math="+d" /> und <InlineMath math="-d" />. Bei gleichem Gewicht heben sich ihre Beiträge auf. Alle Werte lassen sich so paaren, also ist **die mittlere Abweichung von der Mitte null**:
 
-<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+<BlockMath math="E(X - \mu) = 0 \quad\Longrightarrow\quad E(X) = \mu" />
 
-Wir setzen diese Funktion in die Erwartungswertformel ein:
+Auf der Kurve von <InlineMath math="N(2, 1)" /> reichen die Strecken bei <InlineMath math="x = 1" /> und <InlineMath math="x = 3" /> beide bis <InlineMath math="\frac{1}{\sqrt{2\pi}}e^{-1/2} \approx 0{,}242" />. Die Strecken bei <InlineMath math="x = 0{,}5" /> und <InlineMath math="x = 3{,}5" /> reichen beide bis etwa <InlineMath math="0{,}130" />. Dieses Symmetrieargument braucht noch eine Bedingung, nämlich dass das Integral für den Erwartungswert existiert, und der Beweis mit dem Integral bestätigt das.
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, dx" />
+## Die Formel mit einem Integral beweisen
 
-Nun verwenden wir die Substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Dann gilt <InlineMath math="x = \sigma t + \mu" /> und <InlineMath math="dx = \sigma \, dt" />.
-
-Bezeichne die ursprüngliche Dichte nach dem Einsetzen von <InlineMath math="x=\sigma t+\mu" /> mit <InlineMath math="h(t)" /> und halte <InlineMath math="dx=\sigma\,dt" /> getrennt:
+Für eine stetige Zufallsgröße ist der Erwartungswert das Integral von <InlineMath math="x" /> mal Dichte über die ganze Zahlengerade. Flächen unter einer solchen Kurve berechnest du mit dem [bestimmten Integral](/de/faecher/mathematik/integralrechnung/bestimmtes-integral), hier mit unendlichen Grenzen. Bei einer diskreten Größe, etwa der Anzahl der Treffer in einer [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/erwartungswert-der-binomialverteilung), wird aus dem Integral eine Summe.
 
 <MathContainer>
-  <BlockMath math="h(t)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac12t^2}" />
+  <BlockMath math="E(X) = \int_{-\infty}^{\infty} x f(x)\,dx" />
+  <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+</MathContainer>
 
-  <BlockMath math="E(X)=\int_{-\infty}^{\infty}(\sigma t+\mu)h(t)\sigma\,dt" />
-  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+Die Substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" /> **verschiebt die Mitte auf null** und misst Abstände in Standardabweichungen. Aus ihr folgen <InlineMath math="x = \sigma t + \mu" /> und <InlineMath math="dx = \sigma\,dt" />, sodass sich der Faktor <InlineMath math="\sigma" /> im Nenner wegkürzt:
+
+<MathContainer>
+  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu)\, e^{-\frac{1}{2}t^2}\,dt" />
   <BlockMath math="\begin{aligned} E(X) &amp;= \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt \\ &amp;\quad{}+ \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt \end{aligned}" />
 </MathContainer>
 
-Für die beiden Integrale gilt:
-
-- **Erstes Integral**: <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" />, weil <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> ungerade ist. Aus <InlineMath math="g(-t) = -g(t)" /> folgt, dass sich die vorzeichenbehafteten Flächen über dem symmetrischen Intervall <InlineMath math="(-\infty, \infty)" /> aufheben.
-
-- **Zweites Integral**: <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> ist das Gaußsche Integral. Multipliziert mit dem Normierungsfaktor <InlineMath math="1/\sqrt{2\pi}" /> ergibt es die Gesamtwahrscheinlichkeit <InlineMath math="1" /> der Standardnormaldichte.
-
-Beide Hälften des ersten Integrals **konvergieren einzeln**. Die Stammfunktion <InlineMath math="-e^{-t^2/2}" /> liefert jeden Beitrag. Die Null entsteht also nicht durch Subtraktion zweier unendlicher Werte.
+Das erste Integral ist null, weil <InlineMath math="g(t) = t e^{-t^2/2}" /> eine **ungerade Funktion** ist, also <InlineMath math="g(-t) = -g(t)" /> gilt. Die orientierten Flächen links und rechts der senkrechten Achse sind gleich groß und haben entgegengesetzte Vorzeichen, wie beim [Integral einer ungeraden Funktion über ein symmetrisches Intervall](/de/faecher/mathematik/integralrechnung/eigenschaften-bestimmter-integrale). Beide Hälften sind endlich, die Null entsteht also nicht durch die Differenz zweier unendlicher Werte:
 
 <MathContainer>
   <BlockMath math="\int_0^\infty te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_0^\infty=0-(-1)=1" />
@@ -63,14 +120,14 @@ Beide Hälften des ersten Integrals **konvergieren einzeln**. Die Stammfunktion 
 </MathContainer>
 
 <LineEquation
-  title="Entgegengesetzte Beiträge heben sich auf"
-  description={<>Der Graph von <InlineMath math="g(t) = t e^{-t^2/2}" /> von -3 bis 3. Bei t und -t sind die Höhen betragsgleich mit entgegengesetztem Vorzeichen. Auch die nicht gezeigten Enden sind symmetrisch.</>}
+  title="Gegensätzliche Beiträge heben sich auf"
+  description={<>Der Graph von <InlineMath math="g(t) = t e^{-t^2/2}" /> für <InlineMath math="-3 \le t \le 3" />. Bei <InlineMath math="t" /> und <InlineMath math="-t" /> sind die Höhen gleich groß mit entgegengesetztem Vorzeichen, und auch die Enden außerhalb der Ansicht sind symmetrisch.</>}
   cameraPosition={[0, 0, 8]}
   showZAxis={false}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const t = (index - 30) / 10;
+      points: Array.from({ length: 601 }, (_, index) => {
+        const t = (index - 300) / 100;
         return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
       }),
       color: "#0d9488",
@@ -80,90 +137,103 @@ Beide Hälften des ersten Integrals **konvergieren einzeln**. Die Stammfunktion 
   ]}
 />
 
-Deshalb:
+Das zweite Integral ist das Gaußsche Integral mit dem Wert <InlineMath math="\sqrt{2\pi}" />. Damit ergibt sich:
+
+<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi} = \mu" />
+
+Probe mit dem Symmetrieargument: Beide Wege liefern <InlineMath math="\mu" />, und <InlineMath math="\sigma" /> fällt aus dem Ergebnis heraus, genau wie bei den gleich hohen Paaren um die Mitte.
+
+## Erwartungswert der Standardnormalverteilung
+
+Die Standardnormalverteilung ist die Normalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" />, geschrieben <InlineMath math="Z \sim N(0, 1)" />. Die Regel <InlineMath math="E(X) = \mu" /> liefert sofort den **Erwartungswert der Standardnormalverteilung <InlineMath math="E(Z) = 0" />**.
+
+Jede normalverteilte Größe lässt sich aus der Standardnormalverteilung als <InlineMath math="X = \mu + \sigma Z" /> schreiben. Die Linearität des Erwartungswerts, <InlineMath math="E(aZ + b) = aE(Z) + b" />, gibt einen zweiten Weg ohne Integral:
+
+<BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
+
+Dieselbe Beziehung erklärt den z-Wert <InlineMath math="z = \frac{x - \mu}{\sigma}" />, den Abstand von der Mitte in Standardabweichungen, dessen Mittelwert null ist. Weil <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> standardnormalverteilt ist, gilt <InlineMath math="P(X < x) = \Phi\left(\frac{x - \mu}{\sigma}\right)" />, also genügt eine Tabelle für <InlineMath math="Z" /> für jede [Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/normalverteilung).
+
+## Linearität des Erwartungswerts
+
+Zwei Regeln lösen die meisten Aufgaben. Für feste Zahlen <InlineMath math="a" /> und <InlineMath math="b" /> **verschiebt und skaliert sich der Erwartungswert mit der Größe**, und der Erwartungswert einer Summe ist die Summe der Erwartungswerte:
 
 <MathContainer>
-<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi}" />
-<BlockMath math="E(X) = 0 + \mu = \mu" />
+  <BlockMath math="E(aX + b) = a\mu + b" />
+  <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-Damit ist gezeigt, dass der Erwartungswert einer normalverteilten Zufallsvariablen ihrem **Mittelwertparameter** entspricht.
+**Beispiel 1**. Die mittlere Tagestemperatur in Jakarta im Juni ist normalverteilt mit <InlineMath math="\mu = 28^\circ\text{C}" /> und <InlineMath math="\sigma = 3^\circ\text{C}" />. Die Umrechnung in Fahrenheit lautet <InlineMath math="F = 1{,}8C + 32" />, also die Form <InlineMath math="aC + b" /> mit <InlineMath math="a = 1{,}8" /> und <InlineMath math="b = 32" />:
 
-> Für jede Normalverteilung <InlineMath math="X \sim N(\mu, \sigma^2)" /> gilt <InlineMath math="E(X) = \mu" />. Das bedeutet, dass wir nicht jedes Mal eine Integration durchführen müssen, wenn wir den Erwartungswert einer Normalverteilung berechnen. Wir verwenden einfach den Parameterwert <InlineMath math="\mu" />.
+<BlockMath math="E(F) = 1{,}8 \cdot 28 + 32 = 82{,}4^\circ\text{F}" />
 
-## Praktische Interpretation
+Probe mit einem symmetrischen Temperaturpaar. Die Temperaturen <InlineMath math="25^\circ\text{C}" /> und <InlineMath math="31^\circ\text{C}" /> liegen <InlineMath math="3" /> Grad von der Mitte entfernt und werden zu <InlineMath math="77^\circ\text{F}" /> und <InlineMath math="87{,}8^\circ\text{F}" />. Ihre Mitte ist <InlineMath math="\frac{77 + 87{,}8}{2} = 82{,}4" />, genau das Ergebnis der Formel.
 
-Für eine Normalverteilung hängen Erwartungswert und Mittelwertparameter wie folgt zusammen.
+**Beispiel 2**. Das Gewicht eines Reisbeutels ist normalverteilt mit <InlineMath math="\mu = 1{.}000\text{ g}" /> und <InlineMath math="\sigma = 15\text{ g}" />. Der Erwartungswert des Gesamtgewichts von <InlineMath math="20" /> Beuteln ist die Summe der Erwartungswerte der einzelnen Beutel:
 
-Für eine normalverteilte Zufallsvariable mit Mittelwert <InlineMath math="\mu" /> und Standardabweichung <InlineMath math="\sigma" /> ist der **Erwartungswert** genau <InlineMath math="\mu" />. Bei vielen unabhängigen Beobachtungen aus dieser Verteilung nähert sich der Stichprobenmittelwert nach dem Gesetz der großen Zahlen dem Wert <InlineMath math="\mu" />.
+<BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{.}000 = 20{.}000\text{ g}" />
 
-**Beispiel**:
+Probe mit zehn Beutelpaaren: Jedes Paar hat den Erwartungswert <InlineMath math="1{.}000 + 1{.}000 = 2{.}000\text{ g}" />, und <InlineMath math="10 \cdot 2{.}000 = 20{.}000\text{ g}" />. Die Standardabweichung von <InlineMath math="15\text{ g}" /> spielt keine Rolle, weil sie nur die Streuung des Gesamtgewichts beeinflusst, nicht seine Mitte.
 
-Wenn die Körpergrößen einer Schülergruppe normalverteilt sind und der Mittelwert <InlineMath math="165 \text{ cm}" /> beträgt, liegt die erwartete Körpergröße eines zufällig ausgewählten Schülers bei <InlineMath math="165 \text{ cm}" />.
+## Die Mitte aus gegebenen Wahrscheinlichkeiten finden
 
-## Erwartungswerte für Prüfungspunkte und Geburtsgewichte
+Manchmal nennt eine Aufgabe <InlineMath math="\mu" /> nicht direkt, sondern gibt symmetrische Wahrscheinlichkeiten an. Bei einer Normalverteilung liegen **zwei Ränder mit gleicher Fläche gleich weit von der Mitte entfernt**.
 
-**Beispiel 1**
+**Beispiel 3**. Eine Größe <InlineMath math="X" /> ist normalverteilt mit <InlineMath math="P(X < 40) = P(X > 60)" />. Beide Ränder haben dieselbe Fläche, also liegen <InlineMath math="40" /> und <InlineMath math="60" /> gleich weit von der Mitte entfernt, und die Mitte ist ihr Mittelpunkt:
 
-Angenommen, die Ergebnisse einer Mathematikprüfung werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="\mu = 75" /> und der Standardabweichung <InlineMath math="\sigma = 10" /> modelliert. Wie hoch ist der Erwartungswert der Punktzahl eines zufällig ausgewählten Schülers?
+<BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-**Lösung**:
+Probe mit einem Wert der Standardabweichung, etwa <InlineMath math="\sigma = 10" />: <InlineMath math="P(X < 40) = P(Z < -1) \approx 0{,}1587" /> und <InlineMath math="P(X > 60) = P(Z > 1) \approx 0{,}1587" />. Beide Ränder sind gleich groß, und das gilt für jedes <InlineMath math="\sigma" />, weil <InlineMath math="40" /> und <InlineMath math="60" /> immer gleich weit von <InlineMath math="50" /> entfernt liegen.
 
-Da für die Normalverteilung <InlineMath math="E(X) = \mu" /> gilt, beträgt der Erwartungswert der Prüfungspunktzahl:
+**Beispiel 4**. Die Hälfte der Fahrten eines Busses dauert weniger als <InlineMath math="42" /> Minuten, und die Fahrzeit ist normalverteilt. Diese Aussage bedeutet <InlineMath math="P(X < 42) = 0{,}5" />, also sind <InlineMath math="42" /> Minuten der Median. Bei einer Normalverteilung ist der Median gleich dem Mittelwert, also gilt <InlineMath math="E(X) = 42" /> Minuten.
 
-<BlockMath math="E(X) = 75" />
+Probe mit der Symmetrie, etwa für <InlineMath math="\sigma = 6" /> Minuten: <InlineMath math="P(X < 36) = P(X > 48) \approx 0{,}1587" />, also sind die Flächen links und rechts von <InlineMath math="42" /> gleich groß.
 
-Der Erwartungswert der Prüfungspunktzahl beträgt daher <InlineMath math="75" />.
+## Häufige Fehler
 
-**Beispiel 2**
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="\sigma" /> als Erwartungswert angeben | <InlineMath math="\sigma" /> misst die Breite der Streuung, nicht die Mitte | Der Erwartungswert liegt immer auf der Symmetrieachse |
+| Glauben, <InlineMath math="X" /> sei genau <InlineMath math="\mu" /> | Bei einer stetigen Größe gilt <InlineMath math="P(X = \mu) = 0" /> | Der Erwartungswert ist ein langfristiger Durchschnitt, kein einzelnes Ergebnis |
+| <InlineMath math="E(X^2) = \mu^2" /> schreiben | Quadrieren ist nicht linear, also <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | Für <InlineMath math="Z \sim N(0, 1)" /> gilt <InlineMath math="E(Z^2) = 1" />, nicht <InlineMath math="0" /> |
+| <InlineMath math="b" /> in <InlineMath math="E(aX + b)" /> vergessen | Die Verschiebung <InlineMath math="b" /> bewegt die Mitte der Kurve | Ein symmetrisches Wertepaar umrechnen und seine Mitte prüfen |
+| Für eine Summe Unabhängigkeit verlangen | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> gilt auch ohne sie | Die Varianz einer Summe ist nur dann die Summe der Varianzen, wenn <InlineMath math="X" /> und <InlineMath math="Y" /> unkorreliert sind, etwa unabhängig |
 
-Angenommen, die Gewichte von Neugeborenen in einem Krankenhaus werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="3{.}200 \text{ Gramm}" /> und der Standardabweichung <InlineMath math="400 \text{ Gramm}" /> modelliert. Bestimme das erwartete Gewicht eines zufällig ausgewählten Neugeborenen.
-
-**Lösung**:
-
-Gegeben seien <InlineMath math="\mu = 3{.}200 \text{ Gramm}" /> und <InlineMath math="\sigma = 400 \text{ Gramm}" />.
-
-Das erwartete Gewicht entspricht dem Mittelwertparameter:
-
-<BlockMath math="E(X) = \mu = 3{.}200 \text{ Gramm}" />
+Bei einer Frage nach <InlineMath math="E(X)" /> oder <InlineMath math="E(aX + b)" /> fängt eine Frage den ersten und vierten Fehler ab: **liegt deine Antwort auf der Symmetrieachse der gefragten Kurve**? Für <InlineMath math="E(X^2)" /> prüfst du mit der Varianz, denn <InlineMath math="E(X^2) - [E(X)]^2" /> muss <InlineMath math="\sigma^2" /> ergeben.
 
 ## Übungen
 
-Alle drei Aufgaben geben **Mittelwert und Standardabweichung** einer Normalverteilung an und fragen nach dem Erwartungswert. Lies den Mittelwert direkt aus der Beschreibung ab, weil der Erwartungswert einer Normalverteilung an ihrem Zentrum liegt.
+Die ersten beiden Aufgaben nutzen die Regel direkt, die dritte braucht den Zusammenhang mit der Varianz, und die vierte verbindet Symmetrie mit einer Verschiebung. **Bestimme zuerst den Wert von <InlineMath math="\mu" />** und prüfe deine Antwort, bevor du die Lösung liest.
 
-1. Die Fahrzeit von zu Hause zur Schule wird durch eine Normalverteilung mit dem Mittelwert <InlineMath math="25 \text{ Minuten}" /> und der Standardabweichung <InlineMath math="5 \text{ Minuten}" /> modelliert. Bestimme die erwartete Fahrzeit.
+1. Die Fahrzeit von zu Hause zur Schule ist normalverteilt mit Mittelwert <InlineMath math="25" /> Minuten und Standardabweichung <InlineMath math="5" /> Minuten. Der Heimweg hat dieselbe Verteilung. Bestimme den Erwartungswert für eine Fahrt und für Hin- und Rückweg zusammen.
 
-2. Die tägliche Lufttemperatur in Jakarta im Juni wird durch eine Normalverteilung mit dem Mittelwert <InlineMath math="28^\circ\text{C}" /> und der Standardabweichung <InlineMath math="3^\circ\text{C}" /> modelliert. Wie hoch ist die erwartete Temperatur an einem zufällig ausgewählten Tag?
+2. Eine Größe <InlineMath math="Z" /> ist standardnormalverteilt. Bestimme <InlineMath math="E(3Z + 2)" />.
 
-3. Die Physikprüfungsergebnisse der Jahrgangsstufe <InlineMath math="12" /> werden durch eine Normalverteilung mit dem Mittelwert <InlineMath math="78" /> und der Standardabweichung <InlineMath math="12" /> modelliert. Wie hoch ist der Erwartungswert für einen zufällig ausgewählten Schüler?
+3. Eine Größe <InlineMath math="X" /> hat die Verteilung <InlineMath math="N(10, 2^2)" />. Bestimme <InlineMath math="E(X^2)" /> mit <InlineMath math="\operatorname{Var}(X) = E(X^2) - [E(X)]^2" />.
+
+4. Eine Größe <InlineMath math="X" /> ist normalverteilt mit <InlineMath math="P(X < 35) = P(X > 65)" />. Bestimme <InlineMath math="E(2X - 10)" />.
+
 ### Lösungen
 
-1. **Lösung zu Aufgabe 1**:
+**Aufgabe 1**. Der Mittelwert der Verteilung ist <InlineMath math="25" />, also ist **der Erwartungswert einer Fahrt <InlineMath math="25" /> Minuten**. Hin- und Rückweg sind die Summe zweier Fahrzeiten:
 
-   Gegeben: <InlineMath math="\mu = 25 \text{ Minuten}" />, <InlineMath math="\sigma = 5 \text{ Minuten}" />
+<BlockMath math="E(X_1 + X_2) = 25 + 25 = 50 \text{ Minuten}" />
 
-   Da die Normalverteilung die Eigenschaft <InlineMath math="E(X) = \mu" /> hat, gilt:
+Probe: Das Ergebnis ist das Doppelte des Mittelwerts einer Fahrt, und die Standardabweichung von <InlineMath math="5" /> Minuten beeinflusst die Mitte nicht.
 
-   <BlockMath math="E(X) = 25 \text{ Minuten}" />
+**Aufgabe 2**. Für die Standardnormalverteilung gilt <InlineMath math="E(Z) = 0" />. Mit der Linearität folgt:
 
-   **Antwort**: Der Erwartungswert der Reisezeit beträgt <InlineMath math="25 \text{ Minuten}" />.
+<BlockMath math="E(3Z + 2) = 3 \cdot 0 + 2 = 2" />
 
-2. **Lösung zu Aufgabe 2**:
+Probe: <InlineMath math="3Z + 2" /> hat die Verteilung <InlineMath math="N(2, 3^2)" />, eine Normalverteilungskurve **mit der Mitte bei <InlineMath math="2" />**.
 
-   Gegeben: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
+**Aufgabe 3**. Aus <InlineMath math="N(10, 2^2)" /> folgen der Erwartungswert <InlineMath math="10" /> und die Varianz <InlineMath math="4" />. Stelle die Varianzformel nach <InlineMath math="E(X^2)" /> um:
 
-   Verwendung der Grundeigenschaft der Normalverteilung:
+<BlockMath math="E(X^2) = \operatorname{Var}(X) + [E(X)]^2 = 4 + 10^2 = 104" />
 
-   <BlockMath math="E(X) = \mu = 28^\circ\text{C}" />
+Probe: <InlineMath math="104 > 100 = [E(X)]^2" />, passend zu einer positiven Varianz. <InlineMath math="E(X^2) = 100" /> zu schreiben ist **der Fehler, Quadrieren als linear zu behandeln**.
 
-   **Antwort**: Der erwartete Wert der Lufttemperatur beträgt <InlineMath math="28^\circ\text{C}" />.
+**Aufgabe 4**. Beide Ränder haben dieselbe Fläche, also ist die Mitte der Mittelpunkt von <InlineMath math="35" /> und <InlineMath math="65" />, nämlich <InlineMath math="\mu = 50" />. Mit der Linearität folgt:
 
-3. **Lösung zu Aufgabe 3**:
+<BlockMath math="E(2X - 10) = 2 \cdot 50 - 10 = 90" />
 
-   Gegeben: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
-
-   Für eine normalverteilte Zufallsvariable gilt <InlineMath math="E(X)=\mu" />. Daher:
-
-   <BlockMath math="E(X) = \mu = 78" />
-
-   **Antwort**: Der Erwartungswert der Prüfungspunktzahl beträgt <InlineMath math="78" />.
+Probe mit einem symmetrischen Paar: Aus <InlineMath math="35" /> wird <InlineMath math="60" />, aus <InlineMath math="65" /> wird <InlineMath math="120" />. Ihre Mitte ist <InlineMath math="90" />, also **bleibt die neue Mitte in der Mitte des Paares**.
