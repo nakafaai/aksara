@@ -45,6 +45,20 @@ Semua nilai singularnya sama dengan <InlineMath math="1" />, sehingga
 
 Perkalian dengan matriks tersebut tidak memperbesar galat relatif dalam norma Euklides. Inilah alasan faktorisasi <InlineMath math="\mathrm{QR}" /> menggunakan reflektor Householder dan rotasi Givens.
 
+Diagram ini menunjukkan mengapa satu persamaan <InlineMath math="Q^TQ=I" /> sudah cukup untuk menjaga semua ukuran geometri.
+
+<Mermaid
+  title="Satu syarat, banyak akibat"
+  description="Q^T Q = I membawa semua sifat yang dijaga matriks ortogonal."
+  chart={`
+    flowchart TD
+        A[Q^T Q = I] --> B[Kolom Q ortonormal]
+        A --> C[⟨Qx, Qy⟩ = ⟨x, y⟩]
+        C --> D[Panjang tetap: ‖Qx‖ = ‖x‖]
+        C --> E[Sudut tetap]
+  `}
+/>
+
 ## Determinan dan Orientasi
 
 Untuk matriks uniter,
@@ -59,6 +73,19 @@ Untuk matriks ortogonal real, determinannya real, sehingga
 <BlockMath math="\det Q\in\{-1,1\}" />
 
 Kasus <InlineMath math="\det Q=1" /> **mempertahankan orientasi**. Kasus <InlineMath math="\det Q=-1" /> membalik orientasi dan mengandung komponen refleksi.
+
+Cek tanda determinan untuk tahu apakah matriks ortogonal real memutar atau mencerminkan.
+
+<Mermaid
+  title="Determinan memisahkan rotasi dan refleksi"
+  description="Untuk matriks ortogonal real, det Q hanya bisa 1 atau -1."
+  chart={`
+    flowchart TD
+        A[Q ortogonal real] --> B{det Q}
+        B -->|+1| C[Rotasi: orientasi tetap]
+        B -->|-1| D[Refleksi: orientasi terbalik]
+  `}
+/>
 
 ## Nilai Eigen dan Struktur Spektral
 

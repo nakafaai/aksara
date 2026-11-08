@@ -19,6 +19,20 @@ For real eigenvalues, multiplying <InlineMath math="v" /> by <InlineMath math="A
 
 > By definition, eigenvalues can equal <InlineMath math="0" />, but <Highlight>eigenvectors are always non-zero</Highlight>.
 
+This diagram turns the definition <InlineMath math="Av=\lambda v" /> into a sequence of steps you can calculate right away.
+
+<Mermaid
+  title="From Av = λv to eigenvectors"
+  description="The steps that turn the definition into a calculation."
+  chart={`
+    flowchart TD
+        A[Av = λv with v ≠ 0] --> B["(A - λI)v = 0"]
+        B --> C["det(A - λI) = 0"]
+        C --> D[Eigenvalues λ]
+        D --> E["Eigenspace ker(A - λI)"]
+  `}
+/>
+
 ## Basic Properties of Eigenvectors
 
 **Scalar Multiplication**: Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="v \in \mathbb{K}^n" /> with <InlineMath math="v \neq 0" /> be an eigenvector of <InlineMath math="A" /> for eigenvalue <InlineMath math="\lambda \in \mathbb{K}" />. Then all multiples <InlineMath math="t \cdot v" /> with <InlineMath math="t \neq 0" /> are also eigenvectors of <InlineMath math="A" /> for the same eigenvalue <InlineMath math="\lambda" />.
@@ -208,6 +222,21 @@ If matrix <InlineMath math="A" /> is invertible and <InlineMath math="v \neq 0" 
 **Applying** <InlineMath math="A^{-1}" /> to <InlineMath math="A \cdot v = \lambda \cdot v" /> gives:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+The single question in this diagram is enough to decide whether <InlineMath math="A" /> can be inverted.
+
+<Mermaid
+  title="A zero eigenvalue and invertibility"
+  description="One question decides whether A has an inverse."
+  chart={`
+    flowchart TD
+        A[Square matrix A] --> B{Is 0 an eigenvalue of A?}
+        B -->|Yes| C[Some v ≠ 0 has Av = 0]
+        C --> D[A is singular]
+        B -->|No| E[A is invertible]
+        E --> F[Eigenvalues of A^-1 are 1/λ]
+  `}
+/>
 
 ## Invertibility Criteria
 

@@ -45,6 +45,19 @@ Write each minor determinant as <InlineMath math="c_{ij}" />. The alternating si
 
 Each element is calculated by taking the determinant of the corresponding submatrix, then given a sign based on the checkerboard pattern <InlineMath math="(-1)^{i+j}" />.
 
+This diagram shows the route from the cofactors to the inverse through the adjugate matrix.
+
+<Mermaid
+  title="From cofactors to the inverse"
+  description="The adjugate matrix links the cofactors with the inverse."
+  chart={`
+    flowchart LR
+        A[Cofactors C_ij] --> B[Cofactor matrix]
+        B --> C[Transpose: adj A]
+        C --> D[A^-1 = adj A / det A]
+  `}
+/>
+
 ## Adjugate Matrix Identity
 
 The adjugate satisfies the **following identity** with the original matrix:
@@ -223,6 +236,21 @@ Check the three numerator determinants by expanding their first rows. Then subst
 <BlockMath math="\det A_3(b)=-70-70+0=-140" />
 <BlockMath math="A\begin{pmatrix}30\\25\\35\end{pmatrix}=\begin{pmatrix}30+25-35\\30-25+35\\-30+25+35\end{pmatrix}=\begin{pmatrix}20\\40\\30\end{pmatrix}=b" />
 </MathContainer>
+
+Follow these steps for each component <InlineMath math="x_j" /> of the solution.
+
+<Mermaid
+  title="Steps of Cramer's rule"
+  description="Replace one column, take a determinant, then divide."
+  chart={`
+    flowchart TD
+        A[Ax = b] --> B{det A ≠ 0?}
+        B -->|No| X[No unique solution]
+        B -->|Yes| C[Replace column j with b]
+        C --> D["Compute det A_j(b)"]
+        D --> E["x_j = det A_j(b) / det A"]
+  `}
+/>
 
 ## Solution Properties for Integer Matrices
 

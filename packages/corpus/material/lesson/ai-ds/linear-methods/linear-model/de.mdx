@@ -31,6 +31,20 @@ Der Fehler <InlineMath math="\varepsilon_i" /> enthält Messrauschen und Modella
 
 Die Matrix <InlineMath math="A" /> heißt **Designmatrix**. Lassen sich die Beobachtungen nicht durch einen einzigen Parametervektor exakt erfüllen, schätzt man <InlineMath math="x" /> mit kleinsten Quadraten oder einem anderen Residualmodell. Die Daten bestimmen die Parameter eindeutig, wenn <InlineMath math="A" /> vollen Spaltenrang hat. Die Konditionszahl von <InlineMath math="A" /> beschreibt getrennt davon, wie empfindlich diese Schätzung auf kleine Änderungen der Daten reagiert.
 
+Dieses Diagramm folgt den Daten von den Messungen bis zur Schätzung der Parameter.
+
+<Mermaid
+  title="Von den Messungen zur Schätzung"
+  description="Jede Beobachtung wird eine Zeile der Designmatrix."
+  chart={`
+    flowchart LR
+        A["Messungen (t_i, y_i)"] --> B["Zeilen h(t_i)"]
+        B --> C[Designmatrix A und Vektor b]
+        C --> D[b = Ax + ε]
+        D --> E[Kleinste-Quadrate-Schätzung von x]
+  `}
+/>
+
 ## Basisfunktionen erzeugen verschiedene Modellformen
 
 Seien <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> bekannte Basisfunktionen. Ein Modell mit skalarer Antwort lässt sich schreiben als
@@ -98,6 +112,20 @@ Dreh die Fläche des Wechselwirkungsmodells <InlineMath math="y=1+\tfrac t2+\tfr
       };
     }),
   ]}
+/>
+
+Folg dem Beispiel mit drei Beobachtungen als Ablauf: Zwei Zeilen legen die Parameter fest, die dritte prüft sie.
+
+<Mermaid
+  title="Drei Beobachtungen, eine Gerade"
+  description="Die Beobachtungen (0,1), (1,3), (2,5) mit der Basis 1 und t."
+  chart={`
+    flowchart TD
+        A["(0,1), (1,3), (2,5)"] --> B["Zeilen (1,0), (1,1), (1,2)"]
+        B --> C[a = 1 aus der ersten Zeile]
+        C --> D[b = 2 aus der zweiten Zeile]
+        D --> E["Probe in der dritten Zeile: 1 + 2·2 = 5"]
+  `}
 />
 
 ## Mehrere Antworten

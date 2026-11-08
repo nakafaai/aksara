@@ -27,6 +27,20 @@ Mengapa hal ini benar? Karena <InlineMath math="\chi_A(t) = \det(A - t \cdot I) 
 
 Dengan demikian, kita tidak memerlukan ekspansi determinan lengkap atau prosedur pencarian akar untuk matriks segitiga.
 
+Sebelum menghitung apa pun, lihat dulu bentuk matriksnya, karena itu menentukan jalanmu.
+
+<Mermaid
+  title="Membaca atau menghitung nilai eigen"
+  description="Bentuk matriks menentukan jalan yang kamu ambil."
+  chart={`
+    flowchart TD
+        A[Matriks A] --> B{Diagonal atau segitiga?}
+        B -->|Ya| C[Baca entri diagonal utama]
+        B -->|Tidak| D["Hitung χ_A(t) = det(A - tI)"]
+        D --> E[Cari akar χ_A]
+  `}
+/>
+
 ## Matriks Segitiga Atas dan Bawah
 
 Matriks segitiga memiliki sifat yang sama dengan matriks diagonal. Baik matriks segitiga atas maupun segitiga bawah, nilai eigennya tetap merupakan entri diagonal utama.
@@ -165,3 +179,15 @@ Kedua identitas ini berguna untuk memeriksa hasil, tetapi belum menentukan semua
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 Jadi, matriks persegi singular tepat ketika nol merupakan salah satu nilai eigennya.
+
+Pakai dua cek di diagram ini setiap kali kamu selesai mencari akar polinom karakteristik.
+
+<Mermaid
+  title="Dua cek cepat untuk nilai eigen"
+  description="Jumlah dan hasil kali nilai eigen harus cocok dengan trace dan determinan."
+  chart={`
+    flowchart LR
+        A[Akar λ_1, ..., λ_n dari χ_A] --> B[λ_1 + ... + λ_n = tr A]
+        A --> C[λ_1 · ... · λ_n = det A]
+  `}
+/>

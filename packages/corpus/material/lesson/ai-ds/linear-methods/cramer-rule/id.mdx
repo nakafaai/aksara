@@ -45,6 +45,19 @@ Tuliskan setiap determinan minor sebagai <InlineMath math="c_{ij}" />. Tanda ber
 
 Setiap elemen dihitung dengan mengambil determinan submatriks yang sesuai, kemudian diberikan tanda berdasarkan pola papan catur <InlineMath math="(-1)^{i+j}" />.
 
+Diagram ini menunjukkan jalan dari kofaktor sampai ke invers lewat matriks adjugat.
+
+<Mermaid
+  title="Dari kofaktor ke invers"
+  description="Matriks adjugat menghubungkan kofaktor dengan invers."
+  chart={`
+    flowchart LR
+        A[Kofaktor C_ij] --> B[Matriks kofaktor]
+        B --> C[Transpos: adj A]
+        C --> D[A^-1 = adj A / det A]
+  `}
+/>
+
 ## Identitas Matriks Adjoin
 
 Matriks adjoin memenuhi **identitas berikut** dengan matriks asal:
@@ -223,6 +236,21 @@ Ketiga determinan pembilang dapat diperiksa dengan ekspansi baris pertama. Lalu 
 <BlockMath math="\det A_3(b)=-70-70+0=-140" />
 <BlockMath math="A\begin{pmatrix}30\\25\\35\end{pmatrix}=\begin{pmatrix}30+25-35\\30-25+35\\-30+25+35\end{pmatrix}=\begin{pmatrix}20\\40\\30\end{pmatrix}=b" />
 </MathContainer>
+
+Ikuti langkah ini untuk setiap komponen <InlineMath math="x_j" /> dari solusi.
+
+<Mermaid
+  title="Langkah aturan Cramer"
+  description="Ganti satu kolom, hitung determinan, lalu bagi."
+  chart={`
+    flowchart TD
+        A[Ax = b] --> B{det A ≠ 0?}
+        B -->|Tidak| X[Tidak ada solusi tunggal]
+        B -->|Ya| C[Ganti kolom j dengan b]
+        C --> D["Hitung det A_j(b)"]
+        D --> E["x_j = det A_j(b) / det A"]
+  `}
+/>
 
 ## Sifat Solusi untuk Matriks Integer
 

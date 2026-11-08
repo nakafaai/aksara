@@ -45,6 +45,20 @@ Alle ihre Singulärwerte sind gleich <InlineMath math="1" />. Somit gilt
 
 Die Multiplikation mit einer solchen Matrix verstärkt relative Fehler in der euklidischen Norm nicht. Deshalb beruhen <InlineMath math="\mathrm{QR}" />-Faktorisierungen auf Householder-Spiegelungen und Givens-Rotationen.
 
+Dieses Diagramm zeigt, warum die eine Gleichung <InlineMath math="Q^TQ=I" /> reicht, um jedes geometrische Maß zu erhalten.
+
+<Mermaid
+  title="Eine Bedingung, viele Folgen"
+  description="Q^T Q = I trägt jede Eigenschaft, die eine orthogonale Matrix erhält."
+  chart={`
+    flowchart TD
+        A[Q^T Q = I] --> B[Spalten von Q orthonormal]
+        A --> C[⟨Qx, Qy⟩ = ⟨x, y⟩]
+        C --> D[Längen bleiben: ‖Qx‖ = ‖x‖]
+        C --> E[Winkel bleiben]
+  `}
+/>
+
 ## Determinanten und Orientierung
 
 Für eine unitäre Matrix gilt
@@ -59,6 +73,19 @@ Bei einer reellen orthogonalen Matrix ist die Determinante reell. Daher
 <BlockMath math="\det Q\in\{-1,1\}" />
 
 Der Fall <InlineMath math="\det Q=1" /> **erhält die Orientierung**. Der Fall <InlineMath math="\det Q=-1" /> kehrt die Orientierung um und enthält eine Spiegelungskomponente.
+
+Prüf das Vorzeichen der Determinante, um zu sehen, ob eine reelle orthogonale Matrix dreht oder spiegelt.
+
+<Mermaid
+  title="Die Determinante trennt Drehungen von Spiegelungen"
+  description="Für eine reelle orthogonale Matrix ist det Q nur 1 oder -1."
+  chart={`
+    flowchart TD
+        A[Reelle orthogonale Q] --> B{det Q}
+        B -->|+1| C[Drehung: Orientierung bleibt]
+        B -->|-1| D[Spiegelung: Orientierung kehrt sich um]
+  `}
+/>
 
 ## Eigenwerte und Spektralstruktur
 

@@ -43,6 +43,21 @@ Mit <InlineMath math="A=I" /> erhält man die euklidischen Standardskalarprodukt
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{über }\mathbb{C}^n" />
 </MathContainer>
 
+Dieses Diagramm fasst die zwei Bedingungen zusammen, die du an <InlineMath math="A" /> prüfst, bevor du <InlineMath math="x^TAy" /> als Skalarprodukt benutzt.
+
+<Mermaid
+  title="Wann x^T A y ein Skalarprodukt ist"
+  description="Folg den zwei Bedingungen, die die Matrix A erfüllen muss."
+  chart={`
+    flowchart TD
+        A[Matrix A] --> B{A symmetrisch?}
+        B -->|Nein| X[Kein Skalarprodukt]
+        B -->|Ja| C{x^T A x > 0 für jedes x ≠ 0?}
+        C -->|Nein| X
+        C -->|Ja| D[x^T A y ist ein Skalarprodukt]
+  `}
+/>
+
 ## Vektorlängen sowie Winkel und Orthogonalität
 
 Jedes Skalarprodukt definiert die folgende Norm:
@@ -58,6 +73,20 @@ Für reelle Vektoren ungleich null stellt diese Ungleichung sicher, dass der Win
 <BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
 
 Der Winkel <InlineMath math="\theta_A" /> ist damit wohldefiniert. Vektoren sind <InlineMath math="A" />-orthogonal, wenn <InlineMath math="\langle x,y\rangle_A=0" /> gilt. Eine Änderung von <InlineMath math="A" /> ändert die Geometrie. Daher müssen euklidisch senkrechte Vektoren <Highlight>in einer gewichteten Metrik nicht senkrecht sein</Highlight>.
+
+Die Kette unten zeigt, wie dir ein einziges Skalarprodukt Länge, Winkel und Orthogonalität auf einmal liefert.
+
+<Mermaid
+  title="Vom Skalarprodukt zum Winkel"
+  description="Jeder geometrische Begriff baut auf dem vorherigen auf."
+  chart={`
+    flowchart LR
+        A[Skalarprodukt ⟨x,y⟩_A] --> B[Norm ‖x‖_A]
+        B --> C[Cauchy-Schwarz]
+        C --> D[Winkel cos θ_A]
+        A --> E[Orthogonal, wenn ⟨x,y⟩_A = 0]
+  `}
+/>
 
 ## Euklidische und gewichtete Winkel vergleichen
 

@@ -33,6 +33,20 @@ Here <InlineMath math="x_0" /> is a reference estimate, <InlineMath math="L" /> 
 
 The penalty adds an explicit modeling assumption about the solution and can improve the numerical conditioning of the optimization problem. The observations still contain the same information.
 
+The three choices in this diagram determine the Tikhonov problem you solve.
+
+<Mermaid
+  title="Setting up a Tikhonov problem"
+  description="Three choices determine the regularized solution."
+  chart={`
+    flowchart LR
+        A[Reference x_0] --> D[Tikhonov problem]
+        B[Matrix L] --> D
+        C[Parameter α] --> D
+        D --> E[Solution x_α]
+  `}
+/>
+
 ## Augmented Least Squares Form
 
 The regularized problem can be written as the following least-squares problem:
@@ -165,6 +179,20 @@ There is **no universally best** <InlineMath math="\alpha" />. It depends on the
 | L-curve | Exploratory inverse-problem analysis | Inspect the corner of the residual-norm versus penalty-norm curve |
 
 A small <InlineMath math="\alpha" /> prioritizes fitting the data, so noise can still be amplified. A large <InlineMath math="\alpha" /> prioritizes the penalty, which can make the fitted solution too smooth or shrink it too strongly. Scale the parameter columns and penalty rows consistently so the numerical value of <InlineMath math="\alpha" /> has a clear meaning.
+
+This diagram sums up where the solution moves as you shrink or grow <InlineMath math="\alpha" />.
+
+<Mermaid
+  title="What a small or large α does"
+  description="The parameter α moves the solution between the data and the reference."
+  chart={`
+    flowchart TD
+        A[Parameter α] --> B[α near 0]
+        A --> C[α grows]
+        B --> D[x_α near the least-squares solution, sensitive to errors]
+        C --> E[x_α near the reference x_0, less sensitive]
+  `}
+/>
 
 ## General Weights and Constraints
 

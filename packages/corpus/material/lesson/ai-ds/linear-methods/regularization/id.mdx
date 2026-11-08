@@ -33,6 +33,20 @@ Di sini <InlineMath math="x_0" /> adalah perkiraan acuan dan <InlineMath math="L
 
 Penalti menambahkan asumsi model tentang bentuk solusi dan dapat memperbaiki kondisi numerik masalah optimisasi. Informasi di dalam data pengamatan tetap sama.
 
+Tiga pilihan di diagram ini menentukan masalah Tikhonov yang kamu selesaikan.
+
+<Mermaid
+  title="Menyusun masalah Tikhonov"
+  description="Tiga pilihan menentukan solusi yang diregularisasi."
+  chart={`
+    flowchart LR
+        A[Acuan x_0] --> D[Masalah Tikhonov]
+        B[Matriks L] --> D
+        C[Parameter α] --> D
+        D --> E[Solusi x_α]
+  `}
+/>
+
 ## Bentuk Kuadrat Terkecil Teraugmentasi
 
 Masalah regularisasi di atas dapat ditulis sebagai masalah kuadrat terkecil berikut:
@@ -165,6 +179,20 @@ Gerakkan kamera di sekitar gambar contoh ini. Elips hijau toska adalah kurva ket
 | Kurva L | Analisis eksploratif masalah invers | Cari titik tekuk pada kurva yang membandingkan norma residual dan norma penalti |
 
 Nilai <InlineMath math="\alpha" /> yang kecil membuat solusi mengikuti data dengan lebih dekat, tetapi gangguan kecil pada data masih dapat menghasilkan perubahan besar pada solusi. Nilai <InlineMath math="\alpha" /> yang besar memberi pengaruh lebih kuat pada penalti, sehingga solusi dapat menjadi terlalu mulus atau komponennya menjadi terlalu kecil. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna. Jika skala ini diabaikan, angka <InlineMath math="\alpha" /> saja belum menunjukkan seberapa kuat penalti bekerja.
+
+Diagram ini merangkum ke mana solusi bergerak saat kamu memperkecil atau memperbesar <InlineMath math="\alpha" />.
+
+<Mermaid
+  title="Efek besar kecilnya α"
+  description="Parameter α menggeser solusi antara data dan acuan."
+  chart={`
+    flowchart TD
+        A[Parameter α] --> B[α mendekati 0]
+        A --> C[α membesar]
+        B --> D[x_α mendekati solusi kuadrat terkecil, peka terhadap galat]
+        C --> E[x_α mendekati acuan x_0, kurang peka]
+  `}
+/>
 
 ## Bobot dan Syarat pada Solusi
 

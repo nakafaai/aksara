@@ -70,6 +70,18 @@ Gunakan nilai eigen dengan **magnitudo terkecil** pada penyebut. Tanda positif a
 | Besar | Perubahan data <InlineMath math="b" /> pada arah tertentu dapat menghasilkan perubahan relatif yang jauh lebih besar pada solusi. |
 | Tak hingga | Matriks singular, sehingga masalah invers tidak memiliki solusi unik. |
 
+Diagram ini menunjukkan bagaimana bilangan kondisi menghubungkan galat di data dengan galat di solusi.
+
+<Mermaid
+  title="Galat relatif melewati bilangan kondisi"
+  description="κ(A) membatasi seberapa besar galat di b bisa membesar di x."
+  chart={`
+    flowchart LR
+        A[Galat relatif di b] --> B["dikali paling banyak κ(A)"]
+        B --> C[Galat relatif di x]
+  `}
+/>
+
 ## Sensitivitas Sistem Diagonal Dua Dimensi
 
 Perhatikan
@@ -177,3 +189,17 @@ Batas ini menunjukkan perubahan solusi **terbesar yang mungkin terjadi**. Pada b
 Algoritma stabil tidak dapat menghilangkan sensitivitas yang memang terdapat pada masalah berkondisi buruk. Sebaliknya, masalah berkondisi baik masih dapat diselesaikan dengan buruk oleh implementasi yang tidak stabil. Residual kecil <InlineMath math="\|b-A\hat{x}\|" /> saja juga tidak menjamin galat maju kecil <InlineMath math="\|x-\hat{x}\|" /> ketika <InlineMath math="\kappa(A)" /> besar.
 
 Dalam komputasi numerik, estimasikan kebalikan bilangan kondisi dari faktorisasi yang tepercaya. Jangan membentuk <InlineMath math="A^{-1}" /> secara eksplisit hanya untuk mengevaluasi <InlineMath math="\kappa(A)" />.
+
+Pisahkan dua pertanyaan di diagram ini saat kamu menilai hasil numerik.
+
+<Mermaid
+  title="Kondisi masalah dan stabilitas algoritma"
+  description="Akurasi hasil bergantung pada dua hal yang berbeda."
+  chart={`
+    flowchart TD
+        A[Masalah Ax = b] --> B["Kondisi: κ(A)"]
+        C[Algoritma] --> D[Stabil atau tidak]
+        B --> E[Akurasi solusi yang dihitung]
+        D --> E
+  `}
+/>

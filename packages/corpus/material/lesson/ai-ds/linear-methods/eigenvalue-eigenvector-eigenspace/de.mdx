@@ -19,6 +19,20 @@ Die **Multiplikation von** <InlineMath math="v" /> mit <InlineMath math="A" /> �
 
 > Per Definition können Eigenwerte gleich <InlineMath math="0" /> sein, aber <Highlight>Eigenvektoren sind immer ungleich Null</Highlight>.
 
+Dieses Diagramm macht aus der Definition <InlineMath math="Av=\lambda v" /> eine Folge von Schritten, die du direkt rechnen kannst.
+
+<Mermaid
+  title="Von Av = λv zu den Eigenvektoren"
+  description="Die Schritte, die aus der Definition eine Rechnung machen."
+  chart={`
+    flowchart TD
+        A[Av = λv mit v ≠ 0] --> B["(A - λI)v = 0"]
+        B --> C["det(A - λI) = 0"]
+        C --> D[Eigenwerte λ]
+        D --> E["Eigenraum ker(A - λI)"]
+  `}
+/>
+
 ## Grundlegende Eigenschaften von Eigenvektoren
 
 **Skalare Multiplikation**: Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="v \in \mathbb{K}^n" /> mit <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" />. Dann sind alle Vielfachen <InlineMath math="t \cdot v" /> mit <InlineMath math="t \neq 0" /> auch Eigenvektoren von <InlineMath math="A" /> für denselben Eigenwert <InlineMath math="\lambda" />.
@@ -208,6 +222,21 @@ Wenn die Matrix <InlineMath math="A" /> **invertierbar** ist und <InlineMath mat
 Die Multiplikation von <InlineMath math="A \cdot v = \lambda \cdot v" /> mit <InlineMath math="A^{-1}" /> ergibt:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+Die eine Frage in diesem Diagramm reicht, um zu entscheiden, ob <InlineMath math="A" /> invertierbar ist.
+
+<Mermaid
+  title="Ein Eigenwert null und Invertierbarkeit"
+  description="Eine Frage entscheidet, ob A eine Inverse hat."
+  chart={`
+    flowchart TD
+        A[Quadratische Matrix A] --> B{Ist 0 ein Eigenwert von A?}
+        B -->|Ja| C[Ein v ≠ 0 hat Av = 0]
+        C --> D[A ist singulär]
+        B -->|Nein| E[A ist invertierbar]
+        E --> F[Eigenwerte von A^-1 sind 1/λ]
+  `}
+/>
 
 ## Invertibilitätskriterien
 

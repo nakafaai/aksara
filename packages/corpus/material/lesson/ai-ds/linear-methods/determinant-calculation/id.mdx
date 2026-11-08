@@ -11,6 +11,22 @@ export const metadata = {
 
 [Definisi determinan](/id/materi/ai-ds/metode-linear-ai/definisi-determinan) menghasilkan beberapa cara perhitungan. <Highlight>Rumus langsung</Highlight> cukup untuk matriks kecil. Pada matriks padat berukuran besar, eliminasi atau faktorisasi <InlineMath math="\mathrm{LU}" /> mengubah matriks menjadi bentuk segitiga dan menghindari pertumbuhan faktorial pada ekspansi kofaktor rekursif.
 
+Diagram ini memasangkan setiap ukuran matriks dengan metode yang kamu pakai.
+
+<Mermaid
+  title="Memilih metode determinan"
+  description="Ukuran matriks menentukan metodenya."
+  chart={`
+    flowchart TD
+        A[Matriks n × n] --> B{Ukuran?}
+        B -->|n = 1| C[det = a_11]
+        B -->|n = 2| D[det = a_11 a_22 - a_12 a_21]
+        B -->|n = 3| E[Ekspansi kofaktor]
+        B -->|n besar| F[Eliminasi Gauss]
+        F --> G[Hasil kali diagonal, dikali tanda tukar baris]
+  `}
+/>
+
 ## Kasus Dasar Matriks Ordo Satu
 
 Untuk matriks berukuran <InlineMath math="1 \times 1" />, determinan sangat sederhana. Jika <InlineMath math="A \in \mathbb{R}^{1 \times 1}" /> dengan <InlineMath math="A = (a_{11})" />, maka:
@@ -131,6 +147,22 @@ Matriks elementer adalah matriks yang diperoleh dari matriks identitas dengan sa
     <BlockMath math="\det P_i^j(\lambda) = 1" />
 
 Untuk pertukaran dan transveksi, indeks menunjuk **dua baris yang berbeda**, yaitu <InlineMath math="i\neq j" />. Satu pertukaran baris mengubah tanda determinan, sedangkan penambahan kelipatan satu baris ke baris lain tidak mengubah determinan.
+
+Ingat tiga aturan di diagram ini setiap kali kamu mengubah baris selama eliminasi.
+
+<Mermaid
+  title="Pengaruh operasi baris pada determinan"
+  description="Setiap operasi baris elementer mengubah determinan dengan cara yang pasti."
+  chart={`
+    flowchart TD
+        A[Operasi baris elementer] --> B[Tukar dua baris]
+        A --> C[Kali satu baris dengan c]
+        A --> D[Tambah kelipatan baris lain]
+        B --> E[det berganti tanda]
+        C --> F[det dikali c]
+        D --> G[det tetap]
+  `}
+/>
 
 ## Eliminasi Gauss untuk Perhitungan Determinan
 

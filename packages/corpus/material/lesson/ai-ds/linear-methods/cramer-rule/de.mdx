@@ -45,6 +45,19 @@ Bezeichne jede Minordeterminante mit <InlineMath math="c_{ij}" />. Die wechselnd
 
 Für jedes Element wird die Determinante der passenden Untermatrix mit dem Vorzeichen aus dem Schachbrettmuster <InlineMath math="(-1)^{i+j}" /> versehen.
 
+Dieses Diagramm zeigt den Weg von den Kofaktoren über die adjungierte Matrix zur Inversen.
+
+<Mermaid
+  title="Von den Kofaktoren zur Inversen"
+  description="Die adjungierte Matrix verbindet Kofaktoren und Inverse."
+  chart={`
+    flowchart LR
+        A[Kofaktoren C_ij] --> B[Kofaktormatrix]
+        B --> C[Transponieren: adj A]
+        C --> D[A^-1 = adj A / det A]
+  `}
+/>
+
 ## Identität der adjugierten Matrix
 
 Die adjugierte Matrix erfüllt mit der Ausgangsmatrix die **folgende Identität**:
@@ -223,6 +236,21 @@ Prüfe die drei Zählerdeterminanten durch Entwicklung nach der ersten Zeile. Se
 <BlockMath math="\det A_3(b)=-70-70+0=-140" />
 <BlockMath math="A\begin{pmatrix}30\\25\\35\end{pmatrix}=\begin{pmatrix}30+25-35\\30-25+35\\-30+25+35\end{pmatrix}=\begin{pmatrix}20\\40\\30\end{pmatrix}=b" />
 </MathContainer>
+
+Folg diesen Schritten für jede Komponente <InlineMath math="x_j" /> der Lösung.
+
+<Mermaid
+  title="Schritte der Cramerschen Regel"
+  description="Eine Spalte ersetzen, die Determinante bilden, dann teilen."
+  chart={`
+    flowchart TD
+        A[Ax = b] --> B{det A ≠ 0?}
+        B -->|Nein| X[Keine eindeutige Lösung]
+        B -->|Ja| C[Spalte j durch b ersetzen]
+        C --> D["det A_j(b) berechnen"]
+        D --> E["x_j = det A_j(b) / det A"]
+  `}
+/>
 
 ## Lösungseigenschaften für ganzzahlige Matrizen
 

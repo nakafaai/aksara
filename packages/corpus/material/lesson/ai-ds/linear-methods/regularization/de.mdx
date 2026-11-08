@@ -33,6 +33,20 @@ Dabei ist <InlineMath math="x_0" /> ein Referenzwert und <InlineMath math="L" />
 
 Der Strafterm fügt eine ausdrückliche Modellannahme über die Lösung hinzu und kann die numerische Kondition des Optimierungsproblems verbessern. Die Beobachtungsdaten enthalten weiterhin dieselben Informationen.
 
+Die drei Entscheidungen in diesem Diagramm bestimmen das Tikhonov-Problem, das du löst.
+
+<Mermaid
+  title="Ein Tikhonov-Problem aufstellen"
+  description="Drei Entscheidungen bestimmen die regularisierte Lösung."
+  chart={`
+    flowchart LR
+        A[Referenz x_0] --> D[Tikhonov-Problem]
+        B[Matrix L] --> D
+        C[Parameter α] --> D
+        D --> E[Lösung x_α]
+  `}
+/>
+
 ## Erweitertes Ausgleichsproblem
 
 Das regularisierte Problem lässt sich als folgendes Ausgleichsproblem schreiben:
@@ -165,6 +179,20 @@ Es gibt **keinen universell besten Wert** für <InlineMath math="\alpha" />. Er 
 | L-Kurve | Explorative Analyse inverser Probleme | Die Ecke der Kurve aus Residualnorm und Strafnorm untersuchen |
 
 Ein kleines <InlineMath math="\alpha" /> betont die Datentreue und kann Rauschverstärkung bestehen lassen. Ein großes <InlineMath math="\alpha" /> betont die Strafe und kann die Lösung zu stark glätten oder schrumpfen. Auch Parameterspalten und Strafzeilen müssen sinnvoll skaliert sein. Andernfalls lässt sich der Zahlenwert von <InlineMath math="\alpha" /> kaum interpretieren.
+
+Dieses Diagramm fasst zusammen, wohin sich die Lösung bewegt, wenn du <InlineMath math="\alpha" /> verkleinerst oder vergrößerst.
+
+<Mermaid
+  title="Was ein kleines oder großes α bewirkt"
+  description="Der Parameter α verschiebt die Lösung zwischen Daten und Referenz."
+  chart={`
+    flowchart TD
+        A[Parameter α] --> B[α nahe 0]
+        A --> C[α wächst]
+        B --> D[x_α nahe der Kleinste-Quadrate-Lösung, empfindlich für Fehler]
+        C --> E[x_α nahe der Referenz x_0, weniger empfindlich]
+  `}
+/>
 
 ## Allgemeine Gewichte und Nebenbedingungen
 

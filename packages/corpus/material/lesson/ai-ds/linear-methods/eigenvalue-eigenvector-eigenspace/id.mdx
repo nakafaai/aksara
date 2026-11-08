@@ -19,6 +19,20 @@ Untuk nilai eigen real, perkalian <InlineMath math="Av" /> mengubah skala atau o
 
 > Menurut definisi, nilai eigen dapat sama dengan <InlineMath math="0" />, tetapi <Highlight>vektor eigen selalu tak nol</Highlight>.
 
+Diagram ini mengubah definisi <InlineMath math="Av=\lambda v" /> menjadi urutan langkah yang bisa langsung kamu hitung.
+
+<Mermaid
+  title="Dari Av = λv ke vektor eigen"
+  description="Langkah yang mengubah definisi menjadi perhitungan."
+  chart={`
+    flowchart TD
+        A[Av = λv dengan v ≠ 0] --> B["(A - λI)v = 0"]
+        B --> C["det(A - λI) = 0"]
+        C --> D[Nilai eigen λ]
+        D --> E["Ruang eigen ker(A - λI)"]
+  `}
+/>
+
 ## Sifat Dasar Vektor Eigen
 
 **Perkalian Skalar**: Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="v \in \mathbb{K}^n" /> dengan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />. Maka semua kelipatan <InlineMath math="t \cdot v" /> dengan <InlineMath math="t \neq 0" /> juga merupakan vektor eigen dari <InlineMath math="A" /> untuk nilai eigen yang sama <InlineMath math="\lambda" />.
@@ -208,6 +222,21 @@ Jika matriks <InlineMath math="A" /> dapat diinversi dan <InlineMath math="v \ne
 **Menerapkan** <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" /> menghasilkan:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+Pertanyaan tunggal di diagram ini sudah cukup untuk memutuskan apakah <InlineMath math="A" /> bisa dibalik.
+
+<Mermaid
+  title="Nilai eigen nol dan keterbalikan"
+  description="Satu pertanyaan memutuskan apakah A punya invers."
+  chart={`
+    flowchart TD
+        A[Matriks persegi A] --> B{0 nilai eigen A?}
+        B -->|Ya| C[Ada v ≠ 0 dengan Av = 0]
+        C --> D[A singular]
+        B -->|Tidak| E[A invertibel]
+        E --> F[Nilai eigen A^-1 adalah 1/λ]
+  `}
+/>
 
 ## Kriteria Invertibilitas
 

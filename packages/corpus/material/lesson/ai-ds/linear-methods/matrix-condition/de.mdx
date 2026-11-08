@@ -70,6 +70,18 @@ Im Nenner steht der Eigenwert mit dem **kleinsten Betrag**. Sein Vorzeichen ents
 | Groß | Bestimmte Eingaberichtungen können viel größere relative Änderungen der Lösung erzeugen. |
 | Unendlich | Die Matrix ist singulär, daher ist das inverse Problem nicht eindeutig lösbar. |
 
+Dieses Diagramm zeigt, wie die Konditionszahl einen Fehler in den Daten mit dem Fehler der Lösung verbindet.
+
+<Mermaid
+  title="Der relative Fehler geht durch die Konditionszahl"
+  description="κ(A) begrenzt, wie stark ein Fehler in b in x wachsen kann."
+  chart={`
+    flowchart LR
+        A[Relativer Fehler in b] --> B["höchstens mit κ(A) multipliziert"]
+        B --> C[Relativer Fehler in x]
+  `}
+/>
+
 ## Empfindlichkeit eines zweidimensionalen Diagonalsystems
 
 Betrachten wir
@@ -179,3 +191,17 @@ Problemkondition und algorithmische Stabilität beschreiben verschiedene Eigensc
 Ein stabiles Verfahren kann die bereits vorhandene Empfindlichkeit eines schlecht konditionierten Problems nicht beseitigen. Umgekehrt kann eine instabile Implementierung auch ein gut konditioniertes Problem schlecht lösen. Ein kleines Residuum <InlineMath math="\|b-A\hat{x}\|" /> allein garantiert bei großer Konditionszahl <InlineMath math="\kappa(A)" /> ebenfalls keinen kleinen Vorwärtsfehler <InlineMath math="\|x-\hat{x}\|" />.
 
 In numerischen Berechnungen sollte man die reziproke Konditionszahl aus einer zuverlässigen Faktorisierung schätzen. Man bildet <InlineMath math="A^{-1}" /> nicht eigens explizit, nur um <InlineMath math="\kappa(A)" /> auszuwerten.
+
+Halt die beiden Fragen in diesem Diagramm auseinander, wenn du ein numerisches Ergebnis beurteilst.
+
+<Mermaid
+  title="Kondition des Problems und Stabilität des Algorithmus"
+  description="Die Genauigkeit eines Ergebnisses hängt von zwei getrennten Dingen ab."
+  chart={`
+    flowchart TD
+        A[Problem Ax = b] --> B["Kondition: κ(A)"]
+        C[Algorithmus] --> D[Stabil oder nicht]
+        B --> E[Genauigkeit der berechneten Lösung]
+        D --> E
+  `}
+/>

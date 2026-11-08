@@ -27,6 +27,20 @@ Warum ist das wahr? Da <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{1
 
 Damit sind für eine Dreiecksmatrix weder eine vollständige Determinantenentwicklung noch ein Verfahren zur Nullstellensuche nötig.
 
+Bevor du irgendetwas rechnest, schau dir die Form der Matrix an, denn sie entscheidet über deinen Weg.
+
+<Mermaid
+  title="Eigenwerte ablesen oder berechnen"
+  description="Die Form der Matrix entscheidet über deinen Weg."
+  chart={`
+    flowchart TD
+        A[Matrix A] --> B{Diagonal oder Dreieck?}
+        B -->|Ja| C[Hauptdiagonale ablesen]
+        B -->|Nein| D["χ_A(t) = det(A - tI) berechnen"]
+        D --> E[Nullstellen von χ_A finden]
+  `}
+/>
+
 ## Obere und untere Dreiecksmatrizen
 
 Dreiecksmatrizen haben die gleichen Eigenschaften wie Diagonalmatrizen. Sowohl für obere als auch für untere Dreiecksmatrizen sind die Eigenwerte immer noch die Einträge der Hauptdiagonale.
@@ -165,3 +179,15 @@ Diese beiden Identitäten eignen sich zur Ergebniskontrolle, bestimmen für eine
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 Eine quadratische Matrix ist also genau dann singulär, wenn null einer ihrer Eigenwerte ist.
+
+Nutz die zwei Proben in diesem Diagramm jedes Mal, wenn du die Nullstellen eines charakteristischen Polynoms gefunden hast.
+
+<Mermaid
+  title="Zwei schnelle Proben für Eigenwerte"
+  description="Summe und Produkt der Eigenwerte müssen zu Spur und Determinante passen."
+  chart={`
+    flowchart LR
+        A[Nullstellen λ_1, ..., λ_n von χ_A] --> B[λ_1 + ... + λ_n = Spur A]
+        A --> C[λ_1 · ... · λ_n = det A]
+  `}
+/>

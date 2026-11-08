@@ -70,6 +70,18 @@ Use the eigenvalue with the **smallest magnitude** in the denominator. Its sign 
 | Large | Some input directions can produce much larger relative changes in the solution. |
 | Infinite | The matrix is singular, so the inverse problem is not uniquely solvable. |
 
+This diagram shows how the condition number links an error in the data with the error in the solution.
+
+<Mermaid
+  title="Relative error passes through the condition number"
+  description="κ(A) bounds how much an error in b can grow in x."
+  chart={`
+    flowchart LR
+        A[Relative error in b] --> B["multiplied by at most κ(A)"]
+        B --> C[Relative error in x]
+  `}
+/>
+
 ## Sensitivity of a Two Dimensional Diagonal System
 
 Consider
@@ -179,3 +191,17 @@ Problem conditioning and algorithmic stability describe different properties:
 A stable algorithm cannot remove sensitivity already present in an ill-conditioned problem. Conversely, a well-conditioned problem can still be solved poorly by an unstable implementation. A small residual <InlineMath math="\|b-A\hat{x}\|" /> alone also does not guarantee a small forward error <InlineMath math="\|x-\hat{x}\|" /> when <InlineMath math="\kappa(A)" /> is large.
 
 In numerical work, estimate the reciprocal condition number from a trusted factorization. This gives <InlineMath math="\kappa(A)" /> without explicitly forming <InlineMath math="A^{-1}" />.
+
+Keep the two questions in this diagram apart when you judge a numerical result.
+
+<Mermaid
+  title="Problem conditioning and algorithm stability"
+  description="The accuracy of a result depends on two separate things."
+  chart={`
+    flowchart TD
+        A[Problem Ax = b] --> B["Conditioning: κ(A)"]
+        C[Algorithm] --> D[Stable or not]
+        B --> E[Accuracy of the computed solution]
+        D --> E
+  `}
+/>

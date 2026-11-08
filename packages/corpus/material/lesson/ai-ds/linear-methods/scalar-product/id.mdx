@@ -43,6 +43,21 @@ Produk dalam Euklides standar diperoleh kembali dengan <InlineMath math="A=I" />
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{pada }\mathbb{C}^n" />
 </MathContainer>
 
+Diagram ini merangkum dua syarat yang perlu kamu cek pada <InlineMath math="A" /> sebelum memakai <InlineMath math="x^TAy" /> sebagai produk dalam.
+
+<Mermaid
+  title="Kapan x^T A y menjadi produk dalam"
+  description="Ikuti dua syarat yang harus dipenuhi matriks A."
+  chart={`
+    flowchart TD
+        A[Matriks A] --> B{A simetris?}
+        B -->|Tidak| X[Bukan produk dalam]
+        B -->|Ya| C{x^T A x > 0 untuk setiap x ≠ 0?}
+        C -->|Tidak| X
+        C -->|Ya| D[x^T A y adalah produk dalam]
+  `}
+/>
+
 ## Panjang Vektor serta Sudut dan Ortogonalitas
 
 Setiap produk dalam menentukan norma berikut:
@@ -58,6 +73,20 @@ Bagi vektor real tak nol, ketaksamaan ini memastikan bahwa sudut dapat didefinis
 <BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
 
 Dua vektor <InlineMath math="x" /> dan <InlineMath math="y" /> disebut saling ortogonal dalam metrik berbobot <InlineMath math="A" /> ketika <InlineMath math="\langle x,y\rangle_A=0" />. Mengubah <InlineMath math="A" /> berarti mengubah geometri yang dipakai, sehingga vektor yang tegak lurus dalam metrik Euklides <Highlight>belum tentu tegak lurus dalam metrik berbobot</Highlight>.
+
+Urutan di bawah menunjukkan bagaimana satu produk dalam memberi kamu panjang, sudut, dan ketegaklurusan sekaligus.
+
+<Mermaid
+  title="Dari produk dalam ke sudut"
+  description="Setiap konsep geometri dibangun dari konsep sebelumnya."
+  chart={`
+    flowchart LR
+        A[Produk dalam ⟨x,y⟩_A] --> B[Norma ‖x‖_A]
+        B --> C[Cauchy-Schwarz]
+        C --> D[Sudut cos θ_A]
+        A --> E[Tegak lurus jika ⟨x,y⟩_A = 0]
+  `}
+/>
 
 ## Membandingkan Sudut Euklides dan Sudut Berbobot
 

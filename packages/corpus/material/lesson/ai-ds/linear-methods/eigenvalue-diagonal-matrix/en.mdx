@@ -27,6 +27,20 @@ Why is this true? Since <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{
 
 No full determinant expansion or root-finding procedure is needed for a triangular matrix.
 
+Before you compute anything, look at the shape of the matrix, because it decides your path.
+
+<Mermaid
+  title="Reading or computing eigenvalues"
+  description="The shape of the matrix decides which path you take."
+  chart={`
+    flowchart TD
+        A[Matrix A] --> B{Diagonal or triangular?}
+        B -->|Yes| C[Read the main diagonal]
+        B -->|No| D["Compute χ_A(t) = det(A - tI)"]
+        D --> E[Find the roots of χ_A]
+  `}
+/>
+
 ## Upper and Lower Triangular Matrices
 
 Triangular matrices have the same property as diagonal matrices. For both upper and lower triangular matrices, the eigenvalues are still the main diagonal entries.
@@ -165,3 +179,15 @@ These identities are useful checks, but they do not determine every eigenvalue o
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 So a square matrix is singular exactly when zero is one of its eigenvalues.
+
+Use the two checks in this diagram every time you finish finding the roots of a characteristic polynomial.
+
+<Mermaid
+  title="Two quick checks for eigenvalues"
+  description="The sum and product of the eigenvalues must match the trace and determinant."
+  chart={`
+    flowchart LR
+        A[Roots λ_1, ..., λ_n of χ_A] --> B[λ_1 + ... + λ_n = tr A]
+        A --> C[λ_1 · ... · λ_n = det A]
+  `}
+/>

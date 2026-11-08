@@ -11,6 +11,22 @@ export const metadata = {
 
 Aus der [Definition der Determinante](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/determinante) folgen mehrere Rechenverfahren. <Highlight>Direkte Formeln</Highlight> genügen für kleine Matrizen. Bei großen dichten Matrizen führen die Elimination oder eine <InlineMath math="\mathrm{LU}" />-Zerlegung zur Dreiecksform und vermeiden das faktorielle Wachstum einer rekursiven Kofaktorentwicklung.
 
+Dieses Diagramm ordnet jeder Matrixgröße die Methode zu, die du dafür benutzt.
+
+<Mermaid
+  title="Eine Methode für die Determinante wählen"
+  description="Die Größe der Matrix bestimmt die Methode."
+  chart={`
+    flowchart TD
+        A[n × n Matrix] --> B{Größe?}
+        B -->|n = 1| C[det = a_11]
+        B -->|n = 2| D[det = a_11 a_22 - a_12 a_21]
+        B -->|n = 3| E[Kofaktorentwicklung]
+        B -->|großes n| F[Gauß-Elimination]
+        F --> G[Produkt der Diagonale mal Vorzeichen der Vertauschungen]
+  `}
+/>
+
 ## Grundlegender Fall einer Matrix erster Ordnung
 
 Für Matrizen der Größe <InlineMath math="1 \times 1" /> ist die Determinante sehr einfach. Wenn <InlineMath math="A \in \mathbb{R}^{1 \times 1}" /> mit <InlineMath math="A = (a_{11})" />, dann:
@@ -131,6 +147,22 @@ Elementarmatrizen sind Matrizen, die aus der Identitätsmatrix mit einer element
     <BlockMath math="\det P_i^j(\lambda) = 1" />
 
 Bei Vertauschungen und Transvektionen bezeichnen die Indizes **zwei verschiedene Zeilen**, also <InlineMath math="i\neq j" />. Eine einzelne Zeilenvertauschung wechselt das Vorzeichen der Determinante. Das Addieren eines Vielfachen einer Zeile zu einer anderen lässt die Determinante dagegen unverändert.
+
+Behalt die drei Regeln in diesem Diagramm im Kopf, wann immer du während der Elimination eine Zeile änderst.
+
+<Mermaid
+  title="Wie Zeilenoperationen die Determinante ändern"
+  description="Jede elementare Zeilenoperation ändert die Determinante auf eine feste Weise."
+  chart={`
+    flowchart TD
+        A[Elementare Zeilenoperation] --> B[Zwei Zeilen tauschen]
+        A --> C[Eine Zeile mit c multiplizieren]
+        A --> D[Vielfaches einer anderen Zeile addieren]
+        B --> E[det wechselt das Vorzeichen]
+        C --> F[det wird mit c multipliziert]
+        D --> G[det bleibt gleich]
+  `}
+/>
 
 ## Gaußsche Eliminierung zur Determinantenberechnung
 
