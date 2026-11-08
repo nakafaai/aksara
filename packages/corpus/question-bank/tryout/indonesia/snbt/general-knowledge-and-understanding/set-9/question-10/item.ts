@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "rabies",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Rabies dapat disembuhkan dengan mudah setelah gejalanya muncul pada manusia.",
+        },
+        {
+          correct: false,
+          label:
+            "Mencuci luka gigitan sudah cukup untuk mencegah semua kasus rabies pada manusia.",
+        },
+        {
+          correct: false,
+          label:
+            "Vaksinasi anjing tidak berpengaruh terhadap penyebaran virus rabies di suatu wilayah.",
+        },
+        {
           correct: true,
           label:
-            "Daya pesan norma bergantung pada gambaran perilaku umum yang dapat dipercaya, bukan sekadar angka yang terdengar meyakinkan.",
+            "Vaksinasi anjing yang cakupannya cukup luas paling efektif menghentikan rabies.",
         },
         {
           correct: false,
           label:
-            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Kredibilitas pesan cukup dijaga dengan angka mayoritas yang besar meskipun tidak sesuai perilaku penumpang.",
+            "Anjing yang tidak menggigit manusia tidak perlu divaksin antirabies sama sekali.",
         },
       ],
     },

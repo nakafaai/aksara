@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "bambu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
-        },
-        {
-          correct: false,
-          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
-        },
-        {
-          correct: false,
-          label:
-            "Periodisasi memilih tanggal paling awal, sedangkan kronologi mengabaikan urutan peristiwa setelah tanggal itu.",
-        },
-        {
           correct: true,
           label:
-            "Periodisasi memilih batas penjelas sesuai tujuan analisis, sedangkan kronologi menempatkan peristiwa dalam urutan waktu.",
+            "Bambu cepat tumbuh dan kuat, tetapi perlu diawetkan agar tahan terhadap kumbang bubuk.",
+        },
+        {
+          correct: false,
+          label:
+            "Bambu lebih kuat daripada baja dalam semua keadaan sehingga dapat menggantikan logam.",
+        },
+        {
+          correct: false,
+          label:
+            "Kayu jati lebih baik daripada bambu karena memerlukan waktu puluhan tahun untuk tumbuh.",
+        },
+        {
+          correct: false,
+          label:
+            "Kumbang bubuk hanya menyerang bambu yang ditebang pada musim kemarau saat patinya rendah.",
+        },
+        {
+          correct: false,
+          label:
+            "Batang bambu direndam di dalam air selama beberapa minggu agar tumbuh lebih tinggi lagi.",
         },
       ],
     },

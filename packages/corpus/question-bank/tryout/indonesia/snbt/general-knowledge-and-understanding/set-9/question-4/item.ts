@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+          label: "Kalimat (9) membantah keterangan pada kalimat (8).",
         },
         {
           correct: false,
           label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+            "Kalimat (9) memberikan contoh motif yang dikerjakan berbulan-bulan.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (9) menjelaskan penyebab rumitnya proses pembuatan kain.",
         },
         {
           correct: true,
           label:
-            "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
+            "Kalimat (9) menyebutkan akibat dari keterangan pada kalimat (8).",
         },
         {
           correct: false,
           label:
-            "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
-        },
-        {
-          correct: false,
-          label:
-            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
+            "Kalimat (9) mengulang isi kalimat (8) dengan kata-kata yang berbeda.",
         },
       ],
     },

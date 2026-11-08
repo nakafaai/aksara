@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "bambu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
+            "Semua jenis bambu bertambah tinggi hampir satu meter setiap hari.",
         },
         {
-          correct: true,
-          label:
-            "Ketepatan angka tidak menjamin ketepatan cerita jika kategori peristiwanya tidak dijelaskan.",
+          column: 1,
+          label: "Bambu dapat dipanen jauh lebih cepat daripada pohon jati.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+            "Bambu yang sudah direndam tetap awet walaupun terus-menerus terkena tanah lembap.",
         },
         {
-          correct: false,
-          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
+            "Mengurangi kandungan pati dapat membuat bambu lebih tahan terhadap kumbang bubuk.",
         },
       ],
     },

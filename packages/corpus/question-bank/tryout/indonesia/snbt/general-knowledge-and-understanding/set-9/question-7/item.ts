@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "rabies",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola dapat memasang lebih banyak larangan tanpa mengubah pesan atau cara pengukuran.",
-        },
-        {
           correct: true,
           label:
-            "Bus dengan pesan baru pada uji awal juga lebih sering didampingi relawan dan memiliki pengemudi yang mendapat pengarahan tambahan.",
+            "Gejala bisa muncul berminggu-minggu kemudian, saat korban sudah hampir tidak tertolong.",
         },
         {
           correct: false,
           label:
-            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
+            "Vaksin antirabies hanya tersedia di fasilitas kesehatan pada hari yang sama dengan gigitan.",
         },
         {
           correct: false,
           label:
-            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
+            "Luka gigitan anjing selalu menimbulkan gejala rabies dalam waktu satu hari setelah digigit.",
+        },
+        {
+          correct: false,
+          label:
+            "Virus rabies tidak dapat bergerak melalui saraf jika korban segera mencuci lukanya.",
+        },
+        {
+          correct: false,
+          label:
+            "Anjing yang menggigit manusia di Indonesia pasti sudah mendapat vaksin antirabies.",
         },
       ],
     },
