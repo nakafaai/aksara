@@ -85,6 +85,7 @@ export const makeAcceptanceTestSources: Effect.Effect<
     "Highlight",
     "InlineMath",
     "MathContainer",
+    "MathVisual",
   ];
   const rendererManifest = yield* createRendererManifest({
     base,
