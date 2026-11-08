@@ -133,18 +133,79 @@ except ValueError as e:
   ]}
 />
 
-Follow this rule for each pair of axes, starting from the rightmost.
+Take `a` of shape `(3, 1)` holding <InlineMath math="0" />, <InlineMath math="10" />, <InlineMath math="20" /> and `b` of shape `(1, 4)` holding <InlineMath math="0" /> to <InlineMath math="3" />. Every axis of length <InlineMath math="1" /> is stretched, so `a + b` has shape `(3, 4)` and the element in row <InlineMath math="i" /> and column <InlineMath math="j" /> is <InlineMath math="10i+j" />.
 
-<Mermaid
-  title="The broadcasting rule"
-  description="Shapes are compared from the last axis."
-  chart={`
-    flowchart TD
-        A["(3, 1) and (1, 4)"] --> B{Same length or one of them is 1?}
-        B -->|Yes| C[Axes of length 1 are stretched]
-        B -->|No| D[ValueError]
-        C --> E["Result (3, 4)"]
-  `}
+<MathVisual
+  title={<>Broadcasting <code>(3, 1)</code> with <code>(1, 4)</code></>}
+  description={<>The teal points on the left are the column <code>a</code>, the orange points on top are the row <code>b</code>. The violet grid is <code>a + b</code>, twelve elements that each add the value of their row and their column.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.6 }, y: { min: -2.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "point", at: { x: -1.2, y: 0 }, appearance: "construction" },
+      { id: "column-1", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "column-2", kind: "point", at: { x: -1.2, y: -2 }, appearance: "construction" },
+      { id: "row-0", kind: "point", at: { x: 0, y: 1.2 }, appearance: "primary" },
+      { id: "row-1", kind: "point", at: { x: 1, y: 1.2 }, appearance: "primary" },
+      { id: "row-2", kind: "point", at: { x: 2, y: 1.2 }, appearance: "primary" },
+      { id: "row-3", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "sum-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-3", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "sum-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-3", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "sum-2-0", kind: "point", at: { x: 0, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-1", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-2", kind: "point", at: { x: 2, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-3", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "column-0", objectId: "column-0", at: { x: -1.2, y: 0 }, placement: "left" },
+      { key: "column-1", objectId: "column-1", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "column-2", objectId: "column-2", at: { x: -1.2, y: -2 }, placement: "left" },
+      { key: "row-0", objectId: "row-0", at: { x: 0, y: 1.2 }, placement: "above" },
+      { key: "row-1", objectId: "row-1", at: { x: 1, y: 1.2 }, placement: "above" },
+      { key: "row-2", objectId: "row-2", at: { x: 2, y: 1.2 }, placement: "above" },
+      { key: "row-3", objectId: "row-3", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "sum-0-0", objectId: "sum-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "sum-0-1", objectId: "sum-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "sum-0-2", objectId: "sum-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "sum-0-3", objectId: "sum-0-3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "sum-1-0", objectId: "sum-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "sum-1-1", objectId: "sum-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "sum-1-2", objectId: "sum-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "sum-1-3", objectId: "sum-1-3", at: { x: 3, y: -1 }, placement: "below-right" },
+      { key: "sum-2-0", objectId: "sum-2-0", at: { x: 0, y: -2 }, placement: "below-right" },
+      { key: "sum-2-1", objectId: "sum-2-1", at: { x: 1, y: -2 }, placement: "below-right" },
+      { key: "sum-2-2", objectId: "sum-2-2", at: { x: 2, y: -2 }, placement: "below-right" },
+      { key: "sum-2-3", objectId: "sum-2-3", at: { x: 3, y: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "column-0": <InlineMath math="0" />,
+    "column-1": <InlineMath math="10" />,
+    "column-2": <InlineMath math="20" />,
+    "row-0": <InlineMath math="0" />,
+    "row-1": <InlineMath math="1" />,
+    "row-2": <InlineMath math="2" />,
+    "row-3": <InlineMath math="3" />,
+    "sum-0-0": <InlineMath math="0" />,
+    "sum-0-1": <InlineMath math="1" />,
+    "sum-0-2": <InlineMath math="2" />,
+    "sum-0-3": <InlineMath math="3" />,
+    "sum-1-0": <InlineMath math="10" />,
+    "sum-1-1": <InlineMath math="11" />,
+    "sum-1-2": <InlineMath math="12" />,
+    "sum-1-3": <InlineMath math="13" />,
+    "sum-2-0": <InlineMath math="20" />,
+    "sum-2-1": <InlineMath math="21" />,
+    "sum-2-2": <InlineMath math="22" />,
+    "sum-2-3": <InlineMath math="23" />,
+  }}
 />
 
 ## Array Arithmetic Operations
@@ -321,6 +382,22 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
   ]}
 />
 
+A reduction sums up a whole array in one number. For `data = np.array([1, 3, 5, 7, 9])`, `np.sum` gives <InlineMath math="25" />, `np.mean` gives <InlineMath math="5" />, and `np.std` gives <InlineMath math="\sqrt{(16+4+0+4+16)/5}=\sqrt8\approx2.83" />, because by default it divides by <InlineMath math="n" />.
+
+<BarChart
+  title={<>Five reductions on <code>[1, 3, 5, 7, 9]</code></>}
+  description={<>Each bar is the result of the NumPy function named below it for the same data: sum, mean, standard deviation, minimum, and maximum.</>}
+  yAxisLabel="Result"
+  data={[
+    { name: "sum", value: 1 + 3 + 5 + 7 + 9 },
+    { name: "mean", value: (1 + 3 + 5 + 7 + 9) / 5 },
+    { name: "std", value: Math.sqrt(((1 - 5) ** 2 + (3 - 5) ** 2 + (5 - 5) ** 2 + (7 - 5) ** 2 + (9 - 5) ** 2) / 5) },
+    { name: "min", value: 1 },
+    { name: "max", value: 9 },
+  ]}
+  chartConfig={{ value: { label: "Result", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Array Shape Manipulation
 
 Shape operations reorganize how the same elements are indexed. A reshape keeps the **number of elements unchanged** while assigning them to different dimensions.
@@ -455,19 +532,6 @@ print("Is transpose a view?", np.shares_memory(a, b))`
   ]}
 />
 
-This diagram follows the same 12 elements through three shape changes.
-
-<Mermaid
-  title="Changing shape without changing contents"
-  description="The number of elements always stays 12."
-  chart={`
-    flowchart LR
-        A["(12,)"] -->|"reshape(3, 4)"| B["(3, 4)"]
-        B -->|".T"| C["(4, 3)"]
-        C -->|"flatten()"| D["(12,)"]
-  `}
-/>
-
 ## Data Standardization with Z Scores
 
 Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with **nonzero standard deviation** and puts features on comparable numerical scales.
@@ -521,8 +585,8 @@ Standardization prevents units alone from creating large scale differences. It d
 Take `data = np.array([1, 3, 5, 7, 9])`. Its mean is `5` and its standard deviation `np.std(data)` equals `np.sqrt(8)`. The gray lines in the picture show two things at once: subtracting the mean moves the center to `0`, and dividing by the standard deviation pulls the points closer together. As a result, the value `5` lands exactly on `0`, and the outermost values become about `-1.41` and `1.41`.
 
 <MathVisual
-  title="Z-score standardization of the data [1, 3, 5, 7, 9]"
-  description="Violet points are the original data, magenta points are (data - mean) / std, and gray lines show where each value moves."
+  title={<>Z-score standardization of the data <code>[1, 3, 5, 7, 9]</code></>}
+  description={<>Violet points are the original data, magenta points are <code>(data - mean) / std</code>, and gray lines show where each value moves.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.6, max: 9.6 }, y: { min: -0.5, max: 2 } },

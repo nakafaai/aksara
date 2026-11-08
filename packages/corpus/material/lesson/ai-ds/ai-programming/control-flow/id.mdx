@@ -94,21 +94,41 @@ else:
   ]}
 />
 
-Bandingkan dua jalan keluar dari badan loop di diagram ini.
+Jalankan `for i in range(10)` dengan `if i == 7: break` lalu `if i % 2 == 0: continue` sebelum `print(i)`. Bilangan genap melompat ke putaran berikutnya, bilangan ganjil sampai ke `print`, dan `7` menghentikan loop, jadi yang tercetak hanya `1`, `3`, dan `5`.
 
-<Mermaid
-  title="break dan continue"
-  description="break keluar dari loop, continue melompat ke putaran berikutnya."
-  chart={`
-    flowchart TD
-        A[Putaran loop] --> B{break?}
-        B -->|Ya| C[Keluar dari loop]
-        B -->|Tidak| D{continue?}
-        D -->|Ya| E[Lompat ke putaran berikutnya]
-        D -->|Tidak| F[Jalankan sisa badan loop]
-        E --> A
-        F --> A
-  `}
+<MathVisual
+  title={<>Ke mana setiap <code>i</code> pergi dengan <code>break</code> dan <code>continue</code></>}
+  description={<>Titik hijau toska dilewati oleh <code>continue</code>, titik magenta sampai ke <code>print</code>, dan titik oranye <code>7</code> memicu <code>break</code>. Titik abu-abu <code>8</code> dan <code>9</code> tidak pernah dicapai.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.3, y: 0 }, to: { x: 9.3, y: 0 }, appearance: "reference" },
+      { id: "skip-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "skip-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "skip-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "skip-6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "print-1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "print-3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "print-5", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "stop", kind: "point", at: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "never-8", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "never-9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "print-1", objectId: "print-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "print-3", objectId: "print-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "print-5", objectId: "print-5", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 7, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "print-1": <InlineMath math="1" />,
+    "print-3": <InlineMath math="3" />,
+    "print-5": <InlineMath math="5" />,
+    "stop": <code>break</code>,
+  }}
 />
 
 ## Fungsi Enumerate
@@ -265,6 +285,55 @@ print(numbers, letters)
 
 Proses ini disebut "unzipping" karena memisahkan kembali data yang telah digabungkan.
 
+`zip` memasangkan elemen di posisi yang sama dan berhenti saat input terpendek habis. Kalau `p` mendapat elemen kelima, `p = [1, 2, 3, 4, 5]`, sedangkan `q = ['a', 'b', 'c', 'd']` tetap empat, `zip(p, q)` tetap memberi empat pasangan dan `5` tidak ikut.
+
+<MathVisual
+  title={<><code>zip(p, q)</code> berhenti di input terpendek</>}
+  description={<>Titik ungu adalah <code>p</code>, titik hijau toska adalah <code>q</code>, dan setiap garis abu-abu adalah satu tuple dari <code>zip</code>. Titik oranye <code>5</code> tidak punya pasangan, jadi <code>zip</code> melewatinya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pair-1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "pair-2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "pair-3", kind: "segment", from: { x: 3, y: 1 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "number-0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "number-1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "number-2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "number-3", kind: "point", at: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "letter-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "letter-1", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "letter-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "letter-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "extra", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "number-0", objectId: "number-0", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "number-1", objectId: "number-1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "number-2", objectId: "number-2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "number-3", objectId: "number-3", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "letter-0", objectId: "letter-0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "letter-1", objectId: "letter-1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "letter-2", objectId: "letter-2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "letter-3", objectId: "letter-3", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "extra", objectId: "extra", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number-0": <code>1</code>,
+    "number-1": <code>2</code>,
+    "number-2": <code>3</code>,
+    "number-3": <code>4</code>,
+    "letter-0": <code>a</code>,
+    "letter-1": <code>b</code>,
+    "letter-2": <code>c</code>,
+    "letter-3": <code>d</code>,
+    "extra": <code>5</code>,
+  }}
+/>
+
 ## Range dan For Loop
 
 Fungsi `range()` menghasilkan **urutan bilangan bulat** untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap. Karena `range` menghasilkan setiap nilai saat dibutuhkan, bukan menyimpan seluruh urutan sekaligus, pemakaian memorinya tetap kecil meskipun loop berjalan jutaan kali.
@@ -347,8 +416,8 @@ for i in range(n):  # Tidak menyimpan semua angka di memori
 Ikuti loop `for i in range(1, 6): total += i` putaran demi putaran. Sebelum loop, `total` bernilai `0`, lalu setiap putaran menambahkan nilai `i` yang sedang berjalan. Titik-titik naik makin curam karena tambahannya makin besar: `1`, `3`, `6`, `10`, lalu `15`. Nilai terakhir sama dengan `sum(range(1, 6))`, dan `range(1, 6)` berhenti sebelum `6`.
 
 <MathVisual
-  title="Jumlah berjalan total += i"
-  description="Setiap titik adalah nilai total setelah satu putaran loop for i in range(1, 6)."
+  title={<>Jumlah berjalan <code>total += i</code></>}
+  description={<>Setiap titik adalah nilai <code>total</code> setelah satu putaran loop <code>for i in range(1, 6)</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 16 } },

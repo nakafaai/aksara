@@ -125,18 +125,21 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
   ]}
 />
 
-Diagram ini mengelompokkan tipe data yang paling sering kamu temui.
+Angka di nama `dtype` adalah banyak bit per elemen, dan `itemsize` membagi angka itu dengan <InlineMath math="8" />. `complex128` menyimpan dua `float64`, bagian real dan imajiner, jadi setiap elemennya butuh <InlineMath math="16" /> byte.
 
-<Mermaid
-  title="Keluarga tipe data NumPy"
-  description="Setiap keluarga punya beberapa ukuran bit."
-  chart={`
-    flowchart TD
-        A[dtype] --> B[Bilangan bulat: int8, int32, int64]
-        A --> C[Pecahan: float32, float64]
-        A --> D[Kompleks: complex128]
-        A --> E[Logika: bool]
-  `}
+<BarChart
+  title={<><code>itemsize</code> enam <code>dtype</code> dalam byte</>}
+  description={<>Setiap batang adalah <code>itemsize</code> dari <code>dtype</code> yang tertulis di bawahnya, yaitu banyak bit di namanya dibagi <InlineMath math="8" />.</>}
+  yAxisLabel="Byte per elemen"
+  data={[
+    { name: "int8", value: 8 / 8 },
+    { name: "int32", value: 32 / 8 },
+    { name: "int64", value: 64 / 8 },
+    { name: "float32", value: 32 / 8 },
+    { name: "float64", value: 64 / 8 },
+    { name: "complex128", value: 128 / 8 },
+  ]}
+  chartConfig={{ value: { label: "Byte per elemen", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Atribut Array NumPy
@@ -213,8 +216,8 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 Putar kisi titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ada dua lapisan sepanjang `axis 0`, tiga baris sepanjang `axis 1`, dan empat kolom sepanjang `axis 2`, jadi `arr.shape` adalah `(2, 3, 4)` dan `arr.ndim` adalah `3`. Hitung titiknya: `2 * 3 * 4 = 24`, dan itulah `arr.size`. Setiap angka di `shape` adalah banyak langkah sepanjang satu ruas.
 
 <MathVisual
-  title="Array berbentuk (2, 3, 4) dalam tiga dimensi"
-  description="Setiap titik adalah satu elemen. Lapisan ungu dan hijau toska adalah axis 0, baris adalah axis 1, dan kolom adalah axis 2."
+  title={<>Array berbentuk <code>(2, 3, 4)</code> dalam tiga dimensi</>}
+  description={<>Setiap titik adalah satu elemen. Lapisan ungu dan hijau toska adalah <code>axis 0</code>, baris adalah <code>axis 1</code>, dan kolom adalah <code>axis 2</code>.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1, max: 3.2 }, z: { min: -0.5, max: 2 } },
@@ -347,15 +350,48 @@ for name, arr in arrays.items():
   ]}
 />
 
-Perhatikan hasil astype di diagram ini, terutama untuk bilangan negatif.
+`np.array([-2.7, -0.5, 0.5, 2.7]).astype(int)` memberi `[-2, 0, 0, 2]`. Konversi ke bilangan bulat membuang bagian pecahan, jadi setiap nilai bergerak ke arah nol, termasuk bilangan negatif yang tidak dibulatkan ke bawah.
 
-<Mermaid
-  title="astype memotong ke arah nol"
-  description="Konversi dari float ke int membuang bagian desimal."
-  chart={`
-    flowchart LR
-        A["np.array([1.7, -1.7])"] -->|"astype(np.int32)"| B["[1, -1]"]
-  `}
+<MathVisual
+  title={<><code>astype(int)</code> memotong ke arah nol</>}
+  description={<>Titik ungu di atas adalah empat nilai <code>float64</code>, titik magenta di bawah adalah hasil <code>astype(int)</code>. Setiap garis abu-abu bergerak ke arah nol, dan <code>-0.5</code> serta <code>0.5</code> sama-sama berakhir di <code>0</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3, y: 0 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "move-0", kind: "segment", from: { x: -2.7, y: 1 }, to: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "move-1", kind: "segment", from: { x: -0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-2", kind: "segment", from: { x: 0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-3", kind: "segment", from: { x: 2.7, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "float-0", kind: "point", at: { x: -2.7, y: 1 }, appearance: "secondary" },
+      { id: "float-1", kind: "point", at: { x: -0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-2", kind: "point", at: { x: 0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-3", kind: "point", at: { x: 2.7, y: 1 }, appearance: "secondary" },
+      { id: "int-0", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "int-1", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "int-2", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-0", objectId: "float-0", at: { x: -2.7, y: 1 }, placement: "above" },
+      { key: "float-1", objectId: "float-1", at: { x: -0.5, y: 1 }, placement: "above" },
+      { key: "float-2", objectId: "float-2", at: { x: 0.5, y: 1 }, placement: "above" },
+      { key: "float-3", objectId: "float-3", at: { x: 2.7, y: 1 }, placement: "above" },
+      { key: "int-0", objectId: "int-0", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "int-1", objectId: "int-1", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "int-2", objectId: "int-2", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "float-0": <code>-2.7</code>,
+    "float-1": <code>-0.5</code>,
+    "float-2": <code>0.5</code>,
+    "float-3": <code>2.7</code>,
+    "int-0": <code>-2</code>,
+    "int-1": <code>0</code>,
+    "int-2": <code>2</code>,
+  }}
 />
 
 ## Penggunaan Praktis Atribut Array

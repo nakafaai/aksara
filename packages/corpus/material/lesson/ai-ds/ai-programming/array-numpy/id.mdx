@@ -154,18 +154,46 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
   ]}
 />
 
-Diagram ini menunjukkan apa yang terjadi saat list masuk ke np.array.
+List bersarang menjadi array dua dimensi. `np.array([[1, 2, 3], [4, 5, 6]])` punya dua baris dan tiga kolom, jadi `shape`-nya `(2, 3)`, `ndim`-nya <InlineMath math="2" />, dan `size`-nya <InlineMath math="6" />. Semua elemennya memakai satu `dtype`.
 
-<Mermaid
-  title="Dari list ke ndarray"
-  description="np.array mengubah list biasa menjadi array dengan satu tipe data."
-  chart={`
-    flowchart LR
-        A["[1, 2, 3]"] --> B["np.array()"]
-        B --> C[ndarray, satu dtype]
-        D["[[1, 2], [3, 4]]"] --> B
-        B --> E[ndarray dua dimensi]
-  `}
+<MathVisual
+  title={<>Array dengan <code>shape</code> <code>(2, 3)</code></>}
+  description={<>Setiap titik ungu adalah satu elemen dengan nilainya. Ruas hijau toska menunjuk arah <code>axis 0</code> dari baris ke baris, dan ruas oranye menunjuk arah <code>axis 1</code> dari kolom ke kolom.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -1.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis-one", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: 2.3, y: 0.5 }, appearance: "primary" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: -0.5, y: -1.4 }, appearance: "construction" },
+      { id: "cell-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "cell-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "cell-0-0", objectId: "cell-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "cell-0-1", objectId: "cell-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "cell-0-2", objectId: "cell-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "cell-1-0", objectId: "cell-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "cell-1-1", objectId: "cell-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "cell-1-2", objectId: "cell-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "axis-one", objectId: "axis-one", at: { x: 2.3, y: 0.5 }, placement: "right" },
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.5, y: -1.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "cell-0-0": <InlineMath math="1" />,
+    "cell-0-1": <InlineMath math="2" />,
+    "cell-0-2": <InlineMath math="3" />,
+    "cell-1-0": <InlineMath math="4" />,
+    "cell-1-1": <InlineMath math="5" />,
+    "cell-1-2": <InlineMath math="6" />,
+    "axis-one": <code>axis 1</code>,
+    "axis-zero": <code>axis 0</code>,
+  }}
 />
 
 ## Fungsi Pembuat Array
@@ -350,8 +378,8 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membagi selang menjadi lima titik dengan jarak sama dan ikut memasukkan ujung `10`. `np.arange(0, 10, 2.5)` melangkah `2.5` setiap kali dan berhenti sebelum `10`, jadi hanya ada empat nilai. Ingat aturannya: `linspace` menentukan banyak titik, `arange` menentukan lebar langkah.
 
 <MathVisual
-  title="np.linspace dan np.arange pada garis bilangan"
-  description="Baris atas adalah np.linspace(0, 10, 5), baris bawah np.arange(0, 10, 2.5). Nilai 10 tidak ada di baris bawah."
+  title={<><code>np.linspace</code> dan <code>np.arange</code> pada garis bilangan</>}
+  description={<>Baris atas adalah <code>np.linspace(0, 10, 5)</code>, baris bawah <code>np.arange(0, 10, 2.5)</code>. Nilai <InlineMath math="10" /> tidak ada di baris bawah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.6, max: 1.6 } },
@@ -544,14 +572,49 @@ print(d)
   ]}
 />
 
-Ikuti satu array melewati dua operasi per elemen.
+Operasi aritmetika pada array berlaku untuk setiap elemen sekaligus, tanpa loop. Untuk `arr = np.array([1, 2, 3])`, `arr + 1` memberi `[2, 3, 4]`, `arr * 2` memberi `[2, 4, 6]`, dan `arr ** 2` memberi `[1, 4, 9]`.
 
-<Mermaid
-  title="Operasi per elemen"
-  description="Satu operasi berlaku untuk setiap elemen tanpa loop."
-  chart={`
-    flowchart LR
-        A["arr = [1, 2, 3]"] -->|"arr + 1"| B["[2, 3, 4]"]
-        A -->|"arr * 2"| C["[2, 4, 6]"]
-  `}
+<ScatterDiagram
+  title={<>Tiga operasi elemen demi elemen pada <code>[1, 2, 3]</code></>}
+  description={<>Mendatar ada indeks <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />. Setiap seri adalah satu hasil: array asli, <code>arr + 1</code>, <code>arr * 2</code>, dan <code>arr ** 2</code>. Pada indeks yang sama, setiap operasi hanya memakai elemen di indeks itu.</>}
+  xAxisLabel="Indeks"
+  yAxisLabel="Nilai"
+  datasets={[
+    {
+      name: "asli",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 3 },
+      ],
+    },
+    {
+      name: "ditambah satu",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 1 },
+        { x: 1, y: 2 + 1 },
+        { x: 2, y: 3 + 1 },
+      ],
+    },
+    {
+      name: "dikali dua",
+      color: "var(--chart-3)",
+      points: [
+        { x: 0, y: 1 * 2 },
+        { x: 1, y: 2 * 2 },
+        { x: 2, y: 3 * 2 },
+      ],
+    },
+    {
+      name: "dikuadratkan",
+      color: "var(--chart-4)",
+      points: [
+        { x: 0, y: 1 ** 2 },
+        { x: 1, y: 2 ** 2 },
+        { x: 2, y: 3 ** 2 },
+      ],
+    },
+  ]}
 />

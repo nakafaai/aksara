@@ -108,6 +108,20 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Argumen `file` memakai kembali pemformatan `print()` sambil mengarahkan teks hasilnya ke objek file yang dipilih.
 
+`f.write(text)` mengembalikan banyak karakter yang ditulis, dan baris baru `\n` dihitung sebagai satu karakter. Menulis `'Hello\n'`, `'Python\n'`, lalu `'!'` menghasilkan file berisi <InlineMath math="6+7+1=14" /> karakter.
+
+<BarChart
+  title={<>Nilai kembali <code>f.write()</code> untuk tiga string</>}
+  description={<>Setiap batang adalah angka yang dikembalikan <code>f.write()</code> untuk string di bawahnya. Setiap <code>\n</code> menambah satu karakter.</>}
+  yAxisLabel="Karakter ditulis"
+  data={[
+    { name: "'Hello\\n'", value: 6 },
+    { name: "'Python\\n'", value: 7 },
+    { name: "'!'", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Karakter ditulis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Mode Pembukaan File
 
 Python menyediakan berbagai **mode untuk membuka file** sesuai dengan kebutuhan operasi yang akan dilakukan.
@@ -160,17 +174,19 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 Mode menentukan **apakah file harus sudah ada**, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
 
-Pilih mode berdasarkan apa yang boleh terjadi pada isi file lama.
+Mulai dari file berisi `'abc\n'`, yaitu empat karakter. Membuka dengan `'r'` lalu membaca tidak mengubah apa pun. Membuka dengan `'w'` lalu menulis `'xy'` menghapus isi lama, sedangkan `'a'` menambahkan `'xy'` di akhir.
 
-<Mermaid
-  title="Tiga mode dasar membuka file"
-  description="Mode menentukan apa yang terjadi pada isi file."
-  chart={`
-    flowchart TD
-        A["open(path, mode)"] --> B["'r': baca, file harus ada"]
-        A --> C["'w': tulis, isi lama dihapus atau file dibuat"]
-        A --> D["'a': tambah di akhir, file dibuat jika belum ada"]
-  `}
+<BarChart
+  title={<>Ukuran file setelah setiap mode</>}
+  description={<>Setiap batang adalah banyak karakter di file setelah dibuka dengan mode di bawahnya dan, untuk <code>'w'</code> dan <code>'a'</code>, setelah menulis <code>'xy'</code>. Setiap mode dimulai lagi dari file empat karakter.</>}
+  yAxisLabel="Karakter di file"
+  data={[
+    { name: "awal", value: 4 },
+    { name: "'r'", value: 4 },
+    { name: "'w'", value: 2 },
+    { name: "'a'", value: 4 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Karakter di file", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Method untuk Membaca File
@@ -235,8 +251,8 @@ Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilk
 File yang dibuka punya penunjuk posisi, dan setiap pembacaan menggesernya maju. Untuk isi `"Hi!\nPython\n"`, penunjuk mulai di awal setelah `open()`. `read(3)` mengambil `Hi!` dan berhenti di posisi `3`, `readline()` pertama mengambil sisa baris itu sampai `\n`, dan `readline()` kedua mengambil `Python\n` sampai akhir file. Pembacaan berikutnya mengembalikan string kosong, karena penunjuk sudah di ujung.
 
 <MathVisual
-  title="Penunjuk posisi file saat membaca"
-  description="Setiap karakter file adalah satu titik, dan ↵ adalah baris baru. Ruas menunjukkan posisi penunjuk setelah setiap panggilan."
+  title={<>Penunjuk posisi file saat membaca</>}
+  description={<>Setiap karakter file adalah satu titik, dan ↵ adalah baris baru. Ruas menunjukkan posisi penunjuk setelah setiap panggilan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },

@@ -63,6 +63,34 @@ print(nested1)  # [[1, 3], [2]]`
   ]}
 />
 
+List bisa berubah di tempat. Mulai dari `nums = [1, 2, 3]`, `nums[0] = 10` mengganti elemen pertama dan `nums.append(4)` menambah elemen di akhir. Hasilnya `[10, 2, 3, 4]`, dan objek list-nya tetap objek yang sama.
+
+<MathVisual
+  title={<><code>nums</code> diubah di tempat</>}
+  description={<>Setiap titik adalah satu elemen, dengan indeks mendatar dan nilai tegak. Ruas oranye menaikkan elemen indeks <InlineMath math="0" /> dari <InlineMath math="1" /> ke titik magenta <InlineMath math="10" />, dan titik hijau toska adalah elemen baru dari <code>append</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "change", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 10 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 0, y: 10 }, appearance: "answer" },
+      { id: "second", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "appended", kind: "point", at: { x: 3, y: 4 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 0, y: 10 }, placement: "right" },
+      { key: "appended", objectId: "appended", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>nums[0] = 10</code>,
+    "appended": <code>nums.append(4)</code>,
+  }}
+/>
+
 ## Identitas Tipe dan Nilai Objek
 
 Setiap objek Python memiliki tiga karakteristik: **identitas, tipe, dan nilai**.
@@ -129,8 +157,8 @@ print(a == c)  # True: nilainya setara`
 Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, lalu `b.append(3)`. Gambar ini menunjukkan keadaannya: `a` dan `b` adalah dua nama untuk satu objek list, jadi `a` ikut berubah menjadi `[1, 2, 3]` dan `a is b` bernilai `True`. `c` menunjuk objek lain yang masih `[1, 2]`, sehingga `a is c` bernilai `False` walaupun isinya pernah sama. Identitas mengikuti ruas, bukan isi.
 
 <MathVisual
-  title="Dua nama untuk satu list, satu nama untuk salinan"
-  description="Setelah a = [1, 2], b = a, c = a.copy(), dan b.append(3): ruas ungu menunjukkan a dan b ke objek yang sama, ruas hijau toska menunjukkan c ke salinannya."
+  title={<>Dua nama untuk satu list, satu nama untuk salinan</>}
+  description={<><code>b</code> diikat ke list yang sama dengan <code>a</code>, <code>c</code> ke salinan dari <code>a.copy()</code>, lalu <code>b.append(3)</code> dijalankan: ruas ungu menunjukkan <code>a</code> dan <code>b</code> ke objek yang sama, yang kini berisi <code>[1, 2, 3]</code>, dan ruas hijau toska menunjukkan <code>c</code> ke salinannya <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.5, max: 1.5 } },
@@ -289,3 +317,18 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
 />
 
 Mutability menentukan apakah suatu operasi dapat mengubah objek yang sudah ada. Objek immutable mengurangi risiko perubahan pada state yang dipakai bersama, tetapi tidak otomatis membuat program thread-safe. Objek mutable, operasi majemuk, dan resource eksternal tetap memerlukan sinkronisasi yang dirancang dengan jelas.
+
+Bandingkan `a = 5; b = a; a += 1` dengan `x = [5]; y = x; x[0] += 1`. Bilangan bulat tidak bisa diubah, jadi `a += 1` mengikat `a` ke objek baru `6` dan `b` tetap `5`. List bisa diubah, jadi `x[0] += 1` mengubah objek yang juga dilihat `y`.
+
+<BarChart
+  title={<>Objek yang tidak bisa diubah dan yang bisa diubah setelah <code>+= 1</code></>}
+  description={<>Setiap batang adalah nilai nama yang tertulis di bawahnya setelah kedua potongan kode. <code>b</code> tetap <InlineMath math="5" />, sedangkan <code>x[0]</code> dan <code>y[0]</code> sama-sama <InlineMath math="6" /> karena menunjuk list yang sama.</>}
+  yAxisLabel="Nilai"
+  data={[
+    { name: "a", value: 5 + 1 },
+    { name: "b", value: 5 },
+    { name: "x[0]", value: 5 + 1 },
+    { name: "y[0]", value: 5 + 1 },
+  ]}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

@@ -110,6 +110,19 @@ print(phone)
 
 Jika satu kunci ditulis beberapa kali saat membuat dictionary, hanya nilai terakhir yang tersimpan. Posisi kunci tersebut tetap mengikuti kemunculan pertamanya.
 
+Kunci dalam dictionary selalu unik. Pada `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `'a'` muncul dua kali, dan penugasan terakhir menang, jadi `d` hanya punya dua pasangan dengan `d['a']` bernilai `3`.
+
+<BarChart
+  title={<>Isi <code>d</code> setelah kunci <code>'a'</code> ditulis dua kali</>}
+  description={<>Setiap batang adalah nilai untuk kunci yang tertulis di bawahnya. Hanya ada dua batang, karena <code>'a'</code> yang kedua menimpa nilai <code>1</code> dengan <code>3</code>.</>}
+  yAxisLabel="Nilai"
+  data={[
+    { name: "'a'", value: 3 },
+    { name: "'b'", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Mengakses Nilai
 
 Untuk mengambil value, tulis **key di dalam kurung siku**. Key seperti nama atau tanggal dapat dipakai sebagai pengenal, jadi kamu tidak perlu mencari value melalui indeks angka.
@@ -144,17 +157,18 @@ print(phone)
 
 Akses kurung siku mengambil nilai yang sudah ada. Assignment dengan kurung siku **memperbarui kunci lama** atau menambahkan pasangan kunci dan nilai baru ke insertion order.
 
-Pilih cara membaca nilai berdasarkan apa yang harus terjadi jika kunci tidak ada.
+Untuk `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}`, `phone['ann']` dan `phone.get('ann', 0)` sama-sama memberi `110`. Kunci `'eve'` tidak ada: `phone['eve']` menimbulkan `KeyError`, sedangkan `phone.get('eve', 0)` mengembalikan nilai cadangan `0`.
 
-<Mermaid
-  title="Kurung siku atau get"
-  description="Dua cara membaca nilai berbeda saat kuncinya tidak ada."
-  chart={`
-    flowchart TD
-        A{Kunci ada?} -->|Ya| B["d[key] dan d.get(key) memberi nilainya"]
-        A -->|Tidak| C["d[key]: KeyError"]
-        A -->|Tidak| D["d.get(key, default): nilai default"]
-  `}
+<BarChart
+  title={<><code>phone.get(key, 0)</code> untuk tiga kunci</>}
+  description={<>Setiap batang adalah hasil <code>phone.get(key, 0)</code> untuk kunci yang tertulis di bawahnya. Kunci <code>'eve'</code> tidak ada di dictionary, jadi batangnya adalah nilai cadangan <InlineMath math="0" />.</>}
+  yAxisLabel="Hasil get"
+  data={[
+    { name: "'ann'", value: 110 },
+    { name: "'bob'", value: 991 },
+    { name: "'eve'", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Hasil get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Iterasi Dictionary
@@ -304,8 +318,8 @@ print("Hasil get('ann'):", result)
 Hitung huruf di kata `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Saat sebuah huruf muncul pertama kali, `get` mengembalikan nilai bawaan `0`, jadi tidak ada `KeyError`. Hasilnya ada di gambar: `{"b": 1, "a": 3, "n": 2}`, dengan urutan kunci sesuai urutan pertama kali muncul. Jumlah tinggi semua batang adalah `6`, sama dengan `len("banana")`.
 
 <MathVisual
-  title="Menghitung huruf dengan get"
-  description="Setiap batang adalah satu kunci dictionary counts untuk kata banana, dan tingginya adalah nilainya."
+  title={<>Menghitung huruf dengan <code>get</code></>}
+  description={<>Setiap batang adalah satu kunci dictionary <code>counts</code> untuk kata <code>banana</code>, dan tingginya adalah nilainya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0.3, max: 3.7 }, y: { min: -0.3, max: 3.8 } },

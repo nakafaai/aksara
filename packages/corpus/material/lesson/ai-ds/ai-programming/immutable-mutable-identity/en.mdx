@@ -63,6 +63,34 @@ print(nested1)  # [[1, 3], [2]]`
   ]}
 />
 
+A list can change in place. Starting from `nums = [1, 2, 3]`, `nums[0] = 10` replaces the first element and `nums.append(4)` adds one at the end. The result is `[10, 2, 3, 4]`, and the list is still the same object.
+
+<MathVisual
+  title={<><code>nums</code> changed in place</>}
+  description={<>Each point is one element, with the index across and the value up. The orange segment lifts the element at index <InlineMath math="0" /> from <InlineMath math="1" /> to the magenta point <InlineMath math="10" />, and the teal point is the new element from <code>append</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "change", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 10 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 0, y: 10 }, appearance: "answer" },
+      { id: "second", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "appended", kind: "point", at: { x: 3, y: 4 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 0, y: 10 }, placement: "right" },
+      { key: "appended", objectId: "appended", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>nums[0] = 10</code>,
+    "appended": <code>nums.append(4)</code>,
+  }}
+/>
+
 ## Object Identity Type and Value
 
 Every Python object has three characteristics: **identity, type, and value**.
@@ -129,8 +157,8 @@ print(a == c)  # True: equal values`
 Run `a = [1, 2]`, `b = a`, `c = a.copy()`, then `b.append(3)`. This picture shows the result: `a` and `b` are two names for one list object, so `a` changes to `[1, 2, 3]` too and `a is b` is `True`. `c` points to another object that is still `[1, 2]`, so `a is c` is `False` even though their contents were once equal. Identity follows the segments, not the contents.
 
 <MathVisual
-  title="Two names for one list, one name for a copy"
-  description="After a = [1, 2], b = a, c = a.copy(), and b.append(3): violet segments point a and b at the same object, the teal segment points c at its copy."
+  title={<>Two names for one list, one name for a copy</>}
+  description={<><code>b</code> is bound to the same list as <code>a</code>, <code>c</code> to a copy from <code>a.copy()</code>, and then <code>b.append(3)</code> runs: violet segments point <code>a</code> and <code>b</code> at the same object, which now holds <code>[1, 2, 3]</code>, and the teal segment points <code>c</code> at its copy <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.5, max: 1.5 } },
@@ -289,3 +317,18 @@ print(list2)         # [0, 'x', 2] (unchanged)`
 />
 
 Mutability determines whether an existing object can change. Assignment can rebind a name regardless of mutability. Immutability removes one source of shared-state bugs, but it does not by itself make a program thread-safe. Referenced mutable objects, compound operations, and external resources still require deliberate synchronization.
+
+Compare `a = 5; b = a; a += 1` with `x = [5]; y = x; x[0] += 1`. Integers are immutable, so `a += 1` binds `a` to a new object `6` and `b` stays `5`. Lists are mutable, so `x[0] += 1` changes the object that `y` sees too.
+
+<BarChart
+  title={<>Immutable and mutable objects after <code>+= 1</code></>}
+  description={<>Each bar is the value of the name written below it after both snippets. <code>b</code> stays <InlineMath math="5" />, while <code>x[0]</code> and <code>y[0]</code> are both <InlineMath math="6" /> because they refer to the same list.</>}
+  yAxisLabel="Value"
+  data={[
+    { name: "a", value: 5 + 1 },
+    { name: "b", value: 5 },
+    { name: "x[0]", value: 5 + 1 },
+    { name: "y[0]", value: 5 + 1 },
+  ]}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

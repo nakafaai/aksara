@@ -108,6 +108,20 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den fertigen Text aber an das gewählte Dateiobjekt.
 
+`f.write(text)` gibt die Anzahl der geschriebenen Zeichen zurück, und der Zeilenumbruch `\n` zählt als ein Zeichen. Schreibst du `'Hello\n'`, `'Python\n'` und dann `'!'`, enthält die Datei <InlineMath math="6+7+1=14" /> Zeichen.
+
+<BarChart
+  title={<>Rückgabewerte von <code>f.write()</code> für drei Strings</>}
+  description={<>Jeder Balken ist die Zahl, die <code>f.write()</code> für den String darunter zurückgibt. Jedes <code>\n</code> fügt ein Zeichen hinzu.</>}
+  yAxisLabel="Geschriebene Zeichen"
+  data={[
+    { name: "'Hello\\n'", value: 6 },
+    { name: "'Python\\n'", value: 7 },
+    { name: "'!'", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Geschriebene Zeichen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Dateiöffnungsmodi
 
 Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
@@ -160,17 +174,19 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 Der Modus bestimmt, **ob die Datei bereits existieren muss**, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
 
-Wähl den Modus danach, was mit dem alten Dateiinhalt passieren darf.
+Starte mit einer Datei, die `'abc\n'` enthält, also vier Zeichen. Öffnen mit `'r'` und Lesen ändert nichts. Öffnen mit `'w'` und Schreiben von `'xy'` löscht den alten Inhalt, `'a'` hängt `'xy'` dagegen ans Ende.
 
-<Mermaid
-  title="Drei Grundmodi zum Öffnen einer Datei"
-  description="Der Modus entscheidet, was mit dem Dateiinhalt passiert."
-  chart={`
-    flowchart TD
-        A["open(path, mode)"] --> B["'r': lesen, die Datei muss existieren"]
-        A --> C["'w': schreiben, alter Inhalt gelöscht oder Datei erstellt"]
-        A --> D["'a': am Ende anhängen, Datei wird bei Bedarf erstellt"]
-  `}
+<BarChart
+  title={<>Dateigröße nach jedem Modus</>}
+  description={<>Jeder Balken ist die Anzahl der Zeichen in der Datei, nachdem sie mit dem Modus darunter geöffnet und bei <code>'w'</code> und <code>'a'</code> <code>'xy'</code> geschrieben wurde. Jeder Modus beginnt wieder mit der Datei aus vier Zeichen.</>}
+  yAxisLabel="Zeichen in der Datei"
+  data={[
+    { name: "Start", value: 4 },
+    { name: "'r'", value: 4 },
+    { name: "'w'", value: 2 },
+    { name: "'a'", value: 4 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen in der Datei", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Methoden zum Lesen von Dateien
@@ -235,8 +251,8 @@ Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr
 Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Beim Inhalt `"Hi!\nPython\n"` steht die Position nach `open()` am Anfang. `read(3)` nimmt `Hi!` und hält bei Position `3`, das erste `readline()` nimmt den Rest dieser Zeile bis `\n`, und das zweite `readline()` nimmt `Python\n` bis zum Dateiende. Das nächste Lesen liefert einen leeren String, weil die Position schon am Ende steht.
 
 <MathVisual
-  title="Die Dateiposition beim Lesen"
-  description="Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Strecken zeigen die Position nach jedem Aufruf."
+  title={<>Die Dateiposition beim Lesen</>}
+  description={<>Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Strecken zeigen die Position nach jedem Aufruf.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },

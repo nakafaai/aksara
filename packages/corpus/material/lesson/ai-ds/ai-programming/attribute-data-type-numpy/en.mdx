@@ -125,18 +125,21 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
   ]}
 />
 
-This diagram groups the data types you meet most often.
+The number in a `dtype` name is the bits per element, and `itemsize` divides it by <InlineMath math="8" />. `complex128` stores two `float64` values, the real and the imaginary part, so each element needs <InlineMath math="16" /> bytes.
 
-<Mermaid
-  title="NumPy data type families"
-  description="Each family comes in several bit sizes."
-  chart={`
-    flowchart TD
-        A[dtype] --> B[Integers: int8, int32, int64]
-        A --> C[Floats: float32, float64]
-        A --> D[Complex: complex128]
-        A --> E[Logical: bool]
-  `}
+<BarChart
+  title={<><code>itemsize</code> of six <code>dtype</code> values in bytes</>}
+  description={<>Each bar is the <code>itemsize</code> of the <code>dtype</code> named below it, the bits in its name divided by <InlineMath math="8" />.</>}
+  yAxisLabel="Bytes per element"
+  data={[
+    { name: "int8", value: 8 / 8 },
+    { name: "int32", value: 32 / 8 },
+    { name: "int64", value: 64 / 8 },
+    { name: "float32", value: 32 / 8 },
+    { name: "float64", value: 64 / 8 },
+    { name: "complex128", value: 128 / 8 },
+  ]}
+  chartConfig={{ value: { label: "Bytes per element", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## NumPy Array Attributes
@@ -213,8 +216,8 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 Rotate this grid of points, which stands for `np.zeros((2, 3, 4))`. It has two layers along `axis 0`, three rows along `axis 1`, and four columns along `axis 2`, so `arr.shape` is `(2, 3, 4)` and `arr.ndim` is `3`. Count the points: `2 * 3 * 4 = 24`, which is `arr.size`. Every number in `shape` is the count of steps along one segment.
 
 <MathVisual
-  title="An array of shape (2, 3, 4) in three dimensions"
-  description="Each point is one element. The violet and teal layers are axis 0, rows are axis 1, and columns are axis 2."
+  title={<>An array of shape <code>(2, 3, 4)</code> in three dimensions</>}
+  description={<>Each point is one element. The violet and teal layers are <code>axis 0</code>, rows are <code>axis 1</code>, and columns are <code>axis 2</code>.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1, max: 3.2 }, z: { min: -0.5, max: 2 } },
@@ -347,15 +350,48 @@ for name, arr in arrays.items():
   ]}
 />
 
-Look at the result of astype in this diagram, especially for the negative number.
+`np.array([-2.7, -0.5, 0.5, 2.7]).astype(int)` gives `[-2, 0, 0, 2]`. Converting to integers drops the fractional part, so every value moves toward zero, negative numbers included, which are not rounded down.
 
-<Mermaid
-  title="astype truncates toward zero"
-  description="Converting from float to int drops the decimal part."
-  chart={`
-    flowchart LR
-        A["np.array([1.7, -1.7])"] -->|"astype(np.int32)"| B["[1, -1]"]
-  `}
+<MathVisual
+  title={<><code>astype(int)</code> truncates toward zero</>}
+  description={<>The violet points on top are four <code>float64</code> values, the magenta points below are the result of <code>astype(int)</code>. Every gray line moves toward zero, and <code>-0.5</code> and <code>0.5</code> both end at <code>0</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3, y: 0 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "move-0", kind: "segment", from: { x: -2.7, y: 1 }, to: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "move-1", kind: "segment", from: { x: -0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-2", kind: "segment", from: { x: 0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-3", kind: "segment", from: { x: 2.7, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "float-0", kind: "point", at: { x: -2.7, y: 1 }, appearance: "secondary" },
+      { id: "float-1", kind: "point", at: { x: -0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-2", kind: "point", at: { x: 0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-3", kind: "point", at: { x: 2.7, y: 1 }, appearance: "secondary" },
+      { id: "int-0", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "int-1", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "int-2", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-0", objectId: "float-0", at: { x: -2.7, y: 1 }, placement: "above" },
+      { key: "float-1", objectId: "float-1", at: { x: -0.5, y: 1 }, placement: "above" },
+      { key: "float-2", objectId: "float-2", at: { x: 0.5, y: 1 }, placement: "above" },
+      { key: "float-3", objectId: "float-3", at: { x: 2.7, y: 1 }, placement: "above" },
+      { key: "int-0", objectId: "int-0", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "int-1", objectId: "int-1", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "int-2", objectId: "int-2", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "float-0": <code>-2.7</code>,
+    "float-1": <code>-0.5</code>,
+    "float-2": <code>0.5</code>,
+    "float-3": <code>2.7</code>,
+    "int-0": <code>-2</code>,
+    "int-1": <code>0</code>,
+    "int-2": <code>2</code>,
+  }}
 />
 
 ## Practical Array Attribute Usage

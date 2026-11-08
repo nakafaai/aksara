@@ -169,8 +169,8 @@ Tabel berikut mengumpulkan bentuk indeks dan slice untuk array dua dimensi di sa
 Gambar ini menata `a = np.arange(20).reshape(4, 5)` sebagai empat baris dan lima kolom. Slice pertama `1:3` memilih baris `1` dan `2`, slice kedua `2:5` memilih kolom `2`, `3`, dan `4`, dan keduanya berhenti sebelum batas atasnya. Hasilnya kotak magenta berbentuk `(2, 3)` berisi `7, 8, 9, 12, 13, 14`. Setiap koma di dalam kurung siku memisahkan satu sumbu.
 
 <MathVisual
-  title="Slice dua dimensi a[1:3, 2:5]"
-  description="Kisi adalah a = np.arange(20).reshape(4, 5). Elemen magenta di dalam kotak adalah hasil a[1:3, 2:5]."
+  title={<>Slice dua dimensi <code>a[1:3, 2:5]</code></>}
+  description={<>Kisi adalah <code>a = np.arange(20).reshape(4, 5)</code>. Elemen magenta di dalam kotak adalah hasil <code>a[1:3, 2:5]</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -3.6, max: 0.6 } },
@@ -502,18 +502,41 @@ print(a)
 
 Bedakan **membaca hasil seleksi dan memberi nilai**. `selected = a[mask]` membuat copy, tetapi `a[a < 5] = 0` menulis langsung ke posisi terpilih pada `a`. Nilai `5` tetap ada karena kondisi memakai `< 5`, bukan `<= 5`.
 
-Ikuti dua langkah ini dari perbandingan sampai hasil.
+Untuk `a = np.array([5, 12, 8, 15, 20, 3])`, perbandingan `a > 10` menghasilkan mask `[False, True, False, True, True, False]`. `a[a > 10]` lalu mengambil elemen di posisi `True` saja, yaitu `[12, 15, 20]`.
 
-<Mermaid
-  title="Langkah indeks boolean"
-  description="Perbandingan membuat masker, masker memilih elemen."
-  chart={`
-    flowchart LR
-        A[a] --> B["a > 10"]
-        B --> C[Masker True dan False]
-        C --> D["a[mask]"]
-        D --> E[Array satu dimensi berisi nilai terpilih]
-  `}
+<MathVisual
+  title={<>Mask boolean untuk elemen di atas <InlineMath math="10" /></>}
+  description={<>Setiap titik adalah satu elemen di indeksnya, dan garis abu-abu adalah batas <InlineMath math="10" />. Titik magenta di atas garis bernilai <code>True</code> di mask dan masuk ke hasil, titik hijau toska tidak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "threshold", kind: "segment", from: { x: -0.3, y: 10 }, to: { x: 5.3, y: 10 }, appearance: "reference" },
+      { id: "value-0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 12 }, appearance: "answer" },
+      { id: "value-2", kind: "point", at: { x: 2, y: 8 }, appearance: "construction" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 15 }, appearance: "answer" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 20 }, appearance: "answer" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "value-0", objectId: "value-0", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "value-1", objectId: "value-1", at: { x: 1, y: 12 }, placement: "right" },
+      { key: "value-2", objectId: "value-2", at: { x: 2, y: 8 }, placement: "right" },
+      { key: "value-3", objectId: "value-3", at: { x: 3, y: 15 }, placement: "right" },
+      { key: "value-4", objectId: "value-4", at: { x: 4, y: 20 }, placement: "right" },
+      { key: "value-5", objectId: "value-5", at: { x: 5, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "value-0": <InlineMath math="5" />,
+    "value-1": <InlineMath math="12" />,
+    "value-2": <InlineMath math="8" />,
+    "value-3": <InlineMath math="15" />,
+    "value-4": <InlineMath math="20" />,
+    "value-5": <InlineMath math="3" />,
+  }}
 />
 
 ## Indexing dengan Array Indeks
@@ -600,18 +623,52 @@ print(a[[0, 2], 1:4])
   ]}
 />
 
-Diagram ini memisahkan dua jenis hasil pengindeksan.
+Fancy indexing memakai list indeks, dan urutan list itu menjadi urutan hasil. `a[[4, 0, 2]]` pada array yang sama memberi `[20, 5, 8]`. Hasilnya selalu salinan baru, bukan view, jadi mengubahnya tidak mengubah `a`.
 
-<Mermaid
-  title="View atau salinan"
-  description="Slice biasa berbagi data, fancy indexing membuat salinan."
-  chart={`
-    flowchart TD
-        A[Pengindeksan] --> B["Slice a[1:3]"]
-        A --> C["Fancy a[[0, 2]]"]
-        B --> D[View: berbagi data dengan a]
-        C --> E[Salinan: data baru]
-  `}
+<MathVisual
+  title={<><code>a[[4, 0, 2]]</code> menyusun ulang elemen</>}
+  description={<>Baris atas ungu adalah <code>a</code>. Setiap garis abu-abu membawa elemen di indeks <InlineMath math="4" />, <InlineMath math="0" />, dan <InlineMath math="2" /> ke baris bawah magenta, dalam urutan yang ditulis di list indeks.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.7, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pick-0", kind: "segment", from: { x: 4, y: 0 }, to: { x: 0, y: -1.2 }, appearance: "reference" },
+      { id: "pick-1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1.2 }, appearance: "reference" },
+      { id: "pick-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: -1.2 }, appearance: "reference" },
+      { id: "source-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "source-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "source-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "source-3", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "source-4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "source-5", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "result-0", kind: "point", at: { x: 0, y: -1.2 }, appearance: "answer" },
+      { id: "result-1", kind: "point", at: { x: 1, y: -1.2 }, appearance: "answer" },
+      { id: "result-2", kind: "point", at: { x: 2, y: -1.2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "source-0", objectId: "source-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "source-1", objectId: "source-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "source-2", objectId: "source-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "source-3", objectId: "source-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "source-4", objectId: "source-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "source-5", objectId: "source-5", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "result-0", objectId: "result-0", at: { x: 0, y: -1.2 }, placement: "below" },
+      { key: "result-1", objectId: "result-1", at: { x: 1, y: -1.2 }, placement: "below" },
+      { key: "result-2", objectId: "result-2", at: { x: 2, y: -1.2 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "source-0": <InlineMath math="5" />,
+    "source-1": <InlineMath math="12" />,
+    "source-2": <InlineMath math="8" />,
+    "source-3": <InlineMath math="15" />,
+    "source-4": <InlineMath math="20" />,
+    "source-5": <InlineMath math="3" />,
+    "result-0": <InlineMath math="20" />,
+    "result-1": <InlineMath math="5" />,
+    "result-2": <InlineMath math="8" />,
+  }}
 />
 
 ## Memilih dan Menyusun Ulang Data dalam Array

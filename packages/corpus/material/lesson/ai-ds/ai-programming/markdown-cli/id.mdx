@@ -88,17 +88,37 @@ open document.html`
   }]}
 />
 
-Diagram ini meringkas alur kerja Markdown dengan pandoc.
+Banyak tanda `#` di awal baris menentukan tingkat judul, dan tingkat itu membentuk kerangka dokumen. Judul `##` berada di bawah `#` terdekat di atasnya, dan `###` berada di bawah `##` terdekat.
 
-<Mermaid
-  title="Dari Markdown ke dokumen jadi"
-  description="Satu file Markdown bisa diubah menjadi beberapa format."
-  chart={`
-    flowchart LR
-        A[Tulis file .md] --> B[pandoc]
-        B --> C[HTML]
-        B --> D[PDF, jika mesin PDF terpasang]
-  `}
+<MathVisual
+  title={<>Kerangka dokumen dari judul Markdown</>}
+  description={<>Titik ungu adalah judul <code>#</code>, titik hijau toska adalah dua judul <code>##</code>, dan titik oranye adalah judul <code>###</code> di bawah bagian pertama. Garis abu-abu menunjukkan bagian mana yang memuat bagian lain.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1.2, y: -1 }, appearance: "reference" },
+      { id: "to-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.2, y: -1 }, appearance: "reference" },
+      { id: "to-detail", kind: "segment", from: { x: -1.2, y: -1 }, to: { x: -1.2, y: -2 }, appearance: "reference" },
+      { id: "title", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "second", kind: "point", at: { x: 1.2, y: -1 }, appearance: "construction" },
+      { id: "detail", kind: "point", at: { x: -1.2, y: -2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "title", objectId: "title", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 1.2, y: -1 }, placement: "right" },
+      { key: "detail", objectId: "detail", at: { x: -1.2, y: -2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "title": <code># Notes</code>,
+    "first": <code>## Setup</code>,
+    "second": <code>## Usage</code>,
+    "detail": <code>### Install</code>,
+  }}
 />
 
 ## Dasar Antarmuka Baris Perintah
@@ -365,8 +385,8 @@ Markdown membuat struktur dokumen tetap mudah dibaca di version control. CLI dap
 Bayangkan folder kerjamu sekarang adalah `/home/user`, titik magenta di pohon ini. `cd projects` turun satu tingkat ke folder anak, mengikuti ruas hijau toska, dan dari sana `ls` akan menampilkan `notes.md`. `cd ..` naik kembali ke folder induk lewat ruas oranye. Jalur relatif seperti `projects` dihitung dari folder kerja, sedangkan jalur absolut seperti `/home/user/docs` selalu mulai dari akar.
 
 <MathVisual
-  title="Berpindah folder dengan cd"
-  description="Setiap titik adalah satu folder atau file. Titik magenta adalah folder kerja sekarang, ruas hijau toska adalah cd projects, dan ruas oranye adalah cd .."
+  title={<>Berpindah folder dengan <code>cd</code></>}
+  description={<>Setiap titik adalah satu folder atau file. Titik magenta adalah folder kerja sekarang, ruas hijau toska adalah <code>cd projects</code>, dan ruas oranye adalah <code>cd ..</code></>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
@@ -405,15 +425,17 @@ Bayangkan folder kerjamu sekarang adalah `/home/user`, titik magenta di pohon in
   }}
 />
 
-Ulangi siklus di diagram ini setiap kali kamu menjelajah folder.
+Path absolut dimulai dari akar `/`, dan setiap garis miring berikutnya turun satu tingkat. `pwd` mencetak path itu untuk folder kerja sekarang, dan `cd ..` naik satu tingkat ke folder induk.
 
-<Mermaid
-  title="Siklus menjelajah folder"
-  description="Tiga perintah dipakai berulang saat berpindah folder."
-  chart={`
-    flowchart LR
-        A[pwd: di mana aku?] --> B[ls: ada apa di sini?]
-        B --> C[cd nama: masuk ke folder]
-        C --> A
-  `}
+<BarChart
+  title={<>Kedalaman folder pada path absolut</>}
+  description={<>Setiap batang adalah banyak tingkat di bawah akar untuk path yang tertulis di bawahnya. Akar <code>/</code> berada di kedalaman <InlineMath math="0" />, dan setiap nama folder menambah satu.</>}
+  yAxisLabel="Kedalaman"
+  data={[
+    { name: "/", value: 0 },
+    { name: "/home", value: 1 },
+    { name: "/home/user", value: 2 },
+    { name: "/home/user/projects", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Kedalaman", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

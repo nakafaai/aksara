@@ -88,17 +88,37 @@ open document.html`
   }]}
 />
 
-Dieses Diagramm fasst den Markdown-Ablauf mit pandoc zusammen.
+Die Anzahl der `#`-Zeichen am Zeilenanfang bestimmt die Überschriftenebene, und diese Ebenen bilden die Gliederung des Dokuments. Eine `##`-Überschrift gehört unter die nächste `#`-Überschrift darüber, eine `###`-Überschrift unter die nächste `##`.
 
-<Mermaid
-  title="Von Markdown zum fertigen Dokument"
-  description="Eine Markdown-Datei kann mehrere Formate werden."
-  chart={`
-    flowchart LR
-        A[.md-Datei schreiben] --> B[pandoc]
-        B --> C[HTML]
-        B --> D[PDF, wenn eine PDF-Engine installiert ist]
-  `}
+<MathVisual
+  title={<>Die Gliederung aus Markdown-Überschriften</>}
+  description={<>Der violette Punkt ist die <code>#</code>-Überschrift, die türkisen Punkte sind zwei <code>##</code>-Überschriften, und der orange Punkt ist eine <code>###</code>-Überschrift im ersten Teil. Die grauen Linien zeigen, welcher Teil welchen enthält.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1.2, y: -1 }, appearance: "reference" },
+      { id: "to-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.2, y: -1 }, appearance: "reference" },
+      { id: "to-detail", kind: "segment", from: { x: -1.2, y: -1 }, to: { x: -1.2, y: -2 }, appearance: "reference" },
+      { id: "title", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "second", kind: "point", at: { x: 1.2, y: -1 }, appearance: "construction" },
+      { id: "detail", kind: "point", at: { x: -1.2, y: -2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "title", objectId: "title", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 1.2, y: -1 }, placement: "right" },
+      { key: "detail", objectId: "detail", at: { x: -1.2, y: -2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "title": <code># Notes</code>,
+    "first": <code>## Setup</code>,
+    "second": <code>## Usage</code>,
+    "detail": <code>### Install</code>,
+  }}
 />
 
 ## Grundlagen der Befehlszeilenschnittstelle
@@ -365,8 +385,8 @@ Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar. Mit einer 
 Stell dir vor, dein aktueller Arbeitsordner ist `/home/user`, der magentafarbene Punkt in diesem Baum. `cd projects` geht entlang der türkisen Strecke eine Ebene tiefer in einen Unterordner, und dort würde `ls` die Datei `notes.md` zeigen. `cd ..` geht über die orange Strecke zurück zum übergeordneten Ordner. Ein relativer Pfad wie `projects` zählt vom Arbeitsordner aus, ein absoluter Pfad wie `/home/user/docs` beginnt immer bei der Wurzel.
 
 <MathVisual
-  title="Mit cd zwischen Ordnern wechseln"
-  description="Jeder Punkt ist ein Ordner oder eine Datei. Der magentafarbene Punkt ist der aktuelle Arbeitsordner, die türkise Strecke ist cd projects und die orange Strecke cd .."
+  title={<>Mit <code>cd</code> zwischen Ordnern wechseln</>}
+  description={<>Jeder Punkt ist ein Ordner oder eine Datei. Der magentafarbene Punkt ist der aktuelle Arbeitsordner, die türkise Strecke ist <code>cd projects</code> und die orange Strecke <code>cd ..</code></>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
@@ -405,15 +425,17 @@ Stell dir vor, dein aktueller Arbeitsordner ist `/home/user`, der magentafarbene
   }}
 />
 
-Wiederhol den Kreislauf in diesem Diagramm, wann immer du Ordner erkundest.
+Ein absoluter Pfad beginnt bei der Wurzel `/`, und jeder weitere Schrägstrich geht eine Ebene tiefer. `pwd` gibt diesen Pfad für den aktuellen Arbeitsordner aus, und `cd ..` steigt eine Ebene zum übergeordneten Ordner hinauf.
 
-<Mermaid
-  title="Der Kreislauf beim Erkunden von Ordnern"
-  description="Drei Befehle, die du beim Wechseln der Ordner wiederholst."
-  chart={`
-    flowchart LR
-        A[pwd: wo bin ich?] --> B[ls: was ist hier?]
-        B --> C[cd name: in einen Ordner wechseln]
-        C --> A
-  `}
+<BarChart
+  title={<>Ordnertiefe entlang eines absoluten Pfads</>}
+  description={<>Jeder Balken ist die Anzahl der Ebenen unter der Wurzel für den darunter stehenden Pfad. Die Wurzel <code>/</code> liegt in Tiefe <InlineMath math="0" />, und jeder Ordnername fügt eins hinzu.</>}
+  yAxisLabel="Tiefe"
+  data={[
+    { name: "/", value: 0 },
+    { name: "/home", value: 1 },
+    { name: "/home/user", value: 2 },
+    { name: "/home/user/projects", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Tiefe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

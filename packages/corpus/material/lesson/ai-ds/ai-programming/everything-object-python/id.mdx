@@ -386,18 +386,19 @@ print(square(5))                    # 25`
   }]}
 />
 
-Semua jalan di diagram ini menunjuk objek fungsi yang sama.
+Karena fungsi adalah objek, kamu bisa memberikannya ke fungsi lain seperti nilai biasa. `list(map(square, [1, 2, 3, 4]))` menerima objek fungsi `square` tanpa tanda kurung, memanggilnya untuk setiap elemen, dan memberi `[1, 4, 9, 16]`.
 
-<Mermaid
-  title="Satu fungsi, banyak nama"
-  description="Fungsi adalah objek yang bisa disimpan dan dikirim."
-  chart={`
-    flowchart LR
-        A[def sapa] --> F[Objek fungsi]
-        B[g = sapa] --> F
-        C["jalankan(sapa)"] --> F
-        D["daftar = [sapa]"] --> F
-  `}
+<BarChart
+  title={<><code>map(square, [1, 2, 3, 4])</code></>}
+  description={<>Setiap batang adalah <code>square(n)</code> untuk masukan <InlineMath math="n" /> yang tertulis di bawahnya, dihitung oleh <code>map</code> yang menerima fungsi itu sebagai argumen.</>}
+  yAxisLabel="Hasil square"
+  data={[
+    { name: "1", value: 1 ** 2 },
+    { name: "2", value: 2 ** 2 },
+    { name: "3", value: 3 ** 2 },
+    { name: "4", value: 4 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Class dan Instance sebagai Objek
@@ -474,17 +475,29 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
-Diagram ini memisahkan apa yang dimiliki instans dan apa yang dibagi kelas.
+Satu kelas `Point` bisa membuat banyak instance, dan setiap instance menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` punya `x` dan `y` yang berbeda, tetapi berbagi metode yang sama, misalnya `p1.distance(p2)`, yang memberi <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
 
-<Mermaid
-  title="Kelas dan instans"
-  description="Setiap instans punya atribut sendiri dan berbagi metode kelas."
-  chart={`
-    flowchart TD
-        A[Kelas Mobil] --> B[mobil1: atribut sendiri]
-        A --> C[mobil2: atribut sendiri]
-        A --> D[Metode dibagi semua instans]
-  `}
+<MathVisual
+  title={<>Dua instance dari satu kelas <code>Point</code></>}
+  description={<>Titik ungu adalah <code>p1</code> dan titik hijau toska adalah <code>p2</code>, masing-masing di koordinat atributnya sendiri. Ruas abu-abu adalah jarak <InlineMath math="\sqrt{10}" /> yang dihitung metode <code>distance</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "distance", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "first", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <code>p1 = Point(1, 2)</code>,
+    "second": <code>p2 = Point(4, 1)</code>,
+  }}
 />
 
 ## Special Methods
@@ -551,8 +564,8 @@ print(bool(nol))                       # False`
 Misalkan kelas `Vector` punya metode khusus `__add__` yang menjumlahkan komponen. Saat kamu menulis `v + w`, Python sebenarnya memanggil `v.__add__(w)`. Gambar ini menunjukkan hasilnya untuk `Vector(2, 1)` dan `Vector(1, 2)`: ruas `w` ditempel di ujung `v`, dan ruas magenta dari pangkal ke ujung adalah objek baru `Vector(3, 3)`. Operator `+` jadi bermakna untuk objekmu sendiri.
 
 <MathVisual
-  title="Metode khusus __add__ untuk v + w"
-  description="Ruas ungu adalah v, ruas hijau toska adalah w yang ditempel di ujung v, dan ruas magenta adalah hasil v + w."
+  title={<>Metode khusus <code>__add__</code> untuk <code>v + w</code></>}
+  description={<>Ruas ungu adalah <code>v</code>, ruas hijau toska adalah <code>w</code> yang ditempel di ujung <code>v</code>, dan ruas magenta adalah hasil <code>v + w</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },

@@ -148,8 +148,8 @@ Parameter `*args` collects additional positional arguments into a tuple, while `
 Suppose `def power(x, n=2): return x ** n`. If you call `power(x)` without a second argument, Python uses the default `n=2`, which gives the violet curve. A second argument overrides the default: `power(x, 1)` gives the gray line. The two meet at `x = 0` and `x = 1`, because `0 ** n` is `0` and `1 ** n` is `1` for every positive `n`.
 
 <MathVisual
-  title="The default parameter in power(x, n=2)"
-  description="Each curve is the result of power for one value of n. The violet curve uses the default n = 2."
+  title={<>The default parameter <code>n</code> of <code>power</code></>}
+  description={<>Each curve is the result of <code>power</code> for one value of <code>n</code>. The violet curve uses the default <InlineMath math="n=2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 2.5 } },
@@ -207,6 +207,33 @@ print(f"print_message function result: {result}")  # Output: print_message funct
   ]}
 />
 
+A function can return several values at once as a tuple. `def min_max(data): return min(data), max(data)` and then `low, high = min_max([4, 1, 7, 3])` give `low = 1` and `high = 7` from one call.
+
+<MathVisual
+  title={<><code>min_max([4, 1, 7, 3])</code> returns <code>(1, 7)</code></>}
+  description={<>Each point is one data element at its position. The magenta point is the <code>min</code> value and the orange point is the <code>max</code> value, the two values returned together in one tuple.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "values", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 1, y: 1 }, { x: 2, y: 7 }, { x: 3, y: 3 }], appearance: "reference" },
+      { id: "other-a", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "other-b", kind: "point", at: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "smallest", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "largest", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "smallest", objectId: "smallest", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "largest", objectId: "largest", at: { x: 2, y: 7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "smallest": <code>min</code>,
+    "largest": <code>max</code>,
+  }}
+/>
+
 ## Variable Scope in Functions
 
 Variables in Python have scope that determines **where variables can be accessed**. Understanding variable scope is important to avoid errors in programs.
@@ -258,20 +285,6 @@ Name lookup follows **LEGB order**:
 2. **Enclosing** - in enclosing function (for nested functions)
 3. **Global** - at module level
 4. **Built-in** - Python built-in names
-
-When a function uses a name, Python looks for it in the order of this diagram.
-
-<Mermaid
-  title="The order of name lookup"
-  description="Python searches for a name from the innermost scope outward."
-  chart={`
-    flowchart LR
-        A[Local] --> B[Enclosing function]
-        B --> C[Global]
-        C --> D[Built in]
-        D --> E[NameError if missing]
-  `}
-/>
 
 ## Functions as First Class Objects
 
@@ -418,6 +431,32 @@ print(calc['subtract'](10, 4)) # Output: 6
 print(calc['multiply'](6, 7))    # Output: 42`
     }
   ]}
+/>
+
+Each call of `create_multiplier(factor)` builds a closure that remembers its own `factor`. `multiply_two` draws the line <InlineMath math="y=2x" />, and `multiply_five` draws the line <InlineMath math="y=5x" />. That is why `multiply_two(10)` and `multiply_five(4)` both give `20`.
+
+<MathVisual
+  title={<>Two closures from <code>create_multiplier</code></>}
+  description={<>The violet line is <code>multiply_two</code> and the teal line is <code>multiply_five</code>. The magenta and amber points are the two calls from the example, both at height <InlineMath math="20" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "five", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 5 }], appearance: "construction" },
+      { id: "two-call", kind: "point", at: { x: 10, y: 20 }, appearance: "answer" },
+      { id: "five-call", kind: "point", at: { x: 4, y: 20 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two-call", objectId: "two-call", at: { x: 10, y: 20 }, placement: "left" },
+      { key: "five-call", objectId: "five-call", at: { x: 4, y: 20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "two-call": <code>multiply_two(10)</code>,
+    "five-call": <code>multiply_five(4)</code>,
+  }}
 />
 
 ## Error Handling in Functions

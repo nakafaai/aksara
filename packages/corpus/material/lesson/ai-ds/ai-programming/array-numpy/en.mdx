@@ -154,18 +154,46 @@ print("Automatic data type:", arr_mixed.dtype)  # Output: Automatic data type: f
   ]}
 />
 
-This diagram shows what happens when a list goes into np.array.
+A nested list becomes a two-dimensional array. `np.array([[1, 2, 3], [4, 5, 6]])` has two rows and three columns, so its `shape` is `(2, 3)`, its `ndim` is <InlineMath math="2" />, and its `size` is <InlineMath math="6" />. All elements share one `dtype`.
 
-<Mermaid
-  title="From a list to an ndarray"
-  description="np.array turns a plain list into an array with one data type."
-  chart={`
-    flowchart LR
-        A["[1, 2, 3]"] --> B["np.array()"]
-        B --> C[ndarray, one dtype]
-        D["[[1, 2], [3, 4]]"] --> B
-        B --> E[Two-dimensional ndarray]
-  `}
+<MathVisual
+  title={<>An array with <code>shape</code> <code>(2, 3)</code></>}
+  description={<>Each violet point is one element with its value. The teal segment points along <code>axis 0</code> from row to row, and the orange segment points along <code>axis 1</code> from column to column.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -1.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis-one", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: 2.3, y: 0.5 }, appearance: "primary" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: -0.5, y: -1.4 }, appearance: "construction" },
+      { id: "cell-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "cell-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "cell-0-0", objectId: "cell-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "cell-0-1", objectId: "cell-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "cell-0-2", objectId: "cell-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "cell-1-0", objectId: "cell-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "cell-1-1", objectId: "cell-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "cell-1-2", objectId: "cell-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "axis-one", objectId: "axis-one", at: { x: 2.3, y: 0.5 }, placement: "right" },
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.5, y: -1.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "cell-0-0": <InlineMath math="1" />,
+    "cell-0-1": <InlineMath math="2" />,
+    "cell-0-2": <InlineMath math="3" />,
+    "cell-1-0": <InlineMath math="4" />,
+    "cell-1-1": <InlineMath math="5" />,
+    "cell-1-2": <InlineMath math="6" />,
+    "axis-one": <code>axis 1</code>,
+    "axis-zero": <code>axis 0</code>,
+  }}
 />
 
 ## Array Creation Functions
@@ -350,8 +378,8 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 Compare the two rows of points below. `np.linspace(0, 10, 5)` splits the interval into five evenly spaced points and includes the end `10`. `np.arange(0, 10, 2.5)` steps by `2.5` each time and stops before `10`, so it has only four values. Keep the rule in mind: `linspace` fixes the number of points, `arange` fixes the step size.
 
 <MathVisual
-  title="np.linspace and np.arange on the number line"
-  description="The top row is np.linspace(0, 10, 5), the bottom row np.arange(0, 10, 2.5). The value 10 is missing from the bottom row."
+  title={<><code>np.linspace</code> and <code>np.arange</code> on the number line</>}
+  description={<>The top row is <code>np.linspace(0, 10, 5)</code>, the bottom row <code>np.arange(0, 10, 2.5)</code>. The value <InlineMath math="10" /> is missing from the bottom row.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.6, max: 1.6 } },
@@ -544,14 +572,49 @@ print(d)
   ]}
 />
 
-Follow one array through two element-wise operations.
+Arithmetic on an array applies to every element at once, with no loop. For `arr = np.array([1, 2, 3])`, `arr + 1` gives `[2, 3, 4]`, `arr * 2` gives `[2, 4, 6]`, and `arr ** 2` gives `[1, 4, 9]`.
 
-<Mermaid
-  title="Element-wise operations"
-  description="One operation applies to every element without a loop."
-  chart={`
-    flowchart LR
-        A["arr = [1, 2, 3]"] -->|"arr + 1"| B["[2, 3, 4]"]
-        A -->|"arr * 2"| C["[2, 4, 6]"]
-  `}
+<ScatterDiagram
+  title={<>Three element-wise operations on <code>[1, 2, 3]</code></>}
+  description={<>Across are the indices <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" />. Each series is one result: the original array, <code>arr + 1</code>, <code>arr * 2</code>, and <code>arr ** 2</code>. At one index, every operation uses only the element at that index.</>}
+  xAxisLabel="Index"
+  yAxisLabel="Value"
+  datasets={[
+    {
+      name: "original",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 3 },
+      ],
+    },
+    {
+      name: "plus one",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 1 },
+        { x: 1, y: 2 + 1 },
+        { x: 2, y: 3 + 1 },
+      ],
+    },
+    {
+      name: "times two",
+      color: "var(--chart-3)",
+      points: [
+        { x: 0, y: 1 * 2 },
+        { x: 1, y: 2 * 2 },
+        { x: 2, y: 3 * 2 },
+      ],
+    },
+    {
+      name: "squared",
+      color: "var(--chart-4)",
+      points: [
+        { x: 0, y: 1 ** 2 },
+        { x: 1, y: 2 ** 2 },
+        { x: 2, y: 3 ** 2 },
+      ],
+    },
+  ]}
 />

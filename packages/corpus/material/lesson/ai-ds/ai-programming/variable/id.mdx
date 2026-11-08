@@ -69,8 +69,8 @@ Assignment `y = x` membuat kedua nama merujuk pada objek yang sama pada saat itu
 Jalankan `x = 5`, lalu `y = x`, lalu `x = 7`, dan ikuti ruasnya. `y = x` tidak menyalin angka, tapi membuat `y` menunjuk objek `5` yang sama dengan `x`. Saat `x = 7` dijalankan, hanya ruas `x` yang pindah ke objek baru, dari ruas abu-abu ke ruas ungu. Ruas `y` tidak ikut pindah, jadi `print(y)` tetap menampilkan `5`.
 
 <MathVisual
-  title="Mengikat ulang x tidak mengubah y"
-  description="Setelah x = 5, y = x, dan x = 7: ruas abu-abu adalah ikatan lama x, ruas ungu ikatan baru, dan ruas hijau toska tetap menunjuk 5."
+  title={<>Mengikat ulang <code>x</code> tidak mengubah <code>y</code></>}
+  description={<>Python mula-mula mengikat <code>x</code> ke <code>5</code>, lalu <code>y</code> ke objek yang sama, lalu <code>x</code> ke <code>7</code>. Ruas abu-abu adalah ikatan lama <code>x</code>, ruas ungu ikatan baru, dan ruas hijau toska dari <code>y</code> tetap menunjuk <code>5</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
@@ -233,21 +233,21 @@ print(Nama == NAMA)         # Output: False`
   ]}
 />
 
-Cek setiap nama variabel dengan tiga pertanyaan ini.
+Nama variabel yang sah dimulai dengan huruf atau `_`, hanya memuat huruf, angka, dan `_`, dan bukan kata kunci. `2nd` gagal di aturan pertama, `my-var` gagal di aturan kedua, dan `class` gagal di aturan ketiga.
 
-<Mermaid
-  title="Apakah nama variabel sah"
-  description="Tiga syarat yang dicek Python."
-  chart={`
-    flowchart TD
-        A[Nama] --> B{Diawali huruf atau _?}
-        B -->|Tidak| X[Tidak sah]
-        B -->|Ya| C{Hanya huruf, angka, dan _?}
-        C -->|Tidak| X
-        C -->|Ya| D{Bukan kata kunci?}
-        D -->|Tidak| X
-        D -->|Ya| E[Sah]
-  `}
+<BarChart
+  title={<>Enam calon nama variabel</>}
+  description={<>Batang setinggi <InlineMath math="1" /> berarti nama di bawahnya sah, dan tanpa batang berarti Python menolaknya dengan <code>SyntaxError</code>.</>}
+  yAxisLabel="Sah"
+  data={[
+    { name: "total", value: 1 },
+    { name: "_count", value: 1 },
+    { name: "2nd", value: 0 },
+    { name: "my-var", value: 0 },
+    { name: "class", value: 0 },
+    { name: "my_var2", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Sah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Kata Kunci yang Tidak Boleh Digunakan
@@ -482,3 +482,30 @@ print(f"Keliling: {keliling} cm")`
 Dalam program ini, `panjang` dan `lebar` menamai dua input, sedangkan `luas` dan `keliling` menamai hasil perhitungan. Pemeriksaan menolak ukuran yang tidak positif atau tidak berhingga sebelum menghitung. Dengan panjang `5` dan lebar `3`, hasilnya adalah luas `15.0 cm²` dan keliling `16.0 cm`. Teks yang bukan angka ditolak oleh `float()`.
 
 Nama variabel yang konsisten membuat kode Python lebih mudah dibaca. Saat mempelajari perubahan objek dan argumen fungsi, bedakan equality, identity, dan reassignment karena ketiganya menjawab pertanyaan yang berbeda.
+
+Variabel memberi nama yang jelas pada angka di dalam program. Dengan `length = 4` dan `width = 3`, baris `area = length * width` menyimpan <InlineMath math="4\cdot3=12" />, dan nama `area` menjelaskan arti angka itu saat dibaca lagi.
+
+<MathVisual
+  title={<><code>area = length * width</code></>}
+  description={<>Persegi panjang ungu berukuran <code>length</code> kali <code>width</code>. Ruas hijau toska adalah panjang <InlineMath math="4" />, ruas oranye adalah lebar <InlineMath math="3" />, dan luasnya <InlineMath math="12" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "width", kind: "segment", from: { x: 4.4, y: 0 }, to: { x: 4.4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "length", objectId: "length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4.4, y: 1.5 }, placement: "right" },
+      { key: "rectangle", objectId: "rectangle", at: { x: 2, y: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "length": <code>length = 4</code>,
+    "width": <code>width = 3</code>,
+    "rectangle": <code>area = 12</code>,
+  }}
+/>

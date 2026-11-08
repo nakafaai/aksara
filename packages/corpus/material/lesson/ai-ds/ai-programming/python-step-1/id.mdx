@@ -153,19 +153,6 @@ print(f"Luas lingkaran dengan radius {test_radius} adalah {result:.2f}")`
   }]}
 />
 
-Diagram ini memasangkan setiap cara menjalankan Python dengan kegunaannya.
-
-<Mermaid
-  title="Tiga cara menjalankan Python"
-  description="Pilih cara sesuai panjang kodenya."
-  chart={`
-    flowchart TD
-        A[Kode Python] --> B[Shell interaktif: coba satu baris]
-        A --> C[File .py: python file.py]
-        A --> D[Notebook: kode dan hasil per sel]
-  `}
-/>
-
 ## Sintaks Dasar Python
 
 Program Python pertama membaca perintahnya dari atas ke bawah. Variabel menyimpan nilai, **tipe data menentukan operasi** yang didukung nilai itu, dan input, output, serta aritmetika menyusun program pertama yang lengkap.
@@ -282,6 +269,21 @@ x += 3  # x = x + 3, hasilnya x = 8
 x *= 2  # x = x * 2, hasilnya x = 16
 print(f"Nilai x sekarang: {x}")`
   }]}
+/>
+
+Operator matematika dasar memberi hasil yang berbeda untuk angka yang sama. Dengan `7` dan `2`, `/` memberi `3.5`, `//` memberi hasil bagi bulat `3`, `%` memberi sisa `1`, dan `**` memberi pangkat `49`.
+
+<BarChart
+  title={<>Empat operator pada <code>7</code> dan <code>2</code></>}
+  description={<>Setiap batang adalah hasil <code>7</code>, operator di bawahnya, lalu <code>2</code>. Hasil pembagian biasa adalah float, sedangkan tiga hasil lainnya bilangan bulat.</>}
+  yAxisLabel="Hasil"
+  data={[
+    { name: "/", value: 7 / 2 },
+    { name: "//", value: Math.floor(7 / 2) },
+    { name: "%", value: 7 % 2 },
+    { name: "**", value: 7 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Latihan Praktis
@@ -428,8 +430,8 @@ else:
 Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalkulator tadi. Setiap operator memberi grafik sendiri: `+` dan `-` adalah garis miring ke arah berlawanan, `*` adalah garis yang lebih curam, dan `/` memberi titik-titik magenta. Pembagian tidak punya titik di `number2 = 0`, karena Python menolak pembagian dengan nol dengan `ZeroDivisionError`, sedangkan semua garis lewat di situ tanpa masalah.
 
 <MathVisual
-  title="Empat operator kalkulator untuk number1 = 2"
-  description="Setiap garis adalah hasil kalkulator saat number2 berubah dan number1 = 2. Titik magenta adalah 2 / number2 untuk lima masukan, dan tidak ada titik di number2 = 0."
+  title={<>Empat operator kalkulator untuk <code>number1 = 2</code></>}
+  description={<>Setiap garis adalah hasil kalkulator saat <code>number2</code> berubah dan <code>number1</code> tetap <InlineMath math="2" />. Titik magenta adalah <code>2 / number2</code> untuk lima masukan, dan tidak ada titik di <code>number2</code> sama dengan <InlineMath math="0" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
@@ -459,17 +461,30 @@ Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalk
   }}
 />
 
-Ikuti alur program kalkulator dari masukan sampai keluaran.
+Program konversi suhu menghitung `fahrenheit = (celsius * 9/5) + 32`. Rumus itu adalah garis lurus <InlineMath math="F=\tfrac95C+32" />: setiap kenaikan <InlineMath math="1^\circ\mathrm{C}" /> menambah <InlineMath math="1.8^\circ\mathrm{F}" />, dan garisnya memotong sumbu tegak di <InlineMath math="32" />.
 
-<Mermaid
-  title="Alur kalkulator sederhana"
-  description="Program berjalan dari atas ke bawah."
-  chart={`
-    flowchart TD
-        A[Baca number1 dengan float] --> B[Baca operator]
-        B --> C[Baca number2 dengan float]
-        C --> D{Operator?}
-        D --> E[Hitung hasil]
-        E --> F[print hasil]
-  `}
+<MathVisual
+  title={<>Garis konversi <InlineMath math="F=\tfrac95C+32" /></>}
+  description={<>Garis ungu memasangkan setiap suhu Celsius mendatar dengan suhu Fahrenheit tegak. Tiga titik adalah keluaran program untuk titik beku air, suhu tubuh, dan titik didih air.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 110 }, y: { min: 0, max: 230 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "conversion", kind: "line", through: [{ x: 0, y: 32 }, { x: 100, y: 212 }], appearance: "secondary" },
+      { id: "freezing", kind: "point", at: { x: 0, y: 0 * 9 / 5 + 32 }, appearance: "construction" },
+      { id: "body", kind: "point", at: { x: 37, y: 37 * 9 / 5 + 32 }, appearance: "answer" },
+      { id: "boiling", kind: "point", at: { x: 100, y: 100 * 9 / 5 + 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "freezing", objectId: "freezing", at: { x: 0, y: 0 * 9 / 5 + 32 }, placement: "right" },
+      { key: "body", objectId: "body", at: { x: 37, y: 37 * 9 / 5 + 32 }, placement: "right" },
+      { key: "boiling", objectId: "boiling", at: { x: 100, y: 100 * 9 / 5 + 32 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "freezing": <InlineMath math="0^\circ\mathrm{C}=32^\circ\mathrm{F}" />,
+    "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
+    "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
+  }}
 />

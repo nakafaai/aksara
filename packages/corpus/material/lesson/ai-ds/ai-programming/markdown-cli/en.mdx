@@ -88,17 +88,37 @@ open document.html`
   }]}
 />
 
-This diagram sums up the Markdown workflow with pandoc.
+The number of `#` signs at the start of a line sets the heading level, and those levels form the outline of the document. A `##` heading belongs under the nearest `#` above it, and a `###` heading under the nearest `##`.
 
-<Mermaid
-  title="From Markdown to a finished document"
-  description="One Markdown file can become several formats."
-  chart={`
-    flowchart LR
-        A[Write a .md file] --> B[pandoc]
-        B --> C[HTML]
-        B --> D[PDF, when a PDF engine is installed]
-  `}
+<MathVisual
+  title={<>The document outline from Markdown headings</>}
+  description={<>The violet point is the <code>#</code> heading, the teal points are two <code>##</code> headings, and the orange point is a <code>###</code> heading under the first part. The gray lines show which part contains which.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1.2, y: -1 }, appearance: "reference" },
+      { id: "to-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.2, y: -1 }, appearance: "reference" },
+      { id: "to-detail", kind: "segment", from: { x: -1.2, y: -1 }, to: { x: -1.2, y: -2 }, appearance: "reference" },
+      { id: "title", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "second", kind: "point", at: { x: 1.2, y: -1 }, appearance: "construction" },
+      { id: "detail", kind: "point", at: { x: -1.2, y: -2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "title", objectId: "title", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 1.2, y: -1 }, placement: "right" },
+      { key: "detail", objectId: "detail", at: { x: -1.2, y: -2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "title": <code># Notes</code>,
+    "first": <code>## Setup</code>,
+    "second": <code>## Usage</code>,
+    "detail": <code>### Install</code>,
+  }}
 />
 
 ## Command Line Interface Basics
@@ -365,8 +385,8 @@ Markdown keeps document structure readable in version control. With a CLI, the s
 Imagine your current working folder is `/home/user`, the magenta point in this tree. `cd projects` moves one level down into a child folder along the teal segment, and from there `ls` would list `notes.md`. `cd ..` moves back up to the parent along the orange segment. A relative path like `projects` counts from the working folder, while an absolute path like `/home/user/docs` always starts at the root.
 
 <MathVisual
-  title="Moving between folders with cd"
-  description="Each point is a folder or a file. The magenta point is the current working folder, the teal segment is cd projects, and the orange segment is cd .."
+  title={<>Moving between folders with <code>cd</code></>}
+  description={<>Each point is a folder or a file. The magenta point is the current working folder, the teal segment is <code>cd projects</code>, and the orange segment is <code>cd ..</code></>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
@@ -405,15 +425,17 @@ Imagine your current working folder is `/home/user`, the magenta point in this t
   }}
 />
 
-Repeat the loop in this diagram every time you explore folders.
+An absolute path starts at the root `/`, and every further slash goes down one level. `pwd` prints that path for the current working folder, and `cd ..` climbs one level to the parent folder.
 
-<Mermaid
-  title="The folder exploration loop"
-  description="Three commands you repeat while moving between folders."
-  chart={`
-    flowchart LR
-        A[pwd: where am I?] --> B[ls: what is here?]
-        B --> C[cd name: go into a folder]
-        C --> A
-  `}
+<BarChart
+  title={<>Folder depth along an absolute path</>}
+  description={<>Each bar is the number of levels below the root for the path written below it. The root <code>/</code> sits at depth <InlineMath math="0" />, and every folder name adds one.</>}
+  yAxisLabel="Depth"
+  data={[
+    { name: "/", value: 0 },
+    { name: "/home", value: 1 },
+    { name: "/home/user", value: 2 },
+    { name: "/home/user/projects", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Depth", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

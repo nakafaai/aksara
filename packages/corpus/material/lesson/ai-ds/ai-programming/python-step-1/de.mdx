@@ -153,19 +153,6 @@ print(f"Kreisfläche mit Radius {test_radius} ist {result:.2f}")`
   }]}
 />
 
-Dieses Diagramm ordnet jedem Weg, Python auszuführen, seinen Einsatz zu.
-
-<Mermaid
-  title="Drei Wege, Python auszuführen"
-  description="Wähl den Weg, der zur Länge deines Codes passt."
-  chart={`
-    flowchart TD
-        A[Python-Code] --> B[Interaktive Shell: eine Zeile testen]
-        A --> C[.py-Datei: python file.py]
-        A --> D[Notebook: Code und Ausgabe pro Zelle]
-  `}
-/>
-
 ## Grundlegende Syntax von Python
 
 Ein erstes Python-Programm liest seine Anweisungen von oben nach unten. Eine Variable speichert einen Wert, ein **Datentyp legt fest**, welche Operationen dieser Wert unterstützt, und Eingabe, Ausgabe und Rechenoperationen ergeben zusammen ein vollständiges Programm.
@@ -282,6 +269,21 @@ x += 3  # x = x + 3, Ergebnis ist x = 8
 x *= 2  # x = x * 2, Ergebnis ist x = 16
 print(f"Aktueller Wert von x: {x}")`
   }]}
+/>
+
+Die grundlegenden Rechenoperatoren liefern für dieselben Zahlen verschiedene Ergebnisse. Mit `7` und `2` ergibt `/` den Wert `3.5`, `//` den ganzzahligen Quotienten `3`, `%` den Rest `1` und `**` die Potenz `49`.
+
+<BarChart
+  title={<>Vier Operatoren auf <code>7</code> und <code>2</code></>}
+  description={<>Jeder Balken ist das Ergebnis von <code>7</code>, dem Operator darunter und dann <code>2</code>. Die echte Division liefert einen Float, die anderen drei Ergebnisse sind ganze Zahlen.</>}
+  yAxisLabel="Ergebnis"
+  data={[
+    { name: "/", value: 7 / 2 },
+    { name: "//", value: Math.floor(7 / 2) },
+    { name: "%", value: 7 % 2 },
+    { name: "**", value: 7 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Ergebnis", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Praktische Übungen
@@ -428,8 +430,8 @@ else:
 Setz `number1 = 2` fest und stell dir vor, du probierst im Rechner oben viele Werte für `number2` aus. Jeder Operator liefert seinen eigenen Graphen: `+` und `-` sind Geraden mit entgegengesetzter Neigung, `*` ist eine steilere Gerade und `/` liefert die magentafarbenen Punkte. Die Division hat bei `number2 = 0` keinen Punkt, weil Python eine Division durch null mit `ZeroDivisionError` ablehnt, während alle Geraden dort problemlos durchlaufen.
 
 <MathVisual
-  title="Die vier Rechenoperatoren für number1 = 2"
-  description="Jede Linie ist das Ergebnis des Rechners, wenn sich number2 ändert und number1 = 2 bleibt. Magentafarbene Punkte sind 2 / number2 für fünf Eingaben, und bei number2 = 0 gibt es keinen."
+  title={<>Die vier Rechenoperatoren für <code>number1 = 2</code></>}
+  description={<>Jede Linie ist das Ergebnis des Rechners, wenn sich <code>number2</code> ändert und <code>number1</code> bei <InlineMath math="2" /> bleibt. Magentafarbene Punkte sind <code>2 / number2</code> für fünf Eingaben, und wo <code>number2</code> gleich <InlineMath math="0" /> ist, gibt es keinen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
@@ -459,17 +461,30 @@ Setz `number1 = 2` fest und stell dir vor, du probierst im Rechner oben viele We
   }}
 />
 
-Folg dem Rechnerprogramm von der Eingabe bis zur Ausgabe.
+Das Temperaturprogramm rechnet `fahrenheit = (celsius * 9/5) + 32`. Diese Formel ist die Gerade <InlineMath math="F=\tfrac95C+32" />: Jeder Schritt von <InlineMath math="1^\circ\mathrm{C}" /> fügt <InlineMath math="1.8^\circ\mathrm{F}" /> hinzu, und die Gerade trifft die senkrechte Achse bei <InlineMath math="32" />.
 
-<Mermaid
-  title="Ablauf des einfachen Rechners"
-  description="Das Programm läuft von oben nach unten."
-  chart={`
-    flowchart TD
-        A[number1 mit float einlesen] --> B[Operator einlesen]
-        B --> C[number2 mit float einlesen]
-        C --> D{Operator?}
-        D --> E[Ergebnis berechnen]
-        E --> F[Ergebnis mit print ausgeben]
-  `}
+<MathVisual
+  title={<>Die Umrechnungsgerade <InlineMath math="F=\tfrac95C+32" /></>}
+  description={<>Die violette Gerade ordnet jeder Celsius-Temperatur nach rechts eine Fahrenheit-Temperatur nach oben zu. Die drei Punkte sind die Ausgaben des Programms für den Gefrierpunkt von Wasser, die Körpertemperatur und den Siedepunkt von Wasser.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 110 }, y: { min: 0, max: 230 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "conversion", kind: "line", through: [{ x: 0, y: 32 }, { x: 100, y: 212 }], appearance: "secondary" },
+      { id: "freezing", kind: "point", at: { x: 0, y: 0 * 9 / 5 + 32 }, appearance: "construction" },
+      { id: "body", kind: "point", at: { x: 37, y: 37 * 9 / 5 + 32 }, appearance: "answer" },
+      { id: "boiling", kind: "point", at: { x: 100, y: 100 * 9 / 5 + 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "freezing", objectId: "freezing", at: { x: 0, y: 0 * 9 / 5 + 32 }, placement: "right" },
+      { key: "body", objectId: "body", at: { x: 37, y: 37 * 9 / 5 + 32 }, placement: "right" },
+      { key: "boiling", objectId: "boiling", at: { x: 100, y: 100 * 9 / 5 + 32 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "freezing": <InlineMath math="0^\circ\mathrm{C}=32^\circ\mathrm{F}" />,
+    "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
+    "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
+  }}
 />

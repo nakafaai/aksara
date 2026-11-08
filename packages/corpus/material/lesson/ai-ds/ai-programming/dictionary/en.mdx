@@ -110,6 +110,19 @@ print(phone)
 
 Because keys are unique, a repeated key in a dictionary display keeps only its final assigned value. The surviving key retains the position established by its first occurrence.
 
+Keys in a dictionary are always unique. In `d = {'a': 1, 'b': 2, 'a': 3}`, the key `'a'` appears twice and the last assignment wins, so `d` holds only two pairs, with `d['a']` equal to `3`.
+
+<BarChart
+  title={<>The contents of <code>d</code> after the key <code>'a'</code> is written twice</>}
+  description={<>Each bar is the value for the key written below it. There are only two bars, because the second <code>'a'</code> overwrites the value <code>1</code> with <code>3</code>.</>}
+  yAxisLabel="Value"
+  data={[
+    { name: "'a'", value: 3 },
+    { name: "'b'", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Accessing Dictionaries
 
 To retrieve a value from a dictionary, **provide its key**. A meaningful key such as a name or date takes the place of a sequential numeric index.
@@ -144,17 +157,18 @@ print(phone)
 
 Square-bracket access retrieves an existing value. Assignment with brackets **updates an existing key** or appends a new key-value pair to the insertion order.
 
-Pick how you read a value by what should happen when the key is missing.
+For `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}`, `phone['ann']` and `phone.get('ann', 0)` both give `110`. The key `'eve'` is missing: `phone['eve']` raises a `KeyError`, while `phone.get('eve', 0)` returns the fallback `0`.
 
-<Mermaid
-  title="Brackets or get"
-  description="The two ways of reading a value differ when the key is missing."
-  chart={`
-    flowchart TD
-        A{Key present?} -->|Yes| B["d[key] and d.get(key) return the value"]
-        A -->|No| C["d[key]: KeyError"]
-        A -->|No| D["d.get(key, default): the default"]
-  `}
+<BarChart
+  title={<><code>phone.get(key, 0)</code> for three keys</>}
+  description={<>Each bar is the result of <code>phone.get(key, 0)</code> for the key written below it. The key <code>'eve'</code> is not in the dictionary, so its bar is the fallback <InlineMath math="0" />.</>}
+  yAxisLabel="Result of get"
+  data={[
+    { name: "'ann'", value: 110 },
+    { name: "'bob'", value: 991 },
+    { name: "'eve'", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Result of get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Dictionary Iteration
@@ -304,8 +318,8 @@ print("Result get('ann'):", result)
 Count the letters in `"banana"` with `counts[ch] = counts.get(ch, 0) + 1`. When a letter appears for the first time, `get` returns the default `0`, so there is no `KeyError`. The result is in the picture: `{"b": 1, "a": 3, "n": 2}`, with the keys in the order they first appeared. The heights of all bars add up to `6`, the same as `len("banana")`.
 
 <MathVisual
-  title="Counting letters with get"
-  description="Each bar is one key of the dictionary counts for the word banana, and its height is the value."
+  title={<>Counting letters with <code>get</code></>}
+  description={<>Each bar is one key of the dictionary <code>counts</code> for the word <code>banana</code>, and its height is the value.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0.3, max: 3.7 }, y: { min: -0.3, max: 3.8 } },
