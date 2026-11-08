@@ -16,8 +16,8 @@ Python besitzt sieben grundlegende arithmetische Operatoren. Ihre Priorität bes
 Zoom in diesen Graphen und folg beiden Linien von links nach rechts. Die violette Linie `x // 3` steigt um eine Stufe, sobald <InlineMath math="x" /> ein Vielfaches von <InlineMath math="3" /> überschreitet, und bei negativen Zahlen rundet sie trotzdem ab, also ergibt `-5 // 3` den Wert `-2`. Die türkise Linie `x % 3` steigt von <InlineMath math="0" /> an und fällt bei jedem Vielfachen von <InlineMath math="3" /> zurück, deshalb liegt der Rest immer zwischen <InlineMath math="0" /> und <InlineMath math="3" />. An jeder Stelle gilt `x == 3 * (x // 3) + x % 3`.
 
 <MathVisual
-  title="Ganzzahlige Division // und Rest %"
-  description="Die violette Linie ist x // 3, die türkise Linie x % 3 von minus sechs bis vor sechs. Jedes Stück enthält sein linkes Ende und hört kurz vor dem nächsten Vielfachen von 3 auf."
+  title={<>Ganzzahlige Division <code>//</code> und Rest <code>%</code></>}
+  description={<>Die violette Linie ist <code>x // 3</code>, die türkise Linie <code>x % 3</code> von minus sechs bis vor sechs. Jedes Stück enthält sein linkes Ende und hört kurz vor dem nächsten Vielfachen von <InlineMath math="3" /> auf.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 3.5 } },
@@ -165,18 +165,49 @@ Auch bei negativen ganzen Zahlen bleibt diese Gleichung gültig. Daher ist `5 % 
 
 **Addition und Subtraktion** besitzen eine niedrigere Priorität als die anderen fünf Operatoren. Klammern können die Gruppierung weiterhin ändern. In `2 + 3 * 4` multipliziert Python zuerst und addiert danach, das Ergebnis ist `14`. Damit die Addition früher stattfindet, setzt du sie in Klammern und schreibst `(2 + 3) * 4`.
 
-Lies diese Leiter von oben nach unten: Ein höherer Operator wird immer zuerst ausgewertet.
+Die Rangfolge bestimmt die Form des Ausdrucksbaums für `2 + 3 * 4 ** 2`. Operatoren mit höherem Rang sitzen tiefer, also rechnet Python von unten nach oben: <InlineMath math="4^2=16" />, dann <InlineMath math="3\cdot16=48" />, dann <InlineMath math="2+48=50" />.
 
-<Mermaid
-  title="Die Rangfolge der Operatoren"
-  description="Weiter oben stehende Operatoren werden zuerst ausgewertet."
-  chart={`
-    flowchart TD
-        A["Klammern ( )"] --> B["Potenz **"]
-        B --> C["Negation -x"]
-        C --> D["* / // %"]
-        D --> E["+ -"]
-  `}
+<MathVisual
+  title={<>Der Auswertungsbaum von <code>2 + 3 * 4 ** 2</code></>}
+  description={<>Die violetten Punkte sind die Operatoren <code>+</code>, <code>*</code> und <code>**</code>, die türkisen Punkte die Zahlen. Die Beschriftung an jedem Operator zeigt das dort berechnete Ergebnis, von <code>**</code> unten bis <code>+</code> oben.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 4.5 }, y: { min: -0.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-plus-two", kind: "segment", from: { x: 0, y: 3 }, to: { x: -1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-plus-times", kind: "segment", from: { x: 0, y: 3 }, to: { x: 1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-times-three", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 0.5, y: 1 }, appearance: "reference" },
+      { id: "edge-times-power", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 2.5, y: 1 }, appearance: "reference" },
+      { id: "edge-power-four", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 1.8, y: 0 }, appearance: "reference" },
+      { id: "edge-power-exponent", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 3.2, y: 0 }, appearance: "reference" },
+      { id: "plus", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 2 }, appearance: "construction" },
+      { id: "times", kind: "point", at: { x: 1.5, y: 2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 0.5, y: 1 }, appearance: "construction" },
+      { id: "power", kind: "point", at: { x: 2.5, y: 1 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: 1.8, y: 0 }, appearance: "construction" },
+      { id: "exponent", kind: "point", at: { x: 3.2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "times", objectId: "times", at: { x: 1.5, y: 2 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 2.5, y: 1 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 2 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: 0.5, y: 1 }, placement: "below" },
+      { key: "four", objectId: "four", at: { x: 1.8, y: 0 }, placement: "below" },
+      { key: "exponent", objectId: "exponent", at: { x: 3.2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "plus": <InlineMath math="2+48=50" />,
+    "times": <InlineMath math="3\cdot16=48" />,
+    "power": <InlineMath math="4^{2}=16" />,
+    "two": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "four": <InlineMath math="4" />,
+    "exponent": <InlineMath math="2" />,
+  }}
 />
 
 ## Vorrangregeln und Assoziativität
@@ -258,16 +289,60 @@ Unter diesen sieben Operatoren wird der Potenzierungsoperator `**` von rechts na
 
 Python gruppiert aufeinanderfolgende Potenzen von rechts nach links: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
 
-Vergleich diese zwei Beispiele: Potenzen werden von rechts ausgewertet, Divisionen von links.
+Die Assoziativität entscheidet, wohin sich der Baum neigt, wenn die Operatoren gleich sind. `2 ** 3 ** 2` neigt sich nach rechts, also kommt <InlineMath math="3^2=9" /> zuerst und das Ergebnis ist <InlineMath math="2^9=512" />. `100 / 10 / 5` neigt sich nach links, also kommt <InlineMath math="100/10=10.0" /> zuerst und das Ergebnis ist `2.0`.
 
-<Mermaid
-  title="Links- und Rechtsassoziativität"
-  description="Zwei Beispiele, die in verschiedene Richtungen ausgewertet werden."
-  chart={`
-    flowchart LR
-        A["2 ** 3 ** 2"] --> B["2 ** 9"] --> C[512]
-        D["100 / 10 / 5"] --> E["10.0 / 5"] --> F[2.0]
-  `}
+<MathVisual
+  title={<>Bäume, die sich nach rechts und nach links neigen</>}
+  description={<>Der linke Baum ist <code>2 ** 3 ** 2</code>, mit dem zweiten <code>**</code> im rechten Ast. Der rechte Baum ist <code>100 / 10 / 5</code>, mit dem ersten <code>/</code> im linken Ast. Die violetten Punkte sind Operatoren, und die Beschriftungen zeigen ihre Ergebnisse.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 4.8 }, y: { min: -0.6, max: 2.7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-outer-power-base", kind: "segment", from: { x: -2, y: 2 }, to: { x: -3, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-power-inner-power", kind: "segment", from: { x: -2, y: 2 }, to: { x: -1, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-power-three", kind: "segment", from: { x: -1, y: 1 }, to: { x: -1.6, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-power-two", kind: "segment", from: { x: -1, y: 1 }, to: { x: -0.4, y: 0 }, appearance: "reference" },
+      { id: "edge-outer-divide-inner-divide", kind: "segment", from: { x: 3, y: 2 }, to: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-divide-five", kind: "segment", from: { x: 3, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-divide-hundred", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1.4, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-divide-ten", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2.6, y: 0 }, appearance: "reference" },
+      { id: "outer-power", kind: "point", at: { x: -2, y: 2 }, appearance: "secondary" },
+      { id: "base", kind: "point", at: { x: -3, y: 1 }, appearance: "construction" },
+      { id: "inner-power", kind: "point", at: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -1.6, y: 0 }, appearance: "construction" },
+      { id: "two", kind: "point", at: { x: -0.4, y: 0 }, appearance: "construction" },
+      { id: "outer-divide", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "inner-divide", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "hundred", kind: "point", at: { x: 1.4, y: 0 }, appearance: "construction" },
+      { id: "ten", kind: "point", at: { x: 2.6, y: 0 }, appearance: "construction" },
+      { id: "five", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "outer-power", objectId: "outer-power", at: { x: -2, y: 2 }, placement: "above" },
+      { key: "inner-power", objectId: "inner-power", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -3, y: 1 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: -0.4, y: 0 }, placement: "below" },
+      { key: "outer-divide", objectId: "outer-divide", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "inner-divide", objectId: "inner-divide", at: { x: 2, y: 1 }, placement: "left" },
+      { key: "hundred", objectId: "hundred", at: { x: 1.4, y: 0 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 2.6, y: 0 }, placement: "below" },
+      { key: "five", objectId: "five", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "outer-power": <InlineMath math="2^{9}=512" />,
+    "inner-power": <InlineMath math="3^{2}=9" />,
+    "base": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "two": <InlineMath math="2" />,
+    "outer-divide": <InlineMath math="10/5=2.0" />,
+    "inner-divide": <InlineMath math="100/10=10.0" />,
+    "hundred": <InlineMath math="100" />,
+    "ten": <InlineMath math="10" />,
+    "five": <InlineMath math="5" />,
+  }}
 />
 
 ## Python Shell als Rechner

@@ -41,19 +41,6 @@ print(c.conjugate())  # Output: (2-3j)`
   ]}
 />
 
-Diagram ini memisahkan dua cara mengakses sesuatu lewat titik.
-
-<Mermaid
-  title="Atribut atau metode"
-  description="Tanda kurung membedakan membaca nilai dari memanggil aksi."
-  chart={`
-    flowchart LR
-        A[objek.nama] --> B{Pakai tanda kurung?}
-        B -->|Tidak| C[Atribut, misalnya z.real]
-        B -->|Ya| D["Metode, misalnya z.conjugate()"]
-  `}
-/>
-
 ## Mengenali Tipe Numerik
 
 Python memilih tipe numerik dari literal yang kamu tulis, dan tipe itu menentukan atribut serta method yang dibawa nilainya. Bertanya lebih dulu kepada Python tentang class-nya membuat kamu tidak perlu menebak apakah sebuah operasi tersedia pada nilai tersebut.
@@ -143,6 +130,33 @@ print(f"Bagian imajiner dari {z3} adalah {z3.imag}")
 
 Hasil untuk `z2` adalah <InlineMath math="-4.0" />, karena koefisiennya membawa tanda minus yang berdiri di depan satuan imajiner. Nilai `z1` tetap positif, dan bilangan imajiner murni `z3` melaporkan <InlineMath math="9.0" /> dengan komponen riil <InlineMath math="0.0" />.
 
+Bagian real dan imajiner hasil kali bisa kamu baca langsung. Untuk `z1 = 1+2j` dan `z2 = 3-1j`, `(z1 * z2).real` adalah <InlineMath math="1\cdot3-2\cdot(-1)=5" /> dan `(z1 * z2).imag` adalah <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Panjangnya juga ikut dikalikan: `abs(z1) * abs(z2)` sama dengan <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+
+<MathVisual
+  title={<>Bagian <code>z1 * z2</code> untuk <code>1+2j</code> dan <code>3-1j</code></>}
+  description={<>Ruas ungu adalah <code>z1</code> dan ruas hijau toska adalah <code>z2</code>. Ruas magenta adalah hasil kalinya <code>(5+5j)</code>, dengan <code>real</code> dan <code>imag</code> sama-sama <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <code>z1 = 1+2j</code>,
+    "second": <code>z2 = 3-1j</code>,
+    "product": <code>z1 * z2 = (5+5j)</code>,
+  }}
+/>
+
 ## Method pada Bilangan Kompleks
 
 Bilangan kompleks juga membawa methodnya sendiri, dan method di bawah ini mencakup operasi yang paling sering kamu pakai. Method `conjugate()` **mengembalikan bilangan kompleks**, sehingga kamu bisa terus memanggil method pada hasilnya tanpa mengubah nilai tempat kamu memulai.
@@ -212,8 +226,8 @@ Mengalikan <InlineMath math="z" /> dengan konjugatnya menghapus bagian imajiner 
 Gambar `z = 3+4j` sebagai titik di bidang kompleks dan perhatikan apa yang dibaca setiap atribut. `z.real` adalah jarak mendatar `3.0`, sedangkan `z.imag` adalah tinggi `4.0`. Metode `z.conjugate()` mencerminkan titik itu ke bawah sumbu real menjadi `3-4j`, dan `abs(z)` adalah jari-jari `5.0` yang sama untuk keduanya. Atribut dibaca tanpa tanda kurung, metode dipanggil dengan tanda kurung.
 
 <MathVisual
-  title="Atribut dan metode z = 3+4j"
-  description="Ruas ungu adalah z, ruas hijau toska adalah z.conjugate(). Ruas kuning dan titik kuning menunjukkan z.imag dan z.real, dan lingkaran abu-abu berjari-jari abs(z)."
+  title={<>Atribut dan metode <code>z = complex(3, 4)</code></>}
+  description={<>Ruas ungu adalah <code>z</code>, ruas hijau toska adalah <code>z.conjugate()</code>. Ruas kuning dan titik kuning menunjukkan <code>z.imag</code> dan <code>z.real</code>, dan lingkaran abu-abu berjari-jari <code>abs(z)</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -309,17 +323,22 @@ print(f"Rasio dari {f}: {ratio}")
 
 `is_integer()` memeriksa apakah sebuah float terhingga tidak punya bagian pecahan, sehingga <InlineMath math="3.14159" /> gagal pada pemeriksaan itu sementara <InlineMath math="4.0" /> lolos. `as_integer_ratio()` mengembalikan <Highlight>pecahan tepat yang tersimpan dalam biner</Highlight>, dan itulah alasan rasio untuk <InlineMath math="3.14159" /> memuat bilangan sebesar itu alih-alih pecahan desimal yang kamu harapkan.
 
-Cek hasil tiga metode ini di shell Python setelah membaca diagramnya.
+Metode `bit_length()` menghitung banyak digit biner yang dibutuhkan sebuah bilangan bulat positif, yaitu <InlineMath math="\lfloor\log_2n\rfloor+1" />. Panjangnya bertambah satu tepat di setiap pangkat dua, jadi `(255).bit_length()` masih <InlineMath math="8" /> dan `(256).bit_length()` sudah <InlineMath math="9" />.
 
-<Mermaid
-  title="Metode int dan float dengan hasilnya"
-  description="Tiga panggilan dan nilai yang dikembalikan."
-  chart={`
-    flowchart LR
-        A["(255).bit_length()"] --> B[8]
-        C["(2.5).is_integer()"] --> D[False]
-        E["(0.75).as_integer_ratio()"] --> F["(3, 4)"]
-  `}
+<BarChart
+  title={<><code>bit_length()</code> untuk tujuh bilangan</>}
+  description={<>Setiap batang adalah <code>n.bit_length()</code> untuk bilangan <InlineMath math="n" /> yang tertulis di bawahnya, dihitung dengan <InlineMath math="\lfloor\log_2n\rfloor+1" />.</>}
+  yAxisLabel="Banyak bit"
+  data={[
+    { name: "1", value: Math.floor(Math.log2(1)) + 1 },
+    { name: "2", value: Math.floor(Math.log2(2)) + 1 },
+    { name: "3", value: Math.floor(Math.log2(3)) + 1 },
+    { name: "4", value: Math.floor(Math.log2(4)) + 1 },
+    { name: "8", value: Math.floor(Math.log2(8)) + 1 },
+    { name: "255", value: Math.floor(Math.log2(255)) + 1 },
+    { name: "256", value: Math.floor(Math.log2(256)) + 1 },
+  ]}
+  chartConfig={{ value: { label: "Banyak bit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Memeriksa dan Menghitung dengan Objek Numerik

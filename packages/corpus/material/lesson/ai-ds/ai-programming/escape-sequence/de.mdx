@@ -90,19 +90,19 @@ Die Escape-Sequenz für einen Zeilenumbruch ist \\n.`
 
 Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt sie als Escape-Sequenzen auszuwerten. Anführungszeichen müssen trotzdem zu den Begrenzern des Literals passen. Außerdem kann ein Raw-String nicht mit einer ungeraden Anzahl von Backslashes enden.
 
-Wenn ein Anführungszeichen im String den String zu früh beendet, nimm einen der Wege in diesem Diagramm.
+Ein Backslash vor einem Anführungszeichen sagt Python nur, dass das Zeichen zum Text gehört. Der Backslash selbst landet nie im String, also enthalten `'It\'s'` und `"It's"` beide vier Zeichen.
 
-<Mermaid
-  title="Anführungszeichen im String"
-  description="Zwei Wege, einen SyntaxError durch Anführungszeichen zu beheben."
-  chart={`
-    flowchart TD
-        A[Anführungszeichen im String] --> B[SyntaxError]
-        B --> C[Mit Backslash maskieren]
-        B --> D[Außen die andere Sorte nehmen]
-        C --> E[Vollständiger String]
-        D --> E
-  `}
+<BarChart
+  title={<><code>len()</code> von Strings mit Anführungszeichen darin</>}
+  description={<>Jeder Balken ist die <code>len()</code> des darunter stehenden Literals. Die Variante mit Escape und die Variante mit der anderen Art von Anführungszeichen sind gleich lang, <InlineMath math="4" /> und <InlineMath math="8" />.</>}
+  yAxisLabel="Stringlänge"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "Stringlänge", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Übersicht der Escapesequenzen
@@ -147,18 +147,20 @@ In `str.format()` und f-Strings begrenzen geschweifte Klammern die **Ersetzungsf
 
 `{{` ergibt eine öffnende und `}}` eine schließende geschweifte Klammer. In `'{{{}}}'` werden die äußeren Klammerpaare zu wörtlichen Zeichen, während das mittlere `{}` ein Ersetzungsfeld bleibt.
 
-Dieses Diagramm ordnet den häufigsten Escape-Sequenzen das Zeichen zu, das sie erzeugen.
+Jede Escape-Sequenz erzeugt genau ein Zeichen, und `ord()` liest dessen Unicode-Code. Tabulator und Zeilenumbruch sind Steuerzeichen mit den Codes <InlineMath math="9" /> und <InlineMath math="10" />, Anführungszeichen und Backslash dagegen gewöhnliche Zeichen mit größeren Codes.
 
-<Mermaid
-  title="Ein Backslash und ein Sonderzeichen"
-  description="Jede Escape-Sequenz wird genau ein Zeichen."
-  chart={`
-    flowchart LR
-        A[Backslash + Buchstabe] --> B["\\n: Zeilenumbruch"]
-        A --> C["\\t: Tabulator"]
-        A --> D["\\\\: Backslash"]
-        A --> E["\\': einfaches Anführungszeichen"]
-  `}
+<BarChart
+  title={<><code>ord()</code> des Zeichens jeder Escape-Sequenz</>}
+  description={<>Jeder Balken ist der Unicode-Code des Zeichens, das die Escape-Sequenz darunter erzeugt, von <code>\t</code> mit dem Code <InlineMath math="9" /> bis <code>\\</code> mit dem Code <InlineMath math="92" />.</>}
+  yAxisLabel="Unicode-Code"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Unicode-Code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Mehrere Escapes in einer Ausgabe verwenden
@@ -194,8 +196,8 @@ Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem 
 Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Strecken zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Die orange Strecke zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
 
 <MathVisual
-  title="Wohin der Cursor bei \t und \n springt"
-  description="Violette Zeichen sind normaler Text, gelbe Strecken Tabsprünge und orange Strecken Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten."
+  title={<>Wohin der Cursor bei <code>\t</code> und <code>\n</code> springt</>}
+  description={<>Violette Zeichen sind normaler Text, gelbe Strecken Tabsprünge und orange Strecken Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },

@@ -84,20 +84,19 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
-Dieses Diagramm zeigt die versteckten Schritte, die jede for-Schleife ausführt.
+Jede Runde von `for item in [3, 8, 1, 6]` ruft einmal `next()` auf und liefert ein Element. Mit `total += item` im Schleifenrumpf wächst die Summe jedes Mal um einen Schritt, bis der Iterator nach dem vierten Element erschöpft ist.
 
-<Mermaid
-  title="Wie for ein Iterable liest"
-  description="iter und next arbeiten hinter jeder for-Schleife."
-  chart={`
-    flowchart TD
-        A[Iterable] --> B["iter(obj)"]
-        B --> C["next(iterator)"]
-        C --> D{Noch ein Element?}
-        D -->|Ja| E[Schleifenrumpf ausführen]
-        E --> C
-        D -->|Nein, StopIteration| F[Schleife endet]
-  `}
+<BarChart
+  title={<><code>total</code> nach jedem <code>next()</code></>}
+  description={<>Jeder Balken ist <code>total</code>, nachdem das darunter stehende Element addiert wurde: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, dann <InlineMath math="18" />.</>}
+  yAxisLabel="Laufende Summe"
+  data={[
+    { name: "3", value: 3 },
+    { name: "8", value: 3 + 8 },
+    { name: "1", value: 3 + 8 + 1 },
+    { name: "6", value: 3 + 8 + 1 + 6 },
+  ]}
+  chartConfig={{ value: { label: "Laufende Summe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Mitgliedschaftsoperatoren
@@ -256,8 +255,8 @@ print(all([]))  # Output: True`
 Prüf die Liste `[3, 8, 1, 6]` gegen die Bedingung `v > 5`. Die zwei magentafarbenen Punkte, <InlineMath math="8" /> und <InlineMath math="6" />, liegen über der Linie, also ist `any(v > 5 for v in values)` gleich `True`. Die türkisen Punkte <InlineMath math="3" /> und <InlineMath math="1" /> liegen darunter, also ist `all(v > 5 for v in values)` gleich `False`. Mit der Bedingung `v > 0` besteht jeder Punkt, und `all` wird `True`.
 
 <MathVisual
-  title="any und all auf [3, 8, 1, 6]"
-  description="Jeder Punkt ist ein Wert an seiner Position. Magentafarbene Punkte erfüllen v > 5, türkise nicht, und die graue Linie ist die Grenze 5."
+  title={<><code>any</code> und <code>all</code> auf <code>[3, 8, 1, 6]</code></>}
+  description={<>Jeder Punkt ist ein Wert an seiner Position. Magentafarbene Punkte erfüllen <InlineMath math="v>5" />, türkise nicht, und die graue Linie ist die Grenze <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
@@ -404,14 +403,35 @@ print(formatted)
   ]}
 />
 
-Dieses Diagramm entpackt die Liste [1, 2, 3, 4] in zwei Namen.
+Ein Name mit Stern nimmt jedes Element, das kein anderer Name nimmt, und ist immer eine Liste. `a, *rest = [1, 2, 3, 4]` ergibt `a = 1` und `rest = [2, 3, 4]`. `first, *middle, last = [1, 2, 3, 4, 5]` ergibt `middle = [2, 3, 4]`.
 
-<Mermaid
-  title="Entpacken mit Stern"
-  description="Ein Name nimmt ein Element, der Name mit Stern den Rest."
-  chart={`
-    flowchart LR
-        A["a, *rest = [1, 2, 3, 4]"] --> B[a = 1]
-        A --> C["rest = [2, 3, 4]"]
-  `}
+<MathVisual
+  title={<>Wohin jedes Element beim Entpacken mit Stern geht</>}
+  description={<>Die obere Zeile ist <code>[1, 2, 3, 4]</code>: Die violette Zelle geht an <code>a</code>, die türkisen Zellen an <code>rest</code>. Die untere Zeile ist <code>[1, 2, 3, 4, 5]</code>: Die violette Zelle geht an <code>first</code>, die drei türkisen Zellen an <code>middle</code> und die orange Zelle an <code>last</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-name", kind: "polygon", vertices: [{ x: 0.05, y: 0.7 }, { x: 0.95, y: 0.7 }, { x: 0.95, y: 1.3 }, { x: 0.05, y: 1.3 }], appearance: "secondary" },
+      { id: "rest-name", kind: "polygon", vertices: [{ x: 1.05, y: 0.7 }, { x: 3.95, y: 0.7 }, { x: 3.95, y: 1.3 }, { x: 1.05, y: 1.3 }], appearance: "construction" },
+      { id: "head", kind: "polygon", vertices: [{ x: 0.05, y: -0.3 }, { x: 0.95, y: -0.3 }, { x: 0.95, y: 0.3 }, { x: 0.05, y: 0.3 }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1.05, y: -0.3 }, { x: 3.95, y: -0.3 }, { x: 3.95, y: 0.3 }, { x: 1.05, y: 0.3 }], appearance: "construction" },
+      { id: "tail", kind: "polygon", vertices: [{ x: 4.05, y: -0.3 }, { x: 4.95, y: -0.3 }, { x: 4.95, y: 0.3 }, { x: 4.05, y: 0.3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-name", objectId: "first-name", at: { x: 0.5, y: 1.3 }, placement: "above" },
+      { key: "rest-name", objectId: "rest-name", at: { x: 2.5, y: 1.3 }, placement: "above" },
+      { key: "head", objectId: "head", at: { x: 0.5, y: -0.3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 2.5, y: -0.3 }, placement: "below" },
+      { key: "tail", objectId: "tail", at: { x: 4.5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first-name": <code>a</code>,
+    "rest-name": <code>rest</code>,
+    "head": <code>first</code>,
+    "middle": <code>middle</code>,
+    "tail": <code>last</code>,
+  }}
 />

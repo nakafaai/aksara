@@ -46,6 +46,23 @@ hello
 
 Die interaktive Eingabe zeigt die Repräsentation eines Strings. Python kann dafür einfache oder doppelte Anführungszeichen wählen, damit sie gut lesbar bleibt. `print()` gibt dagegen den Stringwert selbst ohne die Begrenzungszeichen des Literals aus.
 
+Ein String ist eine geordnete Folge von Unicode-Zeichen, und jedes Zeichen hat einen ganzzahligen Code, den `ord()` liest. Das große `P` hat den Code <InlineMath math="80" />, die Kleinbuchstaben liegen zwischen <InlineMath math="97" /> und <InlineMath math="122" />.
+
+<BarChart
+  title={<><code>ord()</code> jedes Zeichens in <code>'Python'</code></>}
+  description={<>Jeder Balken ist der Unicode-Code des darunter stehenden Zeichens, in der Reihenfolge der Zeichen im String.</>}
+  yAxisLabel="Unicode-Code"
+  data={[
+    { name: "P", value: 80 },
+    { name: "y", value: 121 },
+    { name: "t", value: 116 },
+    { name: "h", value: 104 },
+    { name: "o", value: 111 },
+    { name: "n", value: 110 },
+  ]}
+  chartConfig={{ value: { label: "Unicode-Code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Leere Strings und die Funktion Str
 
 Python kann leere Strings erzeugen und **Werte anderer Datentypen** in Strings umwandeln. Ein leerer String enthält kein Zeichen und hat die **Länge null**, `str()` erzeugt dagegen die Textdarstellung eines beliebigen Werts.
@@ -88,17 +105,20 @@ Die Funktion `str()` liefert eine **gut lesbare Stringdarstellung** eines Werts.
   ]}
 />
 
-Dieses Diagramm zeigt, was str() zurückgibt und was die Länge null bedeutet.
+`str()` macht aus jedem Wert seinen Text, und `len()` zählt dessen Zeichen. Minuszeichen und Dezimalpunkt zählen mit, und der leere String `''` ist der einzige String der Länge <InlineMath math="0" />.
 
-<Mermaid
-  title="str() und der leere String"
-  description="Jeder Wert kann ein String werden, und ein leerer String ist trotzdem ein String."
-  chart={`
-    flowchart LR
-        A["str(42)"] --> B["'42'"]
-        C["str(3.5)"] --> D["'3.5'"]
-        E["''"] --> F["len('') = 0"]
-  `}
+<BarChart
+  title={<><code>len(str(x))</code> für fünf Werte</>}
+  description={<>Jeder Balken ist die Länge des Textes, den <code>str()</code> aus dem Wert darunter macht. Der leere String hat keinen Balken.</>}
+  yAxisLabel="Textlänge"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.5", value: 3 },
+    { name: "-7", value: 2 },
+    { name: "True", value: 4 },
+    { name: "''", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Textlänge", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Mehrzeilige Zeichenfolgen
@@ -177,19 +197,6 @@ zzz`
 />
 
 Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, mit der sich der enthaltene Text am klarsten und mit möglichst wenigen Escape-Zeichen schreiben lässt.
-
-Folg diesem Ablauf, um zu sehen, wohin ein Zeilenumbruch in dreifachen Anführungszeichen geht.
-
-<Mermaid
-  title="Dreifache Anführungszeichen behalten Zeilenumbrüche"
-  description="Ein Zeilenumbruch in dreifachen Anführungszeichen wird Teil des Strings."
-  chart={`
-    flowchart LR
-        A[Text in dreifachen Anführungszeichen] --> B[Zeilenumbruch im Quelltext]
-        B --> C["Zeichen \\n im String"]
-        C --> D[Auf getrennten Zeilen ausgegeben]
-  `}
-/>
 
 ## Verknüpfung von Stringliteralen
 
@@ -311,8 +318,8 @@ SyntaxError ...`
 Schau in diesem Bild, wie drei Strings zu einem werden. Jedes Stück behält die Reihenfolge seiner Zeichen und wird direkt hinter das vorherige gehängt, also beginnt `W` bei Index <InlineMath math="6" />, direkt nach den <InlineMath math="5" /> Zeichen von `Hello` und einem Leerzeichen. Die Länge des Ergebnisses ist die Summe der Stücklängen, <InlineMath math="5+1+5=11" />. Die drei ursprünglichen Strings ändern sich nicht, weil der Operator `+` einen neuen String erzeugt.
 
 <MathVisual
-  title="'Hello' + ' ' + 'World' verbinden"
-  description="Jedes Stück hat seine eigene Farbe, und die Strecke darunter markiert seine Länge. Das Symbol ␣ ist ein Leerzeichen."
+  title={<><code>'Hello' + ' ' + 'World'</code> verbinden</>}
+  description={<>Jedes Stück hat seine eigene Farbe, und die Strecke darunter markiert seine Länge. Das Symbol ␣ ist ein Leerzeichen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1, max: 0.6 } },

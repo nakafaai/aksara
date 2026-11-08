@@ -16,8 +16,8 @@ Python memiliki tujuh operator aritmatika utama. Prioritas operator menentukan <
 Perbesar grafik ini dan ikuti kedua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu tingkat setiap kali <InlineMath math="x" /> melewati kelipatan <InlineMath math="3" />, dan untuk bilangan negatif ia tetap membulatkan ke bawah, jadi `-5 // 3` hasilnya `-2`. Garis hijau toska `x % 3` naik dari <InlineMath math="0" /> lalu jatuh kembali di setiap kelipatan <InlineMath math="3" />, sehingga sisanya selalu di antara <InlineMath math="0" /> dan <InlineMath math="3" />. Di setiap titik berlaku `x == 3 * (x // 3) + x % 3`.
 
 <MathVisual
-  title="Pembagian bulat // dan sisa %"
-  description="Garis ungu adalah x // 3, garis hijau toska adalah x % 3 dari minus enam sampai sebelum enam. Setiap potongan memuat ujung kirinya dan berhenti tepat sebelum kelipatan 3 berikutnya."
+  title={<>Pembagian bulat <code>//</code> dan sisa <code>%</code></>}
+  description={<>Garis ungu adalah <code>x // 3</code>, garis hijau toska adalah <code>x % 3</code> dari minus enam sampai sebelum enam. Setiap potongan memuat ujung kirinya dan berhenti tepat sebelum kelipatan <InlineMath math="3" /> berikutnya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 3.5 } },
@@ -165,18 +165,49 @@ Untuk bilangan bulat negatif, Python tetap memenuhi identitas di atas. Itulah se
 
 **Penjumlahan dan pengurangan** memiliki prioritas lebih rendah daripada lima operator lainnya. Tanda kurung tetap dapat mengubah pengelompokan operasi. Pada `2 + 3 * 4`, Python mengalikan lebih dulu lalu menjumlahkan, sehingga hasilnya `14`. Agar penjumlahan dikerjakan lebih dulu, bungkus bagian itu dengan tanda kurung dan tulis `(2 + 3) * 4`.
 
-Baca tangga ini dari atas ke bawah: operator yang lebih tinggi selalu dikerjakan lebih dulu.
+Urutan prioritas menentukan bentuk pohon ekspresi `2 + 3 * 4 ** 2`. Operator yang prioritasnya lebih tinggi duduk lebih dalam, jadi Python menghitung dari bawah ke atas: <InlineMath math="4^2=16" />, lalu <InlineMath math="3\cdot16=48" />, lalu <InlineMath math="2+48=50" />.
 
-<Mermaid
-  title="Tangga prioritas operator"
-  description="Operator di atas dikerjakan lebih dulu."
-  chart={`
-    flowchart TD
-        A["Tanda kurung ( )"] --> B["Pangkat **"]
-        B --> C["Tanda negatif -x"]
-        C --> D["* / // %"]
-        D --> E["+ -"]
-  `}
+<MathVisual
+  title={<>Pohon evaluasi <code>2 + 3 * 4 ** 2</code></>}
+  description={<>Titik ungu adalah operator <code>+</code>, <code>*</code>, dan <code>**</code>, titik hijau toska adalah angkanya. Label di setiap operator menunjukkan hasil yang dihitung di sana, dari <code>**</code> paling bawah sampai <code>+</code> di puncak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 4.5 }, y: { min: -0.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-plus-two", kind: "segment", from: { x: 0, y: 3 }, to: { x: -1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-plus-times", kind: "segment", from: { x: 0, y: 3 }, to: { x: 1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-times-three", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 0.5, y: 1 }, appearance: "reference" },
+      { id: "edge-times-power", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 2.5, y: 1 }, appearance: "reference" },
+      { id: "edge-power-four", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 1.8, y: 0 }, appearance: "reference" },
+      { id: "edge-power-exponent", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 3.2, y: 0 }, appearance: "reference" },
+      { id: "plus", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 2 }, appearance: "construction" },
+      { id: "times", kind: "point", at: { x: 1.5, y: 2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 0.5, y: 1 }, appearance: "construction" },
+      { id: "power", kind: "point", at: { x: 2.5, y: 1 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: 1.8, y: 0 }, appearance: "construction" },
+      { id: "exponent", kind: "point", at: { x: 3.2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "times", objectId: "times", at: { x: 1.5, y: 2 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 2.5, y: 1 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 2 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: 0.5, y: 1 }, placement: "below" },
+      { key: "four", objectId: "four", at: { x: 1.8, y: 0 }, placement: "below" },
+      { key: "exponent", objectId: "exponent", at: { x: 3.2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "plus": <InlineMath math="2+48=50" />,
+    "times": <InlineMath math="3\cdot16=48" />,
+    "power": <InlineMath math="4^{2}=16" />,
+    "two": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "four": <InlineMath math="4" />,
+    "exponent": <InlineMath math="2" />,
+  }}
 />
 
 ## Aturan Prioritas dan Asosiativitas
@@ -258,16 +289,60 @@ Di antara tujuh operator ini, perpangkatan `**` dikelompokkan dari kanan ke kiri
 
 Python mengelompokkan perpangkatan berulang dari kanan ke kiri: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
 
-Bandingkan dua contoh ini: pangkat dihitung dari kanan, pembagian dari kiri.
+Asosiativitas menentukan ke mana pohon condong saat operatornya sama. `2 ** 3 ** 2` condong ke kanan, jadi <InlineMath math="3^2=9" /> dihitung dulu dan hasilnya <InlineMath math="2^9=512" />. `100 / 10 / 5` condong ke kiri, jadi <InlineMath math="100/10=10.0" /> dihitung dulu dan hasilnya `2.0`.
 
-<Mermaid
-  title="Asosiativitas kiri dan kanan"
-  description="Dua contoh yang dihitung dengan arah berbeda."
-  chart={`
-    flowchart LR
-        A["2 ** 3 ** 2"] --> B["2 ** 9"] --> C[512]
-        D["100 / 10 / 5"] --> E["10.0 / 5"] --> F[2.0]
-  `}
+<MathVisual
+  title={<>Pohon yang condong ke kanan dan ke kiri</>}
+  description={<>Pohon kiri adalah <code>2 ** 3 ** 2</code>, dengan <code>**</code> kedua di cabang kanan. Pohon kanan adalah <code>100 / 10 / 5</code>, dengan <code>/</code> pertama di cabang kiri. Titik ungu adalah operator dan label menunjukkan hasilnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 4.8 }, y: { min: -0.6, max: 2.7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-outer-power-base", kind: "segment", from: { x: -2, y: 2 }, to: { x: -3, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-power-inner-power", kind: "segment", from: { x: -2, y: 2 }, to: { x: -1, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-power-three", kind: "segment", from: { x: -1, y: 1 }, to: { x: -1.6, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-power-two", kind: "segment", from: { x: -1, y: 1 }, to: { x: -0.4, y: 0 }, appearance: "reference" },
+      { id: "edge-outer-divide-inner-divide", kind: "segment", from: { x: 3, y: 2 }, to: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-divide-five", kind: "segment", from: { x: 3, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-divide-hundred", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1.4, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-divide-ten", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2.6, y: 0 }, appearance: "reference" },
+      { id: "outer-power", kind: "point", at: { x: -2, y: 2 }, appearance: "secondary" },
+      { id: "base", kind: "point", at: { x: -3, y: 1 }, appearance: "construction" },
+      { id: "inner-power", kind: "point", at: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -1.6, y: 0 }, appearance: "construction" },
+      { id: "two", kind: "point", at: { x: -0.4, y: 0 }, appearance: "construction" },
+      { id: "outer-divide", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "inner-divide", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "hundred", kind: "point", at: { x: 1.4, y: 0 }, appearance: "construction" },
+      { id: "ten", kind: "point", at: { x: 2.6, y: 0 }, appearance: "construction" },
+      { id: "five", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "outer-power", objectId: "outer-power", at: { x: -2, y: 2 }, placement: "above" },
+      { key: "inner-power", objectId: "inner-power", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -3, y: 1 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: -0.4, y: 0 }, placement: "below" },
+      { key: "outer-divide", objectId: "outer-divide", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "inner-divide", objectId: "inner-divide", at: { x: 2, y: 1 }, placement: "left" },
+      { key: "hundred", objectId: "hundred", at: { x: 1.4, y: 0 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 2.6, y: 0 }, placement: "below" },
+      { key: "five", objectId: "five", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "outer-power": <InlineMath math="2^{9}=512" />,
+    "inner-power": <InlineMath math="3^{2}=9" />,
+    "base": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "two": <InlineMath math="2" />,
+    "outer-divide": <InlineMath math="10/5=2.0" />,
+    "inner-divide": <InlineMath math="100/10=10.0" />,
+    "hundred": <InlineMath math="100" />,
+    "ten": <InlineMath math="10" />,
+    "five": <InlineMath math="5" />,
+  }}
 />
 
 ## Python Shell sebagai Kalkulator

@@ -41,20 +41,6 @@ print("Hasil penjumlahan", x, "+", y, "=", x + y)`
 
 Notasi `*objects` berarti `print()` menerima nol atau lebih objek posisional. Separator yang ditentukan oleh `sep` ditulis di antara dua objek yang berdekatan.
 
-Diagram ini menunjukkan urutan kerja print untuk setiap panggilan.
-
-<Mermaid
-  title="Apa yang dilakukan print"
-  description="Empat langkah dari argumen sampai teks di layar."
-  chart={`
-    flowchart LR
-        A[Argumen] --> B["Ubah dengan str()"]
-        B --> C[Gabungkan dengan sep]
-        C --> D[Tambahkan end]
-        D --> E[Tulis ke layar]
-  `}
-/>
-
 ## Parameter Sep untuk Pemisah
 
 Parameter `sep` menentukan karakter atau string yang memisahkan beberapa objek dalam satu pemanggilan `print()`. <Highlight>Parameter ini memakai satu spasi secara default</Highlight>.
@@ -91,17 +77,19 @@ print("Baris", "Pertama", "Baris", "Kedua", sep="\\n")     # newline`
 
 Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi, koma, tab, atau baris baru.
 
-Bandingkan tiga keluaran ini untuk argumen 1, 2, dan 3.
+`print(1, 2, 3, sep=s)` menulis tiga karakter angka dan menyisipkan `s` dua kali di antaranya. Panjang baris keluarannya, tanpa baris baru di akhir, adalah <InlineMath math="3+2k" />, dengan <InlineMath math="k" /> sama dengan `len(s)`.
 
-<Mermaid
-  title="Tiga nilai sep untuk argumen yang sama"
-  description="Pemisah berubah, argumennya tetap."
-  chart={`
-    flowchart LR
-        A["print(1, 2, 3)"] --> B["1 2 3"]
-        C["print(1, 2, 3, sep='')"] --> D[123]
-        E["print(1, 2, 3, sep=' | ')"] --> F["1 | 2 | 3"]
-  `}
+<BarChart
+  title={<>Panjang keluaran <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Setiap batang adalah banyak karakter yang ditulis untuk nilai <code>sep</code> di bawahnya: <InlineMath math="5" /> untuk spasi, <InlineMath math="3" /> untuk string kosong, <InlineMath math="7" /> untuk koma dengan spasi, dan <InlineMath math="9" /> untuk <code>' | '</code>.</>}
+  yAxisLabel="Banyak karakter"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Parameter End
@@ -153,8 +141,8 @@ Mengubah `end` memungkinkan beberapa pemanggilan melanjutkan output pada baris y
 Gambar ini menjalankan `print("A", "B", "C", sep="-")`, lalu `print("x", end=" ")`, lalu `print("y")`, dan menaruh setiap karakter di tempat ia muncul. `sep` hanya disisipkan di antara argumen, jadi tanda hubung hijau toska muncul dua kali untuk tiga argumen. `end` ditambahkan sekali di akhir setiap panggilan: baris baru ↵ memindahkan kursor ke baris berikutnya, sedangkan `end=" "` membuat `y` tetap di baris yang sama dengan `x`.
 
 <MathVisual
-  title="Tiga panggilan print di aliran keluaran"
-  description="Karakter ungu berasal dari argumen, karakter hijau toska dari sep, dan karakter oranye dari end. Simbol ↵ adalah baris baru dan ␣ adalah spasi."
+  title={<>Tiga panggilan <code>print</code> di aliran keluaran</>}
+  description={<>Karakter ungu berasal dari argumen, karakter hijau toska dari <code>sep</code>, dan karakter oranye dari <code>end</code>. Simbol ↵ adalah baris baru dan ␣ adalah spasi.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
@@ -235,6 +223,23 @@ print("Hasil:", angka_bulat, "+", angka_desimal, "=", angka_bulat + angka_desima
 />
 
 Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah setiap nilai menjadi teks, lalu menuliskannya secara berurutan. Bentuk ini cukup untuk memeriksa beberapa nilai saat program berjalan.
+
+`print` mengubah setiap argumen dengan `str()` sebelum menulisnya, jadi tipe data menentukan apa yang tampil. Float `3.0` tetap memakai titik desimal, `None` tampil sebagai kata, dan list menulis tanda kurung serta koma beserta spasinya.
+
+<BarChart
+  title={<>Banyak karakter yang ditulis <code>print</code> untuk enam nilai</>}
+  description={<>Setiap batang adalah <code>len(str(x))</code> untuk nilai <code>x</code> yang tertulis di bawahnya, yaitu banyak karakter yang tampil di layar.</>}
+  yAxisLabel="Banyak karakter"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Teknik Formatting Output
 

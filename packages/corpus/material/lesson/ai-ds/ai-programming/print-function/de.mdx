@@ -41,20 +41,6 @@ print("Additionsergebnis", x, "+", y, "=", x + y)`
 
 Die Schreibweise `*objects` bedeutet, dass `print()` null oder mehr positionale Objekte annimmt. Zwischen zwei benachbarten Objekten schreibt die Funktion das mit `sep` festgelegte Trennzeichen.
 
-Dieses Diagramm zeigt, in welcher Reihenfolge print bei jedem Aufruf arbeitet.
-
-<Mermaid
-  title="Was print macht"
-  description="Vier Schritte von den Argumenten bis zum Text auf dem Bildschirm."
-  chart={`
-    flowchart LR
-        A[Argumente] --> B["Mit str() umwandeln"]
-        B --> C[Mit sep verbinden]
-        C --> D[end anhängen]
-        D --> E[Auf den Bildschirm schreiben]
-  `}
-/>
-
 ## Der Parameter Sep
 
 Der Parameter `sep` bestimmt, welche Zeichenfolge mehrere Objekte in einem Aufruf voneinander trennt. <Highlight>Der Standardwert ist ein einzelnes Leerzeichen</Highlight>.
@@ -91,17 +77,19 @@ print("Erste", "Zeile", "Zweite", "Zeile", sep="\\n")    # Zeilenumbruch`
 
 Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einfache Aufzählung oder einen Tabulator für grob ausgerichtete Terminaldaten.
 
-Vergleich diese drei Ausgaben für die Argumente 1, 2 und 3.
+`print(1, 2, 3, sep=s)` schreibt drei Ziffernzeichen und setzt `s` zweimal dazwischen. Die Länge der Ausgabezeile ohne den letzten Zeilenumbruch ist <InlineMath math="3+2k" />, wobei <InlineMath math="k" /> gleich `len(s)` ist.
 
-<Mermaid
-  title="Drei Werte für sep bei denselben Argumenten"
-  description="Der Trenner ändert sich, die Argumente bleiben."
-  chart={`
-    flowchart LR
-        A["print(1, 2, 3)"] --> B["1 2 3"]
-        C["print(1, 2, 3, sep='')"] --> D[123]
-        E["print(1, 2, 3, sep=' | ')"] --> F["1 | 2 | 3"]
-  `}
+<BarChart
+  title={<>Ausgabelänge von <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Jeder Balken ist die Anzahl der geschriebenen Zeichen für den <code>sep</code>-Wert darunter: <InlineMath math="5" /> für ein Leerzeichen, <InlineMath math="3" /> für den leeren String, <InlineMath math="7" /> für Komma mit Leerzeichen und <InlineMath math="9" /> für <code>' | '</code>.</>}
+  yAxisLabel="Zeichen"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Der Parameter End
@@ -153,8 +141,8 @@ Mit einem anderen `end` können mehrere Aufrufe in derselben Zeile fortfahren. S
 Dieses Bild führt `print("A", "B", "C", sep="-")`, dann `print("x", end=" ")` und dann `print("y")` aus und setzt jedes Zeichen dorthin, wo es erscheint. `sep` wird nur zwischen Argumenten eingefügt, also erscheint der türkise Bindestrich bei drei Argumenten zweimal. `end` kommt einmal ans Ende jedes Aufrufs: Der Zeilenumbruch ↵ setzt den Cursor in die nächste Zeile, während `end=" "` das `y` in derselben Zeile wie `x` hält.
 
 <MathVisual
-  title="Drei print-Aufrufe im Ausgabestrom"
-  description="Violette Zeichen stammen aus den Argumenten, türkise aus sep und orange aus end. Das Symbol ↵ ist ein Zeilenumbruch und ␣ ein Leerzeichen."
+  title={<>Drei <code>print</code>-Aufrufe im Ausgabestrom</>}
+  description={<>Violette Zeichen stammen aus den Argumenten, türkise aus <code>sep</code> und orange aus <code>end</code>. Das Symbol ↵ ist ein Zeilenumbruch und ␣ ein Leerzeichen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
@@ -235,6 +223,23 @@ print("Ergebnis:", integer_num, "+", decimal_num, "=", integer_num + decimal_num
 />
 
 Ein einziger Aufruf von `print()` kann Werte verschiedener Typen annehmen, sie in Text umwandeln und der Reihe nach ausgeben. Das genügt für eine schnelle Prüfung während der Programmausführung.
+
+`print` wandelt jedes Argument mit `str()` um, bevor es geschrieben wird, also entscheidet der Datentyp, was erscheint. Der Float `3.0` behält seinen Dezimalpunkt, `None` erscheint als Wort, und eine Liste schreibt Klammern, Kommas und Leerzeichen.
+
+<BarChart
+  title={<>Zeichen, die <code>print</code> für sechs Werte schreibt</>}
+  description={<>Jeder Balken ist <code>len(str(x))</code> für den darunter stehenden Wert <code>x</code>, also die Anzahl der Zeichen auf dem Bildschirm.</>}
+  yAxisLabel="Zeichen"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Ausgabeformatierungstechniken
 

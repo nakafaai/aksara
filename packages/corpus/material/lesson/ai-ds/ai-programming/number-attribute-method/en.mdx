@@ -41,19 +41,6 @@ print(c.conjugate())  # Output: (2-3j)`
   ]}
 />
 
-This diagram separates the two ways of reaching something through a dot.
-
-<Mermaid
-  title="Attribute or method"
-  description="Parentheses separate reading a value from calling an action."
-  chart={`
-    flowchart LR
-        A[object.name] --> B{With parentheses?}
-        B -->|No| C[Attribute, like z.real]
-        B -->|Yes| D["Method, like z.conjugate()"]
-  `}
-/>
-
 ## Identifying the Numeric Type
 
 Python chooses the numeric type from the literal you write, and that type decides which attributes and methods the value carries. Asking Python for the class before you call a type-specific method keeps you from guessing whether that operation exists on that value.
@@ -143,6 +130,33 @@ print(f"Imaginary part of {z3} is {z3.imag}")
 
 The result for `z2` is <InlineMath math="-4.0" />, because the coefficient carries the minus sign that stands in front of the imaginary unit. The value for `z1` stays positive, and the pure imaginary number `z3` reports <InlineMath math="9.0" /> with a real component of <InlineMath math="0.0" />.
 
+You can read the real and imaginary parts of a product directly. For `z1 = 1+2j` and `z2 = 3-1j`, `(z1 * z2).real` is <InlineMath math="1\cdot3-2\cdot(-1)=5" /> and `(z1 * z2).imag` is <InlineMath math="1\cdot(-1)+2\cdot3=5" />. The lengths multiply too: `abs(z1) * abs(z2)` equals <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+
+<MathVisual
+  title={<>The parts of <code>z1 * z2</code> for <code>1+2j</code> and <code>3-1j</code></>}
+  description={<>The violet segment is <code>z1</code> and the teal segment is <code>z2</code>. The magenta segment is their product <code>(5+5j)</code>, with <code>real</code> and <code>imag</code> both equal to <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <code>z1 = 1+2j</code>,
+    "second": <code>z2 = 3-1j</code>,
+    "product": <code>z1 * z2 = (5+5j)</code>,
+  }}
+/>
+
 ## Methods on Complex Numbers
 
 Complex numbers also carry their own methods, and the ones below cover the operations you reach for most often. The `conjugate()` method **returns a complex number**, so you can keep calling methods on the result without changing the value you started from.
@@ -212,8 +226,8 @@ Multiplying <InlineMath math="z" /> by its conjugate cancels the imaginary part 
 Draw `z = 3+4j` as a point in the complex plane and notice what each attribute reads. `z.real` is the horizontal distance `3.0`, while `z.imag` is the height `4.0`. The method `z.conjugate()` mirrors the point below the real axis to `3-4j`, and `abs(z)` is the radius `5.0` that both share. You read an attribute without parentheses and call a method with them.
 
 <MathVisual
-  title="Attributes and methods of z = 3+4j"
-  description="The violet segment is z, the teal segment is z.conjugate(). The amber segment and point show z.imag and z.real, and the gray circle has radius abs(z)."
+  title={<>Attributes and methods of <code>z = complex(3, 4)</code></>}
+  description={<>The violet segment is <code>z</code>, the teal segment is <code>z.conjugate()</code>. The amber segment and point show <code>z.imag</code> and <code>z.real</code>, and the gray circle has radius <code>abs(z)</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -309,17 +323,22 @@ print(f"Ratio of {f}: {ratio}")
 
 `is_integer()` checks whether a finite float has no fractional part, so <InlineMath math="3.14159" /> fails that check while <InlineMath math="4.0" /> passes it. `as_integer_ratio()` returns <Highlight>the exact fraction stored in binary</Highlight>, which is why the ratio for <InlineMath math="3.14159" /> holds such large numbers instead of the decimal fraction a reader would expect.
 
-Check the results of these three methods in the Python shell after reading the diagram.
+The method `bit_length()` counts the binary digits a positive integer needs, which is <InlineMath math="\lfloor\log_2n\rfloor+1" />. The length grows by one exactly at each power of two, so `(255).bit_length()` is still <InlineMath math="8" /> and `(256).bit_length()` is already <InlineMath math="9" />.
 
-<Mermaid
-  title="int and float methods with their results"
-  description="Three calls and the values they return."
-  chart={`
-    flowchart LR
-        A["(255).bit_length()"] --> B[8]
-        C["(2.5).is_integer()"] --> D[False]
-        E["(0.75).as_integer_ratio()"] --> F["(3, 4)"]
-  `}
+<BarChart
+  title={<><code>bit_length()</code> for seven numbers</>}
+  description={<>Each bar is <code>n.bit_length()</code> for the number <InlineMath math="n" /> written below it, computed as <InlineMath math="\lfloor\log_2n\rfloor+1" />.</>}
+  yAxisLabel="Number of bits"
+  data={[
+    { name: "1", value: Math.floor(Math.log2(1)) + 1 },
+    { name: "2", value: Math.floor(Math.log2(2)) + 1 },
+    { name: "3", value: Math.floor(Math.log2(3)) + 1 },
+    { name: "4", value: Math.floor(Math.log2(4)) + 1 },
+    { name: "8", value: Math.floor(Math.log2(8)) + 1 },
+    { name: "255", value: Math.floor(Math.log2(255)) + 1 },
+    { name: "256", value: Math.floor(Math.log2(256)) + 1 },
+  ]}
+  chartConfig={{ value: { label: "Number of bits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Validating and Calculating with Numeric Objects

@@ -99,6 +99,27 @@ print('x = {0:12e}'.format(x))      # Ausgabe: x = 1.239800e+02`
   ]}
 />
 
+Eine Breite von <InlineMath math="15" /> lässt <InlineMath math="15-3=12" /> Spalten Füllzeichen um `'xxx'`. Linksbündig setzt alle Füllzeichen nach rechts, rechtsbündig alle nach links, und zentriert teilt sie in <InlineMath math="6" /> und <InlineMath math="6" />.
+
+<MathVisual
+  title={<><code>'xxx'</code> in Breite <InlineMath math="15" /> mit drei Ausrichtungen</>}
+  description={<>Jede Zeile hat <InlineMath math="15" /> Spalten. Das violette Rechteck ist <code>'xxx'</code>, die grauen Rechtecke sind Füllzeichen. Von oben nach unten: linksbündig, rechtsbündig und zentriert.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-text", kind: "polygon", vertices: [{ x: 0, y: 1.7 }, { x: 3, y: 1.7 }, { x: 3, y: 2.3 }, { x: 0, y: 2.3 }], appearance: "secondary" },
+      { id: "left-fill", kind: "polygon", vertices: [{ x: 3, y: 1.7 }, { x: 15, y: 1.7 }, { x: 15, y: 2.3 }, { x: 3, y: 2.3 }], appearance: "reference" },
+      { id: "right-fill", kind: "polygon", vertices: [{ x: 0, y: 0.7 }, { x: 12, y: 0.7 }, { x: 12, y: 1.3 }, { x: 0, y: 1.3 }], appearance: "reference" },
+      { id: "right-text", kind: "polygon", vertices: [{ x: 12, y: 0.7 }, { x: 15, y: 0.7 }, { x: 15, y: 1.3 }, { x: 12, y: 1.3 }], appearance: "secondary" },
+      { id: "center-fill-a", kind: "polygon", vertices: [{ x: 0, y: -0.3 }, { x: 6, y: -0.3 }, { x: 6, y: 0.3 }, { x: 0, y: 0.3 }], appearance: "reference" },
+      { id: "center-text", kind: "polygon", vertices: [{ x: 6, y: -0.3 }, { x: 9, y: -0.3 }, { x: 9, y: 0.3 }, { x: 6, y: 0.3 }], appearance: "secondary" },
+      { id: "center-fill-b", kind: "polygon", vertices: [{ x: 9, y: -0.3 }, { x: 15, y: -0.3 }, { x: 15, y: 0.3 }, { x: 9, y: 0.3 }], appearance: "reference" },
+    ],
+  }}
+/>
+
 ## Argumentreferenzmethoden
 
 Ein Ersetzungsfeld wählt **den Wert für die Textausgabe**. Verwende einen Index für ein Positionsargument, einen Namen für ein Schlüsselwortargument oder die automatische Nummerierung, um Positionsargumente der Reihe nach einzusetzen.
@@ -171,9 +192,9 @@ Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` best
 
 | Formattyp | Präzisionsverhalten | Beispiel |
 |-------------|-----|---------|
-| `f/F` | Dezimalstellen | `{:.2f}` → `123.99` |
-| `e/E` | Dezimalstellen in wissenschaftlicher Schreibweise | `{:.2e}` → `1.24e+02` |
-| `g/G` | Signifikante Ziffern | `{:.3g}` → `124` |
+| `f/F` | Dezimalstellen | `{:.2f}` <InlineMath math="\rightarrow" /> `123.99` |
+| `e/E` | Dezimalstellen in wissenschaftlicher Schreibweise | `{:.2e}` <InlineMath math="\rightarrow" /> `1.24e+02` |
+| `g/G` | Signifikante Ziffern | `{:.3g}` <InlineMath math="\rightarrow" /> `124` |
 
 ### Vorzeichenoptionen
 
@@ -231,8 +252,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
 Die Angabe `.1f` zeigt jede Zahl mit einer Nachkommastelle, also erscheint jedes <InlineMath math="x" /> auf einer Stufe als dieselbe Zahl. Zoom in die violette Treppe: Jede Stufe ist <InlineMath math="0.1" /> breit und um den angezeigten Wert zentriert, also erscheint jeder Wert zwischen <InlineMath math="0.35" /> und <InlineMath math="0.45" /> als `0.4`. Genau an einer Grenze wie <InlineMath math="0.25" /> hängt das Ergebnis vom gespeicherten Binärwert ab, deshalb markiert das Bild an einer Grenze keinen Wert. Der ursprüngliche Wert ändert sich nie, nur seine Anzeige.
 
 <MathVisual
-  title="Die Genauigkeit .1f als Rundungstreppe"
-  description="Die violette Treppe ist der mit .1f angezeigte Wert für Eingaben von null bis eins, die graue Linie ist die Winkelhalbierende."
+  title={<>Die Genauigkeit <code>.1f</code> als Rundungstreppe</>}
+  description={<>Die violette Treppe ist der mit <code>.1f</code> angezeigte Wert für Eingaben von null bis eins, die graue Linie ist die Winkelhalbierende.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
@@ -260,6 +281,22 @@ Die Angabe `.1f` zeigt jede Zahl mit einer Nachkommastelle, also erscheint jedes
     "identity": <InlineMath math="y=x" />,
     "step": 'float(f"{x:.1f}")',
   }}
+/>
+
+Jede zusätzliche Stelle Genauigkeit verkleinert den Rundungsfehler ungefähr um den Faktor zehn. Für `math.pi` zeigt Genauigkeit <InlineMath math="0" /> den Wert <InlineMath math="3" /> mit einem Fehler von etwa <InlineMath math="0.14" />, Genauigkeit <InlineMath math="4" /> dagegen <InlineMath math="3.1416" /> mit einem Fehler unter <InlineMath math="10^{-5}" />.
+
+<BarChart
+  title={<>Rundungsfehler von <code>math.pi</code> für Genauigkeit <InlineMath math="0" /> bis <InlineMath math="4" /></>}
+  description={<>Jeder Balken ist der Abstand zwischen <InlineMath math="\pi" /> und dem Wert, der mit der darunter stehenden Anzahl Dezimalstellen angezeigt wird.</>}
+  yAxisLabel="Rundungsfehler"
+  data={[
+    { name: "0", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 0) / 10 ** 0) },
+    { name: "1", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 1) / 10 ** 1) },
+    { name: "2", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 2) / 10 ** 2) },
+    { name: "3", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 3) / 10 ** 3) },
+    { name: "4", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 4) / 10 ** 4) },
+  ]}
+  chartConfig={{ value: { label: "Rundungsfehler", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Formatierte Strings und dynamische Vorlagen

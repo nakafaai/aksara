@@ -90,19 +90,19 @@ The escape sequence for a new line is \\n.`
 
 A raw string prefix such as `r` keeps most backslashes as written. Quotes still have to fit the literal's delimiter rules, and a raw string cannot end with an odd number of backslashes.
 
-When a quote inside a string ends the string too early, pick one of the paths in this diagram.
+A backslash before a quote only tells Python that the quote belongs to the text. The backslash itself never enters the string, so `'It\'s'` and `"It's"` both hold four characters.
 
-<Mermaid
-  title="Quotes inside a string"
-  description="Two ways to fix a SyntaxError caused by quotes."
-  chart={`
-    flowchart TD
-        A[Quote inside a string] --> B[SyntaxError]
-        B --> C[Escape it with a backslash]
-        B --> D[Use the other quote type outside]
-        C --> E[Complete string]
-        D --> E
-  `}
+<BarChart
+  title={<><code>len()</code> of strings with quotes inside</>}
+  description={<>Each bar is the <code>len()</code> of the literal written below it. The escaped version and the version with the other quote type have the same length, <InlineMath math="4" /> and <InlineMath math="8" />.</>}
+  yAxisLabel="String length"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "String length", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Escape Sequence Reference
@@ -147,18 +147,20 @@ In `str.format()` and f-strings, curly braces delimit **replacement fields**. Do
 
 Write `{{` to produce `{` and `}}` to produce `}`. In `'{{{}}}'`, the outer doubled braces become literal braces while the middle `{}` remains a replacement field.
 
-This diagram pairs the most common escape sequences with the character each one produces.
+Every escape sequence produces exactly one character, and `ord()` reads that character's Unicode code. Tab and newline are control characters with the codes <InlineMath math="9" /> and <InlineMath math="10" />, while quotes and the backslash are ordinary characters with larger codes.
 
-<Mermaid
-  title="A backslash and one special character"
-  description="Each escape sequence becomes exactly one character."
-  chart={`
-    flowchart LR
-        A[Backslash + letter] --> B["\\n: newline"]
-        A --> C["\\t: tab"]
-        A --> D["\\\\: backslash"]
-        A --> E["\\': single quote"]
-  `}
+<BarChart
+  title={<><code>ord()</code> of the character from each escape sequence</>}
+  description={<>Each bar is the Unicode code of the character that the escape sequence below it produces, from <code>\t</code> with code <InlineMath math="9" /> to <code>\\</code> with code <InlineMath math="92" />.</>}
+  yAxisLabel="Unicode code"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Unicode code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Combining Escape Sequences
@@ -194,8 +196,8 @@ The key distinction is between source notation and the resulting string. `\n`, f
 This picture prints `"Name\tAge\nBob\t25"` in a terminal with a tab stop every eight columns. The amber segments show `\t` jumping to the next multiple of eight, so `Age` and `25` start in the same column even though `Name` and `Bob` have different lengths. The orange segment shows `\n` taking the cursor to the start of the next line. However wide they look, each escape sequence is still one character, so the `len()` of this string is <InlineMath math="15" />.
 
 <MathVisual
-  title="Where the cursor goes for \t and \n"
-  description="Violet characters are plain text, amber segments are tab jumps, and orange segments are newlines, for a terminal with a tab stop every eight columns."
+  title={<>Where the cursor goes for <code>\t</code> and <code>\n</code></>}
+  description={<>Violet characters are plain text, amber segments are tab jumps, and orange segments are newlines, for a terminal with a tab stop every eight columns.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },

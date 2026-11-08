@@ -84,20 +84,19 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
-This diagram shows the hidden steps every for loop runs.
+Every round of `for item in [3, 8, 1, 6]` calls `next()` once and hands over one element. With `total += item` in the loop body, the sum grows by one step each time, until the iterator runs out after the fourth element.
 
-<Mermaid
-  title="How for reads an iterable"
-  description="iter and next work behind every for loop."
-  chart={`
-    flowchart TD
-        A[Iterable] --> B["iter(obj)"]
-        B --> C["next(iterator)"]
-        C --> D{Another item?}
-        D -->|Yes| E[Run the loop body]
-        E --> C
-        D -->|No, StopIteration| F[Loop ends]
-  `}
+<BarChart
+  title={<><code>total</code> after each <code>next()</code></>}
+  description={<>Each bar is <code>total</code> after the element written below it is added: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, then <InlineMath math="18" />.</>}
+  yAxisLabel="Running total"
+  data={[
+    { name: "3", value: 3 },
+    { name: "8", value: 3 + 8 },
+    { name: "1", value: 3 + 8 + 1 },
+    { name: "6", value: 3 + 8 + 1 + 6 },
+  ]}
+  chartConfig={{ value: { label: "Running total", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Membership Operators
@@ -256,8 +255,8 @@ print(all([]))  # Output: True`
 Check the list `[3, 8, 1, 6]` against the condition `v > 5`. The two magenta points, <InlineMath math="8" /> and <InlineMath math="6" />, sit above the line, so `any(v > 5 for v in values)` is `True`. The teal points <InlineMath math="3" /> and <InlineMath math="1" /> sit below it, so `all(v > 5 for v in values)` is `False`. With the condition `v > 0`, every point passes and `all` becomes `True`.
 
 <MathVisual
-  title="any and all on [3, 8, 1, 6]"
-  description="Each point is one value at its position. Magenta points meet v > 5, teal points don't, and the gray line is the threshold 5."
+  title={<><code>any</code> and <code>all</code> on <code>[3, 8, 1, 6]</code></>}
+  description={<>Each point is one value at its position. Magenta points meet <InlineMath math="v>5" />, teal points don't, and the gray line is the threshold <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
@@ -404,14 +403,35 @@ print(formatted)
   ]}
 />
 
-This diagram unpacks the list [1, 2, 3, 4] into two names.
+A starred name takes every element that no other name takes, and it is always a list. `a, *rest = [1, 2, 3, 4]` gives `a = 1` and `rest = [2, 3, 4]`. `first, *middle, last = [1, 2, 3, 4, 5]` gives `middle = [2, 3, 4]`.
 
-<Mermaid
-  title="Unpacking with a star"
-  description="One name takes one item, the starred name takes the rest."
-  chart={`
-    flowchart LR
-        A["a, *rest = [1, 2, 3, 4]"] --> B[a = 1]
-        A --> C["rest = [2, 3, 4]"]
-  `}
+<MathVisual
+  title={<>Where each element goes in starred unpacking</>}
+  description={<>The top row is <code>[1, 2, 3, 4]</code>: the violet cell goes to <code>a</code> and the teal cells to <code>rest</code>. The bottom row is <code>[1, 2, 3, 4, 5]</code>: the violet cell goes to <code>first</code>, the three teal cells to <code>middle</code>, and the orange cell to <code>last</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-name", kind: "polygon", vertices: [{ x: 0.05, y: 0.7 }, { x: 0.95, y: 0.7 }, { x: 0.95, y: 1.3 }, { x: 0.05, y: 1.3 }], appearance: "secondary" },
+      { id: "rest-name", kind: "polygon", vertices: [{ x: 1.05, y: 0.7 }, { x: 3.95, y: 0.7 }, { x: 3.95, y: 1.3 }, { x: 1.05, y: 1.3 }], appearance: "construction" },
+      { id: "head", kind: "polygon", vertices: [{ x: 0.05, y: -0.3 }, { x: 0.95, y: -0.3 }, { x: 0.95, y: 0.3 }, { x: 0.05, y: 0.3 }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1.05, y: -0.3 }, { x: 3.95, y: -0.3 }, { x: 3.95, y: 0.3 }, { x: 1.05, y: 0.3 }], appearance: "construction" },
+      { id: "tail", kind: "polygon", vertices: [{ x: 4.05, y: -0.3 }, { x: 4.95, y: -0.3 }, { x: 4.95, y: 0.3 }, { x: 4.05, y: 0.3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-name", objectId: "first-name", at: { x: 0.5, y: 1.3 }, placement: "above" },
+      { key: "rest-name", objectId: "rest-name", at: { x: 2.5, y: 1.3 }, placement: "above" },
+      { key: "head", objectId: "head", at: { x: 0.5, y: -0.3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 2.5, y: -0.3 }, placement: "below" },
+      { key: "tail", objectId: "tail", at: { x: 4.5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first-name": <code>a</code>,
+    "rest-name": <code>rest</code>,
+    "head": <code>first</code>,
+    "middle": <code>middle</code>,
+    "tail": <code>last</code>,
+  }}
 />

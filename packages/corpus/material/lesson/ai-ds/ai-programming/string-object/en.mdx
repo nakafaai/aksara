@@ -46,6 +46,23 @@ hello
 
 The interactive prompt shows the string's representation, so Python may choose single or double quotes to keep that representation readable. `print()` writes the string value itself, without the literal delimiters.
 
+A string is an ordered sequence of Unicode characters, and every character has an integer code that `ord()` reads. The capital `P` has the code <InlineMath math="80" />, while the lowercase letters lie between <InlineMath math="97" /> and <InlineMath math="122" />.
+
+<BarChart
+  title={<><code>ord()</code> of each character in <code>'Python'</code></>}
+  description={<>Each bar is the Unicode code of the character written below it, in the order of the characters in the string.</>}
+  yAxisLabel="Unicode code"
+  data={[
+    { name: "P", value: 80 },
+    { name: "y", value: 121 },
+    { name: "t", value: 116 },
+    { name: "h", value: 104 },
+    { name: "o", value: 111 },
+    { name: "n", value: 110 },
+  ]}
+  chartConfig={{ value: { label: "Unicode code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Empty Strings and the Str Function
 
 Python supports empty strings and **conversion from other data types** to strings. An empty string contains no characters and has **length zero**, while `str()` builds a text representation of any value.
@@ -88,17 +105,20 @@ The `str()` function returns a **readable string representation** of a value. Us
   ]}
 />
 
-This diagram shows what str() returns and what a length of zero means.
+`str()` turns any value into its text, and `len()` counts the characters of that text. A minus sign and a decimal point count too, and the empty string `''` is the only string of length <InlineMath math="0" />.
 
-<Mermaid
-  title="str() and the empty string"
-  description="Every value can become a string, and an empty string is still a string."
-  chart={`
-    flowchart LR
-        A["str(42)"] --> B["'42'"]
-        C["str(3.5)"] --> D["'3.5'"]
-        E["''"] --> F["len('') = 0"]
-  `}
+<BarChart
+  title={<><code>len(str(x))</code> for five values</>}
+  description={<>Each bar is the length of the text that <code>str()</code> makes from the value below it. The empty string has no bar.</>}
+  yAxisLabel="Text length"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.5", value: 3 },
+    { name: "-7", value: 2 },
+    { name: "True", value: 4 },
+    { name: "''", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Text length", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Multiline Strings
@@ -177,19 +197,6 @@ zzz`
 />
 
 Triple double quotes behave the same way. Choose the delimiter that makes the text easiest to read and escape.
-
-Follow this flow to see where a line break inside triple quotes goes.
-
-<Mermaid
-  title="Triple quotes keep line breaks"
-  description="A line break inside triple quotes becomes part of the string."
-  chart={`
-    flowchart LR
-        A[Text in triple quotes] --> B[Line break in the source]
-        B --> C["Character \\n in the string"]
-        C --> D[Printed on separate lines]
-  `}
-/>
 
 ## String Literal Concatenation
 
@@ -311,8 +318,8 @@ SyntaxError ...`
 See how three strings join into one in this picture. Each piece keeps the order of its characters and is attached right after the previous piece, so `W` starts at index <InlineMath math="6" />, just after the <InlineMath math="5" /> characters of `Hello` and one space. The length of the result is the sum of the piece lengths, <InlineMath math="5+1+5=11" />. The three original strings stay the same, because the `+` operator creates a new string.
 
 <MathVisual
-  title="Joining 'Hello' + ' ' + 'World'"
-  description="Each piece has its own color, and the segment below it marks its length. The symbol ␣ is a space."
+  title={<>Joining <code>'Hello' + ' ' + 'World'</code></>}
+  description={<>Each piece has its own color, and the segment below it marks its length. The symbol ␣ is a space.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1, max: 0.6 } },

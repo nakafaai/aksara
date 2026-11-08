@@ -13,20 +13,6 @@ Syntaktischer Zucker ist eine <Highlight>knappe Schreibweise</Highlight> für Ve
 
 Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Wähle die Form, in der deine Absicht am leichtesten zu verstehen ist.
 
-Vergleich die zwei Wege in diesem Diagramm: Beide erzeugen dieselbe Liste.
-
-<Mermaid
-  title="Normale Schleife und List Comprehension"
-  description="Zwei Schreibweisen für dasselbe Ergebnis."
-  chart={`
-    flowchart LR
-        A["ergebnis = []"] --> B["for x in data"]
-        B --> C["ergebnis.append(x * 2)"]
-        C --> E[Dieselbe Liste]
-        D["[x * 2 for x in data]"] --> E
-  `}
-/>
-
 ## Listenkomprehension
 
 Eine Listenkomprehension erzeugt eine **neue Liste aus einem Iterable**. Sie kann Werte transformieren, filtern oder beides in einem Ausdruck verbinden.
@@ -113,8 +99,8 @@ Beispielsweise kann `[i**2 for i in range(4)]` die Liste `[0, 1, 4, 9]` erzeugen
 Führ die List Comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` mit Blick auf dieses Bild aus. Der `for`-Teil nimmt jedes <InlineMath math="x" /> von <InlineMath math="-3" /> bis <InlineMath math="3" />, der `if`-Teil lässt nur gerade Zahlen durch, und der Ausdruck vorne berechnet `x**2`. Das Ergebnis sind die drei magentafarbenen Punkte auf der Kurve, also `[4, 0, 4]`. Die türkisen Punkte für ungerade <InlineMath math="x" /> liegen zwar auf der Kurve, kommen aber nie in die Liste.
 
 <MathVisual
-  title="Was [x**2 for x in range(-3, 4) if x % 2 == 0] auswählt"
-  description="Die graue Kurve ist x**2. Magentafarbene Punkte sind die Elemente, die die if-Bedingung erfüllen, türkise werden übersprungen."
+  title={<>Was <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code> auswählt</>}
+  description={<>Die graue Kurve ist <InlineMath math="y=x^2" />. Magentafarbene Punkte sind die Elemente, die die <code>if</code>-Bedingung erfüllen, türkise werden übersprungen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 9.5 } },
@@ -214,17 +200,32 @@ print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]
   ]}
 />
 
-Dieses Diagramm zeigt, dass lambda und def dieselbe Funktion erzeugen.
+`f = lambda x: x * 2` baut dieselbe Funktion wie ein `def`, das `x * 2` zurückgibt. Rufe sie für jedes `x` in `range(-3, 4)` auf, und jedes Ergebnis landet auf der Geraden <InlineMath math="y=2x" />.
 
-<Mermaid
-  title="Ein Lambda als kleine Funktion"
-  description="Ein Lambda entspricht einem einzeiligen def und dient oft als key."
-  chart={`
-    flowchart LR
-        A["lambda x: x * 2"] --> C[Dieselbe Funktion]
-        B["def f(x): return x * 2"] --> C
-        C --> D["sorted(data, key=...)"]
-  `}
+<MathVisual
+  title={<><code>lambda x: x * 2</code> für <code>x</code> von <InlineMath math="-3" /> bis <InlineMath math="3" /></>}
+  description={<>Die violette Gerade ist <InlineMath math="y=2x" />. Die magentafarbenen Punkte sind sieben Aufrufe <code>f(x)</code>, von <InlineMath math="f(-3)=-6" /> bis <InlineMath math="f(3)=6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "double", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "call-0", kind: "point", at: { x: -3, y: -6 }, appearance: "answer" },
+      { id: "call-1", kind: "point", at: { x: -2, y: -4 }, appearance: "answer" },
+      { id: "call-2", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "call-3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "call-4", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "call-5", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "call-6", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "call-6", objectId: "call-6", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "call-6": <code>f(3) = 6</code>,
+  }}
 />
 
 ## Andere syntaktische Zuckerfunktionen
@@ -310,6 +311,23 @@ a, b = b, a  # Tauschen ohne temporäre Variable
 print(f"Nachher: a={a}, b={b}")  # Ausgabe: Nachher: a=10, b=5`
     }
   ]}
+/>
+
+Eine erweiterte Zuweisung rechnet mit dem alten Wert und speichert das Ergebnis unter demselben Namen. Starte mit `x = 10` und führe dann `x += 5`, `x -= 3`, `x *= 2`, `x //= 5` und `x **= 2` aus. Der Wert wird <InlineMath math="15" />, <InlineMath math="12" />, <InlineMath math="24" />, <InlineMath math="4" /> und dann <InlineMath math="16" />.
+
+<BarChart
+  title={<>Der Wert von <code>x</code> nach jeder erweiterten Zuweisung</>}
+  description={<>Jeder Balken ist <code>x</code> nach dem darunter stehenden Operator, mit den Operanden <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" /> und <InlineMath math="2" /> in dieser Reihenfolge.</>}
+  yAxisLabel="Wert"
+  data={[
+    { name: "Start", value: 10 },
+    { name: "+=", value: 10 + 5 },
+    { name: "-=", value: 10 + 5 - 3 },
+    { name: "*=", value: (10 + 5 - 3) * 2 },
+    { name: "//=", value: Math.floor((10 + 5 - 3) * 2 / 5) },
+    { name: "**=", value: Math.floor((10 + 5 - 3) * 2 / 5) ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Syntaxvergleich

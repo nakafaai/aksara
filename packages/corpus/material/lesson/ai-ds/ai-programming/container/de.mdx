@@ -102,6 +102,37 @@ print('nested[1][2][1] =', nested[1][2][1])  # Ausgabe: nested[1][2][1] = e`
   ]}
 />
 
+Ein Index kann auch schreiben. Nach `x = [0, 1, 2, 3, 4, 5]` und `x[2] = 9` enthält dieselbe Liste jetzt `[0, 1, 9, 3, 4, 5]`, weil sich eine Liste an Ort und Stelle ändern lässt. Ein negativer Index zählt weiter vom Ende, also ist `x[-1]` immer noch `5`.
+
+<MathVisual
+  title={<><code>x[2] = 9</code> ändert ein Element an Ort und Stelle</>}
+  description={<>Jeder Punkt ist ein Element, mit dem Index nach rechts und dem Wert nach oben. Die orange Strecke hebt das Element am Index <InlineMath math="2" /> von <InlineMath math="2" /> auf den magentafarbenen Punkt <InlineMath math="9" />. Der türkise Punkt ist <code>x[-1]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "change", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 9 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 2, y: 9 }, appearance: "answer" },
+      { id: "last", kind: "point", at: { x: 5, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 2, y: 9 }, placement: "right" },
+      { key: "last", objectId: "last", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>x[2] = 9</code>,
+    "last": <code>x[-1]</code>,
+  }}
+/>
+
 ## Slicing mit Schrittweite
 
 Mit Slicing wird ein Teil einer Liste ausgewählt. Die Schrittweite legt den **Abstand zwischen den ausgewählten Elementen** fest.
@@ -142,8 +173,8 @@ Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungen
 Die obere Zeile nimmt `x[1:4:2]`: Sie beginnt bei Index <InlineMath math="1" />, springt zwei Schritte und hört vor Index <InlineMath math="4" /> auf, also ist das Ergebnis `[1, 3]`. Die untere Zeile ist `x[::-1]`. Die Schrittweite <InlineMath math="-1" /> liest von hinten, und die türkisen Linien zeigen, wie jedes Element von Position <InlineMath math="i" /> zu Position <InlineMath math="5-i" /> wandert. Alle Linien kreuzen sich in der Mitte, genau zwischen den Elementen <InlineMath math="2" /> und <InlineMath math="3" />.
 
 <MathVisual
-  title="Slicing mit Schrittweite auf x = [0, 1, 2, 3, 4, 5]"
-  description="Die mittlere Zeile ist x. Die magentafarbene obere Zeile ist x[1:4:2], die türkise untere Zeile x[::-1], mit Linien, die zeigen, wohin jedes Element wandert."
+  title={<>Slicing mit Schrittweite auf <code>x = [0, 1, 2, 3, 4, 5]</code></>}
+  description={<>Die mittlere Zeile ist <code>x</code>. Die magentafarbene obere Zeile ist <code>x[1:4:2]</code>, die türkise untere Zeile <code>x[::-1]</code>, mit Linien, die zeigen, wohin jedes Element wandert.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
@@ -519,18 +550,17 @@ Die vier eingebauten Sammlungstypen unterscheiden sich in **Reihenfolge, Veränd
 
 > Seit Python `3.7` folgt die Iteration eines Dictionaries garantiert der Einfügereihenfolge der Schlüssel. Das Aktualisieren eines Schlüssels ändert seine Position nicht. Wird ein Schlüssel gelöscht und erneut eingefügt, steht er anschließend am Ende.
 
-Beantworte die Fragen in diesem Diagramm von oben, um einen passenden Container zu wählen.
+Baue jeden Container aus denselben Daten, `[3, 1, 3, 2, 1]`. Eine `list` und ein `tuple` behalten alle fünf Elemente in ihrer Reihenfolge, während ein `set` und die Schlüssel von `dict.fromkeys` nur die eindeutigen Werte `3`, `1` und `2` behalten.
 
-<Mermaid
-  title="Einen Container wählen"
-  description="Drei Fragen entscheiden zwischen list, tuple, set und dict."
-  chart={`
-    flowchart TD
-        A{Nach Schlüssel suchen?} -->|Ja| B[dict]
-        A -->|Nein| C{Nur eindeutige Werte?}
-        C -->|Ja| D[set]
-        C -->|Nein| E{Ändert sich der Inhalt?}
-        E -->|Ja| F[list]
-        E -->|Nein| G[tuple]
-  `}
+<BarChart
+  title={<><code>len()</code> jedes Containers aus <code>[3, 1, 3, 2, 1]</code></>}
+  description={<>Jeder Balken ist die <code>len()</code> des darunter genannten Containers mit denselben Daten. Die Balken von <code>set</code> und <code>dict</code> sind kürzer, weil Duplikate wegfallen.</>}
+  yAxisLabel="Anzahl der Elemente"
+  data={[
+    { name: "list", value: 5 },
+    { name: "tuple", value: 5 },
+    { name: "set", value: 3 },
+    { name: "dict", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Anzahl der Elemente", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />

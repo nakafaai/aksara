@@ -90,19 +90,19 @@ Escape sequence untuk baris baru adalah \\n.`
 
 Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai notasi khusus. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
 
-Saat kutip di dalam string memutus string-nya, pilih salah satu jalan di diagram ini.
+Garis miring terbalik di depan tanda kutip hanya memberi tahu Python bahwa kutip itu bagian dari teks. Garis miringnya sendiri tidak masuk ke string, jadi `'It\'s'` dan `"It's"` sama-sama berisi empat karakter.
 
-<Mermaid
-  title="Tanda kutip di dalam string"
-  description="Dua cara memperbaiki SyntaxError karena kutip."
-  chart={`
-    flowchart TD
-        A[Kutip di dalam string] --> B[SyntaxError]
-        B --> C[Escape dengan backslash]
-        B --> D[Pakai jenis kutip lain di luar]
-        C --> E[String utuh]
-        D --> E
-  `}
+<BarChart
+  title={<><code>len()</code> string dengan tanda kutip di dalamnya</>}
+  description={<>Setiap batang adalah <code>len()</code> literal yang tertulis di bawahnya. Pasangan yang memakai escape dan yang memakai jenis kutip lain punya panjang yang sama, <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
+  yAxisLabel="Panjang string"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "Panjang string", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Daftar Escape Sequence
@@ -147,18 +147,20 @@ Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan di
 
 Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi teks biasa, sedangkan `{}` di tengah tetap menjadi tempat untuk memasukkan nilai.
 
-Diagram ini memasangkan escape sequence yang paling sering dipakai dengan karakter yang dihasilkannya.
+Setiap escape sequence menghasilkan tepat satu karakter, dan `ord()` membaca kode Unicode karakter itu. Tab dan baris baru adalah karakter kontrol dengan kode <InlineMath math="9" /> dan <InlineMath math="10" />, sedangkan kutip dan garis miring terbalik adalah karakter biasa dengan kode yang lebih besar.
 
-<Mermaid
-  title="Backslash dan satu karakter khusus"
-  description="Setiap escape sequence menjadi tepat satu karakter."
-  chart={`
-    flowchart LR
-        A[Backslash + huruf] --> B["\\n: baris baru"]
-        A --> C["\\t: tab"]
-        A --> D["\\\\: backslash"]
-        A --> E["\\': kutip tunggal"]
-  `}
+<BarChart
+  title={<><code>ord()</code> karakter dari setiap escape sequence</>}
+  description={<>Setiap batang adalah kode Unicode dari karakter yang dihasilkan escape sequence di bawahnya, dari <code>\t</code> dengan kode <InlineMath math="9" /> sampai <code>\\</code> dengan kode <InlineMath math="92" />.</>}
+  yAxisLabel="Kode Unicode"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Kode Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Menggabungkan Escape Sequence
@@ -194,8 +196,8 @@ Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya,
 Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Ruas kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Ruas oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
 
 <MathVisual
-  title="Ke mana kursor pergi untuk \t dan \n"
-  description="Karakter ungu adalah teks biasa, ruas kuning adalah lompatan tab, dan ruas oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom."
+  title={<>Ke mana kursor pergi untuk <code>\t</code> dan <code>\n</code></>}
+  description={<>Karakter ungu adalah teks biasa, ruas kuning adalah lompatan tab, dan ruas oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },

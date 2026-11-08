@@ -51,21 +51,6 @@ except IndexError:
 
 Indeks di luar rentang yang valid menghasilkan `IndexError`. Python memeriksa batas string dan list sebelum mengambil elemennya.
 
-Diagram ini memutuskan apa yang dikembalikan s[i] untuk setiap nilai i.
-
-<Mermaid
-  title="Aturan satu indeks"
-  description="Indeks negatif dihitung dari belakang."
-  chart={`
-    flowchart TD
-        A["s[i]"] --> B{0 ≤ i < len?}
-        B -->|Ya| C[Elemen ke-i dari kiri]
-        B -->|Tidak| D{-len ≤ i < 0?}
-        D -->|Ya| E["Elemen di len + i"]
-        D -->|Tidak| F[IndexError]
-  `}
-/>
-
 ## Mengambil Beberapa Elemen
 
 Slicing memilih **sebagian elemen** dari string atau list melalui batas awal, batas akhir, dan step. Indeks akhir tidak disertakan. Panjang hasil bergantung pada batas yang sudah disesuaikan dengan panjang data dan pada step.
@@ -167,8 +152,8 @@ Saat melakukan slicing, Python menyesuaikan batas yang berada di luar rentang de
 Setiap karakter `s = "Python"` punya dua alamat: indeks positif dari kiri dan indeks negatif dari kanan, jadi `s[0]` dan `s[-6]` sama-sama `P`. Ruas kuning menunjukkan aturan setengah terbuka: `s[1:4]` mulai di indeks <InlineMath math="1" /> yang ikut terambil dan berhenti sebelum indeks <InlineMath math="4" />. Hasilnya tiga karakter magenta `"yth"`, dan panjangnya selalu <InlineMath math="4-1=3" />.
 
 <MathVisual
-  title="Indeks positif, indeks negatif, dan s[1:4]"
-  description="Untuk s = 'Python': angka ungu adalah indeks positif, angka hijau toska adalah indeks negatif, dan karakter magenta adalah hasil s[1:4]."
+  title={<>Indeks positif, indeks negatif, dan <code>s[1:4]</code></>}
+  description={<>Untuk <code>s = 'Python'</code>: angka ungu adalah indeks positif, angka hijau toska adalah indeks negatif, dan karakter magenta adalah hasil <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.2 } },
@@ -277,6 +262,50 @@ print(f"Manual: '{result_negative}'")`
 
 Perbandingan dengan `range()` menunjukkan bagaimana batas awal, batas akhir, dan `step` bekerja bersama, terutama ketika `step` bernilai negatif.
 
+Slice memilih indeks `range(start, stop, step)`. Untuk `s = 'Python'`, `s[0:6:2]` mengambil indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />, yaitu `'Pto'`. `s[5:0:-2]` berjalan mundur dari indeks <InlineMath math="5" /> dan berhenti sebelum <InlineMath math="0" />, jadi hasilnya `'nhy'`.
+
+<MathVisual
+  title={<>Indeks yang dipilih <code>s[0:6:2]</code> dan <code>s[5:0:-2]</code></>}
+  description={<>Baris tengah abu-abu adalah karakter <code>'Python'</code>. Garis patah magenta di atas melompat maju dua langkah ke indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />. Garis patah hijau toska di bawah melompat mundur ke indeks <InlineMath math="5" />, <InlineMath math="3" />, dan <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "forward", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 4, y: 1 }], appearance: "answer" },
+      { id: "pick-0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "pick-2", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "pick-4", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "backward", kind: "polyline", vertices: [{ x: 5, y: -1 }, { x: 3, y: -1 }, { x: 1, y: -1 }], appearance: "construction" },
+      { id: "back-5", kind: "point", at: { x: 5, y: -1 }, appearance: "construction" },
+      { id: "back-3", kind: "point", at: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "back-1", kind: "point", at: { x: 1, y: -1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
+
 ## Bentuk Singkat Slicing
 
 Batas yang dikosongkan mengikuti **arah step**. Untuk step positif, awal bawaan adalah awal data dan akhir bawaan melewati elemen terakhir. Untuk step negatif, awal bawaan adalah elemen terakhir dan akhir bawaan melewati elemen pertama.
@@ -322,17 +351,41 @@ print(f"Bagian tengah: {middle}")`
 
 Bentuk-bentuk tersebut dapat mengambil bagian tertentu atau elemen dengan selang tetap dari dataset tanpa menulis loop terpisah.
 
-Diagram ini menerjemahkan tiga singkatan slice untuk s = 'Python'.
+Indeks pemisah yang sama membelah string tanpa celah dan tanpa tumpang tindih. Untuk `s = 'Python'`, `s[:3]` memberi `'Pyt'` dan `s[3:]` memberi `'hon'`, jadi `s[:3] + s[3:] == s` selalu benar.
 
-<Mermaid
-  title="Singkatan slice"
-  description="Bagian yang dikosongkan memakai nilai bawaan."
-  chart={`
-    flowchart LR
-        A["s[:3]"] --> B["'Pyt'"]
-        C["s[3:]"] --> D["'hon'"]
-        E["s[::-1]"] --> F["'nohtyP'"]
-  `}
+<MathVisual
+  title={<><code>s[:3]</code> dan <code>s[3:]</code> membelah <code>'Python'</code></>}
+  description={<>Karakter ungu adalah <code>s[:3]</code> dan karakter hijau toska adalah <code>s[3:]</code>. Ruas abu-abu berdiri di antara indeks <InlineMath math="2" /> dan <InlineMath math="3" />, tempat kedua slice bertemu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "split", kind: "segment", from: { x: 2.5, y: -0.7 }, to: { x: 2.5, y: 0.7 }, appearance: "reference" },
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
 />
 
 ## Mengolah Bagian String dan List

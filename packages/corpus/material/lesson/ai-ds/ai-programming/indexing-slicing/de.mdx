@@ -51,21 +51,6 @@ except IndexError:
 
 Ein Index außerhalb des gültigen Bereichs löst einen `IndexError` aus. Python-Sequenzen prüfen diese Grenze und liefern keinen beliebigen Wert zurück.
 
-Dieses Diagramm entscheidet, was s[i] für jeden Wert von i zurückgibt.
-
-<Mermaid
-  title="Die Regel für einen Index"
-  description="Negative Indizes zählen von hinten."
-  chart={`
-    flowchart TD
-        A["s[i]"] --> B{0 ≤ i < len?}
-        B -->|Ja| C[Element i von links]
-        B -->|Nein| D{-len ≤ i < 0?}
-        D -->|Ja| E["Element bei len + i"]
-        D -->|Nein| F[IndexError]
-  `}
-/>
-
 ## Mehrere Elemente auswählen
 
 Beim Slicing werden mehrere Elemente einer Zeichenfolge oder Liste ausgewählt. Dazu legst du einen Startindex, einen Endindex und bei Bedarf den **Abstand zwischen den ausgewählten Elementen** fest.
@@ -167,8 +152,8 @@ Python begrenzt Indizes beim Slicing auf den gültigen Bereich der Zeichenfolge 
 Jedes Zeichen von `s = "Python"` hat zwei Adressen: einen positiven Index von links und einen negativen Index von rechts, also sind `s[0]` und `s[-6]` beide `P`. Die gelbe Strecke zeigt die halboffene Regel: `s[1:4]` beginnt bei Index <InlineMath math="1" />, der dazugehört, und hört vor Index <InlineMath math="4" /> auf. Das Ergebnis sind die drei magentafarbenen Zeichen `"yth"`, und die Länge ist immer <InlineMath math="4-1=3" />.
 
 <MathVisual
-  title="Positive Indizes, negative Indizes und s[1:4]"
-  description="Für s = 'Python': Violette Zahlen sind positive Indizes, türkise Zahlen negative Indizes, und die magentafarbenen Zeichen sind das Ergebnis von s[1:4]."
+  title={<>Positive Indizes, negative Indizes und <code>s[1:4]</code></>}
+  description={<>Für <code>s = 'Python'</code>: Violette Zahlen sind positive Indizes, türkise Zahlen negative Indizes, und die magentafarbenen Zeichen sind das Ergebnis von <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.2 } },
@@ -277,6 +262,50 @@ print(f"Manual: '{result_negative}'")`
 
 Der Vergleich mit dem `range()`-Modell zeigt, wie Start, Stopp und Schrittweite zusammenwirken, besonders bei einer negativen Schrittweite.
 
+Ein Slice wählt die Indizes von `range(start, stop, step)`. Für `s = 'Python'` nimmt `s[0:6:2]` die Indizes <InlineMath math="0" />, <InlineMath math="2" /> und <InlineMath math="4" /> und ergibt `'Pto'`. `s[5:0:-2]` läuft ab Index <InlineMath math="5" /> rückwärts und hört vor <InlineMath math="0" /> auf, also ergibt es `'nhy'`.
+
+<MathVisual
+  title={<>Die von <code>s[0:6:2]</code> und <code>s[5:0:-2]</code> gewählten Indizes</>}
+  description={<>Die graue mittlere Zeile sind die Zeichen von <code>'Python'</code>. Der magentafarbene Streckenzug oben springt in Zweierschritten vorwärts zu den Indizes <InlineMath math="0" />, <InlineMath math="2" /> und <InlineMath math="4" />. Der türkise Streckenzug unten springt rückwärts zu den Indizes <InlineMath math="5" />, <InlineMath math="3" /> und <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "forward", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 4, y: 1 }], appearance: "answer" },
+      { id: "pick-0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "pick-2", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "pick-4", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "backward", kind: "polyline", vertices: [{ x: 5, y: -1 }, { x: 3, y: -1 }, { x: 1, y: -1 }], appearance: "construction" },
+      { id: "back-5", kind: "point", at: { x: 5, y: -1 }, appearance: "construction" },
+      { id: "back-3", kind: "point", at: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "back-1", kind: "point", at: { x: 1, y: -1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
+
 ## Kurzformen beim Slicing
 
 Ausgelassene Grenzen folgen der **Richtung der Schrittweite**. Bei positiver Schrittweite beginnt die Auswahl standardmäßig am Anfang und reicht bis hinter das letzte Element. Bei negativer Schrittweite beginnt sie am letzten Element und reicht bis vor das erste.
@@ -322,17 +351,41 @@ print(f"Mittelteil: {middle}")`
 
 Mit diesen Formen wählst du einen bestimmten Bereich oder regelmäßig verteilte Elemente aus einem größeren Datensatz aus, ohne eine eigene Schleife zu schreiben.
 
-Dieses Diagramm übersetzt drei Kurzschreibweisen für s = 'Python'.
+Derselbe Trennindex schneidet einen String ohne Lücke und ohne Überlappung. Für `s = 'Python'` ergibt `s[:3]` den Wert `'Pyt'` und `s[3:]` den Wert `'hon'`, also gilt `s[:3] + s[3:] == s` immer.
 
-<Mermaid
-  title="Kurzschreibweisen für Slices"
-  description="Ein leerer Teil nimmt seinen Standardwert."
-  chart={`
-    flowchart LR
-        A["s[:3]"] --> B["'Pyt'"]
-        C["s[3:]"] --> D["'hon'"]
-        E["s[::-1]"] --> F["'nohtyP'"]
-  `}
+<MathVisual
+  title={<><code>s[:3]</code> und <code>s[3:]</code> teilen <code>'Python'</code></>}
+  description={<>Die violetten Zeichen sind <code>s[:3]</code> und die türkisen Zeichen <code>s[3:]</code>. Die graue Strecke steht zwischen den Indizes <InlineMath math="2" /> und <InlineMath math="3" />, wo sich beide Slices treffen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "split", kind: "segment", from: { x: 2.5, y: -0.7 }, to: { x: 2.5, y: 0.7 }, appearance: "reference" },
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
 />
 
 ## Teile von Strings und Listen verarbeiten

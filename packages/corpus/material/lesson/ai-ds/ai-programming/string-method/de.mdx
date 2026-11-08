@@ -40,20 +40,6 @@ print(f"Ursprünglicher String: {s}")`
 
 Mit Slicing und Verkettung kannst du aus einem vorhandenen String einen neuen aufbauen. Der Operator `+` hängt nichts an das ursprüngliche Objekt an.
 
-Dieses Diagramm zeigt, warum s nach s.upper() gleich bleibt, außer du speicherst das Ergebnis.
-
-<Mermaid
-  title="Methoden liefern einen neuen String"
-  description="Der ursprüngliche String bleibt, bis du ihn überschreibst."
-  chart={`
-    flowchart LR
-        A["s = 'hallo'"] --> B["s.upper()"]
-        B --> C["Neuer String 'HALLO'"]
-        A --> D["s bleibt 'hallo'"]
-        C --> E["s = s.upper() speichert das Ergebnis"]
-  `}
-/>
-
 ## Stringlänge messen
 
 Bei einem Python-String zählt `len()` die **Unicode-Codepoints**. Ein gewöhnlicher lateinischer Buchstabe, ein Leerzeichen oder ein Satzzeichen zählt meist eins. Ein einziges sichtbares Graphem kann jedoch aus mehreren Codepoints bestehen, etwa bei manchen Emojis oder kombinierenden Zeichen.
@@ -175,6 +161,23 @@ print(f"Ergebnis ohne Suffix: '{filename.removesuffix('.txt')}'")`
 
 Möchtest du genau ein Token entfernen, verwendest du `removeprefix()` oder `removesuffix()`. So kann eine Zeichenmenge nicht versehentlich mehr entfernen als beabsichtigt.
 
+Jede Umwandlungsmethode gibt einen neuen String zurück, und die Zahl der Großbuchstaben zeigt, was sie tut. Für `'hello World'` macht `upper()` alle zehn Buchstaben groß, `swapcase()` dreht jeden Buchstaben um, sodass neun groß werden, und `capitalize()` lässt nur den ersten groß.
+
+<BarChart
+  title={<>Großbuchstaben nach jeder Methode auf <code>'hello World'</code></>}
+  description={<>Jeder Balken ist die Anzahl der Großbuchstaben im Ergebnis der darunter genannten Methode. Der erste Balken ist der ursprüngliche String mit einem Großbuchstaben, <code>W</code>.</>}
+  yAxisLabel="Großbuchstaben"
+  data={[
+    { name: "original", value: 1 },
+    { name: "upper", value: 10 },
+    { name: "lower", value: 0 },
+    { name: "title", value: 2 },
+    { name: "swapcase", value: 9 },
+    { name: "capitalize", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Großbuchstaben", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Strings durchsuchen und Zeichen prüfen
 
 Eine Gruppe von Methoden findet die Stelle eines Musters im Text, eine andere Gruppe beantwortet Ja-Nein-Fragen dazu. Die suchenden Methoden **geben eine Position zurück**, die prüfenden Methoden geben `True` oder `False` zurück.
@@ -283,8 +286,8 @@ Methoden wie `isdigit()` und `isalnum()` berücksichtigen Unicode, und für den 
 Such mit diesem Bild nach `"an"` in `"banana"`. Zwei türkise Strecken markieren die Vorkommen bei Index <InlineMath math="1" /> und <InlineMath math="3" />, also liefert `"banana".count("an")` den Wert `2`. `find` gibt den Index des ersten Vorkommens von links zurück, also `1`, und `rfind` den Index des letzten Vorkommens, also `3`. Kommt der Teilstring gar nicht vor, geben beide `-1` zurück.
 
 <MathVisual
-  title="find, rfind und count auf 'banana'"
-  description="Türkise Strecken markieren jedes Vorkommen von 'an'. Die violette Strecke zeigt auf das Ergebnis von find, die orange Strecke auf das von rfind."
+  title={<><code>find</code>, <code>rfind</code> und <code>count</code> auf <code>'banana'</code></>}
+  description={<>Türkise Strecken markieren jedes Vorkommen von <code>'an'</code>. Die violette Strecke zeigt auf das Ergebnis von <code>find</code>, die orange Strecke auf das von <code>rfind</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.3, max: 1.8 } },
@@ -501,6 +504,21 @@ print(f"Mit senkrechtem Strich verbunden: {joined}")`
 
 Verwende `split()` nur bei wirklich einfachen Trennregeln. Die Methode versteht weder zitierte CSV-Felder noch Escaping oder plattformabhängige Dateipfade. Für CSV gibt es das Modul `csv`, für Dateipfade `pathlib`.
 
+Ohne Argument schneidet `split()` einen String an jedem Leerzeichen und gibt eine Liste von Wörtern zurück. `'the quick brown fox'.split()` liefert vier Wörter, und ihre `len()`-Werte ergeben zusammen <InlineMath math="16" />, also die <InlineMath math="19" /> Zeichen ohne die drei Leerzeichen.
+
+<BarChart
+  title={<>Wortlängen aus <code>'the quick brown fox'.split()</code></>}
+  description={<>Jeder Balken ist die <code>len()</code> des darunter stehenden Wortes, in der Reihenfolge, die <code>split()</code> zurückgibt.</>}
+  yAxisLabel="Wortlänge"
+  data={[
+    { name: "the", value: 3 },
+    { name: "quick", value: 5 },
+    { name: "brown", value: 5 },
+    { name: "fox", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Wortlänge", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Verkettung von Stringmethoden
 
 Transformationsmethoden, die **Strings zurückgeben**, lassen sich verketten. Eine Methode wie `split()` liefert eine Liste. Die nächste Operation muss zu diesem Ergebnistyp passen. Halte die Kette so kurz, dass jeder Schritt klar bleibt. Wenn dazwischen eine Prüfung oder Erklärung nötig ist, gib dem Zwischenergebnis einen Namen.
@@ -568,19 +586,6 @@ for email in emails:
 />
 
 Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht automatisch klarer als benannte Schritte.
-
-Folg diesem String von links nach rechts durch die Methodenkette.
-
-<Mermaid
-  title="Eine Kette, drei Schritte"
-  description="Jede Methode arbeitet mit dem Ergebnis der vorherigen."
-  chart={`
-    flowchart LR
-        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
-        B -->|".lower()"| C["'hello world'"]
-        C -->|".replace(' ', '_')"| D["'hello_world'"]
-  `}
-/>
 
 ## Praktische Anwendungen von Methoden für Strings
 

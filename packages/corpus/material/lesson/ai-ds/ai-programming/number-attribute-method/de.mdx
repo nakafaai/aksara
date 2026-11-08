@@ -41,19 +41,6 @@ print(c.conjugate())  # Ausgabe: (2-3j)`
   ]}
 />
 
-Dieses Diagramm trennt die zwei Wege, über einen Punkt auf etwas zuzugreifen.
-
-<Mermaid
-  title="Attribut oder Methode"
-  description="Klammern trennen das Lesen eines Werts vom Aufruf einer Aktion."
-  chart={`
-    flowchart LR
-        A[objekt.name] --> B{Mit Klammern?}
-        B -->|Nein| C[Attribut, etwa z.real]
-        B -->|Ja| D["Methode, etwa z.conjugate()"]
-  `}
-/>
-
 ## Den numerischen Typ bestimmen
 
 Python wählt den numerischen Typ aus dem Literal, das du schreibst, und dieser Typ entscheidet, welche Attribute und Methoden der Wert mitbringt. Wenn du Python vor einem typspezifischen Aufruf nach der Klasse fragst, musst du nicht raten, ob diese Operation auf dem Wert überhaupt existiert.
@@ -143,6 +130,33 @@ print(f"Imaginaerteil von {z3} ist {z3.imag}")
 
 Das Ergebnis für `z2` ist <InlineMath math="-4.0" />, weil der Koeffizient das Minuszeichen vor der imaginären Einheit trägt. Der Wert von `z1` bleibt positiv, und die rein imaginäre Zahl `z3` meldet <InlineMath math="9.0" /> mit dem Realteil <InlineMath math="0.0" />.
 
+Real- und Imaginärteil eines Produkts kannst du direkt ablesen. Für `z1 = 1+2j` und `z2 = 3-1j` ist `(z1 * z2).real` gleich <InlineMath math="1\cdot3-2\cdot(-1)=5" /> und `(z1 * z2).imag` gleich <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Auch die Längen multiplizieren sich: `abs(z1) * abs(z2)` ist <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+
+<MathVisual
+  title={<>Die Teile von <code>z1 * z2</code> für <code>1+2j</code> und <code>3-1j</code></>}
+  description={<>Die violette Strecke ist <code>z1</code> und die türkise Strecke <code>z2</code>. Die magentafarbene Strecke ist ihr Produkt <code>(5+5j)</code>, mit <code>real</code> und <code>imag</code> beide gleich <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <code>z1 = 1+2j</code>,
+    "second": <code>z2 = 3-1j</code>,
+    "product": <code>z1 * z2 = (5+5j)</code>,
+  }}
+/>
+
 ## Methoden für komplexe Zahlen
 
 Komplexe Zahlen bringen eigene Methoden mit, und die Methoden unten decken die Operationen ab, die du am häufigsten brauchst. Die Methode `conjugate()` **liefert eine komplexe Zahl**, du kannst also weiter auf dem Ergebnis aufrufen, ohne den Ausgangswert zu verändern.
@@ -212,8 +226,8 @@ Die Multiplikation von <InlineMath math="z" /> mit seinem Konjugat löscht den I
 Zeichne `z = 3+4j` als Punkt in der komplexen Ebene und achte darauf, was jedes Attribut liest. `z.real` ist der waagerechte Abstand `3.0`, `z.imag` die Höhe `4.0`. Die Methode `z.conjugate()` spiegelt den Punkt unter die reelle Achse zu `3-4j`, und `abs(z)` ist der gemeinsame Radius `5.0`. Ein Attribut liest du ohne Klammern, eine Methode rufst du mit Klammern auf.
 
 <MathVisual
-  title="Attribute und Methoden von z = 3+4j"
-  description="Die violette Strecke ist z, die türkise Strecke z.conjugate(). Die gelbe Strecke und der gelbe Punkt zeigen z.imag und z.real, und der graue Kreis hat den Radius abs(z)."
+  title={<>Attribute und Methoden von <code>z = complex(3, 4)</code></>}
+  description={<>Die violette Strecke ist <code>z</code>, die türkise Strecke <code>z.conjugate()</code>. Die gelbe Strecke und der gelbe Punkt zeigen <code>z.imag</code> und <code>z.real</code>, und der graue Kreis hat den Radius <code>abs(z)</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -309,17 +323,22 @@ print(f"Verhaeltnis von {f}: {ratio}")
 
 `is_integer()` prüft, ob ein endlicher Float keinen Bruchteil hat, deshalb fällt <InlineMath math="3.14159" /> durch diese Prüfung, während <InlineMath math="4.0" /> sie besteht. `as_integer_ratio()` liefert <Highlight>den genauen Bruch aus der Binärdarstellung</Highlight>, und das erklärt, warum das Verhältnis für <InlineMath math="3.14159" /> so große Zahlen trägt statt des erwarteten Dezimalbruchs.
 
-Prüf die Ergebnisse dieser drei Methoden in der Python-Shell, nachdem du das Diagramm gelesen hast.
+Die Methode `bit_length()` zählt die Binärziffern, die eine positive ganze Zahl braucht, also <InlineMath math="\lfloor\log_2n\rfloor+1" />. Die Länge wächst genau bei jeder Zweierpotenz um eins, also ist `(255).bit_length()` noch <InlineMath math="8" /> und `(256).bit_length()` schon <InlineMath math="9" />.
 
-<Mermaid
-  title="Methoden von int und float mit Ergebnis"
-  description="Drei Aufrufe und die Werte, die sie zurückgeben."
-  chart={`
-    flowchart LR
-        A["(255).bit_length()"] --> B[8]
-        C["(2.5).is_integer()"] --> D[False]
-        E["(0.75).as_integer_ratio()"] --> F["(3, 4)"]
-  `}
+<BarChart
+  title={<><code>bit_length()</code> für sieben Zahlen</>}
+  description={<>Jeder Balken ist <code>n.bit_length()</code> für die darunter stehende Zahl <InlineMath math="n" />, berechnet als <InlineMath math="\lfloor\log_2n\rfloor+1" />.</>}
+  yAxisLabel="Anzahl der Bits"
+  data={[
+    { name: "1", value: Math.floor(Math.log2(1)) + 1 },
+    { name: "2", value: Math.floor(Math.log2(2)) + 1 },
+    { name: "3", value: Math.floor(Math.log2(3)) + 1 },
+    { name: "4", value: Math.floor(Math.log2(4)) + 1 },
+    { name: "8", value: Math.floor(Math.log2(8)) + 1 },
+    { name: "255", value: Math.floor(Math.log2(255)) + 1 },
+    { name: "256", value: Math.floor(Math.log2(256)) + 1 },
+  ]}
+  chartConfig={{ value: { label: "Anzahl der Bits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Numerische Objekte prüfen und berechnen

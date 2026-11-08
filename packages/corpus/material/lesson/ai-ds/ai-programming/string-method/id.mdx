@@ -40,20 +40,6 @@ print(f"String asli masih: {s}")`
 
 Slicing dan concatenation dapat membentuk string baru dari string lama. Operator `+` tidak menambahkan isi ke objek asal.
 
-Diagram ini menunjukkan mengapa s tetap sama setelah s.upper() kecuali kamu menyimpan hasilnya.
-
-<Mermaid
-  title="Metode mengembalikan string baru"
-  description="String asli tidak berubah sampai kamu menimpanya."
-  chart={`
-    flowchart LR
-        A["s = 'halo'"] --> B["s.upper()"]
-        B --> C["String baru 'HALO'"]
-        A --> D["s tetap 'halo'"]
-        C --> E["s = s.upper() menyimpan hasilnya"]
-  `}
-/>
-
 ## Mengukur Panjang String
 
 Pada string Python, `len()` menghitung **jumlah Unicode code point**. Huruf Latin biasa, spasi, atau tanda baca umumnya menyumbang satu, tetapi satu grafem yang terlihat dapat terdiri dari beberapa code point, seperti pada sebagian emoji dan tanda gabung.
@@ -175,6 +161,23 @@ print(f"Hasil menghapus suffix: '{filename.removesuffix('.txt')}'")`
 
 Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu token yang persis. Perbedaan ini mencegah sekumpulan karakter menghapus lebih banyak dari yang dimaksud.
 
+Setiap metode transformasi mengembalikan string baru, dan banyak huruf kapital menunjukkan apa yang dilakukannya. Untuk `'hello World'`, `upper()` membuat kesepuluh huruf kapital, `swapcase()` membalik setiap huruf sehingga sembilan menjadi kapital, dan `capitalize()` hanya menyisakan huruf pertama.
+
+<BarChart
+  title={<>Huruf kapital setelah setiap metode pada <code>'hello World'</code></>}
+  description={<>Setiap batang adalah banyak huruf kapital dalam hasil metode yang tertulis di bawahnya. Batang pertama adalah string asli dengan satu huruf kapital, <code>W</code>.</>}
+  yAxisLabel="Huruf kapital"
+  data={[
+    { name: "original", value: 1 },
+    { name: "upper", value: 10 },
+    { name: "lower", value: 0 },
+    { name: "title", value: 2 },
+    { name: "swapcase", value: 9 },
+    { name: "capitalize", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Huruf kapital", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Method Pencarian dan Validasi
 
 Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari **mengembalikan posisi**, sedangkan method pemeriksa mengembalikan `True` atau `False`.
@@ -283,8 +286,8 @@ Method seperti `isdigit()` dan `isalnum()` mengikuti Unicode, sedangkan string k
 Cari `"an"` di dalam `"banana"` lewat gambar ini. Dua ruas hijau toska menandai kemunculan di indeks <InlineMath math="1" /> dan <InlineMath math="3" />, jadi `"banana".count("an")` hasilnya `2`. `find` mengembalikan indeks kemunculan pertama dari kiri, yaitu `1`, sedangkan `rfind` mengembalikan indeks kemunculan terakhir, yaitu `3`. Kalau substring tidak ada sama sekali, keduanya mengembalikan `-1`.
 
 <MathVisual
-  title="find, rfind, dan count pada 'banana'"
-  description="Ruas hijau toska menandai setiap kemunculan 'an'. Ruas ungu menunjuk hasil find, ruas oranye hasil rfind."
+  title={<><code>find</code>, <code>rfind</code>, dan <code>count</code> pada <code>'banana'</code></>}
+  description={<>Ruas hijau toska menandai setiap kemunculan <code>'an'</code>. Ruas ungu menunjuk hasil <code>find</code>, ruas oranye hasil <code>rfind</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.3, max: 1.8 } },
@@ -501,6 +504,21 @@ print(f"Joined with pipe: {joined}")`
 
 Gunakan `split()` hanya jika aturan delimiter memang sederhana. Method ini tidak memahami field CSV yang dikutip, escaping, atau path lintas platform. Gunakan modul `csv` untuk CSV dan `pathlib` untuk path filesystem.
 
+Tanpa argumen, `split()` memotong string di setiap spasi dan mengembalikan list kata. `'the quick brown fox'.split()` memberi empat kata, dan `len()` setiap kata menjumlah menjadi <InlineMath math="16" />, yaitu <InlineMath math="19" /> karakter dikurangi tiga spasi.
+
+<BarChart
+  title={<>Panjang kata dari <code>'the quick brown fox'.split()</code></>}
+  description={<>Setiap batang adalah <code>len()</code> kata yang tertulis di bawahnya, dalam urutan yang dikembalikan <code>split()</code>.</>}
+  yAxisLabel="Panjang kata"
+  data={[
+    { name: "the", value: 3 },
+    { name: "quick", value: 5 },
+    { name: "brown", value: 5 },
+    { name: "fox", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Panjang kata", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Method Chaining
 
 Method transformasi yang **mengembalikan string** dapat dirangkai. Method seperti `split()` menghasilkan list, sehingga langkah berikutnya harus sesuai dengan tipe hasil tersebut. Pertahankan chain cukup pendek agar setiap langkah tetap jelas. Beri nama pada nilai antara jika ada validasi atau penjelasan di tengah proses.
@@ -568,19 +586,6 @@ for email in emails:
 />
 
 Method chaining cocok untuk pembersihan teks yang singkat dan berurutan. Jika chain terlalu panjang, pisahkan menjadi beberapa langkah dengan nama yang menjelaskan hasil tiap langkah.
-
-Ikuti string ini melewati rantai metode dari kiri ke kanan.
-
-<Mermaid
-  title="Satu rantai, tiga langkah"
-  description="Setiap metode bekerja pada hasil metode sebelumnya."
-  chart={`
-    flowchart LR
-        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
-        B -->|".lower()"| C["'hello world'"]
-        C -->|".replace(' ', '_')"| D["'hello_world'"]
-  `}
-/>
 
 ## Contoh Penggunaan String Methods
 

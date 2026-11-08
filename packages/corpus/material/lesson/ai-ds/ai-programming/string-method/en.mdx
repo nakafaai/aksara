@@ -40,20 +40,6 @@ print(f"Original string still: {s}")`
 
 Slicing and concatenation are two ways to build a new string from an existing one. The `+` operator does not append to the original object.
 
-This diagram shows why s stays the same after s.upper() unless you store the result.
-
-<Mermaid
-  title="Methods return a new string"
-  description="The original string stays the same until you overwrite it."
-  chart={`
-    flowchart LR
-        A["s = 'hello'"] --> B["s.upper()"]
-        B --> C["New string 'HELLO'"]
-        A --> D["s is still 'hello'"]
-        C --> E["s = s.upper() stores the result"]
-  `}
-/>
-
 ## Measuring String Length
 
 For a Python string, `len()` counts **Unicode code points**. An ordinary Latin letter, space, or punctuation mark usually contributes one, but a single visible grapheme can contain several code points, as happens with some emoji and combining marks.
@@ -175,6 +161,23 @@ print(f"Exact suffix removal: '{filename.removesuffix('.txt')}'")`
 
 Use `removeprefix()` or `removesuffix()` when you need to remove one exact token. This distinction prevents a character set from stripping more than intended.
 
+Every transformation method returns a new string, and the number of capitals shows what it does. For `'hello World'`, `upper()` capitalizes all ten letters, `swapcase()` flips every letter so nine become capitals, and `capitalize()` keeps only the first one.
+
+<BarChart
+  title={<>Capitals after each method on <code>'hello World'</code></>}
+  description={<>Each bar is the number of capital letters in the result of the method named below it. The first bar is the original string with one capital, <code>W</code>.</>}
+  yAxisLabel="Capital letters"
+  data={[
+    { name: "original", value: 1 },
+    { name: "upper", value: 10 },
+    { name: "lower", value: 0 },
+    { name: "title", value: 2 },
+    { name: "swapcase", value: 9 },
+    { name: "capitalize", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Capital letters", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Search and Validation Methods
 
 One group of methods locates text, and another group answers yes-or-no questions about it. The searching methods **return a position**, while the validating methods return `True` or `False`.
@@ -283,8 +286,8 @@ Methods such as `isdigit()` and `isalnum()` are Unicode-aware, and the empty str
 Search for `"an"` inside `"banana"` with this picture. Two teal segments mark the occurrences at index <InlineMath math="1" /> and <InlineMath math="3" />, so `"banana".count("an")` gives `2`. `find` returns the index of the first occurrence from the left, which is `1`, while `rfind` returns the index of the last occurrence, which is `3`. If the substring is not there at all, both return `-1`.
 
 <MathVisual
-  title="find, rfind, and count on 'banana'"
-  description="Teal segments mark each occurrence of 'an'. The violet segment points to the result of find, the orange segment to the result of rfind."
+  title={<><code>find</code>, <code>rfind</code>, and <code>count</code> on <code>'banana'</code></>}
+  description={<>Teal segments mark each occurrence of <code>'an'</code>. The violet segment points to the result of <code>find</code>, the orange segment to the result of <code>rfind</code>.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.3, max: 1.8 } },
@@ -501,6 +504,21 @@ print(f"Joined with pipe: {joined}")`
 
 Use `split()` only when the delimiter rules are genuinely simple. It does not understand quoted CSV fields, escaping, or platform-specific paths. Use Python's `csv` module for CSV and `pathlib` for filesystem paths.
 
+Without an argument, `split()` cuts a string at every space and returns a list of words. `'the quick brown fox'.split()` gives four words, and their `len()` values add up to <InlineMath math="16" />, the <InlineMath math="19" /> characters minus three spaces.
+
+<BarChart
+  title={<>Word lengths from <code>'the quick brown fox'.split()</code></>}
+  description={<>Each bar is the <code>len()</code> of the word written below it, in the order that <code>split()</code> returns.</>}
+  yAxisLabel="Word length"
+  data={[
+    { name: "the", value: 3 },
+    { name: "quick", value: 5 },
+    { name: "brown", value: 5 },
+    { name: "fox", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Word length", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## String Method Chaining
 
 Transformation methods that **return strings** can be chained. A method such as `split()` returns a list, so the next operation must suit that result type. Keep a chain short enough that each step remains obvious. Use an intermediate variable when one step needs validation or explanation before the next transformation.
@@ -568,19 +586,6 @@ for email in emails:
 />
 
 Method chaining works well for a short linear cleanup. It is not automatically clearer than named steps.
-
-Follow this string through the method chain from left to right.
-
-<Mermaid
-  title="One chain, three steps"
-  description="Each method works on the result of the one before it."
-  chart={`
-    flowchart LR
-        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
-        B -->|".lower()"| C["'hello world'"]
-        C -->|".replace(' ', '_')"| D["'hello_world'"]
-  `}
-/>
 
 ## Practical String Method Applications
 

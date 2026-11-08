@@ -41,20 +41,6 @@ print("Addition result", x, "+", y, "=", x + y)`
 
 The `*objects` notation means that `print()` accepts zero or more positional objects. It writes the separator specified by `sep` between adjacent objects.
 
-This diagram shows the order in which print works for every call.
-
-<Mermaid
-  title="What print does"
-  description="Four steps from arguments to text on the screen."
-  chart={`
-    flowchart LR
-        A[Arguments] --> B["Convert with str()"]
-        B --> C[Join with sep]
-        C --> D[Append end]
-        D --> E[Write to the screen]
-  `}
-/>
-
 ## The Sep Parameter
 
 The `sep` parameter determines the character or string used to separate multiple objects in a single print call. The default value of `sep` is **a single space**.
@@ -91,17 +77,19 @@ print("First", "Line", "Second", "Line", sep="\\n")     # newline`
 
 The `sep` value determines the exact characters written between adjacent objects, such as a space, comma, tab, or line break.
 
-Compare these three outputs for the arguments 1, 2, and 3.
+`print(1, 2, 3, sep=s)` writes three digit characters and inserts `s` twice between them. The length of the output line, without the final newline, is <InlineMath math="3+2k" />, where <InlineMath math="k" /> is `len(s)`.
 
-<Mermaid
-  title="Three sep values for the same arguments"
-  description="The separator changes, the arguments stay."
-  chart={`
-    flowchart LR
-        A["print(1, 2, 3)"] --> B["1 2 3"]
-        C["print(1, 2, 3, sep='')"] --> D[123]
-        E["print(1, 2, 3, sep=' | ')"] --> F["1 | 2 | 3"]
-  `}
+<BarChart
+  title={<>Output length of <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Each bar is the number of characters written for the <code>sep</code> value below it: <InlineMath math="5" /> for a space, <InlineMath math="3" /> for the empty string, <InlineMath math="7" /> for a comma and a space, and <InlineMath math="9" /> for <code>' | '</code>.</>}
+  yAxisLabel="Characters"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## End Parameter
@@ -153,8 +141,8 @@ Changing `end` lets several calls continue on one line. Pass `flush=True` when t
 This picture runs `print("A", "B", "C", sep="-")`, then `print("x", end=" ")`, then `print("y")`, and puts every character where it appears. `sep` is only inserted between arguments, so the teal dash appears twice for three arguments. `end` is added once at the end of each call: the newline ↵ moves the cursor to the next line, while `end=" "` keeps `y` on the same line as `x`.
 
 <MathVisual
-  title="Three print calls in the output stream"
-  description="Violet characters come from the arguments, teal ones from sep, and orange ones from end. The symbol ↵ is a newline and ␣ is a space."
+  title={<>Three <code>print</code> calls in the output stream</>}
+  description={<>Violet characters come from the arguments, teal ones from <code>sep</code>, and orange ones from <code>end</code>. The symbol ↵ is a newline and ␣ is a space.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
@@ -235,6 +223,23 @@ print("Result:", integer_num, "+", decimal_num, "=", integer_num + decimal_num)`
 />
 
 One `print()` call can accept values of different types, convert each value to text, and write them in order. This is enough for quick inspection while a program runs.
+
+`print` converts every argument with `str()` before writing it, so the data type decides what appears. The float `3.0` keeps its decimal point, `None` shows up as a word, and a list writes its brackets, commas, and spaces.
+
+<BarChart
+  title={<>Characters that <code>print</code> writes for six values</>}
+  description={<>Each bar is <code>len(str(x))</code> for the value <code>x</code> written below it, the number of characters that appear on screen.</>}
+  yAxisLabel="Characters"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Output Formatting Techniques
 

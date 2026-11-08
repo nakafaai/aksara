@@ -121,8 +121,8 @@ Die Operatoren `and` und `or` verwenden <Highlight>eine Kurzschlussauswertung</H
 Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild markiert die violette Zeile jedes <InlineMath math="x" /> mit `x > 2` und die türkise Zeile jedes <InlineMath math="x" /> mit `x < 5`. Der Operator `and` liefert nur dort `True`, wo sich beide Zeilen überlappen, also in der magentafarbenen Zeile zwischen <InlineMath math="2" /> und <InlineMath math="5" />. Die Werte <InlineMath math="2" /> und <InlineMath math="5" /> selbst gehören nicht dazu, weil `2 > 2` und `5 < 5` beide `False` sind.
 
 <MathVisual
-  title="Vergleiche als Bereiche auf dem Zahlenstrahl"
-  description="Die violette Zeile ist x > 2, die türkise Zeile x < 5 und die magentafarbene Zeile x > 2 and x < 5. Jede Zeile hört genau bei 2 oder 5 auf, und diese Werte gehören nicht dazu."
+  title={<>Vergleiche als Bereiche auf dem Zahlenstrahl</>}
+  description={<>Die violette Zeile ist <InlineMath math="x>2" />, die türkise Zeile <InlineMath math="x<5" />, und die magentafarbene Zeile zeigt, wo beides gilt, also behält <code>and</code> den Bereich <InlineMath math="2<x<5" />. Jede Zeile hört genau bei <InlineMath math="2" /> oder <InlineMath math="5" /> auf, und diese Werte selbst gehören nicht dazu.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 4 } },
@@ -205,6 +205,24 @@ False
   ]}
 />
 
+In einem `if` ruft Python `bool()` auf jeden Wert auf. Null und leere Container werden zu `False`, Zahlen ungleich null und gefüllte Container zu `True`, sogar `[0]`, weil diese Liste ein Element enthält.
+
+<BarChart
+  title={<>Das Ergebnis von <code>bool()</code> für sieben Werte</>}
+  description={<>Ein Balken der Höhe <InlineMath math="1" /> bedeutet <code>True</code> und kein Balken <code>False</code>, für den darunter stehenden Wert. Nur <code>0</code>, <code>''</code> und <code>[]</code> sind falsy.</>}
+  yAxisLabel="Wahrheitswert"
+  data={[
+    { name: "0", value: 0 },
+    { name: "1", value: 1 },
+    { name: "-2", value: 1 },
+    { name: "''", value: 0 },
+    { name: "'a'", value: 1 },
+    { name: "[]", value: 0 },
+    { name: "[0]", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Wahrheitswert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Operatoren kombinieren
 
 Vergleichsoperatoren lassen sich mit booleschen Operatoren zu **mehrteiligen Bedingungen** verbinden. Python unterstützt außerdem verkettete Vergleiche wie `1 < 2 < 3`.
@@ -232,6 +250,24 @@ True
 True`
     }
   ]}
+/>
+
+Verknüpfe zwei Vergleiche für Punkte <InlineMath math="(x,y)" /> mit <InlineMath math="0\le x\le5" /> und <InlineMath math="0\le y\le5" />. `and` behält nur die Punkte mit <InlineMath math="x>1" /> und zugleich <InlineMath math="y<3" />, während `or` die Punkte annimmt, die einen der beiden erfüllen.
+
+<MathVisual
+  title={<><code>and</code> und <code>or</code> als Bereiche</>}
+  description={<>Die violette Gerade ist <InlineMath math="x=1" /> und die orange Gerade <InlineMath math="y=3" />. Das magentafarbene Rechteck ist der Bereich, in dem <InlineMath math="x>1" /> und <InlineMath math="y<3" /> beide gelten. Der türkise L-förmige Bereich ist der, in dem mindestens ein Vergleich gilt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "either", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 1, y: 5 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "construction" },
+      { id: "both", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 3 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "first", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 0, y: 3 }, { x: 5, y: 3 }], appearance: "primary" },
+    ],
+  }}
 />
 
 ## Vergleich von Gleitkommazahlen

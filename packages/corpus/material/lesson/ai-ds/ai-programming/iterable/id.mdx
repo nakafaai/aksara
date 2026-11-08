@@ -84,20 +84,19 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
-Diagram ini menunjukkan langkah tersembunyi yang dijalankan setiap loop for.
+Setiap putaran `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan memberi satu elemen. Dengan `total += item` di badan perulangan, jumlahnya tumbuh satu langkah setiap kali, sampai iterator habis setelah elemen keempat.
 
-<Mermaid
-  title="Bagaimana for membaca iterable"
-  description="iter dan next bekerja di balik setiap loop for."
-  chart={`
-    flowchart TD
-        A[Iterable] --> B["iter(obj)"]
-        B --> C["next(iterator)"]
-        C --> D{Masih ada item?}
-        D -->|Ya| E[Jalankan badan loop]
-        E --> C
-        D -->|Tidak, StopIteration| F[Loop selesai]
-  `}
+<BarChart
+  title={<><code>total</code> setelah setiap <code>next()</code></>}
+  description={<>Setiap batang adalah <code>total</code> setelah elemen yang tertulis di bawahnya ditambahkan: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, lalu <InlineMath math="18" />.</>}
+  yAxisLabel="Total berjalan"
+  data={[
+    { name: "3", value: 3 },
+    { name: "8", value: 3 + 8 },
+    { name: "1", value: 3 + 8 + 1 },
+    { name: "6", value: 3 + 8 + 1 + 6 },
+  ]}
+  chartConfig={{ value: { label: "Total berjalan", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Operator Keanggotaan
@@ -256,8 +255,8 @@ print(all([]))  # Output: True`
 Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <InlineMath math="8" /> dan <InlineMath math="6" />, berada di atas garis, jadi `any(v > 5 for v in values)` bernilai `True`. Titik hijau toska <InlineMath math="3" /> dan <InlineMath math="1" /> ada di bawah garis, jadi `all(v > 5 for v in values)` bernilai `False`. Dengan syarat `v > 0`, semua titik lolos dan `all` menjadi `True`.
 
 <MathVisual
-  title="any dan all pada [3, 8, 1, 6]"
-  description="Setiap titik adalah satu nilai di posisinya. Titik magenta memenuhi v > 5, titik hijau toska tidak, dan garis abu-abu adalah batas 5."
+  title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
+  description={<>Setiap titik adalah satu nilai di posisinya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau toska tidak, dan garis abu-abu adalah batas <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
@@ -404,14 +403,35 @@ print(formatted)
   ]}
 />
 
-Diagram ini membongkar daftar [1, 2, 3, 4] ke dua nama.
+Nama berbintang mengambil semua elemen yang tidak diambil nama lain, dan selalu berupa list. `a, *rest = [1, 2, 3, 4]` memberi `a = 1` dan `rest = [2, 3, 4]`. `first, *middle, last = [1, 2, 3, 4, 5]` memberi `middle = [2, 3, 4]`.
 
-<Mermaid
-  title="Membongkar dengan bintang"
-  description="Satu nama mengambil satu item, nama berbintang mengambil sisanya."
-  chart={`
-    flowchart LR
-        A["a, *rest = [1, 2, 3, 4]"] --> B[a = 1]
-        A --> C["rest = [2, 3, 4]"]
-  `}
+<MathVisual
+  title={<>Ke mana setiap elemen pergi saat unpacking dengan bintang</>}
+  description={<>Baris atas adalah <code>[1, 2, 3, 4]</code>: sel ungu masuk ke <code>a</code> dan sel hijau toska ke <code>rest</code>. Baris bawah adalah <code>[1, 2, 3, 4, 5]</code>: sel ungu masuk ke <code>first</code>, tiga sel hijau toska ke <code>middle</code>, dan sel oranye ke <code>last</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-name", kind: "polygon", vertices: [{ x: 0.05, y: 0.7 }, { x: 0.95, y: 0.7 }, { x: 0.95, y: 1.3 }, { x: 0.05, y: 1.3 }], appearance: "secondary" },
+      { id: "rest-name", kind: "polygon", vertices: [{ x: 1.05, y: 0.7 }, { x: 3.95, y: 0.7 }, { x: 3.95, y: 1.3 }, { x: 1.05, y: 1.3 }], appearance: "construction" },
+      { id: "head", kind: "polygon", vertices: [{ x: 0.05, y: -0.3 }, { x: 0.95, y: -0.3 }, { x: 0.95, y: 0.3 }, { x: 0.05, y: 0.3 }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1.05, y: -0.3 }, { x: 3.95, y: -0.3 }, { x: 3.95, y: 0.3 }, { x: 1.05, y: 0.3 }], appearance: "construction" },
+      { id: "tail", kind: "polygon", vertices: [{ x: 4.05, y: -0.3 }, { x: 4.95, y: -0.3 }, { x: 4.95, y: 0.3 }, { x: 4.05, y: 0.3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-name", objectId: "first-name", at: { x: 0.5, y: 1.3 }, placement: "above" },
+      { key: "rest-name", objectId: "rest-name", at: { x: 2.5, y: 1.3 }, placement: "above" },
+      { key: "head", objectId: "head", at: { x: 0.5, y: -0.3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 2.5, y: -0.3 }, placement: "below" },
+      { key: "tail", objectId: "tail", at: { x: 4.5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first-name": <code>a</code>,
+    "rest-name": <code>rest</code>,
+    "head": <code>first</code>,
+    "middle": <code>middle</code>,
+    "tail": <code>last</code>,
+  }}
 />
