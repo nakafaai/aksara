@@ -1,39 +1,21 @@
-Bestimme zuerst die Koordinaten relativ zum **Drehzentrum** <InlineMath math="C=(1,2)" />.
-
-<BlockMath math="(4,6)-(1,2)=(3,4)" />
-
-Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab. Addiere das Drehzentrum wieder und führe danach die Verschiebung aus.
+Bei einer zentrischen Streckung mit Zentrum <InlineMath math="M" /> und Faktor <InlineMath math="k" /> wird **der Vektor von <InlineMath math="M" /> zum Punkt mit <InlineMath math="k" /> multipliziert**. Flächen werden dabei mit <InlineMath math="k^2" /> multipliziert, denn jede Länge wird mit <InlineMath math="|k|" /> multipliziert.
 
 <BlockMath math="\begin{aligned}
-(3,4)&\longmapsto(-4,3) \\
-R&=(1,2)+(-4,3) \\
-&=(-3,5) \\
-Q&=(-3,5)+(2,-1) \\
-&=(-1,4)
+B'&=M+k\,(B-M)=(1,2)+(-2)\,(0,3)=(1,-4)
 \end{aligned}" />
 
-Der endgültige Bildpunkt ist <InlineMath math="(-1,4)" />.
+Den Flächeninhalt des ursprünglichen Dreiecks erhältst du mit der Determinantenformel.
 
-<LineEquation
-  title="Drehzentrum und Verschiebung"
-  description="Die beiden violetten Strecken ab C stehen senkrecht aufeinander und sind gleich lang. Die orange Strecke verschiebt den gedrehten Punkt R nach Q."
-  cameraPosition={[0.5, 4, 11]}
-  cameraTarget={[0.5, 4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 4, y: 6, z: 0 }, { x: 1, y: 2, z: 0 }, { x: -3, y: 5, z: 0 }],
-      color: "#9333ea", smooth: false,
-      labels: [
-        { text: <InlineMath math="P(4,6)" />, at: 0, offset: [0, 0.5, 0] },
-        { text: <InlineMath math="C(1,2)" />, at: 1, offset: [0, -0.5, 0] },
-        { text: <InlineMath math="R(-3,5)" />, at: 2, offset: [0, 0.5, 0] },
-      ],
-    },
-    {
-      points: [{ x: -3, y: 5, z: 0 }, { x: -1, y: 4, z: 0 }],
-      color: "#d97706", smooth: false, cone: { position: "end" },
-      labels: [{ text: <InlineMath math="Q(-1,4)" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-  ]}
-/>
+<BlockMath math="\begin{aligned}
+L_{ABC}&=\frac12\,\bigl|(1-3)(1-2)-(-1-3)(5-2)\bigr|=\frac12\,|2+12|=7 \\
+L_{A'B'C'}&=(-2)^2\cdot7=28
+\end{aligned}" />
+
+Zur Kontrolle: <InlineMath math="A'=(1,2)+(-2)(2,0)=(-3,2)" /> und <InlineMath math="C'=(1,2)+(-2)(-2,-1)=(5,4)" />. Die Determinantenformel für <InlineMath math="A'B'C'" /> ergibt <InlineMath math="\frac12\,|4\cdot2-8\cdot(-6)|=\frac12\cdot56=28" />.
+
+Also ist <InlineMath math="B'(1,-4)" />, und das Bilddreieck hat den Flächeninhalt <InlineMath math="28" />.
+
+- Der Flächeninhalt <InlineMath math="14" /> multipliziert mit <InlineMath math="|k|=2" /> statt mit <InlineMath math="k^2=4" />.
+- <InlineMath math="B'(1,8)" /> rechnet mit dem Faktor <InlineMath math="+2" /> statt <InlineMath math="-2" />.
+- <InlineMath math="B'(-2,-10)" /> streckt vom Ursprung aus statt von <InlineMath math="M" /> aus.
+- Der Flächeninhalt <InlineMath math="7" /> ist der des ursprünglichen Dreiecks. Eine Streckung mit <InlineMath math="|k|\neq1" /> verändert die Fläche.

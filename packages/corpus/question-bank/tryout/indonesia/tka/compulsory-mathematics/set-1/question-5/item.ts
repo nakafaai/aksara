@@ -2,34 +2,30 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
-  stimulus: "stationery-bundles",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp }1{.}500$$",
+          column: 1,
+          label: "Keuntungan maksimum diperoleh dengan menyiapkan $$84$$ nampan cabai.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp }2{.}000$$",
+          column: 2,
+          label: "Pada keuntungan maksimum, dana bahan masih tersisa $$\\text{Rp}300{.}000$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp }2{.}500$$",
+          column: 2,
+          label: "Keuntungan maksimum yang dapat diperoleh adalah $$\\text{Rp}2{.}500{.}000$$.",
         },
         {
-          correct: true,
-          label: "$$\\text{Rp }2{.}250$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }3{.}000$$",
+          column: 1,
+          label: "Jika keuntungan satu nampan tomat naik menjadi $$\\text{Rp}45{.}000$$, keuntungan maksimum diperoleh dengan hanya menyiapkan nampan tomat.",
         },
       ],
     },

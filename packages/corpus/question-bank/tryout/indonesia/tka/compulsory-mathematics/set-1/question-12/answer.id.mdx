@@ -1,58 +1,24 @@
-Misalkan panjang rusuk balok <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. **Teorema Pythagoras** pada ketiga jenis sisi memberi:
+Dua teorema menjadi kunci soal ini. **Sudut keliling yang menghadap diameter** besarnya <InlineMath math="90^\circ" />. Selain itu, semua sudut keliling yang menghadap busur yang sama besarnya sama, sedangkan sudut pusatnya dua kali lebih besar.
+
+Karena <InlineMath math="AC" /> diameter, <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. Dari jumlah sudut segitiga diperoleh:
 
 <BlockMath math="\begin{aligned}
-a^2+b^2&=41 \\
-a^2+c^2&=52 \\
-b^2+c^2&=61
+\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
+\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
+\angle BCD&=62^\circ+44^\circ=106^\circ
 \end{aligned}" />
 
-Jumlahkan dua persamaan yang memuat kuadrat rusuk yang dicari, lalu kurangi persamaan ketiga. Hasilnya dua kali kuadrat rusuk tersebut.
-
-<BlockMath math="(a^2+b^2)+(a^2+c^2)-(b^2+c^2)=2a^2=41+52-61" />
+Sudut keliling <InlineMath math="\angle BAC" /> dan sudut pusat <InlineMath math="\angle BOC" /> menghadap busur <InlineMath math="BC" />. Sudut <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" /> menghadap busur <InlineMath math="AB" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=\frac{41+52-61}{2}=16 \\
-b^2&=\frac{41+61-52}{2}=25 \\
-c^2&=\frac{52+61-41}{2}=36
+\angle BOC&=2\cdot28^\circ=56^\circ \\
+\angle BDC&=\angle BAC=28^\circ \\
+\angle ADB&=\angle ACB=62^\circ
 \end{aligned}" />
 
-Panjang rusuk positif, jadi <InlineMath math="a=4" />, <InlineMath math="b=5" />, dan <InlineMath math="c=6" />.
+Sebagai pemeriksaan, sudut-sudut yang berhadapan pada segi empat tali busur berjumlah <InlineMath math="180^\circ" />, dan memang <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
 
-<BlockMath math="a+b+c=4+5+6=15" />
-
-<MathVisual
-  title="Tiga jenis diagonal sisi"
-  description="Setiap diagonal menghubungkan dua sudut pada satu sisi. Putar balok untuk mengikuti dua rusuk tegak lurus yang membentuk tiap diagonal."
-  labels={{
-    a: <InlineMath math="a=4" />,
-    b: <InlineMath math="b=5" />,
-    c: <InlineMath math="c=6" />,
-    ab: <InlineMath math="\sqrt{41}" />,
-    ac: <InlineMath math="\sqrt{52}" />,
-    bc: <InlineMath math="\sqrt{61}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -4, max: 4 },
-      z: { min: -3.5, max: 3.5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [
-      { id: "cuboid", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 4, width: 5, height: 6 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: -2, y: 3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "ac", kind: "segment", appearance: "secondary", from: { x: -2, y: -3, z: 2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "bc", kind: "segment", appearance: "highlight", from: { x: 2, y: -3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-    ],
-    labels: [
-      { key: "a", objectId: "cuboid", at: { x: 0, y: -3, z: 2.5 }, placement: "below" },
-      { key: "b", objectId: "cuboid", at: { x: 2, y: -3, z: 0 }, placement: "right" },
-      { key: "c", objectId: "cuboid", at: { x: -2, y: 0, z: 2.5 }, placement: "left" },
-      { key: "ab", objectId: "ab", at: { x: 0, y: 3, z: 0 }, placement: "above" },
-      { key: "ac", objectId: "ac", at: { x: 0, y: 0, z: 2.5 }, placement: "left" },
-      { key: "bc", objectId: "bc", at: { x: 2, y: 0, z: 0 }, placement: "right" },
-    ],
-  }}
-/>
+- <InlineMath math="\angle BCD=106^\circ" /> benar.
+- Sebagai sudut pusat, <InlineMath math="\angle BOC" /> dua kali <InlineMath math="\angle BAC" />, yaitu <InlineMath math="56^\circ" />. Pernyataan ini salah.
+- <InlineMath math="\angle BDC" /> menghadap busur yang sama dengan <InlineMath math="\angle BAC" />, jadi besarnya <InlineMath math="28^\circ" />. Nilai <InlineMath math="46^\circ" /> milik <InlineMath math="\angle CAD" />. Pernyataan ini salah.
+- <InlineMath math="\angle ADB=62^\circ" /> benar.

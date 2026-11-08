@@ -1,41 +1,13 @@
-A face area depends on its **two edge lengths**, while volume depends on all three. Multiply the corresponding scale factors.
+Here you only judge whether the information is **enough for a definite answer**, not what the answer is. Test each statement on its own first, then both together. A statement is enough when it answers the question the same way in every possible case.
+
+- **Statement (1) alone**: with <InlineMath math="r=5" />, <InlineMath math="V=\frac{22}{7}\cdot25\cdot h=\frac{550}{7}h" />. For <InlineMath math="h=7" />, <InlineMath math="V=550" />, and for <InlineMath math="h=14" />, <InlineMath math="V=1{,}100" />. Without the height the question stays open, so the statement is not enough.
+- **Statement (2) alone**: the lateral area <InlineMath math="2\pi rh=440" /> with <InlineMath math="h=14" /> gives the radius, and with it the volume.
 
 <BlockMath math="\begin{aligned}
-k_{pl}&=2\cdot3=6 \\
-k_{lt}&=3\cdot\frac12=\frac32 \\
-k_V&=2\cdot3\cdot\frac12=3
+2\cdot\frac{22}{7}\cdot r\cdot14&=440\ \Rightarrow\ 88r=440\ \Rightarrow\ r=5 \\
+V&=\frac{22}{7}\cdot25\cdot14=1{,}100>1{,}000
 \end{aligned}" />
 
-The directional scale factors differ, so the space diagonal and total surface area do not always change by one fixed factor. For a counterexample, take <InlineMath math="p=l=t=1" />.
+So statement (2) answers the question with a definite yes.
 
-<BlockMath math="\begin{aligned}
-d^2&=1^2+1^2+1^2=3 \\
-(d')^2&=2^2+3^2+\left(\frac12\right)^2 \\
-&=\frac{53}{4}\ne4d^2 \\
-A&=6 \\
-A'&=2\left(6+1+\frac32\right)=17 \\
-A'&\ne3A
-\end{aligned}" />
-
-The three claims about face-area and volume factors are true. The claims that the diagonal always doubles and the total surface area always triples are false.
-
-<MathVisual
-  title="The cuboid after nonuniform scaling"
-  description="A cube with unit edges becomes a cuboid of length 2, width 3, and height one half. Different scale factors change its shape."
-  labels={{
-    length: <InlineMath math="p'=2" />,
-    width: <InlineMath math="l'=3" />,
-    height: <InlineMath math="t'=\frac12" />,
-  }}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1, max: 1 }, z: { min: -2, max: 2 } },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [{ id: "scaled", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 3, height: 0.5 } }],
-    labels: [
-      { key: "length", objectId: "scaled", at: { x: 0, y: -0.25, z: 1.5 }, placement: "below" },
-      { key: "width", objectId: "scaled", at: { x: 1, y: -0.25, z: 0 }, placement: "right" },
-      { key: "height", objectId: "scaled", at: { x: -1, y: 0, z: 1.5 }, placement: "left" },
-    ],
-  }}
-/>
+So statement (2) alone is enough, and statement (1) alone is not.

@@ -8,27 +8,24 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$12$$",
+          column: 1,
+          label: "$$\\angle BCD=106^\\circ$$",
         },
         {
-          correct: false,
-          label: "$$14$$",
+          column: 2,
+          label: "$$\\angle BOC=28^\\circ$$",
         },
         {
-          correct: true,
-          label: "$$15$$",
+          column: 2,
+          label: "$$\\angle BDC=46^\\circ$$",
         },
         {
-          correct: false,
-          label: "$$16$$",
-        },
-        {
-          correct: false,
-          label: "$$18$$",
+          column: 1,
+          label: "$$\\angle ADB=62^\\circ$$",
         },
       ],
     },

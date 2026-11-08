@@ -2,33 +2,30 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "algebra",
-    topic: "functions",
+    topic: "linear-equations-inequalities",
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$-\\frac35$$",
+          column: 1,
+          label: "Mesin $$A$$ adalah mesin yang paling cepat.",
         },
         {
-          correct: true,
-          label: "$$2$$",
+          column: 2,
+          label: "Mesin $$B$$ mencetak $$30$$ lembar per menit.",
         },
         {
-          correct: false,
-          label: "$$0$$",
+          column: 1,
+          label: "Mesin $$C$$ sendiri memerlukan $$40$$ menit untuk mencetak $$1{.}200$$ lembar.",
         },
         {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac52$$",
+          column: 1,
+          label: "Ketiga mesin bersama-sama mencetak $$2{.}700$$ lembar dalam $$30$$ menit.",
         },
       ],
     },

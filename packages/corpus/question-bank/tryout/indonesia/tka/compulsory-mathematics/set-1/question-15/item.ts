@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$T(1,-2)=(4,2)$$.",
-        },
-        {
-          correct: true,
-          label: "$$T$$ menggandakan setiap panjang.",
-        },
-        {
-          correct: true,
-          label: "$$T$$ mengalikan setiap luas dengan $$4$$.",
+          correct: false,
+          label: "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
         },
         {
           correct: false,
-          label: "$$T$$ membalik orientasi.",
+          label: "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
         },
         {
           correct: true,
-          label: "$$T^2(x,y)=(-4x,-4y)$$.",
+          label: "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
+        },
+        {
+          correct: false,
+          label: "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
+        },
+        {
+          correct: false,
+          label: "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

@@ -1,34 +1,20 @@
-Because distances are nonnegative, **equal squared distances** mean equal lengths. Insert <InlineMath math="P=(t,0)" /> into the distance formula.
+From one vertex, an <InlineMath math="n" />-gon splits into <InlineMath math="n-2" /> triangles. Its interior angle sum is therefore <InlineMath math="(n-2)\cdot180^\circ" />. Use it to find **the number of sides first**.
 
 <BlockMath math="\begin{aligned}
-(t-(-2))^2+(0-3)^2&=(t-4)^2+(0-5)^2 \\
-(t+2)^2+3^2&=(t-4)^2+5^2 \\
-t^2+4t+13&=t^2-8t+41 \\
-4t+8t&=41-13 \\
-12t&=28 \\
-t&=\frac{28}{12}=\frac73
+(n-2)\cdot180^\circ&=3{,}240^\circ \\
+n-2&=18 \\
+n&=20
 \end{aligned}" />
 
-Hence <InlineMath math="P=(\frac73,0)" />. The requested value is:
+The exterior angles of a polygon always add up to <InlineMath math="360^\circ" />. In a regular 20-gon they are all equal.
 
-<BlockMath math="3t=3\left(\frac73\right)=7" />
+<BlockMath math="\frac{360^\circ}{20}=18^\circ" />
 
-<LineEquation
-  title="Two equal distances"
-  description="The purple segments meet at P on the x-axis. PA and PB have the same length, although they point in different directions."
-  cameraPosition={[1, 2.5, 9]}
-  cameraTarget={[1, 2.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: -2, y: 3, z: 0 }, { x: 7 / 3, y: 0, z: 0 }, { x: 4, y: 5, z: 0 }],
-      color: "#9333ea",
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="A(-2,3)" />, at: 0, offset: [-0.4, 0.5, 0] },
-        { text: <InlineMath math="P(7/3,0)" />, at: 1, offset: [0.5, -0.5, 0] },
-        { text: <InlineMath math="B(4,5)" />, at: 2, offset: [0, 0.5, 0] },
-      ],
-    },
-  ]}
-/>
+As a check, each interior angle is <InlineMath math="180^\circ-18^\circ=162^\circ" />, and <InlineMath math="20\cdot162^\circ=3{,}240^\circ" />.
+
+So each exterior angle measures <InlineMath math="18^\circ" />.
+
+- <InlineMath math="162^\circ" /> is the interior angle of the 20-gon, not its exterior angle.
+- <InlineMath math="160^\circ" /> is the interior angle of the 18-gon from the same mistake.
+- <InlineMath math="20^\circ" /> comes from taking <InlineMath math="n=\frac{3{,}240}{180}=18" /> and forgetting the <InlineMath math="2" />.
+- <InlineMath math="12^\circ" /> belongs to a regular 30-gon, whose interior angle sum is <InlineMath math="5{,}040^\circ" />.

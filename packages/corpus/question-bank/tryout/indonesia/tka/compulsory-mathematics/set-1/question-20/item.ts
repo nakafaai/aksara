@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "trigonometry",
     topic: "trigonometric-ratios",
   },
+  stimulus: "playground",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\frac8{13}$$",
+          label: "$$1{,}8\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$\\frac{\\sqrt{105}}8$$",
+          label: "$$3\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$\\frac5{13}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{12}{13}$$",
+          label: "$$3{,}2\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$\\frac{\\sqrt{105}}{13}$$",
+          label: "$$4\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$5{,}6\\text{ m}$$",
         },
       ],
     },

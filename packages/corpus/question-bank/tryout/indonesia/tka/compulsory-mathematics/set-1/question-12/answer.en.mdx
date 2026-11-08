@@ -1,58 +1,24 @@
-Let the cuboid edge lengths be <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />. **Pythagoras’ theorem** on its three face types gives:
+Two theorems carry the whole problem. An **inscribed angle on a diameter** is a right angle (Thales' theorem). And all inscribed angles on the same arc are equal, while the central angle is twice as large.
+
+Because <InlineMath math="AC" /> is a diameter, <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. The angle sum in a triangle gives:
 
 <BlockMath math="\begin{aligned}
-a^2+b^2&=41 \\
-a^2+c^2&=52 \\
-b^2+c^2&=61
+\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
+\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
+\angle BCD&=62^\circ+44^\circ=106^\circ
 \end{aligned}" />
 
-Add the two equations containing the desired squared edge and subtract the third. The result is twice that squared edge.
-
-<BlockMath math="(a^2+b^2)+(a^2+c^2)-(b^2+c^2)=2a^2=41+52-61" />
+The inscribed angle <InlineMath math="\angle BAC" /> and the central angle <InlineMath math="\angle BOC" /> stand on the arc <InlineMath math="BC" />. The angles <InlineMath math="\angle ACB" /> and <InlineMath math="\angle ADB" /> stand on the arc <InlineMath math="AB" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=\frac{41+52-61}{2}=16 \\
-b^2&=\frac{41+61-52}{2}=25 \\
-c^2&=\frac{52+61-41}{2}=36
+\angle BOC&=2\cdot28^\circ=56^\circ \\
+\angle BDC&=\angle BAC=28^\circ \\
+\angle ADB&=\angle ACB=62^\circ
 \end{aligned}" />
 
-Edge lengths are positive, so <InlineMath math="a=4" />, <InlineMath math="b=5" />, and <InlineMath math="c=6" />.
+As a check, opposite angles of a cyclic quadrilateral add up to <InlineMath math="180^\circ" />, and indeed <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
 
-<BlockMath math="a+b+c=4+5+6=15" />
-
-<MathVisual
-  title="Three types of face diagonal"
-  description="Each diagonal connects two corners on one face. Rotate the cuboid to trace the two perpendicular edges that determine each diagonal."
-  labels={{
-    a: <InlineMath math="a=4" />,
-    b: <InlineMath math="b=5" />,
-    c: <InlineMath math="c=6" />,
-    ab: <InlineMath math="\sqrt{41}" />,
-    ac: <InlineMath math="\sqrt{52}" />,
-    bc: <InlineMath math="\sqrt{61}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -4, max: 4 },
-      z: { min: -3.5, max: 3.5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [
-      { id: "cuboid", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 4, width: 5, height: 6 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: -2, y: 3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "ac", kind: "segment", appearance: "secondary", from: { x: -2, y: -3, z: 2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "bc", kind: "segment", appearance: "highlight", from: { x: 2, y: -3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-    ],
-    labels: [
-      { key: "a", objectId: "cuboid", at: { x: 0, y: -3, z: 2.5 }, placement: "below" },
-      { key: "b", objectId: "cuboid", at: { x: 2, y: -3, z: 0 }, placement: "right" },
-      { key: "c", objectId: "cuboid", at: { x: -2, y: 0, z: 2.5 }, placement: "left" },
-      { key: "ab", objectId: "ab", at: { x: 0, y: 3, z: 0 }, placement: "above" },
-      { key: "ac", objectId: "ac", at: { x: 0, y: 0, z: 2.5 }, placement: "left" },
-      { key: "bc", objectId: "bc", at: { x: 2, y: 0, z: 0 }, placement: "right" },
-    ],
-  }}
-/>
+- <InlineMath math="\angle BCD=106^\circ" /> is true.
+- As a central angle, <InlineMath math="\angle BOC" /> is twice <InlineMath math="\angle BAC" />, so it is <InlineMath math="56^\circ" />. The statement is false.
+- <InlineMath math="\angle BDC" /> stands on the same arc as <InlineMath math="\angle BAC" /> and measures <InlineMath math="28^\circ" />. The value <InlineMath math="46^\circ" /> belongs to <InlineMath math="\angle CAD" />. The statement is false.
+- <InlineMath math="\angle ADB=62^\circ" /> is true.
