@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "kalimat (3) menyatakan hal yang bertentangan dengan kalimat (2)",
+          label:
+            "kalimat (3) menyatakan hal yang bertentangan dengan kalimat (2)",
         },
         {
           correct: false,
@@ -25,7 +26,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "kalimat (3) menambahkan perubahan lain selain yang disebut kalimat (2)",
+          label:
+            "kalimat (3) menambahkan perubahan lain selain yang disebut kalimat (2)",
         },
         {
           correct: false,

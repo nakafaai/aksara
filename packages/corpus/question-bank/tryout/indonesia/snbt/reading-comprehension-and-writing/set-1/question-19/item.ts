@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Bagi warga yang rajin menabung sampah akan mendapat bingkisan dari pengurus pada akhir tahun.",
+          label:
+            "Bagi warga yang rajin menabung sampah akan mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: true,
-          label: "Warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
+          label:
+            "Warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
-          label: "Bagi warga-warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
+          label:
+            "Bagi warga-warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
-          label: "Kepada warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
+          label:
+            "Kepada warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
-          label: "Warga yang rajin menabung sampah, mendapat bingkisan dari pengurus pada akhir tahun.",
+          label:
+            "Warga yang rajin menabung sampah, mendapat bingkisan dari pengurus pada akhir tahun.",
         },
       ],
     },

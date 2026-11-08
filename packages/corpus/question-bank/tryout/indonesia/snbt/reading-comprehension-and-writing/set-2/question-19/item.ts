@@ -13,11 +13,13 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Kalimat (5) menjelaskan alasan keadaan yang disebut pada kalimat (4).",
+          label:
+            "Kalimat (5) menjelaskan alasan keadaan yang disebut pada kalimat (4).",
         },
         {
           correct: false,
-          label: "Kalimat (5) memberi contoh siswa yang tidur lebih dari delapan jam.",
+          label:
+            "Kalimat (5) memberi contoh siswa yang tidur lebih dari delapan jam.",
         },
         {
           correct: false,

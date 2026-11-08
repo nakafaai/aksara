@@ -21,7 +21,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Dokter puskesmas juga melayani pemeriksaan gigi setiap hari Jumat.",
+          label:
+            "Dokter puskesmas juga melayani pemeriksaan gigi setiap hari Jumat.",
         },
         {
           correct: false,
@@ -29,7 +30,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Program sederhana itu menunjukkan bahwa perhatian rutin dapat menjaga kesehatan warga lanjut usia.",
+          label:
+            "Program sederhana itu menunjukkan bahwa perhatian rutin dapat menjaga kesehatan warga lanjut usia.",
         },
       ],
     },

@@ -17,11 +17,13 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "garam yang belum dipanen larut kembali sehingga mereka bisa gagal panen",
+          label:
+            "garam yang belum dipanen larut kembali sehingga mereka bisa gagal panen",
         },
         {
           correct: false,
-          label: "air laut di petak mereka menguap lebih cepat daripada biasanya",
+          label:
+            "air laut di petak mereka menguap lebih cepat daripada biasanya",
         },
         {
           correct: false,

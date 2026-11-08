@@ -21,7 +21,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "mendorong pengelola pasar lain meniru larangan itu dengan menyediakan tas pengganti yang murah",
+          label:
+            "mendorong pengelola pasar lain meniru larangan itu dengan menyediakan tas pengganti yang murah",
         },
         {
           correct: false,

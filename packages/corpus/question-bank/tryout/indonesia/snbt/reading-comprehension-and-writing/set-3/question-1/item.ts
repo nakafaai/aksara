@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Petambak garam di Desa Tanjung Sari hanya dapat memanen garam pada musim kemarau.",
+          label:
+            "Petambak garam di Desa Tanjung Sari hanya dapat memanen garam pada musim kemarau.",
         },
         {
           correct: false,
-          label: "Garam yang dibuat di petak tanah bercampur lumpur dan berwarna kusam.",
+          label:
+            "Garam yang dibuat di petak tanah bercampur lumpur dan berwarna kusam.",
         },
         {
           correct: true,
-          label: "Cara petambak di Desa Tanjung Sari membuat garam berubah dari petak tanah terbuka ke rumah prisma.",
+          label:
+            "Cara petambak di Desa Tanjung Sari membuat garam berubah dari petak tanah terbuka ke rumah prisma.",
         },
         {
           correct: false,
-          label: "Atap plastik bening meneruskan cahaya matahari ke dalam rumah prisma.",
+          label:
+            "Atap plastik bening meneruskan cahaya matahari ke dalam rumah prisma.",
         },
         {
           correct: false,
-          label: "Rumah prisma membuat hasil panen garam naik hampir dua kali lipat.",
+          label:
+            "Rumah prisma membuat hasil panen garam naik hampir dua kali lipat.",
         },
       ],
     },

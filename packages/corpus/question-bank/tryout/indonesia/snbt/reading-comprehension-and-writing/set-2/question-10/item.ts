@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Semua pedagang di Pasar Pagi Sukamaju menolak larangan kantong plastik.",
+          label:
+            "Semua pedagang di Pasar Pagi Sukamaju menolak larangan kantong plastik.",
         },
         {
           correct: false,
-          label: "Pembeli wajib membeli tas kain setiap kali berbelanja di pasar itu.",
+          label:
+            "Pembeli wajib membeli tas kain setiap kali berbelanja di pasar itu.",
         },
         {
           correct: false,
-          label: "Larangan kantong plastik membuat pembeli berpenghasilan rendah berhenti berbelanja di pasar itu.",
+          label:
+            "Larangan kantong plastik membuat pembeli berpenghasilan rendah berhenti berbelanja di pasar itu.",
         },
         {
           correct: false,
-          label: "Pengelola pasar lain sudah meniru kebijakan Pasar Pagi Sukamaju.",
+          label:
+            "Pengelola pasar lain sudah meniru kebijakan Pasar Pagi Sukamaju.",
         },
         {
           correct: true,
-          label: "Kekhawatiran pedagang sayur tentang berkurangnya pembeli tidak terjadi di Pasar Pagi Sukamaju.",
+          label:
+            "Kekhawatiran pedagang sayur tentang berkurangnya pembeli tidak terjadi di Pasar Pagi Sukamaju.",
         },
       ],
     },

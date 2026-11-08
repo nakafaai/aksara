@@ -13,11 +13,13 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "tidak perlu lagi menempuh jalan memutar untuk sampai ke pasar",
+          label:
+            "tidak perlu lagi menempuh jalan memutar untuk sampai ke pasar",
         },
         {
           correct: false,
-          label: "dapat menjual hasil kebun kepada dua ratus orang yang melintas setiap hari",
+          label:
+            "dapat menjual hasil kebun kepada dua ratus orang yang melintas setiap hari",
         },
         {
           correct: false,

@@ -21,11 +21,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Kertas campur adalah jenis sampah yang paling banyak diterima pada bulan Agustus.",
+          label:
+            "Kertas campur adalah jenis sampah yang paling banyak diterima pada bulan Agustus.",
         },
         {
           correct: true,
-          label: "Nasabah yang menyetor 1 kilogram botol plastik bening dan nasabah yang menyetor 1 kilogram kardus memperoleh nilai tabungan yang berbeda.",
+          label:
+            "Nasabah yang menyetor 1 kilogram botol plastik bening dan nasabah yang menyetor 1 kilogram kardus memperoleh nilai tabungan yang berbeda.",
         },
         {
           correct: false,

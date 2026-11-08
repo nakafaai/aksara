@@ -18,15 +18,18 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Siswa yang tidur lebih dari delapan jam setiap malam paling sedikit jumlahnya.",
+          label:
+            "Siswa yang tidur lebih dari delapan jam setiap malam paling sedikit jumlahnya.",
         },
         {
           column: 2,
-          label: "Sebagian besar siswa yang disurvei sudah tidur sesuai anjuran para ahli kesehatan.",
+          label:
+            "Sebagian besar siswa yang disurvei sudah tidur sesuai anjuran para ahli kesehatan.",
         },
         {
           column: 1,
-          label: "Lebih dari separuh siswa yang disurvei tidur kurang dari tujuh jam setiap malam.",
+          label:
+            "Lebih dari separuh siswa yang disurvei tidur kurang dari tujuh jam setiap malam.",
         },
       ],
     },

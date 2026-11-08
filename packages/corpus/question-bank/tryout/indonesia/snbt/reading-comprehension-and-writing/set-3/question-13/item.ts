@@ -29,7 +29,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "masalah yang dihadapi warga, upaya mengatasinya, lalu hasil upaya itu",
+          label:
+            "masalah yang dihadapi warga, upaya mengatasinya, lalu hasil upaya itu",
         },
       ],
     },

@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "agar kain hasil kelas dapat dijual kepada pengunjung balai desa",
+          label:
+            "agar kain hasil kelas dapat dijual kepada pengunjung balai desa",
         },
         {
           correct: true,

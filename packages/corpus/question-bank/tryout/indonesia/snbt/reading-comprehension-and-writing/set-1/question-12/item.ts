@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Harga gabah setelah panen biasanya lebih rendah daripada sebelum panen.",
+          label:
+            "Harga gabah setelah panen biasanya lebih rendah daripada sebelum panen.",
         },
         {
           correct: false,
@@ -25,7 +26,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Desa yang masih mengelola lumbung bersama lebih jarang kekurangan beras saat panen gagal.",
+          label:
+            "Desa yang masih mengelola lumbung bersama lebih jarang kekurangan beras saat panen gagal.",
         },
         {
           correct: false,

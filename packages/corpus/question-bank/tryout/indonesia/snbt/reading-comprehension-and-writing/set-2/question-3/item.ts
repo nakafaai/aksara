@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Kalimat itu memakai kata yang bermakna sama secara berlebihan.",
+          label:
+            "Kalimat itu memakai kata yang bermakna sama secara berlebihan.",
         },
         {
           correct: true,

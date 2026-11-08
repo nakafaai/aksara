@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Tanaman hidroponik di sekolah itu tidak memerlukan unsur hara.",
+          label:
+            "Tanaman hidroponik di sekolah itu tidak memerlukan unsur hara.",
         },
         {
           correct: false,
@@ -25,11 +26,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Hasil panen pertama dibagikan tanpa bayaran kepada orang tua siswa.",
+          label:
+            "Hasil panen pertama dibagikan tanpa bayaran kepada orang tua siswa.",
         },
         {
           correct: true,
-          label: "Jika pompa berhenti bekerja, larutan tidak lagi sampai ke ujung atas pipa.",
+          label:
+            "Jika pompa berhenti bekerja, larutan tidak lagi sampai ke ujung atas pipa.",
         },
       ],
     },

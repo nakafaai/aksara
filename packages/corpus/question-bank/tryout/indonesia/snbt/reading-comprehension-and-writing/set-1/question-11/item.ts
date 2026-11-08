@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Pemerintah desa perlu menghidupkan kembali lumbung padi bersama.",
+          label:
+            "Pemerintah desa perlu menghidupkan kembali lumbung padi bersama.",
         },
         {
           correct: false,

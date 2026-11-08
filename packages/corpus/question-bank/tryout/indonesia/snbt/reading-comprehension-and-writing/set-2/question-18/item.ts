@@ -21,11 +21,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Delapan belas (18) siswa-siswa tidur kurang dari enam jam setiap malam.",
+          label:
+            "Delapan belas (18) siswa-siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: false,
-          label: "Sebanyak 18 orang siswa-siswa tidur kurang dari enam jam setiap malam.",
+          label:
+            "Sebanyak 18 orang siswa-siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: false,

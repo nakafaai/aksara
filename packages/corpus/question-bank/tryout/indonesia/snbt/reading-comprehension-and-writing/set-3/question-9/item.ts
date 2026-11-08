@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Madu klanceng paling enak diminum bersama air hangat pada pagi hari.",
+          label:
+            "Madu klanceng paling enak diminum bersama air hangat pada pagi hari.",
         },
         {
           correct: false,
-          label: "Oleh karena itu, semua petani kopi di Indonesia wajib beternak lebah klanceng.",
+          label:
+            "Oleh karena itu, semua petani kopi di Indonesia wajib beternak lebah klanceng.",
         },
         {
           correct: false,
-          label: "Lebah klanceng biasa bersarang di rongga batang kayu atau bambu.",
+          label:
+            "Lebah klanceng biasa bersarang di rongga batang kayu atau bambu.",
         },
         {
           correct: true,
-          label: "Jadi, lebah klanceng tidak hanya menghasilkan madu, tetapi juga membantu panen kopi warga.",
+          label:
+            "Jadi, lebah klanceng tidak hanya menghasilkan madu, tetapi juga membantu panen kopi warga.",
         },
         {
           correct: false,
-          label: "Pakaian pelindung peternak lebah biasanya dibuat dari kain tebal.",
+          label:
+            "Pakaian pelindung peternak lebah biasanya dibuat dari kain tebal.",
         },
       ],
     },

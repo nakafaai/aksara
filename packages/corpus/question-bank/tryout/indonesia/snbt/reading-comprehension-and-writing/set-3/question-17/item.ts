@@ -14,7 +14,8 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Laporan pencurian terus turun setiap bulan dari Januari sampai Mei.",
+          label:
+            "Laporan pencurian terus turun setiap bulan dari Januari sampai Mei.",
         },
         {
           column: 1,
@@ -22,11 +23,13 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Kenaikan banyak warga yang ikut ronda paling besar terjadi dari Februari ke Maret.",
+          label:
+            "Kenaikan banyak warga yang ikut ronda paling besar terjadi dari Februari ke Maret.",
         },
         {
           column: 2,
-          label: "Pada bulan Januari, laporan pencurian lebih banyak daripada warga yang ikut ronda.",
+          label:
+            "Pada bulan Januari, laporan pencurian lebih banyak daripada warga yang ikut ronda.",
         },
       ],
     },

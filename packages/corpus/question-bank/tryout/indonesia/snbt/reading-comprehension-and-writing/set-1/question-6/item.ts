@@ -29,7 +29,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "mengalirkan larutan nutrisi terus-menerus melalui pipa dengan pompa dan kemiringan pipa",
+          label:
+            "mengalirkan larutan nutrisi terus-menerus melalui pipa dengan pompa dan kemiringan pipa",
         },
       ],
     },

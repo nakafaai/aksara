@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Sepanjang tahun ini, dua pasar terdekat dari Sukamaju tutup karena direnovasi.",
+          label:
+            "Sepanjang tahun ini, dua pasar terdekat dari Sukamaju tutup karena direnovasi.",
         },
         {
           correct: false,
@@ -21,15 +22,18 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pedagang ikan di pasar itu mendukung larangan kantong plastik sejak awal.",
+          label:
+            "Pedagang ikan di pasar itu mendukung larangan kantong plastik sejak awal.",
         },
         {
           correct: false,
-          label: "Pembeli menyukai pasar yang lantainya tidak dipenuhi sampah plastik.",
+          label:
+            "Pembeli menyukai pasar yang lantainya tidak dipenuhi sampah plastik.",
         },
         {
           correct: false,
-          label: "Selokan yang bersih membuat jalan di sekitar pasar tidak tergenang.",
+          label:
+            "Selokan yang bersih membuat jalan di sekitar pasar tidak tergenang.",
         },
       ],
     },

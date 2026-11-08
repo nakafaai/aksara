@@ -17,11 +17,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "lebah memindahkan serbuk sari dari satu bunga ke bunga yang lain",
+          label:
+            "lebah memindahkan serbuk sari dari satu bunga ke bunga yang lain",
         },
         {
           correct: false,
-          label: "harga madu klanceng mencapai tiga kali lipat harga madu biasa",
+          label:
+            "harga madu klanceng mencapai tiga kali lipat harga madu biasa",
         },
         {
           correct: false,
@@ -29,7 +31,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "buah kopi di kebun yang dekat dengan kotak lebah lebih lebat daripada di kebun yang jauh",
+          label:
+            "buah kopi di kebun yang dekat dengan kotak lebah lebih lebat daripada di kebun yang jauh",
         },
       ],
     },
