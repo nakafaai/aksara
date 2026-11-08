@@ -94,11 +94,11 @@ Jika tersedia, <Highlight>pilih baris atau kolom yang memuat banyak nol</Highlig
 <Mermaid
   title="Ekspansi kofaktor langkah demi langkah"
   description="Pilih satu baris, ubah setiap entri menjadi kofaktor lewat minor dan tandanya, lalu jumlahkan entri kali kofaktornya."
-  chart={`flowchart TD
-  A["Pilih baris i"] --> B["Untuk setiap entri a_ij, coret baris i dan kolom j"]
-  B --> C["Minor M_ij: determinan sisanya"]
-  C --> D["Kofaktor k_ij = (−1)^(i+j) · M_ij"]
-  D --> E["det A = jumlah a_ij · k_ij di sepanjang baris i"]`}
+  chart={`flowchart LR
+  A["Pilih satu baris"] --> B["Coret baris dan kolom setiap entri"]
+  B --> C["Minor: determinan sisanya"]
+  C --> D["Kofaktor: minor dengan tanda papan caturnya"]
+  D --> E["Jumlahkan setiap entri kali kofaktornya"]`}
 />
 
 ## Contoh Perhitungan Determinan

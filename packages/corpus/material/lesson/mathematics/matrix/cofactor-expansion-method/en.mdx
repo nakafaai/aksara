@@ -94,11 +94,11 @@ Expanding along any row or column gives the same determinant.
 <Mermaid
   title="Cofactor expansion step by step"
   description="Choose a row, turn each entry into a cofactor through its minor and sign, then add the entries times their cofactors."
-  chart={`flowchart TD
-  A["Choose a row i"] --> B["For each entry a_ij, cross out row i and column j"]
-  B --> C["Minor M_ij: determinant of what is left"]
-  C --> D["Cofactor k_ij = (−1)^(i+j) · M_ij"]
-  D --> E["det A = sum of a_ij · k_ij along row i"]`}
+  chart={`flowchart LR
+  A["Choose one row"] --> B["Cross out the row and column of each entry"]
+  B --> C["Minor: the determinant of what is left"]
+  C --> D["Cofactor: the minor with its checkerboard sign"]
+  D --> E["Add each entry times its cofactor"]`}
 />
 
 ## Example of Determinant Calculation

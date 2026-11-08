@@ -98,11 +98,11 @@ Wähle nach Möglichkeit <Highlight>eine Zeile oder Spalte mit vielen Nullen</Hi
 <Mermaid
   title="Kofaktorentwicklung Schritt für Schritt"
   description="Wähle eine Zeile, mach aus jedem Eintrag über seinen Minor und sein Vorzeichen einen Kofaktor und addiere die Einträge mal ihre Kofaktoren."
-  chart={`flowchart TD
-  A["Zeile i wählen"] --> B["Für jeden Eintrag a_ij Zeile i und Spalte j streichen"]
-  B --> C["Minor M_ij: Determinante des Rests"]
-  C --> D["Kofaktor k_ij = (−1)^(i+j) · M_ij"]
-  D --> E["det A = Summe der a_ij · k_ij entlang Zeile i"]`}
+  chart={`flowchart LR
+  A["Eine Zeile wählen"] --> B["Zeile und Spalte jedes Eintrags streichen"]
+  B --> C["Minor: Determinante des Rests"]
+  C --> D["Kofaktor: Minor mit seinem Schachbrettvorzeichen"]
+  D --> E["Jeden Eintrag mal seinen Kofaktor addieren"]`}
 />
 
 ## Beispiel für die Determinantenberechnung
