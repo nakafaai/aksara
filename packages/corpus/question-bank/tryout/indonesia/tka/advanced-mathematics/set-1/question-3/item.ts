@@ -21,7 +21,8 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "$$A^{-1}=\\frac12\\begin{pmatrix} -4 & 2 \\\\ -5 & 3 \\end{pmatrix}$$",
+          label:
+            "$$A^{-1}=\\frac12\\begin{pmatrix} -4 & 2 \\\\ -5 & 3 \\end{pmatrix}$$",
         },
         {
           column: 1,
