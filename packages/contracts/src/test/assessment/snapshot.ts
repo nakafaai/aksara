@@ -103,23 +103,32 @@ const catalogRows = Effect.fn("AksaraContracts.testCatalogRows")(
           },
           {
             ...exam,
+            groupAxis: "grade",
             kind: "exam",
             publicPath: "try-out/test-country/test-exam",
             title: "Test exam",
           },
           {
+            ...exam,
+            groupKey: "test-group",
+            kind: "group",
+            publicPath: "try-out/test-country/test-exam/test-group",
+            title: "Test group",
+          },
+          {
             ...track,
+            groupKey: "test-group",
             kind: "track",
-            publicPath: "try-out/test-country/test-exam/test-track",
+            publicPath: "try-out/test-country/test-exam/test-group/test-track",
             title: "Test track",
-            trackKind: "subject",
           },
           {
             ...set,
             internalEntrySectionKey: "test-section",
             kind: "set",
             paper,
-            publicPath: "try-out/test-country/test-exam/test-track/test-set",
+            publicPath:
+              "try-out/test-country/test-exam/test-group/test-track/test-set",
             title: "Test set",
           },
           {

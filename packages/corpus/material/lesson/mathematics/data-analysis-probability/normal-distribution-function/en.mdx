@@ -1,157 +1,266 @@
 export const metadata = {
-  title: "Normal Distribution Density Function",
-  description: "Read a normal density curve, standardize values with z-scores, and calculate an interval probability.",
+  title: "Normal Distribution and Z Scores",
+  description: "A normal distribution is a bell curve centered at its mean with a width set by its standard deviation. Turn values into z scores and find probabilities.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Data Analysis and Probability",
 };
 
+## A Bell Curve with a Center and a Spread
 
+A normal distribution is a probability model for a continuous variable whose values **cluster around one central value and thin out symmetrically** on both sides. If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" /> and standard deviation <InlineMath math="\sigma > 0" />, written <InlineMath math="X \sim N(\mu, \sigma^2)" />, its curve is bell shaped and symmetric about the line <InlineMath math="x = \mu" />. The probability that <InlineMath math="X" /> falls in an interval equals the area under the curve over that interval, and the total area is <InlineMath math="1" />.
 
-## Normal Distribution
-
-Measurements such as human height or repeated laboratory results often cluster around a central value. In some populations and under suitable conditions, a **normal distribution** can approximate that pattern. Check the model against the observed data before using it.
-
-In <InlineMath math="1733" />, Abraham de Moivre derived a normal approximation to the binomial distribution for large <InlineMath math="n" />. Pierre-Simon Laplace later extended this result, which is now associated with the de Moivre-Laplace theorem and the development of the central limit theorem.
-
-> The normal distribution is one possible model. Use it when observations are roughly symmetric around a mean and the model fits the data well enough for the question being studied.
-
-## Characteristics of Normal Curve
-
-The normal density has a symmetric bell shape. The visualization below shows the standard normal curve with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" />:
+On the interactive graph, the standard normal curve with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" /> peaks at the center. Two vertical segments mark the inflection points at <InlineMath math="\mu - \sigma" /> and <InlineMath math="\mu + \sigma" />, where the curve changes how it bends: concave down between the two points and concave up outside them.
 
 <LineEquation
   title="Standard Normal Distribution Curve"
-  description={
-    <>
-      The standard normal density is centered at <InlineMath math="\mu=0" />. The vertical segments mark its inflection points <InlineMath math="\mu\pm\sigma" />.
-    </>
-  }
+  description={<>The standard normal density is centered at <InlineMath math="\mu = 0" />. The vertical segments mark its inflection points at <InlineMath math="\mu \pm \sigma" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: Array.from({ length: 71 }, (_, index) => {
-        const x = (index - 35) / 10;
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = (index - 350) / 100;
         const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu=0" />, at: 35, offset: [0, 0.5, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
     },
     {
       points: [
         { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu-\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
     {
       points: [
         { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu+\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
   ]}
 />
 
-The curve has four defining characteristics:
+The mean, median, and mode coincide at <InlineMath math="\mu" />, because the curve is symmetric and has a single peak. The curve never touches the <InlineMath math="x" />-axis: its density is positive for every <InlineMath math="x" /> and approaches zero far from the center. Abraham de Moivre derived this curve in <InlineMath math="1733" /> as an approximation to the [binomial distribution](/en/subjects/mathematics/data-analysis-probability/binomial-distribution-function) with <InlineMath math="p = \frac{1}{2}" /> for a large number of trials, and Pierre-Simon Laplace later extended it to other success probabilities.
 
-1. **Shape and Symmetry**
+## The Normal Density Formula
 
-    The curve is bell-shaped and symmetrical about the vertical line passing through the mean (<InlineMath math="\mu" />). This means the left and right parts of the curve are perfect mirrors of each other.
+The height of the curve at each point <InlineMath math="x" /> is given by the density function:
 
-2. **Central Point**
+<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \qquad -\infty < x < \infty" />
 
-    The normal density is symmetric and has one peak. Therefore, its mean, median, and mode all coincide at <InlineMath math="\mu" />.
+Here <InlineMath math="\pi \approx 3.1416" /> and <InlineMath math="e \approx 2.7183" /> are constants, while <InlineMath math="\mu" /> and <InlineMath math="\sigma > 0" /> are the parameters of the distribution. The fraction <InlineMath math="\frac{x - \mu}{\sigma}" /> measures **the distance from the center in standard deviations**. That distance is squared, so two values of <InlineMath math="x" /> equally far to the left and right of <InlineMath math="\mu" /> get the same density. The factor <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" /> makes the total area under the curve exactly <InlineMath math="1" />.
 
-3. **Inflection Points**
+A density is not a probability. At the peak of the standard normal curve, <InlineMath math="f(0) = \frac{1}{\sqrt{2\pi}} \approx 0.399" />. For <InlineMath math="\sigma = 0.25" />, the peak height is <InlineMath math="\frac{1}{0.25\sqrt{2\pi}} \approx 1.596" />, more than <InlineMath math="1" />, while a probability never exceeds <InlineMath math="1" />. The probability of one exact value is zero as well, <InlineMath math="P(X = a) = 0" />, because the area above a single point is zero. Probabilities always belong to intervals and come from a [definite integral](/en/subjects/mathematics/integral/definite-integral) of the density.
 
-    The curve has inflection points at <InlineMath math="x = \mu \pm \sigma" />, which means the curve changes from concave to convex (or vice versa) at a distance of one standard deviation from the mean.
+## The Center and Width of a Normal Curve
 
-4. **Horizontal Asymptote**
+The parameter <InlineMath math="\mu" /> **shifts the curve without changing its shape**, while <InlineMath math="\sigma" /> sets its width. The area under the curve is always <InlineMath math="1" />, so a wider curve is also lower, with peak height <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. The interactive graph draws three curves from the same formula.
 
-    The density remains positive for every finite <InlineMath math="x" /> and approaches <InlineMath math="0" /> as <InlineMath math="x" /> tends to either infinity.
+<LineEquation
+  title={<>The curves <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" />, and <InlineMath math="N(0, 4)" /></>}
+  description={<>Changing <InlineMath math="\mu" /> from <InlineMath math="0" /> to <InlineMath math="2" /> shifts the curve to the right. Changing <InlineMath math="\sigma" /> from <InlineMath math="1" /> to <InlineMath math="2" /> widens the curve and halves its peak.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 9]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -4 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -2 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 1201 }, (_, index) => {
+        const x = -6 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
+    },
+  ]}
+/>
 
-## Probability Density Function
+The curves <InlineMath math="N(0, 1)" /> and <InlineMath math="N(2, 1)" /> have the same shape, with the center moved <InlineMath math="2" /> units to the right. The curve <InlineMath math="N(0, 4)" /> has the same center as <InlineMath math="N(0, 1)" />, but it is twice as wide, and its peak drops from <InlineMath math="0.399" /> to <InlineMath math="0.199" />. The second parameter in <InlineMath math="N(\mu, \sigma^2)" /> is the variance, so <InlineMath math="N(0, 4)" /> means <InlineMath math="\sigma = 2" />.
 
-The formula below gives the **probability density** at each value of <InlineMath math="x" />.
+The standard deviation <InlineMath math="\sigma" /> plays the same role as the [standard deviation of a data set](/en/subjects/mathematics/statistics-foundations/variance-standard-deviation-data-single): the larger it is, the farther the values spread from the mean. The center of the curve is always at <InlineMath math="\mu" />, so the [expected value of a normal distribution](/en/subjects/mathematics/data-analysis-probability/expected-value-of-normal-distribution) is <InlineMath math="\mu" /> as well.
 
-If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" />, variance <InlineMath math="\sigma^2" />, and <InlineMath math="\sigma>0" />, its density function is:
+## Area Around the Center of the Curve
 
-<BlockMath math="f_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+Every normal distribution splits its area in the same way when distances are measured in standard deviations. These percentages are known as **the <InlineMath math="68" />, <InlineMath math="95" />, and <InlineMath math="99.7" /> percent rule**:
 
-This formula applies to every <InlineMath math="x" /> satisfying <InlineMath math="-\infty < x < \infty" />.
-
-The constants and parameters are:
-
-- <InlineMath math="\pi \approx 3.1416" /> is the circle constant
-- <InlineMath math="e \approx 2.7183" /> is Euler's number
-- <InlineMath math="\mu" /> is the mean of the distribution
-- <InlineMath math="\sigma>0" /> is the standard deviation
-
-> The parameter <InlineMath math="\mu" /> shifts the center of the curve, while <InlineMath math="\sigma" /> controls its spread. Find probabilities from areas under the density curve. The height <InlineMath math="f(x)" /> at one point is a density value.
-## Transformation to Standard Normal
-
-In practice, we often use the **standard normal distribution** with mean <InlineMath math="\mu = 0" /> and standard deviation <InlineMath math="\sigma = 1" />. To convert a regular normal distribution to standard normal, we use the transformation:
-
-<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
-
-The variable <InlineMath math="Z" /> is the **standard score**, or **z-score**. It measures <Highlight>how many standard deviations</Highlight> <InlineMath math="x" /> lies above or below the mean. Standardization maps every normal distribution to the same <InlineMath math="Z" /> scale, so one standard normal table works for all of them.
-
-Why use z-score?
-
-With this transformation, we can compare data from different distributions. For example, you can compare math scores with physics scores, even though their means and standard deviations are different.
-
-For an observed value <InlineMath math="x" />, write its standardized score as <InlineMath math="z" />. Suppose a math score of 80 comes from a distribution with mean 70 and standard deviation 5, while a physics score of 90 comes from a distribution with mean 80 and standard deviation 10.
-
-| Subject | Standardized score |
+| Interval | Area under the curve |
 | --- | --- |
-| Math | <InlineMath math="z=\frac{80-70}{5}=2" /> |
-| Physics | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+| <InlineMath math="\mu - \sigma" /> to <InlineMath math="\mu + \sigma" /> | <InlineMath math="68.27\%" /> |
+| <InlineMath math="\mu - 2\sigma" /> to <InlineMath math="\mu + 2\sigma" /> | <InlineMath math="95.45\%" /> |
+| <InlineMath math="\mu - 3\sigma" /> to <InlineMath math="\mu + 3\sigma" /> | <InlineMath math="99.73\%" /> |
 
-The math score is **higher relative to its own group**, even though the raw score 80 is smaller than 90. This comparison measures position within each distribution, rather than equating the difficulty of the two tests.
+Suppose the heights of a group of teenagers follow <InlineMath math="N(165, 6^2)" /> in centimeters. About <InlineMath math="68\%" /> of the heights lie between <InlineMath math="159" /> and <InlineMath math="171" /> cm, and about <InlineMath math="95\%" /> lie between <InlineMath math="153" /> and <InlineMath math="177" /> cm. Only about <InlineMath math="0.27\%" /> lie more than <InlineMath math="18" /> cm from the mean.
 
-## Finding a Normal Probability Between Two Bounds
+## Z Scores Standardize Every Normal Distribution
 
-Suppose <InlineMath math="X" /> is normally distributed with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. Find the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" />.
+A z score turns a value <InlineMath math="x" /> into its distance from the mean in standard deviations:
 
-**Step 1**: Transform to z-score
+<BlockMath math="z = \frac{x - \mu}{\sigma}" />
+
+If <InlineMath math="X \sim N(\mu, \sigma^2)" />, then <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> has the **standard normal distribution <InlineMath math="N(0, 1)" />**. As a result, one table of cumulative probabilities <InlineMath math="\Phi(z) = P(Z < z)" /> serves every normal distribution. Tables usually list only positive <InlineMath math="z" />, and the symmetry of the curve gives the rest: <InlineMath math="\Phi(-z) = 1 - \Phi(z)" />.
+
+Z scores also compare values from different groups. A math score of <InlineMath math="80" /> comes from a distribution with mean <InlineMath math="70" /> and standard deviation <InlineMath math="5" />, while a physics score of <InlineMath math="90" /> comes from a distribution with mean <InlineMath math="80" /> and standard deviation <InlineMath math="10" />.
+
+| Subject | Z score |
+| --- | --- |
+| Math | <InlineMath math="z = \frac{80 - 70}{5} = 2" /> |
+| Physics | <InlineMath math="z = \frac{90 - 80}{10} = 1" /> |
+
+The math score is **higher relative to its own group**, even though the raw score of <InlineMath math="80" /> is less than <InlineMath math="90" />. This comparison measures position within each distribution, not how difficult the two exams were.
+
+## Finding Probabilities with a Z Table
+
+A normal probability takes three steps: standardize the bounds, read <InlineMath math="\Phi" /> from the table, then **subtract the cumulative area at the lower bound from the cumulative area at the upper bound**.
+
+**Example 1**. Suppose <InlineMath math="X" /> is normally distributed with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. The probability <InlineMath math="45 < X < 62" /> comes from the z scores of both bounds:
 
 <MathContainer>
-<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0.5" />
-<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1.2" />
+  <BlockMath math="z_1 = \frac{45 - 50}{10} = -0.5, \qquad z_2 = \frac{62 - 50}{10} = 1.2" />
+  <BlockMath math="P(45 < X < 62) = \Phi(1.2) - \Phi(-0.5) \approx 0.8849 - 0.3085 = 0.5764" />
 </MathContainer>
 
-**Step 2**: Use the standard normal distribution table
+The probability is about <InlineMath math="0.5764" />, or <InlineMath math="57.64\%" />. The interactive graph shows this area on the standard normal curve, between <InlineMath math="z = -0.5" /> and <InlineMath math="z = 1.2" />.
 
-The transformed interval is <InlineMath math="P(-0.5 < Z < 1.2)" />. Subtract the **cumulative probability at the lower boundary** from the **cumulative probability at the upper boundary**:
+<LineEquation
+  title={<>The area between <InlineMath math="z = -0.5" /> and <InlineMath math="z = 1.2" /></>}
+  description={<>The thick arc is the part of the standard normal curve above the standardized interval. The area under that arc equals <InlineMath math="P(45 < X < 62) \approx 0.5764" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 5.5]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -3.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 341 }, (_, index) => {
+        const x = -0.5 + index / 200;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      lineWidth: 4,
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -0.5, y: 0, z: 0 },
+        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="-0.5" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 1.2, y: 0, z: 0 },
+        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1.2" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+  ]}
+/>
 
-<BlockMath math="\begin{aligned} P(a &lt; Z &lt; b) &amp;= P(Z &lt; b) \\ &amp;\quad{}- P(Z &lt; a) \end{aligned}" />
+Check by splitting the interval at the center. The left part is <InlineMath math="P(-0.5 < Z < 0) = 0.5 - 0.3085 = 0.1915" />, and the right part is <InlineMath math="P(0 < Z < 1.2) = 0.8849 - 0.5 = 0.3849" />. Their sum is <InlineMath math="0.1915 + 0.3849 = 0.5764" />, the same as the first result.
 
-From the standard normal distribution table:
+**Example 2**. With heights following <InlineMath math="N(165, 6^2)" />, the probability that a teenager is taller than <InlineMath math="177" /> cm is the area of the right tail:
 
-- <InlineMath math="P(Z < -0.5) \approx 0.3085" />
-- <InlineMath math="P(Z < 1.2) \approx 0.8849" />
+<MathContainer>
+  <BlockMath math="z = \frac{177 - 165}{6} = 2" />
+  <BlockMath math="P(X > 177) = 1 - \Phi(2) \approx 1 - 0.9772 = 0.0228" />
+</MathContainer>
 
-**Step 3**: Calculate the final probability
+Check with the <InlineMath math="95\%" /> rule: an area of <InlineMath math="95.45\%" /> lies within two standard deviations, so the remaining <InlineMath math="4.55\%" /> splits equally between the two tails. One tail holds about <InlineMath math="2.28\%" />, which matches <InlineMath math="0.0228" />.
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0.5 &lt; Z &lt; 1.2) \\ &amp;\approx 0.8849 - 0.3085 \\ &amp;= 0.5764 \end{aligned}" />
+## Common Mistakes
 
-So, the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" /> is <InlineMath math="0.5764" /> or approximately <InlineMath math="57.64\%" />.
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Reading <InlineMath math="f(x)" /> as a probability | <InlineMath math="f(x)" /> is a density height and can exceed <InlineMath math="1" /> | A probability is an area and always lies between <InlineMath math="0" /> and <InlineMath math="1" /> |
+| Standardizing with the variance | A z score uses the standard deviation <InlineMath math="\sigma" />, not <InlineMath math="\sigma^2" /> | For <InlineMath math="N(50, 100)" />, the standard deviation is <InlineMath math="10" /> |
+| Reading <InlineMath math="P(X > a)" /> straight from the table | A z table gives the area to the left, <InlineMath math="P(Z < z)" /> | The right tail is <InlineMath math="1 - \Phi(z)" /> |
+| Subtracting in the wrong order | <InlineMath math="P(a < Z < b) = \Phi(b) - \Phi(a)" /> for <InlineMath math="a < b" /> | The resulting probability must be positive |
+| Using a normal model for strongly skewed data | A normal model assumes a symmetric spread | Compare the mean and median of the data first |
+
+Before you calculate, **sketch the curve and shade the area the question asks for**. The sketch shows at once whether your answer must be below <InlineMath math="0.5" />, above <InlineMath math="0.5" />, or close to one of the <InlineMath math="68" />, <InlineMath math="95" />, and <InlineMath math="99.7" /> percent figures.
+
+## Exercises
+
+The first problem practices z scores, the second and third find areas, and the fourth reverses the direction, from a probability to a boundary value. Use a z table with four decimal places, then **check your answer with a sketch of the curve** before you read the solution.
+
+1. Exam scores follow <InlineMath math="N(70, 8^2)" />. Find the z score of a score of <InlineMath math="82" /> and explain what it means.
+
+2. With the same score distribution, find the probability that a student scores less than <InlineMath math="58" />.
+
+3. The weight of a sugar package is normally distributed with mean <InlineMath math="250" /> g and standard deviation <InlineMath math="5" /> g. Find the probability that one package weighs between <InlineMath math="240" /> g and <InlineMath math="260" /> g.
+
+4. The time to finish a test is normally distributed with mean <InlineMath math="60" /> minutes and standard deviation <InlineMath math="12" /> minutes. Find the time limit that only the slowest <InlineMath math="10\%" /> of test takers exceed.
+
+### Worked Solutions
+
+**Problem 1**. A z score compares the distance from the mean with the standard deviation:
+
+<BlockMath math="z = \frac{82 - 70}{8} = \frac{12}{8} = 1.5" />
+
+A score of <InlineMath math="82" /> lies **one and a half standard deviations above the mean**. The table gives <InlineMath math="\Phi(1.5) \approx 0.9332" />, so that score is higher than about <InlineMath math="93\%" /> of the exam scores.
+
+**Problem 2**. The z score of <InlineMath math="58" /> is <InlineMath math="\frac{58 - 70}{8} = -1.5" />. The table lists only positive z, so use symmetry:
+
+<BlockMath math="P(X < 58) = \Phi(-1.5) = 1 - \Phi(1.5) \approx 1 - 0.9332 = 0.0668" />
+
+Check: <InlineMath math="58" /> and <InlineMath math="82" /> lie the same distance from <InlineMath math="70" />, so **the two tails have equal areas**, and <InlineMath math="P(X > 82) = 1 - 0.9332" /> is also <InlineMath math="0.0668" />.
+
+**Problem 3**. Both bounds lie <InlineMath math="10" /> g from the mean, which gives <InlineMath math="z = \pm 2" />:
+
+<BlockMath math="P(240 < X < 260) = \Phi(2) - \Phi(-2) \approx 0.9772 - 0.0228 = 0.9544" />
+
+Check with the <InlineMath math="95\%" /> rule: the interval reaches exactly **two standard deviations to each side of the mean**, and the exact value is <InlineMath math="0.9545" />. The difference of <InlineMath math="0.0001" /> comes from rounding in the table.
+
+**Problem 4**. The limit <InlineMath math="c" /> satisfies <InlineMath math="P(X > c) = 0.10" />, so the area to its left is <InlineMath math="0.90" />. The table gives <InlineMath math="\Phi(1.28) \approx 0.8997" />, the closest value to <InlineMath math="0.90" />, so <InlineMath math="z \approx 1.28" />. Convert back to minutes:
+
+<BlockMath math="c = \mu + z\sigma \approx 60 + 1.28 \cdot 12 = 75.36" />
+
+The limit is about <InlineMath math="75.4" /> minutes. Check: <InlineMath math="\frac{75.36 - 60}{12} = 1.28" />, and the area to the right of that score is <InlineMath math="1 - 0.8997 \approx 0.10" />, so **only a tenth of the test takers go past the limit**.
