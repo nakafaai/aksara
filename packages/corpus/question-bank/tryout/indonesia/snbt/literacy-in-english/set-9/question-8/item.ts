@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "zoo-purpose",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Because the trial reached $$54$$, compared with a baseline of $$36$$ and a comparison value of $$37$$, matching symbols on bins and stall permits should become permanent before the stated limitation is examined.",
-        },
-        {
           correct: true,
           label:
-            "The mean of $$54$$, compared with $$36$$ at baseline and $$37$$ in the comparison, supports further testing of matching symbols. Follow-up records must distinguish changes in total waste from changes in the proportion sorted correctly.",
+            "To illustrate that much of what visitors see is not conservation work",
         },
         {
           correct: false,
           label:
-            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+            "To show that meerkats and penguins are among the most endangered animals",
         },
         {
           correct: false,
           label:
-            "The limitation that visitor numbers and food types changed across evenings affects delivery details, but it does not restrict who can be covered by the conclusion.",
+            "To argue that families should stop visiting zoos at the weekend",
         },
         {
           correct: false,
           label:
-            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
+            "To prove that small animals suffer more in captivity than large ones",
+        },
+        {
+          correct: false,
+          label:
+            "To suggest that zoos should keep only meerkats and penguins in future",
         },
       ],
     },
