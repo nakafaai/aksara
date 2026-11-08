@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "jamu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "dikeringkan lebih dulu di bawah sinar matahari",
+        },
+        {
+          correct: false,
+          label: "dicampur dengan bahan kimia buatan pabrik",
+        },
+        {
           correct: true,
-          label:
-            "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
+          label: "dibuat seragam menurut standar tertentu",
         },
         {
           correct: false,
-          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+          label: "dijual dengan harga yang lebih murah",
         },
         {
           correct: false,
-          label:
-            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
-        },
-        {
-          correct: false,
-          label:
-            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
-        },
-        {
-          correct: false,
-          label:
-            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
+          label: "dibungkus dalam kemasan yang rapat",
         },
       ],
     },

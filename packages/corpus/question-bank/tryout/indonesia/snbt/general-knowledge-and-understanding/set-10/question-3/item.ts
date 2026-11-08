@@ -1,34 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "sasando",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
+          column: 2,
+          label: "Sasando dimainkan dengan cara digesek.",
         },
         {
-          correct: false,
-          label:
-            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
+          column: 1,
+          label: "Setiap dawai sasando menghasilkan nada yang berbeda.",
         },
         {
-          correct: true,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+          column: 1,
+          label: "Pemain sasando dapat memainkan melodi dan iringan sekaligus.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
-        },
-        {
-          correct: false,
-          label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+            "Sasando listrik tetap memerlukan wadah daun lontar untuk memperkuat bunyi.",
         },
       ],
     },
