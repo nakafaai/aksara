@@ -56,7 +56,7 @@ If <InlineMath math="D > 0" />, the equation has **two different real roots**:
 
 For <InlineMath math="x^2 - 5x + 6 = 0" />, the discriminant is <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 1" />, so <InlineMath math="x = \frac{5 \pm 1}{2}" />, that is <InlineMath math="3" /> and <InlineMath math="2" />. Check by factoring: <InlineMath math="(x - 2)(x - 3) = x^2 - 5x + 6" />.
 
-For an equation with integer coefficients, <InlineMath math="D" /> also tells you **whether the roots are rational**. If <InlineMath math="D" /> is a perfect square such as <InlineMath math="1" />, the roots are rational and the equation factors. If not, the roots are irrational. For example, <InlineMath math="x^2 - 4x + 1 = 0" /> has <InlineMath math="D = 12" />, so <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
+For an equation with integer coefficients, <InlineMath math="D" /> also tells you **whether the roots are rational**. If <InlineMath math="D" /> is a perfect square such as <InlineMath math="1" />, the roots are rational and the equation factors. If <InlineMath math="D > 0" /> is not a perfect square, the roots are irrational. For example, <InlineMath math="x^2 - 4x + 1 = 0" /> has <InlineMath math="D = 12" />, so <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
 
 ## One Repeated Real Root
 
@@ -125,8 +125,9 @@ So **the sum of the roots** is <InlineMath math="x_1 + x_2 = -\frac{b}{a}" /> an
 | <InlineMath math="x_1 x_2 > 0" /> and <InlineMath math="x_1 + x_2 > 0" /> | Both positive |
 | <InlineMath math="x_1 x_2 > 0" /> and <InlineMath math="x_1 + x_2 < 0" /> | Both negative |
 | <InlineMath math="x_1 x_2 < 0" /> | Opposite signs |
+| <InlineMath math="x_1 x_2 = 0" /> | One root is zero, the other is <InlineMath math="-\frac{b}{a}" /> |
 
-A positive product means both roots have the same sign, and then the sum decides that sign. A negative product means one root is positive and the other negative.
+A positive product means both roots have the same sign, so **the sum decides that sign**.
 
 <MathVisual
   title="A negative product of the roots"
@@ -154,7 +155,7 @@ A positive product means both roots have the same sign, and then the sum decides
   }}
 />
 
-For <InlineMath math="x^2 + x - 6 = 0" />, the product of the roots is <InlineMath math="\frac{c}{a} = -6 < 0" />, so the roots have opposite signs. Check: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, with roots <InlineMath math="-3" /> and <InlineMath math="2" />. The graph shows why: for <InlineMath math="a > 0" />, a negative <InlineMath math="f(0) = c" /> puts the parabola below the axis at <InlineMath math="x = 0" />, so it must cross the axis once on the left of the origin and once on the right.
+For <InlineMath math="x^2 + x - 6 = 0" />, the product of the roots is <InlineMath math="\frac{c}{a} = -6 < 0" />, so the roots have opposite signs. Check: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, with roots <InlineMath math="-3" /> and <InlineMath math="2" />. The graph shows why: for <InlineMath math="a > 0" />, a negative <InlineMath math="f(0) = c" /> puts the parabola below the axis at <InlineMath math="x = 0" />, so it must cross the axis once on the left of the origin and once on the right. The case <InlineMath math="a < 0" /> with <InlineMath math="c > 0" /> is the same with the parabola flipped.
 
 ## Example of the Condition for Two Different Real Roots
 
@@ -174,7 +175,7 @@ So <InlineMath math="k < 4" /> and <InlineMath math="k \ne 0" />. Check with <In
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
 | Computing <InlineMath math="(-5)^2" /> as <InlineMath math="-25" /> | The square of a negative number is always positive | <InlineMath math="(-5)^2 = 25" />, so <InlineMath math="D" /> for <InlineMath math="x^2 - 5x + 6" /> is <InlineMath math="1" /> |
-| Forgetting the condition <InlineMath math="a \ne 0" /> | For <InlineMath math="a = 0" /> the equation is linear and <InlineMath math="D" /> does not apply | Write the condition on the leading coefficient before computing <InlineMath math="D" /> |
+| Forgetting the condition <InlineMath math="a \ne 0" /> | For <InlineMath math="a = 0" /> the equation is linear and classifying the roots from <InlineMath math="D" /> does not apply | Write the condition on the leading coefficient before computing <InlineMath math="D" /> |
 | Calling <InlineMath math="D = 0" /> no roots | The root exists and is repeated, namely <InlineMath math="-\frac{b}{2a}" /> | The graph touches the axis at its vertex |
 | Deciding the signs from the sum alone | A positive sum can come from one large root and one negative root | Check the product first |
 | Using the sign rules when <InlineMath math="D < 0" /> | Complex nonreal roots are neither positive nor negative | Make sure <InlineMath math="D \ge 0" /> first |
