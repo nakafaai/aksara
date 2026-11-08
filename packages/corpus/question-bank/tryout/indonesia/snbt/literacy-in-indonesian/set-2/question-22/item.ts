@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "subak-water",
   versions: {
     id: {
       kind: "choice",
@@ -8,24 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
-        },
-        {
-          correct: false,
-          label: "Seluruh individu merupakan anggota satu pasukan",
+            "Subak tidak menggunakan saluran atau terowongan untuk mengalirkan air.",
         },
         {
           correct: true,
           label:
-            "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
+            "Subak juga merupakan organisasi petani yang mengatur jadwal tanam dan upacara, bukan hanya jaringan saluran air.",
         },
         {
           correct: false,
-          label: "Penelitian hanya menganalisis satu kerangka manusia",
+          label:
+            "Irigasi di Bali sepenuhnya dikelola oleh pemerintah, bukan oleh petani.",
         },
         {
           correct: false,
-          label: "DNA membuktikan bahwa wabah menewaskan seluruh individu",
+          label: "Subak lebih tua daripada sistem irigasi modern.",
+        },
+        {
+          correct: false,
+          label: "Subak hanya berfungsi sebagai tempat upacara di pura air.",
         },
       ],
     },

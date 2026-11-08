@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "structure",
+  },
+  stimulus: "jikji-printing",
   versions: {
     en: {
       kind: "choice",
@@ -8,26 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "GenAI has already eliminated one quarter of all jobs worldwide.",
+            "argue that Bi Sheng, not the Korean monks, deserves credit for *Jikji*.",
         },
         {
           correct: false,
-          label: "Only low-income countries have occupations exposed to GenAI.",
+          label: "explain how woodblocks were carved in Korea.",
+        },
+        {
+          correct: false,
+          label: "prove that clay type produced clearer pages than metal type.",
+        },
+        {
+          correct: false,
+          label: "describe the life of the scholar Shen Kuo.",
         },
         {
           correct: true,
           label:
-            "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
-        },
-        {
-          correct: false,
-          label:
-            "The ILO index predicts the exact date on which each worker will lose a job.",
-        },
-        {
-          correct: false,
-          label:
-            "Infrastructure and worker skills have no influence on technology adoption.",
+            "show that the idea of movable type is older than both *Jikji* and Gutenberg, while noting why it did not replace woodblock printing in China.",
         },
       ],
     },

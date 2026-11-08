@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "sewing-machine",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Gajah betina selalu menjaga anaknya sendirian",
-        },
-        {
-          correct: false,
-          label: "Gajah betina jumlahnya lebih banyak daripada jantan",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
+            "Mbah Darsih awalnya meragukan pembeli yang memesan kebaya hanya dengan melihat foto.",
         },
         {
-          correct: false,
-          label: "Gajah betina selalu menempuh perjalanan paling jauh",
+          column: 1,
+          label:
+            "Sekar mengusulkan agar bagian dalam kebaya dikerjakan lebih cepat karena tidak terlihat oleh pembeli.",
         },
         {
-          correct: false,
-          label: "Gajah betina selalu dikawal oleh gajah jantan",
+          column: 2,
+          label:
+            "Keesokan paginya, Mbah Darsih memuji hasil jahitan Sekar secara terang-terangan.",
+        },
+        {
+          column: 2,
+          label: "Mesin jahit itu dibeli oleh ibu Sekar.",
         },
       ],
     },

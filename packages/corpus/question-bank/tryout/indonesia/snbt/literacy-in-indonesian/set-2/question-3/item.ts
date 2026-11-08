@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "lichen-air",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Perkembangan harga beras di Indonesia",
-        },
-        {
-          correct: false,
-          label: "Informasi negara selain Indonesia yang mengonsumsi beras",
-        },
-        {
-          correct: false,
-          label: "Informasi terkait olahan beras",
-        },
-        {
-          correct: false,
-          label: "Cara memasak nasi tanpa menyisakan pati di dalam butirannya",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Hasil penelitian tentang pengaruh pencucian terhadap tekstur nasi",
+            "Ketika pencemaran sulfur dioksida meningkat, lumut kerak berbentuk semak berumbai umumnya hilang lebih dulu daripada lumut kerak berbentuk kerak tipis.",
+        },
+        {
+          column: 2,
+          label:
+            "Kawasan yang hanya ditumbuhi lumut kerak berbentuk kerak tipis kemungkinan berudara lebih bersih daripada kawasan yang juga ditumbuhi lumut berbentuk semak berumbai.",
+        },
+        {
+          column: 2,
+          label:
+            "Keadaan lumut kerak di suatu pohon menunjukkan kualitas udara pada hari survei dilakukan.",
+        },
+        {
+          column: 1,
+          label:
+            "Membandingkan lumut kerak hanya pada pohon sejenis membantu mengurangi pengaruh perbedaan kulit kayu terhadap hasil survei.",
         },
       ],
     },

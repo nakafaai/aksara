@@ -1,30 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "To prove that private offices are perfect for every task",
-        },
-        {
-          correct: false,
-          label: "To advertise wearable sensors to office managers",
-        },
-        {
-          correct: false,
-          label: "To show that electronic communication should be banned",
-        },
-        {
           correct: true,
           label:
-            "To challenge a one-size-fits-all assumption and support context-based decisions",
+            "The evening hours drew some people who had not used the library recently, but the data cannot show how many evening visits were simply moved from earlier in the day.",
         },
         {
           correct: false,
-          label: "To argue that workplace evidence is unnecessary",
+          label:
+            "All 130 evening visitors were people who had never used the library before.",
+        },
+        {
+          correct: false,
+          label: "The pilot reduced the total number of weekday visits.",
+        },
+        {
+          correct: false,
+          label:
+            "Daytime visits fell because of the evening hours, exactly as the head librarian argued.",
+        },
+        {
+          correct: false,
+          label: "The council paid the full 9,000 dollars for the pilot.",
         },
       ],
     },

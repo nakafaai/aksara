@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "rice-field-drama",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Tahapan pembuatan motif batik Lasem",
+          label: "Membujuk Bayu agar ikut kuliah pertanian.",
+        },
+        {
+          correct: false,
+          label:
+            "Mendukung penjualan sawah dengan cara yang lebih menguntungkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Menyalahkan Pak Karta karena tidak lagi mampu mengolah sawah.",
         },
         {
           correct: true,
-          label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
+          label:
+            "Menyelesaikan masalah tanpa menjual sawah dengan menggabungkan keahlian Bayu dan pengetahuan pertanian Ningsih.",
         },
         {
           correct: false,
-          label: "Biografi seluruh pedagang batik dalam arsip",
-        },
-        {
-          correct: false,
-          label: "Sejarah pendirian setiap museum di Rembang",
-        },
-        {
-          correct: false,
-          label: "Perbandingan harga batik lama dan masa kini",
+          label: "Meminta dosennya membeli sawah keluarga.",
         },
       ],
     },
