@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "football-league",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$0{,}50\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$1{,}22\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$2{,}40\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$2{,}50\\text{ km}$$",
-        },
-        {
-          correct: true,
-          label: "$$1{,}44\\text{ km}$$",
-        },
+        { correct: false, label: "$$2$$" },
+        { correct: true, label: "$$3$$" },
+        { correct: false, label: "$$5$$" },
+        { correct: false, label: "$$6$$" },
+        { correct: false, label: "$$10$$" },
       ],
     },
   },

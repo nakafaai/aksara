@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "speed-cameras",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\frac{1}{3}\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{3}\\sqrt{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}\\sqrt{2}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{1}{3}\\sqrt{6}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}\\sqrt{3}$$",
-        },
+        { correct: true, label: "mobil Q dan S" },
+        { correct: false, label: "mobil Q saja" },
+        { correct: false, label: "mobil P, Q, dan S" },
+        { correct: false, label: "mobil S saja" },
+        { correct: false, label: "mobil P dan Q" },
       ],
     },
   },

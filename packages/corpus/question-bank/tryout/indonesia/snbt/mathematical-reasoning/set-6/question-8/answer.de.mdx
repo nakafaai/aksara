@@ -1,55 +1,15 @@
-# Quotienten der Folge bestimmen
+Die obere Fläche schrumpft **bei jeder Faltung um den Faktor <InlineMath math="\tfrac12" />**, nach <InlineMath math="n" /> Faltungen ist sie also <InlineMath math="\tfrac{600}{2^n}" />.
 
-Das Holz wird in <InlineMath math="6" /> Stücke geschnitten, also gilt <InlineMath math="n = 6" />. Die Längen der Stücke bilden eine geometrische Folge.
+# Die Bedingung aufstellen
 
-Wir ordnen die Stücke **vom längsten zum kürzesten**. Das erste Glied ist <InlineMath math="a = 96" />, das <InlineMath math="6" />. Glied ist mit <InlineMath math="U_6 = 3" /> das kürzeste.
+<BlockMath math="\frac{600}{2^n}<10\;\Longleftrightarrow\;2^n>60" />
 
-Die Formel für den <InlineMath math="n" />-ten Term einer geometrischen Folge lautet:
+# Das kleinste n finden
 
-<BlockMath math="U_n = ar^{n-1}" />
+<BlockMath math="2^5=32,\qquad 2^6=64" />
 
-Wir setzen die bekannten Werte ein:
+Fünf Faltungen ergeben <InlineMath math="\tfrac{600}{32}=18{,}75" /> Quadratzentimeter, **noch mehr als 10**. Sechs Faltungen ergeben <InlineMath math="\tfrac{600}{64}=9{,}375" /> Quadratzentimeter, schon weniger als 10.
 
-<BlockMath math="U_6 = 96 \cdot r^{6-1}" />
+Der Wert 60 teilt 600 durch 10, als nähme jede Faltung eine feste Fläche weg. Der Wert 5 hört eine Faltung zu früh auf.
 
-<BlockMath math="3 = 96 \cdot r^5" />
-
-Nun bestimmen wir den Quotienten <InlineMath math="r" />:
-
-<BlockMath math="r^5 = \frac{3}{96}" />
-
-<BlockMath math="r^5 = \frac{1}{32}" />
-
-<BlockMath math="r^5 = \left(\frac{1}{2}\right)^5" />
-
-<BlockMath math="r = \frac{1}{2}" />
-
-Der Quotient ist also <InlineMath math="\frac{1}{2}" />: Jedes folgende Stück ist halb so lang wie das vorherige.
-
-# Berechnung der Gesamtholzlänge
-
-Die ursprüngliche Länge ist die **Summe aller Stücke** <InlineMath math="S_6" />. Da <InlineMath math="r < 1" /> gilt, verwenden wir:
-
-<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
-
-Wir setzen <InlineMath math="a = 96" />, <InlineMath math="r = \frac{1}{2}" /> und <InlineMath math="n = 6" /> ein:
-
-<BlockMath math="S_6 = \frac{96\left(1 - \left(\frac{1}{2}\right)^6\right)}{1 - \frac{1}{2}}" />
-
-<BlockMath math="S_6 = \frac{96\left(1 - \frac{1}{64}\right)}{\frac{1}{2}}" />
-
-Damit erhalten wir:
-
-<BlockMath math="S_6 = 96 \cdot \left(\frac{63}{64}\right) \cdot 2" />
-
-<BlockMath math="S_6 = 192 \cdot \frac{63}{64}" />
-
-<BlockMath math="S_6 = 3 \cdot 63" />
-
-<BlockMath math="S_6 = 189" />
-
-Das Holzbrett war ursprünglich <InlineMath math="189\text{ cm}" /> lang.
-
-Die sechs Längen geben eine direkte Kontrolle der Summe.
-
-<BlockMath math="96+48+24+12+6+3=189\text{ cm}" />
+Es braucht also mindestens **6 Faltungen**.

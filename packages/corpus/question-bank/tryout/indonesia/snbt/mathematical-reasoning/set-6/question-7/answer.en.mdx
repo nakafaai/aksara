@@ -1,39 +1,20 @@
-# Determining the Common Difference
+After <InlineMath math="n" /> folds the stack has <InlineMath math="2^n" /> layers and **a thickness of <InlineMath math="0.1\cdot2^n" /> mm**. Each statement is checked with this formula.
 
-January is the first month (<InlineMath math="U_1" />), so the number of cars produced is <InlineMath math="a = 100\text{ units}" />. April is the <InlineMath math="4" />th month (<InlineMath math="U_4" />), with a production of <InlineMath math="160\text{ units}" />.
+# Five and seven folds
 
-We can find the **common difference** (<InlineMath math="b" />) of this arithmetic sequence using the <InlineMath math="n" />-th term formula:
+<BlockMath math="\begin{aligned}
+n=5&:\quad 0.1\cdot2^5=0.1\cdot32=3.2\text{ mm}\\
+n=7&:\quad 2^7=128\text{ layers}
+\end{aligned}" />
 
-<BlockMath math="U_n = a + (n - 1)b" />
+The first statement is true. Seven folds give 128 layers, **not 64**, so the third statement is false.
 
-Substitute the known values for April (<InlineMath math="n=4" />):
+# The doubling pattern and twenty folds
 
-<BlockMath math="160 = 100 + (4 - 1)b" />
+From 1 to 2 folds the thickness rises from 0.2 mm to 0.4 mm, an increase of 0.2 mm, not 0.1 mm. The increase **grows with every fold**, so the second statement is false.
 
-<BlockMath math="160 = 100 + 3b" />
+<BlockMath math="0.1\cdot2^{20}=0.1\cdot1{,}048{,}576=104{,}857.6\text{ mm}\approx104.9\text{ m}" />
 
-<BlockMath math="60 = 3b" />
+The thickness is more than 100 m, so the fourth statement is true.
 
-<BlockMath math="b = 20" />
-
-So, production increases by <InlineMath math="20\text{ units}" /> each month.
-
-# Calculating Total Annual Production
-
-Total production until the end of the year means the **sum of production** for <InlineMath math="12\text{ months}" /> (<InlineMath math="S_{12}" />). We use the arithmetic series sum formula:
-
-<BlockMath math="S_n = \frac{n}{2} \{2a + (n - 1)b\}" />
-
-Substitute <InlineMath math="n = 12" />, <InlineMath math="a = 100" />, and <InlineMath math="b = 20" />:
-
-<BlockMath math="\begin{aligned}S_{12}&=\frac{12}{2}\bigl[2(100) \\ &\quad+(12-1)(20)\bigr]\end{aligned}" />
-
-<BlockMath math="S_{12} = 6 \{200 + (11)(20)\}" />
-
-<BlockMath math="S_{12} = 6 (200 + 220)" />
-
-<BlockMath math="S_{12} = 6 (420)" />
-
-<BlockMath math="S_{12} = 2520" />
-
-Thus, the total number of cars that can be produced by the end of the year is <InlineMath math="2{,}520\text{ units}" />.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
