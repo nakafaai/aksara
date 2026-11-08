@@ -1,62 +1,62 @@
 Die Bildgerade besteht aus den Punkten <InlineMath math="(x',y')" />, deren **Urbild auf <InlineMath math="g" /> liegt**. Drücke deshalb <InlineMath math="x" /> und <InlineMath math="y" /> mit der inversen Matrix durch <InlineMath math="x'" /> und <InlineMath math="y'" /> aus.
 
 <BlockMath math="\begin{aligned}
-\det M&=3\cdot2-1\cdot5=1 \\
-M^{-1}&=\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} \\
-x=2x'-y',&\qquad y=-5x'+3y'
+\det M&=5\cdot1-2\cdot2=1 \\
+M^{-1}&=\begin{pmatrix} 1 & -2 \\ -2 & 5 \end{pmatrix} \\
+x=x'-2y',&\qquad y=-2x'+5y'
 \end{aligned}" />
 
 Setze beides in die Gleichung von <InlineMath math="g" /> ein.
 
 <BlockMath math="\begin{aligned}
-2(2x'-y')-(-5x'+3y')+1&=0 \\
-4x'-2y'+5x'-3y'+1&=0 \\
-9x'-5y'+1&=0
+(x'-2y')-3(-2x'+5y')+2&=0 \\
+x'-2y'+6x'-15y'+2&=0 \\
+7x'-17y'+2&=0
 \end{aligned}" />
 
 <MathVisual
   title="Gerade und Bildgerade"
-  description={<>Die Gerade <InlineMath math="2x-y+1=0" /> geht durch <InlineMath math="(0,1)" /> und <InlineMath math="(1,3)" />. Die Matrix bildet diese Punkte auf <InlineMath math="(1,2)" /> und <InlineMath math="(6,11)" /> ab, und beide liegen auf der Bildgeraden <InlineMath math="9x-5y+1=0" />.</>}
+  description={<>Die Gerade <InlineMath math="x-3y+2=0" /> geht durch <InlineMath math="(1,1)" /> und <InlineMath math="(-2,0)" />. Die Matrix bildet diese Punkte auf <InlineMath math="(7,3)" /> und <InlineMath math="(-10,-4)" /> ab, und beide liegen auf der Bildgeraden <InlineMath math="7x-17y+2=0" />.</>}
   labels={{
-    original: <InlineMath math="2x-y+1=0" />,
-    image: <InlineMath math="9x-5y+1=0" />,
-    a: <InlineMath math="(0,1)" />,
-    "a-image": <InlineMath math="(1,2)" />,
-    b: <InlineMath math="(1,3)" />,
-    "b-image": <InlineMath math="(6,11)" />,
+    original: <InlineMath math="x-3y+2=0" />,
+    image: <InlineMath math="7x-17y+2=0" />,
+    a: <InlineMath math="(1,1)" />,
+    "a-image": <InlineMath math="(7,3)" />,
+    b: <InlineMath math="(-2,0)" />,
+    "b-image": <InlineMath math="(-10,-4)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 8 },
-      y: { min: -8, max: 12.5 },
+      x: { min: -12, max: 9 },
+      y: { min: -5.5, max: 4.5 },
     },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -1, y: -1 }, to: { x: 2, y: 5 } },
-      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -4, y: -7 }, to: { x: 6, y: 11 } },
-      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
-      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
-      { id: "point-b", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
-      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: 6, y: 11 } },
+      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -5, y: -1 }, to: { x: 4, y: 2 } },
+      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -10, y: -4 }, to: { x: 7, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 7, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: -10, y: -4 } },
     ],
     labels: [
-      { key: "original", objectId: "original-line", at: { x: -1, y: -1 }, placement: "left" },
-      { key: "image", objectId: "image-line", at: { x: -4, y: -7 }, placement: "right" },
-      { key: "a", objectId: "point-a", at: { x: 0, y: 1 }, placement: "left" },
-      { key: "a-image", objectId: "point-a-image", at: { x: 1, y: 2 }, placement: "right" },
-      { key: "b", objectId: "point-b", at: { x: 1, y: 3 }, placement: "above-left" },
-      { key: "b-image", objectId: "point-b-image", at: { x: 6, y: 11 }, placement: "left" },
+      { key: "original", objectId: "original-line", at: { x: -5, y: -1 }, placement: "above-left" },
+      { key: "image", objectId: "image-line", at: { x: 7, y: 3 }, placement: "below" },
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -10, y: -4 }, placement: "below" },
     ],
   }}
 />
 
-Zur Kontrolle mit zwei Punkten von <InlineMath math="g" />: <InlineMath math="M(0,1)=(1,2)" /> und <InlineMath math="9-10+1=0" />, <InlineMath math="M(1,3)=(6,11)" /> und <InlineMath math="54-55+1=0" />.
+Zur Kontrolle mit zwei Punkten von <InlineMath math="g" />: <InlineMath math="M(1,1)=(7,3)" /> und <InlineMath math="49-51+2=0" />, <InlineMath math="M(-2,0)=(-10,-4)" /> und <InlineMath math="-70+68+2=0" />.
 
-Die Bildgerade hat also die Gleichung <InlineMath math="9x-5y+1=0" />.
+Die Bildgerade hat also die Gleichung <InlineMath math="7x-17y+2=0" />.
 
-- <InlineMath math="x+1=0" /> setzt <InlineMath math="M" /> statt <InlineMath math="M^{-1}" /> ein, also <InlineMath math="x=3x'+y'" /> und <InlineMath math="y=5x'+2y'" />.
-- <InlineMath math="9x-5y-1=0" /> verliert beim Umformen das Vorzeichen der Konstanten. Der Bildpunkt <InlineMath math="(1,2)" /> erfüllt diese Gleichung nicht.
-- <InlineMath math="x+y-1=0" /> entsteht mit einer falschen Inversen, bei der die Elemente der Nebendiagonale ihr Vorzeichen behalten.
-- <InlineMath math="5x-9y-1=0" /> vertauscht in der richtigen Gleichung die Rollen von <InlineMath math="x" /> und <InlineMath math="y" />.
+- <InlineMath math="x+y-2=0" /> setzt <InlineMath math="M" /> statt <InlineMath math="M^{-1}" /> ein, also <InlineMath math="x=5x'+2y'" /> und <InlineMath math="y=2x'+y'" />.
+- <InlineMath math="7x-17y-2=0" /> verliert beim Umformen das Vorzeichen der Konstanten. Der Bildpunkt <InlineMath math="(7,3)" /> erfüllt diese Gleichung nicht.
+- <InlineMath math="5x+13y-2=0" /> entsteht mit einer falschen Inversen, bei der die Elemente der Nebendiagonale ihr Vorzeichen behalten.
+- <InlineMath math="17x-7y-2=0" /> vertauscht in der richtigen Gleichung die Rollen von <InlineMath math="x" /> und <InlineMath math="y" />.

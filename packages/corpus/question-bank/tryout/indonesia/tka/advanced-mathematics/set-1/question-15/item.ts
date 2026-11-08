@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3x+4y+32=0$$",
+          label: "$$3x-4y=0$$",
         },
         {
           correct: false,
-          label: "$$4x-3y-1=0$$",
+          label: "$$4x+3y=0$$",
         },
         {
           correct: false,
-          label: "$$3x+4y-7=0$$",
+          label: "$$4x+3y-5=0$$",
         },
         {
           correct: false,
-          label: "$$3x+4y-2=0$$",
+          label: "$$4x-3y-25=0$$",
         },
         {
           correct: true,
-          label: "$$3x+4y-32=0$$",
+          label: "$$4x+3y-25=0$$",
         },
       ],
     },
