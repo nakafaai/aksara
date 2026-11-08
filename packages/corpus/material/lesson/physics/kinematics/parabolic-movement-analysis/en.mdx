@@ -46,7 +46,7 @@ Air resistance is ignored and gravity is constant. Right and up are positive, an
   }}
 />
 
-The ball's shadow on the water moves at a constant speed, because it follows only the horizontal component. The ball itself rises and falls, because its vertical component <InlineMath math="v_y = v_{0y} - gt" /> keeps decreasing.
+The ball's shadow on the water moves at a constant speed, like an object in [uniform linear motion](/en/subjects/physics/kinematics/uniform-linear-motion), because it follows only the horizontal component. The ball itself rises and falls, because its vertical component <InlineMath math="v_y = v_{0y} - gt" /> keeps decreasing.
 
 ## Time to the Top and Maximum Height
 
@@ -65,7 +65,7 @@ If the object lands at **the same height** it was launched from, the time down e
 
 <BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
 
-The last step uses the identity <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Because <InlineMath math="\sin 2\theta" /> is at most <InlineMath math="1" />, the longest range comes at <InlineMath math="\theta = 45^\circ" />. Two angles that add up to <InlineMath math="90^\circ" />, such as <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" />, give the same range because <InlineMath math="\sin 60^\circ = \sin 120^\circ" />, just like the two <InlineMath math="20\text{ m/s}" /> throws in [projectile motion](/en/subjects/physics/kinematics/parabolic-movement). This formula does not hold when the landing point is higher or lower than the launch point.
+The last step uses the identity <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Because <InlineMath math="\sin 2\theta" /> is at most <InlineMath math="1" />, the longest range comes at <InlineMath math="\theta = 45^\circ" />. Two angles that add up to <InlineMath math="90^\circ" />, such as <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" />, give the same range because <InlineMath math="\sin 60^\circ = \sin 120^\circ" />. With <InlineMath math="v_0 = 20\text{ m/s}" />, both land <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" /> away, the same result that time of flight and horizontal velocity give in [projectile motion](/en/subjects/physics/kinematics/parabolic-movement). This formula does not hold when the landing point is higher or lower than the launch point.
 
 ## Velocity Along the Path
 
@@ -99,7 +99,21 @@ The velocity at <InlineMath math="t = 2\text{ s}" /> uses the vertical component
   <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36.2^\circ" />
 </MathContainer>
 
+Check the speed: <InlineMath math="v^2 = 20^2 + 14.64^2 \approx 614.4" />, and <InlineMath math="\sqrt{614.4} \approx 24.8" />.
+
 At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <InlineMath math="v_y" /> is positive, and that time is indeed earlier than the time to the top, <InlineMath math="3.46\text{ s}" />.
+
+## A Forty Five Degree Kick
+
+A ball is kicked from the ground at <InlineMath math="20\text{ m/s}" /> at an angle of <InlineMath math="45^\circ" />. At this angle **the two components are equal**, because <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
+
+<MathContainer>
+  <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
+  <BlockMath math="t_{\text{top}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1.41\text{ s},\qquad h_{\text{max}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+</MathContainer>
+
+Check with the direct formula: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. This range is longer than a <InlineMath math="30^\circ" /> or <InlineMath math="60^\circ" /> throw at the same speed, which both land at <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" />.
 
 ## Common Mistakes
 
@@ -154,7 +168,7 @@ Check with the direct formula: <InlineMath math="\sin 2\theta = 2(0.8)(0.6) = 0.
   <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37.9^\circ" />
 </MathContainer>
 
-The angle is positive and smaller than the launch angle, because the projectile is still rising but its path is flattening.
+The angle is positive and smaller than the launch angle, because the projectile is still rising, but <InlineMath math="v_y" /> is shrinking while <InlineMath math="v_x" /> stays the same, so its path keeps flattening.
 
 **Problem 4**. At <InlineMath math="45^\circ" />, <InlineMath math="\sin 90^\circ = 1" />, so the range formula becomes **very simple**:
 

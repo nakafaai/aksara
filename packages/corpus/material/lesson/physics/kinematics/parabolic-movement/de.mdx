@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Zwei Bewegungen auf einer Bahn
 
-Beim schiefen oder waagerechten Wurf fliegt ein Körper auf einer gekrümmten Bahn, der Wurfparabel. Die Krümmung entsteht aus **zwei Bewegungen zur selben Zeit**: einer waagerechten Bewegung mit konstanter Geschwindigkeit und einer senkrechten Bewegung, die die Schwerkraft nach unten beschleunigt. Ohne Luftwiderstand gelten für beide Bewegungen diese Gleichungen:
+Beim schiefen oder waagerechten Wurf fliegt ein Körper auf einer gekrümmten Bahn, der Wurfparabel. Die Krümmung entsteht aus **zwei gleichzeitigen Bewegungen**: einer waagerechten Bewegung mit konstanter Geschwindigkeit und einer senkrechten Bewegung, die die Schwerkraft nach unten beschleunigt. Ohne Luftwiderstand gelten für beide Bewegungen diese Gleichungen:
 
 <MathContainer>
   <BlockMath math="x(t)=x_0+v_0\cos\theta\ t" />
@@ -75,7 +75,7 @@ Probe mit der senkrechten Gleichung: <InlineMath math="\frac{1}{2}(10)(0{,}5)^2 
 
 ## Abwurfwinkel und Wurfweite
 
-Wird ein Körper vom Boden abgeworfen und landet wieder auf dem Boden, teilt der Abwurfwinkel die Anfangsgeschwindigkeit in einen waagerechten und einen senkrechten Anteil. Ein kleiner Winkel gibt ein großes <InlineMath math="v_x" />, aber eine kurze Flugzeit. Ein großer Winkel gibt eine lange Flugzeit, aber ein kleines <InlineMath math="v_x" />. Die größte Wurfweite erreichst du **beim Winkel** <InlineMath math="45^\circ" />, wenn beide Anteile im Gleichgewicht sind.
+Wird ein Körper vom Boden abgeworfen und landet wieder auf dem Boden, teilt der Abwurfwinkel die Anfangsgeschwindigkeit in einen waagerechten und einen senkrechten Anteil. Ein kleiner Winkel gibt ein großes <InlineMath math="v_x" />, aber eine kurze Flugzeit. Ein großer Winkel gibt eine lange Flugzeit, aber ein kleines <InlineMath math="v_x" />. Die größte Wurfweite erreichst du **beim Winkel** <InlineMath math="45^\circ" />, wenn beide Anteile gleich groß sind.
 
 Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen Würfe unter <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" /> an derselben Stelle, ein Wurf unter <InlineMath math="45^\circ" /> fliegt weiter:
 
@@ -85,7 +85,16 @@ Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen Würfe unter <InlineMath ma
 | <InlineMath math="45^\circ" /> | <InlineMath math="10\sqrt{2}\text{ m/s}" /> | <InlineMath math="2\sqrt{2}\text{ s}" /> | <InlineMath math="40\text{ m}" /> |
 | <InlineMath math="60^\circ" /> | <InlineMath math="10\text{ m/s}" /> | <InlineMath math="2\sqrt{3}\text{ s}" /> | <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> |
 
-Jede Flugzeit ist doppelt so lang wie die Steigzeit <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Der Wurf unter <InlineMath math="60^\circ" /> bleibt länger oben, bewegt sich aber langsamer seitwärts, deshalb ist seine Wurfweite so groß wie beim Wurf unter <InlineMath math="30^\circ" />. Alle drei Wurfweiten folgen auch direkt aus der Formel <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" />, die bei der [Analyse der parabelförmigen Bewegung](/de/faecher/physik/kinematik/analyse-der-parabelfoermigen-bewegung) verwendet wird. Der größte Wert von <InlineMath math="\sin 2\theta" />, nämlich <InlineMath math="1" />, ergibt sich bei <InlineMath math="\theta = 45^\circ" />.
+Für den Wurf unter <InlineMath math="30^\circ" /> ergibt sich jede Größe aus den beiden Komponenten:
+
+<MathContainer>
+  <BlockMath math="v_x = 20\cos30^\circ = 10\sqrt{3}\text{ m/s},\qquad v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />
+  <BlockMath math="T = \frac{2 \times 10}{10} = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+</MathContainer>
+
+Probe mit dem Wurf unter <InlineMath math="60^\circ" />: <InlineMath math="v_x = 10\text{ m/s}" /> und <InlineMath math="T = 2\sqrt{3}\text{ s}" />, also <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, dieselbe Wurfweite.
+
+Jede Flugzeit ist doppelt so lang wie die Steigzeit <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Der Wurf unter <InlineMath math="60^\circ" /> bleibt länger oben, bewegt sich aber langsamer seitwärts, deshalb ist seine Wurfweite so groß wie beim Wurf unter <InlineMath math="30^\circ" />. Alle drei Wurfweiten folgen auch direkt aus der Formel <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" />, die bei den [Formeln zum schiefen Wurf](/de/faecher/physik/kinematik/analyse-der-parabelfoermigen-bewegung) verwendet wird. Der größte Wert von <InlineMath math="\sin 2\theta" />, nämlich <InlineMath math="1" />, ergibt sich bei <InlineMath math="\theta = 45^\circ" />.
 
 ## Häufige Fehler
 
@@ -93,20 +102,20 @@ Bevor du rechnest, **trennst du waagerechte und senkrechte Bewegung** und verbin
 
 | Fehler | Warum er falsch ist | So prüfst du |
 | --- | --- | --- |
-| Die Geschwindigkeit im Scheitelpunkt für null halten | Nur <InlineMath math="v_y" /> ist null, <InlineMath math="v_x" /> bleibt | Das Tempo im Scheitelpunkt ist gleich <InlineMath math="v_x" /> |
+| Die Geschwindigkeit im Scheitelpunkt für null halten | Nur <InlineMath math="v_y" /> ist null, <InlineMath math="v_x" /> bleibt | Die Schnelligkeit im Scheitelpunkt ist gleich <InlineMath math="v_x" /> |
 | Die Schwerkraft in die waagerechte Bewegung einrechnen | Die Schwerkraft wirkt nur nach unten | Die waagerechte Beschleunigung muss null sein |
 | Die Flugzeit aus der waagerechten Bewegung bestimmen | Die Flugzeit ergibt sich aus der senkrechten Bewegung | Die Zeit muss zur Gleichung für <InlineMath math="y" /> passen |
 | Glauben, ein waagerecht geworfener Ball falle langsamer | Die waagerechte Geschwindigkeit ändert die senkrechte Bewegung nicht | Vergleiche mit einem Ball, der aus derselben Höhe fallen gelassen wird |
 
-Den ersten Fehler erkennst du, wenn du im Scheitelpunkt das Tempo null aufschreibst. Der Körper bewegt sich dort weiter seitwärts, sein Tempo ist also gleich <InlineMath math="v_x" />.
+Den ersten Fehler erkennst du, wenn du im Scheitelpunkt die Schnelligkeit null aufschreibst. Der Körper bewegt sich dort weiter seitwärts, seine Schnelligkeit ist also gleich <InlineMath math="v_x" />.
 
 ## Übungen zum Wurf
 
 Nutze <InlineMath math="g = 10\text{ m/s}^2" />. Bestimme bei jeder Aufgabe zuerst **die Flugzeit aus der senkrechten Bewegung**.
 
-1. Ein Ball rollt mit einer waagerechten Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> von einem <InlineMath math="0{,}8\text{ m}" /> hohen Tisch. Bestimme die Fallzeit und wie weit vom Tischfuß entfernt er aufkommt.
+1. Ein Ball rollt mit einer waagerechten Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> von einem <InlineMath math="0{,}8\text{ m}" /> hohen Tisch. Bestimme die Fallzeit und wie weit vom Punkt auf dem Boden direkt unter der Tischkante er aufkommt.
 
-2. Ein Stein wird mit <InlineMath math="15\text{ m/s}" /> waagerecht von einer <InlineMath math="20\text{ m}" /> hohen Klippe geworfen. Bestimme die waagerechte Strecke bis zum Aufprall unten und sein Tempo in diesem Moment.
+2. Ein Stein wird mit <InlineMath math="15\text{ m/s}" /> waagerecht von einer <InlineMath math="20\text{ m}" /> hohen Klippe geworfen. Bestimme die waagerechte Strecke bis zum Aufprall unten und seine Schnelligkeit in diesem Moment.
 
 3. Zwei Bälle werden mit <InlineMath math="20\text{ m/s}" /> vom Boden abgeworfen, einer unter <InlineMath math="30^\circ" /> und einer unter <InlineMath math="60^\circ" />. Welcher Ball bleibt länger in der Luft, und welcher landet weiter entfernt?
 
