@@ -63,6 +63,7 @@ describe("localized source maps", () => {
         de: "Deutsch",
         en: "English",
         id: "Indonesia",
+        ms: "Melayu",
       });
       expect(
         mapLocalizedSource(source, (value, locale) => `${locale}:${value}`)
@@ -70,6 +71,7 @@ describe("localized source maps", () => {
         de: "de:Deutsch",
         en: "en:English",
         id: "id:Indonesia",
+        ms: "ms:Melayu",
       });
       const partial = yield* Schema.decodeEffect(CopySchema)({ en: "English" });
       expect(
@@ -88,6 +90,7 @@ describe("localized source maps", () => {
         de: "de:Deutsch",
         en: "en:English",
         id: "id:Indonesia",
+        ms: "ms:Melayu",
       });
       expect(
         yield* traverseLocalizedSources(partial, (value, locale) =>
