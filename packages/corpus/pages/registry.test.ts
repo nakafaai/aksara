@@ -1,15 +1,15 @@
 import { describe, expect, it } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  ActiveAppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option, Record as Rec } from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { pageSource } from "#corpus/test/page";
 
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
-  AppLocaleSchema.make("en"),
-  AppLocaleSchema.make("id"),
+  ActiveAppLocaleSchema.make("en"),
+  ActiveAppLocaleSchema.make("id"),
 ]);
 
 /** Returns one typed registry failure through the native Effect test runtime. */
@@ -61,7 +61,7 @@ describe("public page registry", () => {
     Effect.gen(function* () {
       const entries = yield* decodePageRegistry(
         [pageSource()],
-        ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+        ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
       );
 
       expect(entries).toEqual([
