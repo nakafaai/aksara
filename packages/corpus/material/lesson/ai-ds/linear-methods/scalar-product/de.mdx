@@ -135,68 +135,37 @@ Projiziere mit demselben <InlineMath math="A" /> den Vektor <InlineMath math="x=
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
 
-Dreh oder zoom die Szene unten und vergleich die beiden Einheitsmengen. Die Vektoren <InlineMath math="e_1" /> und <InlineMath math="e_2" /> liegen auf dem grauen Kreis, aber beide liegen außerhalb der magentafarbenen Ellipse, weil <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" /> gilt. Das orange Residuum <InlineMath math="r" /> sieht nicht senkrecht zu <InlineMath math="e_1" /> aus, und euklidisch ist es das auch nicht. Bezüglich <InlineMath math="A" /> steht es senkrecht, denn <InlineMath math="e_1^TAr=0" />.
+Dreh oder zoom die Szene unten. Die Vektoren <InlineMath math="e_1" /> und <InlineMath math="e_2" /> liegen auf dem grauen Einheitskreis, ihre euklidische Länge ist also <InlineMath math="1" />, bezüglich <InlineMath math="A" /> ist sie aber <InlineMath math="\sqrt2" />, weil <InlineMath math="e_1^TAe_1=2" /> gilt. Das orange Residuum <InlineMath math="r" /> von <InlineMath math="\tfrac12e_1" /> nach <InlineMath math="e_2" /> sieht nicht senkrecht zu <InlineMath math="e_1" /> aus, und euklidisch ist es das auch nicht. Bezüglich <InlineMath math="A" /> steht es senkrecht, denn <InlineMath math="e_1^TAr=2(-\tfrac12)+1=0" />.
 
-<LineEquation
-  title={<>Euklidischer und gewichteter Einheitskreis</>}
-  description={<>Der graue Kreis ist <InlineMath math="x^Tx=1" />, die magentafarbene Ellipse ist <InlineMath math="x^TAx=1" /> für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />. Die orange Strecke ist das Residuum <InlineMath math="r=e_2-\tfrac12e_1" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.1, 3.6]}
-  cameraTarget={[0, 0.1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x^Tx=1" />, at: 225, offset: [-0.35, -0.15, 0] }],
-    },
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const t = (index / 360) * 2 * Math.PI;
-        const along = Math.cos(t) / Math.sqrt(3);
-        const across = Math.sin(t);
-        return { x: (along + across) / Math.SQRT2, y: (along - across) / Math.SQRT2, z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x^TAx=1" />, at: 135, offset: [0.4, -0.2, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.12 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.18, 0.1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.12 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.18, 0.12, 0] }],
-    },
-    {
-      points: [{ x: 1 / 2, y: 0, z: 0 }, { x: 1 / 4, y: 1 / 2, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.12 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [0.18, 0.06, 0] }],
-    },
-    {
-      points: [{ x: 1 / 2, y: 0, z: 0 }],
-      color: "#bb6800",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="\tfrac12e_1" />, at: 0, offset: [0.05, -0.18, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Ein Residuum, das bezüglich <InlineMath math="A" /> senkrecht auf <InlineMath math="e_1" /> steht</>}
+  description={<>Der graue Kreis ist <InlineMath math="x^Tx=1" />. Die orange Strecke ist das Residuum <InlineMath math="r=e_2-\tfrac12e_1" /> der gewichteten Projektion von <InlineMath math="e_2" /> auf <InlineMath math="e_1" /> für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "residual", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "residual", objectId: "residual", at: { x: 1 / 4, y: 1 / 2 }, placement: "right" },
+      { key: "foot", objectId: "foot", at: { x: 1 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="x^Tx=1" />,
+    "first": <InlineMath math="e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "residual": <InlineMath math="r" />,
+    "foot": <InlineMath math="\tfrac12e_1" />,
+  }}
 />
 
 ## Ein Skalarprodukt als Matrix schreiben

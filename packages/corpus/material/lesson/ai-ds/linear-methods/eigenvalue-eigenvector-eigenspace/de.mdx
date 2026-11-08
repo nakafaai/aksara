@@ -91,84 +91,43 @@ Der folgende Vektor <InlineMath math="v_2" /> ist ein Eigenvektor zum Eigenwert 
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
-Dreh oder zoom diese Szene und vergleich jeden Pfeil mit seinem Bild unter der symmetrischen Matrix oben. Die violetten Einheitsvektoren <InlineMath math="v_1" /> und <InlineMath math="v_2" /> werden nur länger: Ihre orangen Bilder bleiben auf derselben Geraden, gestreckt um <InlineMath math="\lambda_1=2" /> und <InlineMath math="\lambda_2=4" />. Der Vektor <InlineMath math="e_1" /> nicht, denn <InlineMath math="Ae_1=(3,1)^T" /> dreht sich von der <InlineMath math="x" />-Achse weg. Die magentafarbene Ellipse sammelt die Bilder aller Einheitsvektoren, und ihr längster und kürzester Radius zeigen genau in Richtung der Eigenvektoren.
+Dreh oder zoom diese Szene und vergleich jeden Strecke mit seinem Bild unter der symmetrischen Matrix oben. Die violetten Einheitsvektoren <InlineMath math="v_1" /> und <InlineMath math="v_2" /> werden nur länger: Ihre orangen Bilder bleiben auf derselben Geraden, gestreckt um <InlineMath math="\lambda_1=2" /> und <InlineMath math="\lambda_2=4" />. Der Vektor <InlineMath math="e_1" /> nicht, denn <InlineMath math="Ae_1=(3,1)^T" /> dreht sich von der <InlineMath math="x" />-Achse weg. Nur Eigenrichtungen bleiben erhalten, und die Länge jedes Bilds zeigt direkt seinen Eigenwert.
 
-<LineEquation
+<MathVisual
   title={<>Eigenvektoren bleiben auf ihrer Geraden</>}
-  description={<>Violette Pfeile sind Einheitsvektoren, orange Pfeile ihre Bilder unter <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />. Die magentafarbene Ellipse enthält das Bild jedes Einheitsvektors.</>}
-  showZAxis={false}
-  cameraPosition={[0.2, 0.3, 10]}
-  cameraTarget={[0.2, 0.3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\|v\|=1" />, at: 200, offset: [-0.5, -0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: 3 * Math.cos(angle) + Math.sin(angle), y: Math.cos(angle) + 3 * Math.sin(angle), z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Av" />, at: 315, offset: [0.45, -0.25, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT2, y: Math.SQRT2, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.25 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Av_1=2v_1" />, at: 1, offset: [-0.6, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.25 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Av_2=4v_2" />, at: 1, offset: [0.4, 0.25, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.25 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Ae_1" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="v_1" />, at: 1, offset: [-0.3, -0.1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="v_2" />, at: 1, offset: [0.3, -0.15, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.15, -0.25, 0] }],
-    },
-  ]}
+  description={<>Violette Strecken sind Einheitsvektoren, orange Strecken ihre Bilder unter <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -1.6, max: 3.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "av1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT2, y: Math.SQRT2 }, appearance: "primary" },
+      { id: "av2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, appearance: "primary" },
+      { id: "ae1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "v2", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "av1", objectId: "av1", at: { x: -Math.SQRT2, y: Math.SQRT2 }, placement: "above-left" },
+      { key: "av2", objectId: "av2", at: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, placement: "above-right" },
+      { key: "ae1", objectId: "ae1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-left" },
+      { key: "v2", objectId: "v2", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="\|v\|=1" />,
+    "av1": <InlineMath math="Av_1=2v_1" />,
+    "av2": <InlineMath math="Av_2=4v_2" />,
+    "ae1": <InlineMath math="Ae_1" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+    "e1": <InlineMath math="e_1" />,
+  }}
 />
 
 ## Lineare Unabhängigkeit von Eigenvektoren

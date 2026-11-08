@@ -110,59 +110,34 @@ Setze <InlineMath math="\varepsilon=1/1000" /> und vergleiche zwei rechte Seiten
 <BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
 </MathContainer>
 
-Damit du die Verstärkung siehst, nimm <InlineMath math="\varepsilon=1/3" />, sodass das Bild passt. Jede Störung <InlineMath math="\Delta b" /> der Länge <InlineMath math="1" /> liegt auf dem grauen Kreis, und ihre Wirkung <InlineMath math="\Delta x=A^{-1}\Delta b" /> liegt auf der magentafarbenen Ellipse. Dreh oder zoom die Szene: Die Ellipse ist entlang der zweiten Achse dreifach gestreckt und entlang der ersten gar nicht. Dieses Verhältnis <InlineMath math="3" /> ist <InlineMath math="\kappa_2(A)=1/\varepsilon" />. Für <InlineMath math="\varepsilon=1/1000" /> wäre dieselbe Ellipse tausendmal höher als breit.
+Damit du die Verstärkung siehst, nimm <InlineMath math="\varepsilon=1/3" />, sodass das Bild passt. Jede Störung <InlineMath math="\Delta b" /> mit Komponenten vom Betrag höchstens <InlineMath math="1" /> liegt im grauen Quadrat, und ihre Wirkung <InlineMath math="\Delta x=A^{-1}\Delta b" /> liegt im magentafarbenen Rechteck. Dreh oder zoom die Szene: Die zweite Richtung wird dreifach gestreckt und die erste gar nicht, so wie die Ecke <InlineMath math="\Delta b=(1,1)^T" />, die zu <InlineMath math="\Delta x=(1,3)^T" /> wird. Dieses Verhältnis <InlineMath math="3" /> ist <InlineMath math="\kappa_2(A)=1/\varepsilon" />. Für <InlineMath math="\varepsilon=1/1000" /> wäre dasselbe Rechteck tausendmal höher als breit.
 
-<LineEquation
+<MathVisual
   title={<>Eine Störung <InlineMath math="\Delta b" /> wird von <InlineMath math="A^{-1}" /> gestreckt</>}
-  description={<>Für <InlineMath math="\varepsilon=1/3" /> landet jede Störung der Länge eins auf dem grauen Kreis auf der magentafarbenen Ellipse mit den Halbachsen <InlineMath math="1" /> und <InlineMath math="3" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 9]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\|\Delta b\|=1" />, at: 200, offset: [-0.7, -0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.cos(angle), y: 3 * Math.sin(angle), z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="A^{-1}\Delta b" />, at: 320, offset: [0.75, 0, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#8242e5",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="1/\varepsilon=3" />, at: 1, offset: [-0.75, 0.25, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\Delta b" />, at: 1, offset: [0.3, -0.15, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: 3 * Math.SQRT1_2, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\Delta x" />, at: 1, offset: [0.45, 0.1, 0] }],
-    },
-  ]}
+  description={<>Für <InlineMath math="\varepsilon=1/3" /> landet jede Störung im grauen Quadrat <InlineMath math="|\Delta b_i|\le1" /> im magentafarbenen Rechteck mit Breite <InlineMath math="2" /> und Höhe <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -3.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: 1, y: -1 }, { x: 1, y: 1 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -3 }, { x: 1, y: -3 }, { x: 1, y: 3 }, { x: -1, y: 3 }], appearance: "answer" },
+      { id: "db", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "dx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -1, y: -1 }, placement: "below-left" },
+      { key: "image", objectId: "image", at: { x: -1, y: 3 }, placement: "above-left" },
+      { key: "db", objectId: "db", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "dx", objectId: "dx", at: { x: 1, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "square": <InlineMath math="|\Delta b_i|\le1" />,
+    "image": <InlineMath math="A^{-1}\Delta b" />,
+    "db": <InlineMath math="\Delta b" />,
+    "dx": <InlineMath math="\Delta x" />,
+  }}
 />
 
 ## Störungsabschätzung

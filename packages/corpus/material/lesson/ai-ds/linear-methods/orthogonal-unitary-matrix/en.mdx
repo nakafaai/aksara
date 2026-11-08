@@ -123,70 +123,38 @@ Unless <InlineMath math="\alpha" /> is a multiple of <InlineMath math="\pi" />, 
 
 Turn the scene and check what the rotation keeps. The tips of <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" />, and <InlineMath math="R(\alpha)y" /> all sit on the same gray circle, so every length stays <InlineMath math="\sqrt5" />. The right angle between <InlineMath math="x" /> and <InlineMath math="y" /> survives too, because <InlineMath math="R(\alpha)^TR(\alpha)=I" /> keeps every inner product. Only the direction changes, by the amber angle <InlineMath math="\alpha=60^\circ" />, which is why no real vector keeps its direction here.
 
-<LineEquation
+<MathVisual
   title={<>A rotation <InlineMath math="R(60^\circ)" /> keeps lengths and angles</>}
-  description={<>The vectors <InlineMath math="x=(2,1)^T" /> and <InlineMath math="y=(-1,2)^T" /> are rotated by <InlineMath math="\alpha=60^\circ" />. All four arrow tips lie on the circle of radius <InlineMath math="\sqrt5" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 8]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\|v\|=\sqrt5" />, at: 135, offset: [-0.5, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x" />, at: 1, offset: [0.3, -0.1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -1, y: 2, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y" />, at: 1, offset: [-0.3, 0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3), z: 0 },
-      ],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="R(\alpha)x" />, at: 1, offset: [0.45, 0.25, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3), z: 0 },
-      ],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="R(\alpha)y" />, at: 1, offset: [-0.4, -0.35, 0] }],
-    },
-    {
-      kind: "circle-arc",
-      radius: 0.9,
-      startDegrees: (Math.atan2(1, 2) * 180) / Math.PI,
-      sweepDegrees: 60,
-      color: "#b98d00",
-      label: { text: <InlineMath math="\alpha=60^\circ" />, progress: 0.5, offset: [0.3, 0.25, 0] },
-    },
-  ]}
+  description={<>The vectors <InlineMath math="x=(2,1)^T" /> and <InlineMath math="y=(-1,2)^T" /> are rotated by <InlineMath math="\alpha=60^\circ" />. All four segment tips lie on the circle of radius <InlineMath math="\sqrt5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "rx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, appearance: "answer" },
+      { id: "ry", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, appearance: "primary" },
+      { id: "alpha", kind: "arc", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "radius", objectId: "radius", at: { x: -Math.sqrt(5) * Math.SQRT1_2, y: -Math.sqrt(5) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "y", objectId: "y", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "rx", objectId: "rx", at: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, placement: "above-right" },
+      { key: "ry", objectId: "ry", at: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, placement: "below-left" },
+      { key: "alpha", objectId: "alpha", at: { x: 0.9 * Math.cos(Math.atan2(1, 2) + Math.PI / 6), y: 0.9 * Math.sin(Math.atan2(1, 2) + Math.PI / 6) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "radius": <InlineMath math="\|v\|=\sqrt5" />,
+    "x": <InlineMath math="x" />,
+    "y": <InlineMath math="y" />,
+    "rx": <InlineMath math="R(\alpha)x" />,
+    "ry": <InlineMath math="R(\alpha)y" />,
+    "alpha": <InlineMath math="\alpha=60^\circ" />,
+  }}
 />
 
 ## Reflection Example

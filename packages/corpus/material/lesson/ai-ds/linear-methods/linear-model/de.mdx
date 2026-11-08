@@ -83,35 +83,42 @@ Die dritte Beobachtung stimmt mit den ersten beiden überein. Ein Parametervekto
 
 Dreh die Fläche des Wechselwirkungsmodells <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /> unten. Jede violette Gerade hält <InlineMath math="s" /> fest und jede türkise Gerade hält <InlineMath math="t" /> fest, und alle sind gerade. Die Verdrehung kommt nur vom Term <InlineMath math="\tfrac{ts}2" />, der die Steigung in <InlineMath math="t" /> zu <InlineMath math="\tfrac12+\tfrac s2" /> macht. Alle vier Koeffizienten gehen trotzdem linear ein, also kann die Methode der kleinsten Quadrate sie mit der Zeile <InlineMath math="(1,t,s,ts)" /> der Designmatrix schätzen.
 
-<LineEquation
+<MathVisual
   title={<>Das Wechselwirkungsmodell <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /></>}
   description={<>Violette Geraden halten <InlineMath math="s" /> fest, türkise Geraden halten <InlineMath math="t" /> fest. Die <InlineMath math="t" />-Achse zeigt nach rechts, <InlineMath math="s" /> zu dir und <InlineMath math="y" /> nach oben.</>}
-  cameraPosition={[6, 5, 7]}
-  cameraTarget={[0, 1.5, 0]}
-  data={[
-    ...Array.from({ length: 9 }, (_, index) => {
-      const s = -2 + index / 2;
-      const height = (t) => 1 + t / 2 + s / 2 + (t * s) / 2;
-      return {
-        points: [{ x: -2, y: height(-2), z: s }, { x: 2, y: height(2), z: s }],
-        color: "#8242e5",
-        smooth: false,
-        showPoints: false,
-        ...(index === 8 ? { labels: [{ text: <InlineMath math="s=2" />, at: 1, offset: [0.4, 0.2, 0] }] } : {}),
-      };
-    }),
-    ...Array.from({ length: 9 }, (_, index) => {
-      const t = -2 + index / 2;
-      const height = (s) => 1 + t / 2 + s / 2 + (t * s) / 2;
-      return {
-        points: [{ x: t, y: height(-2), z: -2 }, { x: t, y: height(2), z: 2 }],
-        color: "#0d9488",
-        smooth: false,
-        showPoints: false,
-        ...(index === 8 ? { labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, -0.3, 0] }] } : {}),
-      };
-    }),
-  ]}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 5.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 1.5, z: 0 } },
+    objects: [
+      { id: "along-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, appearance: "secondary" },
+      { id: "along-b", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1.5) / 2 + (-2) * (-1.5) / 2, z: -1.5 }, to: { x: 2, y: 1 + (2) / 2 + (-1.5) / 2 + (2) * (-1.5) / 2, z: -1.5 }, appearance: "secondary" },
+      { id: "along-c", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1) / 2 + (-2) * (-1) / 2, z: -1 }, to: { x: 2, y: 1 + (2) / 2 + (-1) / 2 + (2) * (-1) / 2, z: -1 }, appearance: "secondary" },
+      { id: "along-d", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-0.5) / 2 + (-2) * (-0.5) / 2, z: -0.5 }, to: { x: 2, y: 1 + (2) / 2 + (-0.5) / 2 + (2) * (-0.5) / 2, z: -0.5 }, appearance: "secondary" },
+      { id: "along-e", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0) / 2 + (-2) * (0) / 2, z: 0 }, to: { x: 2, y: 1 + (2) / 2 + (0) / 2 + (2) * (0) / 2, z: 0 }, appearance: "secondary" },
+      { id: "along-f", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0.5) / 2 + (-2) * (0.5) / 2, z: 0.5 }, to: { x: 2, y: 1 + (2) / 2 + (0.5) / 2 + (2) * (0.5) / 2, z: 0.5 }, appearance: "secondary" },
+      { id: "along-g", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1) / 2 + (-2) * (1) / 2, z: 1 }, to: { x: 2, y: 1 + (2) / 2 + (1) / 2 + (2) * (1) / 2, z: 1 }, appearance: "secondary" },
+      { id: "along-h", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1.5) / 2 + (-2) * (1.5) / 2, z: 1.5 }, to: { x: 2, y: 1 + (2) / 2 + (1.5) / 2 + (2) * (1.5) / 2, z: 1.5 }, appearance: "secondary" },
+      { id: "along-i", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "secondary" },
+      { id: "across-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-b", kind: "segment", from: { x: -1.5, y: 1 + (-1.5) / 2 + (-2) / 2 + (-1.5) * (-2) / 2, z: -2 }, to: { x: -1.5, y: 1 + (-1.5) / 2 + (2) / 2 + (-1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-c", kind: "segment", from: { x: -1, y: 1 + (-1) / 2 + (-2) / 2 + (-1) * (-2) / 2, z: -2 }, to: { x: -1, y: 1 + (-1) / 2 + (2) / 2 + (-1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-d", kind: "segment", from: { x: -0.5, y: 1 + (-0.5) / 2 + (-2) / 2 + (-0.5) * (-2) / 2, z: -2 }, to: { x: -0.5, y: 1 + (-0.5) / 2 + (2) / 2 + (-0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-e", kind: "segment", from: { x: 0, y: 1 + (0) / 2 + (-2) / 2 + (0) * (-2) / 2, z: -2 }, to: { x: 0, y: 1 + (0) / 2 + (2) / 2 + (0) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-f", kind: "segment", from: { x: 0.5, y: 1 + (0.5) / 2 + (-2) / 2 + (0.5) * (-2) / 2, z: -2 }, to: { x: 0.5, y: 1 + (0.5) / 2 + (2) / 2 + (0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-g", kind: "segment", from: { x: 1, y: 1 + (1) / 2 + (-2) / 2 + (1) * (-2) / 2, z: -2 }, to: { x: 1, y: 1 + (1) / 2 + (2) / 2 + (1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-h", kind: "segment", from: { x: 1.5, y: 1 + (1.5) / 2 + (-2) / 2 + (1.5) * (-2) / 2, z: -2 }, to: { x: 1.5, y: 1 + (1.5) / 2 + (2) / 2 + (1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-i", kind: "segment", from: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "along", objectId: "along-i", at: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, placement: "right" },
+      { key: "across", objectId: "across-i", at: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "along": <InlineMath math="s=2" />,
+    "across": <InlineMath math="t=2" />,
+  }}
 />
 
 Folg dem Beispiel mit drei Beobachtungen als Ablauf: Zwei Zeilen legen die Parameter fest, die dritte prüft sie.

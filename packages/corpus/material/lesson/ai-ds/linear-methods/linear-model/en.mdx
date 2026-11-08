@@ -83,35 +83,42 @@ The third observation agrees with the first two: one parameter vector <InlineMat
 
 Rotate the surface of the interaction model <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /> below. Every violet line keeps <InlineMath math="s" /> fixed and every teal line keeps <InlineMath math="t" /> fixed, and each one is straight. The twist comes only from the term <InlineMath math="\tfrac{ts}2" />, which makes the slope in <InlineMath math="t" /> equal to <InlineMath math="\tfrac12+\tfrac s2" />. All four coefficients still enter linearly, so least squares can fit them with the design-matrix row <InlineMath math="(1,t,s,ts)" />.
 
-<LineEquation
+<MathVisual
   title={<>The interaction model <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /></>}
   description={<>Violet lines hold <InlineMath math="s" /> fixed, teal lines hold <InlineMath math="t" /> fixed. The <InlineMath math="t" />-axis runs to the right, <InlineMath math="s" /> toward you, and <InlineMath math="y" /> up.</>}
-  cameraPosition={[6, 5, 7]}
-  cameraTarget={[0, 1.5, 0]}
-  data={[
-    ...Array.from({ length: 9 }, (_, index) => {
-      const s = -2 + index / 2;
-      const height = (t) => 1 + t / 2 + s / 2 + (t * s) / 2;
-      return {
-        points: [{ x: -2, y: height(-2), z: s }, { x: 2, y: height(2), z: s }],
-        color: "#8242e5",
-        smooth: false,
-        showPoints: false,
-        ...(index === 8 ? { labels: [{ text: <InlineMath math="s=2" />, at: 1, offset: [0.4, 0.2, 0] }] } : {}),
-      };
-    }),
-    ...Array.from({ length: 9 }, (_, index) => {
-      const t = -2 + index / 2;
-      const height = (s) => 1 + t / 2 + s / 2 + (t * s) / 2;
-      return {
-        points: [{ x: t, y: height(-2), z: -2 }, { x: t, y: height(2), z: 2 }],
-        color: "#0d9488",
-        smooth: false,
-        showPoints: false,
-        ...(index === 8 ? { labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, -0.3, 0] }] } : {}),
-      };
-    }),
-  ]}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 5.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 1.5, z: 0 } },
+    objects: [
+      { id: "along-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, appearance: "secondary" },
+      { id: "along-b", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1.5) / 2 + (-2) * (-1.5) / 2, z: -1.5 }, to: { x: 2, y: 1 + (2) / 2 + (-1.5) / 2 + (2) * (-1.5) / 2, z: -1.5 }, appearance: "secondary" },
+      { id: "along-c", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1) / 2 + (-2) * (-1) / 2, z: -1 }, to: { x: 2, y: 1 + (2) / 2 + (-1) / 2 + (2) * (-1) / 2, z: -1 }, appearance: "secondary" },
+      { id: "along-d", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-0.5) / 2 + (-2) * (-0.5) / 2, z: -0.5 }, to: { x: 2, y: 1 + (2) / 2 + (-0.5) / 2 + (2) * (-0.5) / 2, z: -0.5 }, appearance: "secondary" },
+      { id: "along-e", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0) / 2 + (-2) * (0) / 2, z: 0 }, to: { x: 2, y: 1 + (2) / 2 + (0) / 2 + (2) * (0) / 2, z: 0 }, appearance: "secondary" },
+      { id: "along-f", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0.5) / 2 + (-2) * (0.5) / 2, z: 0.5 }, to: { x: 2, y: 1 + (2) / 2 + (0.5) / 2 + (2) * (0.5) / 2, z: 0.5 }, appearance: "secondary" },
+      { id: "along-g", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1) / 2 + (-2) * (1) / 2, z: 1 }, to: { x: 2, y: 1 + (2) / 2 + (1) / 2 + (2) * (1) / 2, z: 1 }, appearance: "secondary" },
+      { id: "along-h", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1.5) / 2 + (-2) * (1.5) / 2, z: 1.5 }, to: { x: 2, y: 1 + (2) / 2 + (1.5) / 2 + (2) * (1.5) / 2, z: 1.5 }, appearance: "secondary" },
+      { id: "along-i", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "secondary" },
+      { id: "across-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-b", kind: "segment", from: { x: -1.5, y: 1 + (-1.5) / 2 + (-2) / 2 + (-1.5) * (-2) / 2, z: -2 }, to: { x: -1.5, y: 1 + (-1.5) / 2 + (2) / 2 + (-1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-c", kind: "segment", from: { x: -1, y: 1 + (-1) / 2 + (-2) / 2 + (-1) * (-2) / 2, z: -2 }, to: { x: -1, y: 1 + (-1) / 2 + (2) / 2 + (-1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-d", kind: "segment", from: { x: -0.5, y: 1 + (-0.5) / 2 + (-2) / 2 + (-0.5) * (-2) / 2, z: -2 }, to: { x: -0.5, y: 1 + (-0.5) / 2 + (2) / 2 + (-0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-e", kind: "segment", from: { x: 0, y: 1 + (0) / 2 + (-2) / 2 + (0) * (-2) / 2, z: -2 }, to: { x: 0, y: 1 + (0) / 2 + (2) / 2 + (0) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-f", kind: "segment", from: { x: 0.5, y: 1 + (0.5) / 2 + (-2) / 2 + (0.5) * (-2) / 2, z: -2 }, to: { x: 0.5, y: 1 + (0.5) / 2 + (2) / 2 + (0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-g", kind: "segment", from: { x: 1, y: 1 + (1) / 2 + (-2) / 2 + (1) * (-2) / 2, z: -2 }, to: { x: 1, y: 1 + (1) / 2 + (2) / 2 + (1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-h", kind: "segment", from: { x: 1.5, y: 1 + (1.5) / 2 + (-2) / 2 + (1.5) * (-2) / 2, z: -2 }, to: { x: 1.5, y: 1 + (1.5) / 2 + (2) / 2 + (1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-i", kind: "segment", from: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "along", objectId: "along-i", at: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, placement: "right" },
+      { key: "across", objectId: "across-i", at: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "along": <InlineMath math="s=2" />,
+    "across": <InlineMath math="t=2" />,
+  }}
 />
 
 Follow the three-observation example as a flow: two rows fix the parameters, and the third row checks them.

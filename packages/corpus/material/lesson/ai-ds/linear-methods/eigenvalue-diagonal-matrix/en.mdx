@@ -53,38 +53,34 @@ For example, off-diagonal entries can change while the **same eigenvalues** rema
 
 Thus 2 occurs twice and −1 once. This gives the eigenvalues, but does not by itself prove diagonalizability.
 
-Zoom in near the two magenta points and follow the curve along the <InlineMath math="t" />-axis. At <InlineMath math="t=-1" /> it crosses the axis, which marks a simple root. At <InlineMath math="t=2" /> it only touches the axis and turns back, because the factor <InlineMath math="(2-t)^2" /> appears twice. Changing the entries <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="3" /> above the diagonal never moves these two points.
+For <InlineMath math="T" /> above, the eigenvalues <InlineMath math="2" /> and <InlineMath math="-1" /> can be read straight from the diagonal. Rotate this three-dimensional scene: the vector <InlineMath math="e_1" /> is only stretched by two along its own axis, because the first column of <InlineMath math="T" /> is <InlineMath math="(2,0,0)^T" />. The vector <InlineMath math="v=(1,-1,1)^T" /> satisfies <InlineMath math="Tv=-v" />, so its image points exactly the other way. The entries <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="3" /> above the diagonal change the eigenvectors, but they never change the eigenvalues.
 
-<LineEquation
-  title={<>Characteristic polynomial of the triangular matrix <InlineMath math="T" /></>}
-  description={<>The violet curve is <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />. The magenta points mark the root <InlineMath math="t=-1" /> and the double root <InlineMath math="t=2" />.</>}
-  showZAxis={false}
-  cameraPosition={[0.85, 0, 14]}
-  cameraTarget={[0.85, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 451 }, (_, index) => {
-        const t = -1.4 + index / 100;
-        return { x: t, y: (2 - t) ** 2 * (-1 - t), z: 0 };
-      }),
-      color: "#8242e5",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />, at: 340, offset: [-0.2, 2.5, 0] }],
-    },
-    {
-      points: [{ x: -1, y: 0, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.7, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, 0.6, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Eigendirections of the triangular matrix <InlineMath math="T" /></>}
+  description={<>The violet segment <InlineMath math="e_1" /> and its orange image <InlineMath math="Te_1=2e_1" />. The teal segment <InlineMath math="v=(1,-1,1)^T" /> and its magenta image <InlineMath math="Tv=-v" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 1.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0, z: 0 } },
+    objects: [
+      { id: "te1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 0, z: 0 }, appearance: "primary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: -1, z: 1 }, appearance: "construction" },
+      { id: "tv", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -1, y: 1, z: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "te1", objectId: "te1", at: { x: 2, y: 0, z: 0 }, placement: "right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0, z: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: 1, y: -1, z: 1 }, placement: "below-right" },
+      { key: "tv", objectId: "tv", at: { x: -1, y: 1, z: -1 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "te1": <InlineMath math="Te_1=2e_1" />,
+    "e1": <InlineMath math="e_1" />,
+    "v": <InlineMath math="v=(1,-1,1)^T" />,
+    "tv": <InlineMath math="Tv=-v" />,
+  }}
 />
 
 ## Computing Eigenvalues of Nontriangular Matrices

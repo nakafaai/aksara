@@ -131,58 +131,36 @@ Untuk menghitung komponen ke-<InlineMath math="j" /> dari solusi <InlineMath mat
 
 Lihat gagasannya di bidang untuk sistem <InlineMath math="2x_1+x_2=5" /> dan <InlineMath math="x_1+3x_2=5" />. Kolomnya <InlineMath math="a^1=(2,1)^T" /> dan <InlineMath math="a^2=(1,3)^T" />, dengan <InlineMath math="b=(5,5)^T" />, jadi <InlineMath math="x_1=\det A_1(b)/\det A=10/5=2" /> dan <InlineMath math="x_2=\det A_2(b)/\det A=5/5=1" />. Di adegan ini, jajar genjang abu-abu dari <InlineMath math="a^1" /> dan <InlineMath math="a^2" /> berluas <InlineMath math="5" />. Kalau <InlineMath math="a^1" /> diganti <InlineMath math="b" />, kamu dapat jajar genjang magenta berluas <InlineMath math="10" />. Jajar genjang kuning dari <InlineMath math="2a^1" /> dan <InlineMath math="a^2" /> punya alas <InlineMath math="a^2" /> dan tinggi yang sama, jadi luasnya juga <InlineMath math="10" />, dan faktor <InlineMath math="2" /> itulah <InlineMath math="x_1" />.
 
-<LineEquation
+<MathVisual
   title={<>Aturan Cramer sebagai perbandingan luas</>}
   description={<>Untuk <InlineMath math="2x_1+x_2=5" /> dan <InlineMath math="x_1+3x_2=5" />: jajar genjang abu-abu berluas <InlineMath math="\det A=5" />, jajar genjang magenta dan kuning sama-sama berluas <InlineMath math="10" />.</>}
-  showZAxis={false}
-  cameraPosition={[3, 4, 15]}
-  cameraTarget={[3, 4, 0]}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 3, y: 4, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 2, z: 0 }, { x: 5, y: 5, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#b98d00",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="2a^1" />, at: 1, offset: [0.4, -0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 5, z: 0 }, { x: 6, y: 8, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\det A_1(b)=10" />, at: 2, offset: [0.4, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.3 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="a^1" />, at: 1, offset: [0.2, -0.45, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.3 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="a^2" />, at: 1, offset: [-0.5, 0.2, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 5, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.3 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="b" />, at: 1, offset: [0.45, -0.15, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 5, y: 5 }, { x: 1, y: 3 }], appearance: "highlight" },
+      { id: "replaced", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 5 }, { x: 6, y: 8 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "a1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "sheared", objectId: "sheared", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "replaced", objectId: "replaced", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "a1", objectId: "a1", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 5, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "sheared": <InlineMath math="2a^1" />,
+    "replaced": <InlineMath math="\det A_1(b)=10" />,
+    "a1": <InlineMath math="a^1" />,
+    "a2": <InlineMath math="a^2" />,
+    "b": <InlineMath math="b" />,
+  }}
 />
 
 ## Membuktikan Rumus Solusinya
