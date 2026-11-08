@@ -1,150 +1,24 @@
 
 export const metadata = {
-  title: "Central Angle and Inscribed Angle",
-  description: "Connect central and inscribed angles through their intercepted arc, prove the relationship, and apply it to diameters and worked problems.",
+  title: "Central and Inscribed Angles",
+  description: "An inscribed angle is half the central angle on the same arc. Follow the proof, angles on a diameter, worked examples, and practice with full answers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Circle",
 };
 
-## Definition of Central Angle
+## A Central Angle Is Twice an Inscribed Angle
 
-A central angle is an angle formed by two radii of a circle with the vertex located <Highlight>at the center of the circle</Highlight>. The sides of the central angle are radii that connect the center to points on the circle.
+A central angle has its vertex at the center of a circle. An inscribed angle has its vertex on the circle itself. When both angles intercept **the same arc**, the central angle is always twice the inscribed angle.
 
-<LineEquation
-  title="Central Angle"
-  description="An angle whose vertex is located at the center of the circle."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
-/>
+<BlockMath math="\angle AOB = 2 \times \angle ACB" />
 
-In the diagram above:
-
-- Point <InlineMath math="O" /> is the center of the circle
-- <InlineMath math="OA" /> and <InlineMath math="OB" /> are radii of the circle
-- <InlineMath math="\angle AOB" /> is the central angle
-- The measure of the central angle is denoted by <InlineMath math="\alpha" />
-
-## Definition of Inscribed Angle
-
-An inscribed angle is an angle formed by two chords with the vertex located **on the circle**. The sides of the inscribed angle are chords that connect the vertex to two other points on the circle.
-
-<LineEquation
-  title="Inscribed Angle"
-  description="An angle whose vertex is located on the circle."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
-/>
-
-In the diagram above:
-
-- Point <InlineMath math="C" /> is located on the circle
-- <InlineMath math="CA" /> and <InlineMath math="CB" /> are chords
-- <InlineMath math="\angle ACB" /> is the inscribed angle
-- Point <InlineMath math="O" /> is the center of the circle
-
-## Relationship Between Central Angle and Inscribed Angle
-
-When they subtend the **same arc**, the central angle is <Highlight>twice the inscribed angle</Highlight>. The diagram below shows this relationship.
+In the relationship diagram, the arms of the central angle <InlineMath math="\angle AOB" /> and the arms of the inscribed angle <InlineMath math="\angle ACB" /> end at the same two points, <InlineMath math="A" /> and <InlineMath math="B" />. Those points are the endpoints of arc <InlineMath math="AB" />. Follow each arm to the end of the arc, then compare the two angles.
 
 <LineEquation
   title="Relationship Between Central Angle and Inscribed Angle"
-  description="Central angle and inscribed angle that subtend the same arc."
+  description={<>The <InlineMath math="45^\circ" /> central angle and <InlineMath math="\angle ACB" /> both intercept arc <InlineMath math="AB" />, so <InlineMath math="\angle ACB = 22.5^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -203,7 +77,8 @@ When they subtend the **same arc**, the central angle is <Highlight>twice the in
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -213,11 +88,12 @@ When they subtend the **same arc**, the central angle is <Highlight>twice the in
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -227,20 +103,144 @@ When they subtend the **same arc**, the central angle is <Highlight>twice the in
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 22, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
 />
 
-
-In the relationship diagram above, the central angle is <InlineMath math="45^\circ" />. The inscribed angle intercepting the same minor arc is therefore:
+The central angle in that diagram measures <InlineMath math="45^\circ" />. The inscribed angle that intercepts the minor arc <InlineMath math="AB" /> is half of it:
 
 <BlockMath math="\angle ACB=\frac12\angle AOB=\frac12(45^\circ)=22.5^\circ" />
 
-## Proof of Central Angle and Inscribed Angle Relationship
+## Telling Central and Inscribed Angles Apart
 
-Draw the diameter through <InlineMath math="C" /> and the center <InlineMath math="O" />. The two resulting isosceles triangles connect the inscribed angle to the central angle.
+You tell these two angles apart by **where the vertex sits** and by which segments form the arms. The arc an angle intercepts is the [arc of the circle](/en/subjects/mathematics/circle/circle-and-arc-circle) that lies inside the angle, between the two points where its arms meet the circle. That arc links the two kinds of angle, so find it before you calculate anything.
+
+### Central Angle
+
+A central angle is formed by two radii, so its vertex lies **exactly at the center**. In the central angle diagram, point <InlineMath math="O" /> is the center, segments <InlineMath math="OA" /> and <InlineMath math="OB" /> are radii, and <InlineMath math="\angle AOB" /> is the central angle, with measure <InlineMath math="\alpha" />.
+
+<LineEquation
+  title="Central Angle"
+  description={<>Arms <InlineMath math="OA" /> and <InlineMath math="OB" /> are radii, so the vertex of <InlineMath math="\angle AOB" /> sits at the center <InlineMath math="O" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4, y: 0, z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      smooth: false,
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 1.2 * Math.cos(angle),
+          y: 1.2 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
+
+The central angle <InlineMath math="\angle AOB" /> intercepts arc <InlineMath math="AB" />, which lies between its two arms. The wider the central angle, the longer the arc it intercepts.
+
+### Inscribed Angle
+
+An inscribed angle is formed by two [chords](/en/subjects/mathematics/circle/circle-and-chord) that meet at a point **on the circle**. In the inscribed angle diagram, point <InlineMath math="C" /> lies on the circle, segments <InlineMath math="CA" /> and <InlineMath math="CB" /> are chords, and <InlineMath math="\angle ACB" /> is the inscribed angle.
+
+<LineEquation
+  title="Inscribed Angle"
+  description={<>Arms <InlineMath math="CA" /> and <InlineMath math="CB" /> are chords that meet at point <InlineMath math="C" /> on the circle.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4, y: 0, z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
+        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
+
+The center <InlineMath math="O" /> is not the vertex of <InlineMath math="\angle ACB" />. This inscribed angle intercepts arc <InlineMath math="AB" />, on the far side of the circle from point <InlineMath math="C" />.
+
+## Why the Central Angle Is Twice the Inscribed Angle
+
+The proof uses one helper line: the diameter through point <InlineMath math="C" /> and the center <InlineMath math="O" />. This diameter splits the figure into two **isosceles triangles**, because two sides of each triangle are radii.
 
 <LineEquation
   title="Proof with Auxiliary Lines"
@@ -320,29 +320,103 @@ Draw the diameter through <InlineMath math="C" /> and the center <InlineMath mat
   cameraPosition={[0, 0, 12]}
 />
 
-**Proof steps**:
+In the first case, the center <InlineMath math="O" /> lies inside <InlineMath math="\angle ACB" />, as in the helper line diagram.
 
-1. Construct line <InlineMath math="CD" /> that passes through point <InlineMath math="O" /> (center of the circle)
-2. Because all four segments are radii, <InlineMath math="OA = OB = OC = OD" />
-3. Triangles <InlineMath math="AOC" /> and <InlineMath math="BOC" /> are isosceles triangles
-4. Let <InlineMath math="\angle ACO = x" /> and <InlineMath math="\angle BCO = y" />
-5. Since they are isosceles triangles: <InlineMath math="\angle CAO = x" /> and <InlineMath math="\angle CBO = y" />
-6. Exterior angles of triangles: <InlineMath math="\angle AOD = 2x" /> and <InlineMath math="\angle BOD = 2y" />
-7. Therefore: <InlineMath math="\angle AOB = 2x + 2y = 2(x + y) = 2 \times \angle ACB" />
+1. Draw the diameter <InlineMath math="CD" /> through the center <InlineMath math="O" />.
+2. Segments <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" />, and <InlineMath math="OD" /> are equal because they are all radii.
+3. Triangle <InlineMath math="AOC" /> is isosceles, so its base angles are equal. Call them <InlineMath math="\angle OCA = \angle OAC = x" />.
+4. For the same reason in triangle <InlineMath math="BOC" />, call its base angles <InlineMath math="\angle OCB = \angle OBC = y" />.
+5. An exterior angle of a triangle equals the sum of the two opposite interior angles, so <InlineMath math="\angle AOD = 2x" /> and <InlineMath math="\angle BOD = 2y" />.
+6. Add the two exterior angles. You get <InlineMath math="\angle AOB = 2x + 2y = 2(x + y)" />, and <InlineMath math="x + y" /> is exactly <InlineMath math="\angle ACB" />.
 
-This construction proves the configuration shown, where <InlineMath math="C" /> lies on the arc opposite <InlineMath math="AB" />. Other positions can be split into the same isosceles-triangle cases. In every case, the two angles being compared must intercept the same arc.
-
-## Properties of Central Angle and Inscribed Angle
-
-The central-angle relationship gives two useful consequences. A **diameter** determines a straight central angle. Keeping the intercepted arc fixed also keeps its central angle fixed, even when the vertex of the inscribed angle moves.
-
-### Inscribed Angle Subtending a Diameter
-
-Every inscribed angle that subtends a diameter of a circle measures <InlineMath math="90^\circ" /> (right angle).
+The second case happens when the diameter <InlineMath math="CD" /> falls **outside the inscribed angle**. Now <InlineMath math="\angle ACB" /> is the difference of two angles instead of their sum.
 
 <LineEquation
-  title="Inscribed Angle Subtending a Diameter"
-  description={<>Inscribed angle subtending a diameter is always <InlineMath math="90^\circ" />.</>}
+  title="Center Outside the Inscribed Angle"
+  description={<>Diameter <InlineMath math="CD" /> falls outside <InlineMath math="\angle ACB" />, so <InlineMath math="\angle ACB" /> is the difference of <InlineMath math="\angle DCB" /> and <InlineMath math="\angle DCA" />.</>}
+  data={[
+    {
+      smooth: false,
+      points: Array.from({ length: 361 }, (_, i) => {
+        const angle = (i * Math.PI) / 180;
+        return {
+          x: 4 * Math.cos(angle),
+          y: 4 * Math.sin(angle),
+          z: 0,
+        };
+      }),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
+        { x: 4 * Math.cos((340 * Math.PI) / 180), y: 4 * Math.sin((340 * Math.PI) / 180), z: 0 },
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="C" />, at: 0, offset: [-0.5, 0.3, 0] },
+        { text: <InlineMath math="D" />, at: 1, offset: [0.5, -0.3, 0] },
+      ],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
+        { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [
+        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
+        { x: 4 * Math.cos((70 * Math.PI) / 180), y: 4 * Math.sin((70 * Math.PI) / 180), z: 0 },
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.2, 0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.4, -0.5, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 4 * Math.cos((70 * Math.PI) / 180), y: 4 * Math.sin((70 * Math.PI) / 180), z: 0 },
+      ],
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
+/>
+
+With the same labels, <InlineMath math="\angle ACB = y - x" />. The exterior angles are still <InlineMath math="\angle AOD = 2x" /> and <InlineMath math="\angle BOD = 2y" />, but this time you subtract them:
+
+<BlockMath math="\angle AOB = \angle BOD - \angle AOD = 2y - 2x = 2(y - x) = 2 \times \angle ACB" />
+
+In the second case diagram, <InlineMath math="x = 20^\circ" /> and <InlineMath math="y = 45^\circ" />, so <InlineMath math="\angle ACB = 25^\circ" /> and <InlineMath math="\angle AOB = 50^\circ" />. A third case, where the diameter lies along one arm, needs only one isosceles triangle. All three cases give the same result as long as both angles intercept the same arc.
+
+## Inscribed Angles on a Diameter
+
+A diameter cuts the circle into two semicircles, and the central angle on a semicircle is a straight angle of <InlineMath math="180^\circ" />. So every inscribed angle that **intercepts a diameter** measures <InlineMath math="90^\circ" />. This fact is known as Thales' theorem.
+
+<LineEquation
+  title="Inscribed Angle on a Diameter"
+  description={<>Diameter <InlineMath math="AB" /> gives a central angle of <InlineMath math="180^\circ" />, so <InlineMath math="\angle ACB = 90^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -406,7 +480,8 @@ Every inscribed angle that subtends a diameter of a circle measures <InlineMath 
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
-        return Array.from({ length: 16 }, (_, i) => {
+        return Array.from({ length: 211 }, (_, sampleIndex) => {
+          const i = sampleIndex / 14;
           const t = i / 15;
           const angle = angleCA + t * (angleCB - angleCA);
           return {
@@ -418,25 +493,25 @@ Every inscribed angle that subtends a diameter of a circle measures <InlineMath 
       })(),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="90^\circ" />, at: 98, offset: [0.5, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
 />
 
-A semicircle gives a **straight central angle**, so:
+In the diameter diagram, segment <InlineMath math="AB" /> is a diameter and point <InlineMath math="C" /> lies on the circle. The calculation comes straight from the central angle relationship:
 
 <BlockMath math="\angle ACB=\frac12(180^\circ)=90^\circ" />
 
+The result does not depend on where <InlineMath math="C" /> is. As long as <InlineMath math="C" /> lies on the circle and is not an endpoint of the diameter, triangle <InlineMath math="ABC" /> has a right angle at <InlineMath math="C" />. Problem 3 in the practice set uses this fact to find a missing angle of a triangle.
 
-### Inscribed Angles Subtending the Same Arc
+## Inscribed Angles on the Same Arc
 
-<InlineMath math="\angle ACB = \angle ADB" />, both angles subtend the same
-arc <InlineMath math="AB" />. In other words, sliding <InlineMath math="C" /> to <InlineMath math="D" /> along the same arc does not change the measure.
+An inscribed angle depends on the arc it intercepts, not on where its vertex sits. That is why inscribed angles that intercept the same arc are **always equal**. In the same arc diagram, sliding point <InlineMath math="C" /> to <InlineMath math="D" /> along the major arc does not change the angle.
 
 <LineEquation
-  title="Inscribed Angles Subtending the Same Arc"
-  description="Inscribed angles that subtend the same arc have equal measures."
+  title="Inscribed Angles on the Same Arc"
+  description={<>Points <InlineMath math="C" /> and <InlineMath math="D" /> lie on the same major arc, so <InlineMath math="\angle ACB = \angle ADB" />.</>}
   data={[
     {
       smooth: false,
@@ -504,7 +579,8 @@ arc <InlineMath math="AB" />. In other words, sliding <InlineMath math="C" /> to
     },
     {
       smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
@@ -514,23 +590,27 @@ arc <InlineMath math="AB" />. In other words, sliding <InlineMath math="C" /> to
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [0, 2.8, 0] }],
+      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
 />
 
-Here the two vertices lie on the **same major arc**. Both intercept the minor arc whose central angle is <InlineMath math="45^\circ" />.
+Points <InlineMath math="C" /> and <InlineMath math="D" /> both lie on the major arc, so both angles intercept the minor arc <InlineMath math="AB" />, whose central angle is <InlineMath math="45^\circ" />:
 
 <BlockMath math="\angle ACB=\angle ADB=\frac12(45^\circ)=22.5^\circ" />
 
-## Calculating Inscribed Angle
+Both vertices must lie on the same arc for this to work. A vertex that moves onto the minor arc intercepts the major arc instead, so its measure changes. Example 3 calculates that case.
 
-Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measure of inscribed angle <InlineMath math="\angle ACB" /> that subtends the same arc!
+## Worked Examples on Central and Inscribed Angles
+
+Every example starts by **finding the arc** both angles intercept. Once the arc is clear, you either halve or double.
+
+**Example 1**. The central angle is <InlineMath math="\angle AOB = 80^\circ" />. Point <InlineMath math="C" /> lies on the major arc, so <InlineMath math="\angle ACB" /> intercepts the same minor arc <InlineMath math="AB" /> as the central angle. Find <InlineMath math="\angle ACB" />.
 
 <LineEquation
-  title="Visualization"
-  description={<>Given central angle <InlineMath math="\angle AOB = 80^\circ" />, find inscribed angle <InlineMath math="\angle ACB" />.</>}
+  title={<>Central Angle of <InlineMath math="80^\circ" /></>}
+  description={<>Point <InlineMath math="C" /> lies on the major arc, so <InlineMath math="\angle ACB" /> intercepts the same arc <InlineMath math="AB" /> as the central angle.</>}
   data={[
     {
       smooth: false,
@@ -589,8 +669,8 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
     },
     {
       smooth: false,
-      points: Array.from({ length: 103 }, (_, sampleIndex) => {
-        const i = sampleIndex / 6;
+      points: Array.from({ length: 205 }, (_, sampleIndex) => {
+        const i = sampleIndex / 12;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -600,60 +680,85 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 120, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
 />
 
-**Solution**:
+The inscribed angle is half the central angle on the same arc:
 
 <MathContainer>
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
-  <BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ" />
-  <BlockMath math="\angle ACB = 40^\circ" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ = 40^\circ" />
 </MathContainer>
 
-## Calculating Central Angle
+Check it in the other direction. Twice <InlineMath math="40^\circ" /> is <InlineMath math="80^\circ" />, which matches the given central angle.
 
-Given inscribed angle <InlineMath math="\angle ACB = 35^\circ" />. Find the measure of central angle <InlineMath math="\angle AOB" /> that subtends the same arc!
-
-**Solution**:
+**Example 2**. The inscribed angle <InlineMath math="\angle ACB = 35^\circ" /> intercepts arc <InlineMath math="AB" />. Find the central angle <InlineMath math="\angle AOB" /> on the same arc.
 
 <MathContainer>
   <BlockMath math="\angle AOB = 2 \times \angle ACB" />
-  <BlockMath math="\angle AOB = 2 \times 35^\circ" />
-  <BlockMath math="\angle AOB = 70^\circ" />
+  <BlockMath math="\angle AOB = 2 \times 35^\circ = 70^\circ" />
 </MathContainer>
 
-## Practice Problems
+Check it in the other direction: half of <InlineMath math="70^\circ" /> is <InlineMath math="35^\circ" />, the given inscribed angle.
 
-Identify the **vertex and intercepted arc** first. Use half or twice the angle for central-inscribed pairs, then apply the diameter and equal-arc properties in the last two problems.
+**Example 3**. The central angle is <InlineMath math="\angle AOB = 100^\circ" />, but point <InlineMath math="C" /> lies on the minor arc <InlineMath math="AB" />. Find <InlineMath math="\angle ACB" />.
 
-1. If the central angle of a circle is <InlineMath math="120^\circ" />, what is the measure of the inscribed angle that subtends the same arc?
+A vertex on the minor arc intercepts the **major arc** <InlineMath math="AB" />. The central angle of the major arc is what remains of a full turn:
 
-2. Inscribed angle <InlineMath math="\angle ACB = 45^\circ" />. Find the measure of central angle <InlineMath math="\angle AOB" /> that intercepts the same arc.
+<MathContainer>
+  <BlockMath math="\text{central angle of the major arc} = 360^\circ - 100^\circ = 260^\circ" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 260^\circ = 130^\circ" />
+</MathContainer>
 
-3. In a circle, inscribed angle <InlineMath math="\angle PQR" /> subtends a diameter. What is the measure of <InlineMath math="\angle PQR" />?
+Check with a point <InlineMath math="D" /> on the major arc. Its angle is <InlineMath math="\angle ADB = \frac12(100^\circ) = 50^\circ" />, and <InlineMath math="130^\circ + 50^\circ = 180^\circ" />. That sum is the rule for opposite angles of the cyclic quadrilateral <InlineMath math="ACBD" />, one of the [properties of angles in a circle](/en/subjects/mathematics/circle/properties-of-angle-in-circle).
 
-4. Two inscribed angles subtend the same arc. If one angle measures <InlineMath math="25^\circ" />, find the measure of the other angle!
+## Common Mistakes
 
-### Worked Solutions
+Before you calculate, make sure you know **which arc each angle intercepts**.
 
-**Solution 1**
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Comparing angles that intercept different arcs | The factor of two holds only for the same arc | Make sure the arms of both angles end at the same two points |
+| Halving when you need the central angle | The central angle is the one that is twice as large | The central angle is always larger than the inscribed angle |
+| Using the minor arc when the vertex sits on the minor arc | A vertex on the minor arc intercepts the major arc | Two inscribed angles on opposite sides add up to <InlineMath math="180^\circ" /> |
+| Calling an angle with its vertex inside the circle an inscribed angle | An inscribed angle needs its vertex exactly on the circle | Check whether the vertex lies on the circle |
 
-The inscribed angle subtends the same arc as the central angle, so its measure is **half the central angle**: <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />.
+The minor arc mistake is easy to spot from the answer. A vertex on the minor arc intercepts a major arc whose central angle is more than <InlineMath math="180^\circ" />, so the inscribed angle must be more than <InlineMath math="90^\circ" />. An acute answer in that situation means you used the wrong arc.
 
-**Solution 2**
+## Practice on Central and Inscribed Angles
 
-The central angle and <InlineMath math="\angle ACB" /> intercept arc <InlineMath math="AB" />. The central angle is twice the inscribed angle:
+For each problem, first find **the vertex and the arc it intercepts**. Problems 3 and 4 also need the angle sum of a triangle, <InlineMath math="180^\circ" />.
+
+1. A central angle of a circle measures <InlineMath math="120^\circ" />. What is the inscribed angle that intercepts the same arc?
+
+2. The inscribed angle <InlineMath math="\angle ACB = 45^\circ" />. Find the central angle <InlineMath math="\angle AOB" /> on the same arc.
+
+3. Segment <InlineMath math="AB" /> is a diameter of a circle and point <InlineMath math="C" /> lies on the circle. If <InlineMath math="\angle CAB = 35^\circ" />, find <InlineMath math="\angle ABC" />.
+
+4. Points <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> lie on a circle with center <InlineMath math="O" />, and <InlineMath math="C" /> is on the major arc <InlineMath math="AB" />. If <InlineMath math="\angle OAB = 25^\circ" />, find <InlineMath math="\angle ACB" />.
+
+### Answers
+
+**Problem 1**. An inscribed angle on the same arc is **half the central angle**, so it measures <InlineMath math="\frac{1}{2} \times 120^\circ = 60^\circ" />. Check by doubling: <InlineMath math="2 \times 60^\circ = 120^\circ" />.
+
+**Problem 2**. The central angle and <InlineMath math="\angle ACB" /> both intercept arc <InlineMath math="AB" />, and the central angle is **twice the inscribed angle**:
 
 <BlockMath math="\angle AOB=2\angle ACB=2(45^\circ)=90^\circ" />
 
-**Solution 3**
+**Problem 3**. The angle <InlineMath math="\angle ACB" /> intercepts the diameter <InlineMath math="AB" />, so it measures <InlineMath math="90^\circ" />. The angles of triangle <InlineMath math="ABC" /> add up to <InlineMath math="180^\circ" />, so:
 
-A diameter cuts off a semicircle, whose central angle is <InlineMath math="180^\circ" />. The inscribed angle is half of that angle, so <InlineMath math="\angle PQR = 90^\circ" />.
+<BlockMath math="\angle ABC = 180^\circ - 90^\circ - 35^\circ = 55^\circ" />
 
-**Solution 4**
+Check the sum: <InlineMath math="35^\circ + 90^\circ + 55^\circ = 180^\circ" />.
 
-Inscribed angles that intercept the same arc have equal measures. The other angle is also <InlineMath math="25^\circ" />.
+**Problem 4**. Triangle <InlineMath math="OAB" /> is isosceles because <InlineMath math="OA" /> and <InlineMath math="OB" /> are both radii, so **its base angles are equal**: <InlineMath math="\angle OAB = \angle OBA = 25^\circ" />. The central angle is what remains of the triangle's angle sum:
+
+<MathContainer>
+  <BlockMath math="\angle AOB = 180^\circ - 25^\circ - 25^\circ = 130^\circ" />
+  <BlockMath math="\angle ACB = \frac{1}{2} \times 130^\circ = 65^\circ" />
+</MathContainer>
+
+Point <InlineMath math="C" /> lies on the major arc, so <InlineMath math="\angle ACB" /> does intercept the minor arc with central angle <InlineMath math="130^\circ" />. The answer checks out, because <InlineMath math="2 \times 65^\circ = 130^\circ" />.

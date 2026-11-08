@@ -107,8 +107,16 @@ describe("exam source", () => {
 
   it.effect("refuses a key repeated among tracks, sets, or sections", () =>
     Effect.gen(function* () {
+      const { groups } = testExamInput.grouping;
       const errors = yield* Effect.forEach(
         [
+          {
+            ...testExamInput,
+            grouping: {
+              axis: "grade" as const,
+              groups: Arr.appendAll(groups, groups),
+            },
+          },
           { ...testExamInput, tracks: [subject, { ...subject, order: 2 }] },
           withYear({ sets: [testSet(1), { ...testSet(1), order: 2 }] }),
           withYear({
@@ -121,10 +129,33 @@ describe("exam source", () => {
       expect(
         Arr.map(errors, (error) => "scope" in error && error.scope)
       ).toEqual([
+        "test-exam:groups",
         "test-exam:tracks",
         "test-exam:2027:sets",
         "test-exam:2027:sections",
       ]);
+    })
+  );
+
+  it.effect("puts every track in a declared group and no group empty", () =>
+    Effect.gen(function* () {
+      const undeclared = yield* defineExamSource(
+        withYear({ group: "test-middle" })
+      ).pipe(Effect.flip);
+      const empty = yield* defineExamSource(
+        withYear({ group: "test-lower" })
+      ).pipe(Effect.flip);
+
+      expect(undeclared).toMatchObject({
+        _tag: "ExamSourceGroupError",
+        key: "test-middle",
+        reason: "undeclared",
+      });
+      expect(empty).toMatchObject({
+        _tag: "ExamSourceGroupError",
+        key: "test-upper",
+        reason: "empty",
+      });
     })
   );
 

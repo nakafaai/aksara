@@ -48,7 +48,7 @@ describe("structured snapshot domain verification", () => {
           (manifest) => verify(manifest, snapshotData.rows)
         );
 
-        expect(counts).toEqual([24, 588, 1542]);
+        expect(counts).toEqual([27, 588, 1542]);
       }),
     30_000
   );
@@ -210,7 +210,7 @@ describe("structured snapshot domain verification", () => {
         ).toEqual([
           "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
           "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
-          "sha256:556a7889b3703a5c6d1aa6c428944a9d8debb8d477b3f6b255edad463e41dcbe",
+          "sha256:52ab722ecb0f07bc05aba520cdaceab68a64dade3f34e755875bffaaa71d1e51",
         ]);
       }),
     30_000

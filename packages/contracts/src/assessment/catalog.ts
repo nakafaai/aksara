@@ -15,12 +15,13 @@ export const CatalogRevisionSchema = Schema.Trimmed.check(
 );
 
 /**
- * Navigation role of one track: one exam `year`, one `subject`, or the sets of
- * one `institution`, such as a Studienkolleg.
+ * The one axis by which an exam divides its tracks into groups: the `year` of
+ * a sitting (SNBT), the school `grade` a test is set for (TKA), or the
+ * `institution` that sets it, such as a Studienkolleg.
  */
-export const TrackKindSchema = Schema.Literals([
+export const GroupAxisSchema = Schema.Literals([
+  "grade",
   "institution",
-  "subject",
   "year",
 ]);
 
@@ -44,6 +45,7 @@ const LocalizedFields = {
 
 const CountryFields = { countryKey: KebabKeySchema };
 const ExamFields = { ...CountryFields, examKey: KebabKeySchema };
+const GroupFields = { ...ExamFields, groupKey: KebabKeySchema };
 const TrackFields = { ...ExamFields, trackKey: KebabKeySchema };
 const SetFields = { ...TrackFields, setKey: KebabKeySchema };
 
@@ -57,23 +59,38 @@ export const CatalogCountrySchema = Schema.Struct({
   publicPath: PublicPathSchema,
 });
 
-/** One localized exam of a country. */
+/** One localized exam of a country, and the axis that divides its tracks into groups. */
 export const CatalogExamSchema = Schema.Struct({
   ...LocalizedFields,
   ...ExamFields,
+  groupAxis: GroupAxisSchema,
   kind: Schema.Literal("exam"),
   order: PositiveCountSchema,
   publicPath: PublicPathSchema,
 });
 
-/** One localized track of an exam: a year, a subject, or an institution. */
+/** One localized group of an exam on its axis: a year, a grade, or an institution. */
+export const CatalogGroupSchema = Schema.Struct({
+  ...LocalizedFields,
+  ...GroupFields,
+  kind: Schema.Literal("group"),
+  order: PositiveCountSchema,
+  publicPath: PublicPathSchema,
+});
+
+/**
+ * One localized track of an exam, in the group that holds it: one paper
+ * format with its sets, such as a subject or a year's test. A track key is
+ * unique within its exam, so the rows of a track and of its sets name the
+ * track without its group.
+ */
 export const CatalogTrackSchema = Schema.Struct({
   ...LocalizedFields,
   ...TrackFields,
+  groupKey: KebabKeySchema,
   kind: Schema.Literal("track"),
   order: PositiveCountSchema,
   publicPath: PublicPathSchema,
-  trackKind: TrackKindSchema,
 });
 
 /**
@@ -116,6 +133,7 @@ export const CatalogSectionSchema = Schema.Struct({
 export const CatalogRowSchema = Schema.Union([
   CatalogCountrySchema,
   CatalogExamSchema,
+  CatalogGroupSchema,
   CatalogTrackSchema,
   CatalogSetSchema,
   CatalogSectionSchema,
@@ -124,7 +142,9 @@ export type CatalogRow = typeof CatalogRowSchema.Type;
 
 /**
  * The identity of one catalog row, unique within a snapshot: its locale, its
- * kind, and the keys of its node and of every node above it.
+ * kind, and the keys of its node and of every node above it. A group names
+ * its own key; a track is unique within its exam, so a track and the rows
+ * under it leave their group out.
  */
 export function catalogRowIdentity(row: CatalogRow) {
   return Arr.join(
@@ -133,6 +153,7 @@ export function catalogRowIdentity(row: CatalogRow) {
       row.kind,
       row.countryKey,
       "examKey" in row ? row.examKey : "",
+      row.kind === "group" ? row.groupKey : "",
       "trackKey" in row ? row.trackKey : "",
       "setKey" in row ? row.setKey : "",
       "sectionKey" in row ? row.sectionKey : "",
