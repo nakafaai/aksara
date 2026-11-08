@@ -1,41 +1,15 @@
-Die Funktion <InlineMath math="f(x)=2+\frac7{x-1}" /> hat die **Asymptoten** <InlineMath math="x=1" /> und <InlineMath math="y=2" /> mit Schnittpunkt <InlineMath math="(1,2)" />. Für <InlineMath math="x>1" /> ist der Bruch positiv, also gilt <InlineMath math="f(x)>2" />.
-
-Auf jedem Intervall <InlineMath math="(-\infty,1)" /> und <InlineMath math="(1,\infty)" /> nimmt <InlineMath math="\frac1{x-1}" /> mit wachsendem <InlineMath math="x" /> ab. Der positive Faktor <InlineMath math="7" /> und die Addition von <InlineMath math="2" /> erhalten diese Monotonie. Löse für die Fixpunkte <InlineMath math="f(x)=x" />.
+Die Bücherzahlen pro Monat bilden eine **arithmetische Folge** mit <InlineMath math="a=14" /> und <InlineMath math="d=6" />. Gesucht ist die Summe der ersten <InlineMath math="12" /> Glieder, <InlineMath math="S_{12}" />.
 
 <BlockMath math="\begin{aligned}
-x&=2+\frac7{x-1} \\
-x(x-1)&=2(x-1)+7 \\
-x^2-x&=2x-2+7 \\
-x^2-3x-5&=0
+U_{12}&=a+11d=14+66=80 \\
+S_{12}&=\frac{12}{2}\,(a+U_{12})=6\cdot(14+80)=564
 \end{aligned}" />
 
-Die Diskriminante <InlineMath math="9+20=29>0" /> liefert zwei reelle Lösungen. Der ausgeschlossene Wert <InlineMath math="x=1" /> löst diese Gleichung nicht. Beide Lösungen liegen daher im Definitionsbereich. Löse für die Umkehrfunktion nach der ursprünglichen Variablen auf.
+Zur Kontrolle mit der anderen Formel: <InlineMath math="S_{12}=\frac{12}{2}\,(2\cdot14+11\cdot6)=6\cdot94=564" />.
 
-<BlockMath math="\begin{aligned}
-y-2&=\frac7{x-1} \\
-(y-2)(x-1)&=7 \\
-x-1&=\frac7{y-2} \\
-x&=1+\frac7{y-2} \\
-f^{-1}(y)&=\frac{y+5}{y-2}
-\end{aligned}" />
+In <InlineMath math="12" /> Monaten erhält die Bibliothek also <InlineMath math="564" /> Bücher.
 
-Funktion und Umkehrfunktion haben verschiedene Definitionsbereiche. Sie schließen <InlineMath math="1" /> beziehungsweise <InlineMath math="2" /> aus. Deshalb ist <InlineMath math="f^{-1}=f" /> falsch. Die übrigen vier Aussagen stimmen.
-
-Fixpunkte sind die Schnittpunkte mit der Geraden <InlineMath math="y=x" />. Die Lösungen der quadratischen Gleichung lauten <InlineMath math="x=\frac{3\pm\sqrt{29}}2" />. Wähle für die Monotonieprüfung <InlineMath math="a<b" /> auf derselben Seite von 1. Im folgenden Ausdruck ist der Nenner positiv und der Zähler negativ.
-
-<BlockMath math="f(b)-f(a)=\frac{7(a-b)}{(b-1)(a-1)}<0" />
-
-<LineEquation
-  title="Zwei Äste und zwei Fixpunkte"
-  description="Violett zeigt die Funktion, Orange die Gerade y = x. Die grauen Geraden sind die beiden Asymptoten."
-  cameraPosition={[1, 2, 20]}
-  cameraTarget={[1, 2, 0]}
-  showZAxis={false}
-  data={[
-    ...[[-6, 0], [2, 8]].map(([a,b]) => ({ points: Array.from({ length: 81 }, (_, i) => { const x = a + (b-a)*i/80; return { x, y: 2 + 7/(x-1), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false })),
-    { points: [{ x: -5, y: -5, z: 0 }, { x: 7, y: 7, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: -6, y: 2, z: 0 }, { x: 8, y: 2, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [-1, 1].map((sign) => { const x = (3 + sign*Math.sqrt(29))/2; return { x, y: x, z: 0 }; }), color: "#d97706", lineWidth: 0, smooth: false, showPoints: true },
-  ]}
-/>
+- <InlineMath math="80" /> Bücher ist nur die Spende im Monat <InlineMath math="12" />, also <InlineMath math="U_{12}" />.
+- <InlineMath math="234" /> Bücher rechnet <InlineMath math="12\cdot14+11\cdot6" /> und addiert die Differenz insgesamt nur einmal.
+- <InlineMath math="480" /> Bücher rechnet <InlineMath math="\frac{12}{2}\cdot80" /> und vergisst das erste Glied.
+- <InlineMath math="517" /> Bücher nimmt <InlineMath math="\frac{11}{2}" /> statt <InlineMath math="\frac{12}{2}" /> als Faktor.

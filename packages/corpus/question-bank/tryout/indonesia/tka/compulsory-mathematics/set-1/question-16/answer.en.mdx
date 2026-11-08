@@ -1,42 +1,17 @@
-Because the **holes do not overlap**, subtract their total area from the rectangle. The two semicircles have the combined area of one full circle.
+The volume of a cylinder is **base area times height**. The base area depends on the radius, which is half the diameter.
 
 <BlockMath math="\begin{aligned}
-A&=10\cdot8-2\left(\frac12\pi(2)^2\right)-3^2 \\
-&=80-4\pi-9 \\
-&=71-4\pi
+r&=\frac{1.4}{2}=0.7\text{ m} \\
+V&=\pi r^2h=\frac{22}{7}\cdot0.49\cdot2=3.08\text{ m}^3
 \end{aligned}" />
 
-The remaining plate area is <InlineMath math="(71-4\pi)\,\mathrm{cm}^2" />.
+One cubic metre holds <InlineMath math="1{,}000" /> litres, because <InlineMath math="1\text{ m}^3=1{,}000\text{ dm}^3" />. So <InlineMath math="3.08\text{ m}^3=3{,}080" /> litres.
 
-<LineEquation
-  title="Subtracting the holes from the plate"
-  description="One arrangement of the holes that satisfies the question. The two semicircles join into one circle. Purple outlines mark the holes."
-  cameraPosition={[5, 4, 14]}
-  cameraTarget={[5, 4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }, { x: 10, y: 8, z: 0 }, { x: 0, y: 8, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#64748b", smooth: false, showPoints: false,
-      labels: [{ text: <InlineMath math="10\text{ cm}" />, at: 0, offset: [5, -0.6, 0] }, { text: <InlineMath math="8\text{ cm}" />, at: 2, offset: [0.8, -4, 0] }],
-    },
-    {
-      points: Array.from({ length: 97 }, (_, i) => ({ x: 3 + 2 * Math.cos(i * Math.PI / 48), y: 4 + 2 * Math.sin(i * Math.PI / 48), z: 0 })),
-      color: "#9333ea", smooth: false, showPoints: false,
-    },
-    {
-      points: [{ x: 6, y: 2.5, z: 0 }, { x: 9, y: 2.5, z: 0 }, { x: 9, y: 5.5, z: 0 }, { x: 6, y: 5.5, z: 0 }, { x: 6, y: 2.5, z: 0 }],
-      color: "#9333ea", smooth: false, showPoints: false,
-      labels: [{ text: <InlineMath math="3\text{ cm}" />, at: 0, offset: [1.5, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 4, z: 0 }, { x: 5, y: 4, z: 0 }],
-      color: "#64748b", smooth: false, showPoints: false,
-    },
-    {
-      points: [{ x: 3, y: 4, z: 0 }, { x: 5, y: 4, z: 0 }],
-      color: "#d97706", smooth: false, showPoints: false,
-      labels: [{ text: <InlineMath math="r=2\text{ cm}" />, at: 0, offset: [1, 0.6, 0] }],
-    },
-  ]}
-/>
+As a check, <InlineMath math="\frac{22}{7}\cdot0.49=1.54" />, and <InlineMath math="1.54\cdot2=3.08" />.
+
+So the tank holds <InlineMath math="3{,}080" /> litres.
+
+- <InlineMath math="308" /> litres uses <InlineMath math="1\text{ m}^3=100" /> litres.
+- <InlineMath math="4{,}400" /> litres forgets to square the radius: <InlineMath math="\frac{22}{7}\cdot0.7\cdot2=4.4" />.
+- <InlineMath math="12{,}320" /> litres uses the diameter <InlineMath math="1.4\text{ m}" /> as the radius.
+- <InlineMath math="30{,}800" /> litres uses <InlineMath math="1\text{ m}^3=10{,}000" /> litres.

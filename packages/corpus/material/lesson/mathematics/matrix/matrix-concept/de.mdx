@@ -3,7 +3,7 @@ export const metadata = {
   description: "Matrizen anhand von Zeilen, Spalten, Einträgen, Formaten und zwei vertrauten Datentabellen verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrizen",
 };
 
@@ -72,6 +72,39 @@ Für die Matrix oben bedeutet das:
 | <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
 
+Lies jetzt jede Zeile von <InlineMath math="A" /> als Punkt <InlineMath math="(x, y)" />. Spalte 1 liefert <InlineMath math="x" />, die Mathenote, und Spalte 2 liefert <InlineMath math="y" />, die Englischnote. So wird jede Person zu einem Punkt. Schau dir Aisyah an: Ihre Hilfslinien zeigen <InlineMath math="a_{11} = 80" /> nach rechts und <InlineMath math="a_{12} = 75" /> nach oben. Tauschst du die beiden Einträge ihrer Zeile, springt der Punkt nach <InlineMath math="(75, 80)" />. Genau deshalb bestimmt die Position eines Eintrags seine Bedeutung.
+
+<MathVisual
+  title={<>Drei Personen als drei Punkte</>}
+  description={<>Zeile <InlineMath math="i" /> von <InlineMath math="A" /> wird zum Punkt (Spalte 1, Spalte 2): die Mathenote nach rechts und die Englischnote nach oben.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Format einer Matrix
 
 Das **Format** einer Matrix <Highlight>nennt zuerst die Anzahl der Zeilen</Highlight> und dann die Anzahl der Spalten. Eine Matrix mit <InlineMath math="m" /> Zeilen und <InlineMath math="n" /> Spalten hat das Format <InlineMath math="m \times n" />, gelesen als „<InlineMath math="m" /> mal <InlineMath math="n" />“.
@@ -103,6 +136,87 @@ Zum Beispiel:
 - <InlineMath math="b_{11} = 2" /> ist das Element in Zeile <InlineMath math="1" />, Spalte <InlineMath math="1" />.
 - <InlineMath math="b_{23} = 1" /> ist das Element in Zeile <InlineMath math="2" />, Spalte <InlineMath math="3" />.
 - <InlineMath math="b_{32} = 2" /> ist das Element in Zeile <InlineMath math="3" />, Spalte <InlineMath math="2" />.
+
+Hier steht die Matrix <InlineMath math="B" /> mit jedem Eintrag an seinem Platz: Spaltennummer nach rechts, Zeilennummer nach unten. Der erste Index zählt die Zeilen nach unten, der zweite die Spalten nach rechts. Darum steht <InlineMath math="b_{23} = 1" /> in Zeile 2, Spalte 3, und <InlineMath math="b_{32} = 2" /> in Zeile 3, Spalte 2.
+
+<MathVisual
+  title={<>Wo <InlineMath math="b_{ij}" /> in <InlineMath math="B" /> steht</>}
+  description={<>Die neun Einträge von <InlineMath math="B" /> nach Spalte (rechts) und Zeile (unten) angeordnet, mit <InlineMath math="b_{11}" />, <InlineMath math="b_{23}" /> und <InlineMath math="b_{32}" /> benannt.</>}
+  labels={{
+    b11: <InlineMath math="b_{11} = 2" />,
+    b12: <InlineMath math="1" />,
+    b13: <InlineMath math="0" />,
+    b21: <InlineMath math="3" />,
+    b22: <InlineMath math="1" />,
+    b23: <InlineMath math="b_{23} = 1" />,
+    b31: <InlineMath math="1" />,
+    b32: <InlineMath math="b_{32} = 2" />,
+    b33: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "reference" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "reference" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "b31", kind: "point", at: { x: 1, y: -3 }, appearance: "reference" },
+      { id: "b32", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+      { id: "b33", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "b31", objectId: "b31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "b32", objectId: "b32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "b33", objectId: "b33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Das Format nennt immer zuerst die Zeilen. Der linke Block hat <InlineMath math="3" /> Zeilen mit je <InlineMath math="2" /> Einträgen, also <InlineMath math="3 \times 2" />, wie die Notenmatrix. Der rechte Block ordnet dieselben sechs Einträge in <InlineMath math="2" /> Zeilen zu je <InlineMath math="3" /> an und hat damit ein anderes Format, <InlineMath math="2 \times 3" />.
+
+<MathVisual
+  title={<>Dieselben sechs Einträge, zwei Formate</>}
+  description={<>Sechs Einträge als Block mit <InlineMath math="3" /> Zeilen und <InlineMath math="2" /> Spalten und als Block mit <InlineMath math="2" /> Zeilen und <InlineMath math="3" /> Spalten.</>}
+  labels={{
+    t32: <InlineMath math="3 \times 2" />,
+    t23: <InlineMath math="2 \times 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "a12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "a21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "a22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "a31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "a32", kind: "point", at: { x: 2, y: -3 }, appearance: "primary" },
+      { id: "b11", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "b12", kind: "point", at: { x: 6, y: -1 }, appearance: "secondary" },
+      { id: "b13", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "b21", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "b22", kind: "point", at: { x: 6, y: -2 }, appearance: "secondary" },
+      { id: "b23", kind: "point", at: { x: 7, y: -2 }, appearance: "secondary" },
+      { id: "t32", kind: "segment", from: { x: 1, y: -3.6 }, to: { x: 2, y: -3.6 }, appearance: "primary" },
+      { id: "t23", kind: "segment", from: { x: 5, y: -2.6 }, to: { x: 7, y: -2.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "t32", objectId: "t32", at: { x: 1.5, y: -3.6 }, placement: "below" },
+      { key: "t23", objectId: "t23", at: { x: 6, y: -2.6 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Allgemeine Matrixnotation
 

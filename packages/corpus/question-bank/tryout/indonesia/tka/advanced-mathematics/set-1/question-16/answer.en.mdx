@@ -1,0 +1,55 @@
+Every point of the wiper rubber moves on a circle centered at <InlineMath math="O" />. The nearest point traces an arc of radius <InlineMath math="15\text{ cm}" />, and the farthest point traces an arc of radius <InlineMath math="60\text{ cm}" />. The swept region is an **annular sector**: a large sector of radius <InlineMath math="60\text{ cm}" /> minus a small sector of radius <InlineMath math="15\text{ cm}" />, both with central angle <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title="Region swept by the wiper"
+  description={<>The swept region is bounded by an arc of radius <InlineMath math="15\text{ cm}" />, an arc of radius <InlineMath math="60\text{ cm}" />, and two segments at the start and end positions of the wiper arm. Its central angle is <InlineMath math="120^\circ" />.</>}
+  labels={{
+    pivot: <InlineMath math="O" />,
+    inner: <InlineMath math="15\text{ cm}" />,
+    outer: <InlineMath math="60\text{ cm}" />,
+    turn: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -55, max: 55 },
+      y: { min: -8, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 60, startDegrees: 30, sweepDegrees: 120 },
+      { id: "inner-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 15, startDegrees: 30, sweepDegrees: 120 },
+      { id: "start-edge", kind: "segment", appearance: "primary", from: { x: 7.5 * Math.sqrt(3), y: 7.5 }, to: { x: 30 * Math.sqrt(3), y: 30 } },
+      { id: "end-edge", kind: "segment", appearance: "primary", from: { x: -7.5 * Math.sqrt(3), y: 7.5 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "inner-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 7.5 * Math.sqrt(3), y: 7.5 } },
+      { id: "outer-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "turn-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 6, startDegrees: 30, sweepDegrees: 120 },
+      { id: "pivot-point", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot-point", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "inner", objectId: "inner-radius", at: { x: 3.75 * Math.sqrt(3), y: 3.75 }, placement: "below-right" },
+      { key: "outer", objectId: "outer-radius", at: { x: -15 * Math.sqrt(3), y: 15 }, placement: "below-left" },
+      { key: "turn", objectId: "turn-arc", at: { x: 0, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+The area of a sector with central angle <InlineMath math="\alpha" /> and radius <InlineMath math="r" /> is <InlineMath math="\frac{\alpha}{360^\circ}\pi r^2" />. Both sectors use the same angle, so the factor <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" /> can be taken out.
+
+<BlockMath math="\begin{aligned}
+A&=\frac{120^\circ}{360^\circ}\pi\cdot60^2-\frac{120^\circ}{360^\circ}\pi\cdot15^2 \\
+&=\frac13\pi\left(60^2-15^2\right) \\
+&=\frac13\pi(3{,}600-225) \\
+&=\frac13\pi\cdot3{,}375=1{,}125\pi\text{ cm}^2
+\end{aligned}" />
+
+The result makes sense: it is less than the area of the large sector, <InlineMath math="\frac13\pi\cdot3{,}600=1{,}200\pi\text{ cm}^2" />, and the difference, <InlineMath math="75\pi\text{ cm}^2" />, equals the small sector <InlineMath math="\frac13\pi\cdot225" />.
+
+So the area of glass swept by the wiper rubber in one sweep is <InlineMath math="1{,}125\pi\text{ cm}^2" />.
+
+- <InlineMath math="675\pi\text{ cm}^2" /> comes from subtracting the radii first and then squaring: <InlineMath math="\frac13\pi(60-15)^2" />. The squares of the radii must be subtracted instead.
+- <InlineMath math="1{,}200\pi\text{ cm}^2" /> is the large sector alone. It includes the part near the pivot that the rubber never touches.
+- <InlineMath math="2{,}250\pi\text{ cm}^2" /> comes from writing the angle fraction as <InlineMath math="\frac{120^\circ}{180^\circ}" />, although a full turn is <InlineMath math="360^\circ" />.
+- <InlineMath math="3{,}375\pi\text{ cm}^2" /> is the area of a full ring. The factor <InlineMath math="\frac13" /> for the angle <InlineMath math="120^\circ" /> is missing.

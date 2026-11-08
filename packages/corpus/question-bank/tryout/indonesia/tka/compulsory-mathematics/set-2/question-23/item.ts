@@ -2,34 +2,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "combined-class-scores",
+  stimulus: "daily-temperature",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$75{,}3$$",
+          column: 1,
+          label: "Rata-ratanya turun $$0{,}5^\\circ\\text{C}$$.",
         },
         {
-          correct: false,
-          label: "$$74{,}9$$",
+          column: 2,
+          label: "Mediannya berubah.",
         },
         {
-          correct: false,
-          label: "$$75{,}1$$",
+          column: 1,
+          label: "Jangkauannya menjadi $$4^\\circ\\text{C}$$.",
         },
         {
-          correct: false,
-          label: "$$75{,}5$$",
-        },
-        {
-          correct: false,
-          label: "$$75{,}7$$",
+          column: 2,
+          label: "Modusnya berubah menjadi $$30^\\circ\\text{C}$$.",
         },
       ],
     },

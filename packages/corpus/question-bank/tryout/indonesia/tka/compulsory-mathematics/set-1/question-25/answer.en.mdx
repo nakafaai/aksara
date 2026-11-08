@@ -1,24 +1,17 @@
-For events that **do not distinguish order**, there are <InlineMath math="\binom92=\frac{9\cdot8}{2}=36" /> equally likely pairs. Count same-color pairs by selecting two balls of one color.
+The order of selection does not matter, so count with **binomial coefficients**. At least two girls means exactly two or exactly three.
 
 <BlockMath math="\begin{aligned}
-N&=\binom42+\binom32+\binom22 \\
-&=\frac{4\cdot3}{2}+\frac{3\cdot2}{2}+\frac{2\cdot1}{2} \\
-&=6+3+1=10 \\
-P&=\frac{10}{36}=\frac5{18}
+\text{all selections}&=\binom93=84 \\
+\text{exactly 2 girls}&=\binom42\binom51=6\cdot5=30 \\
+\text{exactly 3 girls}&=\binom43=4 \\
+P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
 \end{aligned}" />
 
-Exactly one red means choosing one of the four red balls and one of the five other balls.
+As a check, no girl or exactly one girl gives <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> selections, and <InlineMath math="34+50=84" />.
 
-<BlockMath math="P=\frac{4\cdot5}{36}=\frac{20}{36}=\frac59" />
+So the probability is <InlineMath math="\frac{17}{42}" />.
 
-If the first ball is green, eight balls remain, including three blue balls. The conditional probability of a blue second ball is <InlineMath math="\frac38" />. The first draw changes the second-draw probabilities. For example, after a blue ball is drawn, the next blue probability is <InlineMath math="\frac28" />, compared with <InlineMath math="\frac39" /> before drawing.
-
-Thus the three numerical probability statements are true, while independence of the two drawn colors is false.
-
-The changing contents of the bag show why the second colour depends on the first draw.
-
-| State before the next draw | Red | Blue | Green | Total | Blue probability |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Before the first draw | 4 | 3 | 2 | 9 | <InlineMath math="\frac39" /> |
-| After drawing one green ball | 4 | 3 | 1 | 8 | <InlineMath math="\frac38" /> |
-| After drawing one blue ball | 4 | 2 | 2 | 8 | <InlineMath math="\frac28" /> |
+- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> counts only the selection with three girls.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> counts only exactly two girls and forgets the case with three.
+- <InlineMath math="\frac12" /> would need <InlineMath math="42" /> favourable selections, but there are <InlineMath math="34" />.
+- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> is the complement, at most one girl.

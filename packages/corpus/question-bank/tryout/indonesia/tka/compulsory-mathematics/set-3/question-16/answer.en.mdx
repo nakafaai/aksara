@@ -1,42 +1,12 @@
-The two outer semicircles have the combined area of a circle of radius <InlineMath math="6\,\mathrm{m}" />. Let <InlineMath math="A_o" /> be the full area inside the outer boundary.
+The large candle is a cylinder, so its volume is **base area times height**, <InlineMath math="V=\pi r^2h" />. The radius is half the diameter, <InlineMath math="r=3.5\text{ cm}" />.
 
-<BlockMath math="\begin{aligned}
-A_o&=20(12)+\pi(6)^2 \\
-&=240+36\pi
-\end{aligned}" />
+<BlockMath math="V=\frac{22}{7}\cdot3.5^2\cdot12=\frac{22}{7}\cdot12.25\cdot12=38.5\cdot12=462\text{ cm}^3" />
 
-The inner boundary is offset inward by <InlineMath math="2\,\mathrm{m}" />. Its radius becomes <InlineMath math="4\,\mathrm{m}" /> and its width <InlineMath math="8\,\mathrm{m}" />. The semicircle centers stay fixed, so the **straight sections remain** <InlineMath math="20\,\mathrm{m}" /> long.
+As a check, the base area is <InlineMath math="38.5\text{ cm}^2" />, and <InlineMath math="38.5\cdot12=462" />.
 
-<BlockMath math="\begin{aligned}
-A_i&=20(8)+\pi(4)^2 \\
-&=160+16\pi
-\end{aligned}" />
+So one large candle has a volume of <InlineMath math="462\text{ cm}^3" />.
 
-Subtract the inner area from the full outer area.
-
-<BlockMath math="\begin{aligned}
-A&=A_o-A_i \\
-&=240+36\pi-160-16\pi \\
-&=(240-160)+(36-16)\pi \\
-&=80+20\pi
-\end{aligned}" />
-
-The track area is <InlineMath math="(80+20\pi)\,\mathrm{m}^2" />.
-
-<LineEquation
-  title="The two stadium boundaries"
-  description="The arc centers remain 20 m apart. The outer radius is 6 m and the inner radius is 4 m."
-  cameraPosition={[10,0,43]}
-  cameraTarget={[10,0,0]}
-  showZAxis={false}
-  data={[
-    ...[6,4].flatMap((r) => [
-      { points: Array.from({ length: 81 }, (_, i) => { const t = Math.PI/2 + Math.PI*i/80; return { x: r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
-      { points: Array.from({ length: 81 }, (_, i) => { const t = -Math.PI/2 + Math.PI*i/80; return { x: 20+r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
-      ...[-r,r].map((y) => ({ points: [{ x: 0, y, z: 0 }, { x: 20, y, z: 0 }], color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false })),
-    ]),
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 20, y: 0, z: 0 }], color: "#64748b", smooth: false, labels: [{ text: "20 m", at: 0, offset: [10, -0.8, 0] }] },
-    { points: [{ x: 10, y: 4, z: 0 }, { x: 10, y: 6, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "2 m", at: 0, offset: [1.2, 1, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 6, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "6 m", at: 0, offset: [-1.3, 3, 0] }] },
-  ]}
-/>
+- <InlineMath math="132\text{ cm}^3" /> works out <InlineMath math="\pi rh" />, without squaring the radius.
+- <InlineMath math="154\text{ cm}^3" /> uses the cone formula, <InlineMath math="\frac13\pi r^2h" />.
+- <InlineMath math="264\text{ cm}^3" /> works out the curved surface <InlineMath math="2\pi rh" />, not the volume.
+- <InlineMath math="1{,}848\text{ cm}^3" /> uses the diameter <InlineMath math="7\text{ cm}" /> as the radius.
