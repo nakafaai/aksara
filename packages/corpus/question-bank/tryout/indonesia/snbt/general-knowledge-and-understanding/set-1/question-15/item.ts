@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "bahasa",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "dataran tinggi.",
+          column: 2,
+          label:
+            "Menurut bacaan, jumlah penutur yang sedikit selalu menjadi tanda utama bahwa sebuah bahasa terancam punah.",
         },
         {
-          correct: false,
-          label: "fenomena embun.",
+          column: 1,
+          label: "Kamus membantu merekam kosakata bahasa daerah.",
         },
         {
-          correct: false,
-          label: "hamparan rumput.",
+          column: 1,
+          label:
+            "Di kelas mendongeng, bahasa daerah dipakai dalam kegiatan seperti bernyanyi dan bercanda.",
         },
         {
-          correct: false,
-          label: "embun es.",
-        },
-        {
-          correct: false,
-          label: "masih berada.",
+          column: 2,
+          label:
+            "Penulis berpendapat bahwa penyusunan kamus tidak bermanfaat bagi upaya revitalisasi bahasa.",
         },
       ],
     },

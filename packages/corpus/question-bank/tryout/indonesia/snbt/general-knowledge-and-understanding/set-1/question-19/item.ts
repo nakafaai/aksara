@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "karang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$1$$.",
-        },
-        {
-          correct: false,
-          label: "$$2$$.",
-        },
-        {
           correct: true,
-          label: "$$6$$.",
+          label:
+            "Peluang karang untuk pulih bergantung pada seberapa cepat suhu air kembali normal.",
         },
         {
           correct: false,
-          label: "$$3$$.",
+          label:
+            "Alga hanya dapat tumbuh di jaringan karang ketika suhu air tinggi.",
         },
         {
           correct: false,
-          label: "$$7$$.",
+          label: "Kerangka kapur karang berubah warna ketika suhu air turun.",
+        },
+        {
+          correct: false,
+          label: "Luas karang yang memutih tidak dapat diukur oleh pengamat.",
+        },
+        {
+          correct: false,
+          label: "Penyakit karang hanya muncul ketika suhu air normal.",
         },
       ],
     },

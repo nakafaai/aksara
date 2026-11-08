@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "elektronik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Pembeli akhir yang memakai barang hingga habis.",
+        },
+        {
           correct: true,
           label:
-            "Bukti genetik berusia sekitar $$1{.}400$$ tahun membantu merekonstruksi sejarah evolusi virus variola.",
+            "Orang yang mengumpulkan barang dari banyak sumber untuk dijual kembali.",
         },
         {
           correct: false,
-          label:
-            "Sampel DNA purba termuda dalam penelitian tersebut berasal dari sekitar tahun $$600$$ M.",
+          label: "Petugas kebersihan yang digaji pemerintah daerah.",
         },
         {
           correct: false,
-          label:
-            "Sisa arkeologis tersebut tidak mengandung DNA variola yang dapat dideteksi.",
+          label: "Pemilik pabrik daur ulang berskala besar.",
         },
         {
           correct: false,
-          label:
-            "Penelitian tersebut membuktikan bahwa cacar berasal dari Eropa utara pada Zaman Viking.",
-        },
-        {
-          correct: false,
-          label: "Semua pernyataan di atas salah.",
+          label: "Perajin yang memperbaiki perangkat rusak.",
         },
       ],
     },

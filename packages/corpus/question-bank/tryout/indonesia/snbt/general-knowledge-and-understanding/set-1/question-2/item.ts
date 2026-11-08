@@ -1,15 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "antonym",
+  },
+  stimulus: "leuit",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "terawat." },
-        { correct: false, label: "terbangun." },
-        { correct: false, label: "terpelihara." },
-        { correct: false, label: "terlindungi." },
-        { correct: true, label: "terlelap." },
+        {
+          correct: true,
+          label: "rentan",
+        },
+        {
+          correct: false,
+          label: "kebal",
+        },
+        {
+          correct: false,
+          label: "awet",
+        },
+        {
+          correct: false,
+          label: "kuat",
+        },
+        {
+          correct: false,
+          label: "tabah",
+        },
       ],
     },
   },

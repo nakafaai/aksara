@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "leuit",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Tidur pada hewan membuktikan bahwa kucing bermimpi tentang kegiatan yang dilakukannya ketika terjaga.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap mimpi menayangkan ulang pengalaman baru secara persis dan memperkuat ingatan tersebut.",
-        },
-        {
-          correct: false,
-          label:
-            "Mimpi hanya terjadi dalam tidur REM karena otak tidak aktif pada tahap lainnya.",
-        },
-        {
           correct: true,
           label:
-            "Mimpi berkaitan dengan aktivitas otak saat tidur dan potongan pengalaman terjaga, tetapi fungsi tepatnya masih diteliti.",
+            "Larangan memperjualbelikan padi dari leuit dan kebiasaan mengambilnya sesuai kebutuhan keluarga.",
         },
         {
           correct: false,
-          label:
-            "Tujuan mimpi sudah dipahami sepenuhnya sehingga tidak perlu diteliti lagi.",
+          label: "Kebiasaan menyimpan padi dalam bentuk ikatan bertangkai.",
+        },
+        {
+          correct: false,
+          label: "Cara membangun leuit di atas kolong yang dialiri udara.",
+        },
+        {
+          correct: false,
+          label: "Kewajiban menggiling padi segera setelah panen.",
+        },
+        {
+          correct: false,
+          label: "Pembagian padi kepada warga ketika musim paceklik datang.",
         },
       ],
     },

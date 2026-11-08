@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "leuit",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "alasan hubungan yang tidak biasa dapat terasa wajar di dalam mimpi.",
-        },
-        {
-          correct: false,
-          label:
-            "kesulitan mengetahui secara pasti pengalaman hewan yang sedang tidur.",
-        },
-        {
-          correct: false,
-          label: "peran tidur REM dalam mengurangi pengendalian sadar saja.",
-        },
-        {
-          correct: false,
-          label: "anjuran agar anak-anak tidur setiap selesai belajar.",
+          label: "Tiang yang menopang lantai bangunan agar tidak roboh.",
         },
         {
           correct: true,
-          label:
-            "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
+          label: "Cadangan yang meredam akibat kekurangan pangan.",
+        },
+        {
+          correct: false,
+          label: "Alat yang menahan getaran pada bangunan panggung.",
+        },
+        {
+          correct: false,
+          label: "Pihak yang menengahi perselisihan antarwarga.",
+        },
+        {
+          correct: false,
+          label: "Dinding yang memisahkan ruang penyimpanan padi.",
         },
       ],
     },
