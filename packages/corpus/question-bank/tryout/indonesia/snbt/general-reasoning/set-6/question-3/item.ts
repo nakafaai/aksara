@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "piring",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Kedua kegiatan dibatalkan karena hujan",
+          column: 1,
+          label:
+            "Makanan yang benar-benar dimakan setiap karyawan dalam sekali makan siang turun $$50$$ gram.",
         },
         {
-          correct: false,
-          label: "Kedua kegiatan dilaksanakan pada hari Minggu",
+          column: 1,
+          label:
+            "Persentase karyawan yang mengambil makanan hanya sekali turun dari $$85\\%$$ menjadi $$75\\%$$.",
         },
         {
-          correct: false,
-          label: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
+          column: 2,
+          label:
+            "Sisa makanan yang dibuang setiap karyawan turun lebih dari separuhnya.",
         },
         {
-          correct: true,
-          label: "Barang daur ulang dikumpulkan pada hari Minggu",
-        },
-        {
-          correct: false,
-          label: "Kerja bakti ditunda tanpa memilih kegiatan pengganti",
+          column: 2,
+          label:
+            "Setelah piring diganti, sisa makanan lebih dari $$10\\%$$ makanan yang diambil.",
         },
       ],
     },

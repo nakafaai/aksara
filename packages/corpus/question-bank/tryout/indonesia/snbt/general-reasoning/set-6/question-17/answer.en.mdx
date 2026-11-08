@@ -1,11 +1,18 @@
-Let <InlineMath math="P" /> mean "a robbery occurred" and <InlineMath math="Q" /> mean "a theft occurred." The two premises are:
+Split the cases by the position of **T**, since T may only be first or last. P and Q always sit together, so treat PQ as one block.
 
-<BlockMath math="P\lor Q" />
+**Case T last**. Places 1 to 5 hold the block PQ, R, S, and U, with R before S, S not last (already met because T is last), and U not next to R. All possibilities:
 
-<BlockMath math="\neg P" />
+| Places 1 to 5 | Meets rule 4? |
+| --- | --- |
+| P, Q, R, S, U | yes |
+| R, P, Q, S, U | yes |
+| R, P, Q, U, S | yes |
+| R, S, P, Q, U | yes |
+| R, S, U, P, Q | yes |
+| U, P, Q, R, S | yes |
 
-The second premise rules out robbery. For the first premise to remain true, theft must be the event that occurred:
+Other arrangements with R before S fail because U is next to R, for example P, Q, U, R, S or U, R, P, Q, S. That is **6** orders.
 
-<BlockMath math="Q" />
+**Case T first**. Places 2 to 6 hold the block PQ, R, S, and U, with S not in place 6. The possibilities are T, P, Q, R, S, U, then T, R, P, Q, S, U, then T, R, S, P, Q, U, and T, R, S, U, P, Q. That is **4** orders.
 
-This is a disjunctive syllogism. Therefore, a **theft** occurred in Kampung Bambu last Sunday.
+The total is <InlineMath math="6+4=10" /> orders.

@@ -1,13 +1,11 @@
-A wants only Yogyakarta or Lombok. E already has Lombok, and **each destination is used exactly once**, so A must receive **Yogyakarta**.
+Choose Mungkin (possible) or Tidak mungkin (impossible) for each order. Test each against all five rules. One violation is enough to make an order **impossible**.
 
-We can check that this choice still allows all tickets to be assigned under the rules:
+**Order 1**: impossible. U in third place comes just after R in second place, which breaks rule 4.
 
-| Child | Destination | Reason |
-| --- | --- | --- |
-| E | Lombok | Given in the question |
-| A | Yogyakarta | Lombok is already assigned to E |
-| B | Bali | Bali must be used and appears only on B's list |
-| C | Manado | Manado must be used and appears only on C's list |
-| D | Padang | Yogyakarta is assigned to A, leaving Padang as D's only available choice |
+**Order 2**: possible. Q follows P directly, R comes before S, T is last, U in fifth place is not next to R in third, and S is fourth.
 
-All five destinations are used exactly once, and each child receives a destination on their wish list. This assignment satisfies every condition.
+**Order 3**: impossible. S in fourth place comes before R in fifth place, which breaks rule 2.
+
+**Order 4**: possible. Q follows P directly, R is first and before S, T is last, U in fourth place is not next to R, and S is fifth.
+
+So orders 2 and 4 are possible, while orders 1 and 3 are impossible.

@@ -1,11 +1,18 @@
-Misalkan <InlineMath math="P" /> berarti "terjadi perampokan" dan <InlineMath math="Q" /> berarti "terjadi pencurian." Kedua premisnya adalah:
+Bagi kasus menurut posisi **T**, karena T hanya boleh pertama atau terakhir. Pasangan P, Q selalu berdampingan, jadi perlakukan PQ sebagai satu blok.
 
-<BlockMath math="P\lor Q" />
+**Kasus T terakhir**. Urutan ke-1 sampai ke-5 diisi blok PQ, R, S, dan U, dengan R sebelum S, S tidak terakhir (sudah terpenuhi karena T terakhir), dan U tidak bersebelahan dengan R. Daftar semua kemungkinannya:
 
-<BlockMath math="\neg P" />
+| Urutan ke-1 sampai ke-5 | Memenuhi syarat 4? |
+| --- | --- |
+| P, Q, R, S, U | ya |
+| R, P, Q, S, U | ya |
+| R, P, Q, U, S | ya |
+| R, S, P, Q, U | ya |
+| R, S, U, P, Q | ya |
+| U, P, Q, R, S | ya |
 
-Premis kedua meniadakan perampokan. Agar premis pertama tetap benar, peristiwa yang terjadi haruslah pencurian:
+Susunan lain dengan R sebelum S gagal karena U bersebelahan dengan R, misalnya P, Q, U, R, S atau U, R, P, Q, S. Ada **6** urutan.
 
-<BlockMath math="Q" />
+**Kasus T pertama**. Urutan ke-2 sampai ke-6 diisi blok PQ, R, S, dan U, dengan S tidak di urutan keenam. Kemungkinannya T, P, Q, R, S, U, lalu T, R, P, Q, S, U, lalu T, R, S, P, Q, U, dan T, R, S, U, P, Q. Ada **4** urutan.
 
-Bentuk penalaran ini disebut silogisme disjungtif. Jadi, terjadi **pencurian** di Kampung Bambu pada hari Minggu lalu.
+Totalnya <InlineMath math="6+4=10" /> urutan.
