@@ -11,18 +11,6 @@ export const metadata = {
 
 Die [Ableitungsregeln](/de/faecher/mathematik/ableitungen/ableitungsregeln) gelten für viele algebraische Formen. Bestimme bei einem Polynom, einer rationalen Funktion oder einem Wurzelausdruck <Highlight>zuerst die Struktur</Highlight> und wähle dann <Highlight>die passende Regel</Highlight>. Die folgenden Beispiele begründen jede Auswahl.
 
-<Mermaid
-  title="4x² + x + 2 gliedweise ableiten"
-  description="Die Ableitung einer Summe ist die Summe der Ableitungen, also wird jedes Glied mit Potenz-, Faktor- und Konstantenregel abgeleitet."
-  chart={`flowchart LR
-  A["4x²"] -->|"Potenz- und Faktorregel"| A1["8x"]
-  B["x"] -->|"Potenzregel"| B1["1"]
-  C["2"] -->|"Konstantenregel"| C1["0"]
-  A1 --> S["y′ = 8x + 1"]
-  B1 --> S
-  C1 --> S`}
-/>
-
 ## Ableitungsregeln auf algebraische Funktionen anwenden
 
 Jedes Beispiel behandelt eine andere algebraische Form und begründet die Wahl der Methode. Schreibe einen Quotienten oder <Highlight>eine Wurzel vor dem Ableiten als Potenz</Highlight>, denn dann greift die Potenzregel direkt bei jedem Glied.
@@ -41,51 +29,56 @@ Die Ableitung des linearen Terms <InlineMath math="x" /> ist <InlineMath math="1
 
 Die Ableitung <InlineMath math="y' = 8x + 1" /> liefert die Steigung in jedem Punkt von <InlineMath math="y = 4x^2 + x + 2" />. Bei <InlineMath math="x = 0" /> ist sie <InlineMath math="1" />, die Tangente dort ist also <InlineMath math="y = x + 2" />. Dreh die Szene und vergleich die Steilheit der Kurve mit der Tangente.
 
-<LineEquation
-  title="Tangente der Parabel bei x = 0"
+<MathVisual
+  title={<>Tangente der Parabel bei <InlineMath math="x = 0" /></>}
   description={<>Die Parabel <InlineMath math="4x^2 + x + 2" /> mit ihrer Tangente <InlineMath math="y = x + 2" /> im Punkt <InlineMath math="(0, 2)" />.</>}
-  cameraPosition={[-0.1, 3.4, 6]}
-  cameraTarget={[-0.1, 3.4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1 + (i / 400) * ((0.75) - (-1));
-        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="y = 4x^2 + x + 2" />, at: 30, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: -0.6, y: 1.4, z: 0 }, { x: 0.6, y: 2.6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x + 2" />, at: 1, offset: [0.2, -0.2, 0] }] },
-    { points: [{ x: 0, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(0, 2)" />, at: 0, offset: [-0.5, 0.2, 0] }] }
-  ]}
+  labels={{
+    curve: <InlineMath math="y = 4x^2 + x + 2" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    touch: <InlineMath math="(0, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.1 }, y: { min: 1, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 1, c: 2 }, domain: { min: -1, max: 0.75 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -0.6, y: 1.4 }, to: { x: 0.6, y: 2.6 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.75, y: 5 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 0.6, y: 2.6 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 Dieselbe Ableitung findet den Tiefpunkt. <InlineMath math="8x + 1 = 0" /> gilt bei <InlineMath math="x = -\tfrac18" />, dort ist die Tangente waagerecht, und die Parabel erreicht ihren kleinsten Wert <InlineMath math="\tfrac{31}{16}" />. Bei <InlineMath math="x = 0{,}5" /> ist die Steigung <InlineMath math="8 \cdot 0{,}5 + 1 = 5" />, viel steiler.
 
-<LineEquation
-  title="Steigung 0 und 5 an derselben Parabel"
+<MathVisual
+  title={<>Steigung 0 und 5 an derselben Parabel</>}
   description={<>Die Parabel <InlineMath math="4x^2 + x + 2" /> mit waagerechter Tangente im Scheitel <InlineMath math="(-\tfrac18 \mid \tfrac{31}{16})" /> und einer Tangente mit Steigung 5 bei <InlineMath math="(0{,}5 \mid 3{,}5)" />.</>}
-  cameraPosition={[-0.1, 3.4, 6]}
-  cameraTarget={[-0.1, 3.4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1 + (i / 400) * ((0.75) - (-1));
-        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-    },
-    { points: [{ x: -1 / 8 - 0.35, y: 31 / 16, z: 0 }, { x: -1 / 8 + 0.35, y: 31 / 16, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="0" />, at: 1, offset: [0.15, 0.1, 0] }] },
-    { points: [{ x: 0.25, y: 2.25, z: 0 }, { x: 0.75, y: 4.75, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="5" />, at: 1, offset: [0.15, 0, 0] }] },
-    { points: [{ x: -1 / 8, y: 31 / 16, z: 0 }], smooth: false, showPoints: true, color: "#0d9488" },
-    { points: [{ x: 0.5, y: 3.5, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+  labels={{
+    flat: <InlineMath math="m = 0" />,
+    steep: <InlineMath math="m = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.1 }, y: { min: 1, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 1, c: 2 }, domain: { min: -1, max: 0.75 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: -0.475, y: 31 / 16 }, to: { x: 0.225, y: 31 / 16 }, appearance: "construction" },
+      { id: "steep", kind: "segment", from: { x: 0.25, y: 2.25 }, to: { x: 0.75, y: 4.75 }, appearance: "secondary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 8, y: 31 / 16 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 0.5, y: 3.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: -0.475, y: 31 / 16 }, placement: "left" },
+      { key: "steep", objectId: "steep", at: { x: 0.75, y: 4.75 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Funktionen mit Wurzeln ableiten
@@ -137,6 +130,16 @@ Wir verwenden die Quotientenregel. Seien <InlineMath math="u(x) = x^2+2" /> und 
 </MathContainer>
 
 Die Einschränkung <InlineMath math="x\ne0" /> gehört weiterhin zum Definitionsbereich der Ableitung.
+
+Lies die Steigung von <InlineMath math="y' = 2 - \frac{4}{x^2}" /> bei <InlineMath math="x = 1" /> bis <InlineMath math="5" /> ab. Bei <InlineMath math="x = 1" /> ist sie <InlineMath math="-2" />, dort fällt der Graph. Ab <InlineMath math="x = 2" /> ist sie positiv und nähert sich <InlineMath math="2" />, weil <InlineMath math="\frac{4}{x^2}" /> mit wachsendem <InlineMath math="x" /> schrumpft.
+
+<BarChart
+  title={<>Steigungen von <InlineMath math="y = 2\left(\frac{x^2+2}{x}\right)" /> an fünf Stellen</>}
+  description={<>Balken von <InlineMath math="y' = 2 - \frac{4}{x^2}" /> für <InlineMath math="x = 1, 2, 3, 4, 5" />, steigend von <InlineMath math="-2" /> in Richtung 2.</>}
+  yAxisLabel="Steigung"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 - 4 / x ** 2 }))}
+  chartConfig={{ value: { label: "Steigung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übungen
 

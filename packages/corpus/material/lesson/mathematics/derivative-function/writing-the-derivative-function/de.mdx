@@ -33,16 +33,6 @@ Bei der Strichnotation nach Lagrange kennzeichnet ein Strich die Ableitung. Für
 
 Wir lesen dies als „<InlineMath math="y" /> Strich“ und „<InlineMath math="f" /> Strich von <InlineMath math="x" />“. Die Schreibweise ist kurz und praktisch, wenn die unabhängige Variable bereits feststeht. Bei jeder weiteren Ableitung kommt ein **zusätzlicher Strich** hinzu. Die zweite Ableitung lautet deshalb <InlineMath math="f''(x)" />.
 
-<Mermaid
-  title="Zwei Schreibweisen, eine Ableitung"
-  description="Die Leibniz-Schreibweise und die Lagrange-Schreibweise notieren dieselbe Ableitung von y = f(x) auf zwei Arten."
-  chart={`flowchart LR
-  F["y = f(x) = x³ − 2x"] --> L["Leibniz: dy/dx"]
-  F --> G["Lagrange: f′(x)"]
-  L --> D["3x² − 2"]
-  G --> D`}
-/>
-
 ## Die passende Notation wählen
 
 Die **Strichnotation nach Lagrange**, etwa <InlineMath math="f'(x)" />, eignet sich, wenn Funktion und unabhängige Variable eindeutig sind. Sie hält gewöhnliche Rechnungen kurz und übersichtlich.
@@ -69,73 +59,77 @@ Der senkrechte Strich in der Leibniz-Notation bedeutet, dass die Ableitung an de
 
 In der letzten Zeile leiten wir <InlineMath math="3x^2-2" /> noch einmal ab. Die Hochzahlen in der Leibniz-Notation kennzeichnen **zweimaliges Ableiten**. Sie bedeuten nicht, dass die erste Ableitung quadriert wird.
 
-Beide Schreibweisen benennen dieselbe Steigungsfunktion. Die orange Kurve ist <InlineMath math="f(x) = x^3 - 2x" /> mit ihrer Tangente bei <InlineMath math="x = 1" />, die pro 1 nach rechts um 1 steigt. Die violette Kurve ist <InlineMath math="f'(x) = \frac{dy}{dx} = 3x^2 - 2" />, und ihre Höhe bei <InlineMath math="x = 1" /> ist genau diese Steigung, <InlineMath math="1" />.
+Beide Schreibweisen benennen dieselbe Steigungsfunktion. Die violette Kurve ist <InlineMath math="f'(x) = \frac{dy}{dx} = 3x^2 - 2" />, und ihre Höhe bei <InlineMath math="x = 1" /> ist <InlineMath math="1" />. Die türkise Gerade ist die Tangente an <InlineMath math="f(x) = x^3 - 2x" /> in <InlineMath math="(1, -1)" />, nämlich <InlineMath math="y = x - 2" />: Sie steigt um 1 pro 1 nach rechts. Die Höhe der Ableitung und die Steigung der Tangente sind dieselbe Zahl.
 
-<LineEquation
-  title="Die Ableitung liefert die Steigung jeder Tangente"
-  description={<>Die Kurve <InlineMath math="x^3 - 2x" /> mit ihrer Tangente bei <InlineMath math="x = 1" /> und die Ableitung <InlineMath math="3x^2 - 2" /> mit dem Punkt <InlineMath math="(1, 1)" />.</>}
-  cameraPosition={[0, 1.2, 9]}
-  cameraTarget={[0, 1.2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: x ** 3 - 2 * x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: 3 * x ** 2 - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    { points: [{ x: 0, y: -2, z: 0 }, { x: 1.5, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x - 2" />, at: 1, offset: [0.2, -0.3, 0] }] },
-    { points: [{ x: 1, y: -1, z: 0 }], smooth: false, showPoints: true, color: "#bb6800" },
-    { points: [{ x: 1, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.25, 0.2, 0] }] }
-  ]}
+<MathVisual
+  title={<>Die Höhe von <InlineMath math="f'" /> ist die Steigung der Tangente</>}
+  description={<>Die Ableitung <InlineMath math="f'(x) = 3x^2 - 2" /> mit dem Punkt <InlineMath math="(1, 1)" /> und die Tangente <InlineMath math="y = x - 2" /> an <InlineMath math="f(x) = x^3 - 2x" /> in <InlineMath math="(1, -1)" />, mit der Steigung 1.</>}
+  labels={{
+    slope: <InlineMath math="f'(x) = 3x^2 - 2" />,
+    tangent: <InlineMath math="y = x - 2" />,
+    touch: <InlineMath math="(1, -1)" />,
+    height: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 2.1 }, y: { min: -2.5, max: 5.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "slope", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: -2 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: 0.3, y: -1.7 }, to: { x: 1.6, y: -0.4 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "height", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "slope", objectId: "slope", at: { x: 1.5, y: 4.75 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 1.6, y: -0.4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 1, y: 1 }, placement: "left" },
+    ],
+  }}
 />
 
-Wo die Ableitung null ist, ist die Tangente waagerecht. <InlineMath math="3x^2 - 2 = 0" /> gilt bei <InlineMath math="x = \pm\sqrt{2/3}" />, und genau dort dreht die orange Kurve um. An <InlineMath math="f'" /> liest du ab, wo <InlineMath math="f" /> aufhört zu steigen und zu fallen beginnt.
+Wo die Ableitung null ist, liegt die Tangente waagerecht. <InlineMath math="3x^2 - 2 = 0" /> gilt bei <InlineMath math="x = \pm\sqrt{2/3}" />. Dort schneidet die violette Kurve die x-Achse, und genau darüber und darunter liegen die türkisen Tangenten an <InlineMath math="f" /> waagerecht, in den Punkten <InlineMath math="\left(-\sqrt{2/3}, \tfrac43\sqrt{2/3}\right)" /> und <InlineMath math="\left(\sqrt{2/3}, -\tfrac43\sqrt{2/3}\right)" />. An <InlineMath math="f'" /> liest du ab, wo <InlineMath math="f" /> aufhört zu steigen und zu fallen beginnt und wo es wieder steigt.
 
-<LineEquation
-  title="Waagerechte Tangenten, wo die Ableitung null ist"
-  description={<>Die Kurve <InlineMath math="x^3 - 2x" /> mit waagerechten Tangenten bei <InlineMath math="x = \pm\sqrt{2/3}" />, wo <InlineMath math="3x^2 - 2" /> die Null kreuzt.</>}
-  cameraPosition={[0, 1.2, 9]}
-  cameraTarget={[0, 1.2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: x ** 3 - 2 * x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: 3 * x ** 2 - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    { points: [{ x: -Math.sqrt(2 / 3) - 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: -Math.sqrt(2 / 3) + 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
-    { points: [{ x: Math.sqrt(2 / 3) - 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: Math.sqrt(2 / 3) + 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
-    { points: [{ x: -Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" },
-    { points: [{ x: Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+<MathVisual
+  title={<>Waagerechte Tangenten, wo die Ableitung null ist</>}
+  description={<>Die Ableitung <InlineMath math="f'(x) = 3x^2 - 2" /> wird bei <InlineMath math="x = \pm\sqrt{2/3}" /> null, und die Tangenten an <InlineMath math="f(x) = x^3 - 2x" /> an diesen Stellen liegen waagerecht.</>}
+  labels={{
+    slope: <InlineMath math="f'" />,
+    "zero-left": <InlineMath math="-\sqrt{2/3}" />,
+    "zero-right": <InlineMath math="\sqrt{2/3}" />,
+    top: <InlineMath math="m = 0" />,
+    bottom: <InlineMath math="m = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 2.1 }, y: { min: -2.5, max: 5.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "slope", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: -2 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "zero-left", kind: "point", at: { x: -Math.sqrt(2 / 3), y: 0 }, appearance: "answer" },
+      { id: "zero-right", kind: "point", at: { x: Math.sqrt(2 / 3), y: 0 }, appearance: "answer" },
+      { id: "flat-left", kind: "segment", from: { x: -Math.sqrt(2 / 3) - 0.4, y: (4 / 3) * Math.sqrt(2 / 3) }, to: { x: -Math.sqrt(2 / 3) + 0.4, y: (4 / 3) * Math.sqrt(2 / 3) }, appearance: "construction" },
+      { id: "flat-right", kind: "segment", from: { x: Math.sqrt(2 / 3) - 0.4, y: -(4 / 3) * Math.sqrt(2 / 3) }, to: { x: Math.sqrt(2 / 3) + 0.4, y: -(4 / 3) * Math.sqrt(2 / 3) }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: -Math.sqrt(2 / 3), y: (4 / 3) * Math.sqrt(2 / 3) }, appearance: "primary" },
+      { id: "bottom", kind: "point", at: { x: Math.sqrt(2 / 3), y: -(4 / 3) * Math.sqrt(2 / 3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "slope", objectId: "slope", at: { x: 1.5, y: 4.75 }, placement: "right" },
+      { key: "zero-left", objectId: "zero-left", at: { x: -Math.sqrt(2 / 3), y: 0 }, placement: "below" },
+      { key: "zero-right", objectId: "zero-right", at: { x: Math.sqrt(2 / 3), y: 0 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: -Math.sqrt(2 / 3), y: (4 / 3) * Math.sqrt(2 / 3) }, placement: "above" },
+      { key: "bottom", objectId: "bottom", at: { x: Math.sqrt(2 / 3), y: -(4 / 3) * Math.sqrt(2 / 3) }, placement: "below" },
+    ],
+  }}
+/>
+
+Die Höhen von <InlineMath math="f(x) = x^3 - 2x" /> selbst bestätigen, was <InlineMath math="f'" /> vorhersagt. Von <InlineMath math="x = -1{,}5" /> bis <InlineMath math="x = -1" /> steigen die Balken, zwischen <InlineMath math="-1" /> und <InlineMath math="1" /> fallen sie, und nach <InlineMath math="x = 1" /> steigen sie wieder. Hoch- und Tiefpunkt liegen nahe <InlineMath math="\pm\sqrt{2/3} \approx \pm 0{,}82" />, wo <InlineMath math="f'" /> null ist.
+
+<BarChart
+  title={<>Höhen von <InlineMath math="f(x) = x^3 - 2x" /> an sieben Stellen</>}
+  description={<>Balken von <InlineMath math="f(x)" /> für <InlineMath math="x" /> von <InlineMath math="-1{,}5" /> bis <InlineMath math="1{,}5" /> in Schritten von <InlineMath math="0{,}5" />: steigend, dann fallend zwischen <InlineMath math="-1" /> und <InlineMath math="1" />, dann wieder steigend.</>}
+  yAxisLabel="Wert"
+  data={[-1.5, -1, -0.5, 0, 0.5, 1, 1.5].map((x) => ({ name: String(x), value: x ** 3 - 2 * x }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

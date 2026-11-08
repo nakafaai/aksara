@@ -43,47 +43,37 @@ Let <InlineMath math="u(x)" /> and <InlineMath math="v(x)" /> be differentiable 
 
 Slopes add like the functions do. At <InlineMath math="x = 1" /> the tangent of <InlineMath math="x^2" /> has slope <InlineMath math="2" /> and the tangent of <InlineMath math="x" /> has slope <InlineMath math="1" />. The tangent of their sum <InlineMath math="x^2 + x" /> has slope <InlineMath math="2 + 1 = 3" />, which is the linear combination rule at work.
 
-<LineEquation
-  title="The slope of a sum is the sum of the slopes"
+<MathVisual
+  title={<>The slope of a sum is the sum of the slopes</>}
   description={<>The curves <InlineMath math="x^2" />, <InlineMath math="x" /> and <InlineMath math="x^2 + x" /> with their tangents at <InlineMath math="x = 1" />, of slopes 2, 1 and 3.</>}
-  cameraPosition={[0.8, 2.5, 9]}
-  cameraTarget={[0.8, 2.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -0.5 + (i / 400) * ((2) - (-0.5));
-        return { x, y: x ** 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="x^2" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -0.5 + (i / 400) * ((2) - (-0.5));
-        return { x, y: x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="x" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -0.5 + (i / 400) * ((2) - (-0.5));
-        return { x, y: x ** 2 + x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="x^2 + x" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    { points: [{ x: 0.5, y: 0, z: 0 }, { x: 1.5, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.15, 0, 0] }] },
-    { points: [{ x: 0.5, y: 0.5, z: 0 }, { x: 1.5, y: 1.5, z: 0 }], smooth: false, showPoints: false, color: "#8242e5" },
-    { points: [{ x: 0.5, y: 0.5, z: 0 }, { x: 1.5, y: 3.5, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="3" />, at: 1, offset: [0.15, 0, 0] }] }
-  ]}
+  labels={{
+    square: <InlineMath math="x^2" />,
+    identity: <InlineMath math="x" />,
+    sum: <InlineMath math="x^2 + x" />,
+    "t-square": <InlineMath math="m = 2" />,
+    "t-sum": <InlineMath math="m = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -0.8, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "primary" },
+      { id: "identity", kind: "segment", from: { x: -0.5, y: -0.5 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "construction" },
+      { id: "t-square", kind: "segment", from: { x: 0.5, y: 0 }, to: { x: 1.5, y: 2 }, appearance: "primary" },
+      { id: "t-sum", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1.5, y: 3.5 }, appearance: "construction" },
+      { id: "p-square", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p-sum", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "identity", objectId: "identity", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "t-square", objectId: "t-square", at: { x: 0.5, y: 0 }, placement: "left" },
+      { key: "t-sum", objectId: "t-sum", at: { x: 1.5, y: 3.5 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Product Quotient and Chain Rules
@@ -105,7 +95,7 @@ You can check the result by expanding the original function to <InlineMath math=
 Here is where the product rule comes from. A rectangle with sides <InlineMath math="u = 2" /> and <InlineMath math="v = 3" /> has area <InlineMath math="uv" />. Let both sides grow a little, by <InlineMath math="\Delta u" /> and <InlineMath math="\Delta v" />: the new area is the old one plus two strips, <InlineMath math="\Delta u \cdot v" /> and <InlineMath math="u \cdot \Delta v" />, plus a tiny corner <InlineMath math="\Delta u \Delta v" />. Divide by <InlineMath math="\Delta x" /> and shrink it: the corner vanishes and <InlineMath math="(uv)' = u'v + uv'" /> remains.
 
 <MathVisual
-  title="The product rule as a growing rectangle"
+  title={<>The product rule as a growing rectangle</>}
   description={<>A rectangle of area <InlineMath math="uv" /> grows by the strips <InlineMath math="\Delta u \cdot v" /> and <InlineMath math="u \cdot \Delta v" /> and a small corner <InlineMath math="\Delta u \Delta v" />.</>}
   labels={{
     uv: <InlineMath math="uv" />,
@@ -144,6 +134,16 @@ For <InlineMath math="f(x)=\frac{x+1}{x-1}" />, choose <InlineMath math="u=x+1" 
 
 The restriction <InlineMath math="x\ne1" /> applies to both the function and its derivative. Reversing the two numerator terms would give the wrong sign.
 
+Check the sign of <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> on both sides of the excluded input <InlineMath math="1" />. Every bar is negative, so <InlineMath math="f" /> falls on each side. The bars are symmetric because <InlineMath math="(x-1)^2" /> takes the same value at <InlineMath math="0" /> and <InlineMath math="2" />, at <InlineMath math="-1" /> and <InlineMath math="3" />, and at <InlineMath math="-2" /> and <InlineMath math="4" />.
+
+<BarChart
+  title={<>Slopes of <InlineMath math="f(x) = \frac{x+1}{x-1}" /> around <InlineMath math="x = 1" /></>}
+  description={<>Bars of <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> for <InlineMath math="x = -2, -1, 0, 2, 3, 4" />, all negative and steepest next to 1.</>}
+  yAxisLabel="Slope"
+  data={[-2, -1, 0, 2, 3, 4].map((x) => ({ name: String(x), value: -2 / (x - 1) ** 2 }))}
+  chartConfig={{ value: { label: "Slope", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Chain Rule
 
 A [composite function](/en/subjects/mathematics/function-composition-inverse-function/function-composition) applies one function inside another. Differentiate the outer function at the **unchanged inner input**, then multiply by the derivative of that inner function.
@@ -166,18 +166,6 @@ The outer function raises its input to the third power. The inner function is <I
 </MathContainer>
 
 The factor <InlineMath math="2x" /> is essential. Leaving it out would mean differentiating only the outer function and stopping before the chain rule is complete.
-
-<Mermaid
-  title="The chain rule for (x² + 1)³"
-  description="The outer power is differentiated with the inner function kept whole, then multiplied by the derivative of the inner function."
-  chart={`flowchart LR
-  X["x"] -->|"u = x² + 1"| U["u"]
-  U -->|"f = u³"| F["f"]
-  F --> D1["df/du = 3u²"]
-  U --> D2["du/dx = 2x"]
-  D1 --> R["f′(x) = 3(x² + 1)² · 2x = 6x(x² + 1)²"]
-  D2 --> R`}
-/>
 
 ## Practice
 

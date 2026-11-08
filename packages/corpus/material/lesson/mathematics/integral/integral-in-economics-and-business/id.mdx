@@ -21,14 +21,6 @@ Sumbu horizontal mengikuti variabel integrasi: waktu untuk laju penjualan, atau 
 | Ribu rupiah per unit | Unit produksi | Ribu rupiah |
 | Ribu rupiah per bulan | Bulan | Ribu rupiah |
 
-<Mermaid
-  title="Dari laju ke total"
-  description="Laju marginal yang diintegralkan pada sebuah selang memberi perubahan total pada selang itu, baik penjualan, pendapatan, maupun biaya."
-  chart={`flowchart LR
-  A["Laju: S′(t), R′(t), atau C′(x)"] -->|"integralkan dari a sampai b"| B["Perubahan total pada [a, b]"]
-  B --> C["Penjualan, pendapatan, atau biaya yang bertambah"]`}
-/>
-
 ## Analisis Penjualan Menggunakan Integral
 
 Misalkan sebuah perusahaan teknologi meluncurkan smartphone baru. Laju penjualan bulanannya dimodelkan dengan fungsi <InlineMath math="f(t) = 2000\sqrt{t + 1} + 800 \text{ unit}" /> per bulan. Variabel <InlineMath math="t" /> menyatakan waktu dalam bulan setelah peluncuran.
@@ -57,7 +49,7 @@ Model kontinu tersebut memprediksi <InlineMath math="S = \frac{35200}{3} \approx
 Integral menjumlahkan sebuah laju. Dengan laju penjualan <InlineMath math="2000\sqrt{t + 1} + 800" /> unit per bulan, batangnya menunjukkan total terjual setelah <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> bulan, masing-masing dihitung sebagai <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Batang terakhir sekitar <InlineMath math="11.733" /> unit, sama dengan hasil di atas.
 
 <BarChart
-  title="Total penjualan yang terkumpul dari laju"
+  title={<>Total penjualan yang terkumpul dari laju</>}
   description={<>Total penjualan setelah 1, 2, dan 3 bulan, masing-masing integral laju penjualan dari 0 sampai bulan itu.</>}
   yAxisLabel="Unit terjual"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
@@ -100,6 +92,16 @@ Dengan asumsi <InlineMath math="VC(0)=0" />, total biaya variabel untuk memprodu
 
 > Dalam penerapan ekonomi, integral mengubah besaran marginal atau laju perubahan menjadi jumlah yang terakumulasi. Misalnya, integral dari biaya marginal memberikan perubahan biaya total.
 
+Perhatikan biaya variabel bertambah. <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> setelah 5, 10, 15, dan 20 unit adalah <InlineMath math="862{,}5" />, <InlineMath math="1500" />, <InlineMath math="1987{,}5" />, dan <InlineMath math="2400" /> ribu rupiah. Setiap kelompok 5 unit menambah lebih sedikit daripada kelompok sebelumnya, yaitu <InlineMath math="862{,}5" />, <InlineMath math="637{,}5" />, <InlineMath math="487{,}5" />, dan <InlineMath math="412{,}5" />, karena biaya marginal turun menuju nilai minimumnya di <InlineMath math="x = 20" />.
+
+<BarChart
+  title={<>Biaya variabel yang terkumpul pada 20 unit pertama</>}
+  description={<>Batang <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> ribu rupiah di <InlineMath math="x = 0, 5, 10, 15, 20" /> unit, berakhir di 2400.</>}
+  yAxisLabel="Biaya variabel (ribu rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 0.1 * x ** 3 - 6 * x ** 2 + 200 * x }))}
+  chartConfig={{ value: { label: "Biaya variabel (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Analisis Surplus Konsumen
 
 Surplus konsumen juga dapat dihitung dengan integral. Misalkan suatu pasar memiliki fungsi permintaan <InlineMath math="P = 100 - 0{,}5Q" /> dan harga keseimbangan <InlineMath math="60 \text{ rupiah per unit}" />. Kuantitas keseimbangan pada kurva permintaan tersebut diperoleh dari:
@@ -126,7 +128,7 @@ Selisih harga membentuk **segitiga**: pada <InlineMath math="Q=0" /> tingginya <
 Surplus konsumen adalah luas sebuah segitiga. Pembeli mau membayar sampai garis permintaan <InlineMath math="P = 100 - 0{,}5Q" />, tetapi semua membayar harga pasar <InlineMath math="60" />. Selisih keduanya untuk <InlineMath math="80" /> unit pertama membentuk segitiga dengan alas <InlineMath math="80" /> dan tinggi <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, sama dengan hasil integralnya.
 
 <MathVisual
-  title="Surplus konsumen sebagai segitiga"
+  title={<>Surplus konsumen sebagai segitiga</>}
   description={<>Garis permintaan <InlineMath math="P = 100 - 0{,}5Q" />, garis harga 60, dan segitiga di antaranya sampai <InlineMath math="Q = 80" />, seluas 1600.</>}
   labels={{
     demand: <InlineMath math="P = 100 - 0{,}5Q" />,

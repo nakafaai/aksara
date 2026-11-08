@@ -25,13 +25,34 @@ Secara formal, jika kita memisalkan <InlineMath math="u = g(x)" />, maka <Inline
 
 Inilah **aturan rantai**. <Highlight>Kerjakan dari lapisan terluar ke dalam</Highlight>, pertahankan setiap ekspresi dalam sampai gilirannya diturunkan, lalu kalikan semua turunan.
 
-<Mermaid
-  title="Cara aturan rantai menghubungkan dua laju"
-  description="Saat y bergantung pada u dan u bergantung pada x, laju y terhadap x adalah hasil kali kedua laju itu."
-  chart={`flowchart LR
-  X["x"] -->|"du/dx"| U["u = g(x)"]
-  U -->|"dy/du"| Y["y = f(u)"]
-  Y --> R["dy/dx = dy/du · du/dx"]`}
+Laju yang berurutan saling dikalikan. Ambil fungsi dalam <InlineMath math="u = 2x" /> dan fungsi luar <InlineMath math="y = 3u" />, jadi <InlineMath math="y = 6x" />. Satu langkah pada <InlineMath math="x" /> menaikkan <InlineMath math="u" /> sebesar <InlineMath math="\frac{du}{dx} = 2" />, dan setiap satuan <InlineMath math="u" /> menaikkan <InlineMath math="y" /> sebesar <InlineMath math="\frac{dy}{du} = 3" />, jadi <InlineMath math="y" /> naik <InlineMath math="3 \cdot 2 = 6" />. Bandingkan kedua titik di atas <InlineMath math="x = 1" />.
+
+<MathVisual
+  title={<>Dua laju berurutan saling dikalikan</>}
+  description={<>Garis dalam <InlineMath math="u = 2x" /> melalui <InlineMath math="(1, 2)" /> dan garis komposisi <InlineMath math="y = 3u = 6x" /> melalui <InlineMath math="(1, 6)" />, yang kemiringannya <InlineMath math="3 \cdot 2 = 6" />.</>}
+  labels={{
+    inner: <InlineMath math="u = 2x" />,
+    outer: <InlineMath math="y = 3u = 6x" />,
+    "u-one": <InlineMath math="(1, 2)" />,
+    "y-one": <InlineMath math="(1, 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.5, y: 3 }, appearance: "secondary" },
+      { id: "outer", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.1, y: 6.6 }, appearance: "primary" },
+      { id: "u-one", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "y-one", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 1.5, y: 3 }, placement: "right" },
+      { key: "outer", objectId: "outer", at: { x: 1.1, y: 6.6 }, placement: "right" },
+      { key: "u-one", objectId: "u-one", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "y-one", objectId: "y-one", at: { x: 1, y: 6 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Penerapan Aturan Rantai
@@ -70,26 +91,29 @@ Terakhir, kita substitusikan kembali <InlineMath math="u" /> dan sederhanakan ek
 
 Untuk <InlineMath math="y = (x^2 - 4x - 2)^8" />, lihat fungsi dalamnya saja, <InlineMath math="u = x^2 - 4x - 2" />. Garis singgungnya datar di <InlineMath math="x = 2" />, tempat <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. Jadi <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> juga <InlineMath math="0" /> di situ, berapa pun faktor luarnya, <InlineMath math="8u^7" />.
 
-<LineEquation
-  title="Fungsi dalam yang datar membuat seluruh turunan nol"
+<MathVisual
+  title={<>Fungsi dalam yang datar membuat seluruh turunan nol</>}
   description={<>Fungsi dalam <InlineMath math="u = x^2 - 4x - 2" /> dengan garis singgung datar di <InlineMath math="(2, -6)" />.</>}
-  cameraPosition={[2, -4, 7]}
-  cameraTarget={[2, -4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = 0 + (i / 400) * ((4) - (0));
-        return { x, y: x ** 2 - 4 * x - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="u = x^2 - 4x - 2" />, at: 380, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: 1.2, y: -6, z: 0 }, { x: 2.8, y: -6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="\frac{du}{dx} = 0" />, at: 1, offset: [0.2, -0.3, 0] }] },
-    { points: [{ x: 2, y: -6, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+  labels={{
+    inner: <InlineMath math="u = x^2 - 4x - 2" />,
+    flat: <InlineMath math="\frac{du}{dx} = 0" />,
+    vertex: <InlineMath math="(2, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -7, max: -1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: -2 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: 1.2, y: -6 }, to: { x: 2.8, y: -6 }, appearance: "construction" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 2.8, y: -6 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -6 }, placement: "below" },
+    ],
+  }}
 />
 
 ### Fungsi Trigonometri
@@ -127,30 +151,14 @@ Sekarang, substitusikan kembali <InlineMath math="u" /> dan <InlineMath math="v"
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
 
-Fungsi dalam menentukan kecepatannya. <InlineMath math="\sin x" /> dan <InlineMath math="\sin 2x" /> punya fungsi luar yang sama, tetapi fungsi dalam <InlineMath math="u = 2x" /> berjalan dua kali lebih cepat. Di <InlineMath math="x = 0" />, garis singgung <InlineMath math="\sin x" /> berkemiringan <InlineMath math="\cos 0 = 1" />, dan garis singgung <InlineMath math="\sin 2x" /> berkemiringan <InlineMath math="\cos 0 \cdot 2 = 2" />. Faktor tambahan 2 itu adalah turunan fungsi dalam.
+Fungsi dalam menentukan kecepatannya. Pada <InlineMath math="y = \sin 2x" />, fungsi luarnya <InlineMath math="\sin u" /> dan fungsi dalamnya <InlineMath math="u = 2x" />, jadi <InlineMath math="\frac{dy}{dx} = \cos(2x) \cdot 2" />. Faktor dalam <InlineMath math="2" /> menggandakan setiap kemiringan sinus biasa: di <InlineMath math="x = 0" /> kemiringan <InlineMath math="\sin x" /> adalah <InlineMath math="1" />, sedangkan kemiringan <InlineMath math="\sin 2x" /> adalah <InlineMath math="2" />. Batang-batangnya menunjukkan <InlineMath math="2\cos 2x" /> di lima nilai <InlineMath math="x" />, dengan <InlineMath math="x" /> dalam radian.
 
-<LineEquation
-  title="Turunan fungsi dalam menggandakan kemiringan"
-  description={<>Kurva <InlineMath math="\sin x" /> dan <InlineMath math="\sin 2x" /> untuk <InlineMath math="-\pi \le x \le \pi" /> dengan garis singgungnya di titik asal, berkemiringan 1 dan 2.</>}
-  cameraPosition={[0, 0, 8]}
-  cameraTarget={[0, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-    },
-    {
-      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-    },
-    { points: [{ x: -0.8, y: -0.8, z: 0 }, { x: 0.8, y: 0.8, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="\sin x" />, at: 1, offset: [0.2, 0, 0] }] },
-    { points: [{ x: -0.6, y: -1.2, z: 0 }, { x: 0.6, y: 1.2, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="\sin 2x" />, at: 1, offset: [0.2, 0, 0] }] }
-  ]}
+<BarChart
+  title={<>Kemiringan <InlineMath math="y = \sin 2x" /> di lima nilai</>}
+  description={<>Batang <InlineMath math="\frac{{dy}}{{dx}} = 2\cos 2x" /> untuk <InlineMath math="x = 0;\ 0{,}25;\ 0{,}5;\ 0{,}75;\ 1" />, mulai dari 2 lalu turun di bawah nol setelah <InlineMath math="2x" /> melewati <InlineMath math="\frac{\pi}{2}" />.</>}
+  yAxisLabel="Kemiringan"
+  data={[0, 0.25, 0.5, 0.75, 1].map((x) => ({ name: String(x), value: 2 * Math.cos(2 * x) }))}
+  chartConfig={{ value: { label: "Kemiringan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Latihan

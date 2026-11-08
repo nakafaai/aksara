@@ -30,7 +30,7 @@ Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua 
 Setiap langkah naik dikalikan <InlineMath math="2" />, jadi batangnya berlipat dua: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Pangkat menghitung berapa faktor <InlineMath math="2" /> yang dikalikan, karena itu <InlineMath math="2^0 = 1" /> memulai daftar tanpa faktor sama sekali.
 
 <BarChart
-  title="Perpangkatan dua"
+  title={<>Perpangkatan dua</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai <InlineMath math="6" />.</>}
   yAxisLabel="Nilai"
   data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
@@ -54,7 +54,7 @@ Bilangan pokok tetap sama ketika bilangan pokok yang sama dikalikan atau dibagi.
 Mengalikan perpangkatan berbasis sama menjumlahkan pangkatnya. Pada garis pangkat, <InlineMath math="2^3" /> adalah langkah sepanjang <InlineMath math="3" /> dan <InlineMath math="2^2" /> langkah sepanjang <InlineMath math="2" />. Sambungkan ujung ke ujung, maka kamu mendarat di pangkat <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
 
 <MathVisual
-  title="Pangkat dijumlahkan saat perpangkatan dikalikan"
+  title={<>Pangkat dijumlahkan saat perpangkatan dikalikan</>}
   description={<>Dua langkah pada garis pangkat, sepanjang 3 dan 2, berakhir di pangkat 5 untuk <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
   labels={{
     s0: <InlineMath math="\times 2^3" />,
@@ -87,6 +87,16 @@ Mengalikan perpangkatan berbasis sama menjumlahkan pangkatnya. Pada garis pangka
 
 Periksa **syarat bilangan pokok dan pangkat** sebelum memilih sifat yang akan digunakan.
 
+Pangkat nol dan pangkat negatif meneruskan pola yang sama. Setiap langkah ke kiri membagi dua nilainya, jadi <InlineMath math="2^0 = 1" />, <InlineMath math="2^{-1} = \frac12" />, dan <InlineMath math="2^{-3} = \frac18" />. Nilainya makin kecil tetapi tetap positif, karena masing-masing adalah <InlineMath math="1" /> dibagi perpangkatan positif dari <InlineMath math="2" />: <InlineMath math="2^{-n} = \frac{1}{2^n}" />.
+
+<BarChart
+  title={<>Perpangkatan dua dari <InlineMath math="2^{-3}" /> sampai <InlineMath math="2^3" /></>}
+  description={<>Batang <InlineMath math="2^k" /> untuk <InlineMath math="k = -3" /> sampai <InlineMath math="3" />: setiap langkah ke kanan menggandakan nilainya, dan <InlineMath math="2^0 = 1" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 0, 1, 2, 3].map((k) => ({ name: String(k), value: 2 ** k }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Bentuk Operasi Menentukan Sifat Eksponen
 
 Tabel menghubungkan setiap operasi pada bentuk dengan **langkah pertama penyederhanaannya**. Temukan operasinya, lalu ikuti baris yang sesuai.
@@ -98,17 +108,6 @@ Tabel menghubungkan setiap operasi pada bentuk dengan **langkah pertama penyeder
 | Pangkat berada di luar pangkat | Kalikan pangkat |
 | Perkalian atau pembagian di dalam tanda kurung | Sebarkan pangkat luar |
 | Pangkat rasional berpenyebut berbeda | Ubah ke penyebut bersama |
-
-<Mermaid
-  title="Aturan pangkat yang diminta sebuah operasi"
-  description="Operasi di antara perpangkatan menentukan aturannya: perkalian menjumlahkan pangkat, pembagian mengurangkannya, dan pangkat dari pangkat mengalikannya."
-  chart={`flowchart LR
-  A["aᵐ · aⁿ"] --> A1["aᵐ⁺ⁿ"]
-  B["aᵐ ÷ aⁿ"] --> B1["aᵐ⁻ⁿ"]
-  C["(aᵐ)ⁿ"] --> C1["aᵐⁿ"]
-  D["(ab)ⁿ"] --> D1["aⁿbⁿ"]
-  E["a⁻ⁿ"] --> E1["1 / aⁿ"]`}
-/>
 
 ## Menyederhanakan Perkalian Pembagian dan Perpangkatan
 

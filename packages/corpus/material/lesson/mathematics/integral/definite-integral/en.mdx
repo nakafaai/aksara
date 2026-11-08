@@ -26,14 +26,6 @@ This notation has a specific meaning:
 
 An indefinite integral includes every function of the form <InlineMath math="F(x) + C" />. A definite integral gives a **single number** that measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />. This number equals ordinary geometric area when the integrand is nonnegative throughout the interval.
 
-<Mermaid
-  title="From rectangles to the definite integral"
-  description="Rectangles approximate the area, more and thinner rectangles improve the approximation, and the limit of the sums is the exact area."
-  chart={`flowchart LR
-  A["Split [a, b] into n strips of width Δx"] --> B["Sum of f(xᵢ*)·Δx"]
-  B -->|"n → ∞"| C["∫ₐᵇ f(x) dx, the exact area"]`}
-/>
-
 ## Calculating the Definite Integral with Limits
 
 **Problem**: Determine the value of <InlineMath math="\int_{0}^{7} x \, dx" />.
@@ -98,7 +90,7 @@ Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x=0
 Here is the limit at work. The exact area under <InlineMath math="y = x" /> from <InlineMath math="0" /> to <InlineMath math="7" /> is the triangle <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Seven right-endpoint rectangles of width <InlineMath math="1" /> cover it with a little extra on top: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, which matches <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
 
 <MathVisual
-  title="Seven rectangles over the exact area"
+  title={<>Seven rectangles over the exact area</>}
   description={<>The triangle under <InlineMath math="y = x" /> from 0 to 7, area <InlineMath math="\tfrac{49}{2}" />, covered by seven rectangles of total area 28.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -143,7 +135,7 @@ The difference from the exact value is <InlineMath math="R_n-\frac{49}{2}=\frac{
 Double the rectangle count to <InlineMath math="14" />, each of width <InlineMath math="\tfrac12" />. The extra slivers on top get thinner, and the total drops to <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26.25" />. Every time <InlineMath math="n" /> grows, the sum moves closer to <InlineMath math="24.5" />.
 
 <MathVisual
-  title="Fourteen thinner rectangles"
+  title={<>Fourteen thinner rectangles</>}
   description={<>Fourteen rectangles of width one half under <InlineMath math="y = x" />, with total area 26.25 against the exact 24.5.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -174,4 +166,14 @@ Double the rectangle count to <InlineMath math="14" />, each of width <InlineMat
       { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
     ],
   }}
+/>
+
+Put the right-endpoint sums side by side. From <InlineMath math="n = 1" /> to <InlineMath math="n = 100" /> the bars shrink from <InlineMath math="49" /> toward the exact area <InlineMath math="\frac{49}{2} = 24.5" />, and the gap above it is always <InlineMath math="\frac{49}{2n}" />.
+
+<BarChart
+  title={<>Right-endpoint sums <InlineMath math="R_n" /> for six rectangle counts</>}
+  description={<>Bars of <InlineMath math="R_n = \frac{49}{2}\left(1 + \frac1n\right)" /> for <InlineMath math="n = 1, 2, 7, 10, 14, 100" />, falling toward <InlineMath math="24.5" />.</>}
+  yAxisLabel="Approximation"
+  data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
+  chartConfig={{ value: { label: "Approximation", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

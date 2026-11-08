@@ -33,16 +33,6 @@ Notasi aksen Lagrange menandai turunan dengan **tanda aksen**. Jika <InlineMath 
 
 Kita membacanya sebagai "<InlineMath math="y" /> aksen" dan "<InlineMath math="f" /> aksen dari <InlineMath math="x" />." Notasi ini ringkas dan praktis ketika variabel bebasnya sudah jelas. Turunan kedua ditulis sebagai <InlineMath math="f''(x)" />, sehingga diferensiasi berulang mudah dikenali.
 
-<Mermaid
-  title="Dua notasi, satu turunan"
-  description="Notasi Leibniz dan notasi Lagrange menulis turunan yang sama dari y = f(x) dengan dua cara."
-  chart={`flowchart LR
-  F["y = f(x) = x³ − 2x"] --> L["Leibniz: dy/dx"]
-  F --> G["Lagrange: f′(x)"]
-  L --> D["3x² − 2"]
-  G --> D`}
-/>
-
 ## Memilih Notasi yang Tepat
 
 Gunakan **notasi aksen Lagrange**, seperti <InlineMath math="f'(x)" />, ketika fungsi dan variabel bebasnya sudah jelas. Bentuk ini membuat perhitungan rutin tetap singkat dan mudah dibaca.
@@ -69,73 +59,77 @@ Garis vertikal pada notasi Leibniz berarti nilai turunan dihitung pada <InlineMa
 
 Pada baris terakhir, kita menurunkan <InlineMath math="3x^2-2" /> sekali lagi. Pangkat pada notasi Leibniz menandai **dua kali diferensiasi**. Notasi itu tidak berarti menguadratkan turunan pertama.
 
-Kedua notasi menamai fungsi kemiringan yang sama. Kurva oranye adalah <InlineMath math="f(x) = x^3 - 2x" /> dengan garis singgungnya di <InlineMath math="x = 1" />, yang naik 1 untuk setiap 1 ke kanan. Kurva ungu adalah <InlineMath math="f'(x) = \frac{dy}{dx} = 3x^2 - 2" />, dan tingginya di <InlineMath math="x = 1" /> adalah kemiringan yang sama, <InlineMath math="1" />.
+Kedua notasi menamai fungsi kemiringan yang sama. Kurva ungu adalah <InlineMath math="f'(x) = \frac{dy}{dx} = 3x^2 - 2" />, dan tingginya di <InlineMath math="x = 1" /> adalah <InlineMath math="1" />. Garis toska adalah garis singgung <InlineMath math="f(x) = x^3 - 2x" /> di <InlineMath math="(1, -1)" />, yaitu <InlineMath math="y = x - 2" />, jadi garis itu naik 1 untuk setiap 1 ke kanan. Tinggi turunan dan kemiringan garis singgung adalah bilangan yang sama.
 
-<LineEquation
-  title="Turunan memberi kemiringan setiap garis singgung"
-  description={<>Kurva <InlineMath math="x^3 - 2x" /> dengan garis singgung di <InlineMath math="x = 1" />, serta turunan <InlineMath math="3x^2 - 2" /> dengan titik <InlineMath math="(1, 1)" />.</>}
-  cameraPosition={[0, 1.2, 9]}
-  cameraTarget={[0, 1.2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: x ** 3 - 2 * x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: 3 * x ** 2 - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    { points: [{ x: 0, y: -2, z: 0 }, { x: 1.5, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x - 2" />, at: 1, offset: [0.2, -0.3, 0] }] },
-    { points: [{ x: 1, y: -1, z: 0 }], smooth: false, showPoints: true, color: "#bb6800" },
-    { points: [{ x: 1, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.25, 0.2, 0] }] }
-  ]}
+<MathVisual
+  title={<>Tinggi <InlineMath math="f'" /> sama dengan kemiringan garis singgung</>}
+  description={<>Turunan <InlineMath math="f'(x) = 3x^2 - 2" /> dengan titik <InlineMath math="(1, 1)" />, serta garis singgung <InlineMath math="y = x - 2" /> pada <InlineMath math="f(x) = x^3 - 2x" /> di <InlineMath math="(1, -1)" />, yang kemiringannya 1.</>}
+  labels={{
+    slope: <InlineMath math="f'(x) = 3x^2 - 2" />,
+    tangent: <InlineMath math="y = x - 2" />,
+    touch: <InlineMath math="(1, -1)" />,
+    height: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 2.1 }, y: { min: -2.5, max: 5.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "slope", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: -2 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: 0.3, y: -1.7 }, to: { x: 1.6, y: -0.4 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "height", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "slope", objectId: "slope", at: { x: 1.5, y: 4.75 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 1.6, y: -0.4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 1, y: 1 }, placement: "left" },
+    ],
+  }}
 />
 
-Di tempat turunannya nol, garis singgungnya datar. <InlineMath math="3x^2 - 2 = 0" /> di <InlineMath math="x = \pm\sqrt{2/3}" />, dan tepat di atas dan di bawah titik-titik itu kurva oranye berbalik arah. Membaca <InlineMath math="f'" /> memberitahumu di mana <InlineMath math="f" /> berhenti naik dan mulai turun.
+Di tempat turunannya nol, garis singgungnya datar. <InlineMath math="3x^2 - 2 = 0" /> di <InlineMath math="x = \pm\sqrt{2/3}" />. Kurva ungu memotong sumbu x di sana, dan tepat di atas dan di bawah titik potong itu garis singgung toska milik <InlineMath math="f" /> mendatar, di titik <InlineMath math="\left(-\sqrt{2/3}, \tfrac43\sqrt{2/3}\right)" /> dan <InlineMath math="\left(\sqrt{2/3}, -\tfrac43\sqrt{2/3}\right)" />. Dengan membaca <InlineMath math="f'" />, kamu tahu di mana <InlineMath math="f" /> berhenti naik dan mulai turun, dan di mana <InlineMath math="f" /> naik lagi.
 
-<LineEquation
-  title="Garis singgung datar saat turunannya nol"
-  description={<>Kurva <InlineMath math="x^3 - 2x" /> dengan garis singgung mendatar di <InlineMath math="x = \pm\sqrt{2/3}" />, tempat <InlineMath math="3x^2 - 2" /> memotong nol.</>}
-  cameraPosition={[0, 1.2, 9]}
-  cameraTarget={[0, 1.2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: x ** 3 - 2 * x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
-        return { x, y: 3 * x ** 2 - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
-    },
-    { points: [{ x: -Math.sqrt(2 / 3) - 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: -Math.sqrt(2 / 3) + 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
-    { points: [{ x: Math.sqrt(2 / 3) - 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: Math.sqrt(2 / 3) + 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
-    { points: [{ x: -Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" },
-    { points: [{ x: Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+<MathVisual
+  title={<>Garis singgung datar saat turunannya nol</>}
+  description={<>Turunan <InlineMath math="f'(x) = 3x^2 - 2" /> bernilai nol di <InlineMath math="x = \pm\sqrt{2/3}" />, dan garis singgung <InlineMath math="f(x) = x^3 - 2x" /> di kedua nilai itu mendatar.</>}
+  labels={{
+    slope: <InlineMath math="f'" />,
+    "zero-left": <InlineMath math="-\sqrt{2/3}" />,
+    "zero-right": <InlineMath math="\sqrt{2/3}" />,
+    top: <InlineMath math="m = 0" />,
+    bottom: <InlineMath math="m = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 2.1 }, y: { min: -2.5, max: 5.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "slope", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: -2 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "zero-left", kind: "point", at: { x: -Math.sqrt(2 / 3), y: 0 }, appearance: "answer" },
+      { id: "zero-right", kind: "point", at: { x: Math.sqrt(2 / 3), y: 0 }, appearance: "answer" },
+      { id: "flat-left", kind: "segment", from: { x: -Math.sqrt(2 / 3) - 0.4, y: (4 / 3) * Math.sqrt(2 / 3) }, to: { x: -Math.sqrt(2 / 3) + 0.4, y: (4 / 3) * Math.sqrt(2 / 3) }, appearance: "construction" },
+      { id: "flat-right", kind: "segment", from: { x: Math.sqrt(2 / 3) - 0.4, y: -(4 / 3) * Math.sqrt(2 / 3) }, to: { x: Math.sqrt(2 / 3) + 0.4, y: -(4 / 3) * Math.sqrt(2 / 3) }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: -Math.sqrt(2 / 3), y: (4 / 3) * Math.sqrt(2 / 3) }, appearance: "primary" },
+      { id: "bottom", kind: "point", at: { x: Math.sqrt(2 / 3), y: -(4 / 3) * Math.sqrt(2 / 3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "slope", objectId: "slope", at: { x: 1.5, y: 4.75 }, placement: "right" },
+      { key: "zero-left", objectId: "zero-left", at: { x: -Math.sqrt(2 / 3), y: 0 }, placement: "below" },
+      { key: "zero-right", objectId: "zero-right", at: { x: Math.sqrt(2 / 3), y: 0 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: -Math.sqrt(2 / 3), y: (4 / 3) * Math.sqrt(2 / 3) }, placement: "above" },
+      { key: "bottom", objectId: "bottom", at: { x: Math.sqrt(2 / 3), y: -(4 / 3) * Math.sqrt(2 / 3) }, placement: "below" },
+    ],
+  }}
+/>
+
+Tinggi <InlineMath math="f(x) = x^3 - 2x" /> sendiri menegaskan apa yang diramalkan <InlineMath math="f'" />. Dari <InlineMath math="x = -1{,}5" /> ke <InlineMath math="x = -1" /> batangnya naik, di antara <InlineMath math="-1" /> dan <InlineMath math="1" /> batangnya turun, dan setelah <InlineMath math="x = 1" /> batangnya naik lagi. Belokannya terjadi di dekat <InlineMath math="\pm\sqrt{2/3} \approx \pm 0{,}82" />, tempat <InlineMath math="f'" /> bernilai nol.
+
+<BarChart
+  title={<>Tinggi <InlineMath math="f(x) = x^3 - 2x" /> di tujuh nilai</>}
+  description={<>Batang <InlineMath math="f(x)" /> untuk <InlineMath math="x" /> dari <InlineMath math="-1{,}5" /> sampai <InlineMath math="1{,}5" /> dengan langkah <InlineMath math="0{,}5" />: naik, lalu turun di antara <InlineMath math="-1" /> dan <InlineMath math="1" />, lalu naik lagi.</>}
+  yAxisLabel="Nilai"
+  data={[-1.5, -1, -0.5, 0, 0.5, 1, 1.5].map((x) => ({ name: String(x), value: x ** 3 - 2 * x }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

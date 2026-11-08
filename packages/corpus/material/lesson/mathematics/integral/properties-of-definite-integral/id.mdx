@@ -31,15 +31,6 @@ Untuk <InlineMath math="f(x)=x" />, antiturunannya adalah <InlineMath math="x^2/
 
 <BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
 
-<Mermaid
-  title="Aturan yang muncul dari F(b) − F(a)"
-  description="Batas yang sama memberi nol, menukar batas mengubah tanda, dan selang yang dipecah menjumlahkan bagian-bagiannya."
-  chart={`flowchart TD
-  A["∫ₐᵇ f(x) dx = F(b) − F(a)"] --> B["∫ₐᵃ f(x) dx = F(a) − F(a) = 0"]
-  A --> C["∫ᵦᵃ f(x) dx = F(a) − F(b) = −∫ₐᵇ f(x) dx"]
-  A --> D["∫ₐᶜ = ∫ₐᵇ + ∫ᵦᶜ"]`}
-/>
-
 ## Aturan Kelipatan Konstanta
 
 Sama seperti pada integral tak tentu, konstanta dapat dikeluarkan dari integral untuk menyederhanakan perhitungan.
@@ -55,7 +46,7 @@ Pada <InlineMath math="k=3" />, semua kontribusi integral menjadi **tiga kali se
 Menggandakan fungsi menggandakan setiap ketinggian, jadi luasnya juga menjadi dua kali. Pada <InlineMath math="[0, 2]" />, luas di bawah <InlineMath math="y = x + 1" /> adalah <InlineMath math="4" />, dan luas di bawah <InlineMath math="y = 2(x + 1)" /> adalah <InlineMath math="8 = 2 \cdot 4" />.
 
 <MathVisual
-  title="Faktor konstanta menskalakan luas"
+  title={<>Faktor konstanta menskalakan luas</>}
   description={<>Trapesium di bawah <InlineMath math="y = x + 1" /> dan <InlineMath math="y = 2(x + 1)" /> pada <InlineMath math="[0, 2]" />, dengan luas 4 dan 8.</>}
   labels={{
     single: <InlineMath math="4" />,
@@ -93,6 +84,33 @@ Untuk integran <InlineMath math="x+1" />, kita menghitung kontribusi <InlineMath
 
 <BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
 
+Tumpuk kedua bagiannya. Di bawah <InlineMath math="y = x + 1" /> dari <InlineMath math="0" /> sampai <InlineMath math="2" />, persegi panjang ungu adalah <InlineMath math="\int_0^2 1\,dx = 2" /> dan segitiga oranye di atasnya adalah <InlineMath math="\int_0^2 x\,dx = 2" />. Bersama-sama keduanya mengisi seluruh daerah, jadi <InlineMath math="\int_0^2 (x + 1)\,dx = 2 + 2 = 4" />.
+
+<MathVisual
+  title={<>Luas di bawah <InlineMath math="x + 1" /> terbagi menjadi dua bagian</>}
+  description={<>Persegi panjang seluas 2 di bawah <InlineMath math="y = 1" /> dan segitiga seluas 2 untuk <InlineMath math="y = x" />, ditumpuk menjadi daerah di bawah <InlineMath math="y = x + 1" /> yang luasnya 4.</>}
+  labels={{
+    one: <InlineMath math="2" />,
+    ramp: <InlineMath math="2" />,
+    graph: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.9 }, y: { min: -0.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "ramp", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "graph", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0.5 }, placement: "center" },
+      { key: "ramp", objectId: "ramp", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "graph", objectId: "graph", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Sifat Penambahan Interval
 
 Interval integrasi dapat dipecah pada sebuah titik antara. Akumulasi bertanda pada seluruh interval sama dengan jumlah akumulasi pada kedua bagiannya.
@@ -113,7 +131,7 @@ Jumlah kedua bagian adalah <InlineMath math="\frac12+\frac32=2" />, sama dengan 
 Pecah selangnya, maka luasnya dijumlahkan. Di bawah <InlineMath math="y = x + 1" />, daerah dari <InlineMath math="0" /> sampai <InlineMath math="2" /> luasnya <InlineMath math="4" /> dan daerah dari <InlineMath math="2" /> sampai <InlineMath math="4" /> luasnya <InlineMath math="8" />. Bersama-sama keduanya membentuk luas keseluruhan <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
 
 <MathVisual
-  title="Luas dijumlahkan saat selangnya dipecah"
+  title={<>Luas dijumlahkan saat selangnya dipecah</>}
   description={<>Dua trapesium di bawah <InlineMath math="y = x + 1" />, dari 0 sampai 2 seluas 4 dan dari 2 sampai 4 seluas 8, totalnya 12.</>}
   labels={{
     left: <InlineMath math="4" />,

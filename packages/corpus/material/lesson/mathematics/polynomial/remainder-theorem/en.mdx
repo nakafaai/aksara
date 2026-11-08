@@ -26,7 +26,7 @@ For <InlineMath math="P(x) = 2x^2 - 3x + 4" /> divided by <InlineMath math="x - 
 The theorem says the remainder is simply a height on the graph. For <InlineMath math="P(x) = 2x^2 - 3x + 4" /> divided by <InlineMath math="x - 2" />, go to <InlineMath math="x = 2" /> on the curve: the height there is <InlineMath math="P(2) = 6" />, which is the remainder.
 
 <MathVisual
-  title="The remainder is P(2)"
+  title={<>The remainder is P(2)</>}
   description={<>The parabola <InlineMath math="2x^2 - 3x + 4" /> with the point <InlineMath math="(2, 6)" />: its height is the remainder of division by <InlineMath math="x - 2" />.</>}
   labels={{
     p: <InlineMath math="P(x)" />,
@@ -86,45 +86,35 @@ For a divisor of degree two, the remainder may be linear. One polynomial value i
 
 Split <InlineMath math="P" /> into its two parts. The violet curve <InlineMath math="(x - 2)(2x + 1)" /> is divisible by <InlineMath math="x - 2" /> and passes through <InlineMath math="(2, 0)" />. Adding the remainder lifts it by <InlineMath math="6" /> everywhere and gives the orange <InlineMath math="P(x)" />. That is why only the remainder is left at <InlineMath math="x = 2" />.
 
-<LineEquation
-  title="Divisible part plus remainder"
+<MathVisual
+  title={<>Divisible part plus remainder</>}
   description={<>The curves <InlineMath math="(x - 2)(2x + 1)" /> and <InlineMath math="P(x) = (x - 2)(2x + 1) + 6" />, which are always 6 apart.</>}
-  cameraPosition={[1, 2.5, 13]}
-  cameraTarget={[1, 2.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -0.5 + (i / 400) * ((2.5) - (-0.5));
-        return { x, y: 2 * x ** 2 - 3 * x + 4, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 400, offset: [0.3, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -0.5 + (i / 400) * ((2.5) - (-0.5));
-        return { x, y: (x - 2) * (2 * x + 1), z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="(x-2)(2x+1)" />, at: 400, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: 2, y: 6, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: [{ text: <InlineMath math="6" />, at: 0, offset: [-0.35, 0.3, 0] }] },
-    { points: [{ x: 2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="0" />, at: 0, offset: [-0.35, 0.3, 0] }] }
-  ]}
-/>
-
-<Mermaid
-  title="Why the remainder theorem holds"
-  description="Substituting x = c into the division identity turns the divisible part into zero and leaves only the remainder."
-  chart={`flowchart LR
-  A["P(x) = (x − c)·H(x) + S"] -->|"set x = c"| B["P(c) = (c − c)·H(c) + S"]
-  B --> C["P(c) = 0 + S"]
-  C --> D["P(c) = S"]`}
+  labels={{
+    whole: <InlineMath math="P(x)" />,
+    part: <InlineMath math="(x - 2)(2x + 1)" />,
+    gap: <InlineMath math="6" />,
+    top: <InlineMath math="(2, 6)" />,
+    foot: <InlineMath math="(2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 3.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "whole", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.75, max: 2.5 }, appearance: "primary" },
+      { id: "part", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -0.75, max: 2.5 }, appearance: "secondary" },
+      { id: "gap", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 2.5, y: 9 }, placement: "right" },
+      { key: "part", objectId: "part", at: { x: 2.5, y: 7 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Calculating with the Remainder Theorem
@@ -154,6 +144,16 @@ From Horner's method, we get:
 
 - Quotient: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
 - Remainder: <InlineMath math="S = \boxed{6}" />
+
+Each number in the bottom row comes from the one before it: multiply by <InlineMath math="c = -4" /> and add the next coefficient. The first five bars are the quotient coefficients <InlineMath math="2, -3, 2, 1, -4" />, and the last bar is the remainder <InlineMath math="6" />.
+
+<BarChart
+  title={<>The bottom row of Horner's scheme for <InlineMath math="c = -4" /></>}
+  description={<>Bars of the bottom row <InlineMath math="2, -3, 2, 1, -4" /> and the remainder <InlineMath math="6" />, each found as the next coefficient plus <InlineMath math="-4" /> times the bar before.</>}
+  yAxisLabel="Value"
+  data={[["degree 4", 2], ["degree 3", 5 - 4 * 2], ["degree 2", -10 - 4 * -3], ["degree 1", 9 - 4 * 2], ["degree 0", 0 - 4 * 1], ["remainder", -10 - 4 * -4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Using the Remainder Theorem
 

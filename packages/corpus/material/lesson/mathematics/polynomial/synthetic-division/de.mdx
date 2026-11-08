@@ -36,8 +36,8 @@ Vor der Division sind einige Vorbereitungen nötig:
 Vor dem Teilen braucht der Dividend einen Platz für jede Potenz. <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat kein Glied mit <InlineMath math="x^2" />, also schreibst du <InlineMath math="4x^4 + 17x^3 + 0x^2 - 3x + 1" />. Das Diagramm zeigt den Koeffizienten an jedem Platz, auch die Null, die die Spalten ausgerichtet hält.
 
 <BarChart
-  title="Koeffizienten des Dividenden, Null eingeschlossen"
-  description="Der Koeffizient jeder Potenz von x im Dividenden, mit 0 für das fehlende Glied mit x Quadrat."
+  title={<>Koeffizienten des Dividenden, Null eingeschlossen</>}
+  description={<>Der Koeffizient jeder Potenz von x im Dividenden, mit 0 für das fehlende Glied mit x Quadrat.</>}
   yAxisLabel="Koeffizient"
   data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -128,21 +128,41 @@ Die Bruchform gilt nur für Eingaben mit <InlineMath math="Q(x)\ne0" />. Die Pro
 Jeder Schritt der Polynomdivision senkt den Grad des Rests. Der Dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat Grad 4. Nach Abziehen von <InlineMath math="4x^2(x^2 + 4x - 1)" /> hat der Rest Grad 3, und nach Abziehen von <InlineMath math="x(x^2 + 4x - 1)" /> bleibt nur <InlineMath math="-2x + 1" /> mit Grad 1. Das liegt unter dem Grad 2 des Divisors, die Division hört auf.
 
 <BarChart
-  title="Der Grad sinkt bei jedem Schritt"
-  description="Der Grad des Dividenden und jedes Rests während der Division durch x Quadrat plus 4x minus 1."
+  title={<>Der Grad sinkt bei jedem Schritt</>}
+  description={<>Der Grad des Dividenden und jedes Rests während der Division durch x Quadrat plus 4x minus 1.</>}
   yAxisLabel="Grad"
   data={[["Start", 4], ["Schritt 1", 3], ["Schritt 2", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Grad", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-<Mermaid
-  title="Abbruchregel der Polynomdivision"
-  description="Die Division läuft weiter, solange der Rest mindestens den Grad des Divisors hat, und hört auf, sobald er kleiner ist."
-  chart={`flowchart TD
-  A["P(x) = 4x⁴ + 17x³ − 3x + 1"] -->|"− 4x²(x² + 4x − 1)"| B["x³ + 4x² − 3x + 1, Grad 3"]
-  B -->|"− x(x² + 4x − 1)"| C["−2x + 1, Grad 1"]
-  C --> D{"Grad 1 < Grad 2"}
-  D --> E["H(x) = 4x² + x, S(x) = −2x + 1"]`}
+Prüf die Produktform bei <InlineMath math="x = 1" />. Dort ist <InlineMath math="P(1) = 4 + 17 - 3 + 1 = 19" />, <InlineMath math="Q(1) = 1 + 4 - 1 = 4" />, <InlineMath math="H(1) = 4 + 1 = 5" /> und <InlineMath math="S(1) = -2 + 1 = -1" />. Ein Rechteck <InlineMath math="4" /> mal <InlineMath math="5" /> hat die Fläche <InlineMath math="20" />, und nimmt man das eine Einheitsquadrat des Rests weg, bleiben <InlineMath math="19" />, also <InlineMath math="P(1)" />.
+
+<MathVisual
+  title={<>Die Division geprüft bei <InlineMath math="x = 1" /></>}
+  description={<>Ein Rechteck mit den Seiten <InlineMath math="Q(1) = 4" /> und <InlineMath math="H(1) = 5" />, aus dem für <InlineMath math="S(1) = -1" /> ein Einheitsquadrat entfernt ist, mit der Fläche <InlineMath math="19 = P(1)" />.</>}
+  labels={{
+    product: <InlineMath math="4 \cdot 5 = 20" />,
+    remove: <InlineMath math="-1" />,
+    width: <InlineMath math="H(1) = 5" />,
+    height: <InlineMath math="Q(1) = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 5.6 }, y: { min: -0.8, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "product", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "remove", kind: "polygon", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }, { x: 5, y: 4 }, { x: 4, y: 4 }], appearance: "warning" },
+      { id: "width", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "height", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "product", objectId: "product", at: { x: 2, y: 2 }, placement: "center" },
+      { key: "remove", objectId: "remove", at: { x: 4.5, y: 3.5 }, placement: "center" },
+      { key: "width", objectId: "width", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Übung

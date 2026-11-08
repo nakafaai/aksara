@@ -25,13 +25,34 @@ Formally, if we let <InlineMath math="u = g(x)" />, then <InlineMath math="y = f
 
 This is the **chain rule**. <Highlight>Work from the outermost layer inward</Highlight>, keep each inner expression in place until its turn, and multiply the derivatives.
 
-<Mermaid
-  title="How the chain rule links two rates"
-  description="When y depends on u and u depends on x, the rate of y with respect to x is the product of the two rates."
-  chart={`flowchart LR
-  X["x"] -->|"du/dx"| U["u = g(x)"]
-  U -->|"dy/du"| Y["y = f(u)"]
-  Y --> R["dy/dx = dy/du · du/dx"]`}
+Rates in sequence multiply. Take the inner function <InlineMath math="u = 2x" /> and the outer function <InlineMath math="y = 3u" />, so <InlineMath math="y = 6x" />. One step in <InlineMath math="x" /> raises <InlineMath math="u" /> by <InlineMath math="\frac{du}{dx} = 2" />, and each unit of <InlineMath math="u" /> raises <InlineMath math="y" /> by <InlineMath math="\frac{dy}{du} = 3" />, so <InlineMath math="y" /> rises by <InlineMath math="3 \cdot 2 = 6" />. Compare the two points above <InlineMath math="x = 1" />.
+
+<MathVisual
+  title={<>Two rates in sequence multiply</>}
+  description={<>The inner line <InlineMath math="u = 2x" /> through <InlineMath math="(1, 2)" /> and the composite line <InlineMath math="y = 3u = 6x" /> through <InlineMath math="(1, 6)" />, whose slope is <InlineMath math="3 \cdot 2 = 6" />.</>}
+  labels={{
+    inner: <InlineMath math="u = 2x" />,
+    outer: <InlineMath math="y = 3u = 6x" />,
+    "u-one": <InlineMath math="(1, 2)" />,
+    "y-one": <InlineMath math="(1, 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.5, y: 3 }, appearance: "secondary" },
+      { id: "outer", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.1, y: 6.6 }, appearance: "primary" },
+      { id: "u-one", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "y-one", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 1.5, y: 3 }, placement: "right" },
+      { key: "outer", objectId: "outer", at: { x: 1.1, y: 6.6 }, placement: "right" },
+      { key: "u-one", objectId: "u-one", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "y-one", objectId: "y-one", at: { x: 1, y: 6 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Applying the Chain Rule
@@ -70,26 +91,29 @@ Finally, we substitute <InlineMath math="u" /> back in and simplify the expressi
 
 For <InlineMath math="y = (x^2 - 4x - 2)^8" /> look at the inner function <InlineMath math="u = x^2 - 4x - 2" /> alone. Its tangent is flat at <InlineMath math="x = 2" />, where <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. So <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> is also <InlineMath math="0" /> there, whatever the outer factor <InlineMath math="8u^7" /> is.
 
-<LineEquation
-  title="A flat inner function makes the whole derivative zero"
+<MathVisual
+  title={<>A flat inner function makes the whole derivative zero</>}
   description={<>The inner function <InlineMath math="u = x^2 - 4x - 2" /> with its flat tangent at <InlineMath math="(2, -6)" />.</>}
-  cameraPosition={[2, -4, 7]}
-  cameraTarget={[2, -4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = 0 + (i / 400) * ((4) - (0));
-        return { x, y: x ** 2 - 4 * x - 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="u = x^2 - 4x - 2" />, at: 380, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: 1.2, y: -6, z: 0 }, { x: 2.8, y: -6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="\frac{du}{dx} = 0" />, at: 1, offset: [0.2, -0.3, 0] }] },
-    { points: [{ x: 2, y: -6, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+  labels={{
+    inner: <InlineMath math="u = x^2 - 4x - 2" />,
+    flat: <InlineMath math="\frac{du}{dx} = 0" />,
+    vertex: <InlineMath math="(2, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -7, max: -1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: -2 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: 1.2, y: -6 }, to: { x: 2.8, y: -6 }, appearance: "construction" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 2.8, y: -6 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -6 }, placement: "below" },
+    ],
+  }}
 />
 
 ### Trigonometric Functions
@@ -127,30 +151,14 @@ Now, substitute <InlineMath math="u" /> and <InlineMath math="v" /> back in step
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
 
-The inner function sets the speed. <InlineMath math="\sin x" /> and <InlineMath math="\sin 2x" /> have the same outer function, but the inner function <InlineMath math="u = 2x" /> runs twice as fast. At <InlineMath math="x = 0" /> the tangent of <InlineMath math="\sin x" /> has slope <InlineMath math="\cos 0 = 1" />, and the tangent of <InlineMath math="\sin 2x" /> has slope <InlineMath math="\cos 0 \cdot 2 = 2" />. The extra factor 2 is the derivative of the inner function.
+The inner function sets the speed. For <InlineMath math="y = \sin 2x" /> the outer function is <InlineMath math="\sin u" /> and the inner function is <InlineMath math="u = 2x" />, so <InlineMath math="\frac{dy}{dx} = \cos(2x) \cdot 2" />. The inner factor <InlineMath math="2" /> doubles every slope of the plain sine: at <InlineMath math="x = 0" /> the slope of <InlineMath math="\sin x" /> is <InlineMath math="1" />, but the slope of <InlineMath math="\sin 2x" /> is <InlineMath math="2" />. The bars show <InlineMath math="2\cos 2x" /> at five inputs, with <InlineMath math="x" /> in radians.
 
-<LineEquation
-  title="The inner derivative doubles the slope"
-  description={<>The curves <InlineMath math="\sin x" /> and <InlineMath math="\sin 2x" /> for <InlineMath math="-\pi \le x \le \pi" /> with their tangents at the origin, of slopes 1 and 2.</>}
-  cameraPosition={[0, 0, 8]}
-  cameraTarget={[0, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-    },
-    {
-      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-    },
-    { points: [{ x: -0.8, y: -0.8, z: 0 }, { x: 0.8, y: 0.8, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="\sin x" />, at: 1, offset: [0.2, 0, 0] }] },
-    { points: [{ x: -0.6, y: -1.2, z: 0 }, { x: 0.6, y: 1.2, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="\sin 2x" />, at: 1, offset: [0.2, 0, 0] }] }
-  ]}
+<BarChart
+  title={<>Slopes of <InlineMath math="y = \sin 2x" /> at five inputs</>}
+  description={<>Bars of <InlineMath math="\frac{{dy}}{{dx}} = 2\cos 2x" /> for <InlineMath math="x = 0, 0.25, 0.5, 0.75, 1" />, starting at 2 and falling below zero once <InlineMath math="2x" /> passes <InlineMath math="\frac{\pi}{2}" />.</>}
+  yAxisLabel="Slope"
+  data={[0, 0.25, 0.5, 0.75, 1].map((x) => ({ name: String(x), value: 2 * Math.cos(2 * x) }))}
+  chartConfig={{ value: { label: "Slope", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Exercises

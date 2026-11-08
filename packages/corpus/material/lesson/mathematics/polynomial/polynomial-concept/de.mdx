@@ -32,47 +32,36 @@ Ein **Polynom** ist eine endliche Summe von Monomen. Ein einzelnes Monom ist ebe
 | <InlineMath math="x+2\sqrt{x}" /> | Der Wurzelterm hat den Exponenten <InlineMath math="1/2" />. | Kein Polynom |
 | <InlineMath math="2x^3-5x^{-2}+1" /> | Ein negativer Exponent steht in <InlineMath math="-5x^{-2}" />. | Kein Polynom |
 
-Ein Polynom entsteht, wenn du Monome addierst, und diese Summe kannst du sehen. Die orange Kurve ist <InlineMath math="\tfrac14 x^3" />, die violette Gerade ist <InlineMath math="-x" />, und die türkise Kurve ist ihre Summe <InlineMath math="P(x) = \tfrac14 x^3 - x" />. Bei <InlineMath math="x = 2" /> sind die Glieder <InlineMath math="2" /> und <InlineMath math="-2" />, also <InlineMath math="P(2) = 0" />.
+Ein Polynom entsteht durch Addieren von Monomen, und du kannst der Summe dabei zusehen. Die orange Kurve ist <InlineMath math="\tfrac12 x^2" />, die violette Gerade ist <InlineMath math="-x" />, und die türkise Kurve ist ihre Summe <InlineMath math="P(x) = \tfrac12 x^2 - x" />. Bei <InlineMath math="x = 2" /> sind die beiden Terme <InlineMath math="2" /> und <InlineMath math="-2" />, sie heben sich auf, und die Summe schneidet die x-Achse.
 
-<LineEquation
-  title="Ein Polynom als Summe von Monomen"
-  description={<>Die Monome <InlineMath math="\tfrac14 x^3" /> und <InlineMath math="-x" /> und ihre Summe <InlineMath math="P(x)" />, die die x-Achse bei 2 trifft, wo sich die beiden Glieder aufheben.</>}
-  cameraPosition={[0, 0, 9]}
-  cameraTarget={[0, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: x ** 3 / 4, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\tfrac14 x^3" />, at: 380, offset: [0.2, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: -x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="-x" />, at: 20, offset: [-0.2, 0.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: x ** 3 / 4 - x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 330, offset: [0.3, -0.3, 0] }],
-    },
-    { points: [{ x: 2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: [{ text: <InlineMath math="P(2) = 0" />, at: 0, offset: [0.3, -0.4, 0] }] }
-  ]}
+<MathVisual
+  title={<>Ein Polynom als Summe von Monomen</>}
+  description={<>Die Monome <InlineMath math="\tfrac12 x^2" /> und <InlineMath math="-x" /> und ihre Summe <InlineMath math="P(x)" />, die die x-Achse bei 0 schneidet, wo beide Terme null sind, und bei 2, wo sie sich aufheben.</>}
+  labels={{
+    half: <InlineMath math="\tfrac12 x^2" />,
+    minus: <InlineMath math="-x" />,
+    sum: <InlineMath math="P(x)" />,
+    root: <InlineMath math="P(2) = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 3.8 }, y: { min: -3.4, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "half", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: 0, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "primary" },
+      { id: "minus", kind: "segment", from: { x: -1.5, y: 1.5 }, to: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: -1, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "construction" },
+      { id: "plus-term", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "minus-term", kind: "point", at: { x: 2, y: -2 }, appearance: "secondary" },
+      { id: "root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 3, y: 4.5 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: 3, y: -3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 1.5 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Subtraktion als Addition
@@ -86,7 +75,7 @@ Setze <InlineMath math="x=1" /> und <InlineMath math="y=2" /> ein. Beide Schreib
 Jeder Teil eines Polynoms zeigt sich im Graphen. Bei <InlineMath math="P(x) = x^2 - 2x - 3" /> ist das Absolutglied <InlineMath math="-3" /> die Stelle, an der die Kurve die y-Achse schneidet, und der positive Leitkoeffizient <InlineMath math="1" /> lässt sie nach oben öffnen.
 
 <MathVisual
-  title="Ein Polynom am Graphen ablesen"
+  title={<>Ein Polynom am Graphen ablesen</>}
   description={<>Die Parabel <InlineMath math="x^2 - 2x - 3" /> mit dem y-Achsenabschnitt beim Absolutglied <InlineMath math="-3" />.</>}
   labels={{
     p: <InlineMath math="P(x) = x^2 - 2x - 3" />,
@@ -107,15 +96,32 @@ Jeder Teil eines Polynoms zeigt sich im Graphen. Bei <InlineMath math="P(x) = x^
   }}
 />
 
-<Mermaid
-  title="Die Teile eines Polynoms"
-  description="Ein Polynom ist eine Summe von Monomen. Jedes Glied hat einen Koeffizienten und eine Variable mit einem natürlichen Exponenten, und Subtraktion zählt als Addition eines negativen Glieds."
-  chart={`flowchart TD
-  P["Polynom"] --> T["Glieder: addierte Monome"]
-  T --> C["Koeffizient"]
-  T --> V["Variable"]
-  T --> E["Exponent: eine natürliche Zahl"]
-  P --> S["Subtraktion: negatives Glied addieren"]`}
+Auf dem Zahlenstrahl sind beide Formen derselbe Weg. Mit <InlineMath math="x = 1" /> und <InlineMath math="y = 2" /> ist der Term <InlineMath math="4x^3y" /> ein Schritt von <InlineMath math="8" /> nach rechts, und das Addieren des Terms <InlineMath math="-3x^2" /> ist ein Schritt von <InlineMath math="3" /> zurück nach links. Der Weg endet in beiden Fällen bei <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Einen negativen Term addieren heißt zurückgehen</>}
+  description={<>Ein Schritt von 8 für <InlineMath math="4x^3y" /> und ein Schritt zurück um 3 für <InlineMath math="-3x^2" /> bei <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, mit Ende bei 5.</>}
+  labels={{
+    first: <InlineMath math="4x^3y = 8" />,
+    second: <InlineMath math="-3x^2 = -3" />,
+    end: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 8, y: 0.3 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 8, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 0.3 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 6.5, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übung

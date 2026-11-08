@@ -29,7 +29,7 @@ Di sini, <InlineMath math="n=5" />, sehingga:
 Setiap antiturunan <InlineMath math="2x" /> berbentuk <InlineMath math="x^2 + C" />, dan konstantanya hanya menggeser parabola ke atas atau ke bawah. Di <InlineMath math="x = 1" />, ketiga garis singgung sejajar dengan kemiringan <InlineMath math="2" />, karena setiap kurva punya turunan yang sama, <InlineMath math="2x" />.
 
 <MathVisual
-  title="Keluarga x kuadrat ditambah C"
+  title={<>Keluarga x kuadrat ditambah C</>}
   description={<>Parabola <InlineMath math="x^2 - 2" />, <InlineMath math="x^2" />, dan <InlineMath math="x^2 + 2" /> dengan garis singgung sejajar berkemiringan 2 di <InlineMath math="x = 1" />.</>}
   labels={{
     c0: <InlineMath math="x^2 - 2" />,
@@ -76,7 +76,7 @@ Konstanta integrasi tetap ditambahkan, termasuk ketika <InlineMath math="a=0" />
 Faktor konstanta langsung lolos melewati integral. Karena <InlineMath math="\int 2x\,dx = x^2 + C" />, integral dari tiga kali fungsi itu adalah tiga kali antiturunannya: <InlineMath math="\int 6x\,dx = 3x^2 + C" />. Parabola ungu adalah parabola oranye yang diregangkan <InlineMath math="3" /> kali.
 
 <MathVisual
-  title="Tiga kali fungsinya, tiga kali antiturunannya"
+  title={<>Tiga kali fungsinya, tiga kali antiturunannya</>}
   description={<>Antiturunan <InlineMath math="x^2" /> dari <InlineMath math="2x" /> dan <InlineMath math="3x^2" /> dari <InlineMath math="6x" />, dengan <InlineMath math="3x^2" /> tiga kali lebih tinggi di setiap titik.</>}
   labels={{
     one: <InlineMath math="x^2" />,
@@ -114,13 +114,34 @@ Contohnya, untuk menyelesaikan <InlineMath math="\int (x^4 - x^3) \, dx" />, kit
 
 Tuliskan satu konstanta <InlineMath math="C" /> di akhir. Secara formal, kita dapat menulis <InlineMath math="C_1" /> dan <InlineMath math="C_2" /> untuk kedua antiturunan, tetapi jumlah atau selisih kedua konstanta itu kembali menjadi konstanta sembarang. Karena itu, satu <InlineMath math="C" /> sudah mencakup semua nilai yang mungkin.
 
-<Mermaid
-  title="Menerapkan aturan pangkat"
-  description="Untuk pangkat selain −1, naikkan pangkatnya satu lalu bagi dengan pangkat baru. Pangkat −1 memberi logaritma natural."
-  chart={`flowchart TD
-  A["∫ xⁿ dx"] --> Q{"n = −1?"}
-  Q -->|"Tidak"| R["xⁿ⁺¹ / (n + 1) + C"]
-  Q -->|"Ya"| L["ln|x| + C"]`}
+Integralkan suku demi suku pada jumlah yang lebih sederhana, <InlineMath math="\int (2x + 1)\,dx" />. Antiturunan <InlineMath math="2x" /> adalah <InlineMath math="x^2" /> dan antiturunan <InlineMath math="1" /> adalah <InlineMath math="x" />, jadi hasilnya <InlineMath math="x^2 + x + C" />. Dengan <InlineMath math="C = 0" />, kurva toska <InlineMath math="x^2 + x" /> sama dengan kurva oranye <InlineMath math="x^2" /> ditambah garis ungu <InlineMath math="x" /> di setiap nilai, misalnya <InlineMath math="2{,}25 + 1{,}5 = 3{,}75" /> di <InlineMath math="x = 1{,}5" />.
+
+<MathVisual
+  title={<>Satu antiturunan <InlineMath math="2x + 1" /> sebagai jumlah</>}
+  description={<>Kurva <InlineMath math="x^2" /> dan <InlineMath math="x" /> serta jumlahnya <InlineMath math="x^2 + x" />, sebuah antiturunan <InlineMath math="2x + 1" />, dengan ketiga tingginya di <InlineMath math="x = 1{,}5" />.</>}
+  labels={{
+    square: <InlineMath math="x^2" />,
+    linear: <InlineMath math="x" />,
+    sum: <InlineMath math="x^2 + x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.9, max: 2 }, y: { min: -2.5, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 1.5 }, appearance: "primary" },
+      { id: "linear", kind: "segment", from: { x: -2, y: -2 }, to: { x: 1.5, y: 1.5 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: 0 }, domain: { min: -2, max: 1.5 }, appearance: "construction" },
+      { id: "p-square", kind: "point", at: { x: 1.5, y: 2.25 }, appearance: "primary" },
+      { id: "p-linear", kind: "point", at: { x: 1.5, y: 1.5 }, appearance: "secondary" },
+      { id: "p-sum", kind: "point", at: { x: 1.5, y: 3.75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -2, y: 4 }, placement: "left" },
+      { key: "linear", objectId: "linear", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: -2, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Aturan Substitusi

@@ -21,14 +21,6 @@ The horizontal axis follows the integration variable: time for sales rate, or pr
 | Thousand rupiah per unit | Units produced | Thousand rupiah |
 | Thousand rupiah per month | Months | Thousand rupiah |
 
-<Mermaid
-  title="From a rate to a total"
-  description="A marginal rate integrated over an interval gives the total change over that interval, whether sales, revenue or cost."
-  chart={`flowchart LR
-  A["Rate: S′(t), R′(t) or C′(x)"] -->|"integrate from a to b"| B["Total change over [a, b]"]
-  B --> C["Sales, revenue or cost gained"]`}
-/>
-
 ## Sales Analysis Using Integrals
 
 Suppose a technology company launches a new smartphone. Its monthly sales rate is modeled by <InlineMath math="f(t) = 2000\sqrt{t + 1} + 800 \text{ units}" /> per month, where <InlineMath math="t" /> is the time in months after launch.
@@ -57,7 +49,7 @@ The continuous model predicts <InlineMath math="S = \frac{35200}{3} \approx 1173
 An integral adds up a rate. With the sales rate <InlineMath math="2000\sqrt{t + 1} + 800" /> units per month, the bars show the total sold after <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" /> months, each computed as <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. The last bar is about <InlineMath math="11733" /> units, the result above.
 
 <BarChart
-  title="Total sales accumulated from a rate"
+  title={<>Total sales accumulated from a rate</>}
   description={<>Total sales after 1, 2 and 3 months, each the integral of the sales rate from 0 to that month.</>}
   yAxisLabel="Units sold"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
@@ -100,6 +92,16 @@ Assuming <InlineMath math="VC(0)=0" />, the total variable cost to produce <Inli
 
 > In economic applications, an integral converts a marginal quantity or rate of change into an accumulated total. Integrating marginal cost, for example, gives the change in total cost.
 
+Watch the variable cost accumulate. <InlineMath math="VC(x) = 0.1x^3 - 6x^2 + 200x" /> after 5, 10, 15 and 20 units is <InlineMath math="862.5" />, <InlineMath math="1500" />, <InlineMath math="1987.5" /> and <InlineMath math="2400" /> thousand rupiah. Each block of 5 units adds less than the one before, <InlineMath math="862.5" />, <InlineMath math="637.5" />, <InlineMath math="487.5" /> and <InlineMath math="412.5" />, because the marginal cost falls toward its minimum at <InlineMath math="x = 20" />.
+
+<BarChart
+  title={<>Variable cost accumulated over the first 20 units</>}
+  description={<>Bars of <InlineMath math="VC(x) = 0.1x^3 - 6x^2 + 200x" /> thousand rupiah at <InlineMath math="x = 0, 5, 10, 15, 20" /> units, ending at 2400.</>}
+  yAxisLabel="Variable cost (thousand rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 0.1 * x ** 3 - 6 * x ** 2 + 200 * x }))}
+  chartConfig={{ value: { label: "Variable cost (thousand rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Consumer Surplus Analysis
 
 Consumer surplus can also be calculated with an integral. Consider a market with demand function <InlineMath math="P = 100 - 0.5Q" /> and equilibrium price <InlineMath math="60 \text{ rupiah per unit}" />. The equilibrium quantity on this demand curve follows from:
@@ -126,7 +128,7 @@ The price difference forms a **triangle**: its height is <InlineMath math="40" /
 The consumer surplus is the area of a triangle. Buyers would pay up to the demand line <InlineMath math="P = 100 - 0.5Q" />, but everyone pays the market price <InlineMath math="60" />. The gap between the two over the first <InlineMath math="80" /> units is a triangle with base <InlineMath math="80" /> and height <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, the same as the integral.
 
 <MathVisual
-  title="Consumer surplus as a triangle"
+  title={<>Consumer surplus as a triangle</>}
   description={<>The demand line <InlineMath math="P = 100 - 0.5Q" />, the price line 60 and the triangle between them up to <InlineMath math="Q = 80" />, of area 1600.</>}
   labels={{
     demand: <InlineMath math="P = 100 - 0.5Q" />,

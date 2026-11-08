@@ -25,6 +25,35 @@ Hier:
 
 Genau dieses Prinzip übertragen wir nun auf Polynome.
 
+Zeichne die <InlineMath math="7" /> als Einheitsquadrate. Eine volle Vierergruppe ergibt den Quotienten <InlineMath math="1" />, und <InlineMath math="3" /> Quadrate bleiben übrig. Weil <InlineMath math="3 < 4" /> ist, passt keine zweite Gruppe hinein, und genau das ist die Bedingung, dass der Rest kleiner als der Divisor ist.
+
+<MathVisual
+  title={<>Sieben Quadrate in Vierergruppen</>}
+  description={<>Sieben Einheitsquadrate: eine Vierergruppe für den Quotienten 1 und 3 übrige als Rest, also <InlineMath math="7 = 4 \cdot 1 + 3" />.</>}
+  labels={{
+    group: <InlineMath math="4 \cdot 1" />,
+    rest: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 7.8 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0.8 }, { x: 0, y: 0.8 }], appearance: "primary" },
+      { id: "q1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0.8 }, { x: 1, y: 0.8 }], appearance: "primary" },
+      { id: "q2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2 + 0.8, y: 0 }, { x: 2 + 0.8, y: 0.8 }, { x: 2, y: 0.8 }], appearance: "primary" },
+      { id: "q3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 + 0.8, y: 0 }, { x: 3 + 0.8, y: 0.8 }, { x: 3, y: 0.8 }], appearance: "primary" },
+      { id: "r0", kind: "polygon", vertices: [{ x: 4.6, y: 0 }, { x: 4.6 + 0.8, y: 0 }, { x: 4.6 + 0.8, y: 0.8 }, { x: 4.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 5.6, y: 0 }, { x: 5.6 + 0.8, y: 0 }, { x: 5.6 + 0.8, y: 0.8 }, { x: 5.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 6.6, y: 0 }, { x: 6.6 + 0.8, y: 0 }, { x: 6.6 + 0.8, y: 0.8 }, { x: 6.6, y: 0.8 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "group", objectId: "q1", at: { x: 1.8, y: 0.8 }, placement: "above" },
+      { key: "rest", objectId: "r1", at: { x: 6, y: 0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Polynomdivisionsalgorithmus
 
 Der Divisionsalgorithmus beschreibt, wie Dividend, Divisor, Quotient und Rest zusammenhängen.
@@ -75,17 +104,6 @@ Das Ergebnis der Division kann gemäß dem Algorithmus in zwei Formen geschriebe
 
 Der Rest <InlineMath math="S(x)=2" /> hat den Grad <InlineMath math="0" /> und damit einen <Highlight>kleineren Grad als der Divisor</Highlight> <InlineMath math="x+3" /> mit Grad <InlineMath math="1" />. Diese Bedingung zeigt, dass die Division beendet ist.
 
-<Mermaid
-  title="Ein Schritt der Polynomdivision"
-  description="Teil die Leitglieder, multiplizier zurück, subtrahier und wiederhol das, bis der Rest einen kleineren Grad als der Divisor hat."
-  chart={`flowchart TD
-  A["Leitglied von P durch Leitglied von Q teilen"] --> B["Dieses Glied mit Q multiplizieren"]
-  B --> C["Von P abziehen"]
-  C --> D{"Grad des Rests < Grad von Q?"}
-  D -->|"Nein"| A
-  D -->|"Ja"| E["Stopp: H(x) ist der Quotient, der Rest ist S(x)"]`}
-/>
-
 ### Verifizierung des Divisionsalgorithmus
 
 Prüfe das Ergebnis mit dem **Distributivgesetz**. Multipliziere jeden Term des Quotienten mit jedem Term des Divisors. Fasse anschließend gleichartige Terme zusammen und addiere den Rest:
@@ -94,46 +112,24 @@ Prüfe das Ergebnis mit dem **Distributivgesetz**. Multipliziere jeden Term des 
 
 Der quadratische Koeffizient ergibt <InlineMath math="1+3=4" />, der lineare Koeffizient <InlineMath math="2+3=5" /> und die Konstante <InlineMath math="6+2=8" />. Damit stimmen alle Terme mit dem ursprünglichen Polynom überein.
 
-Hier ist die Division als zwei Graphen. Die orange Kurve ist <InlineMath math="P(x) = x^3 + 4x^2 + 5x + 8" />, die violette Kurve ist <InlineMath math="(x + 3)(x^2 + x + 2)" />. Sie laufen nebeneinander her, immer genau <InlineMath math="2" /> voneinander entfernt, weil <InlineMath math="P(x) = (x + 3)(x^2 + x + 2) + 2" />. Bei <InlineMath math="x = -3" /> ist das Produkt <InlineMath math="0" />, also ist <InlineMath math="P(-3)" /> allein der Rest <InlineMath math="2" />.
+Hier ist die Probe in Zahlen. Zieh an sechs Stellen <InlineMath math="(x + 3)(x^2 + x + 2)" /> von <InlineMath math="P(x) = x^3 + 4x^2 + 5x + 8" /> ab. Jede Differenz ist genau <InlineMath math="2" />, weil die Identität <InlineMath math="P(x) = (x + 3)(x^2 + x + 2) + 2" /> für jedes <InlineMath math="x" /> gilt, sogar bei <InlineMath math="x = -3" />, wo der Divisor null ist.
 
-<LineEquation
-  title="Der Rest ist der Abstand zwischen zwei Graphen"
-  description={<><InlineMath math="P(x)" /> und <InlineMath math="Q(x)H(x)" /> für <InlineMath math="-3{,}5 \le x \le -0{,}5" />, immer 2 voneinander entfernt.</>}
-  cameraPosition={[-2, 1.5, 11]}
-  cameraTarget={[-2, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.5 + (i / 400) * ((-0.5) - (-3.5));
-        return { x, y: x ** 3 + 4 * x ** 2 + 5 * x + 8, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 400, offset: [0.3, 0.2, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.5 + (i / 400) * ((-0.5) - (-3.5));
-        return { x, y: (x + 3) * (x ** 2 + x + 2), z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="Q(x)H(x)" />, at: 400, offset: [0.3, -0.3, 0] }],
-    },
-    { points: [{ x: -3, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: [{ text: <InlineMath math="P(-3) = 2" />, at: 0, offset: [-0.9, 0.4, 0] }] },
-    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+<BarChart
+  title={<>Der Abstand zwischen <InlineMath math="P(x)" /> und <InlineMath math="(x + 3)(x^2 + x + 2)" /></>}
+  description={<>Balken von <InlineMath math="P(x) - (x + 3)(x^2 + x + 2)" /> für <InlineMath math="x = -3, -2, -1, 0, 1, 2" />, alle gleich dem Rest 2.</>}
+  yAxisLabel="Differenz"
+  data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 4 * x ** 2 + 5 * x + 8 - (x + 3) * (x ** 2 + x + 2) }))}
+  chartConfig={{ value: { label: "Differenz", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-<Mermaid
-  title="Eine Division prüfen"
-  description="Multiplizier den Quotienten mit dem Divisor und addier den Rest. Das Ergebnis muss genau den Dividenden ergeben."
-  chart={`flowchart LR
-  H["H(x) = x² + x + 2"] --> M["(x + 3)(x² + x + 2) = x³ + 4x² + 5x + 6"]
-  M -->|"+ S(x) = 2"| P["x³ + 4x² + 5x + 8 = P(x)"]`}
+Sammle die Koeffizienten von <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> Grad für Grad. Die Balken <InlineMath math="1" />, <InlineMath math="1 + 3 = 4" />, <InlineMath math="2 + 3 = 5" /> und <InlineMath math="6 + 2 = 8" /> sind genau die Koeffizienten von <InlineMath math="x^3 + 4x^2 + 5x + 8" />, also stimmt die Division.
+
+<BarChart
+  title={<>Koeffizienten des wieder aufgebauten Dividenden</>}
+  description={<>Balken der Koeffizienten von <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> bei Grad 3, 2, 1 und 0: 1, 4, 5 und 8.</>}
+  yAxisLabel="Koeffizient"
+  data={[["Grad 3", 1], ["Grad 2", 1 + 3], ["Grad 1", 2 + 3], ["Grad 0", 6 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Übung

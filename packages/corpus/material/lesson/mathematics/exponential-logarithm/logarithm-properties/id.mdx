@@ -34,7 +34,7 @@ Tiga sifat pertama langsung mengikuti <InlineMath math="a^1=a" />, <InlineMath m
 Logaritma menghitung penggandaan. <InlineMath math="\log_2 x" /> bertanya berapa faktor <InlineMath math="2" /> yang membentuk <InlineMath math="x" />, jadi batang untuk <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> naik tepat <InlineMath math="1" /> setiap kali <InlineMath math="x" /> berlipat dua: <InlineMath math="0, 1, 2, 3, 4, 5" />.
 
 <BarChart
-  title="Logaritma basis 2 dari perpangkatan dua"
+  title={<>Logaritma basis 2 dari perpangkatan dua</>}
   description={<>Batang untuk <InlineMath math="\log_2 x" /> di <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, naik 1 setiap kali x berlipat dua.</>}
   yAxisLabel="log₂ x"
   data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
@@ -65,7 +65,7 @@ Ambil logaritma berbasis <InlineMath math="a" />:
 Aturan perkalian adalah aturan pangkat yang dilihat dari sisi lain. <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> adalah dua langkah pada garis pangkat. Disambung ujung ke ujung, keduanya mencapai <InlineMath math="5" />, dan <InlineMath math="2^5 = 32 = 8 \cdot 4" />, jadi <InlineMath math="\log_2 (8 \cdot 4) = \log_2 8 + \log_2 4" />.
 
 <MathVisual
-  title="Logaritma dijumlahkan saat bilangannya dikalikan"
+  title={<>Logaritma dijumlahkan saat bilangannya dikalikan</>}
   description={<>Langkah sepanjang <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> berakhir di 5, yaitu <InlineMath math="\log_2 32" />.</>}
   labels={{
     s0: <InlineMath math="\log_2 8" />,
@@ -99,6 +99,34 @@ Dengan substitusi yang sama, pembagian **mengurangkan pangkat**:
 Jadi:
 
 <BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+Pembagian berjalan mundur di garis eksponen. <InlineMath math="\log_2 32 = 5" /> adalah langkah sepanjang 5, dan membagi dengan <InlineMath math="4" /> mengambil kembali langkah <InlineMath math="\log_2 4 = 2" />. Perjalanannya berakhir di <InlineMath math="3" />, dan <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
+
+<MathVisual
+  title={<>Logaritma dikurangkan saat bilangan dibagi</>}
+  description={<>Langkah <InlineMath math="\log_2 32 = 5" /> lalu langkah mundur <InlineMath math="\log_2 4 = 2" /> berakhir di 3, yaitu <InlineMath math="\log_2 8" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 32" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 8 = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 5, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 5, y: 0.6 }, to: { x: 3, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 2.5, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 4, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Sifat Pangkat
 
@@ -143,14 +171,6 @@ Karena <InlineMath math="125=5^3" />, gunakan **hubungan invers** dan sifat pang
 </MathContainer>
 
 Hasil tersebut juga menjawab pertanyaan pangkat semula: <InlineMath math="5^3=125" />.
-
-<Mermaid
-  title="Bentuk eksponen dan bentuk logaritma"
-  description="Kedua bentuk menyatakan fakta yang sama, jadi yang satu bisa ditulis ulang menjadi yang lain."
-  chart={`flowchart LR
-  E["aᶜ = b"] <-->|"pernyataan sama, a > 0, a ≠ 1, b > 0"| L["log_a b = c"]
-  L --> X["Contoh: 2⁵ = 32 berarti log₂ 32 = 5"]`}
-/>
 
 ## Latihan
 

@@ -24,16 +24,6 @@ Potenzgesetze hängen von der **Art des Exponenten** und vom **Vorzeichen der Ba
 
 Die Regeln für ganzzahlige Exponenten lassen sich teilweise auf andere Bereiche erweitern. Solche Erweiterungen benötigen jedoch zusätzliche Bedingungen. Unter den in der Tabelle genannten Voraussetzungen ist jeder Ausdruck über den reellen Zahlen eindeutig definiert.
 
-<Mermaid
-  title="Die Basis prüfen, bevor du eine Regel anwendest"
-  description="Ganzzahlige Exponenten erlauben jede Basis ungleich null, rationale Exponenten brauchen eine positive Basis, damit jede Wurzel definiert ist."
-  chart={`flowchart TD
-  A["Anzuwendende Potenzregel"] --> Q{"Exponenten"}
-  Q -->|"positive ganze Zahlen"| W["Jede Basis a"]
-  Q -->|"negativ oder null"| N["Basis a ≠ 0"]
-  Q -->|"rational"| R["Basis a > 0"]`}
-/>
-
 ## Beweise für ganzzahlige Exponenten
 
 Die Beweise unten schreiben jede Potenz als **wiederholte Multiplikation**. Diese Form zeigt direkt, warum sich die Exponenten addieren, subtrahieren oder multiplizieren. Lies jeden Beweis als kurze Kette von Gleichungen und prüfe, dass jeder Schritt nur die Definition der Potenz benutzt.
@@ -53,7 +43,7 @@ Der Fall null folgt aus <InlineMath math="a^0=1" />. Negative ganzzahlige Expone
 Zähl die Faktoren, und die Regel beweist sich selbst. Jedes Quadrat ist ein Faktor <InlineMath math="a" />. <InlineMath math="a^3" /> liefert drei Quadrate, <InlineMath math="a^4" /> vier, das Produkt hat also <InlineMath math="3 + 4 = 7" /> Faktoren in einer Reihe: <InlineMath math="a^3 \cdot a^4 = a^7" />.
 
 <MathVisual
-  title="Sieben Faktoren in einer Reihe"
+  title={<>Sieben Faktoren in einer Reihe</>}
   description={<>Drei Quadrate für <InlineMath math="a^3" /> und vier für <InlineMath math="a^4" /> ergeben sieben Faktoren <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^3" />,
@@ -89,6 +79,39 @@ Bei <InlineMath math="m<n" /> bleiben die nicht gekürzten Faktoren im Nenner. D
 
 <BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
 
+Kürze paarweise. Schreib <InlineMath math="\frac{a^5}{a^2}" /> als fünf Faktoren über zwei Faktoren. Jeder Faktor im Nenner kürzt einen Faktor im Zähler, also fallen zwei Paare weg und <InlineMath math="5 - 2 = 3" /> Faktoren bleiben: <InlineMath math="a^3" />.
+
+<MathVisual
+  title={<>Fünf Faktoren über zwei</>}
+  description={<>Fünf Quadrate für die Faktoren von <InlineMath math="a^5" /> über zwei Quadraten für <InlineMath math="a^2" />. Zwei Paare kürzen sich, und drei Quadrate bleiben, also <InlineMath math="a^3" />.</>}
+  labels={{
+    top: <InlineMath math="a^5" />,
+    bottom: <InlineMath math="a^2" />,
+    rest: <InlineMath math="a^3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 0, y: 1.4 }, { x: 0 + 0.8, y: 1.4 }, { x: 0 + 0.8, y: 1.4 + 0.8 }, { x: 0, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1, y: 1.4 }, { x: 1 + 0.8, y: 1.4 }, { x: 1 + 0.8, y: 1.4 + 0.8 }, { x: 1, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 2, y: 1.4 }, { x: 2 + 0.8, y: 1.4 }, { x: 2 + 0.8, y: 1.4 + 0.8 }, { x: 2, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 3, y: 1.4 }, { x: 3 + 0.8, y: 1.4 }, { x: 3 + 0.8, y: 1.4 + 0.8 }, { x: 3, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t4", kind: "polygon", vertices: [{ x: 4, y: 1.4 }, { x: 4 + 0.8, y: 1.4 }, { x: 4 + 0.8, y: 1.4 + 0.8 }, { x: 4, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "b0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "b1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "p0", kind: "segment", from: { x: 0 + 0.4, y: 0.8 }, to: { x: 0 + 0.4, y: 1.4 }, appearance: "warning" },
+      { id: "p1", kind: "segment", from: { x: 1 + 0.4, y: 0.8 }, to: { x: 1 + 0.4, y: 1.4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "top", objectId: "t4", at: { x: 4.8, y: 1.8 }, placement: "right" },
+      { key: "bottom", objectId: "b1", at: { x: 1.8, y: 0.4 }, placement: "right" },
+      { key: "rest", objectId: "t3", at: { x: 3.4, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Potenz einer Potenz
 
 Für positives <InlineMath math="n" /> **tritt der Faktor** <InlineMath math="a^m" /> genau <InlineMath math="n" />-mal auf:
@@ -100,7 +123,7 @@ Die Regel für den Exponenten null deckt den Fall <InlineMath math="n=0" /> ab. 
 Eine Potenz einer Potenz stapelt Kopien. <InlineMath math="(a^2)^3" /> bedeutet drei Kopien von <InlineMath math="a^2" />, eine pro Zeile, jede mit zwei Faktoren. Das Raster enthält <InlineMath math="2 \cdot 3 = 6" /> Quadrate, also <InlineMath math="(a^2)^3 = a^6" />.
 
 <MathVisual
-  title="Drei Zeilen mit je zwei Faktoren"
+  title={<>Drei Zeilen mit je zwei Faktoren</>}
   description={<>Drei Zeilen, eine für jede Kopie von <InlineMath math="a^2" />, mit je zwei Quadraten: sechs Faktoren <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^2" />,

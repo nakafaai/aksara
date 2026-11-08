@@ -24,16 +24,6 @@ Exponent rules depend on the **kind of exponent** and the **sign of the base**. 
 
 The integer rules can sometimes be extended to other domains, but those extensions require extra conditions. Under the conditions listed in the table, every expression is well-defined over the real numbers.
 
-<Mermaid
-  title="Checking the base before using a rule"
-  description="Integer exponents allow any nonzero base, while rational exponents need a positive base so that every root is defined."
-  chart={`flowchart TD
-  A["Exponent rule to use"] --> Q{"Exponents"}
-  Q -->|"positive whole numbers"| W["Any base a"]
-  Q -->|"negative or zero"| N["Base a ≠ 0"]
-  Q -->|"rational"| R["Base a > 0"]`}
-/>
-
 ## Proofs for Integer Exponents
 
 The proofs below write each power as **repeated multiplication**. That form shows directly why the exponents add, subtract, or multiply. Read each proof as a short chain of equalities, and check that every step uses only the definition of a power.
@@ -53,7 +43,7 @@ The zero case follows from <InlineMath math="a^0=1" />. Negative integer exponen
 Count the factors and the rule proves itself. Each square is one factor <InlineMath math="a" />. <InlineMath math="a^3" /> gives three squares and <InlineMath math="a^4" /> gives four, so the product holds <InlineMath math="3 + 4 = 7" /> factors in a row: <InlineMath math="a^3 \cdot a^4 = a^7" />.
 
 <MathVisual
-  title="Seven factors in a row"
+  title={<>Seven factors in a row</>}
   description={<>Three squares for <InlineMath math="a^3" /> and four for <InlineMath math="a^4" /> make seven factors of <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^3" />,
@@ -89,6 +79,39 @@ If <InlineMath math="m<n" />, the uncancelled factors stay in the denominator. T
 
 <BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
 
+Cancel in pairs. Write <InlineMath math="\frac{a^5}{a^2}" /> as five factors over two factors. Each factor in the denominator cancels one factor in the numerator, so two pairs disappear and <InlineMath math="5 - 2 = 3" /> factors remain: <InlineMath math="a^3" />.
+
+<MathVisual
+  title={<>Five factors over two</>}
+  description={<>Five squares for the factors of <InlineMath math="a^5" /> above two squares for <InlineMath math="a^2" />. Two pairs cancel and three squares remain, which is <InlineMath math="a^3" />.</>}
+  labels={{
+    top: <InlineMath math="a^5" />,
+    bottom: <InlineMath math="a^2" />,
+    rest: <InlineMath math="a^3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 0, y: 1.4 }, { x: 0 + 0.8, y: 1.4 }, { x: 0 + 0.8, y: 1.4 + 0.8 }, { x: 0, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1, y: 1.4 }, { x: 1 + 0.8, y: 1.4 }, { x: 1 + 0.8, y: 1.4 + 0.8 }, { x: 1, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 2, y: 1.4 }, { x: 2 + 0.8, y: 1.4 }, { x: 2 + 0.8, y: 1.4 + 0.8 }, { x: 2, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 3, y: 1.4 }, { x: 3 + 0.8, y: 1.4 }, { x: 3 + 0.8, y: 1.4 + 0.8 }, { x: 3, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t4", kind: "polygon", vertices: [{ x: 4, y: 1.4 }, { x: 4 + 0.8, y: 1.4 }, { x: 4 + 0.8, y: 1.4 + 0.8 }, { x: 4, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "b0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "b1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "p0", kind: "segment", from: { x: 0 + 0.4, y: 0.8 }, to: { x: 0 + 0.4, y: 1.4 }, appearance: "warning" },
+      { id: "p1", kind: "segment", from: { x: 1 + 0.4, y: 0.8 }, to: { x: 1 + 0.4, y: 1.4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "top", objectId: "t4", at: { x: 4.8, y: 1.8 }, placement: "right" },
+      { key: "bottom", objectId: "b1", at: { x: 1.8, y: 0.4 }, placement: "right" },
+      { key: "rest", objectId: "t3", at: { x: 3.4, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Power of a Power
 
 For positive <InlineMath math="n" />, the factor <InlineMath math="a^m" /> **appears** <InlineMath math="n" /> times:
@@ -100,7 +123,7 @@ The zero exponent covers <InlineMath math="n=0" />, and the reciprocal covers ne
 A power of a power stacks copies. <InlineMath math="(a^2)^3" /> means three copies of <InlineMath math="a^2" />, one per row, each with two factors. The grid holds <InlineMath math="2 \cdot 3 = 6" /> squares, so <InlineMath math="(a^2)^3 = a^6" />.
 
 <MathVisual
-  title="Three rows of two factors"
+  title={<>Three rows of two factors</>}
   description={<>Three rows, one for each copy of <InlineMath math="a^2" />, with two squares each: six factors of <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^2" />,

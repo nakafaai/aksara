@@ -30,7 +30,7 @@ Zum Beispiel verbindet <InlineMath math="2^5\cdot2^3" /> fünf Faktoren zwei mit
 Jeder Schritt nach oben multipliziert mit <InlineMath math="2" />, die Balken verdoppeln sich also: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Der Exponent zählt, wie viele Faktoren <InlineMath math="2" /> multipliziert wurden. Darum beginnt <InlineMath math="2^0 = 1" /> die Liste ganz ohne Faktor.
 
 <BarChart
-  title="Zweierpotenzen"
+  title={<>Zweierpotenzen</>}
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="2^n" /> für <InlineMath math="n = 0" /> bis <InlineMath math="6" />.</>}
   yAxisLabel="Wert"
   data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
@@ -54,7 +54,7 @@ Beim Multiplizieren oder Dividieren gleicher Basen bleibt **die Basis unverände
 Multiplizierst du Potenzen mit gleicher Basis, addieren sich die Exponenten. Auf der Exponentenlinie ist <InlineMath math="2^3" /> ein Schritt der Länge <InlineMath math="3" /> und <InlineMath math="2^2" /> ein Schritt der Länge <InlineMath math="2" />. Hängst du sie aneinander, landest du bei Exponent <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
 
 <MathVisual
-  title="Exponenten addieren sich, wenn Potenzen multipliziert werden"
+  title={<>Exponenten addieren sich, wenn Potenzen multipliziert werden</>}
   description={<>Zwei Schritte auf der Exponentenlinie, der Länge 3 und 2, enden bei Exponent 5 für <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
   labels={{
     s0: <InlineMath math="\times 2^3" />,
@@ -87,6 +87,16 @@ Multiplizierst du Potenzen mit gleicher Basis, addieren sich die Exponenten. Auf
 
 Prüfe die **Bedingungen an Basis und Exponent**, bevor du das Potenzgesetz anwendest.
 
+Null und negative Exponenten setzen dasselbe Muster fort. Jeder Schritt nach links halbiert den Wert, also <InlineMath math="2^0 = 1" />, <InlineMath math="2^{-1} = \frac12" /> und <InlineMath math="2^{-3} = \frac18" />. Die Werte werden kleiner, bleiben aber positiv, weil jeder <InlineMath math="1" /> geteilt durch eine positive Potenz von <InlineMath math="2" /> ist: <InlineMath math="2^{-n} = \frac{1}{2^n}" />.
+
+<BarChart
+  title={<>Zweierpotenzen von <InlineMath math="2^{-3}" /> bis <InlineMath math="2^3" /></>}
+  description={<>Balken von <InlineMath math="2^k" /> für <InlineMath math="k = -3" /> bis <InlineMath math="3" />: Jeder Schritt nach rechts verdoppelt den Wert, und <InlineMath math="2^0 = 1" />.</>}
+  yAxisLabel="Wert"
+  data={[-3, -2, -1, 0, 1, 2, 3].map((k) => ({ name: String(k), value: 2 ** k }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Die Rechenoperation bestimmt das Potenzgesetz
 
 Die Tabelle verbindet jede Operation im Term mit dem **ersten Vereinfachungsschritt**. Bestimme die Operation und folge der passenden Zeile.
@@ -98,17 +108,6 @@ Die Tabelle verbindet jede Operation im Term mit dem **ersten Vereinfachungsschr
 | Eine Potenz steht außerhalb einer Potenz | Exponenten multiplizieren |
 | Produkt oder Quotient steht in Klammern | Äußeren Exponenten verteilen |
 | Rationale Exponenten haben verschiedene Nenner | Auf einen gemeinsamen Nenner bringen |
-
-<Mermaid
-  title="Welche Potenzregel eine Rechenart verlangt"
-  description="Die Rechenart zwischen den Potenzen bestimmt die Regel: Multiplizieren addiert Exponenten, Dividieren subtrahiert sie, und Potenzieren einer Potenz multipliziert sie."
-  chart={`flowchart LR
-  A["aᵐ · aⁿ"] --> A1["aᵐ⁺ⁿ"]
-  B["aᵐ ÷ aⁿ"] --> B1["aᵐ⁻ⁿ"]
-  C["(aᵐ)ⁿ"] --> C1["aᵐⁿ"]
-  D["(ab)ⁿ"] --> D1["aⁿbⁿ"]
-  E["a⁻ⁿ"] --> E1["1 / aⁿ"]`}
-/>
 
 ## Produkte Quotienten und Potenzen vereinfachen
 

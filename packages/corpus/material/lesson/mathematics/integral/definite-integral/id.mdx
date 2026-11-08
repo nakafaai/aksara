@@ -26,14 +26,6 @@ Notasi ini memiliki arti spesifik:
 
 Integral tak tentu memuat semua fungsi berbentuk <InlineMath math="F(x) + C" />. Integral tentu menghasilkan sebuah **angka tunggal** yang menyatakan akumulasi bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nilai tersebut sama dengan luas geometris jika fungsi yang diintegralkan tidak negatif pada seluruh interval.
 
-<Mermaid
-  title="Dari persegi panjang ke integral tentu"
-  description="Persegi panjang menaksir luasnya, persegi panjang yang lebih banyak dan tipis memperbaiki taksiran, dan limit jumlahnya adalah luas tepat."
-  chart={`flowchart LR
-  A["Bagi [a, b] menjadi n jalur selebar Δx"] --> B["Jumlah f(xᵢ*)·Δx"]
-  B -->|"n → ∞"| C["∫ₐᵇ f(x) dx, luas tepat"]`}
-/>
-
 ## Menghitung Integral Tentu dengan Limit
 
 **Soal**: Tentukan nilai dari <InlineMath math="\int_{0}^{7} x \, dx" />.
@@ -98,7 +90,7 @@ Karena <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" 
 Ini cara kerja limitnya. Luas tepat di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> sampai <InlineMath math="7" /> adalah segitiga <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Tujuh persegi panjang titik ujung kanan selebar <InlineMath math="1" /> menutupinya dengan sedikit kelebihan di atas: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, sesuai dengan <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
 
 <MathVisual
-  title="Tujuh persegi panjang di atas luas tepatnya"
+  title={<>Tujuh persegi panjang di atas luas tepatnya</>}
   description={<>Segitiga di bawah <InlineMath math="y = x" /> dari 0 sampai 7, luasnya <InlineMath math="\tfrac{49}{2}" />, ditutupi tujuh persegi panjang dengan total luas 28.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -143,7 +135,7 @@ Selisih hampiran dari nilai eksak adalah <InlineMath math="R_n-\frac{49}{2}=\fra
 Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masing selebar <InlineMath math="\tfrac12" />. Kelebihan di atasnya makin tipis, dan totalnya turun menjadi <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26{,}25" />. Setiap kali <InlineMath math="n" /> bertambah, jumlahnya makin dekat ke <InlineMath math="24{,}5" />.
 
 <MathVisual
-  title="Empat belas persegi panjang yang lebih tipis"
+  title={<>Empat belas persegi panjang yang lebih tipis</>}
   description={<>Empat belas persegi panjang selebar setengah di bawah <InlineMath math="y = x" />, dengan total luas 26,25 dibanding luas tepat 24,5.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -174,4 +166,14 @@ Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masi
       { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
     ],
   }}
+/>
+
+Letakkan jumlah dengan titik sampel ujung kanan berdampingan. Dari <InlineMath math="n = 1" /> sampai <InlineMath math="n = 100" /> batangnya menyusut dari <InlineMath math="49" /> menuju luas eksak <InlineMath math="\frac{49}{2} = 24{,}5" />, dan selisih di atasnya selalu <InlineMath math="\frac{49}{2n}" />.
+
+<BarChart
+  title={<>Jumlah titik ujung kanan <InlineMath math="R_n" /> untuk enam banyak persegi panjang</>}
+  description={<>Batang <InlineMath math="R_n = \frac{49}{2}\left(1 + \frac1n\right)" /> untuk <InlineMath math="n = 1, 2, 7, 10, 14, 100" />, turun menuju <InlineMath math="24{,}5" />.</>}
+  yAxisLabel="Hampiran"
+  data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
+  chartConfig={{ value: { label: "Hampiran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

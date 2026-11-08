@@ -31,15 +31,6 @@ For <InlineMath math="f(x)=x" />, an antiderivative is <InlineMath math="x^2/2" 
 
 <BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
 
-<Mermaid
-  title="Rules that follow from F(b) − F(a)"
-  description="Equal limits give zero, swapping the limits changes the sign, and a split interval adds its parts."
-  chart={`flowchart TD
-  A["∫ₐᵇ f(x) dx = F(b) − F(a)"] --> B["∫ₐᵃ f(x) dx = F(a) − F(a) = 0"]
-  A --> C["∫ᵦᵃ f(x) dx = F(a) − F(b) = −∫ₐᵇ f(x) dx"]
-  A --> D["∫ₐᶜ = ∫ₐᵇ + ∫ᵦᶜ"]`}
-/>
-
 ## Constant Multiple Rule
 
 Just as with indefinite integrals, a constant can be factored out of the integral to simplify the calculation.
@@ -55,7 +46,7 @@ With <InlineMath math="k=3" />, every contribution becomes **three times as larg
 Doubling the function doubles every height, so the area doubles too. On <InlineMath math="[0, 2]" /> the area under <InlineMath math="y = x + 1" /> is <InlineMath math="4" />, and the area under <InlineMath math="y = 2(x + 1)" /> is <InlineMath math="8 = 2 \cdot 4" />.
 
 <MathVisual
-  title="A constant factor scales the area"
+  title={<>A constant factor scales the area</>}
   description={<>The trapezoids under <InlineMath math="y = x + 1" /> and <InlineMath math="y = 2(x + 1)" /> on <InlineMath math="[0, 2]" />, with areas 4 and 8.</>}
   labels={{
     single: <InlineMath math="4" />,
@@ -93,6 +84,33 @@ For the integrand <InlineMath math="x+1" />, calculate the contributions from <I
 
 <BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
 
+Stack the two pieces. Under <InlineMath math="y = x + 1" /> from <InlineMath math="0" /> to <InlineMath math="2" />, the violet rectangle is <InlineMath math="\int_0^2 1\,dx = 2" /> and the orange triangle on top of it is <InlineMath math="\int_0^2 x\,dx = 2" />. Together they fill the whole region, so <InlineMath math="\int_0^2 (x + 1)\,dx = 2 + 2 = 4" />.
+
+<MathVisual
+  title={<>The area under <InlineMath math="x + 1" /> splits into two pieces</>}
+  description={<>A rectangle of area 2 under <InlineMath math="y = 1" /> and a triangle of area 2 for <InlineMath math="y = x" />, stacked into the region under <InlineMath math="y = x + 1" /> of area 4.</>}
+  labels={{
+    one: <InlineMath math="2" />,
+    ramp: <InlineMath math="2" />,
+    graph: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.9 }, y: { min: -0.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "ramp", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "graph", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0.5 }, placement: "center" },
+      { key: "ramp", objectId: "ramp", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "graph", objectId: "graph", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Interval Addition Property
 
 An integration interval can be split at an intermediate point. The signed accumulation over the whole interval equals the sum over the two parts.
@@ -113,7 +131,7 @@ The two parts add to <InlineMath math="\frac12+\frac32=2" />, agreeing with <Inl
 Split an interval and the areas add. Under <InlineMath math="y = x + 1" />, the region from <InlineMath math="0" /> to <InlineMath math="2" /> has area <InlineMath math="4" /> and the region from <InlineMath math="2" /> to <InlineMath math="4" /> has area <InlineMath math="8" />. Together they make the whole area <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
 
 <MathVisual
-  title="Areas add when the interval splits"
+  title={<>Areas add when the interval splits</>}
   description={<>Two trapezoids under <InlineMath math="y = x + 1" />, from 0 to 2 with area 4 and from 2 to 4 with area 8, total 12.</>}
   labels={{
     left: <InlineMath math="4" />,

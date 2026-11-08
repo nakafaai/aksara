@@ -25,6 +25,35 @@ Di sini:
 
 Konsep yang sama berlaku untuk polinomial.
 
+Gambarlah <InlineMath math="7" /> sebagai persegi satuan. Satu kelompok penuh berisi <InlineMath math="4" /> memberi hasil bagi <InlineMath math="1" />, dan tersisa <InlineMath math="3" /> persegi. Karena <InlineMath math="3 < 4" />, kelompok kedua tidak muat, dan itulah syarat bahwa sisanya lebih kecil daripada pembaginya.
+
+<MathVisual
+  title={<>Tujuh persegi dalam kelompok berisi empat</>}
+  description={<>Tujuh persegi satuan: satu kelompok berisi 4 untuk hasil bagi 1 dan 3 persegi sisa, jadi <InlineMath math="7 = 4 \cdot 1 + 3" />.</>}
+  labels={{
+    group: <InlineMath math="4 \cdot 1" />,
+    rest: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 7.8 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0.8 }, { x: 0, y: 0.8 }], appearance: "primary" },
+      { id: "q1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0.8 }, { x: 1, y: 0.8 }], appearance: "primary" },
+      { id: "q2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2 + 0.8, y: 0 }, { x: 2 + 0.8, y: 0.8 }, { x: 2, y: 0.8 }], appearance: "primary" },
+      { id: "q3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 + 0.8, y: 0 }, { x: 3 + 0.8, y: 0.8 }, { x: 3, y: 0.8 }], appearance: "primary" },
+      { id: "r0", kind: "polygon", vertices: [{ x: 4.6, y: 0 }, { x: 4.6 + 0.8, y: 0 }, { x: 4.6 + 0.8, y: 0.8 }, { x: 4.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 5.6, y: 0 }, { x: 5.6 + 0.8, y: 0 }, { x: 5.6 + 0.8, y: 0.8 }, { x: 5.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 6.6, y: 0 }, { x: 6.6 + 0.8, y: 0 }, { x: 6.6 + 0.8, y: 0.8 }, { x: 6.6, y: 0.8 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "group", objectId: "q1", at: { x: 1.8, y: 0.8 }, placement: "above" },
+      { key: "rest", objectId: "r1", at: { x: 6, y: 0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Algoritma Pembagian Polinomial
 
 Algoritma pembagian menyatakan hubungan antara polinomial yang dibagi, pembagi, hasil bagi, dan sisa.
@@ -75,17 +104,6 @@ Hasil pembagian dapat ditulis dalam dua bentuk sesuai algoritma:
 
 Sisa <InlineMath math="S(x)=2" /> berderajat <InlineMath math="0" />, <Highlight>lebih rendah daripada derajat pembagi</Highlight> <InlineMath math="x+3" />, yaitu <InlineMath math="1" />. Syarat inilah yang menandai bahwa pembagian telah selesai.
 
-<Mermaid
-  title="Satu langkah pembagian bersusun polinomial"
-  description="Bagi suku utama, kalikan kembali, kurangkan, lalu ulangi sampai sisa berderajat lebih rendah daripada pembagi."
-  chart={`flowchart TD
-  A["Bagi suku utama P dengan suku utama Q"] --> B["Kalikan suku itu dengan Q"]
-  B --> C["Kurangkan dari P"]
-  C --> D{"Derajat sisanya < derajat Q?"}
-  D -->|"Tidak"| A
-  D -->|"Ya"| E["Berhenti: H(x) hasil bagi, sisanya S(x)"]`}
-/>
-
 ### Verifikasi Algoritma Pembagian
 
 Periksa hasil pembagian dengan **sifat distributif**. Kalikan setiap suku hasil bagi dengan setiap suku pembagi, lalu gabungkan suku sejenis dan tambahkan sisa:
@@ -94,46 +112,24 @@ Periksa hasil pembagian dengan **sifat distributif**. Kalikan setiap suku hasil 
 
 Koefisien suku kuadrat menjadi <InlineMath math="1+3=4" />, koefisien suku linear menjadi <InlineMath math="2+3=5" />, dan konstanta menjadi <InlineMath math="6+2=8" />. Jadi semua suku kembali ke polinomial semula.
 
-Ini pembagiannya dalam bentuk dua grafik. Kurva oranye adalah <InlineMath math="P(x) = x^3 + 4x^2 + 5x + 8" /> dan kurva ungu adalah <InlineMath math="(x + 3)(x^2 + x + 2)" />. Keduanya berjalan berdampingan, selalu berjarak tepat <InlineMath math="2" />, karena <InlineMath math="P(x) = (x + 3)(x^2 + x + 2) + 2" />. Di <InlineMath math="x = -3" />, hasil kalinya <InlineMath math="0" />, jadi <InlineMath math="P(-3)" /> tinggal sisanya, <InlineMath math="2" />.
+Ini pemeriksaannya dalam bentuk bilangan. Kurangi <InlineMath math="P(x) = x^3 + 4x^2 + 5x + 8" /> dengan <InlineMath math="(x + 3)(x^2 + x + 2)" /> di enam nilai <InlineMath math="x" />. Setiap selisihnya tepat <InlineMath math="2" />, karena identitas <InlineMath math="P(x) = (x + 3)(x^2 + x + 2) + 2" /> berlaku untuk setiap <InlineMath math="x" />, bahkan di <InlineMath math="x = -3" /> ketika pembaginya nol.
 
-<LineEquation
-  title="Sisa adalah jarak antara dua grafik"
-  description={<><InlineMath math="P(x)" /> dan <InlineMath math="Q(x)H(x)" /> untuk <InlineMath math="-3{,}5 \le x \le -0{,}5" />, selalu berjarak 2.</>}
-  cameraPosition={[-2, 1.5, 11]}
-  cameraTarget={[-2, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.5 + (i / 400) * ((-0.5) - (-3.5));
-        return { x, y: x ** 3 + 4 * x ** 2 + 5 * x + 8, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 400, offset: [0.3, 0.2, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.5 + (i / 400) * ((-0.5) - (-3.5));
-        return { x, y: (x + 3) * (x ** 2 + x + 2), z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="Q(x)H(x)" />, at: 400, offset: [0.3, -0.3, 0] }],
-    },
-    { points: [{ x: -3, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: [{ text: <InlineMath math="P(-3) = 2" />, at: 0, offset: [-0.9, 0.4, 0] }] },
-    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+<BarChart
+  title={<>Selisih antara <InlineMath math="P(x)" /> dan <InlineMath math="(x + 3)(x^2 + x + 2)" /></>}
+  description={<>Batang <InlineMath math="P(x) - (x + 3)(x^2 + x + 2)" /> untuk <InlineMath math="x = -3, -2, -1, 0, 1, 2" />, semuanya sama dengan sisa 2.</>}
+  yAxisLabel="Selisih"
+  data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 4 * x ** 2 + 5 * x + 8 - (x + 3) * (x ** 2 + x + 2) }))}
+  chartConfig={{ value: { label: "Selisih", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-<Mermaid
-  title="Mengecek pembagian"
-  description="Kalikan hasil bagi dengan pembagi, lalu tambahkan sisanya. Hasilnya harus kembali tepat menjadi yang dibagi."
-  chart={`flowchart LR
-  H["H(x) = x² + x + 2"] --> M["(x + 3)(x² + x + 2) = x³ + 4x² + 5x + 6"]
-  M -->|"+ S(x) = 2"| P["x³ + 4x² + 5x + 8 = P(x)"]`}
+Kumpulkan koefisien <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> derajat demi derajat. Batang <InlineMath math="1" />, <InlineMath math="1 + 3 = 4" />, <InlineMath math="2 + 3 = 5" />, dan <InlineMath math="6 + 2 = 8" /> tepat sama dengan koefisien <InlineMath math="x^3 + 4x^2 + 5x + 8" />, jadi pembagiannya benar.
+
+<BarChart
+  title={<>Koefisien polinomial yang dibagi setelah disusun ulang</>}
+  description={<>Batang koefisien <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> pada derajat 3, 2, 1, dan 0: 1, 4, 5, dan 8.</>}
+  yAxisLabel="Koefisien"
+  data={[["derajat 3", 1], ["derajat 2", 1 + 3], ["derajat 1", 2 + 3], ["derajat 0", 6 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koefisien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Latihan

@@ -24,17 +24,6 @@ Jika polinomial <InlineMath math="P(x)" /> memiliki akar rasional <InlineMath ma
 
 Teorema ini hanya memberikan daftar **kemungkinan** akar rasional. Belum tentu semua nilai <InlineMath math="\frac{p}{q}" /> dari daftar tersebut benar-benar akar dari polinomialnya. Kita masih perlu mengujinya.
 
-<Mermaid
-  title="Mencari akar rasional"
-  description="Susun p/q dari faktor konstanta dan koefisien utama, uji setiap calon, lalu faktorkan setiap akar yang ditemukan."
-  chart={`flowchart TD
-  A["Faktor p dari a₀ dan q dari aₙ"] --> B["Calon ± p/q"]
-  B --> C["Uji dengan substitusi atau Horner"]
-  C -->|"P(c) = 0"| D["Faktorkan (x − c)"]
-  D --> E["Ulangi pada hasil bagi yang lebih kecil"]
-  C -->|"P(c) ≠ 0"| F["Buang c"]`}
-/>
-
 ## Langkah Teorema Pembuat Nol Rasional
 
 **Kandidat belum tentu akar**. Untuk menyusun kandidat, ambil faktor positif dan negatif dari konstanta sebagai pembilang, lalu faktor positif koefisien utama sebagai penyebut. Sederhanakan pecahan agar nilai yang sama tidak diuji berulang kali. Uji setiap kandidat dengan substitusi atau [metode Horner](/id/materi/matematika/polinomial/metode-horner).
@@ -109,7 +98,7 @@ Faktorkan <InlineMath math="x^2 + 5x + 6" />.
 Teorema ini mengubah pencarian tanpa ujung menjadi daftar pendek. Untuk <InlineMath math="x^3 + 2x^2 - 9x - 18" />, setiap akar rasional pasti salah satu dari dua belas calon <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />. Setelah diuji, tersisa tepat tiga akar, <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />, yang disorot pada garis.
 
 <MathVisual
-  title="Dua belas calon, tiga akar"
+  title={<>Dua belas calon, tiga akar</>}
   description={<>Dua belas calon akar rasional pada garis bilangan, dengan tiga akar sebenarnya <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" /> disorot.</>}
   labels={{
     m3: <InlineMath math="-3" />,
@@ -143,28 +132,41 @@ Teorema ini mengubah pencarian tanpa ujung menjadi daftar pendek. Untuk <InlineM
   }}
 />
 
-Perbesar bagian kiri kubik ini: ia memotong sumbu x di <InlineMath math="-3" /> dan <InlineMath math="-2" />, dengan punuk pendek di antaranya yang mudah terlewat tanpa daftar calon. Perpotongan ketiga ada di <InlineMath math="3" />, jadi <InlineMath math="P(x) = (x - 3)(x + 2)(x + 3)" />.
+Hitung <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> di kandidat dari <InlineMath math="-3" /> sampai <InlineMath math="3" />: batangnya turun ke nol tepat di <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />, yaitu ketiga akarnya, sedangkan setiap kandidat lain memberi nilai tidak nol, sama seperti di tabel.
 
-<LineEquation
-  title="Kubik memotong di tiga akar rasionalnya"
-  description={<>Grafik <InlineMath math="x^3 + 2x^2 - 9x - 18" /> untuk <InlineMath math="-3{,}4 \le x \le -1{,}6" />, memotong di <InlineMath math="-3" /> dan <InlineMath math="-2" />.</>}
-  cameraPosition={[-2.5, -1, 6]}
-  cameraTarget={[-2.5, -1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.4 + (i / 400) * ((-1.6) - (-3.4));
-        return { x, y: x ** 3 + 2 * x ** 2 - 9 * x - 18, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 300, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-3" />, at: 0, offset: [-0.15, -0.3, 0] }] },
-    { points: [{ x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-2" />, at: 0, offset: [0.1, -0.3, 0] }] }
-  ]}
+<BarChart
+  title={<><InlineMath math="P(x)" /> di enam kandidat</>}
+  description={<>Batang <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> di <InlineMath math="x = -3, -2, -1, 1, 2, 3" />, bernilai nol di akar <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 9 * x - 18 }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Hasil bagi <InlineMath math="H(x) = x^2 + 5x + 6" /> dari Langkah 6 berupa parabola. Parabola itu memotong sumbu x tepat di <InlineMath math="-3" /> dan <InlineMath math="-2" />, dua akar yang tersisa setelah <InlineMath math="P(x)" /> dibagi dengan <InlineMath math="x - 3" />, jadi faktornya <InlineMath math="(x + 3)" /> dan <InlineMath math="(x + 2)" />.
+
+<MathVisual
+  title={<>Hasil bagi memotong di dua akar lainnya</>}
+  description={<>Parabola <InlineMath math="H(x) = x^2 + 5x + 6" /> untuk <InlineMath math="-4{,}5 \le x \le -0{,}5" />, memotong sumbu x di <InlineMath math="-3" /> dan <InlineMath math="-2" />.</>}
+  labels={{
+    quotient: <InlineMath math="H(x) = x^2 + 5x + 6" />,
+    left: <InlineMath math="-3" />,
+    right: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.9, max: 0.6 }, y: { min: -0.7, max: 4.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "quotient", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4.5, max: -0.5 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "quotient", objectId: "quotient", at: { x: -0.5, y: 3.75 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Latihan

@@ -11,18 +11,6 @@ export const metadata = {
 
 The [derivative rules](/en/subjects/mathematics/derivative-function/properties-of-derivative-function) apply to many algebraic forms. For a polynomial, rational function, or expression containing a radical, first <Highlight>identify the structure</Highlight> and then <Highlight>choose the matching rule</Highlight>. The examples below make that decision explicit.
 
-<Mermaid
-  title="Differentiating 4x² + x + 2 term by term"
-  description="The derivative of a sum is the sum of the derivatives, so each term is differentiated with the power, constant multiple and constant rules."
-  chart={`flowchart LR
-  A["4x²"] -->|"power and constant multiple"| A1["8x"]
-  B["x"] -->|"power rule"| B1["1"]
-  C["2"] -->|"constant rule"| C1["0"]
-  A1 --> S["y′ = 8x + 1"]
-  B1 --> S
-  C1 --> S`}
-/>
-
 ## Using the Properties of Derivatives
 
 Each example uses a different algebraic form and explains why its method works. Before differentiating, rewrite a quotient or a root as a power, because <Highlight>the power rule then applies directly</Highlight> to every term.
@@ -41,51 +29,56 @@ The derivative of the linear term <InlineMath math="x" /> is <InlineMath math="1
 
 The derivative <InlineMath math="y' = 8x + 1" /> gives the slope at every point of <InlineMath math="y = 4x^2 + x + 2" />. At <InlineMath math="x = 0" /> it is <InlineMath math="1" />, so the tangent there is <InlineMath math="y = x + 2" />. Turn the scene and compare the steepness of the curve with the tangent line.
 
-<LineEquation
-  title="Tangent of the parabola at x = 0"
+<MathVisual
+  title={<>Tangent of the parabola at <InlineMath math="x = 0" /></>}
   description={<>The parabola <InlineMath math="4x^2 + x + 2" /> with its tangent <InlineMath math="y = x + 2" /> at the point <InlineMath math="(0, 2)" />.</>}
-  cameraPosition={[-0.1, 3.4, 6]}
-  cameraTarget={[-0.1, 3.4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1 + (i / 400) * ((0.75) - (-1));
-        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="y = 4x^2 + x + 2" />, at: 30, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: -0.6, y: 1.4, z: 0 }, { x: 0.6, y: 2.6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x + 2" />, at: 1, offset: [0.2, -0.2, 0] }] },
-    { points: [{ x: 0, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(0, 2)" />, at: 0, offset: [-0.5, 0.2, 0] }] }
-  ]}
+  labels={{
+    curve: <InlineMath math="y = 4x^2 + x + 2" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    touch: <InlineMath math="(0, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.1 }, y: { min: 1, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 1, c: 2 }, domain: { min: -1, max: 0.75 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -0.6, y: 1.4 }, to: { x: 0.6, y: 2.6 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.75, y: 5 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 0.6, y: 2.6 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 The same derivative finds the turning point. <InlineMath math="8x + 1 = 0" /> at <InlineMath math="x = -\tfrac18" />, where the tangent is flat and the parabola reaches its lowest value <InlineMath math="\tfrac{31}{16}" />. At <InlineMath math="x = 0.5" /> the slope is <InlineMath math="8(0.5) + 1 = 5" />, much steeper.
 
-<LineEquation
-  title="Slopes 0 and 5 on the same parabola"
+<MathVisual
+  title={<>Slopes 0 and 5 on the same parabola</>}
   description={<>The parabola <InlineMath math="4x^2 + x + 2" /> with a flat tangent at its vertex <InlineMath math="(-\tfrac18, \tfrac{31}{16})" /> and a tangent of slope 5 at <InlineMath math="(0.5, 3.5)" />.</>}
-  cameraPosition={[-0.1, 3.4, 6]}
-  cameraTarget={[-0.1, 3.4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -1 + (i / 400) * ((0.75) - (-1));
-        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-    },
-    { points: [{ x: -1 / 8 - 0.35, y: 31 / 16, z: 0 }, { x: -1 / 8 + 0.35, y: 31 / 16, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="0" />, at: 1, offset: [0.15, 0.1, 0] }] },
-    { points: [{ x: 0.25, y: 2.25, z: 0 }, { x: 0.75, y: 4.75, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="5" />, at: 1, offset: [0.15, 0, 0] }] },
-    { points: [{ x: -1 / 8, y: 31 / 16, z: 0 }], smooth: false, showPoints: true, color: "#0d9488" },
-    { points: [{ x: 0.5, y: 3.5, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
-  ]}
+  labels={{
+    flat: <InlineMath math="m = 0" />,
+    steep: <InlineMath math="m = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.1 }, y: { min: 1, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 1, c: 2 }, domain: { min: -1, max: 0.75 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: -0.475, y: 31 / 16 }, to: { x: 0.225, y: 31 / 16 }, appearance: "construction" },
+      { id: "steep", kind: "segment", from: { x: 0.25, y: 2.25 }, to: { x: 0.75, y: 4.75 }, appearance: "secondary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 8, y: 31 / 16 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 0.5, y: 3.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: -0.475, y: 31 / 16 }, placement: "left" },
+      { key: "steep", objectId: "steep", at: { x: 0.75, y: 4.75 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Differentiating a Radical Expression
@@ -137,6 +130,16 @@ We use the quotient rule. Let <InlineMath math="u(x) = x^2+2" /> and <InlineMath
 </MathContainer>
 
 The restriction <InlineMath math="x\ne0" /> remains part of the derivative's domain.
+
+Read the slope off <InlineMath math="y' = 2 - \frac{4}{x^2}" /> at <InlineMath math="x = 1" /> to <InlineMath math="5" />. At <InlineMath math="x = 1" /> the slope is <InlineMath math="-2" />, so the graph falls there. From <InlineMath math="x = 2" /> on it is positive, and it climbs toward <InlineMath math="2" /> because <InlineMath math="\frac{4}{x^2}" /> shrinks as <InlineMath math="x" /> grows.
+
+<BarChart
+  title={<>Slopes of <InlineMath math="y = 2\left(\frac{x^2+2}{x}\right)" /> at five inputs</>}
+  description={<>Bars of <InlineMath math="y' = 2 - \frac{4}{x^2}" /> for <InlineMath math="x = 1, 2, 3, 4, 5" />, rising from <InlineMath math="-2" /> toward 2.</>}
+  yAxisLabel="Slope"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 - 4 / x ** 2 }))}
+  chartConfig={{ value: { label: "Slope", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercises
 

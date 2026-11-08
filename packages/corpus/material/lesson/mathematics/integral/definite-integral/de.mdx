@@ -26,14 +26,6 @@ Jeder Teil der Notation hat eine klare Bedeutung:
 
 Ein unbestimmtes Integral umfasst alle Funktionen der Form <InlineMath math="F(x) + C" />. Ein bestimmtes Integral ist dagegen eine **einzelne Zahl**. Sie beschreibt die vorzeichenbehaftete Akkumulation von <InlineMath math="x=a" /> bis <InlineMath math="x=b" />. Nur bei einem nichtnegativen Integranden entspricht diese Zahl dem geometrischen Flächeninhalt.
 
-<Mermaid
-  title="Von Rechtecken zum bestimmten Integral"
-  description="Rechtecke nähern die Fläche an, mehr und schmalere Rechtecke verbessern die Näherung, und der Grenzwert der Summen ist die genaue Fläche."
-  chart={`flowchart LR
-  A["[a, b] in n Streifen der Breite Δx teilen"] --> B["Summe von f(xᵢ*)·Δx"]
-  B -->|"n → ∞"| C["∫ₐᵇ f(x) dx, die genaue Fläche"]`}
-/>
-
 ## Berechnung des bestimmten Integrals mit Grenzwerten
 
 **Aufgabe**: Berechne den Wert von <InlineMath math="\int_{0}^{7} x \, dx" />.
@@ -98,7 +90,7 @@ Da <InlineMath math="f(x) = x" /> zwischen <InlineMath math="x=0" /> und <Inline
 So arbeitet der Grenzwert. Die genaue Fläche unter <InlineMath math="y = x" /> von <InlineMath math="0" /> bis <InlineMath math="7" /> ist das Dreieck <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Sieben Rechtecke mit rechtem Randpunkt und Breite <InlineMath math="1" /> bedecken es mit etwas Überschuss: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, passend zu <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
 
 <MathVisual
-  title="Sieben Rechtecke über der genauen Fläche"
+  title={<>Sieben Rechtecke über der genauen Fläche</>}
   description={<>Das Dreieck unter <InlineMath math="y = x" /> von 0 bis 7 mit Fläche <InlineMath math="\tfrac{49}{2}" />, bedeckt von sieben Rechtecken mit Gesamtfläche 28.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -143,7 +135,7 @@ Der Abstand zum exakten Wert beträgt <InlineMath math="R_n-\frac{49}{2}=\frac{4
 Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breite <InlineMath math="\tfrac12" />. Die Überschussstreifen oben werden dünner, und die Summe sinkt auf <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26{,}25" />. Jedes Mal, wenn <InlineMath math="n" /> wächst, rückt die Summe näher an <InlineMath math="24{,}5" />.
 
 <MathVisual
-  title="Vierzehn schmalere Rechtecke"
+  title={<>Vierzehn schmalere Rechtecke</>}
   description={<>Vierzehn Rechtecke der Breite einhalb unter <InlineMath math="y = x" />, mit Gesamtfläche 26,25 gegenüber der genauen 24,5.</>}
   labels={{
     f: <InlineMath math="y = x" />,
@@ -174,4 +166,14 @@ Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breit
       { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
     ],
   }}
+/>
+
+Stell die Summen mit rechten Stützstellen nebeneinander. Von <InlineMath math="n = 1" /> bis <InlineMath math="n = 100" /> schrumpfen die Balken von <InlineMath math="49" /> auf den exakten Flächeninhalt <InlineMath math="\frac{49}{2} = 24{,}5" /> zu, und der Abstand darüber ist immer <InlineMath math="\frac{49}{2n}" />.
+
+<BarChart
+  title={<>Summen <InlineMath math="R_n" /> mit rechten Stützstellen für sechs Rechteckanzahlen</>}
+  description={<>Balken von <InlineMath math="R_n = \frac{49}{2}\left(1 + \frac1n\right)" /> für <InlineMath math="n = 1, 2, 7, 10, 14, 100" />, fallend auf <InlineMath math="24{,}5" /> zu.</>}
+  yAxisLabel="Näherung"
+  data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
+  chartConfig={{ value: { label: "Näherung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

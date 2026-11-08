@@ -34,7 +34,7 @@ The first three rules come directly from <InlineMath math="a^1=a" />, <InlineMat
 A logarithm counts doublings. <InlineMath math="\log_2 x" /> asks how many factors of <InlineMath math="2" /> make <InlineMath math="x" />, so the bars for <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> climb by exactly <InlineMath math="1" /> each time <InlineMath math="x" /> doubles: <InlineMath math="0, 1, 2, 3, 4, 5" />.
 
 <BarChart
-  title="Base 2 logarithms of powers of two"
+  title={<>Base 2 logarithms of powers of two</>}
   description={<>Bars for <InlineMath math="\log_2 x" /> at <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, rising by 1 each time x doubles.</>}
   yAxisLabel="log₂ x"
   data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
@@ -65,7 +65,7 @@ Taking the base-<InlineMath math="a" /> logarithm gives:
 The product rule is the exponent rule seen from the other side. <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> are two steps on the exponent line. Placed end to end they reach <InlineMath math="5" />, and <InlineMath math="2^5 = 32 = 8 \cdot 4" />, so <InlineMath math="\log_2 (8 \cdot 4) = \log_2 8 + \log_2 4" />.
 
 <MathVisual
-  title="Logarithms add when numbers multiply"
+  title={<>Logarithms add when numbers multiply</>}
   description={<>Steps of length <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> end at 5, which is <InlineMath math="\log_2 32" />.</>}
   labels={{
     s0: <InlineMath math="\log_2 8" />,
@@ -99,6 +99,34 @@ Using the same substitutions, division **subtracts the exponents**:
 The calculation gives:
 
 <BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+Division walks the exponent line backward. <InlineMath math="\log_2 32 = 5" /> is a step of 5, and dividing by <InlineMath math="4" /> takes back a step of <InlineMath math="\log_2 4 = 2" />. The walk ends at <InlineMath math="3" />, and <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
+
+<MathVisual
+  title={<>Logarithms subtract when numbers divide</>}
+  description={<>A step of <InlineMath math="\log_2 32 = 5" /> followed by a step back of <InlineMath math="\log_2 4 = 2" /> ends at 3, which is <InlineMath math="\log_2 8" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 32" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 8 = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 5, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 5, y: 0.6 }, to: { x: 3, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 2.5, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 4, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Power Rule
 
@@ -143,14 +171,6 @@ Because <InlineMath math="125=5^3" />, the **inverse relationship** and power ru
 </MathContainer>
 
 The result also answers the original exponent question: <InlineMath math="5^3=125" />.
-
-<Mermaid
-  title="Exponential form and logarithmic form"
-  description="The two forms state the same fact, so either one can be rewritten as the other."
-  chart={`flowchart LR
-  E["aᶜ = b"] <-->|"same statement, a > 0, a ≠ 1, b > 0"| L["log_a b = c"]
-  L --> X["Example: 2⁵ = 32 means log₂ 32 = 5"]`}
-/>
 
 ## Exercises
 

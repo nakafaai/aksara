@@ -32,47 +32,36 @@ Pada <InlineMath math="2x^2y" />, **koefisiennya** adalah <InlineMath math="2" /
 | <InlineMath math="x+2\sqrt{x}" /> | Pangkat pada suku akar adalah <InlineMath math="1/2" />. | Bukan polinomial |
 | <InlineMath math="2x^3-5x^{-2}+1" /> | Pangkat negatif muncul pada suku <InlineMath math="-5x^{-2}" />. | Bukan polinomial |
 
-Polinomial dibangun dengan menjumlahkan monomial, dan kamu bisa melihat penjumlahannya. Kurva oranye adalah <InlineMath math="\tfrac14 x^3" />, garis ungu adalah <InlineMath math="-x" />, dan kurva hijau toska adalah jumlahnya, <InlineMath math="P(x) = \tfrac14 x^3 - x" />. Di <InlineMath math="x = 2" />, kedua suku bernilai <InlineMath math="2" /> dan <InlineMath math="-2" />, jadi <InlineMath math="P(2) = 0" />.
+Polinomial dibangun dengan menjumlahkan monomial, dan kamu bisa melihat penjumlahannya terjadi. Kurva oranye adalah <InlineMath math="\tfrac12 x^2" />, garis ungu adalah <InlineMath math="-x" />, dan kurva toska adalah jumlahnya <InlineMath math="P(x) = \tfrac12 x^2 - x" />. Di <InlineMath math="x = 2" /> kedua sukunya bernilai <InlineMath math="2" /> dan <InlineMath math="-2" />, jadi keduanya saling menghapus dan jumlahnya memotong sumbu x.
 
-<LineEquation
-  title="Polinomial sebagai jumlah monomial"
-  description={<>Monomial <InlineMath math="\tfrac14 x^3" /> dan <InlineMath math="-x" /> serta jumlahnya <InlineMath math="P(x)" />, yang memotong sumbu x di 2 karena kedua suku saling meniadakan.</>}
-  cameraPosition={[0, 0, 9]}
-  cameraTarget={[0, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: x ** 3 / 4, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\tfrac14 x^3" />, at: 380, offset: [0.2, 0, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: -x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#8242e5",
-      labels: [{ text: <InlineMath math="-x" />, at: 20, offset: [-0.2, 0.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
-        return { x, y: x ** 3 / 4 - x, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 330, offset: [0.3, -0.3, 0] }],
-    },
-    { points: [{ x: 2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: [{ text: <InlineMath math="P(2) = 0" />, at: 0, offset: [0.3, -0.4, 0] }] }
-  ]}
+<MathVisual
+  title={<>Polinomial sebagai jumlah monomial</>}
+  description={<>Monomial <InlineMath math="\tfrac12 x^2" /> dan <InlineMath math="-x" /> serta jumlahnya <InlineMath math="P(x)" />, yang memotong sumbu x di 0, tempat kedua suku bernilai nol, dan di 2, tempat keduanya saling menghapus.</>}
+  labels={{
+    half: <InlineMath math="\tfrac12 x^2" />,
+    minus: <InlineMath math="-x" />,
+    sum: <InlineMath math="P(x)" />,
+    root: <InlineMath math="P(2) = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 3.8 }, y: { min: -3.4, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "half", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: 0, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "primary" },
+      { id: "minus", kind: "segment", from: { x: -1.5, y: 1.5 }, to: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: -1, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "construction" },
+      { id: "plus-term", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "minus-term", kind: "point", at: { x: 2, y: -2 }, appearance: "secondary" },
+      { id: "root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 3, y: 4.5 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: 3, y: -3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 1.5 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Pengurangan sebagai Penjumlahan
@@ -86,7 +75,7 @@ Coba <InlineMath math="x=1" /> dan <InlineMath math="y=2" />. Kedua cara menulis
 Setiap bagian polinomial tampak di grafiknya. Untuk <InlineMath math="P(x) = x^2 - 2x - 3" />, suku tetap <InlineMath math="-3" /> adalah titik potong kurva dengan sumbu y, dan koefisien utama <InlineMath math="1" /> yang positif membuatnya terbuka ke atas.
 
 <MathVisual
-  title="Membaca polinomial dari grafiknya"
+  title={<>Membaca polinomial dari grafiknya</>}
   description={<>Parabola <InlineMath math="x^2 - 2x - 3" /> dengan titik potong sumbu y di suku tetap <InlineMath math="-3" />.</>}
   labels={{
     p: <InlineMath math="P(x) = x^2 - 2x - 3" />,
@@ -107,15 +96,32 @@ Setiap bagian polinomial tampak di grafiknya. Untuk <InlineMath math="P(x) = x^2
   }}
 />
 
-<Mermaid
-  title="Bagian-bagian polinomial"
-  description="Polinomial adalah jumlah suku-suku monomial. Setiap suku punya koefisien dan variabel berpangkat bilangan cacah, dan pengurangan dihitung sebagai menambahkan suku negatif."
-  chart={`flowchart TD
-  P["Polinomial"] --> T["Suku: monomial yang dijumlahkan"]
-  T --> C["Koefisien"]
-  T --> V["Variabel"]
-  T --> E["Pangkat: bilangan cacah"]
-  P --> S["Pengurangan: tambahkan suku negatif"]`}
+Pada garis bilangan, kedua bentuk itu adalah perjalanan yang sama. Dengan <InlineMath math="x = 1" /> dan <InlineMath math="y = 2" />, suku <InlineMath math="4x^3y" /> adalah langkah <InlineMath math="8" /> ke kanan, dan menjumlahkan suku <InlineMath math="-3x^2" /> adalah langkah <InlineMath math="3" /> kembali ke kiri. Perjalanannya berakhir di <InlineMath math="5" /> dengan cara mana pun.
+
+<MathVisual
+  title={<>Menjumlahkan suku negatif berarti melangkah mundur</>}
+  description={<>Langkah 8 untuk <InlineMath math="4x^3y" /> dan langkah mundur 3 untuk <InlineMath math="-3x^2" /> di <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, berakhir di 5.</>}
+  labels={{
+    first: <InlineMath math="4x^3y = 8" />,
+    second: <InlineMath math="-3x^2 = -3" />,
+    end: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 8, y: 0.3 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 8, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 0.3 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 6.5, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Latihan

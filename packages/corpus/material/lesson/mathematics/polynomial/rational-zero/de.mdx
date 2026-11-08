@@ -24,17 +24,6 @@ Wenn das Polynom <InlineMath math="P(x)" /> eine rationale Nullstelle (Wurzel) d
 
 Der Satz liefert nur **mögliche** rationale Nullstellen. Jeder Kandidat <InlineMath math="\frac{p}{q}" /> muss anschließend geprüft werden.
 
-<Mermaid
-  title="Rationale Nullstellen suchen"
-  description="Bilde p/q aus den Teilern des Absolutglieds und des Leitkoeffizienten, test jeden Kandidaten und spalte jede gefundene Nullstelle ab."
-  chart={`flowchart TD
-  A["Teiler p von a₀ und q von aₙ"] --> B["Kandidaten ± p/q"]
-  B --> C["Testen durch Einsetzen oder Horner"]
-  C -->|"P(c) = 0"| D["(x − c) abspalten"]
-  D --> E["Mit dem kleineren Quotienten wiederholen"]
-  C -->|"P(c) ≠ 0"| F["c verwerfen"]`}
-/>
-
 ## Den Satz über rationale Nullstellen anwenden
 
 **Ein Kandidat ist noch keine Nullstelle**. Verwende positive und negative Teiler des konstanten Glieds als Zähler und positive Teiler des Leitkoeffizienten als Nenner. Kürze die Brüche, damit du gleiche Werte nicht mehrfach prüfst. Teste jeden Kandidaten durch Einsetzen oder mit dem [Horner-Schema](/de/faecher/mathematik/polynome/horner-schema).
@@ -109,7 +98,7 @@ Faktorisiere <InlineMath math="x^2 + 5x + 6" />.
 Der Satz macht aus einer endlosen Suche eine kurze Liste. Für <InlineMath math="x^3 + 2x^2 - 9x - 18" /> muss jede rationale Nullstelle einer der zwölf Kandidaten <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" /> sein. Nach dem Testen bleiben genau drei Nullstellen übrig, <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" />, hervorgehoben auf dem Zahlenstrahl.
 
 <MathVisual
-  title="Zwölf Kandidaten, drei Nullstellen"
+  title={<>Zwölf Kandidaten, drei Nullstellen</>}
   description={<>Die zwölf rationalen Kandidaten auf einem Zahlenstrahl, die drei echten Nullstellen <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" /> hervorgehoben.</>}
   labels={{
     m3: <InlineMath math="-3" />,
@@ -143,28 +132,41 @@ Der Satz macht aus einer endlosen Suche eine kurze Liste. Für <InlineMath math=
   }}
 />
 
-Vergrößer den linken Teil der kubischen Funktion: Sie kreuzt die x-Achse bei <InlineMath math="-3" /> und <InlineMath math="-2" />, mit einem kleinen Buckel dazwischen, den man ohne Kandidatenliste leicht übersieht. Der dritte Schnittpunkt liegt bei <InlineMath math="3" />, also <InlineMath math="P(x) = (x - 3)(x + 2)(x + 3)" />.
+Berechne <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> für die Kandidaten von <InlineMath math="-3" /> bis <InlineMath math="3" />: Die Balken fallen genau bei <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" /> auf null, den drei Nullstellen, während jeder andere Kandidat einen Wert ungleich null liefert, genau wie in der Tabelle.
 
-<LineEquation
-  title="Die kubische Funktion kreuzt bei ihren drei rationalen Nullstellen"
-  description={<>Der Graph von <InlineMath math="x^3 + 2x^2 - 9x - 18" /> für <InlineMath math="-3{,}4 \le x \le -1{,}6" />, mit Schnittpunkten bei <InlineMath math="-3" /> und <InlineMath math="-2" />.</>}
-  cameraPosition={[-2.5, -1, 6]}
-  cameraTarget={[-2.5, -1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, i) => {
-        const x = -3.4 + (i / 400) * ((-1.6) - (-3.4));
-        return { x, y: x ** 3 + 2 * x ** 2 - 9 * x - 18, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P(x)" />, at: 300, offset: [0.3, 0, 0] }],
-    },
-    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-3" />, at: 0, offset: [-0.15, -0.3, 0] }] },
-    { points: [{ x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-2" />, at: 0, offset: [0.1, -0.3, 0] }] }
-  ]}
+<BarChart
+  title={<><InlineMath math="P(x)" /> an sechs Kandidaten</>}
+  description={<>Balken von <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> bei <InlineMath math="x = -3, -2, -1, 1, 2, 3" />, null an den Nullstellen <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" />.</>}
+  yAxisLabel="Wert"
+  data={[-3, -2, -1, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 9 * x - 18 }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Der Quotient <InlineMath math="H(x) = x^2 + 5x + 6" /> aus Schritt 6 ist eine Parabel. Sie schneidet die x-Achse genau bei <InlineMath math="-3" /> und <InlineMath math="-2" />, den beiden Nullstellen, die nach der Division von <InlineMath math="P(x)" /> durch <InlineMath math="x - 3" /> übrig sind, also sind ihre Faktoren <InlineMath math="(x + 3)" /> und <InlineMath math="(x + 2)" />.
+
+<MathVisual
+  title={<>Der Quotient schneidet bei den anderen beiden Nullstellen</>}
+  description={<>Die Parabel <InlineMath math="H(x) = x^2 + 5x + 6" /> für <InlineMath math="-4{,}5 \le x \le -0{,}5" />, mit Schnittpunkten bei <InlineMath math="-3" /> und <InlineMath math="-2" />.</>}
+  labels={{
+    quotient: <InlineMath math="H(x) = x^2 + 5x + 6" />,
+    left: <InlineMath math="-3" />,
+    right: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.9, max: 0.6 }, y: { min: -0.7, max: 4.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "quotient", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4.5, max: -0.5 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "quotient", objectId: "quotient", at: { x: -0.5, y: 3.75 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übung

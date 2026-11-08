@@ -24,16 +24,6 @@ Sifat eksponen bergantung pada **jenis pangkat** dan **tanda bilangan pokok**. T
 
 Sifat untuk pangkat bulat kadang dapat diperluas ke domain lain, tetapi perluasan tersebut membutuhkan syarat tambahan. Dengan syarat yang tercantum pada tabel, setiap bentuk terdefinisi dengan jelas pada bilangan real.
 
-<Mermaid
-  title="Mengecek basis sebelum memakai aturan"
-  description="Pangkat bulat membolehkan basis tak nol mana pun, sedangkan pangkat rasional memerlukan basis positif agar setiap akar terdefinisi."
-  chart={`flowchart TD
-  A["Aturan pangkat yang dipakai"] --> Q{"Pangkatnya"}
-  Q -->|"bilangan asli"| W["Basis a apa pun"]
-  Q -->|"negatif atau nol"| N["Basis a ≠ 0"]
-  Q -->|"rasional"| R["Basis a > 0"]`}
-/>
-
 ## Pembuktian untuk Pangkat Bulat
 
 Pembuktian berikut menuliskan setiap pangkat sebagai **perkalian berulang**. Bentuk itu menunjukkan langsung mengapa pangkatnya dijumlahkan, dikurangkan, atau dikalikan. Bacalah setiap pembuktian sebagai rangkaian kesamaan yang pendek, lalu periksa bahwa tiap langkah hanya memakai definisi pangkat.
@@ -53,7 +43,7 @@ Kasus nol mengikuti <InlineMath math="a^0=1" />. Pangkat bulat negatif mengikuti
 Hitung faktornya, maka aturannya terbukti sendiri. Setiap persegi adalah satu faktor <InlineMath math="a" />. <InlineMath math="a^3" /> memberi tiga persegi dan <InlineMath math="a^4" /> memberi empat, jadi hasil kalinya berisi <InlineMath math="3 + 4 = 7" /> faktor berderet: <InlineMath math="a^3 \cdot a^4 = a^7" />.
 
 <MathVisual
-  title="Tujuh faktor berderet"
+  title={<>Tujuh faktor berderet</>}
   description={<>Tiga persegi untuk <InlineMath math="a^3" /> dan empat untuk <InlineMath math="a^4" /> membentuk tujuh faktor <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^3" />,
@@ -89,6 +79,39 @@ Jika <InlineMath math="m<n" />, faktor yang tersisa berada di penyebut. Definisi
 
 <BlockMath math="\frac{a^m}{a^n}=\frac1{a^{n-m}}=a^{-(n-m)}=a^{m-n}" />
 
+Coret berpasangan. Tulis <InlineMath math="\frac{a^5}{a^2}" /> sebagai lima faktor di atas dua faktor. Setiap faktor di penyebut mencoret satu faktor di pembilang, jadi dua pasang hilang dan tersisa <InlineMath math="5 - 2 = 3" /> faktor: <InlineMath math="a^3" />.
+
+<MathVisual
+  title={<>Lima faktor di atas dua faktor</>}
+  description={<>Lima persegi untuk faktor <InlineMath math="a^5" /> di atas dua persegi untuk <InlineMath math="a^2" />. Dua pasang saling mencoret dan tersisa tiga persegi, yaitu <InlineMath math="a^3" />.</>}
+  labels={{
+    top: <InlineMath math="a^5" />,
+    bottom: <InlineMath math="a^2" />,
+    rest: <InlineMath math="a^3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 0, y: 1.4 }, { x: 0 + 0.8, y: 1.4 }, { x: 0 + 0.8, y: 1.4 + 0.8 }, { x: 0, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1, y: 1.4 }, { x: 1 + 0.8, y: 1.4 }, { x: 1 + 0.8, y: 1.4 + 0.8 }, { x: 1, y: 1.4 + 0.8 }], appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 2, y: 1.4 }, { x: 2 + 0.8, y: 1.4 }, { x: 2 + 0.8, y: 1.4 + 0.8 }, { x: 2, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 3, y: 1.4 }, { x: 3 + 0.8, y: 1.4 }, { x: 3 + 0.8, y: 1.4 + 0.8 }, { x: 3, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "t4", kind: "polygon", vertices: [{ x: 4, y: 1.4 }, { x: 4 + 0.8, y: 1.4 }, { x: 4 + 0.8, y: 1.4 + 0.8 }, { x: 4, y: 1.4 + 0.8 }], appearance: "answer" },
+      { id: "b0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "b1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "reference" },
+      { id: "p0", kind: "segment", from: { x: 0 + 0.4, y: 0.8 }, to: { x: 0 + 0.4, y: 1.4 }, appearance: "warning" },
+      { id: "p1", kind: "segment", from: { x: 1 + 0.4, y: 0.8 }, to: { x: 1 + 0.4, y: 1.4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "top", objectId: "t4", at: { x: 4.8, y: 1.8 }, placement: "right" },
+      { key: "bottom", objectId: "b1", at: { x: 1.8, y: 0.4 }, placement: "right" },
+      { key: "rest", objectId: "t3", at: { x: 3.4, y: 2.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Pangkat dari Suatu Pangkat
 
 Untuk <InlineMath math="n" /> positif, faktor <InlineMath math="a^m" /> **muncul sebanyak** <InlineMath math="n" /> kali:
@@ -100,7 +123,7 @@ Sifat pangkat nol mencakup <InlineMath math="n=0" />, sedangkan definisi pangkat
 Pangkat dari pangkat menumpuk salinan. <InlineMath math="(a^2)^3" /> berarti tiga salinan <InlineMath math="a^2" />, satu per baris, masing-masing dengan dua faktor. Kisinya berisi <InlineMath math="2 \cdot 3 = 6" /> persegi, jadi <InlineMath math="(a^2)^3 = a^6" />.
 
 <MathVisual
-  title="Tiga baris berisi dua faktor"
+  title={<>Tiga baris berisi dua faktor</>}
   description={<>Tiga baris, satu untuk setiap salinan <InlineMath math="a^2" />, masing-masing dua persegi: enam faktor <InlineMath math="a" />.</>}
   labels={{
     a: <InlineMath math="a^2" />,
