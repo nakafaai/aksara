@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "great-stink",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+            "It proved that the miasma theory of disease had been correct all along.",
+        },
+        {
+          correct: false,
+          label:
+            "It was a failure, because cholera returned to London in 1866.",
+        },
+        {
+          correct: false,
+          label:
+            "It came from John Snow's own design to stop diseases spread by water.",
         },
         {
           correct: true,
           label:
-            "The blue date stamp gains meaning through its connection to the missing package date, Samira's choice, and the next volunteer's response.",
+            "It reduced cholera even though the sewers were built for a mistaken reason.",
         },
         {
           correct: false,
           label:
-            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
-        },
-        {
-          correct: false,
-          label:
-            "The object's meaning remains fixed even though the character uses it differently.",
-        },
-        {
-          correct: false,
-          label:
-            "The final action matters because it confirms the interpretation established at the start.",
+            "It probably made the smell worse in the eastern parts of the city.",
         },
       ],
     },

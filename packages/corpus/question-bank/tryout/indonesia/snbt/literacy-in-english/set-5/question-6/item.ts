@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "basic-income",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through consultation alone, without comparing the measured outcome across conditions.",
-        },
-        {
-          correct: false,
-          label:
-            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through the measured comparison alone, while excluding the affected groups' experience from the decision.",
-        },
-        {
-          correct: false,
-          label:
-            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+            "Basic income pilots have proved that a universal scheme would succeed.",
         },
         {
           correct: true,
           label:
-            "The pantry team compared entry-date labels with baseline and comparison conditions, consulted affected groups, and supported only a limited extension because demand varied.",
+            "Pilots are useful but cannot show what a permanent universal scheme would do.",
         },
         {
           correct: false,
           label:
-            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered mainly by defining a technical term, with the proposed change serving only as background information.",
+            "A basic income should be rejected because recipients stop working.",
+        },
+        {
+          correct: false,
+          label:
+            "Pilots waste public money and should be ended as soon as possible.",
+        },
+        {
+          correct: false,
+          label:
+            "A universal scheme might work better if charities paid for it instead of taxes.",
         },
       ],
     },

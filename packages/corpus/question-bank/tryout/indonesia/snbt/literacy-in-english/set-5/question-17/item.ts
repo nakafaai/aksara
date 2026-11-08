@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "great-stink",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Samira wrote the entry date on the last unmarked package. The recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "John Snow's conclusion about cholera was widely accepted in 1854.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Dating the final unmarked package changes the blue stamp into a cue for shared care, and the next volunteer's response shows that meaning being carried forward.",
+            "The new sewers carried waste to outfalls downstream of central London.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Samira wrote the entry date on the last unmarked package. The ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Some of the new sewers were built inside embankments that also carried roads.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Samira wrote the entry date on the last unmarked package. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
-        },
-        {
-          correct: false,
-          label:
-            "Samira wrote the entry date on the last unmarked package. The object keeps one fixed meaning even as the character's action and the final response change.",
+            "Since the new system was finished, the sewers have never overflowed into the Thames.",
         },
       ],
     },
