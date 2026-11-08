@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Horner Method",
-  description: "Apply Horner's method to divide a polynomial by a linear factor and calculate its quotient and remainder.",
+  description: "Divide a polynomial with the Horner method: multiply, add, and read off the quotient and remainder. Check the remainder with P(c) and the graph.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polynomial",
 };
 
 ## Dividing a Polynomial Using Its Coefficients
 
-Horner's method <Highlight>divides a polynomial by a linear divisor</Highlight> such as <InlineMath math="(x-c)" /> using only its ordered coefficients. Each step multiplies the latest result by <InlineMath math="c" /> and adds the next coefficient, so the calculation does not repeat the variables and powers used in long division.
+Horner's method <Highlight>divides a polynomial by a linear divisor</Highlight> such as <InlineMath math="(x-c)" /> using only its ordered coefficients. Each step multiplies the latest result by <InlineMath math="c" /> and adds the next coefficient, so the calculation does not repeat the variables and powers used in long division. The last number of the scheme is **the remainder**, which equals <InlineMath math="P(c)" />, and the numbers before it are the coefficients of the quotient.
 
 ### Comparison with Long Division
 
@@ -114,6 +114,33 @@ The final number is the **remainder**, <InlineMath math="-3" />. The preceding n
 
 <BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
+Check the remainder by evaluating the polynomial directly: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. That equals the remainder, as the [remainder theorem](/en/subjects/mathematics/polynomial/remainder-theorem) says. The graph of <InlineMath math="y = P(x)" /> shows the same link: the point of the graph at <InlineMath math="x = -3" /> sits exactly at height <InlineMath math="-3" />.
+
+<LineEquation
+  title={<>Graph of <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>The value of the graph at <InlineMath math="x = -3" /> equals the remainder of division by <InlineMath math="x + 3" />, namely <InlineMath math="-3" />.</>}
+  cameraPosition={[-1, 2, 22]}
+  cameraTarget={[-1, 2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 421 }, (_, i) => {
+        const x = -3.2 + i / 100;
+        return { x, y: 2 * x ** 3 + 5 * x ** 2 + 6, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -3, y: 2 * (-3) ** 3 + 5 * (-3) ** 2 + 6, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(-3, -3)" />, at: 0, offset: [-1.2, -0.8, 0] }],
+    },
+  ]}
+/>
+
 ### A Divisor with a Leading Coefficient Other Than One
 
 For a divisor <InlineMath math="ax-b" /> with <InlineMath math="a\ne0" />, use <InlineMath math="c=b/a" /> in the scheme. However, **divide the resulting quotient by the divisor’s leading coefficient**. The remainder stays unchanged.
@@ -122,11 +149,30 @@ For example, use the same scheme for <InlineMath math="2x+6=2(x+3)" />. To prese
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using <InlineMath math="c = 3" /> for the divisor <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, so <InlineMath math="c = -3" /> | The root of the divisor is the value that makes the divisor zero |
+| Skipping a missing term | <InlineMath math="2x^3 + 5x^2 + 6" /> needs a zero coefficient for <InlineMath math="x" /> | The number of coefficients must be the degree plus one |
+| Adding before multiplying | Each column uses the previous result times <InlineMath math="c" /> | Redo one column in the order multiply, then add |
+| Forgetting to divide the quotient for a divisor <InlineMath math="ax - b" /> | The scheme uses <InlineMath math="x - \frac{b}{a}" />, not <InlineMath math="ax - b" /> | Multiply the divisor by the quotient and add the remainder |
+
+The quickest check is **evaluating <InlineMath math="P(c)" /> directly**. The result must equal the last number of the scheme.
+
 ## Exercise
 
 Find the **quotient and remainder** from the division of <InlineMath math="x^4 + 4" /> by <InlineMath math="x - 1" /> using Horner's method and long division.
 
 State the result in the form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />. Both methods must give identical values, and the degree check tells you how many terms the quotient can have.
+
+Also work through these with the Horner method, then **check each remainder with <InlineMath math="P(c)" />**.
+
+2. Divide <InlineMath math="x^3 - 6x^2 + 11x - 6" /> by <InlineMath math="x - 2" />.
+
+3. Divide <InlineMath math="2x^3 - 3x^2 + 4x - 5" /> by <InlineMath math="x + 1" />.
+
+4. Divide <InlineMath math="x^3 + 2x^2 - 5" /> by <InlineMath math="2x - 1" />.
 
 ### Answer Key
 
@@ -173,3 +219,13 @@ x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
 **Writing in Division Algorithm Form**:
 
 <BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
+
+**Problem 2**. With <InlineMath math="c = 2" />, the scheme gives the bottom row <InlineMath math="1, -4, 3, 0" />. The quotient is <InlineMath math="x^2 - 4x + 3" /> and the remainder is <InlineMath math="0" />. Check: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. A remainder of zero means <InlineMath math="x - 2" /> is a factor, as the [factor theorem](/en/subjects/mathematics/polynomial/factor-theorem) says.
+
+**Problem 3**. The divisor <InlineMath math="x + 1" /> gives <InlineMath math="c = -1" />, and the bottom row is <InlineMath math="2, -5, 9, -14" />. The quotient is <InlineMath math="2x^2 - 5x + 9" /> and the remainder is <InlineMath math="-14" />. Check: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Problem 4**. Use <InlineMath math="c = \frac12" /> with the coefficients <InlineMath math="1, 2, 0, -5" />. The bottom row is <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Since the divisor is <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, divide the quotient coefficients by <InlineMath math="2" />:
+
+<BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
+
+Check: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.

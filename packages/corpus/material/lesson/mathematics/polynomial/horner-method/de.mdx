@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Horners Methode",
-  description: "Dividiere Polynome mit dem Horner-Schema und vergleiche die Rechenschritte mit der schriftlichen Polynomdivision.",
+  description: "Dividiere ein Polynom mit dem Hornerschema: multiplizieren, addieren, Quotient und Rest ablesen. Prüfe den Rest mit P(c) und am Graphen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
 ## Nur mit den Koeffizienten eines Polynoms dividieren
 
-Das Horner-Schema verkürzt die Polynomdivision, <Highlight>wenn der Divisor linear ist</Highlight>, etwa <InlineMath math="(x-c)" />. Wir arbeiten nur mit der geordneten Koeffizientenfolge sowie wiederholten Multiplikationen und Additionen.
+Das Horner-Schema verkürzt die Polynomdivision, <Highlight>wenn der Divisor linear ist</Highlight>, etwa <InlineMath math="(x-c)" />. Du arbeitest nur mit der geordneten Koeffizientenfolge sowie wiederholten Multiplikationen und Additionen. Die letzte Zahl des Schemas ist **der Rest**, der gleich <InlineMath math="P(c)" /> ist, und die Zahlen davor sind die Koeffizienten des Quotienten.
 
 ### Vergleich mit der Polynomdivision
 
@@ -114,6 +114,33 @@ Die letzte Zahl ist der **Rest**, also <InlineMath math="-3" />. Die vorigen Zah
 
 <BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
 
+Prüfe den Rest, indem du das Polynom direkt auswertest: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. Das ist der Rest, wie der [Restsatz](/de/faecher/mathematik/polynome/restsatz) sagt. Der Graph von <InlineMath math="y = P(x)" /> zeigt denselben Zusammenhang: Der Punkt des Graphen bei <InlineMath math="x = -3" /> liegt genau auf der Höhe <InlineMath math="-3" />.
+
+<LineEquation
+  title={<>Graph von <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>Der Wert des Graphen bei <InlineMath math="x = -3" /> ist der Rest der Division durch <InlineMath math="x + 3" />, nämlich <InlineMath math="-3" />.</>}
+  cameraPosition={[-1, 2, 22]}
+  cameraTarget={[-1, 2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 421 }, (_, i) => {
+        const x = -3.2 + i / 100;
+        return { x, y: 2 * x ** 3 + 5 * x ** 2 + 6, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -3, y: 2 * (-3) ** 3 + 5 * (-3) ** 2 + 6, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(-3, -3)" />, at: 0, offset: [-1.2, -0.8, 0] }],
+    },
+  ]}
+/>
+
 ### Ein Divisor mit einem Leitkoeffizienten ungleich eins
 
 Bei einem Divisor <InlineMath math="ax-b" /> mit <InlineMath math="a\ne0" /> verwendest du <InlineMath math="c=b/a" /> im Schema. Danach **teilst du den erhaltenen Quotienten durch den Leitkoeffizienten des Divisors**. Der Rest bleibt unverändert.
@@ -122,11 +149,30 @@ Dasselbe Schema funktioniert zum Beispiel für <InlineMath math="2x+6=2(x+3)" />
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Für den Divisor <InlineMath math="x + 3" /> den Wert <InlineMath math="c = 3" /> nehmen | <InlineMath math="x + 3 = x - (-3)" />, also <InlineMath math="c = -3" /> | Die Nullstelle des Divisors macht den Divisor zu null |
+| Ein fehlendes Glied überspringen | <InlineMath math="2x^3 + 5x^2 + 6" /> braucht den Koeffizienten null bei <InlineMath math="x" /> | Die Anzahl der Koeffizienten ist der Grad plus eins |
+| Addieren, bevor multipliziert wird | Jede Spalte nutzt das vorige Ergebnis mal <InlineMath math="c" /> | Rechne eine Spalte in der Reihenfolge erst mal, dann plus |
+| Bei einem Divisor <InlineMath math="ax - b" /> den Quotienten nicht teilen | Das Schema nutzt <InlineMath math="x - \frac{b}{a}" />, nicht <InlineMath math="ax - b" /> | Multipliziere Divisor und Quotient und addiere den Rest |
+
+Die schnellste Probe ist, **<InlineMath math="P(c)" /> direkt auszurechnen**. Das Ergebnis muss die letzte Zahl des Schemas sein.
+
 ## Übung
 
 Bestimme **Quotient und Rest** der Division von <InlineMath math="x^4 + 4" /> durch <InlineMath math="x - 1" /> sowohl mit dem Horner-Schema als auch mit der Polynomdivision.
 
 Gib das Ergebnis in der Form <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" /> an. Beide Verfahren müssen dieselben Werte liefern, und die Gradprüfung sagt dir, wie viele Terme der Quotient haben kann.
+
+Bearbeite auch diese Aufgaben mit dem Hornerschema und **prüfe jeden Rest mit <InlineMath math="P(c)" />**.
+
+2. Dividiere <InlineMath math="x^3 - 6x^2 + 11x - 6" /> durch <InlineMath math="x - 2" />.
+
+3. Dividiere <InlineMath math="2x^3 - 3x^2 + 4x - 5" /> durch <InlineMath math="x + 1" />.
+
+4. Dividiere <InlineMath math="x^3 + 2x^2 - 5" /> durch <InlineMath math="2x - 1" />.
 
 ### Ausführliche Lösung
 
@@ -173,3 +219,13 @@ x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
 **Schreiben in Form eines Divisionsalgorithmus**:
 
 <BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
+
+**Aufgabe 2**. Mit <InlineMath math="c = 2" /> liefert das Schema die untere Zeile <InlineMath math="1, -4, 3, 0" />. Der Quotient ist <InlineMath math="x^2 - 4x + 3" /> und der Rest <InlineMath math="0" />. Probe: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. Rest null bedeutet, dass <InlineMath math="x - 2" /> ein Faktor ist, wie der [Faktorsatz](/de/faecher/mathematik/polynome/faktorsatz) sagt.
+
+**Aufgabe 3**. Der Divisor <InlineMath math="x + 1" /> liefert <InlineMath math="c = -1" />, und die untere Zeile ist <InlineMath math="2, -5, 9, -14" />. Der Quotient ist <InlineMath math="2x^2 - 5x + 9" /> und der Rest <InlineMath math="-14" />. Probe: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Aufgabe 4**. Nimm <InlineMath math="c = \frac12" /> mit den Koeffizienten <InlineMath math="1, 2, 0, -5" />. Die untere Zeile ist <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Da der Divisor <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" /> ist, teilst du die Koeffizienten des Quotienten durch <InlineMath math="2" />:
+
+<BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
+
+Probe: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.
