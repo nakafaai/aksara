@@ -1,0 +1,53 @@
+Batasannya tetap, jadi daerah penyelesaiannya masih segi empat dengan titik pojok <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" />, dan <InlineMath math="(0,40)" />. Yang berubah hanya fungsi tujuan, sehingga **titik pojok terbaik bisa berpindah**.
+
+<BlockMath math="\begin{aligned}
+K&=180{.}000x+100{.}000y \\
+K(40,0)&=7{.}200{.}000 \\
+K(20,30)&=3{.}600{.}000+3{.}000{.}000=6{.}600{.}000 \\
+K(0,40)&=4{.}000{.}000
+\end{aligned}" />
+
+<MathVisual
+  title="Daerah penyelesaian dengan titik optimum baru"
+  description={<>Daerah penyelesaian adalah segi empat dengan titik pojok <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" />, dan <InlineMath math="(0,40)" />. Daerah itu terletak di bawah garis <InlineMath math="3x+2y=120" /> dan di bawah garis <InlineMath math="x+2y=80" />.</>}
+  labels={{
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "reference", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Karena soal itu secara tegas membolehkan satu jenis sayuran saja, titik pojok <InlineMath math="(40,0)" /> termasuk rencana yang boleh dipilih. Perbandingan gradien memberikan hasil yang sama. Garis selidik <InlineMath math="180x+100y=k" /> bergradien <InlineMath math="-1{,}8" />. Garis itu lebih curam daripada batasan <InlineMath math="3x+2y=120" /> yang bergradien <InlineMath math="-1{,}5" />. Karena itu, ketika garis selidik digeser menjauhi titik asal, garis itu terakhir menyentuh daerah penyelesaian di titik <InlineMath math="(40,0)" />.
+
+Jadi, keuntungan maksimum diperoleh dengan menanam <InlineMath math="40" /> rak selada dan <InlineMath math="0" /> rak pakcoy.
+
+- <InlineMath math="20" /> rak selada dan <InlineMath math="30" /> rak pakcoy optimal pada keuntungan lama, tetapi sekarang hanya menghasilkan <InlineMath math="\text{Rp}6{.}600{.}000{,}00" />.
+- <InlineMath math="0" /> rak selada dan <InlineMath math="40" /> rak pakcoy hanya menghasilkan <InlineMath math="\text{Rp}4{.}000{.}000{,}00" />.
+- <InlineMath math="30" /> rak selada dan <InlineMath math="20" /> rak pakcoy memerlukan <InlineMath math="90+40=130" /> liter larutan nutrisi, jadi berada di luar daerah penyelesaian.
+- <InlineMath math="80" /> rak selada hanya memperhatikan jam perawatan. Pilihan itu memerlukan <InlineMath math="240" /> liter larutan nutrisi.

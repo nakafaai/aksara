@@ -1,0 +1,30 @@
+The remainder on division by <InlineMath math="x-3" /> is <InlineMath math="P(3)" />, but that value can be computed only after <InlineMath math="a" /> and <InlineMath math="b" /> are known. Both coefficients follow from the fact that <InlineMath math="P(x)" /> is **divisible by** <InlineMath math="(x+1)(x-2)" />.
+
+By the factor theorem, <InlineMath math="P(x)" /> is divisible by <InlineMath math="x-c" /> exactly when <InlineMath math="P(c)=0" />. Since <InlineMath math="x+1" /> and <InlineMath math="x-2" /> are both factors, <InlineMath math="P(-1)=0" /> and <InlineMath math="P(2)=0" />.
+
+<BlockMath math="\begin{aligned}
+P(-1)&=1-a-3-b+4=2-a-b=0 &&\Rightarrow\ a+b=2 \\
+P(2)&=16+8a-12+2b+4=8+8a+2b=0 &&\Rightarrow\ 4a+b=-4
+\end{aligned}" />
+
+Subtract the first equation from the second to remove <InlineMath math="b" />, then substitute the value of <InlineMath math="a" />.
+
+<BlockMath math="\begin{aligned}
+(4a+b)-(a+b)&=-4-2 \\
+3a&=-6 \\
+a&=-2 \\
+b&=2-a=4
+\end{aligned}" />
+
+The polynomial is <InlineMath math="P(x)=x^4-2x^3-3x^2+4x+4" />. By the remainder theorem, the remainder on division by <InlineMath math="x-3" /> equals <InlineMath math="P(3)" />.
+
+<BlockMath math="P(3)=81-2\cdot27-3\cdot9+4\cdot3+4=81-54-27+12+4=16" />
+
+As a check, divide <InlineMath math="P(x)" /> by <InlineMath math="(x+1)(x-2)=x^2-x-2" />. The quotient is also <InlineMath math="x^2-x-2" />, so <InlineMath math="P(x)=(x^2-x-2)^2" />. In this form, <InlineMath math="P(3)=(9-3-2)^2=4^2=16" />, the same result.
+
+So the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x-3" /> is <InlineMath math="16" />.
+
+- <InlineMath math="4" /> is the constant term of <InlineMath math="P(x)" />, that is, <InlineMath math="P(0)" />. The remainder on division by <InlineMath math="x-3" /> is the value of the polynomial at <InlineMath math="x=3" />, not at <InlineMath math="x=0" />.
+- <InlineMath math="12" /> comes from forgetting the constant term <InlineMath math="4" /> while computing <InlineMath math="P(3)" />.
+- <InlineMath math="100" /> comes from taking the zeros of the factors as <InlineMath math="x=1" /> and <InlineMath math="x=-2" />, which gives <InlineMath math="a=2" /> and <InlineMath math="b=-4" />. The value <InlineMath math="100" /> is also obtained when the correct <InlineMath math="P(x)" /> is evaluated at <InlineMath math="x=-3" />, since <InlineMath math="P(-3)=100" />.
+- <InlineMath math="160" /> comes from swapping the values of <InlineMath math="a" /> and <InlineMath math="b" />, so that <InlineMath math="3^4+4\cdot3^3-3\cdot3^2-2\cdot3+4" /> is computed.

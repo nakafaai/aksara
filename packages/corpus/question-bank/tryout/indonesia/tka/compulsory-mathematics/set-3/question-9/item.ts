@@ -4,28 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "sequences-series",
+    topic: "functions",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "$$u_3=18$$",
+          correct: true,
+          label: "$$f(1)=0$$",
         },
         {
-          column: 1,
-          label: "$$u_4=-54$$",
+          correct: false,
+          label: "Fungsi $$f$$ turun untuk setiap $$x$$.",
         },
         {
-          column: 1,
-          label: "$$S_5=122$$",
+          correct: true,
+          label: "Grafik $$f$$ memotong sumbu $$y$$ di titik $$(0,-2)$$.",
         },
         {
-          column: 2,
-          label: "$$u_6=486$$",
+          correct: true,
+          label: "$$f(x)>-4$$ untuk setiap bilangan real $$x$$.",
+        },
+        {
+          correct: false,
+          label: "$$f(3)=2\\cdot f(2)$$",
         },
       ],
     },

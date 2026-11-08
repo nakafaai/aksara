@@ -1,41 +1,24 @@
-After the move, the foot is <InlineMath math="5+3=8\,\mathrm{m}" /> from the wall. The ladder is the **hypotenuse** of a right triangle. Use Pythagoras to find the new height <InlineMath math="h" />.
+Two theorems carry the whole problem. An **inscribed angle on a diameter** is a right angle (Thales' theorem). And all inscribed angles on the same arc are equal, while the central angle is twice as large.
+
+Because <InlineMath math="AC" /> is a diameter, <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. The angle sum in a triangle gives:
 
 <BlockMath math="\begin{aligned}
-h^2+8^2&=13^2 \\
-h&=\sqrt{169-64}=\sqrt{105}
+\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
+\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
+\angle BCD&=62^\circ+44^\circ=106^\circ
 \end{aligned}" />
 
-The sine of the angle with the ground is the height divided by the ladder length.
+The inscribed angle <InlineMath math="\angle BAC" /> and the central angle <InlineMath math="\angle BOC" /> stand on the arc <InlineMath math="BC" />. The angles <InlineMath math="\angle ACB" /> and <InlineMath math="\angle ADB" /> stand on the arc <InlineMath math="AB" />.
 
-<BlockMath math="\sin\theta=\frac{h}{13}=\frac{\sqrt{105}}{13}" />
+<BlockMath math="\begin{aligned}
+\angle BOC&=2\cdot28^\circ=56^\circ \\
+\angle BDC&=\angle BAC=28^\circ \\
+\angle ADB&=\angle ACB=62^\circ
+\end{aligned}" />
 
-<LineEquation
-  title="The ladder before and after the move"
-  description="The gray ladder initially reaches a height of 12 metres. The purple ladder is still 13 metres long, but its foot is now 8 metres from the wall."
-  cameraPosition={[4, 6, 18]}
-  cameraTarget={[4, 6, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 12, z: 0 }, { x: 5, y: 0, z: 0 }],
-      color: "#94a3b8", smooth: false, showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: Math.sqrt(105), z: 0 }, { x: 8, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#9333ea", smooth: false,
-      labels: [
-        { text: <InlineMath math="h=\sqrt{105}" />, at: 0, offset: [-0.7, 5, 0] },
-        { text: <InlineMath math="13\text{ m}" />, at: 1, offset: [4.6, -4.6, 0] },
-        { text: <InlineMath math="8\text{ m}" />, at: 2, offset: [-4, -0.6, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 25 }, (_, i) => {
-        const angle = Math.PI - Math.atan(Math.sqrt(105) / 8) * i / 24;
-        return { x: 8 + 1.5 * Math.cos(angle), y: 1.5 * Math.sin(angle), z: 0 };
-      }),
-      color: "#d97706", smooth: false, showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 12, offset: [-0.5, 0.3, 0] }],
-    },
-  ]}
-/>
+As a check, opposite angles of a cyclic quadrilateral add up to <InlineMath math="180^\circ" />, and indeed <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
+
+- <InlineMath math="\angle BCD=106^\circ" /> is true.
+- As a central angle, <InlineMath math="\angle BOC" /> is twice <InlineMath math="\angle BAC" />, so it is <InlineMath math="56^\circ" />. The statement is false.
+- <InlineMath math="\angle BDC" /> stands on the same arc as <InlineMath math="\angle BAC" /> and measures <InlineMath math="28^\circ" />. The value <InlineMath math="46^\circ" /> belongs to <InlineMath math="\angle CAD" />. The statement is false.
+- <InlineMath math="\angle ADB=62^\circ" /> is true.

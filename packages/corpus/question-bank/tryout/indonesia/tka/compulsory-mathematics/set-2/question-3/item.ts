@@ -8,27 +8,24 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$ab=1$$",
+          column: 1,
+          label: "$$a^2>b^2$$",
         },
         {
-          correct: true,
-          label: "$$a-b=4$$",
+          column: 1,
+          label: "$$\\frac1a>\\frac1b$$",
         },
         {
-          correct: true,
-          label: "$$a^2+b^2=18$$",
+          column: 2,
+          label: "$$a-b>0$$",
         },
         {
-          correct: false,
-          label: "$$a+b=4$$",
-        },
-        {
-          correct: true,
-          label: "$$a^2-4a-1=0$$",
+          column: 2,
+          label: "$$ab<b^2$$",
         },
       ],
     },

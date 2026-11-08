@@ -2,33 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "measurement",
+    topic: "geometry-transformations",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$14\\text{ cm}$$",
+          correct: true,
+          label: "dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
         },
         {
           correct: false,
-          label: "$$22\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$26{,}4\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$42\\text{ cm}$$",
+          label:
+            "pencerminan terhadap sumbu $$y$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
         },
         {
           correct: true,
-          label: "$$44\\text{ cm}$$",
+          label:
+            "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+        },
+        {
+          correct: false,
+          label:
+            "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
+        },
+        {
+          correct: true,
+          label:
+            "dilatasi dengan pusat $$O$$ dan faktor skala $$2$$, dilanjutkan pencerminan terhadap titik $$O$$",
         },
       ],
     },

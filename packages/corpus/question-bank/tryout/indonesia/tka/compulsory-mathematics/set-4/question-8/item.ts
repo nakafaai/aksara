@@ -2,34 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "functions",
+    topic: "sequences-series",
   },
-  stimulus: "freight-lift",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Lift bergerak paling cepat pada $$10$$ detik pertama.",
+          correct: true,
+          label: "$$8{.}100$$ orang",
         },
         {
-          column: 1,
-          label:
-            "Lift berada pada ketinggian $$14\\text{ m}$$ tepat tiga kali.",
+          correct: false,
+          label: "$$9{.}600$$ orang",
         },
         {
-          column: 2,
-          label:
-            "Pada selang $$16\\le t\\le24$$, ketinggian lift bertambah $$1{,}5\\text{ m}$$ setiap detik.",
+          correct: false,
+          label: "$$12{.}000$$ orang",
         },
         {
-          column: 2,
-          label:
-            "Laju rata-rata lift selama $$24$$ detik pertama sama dengan laju rata-rata lift selama $$16$$ detik terakhir.",
+          correct: false,
+          label: "$$12{.}150$$ orang",
+        },
+        {
+          correct: false,
+          label: "$$18{.}225$$ orang",
         },
       ],
     },

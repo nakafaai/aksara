@@ -160,8 +160,14 @@ function labelViolation(label: string) {
   return reason;
 }
 
-/** Lists every rendered Markdown label authored in one interaction. */
+/**
+ * Lists every rendered Markdown label authored in one interaction. A numeric
+ * entry has none: its unit is plain text.
+ */
 function interactionLabels(interaction: InteractionSource) {
+  if (interaction.kind === "numericEntry") {
+    return [];
+  }
   if (interaction.kind === "matrix") {
     return [
       ...Arr.map(interaction.columns, (label, index) => ({
