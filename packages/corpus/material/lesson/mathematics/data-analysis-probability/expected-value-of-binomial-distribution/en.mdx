@@ -1,87 +1,137 @@
 export const metadata = {
-    title: "Expected Value of Binomial Distribution",
-  description: "Calculate the expected number of successes in repeated binomial trials.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
-    subject: "Data Analysis and Probability",
+  title: "Expected Value of a Binomial Distribution",
+  description: "The expected value of a binomial distribution is np. See where the formula comes from and what it means, then use it on dice rolls and guessing.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Data Analysis and Probability",
 };
 
-## Average Successes across Repeated Sets of Trials
+## The Expected Number of Successes Is np
 
-Suppose each free throw goes in independently with probability <InlineMath math="p=0.8" />, and let <InlineMath math="X" /> count the baskets in <InlineMath math="n=10" /> attempts. Then <InlineMath math="E(X)=8" />: across many sets of ten attempts, the average number of baskets approaches <InlineMath math="8" />.
-
-Expected value is the **probability-weighted average** of a random variable. It describes the mean over many repetitions. One set can give a different result. An expected value can also be noninteger even when the random variable itself only takes integer values.
-
-## Expected Value Formula for Binomial
-
-A binomial random variable counts successes in a fixed number of independent trials, each with the same success probability. Its expected value gives <Highlight>the long-run mean number of successes</Highlight>. It is not necessarily the most likely count, which is described by the mode instead.
-
-Binomial distribution <InlineMath math="b_{n,p}(x)" /> has an expected value:
+If <InlineMath math="X" /> counts the successes in <InlineMath math="n" /> independent trials, each with success probability <InlineMath math="p" />, then <InlineMath math="X" /> has a binomial distribution, written <InlineMath math="X \sim B(n, p)" />, and its expected value is:
 
 <BlockMath math="E(X) = np" />
 
-In this formula, <InlineMath math="n" /> is the number of trials and <InlineMath math="p" /> is the probability of success in each trial.
+A player makes each free throw with probability <InlineMath math="p = 0.8" /> and shoots <InlineMath math="n = 10" /> times. The expected value is <InlineMath math="E(X) = 10 \cdot 0.8 = 8" />. This means that **the average number of baskets over many sets of ten shots approaches <InlineMath math="8" />**. In a single set, the result can be <InlineMath math="6" />, <InlineMath math="9" />, or <InlineMath math="10" />.
 
-## Deriving the Expected Value
+How far does one set usually stray from <InlineMath math="8" />? The measure is the standard deviation, the square root of the variance <InlineMath math="np(1 - p) = 10 \cdot 0.8 \cdot 0.2 = 1.6" />, which is <InlineMath math="\sqrt{1.6} \approx 1.26" /> baskets. An expected value can also be a fraction, even though <InlineMath math="X" /> itself only takes whole numbers.
 
-The formula follows by representing each trial with an indicator variable.
+## Conditions for a Binomial Experiment
 
-Let <InlineMath math="I_k" /> represent the <InlineMath math="k" />-th trial. It equals <InlineMath math="1" /> for **success** and <InlineMath math="0" /> for **failure**.
+A variable <InlineMath math="X" /> is binomial when **four conditions hold together**. Each trial has only two outcomes, success or failure. The number of trials <InlineMath math="n" /> is fixed before the trials begin. The result of one trial does not affect another, as with [independent events](/en/subjects/mathematics/combinatorics/probability-of-independent-events). The success probability <InlineMath math="p" /> is the same in every trial.
 
-The failure probability is <InlineMath math="q=1-p" />. To form the weighted mean, **multiply each indicator value by its probability**, then add the two contributions.
+When all four conditions hold, the probability of exactly <InlineMath math="k" /> successes comes from the [binomial distribution formula](/en/subjects/mathematics/data-analysis-probability/binomial-distribution-function):
 
-| Outcome | Indicator | Probability | Contribution |
-| --- | --- | --- | --- |
-| Success | 1 | <InlineMath math="p" /> | <InlineMath math="1p=p" /> |
-| Failure | 0 | <InlineMath math="q=1-p" /> | <InlineMath math="0q=0" /> |
+<BlockMath math="P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}, \qquad k = 0, 1, \ldots, n" />
 
-The expected value for a single trial is:
+Rolling a die until a six appears is not a binomial experiment, because the number of rolls is not fixed. Answering questions whose chances of a correct answer differ is not binomial either, because <InlineMath math="p" /> is not the same in every trial.
 
-<BlockMath math="E(I_k) = 1 \cdot p + 0 \cdot q = p" />
+## Computing the Expected Value from a Probability Table
 
-Since the total number of successes (<InlineMath math="X" />) is the sum of all successes in each trial, then:
+The expected value of a discrete variable is the sum of each value times its probability, just as for any other [probability distribution](/en/subjects/mathematics/probability/probability-distribution):
 
-<BlockMath math="X = I_1 + I_2 + ... + I_n" />
+<BlockMath math="E(X) = \sum_{k=0}^{n} k \cdot P(X = k)" />
 
-By linearity of expectation, the expected values add:
+For three tosses of a fair coin, <InlineMath math="n = 3" /> and <InlineMath math="p = \frac{1}{2}" />. The probability of each value comes from <InlineMath math="\binom{3}{k}\left(\frac{1}{2}\right)^3" />, and then each value is **multiplied by its probability**:
 
-<MathContainer>
-<BlockMath math="E(X) = E(I_1) + E(I_2) + ... + E(I_n)" />
-<BlockMath math="E(X) = \underbrace{p + p + ... + p}_{n \text{ times}} = np" />
-</MathContainer>
+| Number of heads <InlineMath math="k" /> | <InlineMath math="P(X = k)" /> | <InlineMath math="k \cdot P(X = k)" /> |
+| --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{6}{8}" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
 
-The expected number of successes is the number of trials multiplied by the success probability.
+The sum of the last column is the expected value:
 
-## Dice Rolling Case Study
+<BlockMath math="E(X) = 0 + \frac{3}{8} + \frac{6}{8} + \frac{3}{8} = \frac{12}{8} = 1.5" />
 
-**Problem**:
+Check with the short formula: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1.5" />. Both methods agree, but for a large <InlineMath math="n" /> such a table gets too long, so the formula <InlineMath math="np" /> does the work.
 
-A fair die is rolled <InlineMath math="7" /> times. What is the expected value for getting a five on the die from all the rolls?
+## Why the Formula Is np
 
-**Solution**:
+The formula comes from **splitting <InlineMath math="X" /> into one indicator for each trial**. The indicator <InlineMath math="I_k" /> equals <InlineMath math="1" /> if trial <InlineMath math="k" /> is a success and <InlineMath math="0" /> if it fails. The expected value of one indicator is:
 
-Verify that the experiment satisfies the binomial conditions:
+<BlockMath math="E(I_k) = 1 \cdot p + 0 \cdot (1 - p) = p" />
 
-- There are only two possibilities: **success** (rolling a <InlineMath math="5" />) or **failure** (rolling a number other than <InlineMath math="5" />)
-- Fixed number of trials: <InlineMath math="7" /> rolls
-- Each roll is independent: the result of previous rolls doesn't affect subsequent rolls
-- Same probability of success: <InlineMath math="p = \frac{1}{6}" /> on each roll
-
-The parameters are:
+The number of successes is the sum of all indicators, because each success contributes exactly one. The expected value of a sum is the sum of the expected values:
 
 <MathContainer>
-<BlockMath math="S = \{1, 2, 3, 4, 5, 6\}" />
-<BlockMath math="p = \frac{1}{6}" />
-<BlockMath math="n = 7" />
+  <BlockMath math="X = I_1 + I_2 + \cdots + I_n" />
+  <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ times}} = np" />
 </MathContainer>
 
-Apply the expected-value formula:
+Check with three coin tosses: three indicators each have expected value <InlineMath math="\frac{1}{2}" />, and their sum is <InlineMath math="1.5" />, the same as the sum of <InlineMath math="k \cdot P(X = k)" />. The step that adds expected values does not use independence. Independence is needed for the binomial probability formula, while the rule <InlineMath math="np" /> stays true as long as every trial has success probability <InlineMath math="p" />. For a continuous variable, a sum like this becomes an integral, as in the [expected value of a normal distribution](/en/subjects/mathematics/data-analysis-probability/expected-value-of-normal-distribution).
 
-<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1.167" />
+## Example with Seven Dice Rolls
 
-So, what does this number <InlineMath math="1.167" /> mean?
+A fair die is rolled <InlineMath math="7" /> times, and <InlineMath math="X" /> counts how many times a <InlineMath math="5" /> appears. Each roll has two outcomes, the number of rolls is fixed, the rolls are independent, and the success probability is always <InlineMath math="p = \frac{1}{6}" />, so <InlineMath math="X \sim B\left(7, \frac{1}{6}\right)" />:
 
-Expected value <InlineMath math="1.167" /> doesn't mean you will get the number <InlineMath math="5" /> exactly <InlineMath math="1.167" /> times in one experiment (because that's impossible). It means that if you repeat the experiment with <InlineMath math="7" /> rolls **hundreds or thousands of times**, the number <InlineMath math="5" /> will appear about <InlineMath math="1.167" /> times per set on average.
+<BlockMath math="E(X) = np = 7 \cdot \frac{1}{6} = \frac{7}{6} \approx 1.17" />
 
-In one set, the number of fives is an integer **from zero to seven**. The expected value describes the average across many sets, not a result that must occur in any single set.
+The value <InlineMath math="1.17" /> cannot occur in one set of seven rolls, because the number of fives is always a whole number from <InlineMath math="0" /> to <InlineMath math="7" />. If you repeat the seven rolls hundreds of times, **the average number of fives per set approaches <InlineMath math="1.17" />**.
+
+The expected value also differs from the most likely result. The binomial formula gives <InlineMath math="P(X = 0) \approx 0.279" />, <InlineMath math="P(X = 1) \approx 0.391" />, and <InlineMath math="P(X = 2) \approx 0.234" />. The most likely result is one five, while the expected value lies between <InlineMath math="1" /> and <InlineMath math="2" />. Check with the definition of expected value: <InlineMath math="1(0.3907) + 2(0.2344) + 3(0.0781) + 4(0.0156) + 5(0.0019) + 6(0.0001) \approx 1.166" />, which matches <InlineMath math="\frac{7}{6} \approx 1.167" /> up to rounding.
+
+## Example with Guessing on a Multiple Choice Test
+
+A student guesses all <InlineMath math="20" /> questions on a multiple choice test, each with <InlineMath math="5" /> options. The number of correct answers <InlineMath math="X" /> has the distribution <InlineMath math="B\left(20, \frac{1}{5}\right)" />, so <InlineMath math="E(X) = 20 \cdot \frac{1}{5} = 4" />.
+
+Suppose a correct answer earns <InlineMath math="4" /> points and a wrong answer loses <InlineMath math="1" /> point. The score is <InlineMath math="S = 4X - (20 - X) = 5X - 20" />, and **linearity of expected value** gives:
+
+<BlockMath math="E(S) = 5 \cdot E(X) - 20 = 5 \cdot 4 - 20 = 0" />
+
+Check per question: one guess has an expected value of <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> points, so twenty guesses also have an expected value of <InlineMath math="0" />. Under this rule, guessing adds nothing to the score in the long run.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Thinking <InlineMath math="E(X)" /> must happen | <InlineMath math="E(X)" /> is an average over many repetitions | With the die, <InlineMath math="\frac{7}{6}" /> cannot occur in one set |
+| Rounding <InlineMath math="np" /> and calling it the expected value | Rounding changes the value | Write <InlineMath math="\frac{7}{6}" /> or <InlineMath math="1.17" />, not <InlineMath math="1" /> |
+| Treating the expected value as the most likely result | The most likely result can differ from <InlineMath math="np" /> | With the die, the most likely result is <InlineMath math="1" />, the expected value <InlineMath math="1.17" /> |
+| Using <InlineMath math="p" /> when failures are counted | The number of failures has expected value <InlineMath math="n(1 - p)" /> | Expected successes and failures must add up to <InlineMath math="n" /> |
+| Using <InlineMath math="np" /> when each trial has its own probability | Indicator <InlineMath math="k" /> has expected value <InlineMath math="p_k" /> | Add <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
+
+Before you use <InlineMath math="np" />, **say what counts as a success** and what its probability is. That step prevents the last two mistakes.
+
+## Exercises
+
+The first two problems use the formula directly, the third reverses it, and the fourth combines the expected value with a scoring rule. **Find <InlineMath math="n" /> and <InlineMath math="p" /> first**, then check your answer before you read the solution.
+
+1. A fair coin is tossed <InlineMath math="40" /> times. Find the expected number of heads.
+
+2. A student guesses <InlineMath math="30" /> questions with <InlineMath math="4" /> options each. Find the expected number of correct answers and of wrong answers.
+
+3. A machine is expected to produce <InlineMath math="6" /> defective items out of <InlineMath math="150" />, and each item is defective with the same probability. Find that probability, then the expected number of defective items out of <InlineMath math="400" />.
+
+4. A test has <InlineMath math="25" /> questions with <InlineMath math="5" /> options each. A correct answer earns <InlineMath math="4" /> points and a wrong answer loses <InlineMath math="0.5" /> points. Find the expected score if every question is guessed.
+
+### Worked Solutions
+
+**Problem 1**. Each toss shows heads with probability <InlineMath math="\frac{1}{2}" />, so <InlineMath math="n = 40" /> and <InlineMath math="p = \frac{1}{2}" />:
+
+<BlockMath math="E(X) = 40 \cdot \frac{1}{2} = 20" />
+
+Check: heads and tails are equally likely, so **their expected counts are equal**, each half of <InlineMath math="40" />.
+
+**Problem 2**. The probability of guessing correctly is <InlineMath math="\frac{1}{4}" />, and of guessing wrong <InlineMath math="\frac{3}{4}" />:
+
+<MathContainer>
+  <BlockMath math="E(\text{correct}) = 30 \cdot \frac{1}{4} = 7.5" />
+  <BlockMath math="E(\text{wrong}) = 30 \cdot \frac{3}{4} = 22.5" />
+</MathContainer>
+
+Check: <InlineMath math="7.5 + 22.5 = 30" />, so **the expected correct and wrong answers add up to the number of questions**.
+
+**Problem 3**. From <InlineMath math="np = 6" /> and <InlineMath math="n = 150" />, the defect probability is <InlineMath math="p = \frac{6}{150} = 0.04" />. For <InlineMath math="400" /> items:
+
+<BlockMath math="E(X) = 400 \cdot 0.04 = 16" />
+
+Check: <InlineMath math="\frac{16}{400} = \frac{6}{150} = 0.04" />, so **the expected share of defects stays the same**.
+
+**Problem 4**. The number of correct answers is <InlineMath math="X \sim B\left(25, \frac{1}{5}\right)" />, so <InlineMath math="E(X) = 5" />. The score is <InlineMath math="S = 4X - 0.5(25 - X) = 4.5X - 12.5" />:
+
+<BlockMath math="E(S) = 4.5 \cdot 5 - 12.5 = 22.5 - 12.5 = 10" />
+
+Check per question: one guess has an expected value of <InlineMath math="4 \cdot 0.2 - 0.5 \cdot 0.8 = 0.4" /> points, and <InlineMath math="25 \cdot 0.4 = 10" />. With a small penalty, **guessing raises the score in the long run**.
