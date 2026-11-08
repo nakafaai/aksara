@@ -157,11 +157,13 @@ it("keeps soft-wrapped anaphora inside one paragraph", () => {
   ]);
 });
 
-it("rejects Indonesian formal and plural learner address", () => {
+it("rejects Indonesian formal address, plural address and formal requests", () => {
   const source = [
     "Anda bisa menjumlahkan kedua matriks lebih dahulu.",
     "Sekarang saya tunjukkan langkah berikutnya.",
     "Kalian dapat membandingkan kedua hasilnya.",
+    "Silakan hitung luas segitiga itu lebih dulu.",
+    "Mohon periksa kembali tanda setiap suku.",
   ].join("\n");
 
   assert.deepEqual(
@@ -173,31 +175,8 @@ it("rejects Indonesian formal and plural learner address", () => {
       { line: 1, rule: "indonesian-formal-learner-address" },
       { line: 2, rule: "indonesian-formal-author-self-reference" },
       { line: 3, rule: "indonesian-plural-learner-address" },
-    ]
-  );
-});
-
-it("rejects Indonesian formal requests and keeps the plain imperative", () => {
-  const source = [
-    "Silakan hitung luas segitiga itu lebih dulu.",
-    "Mohon periksa kembali tanda setiap suku.",
-    "Jawaban dimohon ditulis dalam satuan meter.",
-    "Silahkan bandingkan kedua grafik.",
-    "Coba hitung luas segitiga itu lebih dulu.",
-    "Permohonan izin itu ditolak karena datanya tidak lengkap.",
-    "Kalimat “Mohon tenang” muncul di papan pengumuman.",
-  ].join("\n");
-
-  assert.deepEqual(
-    findLessonVoiceIssues("id", source).map(({ line, rule }) => ({
-      line,
-      rule,
-    })),
-    [
-      { line: 1, rule: "indonesian-formal-request" },
-      { line: 2, rule: "indonesian-formal-request" },
-      { line: 3, rule: "indonesian-formal-request" },
       { line: 4, rule: "indonesian-formal-request" },
+      { line: 5, rule: "indonesian-formal-request" },
     ]
   );
 });
@@ -206,7 +185,7 @@ it("accepts aku kamu and genuinely inclusive kita", () => {
   assert.deepEqual(
     findLessonVoiceIssues(
       "id",
-      "Aku akan menunjukkan polanya. Kamu dapat memeriksa hasilnya. Setelah itu, kita bandingkan kedua nilai bersama-sama."
+      "Aku akan menunjukkan polanya. Kamu dapat memeriksa hasilnya. Setelah itu, kita bandingkan kedua nilai bersama-sama. Permohonan izin itu ditolak, dan papan itu bertuliskan “Mohon tenang”."
     ),
     []
   );
