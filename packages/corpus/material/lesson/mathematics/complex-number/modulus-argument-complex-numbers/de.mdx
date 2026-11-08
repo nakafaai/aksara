@@ -137,6 +137,21 @@ Die interaktive Grafik zeigt vier Zahlen mit dem Betrag <InlineMath math="2" />,
 
 Punkte auf einer Achse brauchen keinen Quotienten <InlineMath math="\frac{y}{x}" />. Ihre Richtung liest du direkt ab: positive reelle Achse <InlineMath math="0^\circ" />, positive imaginäre Achse <InlineMath math="90^\circ" />, negative reelle Achse <InlineMath math="180^\circ" /> und negative imaginäre Achse <InlineMath math="-90^\circ" />.
 
+<Mermaid
+  title="Das Argument aus dem Quadranten wählen"
+  description="Derselbe Bezugswinkel ergibt in jedem Quadranten ein anderes Argument."
+  chart={`flowchart TD
+  A["r und den spitzen Bezugswinkel α berechnen"] --> B{"Vorzeichen von x und y?"}
+  B -->|"x positiv, y positiv"| C["θ = α"]
+  B -->|"x negativ, y positiv"| D["θ = 180° - α"]
+  B -->|"x negativ, y negativ"| E["θ = -180° + α"]
+  B -->|"x positiv, y negativ"| F["θ = -α"]
+  C --> G["Probe: r cos θ = x und r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
+
 ## Beispiele zu Betrag und Argument
 
 **Beispiel 1**. Für <InlineMath math="z = -\sqrt{3} + i" /> liegt der Punkt <InlineMath math="(-\sqrt{3}, 1)" /> im II. Quadranten, weil <InlineMath math="x < 0" /> und <InlineMath math="y > 0" /> gilt:

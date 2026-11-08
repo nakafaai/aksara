@@ -27,6 +27,20 @@ Jika keempat syarat terpenuhi, peluang tepat <InlineMath math="k" /> sukses dibe
 
 Melempar dadu sampai muncul angka enam bukan percobaan binomial, karena banyak lemparannya tidak tetap. Menjawab soal yang peluang benarnya berbeda-beda juga bukan binomial, karena <InlineMath math="p" /> tidak sama di setiap percobaan.
 
+<Mermaid
+  title="Memeriksa syarat binomial"
+  description="Keempat syarat harus terpenuhi agar X berdistribusi binomial."
+  chart={`flowchart TD
+  A{"Setiap percobaan hanya sukses atau gagal?"} -->|"ya"| B{"Banyak percobaan n tetap?"}
+  B -->|"ya"| C{"Percobaan saling bebas?"}
+  C -->|"ya"| D{"Peluang sukses p sama setiap kali?"}
+  D -->|"ya"| E["Binomial, E(X) = np"]
+  A -->|"tidak"| F["Bukan binomial"]
+  B -->|"tidak"| F
+  C -->|"tidak"| F
+  D -->|"tidak"| F`}
+/>
+
 ## Menghitung Nilai Harapan dari Tabel Peluang
 
 Nilai harapan besaran diskret adalah jumlah setiap nilai dikali peluangnya, sama seperti pada [distribusi peluang](/id/materi/matematika/peluang/distribusi-peluang) yang lain:
@@ -47,6 +61,37 @@ Jumlah kolom terakhir adalah nilai harapannya:
 <BlockMath math="E(X) = 0 + \frac{3}{8} + \frac{6}{8} + \frac{3}{8} = \frac{12}{8} = 1{,}5" />
 
 Periksa dengan rumus pendek: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1{,}5" />. Kedua cara memberi hasil yang sama, tetapi untuk <InlineMath math="n" /> yang besar tabel seperti ini terlalu panjang, jadi rumus <InlineMath math="np" /> yang dipakai.
+
+<MathVisual
+  title="Nilai harapan sebagai titik seimbang"
+  description={<>Tinggi setiap batang adalah peluang tiga lemparan koin dalam satuan <InlineMath math="\frac{1}{8}" />. Batang-batang itu seimbang tepat di <InlineMath math="E(X) = 1{,}5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3.8 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar0", kind: "polygon", vertices: [{ x: 0 - 0.3, y: 0 }, { x: 0 + 0.3, y: 0 }, { x: 0 + 0.3, y: 1 }, { x: 0 - 0.3, y: 1 }], appearance: "secondary" },
+      { id: "bar1", kind: "polygon", vertices: [{ x: 1 - 0.3, y: 0 }, { x: 1 + 0.3, y: 0 }, { x: 1 + 0.3, y: 3 }, { x: 1 - 0.3, y: 3 }], appearance: "secondary" },
+      { id: "bar2", kind: "polygon", vertices: [{ x: 2 - 0.3, y: 0 }, { x: 2 + 0.3, y: 0 }, { x: 2 + 0.3, y: 3 }, { x: 2 - 0.3, y: 3 }], appearance: "secondary" },
+      { id: "bar3", kind: "polygon", vertices: [{ x: 3 - 0.3, y: 0 }, { x: 3 + 0.3, y: 0 }, { x: 3 + 0.3, y: 1 }, { x: 3 - 0.3, y: 1 }], appearance: "secondary" },
+      { id: "fulcrum", kind: "polygon", vertices: [{ x: 1.5, y: 0 }, { x: 1.2, y: -0.6 }, { x: 1.8, y: -0.6 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "p0", objectId: "bar0", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "p1", objectId: "bar1", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "p2", objectId: "bar2", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "p3", objectId: "bar3", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "balance", objectId: "fulcrum", at: { x: 1.5, y: -0.6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    p0: <InlineMath math="\frac{1}{8}" />,
+    p1: <InlineMath math="\frac{3}{8}" />,
+    p2: <InlineMath math="\frac{3}{8}" />,
+    p3: <InlineMath math="\frac{1}{8}" />,
+    balance: <InlineMath math="E(X) = 1{,}5" />,
+  }}
+/>
 
 ## Mengapa Rumusnya np
 
@@ -72,6 +117,18 @@ Sebuah dadu adil dilempar <InlineMath math="7" /> kali, dan <InlineMath math="X"
 Nilai <InlineMath math="1{,}17" /> tidak mungkin muncul dalam satu set tujuh lemparan, karena banyak angka lima selalu bulat dari <InlineMath math="0" /> sampai <InlineMath math="7" />. Jika kamu mengulang tujuh lemparan itu ratusan kali, **rata-rata banyak angka lima per set mendekati <InlineMath math="1{,}17" />**.
 
 Nilai harapan juga berbeda dari hasil yang paling mungkin. Dari rumus binomial, <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" />, dan <InlineMath math="P(X = 2) \approx 0{,}234" />. Hasil yang paling mungkin adalah satu angka lima, sedangkan nilai harapannya terletak di antara <InlineMath math="1" /> dan <InlineMath math="2" />. Periksa dengan definisi nilai harapan: <InlineMath math="1(0{,}3907) + 2(0{,}2344) + 3(0{,}0781) + 4(0{,}0156) + 5(0{,}0019) + 6(0{,}0001) \approx 1{,}166" />, sama dengan <InlineMath math="\frac{7}{6} \approx 1{,}167" /> sampai pembulatan.
+
+<BarChart
+  title="Sebaran banyak angka lima dalam tujuh lemparan"
+  description="Batang tertinggi ada di 1, sedangkan nilai harapan 7/6, sekitar 1,17, berada di antara 1 dan 2."
+  data={Array.from({ length: 8 }, (_, k) => {
+    const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
+    const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
+    return { name: String(k), value: Math.round(1000 * probability) / 10 };
+  })}
+  chartConfig={{ value: { label: "Peluang (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Peluang (%)"
+/>
 
 ## Contoh Menebak Soal Pilihan Ganda
 

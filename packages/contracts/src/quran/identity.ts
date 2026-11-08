@@ -1,8 +1,8 @@
 import { Match, Schema } from "effect";
 
 import {
-  type AppLocaleCode,
-  AppLocaleCodeSchema,
+  type ActiveAppLocaleCode,
+  ActiveAppLocaleCodeSchema,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
@@ -40,7 +40,7 @@ export const QURAN_SOURCE_IDS = QuranSourceIdSchema.literals;
 
 /** Locale-specific translation field in Quran source provenance. */
 export const QuranTranslationProvenanceScopeSchema = Schema.TemplateLiteral([
-  AppLocaleCodeSchema,
+  ActiveAppLocaleCodeSchema,
   "-translation",
 ]);
 export type QuranTranslationProvenanceScope =
@@ -48,7 +48,7 @@ export type QuranTranslationProvenanceScope =
 
 /** Locale-specific surah-name field in Quran source provenance. */
 export const QuranNameProvenanceScopeSchema = Schema.TemplateLiteral([
-  AppLocaleCodeSchema,
+  ActiveAppLocaleCodeSchema,
   "-surah-name",
 ]);
 export type QuranNameProvenanceScope =
@@ -73,7 +73,7 @@ const QURAN_NAME_BY_LOCALE = {
     scope: "id-surah-name",
     sourceId: "kemenag-names",
   },
-} as const satisfies Record<AppLocaleCode, QuranNameBinding>;
+} as const satisfies Record<ActiveAppLocaleCode, QuranNameBinding>;
 
 const QuranTranslationBindingSchema = Schema.Struct({
   scope: QuranTranslationProvenanceScopeSchema,
@@ -94,7 +94,7 @@ const QURAN_TRANSLATION_BY_LOCALE = {
     scope: "id-translation",
     sourceId: "quranenc-indonesian",
   },
-} as const satisfies Record<AppLocaleCode, QuranTranslationBinding>;
+} as const satisfies Record<ActiveAppLocaleCode, QuranTranslationBinding>;
 
 const QuranTafsirBindingSchema = Schema.Struct({
   sourceId: QuranSourceIdSchema,
@@ -105,7 +105,7 @@ const QURAN_TAFSIR_BY_LOCALE = {
   [ENGLISH_APP_LOCALE_CODE]: { sourceId: "mokhtasar-english" },
   [GERMAN_APP_LOCALE_CODE]: { sourceId: "mokhtasar-german" },
   [INDONESIAN_APP_LOCALE_CODE]: { sourceId: "quranenc-tafsir" },
-} as const satisfies Record<AppLocaleCode, QuranTafsirBinding>;
+} as const satisfies Record<ActiveAppLocaleCode, QuranTafsirBinding>;
 
 /** Selects the reviewed surah-name source for an application locale. */
 export function quranNameSourceId(
@@ -121,10 +121,10 @@ export function quranNameSourceId(
 ): (typeof QURAN_NAME_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
 /** Selects a surah-name source from a dynamic supported locale. */
 export function quranNameSourceId(
-  appLocale: AppLocaleCode
+  appLocale: ActiveAppLocaleCode
 ): QuranEmbeddedSourceId;
 /** Resolves the selected surah-name source identity. */
-export function quranNameSourceId(appLocale: AppLocaleCode) {
+export function quranNameSourceId(appLocale: ActiveAppLocaleCode) {
   return QURAN_NAME_BY_LOCALE[appLocale].sourceId;
 }
 
@@ -142,10 +142,10 @@ export function quranNameProvenanceScope(
 ): (typeof QURAN_NAME_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["scope"];
 /** Selects a surah-name provenance scope from a dynamic locale. */
 export function quranNameProvenanceScope(
-  appLocale: AppLocaleCode
+  appLocale: ActiveAppLocaleCode
 ): QuranNameProvenanceScope;
 /** Resolves the selected surah-name provenance scope. */
-export function quranNameProvenanceScope(appLocale: AppLocaleCode) {
+export function quranNameProvenanceScope(appLocale: ActiveAppLocaleCode) {
   return QURAN_NAME_BY_LOCALE[appLocale].scope;
 }
 
@@ -163,10 +163,10 @@ export function quranTranslationSourceId(
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
 /** Selects a translation source from a dynamic supported locale. */
 export function quranTranslationSourceId(
-  appLocale: AppLocaleCode
+  appLocale: ActiveAppLocaleCode
 ): QuranEmbeddedSourceId;
 /** Resolves the selected translation source identity. */
-export function quranTranslationSourceId(appLocale: AppLocaleCode) {
+export function quranTranslationSourceId(appLocale: ActiveAppLocaleCode) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].sourceId;
 }
 
@@ -183,9 +183,11 @@ export function quranTafsirSourceId(
   appLocale: typeof GERMAN_APP_LOCALE_CODE
 ): (typeof QURAN_TAFSIR_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["sourceId"];
 /** Selects a Tafsir source from a dynamic supported locale. */
-export function quranTafsirSourceId(appLocale: AppLocaleCode): QuranSourceId;
+export function quranTafsirSourceId(
+  appLocale: ActiveAppLocaleCode
+): QuranSourceId;
 /** Resolves the selected Tafsir source identity. */
-export function quranTafsirSourceId(appLocale: AppLocaleCode) {
+export function quranTafsirSourceId(appLocale: ActiveAppLocaleCode) {
   return QURAN_TAFSIR_BY_LOCALE[appLocale].sourceId;
 }
 
@@ -203,10 +205,12 @@ export function quranTranslationProvenanceScope(
 ): (typeof QURAN_TRANSLATION_BY_LOCALE)[typeof GERMAN_APP_LOCALE_CODE]["scope"];
 /** Selects a translation provenance scope from a dynamic locale. */
 export function quranTranslationProvenanceScope(
-  appLocale: AppLocaleCode
+  appLocale: ActiveAppLocaleCode
 ): QuranTranslationProvenanceScope;
 /** Resolves the selected translation provenance scope. */
-export function quranTranslationProvenanceScope(appLocale: AppLocaleCode) {
+export function quranTranslationProvenanceScope(
+  appLocale: ActiveAppLocaleCode
+) {
   return QURAN_TRANSLATION_BY_LOCALE[appLocale].scope;
 }
 
@@ -245,6 +249,6 @@ export function quranNameSourceForScope(scope: QuranNameProvenanceScope) {
 }
 
 /** Selects the signed Arabic and localized translation reading sources. */
-export function quranReadingSourceIds(appLocale: AppLocaleCode) {
+export function quranReadingSourceIds(appLocale: ActiveAppLocaleCode) {
   return ["tanzil-text", quranTranslationSourceId(appLocale)] as const;
 }

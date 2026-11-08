@@ -10,6 +10,12 @@ import {
   sameSpacePoint,
 } from "#contracts/math/base";
 import { spaceBoundsIssues } from "#contracts/math/bounds";
+import { FormulaParameterSchema } from "#contracts/math/formula/field";
+import {
+  formulaScopeIssues,
+  parameterScope,
+  spaceFormulaFields,
+} from "#contracts/math/formula/scope";
 import {
   MATH_LINE_MESSAGE,
   MATH_POLYLINE_MESSAGE,
@@ -19,6 +25,7 @@ import {
   mathLabelAnchorFields,
 } from "#contracts/math/object";
 import { spaceResolutionIssues } from "#contracts/math/resolution";
+import { SpaceSolidObjectSchemas } from "#contracts/math/solid";
 import { hasCoplanarArea } from "#contracts/math/vector";
 
 const SpacePointObjectSchema = Schema.Struct({
@@ -122,6 +129,7 @@ const SpaceCuboidObjectSchema = Schema.Struct({
 
 /** Mathematical objects supported by a Cartesian space scene. */
 export const SpaceMathObjectSchema = Schema.Union([
+  ...SpaceSolidObjectSchemas,
   SpaceCuboidObjectSchema,
   SpaceLineObjectSchema,
   SpacePointObjectSchema,
@@ -183,14 +191,24 @@ export const SpaceMathVisualSchema = Schema.Struct({
   frame: SpaceMathFrameSchema,
   labels: Schema.optionalKey(Schema.Array(SpaceLabelAnchorSchema)),
   objects: Schema.NonEmptyArray(SpaceMathObjectSchema),
+  parameters: Schema.optionalKey(Schema.Array(FormulaParameterSchema)),
   space: Schema.Literal("space"),
   view: SpaceMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ frame, labels = [], objects, view }) => [
-      ...mathVisualIdentityIssues(objects, labels),
-      ...spaceBoundsIssues(frame, objects, labels, view),
-      ...spaceResolutionIssues(frame, objects, labels, view),
-    ])
+    Schema.makeFilter(
+      ({ frame, labels = [], objects, parameters = [], view }) => [
+        ...mathVisualIdentityIssues(objects, labels),
+        ...formulaScopeIssues(objects, spaceFormulaFields, parameters),
+        ...spaceBoundsIssues(
+          frame,
+          objects,
+          labels,
+          view,
+          parameterScope(parameters)
+        ),
+        ...spaceResolutionIssues(frame, objects, labels, view),
+      ]
+    )
   )
 );
