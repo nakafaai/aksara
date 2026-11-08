@@ -90,7 +90,7 @@ Die Auswahl von zwei der drei Personen A, B und C zeigt die Division durch <Inli
 Die Balken zeigen <InlineMath math="\binom{6}{k}" /> für <InlineMath math="k = 0" /> bis <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. Die Reihe ist symmetrisch, weil die Wahl von <InlineMath math="k" /> mitzunehmenden Objekten dasselbe ist wie die Wahl von <InlineMath math="6 - k" /> zurückzulassenden.
 
 <BarChart
-  title="k aus 6 wählen"
+  title="Aus sechs Objekten wählen"
   description={<>Balken <InlineMath math="k" /> zeigt <InlineMath math="\binom{6}{k}" />, symmetrisch um <InlineMath math="k = 3" />.</>}
   yAxisLabel="Kombinationen"
   data={Array.from({ length: 7 }, (_, k) => {
@@ -155,12 +155,12 @@ Manche Auswahlen müssen **zusätzliche Bedingungen** erfüllen. Aus <InlineMath
 
 <Mermaid
   title="Permutation oder Kombination"
-  description="Zählt die Reihenfolge der gewählten Objekte, zählst du Permutationen. Zählt sie nicht, zählst du Kombinationen, also Permutationen geteilt durch die r! Reihenfolgen jeder Auswahl."
+  description="Zählt die Reihenfolge der gewählten Objekte, zählst du Permutationen. Zählt sie nicht, zählst du Kombinationen, also Permutationen geteilt durch die Anzahl der Reihenfolgen jeder Auswahl."
   chart={`flowchart TD
-  A["r von n Objekten wählen"] --> Q{"Zählt die Reihenfolge?"}
-  Q -->|"Ja"| P["Permutation: n! / (n − r)!"]
-  Q -->|"Nein"| C["Kombination: n! / ((n − r)! · r!)"]
-  P -->|"durch r! teilen"| C`}
+  A["Einige der Objekte wählen"] --> Q{"Zählt die Reihenfolge?"}
+  Q -->|"Ja"| P["Permutation"]
+  Q -->|"Nein"| C["Kombination"]
+  P -->|"durch die Reihenfolgen jeder Auswahl teilen"| C`}
 />
 
 ## Übungsaufgaben

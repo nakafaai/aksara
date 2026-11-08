@@ -43,13 +43,13 @@ For three distinct objects A, B, and C, the first position determines two orders
 <BlockMath math="3!=3\times2\times1=6" />
 
 <Mermaid
-  title="Filling n places with n objects"
+  title="Filling every place in turn"
   description="Each place has one fewer object left than the place before, so the counts multiply to n factorial."
   chart={`flowchart LR
-  A["Place 1: n choices"] --> B["Place 2: n − 1 choices"]
-  B --> C["Place 3: n − 2 choices"]
-  C --> D["… last place: 1 choice"]
-  D --> E["n · (n − 1) · … · 1 = n!"]`}
+  A["First place: every object can go"] --> B["Second place: one object fewer"]
+  B --> C["Each next place: one fewer again"]
+  C --> D["Last place: one object left"]
+  D --> E["Multiply all the counts: the factorial"]`}
 />
 
 ## Factorial Definition
@@ -67,14 +67,14 @@ The factorial <InlineMath math="n!" /> is the product of the positive integers f
 Factorials grow fast. The bars show <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Each bar is the previous one multiplied by the next whole number, because one more object adds one more choice for the first place.
 
 <BarChart
-  title="How fast n factorial grows"
+  title="How fast the factorial grows"
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />.</>}
-  yAxisLabel="n!"
+  yAxisLabel="Orders"
   data={Array.from({ length: 7 }, (_, i) => {
     const n = i + 1;
     return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
   })}
-  chartConfig={{ value: { label: "n!", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Orders", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Assigning All Objects to Distinct Positions

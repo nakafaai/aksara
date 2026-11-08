@@ -90,7 +90,7 @@ Pemilihan dua dari tiga siswa A, B, dan C memperlihatkan pembagian dengan <Inlin
 Batangnya menunjukkan <InlineMath math="\binom{6}{k}" /> untuk <InlineMath math="k = 0" /> sampai <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. Barisnya simetris, karena memilih <InlineMath math="k" /> objek untuk diambil sama dengan memilih <InlineMath math="6 - k" /> objek untuk ditinggal.
 
 <BarChart
-  title="Memilih k dari 6"
+  title="Memilih dari enam objek"
   description={<>Batang ke-<InlineMath math="k" /> menunjukkan <InlineMath math="\binom{6}{k}" />, yang simetris terhadap <InlineMath math="k = 3" />.</>}
   yAxisLabel="Kombinasi"
   data={Array.from({ length: 7 }, (_, k) => {
@@ -155,12 +155,12 @@ Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math
 
 <Mermaid
   title="Permutasi atau kombinasi"
-  description="Jika urutan objek yang dipilih penting, hitung permutasi. Jika tidak, hitung kombinasi, yaitu permutasi dibagi r! urutan dari setiap pilihan."
+  description="Jika urutan objek yang dipilih penting, hitung permutasi. Jika tidak, hitung kombinasi, yaitu permutasi dibagi banyak urutan dari setiap pilihan."
   chart={`flowchart TD
-  A["Pilih r dari n objek"] --> Q{"Apakah urutan penting?"}
-  Q -->|"Ya"| P["Permutasi: n! / (n − r)!"]
-  Q -->|"Tidak"| C["Kombinasi: n! / ((n − r)! · r!)"]
-  P -->|"bagi dengan r!"| C`}
+  A["Pilih sebagian objek"] --> Q{"Apakah urutan penting?"}
+  Q -->|"Ya"| P["Permutasi"]
+  Q -->|"Tidak"| C["Kombinasi"]
+  P -->|"bagi dengan banyak urutan setiap pilihan"| C`}
 />
 
 ## Latihan

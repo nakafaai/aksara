@@ -38,9 +38,9 @@ Sind die Ereignisse unabhängig, ändert die Information über <InlineMath math=
   title="Die Ergebnismenge aktualisieren"
   description="Nimm nach jedem Zug ohne Zurücklegen die gezogene Karte aus der Anzahl der günstigen Karten und aus der Gesamtzahl, bevor du die nächste Wahrscheinlichkeit berechnest."
   chart={`flowchart LR
-  A["Erster Zug: 13 Herzen von 52"] --> B["Gezogenes Herz entfernen"]
-  B --> C["Zweiter Zug: 12 Herzen von 51"]
-  C --> D["P = 13/52 · 12/51 = 1/17"]`}
+  A["Erster Zug: 13 Herzen unter 52 Karten"] --> B["Das gezogene Herz herausnehmen"]
+  B --> C["Zweiter Zug: 12 Herzen unter 51 Karten"]
+  C --> D["Beide Chancen multiplizieren: 1 zu 17"]`}
 />
 
 ## Anwendung beim Kartenziehen
@@ -70,7 +70,7 @@ Ohne Zurücklegen hängt der zweite Ast vom ersten ab. Ein Ass ziehst du mit Wah
 
 <MathVisual
   title="Erst Ass, dann König, ohne Zurücklegen"
-  description="Ein Baum für zwei Züge: zuerst Ass oder nicht, dann König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten."
+  description="Ein Baum für zwei Züge: zuerst Ass oder nicht, dann, nach einem Ass, König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten."
   labels={{
     b0: <InlineMath math="\text{Ass}\ \tfrac{4}{52}" />,
     b1: <InlineMath math="\text{kein Ass}\ \tfrac{48}{52}" />,

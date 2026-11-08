@@ -43,13 +43,13 @@ Untuk tiga objek berbeda, A, B, dan C, pilihan posisi pertama menentukan dua sus
 <BlockMath math="3!=3\times2\times1=6" />
 
 <Mermaid
-  title="Mengisi n tempat dengan n objek"
+  title="Mengisi setiap tempat bergiliran"
   description="Setiap tempat punya satu objek lebih sedikit daripada tempat sebelumnya, jadi banyak pilihannya dikalikan menjadi n faktorial."
   chart={`flowchart LR
-  A["Tempat 1: n pilihan"] --> B["Tempat 2: n − 1 pilihan"]
-  B --> C["Tempat 3: n − 2 pilihan"]
-  C --> D["… tempat terakhir: 1 pilihan"]
-  D --> E["n · (n − 1) · … · 1 = n!"]`}
+  A["Tempat pertama: semua objek bisa"] --> B["Tempat kedua: kurang satu objek"]
+  B --> C["Setiap tempat berikutnya: kurang satu lagi"]
+  C --> D["Tempat terakhir: tersisa satu objek"]
+  D --> E["Kalikan semua banyaknya: faktorial"]`}
 />
 
 ## Definisi Faktorial
@@ -67,14 +67,14 @@ Faktorial <InlineMath math="n!" /> adalah hasil kali bilangan bulat positif dari
 Faktorial tumbuh cepat. Batangnya menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Setiap batang adalah batang sebelumnya dikali bilangan bulat berikutnya, karena satu objek tambahan memberi satu pilihan lagi untuk tempat pertama.
 
 <BarChart
-  title="Secepat apa n faktorial tumbuh"
+  title="Secepat apa faktorial tumbuh"
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />.</>}
-  yAxisLabel="n!"
+  yAxisLabel="Urutan"
   data={Array.from({ length: 7 }, (_, i) => {
     const n = i + 1;
     return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
   })}
-  chartConfig={{ value: { label: "n!", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Urutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Menempatkan Semua Objek pada Posisi Berbeda

@@ -272,9 +272,9 @@ Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
   title="Erst die Schnittmenge prüfen, dann addieren"
   description="Addier die Wahrscheinlichkeiten nur, wenn die Ereignisse nicht zusammen eintreten können. Sonst zieh die Überschneidung einmal ab."
   chart={`flowchart TD
-  A["Ereignisse A und B"] --> Q{"Ist A ∩ B leer?"}
-  Q -->|"Ja"| E["P(A ∪ B) = P(A) + P(B)"]
-  Q -->|"Nein"| N["P(A ∪ B) = P(A) + P(B) − P(A ∩ B)"]`}
+  A["Zwei Ereignisse"] --> Q{"Können sie zusammen eintreten?"}
+  Q -->|"Nein"| E["Beide Wahrscheinlichkeiten addieren"]
+  Q -->|"Ja"| N["Addieren, dann die Überschneidung einmal abziehen"]`}
 />
 
 ### Kontrollen für das Endergebnis

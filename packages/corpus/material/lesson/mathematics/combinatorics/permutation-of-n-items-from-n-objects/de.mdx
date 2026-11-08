@@ -43,13 +43,13 @@ Bei drei verschiedenen Objekten A, B und C gibt es zu jeder Wahl der ersten Posi
 <BlockMath math="3!=3\times2\times1=6" />
 
 <Mermaid
-  title="n Plätze mit n Objekten füllen"
+  title="Jeden Platz der Reihe nach füllen"
   description="Für jeden Platz bleibt ein Objekt weniger als für den vorigen, also multiplizieren sich die Anzahlen zu n Fakultät."
   chart={`flowchart LR
-  A["Platz 1: n Möglichkeiten"] --> B["Platz 2: n − 1 Möglichkeiten"]
-  B --> C["Platz 3: n − 2 Möglichkeiten"]
-  C --> D["… letzter Platz: 1 Möglichkeit"]
-  D --> E["n · (n − 1) · … · 1 = n!"]`}
+  A["Erster Platz: jedes Objekt möglich"] --> B["Zweiter Platz: ein Objekt weniger"]
+  B --> C["Jeder weitere Platz: wieder eins weniger"]
+  C --> D["Letzter Platz: ein Objekt übrig"]
+  D --> E["Alle Anzahlen multiplizieren: die Fakultät"]`}
 />
 
 ## Definition der Fakultät
@@ -67,14 +67,14 @@ Die Fakultät <InlineMath math="n!" /> ist das Produkt der positiven ganzen Zahl
 Fakultäten wachsen schnell. Die Balken zeigen <InlineMath math="n!" /> für <InlineMath math="n = 1" /> bis <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Jeder Balken ist der vorige mal die nächste ganze Zahl, weil ein weiteres Objekt eine weitere Wahl für den ersten Platz bringt.
 
 <BarChart
-  title="Wie schnell n Fakultät wächst"
+  title="Wie schnell die Fakultät wächst"
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="n!" /> für <InlineMath math="n = 1" /> bis <InlineMath math="7" />.</>}
-  yAxisLabel="n!"
+  yAxisLabel="Reihenfolgen"
   data={Array.from({ length: 7 }, (_, i) => {
     const n = i + 1;
     return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
   })}
-  chartConfig={{ value: { label: "n!", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Reihenfolgen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Alle Objekte verschiedenen Positionen zuordnen

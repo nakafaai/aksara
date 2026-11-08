@@ -38,9 +38,9 @@ If the events are independent, learning <InlineMath math="A" /> does not change 
   title="Updating the sample space"
   description="After each draw without replacement, remove the drawn card from both the count of favorable cards and the total before computing the next probability."
   chart={`flowchart LR
-  A["First draw: 13 hearts of 52"] --> B["Remove the drawn heart"]
-  B --> C["Second draw: 12 hearts of 51"]
-  C --> D["P = 13/52 · 12/51 = 1/17"]`}
+  A["First draw: 13 hearts among 52 cards"] --> B["Take the drawn heart out"]
+  B --> C["Second draw: 12 hearts among 51 cards"]
+  C --> D["Multiply the two chances: 1 in 17"]`}
 />
 
 ## Application to Card Drawing
@@ -70,7 +70,7 @@ Without replacement, the second branch depends on the first. Draw an ace with pr
 
 <MathVisual
   title="Ace then king without replacement"
-  description="A tree for two draws: ace or not first, then king or not, with the second probabilities taken from the 51 remaining cards."
+  description="A tree for two draws: ace or not first, then, after an ace, king or not, with the second probabilities taken from the 51 remaining cards."
   labels={{
     b0: <InlineMath math="\text{ace}\ \tfrac{4}{52}" />,
     b1: <InlineMath math="\text{no ace}\ \tfrac{48}{52}" />,
