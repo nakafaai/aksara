@@ -7,14 +7,10 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$m=\\frac23$$",
+          label: "$$m=-4$$",
         },
         {
           correct: true,
-          label: "$$m=\\frac32$$",
-        },
-        {
-          correct: false,
           label: "$$m=-\\frac32$$",
         },
         {
@@ -23,11 +19,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$m=6$$",
+          label: "$$m=\\frac23$$",
         },
         {
           correct: false,
-          label: "$$m=\\frac12$$",
+          label: "$$m=\\frac32$$",
+        },
+        {
+          correct: false,
+          label: "$$m=4$$",
         },
       ],
     },

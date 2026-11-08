@@ -1,48 +1,49 @@
-The vertex (*Scheitelpunkt*) is easiest to read from the **vertex form** <InlineMath math="y=(x-d)^2+e" />, which you get by completing the square. Halve the coefficient of <InlineMath math="x" />, <InlineMath math="-4" />, to get <InlineMath math="-2" />, and add and subtract its square.
+The vertex (*Scheitelpunkt*) is easiest to read from the **vertex form** <InlineMath math="y=(x-d)^2+e" />, which you get by completing the square. Halve the coefficient of <InlineMath math="x" />, <InlineMath math="6" />, to get <InlineMath math="3" />. Then add its square <InlineMath math="9" /> and subtract it again straight away.
 
 <BlockMath math="\begin{aligned}
-y&=x^2-4x+4-4+3 \\
-&=(x-2)^2-1
+y&=x^2+6x+9-9+7 \\
+&=(x+3)^2-2
 \end{aligned}" />
 
-The expression <InlineMath math="(x-2)^2" /> is never negative and equals zero exactly at <InlineMath math="x=2" />. So the smallest <InlineMath math="y" />-value is <InlineMath math="-1" />, and the vertex is <InlineMath math="(2\mid-1)" />.
+The expression <InlineMath math="(x+3)^2" /> is never negative and equals zero exactly at <InlineMath math="x=-3" />. So the smallest <InlineMath math="y" />-value is <InlineMath math="-2" />, and the vertex is <InlineMath math="(-3\mid-2)" />.
 
 <MathVisual
   title="Parabola and its vertex"
-  description={<>The parabola <InlineMath math="y=x^2-4x+3" /> opens upward. Its lowest point is <InlineMath math="(2\mid-1)" />, and it crosses the <InlineMath math="x" />-axis at <InlineMath math="(1\mid0)" /> and <InlineMath math="(3\mid0)" />, symmetric about the line <InlineMath math="x=2" />.</>}
+  description={<>The parabola <InlineMath math="y=x^2+6x+7" /> opens upward. Its lowest point is <InlineMath math="(-3\mid-2)" />. The points <InlineMath math="(-6\mid7)" /> and <InlineMath math="(0\mid7)" /> lie on the parabola, symmetric about the line <InlineMath math="x=-3" />.</>}
   labels={{
-    vertex: <InlineMath math="(2\mid-1)" />,
-    "zero-left": <InlineMath math="(1\mid0)" />,
-    "zero-right": <InlineMath math="(3\mid0)" />,
+    vertex: <InlineMath math="(-3\mid-2)" />,
+    "point-left": <InlineMath math="(-6\mid7)" />,
+    "point-right": <InlineMath math="(0\mid7)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -1, max: 5 },
-      y: { min: -2, max: 6 },
+      x: { min: -7, max: 1 },
+      y: { min: -3, max: 9 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.4, max: 4.4 }, inputAxis: "x" },
-      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
-      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
-      { id: "zero-left-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
-      { id: "zero-right-point", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: 6, c: 7 }, domain: { min: -6.2, max: 0.2 }, inputAxis: "x" },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: -3, y: -2 }, to: { x: -3, y: 8 } },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: -3, y: -2 } },
+      { id: "point-left-dot", kind: "point", appearance: "reference", at: { x: -6, y: 7 } },
+      { id: "point-right-dot", kind: "point", appearance: "reference", at: { x: 0, y: 7 } },
     ],
     labels: [
-      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -1 }, placement: "below" },
-      { key: "zero-left", objectId: "zero-left-point", at: { x: 1, y: 0 }, placement: "left" },
-      { key: "zero-right", objectId: "zero-right-point", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "vertex", objectId: "vertex-point", at: { x: -3, y: -2 }, placement: "below" },
+      { key: "point-left", objectId: "point-left-dot", at: { x: -6, y: 7 }, placement: "left" },
+      { key: "point-right", objectId: "point-right-dot", at: { x: 0, y: 7 }, placement: "right" },
     ],
   }}
 />
 
-As a check, the zeros <InlineMath math="x=1" /> and <InlineMath math="x=3" /> lie symmetric about <InlineMath math="x=2" />, and <InlineMath math="2^2-4\cdot2+3=-1" />.
+As a check, the points <InlineMath math="(-6\mid7)" /> and <InlineMath math="(0\mid7)" /> lie on the parabola and have the same <InlineMath math="y" />-value. The vertex lies exactly halfway between them, at <InlineMath math="x=-3" />, and <InlineMath math="(-3)^2+6\cdot(-3)+7=-2" />.
 
-So the vertex is <InlineMath math="(2\mid-1)" />.
+So the vertex is <InlineMath math="(-3\mid-2)" />.
 
-- <InlineMath math="(2\mid3)" /> has the right <InlineMath math="x" />-coordinate but takes the constant term <InlineMath math="3" /> as the <InlineMath math="y" />-value instead of substituting <InlineMath math="x=2" />.
-- <InlineMath math="(-2\mid15)" /> comes from the wrong sign of the <InlineMath math="x" />-coordinate, because the vertex lies at <InlineMath math="x=-\frac{b}{2a}=2" />.
-- <InlineMath math="(4\mid3)" /> takes the size of the coefficient, <InlineMath math="4" />, as the <InlineMath math="x" />-coordinate without halving it.
-- <InlineMath math="(1\mid0)" /> and <InlineMath math="(3\mid0)" /> are the zeros of the parabola, not its vertex.
+- <InlineMath math="(-3\mid7)" /> has the right <InlineMath math="x" />-coordinate but takes the constant term <InlineMath math="7" /> as the <InlineMath math="y" />-value instead of substituting <InlineMath math="x=-3" />.
+- <InlineMath math="(3\mid34)" /> comes from the wrong sign of the <InlineMath math="x" />-coordinate, because the vertex lies at <InlineMath math="x=-\frac{b}{2a}=-3" />.
+- <InlineMath math="(-6\mid7)" /> takes the coefficient <InlineMath math="6" /> with a minus sign as the <InlineMath math="x" />-coordinate without halving it. This point does lie on the parabola, but it is not the lowest point.
+- <InlineMath math="(-3\mid2)" /> swaps the signs while completing the square and computes <InlineMath math="9-7=2" /> instead of <InlineMath math="-9+7=-2" />.
+- <InlineMath math="(-3\mid16)" /> adds the square used for completing instead of subtracting it again, because <InlineMath math="9+7=16" />.

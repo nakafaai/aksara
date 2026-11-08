@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Er ist um $$5\\,\\%$$ gestiegen.",
+          label: "Sie ist um $$21\\,\\%$$ gestiegen.",
         },
         {
           correct: false,
-          label: "Er ist um $$5\\,\\%$$ gesunken.",
+          label: "Sie ist um $$1\\,\\%$$ gestiegen.",
         },
         {
           correct: false,
-          label: "Er ist um $$45\\,\\%$$ gestiegen.",
+          label: "Sie ist gleich geblieben.",
         },
         {
           correct: true,
-          label: "Er ist gleich geblieben.",
+          label: "Sie ist um $$1\\,\\%$$ gesunken.",
         },
         {
           correct: false,
-          label: "Er ist um $$10\\,\\%$$ gesunken.",
+          label: "Sie ist um $$0{,}1\\,\\%$$ gesunken.",
         },
         {
           correct: false,
-          label: "Er ist um $$20\\,\\%$$ gesunken.",
+          label: "Sie ist um $$10\\,\\%$$ gesunken.",
         },
       ],
     },

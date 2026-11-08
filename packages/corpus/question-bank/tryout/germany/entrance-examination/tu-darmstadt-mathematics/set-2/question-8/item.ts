@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$B(-0{,}5\\mid1{,}5)$$",
+          label: "$$(-4\\mid-3)$$",
         },
         {
           correct: true,
-          label: "$$B(7\\mid-6)$$",
+          label: "$$(0\\mid5)$$",
         },
         {
           correct: false,
-          label: "$$B(-8\\mid9)$$",
+          label: "$$(0\\mid3)$$",
         },
         {
           correct: false,
-          label: "$$B(5\\mid-5)$$",
+          label: "$$(1{,}5\\mid2)$$",
         },
         {
           correct: false,
-          label: "$$B(-1\\mid3)$$",
+          label: "$$(4\\mid3)$$",
         },
         {
           correct: false,
-          label: "$$B(1\\mid2)$$",
+          label: "$$(10\\mid1)$$",
         },
       ],
     },

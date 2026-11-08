@@ -7,10 +7,6 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2$$",
-        },
-        {
-          correct: false,
           label: "$$3$$",
         },
         {
@@ -18,16 +14,20 @@ const item: ItemSource = {
           label: "$$4$$",
         },
         {
-          correct: true,
+          correct: false,
           label: "$$5$$",
         },
         {
-          correct: false,
+          correct: true,
           label: "$$6$$",
         },
         {
           correct: false,
           label: "$$7$$",
+        },
+        {
+          correct: false,
+          label: "$$8$$",
         },
       ],
     },

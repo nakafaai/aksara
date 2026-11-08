@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$x=-3$$",
+        },
+        {
+          correct: false,
+          label: "$$x=-\\frac83$$",
+        },
+        {
+          correct: false,
+          label: "$$x=\\frac43$$",
+        },
+        {
+          correct: false,
+          label: "$$x=\\frac{11}3$$",
+        },
+        {
           correct: true,
-          label: "$$x=-7$$",
+          label: "$$x=4$$",
         },
         {
           correct: false,
-          label: "$$x=-1$$",
-        },
-        {
-          correct: false,
-          label: "$$x=1$$",
-        },
-        {
-          correct: false,
-          label: "$$x=7$$",
-        },
-        {
-          correct: false,
-          label: "$$x=8$$",
-        },
-        {
-          correct: false,
-          label: "Die Gleichung hat keine Lösung.",
+          label: "$$x=12$$",
         },
       ],
     },

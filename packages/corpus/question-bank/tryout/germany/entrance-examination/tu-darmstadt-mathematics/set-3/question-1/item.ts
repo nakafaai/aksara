@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$8x$$",
+          label: "$$1$$",
         },
         {
           correct: false,
-          label: "$$0$$",
+          label: "$$-1$$",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$4x+1$$",
         },
         {
           correct: false,
-          label: "$$-8x$$",
+          label: "$$4x-1$$",
         },
         {
           correct: false,
-          label: "$$2x^2+8$$",
+          label: "$$1-8x$$",
         },
         {
           correct: false,
-          label: "$$4x$$",
+          label: "$$8x^2-8x+1$$",
         },
       ],
     },
