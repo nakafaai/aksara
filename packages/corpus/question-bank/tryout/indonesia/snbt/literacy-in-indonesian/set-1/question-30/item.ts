@@ -12,11 +12,6 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "Kerja yang bergantung pada alam menuntut kesabaran walau hasilnya belum tentu sepadan.",
-        },
-        {
           correct: false,
           label:
             "Petambak garam sebaiknya beralih ke pekerjaan lain yang lebih menguntungkan.",
@@ -30,6 +25,11 @@ const item: ItemSource = {
           correct: false,
           label:
             "Anak-anak wajib membantu orang tua bekerja di ladang sejak kecil.",
+        },
+        {
+          correct: true,
+          label:
+            "Kerja yang bergantung pada alam menuntut kesabaran walau hasilnya belum tentu sepadan.",
         },
         {
           correct: false,

@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Sekitar 54 persen",
-        },
-        {
-          correct: false,
-          label: "65 persen",
-        },
-        {
-          correct: false,
           label: "Sekitar 5 persen",
+        },
+        {
+          correct: true,
+          label: "35 persen",
         },
         {
           correct: false,
           label: "42 persen",
         },
         {
-          correct: true,
-          label: "35 persen",
+          correct: false,
+          label: "Sekitar 54 persen",
+        },
+        {
+          correct: false,
+          label: "65 persen",
         },
       ],
     },

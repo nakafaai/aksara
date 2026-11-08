@@ -16,12 +16,12 @@ const item: ItemSource = {
           label: "About 14 percent",
         },
         {
-          correct: false,
-          label: "About 22 percent",
-        },
-        {
           correct: true,
           label: "About 16 percent",
+        },
+        {
+          correct: false,
+          label: "About 22 percent",
         },
         {
           correct: false,

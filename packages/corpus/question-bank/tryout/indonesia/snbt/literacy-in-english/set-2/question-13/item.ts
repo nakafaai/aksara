@@ -20,16 +20,16 @@ const item: ItemSource = {
           label: "About 45",
         },
         {
+          correct: true,
+          label: "About 59",
+        },
+        {
           correct: false,
           label: "About 72",
         },
         {
           correct: false,
           label: "About 230",
-        },
-        {
-          correct: true,
-          label: "About 59",
         },
       ],
     },

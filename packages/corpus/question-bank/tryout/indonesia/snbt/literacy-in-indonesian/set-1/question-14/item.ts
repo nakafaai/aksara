@@ -12,6 +12,10 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label: "Sekitar 24 persen",
+        },
+        {
           correct: false,
           label: "Sekitar 25 persen",
         },
@@ -22,10 +26,6 @@ const item: ItemSource = {
         {
           correct: false,
           label: "Sekitar 37 persen",
-        },
-        {
-          correct: true,
-          label: "Sekitar 24 persen",
         },
         {
           correct: false,

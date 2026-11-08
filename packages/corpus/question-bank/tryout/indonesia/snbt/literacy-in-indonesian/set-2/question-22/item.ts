@@ -17,11 +17,6 @@ const item: ItemSource = {
             "Subak tidak menggunakan saluran atau terowongan untuk mengalirkan air.",
         },
         {
-          correct: true,
-          label:
-            "Subak juga mengatur jadwal tanam dan upacara, bukan hanya saluran air.",
-        },
-        {
           correct: false,
           label:
             "Irigasi di Bali sepenuhnya dikelola oleh pemerintah, bukan oleh petani.",
@@ -34,6 +29,11 @@ const item: ItemSource = {
         {
           correct: false,
           label: "Subak hanya berfungsi sebagai tempat upacara di pura air.",
+        },
+        {
+          correct: true,
+          label:
+            "Subak juga mengatur jadwal tanam dan upacara, bukan hanya saluran air.",
         },
       ],
     },

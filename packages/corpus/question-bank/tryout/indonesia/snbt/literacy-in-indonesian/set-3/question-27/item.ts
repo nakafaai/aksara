@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "novel-review",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Dialog antarwarga terdengar kaku dan terlalu banyak dijelaskan narator.",
         },
         {
           correct: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Catatan harian sang kakek terlalu panjang sehingga mengganggu alur cerita.",
         },
         {
           correct: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
-        },
-        {
-          correct: false,
-          label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Cerita terlalu banyak membahas sejarah desa dan kurang membahas masa kini.",
         },
         {
           correct: true,
           label:
-            "Tindakan Mira membuat lampu beralih dari penanda panggung kosong menjadi undangan membaca, lalu permintaan sopir dan kedatangan penjual menguatkan perubahan itu.",
+            "Bagian akhirnya tergesa-gesa dan sebagian tokoh pendukung kurang digarap.",
+        },
+        {
+          correct: false,
+          label:
+            "Tokoh Sinta digambarkan tidak memahami persoalan mata air yang kering.",
         },
       ],
     },
