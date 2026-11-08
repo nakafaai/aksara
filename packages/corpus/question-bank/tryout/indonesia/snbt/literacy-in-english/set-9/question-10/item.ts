@@ -28,8 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "Move its polar bears elsewhere and expand breeding of a threatened local frog.",
+          label: "Rehome its polar bears and breed a threatened local frog.",
         },
         {
           correct: false,

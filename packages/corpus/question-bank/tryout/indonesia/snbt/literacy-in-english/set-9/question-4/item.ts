@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "News travelled slowly, and the science to make the link did not yet exist.",
+            "News was slow, and the idea of volcanic cooling was not yet established.",
         },
         {
           correct: false,

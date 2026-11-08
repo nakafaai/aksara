@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Elephants in good enclosures show no more signs of stress than wild elephants.",
+            "Elephants in good enclosures show no more stress than wild elephants.",
         },
       ],
     },

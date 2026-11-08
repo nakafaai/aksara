@@ -18,7 +18,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "They preferred raised letters, which sighted people could also read.",
+            "They favoured a script that teachers with sight could read too.",
         },
         {
           correct: false,
