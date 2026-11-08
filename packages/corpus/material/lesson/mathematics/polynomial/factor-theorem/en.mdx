@@ -11,6 +11,39 @@ export const metadata = {
 
 **The factor theorem** says that <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" /> if and only if <InlineMath math="P(c) = 0" />. So every zero <InlineMath math="c" /> gives one linear factor, and the graph of <InlineMath math="y = P(x)" /> meets the <InlineMath math="x" />-axis exactly at that zero: it crosses at a single zero and touches at a double zero.
 
+<LineEquation
+  title={<>Graph of <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
+  description={<>The graph crosses the x-axis at the single zero <InlineMath math="-1" /> and only touches it at the double zero <InlineMath math="2" />.</>}
+  cameraPosition={[0.85, 0, 16]}
+  cameraTarget={[0.85, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 471 }, (_, i) => {
+        const x = -1.5 + i / 100;
+        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
+    },
+  ]}
+/>
+
+The polynomial <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> shows both cases. The factor <InlineMath math="(x + 1)" /> appears once, so the graph crosses the axis at <InlineMath math="-1" />. The factor <InlineMath math="(x - 2)" /> appears twice, so the graph comes down to <InlineMath math="0" /> at <InlineMath math="x = 2" /> and rises again without crossing the axis.
+
 When we divide a polynomial <InlineMath math="P(x)" /> by <InlineMath math="(x - c)" />, sometimes the remainder is zero. We know from the Remainder Theorem that if the remainder is zero, then <InlineMath math="P(c) = 0" />. So, what does it mean if <InlineMath math="P(c) = 0" />?
 
 The value <InlineMath math="c" /> that causes <InlineMath math="P(c) = 0" /> is called a **zero** or a **root** of the polynomial <InlineMath math="P(x)" />. The Factor Theorem explains the close relationship between these zeros and the factors of the polynomial.
@@ -100,44 +133,7 @@ Combine all factors.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
-Check the factorization with the graph and by substitution. The graph of <InlineMath math="y = P(x)" /> crosses the <InlineMath math="x" />-axis exactly at <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" />, and substitution gives <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> and <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. The zeros <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" /> give three linear factors. Their product has degree three and leading coefficient <InlineMath math="1" />, like <InlineMath math="P(x)" />, so <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> exactly.
-
-<LineEquation
-  title={<>Graph of <InlineMath math="y = x^3 + 2x^2 - 13x + 10" /></>}
-  description={<>The graph crosses the x-axis at <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" />, the zeros of its three linear factors.</>}
-  cameraPosition={[-1.5, 13, 70]}
-  cameraTarget={[-1.5, 13, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 761 }, (_, i) => {
-        const x = -5.3 + i / 100;
-        return { x, y: x ** 3 + 2 * x ** 2 - 13 * x + 10, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -5, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-5" />, at: 0, offset: [-0.8, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [-0.6, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0.6, 2.5, 0] }],
-    },
-  ]}
-/>
+Check the factorization by substitution: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> and <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. The zeros <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" /> give three linear factors. Their product has degree three and leading coefficient <InlineMath math="1" />, like <InlineMath math="P(x)" />, so <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> exactly.
 
 ## Common Mistakes
 

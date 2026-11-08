@@ -11,6 +11,39 @@ export const metadata = {
 
 **Teorema faktor** menyatakan bahwa <InlineMath math="(x - c)" /> adalah faktor <InlineMath math="P(x)" /> jika dan hanya jika <InlineMath math="P(c) = 0" />. Jadi setiap pembuat nol <InlineMath math="c" /> memberi satu faktor linear, dan grafik <InlineMath math="y = P(x)" /> bertemu sumbu <InlineMath math="x" /> tepat di pembuat nol itu: memotongnya di pembuat nol tunggal dan menyinggungnya di pembuat nol ganda.
 
+<LineEquation
+  title={<>Grafik <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
+  description={<>Grafik memotong sumbu x di pembuat nol tunggal <InlineMath math="-1" /> dan hanya menyinggungnya di pembuat nol ganda <InlineMath math="2" />.</>}
+  cameraPosition={[0.85, 0, 16]}
+  cameraTarget={[0.85, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 471 }, (_, i) => {
+        const x = -1.5 + i / 100;
+        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
+    },
+  ]}
+/>
+
+Polinomial <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> memperlihatkan kedua kasus. Faktor <InlineMath math="(x + 1)" /> muncul sekali, jadi grafiknya memotong sumbu di <InlineMath math="-1" />. Faktor <InlineMath math="(x - 2)" /> muncul dua kali, jadi grafiknya turun ke <InlineMath math="0" /> di <InlineMath math="x = 2" /> lalu naik lagi tanpa memotong sumbu.
+
 Ketika kita membagi suatu polinomial <InlineMath math="P(x)" /> dengan <InlineMath math="(x - c)" />, terkadang sisa pembagiannya adalah nol. Kita tahu dari Teorema Sisa bahwa jika sisa pembagiannya nol, maka <InlineMath math="P(c) = 0" />. Nah, apa artinya jika <InlineMath math="P(c) = 0" />?
 
 Nilai <InlineMath math="c" /> yang menyebabkan <InlineMath math="P(c) = 0" /> disebut sebagai **pembuat nol** atau **akar** dari polinomial <InlineMath math="P(x)" />. Teorema Faktor menjelaskan hubungan erat antara pembuat nol ini dengan faktor dari polinomial tersebut.
@@ -100,44 +133,7 @@ Gabungkan semua faktor.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
-Periksa faktorisasinya dengan grafik dan substitusi. Grafik <InlineMath math="y = P(x)" /> memotong sumbu <InlineMath math="x" /> tepat di <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" />, dan substitusi memberi <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> serta <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Ketiga pembuat nol <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" /> memberi tiga faktor linear. Hasil kali ketiganya berderajat tiga dengan koefisien utama <InlineMath math="1" />, sama seperti <InlineMath math="P(x)" />, jadi <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> tepat.
-
-<LineEquation
-  title={<>Grafik <InlineMath math="y = x^3 + 2x^2 - 13x + 10" /></>}
-  description={<>Grafik memotong sumbu x di <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" />, yaitu pembuat nol dari ketiga faktor linearnya.</>}
-  cameraPosition={[-1.5, 13, 70]}
-  cameraTarget={[-1.5, 13, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 761 }, (_, i) => {
-        const x = -5.3 + i / 100;
-        return { x, y: x ** 3 + 2 * x ** 2 - 13 * x + 10, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -5, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-5" />, at: 0, offset: [-0.8, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [-0.6, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0.6, 2.5, 0] }],
-    },
-  ]}
-/>
+Periksa faktorisasinya dengan substitusi: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> serta <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Ketiga pembuat nol <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" /> memberi tiga faktor linear. Hasil kali ketiganya berderajat tiga dengan koefisien utama <InlineMath math="1" />, sama seperti <InlineMath math="P(x)" />, jadi <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> tepat.
 
 ## Kesalahan yang Sering Terjadi
 

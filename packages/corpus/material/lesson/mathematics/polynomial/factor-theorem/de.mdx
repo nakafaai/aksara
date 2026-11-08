@@ -11,6 +11,39 @@ export const metadata = {
 
 **Der Faktorsatz** besagt, dass <InlineMath math="(x - c)" /> genau dann ein Faktor von <InlineMath math="P(x)" /> ist, wenn <InlineMath math="P(c) = 0" /> gilt. Jede Nullstelle <InlineMath math="c" /> liefert also einen Linearfaktor, und der Graph von <InlineMath math="y = P(x)" /> trifft die <InlineMath math="x" />-Achse genau an dieser Nullstelle: Er schneidet sie bei einer einfachen Nullstelle und berührt sie bei einer doppelten.
 
+<LineEquation
+  title={<>Graph von <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
+  description={<>Der Graph schneidet die x-Achse bei der einfachen Nullstelle <InlineMath math="-1" /> und berührt sie nur bei der doppelten Nullstelle <InlineMath math="2" />.</>}
+  cameraPosition={[0.85, 0, 16]}
+  cameraTarget={[0.85, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 471 }, (_, i) => {
+        const x = -1.5 + i / 100;
+        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#0891b2",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
+    },
+  ]}
+/>
+
+Das Polynom <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> zeigt beide Fälle. Der Faktor <InlineMath math="(x + 1)" /> kommt einmal vor, also schneidet der Graph die Achse bei <InlineMath math="-1" />. Der Faktor <InlineMath math="(x - 2)" /> kommt zweimal vor, also sinkt der Graph bei <InlineMath math="x = 2" /> auf <InlineMath math="0" /> und steigt wieder, ohne die Achse zu schneiden.
+
 Wenn wir ein Polynom <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> dividieren, ist der Rest manchmal Null. Aus dem Restsatz wissen wir, dass <InlineMath math="P(c) = 0" /> gilt, wenn der Rest Null ist. Was bedeutet es also, wenn <InlineMath math="P(c) = 0" />?
 
 Ein Wert <InlineMath math="c" /> mit <InlineMath math="P(c) = 0" /> heißt **Nullstelle** oder **Wurzel** des Polynoms <InlineMath math="P(x)" />. Der Faktorsatz verbindet solche Nullstellen direkt mit den Faktoren des Polynoms.
@@ -100,44 +133,7 @@ Fasse alle Faktoren zusammen.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
-Prüfe die Faktorisierung am Graphen und durch Einsetzen. Der Graph von <InlineMath math="y = P(x)" /> schneidet die <InlineMath math="x" />-Achse genau bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" />, und Einsetzen liefert <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> sowie <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Die Nullstellen <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" /> liefern drei Linearfaktoren. Ihr Produkt hat den Grad drei und den Leitkoeffizienten <InlineMath math="1" /> wie <InlineMath math="P(x)" />, also gilt genau <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" />.
-
-<LineEquation
-  title={<>Graph von <InlineMath math="y = x^3 + 2x^2 - 13x + 10" /></>}
-  description={<>Der Graph schneidet die x-Achse bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" />, den Nullstellen seiner drei Linearfaktoren.</>}
-  cameraPosition={[-1.5, 13, 70]}
-  cameraTarget={[-1.5, 13, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 761 }, (_, i) => {
-        const x = -5.3 + i / 100;
-        return { x, y: x ** 3 + 2 * x ** 2 - 13 * x + 10, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -5, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-5" />, at: 0, offset: [-0.8, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [-0.6, 2.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0.6, 2.5, 0] }],
-    },
-  ]}
-/>
+Prüfe die Faktorisierung durch Einsetzen: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> sowie <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Die Nullstellen <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" /> liefern drei Linearfaktoren. Ihr Produkt hat den Grad drei und den Leitkoeffizienten <InlineMath math="1" /> wie <InlineMath math="P(x)" />, also gilt genau <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" />.
 
 ## Typische Fehler
 
