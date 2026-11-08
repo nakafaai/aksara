@@ -3,7 +3,7 @@ title: "Sifat Komposisi Fungsi",
   description: "Tunjukkan bahwa hasil komposisi fungsi umumnya bergantung pada urutan, lalu buktikan sifat asosiatif dan sifat identitasnya.",
 authors: [{ name: "Nabil Akbarazzima Fatih" }],
 datePublished: "2025-04-27",
-dateModified: "2026-09-19",
+dateModified: "2026-11-08",
 subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -51,6 +51,43 @@ Kedua bentuk polinomial memiliki koefisien yang berbeda, sehingga keduanya bukan
 
 Jadi, <InlineMath math="g\circ f\neq f\circ g" /> sebagai fungsi. Pasangan lain harus diperiksa dengan cara yang sama. Secara umum, <Highlight>komposisi tidak bersifat komutatif</Highlight>.
 
+Kirim <InlineMath math="x = 1" /> melalui kedua urutan. Lewat <InlineMath math="g" /> dulu: <InlineMath math="g(1) = 5" />, lalu <InlineMath math="f(5) = 11" />. Lewat <InlineMath math="f" /> dulu: <InlineMath math="f(1) = 3" />, lalu <InlineMath math="g(3) = 13" />. Kedua jalur berangkat bersama dan berakhir terpisah, jadi <InlineMath math="f \circ g \ne g \circ f" />.
+
+<MathVisual
+  title={<>Dua urutan, dua keluaran berbeda</>}
+  description={<>Masukan 1 dikirim lewat <InlineMath math="g" /> lalu <InlineMath math="f" /> (berakhir di 11) dan lewat <InlineMath math="f" /> lalu <InlineMath math="g" /> (berakhir di 13).</>}
+  labels={{
+    x: <InlineMath math="x = 1" />,
+    mid: <>setelah fungsi pertama</>,
+    out: <>setelah fungsi kedua</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -0.5, max: 15.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 14 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 14 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 5 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 4, y: 5 }, to: { x: 8, y: 11 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 4, y: 5 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 8, y: 11 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 4, y: 3 }, to: { x: 8, y: 13 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 8, y: 13 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 14 }, placement: "above" },
+      { key: "mid", objectId: "axis1", at: { x: 4, y: 14 }, placement: "above" },
+      { key: "out", objectId: "axis2", at: { x: 8, y: 14 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Sifat Asosiatif
 
 Jika tiga fungsi memiliki domain dan kodomain yang sesuai, perubahan pengelompokan saja tidak mengubah hasil. Urutan **fungsinya** harus tetap sama, dan kedua ruas dibandingkan pada input yang membuat komposisinya terdefinisi.
@@ -97,12 +134,49 @@ Sifat asosiatif ini berlaku untuk kombinasi urutan fungsi lainnya juga, seperti 
 Pada <InlineMath math="x=0" />, kedua pengelompokan mengikuti **jalur perhitungan yang sama**. Mengelompokkan dua aturan tidak menukar urutan penerapannya:
 
 <Mermaid
-  title="Urutan Tetap pada Sifat Asosiatif"
-  description="Masukan nol diproses oleh h, lalu g, lalu f dan menghasilkan sebelas."
+  title={<>Urutan Tetap pada Sifat Asosiatif</>}
+  description={<>Masukan nol diproses oleh h, lalu g, lalu f dan menghasilkan sebelas.</>}
   chart={`flowchart LR
     X["0"] -->|"h"| H["1"]
     H -->|"g"| G["5"]
     G -->|"f"| F["11"]`}
+/>
+
+Ikuti <InlineMath math="x = 1" /> melewati <InlineMath math="h(x) = \frac{1}{x + 1}" />, lalu <InlineMath math="g(x) = x^2 + 4" />, lalu <InlineMath math="f(x) = 2x + 1" />: <InlineMath math="1 \to \frac12 \to \frac{17}{4} \to \frac{19}{2}" />. Entah kamu mengelompokkan <InlineMath math="(f \circ g) \circ h" /> atau <InlineMath math="f \circ (g \circ h)" />, masukannya menempuh tiga langkah yang sama, jadi keduanya memberi <InlineMath math="\frac{19}{2}" />.
+
+<MathVisual
+  title={<>Satu masukan melewati tiga fungsi</>}
+  description={<>Empat sumbu tegak untuk <InlineMath math="x" />, <InlineMath math="h(x)" />, <InlineMath math="g(h(x))" />, dan <InlineMath math="f(g(h(x)))" />, dengan jalur masukan 1.</>}
+  labels={{
+    v0: <InlineMath math="1" />,
+    v1: <InlineMath math="\tfrac12" />,
+    v2: <InlineMath math="\tfrac{17}{4}" />,
+    v3: <InlineMath math="\tfrac{19}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ax0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 10 }, appearance: "reference" },
+      { id: "ax1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 10 }, appearance: "reference" },
+      { id: "ax2", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 10 }, appearance: "reference" },
+      { id: "ax3", kind: "segment", from: { x: 9, y: 0 }, to: { x: 9, y: 10 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 1 / 2 }, to: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 6, y: 17 / 4 }, to: { x: 9, y: 19 / 2 }, appearance: "primary" },
+      { id: "v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "point", at: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "v2", kind: "point", at: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "v3", kind: "point", at: { x: 9, y: 19 / 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 3, y: 1 / 2 }, placement: "below-right" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 17 / 4 }, placement: "right" },
+      { key: "v3", objectId: "v3", at: { x: 9, y: 19 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Elemen Identitas
@@ -124,3 +198,27 @@ Dengan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> dan <InlineMath math="f(x
 - <InlineMath math="(I_{\mathbb{R}}\circ f)(x)=I_{\mathbb{R}}(f(x))=2x+1" />
 
 Keduanya menghasilkan fungsi <InlineMath math="f(x)" /> kembali.
+
+Fungsi identitas <InlineMath math="I(x) = x" /> tidak mengubah apa pun, jadi mengomposisikan dengannya membiarkan <InlineMath math="f" /> tetap. Garis <InlineMath math="f(x) = 2x + 1" /> dan garis <InlineMath math="(f \circ I)(x) = f(x)" /> adalah garis yang sama, sedangkan <InlineMath math="I" /> sendiri adalah diagonal <InlineMath math="y = x" />.
+
+<MathVisual
+  title={<>Komposisi dengan identitas tidak mengubah apa pun</>}
+  description={<>Garis <InlineMath math="y = x" /> dari identitas dan garis <InlineMath math="y = 2x + 1" />, yang sekaligus <InlineMath math="f" /> dan <InlineMath math="f \circ I" />.</>}
+  labels={{
+    i: <InlineMath math="I(x) = x" />,
+    f: <InlineMath math="f = f \circ I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "i", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 1, y: 3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "i", objectId: "i", at: { x: 2.5, y: 2.5 }, placement: "below-right" },
+      { key: "f", objectId: "f", at: { x: 1.2, y: 3.4 }, placement: "left" },
+    ],
+  }}
+/>

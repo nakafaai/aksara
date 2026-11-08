@@ -4,7 +4,7 @@ export const metadata = {
     "Distinguish allowed inputs, the declared target set, and the outputs a function actually reaches through concrete examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -39,6 +39,37 @@ This rule takes the square root of its input. Testing <InlineMath math="-4" /> g
 Over the real numbers, a square root requires a nonnegative radicand. Therefore, only <InlineMath math="0" /> and positive inputs are allowed.
 
 So, the domain of the function <InlineMath math="g(x) = \sqrt{x}" /> is all real numbers greater than or equal to <InlineMath math="0" /> (<InlineMath math="x \ge 0" />).
+
+The domain decides which points the graph has. With <InlineMath math="f(x) = x^2" /> and the domain <InlineMath math="\{0, 1, 2, 3\}" />, the graph is only the four dots <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" /> and <InlineMath math="(3, 9)" /> on the faint parabola. Change the domain and the set of dots changes with it.
+
+<MathVisual
+  title={<>A graph made of four points</>}
+  description={<>The points of <InlineMath math="y = x^2" /> for the inputs 0, 1, 2 and 3, on the parabola drawn faintly behind them.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Codomain
 
@@ -94,6 +125,59 @@ Notice that this range (<InlineMath math="\{0, 1, 4, 9, ...\}" />) is a part (su
 
 Not all members of the codomain are part of the range.
 
+Here <InlineMath math="f(x) = x^2" /> maps the domain <InlineMath math="\{-2, -1, 0, 1, 2\}" /> into the codomain <InlineMath math="\{0, 1, 2, 3, 4\}" />. Every input has exactly one arrow, but only <InlineMath math="0" />, <InlineMath math="1" /> and <InlineMath math="4" /> receive any. Those values form the range, and <InlineMath math="2" /> and <InlineMath math="3" /> stay in the codomain without being reached.
+
+<MathVisual
+  title={<>Domain, codomain and range of x squared</>}
+  description={<>Arrows from each input to its square. The highlighted outputs 0, 1 and 4 form the range inside the codomain.</>}
+  labels={{
+    a0: <InlineMath math="-2" />,
+    a1: <InlineMath math="-1" />,
+    a2: <InlineMath math="0" />,
+    a3: <InlineMath math="1" />,
+    a4: <InlineMath math="2" />,
+    b0: <InlineMath math="0" />,
+    b1: <InlineMath math="1" />,
+    b2: <InlineMath math="2" />,
+    b3: <InlineMath math="3" />,
+    b4: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "m0", kind: "segment", from: { x: 0, y: -2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 0, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m4", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: -2 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "b1", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "b2", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "b3", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "b4", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 0, y: -2 }, placement: "left" },
+      { key: "a1", objectId: "a1", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "a2", objectId: "a2", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "a3", objectId: "a3", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a4", objectId: "a4", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "b0", objectId: "b0", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b1", objectId: "b1", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "b2", objectId: "b2", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "b3", objectId: "b3", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "b4", objectId: "b4", at: { x: 4, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Different Roles of Domain Codomain and Range
 
 The domain keeps invalid inputs, such as division by zero, out of the function. The codomain declares the target space, while the range identifies the values the function actually reaches.
@@ -101,8 +185,8 @@ The domain keeps invalid inputs, such as division by zero, out of the function. 
 To see the difference, restrict the square example to <InlineMath math="D=\{-2,-1,0,1,2\}" /> and choose <InlineMath math="K=\{0,1,2,3,4\}" />. **Each input has one arrow**, but some codomain members receive none.
 
 <Mermaid
-  title="Domain Codomain and Attained Outputs"
-  description="Arrows map five inputs to their squares. The range sits inside the codomain. Two codomain members are not reached."
+  title={<>Domain Codomain and Attained Outputs</>}
+  description={<>Arrows map five inputs to their squares. The range sits inside the codomain. Two codomain members are not reached.</>}
   chart={`flowchart LR
   subgraph D["Domain D"]
     d1["-2"]
@@ -128,6 +212,31 @@ To see the difference, restrict the square example to <InlineMath math="D=\{-2,-
 />
 
 The arrows reach <InlineMath math="0,1,4" />, so <InlineMath math="R=\{0,1,4\}" />. The values <InlineMath math="2" /> and <InlineMath math="3" /> remain in the codomain but are outside the range of this restricted example.
+
+On a graph the same ideas become intervals. With the domain <InlineMath math="-2 \le x \le 2" />, the parabola <InlineMath math="y = x^2" /> covers the heights from <InlineMath math="0" /> to <InlineMath math="4" />. That interval on the y-axis is the range, while a codomain such as all real numbers can be larger.
+
+<MathVisual
+  title={<>Domain and range on the graph</>}
+  description={<>The parabola <InlineMath math="y = x^2" /> over the domain from <InlineMath math="-2" /> to <InlineMath math="2" />, with the range from 0 to 4 marked on the y-axis.</>}
+  labels={{
+    dom: <>domain</>,
+    rng: <>range</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "dom", kind: "segment", from: { x: -2, y: 0 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "rng", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dom", objectId: "dom", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "rng", objectId: "rng", at: { x: 0, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Mathematical Relationship
 
