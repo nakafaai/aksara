@@ -21,6 +21,14 @@ For example, the letters of MAMA have <InlineMath math="n = 4" /> with two M and
 
 Give the identical letters temporary labels: <InlineMath math="M_1, M_2, A_1, A_2" />. With labels, the four letters are all different and can be arranged in <InlineMath math="4! = 24" /> ways. Once the labels are removed, the arrangements <InlineMath math="M_1 A_1 M_2 A_2" /> and <InlineMath math="M_2 A_1 M_1 A_2" /> become the same word, MAMA.
 
+<Mermaid
+  title="From 24 labelled arrangements to 6 words MAMA"
+  description="Each time a set of labels is removed, arrangements that differ only in the order of identical letters merge."
+  chart={`flowchart LR
+  A["24 labelled arrangements"] -->|"remove the M labels, divide by 2!"| B["12 arrangements"]
+  B -->|"remove the A labels, divide by 2!"| C["6 visible arrangements"]`}
+/>
+
 Each visible arrangement appears exactly <InlineMath math="2! \times 2! = 4" /> times among the 24 labelled ones: <InlineMath math="2!" /> ways to swap the two M and <InlineMath math="2!" /> ways to swap the two A. So the number of visible arrangements is <InlineMath math="\frac{24}{4} = 6" />. You can check this by listing every position of the letter M:
 
 | Positions of M | Visible arrangement |
@@ -81,6 +89,41 @@ When there are only two kinds of objects, **the formula equals a** [combination]
 
 For example, a shortest path that moves <InlineMath math="3" /> squares right and <InlineMath math="2" /> squares up is an arrangement of the steps RRRUU, where R means one square right and U one square up. So there are <InlineMath math="10" /> paths.
 
+<MathVisual
+  title="Two shortest paths across a 3 by 2 grid"
+  description={<>Every path from <InlineMath math="S" /> to <InlineMath math="F" /> uses three R steps and two U steps. The paths RRRUU and RURRU differ only in the order of their steps.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "column-1", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "column-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "column-3", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "row-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "row-1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "row-2", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "first-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "second-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "finish", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "finish", objectId: "finish", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "first-path", objectId: "first-path", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second-path", objectId: "second-path", at: { x: 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="S" />,
+    finish: <InlineMath math="F" />,
+    "first-path": <InlineMath math="\text{RRRUU}" />,
+    "second-path": <InlineMath math="\text{RURRU}" />,
+  }}
+/>
+
 ## How It Differs from Ordinary Permutations
 
 A [permutation of all the objects](/en/subjects/mathematics/combinatorics/permutation-of-n-items-from-n-objects) treats every object as different, so the number of arrangements is <InlineMath math="n!" />. Permutations with identical objects are the more general case: if every group holds a single object, all <InlineMath math="r_i! = 1" /> and the formula turns back into <InlineMath math="n!" />.
@@ -92,6 +135,21 @@ A [permutation of all the objects](/en/subjects/mathematics/combinatorics/permut
 | A, A, B, B (two identical pairs) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
 The more identical objects a group holds, **the larger the factorial in the denominator**, so the result gets smaller.
+
+<Mermaid
+  title="Choosing how to count the arrangements"
+  description="Questions about identical objects, fixed positions, and objects that must stand together decide the formula."
+  chart={`flowchart TD
+  A{"Any identical objects?"} -->|"no"| B["n!"]
+  A -->|"yes"| C["n! divided by the factorial of each group"]
+  C --> D{"Any fixed positions?"}
+  D -->|"yes"| E["Take those objects out, reduce n"]
+  D -->|"no"| F{"Must some objects stand together?"}
+  E --> F
+  F -->|"yes"| G["Join them as one block"]
+  F -->|"no"| H["Count with the formula"]
+  G --> H`}
+/>
 
 ## Common Mistakes
 

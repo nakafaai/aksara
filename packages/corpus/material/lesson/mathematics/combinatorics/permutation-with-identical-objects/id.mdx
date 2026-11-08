@@ -21,6 +21,14 @@ Contohnya, huruf kata MAMA punya <InlineMath math="n = 4" /> dengan dua M dan du
 
 Beri label sementara pada huruf yang sama: <InlineMath math="M_1, M_2, A_1, A_2" />. Dengan label, keempat huruf berbeda dan bisa disusun dalam <InlineMath math="4! = 24" /> cara. Saat label dihapus, susunan <InlineMath math="M_1 A_1 M_2 A_2" /> dan <InlineMath math="M_2 A_1 M_1 A_2" /> menjadi kata yang sama, yaitu MAMA.
 
+<Mermaid
+  title="Dari 24 susunan berlabel ke 6 kata MAMA"
+  description="Setiap penghapusan label menggabungkan susunan yang hanya berbeda pada urutan huruf yang sama."
+  chart={`flowchart LR
+  A["24 susunan berlabel"] -->|"hapus label M, bagi 2!"| B["12 susunan"]
+  B -->|"hapus label A, bagi 2!"| C["6 susunan terlihat"]`}
+/>
+
 Setiap susunan yang terlihat muncul tepat <InlineMath math="2! \times 2! = 4" /> kali di antara 24 susunan berlabel: <InlineMath math="2!" /> cara menukar kedua M dan <InlineMath math="2!" /> cara menukar kedua A. Jadi banyak susunan yang terlihat adalah <InlineMath math="\frac{24}{4} = 6" />. Kamu bisa memeriksanya dengan mendaftar semua posisi huruf M:
 
 | Posisi huruf M | Susunan yang terlihat |
@@ -81,6 +89,41 @@ Jika hanya ada dua jenis objek, **rumusnya sama dengan** [kombinasi](/id/materi/
 
 Contohnya, jalur terpendek yang bergerak <InlineMath math="3" /> petak ke kanan dan <InlineMath math="2" /> petak ke atas adalah susunan langkah KKKAA, dengan K berarti satu petak ke kanan dan A satu petak ke atas. Jadi ada <InlineMath math="10" /> jalur.
 
+<MathVisual
+  title="Dua jalur terpendek pada petak 3 kali 2"
+  description={<>Setiap jalur dari <InlineMath math="S" /> ke <InlineMath math="F" /> memakai tiga langkah K dan dua langkah A. Jalur KKKAA dan KAKKA hanya berbeda urutan langkahnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "column-1", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "column-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "column-3", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "row-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "row-1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "row-2", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "first-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "second-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "finish", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "finish", objectId: "finish", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "first-path", objectId: "first-path", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second-path", objectId: "second-path", at: { x: 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="S" />,
+    finish: <InlineMath math="F" />,
+    "first-path": <InlineMath math="\text{KKKAA}" />,
+    "second-path": <InlineMath math="\text{KAKKA}" />,
+  }}
+/>
+
 ## Bedanya dengan Permutasi Biasa
 
 [Permutasi semua objek](/id/materi/matematika/kombinatorik/permutasi-semua-objek) menganggap setiap objek berbeda, sehingga banyak susunannya <InlineMath math="n!" />. Permutasi dengan unsur yang sama adalah kasus yang lebih umum: jika setiap kelompok hanya berisi satu objek, semua <InlineMath math="r_i! = 1" /> dan rumusnya kembali menjadi <InlineMath math="n!" />.
@@ -92,6 +135,21 @@ Contohnya, jalur terpendek yang bergerak <InlineMath math="3" /> petak ke kanan 
 | A, A, B, B (dua pasang sama) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
 Makin banyak objek yang sama dalam satu kelompok, **makin besar faktorial penyebutnya**, sehingga hasilnya makin kecil.
+
+<Mermaid
+  title="Memilih cara menghitung susunan"
+  description="Pertanyaan tentang objek yang sama, posisi yang dikunci, dan objek yang harus berdampingan menentukan rumusnya."
+  chart={`flowchart TD
+  A{"Ada objek yang sama?"} -->|"tidak"| B["n!"]
+  A -->|"ya"| C["n! dibagi faktorial setiap kelompok"]
+  C --> D{"Ada posisi yang dikunci?"}
+  D -->|"ya"| E["Keluarkan objek itu, kurangi n"]
+  D -->|"tidak"| F{"Ada objek yang harus berdampingan?"}
+  E --> F
+  F -->|"ya"| G["Satukan sebagai satu blok"]
+  F -->|"tidak"| H["Hitung dengan rumus"]
+  G --> H`}
+/>
 
 ## Kesalahan yang Sering Terjadi
 

@@ -21,6 +21,14 @@ Zum Beispiel hat das Wort MAMA <InlineMath math="n = 4" /> Buchstaben mit zweima
 
 Versieh gleiche Buchstaben vorübergehend mit Nummern: <InlineMath math="M_1, M_2, A_1, A_2" />. Mit Nummern sind alle vier Buchstaben verschieden und lassen sich auf <InlineMath math="4! = 24" /> Arten anordnen. Ohne Nummern werden <InlineMath math="M_1 A_1 M_2 A_2" /> und <InlineMath math="M_2 A_1 M_1 A_2" /> zum selben Wort MAMA.
 
+<Mermaid
+  title="Von 24 nummerierten Anordnungen zu 6 Wörtern MAMA"
+  description="Jedes Entfernen von Nummern legt Anordnungen zusammen, die sich nur in der Reihenfolge gleicher Buchstaben unterscheiden."
+  chart={`flowchart LR
+  A["24 nummerierte Anordnungen"] -->|"Nummern der M entfernen, durch 2! teilen"| B["12 Anordnungen"]
+  B -->|"Nummern der A entfernen, durch 2! teilen"| C["6 sichtbare Anordnungen"]`}
+/>
+
 Jede sichtbare Anordnung kommt unter den 24 nummerierten genau <InlineMath math="2! \times 2! = 4" />-mal vor: <InlineMath math="2!" /> Arten, die beiden M zu tauschen, und <InlineMath math="2!" /> Arten, die beiden A zu tauschen. Also gibt es <InlineMath math="\frac{24}{4} = 6" /> sichtbare Anordnungen. Du kannst das prüfen, indem du alle Plätze für M aufschreibst:
 
 | Plätze der M | Sichtbare Anordnung |
@@ -81,6 +89,41 @@ Gibt es nur zwei Sorten von Objekten, **ist die Formel gleich einer** [Kombinati
 
 Zum Beispiel ist ein kürzester Weg, der <InlineMath math="3" /> Kästchen nach rechts und <InlineMath math="2" /> Kästchen nach oben führt, eine Anordnung der Schritte RRROO, wobei R einen Schritt nach rechts und O einen Schritt nach oben bedeutet. Es gibt also <InlineMath math="10" /> Wege.
 
+<MathVisual
+  title="Zwei kürzeste Wege über ein 3 mal 2 Gitter"
+  description={<>Jeder Weg von <InlineMath math="S" /> nach <InlineMath math="F" /> nutzt drei Schritte R und zwei Schritte O. Die Wege RRROO und RORRO unterscheiden sich nur in der Reihenfolge der Schritte.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "column-1", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "column-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "column-3", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "row-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "row-1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "row-2", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "first-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "second-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "finish", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "finish", objectId: "finish", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "first-path", objectId: "first-path", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second-path", objectId: "second-path", at: { x: 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="S" />,
+    finish: <InlineMath math="F" />,
+    "first-path": <InlineMath math="\text{RRROO}" />,
+    "second-path": <InlineMath math="\text{RORRO}" />,
+  }}
+/>
+
 ## Der Unterschied zur gewöhnlichen Permutation
 
 Eine [Permutation aller Objekte](/de/faecher/mathematik/kombinatorik/permutation-aller-objekte) behandelt jedes Objekt als verschieden, also gibt es <InlineMath math="n!" /> Anordnungen. Die Permutation mit Wiederholung ist der allgemeinere Fall: Enthält jede Gruppe nur ein Objekt, ist jedes <InlineMath math="r_i! = 1" />, und die Formel wird wieder zu <InlineMath math="n!" />.
@@ -92,6 +135,21 @@ Eine [Permutation aller Objekte](/de/faecher/mathematik/kombinatorik/permutation
 | A, A, B, B (zwei gleiche Paare) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
 Je mehr gleiche Objekte eine Gruppe enthält, **desto größer ist die Fakultät im Nenner**, und desto kleiner wird das Ergebnis.
+
+<Mermaid
+  title="Die passende Zählweise wählen"
+  description="Fragen nach gleichen Objekten, festen Plätzen und Objekten, die zusammenstehen müssen, bestimmen die Formel."
+  chart={`flowchart TD
+  A{"Gibt es gleiche Objekte?"} -->|"nein"| B["n!"]
+  A -->|"ja"| C["n! geteilt durch die Fakultät jeder Gruppe"]
+  C --> D{"Gibt es feste Plätze?"}
+  D -->|"ja"| E["Diese Objekte herausnehmen, n verringern"]
+  D -->|"nein"| F{"Müssen Objekte zusammenstehen?"}
+  E --> F
+  F -->|"ja"| G["Sie zu einem Block zusammenfassen"]
+  F -->|"nein"| H["Mit der Formel zählen"]
+  G --> H`}
+/>
 
 ## Typische Fehler
 
