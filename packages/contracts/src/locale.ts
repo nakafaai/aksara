@@ -117,17 +117,20 @@ export function artifactLocaleCode(artifactLocale: ArtifactLocale) {
 }
 
 /** Checks a nonempty locale subset for uniqueness and canonical order. */
-function hasCanonicalActiveAppLocales(locales: readonly AppLocale[]) {
-  return hasCanonicalOrder(APP_LOCALE_CODES, locales);
+function hasCanonicalActiveAppLocales(locales: readonly ActiveAppLocale[]) {
+  return hasCanonicalOrder(ACTIVE_APP_LOCALE_CODES, locales);
 }
 
-/** Nonempty unique active locale subset in canonical contract order. */
+/**
+ * Nonempty unique active locale subset in canonical contract order. A declared
+ * locale joins it only once the contract makes that locale active.
+ */
 export const ActiveAppLocaleListSchema = Schema.NonEmptyArray(
-  AppLocaleSchema
+  ActiveAppLocaleSchema
 ).pipe(
   Schema.check(
     Schema.makeFilter(hasCanonicalActiveAppLocales, {
-      message: `Active app locales must be unique and follow ${Arr.join(APP_LOCALE_CODES, ", ")} order.`,
+      message: `Active app locales must be unique and follow ${Arr.join(ACTIVE_APP_LOCALE_CODES, ", ")} order.`,
     })
   )
 );
