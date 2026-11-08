@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "hoaks",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
+            "Tampilan situs yang meyakinkan sudah cukup untuk memastikan sebuah berita benar.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Sistem pencarian dapat dibuat sederhana bagi administrasi tanpa memiskinkan informasi bagi publik.",
+            "Judul yang memancing emosi mendorong orang membagikan berita sebelum membacanya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
+            "Membaca secara lateral selalu lebih lambat daripada membaca berita sampai habis.",
         },
         {
-          correct: false,
-          label: "Nama administrasi ditetapkan sebagai indeks utama.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
+            "Berita lama dapat disebarkan ulang seolah-olah peristiwa baru.",
         },
       ],
     },
