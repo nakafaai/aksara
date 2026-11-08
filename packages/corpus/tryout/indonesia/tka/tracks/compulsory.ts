@@ -3,8 +3,8 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Compulsory Mathematics sets. */
 export const tkaCompulsoryMathematicsTrack = {
+  group: "senior-high-school",
   key: "compulsory-mathematics",
-  kind: "subject",
   order: 1,
   profile: {
     names: {
