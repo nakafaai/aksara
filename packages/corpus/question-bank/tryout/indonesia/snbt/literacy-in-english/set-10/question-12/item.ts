@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Between day 30 and day 90, the no-reminder group lost more than half of its remaining users.",
+            "Between day 30 and day 90, the no-reminder group lost more than half of the users it still had on day 30.",
         },
         {
           column: 1,
