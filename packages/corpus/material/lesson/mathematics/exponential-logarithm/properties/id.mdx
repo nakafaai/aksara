@@ -4,7 +4,7 @@ export const metadata = {
     "Gunakan tujuh sifat eksponen dengan syarat domain yang tepat, tabel pola bilangan pokok dua, serta contoh pangkat bulat dan rasional.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -27,6 +27,16 @@ Tabel berikut menunjukkan pola berulang. Turun satu baris berarti **menambah pan
 
 Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua dengan tiga faktor dua lainnya. Hasilnya memiliki delapan faktor dua, sehingga <InlineMath math="2^5\cdot2^3=2^8" />.
 
+Setiap langkah naik dikalikan <InlineMath math="2" />, jadi batangnya berlipat dua: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Pangkat menghitung berapa faktor <InlineMath math="2" /> yang dikalikan, karena itu <InlineMath math="2^0 = 1" /> memulai daftar tanpa faktor sama sekali.
+
+<BarChart
+  title={<>Perpangkatan dua</>}
+  description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai <InlineMath math="6" />.</>}
+  yAxisLabel="Nilai"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Tujuh Sifat Eksponen
 
 | Bentuk dalam soal | Sifat | Syarat yang digunakan |
@@ -41,6 +51,34 @@ Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua 
 
 Bilangan pokok tetap sama ketika bilangan pokok yang sama dikalikan atau dibagi. Hanya **pangkatnya yang digabungkan**. Sebaliknya, pangkat di luar tanda kurung bekerja pada seluruh bentuk di dalam tanda kurung.
 
+Mengalikan perpangkatan berbasis sama menjumlahkan pangkatnya. Pada garis pangkat, <InlineMath math="2^3" /> adalah langkah sepanjang <InlineMath math="3" /> dan <InlineMath math="2^2" /> langkah sepanjang <InlineMath math="2" />. Sambungkan ujung ke ujung, maka kamu mendarat di pangkat <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title={<>Pangkat dijumlahkan saat perpangkatan dikalikan</>}
+  description={<>Dua langkah pada garis pangkat, sepanjang 3 dan 2, berakhir di pangkat 5 untuk <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Syarat Penggunaan Sifat Eksponen
 
 - Bilangan pokok nol dapat digunakan pada beberapa pangkat positif, tetapi tidak pada pangkat negatif karena <InlineMath math="0^{-1}" /> memerlukan pembagian dengan nol. Karena itu, sifat pangkat bulat menggunakan <InlineMath math="a\neq0" /> sebagai satu syarat yang konsisten.
@@ -48,6 +86,16 @@ Bilangan pokok tetap sama ketika bilangan pokok yang sama dikalikan atau dibagi.
 - Untuk pangkat rasional, penggunaan <InlineMath math="a>0" /> membuat setiap akar dan pangkat real terdefinisi tanpa ambiguitas. Beberapa contoh khusus dengan bilangan pokok negatif memang bernilai real, tetapi satu aturan tanpa batasan tidak dapat mencakup semua pangkat rasional.
 
 Periksa **syarat bilangan pokok dan pangkat** sebelum memilih sifat yang akan digunakan.
+
+Pangkat nol dan pangkat negatif meneruskan pola yang sama. Setiap langkah ke kiri membagi dua nilainya, jadi <InlineMath math="2^0 = 1" />, <InlineMath math="2^{-1} = \frac12" />, dan <InlineMath math="2^{-3} = \frac18" />. Nilainya makin kecil tetapi tetap positif, karena masing-masing adalah <InlineMath math="1" /> dibagi perpangkatan positif dari <InlineMath math="2" />: <InlineMath math="2^{-n} = \frac{1}{2^n}" />.
+
+<BarChart
+  title={<>Perpangkatan dua dari <InlineMath math="2^{-3}" /> sampai <InlineMath math="2^3" /></>}
+  description={<>Batang <InlineMath math="2^k" /> untuk <InlineMath math="k = -3" /> sampai <InlineMath math="3" />: setiap langkah ke kanan menggandakan nilainya, dan <InlineMath math="2^0 = 1" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 0, 1, 2, 3].map((k) => ({ name: String(k), value: 2 ** k }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Bentuk Operasi Menentukan Sifat Eksponen
 

@@ -15,12 +15,17 @@ import {
 } from "#contracts/math/base";
 import { planeBoundsIssues } from "#contracts/math/bounds";
 import { PlaneCurveObjectSchemas } from "#contracts/math/curve";
-import { FormulaParameterSchema } from "#contracts/math/formula/field";
+import {
+  FormulaParameterSchema,
+  FormulaReadoutSchema,
+  PlaneFormulaPointSchema,
+} from "#contracts/math/formula/field";
 import {
   formulaScopeIssues,
   parameterScope,
   planeFormulaFields,
 } from "#contracts/math/formula/scope";
+import { sliderFormulaIssues } from "#contracts/math/formula/slider";
 import {
   MATH_LINE_MESSAGE,
   MATH_POLYLINE_MESSAGE,
@@ -223,9 +228,14 @@ export const PlaneMathViewSchema = Schema.Struct({
 });
 export type PlaneMathView = typeof PlaneMathViewSchema.Type;
 
-/** One coordinate anchor resolved against a separate rich-label map. */
+/**
+ * One coordinate anchor resolved against a separate rich-label map. Its
+ * position is exact, or placed by formulas of the sliders so it follows them.
+ */
 export const PlaneLabelAnchorSchema = Schema.Struct(
-  mathLabelAnchorFields(PlanePointSchema)
+  mathLabelAnchorFields(
+    Schema.Union([PlanePointSchema, PlaneFormulaPointSchema])
+  )
 );
 export type PlaneLabelAnchor = typeof PlaneLabelAnchorSchema.Type;
 
@@ -235,14 +245,23 @@ export const PlaneMathVisualSchema = Schema.Struct({
   labels: Schema.optionalKey(Schema.Array(PlaneLabelAnchorSchema)),
   objects: Schema.NonEmptyArray(PlaneMathObjectSchema),
   parameters: Schema.optionalKey(Schema.Array(FormulaParameterSchema)),
+  readouts: Schema.optionalKey(Schema.Array(FormulaReadoutSchema)),
   space: Schema.Literal("plane"),
   view: PlaneMathViewSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(
-      ({ frame, labels = [], objects, parameters = [], view }) => [
+      ({
+        frame,
+        labels = [],
+        objects,
+        parameters = [],
+        readouts = [],
+        view,
+      }) => [
         ...mathVisualIdentityIssues(objects, labels),
         ...formulaScopeIssues(objects, planeFormulaFields, parameters),
+        ...sliderFormulaIssues(labels, readouts, parameters),
         ...planeBoundsIssues(
           frame,
           objects,
