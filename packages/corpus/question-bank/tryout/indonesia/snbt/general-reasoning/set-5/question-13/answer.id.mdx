@@ -1,16 +1,15 @@
-Karena **angka boleh berulang**, pilihan pada satu posisi tidak mengurangi pilihan posisi lain. Hitung pilihan yang memenuhi aturan masing-masing posisi.
+Pernyataan itu berbentuk "setiap kios memenuhi <InlineMath math="p \lor q" />", dengan <InlineMath math="p" />: menerima pembayaran nontunai dan <InlineMath math="q" />: memasang daftar harga. Negasinya dibuat dalam **dua langkah**.
 
-| Posisi | Pilihan yang memenuhi | Banyak pilihan |
-| :---: | :--- | :---: |
-| Pertama | `Z`, `I`, `V`, `A` | <InlineMath math="4" /> |
-| Kedua | <InlineMath math="1,3,9" /> | <InlineMath math="3" /> |
-| Ketiga | <InlineMath math="3,5,7" /> | <InlineMath math="3" /> |
-| Keempat | <InlineMath math="2,3,4" /> | <InlineMath math="3" /> |
+- Negasi dari "setiap" adalah "**ada**".
+- Negasi dari <InlineMath math="p \lor q" /> adalah <InlineMath math="\lnot p \land \lnot q" />, yaitu tidak menerima nontunai **dan** tidak memasang daftar harga.
 
-Dengan prinsip perkalian,
+Jadi, negasinya adalah "Ada kios di Pasar Baru yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga."
 
-<BlockMath math="4\times3\times3\times3=108." />
+Pilihan lain keliru:
 
-Jadi, terdapat <InlineMath math="108" /> kata sandi berbeda yang memenuhi aturan.
+- "Setiap kios" tidak menegasikan kuantor. Pernyataan itu jauh lebih kuat daripada negasi yang dibutuhkan.
+- Kata *atau* setelah negasi keliru. Negasi dari <InlineMath math="p \lor q" /> memakai *dan*.
+- "Tidak ada kios yang ..." berarti semua kios tidak memenuhi keduanya, sama kuatnya dengan pilihan pertama.
+- Kios yang menerima nontunai masih memenuhi pernyataan awal, jadi tidak membantahnya.
 
-Contohnya, `Z333` sah: <InlineMath math="3" /> adalah faktor dari <InlineMath math="9" />, merupakan prima ganjil, dan termasuk pilihan posisi terakhir. Bilangan <InlineMath math="9" /> boleh berada di posisi kedua, tetapi tidak di posisi ketiga karena bukan bilangan prima.
+Jadi, negasinya adalah ada kios di Pasar Baru yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga.

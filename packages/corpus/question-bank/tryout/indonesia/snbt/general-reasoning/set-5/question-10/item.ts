@@ -1,32 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "coding-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Sebagian roti Pabrik X tidak mengandung karbohidrat maupun energi",
+          label: "ku, ne, dan ri",
         },
         {
           correct: false,
-          label: "Semua roti Pabrik X menggunakan tepung terigu protein tinggi",
-        },
-        {
-          correct: false,
-          label: "Sebagian roti berprotein tinggi tidak mengandung karbohidrat",
+          label: "ta, wa, dan ri",
         },
         {
           correct: true,
-          label:
-            "Sebagian roti Pabrik X menggunakan tepung terigu protein rendah",
+          label: "ku, wa, dan ri",
         },
         {
           correct: false,
-          label:
-            "Tidak ada roti Pabrik X yang menggunakan tepung protein tinggi",
+          label: "ku, wa, dan bi",
+        },
+        {
+          correct: false,
+          label: "lo, wa, dan ri",
         },
       ],
     },

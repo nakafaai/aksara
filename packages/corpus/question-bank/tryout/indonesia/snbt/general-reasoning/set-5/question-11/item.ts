@@ -1,29 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$15$$",
+          column: 1,
+          label:
+            "Tidak ada kurir zona utara yang mengantar paket dengan berat di atas $$20$$ kg.",
         },
         {
-          correct: false,
-          label: "$$25$$",
+          column: 1,
+          label: "Sebagian pekerja sif malam memakai motor listrik.",
         },
         {
-          correct: false,
-          label: "$$30$$",
+          column: 2,
+          label: "Semua pemakai motor listrik adalah kurir zona utara.",
         },
         {
-          correct: false,
-          label: "$$40$$",
-        },
-        {
-          correct: false,
-          label: "$$60$$",
+          column: 2,
+          label:
+            "Sebagian kurir yang bekerja pada sif malam mengantar paket dengan berat di atas $$20$$ kg.",
         },
       ],
     },

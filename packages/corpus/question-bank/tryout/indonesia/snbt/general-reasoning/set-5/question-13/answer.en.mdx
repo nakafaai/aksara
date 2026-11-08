@@ -1,16 +1,15 @@
-Because **digits may repeat**, choosing a digit for one position does not reduce the choices at another. Count the choices allowed by each position’s rule.
+The statement has the form "every stall satisfies <InlineMath math="p \lor q" />", with <InlineMath math="p" />: accepts cashless payment and <InlineMath math="q" />: displays a price list. Negate it in **two steps**.
 
-| Position | Valid choices | Count |
-| :---: | :--- | :---: |
-| First | `Z`, `I`, `V`, `A` | <InlineMath math="4" /> |
-| Second | <InlineMath math="1,3,9" /> | <InlineMath math="3" /> |
-| Third | <InlineMath math="3,5,7" /> | <InlineMath math="3" /> |
-| Fourth | <InlineMath math="2,3,4" /> | <InlineMath math="3" /> |
+- The negation of "every" is "**there is**".
+- The negation of <InlineMath math="p \lor q" /> is <InlineMath math="\lnot p \land \lnot q" />: does not accept cashless payment **and** does not display a price list.
 
-By the multiplication principle,
+So the negation is "There is a stall in Pasar Baru that does not accept cashless payment and does not display a price list" (*Ada kios ... yang tidak menerima pembayaran nontunai dan tidak memasang daftar harga*).
 
-<BlockMath math="4\times3\times3\times3=108." />
+The other options are wrong:
 
-Therefore, <InlineMath math="108" /> different passwords satisfy the rules.
+- "Every stall" does not negate the quantifier. That statement is much stronger than the negation needed.
+- *Atau* (or) after the negation is wrong. The negation of <InlineMath math="p \lor q" /> uses *dan* (and).
+- "No stall ..." means every stall fails both, as strong as the first option.
+- A stall that accepts cashless payment still satisfies the original statement, so it does not refute it.
 
-For example, `Z333` is valid: <InlineMath math="3" /> divides <InlineMath math="9" />, is an odd prime, and is allowed in the last position. The digit <InlineMath math="9" /> is allowed in the second position but not the third because it is not prime.
+So the negation is that there is a stall in Pasar Baru that does not accept cashless payment and does not display a price list.
