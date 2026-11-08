@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "cake-recipe",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$35\\text{ km}$$",
+          column: 2,
+          label:
+            "Biaya bahan untuk membuat 24 potong kue adalah $$\\text{Rp}25{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$41\\text{ km}$$",
+          column: 1,
+          label: "Untuk membuat 30 potong kue diperlukan 8 butir telur.",
         },
         {
-          correct: false,
-          label: "$$45\\text{ km}$$",
+          column: 1,
+          label:
+            "Perbandingan berat tepung dan berat gula dalam resep adalah $$5:3$$.",
         },
         {
-          correct: true,
-          label: "$$31\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$48\\text{ km}$$",
+          column: 2,
+          label:
+            "Dengan 1 kg tepung, dan bahan lain tersedia cukup, dapat dibuat paling banyak 40 potong kue.",
         },
       ],
     },

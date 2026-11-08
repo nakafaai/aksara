@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "cake-recipe",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\text{Rp }15{.}000{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }15{.}600{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }17{.}200{.}000{,}00$$",
-        },
-        {
-          correct: true,
-          label: "$$\\text{Rp }16{.}000{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }18{.}600{.}000{,}00$$",
-        },
+        { correct: false, label: "$$18$$" },
+        { correct: false, label: "$$36$$" },
+        { correct: true, label: "$$37$$" },
+        { correct: false, label: "$$40$$" },
+        { correct: false, label: "$$48$$" },
       ],
     },
   },

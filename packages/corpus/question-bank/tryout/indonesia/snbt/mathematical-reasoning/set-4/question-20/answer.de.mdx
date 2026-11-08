@@ -1,32 +1,20 @@
-Wir bezeichnen den Preis eines Stücks von Artikel <InlineMath math="x" /> mit <InlineMath math="x" /> und den Preis eines Stücks von Artikel <InlineMath math="y" /> mit <InlineMath math="y" />. Aus den beiden Einkäufen entsteht dieses **Gleichungssystem**:
+Hat Rafi <InlineMath math="k" /> Lose, dann bedeutet eine Wahrscheinlichkeit von mindestens <InlineMath math="\tfrac12" /> für mindestens einen Preis, dass **die Wahrscheinlichkeit für keinen Preis höchstens <InlineMath math="\tfrac12" /> ist**.
 
-<BlockMath math="4x + 2y = 4000" />
+# Die Bedingung aufstellen
 
-<BlockMath math="10x + 4y = 9500" />
+Kein Preis heißt, dass **keines der Gewinnlose Rafi gehört**, beide also aus den <InlineMath math="20-k" /> anderen Losen stammen.
 
-Wir multiplizieren die erste Gleichung mit <InlineMath math="2" />. Dadurch haben beide Gleichungen denselben Koeffizienten vor <InlineMath math="y" />, sodass wir <InlineMath math="y" /> eliminieren können.
- Dazu ziehen wir die verdoppelte erste Gleichung von der zweiten ab.
+<BlockMath math="\frac{\binom{20-k}{2}}{190}\le\frac12\;\Longleftrightarrow\;(20-k)(19-k)\le190" />
 
-<BlockMath math="8x + 4y = 8000" />
+# Werte von k prüfen
 
-<BlockMath math="10x + 4y = 9500" />
+| <InlineMath math="k" /> | <InlineMath math="(20-k)(19-k)" /> | Erfüllt? |
+| :---: | :---: | :---: |
+| 5 | <InlineMath math="15\cdot14=210" /> | nein |
+| 6 | <InlineMath math="14\cdot13=182" /> | ja |
 
-<BlockMath math="2x = 1500" />
+Mit 6 Losen ist die Wahrscheinlichkeit für mindestens einen Preis <InlineMath math="1-\tfrac{91}{190}=\tfrac{99}{190}" />, **knapp über der Hälfte**. Mit 5 Losen ist sie <InlineMath math="1-\tfrac{105}{190}=\tfrac{85}{190}" />, noch unter der Hälfte.
 
-<BlockMath math="x = 750" />
+Der Wert 10 nimmt an, dass Rafi die Hälfte aller Lose braucht. Die Werte 4 und 5 reichen nicht.
 
-Nun setzen wir <InlineMath math="x" /> in die erste Gleichung ein:
-
-<BlockMath math="4(750) + 2y = 4000" />
-
-<BlockMath math="3000 + 2y = 4000" />
-
-<BlockMath math="2y = 1000" />
-
-<BlockMath math="y = 500" />
-
-Japri zahlt <InlineMath math="x + y" />.
-
-<BlockMath math="x + y = 750 + 500 = 1250" />
-
-Somit muss Japri <InlineMath math="\text{Rp }1{.}250{,}00" /> bezahlen.
+Rafi braucht also mindestens **6 Lose**.

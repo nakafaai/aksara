@@ -1,17 +1,21 @@
-Because each couple must ride together and seating order does not count, treat **each couple as one unit**. The cars are distinct, so switching a group between car <InlineMath math="A" /> and car <InlineMath math="B" /> produces a different arrangement.
+The number of passengers on a section is **the number on board when the bus leaves the start of that section**. Compute it for all five sections.
 
-The capacity of each car is <InlineMath math="6" /> passengers, which is equivalent to <InlineMath math="3" /> married couples. Therefore, the number of couples in a single car cannot exceed <InlineMath math="3" />. The possible distributions of couples for car <InlineMath math="A" /> and car <InlineMath math="B" /> that satisfy the capacity constraint are:
-1. Car <InlineMath math="A" /> carries <InlineMath math="3" /> couples, car <InlineMath math="B" /> carries <InlineMath math="2" /> couples.
-2. Car <InlineMath math="A" /> carries <InlineMath math="2" /> couples, car <InlineMath math="B" /> carries <InlineMath math="3" /> couples.
+# Passengers on each section
 
-For the first case, we choose <InlineMath math="3" /> couples out of the <InlineMath math="5" /> available to go into car <InlineMath math="A" />. The remaining couples automatically go to car <InlineMath math="B" />.
+Each section's load is **computed in order from the first terminal**.
 
-<BlockMath math="\begin{aligned}C(5,3) &=\frac{5!}{3!(5-3)!} \\ &=\frac{5 \times 4 \times 3!}{3! \times 2 \times 1} \\ &=10\end{aligned}" />
+| Section | Passengers |
+| :---: | :---: |
+| first terminal to Stop A | 25 |
+| Stop A to Stop B | <InlineMath math="25+12-8=29" /> |
+| Stop B to Stop C | <InlineMath math="29+6-10=25" /> |
+| Stop C to Stop D | <InlineMath math="25+9-7=27" /> |
+| Stop D to last terminal | <InlineMath math="27+14-6=35" /> |
 
-For the second case, we choose <InlineMath math="2" /> couples out of the <InlineMath math="5" /> available to go into car <InlineMath math="A" />.
+# The busiest section
 
-<BlockMath math="\begin{aligned}C(5,2) &=\frac{5!}{2!(5-2)!} \\ &=\frac{5 \times 4 \times 3!}{2 \times 1 \times 3!} \\ &=10\end{aligned}" />
+The largest value is 35, on the section from Stop D to the last terminal. Stop D has the most boarders, but what decides is **the running balance of boarding and alighting since the start**.
 
-The total number of ways to arrange the passengers is the sum of both possibilities.
+The section from Stop A to Stop B was high at 29, but it fell again after 10 passengers left at Stop B.
 
-<BlockMath math="10 + 10 = 20 \text{ ways}" />
+So the bus is fullest on the section **from Stop D to the last terminal**.
