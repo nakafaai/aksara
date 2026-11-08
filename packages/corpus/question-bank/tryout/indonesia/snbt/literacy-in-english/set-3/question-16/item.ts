@@ -13,11 +13,13 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "It was the oldest known example of Egyptian writing.",
+          label:
+            "It was the oldest known example of Egyptian writing ever found.",
         },
         {
           correct: false,
-          label: "It explained in Greek how hieroglyphs should be pronounced.",
+          label:
+            "It explained in Greek exactly how each hieroglyph should be pronounced.",
         },
         {
           correct: false,
@@ -27,12 +29,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "It carried the same decree in hieroglyphs and in Greek, which could be read.",
+            "It gave the same decree in hieroglyphs and in readable Greek.",
         },
         {
           correct: false,
           label:
-            "It was found inside a temple that Champollion had already studied.",
+            "It was found inside a temple that Champollion had studied for years.",
         },
       ],
     },

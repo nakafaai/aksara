@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "regional-language",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni. Keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
+            "Teks 1 mengusulkan satu kewajiban yang tegas, sedangkan Teks 2 meminta pelajaran disesuaikan dengan bahasa ibu murid.",
         },
         {
           correct: false,
           label:
-            "Denah tiga periode sudah cukup menjelaskan pengalaman seluruh penghuni karena perubahan ruang menentukan fungsi bangunan.",
+            "Teks 1 ingin menyelamatkan bahasa daerah, sedangkan Teks 2 menganggap bahasa daerah tidak perlu diselamatkan.",
         },
         {
           correct: false,
           label:
-            "Wawancara harus diutamakan karena mantan penghuni mengalami bangunan secara langsung, sedangkan denah hanya bersifat teknis.",
+            "Teks 1 menolak bahasa Indonesia di sekolah, sedangkan Teks 2 mendukung bahasa Indonesia sebagai satu-satunya bahasa.",
         },
         {
           correct: false,
           label:
-            "Kesamaan fungsi pada beberapa periode membuktikan bahwa pengalaman penghuni tidak berubah ketika denah direnovasi.",
+            "Teks 1 membahas sekolah di kota, sedangkan Teks 2 membahas sekolah di desa.",
         },
         {
           correct: false,
           label:
-            "Perbedaan antara denah dan wawancara menunjukkan bahwa salah satu sumber keliru dan harus dikeluarkan.",
+            "Teks 1 menyalahkan sekolah, sedangkan Teks 2 menyalahkan orang tua murid.",
         },
       ],
     },

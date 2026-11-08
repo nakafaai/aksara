@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "regional-language",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Istilah *triangulasi* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Teks 1 menyebut kebiasaan orang tua sebagai penyebab berkurangnya penutur muda.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Definisi *triangulasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Teks 2 menolak semua bentuk pelajaran bahasa daerah di sekolah.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Definisi itu menyamakan *triangulasi* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+            "Menurut Teks 2, murid di kelasnya berbicara dalam sembilan bahasa yang berbeda di rumah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penyebutan *triangulasi* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Teks 1 mengusulkan agar pelajaran bahasa daerah hanya diberikan di SMA.",
         },
       ],
     },

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bahasa Melayu hanya dipakai oleh para pemuda yang hadir dalam kongres.",
+            "Bahasa Melayu sudah lama dipakai dalam surat kabar milik para pemuda.",
         },
       ],
     },

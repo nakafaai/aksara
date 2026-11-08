@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bekas tambak itu segera kehilangan seluruh karbon yang tersisa di tanahnya.",
+            "Karbon di tanah bekas tambak itu kemungkinan lebih cepat terlepas ke atmosfer.",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bekas tambak itu tidak dapat pulih tanpa penanaman ribuan bibit baru.",
+            "Bekas tambak itu mungkin baru pulih jika ditanami bibit dalam jumlah besar.",
         },
       ],
     },

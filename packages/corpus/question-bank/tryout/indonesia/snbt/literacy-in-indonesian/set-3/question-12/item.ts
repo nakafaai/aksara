@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Mak Inah menolak naik bus koridor karena tarifnya lebih mahal.",
+            "Mak Inah menyebut tarif yang mahal sebagai alasannya menolak bus koridor.",
         },
         {
           column: 2,

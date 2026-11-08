@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Meragukan bahwa mangrove benar-benar berperan dalam menahan abrasi pantai.",
+            "Lebih mengutamakan simpanan karbon daripada fungsi mangrove sebagai penahan abrasi.",
         },
       ],
     },

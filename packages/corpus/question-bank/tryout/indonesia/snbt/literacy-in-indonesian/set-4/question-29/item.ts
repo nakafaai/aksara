@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "tin-roof",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Istilah *foreshadowing* memastikan sejak awal bahwa tim pasti membatalkan seluruh rencana pengecatan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu menjadikan setiap warna yang disebut dua kali sebagai foreshadowing meskipun tidak berkaitan dengan penemuan berikutnya.",
-        },
-        {
           correct: true,
           label:
-            "Definisi *foreshadowing* menjelaskan cara serpihan kecil pada awal cerita menyiapkan penemuan garis pintu biru dan bukti arsip pada bagian berikutnya.",
+            "Pandai memanfaatkan keadaan sulit tanpa menyia-nyiakan apa pun.",
+        },
+        {
+          correct: false,
+          label: "Marah karena atap rumahnya bocor di banyak tempat sekaligus.",
         },
         {
           correct: false,
           label:
-            "Penyebutan *foreshadowing* membuat setiap dugaan pembaca benar meskipun tidak didukung pengulangan warna atau foto arsip.",
+            "Lelah dan ingin segera pindah ke rumah lain yang lebih layak.",
+        },
+        {
+          correct: false,
+          label: "Gembira karena hujan membuat halaman rumahnya tergenang air.",
         },
         {
           correct: false,
           label:
-            "Definisi tersebut hanya menerangkan usia bangunan sehingga keputusan Galih untuk menunda pengecatan tidak relevan.",
+            "Tidak peduli pada kerusakan rumah setelah hujan akhirnya reda.",
         },
       ],
     },

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Young thought sound signs spelled only foreign names, while Champollion showed they spelled Egyptian names too.",
+            "Young limited sound signs to foreign names, but Champollion found them in Egyptian names too.",
         },
         {
           correct: false,

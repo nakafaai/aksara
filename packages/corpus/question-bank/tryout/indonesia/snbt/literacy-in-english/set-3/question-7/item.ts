@@ -24,12 +24,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Voluntary trials are illegal in sectors such as healthcare and transport.",
+            "Voluntary trials are not permitted in sectors such as healthcare and transport.",
         },
         {
           correct: false,
           label:
-            "Companies that volunteer always report false results to look successful.",
+            "Companies that volunteer tend to exaggerate their results to look successful.",
         },
         {
           correct: false,

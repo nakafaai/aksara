@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membuktikan bahwa pungutan itu membuat minuman manis hilang dari pasaran Inggris.",
+            "Menunjukkan bahwa pungutan itu terutama bekerja dengan membuat konsumen membeli lebih sedikit.",
         },
         {
           correct: false,

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Health was not given as a reason by any group of respondents.",
+            "Health was not given as a main reason by any of the age groups surveyed.",
         },
         {
           correct: false,
@@ -24,17 +24,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The survey included too few people to say anything about health.",
+            "The survey included too few people to say anything reliable about health.",
         },
         {
           correct: false,
           label:
-            "Environmental concern was the main reason for most respondents.",
+            "Environmental concern was the main reason given by most respondents who cut meat.",
         },
         {
           correct: true,
           label:
-            "The group most likely to cut meat cited cost, and prices rose that year.",
+            "The group with the highest rate of cutting meat named cost, as prices rose.",
         },
       ],
     },

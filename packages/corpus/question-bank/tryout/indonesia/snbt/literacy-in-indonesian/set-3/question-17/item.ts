@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua siswa berhenti membeli gorengan setelah label merah dipasang di kantin.",
+            "Konsumsi gorengan siswa kemungkinan besar justru meningkat sejak label dipasang.",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Konsumsi gorengan siswa naik lebih dari dua kali lipat sejak label dipasang.",
+            "Sebagian besar siswa kini membeli gorengan di warung, bukan di kantin.",
         },
       ],
     },

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bahasa Indonesia hanya dipakai dalam kongres dan tidak dalam kegiatan lain.",
+            "Para pemuda belum sepakat bahwa bahasa Indonesia perlu menjadi bahasa bersama.",
         },
       ],
     },

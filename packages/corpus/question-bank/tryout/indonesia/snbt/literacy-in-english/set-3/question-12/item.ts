@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The youngest age group had the highest share of people who said they ate less meat.",
+            "The youngest age group had the highest percentage of its members saying they ate less meat.",
         },
         {
           column: 2,
@@ -28,8 +28,7 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label:
-            "The survey shows that 31.5 percent of adults became vegetarian.",
+          label: "The survey asked respondents how much less meat they ate.",
         },
       ],
     },

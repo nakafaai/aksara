@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "It is now the best-supported explanation, though not yet settled.",
+            "Its support is stronger than ever, but the question is not settled.",
         },
         {
           correct: false,

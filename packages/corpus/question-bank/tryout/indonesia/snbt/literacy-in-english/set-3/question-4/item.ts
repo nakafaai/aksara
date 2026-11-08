@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Noise too weak to affect a magnet disrupted the birds, and blocking it helped.",
+            "It showed that weak noise, harmless to a magnet, disrupted the birds until blocked.",
         },
         {
           correct: false,

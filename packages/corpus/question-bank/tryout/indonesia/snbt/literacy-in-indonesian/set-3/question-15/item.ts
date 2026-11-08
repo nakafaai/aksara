@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Penurunan penjualan makanan berlabel merah lebih besar daripada kenaikan penjualan makanan berlabel hijau.",
+            "Jumlah porsi makanan merah yang berkurang lebih banyak daripada jumlah porsi makanan hijau yang bertambah.",
         },
         {
           column: 2,

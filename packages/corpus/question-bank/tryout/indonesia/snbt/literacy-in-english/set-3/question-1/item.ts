@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Birds kept in cages tried to fly south even though they could not see the sky.",
+            "Birds in cages tried to head in the seasonal direction without seeing the sky.",
         },
         {
           correct: true,

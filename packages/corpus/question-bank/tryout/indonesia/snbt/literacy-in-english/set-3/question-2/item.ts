@@ -13,11 +13,11 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "hidden behind.",
+          label: "hidden away behind.",
         },
         {
           correct: false,
-          label: "replaced by.",
+          label: "replaced entirely by.",
         },
         {
           correct: true,
@@ -25,11 +25,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "reflected off.",
+          label: "reflected back off.",
         },
         {
           correct: false,
-          label: "blurred into.",
+          label: "blurred together into.",
         },
       ],
     },

@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menjelaskan bahwa petugas itu sedang menghitung jumlah penumpang di halte.",
+            "Menunjukkan bahwa petugas itu ikut membantu mengangkat keranjang penumpang.",
         },
         {
           correct: false,

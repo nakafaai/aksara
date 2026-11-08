@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "It let him guess how Egyptian words had sounded and test his readings.",
+            "It gave him a sense of spoken Egyptian against which to check readings.",
         },
       ],
     },

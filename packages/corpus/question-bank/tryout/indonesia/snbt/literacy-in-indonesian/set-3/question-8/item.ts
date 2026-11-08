@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Penerimaan cukai sebaiknya dikembalikan dalam bentuk yang langsung dirasakan masyarakat.",
+            "Penerimaan cukai dapat dipakai untuk meringankan beban warga berpenghasilan rendah.",
         },
         {
           column: 2,

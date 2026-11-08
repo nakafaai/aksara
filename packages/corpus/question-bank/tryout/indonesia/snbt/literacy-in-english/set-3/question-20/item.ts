@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Reading hieroglyphs required abandoning the idea that they were purely mystical.",
+            "Hieroglyphs were read once scholars saw a mixed working script, not mystical symbols.",
         },
       ],
     },

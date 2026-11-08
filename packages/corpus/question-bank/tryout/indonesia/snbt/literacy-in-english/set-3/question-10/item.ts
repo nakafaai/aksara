@@ -14,12 +14,11 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A law requiring all bus companies to close every Friday for staff rest",
+            "A law requiring bus companies to close on Fridays for staff rest",
         },
         {
           correct: false,
-          label:
-            "A rule that all companies must move to four ten-hour days from next year",
+          label: "A rule moving companies to four ten-hour days from next year",
         },
         {
           correct: true,
@@ -29,7 +28,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A ban on any trial that does not report positive results to the public",
+            "A ban on trials that fail to report positive results to the public",
         },
         {
           correct: false,
