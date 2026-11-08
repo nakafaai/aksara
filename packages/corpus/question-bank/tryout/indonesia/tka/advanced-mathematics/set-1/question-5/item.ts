@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "algebra",
     topic: "matrices",
   },
-  stimulus: "furniture-workshop",
+  stimulus: "hydroponic-farm",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$0$$ kursi dan $$30$$ meja",
+          label: "$$40$$ rak selada dan $$0$$ rak pakcoy",
         },
         {
           correct: false,
-          label: "$$0$$ kursi dan $$40$$ meja",
+          label: "$$20$$ rak selada dan $$30$$ rak pakcoy",
         },
         {
           correct: false,
-          label: "$$20$$ kursi dan $$30$$ meja",
+          label: "$$0$$ rak selada dan $$40$$ rak pakcoy",
         },
         {
           correct: false,
-          label: "$$30$$ kursi dan $$20$$ meja",
+          label: "$$30$$ rak selada dan $$20$$ rak pakcoy",
         },
         {
           correct: false,
-          label: "$$60$$ kursi dan $$0$$ meja",
+          label: "$$80$$ rak selada dan $$0$$ rak pakcoy",
         },
       ],
     },

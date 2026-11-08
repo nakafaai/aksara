@@ -1,76 +1,67 @@
-This is a **linear programming** problem: the profit must be as large as possible while cutting hours and painting hours are limited. Let <InlineMath math="x" /> be the number of chairs and <InlineMath math="y" /> the number of tables made in one month.
-
-Each limit on working hours becomes one inequality. A chair uses <InlineMath math="2" /> cutting hours and a table uses <InlineMath math="3" />, so the total cutting time is <InlineMath math="2x+3y" />. In the same way, the total painting time is <InlineMath math="x+3y" />. The numbers of pieces cannot be negative either.
+Let <InlineMath math="x" /> be the number of lettuce racks and <InlineMath math="y" /> the number of pak choi racks. The nutrient solution and the care hours give **two limits**, plus the condition that the numbers of racks are not negative. The care-hours limit can be divided by <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le120 \\
-x+3y&\le90 \\
+3x+2y&\le120 \\
+2x+4y\le160\iff x+2y&\le80 \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The profit to maximize is the objective function <InlineMath math="f(x,y)=150{,}000x+250{,}000y" /> rupiah. The maximum of a linear function on the feasible region is always reached at one of its **corner points**, so find those corner points.
-
-The intersection of the lines <InlineMath math="2x+3y=120" /> and <InlineMath math="x+3y=90" /> comes from elimination. Subtract the second equation from the first, then substitute the value of <InlineMath math="x" />.
+The corner where both limits are used up at once comes from subtracting the two equations.
 
 <BlockMath math="\begin{aligned}
-(2x+3y)-(x+3y)&=120-90 \\
-x&=30 \\
-30+3y&=90 \\
-y&=20
+(3x+2y)-(x+2y)&=120-80 \\
+2x&=40\ \Rightarrow\ x=20,\quad y=\frac{80-20}{2}=30
 \end{aligned}" />
 
-The line <InlineMath math="2x+3y=120" /> meets the <InlineMath math="x" />-axis at <InlineMath math="(60,0)" />, and the line <InlineMath math="x+3y=90" /> meets the <InlineMath math="y" />-axis at <InlineMath math="(0,30)" />. The point <InlineMath math="(0,40)" /> on the cutting line is not feasible, because its painting needs <InlineMath math="3\cdot40=120" /> hours, more than <InlineMath math="90" /> hours.
-
 <MathVisual
-  title="Feasible region of the workshop"
-  description={<>The feasible region is bounded by the coordinate axes, the line <InlineMath math="2x+3y=120" />, and the line <InlineMath math="x+3y=90" />. Its corner points are <InlineMath math="(0,0)" />, <InlineMath math="(60,0)" />, <InlineMath math="(30,20)" />, and <InlineMath math="(0,30)" />.</>}
+  title="Feasible region"
+  description={<>The feasible region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. It lies below the line <InlineMath math="3x+2y=120" /> and below the line <InlineMath math="x+2y=80" />.</>}
   labels={{
-    "line-cutting": <InlineMath math="2x+3y=120" />,
-    "line-painting": <InlineMath math="x+3y=90" />,
-    "corner-x": <InlineMath math="(60,0)" />,
-    "corner-middle": <InlineMath math="(30,20)" />,
-    "corner-y": <InlineMath math="(0,30)" />,
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 70 },
-      y: { min: -5, max: 45 },
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 30, y: 20 }, { x: 0, y: 30 }] },
-      { id: "cutting", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 60, y: 0 } },
-      { id: "painting", kind: "segment", appearance: "primary", from: { x: 0, y: 30 }, to: { x: 60, y: 10 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
-      { id: "corner-middle-point", kind: "point", appearance: "answer", at: { x: 30, y: 20 } },
-      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 30 } },
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
     ],
     labels: [
-      { key: "line-cutting", objectId: "cutting", at: { x: 15, y: 30 }, placement: "above-right" },
-      { key: "line-painting", objectId: "painting", at: { x: 45, y: 15 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 60, y: 0 }, placement: "below" },
-      { key: "corner-middle", objectId: "corner-middle-point", at: { x: 30, y: 20 }, placement: "above-right" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
     ],
   }}
 />
 
-Compute the profit at every corner point.
+Substitute the corners into the profit <InlineMath math="P=180{,}000x+200{,}000y" />.
 
-| Corner point | Chairs | Tables | Profit |
-| --- | ---: | ---: | ---: |
-| <InlineMath math="(0,0)" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="\text{Rp}0" /> |
-| <InlineMath math="(60,0)" /> | <InlineMath math="60" /> | <InlineMath math="0" /> | <InlineMath math="\text{Rp}9{,}000{,}000" /> |
-| <InlineMath math="(30,20)" /> | <InlineMath math="30" /> | <InlineMath math="20" /> | <InlineMath math="\text{Rp}9{,}500{,}000" /> |
-| <InlineMath math="(0,30)" /> | <InlineMath math="0" /> | <InlineMath math="30" /> | <InlineMath math="\text{Rp}7{,}500{,}000" /> |
+<BlockMath math="\begin{aligned}
+P(40,0)&=7{,}200{,}000 \\
+P(0,40)&=8{,}000{,}000 \\
+P(20,30)&=3{,}600{,}000+6{,}000{,}000=9{,}600{,}000
+\end{aligned}" />
 
-The largest profit occurs at <InlineMath math="(30,20)" />: <InlineMath math="150{,}000\cdot30+250{,}000\cdot20=4{,}500{,}000+5{,}000{,}000=9{,}500{,}000" />. This point uses exactly <InlineMath math="2\cdot30+3\cdot20=120" /> cutting hours and <InlineMath math="30+3\cdot20=90" /> painting hours, so both limits hold.
+As a check, at <InlineMath math="(20,30)" /> exactly <InlineMath math="60+60=120" /> litres of nutrient solution and <InlineMath math="40+120=160" /> care hours are used.
 
-So the maximum monthly profit of the workshop is <InlineMath math="\text{Rp}9{,}500{,}000" />, reached by making <InlineMath math="30" /> chairs and <InlineMath math="20" /> tables.
+So the largest profit is <InlineMath math="\text{Rp}9{,}600{,}000.00" />.
 
-- <InlineMath math="\text{Rp}7{,}500{,}000" /> is the profit at the corner point <InlineMath math="(0,30)" />, not the largest value.
-- <InlineMath math="\text{Rp}9{,}000{,}000" /> is the profit at the corner point <InlineMath math="(60,0)" />. The intersection of the two lines was left out of the check.
-- <InlineMath math="\text{Rp}10{,}000{,}000" /> is the profit for <InlineMath math="40" /> tables, the point <InlineMath math="(0,40)" />. That point satisfies only the cutting limit and breaks the painting limit.
-- <InlineMath math="\text{Rp}10{,}500{,}000" /> comes from swapping the profits of a chair and a table at <InlineMath math="(30,20)" />, that is, <InlineMath math="250{,}000\cdot30+150{,}000\cdot20" />.
+- <InlineMath math="\text{Rp}7{,}200{,}000.00" /> belongs to the corner <InlineMath math="(40,0)" />, lettuce only.
+- <InlineMath math="\text{Rp}8{,}000{,}000.00" /> belongs to the corner <InlineMath math="(0,40)" />, pak choi only.
+- <InlineMath math="\text{Rp}11{,}200{,}000.00" /> belongs to <InlineMath math="(40,20)" />. That would need <InlineMath math="120+40=160" /> litres of nutrient solution, more than the <InlineMath math="120" /> litres available.
+- <InlineMath math="\text{Rp}12{,}000{,}000.00" /> belongs to <InlineMath math="(0,60)" /> and respects only the nutrient limit. It would need <InlineMath math="240" /> care hours.

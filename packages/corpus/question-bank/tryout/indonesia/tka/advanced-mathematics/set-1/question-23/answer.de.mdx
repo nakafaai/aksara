@@ -1,22 +1,19 @@
-Für sehr große <InlineMath math="x" /> wachsen <InlineMath math="\sqrt{4x^2+6x-1}" /> und <InlineMath math="2x" /> beide unbeschränkt, der Ausdruck hat also die Form <InlineMath math="\infty-\infty" />. Diese Form ist unbestimmt. Schreibe <InlineMath math="-2x+1" /> als <InlineMath math="-(2x-1)" /> und **erweitere mit dem konjugierten Term**, damit aus der Differenz zweier großer Größen ein einziger Bruch wird.
-
-Für <InlineMath math="x>\frac12" /> ist <InlineMath math="2x-1" /> positiv, und es gilt <InlineMath math="(2x-1)^2=4x^2-4x+1" />.
+Beide Wurzeln wachsen ins Unendliche, und die Form <InlineMath math="\infty-\infty" /> sagt noch nichts über den Grenzwert. Multipliziere deshalb **mit dem konjugierten Ausdruck**. Dann wird aus der Differenz der Wurzeln die Differenz der Radikanden.
 
 <BlockMath math="\begin{aligned}
-\sqrt{4x^2+6x-1}-(2x-1)&=\frac{(4x^2+6x-1)-(2x-1)^2}{\sqrt{4x^2+6x-1}+(2x-1)} \\
-&=\frac{4x^2+6x-1-4x^2+4x-1}{\sqrt{4x^2+6x-1}+2x-1} \\
-&=\frac{10x-2}{\sqrt{4x^2+6x-1}+2x-1}
+\sqrt{x^2+5x}-\sqrt{x^2-3x}&=\frac{(x^2+5x)-(x^2-3x)}{\sqrt{x^2+5x}+\sqrt{x^2-3x}} \\
+&=\frac{8x}{\sqrt{x^2+5x}+\sqrt{x^2-3x}}
 \end{aligned}" />
 
-Teile jetzt Zähler und Nenner durch <InlineMath math="x" />. Wegen <InlineMath math="x>0" /> gilt <InlineMath math="\frac{\sqrt{4x^2+6x-1}}{x}=\sqrt{4+\frac6x-\frac{1}{x^2}}" />. Jeder Term der Form <InlineMath math="\frac{c}{x}" /> oder <InlineMath math="\frac{c}{x^2}" /> geht gegen <InlineMath math="0" />.
+Teile Zähler und Nenner durch <InlineMath math="x" />. Für <InlineMath math="x>0" /> ist <InlineMath math="\frac{\sqrt{x^2+5x}}{x}=\sqrt{1+\frac5x}" />.
 
-<BlockMath math="\lim_{x\to\infty}\frac{10-\frac2x}{\sqrt{4+\frac6x-\frac{1}{x^2}}+2-\frac1x}=\frac{10}{\sqrt4+2}=\frac{10}{4}=\frac52" />
+<BlockMath math="\lim_{x\to\infty}\frac{8}{\sqrt{1+\frac5x}+\sqrt{1-\frac3x}}=\frac{8}{1+1}=4" />
 
-Das passt zum Muster <InlineMath math="\lim_{x\to\infty}\left(\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}\right)=\frac{b-q}{2\sqrt a}" />. Der Term <InlineMath math="2x-1" /> ist für <InlineMath math="x>\frac12" /> gleich <InlineMath math="\sqrt{4x^2-4x+1}" />, also liefert das Muster <InlineMath math="\frac{6-(-4)}{2\sqrt4}=\frac{10}{4}=\frac52" />.
+Zur Kontrolle: Für <InlineMath math="x=10{.}000" /> ergibt der Ausdruck etwa <InlineMath math="10{.}002{,}50-9{.}998{,}50=4{,}00" />.
 
-Der Grenzwert beträgt also <InlineMath math="\frac52" />.
+Der Grenzwert ist also <InlineMath math="4" />.
 
-- <InlineMath math="0" /> entsteht, wenn <InlineMath math="\infty-\infty" /> als null gelesen wird. Beide Größen sind groß, aber ihre Differenz nähert sich einer bestimmten Zahl.
-- <InlineMath math="\frac12" /> entsteht, wenn der Summand <InlineMath math="+1" /> ein negatives Vorzeichen bekommt, sodass das Ergebnis <InlineMath math="\frac32-1" /> lautet.
-- <InlineMath math="\frac32" /> ist <InlineMath math="\lim_{x\to\infty}\left(\sqrt{4x^2+6x-1}-2x\right)=\frac{6}{2\cdot2}" />. Der Summand <InlineMath math="+1" /> fehlt.
-- <InlineMath math="\infty" /> entsteht aus der Annahme, der Wurzelterm überwiege immer. Sein führender Teil <InlineMath math="\sqrt{4x^2}=2x" /> wird aber genau von <InlineMath math="-2x" /> aufgehoben.
+- <InlineMath math="0" /> behandelt <InlineMath math="\infty-\infty" /> wie eine gewöhnliche Differenz gleicher Zahlen.
+- <InlineMath math="1" /> rechnet im Zähler <InlineMath math="5x-3x=2x" />. Beim Abziehen von <InlineMath math="x^2-3x" /> wird aber <InlineMath math="+3x" /> addiert.
+- <InlineMath math="\frac52" /> ersetzt <InlineMath math="\sqrt{x^2-3x}" /> durch <InlineMath math="x" />. Dabei geht der Beitrag <InlineMath math="\frac32" /> der zweiten Wurzel verloren.
+- <InlineMath math="8" /> vergisst, dass der Nenner gegen <InlineMath math="2" /> strebt, nicht gegen <InlineMath math="1" />.

@@ -1,19 +1,20 @@
-Alle vier Aussagen prüfen Eigenschaften der **Matrizenmultiplikation**: die Reihenfolge der Faktoren, die Determinante eines Produkts und die Transponierte eines Produkts. Berechne zuerst <InlineMath math="AB" /> und <InlineMath math="BA" />, denn beide brauchst du mehrmals. Jedes Element eines Produkts ist die Summe der Produkte aus einer Zeile der linken Matrix und einer Spalte der rechten Matrix.
+Die vier Aussagen prüfen **Rechenregeln für <InlineMath math="2\times2" />-Matrizen**: Determinante eines Vielfachen, Summe, Inverse und Determinante eines Produkts. Berechne zuerst die beiden Determinanten, denn sie werden mehrfach gebraucht.
 
 <BlockMath math="\begin{aligned}
-AB&=\begin{pmatrix} 1\cdot1+2\cdot3 & 1\cdot0+2\cdot1 \\ 0\cdot1+1\cdot3 & 0\cdot0+1\cdot1 \end{pmatrix}=\begin{pmatrix} 7 & 2 \\ 3 & 1 \end{pmatrix} \\
-BA&=\begin{pmatrix} 1\cdot1+0\cdot0 & 1\cdot2+0\cdot1 \\ 3\cdot1+1\cdot0 & 3\cdot2+1\cdot1 \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}
+\det A&=2\cdot3-(-1)\cdot1=7 \\
+\det B&=1\cdot0-2\cdot(-1)=2
 \end{aligned}" />
 
-1. Die Aussage <InlineMath math="AB=BA" /> ist falsch. Das Element in der ersten Zeile und ersten Spalte von <InlineMath math="AB" /> ist <InlineMath math="7" />, das entsprechende Element von <InlineMath math="BA" /> ist <InlineMath math="1" />. Die Matrizenmultiplikation ist im Allgemeinen nicht kommutativ.
-2. Die Aussage <InlineMath math="\det(AB)=1" /> ist wahr. Aus der Matrix <InlineMath math="AB" /> oben folgt <InlineMath math="\det(AB)=7\cdot1-2\cdot3=1" />. Das passt zum Determinantenproduktsatz <InlineMath math="\det(AB)=\det A\cdot\det B=1\cdot1=1" />.
-3. Die Aussage <InlineMath math="(AB)^T=A^TB^T" /> ist falsch. Beim Transponieren eines Produkts **kehrt sich die Reihenfolge um**: <InlineMath math="(AB)^T=B^TA^T" />. Die Rechnung unten zeigt, dass <InlineMath math="A^TB^T" /> tatsächlich von <InlineMath math="(AB)^T" /> abweicht.
-4. Die Aussage <InlineMath math="A^2=\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}" /> ist wahr, wie die Rechnung <InlineMath math="A^2=AA" /> unten zeigt.
+1. Die Aussage <InlineMath math="\det(2A)=14" /> ist falsch. Der Faktor <InlineMath math="2" /> steckt in beiden Zeilen, deshalb gilt <InlineMath math="\det(2A)=2^2\det A=4\cdot7=28" />.
+2. Die Aussage über <InlineMath math="A+B" /> ist richtig, denn Matrizen werden elementweise addiert.
+3. Die Aussage über <InlineMath math="A^{-1}" /> ist falsch. Bei der Inversen werden die Elemente der Hauptdiagonale vertauscht und die der Nebendiagonale nur mit einem Minuszeichen versehen.
+4. Die Aussage <InlineMath math="\det(AB)=14" /> ist richtig, denn <InlineMath math="\det(AB)=\det A\cdot\det B=7\cdot2=14" />.
+
+Die Inverse und das Produkt zur Kontrolle:
 
 <BlockMath math="\begin{aligned}
-(AB)^T&=\begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix} \\
-A^TB^T&=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}=\begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix} \\
-A^2&=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}=\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}
+A^{-1}&=\frac17\begin{pmatrix} 3 & 1 \\ -1 & 2 \end{pmatrix} \\
+AB&=\begin{pmatrix} 2\cdot1+(-1)\cdot(-1) & 2\cdot2+(-1)\cdot0 \\ 1\cdot1+3\cdot(-1) & 1\cdot2+3\cdot0 \end{pmatrix}=\begin{pmatrix} 3 & 4 \\ -2 & 2 \end{pmatrix},\qquad \det(AB)=6+8=14
 \end{aligned}" />
 
-Wahr sind also die Aussagen über <InlineMath math="\det(AB)" /> und über <InlineMath math="A^2" />, falsch sind die Aussagen <InlineMath math="AB=BA" /> und <InlineMath math="(AB)^T=A^TB^T" />.
+Richtig sind also die Aussagen über <InlineMath math="A+B" /> und <InlineMath math="\det(AB)" />, falsch sind die Aussagen über <InlineMath math="\det(2A)" /> und <InlineMath math="A^{-1}" />.

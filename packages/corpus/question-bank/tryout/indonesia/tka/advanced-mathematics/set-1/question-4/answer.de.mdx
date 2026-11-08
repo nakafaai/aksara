@@ -1,76 +1,67 @@
-Das ist eine Aufgabe der **linearen Optimierung** (*program linear*): Der Gewinn soll möglichst groß werden, während die Stunden für das Zuschneiden und für das Lackieren begrenzt sind. Es sei <InlineMath math="x" /> die Anzahl der Stühle und <InlineMath math="y" /> die Anzahl der Tische, die in einem Monat gebaut werden.
-
-Jede Grenze für die Arbeitsstunden wird zu einer Ungleichung. Ein Stuhl braucht <InlineMath math="2" /> Stunden Zuschnitt und ein Tisch <InlineMath math="3" /> Stunden, also beträgt die gesamte Zuschnittzeit <InlineMath math="2x+3y" />. Genauso beträgt die gesamte Lackierzeit <InlineMath math="x+3y" />. Außerdem können die Stückzahlen nicht negativ sein.
+Es seien <InlineMath math="x" /> die Zahl der Salatregale und <InlineMath math="y" /> die Zahl der Pak-Choi-Regale. Nährlösung und Pflegestunden liefern **zwei Grenzen**, dazu kommt, dass die Zahl der Regale nicht negativ ist. Die Grenze für die Pflegestunden lässt sich durch <InlineMath math="2" /> teilen.
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le120 \\
-x+3y&\le90 \\
+3x+2y&\le120 \\
+2x+4y\le160\iff x+2y&\le80 \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-Zu maximieren ist die Zielfunktion <InlineMath math="f(x,y)=150{.}000x+250{.}000y" /> in Rupiah. Das Maximum einer linearen Funktion über dem zulässigen Bereich liegt immer in einem **Eckpunkt**, deshalb bestimmst du die Eckpunkte.
-
-Den Schnittpunkt der Geraden <InlineMath math="2x+3y=120" /> und <InlineMath math="x+3y=90" /> findest du mit dem Additionsverfahren. Subtrahiere die zweite Gleichung von der ersten und setze dann den Wert von <InlineMath math="x" /> ein.
+Die Ecke, in der beide Grenzen gleichzeitig ausgeschöpft sind, erhältst du, indem du die beiden Gleichungen voneinander abziehst.
 
 <BlockMath math="\begin{aligned}
-(2x+3y)-(x+3y)&=120-90 \\
-x&=30 \\
-30+3y&=90 \\
-y&=20
+(3x+2y)-(x+2y)&=120-80 \\
+2x&=40\ \Rightarrow\ x=20,\quad y=\frac{80-20}{2}=30
 \end{aligned}" />
 
-Die Gerade <InlineMath math="2x+3y=120" /> schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(60,0)" />, die Gerade <InlineMath math="x+3y=90" /> schneidet die <InlineMath math="y" />-Achse in <InlineMath math="(0,30)" />. Der Punkt <InlineMath math="(0,40)" /> auf der Zuschnittgeraden ist nicht zulässig, denn sein Lackieren bräuchte <InlineMath math="3\cdot40=120" /> Stunden, also mehr als <InlineMath math="90" /> Stunden.
-
 <MathVisual
-  title="Zulässiger Bereich der Werkstatt"
-  description={<>Der zulässige Bereich wird von den Koordinatenachsen, der Geraden <InlineMath math="2x+3y=120" /> und der Geraden <InlineMath math="x+3y=90" /> begrenzt. Seine Eckpunkte sind <InlineMath math="(0,0)" />, <InlineMath math="(60,0)" />, <InlineMath math="(30,20)" /> und <InlineMath math="(0,30)" />.</>}
+  title="Zulässiger Bereich"
+  description={<>Der zulässige Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> und <InlineMath math="(0,40)" />. Er liegt unter der Geraden <InlineMath math="3x+2y=120" /> und unter der Geraden <InlineMath math="x+2y=80" />.</>}
   labels={{
-    "line-cutting": <InlineMath math="2x+3y=120" />,
-    "line-painting": <InlineMath math="x+3y=90" />,
-    "corner-x": <InlineMath math="(60,0)" />,
-    "corner-middle": <InlineMath math="(30,20)" />,
-    "corner-y": <InlineMath math="(0,30)" />,
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 70 },
-      y: { min: -5, max: 45 },
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 30, y: 20 }, { x: 0, y: 30 }] },
-      { id: "cutting", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 60, y: 0 } },
-      { id: "painting", kind: "segment", appearance: "primary", from: { x: 0, y: 30 }, to: { x: 60, y: 10 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
-      { id: "corner-middle-point", kind: "point", appearance: "answer", at: { x: 30, y: 20 } },
-      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 30 } },
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
     ],
     labels: [
-      { key: "line-cutting", objectId: "cutting", at: { x: 15, y: 30 }, placement: "above-right" },
-      { key: "line-painting", objectId: "painting", at: { x: 45, y: 15 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 60, y: 0 }, placement: "below" },
-      { key: "corner-middle", objectId: "corner-middle-point", at: { x: 30, y: 20 }, placement: "above-right" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
     ],
   }}
 />
 
-Berechne den Gewinn in jedem Eckpunkt.
+Setze die Ecken in den Gewinn <InlineMath math="G=180{.}000x+200{.}000y" /> ein.
 
-| Eckpunkt | Stühle | Tische | Gewinn |
-| --- | ---: | ---: | ---: |
-| <InlineMath math="(0,0)" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="\text{Rp}0{,}00" /> |
-| <InlineMath math="(60,0)" /> | <InlineMath math="60" /> | <InlineMath math="0" /> | <InlineMath math="\text{Rp}9{.}000{.}000{,}00" /> |
-| <InlineMath math="(30,20)" /> | <InlineMath math="30" /> | <InlineMath math="20" /> | <InlineMath math="\text{Rp}9{.}500{.}000{,}00" /> |
-| <InlineMath math="(0,30)" /> | <InlineMath math="0" /> | <InlineMath math="30" /> | <InlineMath math="\text{Rp}7{.}500{.}000{,}00" /> |
+<BlockMath math="\begin{aligned}
+G(40,0)&=7{.}200{.}000 \\
+G(0,40)&=8{.}000{.}000 \\
+G(20,30)&=3{.}600{.}000+6{.}000{.}000=9{.}600{.}000
+\end{aligned}" />
 
-Der größte Gewinn ergibt sich in <InlineMath math="(30,20)" />: <InlineMath math="150{.}000\cdot30+250{.}000\cdot20=4{.}500{.}000+5{.}000{.}000=9{.}500{.}000" />. Dieser Punkt braucht genau <InlineMath math="2\cdot30+3\cdot20=120" /> Stunden Zuschnitt und <InlineMath math="30+3\cdot20=90" /> Stunden Lackieren, beide Grenzen werden also eingehalten.
+Zur Kontrolle: Bei <InlineMath math="(20,30)" /> werden genau <InlineMath math="60+60=120" /> Liter Nährlösung und <InlineMath math="40+120=160" /> Pflegestunden gebraucht.
 
-Der größte Monatsgewinn der Werkstatt beträgt also <InlineMath math="\text{Rp}9{.}500{.}000{,}00" />, wenn sie <InlineMath math="30" /> Stühle und <InlineMath math="20" /> Tische baut.
+Der höchste Gewinn beträgt also <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.
 
-- <InlineMath math="\text{Rp}7{.}500{.}000{,}00" /> ist der Gewinn im Eckpunkt <InlineMath math="(0,30)" />, nicht der größte Wert.
-- <InlineMath math="\text{Rp}9{.}000{.}000{,}00" /> ist der Gewinn im Eckpunkt <InlineMath math="(60,0)" />. Der Schnittpunkt der beiden Geraden wurde nicht geprüft.
-- <InlineMath math="\text{Rp}10{.}000{.}000{,}00" /> ist der Gewinn für <InlineMath math="40" /> Tische, also den Punkt <InlineMath math="(0,40)" />. Dieser Punkt hält nur die Zuschnittgrenze ein und verletzt die Lackiergrenze.
-- <InlineMath math="\text{Rp}10{.}500{.}000{,}00" /> entsteht, wenn die Gewinne für Stuhl und Tisch im Punkt <InlineMath math="(30,20)" /> vertauscht werden, also <InlineMath math="250{.}000\cdot30+150{.}000\cdot20" />.
+- <InlineMath math="\text{Rp}7{.}200{.}000{,}00" /> gehört zur Ecke <InlineMath math="(40,0)" />, also nur Salat.
+- <InlineMath math="\text{Rp}8{.}000{.}000{,}00" /> gehört zur Ecke <InlineMath math="(0,40)" />, also nur Pak Choi.
+- <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> gehört zu <InlineMath math="(40,20)" />. Dafür wären <InlineMath math="120+40=160" /> Liter Nährlösung nötig, mehr als die <InlineMath math="120" /> vorhandenen Liter.
+- <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> gehört zu <InlineMath math="(0,60)" /> und beachtet nur die Nährlösung. Dafür wären <InlineMath math="240" /> Pflegestunden nötig.

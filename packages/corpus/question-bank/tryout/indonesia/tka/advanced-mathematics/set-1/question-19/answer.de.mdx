@@ -1,56 +1,62 @@
-Jeder Punkt <InlineMath math="(x,y)" /> der Geraden <InlineMath math="g" /> wird auf einen Punkt <InlineMath math="(x',y')" /> abgebildet. Die Bildgleichung ist die Bedingung, die <InlineMath math="(x',y')" /> erfüllt. Die bekannte Bedingung ist in <InlineMath math="x" /> und <InlineMath math="y" /> geschrieben, also **drückst du <InlineMath math="x" /> und <InlineMath math="y" /> durch <InlineMath math="x'" /> und <InlineMath math="y'" /> aus** und setzt ein.
-
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x+2y \\ y \end{pmatrix}" />
-
-Aus der zweiten Zeile folgt <InlineMath math="y=y'" />, aus der ersten <InlineMath math="x=x'-2y=x'-2y'" />. Das entspricht der Multiplikation mit <InlineMath math="M^{-1}=\begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}" />. Setze in die Gleichung von <InlineMath math="g" /> ein.
+Die Bildgerade besteht aus den Punkten <InlineMath math="(x',y')" />, deren **Urbild auf <InlineMath math="g" /> liegt**. Drücke deshalb <InlineMath math="x" /> und <InlineMath math="y" /> mit der inversen Matrix durch <InlineMath math="x'" /> und <InlineMath math="y'" /> aus.
 
 <BlockMath math="\begin{aligned}
-2(x'-2y')-y'+4&=0 \\
-2x'-4y'-y'+4&=0 \\
-2x'-5y'+4&=0
+\det M&=2\cdot1-1\cdot1=1 \\
+M^{-1}&=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} \\
+x=x'-y',&\qquad y=-x'+2y'
 \end{aligned}" />
 
-Kontrolliere mit zwei Punkten von <InlineMath math="g" />. Der Punkt <InlineMath math="(0,4)" /> wird auf <InlineMath math="(0+2\cdot4,4)=(8,4)" /> abgebildet, und <InlineMath math="2\cdot8-5\cdot4+4=0" />. Der Punkt <InlineMath math="(-2,0)" /> bleibt fest, und <InlineMath math="2\cdot(-2)-5\cdot0+4=0" />. Beide Bildpunkte liegen auf der gefundenen Geraden.
+Setze beides in die Gleichung von <InlineMath math="g" /> ein.
+
+<BlockMath math="\begin{aligned}
+(x'-y')+2(-x'+2y')-3&=0 \\
+-x'+3y'-3&=0 \\
+x'-3y'+3&=0
+\end{aligned}" />
 
 <MathVisual
-  title="Die Gerade g und ihr Bild"
-  description={<>Die Gerade <InlineMath math="g" /> verläuft durch <InlineMath math="(-2,0)" /> und <InlineMath math="(0,4)" />. Ihr Bild verläuft durch <InlineMath math="(-2,0)" /> und <InlineMath math="(8,4)" />, weil die Matrix <InlineMath math="M" /> jeden Punkt waagerecht um das Doppelte seiner y-Koordinate verschiebt.</>}
+  title="Gerade und Bildgerade"
+  description={<>Die Gerade <InlineMath math="x+2y-3=0" /> geht durch <InlineMath math="(3,0)" /> und <InlineMath math="(1,1)" />. Die Matrix bildet diese Punkte auf <InlineMath math="(6,3)" /> und <InlineMath math="(3,2)" /> ab, und beide liegen auf der Bildgeraden <InlineMath math="x-3y+3=0" />.</>}
   labels={{
-    original: <InlineMath math="g" />,
-    image: <InlineMath math="2x-5y+4=0" />,
-    "point-before": <InlineMath math="(0,4)" />,
-    "point-after": <InlineMath math="(8,4)" />,
-    fixed: <InlineMath math="(-2,0)" />,
+    original: <InlineMath math="x+2y-3=0" />,
+    image: <InlineMath math="x-3y+3=0" />,
+    a: <InlineMath math="(3,0)" />,
+    "a-image": <InlineMath math="(6,3)" />,
+    b: <InlineMath math="(1,1)" />,
+    "b-image": <InlineMath math="(3,2)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -4, max: 10 },
-      y: { min: -3, max: 7 },
+      x: { min: -4, max: 7.5 },
+      y: { min: -2, max: 4.5 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 1, y: 6 } },
-      { id: "line-image", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 8, y: 4 } },
-      { id: "shift", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
-      { id: "before-point", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
-      { id: "after-point", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
-      { id: "fixed-point", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -1, y: 2 }, to: { x: 5, y: -1 } },
+      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -3, y: 0 }, to: { x: 6, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
     ],
     labels: [
-      { key: "original", objectId: "line-g", at: { x: 0.5, y: 5 }, placement: "left" },
-      { key: "image", objectId: "line-image", at: { x: 5.5, y: 3 }, placement: "below-right" },
-      { key: "point-before", objectId: "before-point", at: { x: 0, y: 4 }, placement: "above-left" },
-      { key: "point-after", objectId: "after-point", at: { x: 8, y: 4 }, placement: "above" },
-      { key: "fixed", objectId: "fixed-point", at: { x: -2, y: 0 }, placement: "below-right" },
+      { key: "original", objectId: "original-line", at: { x: 5, y: -1 }, placement: "below" },
+      { key: "image", objectId: "image-line", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "a-image", objectId: "point-a-image", at: { x: 6, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b-image", objectId: "point-b-image", at: { x: 3, y: 2 }, placement: "above-left" },
     ],
   }}
 />
 
-Die Gleichung der Bildgeraden von <InlineMath math="g" /> lautet also <InlineMath math="2x-5y+4=0" />.
+Zur Kontrolle mit zwei Punkten von <InlineMath math="g" />: <InlineMath math="M(3,0)=(6,3)" /> und <InlineMath math="6-9+3=0" />, <InlineMath math="M(1,1)=(3,2)" /> und <InlineMath math="3-6+3=0" />.
 
-- <InlineMath math="2x+3y+4=0" /> entsteht, wenn <InlineMath math="M" /> selbst auf <InlineMath math="(x',y')" /> angewendet wird, also <InlineMath math="x=x'+2y'" />, obwohl die Inverse gebraucht wird.
-- <InlineMath math="2x-5y-4=0" /> hat das falsche Vorzeichen beim Absolutglied. Die lineare Abbildung ändert das Absolutglied dieser Gleichung nicht.
-- <InlineMath math="5x-2y+4=0" /> vertauscht die Koeffizienten von <InlineMath math="x" /> und <InlineMath math="y" />. Der Punkt <InlineMath math="(8,4)" /> erfüllt sie nicht, denn <InlineMath math="40-8+4\ne0" />.
-- <InlineMath math="4x-y+4=0" /> entsteht, wenn die Transponierte <InlineMath math="M^T=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}" /> verwendet wird, sodass <InlineMath math="y'=2x+y" /> gilt.
+Die Bildgerade hat also die Gleichung <InlineMath math="x-3y+3=0" />.
+
+- <InlineMath math="4x+3y-3=0" /> setzt <InlineMath math="M" /> statt <InlineMath math="M^{-1}" /> ein, also <InlineMath math="x=2x'+y'" /> und <InlineMath math="y=x'+y'" />.
+- <InlineMath math="x-3y-3=0" /> verliert beim Umformen das Vorzeichen der Konstanten. Der Bildpunkt <InlineMath math="(6,3)" /> erfüllt diese Gleichung nicht.
+- <InlineMath math="3x+5y-3=0" /> entsteht mit einer falschen Inversen, bei der die Elemente der Nebendiagonale ihr Vorzeichen behalten.
+- <InlineMath math="3x-y-3=0" /> vertauscht in der richtigen Gleichung die Rollen von <InlineMath math="x" /> und <InlineMath math="y" />.

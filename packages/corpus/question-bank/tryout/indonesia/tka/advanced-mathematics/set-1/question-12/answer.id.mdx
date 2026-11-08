@@ -1,54 +1,55 @@
-Yang diketahui adalah panjang ketiga vektor: <InlineMath math="|\vec{F}_1|=30" />, <InlineMath math="|\vec{F}_2|=50" />, dan <InlineMath math="|\vec{F}_1+\vec{F}_2|=70" />, semuanya dalam newton. Hubungan yang mengaitkan panjang resultan dengan sudut antara kedua vektor adalah **kuadrat panjang jumlah dua vektor**, yang memuat hasil kali titik <InlineMath math="\vec{F}_1\cdot\vec{F}_2=|\vec{F}_1||\vec{F}_2|\cos\theta" />.
-
-<BlockMath math="|\vec{F}_1+\vec{F}_2|^2=|\vec{F}_1|^2+|\vec{F}_2|^2+2|\vec{F}_1||\vec{F}_2|\cos\theta" />
-
-Substitusikan ketiga besar gaya, lalu selesaikan untuk <InlineMath math="\cos\theta" />.
+Yang diketahui hanya panjang vektor. Jembatan menuju hasil kali titik adalah **kuadrat panjang jumlah dua vektor**, karena <InlineMath math="|\vec u+\vec v|^2=(\vec u+\vec v)\cdot(\vec u+\vec v)" />.
 
 <BlockMath math="\begin{aligned}
-70^2&=30^2+50^2+2\cdot30\cdot50\cos\theta \\
-4{.}900&=3{.}400+3{.}000\cos\theta \\
-\cos\theta&=\frac{1{.}500}{3{.}000}=\frac12
+|\vec u+\vec v|^2&=|\vec u|^2+2\,\vec u\cdot\vec v+|\vec v|^2 \\
+(2\sqrt7)^2&=16+2\,\vec u\cdot\vec v+36 \\
+28&=52+2\,\vec u\cdot\vec v \\
+\vec u\cdot\vec v&=-12
 \end{aligned}" />
 
-Sudut antara dua vektor berada di antara <InlineMath math="0^\circ" /> dan <InlineMath math="180^\circ" />, dan pada selang itu hanya <InlineMath math="\theta=60^\circ" /> yang memenuhi <InlineMath math="\cos\theta=\frac12" />. Hasil ini masuk akal. Jika kedua gaya tegak lurus, besar resultannya <InlineMath math="\sqrt{3{.}400}\approx58\text{ N}" />. Resultan <InlineMath math="70\text{ N}" /> lebih besar dari itu, jadi sudutnya harus lancip.
+Sudutnya diperoleh dari <InlineMath math="\vec u\cdot\vec v=|\vec u||\vec v|\cos\theta" />.
+
+<BlockMath math="\cos\theta=\frac{-12}{4\cdot6}=-\frac12\quad\Rightarrow\quad\theta=120^\circ" />
 
 <MathVisual
-  title="Jajaran genjang gaya"
-  description={<>Gaya <InlineMath math="\vec{F}_1" /> sepanjang <InlineMath math="30" /> satuan terletak mendatar, dan gaya <InlineMath math="\vec{F}_2" /> sepanjang <InlineMath math="50" /> satuan membentuk sudut <InlineMath math="60^\circ" /> dengannya. Diagonal jajaran genjang dari titik tangkap adalah resultan sepanjang <InlineMath math="70" /> satuan.</>}
+  title="Jajaran genjang kedua vektor"
+  description={<>Vektor <InlineMath math="\vec u" /> sepanjang <InlineMath math="4" /> terletak mendatar, dan vektor <InlineMath math="\vec v" /> sepanjang <InlineMath math="6" /> membentuk sudut <InlineMath math="120^\circ" /> dengannya. Diagonal jajaran genjang adalah <InlineMath math="\vec u+\vec v" /> dengan titik ujung <InlineMath math="(1,3\sqrt3)" />.</>}
   labels={{
-    "force-one": <InlineMath math="\vec{F}_1" />,
-    "force-two": <InlineMath math="\vec{F}_2" />,
-    resultant: <InlineMath math="\vec{F}_1+\vec{F}_2" />,
-    angle: <InlineMath math="60^\circ" />,
+    "vector-u": <InlineMath math="\vec u" />,
+    "vector-v": <InlineMath math="\vec v" />,
+    resultant: <InlineMath math="\vec u+\vec v" />,
+    angle: <InlineMath math="120^\circ" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 60 },
-      y: { min: -5, max: 48 },
+      x: { min: -4.5, max: 5.5 },
+      y: { min: -1.5, max: 6.5 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
-      { id: "second", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 25, y: 25 * Math.sqrt(3) } },
-      { id: "side-a", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
-      { id: "side-b", kind: "segment", appearance: "construction", from: { x: 25, y: 25 * Math.sqrt(3) }, to: { x: 55, y: 25 * Math.sqrt(3) } },
-      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
-      { id: "between", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 8, startDegrees: 0, sweepDegrees: 60 },
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -3, y: 3 * Math.sqrt(3) } },
+      { id: "side-a", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 1, y: 3 * Math.sqrt(3) } },
+      { id: "side-b", kind: "segment", appearance: "construction", from: { x: -3, y: 3 * Math.sqrt(3) }, to: { x: 1, y: 3 * Math.sqrt(3) } },
+      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 1, y: 3 * Math.sqrt(3) } },
+      { id: "between", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 120 },
     ],
     labels: [
-      { key: "force-one", objectId: "first", at: { x: 15, y: 0 }, placement: "below" },
-      { key: "force-two", objectId: "second", at: { x: 12.5, y: 12.5 * Math.sqrt(3) }, placement: "left" },
-      { key: "resultant", objectId: "sum", at: { x: 27.5, y: 12.5 * Math.sqrt(3) }, placement: "below-right" },
-      { key: "angle", objectId: "between", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "right" },
+      { key: "vector-u", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "vector-v", objectId: "second", at: { x: -1.5, y: 1.5 * Math.sqrt(3) }, placement: "left" },
+      { key: "resultant", objectId: "sum", at: { x: 0.5, y: 1.5 * Math.sqrt(3) }, placement: "right" },
+      { key: "angle", objectId: "between", at: { x: 0.5, y: 0.5 * Math.sqrt(3) }, placement: "above-right" },
     ],
   }}
 />
 
-Jadi, besar sudut antara <InlineMath math="\vec{F}_1" /> dan <InlineMath math="\vec{F}_2" /> adalah <InlineMath math="60^\circ" />.
+Sebagai pemeriksaan dengan koordinat, untuk <InlineMath math="\vec u=(4,0)" /> dan <InlineMath math="\vec v=(-3,3\sqrt3)" /> diperoleh <InlineMath math="\vec u+\vec v=(1,3\sqrt3)" />, sehingga <InlineMath math="|\vec u+\vec v|^2=1+27=28" />.
 
-- <InlineMath math="30^\circ" /> muncul jika nilai <InlineMath math="\frac12" /> dikaitkan dengan sinus, karena <InlineMath math="\sin30^\circ=\frac12" />. Yang bernilai <InlineMath math="\frac12" /> di sini adalah kosinus.
-- <InlineMath math="90^\circ" /> menganggap kedua gaya tegak lurus. Untuk sudut itu, resultannya hanya <InlineMath math="\sqrt{30^2+50^2}=\sqrt{3{.}400}\approx58\text{ N}" />, bukan <InlineMath math="70\text{ N}" />.
-- <InlineMath math="120^\circ" /> muncul jika rumus aturan kosinus untuk sudut dalam segitiga dipakai, yaitu dengan tanda negatif di depan <InlineMath math="2|\vec{F}_1||\vec{F}_2|\cos\theta" />. Sudut <InlineMath math="120^\circ" /> itu adalah sudut segitiga di hadapan resultan, bukan sudut antara kedua gaya.
-- <InlineMath math="150^\circ" /> memiliki sinus yang sama dengan <InlineMath math="30^\circ" />, yaitu <InlineMath math="\sin150^\circ=\frac12" />. Kekeliruan memakai sinus menghasilkan <InlineMath math="150^\circ" /> jika yang diambil adalah sudut tumpulnya.
+Jadi, hasil kali titiknya <InlineMath math="-12" /> dan sudutnya <InlineMath math="120^\circ" />.
+
+- <InlineMath math="12" /> dan <InlineMath math="60^\circ" /> muncul karena tandanya salah, yaitu memakai <InlineMath math="|\vec u|^2+|\vec v|^2-2\,\vec u\cdot\vec v" />. Bentuk itu milik <InlineMath math="|\vec u-\vec v|^2" />.
+- <InlineMath math="-12" /> dan <InlineMath math="150^\circ" /> memiliki hasil kali titik yang benar, tetapi <InlineMath math="\cos150^\circ=-\frac{\sqrt3}{2}" />, bukan <InlineMath math="-\frac12" />.
+- <InlineMath math="-24" /> dan <InlineMath math="180^\circ" /> melupakan faktor <InlineMath math="2" /> di depan <InlineMath math="\vec u\cdot\vec v" />.
+- <InlineMath math="24" /> dan <InlineMath math="0^\circ" /> menggabungkan kedua kesalahan itu.

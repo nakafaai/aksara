@@ -1,50 +1,50 @@
-Every linear transformation of the plane has a matrix whose **columns are the images of the unit vectors**. The first column is the image of <InlineMath math="(1,0)" />, and the second column is the image of <InlineMath math="(0,1)" />. So the two facts in the question build the matrix of <InlineMath math="T" /> directly.
+Write both maps as matrices. In a composition, **the matrix applied first stands on the right**, because it acts on the point first.
 
-<BlockMath math="M_T=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=2\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned}
+S_x&=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix},\qquad R_{90^\circ}=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \\
+T&=R_{90^\circ}\,S_x=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\end{aligned}" />
 
-The matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> is the rotation by <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="O" />, because the rotation matrix for an angle <InlineMath math="\theta" /> is <InlineMath math="\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}" />, with <InlineMath math="\cos90^\circ=0" /> and <InlineMath math="\sin90^\circ=1" />. The factor <InlineMath math="2" /> in front is the dilation about <InlineMath math="O" /> with scale factor <InlineMath math="2" />, whose matrix is <InlineMath math="2I" />.
-
-<BlockMath math="\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=M_T" />
-
-Check with the points in the question. The <InlineMath math="90^\circ" /> rotation moves <InlineMath math="(1,0)" /> to <InlineMath math="(0,1)" />, and the dilation doubles it to <InlineMath math="(0,2)" />. The point <InlineMath math="(0,1)" /> rotates to <InlineMath math="(-1,0)" /> and then becomes <InlineMath math="(-2,0)" />. Both match.
+The matrix <InlineMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" /> swaps the coordinates, so it is the reflection in the line <InlineMath math="y=x" />.
 
 <MathVisual
-  title="Unit square and its image"
-  description={<>The unit square with vertices <InlineMath math="(0,0)" />, <InlineMath math="(1,0)" />, <InlineMath math="(1,1)" />, and <InlineMath math="(0,1)" /> is mapped by <InlineMath math="T" /> to the square with vertices <InlineMath math="(0,0)" />, <InlineMath math="(0,2)" />, <InlineMath math="(-2,2)" />, and <InlineMath math="(-2,0)" />. The image is turned a quarter turn counterclockwise, and its sides are twice as long.</>}
+  title="One point under both steps"
+  description={<>The point <InlineMath math="P(3,1)" /> is reflected in the <InlineMath math="x" />-axis to <InlineMath math="P\'(3,-1)" /> and then rotated <InlineMath math="90^\circ" /> anticlockwise to <InlineMath math="P\'\'(1,3)" />. <InlineMath math="P" /> and <InlineMath math="P\'\'" /> are symmetric about the line <InlineMath math="y=x" />.</>}
   labels={{
-    "image-x": <InlineMath math="(0,2)" />,
-    "image-y": <InlineMath math="(-2,0)" />,
-    "unit-x": <InlineMath math="(1,0)" />,
-    "unit-y": <InlineMath math="(0,1)" />,
+    p: <InlineMath math="P(3,1)" />,
+    "p-one": <InlineMath math="P'(3,-1)" />,
+    "p-two": <InlineMath math="P''(1,3)" />,
+    mirror: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -3, max: 2 },
-      y: { min: -1, max: 3 },
+      x: { min: -1.5, max: 4.5 },
+      y: { min: -2, max: 4.5 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "unit-square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
-      { id: "image-square", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -2, y: 0 }] },
-      { id: "unit-x-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
-      { id: "unit-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
-      { id: "image-x-point", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
-      { id: "image-y-point", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "mirror-line", kind: "segment", appearance: "construction", from: { x: -1, y: -1 }, to: { x: 4, y: 4 } },
+      { id: "first-step", kind: "segment", appearance: "reference", from: { x: 3, y: 1 }, to: { x: 3, y: -1 } },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "point-p-one", kind: "point", appearance: "secondary", at: { x: 3, y: -1 } },
+      { id: "point-p-two", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
     ],
     labels: [
-      { key: "unit-x", objectId: "unit-x-point", at: { x: 1, y: 0 }, placement: "below-right" },
-      { key: "unit-y", objectId: "unit-y-point", at: { x: 0, y: 1 }, placement: "above-right" },
-      { key: "image-x", objectId: "image-x-point", at: { x: 0, y: 2 }, placement: "above-right" },
-      { key: "image-y", objectId: "image-y-point", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "p-one", objectId: "point-p-one", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "p-two", objectId: "point-p-two", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "mirror", objectId: "mirror-line", at: { x: 4, y: 4 }, placement: "below-right" },
     ],
   }}
 />
 
-So <InlineMath math="T" /> is the rotation by <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="O" />, followed by the dilation about <InlineMath math="O" /> with scale factor <InlineMath math="2" />.
+As a check with one point, <InlineMath math="P(3,1)\to P'(3,-1)\to P''(1,3)" />. The result has exactly the swapped coordinates of <InlineMath math="P" />.
 
-- A clockwise rotation by <InlineMath math="90^\circ" /> followed by a dilation of factor <InlineMath math="2" /> has matrix <InlineMath math="\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}" />. It maps <InlineMath math="(1,0)" /> to <InlineMath math="(0,-2)" />, not to <InlineMath math="(0,2)" />.
-- A reflection in <InlineMath math="y=x" /> followed by a dilation of factor <InlineMath math="2" /> has matrix <InlineMath math="\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}" />. It maps <InlineMath math="(0,1)" /> to <InlineMath math="(2,0)" />, not to <InlineMath math="(-2,0)" />.
-- A rotation by <InlineMath math="180^\circ" /> followed by a dilation of factor <InlineMath math="2" /> has matrix <InlineMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" /> and maps <InlineMath math="(1,0)" /> to <InlineMath math="(-2,0)" />, not to <InlineMath math="(0,2)" />.
-- A dilation with scale factor <InlineMath math="\frac12" /> shrinks distances. A rotation keeps distances to <InlineMath math="O" />, and the image of <InlineMath math="(1,0)" /> is at distance <InlineMath math="2" /> from <InlineMath math="O" />, so the scale factor is <InlineMath math="2" />.
+So <InlineMath math="T" /> is the reflection in the line <InlineMath math="y=x" />.
+
+- The reflection in <InlineMath math="y=-x" /> comes from the wrong order, that is, from <InlineMath math="S_x\,R_{90^\circ}=\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />.
+- A clockwise rotation by <InlineMath math="90^\circ" /> keeps the orientation. A reflection followed by a rotation reverses it, because <InlineMath math="\det T=-1" />.
+- A rotation by <InlineMath math="180^\circ" /> also has determinant <InlineMath math="1" /> and sends <InlineMath math="P(3,1)" /> to <InlineMath math="(-3,-1)" />.
+- The reflection in the <InlineMath math="y" />-axis sends <InlineMath math="P(3,1)" /> to <InlineMath math="(-3,1)" />, not to <InlineMath math="(1,3)" />.

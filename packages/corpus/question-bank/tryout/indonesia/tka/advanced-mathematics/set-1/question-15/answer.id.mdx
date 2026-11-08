@@ -1,58 +1,62 @@
-Garis singgung yang dicari **sejajar** dengan <InlineMath math="2x-y+3=0" />, jadi gradiennya sama. Tulis garis itu sebagai <InlineMath math="y=2x+3" />. Gradiennya <InlineMath math="m=2" />.
-
-Lingkaran <InlineMath math="(x-1)^2+(y+2)^2=5" /> berpusat di <InlineMath math="(1,-2)" /> dengan jari-jari <InlineMath math="r=\sqrt5" />. Garis singgung bergradien <InlineMath math="m" /> pada lingkaran berpusat <InlineMath math="(a,b)" /> dan berjari-jari <InlineMath math="r" /> memenuhi rumus berikut. Faktor <InlineMath math="\sqrt{1+m^2}" /> muncul karena jarak dari pusat ke garis harus sama dengan <InlineMath math="r" />.
-
-<BlockMath math="y-b=m(x-a)\pm r\sqrt{1+m^2}" />
-
-Substitusikan <InlineMath math="a=1" />, <InlineMath math="b=-2" />, <InlineMath math="m=2" />, dan <InlineMath math="r=\sqrt5" />.
+Sebuah garis menyinggung lingkaran tepat ketika **jaraknya dari pusat sama dengan jari-jari**. Karena itu, tentukan dulu pusat dan jari-jari dengan melengkapkan kuadrat.
 
 <BlockMath math="\begin{aligned}
-y+2&=2(x-1)\pm\sqrt5\cdot\sqrt{1+2^2} \\
-y+2&=2x-2\pm5 \\
-y&=2x-4\pm5
+(x^2-6x+9)+(y^2+2y+1)&=15+9+1 \\
+(x-3)^2+(y+1)^2&=25
 \end{aligned}" />
 
-Ada dua garis singgung, yaitu <InlineMath math="y=2x+1" /> dan <InlineMath math="y=2x-9" />. Hanya <InlineMath math="y=2x+1" /> yang ada di antara pilihan. Periksa dengan rumus jarak: garis <InlineMath math="2x-y+1=0" /> berjarak <InlineMath math="\frac{|2\cdot1-(-2)+1|}{\sqrt{2^2+1^2}}=\frac{5}{\sqrt5}=\sqrt5" /> dari pusat, tepat sama dengan jari-jari.
+Pusatnya <InlineMath math="(3,-1)" /> dan jari-jarinya <InlineMath math="5" />. Garis yang diketahui bergradien <InlineMath math="\frac34" />, jadi garis yang tegak lurus padanya bergradien <InlineMath math="-\frac43" />. Garis seperti itu berbentuk <InlineMath math="4x+3y+c=0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{|4\cdot3+3\cdot(-1)+c|}{\sqrt{4^2+3^2}}&=5 \\
+|9+c|&=25 \\
+c=16\ \text{atau}\ c&=-34
+\end{aligned}" />
 
 <MathVisual
-  title="Dua garis singgung yang sejajar"
-  description={<>Lingkaran berpusat di <InlineMath math="(1,-2)" /> dengan jari-jari <InlineMath math="\sqrt5" />. Garis <InlineMath math="y=2x+1" /> menyinggungnya di <InlineMath math="(-1,-1)" />, dan garis <InlineMath math="y=2x-9" /> menyinggungnya di <InlineMath math="(3,-3)" />. Garis <InlineMath math="y=2x+3" /> sejajar dengan keduanya, tetapi tidak menyentuh lingkaran.</>}
+  title="Dua garis singgung yang tegak lurus garis yang diketahui"
+  description={<>Lingkaran berpusat di <InlineMath math="(3,-1)" /> dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="4x+3y-34=0" /> dan <InlineMath math="4x+3y+16=0" /> menyinggungnya di <InlineMath math="(7,2)" /> dan <InlineMath math="(-1,-4)" />, dan keduanya tegak lurus garis <InlineMath math="3x-4y+1=0" />.</>}
   labels={{
-    upper: <InlineMath math="y=2x+1" />,
-    lower: <InlineMath math="y=2x-9" />,
-    given: <InlineMath math="y=2x+3" />,
-    "touch-upper": <InlineMath math="(-1,-1)" />,
-    "touch-lower": <InlineMath math="(3,-3)" />,
+    tangent: <InlineMath math="4x+3y-34=0" />,
+    other: <InlineMath math="4x+3y+16=0" />,
+    given: <InlineMath math="3x-4y+1=0" />,
+    "touch-a": <InlineMath math="(7,2)" />,
+    "touch-b": <InlineMath math="(-1,-4)" />,
+    centre: <InlineMath math="(3,-1)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -4, max: 6 },
-      y: { min: -8, max: 5 },
+      x: { min: -6, max: 12 },
+      y: { min: -9, max: 8 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "circle", kind: "circle", appearance: "primary", center: { x: 1, y: -2 }, radius: Math.sqrt(5) },
-      { id: "upper-line", kind: "segment", appearance: "answer", from: { x: -3, y: -5 }, to: { x: 1, y: 3 } },
-      { id: "lower-line", kind: "segment", appearance: "secondary", from: { x: 1, y: -7 }, to: { x: 5, y: 1 } },
-      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -3 }, to: { x: 0.5, y: 4 } },
-      { id: "touch-upper-point", kind: "point", appearance: "answer", at: { x: -1, y: -1 } },
-      { id: "touch-lower-point", kind: "point", appearance: "reference", at: { x: 3, y: -3 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -1 }, radius: 5 },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: 4, y: 6 }, to: { x: 10, y: -2 } },
+      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -4, y: 0 }, to: { x: 2, y: -8 } },
+      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 9, y: 7 } },
+      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -1, y: -4 } },
+      { id: "centre-point", kind: "point", appearance: "reference", at: { x: 3, y: -1 } },
     ],
     labels: [
-      { key: "upper", objectId: "upper-line", at: { x: 0, y: 1 }, placement: "right" },
-      { key: "lower", objectId: "lower-line", at: { x: 4, y: -1 }, placement: "right" },
-      { key: "given", objectId: "given-line", at: { x: -1.5, y: 0 }, placement: "left" },
-      { key: "touch-upper", objectId: "touch-upper-point", at: { x: -1, y: -1 }, placement: "left" },
-      { key: "touch-lower", objectId: "touch-lower-point", at: { x: 3, y: -3 }, placement: "right" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 10, y: -2 }, placement: "below" },
+      { key: "other", objectId: "other-line", at: { x: 2, y: -8 }, placement: "right" },
+      { key: "given", objectId: "given-line", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "touch-a", objectId: "touch-a-point", at: { x: 7, y: 2 }, placement: "right" },
+      { key: "touch-b", objectId: "touch-b-point", at: { x: -1, y: -4 }, placement: "left" },
+      { key: "centre", objectId: "centre-point", at: { x: 3, y: -1 }, placement: "below" },
     ],
   }}
 />
 
-Jadi, salah satu garis singgung yang sejajar dengan <InlineMath math="2x-y+3=0" /> adalah <InlineMath math="y=2x+1" />.
+Sebagai pemeriksaan, titik singgung <InlineMath math="(7,2)" /> terletak pada lingkaran, karena <InlineMath math="4^2+3^2=25" />, dan pada garis singgung, karena <InlineMath math="28+6-34=0" />.
 
-- <InlineMath math="y=2x+3" /> adalah garis yang diberikan. Gradiennya benar, tetapi jaraknya ke pusat <InlineMath math="\frac{|2+2+3|}{\sqrt5}=\frac{7}{\sqrt5}" /> lebih dari <InlineMath math="\sqrt5" />, jadi garis itu tidak menyentuh lingkaran.
-- <InlineMath math="y=2x-4+\sqrt5" /> muncul jika faktor <InlineMath math="\sqrt{1+m^2}" /> terlupa, sehingga suku tambahannya hanya <InlineMath math="r=\sqrt5" />.
-- <InlineMath math="y=-\frac12x+1" /> memakai gradien garis yang **tegak lurus**, bukan sejajar.
-- <InlineMath math="y=2x+9" /> muncul jika pusat lingkaran diambil <InlineMath math="(-1,2)" /> karena tanda terbalik, sehingga persamaannya menjadi <InlineMath math="y-2=2(x+1)+5" />.
+Jadi, di antara pilihan yang ada, <InlineMath math="4x+3y-34=0" /> adalah salah satu garis singgung yang dicari.
+
+- <InlineMath math="4x+3y+34=0" /> tandanya salah. Jaraknya dari pusat <InlineMath math="\frac{43}{5}" />, bukan <InlineMath math="5" />.
+- <InlineMath math="3x-4y+12=0" /> memang menyinggung lingkaran, tetapi sejajar dengan garis yang diketahui, bukan tegak lurus.
+- <InlineMath math="4x+3y-9=0" /> melalui pusat lingkaran sehingga memotong lingkaran di dua titik.
+- <InlineMath math="4x+3y-4=0" /> muncul dari <InlineMath math="|9+c|=5" />, yaitu jika jari-jari tidak dikalikan dengan <InlineMath math="\sqrt{4^2+3^2}=5" />. Jaraknya dari pusat hanya <InlineMath math="1" />.

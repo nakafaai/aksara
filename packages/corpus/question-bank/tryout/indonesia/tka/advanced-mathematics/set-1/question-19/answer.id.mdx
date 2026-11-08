@@ -1,56 +1,62 @@
-Setiap titik <InlineMath math="(x,y)" /> pada garis <InlineMath math="g" /> dipetakan ke titik <InlineMath math="(x',y')" />. Persamaan bayangan adalah syarat yang dipenuhi <InlineMath math="(x',y')" />. Karena syarat yang diketahui ditulis dalam <InlineMath math="x" /> dan <InlineMath math="y" />, **nyatakan <InlineMath math="x" /> dan <InlineMath math="y" /> dalam <InlineMath math="x'" /> dan <InlineMath math="y'" />**, lalu substitusikan.
-
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x+2y \\ y \end{pmatrix}" />
-
-Dari baris kedua, <InlineMath math="y=y'" />. Dari baris pertama, <InlineMath math="x=x'-2y=x'-2y'" />. Cara ini sama dengan mengalikan dengan <InlineMath math="M^{-1}=\begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}" />. Substitusikan ke persamaan <InlineMath math="g" />.
+Garis bayangan terdiri atas titik-titik <InlineMath math="(x',y')" /> yang **titik asalnya terletak pada <InlineMath math="g" />**. Karena itu, nyatakan <InlineMath math="x" /> dan <InlineMath math="y" /> dalam <InlineMath math="x'" /> dan <InlineMath math="y'" /> dengan matriks invers.
 
 <BlockMath math="\begin{aligned}
-2(x'-2y')-y'+4&=0 \\
-2x'-4y'-y'+4&=0 \\
-2x'-5y'+4&=0
+\det M&=2\cdot1-1\cdot1=1 \\
+M^{-1}&=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} \\
+x=x'-y',&\qquad y=-x'+2y'
 \end{aligned}" />
 
-Periksa dengan dua titik pada <InlineMath math="g" />. Titik <InlineMath math="(0,4)" /> dipetakan ke <InlineMath math="(0+2\cdot4,4)=(8,4)" />, dan <InlineMath math="2\cdot8-5\cdot4+4=0" />. Titik <InlineMath math="(-2,0)" /> dipetakan ke dirinya sendiri, dan <InlineMath math="2\cdot(-2)-5\cdot0+4=0" />. Kedua bayangan terletak pada garis yang diperoleh.
+Substitusikan keduanya ke persamaan <InlineMath math="g" />.
+
+<BlockMath math="\begin{aligned}
+(x'-y')+2(-x'+2y')-3&=0 \\
+-x'+3y'-3&=0 \\
+x'-3y'+3&=0
+\end{aligned}" />
 
 <MathVisual
-  title="Garis g dan bayangannya"
-  description={<>Garis <InlineMath math="g" /> melalui <InlineMath math="(-2,0)" /> dan <InlineMath math="(0,4)" />. Bayangannya melalui <InlineMath math="(-2,0)" /> dan <InlineMath math="(8,4)" />, karena matriks <InlineMath math="M" /> menggeser setiap titik mendatar sejauh dua kali ordinatnya.</>}
+  title="Garis dan bayangannya"
+  description={<>Garis <InlineMath math="x+2y-3=0" /> melalui <InlineMath math="(3,0)" /> dan <InlineMath math="(1,1)" />. Matriks itu memetakan kedua titik ke <InlineMath math="(6,3)" /> dan <InlineMath math="(3,2)" />, dan keduanya terletak pada garis bayangan <InlineMath math="x-3y+3=0" />.</>}
   labels={{
-    original: <InlineMath math="g" />,
-    image: <InlineMath math="2x-5y+4=0" />,
-    "point-before": <InlineMath math="(0,4)" />,
-    "point-after": <InlineMath math="(8,4)" />,
-    fixed: <InlineMath math="(-2,0)" />,
+    original: <InlineMath math="x+2y-3=0" />,
+    image: <InlineMath math="x-3y+3=0" />,
+    a: <InlineMath math="(3,0)" />,
+    "a-image": <InlineMath math="(6,3)" />,
+    b: <InlineMath math="(1,1)" />,
+    "b-image": <InlineMath math="(3,2)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -4, max: 10 },
-      y: { min: -3, max: 7 },
+      x: { min: -4, max: 7.5 },
+      y: { min: -2, max: 4.5 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 1, y: 6 } },
-      { id: "line-image", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 8, y: 4 } },
-      { id: "shift", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
-      { id: "before-point", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
-      { id: "after-point", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
-      { id: "fixed-point", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -1, y: 2 }, to: { x: 5, y: -1 } },
+      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -3, y: 0 }, to: { x: 6, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
     ],
     labels: [
-      { key: "original", objectId: "line-g", at: { x: 0.5, y: 5 }, placement: "left" },
-      { key: "image", objectId: "line-image", at: { x: 5.5, y: 3 }, placement: "below-right" },
-      { key: "point-before", objectId: "before-point", at: { x: 0, y: 4 }, placement: "above-left" },
-      { key: "point-after", objectId: "after-point", at: { x: 8, y: 4 }, placement: "above" },
-      { key: "fixed", objectId: "fixed-point", at: { x: -2, y: 0 }, placement: "below-right" },
+      { key: "original", objectId: "original-line", at: { x: 5, y: -1 }, placement: "below" },
+      { key: "image", objectId: "image-line", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "a-image", objectId: "point-a-image", at: { x: 6, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b-image", objectId: "point-b-image", at: { x: 3, y: 2 }, placement: "above-left" },
     ],
   }}
 />
 
-Jadi, persamaan bayangan garis <InlineMath math="g" /> adalah <InlineMath math="2x-5y+4=0" />.
+Sebagai pemeriksaan dengan dua titik pada <InlineMath math="g" />, <InlineMath math="M(3,0)=(6,3)" /> dan <InlineMath math="6-9+3=0" />, serta <InlineMath math="M(1,1)=(3,2)" /> dan <InlineMath math="3-6+3=0" />.
 
-- <InlineMath math="2x+3y+4=0" /> muncul jika matriks <InlineMath math="M" /> dipakai langsung pada <InlineMath math="(x',y')" />, yaitu <InlineMath math="x=x'+2y'" />, padahal yang diperlukan adalah inversnya.
-- <InlineMath math="2x-5y-4=0" /> salah tanda pada suku tetap. Transformasi linear tidak mengubah suku tetap pada persamaan ini.
-- <InlineMath math="5x-2y+4=0" /> menukar koefisien <InlineMath math="x" /> dan <InlineMath math="y" />. Titik <InlineMath math="(8,4)" /> tidak memenuhinya, karena <InlineMath math="40-8+4\ne0" />.
-- <InlineMath math="4x-y+4=0" /> muncul jika yang dipakai adalah transpos <InlineMath math="M^T=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}" />, sehingga <InlineMath math="y'=2x+y" />.
+Jadi, persamaan bayangan garis <InlineMath math="g" /> adalah <InlineMath math="x-3y+3=0" />.
+
+- <InlineMath math="4x+3y-3=0" /> memakai <InlineMath math="M" />, bukan <InlineMath math="M^{-1}" />, yaitu <InlineMath math="x=2x'+y'" /> dan <InlineMath math="y=x'+y'" />.
+- <InlineMath math="x-3y-3=0" /> kehilangan tanda konstanta saat menyusun ulang persamaan. Titik bayangan <InlineMath math="(6,3)" /> tidak memenuhinya.
+- <InlineMath math="3x+5y-3=0" /> muncul dari invers yang salah, yaitu ketika elemen diagonal samping tidak berganti tanda.
+- <InlineMath math="3x-y-3=0" /> menukar peran <InlineMath math="x" /> dan <InlineMath math="y" /> pada persamaan yang benar.

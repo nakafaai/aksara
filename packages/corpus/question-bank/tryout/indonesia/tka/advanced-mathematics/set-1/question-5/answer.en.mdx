@@ -1,63 +1,53 @@
-The cutting and painting limits do not change, so **the feasible region stays the same**. Only the objective function changes. Let <InlineMath math="x" /> be the number of chairs and <InlineMath math="y" /> the number of tables in one month.
+The limits stay the same, so the feasible region still has the corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. Only the objective has changed, and with it **the best corner can move**.
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le120 \\
-x+3y&\le90 \\
-x\ge0,\quad y&\ge0
+P&=180{,}000x+100{,}000y \\
+P(40,0)&=7{,}200{,}000 \\
+P(20,30)&=3{,}600{,}000+3{,}000{,}000=6{,}600{,}000 \\
+P(0,40)&=4{,}000{,}000
 \end{aligned}" />
 
-With the new table profit, the monthly profit is <InlineMath math="g(x,y)=150{,}000x+500{,}000y" /> rupiah. The maximum of a linear function on the feasible region occurs at a corner point. Eliminating between the two boundary lines gives the intersection <InlineMath math="(30,20)" />, because <InlineMath math="(2x+3y)-(x+3y)=120-90" /> gives <InlineMath math="x=30" />, and then <InlineMath math="30+3y=90" /> gives <InlineMath math="y=20" />. The other corner points are <InlineMath math="(0,0)" />, <InlineMath math="(60,0)" />, and <InlineMath math="(0,30)" />. The question allows the workshop to make only one kind of product, so corner points with <InlineMath math="x=0" /> or <InlineMath math="y=0" /> are checked too.
-
 <MathVisual
-  title="Corner points after the table profit rises"
-  description={<>The feasible region is still bounded by the lines <InlineMath math="2x+3y=120" /> and <InlineMath math="x+3y=90" />. With the new table profit, the corner point <InlineMath math="(0,30)" /> gives the largest profit.</>}
+  title="Feasible region with the new optimum"
+  description={<>The feasible region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. It lies below the line <InlineMath math="3x+2y=120" /> and below the line <InlineMath math="x+2y=80" />.</>}
   labels={{
-    "line-cutting": <InlineMath math="2x+3y=120" />,
-    "line-painting": <InlineMath math="x+3y=90" />,
-    "corner-x": <InlineMath math="(60,0)" />,
-    "corner-middle": <InlineMath math="(30,20)" />,
-    "corner-y": <InlineMath math="(0,30)" />,
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 70 },
-      y: { min: -5, max: 45 },
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 30, y: 20 }, { x: 0, y: 30 }] },
-      { id: "cutting", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 60, y: 0 } },
-      { id: "painting", kind: "segment", appearance: "primary", from: { x: 0, y: 30 }, to: { x: 60, y: 10 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
-      { id: "corner-middle-point", kind: "point", appearance: "reference", at: { x: 30, y: 20 } },
-      { id: "corner-y-point", kind: "point", appearance: "answer", at: { x: 0, y: 30 } },
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "reference", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
     ],
     labels: [
-      { key: "line-cutting", objectId: "cutting", at: { x: 15, y: 30 }, placement: "above-right" },
-      { key: "line-painting", objectId: "painting", at: { x: 45, y: 15 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 60, y: 0 }, placement: "below" },
-      { key: "corner-middle", objectId: "corner-middle-point", at: { x: 30, y: 20 }, placement: "above-right" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
     ],
   }}
 />
 
-Compute the new profit at every corner point.
+Comparing slopes gives the same result. The level lines <InlineMath math="180x+100y=k" /> have slope <InlineMath math="-1.8" />. They are steeper than the limit <InlineMath math="3x+2y=120" />, whose slope is <InlineMath math="-1.5" />. As a level line moves outward, it therefore leaves the region last at the corner <InlineMath math="(40,0)" />.
 
-| Corner point | New profit |
-| --- | ---: |
-| <InlineMath math="(0,0)" /> | <InlineMath math="\text{Rp}0" /> |
-| <InlineMath math="(60,0)" /> | <InlineMath math="150{,}000\cdot60=\text{Rp}9{,}000{,}000" /> |
-| <InlineMath math="(30,20)" /> | <InlineMath math="150{,}000\cdot30+500{,}000\cdot20=\text{Rp}14{,}500{,}000" /> |
-| <InlineMath math="(0,30)" /> | <InlineMath math="500{,}000\cdot30=\text{Rp}15{,}000{,}000" /> |
+So the most profitable choice is <InlineMath math="40" /> lettuce racks and <InlineMath math="0" /> pak choi racks.
 
-The largest profit is now at <InlineMath math="(0,30)" />. The trade along the painting line <InlineMath math="x+3y=90" /> shows why. Moving from <InlineMath math="(0,30)" /> to <InlineMath math="(30,20)" /> adds <InlineMath math="30" /> chairs and removes <InlineMath math="10" /> tables. The extra chair profit is only <InlineMath math="30\cdot150{,}000=4{,}500{,}000" />, while the lost table profit is <InlineMath math="10\cdot500{,}000=5{,}000{,}000" />. That move therefore lowers the profit.
-
-So, for maximum profit, the workshop makes <InlineMath math="0" /> chairs and <InlineMath math="30" /> tables in one month, earning <InlineMath math="\text{Rp}15{,}000{,}000" />.
-
-- <InlineMath math="0" /> chairs and <InlineMath math="40" /> tables fit the cutting limit, but painting them needs <InlineMath math="3\cdot40=120" /> hours, more than <InlineMath math="90" /> hours.
-- <InlineMath math="20" /> chairs and <InlineMath math="30" /> tables need <InlineMath math="2\cdot20+3\cdot30=130" /> cutting hours, more than <InlineMath math="120" /> hours. This combination comes from swapping the coordinates of the corner point <InlineMath math="(30,20)" />.
-- <InlineMath math="30" /> chairs and <InlineMath math="20" /> tables is the optimum for the old table profit. With the new profit, it gives only <InlineMath math="\text{Rp}14{,}500{,}000" />.
-- <InlineMath math="60" /> chairs and <InlineMath math="0" /> tables give only <InlineMath math="\text{Rp}9{,}000{,}000" />, because no tables are made although tables are now the most profitable product.
+- <InlineMath math="20" /> lettuce racks and <InlineMath math="30" /> pak choi racks were optimal with the old profits and now bring only <InlineMath math="\text{Rp}6{,}600{,}000.00" />.
+- <InlineMath math="0" /> lettuce racks and <InlineMath math="40" /> pak choi racks bring only <InlineMath math="\text{Rp}4{,}000{,}000.00" />.
+- <InlineMath math="30" /> lettuce racks and <InlineMath math="20" /> pak choi racks need <InlineMath math="90+40=130" /> litres of nutrient solution and lie outside the region.
+- <InlineMath math="80" /> lettuce racks respect only the care hours. They would need <InlineMath math="240" /> litres of nutrient solution.

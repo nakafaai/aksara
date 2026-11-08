@@ -1,63 +1,53 @@
-Batas jam pemotongan dan jam pengecatan tidak berubah, jadi **daerah penyelesaiannya tetap sama**. Yang berubah hanya fungsi objektifnya. Misalkan <InlineMath math="x" /> adalah banyak kursi dan <InlineMath math="y" /> adalah banyak meja dalam satu bulan.
+Batasannya tetap, jadi daerah penyelesaiannya masih segi empat dengan titik pojok <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" />, dan <InlineMath math="(0,40)" />. Yang berubah hanya fungsi tujuan, sehingga **titik pojok terbaik bisa berpindah**.
 
 <BlockMath math="\begin{aligned}
-2x+3y&\le120 \\
-x+3y&\le90 \\
-x\ge0,\quad y&\ge0
+K&=180{.}000x+100{.}000y \\
+K(40,0)&=7{.}200{.}000 \\
+K(20,30)&=3{.}600{.}000+3{.}000{.}000=6{.}600{.}000 \\
+K(0,40)&=4{.}000{.}000
 \end{aligned}" />
 
-Dengan keuntungan meja yang baru, keuntungan bulanan adalah <InlineMath math="g(x,y)=150{.}000x+500{.}000y" /> rupiah. Maksimum fungsi linear pada daerah penyelesaian tercapai di salah satu titik pojok. Eliminasi kedua garis batas memberi titik potong <InlineMath math="(30,20)" />, karena <InlineMath math="(2x+3y)-(x+3y)=120-90" /> menghasilkan <InlineMath math="x=30" />, lalu <InlineMath math="30+3y=90" /> menghasilkan <InlineMath math="y=20" />. Titik pojok lainnya adalah <InlineMath math="(0,0)" />, <InlineMath math="(60,0)" />, dan <InlineMath math="(0,30)" />. Soal membolehkan bengkel hanya membuat satu jenis barang, jadi titik pojok dengan <InlineMath math="x=0" /> atau <InlineMath math="y=0" /> ikut diperiksa.
-
 <MathVisual
-  title="Titik pojok setelah keuntungan meja naik"
-  description={<>Daerah penyelesaian tetap dibatasi garis <InlineMath math="2x+3y=120" /> dan <InlineMath math="x+3y=90" />. Dengan keuntungan meja yang baru, titik pojok <InlineMath math="(0,30)" /> memberi keuntungan terbesar.</>}
+  title="Daerah penyelesaian dengan titik optimum baru"
+  description={<>Daerah penyelesaian adalah segi empat dengan titik pojok <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" />, dan <InlineMath math="(0,40)" />. Daerah itu terletak di bawah garis <InlineMath math="3x+2y=120" /> dan di bawah garis <InlineMath math="x+2y=80" />.</>}
   labels={{
-    "line-cutting": <InlineMath math="2x+3y=120" />,
-    "line-painting": <InlineMath math="x+3y=90" />,
-    "corner-x": <InlineMath math="(60,0)" />,
-    "corner-middle": <InlineMath math="(30,20)" />,
-    "corner-y": <InlineMath math="(0,30)" />,
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -5, max: 70 },
-      y: { min: -5, max: 45 },
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 30, y: 20 }, { x: 0, y: 30 }] },
-      { id: "cutting", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 60, y: 0 } },
-      { id: "painting", kind: "segment", appearance: "primary", from: { x: 0, y: 30 }, to: { x: 60, y: 10 } },
-      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
-      { id: "corner-middle-point", kind: "point", appearance: "reference", at: { x: 30, y: 20 } },
-      { id: "corner-y-point", kind: "point", appearance: "answer", at: { x: 0, y: 30 } },
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "reference", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
     ],
     labels: [
-      { key: "line-cutting", objectId: "cutting", at: { x: 15, y: 30 }, placement: "above-right" },
-      { key: "line-painting", objectId: "painting", at: { x: 45, y: 15 }, placement: "above-right" },
-      { key: "corner-x", objectId: "corner-x-point", at: { x: 60, y: 0 }, placement: "below" },
-      { key: "corner-middle", objectId: "corner-middle-point", at: { x: 30, y: 20 }, placement: "above-right" },
-      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
     ],
   }}
 />
 
-Hitung keuntungan baru di setiap titik pojok.
+Perbandingan gradien memberikan hasil yang sama. Garis selidik <InlineMath math="180x+100y=k" /> bergradien <InlineMath math="-1{,}8" />. Garis itu lebih curam daripada batasan <InlineMath math="3x+2y=120" /> yang bergradien <InlineMath math="-1{,}5" />. Karena itu, ketika garis selidik digeser menjauhi titik asal, garis itu terakhir menyentuh daerah penyelesaian di titik <InlineMath math="(40,0)" />.
 
-| Titik pojok | Keuntungan baru |
-| --- | ---: |
-| <InlineMath math="(0,0)" /> | <InlineMath math="\text{Rp}0{,}00" /> |
-| <InlineMath math="(60,0)" /> | <InlineMath math="150{.}000\cdot60=\text{Rp}9{.}000{.}000{,}00" /> |
-| <InlineMath math="(30,20)" /> | <InlineMath math="150{.}000\cdot30+500{.}000\cdot20=\text{Rp}14{.}500{.}000{,}00" /> |
-| <InlineMath math="(0,30)" /> | <InlineMath math="500{.}000\cdot30=\text{Rp}15{.}000{.}000{,}00" /> |
+Jadi, keuntungan maksimum diperoleh dengan menanam <InlineMath math="40" /> rak selada dan <InlineMath math="0" /> rak pakcoy.
 
-Keuntungan terbesar sekarang berada di <InlineMath math="(0,30)" />. Alasannya terlihat dari pertukaran di sepanjang garis pengecatan <InlineMath math="x+3y=90" />. Pindah dari <InlineMath math="(0,30)" /> ke <InlineMath math="(30,20)" /> berarti menambah <InlineMath math="30" /> kursi dan mengurangi <InlineMath math="10" /> meja. Tambahan keuntungan kursi hanya <InlineMath math="30\cdot150{.}000=4{.}500{.}000" />, sedangkan keuntungan yang hilang dari meja adalah <InlineMath math="10\cdot500{.}000=5{.}000{.}000" />. Jadi, perpindahan itu justru mengurangi keuntungan.
-
-Jadi, agar keuntungan maksimum, bengkel itu membuat <InlineMath math="0" /> kursi dan <InlineMath math="30" /> meja dalam satu bulan, dengan keuntungan <InlineMath math="\text{Rp}15{.}000{.}000{,}00" />.
-
-- <InlineMath math="0" /> kursi dan <InlineMath math="40" /> meja memenuhi batas pemotongan, tetapi pengecatannya memerlukan <InlineMath math="3\cdot40=120" /> jam, lebih dari <InlineMath math="90" /> jam.
-- <InlineMath math="20" /> kursi dan <InlineMath math="30" /> meja memerlukan <InlineMath math="2\cdot20+3\cdot30=130" /> jam pemotongan, lebih dari <InlineMath math="120" /> jam. Kombinasi ini muncul jika koordinat titik pojok <InlineMath math="(30,20)" /> tertukar.
-- <InlineMath math="30" /> kursi dan <InlineMath math="20" /> meja adalah titik optimum untuk keuntungan meja yang lama. Dengan keuntungan baru, titik itu hanya memberi <InlineMath math="\text{Rp}14{.}500{.}000{,}00" />.
-- <InlineMath math="60" /> kursi dan <InlineMath math="0" /> meja hanya memberi <InlineMath math="\text{Rp}9{.}000{.}000{,}00" />, karena tidak ada meja yang dibuat padahal meja sekarang paling menguntungkan.
+- <InlineMath math="20" /> rak selada dan <InlineMath math="30" /> rak pakcoy optimal pada keuntungan lama, tetapi sekarang hanya menghasilkan <InlineMath math="\text{Rp}6{.}600{.}000{,}00" />.
+- <InlineMath math="0" /> rak selada dan <InlineMath math="40" /> rak pakcoy hanya menghasilkan <InlineMath math="\text{Rp}4{.}000{.}000{,}00" />.
+- <InlineMath math="30" /> rak selada dan <InlineMath math="20" /> rak pakcoy memerlukan <InlineMath math="90+40=130" /> liter larutan nutrisi, jadi berada di luar daerah penyelesaian.
+- <InlineMath math="80" /> rak selada hanya memperhatikan jam perawatan. Pilihan itu memerlukan <InlineMath math="240" /> liter larutan nutrisi.

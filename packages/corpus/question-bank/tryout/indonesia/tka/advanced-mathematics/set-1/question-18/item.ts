@@ -12,28 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label: "pencerminan terhadap garis $$y=x$$",
         },
         {
           correct: false,
-          label:
-            "rotasi $$90^\\circ$$ searah jarum jam dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label: "pencerminan terhadap garis $$y=-x$$",
         },
         {
           correct: false,
-          label:
-            "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label: "rotasi $$90^\circ$$ searah jarum jam dengan pusat $$O$$",
         },
         {
           correct: false,
-          label:
-            "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label: "rotasi $$180^\circ$$ dengan pusat $$O$$",
         },
         {
           correct: false,
-          label:
-            "rotasi $$90^\\circ$$ berlawanan arah jarum jam dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$\\frac12$$",
+          label: "pencerminan terhadap sumbu $$y$$",
         },
       ],
     },

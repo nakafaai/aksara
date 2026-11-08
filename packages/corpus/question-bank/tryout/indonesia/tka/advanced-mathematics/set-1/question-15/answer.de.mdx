@@ -1,58 +1,62 @@
-Die gesuchte Tangente ist **parallel** zu <InlineMath math="2x-y+3=0" />, hat also dieselbe Steigung. Schreibst du diese Gerade als <InlineMath math="y=2x+3" />, siehst du die Steigung <InlineMath math="m=2" />.
-
-Der Kreis <InlineMath math="(x-1)^2+(y+2)^2=5" /> hat den Mittelpunkt <InlineMath math="(1,-2)" /> und den Radius <InlineMath math="r=\sqrt5" />. Eine Tangente mit der Steigung <InlineMath math="m" /> an einen Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> erfüllt die folgende Formel. Der Faktor <InlineMath math="\sqrt{1+m^2}" /> kommt daher, dass der Abstand des Mittelpunkts von der Geraden gleich <InlineMath math="r" /> sein muss.
-
-<BlockMath math="y-b=m(x-a)\pm r\sqrt{1+m^2}" />
-
-Setze <InlineMath math="a=1" />, <InlineMath math="b=-2" />, <InlineMath math="m=2" /> und <InlineMath math="r=\sqrt5" /> ein.
+Eine Gerade berührt einen Kreis genau dann, wenn **ihr Abstand vom Mittelpunkt gleich dem Radius** ist. Bestimme deshalb zuerst Mittelpunkt und Radius durch quadratische Ergänzung.
 
 <BlockMath math="\begin{aligned}
-y+2&=2(x-1)\pm\sqrt5\cdot\sqrt{1+2^2} \\
-y+2&=2x-2\pm5 \\
-y&=2x-4\pm5
+(x^2-6x+9)+(y^2+2y+1)&=15+9+1 \\
+(x-3)^2+(y+1)^2&=25
 \end{aligned}" />
 
-Es gibt zwei Tangenten: <InlineMath math="y=2x+1" /> und <InlineMath math="y=2x-9" />. Nur <InlineMath math="y=2x+1" /> steht unter den Auswahlmöglichkeiten. Zur Kontrolle mit der Abstandsformel: Die Gerade <InlineMath math="2x-y+1=0" /> hat vom Mittelpunkt den Abstand <InlineMath math="\frac{|2\cdot1-(-2)+1|}{\sqrt{2^2+1^2}}=\frac{5}{\sqrt5}=\sqrt5" />, also genau den Radius.
+Der Mittelpunkt ist <InlineMath math="(3,-1)" />, der Radius ist <InlineMath math="5" />. Die gegebene Gerade hat die Steigung <InlineMath math="\frac34" />, eine Senkrechte dazu also die Steigung <InlineMath math="-\frac43" />. Solche Geraden haben die Form <InlineMath math="4x+3y+c=0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{|4\cdot3+3\cdot(-1)+c|}{\sqrt{4^2+3^2}}&=5 \\
+|9+c|&=25 \\
+c=16\ \text{oder}\ c&=-34
+\end{aligned}" />
 
 <MathVisual
-  title="Zwei parallele Tangenten"
-  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(1,-2)" /> und den Radius <InlineMath math="\sqrt5" />. Die Gerade <InlineMath math="y=2x+1" /> berührt ihn in <InlineMath math="(-1,-1)" />, die Gerade <InlineMath math="y=2x-9" /> in <InlineMath math="(3,-3)" />. Die Gerade <InlineMath math="y=2x+3" /> ist zu beiden parallel, berührt den Kreis aber nicht.</>}
+  title="Zwei Tangenten senkrecht zur gegebenen Geraden"
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(3,-1)" /> und den Radius <InlineMath math="5" />. Die Geraden <InlineMath math="4x+3y-34=0" /> und <InlineMath math="4x+3y+16=0" /> berühren ihn in <InlineMath math="(7,2)" /> und <InlineMath math="(-1,-4)" /> und stehen senkrecht auf der Geraden <InlineMath math="3x-4y+1=0" />.</>}
   labels={{
-    upper: <InlineMath math="y=2x+1" />,
-    lower: <InlineMath math="y=2x-9" />,
-    given: <InlineMath math="y=2x+3" />,
-    "touch-upper": <InlineMath math="(-1,-1)" />,
-    "touch-lower": <InlineMath math="(3,-3)" />,
+    tangent: <InlineMath math="4x+3y-34=0" />,
+    other: <InlineMath math="4x+3y+16=0" />,
+    given: <InlineMath math="3x-4y+1=0" />,
+    "touch-a": <InlineMath math="(7,2)" />,
+    "touch-b": <InlineMath math="(-1,-4)" />,
+    centre: <InlineMath math="(3,-1)" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -4, max: 6 },
-      y: { min: -8, max: 5 },
+      x: { min: -6, max: 12 },
+      y: { min: -9, max: 8 },
     },
-    view: { kind: "fit", padding: 0.1 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "circle", kind: "circle", appearance: "primary", center: { x: 1, y: -2 }, radius: Math.sqrt(5) },
-      { id: "upper-line", kind: "segment", appearance: "answer", from: { x: -3, y: -5 }, to: { x: 1, y: 3 } },
-      { id: "lower-line", kind: "segment", appearance: "secondary", from: { x: 1, y: -7 }, to: { x: 5, y: 1 } },
-      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -3 }, to: { x: 0.5, y: 4 } },
-      { id: "touch-upper-point", kind: "point", appearance: "answer", at: { x: -1, y: -1 } },
-      { id: "touch-lower-point", kind: "point", appearance: "reference", at: { x: 3, y: -3 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -1 }, radius: 5 },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: 4, y: 6 }, to: { x: 10, y: -2 } },
+      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -4, y: 0 }, to: { x: 2, y: -8 } },
+      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 9, y: 7 } },
+      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 7, y: 2 } },
+      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -1, y: -4 } },
+      { id: "centre-point", kind: "point", appearance: "reference", at: { x: 3, y: -1 } },
     ],
     labels: [
-      { key: "upper", objectId: "upper-line", at: { x: 0, y: 1 }, placement: "right" },
-      { key: "lower", objectId: "lower-line", at: { x: 4, y: -1 }, placement: "right" },
-      { key: "given", objectId: "given-line", at: { x: -1.5, y: 0 }, placement: "left" },
-      { key: "touch-upper", objectId: "touch-upper-point", at: { x: -1, y: -1 }, placement: "left" },
-      { key: "touch-lower", objectId: "touch-lower-point", at: { x: 3, y: -3 }, placement: "right" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 10, y: -2 }, placement: "below" },
+      { key: "other", objectId: "other-line", at: { x: 2, y: -8 }, placement: "right" },
+      { key: "given", objectId: "given-line", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "touch-a", objectId: "touch-a-point", at: { x: 7, y: 2 }, placement: "right" },
+      { key: "touch-b", objectId: "touch-b-point", at: { x: -1, y: -4 }, placement: "left" },
+      { key: "centre", objectId: "centre-point", at: { x: 3, y: -1 }, placement: "below" },
     ],
   }}
 />
 
-Eine Tangente parallel zu <InlineMath math="2x-y+3=0" /> ist also <InlineMath math="y=2x+1" />.
+Zur Kontrolle: Der Berührpunkt <InlineMath math="(7,2)" /> liegt auf dem Kreis, denn <InlineMath math="4^2+3^2=25" />, und auf der Tangente, denn <InlineMath math="28+6-34=0" />.
 
-- <InlineMath math="y=2x+3" /> ist die gegebene Gerade. Ihre Steigung stimmt, aber ihr Abstand vom Mittelpunkt, <InlineMath math="\frac{|2+2+3|}{\sqrt5}=\frac{7}{\sqrt5}" />, ist größer als <InlineMath math="\sqrt5" />. Sie berührt den Kreis also nicht.
-- <InlineMath math="y=2x-4+\sqrt5" /> entsteht, wenn der Faktor <InlineMath math="\sqrt{1+m^2}" /> fehlt, sodass nur <InlineMath math="r=\sqrt5" /> addiert wird.
-- <InlineMath math="y=-\frac12x+1" /> verwendet die Steigung einer **senkrechten** Geraden, nicht einer parallelen.
-- <InlineMath math="y=2x+9" /> entsteht, wenn der Mittelpunkt mit vertauschten Vorzeichen als <InlineMath math="(-1,2)" /> genommen wird. Dann ergibt sich <InlineMath math="y-2=2(x+1)+5" />.
+Unter den Auswahlmöglichkeiten ist also <InlineMath math="4x+3y-34=0" /> eine gesuchte Tangente.
+
+- <InlineMath math="4x+3y+34=0" /> hat das falsche Vorzeichen. Ihr Abstand vom Mittelpunkt ist <InlineMath math="\frac{43}{5}" />, nicht <InlineMath math="5" />.
+- <InlineMath math="3x-4y+12=0" /> berührt den Kreis zwar, verläuft aber parallel zur gegebenen Geraden statt senkrecht dazu.
+- <InlineMath math="4x+3y-9=0" /> geht durch den Mittelpunkt und schneidet den Kreis deshalb in zwei Punkten.
+- <InlineMath math="4x+3y-4=0" /> entsteht aus <InlineMath math="|9+c|=5" />, wenn der Radius nicht mit <InlineMath math="\sqrt{4^2+3^2}=5" /> multipliziert wird. Ihr Abstand vom Mittelpunkt ist nur <InlineMath math="1" />.

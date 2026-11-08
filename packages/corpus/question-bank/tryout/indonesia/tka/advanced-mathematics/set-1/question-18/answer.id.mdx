@@ -1,50 +1,50 @@
-Setiap transformasi linear pada bidang memiliki matriks yang **kolom-kolomnya adalah bayangan vektor satuan**. Kolom pertama adalah bayangan <InlineMath math="(1,0)" />, dan kolom kedua adalah bayangan <InlineMath math="(0,1)" />. Jadi, kedua informasi pada soal langsung menyusun matriks <InlineMath math="T" />.
+Tuliskan kedua transformasi sebagai matriks. Pada komposisi, **matriks yang dikerjakan lebih dulu berada di sebelah kanan**, karena matriks itulah yang pertama bekerja pada titik.
 
-<BlockMath math="M_T=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=2\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned}
+S_x&=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix},\qquad R_{90^\circ}=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \\
+T&=R_{90^\circ}\,S_x=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\end{aligned}" />
 
-Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> adalah rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="O" />, karena matriks rotasi sebesar <InlineMath math="\theta" /> adalah <InlineMath math="\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}" /> dan <InlineMath math="\cos90^\circ=0" />, <InlineMath math="\sin90^\circ=1" />. Faktor <InlineMath math="2" /> di depannya adalah dilatasi dengan pusat <InlineMath math="O" /> dan faktor skala <InlineMath math="2" />, yang bermatriks <InlineMath math="2I" />.
-
-<BlockMath math="\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=M_T" />
-
-Periksa dengan titik pada soal. Rotasi <InlineMath math="90^\circ" /> memindahkan <InlineMath math="(1,0)" /> ke <InlineMath math="(0,1)" />, lalu dilatasi menggandakannya menjadi <InlineMath math="(0,2)" />. Titik <InlineMath math="(0,1)" /> berputar ke <InlineMath math="(-1,0)" />, lalu menjadi <InlineMath math="(-2,0)" />. Keduanya sesuai.
+Matriks <InlineMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" /> menukar kedua koordinat, jadi matriks itu adalah pencerminan terhadap garis <InlineMath math="y=x" />.
 
 <MathVisual
-  title="Persegi satuan dan bayangannya"
-  description={<>Persegi satuan dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(1,0)" />, <InlineMath math="(1,1)" />, dan <InlineMath math="(0,1)" /> dipetakan oleh <InlineMath math="T" /> ke persegi dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(0,2)" />, <InlineMath math="(-2,2)" />, dan <InlineMath math="(-2,0)" />. Bayangannya berputar seperempat putaran berlawanan arah jarum jam dan sisinya menjadi dua kali panjang semula.</>}
+  title="Satu titik di bawah kedua langkah"
+  description={<>Titik <InlineMath math="P(3,1)" /> dicerminkan terhadap sumbu <InlineMath math="x" /> menjadi <InlineMath math="P\'(3,-1)" />, lalu dirotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam menjadi <InlineMath math="P\'\'(1,3)" />. Titik <InlineMath math="P" /> dan <InlineMath math="P\'\'" /> simetris terhadap garis <InlineMath math="y=x" />.</>}
   labels={{
-    "image-x": <InlineMath math="(0,2)" />,
-    "image-y": <InlineMath math="(-2,0)" />,
-    "unit-x": <InlineMath math="(1,0)" />,
-    "unit-y": <InlineMath math="(0,1)" />,
+    p: <InlineMath math="P(3,1)" />,
+    "p-one": <InlineMath math="P'(3,-1)" />,
+    "p-two": <InlineMath math="P''(1,3)" />,
+    mirror: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -3, max: 2 },
-      y: { min: -1, max: 3 },
+      x: { min: -1.5, max: 4.5 },
+      y: { min: -2, max: 4.5 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "unit-square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
-      { id: "image-square", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -2, y: 0 }] },
-      { id: "unit-x-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
-      { id: "unit-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
-      { id: "image-x-point", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
-      { id: "image-y-point", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "mirror-line", kind: "segment", appearance: "construction", from: { x: -1, y: -1 }, to: { x: 4, y: 4 } },
+      { id: "first-step", kind: "segment", appearance: "reference", from: { x: 3, y: 1 }, to: { x: 3, y: -1 } },
+      { id: "point-p", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "point-p-one", kind: "point", appearance: "secondary", at: { x: 3, y: -1 } },
+      { id: "point-p-two", kind: "point", appearance: "answer", at: { x: 1, y: 3 } },
     ],
     labels: [
-      { key: "unit-x", objectId: "unit-x-point", at: { x: 1, y: 0 }, placement: "below-right" },
-      { key: "unit-y", objectId: "unit-y-point", at: { x: 0, y: 1 }, placement: "above-right" },
-      { key: "image-x", objectId: "image-x-point", at: { x: 0, y: 2 }, placement: "above-right" },
-      { key: "image-y", objectId: "image-y-point", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "p-one", objectId: "point-p-one", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "p-two", objectId: "point-p-two", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "mirror", objectId: "mirror-line", at: { x: 4, y: 4 }, placement: "below-right" },
     ],
   }}
 />
 
-Jadi, <InlineMath math="T" /> sama dengan rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="O" />, dilanjutkan dilatasi dengan pusat <InlineMath math="O" /> dan faktor skala <InlineMath math="2" />.
+Sebagai pemeriksaan dengan satu titik, <InlineMath math="P(3,1)\to P'(3,-1)\to P''(1,3)" />. Hasilnya tepat berupa koordinat <InlineMath math="P" /> yang ditukar.
 
-- Rotasi <InlineMath math="90^\circ" /> searah jarum jam yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}" />. Transformasi itu memetakan <InlineMath math="(1,0)" /> ke <InlineMath math="(0,-2)" />, bukan ke <InlineMath math="(0,2)" />.
-- Pencerminan terhadap <InlineMath math="y=x" /> yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}" />. Transformasi itu memetakan <InlineMath math="(0,1)" /> ke <InlineMath math="(2,0)" />, bukan ke <InlineMath math="(-2,0)" />.
-- Rotasi <InlineMath math="180^\circ" /> yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" /> dan memetakan <InlineMath math="(1,0)" /> ke <InlineMath math="(-2,0)" />, bukan ke <InlineMath math="(0,2)" />.
-- Dilatasi dengan faktor skala <InlineMath math="\frac12" /> memperkecil jarak. Rotasi tidak mengubah jarak ke <InlineMath math="O" />, padahal bayangan <InlineMath math="(1,0)" /> berjarak <InlineMath math="2" /> dari <InlineMath math="O" />, jadi faktor skalanya <InlineMath math="2" />.
+Jadi, <InlineMath math="T" /> sama dengan pencerminan terhadap garis <InlineMath math="y=x" />.
+
+- Pencerminan terhadap <InlineMath math="y=-x" /> muncul karena urutannya terbalik, yaitu dari <InlineMath math="S_x\,R_{90^\circ}=\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />.
+- Rotasi <InlineMath math="90^\circ" /> searah jarum jam mempertahankan arah putaran bangun. Pencerminan yang dilanjutkan rotasi membalik arah itu, karena <InlineMath math="\det T=-1" />.
+- Rotasi <InlineMath math="180^\circ" /> juga berdeterminan <InlineMath math="1" /> dan memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-3,-1)" />.
+- Pencerminan terhadap sumbu <InlineMath math="y" /> memetakan <InlineMath math="P(3,1)" /> ke <InlineMath math="(-3,1)" />, bukan ke <InlineMath math="(1,3)" />.

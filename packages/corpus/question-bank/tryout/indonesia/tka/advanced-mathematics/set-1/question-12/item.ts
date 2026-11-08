@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$30^\\circ$$",
+          label: "$$12$$ dan $$60^\circ$$",
         },
         {
           correct: true,
-          label: "$$60^\\circ$$",
+          label: "$$-12$$ dan $$120^\circ$$",
         },
         {
           correct: false,
-          label: "$$90^\\circ$$",
+          label: "$$-12$$ dan $$150^\circ$$",
         },
         {
           correct: false,
-          label: "$$120^\\circ$$",
+          label: "$$-24$$ dan $$180^\circ$$",
         },
         {
           correct: false,
-          label: "$$150^\\circ$$",
+          label: "$$24$$ dan $$0^\circ$$",
         },
       ],
     },

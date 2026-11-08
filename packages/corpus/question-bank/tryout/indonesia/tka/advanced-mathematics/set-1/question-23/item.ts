@@ -16,19 +16,19 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$\\frac12$$",
+          label: "$$1$$",
         },
         {
           correct: false,
-          label: "$$\\frac32$$",
+          label: "$$\frac52$$",
         },
         {
           correct: true,
-          label: "$$\\frac52$$",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label: "$$\\infty$$",
+          label: "$$8$$",
         },
       ],
     },
