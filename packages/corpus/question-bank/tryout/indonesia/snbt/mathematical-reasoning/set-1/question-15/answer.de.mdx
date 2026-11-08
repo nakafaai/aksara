@@ -1,24 +1,23 @@
-Gesucht sind **zusätzliche Arbeitskräfte**, nicht die gesamte Belegschaft. Bestimme zunächst die Personenzahl für vierzig Arbeitstage und ziehe dann die achtzig bereits verfügbaren Arbeitskräfte ab.
+Schreibe die Kosten jedes Tarifs als Funktion des Verbrauchs <InlineMath math="x" /> GB über dem Inklusivvolumen. Für <InlineMath math="x>10" /> **kostet Hemat <InlineMath math="50\,000+9\,000(x-10)" />**, und für <InlineMath math="x>20" /> kostet Bebas <InlineMath math="95\,000+5\,000(x-20)" />.
 
-# Den Arbeitsumfang gleich halten
+# Verbrauch von 25 GB und 12 GB
 
-Ein Personentag entspricht der Arbeit einer Person an einem Arbeitstag. Bei gleicher, konstanter Tagesleistung bleibt **der Arbeitsumfang des Projekts unverändert**, auch wenn sich die Personenzahl ändert.
+<BlockMath math="\begin{aligned}
+\text{Hemat}(25)&=50\,000+15\cdot9\,000=185\,000\\
+\text{Bebas}(25)&=95\,000+5\cdot5\,000=120\,000
+\end{aligned}" />
 
-<BlockMath math="W=80\times50=4{.}000\text{ Personentage}" />
+Der Unterschied ist 65 000, also ist die erste Aussage wahr. Bei 12 GB kostet Hemat <InlineMath math="50\,000+2\cdot9\,000=68\,000" />, **günstiger als 95 000**. Die zweite Aussage ist falsch.
 
-Mit <InlineMath math="P" /> bezeichnen wir die gesamte Personenzahl ab dem ersten Tag. Diese Arbeitskräfte müssen den Arbeitsumfang in vierzig Arbeitstagen leisten.
+# Wachstum des Unterschieds und Budgetgrenze
 
-<BlockMath math="\begin{aligned}40P&=4{.}000\\P&=\frac{4{.}000}{40}\\&=100\text{ Arbeitskräfte}\end{aligned}" />
+Über 20 GB kommen pro GB bei Hemat 9 000 und bei Bebas 5 000 Rupiah hinzu, der Unterschied **wächst also um 4 000 Rupiah pro GB**. Die dritte Aussage ist wahr.
 
-| Zeitplan | Arbeitskräfte | Arbeitstage | Arbeitsumfang (Personentage) |
-| --- | --- | --- | --- |
-| Ursprünglich | 80 | 50 | 4.000 |
-| Verkürzt | 100 | 40 | 4.000 |
+<BlockMath math="\begin{aligned}
+50\,000+9\,000(x-10)&\le150\,000\\
+x-10&\le\tfrac{100}{9}\approx11{,}1
+\end{aligned}" />
 
-# Zusätzliche Arbeitskräfte berechnen
+Der Verbrauch zählt in ganzen GB, also höchstens 21 GB. Ein Verbrauch von 22 GB kostet 158 000 und übersteigt das Budget. Die vierte Aussage ist falsch.
 
-Von den hundert benötigten Arbeitskräften sind achtzig bereits vorhanden. Die **zusätzliche Zahl ist die Differenz zwischen Gesamtbedarf und ursprünglicher Zahl**.
-
-<BlockMath math="P_{\text{zusätzlich}}=100-80=20\text{ Arbeitskräfte}" />
-
-Zur Kontrolle gilt <InlineMath math="(80+20)\times40=4{.}000" /> Personentage, genau der ursprüngliche Arbeitsumfang. Es werden also **20 zusätzliche Arbeitskräfte** ab dem ersten Tag benötigt.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

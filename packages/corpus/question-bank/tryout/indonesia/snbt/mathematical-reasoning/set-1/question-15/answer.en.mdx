@@ -1,24 +1,23 @@
-The question asks for **additional workers**, not the entire workforce. Find the total needed for a forty-day schedule, then subtract the eighty workers already available.
+Write each plan's cost as a function of the usage <InlineMath math="x" /> GB above its quota. For <InlineMath math="x>10" />, **the Hemat cost is <InlineMath math="50{,}000+9{,}000(x-10)" />**, and for <InlineMath math="x>20" />, the Bebas cost is <InlineMath math="95{,}000+5{,}000(x-20)" />.
 
-# Keeping the Workload Equal
+# Usage of 25 GB and 12 GB
 
-One worker-day is the work completed by one person in one working day. With equal, constant daily productivity, **the project workload stays fixed** when the workforce changes.
+<BlockMath math="\begin{aligned}
+\text{Hemat}(25)&=50{,}000+15\cdot9{,}000=185{,}000\\
+\text{Bebas}(25)&=95{,}000+5\cdot5{,}000=120{,}000
+\end{aligned}" />
 
-<BlockMath math="W=80\times50=4{,}000\text{ worker-days}" />
+The difference is 65,000, so the first statement is true. For 12 GB, Hemat costs <InlineMath math="50{,}000+2\cdot9{,}000=68{,}000" />, **cheaper than 95,000**. The second statement is false.
 
-Let <InlineMath math="P" /> be the total workforce from the first day. These workers must complete that workload in forty working days.
+# Rate of the difference and the budget limit
 
-<BlockMath math="\begin{aligned}40P&=4{,}000\\P&=\frac{4{,}000}{40}\\&=100\text{ workers}\end{aligned}" />
+Above 20 GB, each GB adds Rp9,000 to Hemat and Rp5,000 to Bebas, so the difference **grows by Rp4,000 per GB**. The third statement is true.
 
-| Schedule | Workers | Working days | Workload (worker-days) |
-| --- | --- | --- | --- |
-| Original | 80 | 50 | 4,000 |
-| Shortened | 100 | 40 | 4,000 |
+<BlockMath math="\begin{aligned}
+50{,}000+9{,}000(x-10)&\le150{,}000\\
+x-10&\le\tfrac{100}{9}\approx11.1
+\end{aligned}" />
 
-# Finding the Addition to the Original Workforce
+Usage is counted in whole GB, so at most 21 GB. A usage of 22 GB costs 158,000, above the budget. The fourth statement is false.
 
-Eighty of the hundred required workers are already available. The **additional number equals the required total minus the original number**.
-
-<BlockMath math="P_{\text{additional}}=100-80=20\text{ workers}" />
-
-Check the schedule: <InlineMath math="(80+20)\times40=4{,}000" /> worker-days, equal to the original workload. Therefore, **20 additional workers** are needed from the first day.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

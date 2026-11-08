@@ -1,32 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "rain-tank",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$20$$",
-        },
-        {
-          correct: false,
-          label: "$$21$$",
-        },
-        {
-          correct: false,
-          label: "$$23$$",
-        },
-        {
-          correct: true,
-          label: "$$22$$",
-        },
-        {
-          correct: false,
-          label: "$$24$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "m³",
+      value: "1.54",
     },
   },
 };

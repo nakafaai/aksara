@@ -1,20 +1,19 @@
-The amount of work stays fixed. If every worker has the same constant daily rate, **worker count and completion time are inversely proportional**. Sixty-four workers therefore need longer than eighty workers.
+For usage up to 10 GB, Hemat costs only Rp50,000, far below Rp95,000. So the break-even point must be **above 10 GB**, where Hemat's cost starts to rise.
 
-# Finding the Fixed Workload
+# Usage between 10 and 20 GB
 
-One **worker-day** is the work done by one worker in one working day. Eighty workers working for fifty days provide the following workload.
+For <InlineMath math="10<x\le20" />, the Hemat cost is <InlineMath math="50{,}000+9{,}000(x-10)" /> and **the Bebas cost stays 95,000**.
 
-<BlockMath math="W=80\times50=4{,}000\text{ worker-days}" />
+<BlockMath math="\begin{aligned}
+50{,}000+9{,}000(x-10)&=95{,}000\\
+9{,}000(x-10)&=45{,}000\\
+x&=15
+\end{aligned}" />
 
-| Workers from the start | Time (working days) | Workload (worker-days) |
-| --- | --- | --- |
-| 80 | 50 | 4,000 |
-| 64 | <InlineMath math="t" /> | <InlineMath math="64t=4{,}000" /> |
+# Making sure there is no other point
 
-# Finding the Completion Day
+Above 20 GB, Hemat adds Rp9,000 per GB while Bebas adds only Rp5,000. The difference **keeps growing**, so the two costs never meet again.
 
-Divide the workload by the worker count to obtain **the project duration**. All workers start at the beginning, so there is no earlier stage of work to subtract.
+Check: at 15 GB, Hemat costs <InlineMath math="50{,}000+5\cdot9{,}000=95{,}000" />, the same as Bebas.
 
-<BlockMath math="\begin{aligned}64t&=4{,}000\\t&=\frac{4{,}000}{64}\\&=\frac{4{,}000\div32}{64\div32}\\&=\frac{125}{2}=62.5\text{ working days}\end{aligned}" />
-
-After 62 days, they supply <InlineMath math="64\times62=3{,}968" /> worker-days. The remaining <InlineMath math="4{,}000-3{,}968=32" /> worker-days take another half day. The project therefore finishes **on working day 63**, halfway through that day. The number 63 identifies the completion day, while the exact duration remains 62.5 days.
+So the two plans cost the same at **15 GB**.

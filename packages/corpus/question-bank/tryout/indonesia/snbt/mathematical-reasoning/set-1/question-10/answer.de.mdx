@@ -1,80 +1,19 @@
-Wir werden den Wert von <InlineMath math="x" /> finden, der **die Oberfläche der Box maximiert**, und dann diese Oberfläche berechnen.
+Das untere Quartil ist der Wert, **unter dem ein Viertel der Daten liegt**. Bei 40 Werten liegt es beim 10. Wert.
 
-# Formel zur Bestimmung der Oberfläche
+# Kumulierte Häufigkeit
 
-Ein geschlossener Quader besitzt **Grund- und Deckfläche** mit der gemeinsamen Fläche <InlineMath math="2pl" />. Die vier Seitenflächen ergeben <InlineMath math="2pt+2lt=2(p+l)t=Kt" />. Addiert erhältst du die gesamte Oberfläche.
+Die kumulierte Häufigkeit zeigt, **wie viele Werte bis zum Ende jeder Klasse liegen**.
 
-<BlockMath math="L=2pl+Kt" />
+| Klasse | Häufigkeit | Kumulierte Häufigkeit |
+| :---: | :---: | :---: |
+| 0-9 | 4 | 4 |
+| 10-19 | 10 | 14 |
+| 20-29 | 15 | 29 |
 
-Aus <InlineMath math="2(p+l)=6x" /> und <InlineMath math="l=4x-5" /> ergeben sich die Quadermaße in Abhängigkeit von <InlineMath math="x" />:
-- Länge (<InlineMath math="p" />) ist <InlineMath math="5 - x" />
-- Breite (<InlineMath math="l" />) ist <InlineMath math="4x - 5" />
-- Der Basisumfang (<InlineMath math="K" />) beträgt <InlineMath math="6x" />
-- Höhe (<InlineMath math="t" />) ist <InlineMath math="5 - \frac{1}{3}x" />
+# Die Klasse bestimmen
 
-Setze diese Abmessungen in die Oberflächenformel ein:
+Die Klasse 0-9 enthält nur die Werte 1 bis 4. Die Klasse 10-19 enthält **die Werte 5 bis 14**, also liegt der 10. Wert in dieser Klasse.
 
-<BlockMath math="L(x) = 2(p \times l) + K \times t" />
+Die Klasse 20-29 ist Median- und Modalklasse, aber nicht die Klasse des unteren Quartils. Die Klasse 0-9 enthält nur 4 Werte, weniger als ein Viertel von 40.
 
-<BlockMath math="\begin{aligned}L(x)&=2(5-x)(4x-5) \\ &\quad+6x\left(5-\frac{x}{3}\right)\end{aligned}" />
-
-# Vereinfachung der Oberflächenfunktion
-
-Multipliziere **die Produkte der Seitenmaße** aus und fasse gleiche Potenzen zusammen:
-
-**Grundflächenteil**:
-
-<BlockMath math="\begin{aligned}&2(5-x)(4x-5) \\ &=2(20x-25-4x^2+5x)\end{aligned}" />
-
-<BlockMath math="= 2(-4x^2 + 25x - 25)" />
-
-<BlockMath math="= -8x^2 + 50x - 50" />
-
-**Umfang mal Höhenteil**:
-
-<BlockMath math="\begin{aligned}&6x\left(5-\frac{x}{3}\right) \\ &=30x-2x^2\end{aligned}" />
-
-**Gesamtfläche**:
-
-<BlockMath math="\begin{aligned}L(x)&=(-8x^2+50x-50) \\ &\quad+(30x-2x^2)\end{aligned}" />
-
-<BlockMath math="L(x) = -10x^2 + 80x - 50" />
-
-# Den Maximalwert finden
-
-Den Höchstwert kannst du auch ohne Ableitung durch **quadratische Ergänzung** beweisen.
-
-<BlockMath math="\begin{aligned}
-L(x)&=-10(x^2-8x)-50 \\
-&=-10((x-4)^2-16)-50 \\
-&=-10(x-4)^2+160-50 \\
-&=110-10(x-4)^2
-\end{aligned}" />
-
-Ein Quadrat ist nie negativ. Daher gelten <InlineMath math="-10(x-4)^2\le0" /> und <InlineMath math="L(x)\le110" />. Gleichheit tritt genau bei <InlineMath math="x=4" /> ein. Damit ist der Höchstwert im gesamten zulässigen Bereich bewiesen.
-
-Die Funktion <InlineMath math="L(x)" /> ist eine quadratische Funktion mit einem negativen Koeffizienten <InlineMath math="x^2" />, daher öffnet sich ihr parabolischer Graph nach unten und hat einen Maximalwert. Der Maximalwert wird erreicht, wenn seine erste Ableitung gleich Null ist (<InlineMath math="L'(x) = 0" />).
-
-<BlockMath math="L'(x) = -20x + 80" />
-
-<BlockMath math="-20x + 80 = 0" />
-
-<BlockMath math="20x = 80" />
-
-<BlockMath math="x = 4" />
-
-Länge, Breite und Höhe müssen positiv sein. Die Bedingungen <InlineMath math="5-x>0" />, <InlineMath math="4x-5>0" /> und <InlineMath math="5-\frac{x}{3}>0" /> ergeben gemeinsam <InlineMath math="\frac54<x<5" />. Da <InlineMath math="1{,}25 < 4 < 5" /> gilt, ist der Wert <InlineMath math="x = 4" /> gültig.
-
-# Berechnung der maximalen Oberfläche
-
-Setze **<InlineMath math="x=4" /> mit positiven Kantenmaßen** in die Funktion <InlineMath math="L(x)" /> ein:
-
-<BlockMath math="\begin{aligned}L(4)&=-10(4)^2+80(4) \\ &\quad-50\end{aligned}" />
-
-<BlockMath math="L(4) = -10(16) + 320 - 50" />
-
-<BlockMath math="L(4) = -160 + 320 - 50" />
-
-<BlockMath math="L(4) = 110" />
-
-Die maximale Oberfläche der Box beträgt also <InlineMath math="110 \text{ cm}^2" />.
+Das untere Quartil liegt also in der Klasse **10-19 Minuten**.

@@ -1,167 +1,17 @@
-Wir berechnen das **Sandvolumen einer vollen LKW-Ladefläche** und multiplizieren es mit dem Preis pro Kubikmeter.
+Jede Aussage lässt sich mit den Klassenhäufigkeiten und **den kumulierten Häufigkeiten** 4, 14, 29, 36 und 40 prüfen.
 
-# Volumen der Ladefläche
+# Prozentsatz und Vergleich von Klassen
 
-Die Ladefläche hat die Form eines Quaders mit den Maßen:
-- Länge (<InlineMath math="p" />) ist <InlineMath math="4 \text{ m}" />
-- Breite (<InlineMath math="l" />) ist <InlineMath math="2 \text{ m}" />
-- Höhe (<InlineMath math="t" />) ist <InlineMath math="1{,}5 \text{ m}" />
+Schüler mit 30 Minuten oder mehr liegen in den Klassen 30-39 und 40-49, das sind <InlineMath math="7+4=11" /> Schüler.
 
-<MathVisual
-  title="Sandvolumen auf der Ladefläche"
-  description="Drehe den Quader und vergleiche Länge, Breite und Höhe. Jede Maßangabe gehört zur beschrifteten Kante."
-  scene={{
-  "space": "space",
-  "frame": {
-    "kind": "cartesian",
-    "x": {
-      "min": -1,
-      "max": 5
-    },
-    "y": {
-      "min": -1,
-      "max": 2.5
-    },
-    "z": {
-      "min": -1,
-      "max": 3
-    }
-  },
-  "view": {
-    "kind": "camera",
-    "position": {
-      "x": 7,
-      "y": 5,
-      "z": 7
-    },
-    "target": {
-      "x": 2,
-      "y": 0.75,
-      "z": 1
-    }
-  },
-  "objects": [
-    {
-      "id": "bed",
-      "kind": "cuboid",
-      "appearance": "reference",
-      "center": {
-        "x": 2,
-        "y": 0.75,
-        "z": 1
-      },
-      "size": {
-        "length": 4,
-        "width": 2,
-        "height": 1.5
-      }
-    },
-    {
-      "id": "length",
-      "kind": "segment",
-      "appearance": "primary",
-      "from": {
-        "x": 0,
-        "y": 0,
-        "z": 2
-      },
-      "to": {
-        "x": 4,
-        "y": 0,
-        "z": 2
-      }
-    },
-    {
-      "id": "width",
-      "kind": "segment",
-      "appearance": "primary",
-      "from": {
-        "x": 4,
-        "y": 0,
-        "z": 0
-      },
-      "to": {
-        "x": 4,
-        "y": 0,
-        "z": 2
-      }
-    },
-    {
-      "id": "height",
-      "kind": "segment",
-      "appearance": "primary",
-      "from": {
-        "x": 0,
-        "y": 0,
-        "z": 2
-      },
-      "to": {
-        "x": 0,
-        "y": 1.5,
-        "z": 2
-      }
-    }
-  ],
-  "labels": [
-    {
-      "key": "length",
-      "objectId": "length",
-      "at": {
-        "x": 2,
-        "y": 0,
-        "z": 2
-      },
-      "placement": "below"
-    },
-    {
-      "key": "width",
-      "objectId": "width",
-      "at": {
-        "x": 4,
-        "y": 0,
-        "z": 1
-      },
-      "placement": "below-right"
-    },
-    {
-      "key": "height",
-      "objectId": "height",
-      "at": {
-        "x": 0,
-        "y": 0.75,
-        "z": 2
-      },
-      "placement": "left"
-    }
-  ]
-}}
-  labels={{
-    length: <InlineMath math="4 \text{ m}" />,
-    width: <InlineMath math="2 \text{ m}" />,
-    height: <InlineMath math="1{,}5 \text{ m}" />,
-  }}
-/>
+<BlockMath math="\frac{11}{40}\times100\%=27{,}5\%" />
 
-Die Grundfläche ergibt sich aus **Länge mal Breite**. Grundfläche mal Höhe ergibt das mit Sand gefüllte Volumen.
+Die erste Aussage ist wahr. Die Klassen 0-9 und 40-49 **enthalten beide 4 Schüler**, also ist die vierte Aussage wahr.
 
-Die Formel für das Volumen eines Quaders lautet:
+# Oberes Quartil und die Hälfte der Daten
 
-<BlockMath math="V = p \times l \times t" />
+Das obere Quartil liegt beim 30. Wert. Die kumulierte Häufigkeit bis zur Klasse 20-29 ist 29, also **liegt der 30. Wert in der Klasse 30-39**. Die zweite Aussage ist falsch.
 
-Wir ersetzen die Werte:
+Weniger als 20 Minuten brauchen <InlineMath math="4+10=14" /> Schüler, also 35 %, weniger als die Hälfte. Die dritte Aussage ist falsch.
 
-<BlockMath math="V = 4 \times 2 \times 1{,}5" />
-
-<BlockMath math="V = 8 \times 1{,}5" />
-
-<BlockMath math="V = 12 \text{ m}^3" />
-
-# Berechnung des Sandpreises
-
-Der Preis für Sand pro Kubikmeter beträgt <InlineMath math="\text{Rp}300{.}000{,}00" />. Somit beträgt der Gesamtpreis für <InlineMath math="12 \text{ m}^3" />:
-
-Der Gesamtpreis ist **Volumen mal Preis je Kubikmeter**. Die Kubikmeter kürzen sich, sodass der Preis in Rupiah übrig bleibt.
-
-<BlockMath math="C=12\text{ m}^3\times\frac{\text{Rp}300{.}000}{\text{m}^3}=\text{Rp}3{.}600{.}000" />
-
-Der Preis für Sand, der auf einer vollen LKW-Ladefläche transportiert wird, beträgt also <InlineMath math="\text{Rp}3{.}600{.}000{,}00" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

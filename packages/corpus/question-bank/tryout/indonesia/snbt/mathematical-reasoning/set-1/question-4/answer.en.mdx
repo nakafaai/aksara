@@ -1,28 +1,21 @@
-We need to determine the **minimum down payment** amount that allows Jeje to get the lowest interest rate.
+The tiered bill changes its formula in each block, while the flat plan is always <InlineMath math="1{,}400x" />. So **compare the two bills block by block**.
 
-# Interest Rate Analysis
+# Block 1, up to 100 kWh
 
-The initial interest rate is <InlineMath math="6\%" /> per year with a minimum down payment of <InlineMath math="10\%" />. Each subsequent multiple of the minimum down payment (i.e., multiples of <InlineMath math="10\%" />) will provide a reduction in the annual rate of one percentage point, up to **two percentage points**.
+<BlockMath math="20{,}000+1{,}000x<1{,}400x\;\Longleftrightarrow\;20{,}000<400x\;\Longleftrightarrow\;x>50" />
 
-| Down payment as a share of original price | Rate reduction | Annual rate |
-| --- | --- | --- |
-| 10% | 0 percentage points | 6% |
-| 20% | 1 percentage point | 5% |
-| 30% | 2 percentage points | 4% |
-| 40% or more | Still capped at 2 percentage points | Still 4% |
+# Block 2, from 100 to 300 kWh
 
-Thus, to get the lowest interest rate (<InlineMath math="4\%" />), Jeje must pay a minimum down payment of **<InlineMath math="30\%" />**.
+The tiered bill is <InlineMath math="20{,}000+100{,}000+1{,}500(x-100)=1{,}500x-30{,}000" />.
 
-# Calculating Down Payment Amount
+<BlockMath math="1{,}500x-30{,}000<1{,}400x\;\Longleftrightarrow\;100x<30{,}000\;\Longleftrightarrow\;x<300" />
 
-The **original laptop price** is <InlineMath math="\text{Rp}12{,}000{,}000.00" />. We calculate <InlineMath math="30\%" /> of that price:
+All of block 2 below 300 kWh qualifies. At <InlineMath math="x=300" />, both bills **are Rp420,000**.
 
-<BlockMath math="30\% \times 12{,}000{,}000" />
+# Block 3, above 300 kWh
 
-<BlockMath math="\frac{30}{100} \times 12{,}000{,}000" />
+The tiered bill is <InlineMath math="420{,}000+2{,}000(x-300)=2{,}000x-180{,}000" />. The condition <InlineMath math="2{,}000x-180{,}000<1{,}400x" /> means <InlineMath math="x<300" />, which contradicts <InlineMath math="x>300" />. In this block **the flat plan is always cheaper**.
 
-<BlockMath math="3{,}600{,}000" />
+Combining the three results gives <InlineMath math="50<x<300" />. The choice <InlineMath math="x>50" /> forgets block 3, <InlineMath math="x<300" /> forgets the fixed charge at small usage, and <InlineMath math="100<x<300" /> and <InlineMath math="50<x<100" /> each check only one block.
 
-So, the down payment Jeje has to pay is <InlineMath math="\text{Rp}3{,}600{,}000.00" />.
-
-The discount changes the purchase price, but the store calculates the down payment from **the original price**, not the discounted price.
+So the tiered tariff is cheaper exactly when **<InlineMath math="50<x<300" />**.

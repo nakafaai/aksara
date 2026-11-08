@@ -1,92 +1,15 @@
-Gesucht sind Werte von <InlineMath math="x" />, bei denen **Länge, Breite und Höhe alle positiv** sind. Eine Kantenlänge null würde den Quader abflachen. Negative Längen sind keine möglichen Kantenmaße.
+Der Median ist der Wert zwischen dem 20. und 21. der 40 geordneten Werte, also **der Punkt, der die Daten in zwei gleich große Hälften teilt**. Bei gruppierten Daten suchst du seine Klasse und schätzt ihn dann durch Interpolation.
 
-# Quadermaße ermitteln
+# Die Medianklasse finden
 
-Leite die Länge aus **dem Grundumfang** her, ohne ein Ergebnis aus einer anderen Aufgabe vorauszusetzen. Alle folgenden Maße sind in Zentimetern angegeben.
+Addiere die Häufigkeiten von der untersten Klasse an: 4, dann <InlineMath math="4+10=14" />, dann <InlineMath math="14+15=29" />. Der 20. Wert liegt **in der Klasse 20-29**, weil vor dieser Klasse 14 Werte liegen.
 
-<BlockMath math="\begin{aligned}
-2(p+l)&=6x \\
-p&=3x-l \\
-&=3x-(4x-5)=5-x
-\end{aligned}" />
+# Interpolation innerhalb der Klasse
 
-- Länge (<InlineMath math="p" />) ist <InlineMath math="5 - x" />
-- Breite (<InlineMath math="l" />) ist <InlineMath math="4x - 5" />
-- Höhe (<InlineMath math="t" />) ist <InlineMath math="5 - \frac{1}{3}x" />
+Die Klasse 20-29 hat die untere Klassengrenze 19,5, die Breite 10 und 15 Werte. Aus dieser Klasse brauchst du noch <InlineMath math="20-14=6" /> Werte.
 
-# Positive Dimensionsbedingungen
+<BlockMath math="\text{Me}=19{,}5+\frac{20-14}{15}\cdot10=19{,}5+4=23{,}5" />
 
-Damit der Quader ein Volumen ungleich null hat, muss **jedes Kantenmaß positiv** sein (<InlineMath math=">0" />).
+Das Ergebnis liegt tatsächlich zwischen 19,5 und 29,5, passend zur Medianklasse.
 
-**Bedingung 1: <InlineMath math="p > 0" />**
-
-<BlockMath math="p > 0" />
-
-<BlockMath math="5 - x > 0" />
-
-<BlockMath math="5 > x" />
-
-<BlockMath math="x < 5" />
-
-**Bedingung 2: <InlineMath math="l > 0" />**
-
-<BlockMath math="l > 0" />
-
-<BlockMath math="4x - 5 > 0" />
-
-<BlockMath math="4x > 5" />
-
-<BlockMath math="x > \frac{5}{4}" />
-
-**Bedingung 3: <InlineMath math="t > 0" />**
-
-<BlockMath math="t > 0" />
-
-<BlockMath math="5 - \frac{1}{3}x > 0" />
-
-<BlockMath math="5 > \frac{1}{3}x" />
-
-<BlockMath math="15 > x" />
-
-<BlockMath math="x < 15" />
-
-# Schnittmenge bestimmen
-
-Gesucht ist **die Schnittmenge aller drei Bedingungen**, sodass alle zugleich gelten:
-1. <InlineMath math="x < 5" />
-2. <InlineMath math="x > \frac{5}{4}" /> (oder <InlineMath math="1{,}25" />)
-3. <InlineMath math="x < 15" />
-
-Von den Bedingungen 1 und 3 nehmen wir die strengere, nämlich <InlineMath math="x < 5" />. In Kombination mit der Bedingung 2 erhalten wir den Bereich:
-
-<BlockMath math="\frac{5}{4} < x < 5" />
-
-<NumberLine
-  title={<>Lösungsmenge <InlineMath math="A" /></>}
-  description={<>Die gemeinsame Lösung aller Bedingungen für positive Abmessungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
-  segments={[
-    {
-      end: 1.25,
-      backgroundColor: "transparent"
-    },
-    {
-      start: 1.25,
-      end: 5,
-      label: <InlineMath math="A" />,
-      startLabel: <InlineMath math="\frac{5}{4}" />,
-      endLabel: <InlineMath math="5" />,
-      startInclusive: false,
-      endInclusive: false
-    },
-    {
-      start: 5,
-      backgroundColor: "transparent"
-    }
-  ]}
-/>
-
-Die Menge <InlineMath math="A" /> ist also:
-
-<BlockMath math="A=\left\{x\in\mathbb R\mid\frac54<x<5\right\}" />
-
-Beide Randpunkte sind ausgeschlossen. Bei <InlineMath math="x=5/4" /> ist die Breite null, bei <InlineMath math="x=5" /> die Länge. Deshalb zeigt der Zahlenstrahl offene Randpunkte.
+Der Median der Wegzeit beträgt also **23,5 Minuten**.
