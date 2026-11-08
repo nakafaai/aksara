@@ -1,0 +1,48 @@
+Titik puncak (*Scheitelpunkt*) paling mudah dibaca dari **bentuk puncak** <InlineMath math="y=(x-d)^2+e" />, yang diperoleh dengan melengkapkan kuadrat. Bagi dua koefisien <InlineMath math="x" />, yaitu <InlineMath math="-4" />, menjadi <InlineMath math="-2" />, lalu tambahkan dan kurangkan kuadratnya.
+
+<BlockMath math="\begin{aligned}
+y&=x^2-4x+4-4+3 \\
+&=(x-2)^2-1
+\end{aligned}" />
+
+Bentuk <InlineMath math="(x-2)^2" /> tidak pernah negatif dan bernilai nol tepat di <InlineMath math="x=2" />. Jadi, nilai <InlineMath math="y" /> terkecil adalah <InlineMath math="-1" />, dan titik puncaknya <InlineMath math="(2\mid-1)" />.
+
+<MathVisual
+  title="Parabola dan titik puncaknya"
+  description={<>Parabola <InlineMath math="y=x^2-4x+3" /> terbuka ke atas. Titik terendahnya <InlineMath math="(2\mid-1)" />, dan parabola memotong sumbu <InlineMath math="x" /> di <InlineMath math="(1\mid0)" /> dan <InlineMath math="(3\mid0)" />, simetris terhadap garis <InlineMath math="x=2" />.</>}
+  labels={{
+    vertex: <InlineMath math="(2\mid-1)" />,
+    "zero-left": <InlineMath math="(1\mid0)" />,
+    "zero-right": <InlineMath math="(3\mid0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -2, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.4, max: 4.4 }, inputAxis: "x" },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+      { id: "zero-left-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "zero-right-point", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "zero-left", objectId: "zero-left-point", at: { x: 1, y: 0 }, placement: "left" },
+      { key: "zero-right", objectId: "zero-right-point", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+Sebagai pemeriksaan, pembuat nol <InlineMath math="x=1" /> dan <InlineMath math="x=3" /> simetris terhadap <InlineMath math="x=2" />, dan <InlineMath math="2^2-4\cdot2+3=-1" />.
+
+Jadi, titik puncak parabola itu adalah <InlineMath math="(2\mid-1)" />.
+
+- <InlineMath math="(2\mid3)" /> memiliki absis yang benar, tetapi mengambil suku tetap <InlineMath math="3" /> sebagai nilai <InlineMath math="y" />, bukan menyubstitusikan <InlineMath math="x=2" />.
+- <InlineMath math="(-2\mid15)" /> muncul karena tanda absisnya salah. Titik puncak berada di <InlineMath math="x=-\frac{b}{2a}=2" />.
+- <InlineMath math="(4\mid3)" /> mengambil besar koefisien, <InlineMath math="4" />, sebagai absis tanpa membaginya dua.
+- <InlineMath math="(1\mid0)" /> dan <InlineMath math="(3\mid0)" /> adalah titik potong parabola dengan sumbu <InlineMath math="x" />, bukan titik puncaknya.

@@ -1,0 +1,48 @@
+Zwei Strahlen beginnen im Punkt <InlineMath math="S" />. Die Punkte <InlineMath math="A" /> und <InlineMath math="B" /> liegen auf dem einen Strahl, die Punkte <InlineMath math="A'" /> und <InlineMath math="B'" /> auf dem anderen. Die Strecken <InlineMath math="\overline{AA'}" /> und <InlineMath math="\overline{BB'}" /> sind parallel. Es gilt <InlineMath math="\overline{SA}=4\text{ cm}" />, <InlineMath math="\overline{AB}=6\text{ cm}" /> und <InlineMath math="\overline{AA'}=3\text{ cm}" />.
+
+<MathVisual
+  title="Strahlensatzfigur"
+  description={<>Von <InlineMath math="S" /> gehen zwei Strahlen aus. Auf dem unteren Strahl liegen <InlineMath math="A" /> und <InlineMath math="B" />, auf dem oberen <InlineMath math="A'" /> und <InlineMath math="B'" />. Die Strecken <InlineMath math="\overline{AA'}" /> und <InlineMath math="\overline{BB'}" /> sind parallel. Eingetragen sind <InlineMath math="\overline{SA}=4\text{ cm}" />, <InlineMath math="\overline{AB}=6\text{ cm}" /> und <InlineMath math="\overline{AA'}=3\text{ cm}" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "a-prime": <InlineMath math="A'" />,
+    "b-prime": <InlineMath math="B'" />,
+    "length-sa": <InlineMath math="4\text{ cm}" />,
+    "length-ab": <InlineMath math="6\text{ cm}" />,
+    "length-aa": <InlineMath math="3\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 11.5 },
+      y: { min: -1.5, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ray-lower", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "ray-upper", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 7, y: 7 * 0.6 * Math.sqrt(3) } },
+      { id: "parallel-near", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4 - 1.5, y: 1.5 * Math.sqrt(3) } },
+      { id: "parallel-far", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 10 - 3.75, y: 3.75 * Math.sqrt(3) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "point-a-prime", kind: "point", appearance: "reference", at: { x: 4 - 1.5, y: 1.5 * Math.sqrt(3) } },
+      { id: "point-b-prime", kind: "point", appearance: "reference", at: { x: 10 - 3.75, y: 3.75 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "a", objectId: "point-a", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "b", objectId: "point-b", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "a-prime", objectId: "point-a-prime", at: { x: 4 - 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "b-prime", objectId: "point-b-prime", at: { x: 10 - 3.75, y: 3.75 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "length-sa", objectId: "ray-lower", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "length-ab", objectId: "ray-lower", at: { x: 7, y: 0 }, placement: "below" },
+      { key: "length-aa", objectId: "parallel-near", at: { x: 4 - 0.75, y: 0.75 * Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+/>
+
+Wie lang ist die Strecke <InlineMath math="\overline{BB'}" />?

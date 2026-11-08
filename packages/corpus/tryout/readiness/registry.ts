@@ -1,6 +1,7 @@
 import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 
 import type { QuestionSet } from "#corpus/question-bank/source";
+import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
@@ -14,6 +15,7 @@ const readinessPrograms = [
   tkaCompulsoryMathematicsReadiness,
   tkaIndonesianReadiness,
   tkaEnglishReadiness,
+  tuDarmstadtEntranceReadiness,
 ];
 
 /** Returns the country and exam identity owned by one readiness gate. */

@@ -1,0 +1,48 @@
+Den Scheitelpunkt liest du am einfachsten aus der **Scheitelpunktform** <InlineMath math="y=(x-d)^2+e" /> ab, die du durch quadratische Ergänzung erhältst. Halbiere den Koeffizienten von <InlineMath math="x" />, also <InlineMath math="-4" />, zu <InlineMath math="-2" /> und ergänze sein Quadrat.
+
+<BlockMath math="\begin{aligned}
+y&=x^2-4x+4-4+3 \\
+&=(x-2)^2-1
+\end{aligned}" />
+
+Der Ausdruck <InlineMath math="(x-2)^2" /> ist nie negativ und genau bei <InlineMath math="x=2" /> null. Der kleinste <InlineMath math="y" />-Wert ist also <InlineMath math="-1" />, und der Scheitelpunkt ist <InlineMath math="(2\mid-1)" />.
+
+<MathVisual
+  title="Parabel mit Scheitelpunkt"
+  description={<>Die Parabel <InlineMath math="y=x^2-4x+3" /> ist nach oben geöffnet. Ihr tiefster Punkt ist <InlineMath math="(2\mid-1)" />, und sie schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(1\mid0)" /> und <InlineMath math="(3\mid0)" />, symmetrisch zur Geraden <InlineMath math="x=2" />.</>}
+  labels={{
+    vertex: <InlineMath math="(2\mid-1)" />,
+    "zero-left": <InlineMath math="(1\mid0)" />,
+    "zero-right": <InlineMath math="(3\mid0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -2, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.4, max: 4.4 }, inputAxis: "x" },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 2, y: 5 } },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+      { id: "zero-left-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "zero-right-point", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "zero-left", objectId: "zero-left-point", at: { x: 1, y: 0 }, placement: "left" },
+      { key: "zero-right", objectId: "zero-right-point", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+Zur Kontrolle: Die Nullstellen <InlineMath math="x=1" /> und <InlineMath math="x=3" /> liegen symmetrisch zu <InlineMath math="x=2" />, und <InlineMath math="2^2-4\cdot2+3=-1" />.
+
+Der Scheitelpunkt ist also <InlineMath math="(2\mid-1)" />.
+
+- <InlineMath math="(2\mid3)" /> hat die richtige <InlineMath math="x" />-Koordinate, nimmt aber das Absolutglied <InlineMath math="3" /> als <InlineMath math="y" />-Wert, statt <InlineMath math="x=2" /> einzusetzen.
+- <InlineMath math="(-2\mid15)" /> entsteht mit dem falschen Vorzeichen bei der <InlineMath math="x" />-Koordinate, denn der Scheitel liegt bei <InlineMath math="x=-\frac{b}{2a}=2" />.
+- <InlineMath math="(4\mid3)" /> nimmt den Betrag des Koeffizienten <InlineMath math="4" /> als <InlineMath math="x" />-Koordinate, ohne ihn zu halbieren.
+- <InlineMath math="(1\mid0)" /> und <InlineMath math="(3\mid0)" /> sind die Nullstellen der Parabel, nicht ihr Scheitelpunkt.

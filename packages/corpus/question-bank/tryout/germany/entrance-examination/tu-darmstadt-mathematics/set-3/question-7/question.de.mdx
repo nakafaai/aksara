@@ -1,0 +1,48 @@
+Die Geraden <InlineMath math="AC" /> und <InlineMath math="BD" /> schneiden sich im Punkt <InlineMath math="S" />, der zwischen <InlineMath math="A" /> und <InlineMath math="C" /> sowie zwischen <InlineMath math="B" /> und <InlineMath math="D" /> liegt. Die Strecken <InlineMath math="\overline{AB}" /> und <InlineMath math="\overline{CD}" /> sind parallel. Es gilt <InlineMath math="\overline{SA}=3\text{ cm}" />, <InlineMath math="\overline{SC}=5\text{ cm}" /> und <InlineMath math="\overline{AB}=4{,}2\text{ cm}" />.
+
+<MathVisual
+  title="Zwei parallele Strecken an einer Kreuzung"
+  description={<>Die Geraden <InlineMath math="AC" /> und <InlineMath math="BD" /> kreuzen sich in <InlineMath math="S" />. Oben links liegt die Strecke <InlineMath math="\overline{AB}" />, unten rechts die parallele Strecke <InlineMath math="\overline{CD}" />. Eingetragen sind <InlineMath math="\overline{SA}=3\text{ cm}" />, <InlineMath math="\overline{SC}=5\text{ cm}" /> und <InlineMath math="\overline{AB}=4{,}2\text{ cm}" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "length-sa": <InlineMath math="3\text{ cm}" />,
+    "length-sc": <InlineMath math="5\text{ cm}" />,
+    "length-ab": <InlineMath math="4{,}2\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 6.5 },
+      y: { min: -7, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-ac", kind: "segment", appearance: "primary", from: { x: -3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "line-bd", kind: "segment", appearance: "primary", from: { x: -0.9, y: 2.1 * Math.sqrt(3) }, to: { x: 1.5, y: -3.5 * Math.sqrt(3) } },
+      { id: "segment-ab", kind: "segment", appearance: "secondary", from: { x: -3, y: 0 }, to: { x: -0.9, y: 2.1 * Math.sqrt(3) } },
+      { id: "segment-cd", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 1.5, y: -3.5 * Math.sqrt(3) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -3, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -0.9, y: 2.1 * Math.sqrt(3) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 1.5, y: -3.5 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "a", objectId: "point-a", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: -0.9, y: 2.1 * Math.sqrt(3) }, placement: "above" },
+      { key: "c", objectId: "point-c", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 1.5, y: -3.5 * Math.sqrt(3) }, placement: "below" },
+      { key: "length-sa", objectId: "line-ac", at: { x: -1.5, y: 0 }, placement: "below" },
+      { key: "length-sc", objectId: "line-ac", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "length-ab", objectId: "segment-ab", at: { x: -1.95, y: 1.05 * Math.sqrt(3) }, placement: "left" },
+    ],
+  }}
+/>
+
+Wie lang ist die Strecke <InlineMath math="\overline{CD}" />?
