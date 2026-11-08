@@ -10,7 +10,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Dengan beban 5 kg, drone dapat terbang selama 15 menit dengan baterai penuh.",
+            "Lama terbang dengan baterai penuh berbanding terbalik dengan beban yang dibawa.",
         },
         {
           column: 1,
@@ -20,12 +20,12 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Dengan beban 4 kg dan baterai penuh, drone dapat menempuh jarak 10 km.",
+            "Jika beban dijadikan dua kali semula, lama terbang dengan baterai penuh menjadi setengah lama terbang semula.",
         },
         {
           column: 1,
           label:
-            "Tanpa beban dan dengan baterai penuh, drone dapat menempuh jarak paling jauh 18 km.",
+            "Dengan beban 3,75 kg, lama terbang dengan baterai penuh tepat setengah lama terbang tanpa beban.",
         },
       ],
     },

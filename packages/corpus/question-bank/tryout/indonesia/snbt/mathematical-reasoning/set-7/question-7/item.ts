@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Dalam jangka panjang, penyelenggara memperoleh rata-rata $$\\text{Rp}1{.}500{,}00$$ dari setiap permainan.",
+            "Jika pemain bermain dua kali, peluang jumlah mata dadu 12 muncul pada kedua permainan adalah $$\\dfrac{1}{1{.}296}$$.",
         },
         {
           column: 2,
@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika semua hadiah dinaikkan menjadi dua kali lipat, permainan tetap menguntungkan penyelenggara dalam jangka panjang.",
+            "Peluang jumlah kedua mata dadu sama dengan 6 sama besar dengan peluang jumlah kedua mata dadu sama dengan 7.",
         },
       ],
     },

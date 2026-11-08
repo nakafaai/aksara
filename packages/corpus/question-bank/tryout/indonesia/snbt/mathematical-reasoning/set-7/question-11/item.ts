@@ -14,8 +14,7 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label:
-            "Jarak garis lurus dari G ke A adalah 500 m, tetapi jarak tempuh terpendek robot dari G ke A adalah 700 m.",
+          label: "Banyak rute terpendek yang berbeda dari G ke B adalah 6.",
         },
         {
           column: 1,
@@ -25,7 +24,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Robot dengan sisa baterai $$40\\%$$ dapat mengunjungi ketiga pelanggan lalu kembali ke G.",
+            "Dengan baterai penuh, robot dapat menempuh jarak lebih dari 5 km.",
         },
       ],
     },

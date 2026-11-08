@@ -6,7 +6,7 @@ const item: ItemSource = {
     id: {
       kind: "numericEntry",
       unit: "°C",
-      value: "-40",
+      value: "35",
     },
   },
 };

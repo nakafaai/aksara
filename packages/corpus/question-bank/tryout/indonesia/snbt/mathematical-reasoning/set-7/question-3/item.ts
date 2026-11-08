@@ -16,7 +16,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Dengan seluruh kecepatan 40 Mbps, berkas berukuran 2 GB terunduh dalam waktu kurang dari 6 menit.",
+            "Menonton video HD selama 1 jam pada satu perangkat memakai data kurang dari 1 GB.",
         },
         {
           column: 1,

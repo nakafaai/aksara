@@ -1,15 +1,15 @@
-The robot's travel distance uses **the sum of the coordinate differences**, while the straight-line distance uses the Pythagorean theorem. The battery drops 2% per block.
+Travel distance on the grid is **the number of blocks east or west plus the number of blocks north or south**, because the robot cannot cut diagonally.
 
-# Distances between customers and from the depot
+# From A to C and the routes to B
 
-From <InlineMath math="A(3,4)" /> to <InlineMath math="C(1,6)" />: <InlineMath math="\lvert3-1\rvert+\lvert4-6\rvert=4" /> blocks, or 400 m, **not 500 m**. The first statement is false.
+From A(3,4) to C(1,6) the robot moves 2 blocks west and 2 blocks north, which is 4 blocks or 400 m, **not 500 m**. The first statement is false.
 
-From G to A the straight line is <InlineMath math="\sqrt{3^2+4^2}=5" /> blocks or 500 m, while the travel distance is <InlineMath math="3+4=7" /> blocks or 700 m. The second statement is true.
+A shortest route from G to B consists of 5 steps east and 1 step north. The routes differ only in **when the step north is taken**, at step 1 up to step 6, so there are 6 routes. The second statement is true.
 
 # Battery use
 
-From G to B there are <InlineMath math="5+1=6" /> blocks, so a round trip is 12 blocks and uses <InlineMath math="12\cdot2\%=24\%" />. The third statement is true.
+From G to B there are <InlineMath math="5+1=6" /> blocks, so a round trip is 12 blocks and uses <InlineMath math="12\cdot2\%=24\%" /> of the battery. The third statement is true.
 
-The shortest route visiting all three customers and returning is 22 blocks, so it needs <InlineMath math="22\cdot2\%=44\%" />. A 40% battery **is not enough**, so the fourth statement is false.
+A full battery lasts for <InlineMath math="\tfrac{100\%}{2\%}=50" /> blocks, exactly 5,000 m or 5 km. The robot **cannot travel more than 5 km**, so the fourth statement is false.
 
 So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

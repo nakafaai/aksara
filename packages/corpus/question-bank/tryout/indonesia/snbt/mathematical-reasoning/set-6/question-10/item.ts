@@ -6,11 +6,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "7,5 kg" },
-        { correct: false, label: "9 kg" },
-        { correct: false, label: "9,9 kg" },
-        { correct: true, label: "10 kg" },
-        { correct: false, label: "10,9 kg" },
+        { correct: false, label: "5,5 kg" },
+        { correct: false, label: "7 kg" },
+        { correct: false, label: "7,9 kg" },
+        { correct: true, label: "8 kg" },
+        { correct: false, label: "8,9 kg" },
       ],
     },
   },
