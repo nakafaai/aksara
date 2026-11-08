@@ -1,0 +1,51 @@
+Eine Abbildung mit der Matrix <InlineMath math="M" /> multipliziert jeden Flächeninhalt mit **dem Betrag der Determinante** von <InlineMath math="M" />. Es genügt also, den Flächeninhalt des ursprünglichen Dreiecks und die Determinante zu berechnen. Der Betrag ist nötig, weil eine negative Determinante nur anzeigt, dass sich die Reihenfolge der Ecken umkehrt, während ein Flächeninhalt immer positiv ist.
+
+Die Seite <InlineMath math="AB" /> liegt waagerecht, denn <InlineMath math="A" /> und <InlineMath math="B" /> haben beide die y-Koordinate <InlineMath math="1" />. Ihre Länge ist <InlineMath math="4-1=3" />, und die Höhe auf diese Seite ist der Abstand von <InlineMath math="C" /> zur Geraden <InlineMath math="y=1" />, also <InlineMath math="5-1=4" />.
+
+<BlockMath math="\begin{aligned}
+A_{ABC}&=\frac12\cdot3\cdot4=6 \\
+\det M&=3\cdot(-1)-1\cdot1=-4 \\
+A_{A'B'C'}&=|\det M|\cdot A_{ABC}=4\cdot6=24
+\end{aligned}" />
+
+Zur Kontrolle berechnest du die Bilder der Ecken und verwendest die Koordinatenformel für den Flächeninhalt eines Dreiecks.
+
+<BlockMath math="\begin{aligned}
+A'&=(3\cdot1+1,\ 1-1)=(4,0) \\
+B'&=(3\cdot4+1,\ 4-1)=(13,3) \\
+C'&=(3\cdot2+5,\ 2-5)=(11,-3) \\
+A_{A'B'C'}&=\frac12\left|4(3-(-3))+13(-3-0)+11(0-3)\right|=\frac12|24-39-33|=24
+\end{aligned}" />
+
+<MathVisual
+  title="Dreieck ABC und sein Bild"
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit dem Flächeninhalt <InlineMath math="6" /> wird auf das Dreieck <InlineMath math="A'B'C'" /> mit den Ecken <InlineMath math="(4,0)" />, <InlineMath math="(13,3)" /> und <InlineMath math="(11,-3)" /> abgebildet, dessen Flächeninhalt <InlineMath math="24" /> beträgt.</>}
+  labels={{
+    original: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 1 }, { x: 4, y: 1 }, { x: 2, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0 }, { x: 13, y: 3 }, { x: 11, y: -3 }] },
+    ],
+    labels: [
+      { key: "original", objectId: "triangle", at: { x: 2, y: 5 }, placement: "above" },
+      { key: "image", objectId: "triangle-image", at: { x: 13, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Das Bilddreieck hat also den Flächeninhalt <InlineMath math="24" /> Flächeneinheiten.
+
+- <InlineMath math="-24" /> verwendet die Determinante ohne Betrag. Ein Flächeninhalt ist nie negativ.
+- <InlineMath math="6" /> ist der Flächeninhalt des ursprünglichen Dreiecks. Die Wirkung der Abbildung fehlt.
+- <InlineMath math="10" /> entsteht, wenn Flächeninhalt und Betrag der Determinante **addiert** werden, <InlineMath math="6+4" />. Die Determinante ist aber ein Faktor, mit dem der Flächeninhalt multipliziert wird.
+- <InlineMath math="12" /> verwendet die Summe der Hauptdiagonale, <InlineMath math="3+(-1)=2" />, als Faktor. Der Flächenfaktor ist <InlineMath math="|\det M|" />, nicht die Diagonalsumme.

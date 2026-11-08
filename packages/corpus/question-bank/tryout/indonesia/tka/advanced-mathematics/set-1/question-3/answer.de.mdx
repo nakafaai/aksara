@@ -1,0 +1,19 @@
+Alle vier Aussagen prüfen Eigenschaften der **Matrizenmultiplikation**: die Reihenfolge der Faktoren, die Determinante eines Produkts und die Transponierte eines Produkts. Berechne zuerst <InlineMath math="AB" /> und <InlineMath math="BA" />, denn beide brauchst du mehrmals. Jedes Element eines Produkts ist die Summe der Produkte aus einer Zeile der linken Matrix und einer Spalte der rechten Matrix.
+
+<BlockMath math="\begin{aligned}
+AB&=\begin{pmatrix} 1\cdot1+2\cdot3 & 1\cdot0+2\cdot1 \\ 0\cdot1+1\cdot3 & 0\cdot0+1\cdot1 \end{pmatrix}=\begin{pmatrix} 7 & 2 \\ 3 & 1 \end{pmatrix} \\
+BA&=\begin{pmatrix} 1\cdot1+0\cdot0 & 1\cdot2+0\cdot1 \\ 3\cdot1+1\cdot0 & 3\cdot2+1\cdot1 \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}
+\end{aligned}" />
+
+1. Die Aussage <InlineMath math="AB=BA" /> ist falsch. Das Element in der ersten Zeile und ersten Spalte von <InlineMath math="AB" /> ist <InlineMath math="7" />, das entsprechende Element von <InlineMath math="BA" /> ist <InlineMath math="1" />. Die Matrizenmultiplikation ist im Allgemeinen nicht kommutativ.
+2. Die Aussage <InlineMath math="\det(AB)=1" /> ist wahr. Aus der Matrix <InlineMath math="AB" /> oben folgt <InlineMath math="\det(AB)=7\cdot1-2\cdot3=1" />. Das passt zum Determinantenproduktsatz <InlineMath math="\det(AB)=\det A\cdot\det B=1\cdot1=1" />.
+3. Die Aussage <InlineMath math="(AB)^T=A^TB^T" /> ist falsch. Beim Transponieren eines Produkts **kehrt sich die Reihenfolge um**: <InlineMath math="(AB)^T=B^TA^T" />. Die Rechnung unten zeigt, dass <InlineMath math="A^TB^T" /> tatsächlich von <InlineMath math="(AB)^T" /> abweicht.
+4. Die Aussage <InlineMath math="A^2=\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}" /> ist wahr, wie die Rechnung <InlineMath math="A^2=AA" /> unten zeigt.
+
+<BlockMath math="\begin{aligned}
+(AB)^T&=\begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix} \\
+A^TB^T&=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}=\begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix} \\
+A^2&=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}=\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}
+\end{aligned}" />
+
+Wahr sind also die Aussagen über <InlineMath math="\det(AB)" /> und über <InlineMath math="A^2" />, falsch sind die Aussagen <InlineMath math="AB=BA" /> und <InlineMath math="(AB)^T=A^TB^T" />.

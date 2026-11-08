@@ -1,0 +1,47 @@
+Bilangan pokok <InlineMath math="9" /> dan <InlineMath math="3" /> berhubungan karena <InlineMath math="9=3^2" />. Jadi, kedua suku eksponen dapat ditulis dengan satu besaran <InlineMath math="t=3^x" />, dan fungsi <InlineMath math="f" /> berubah menjadi **fungsi kuadrat dalam <InlineMath math="t" />**.
+
+<BlockMath math="\begin{aligned}
+9^x&=(3^2)^x=(3^x)^2=t^2 \\
+2\cdot3^{x+1}&=2\cdot3\cdot3^x=6t \\
+f(x)&=t^2-6t+5=(t-3)^2-4
+\end{aligned}" />
+
+Langkah yang menentukan adalah **batas nilai <InlineMath math="t" />**. Untuk setiap bilangan real <InlineMath math="x" />, nilai <InlineMath math="3^x" /> selalu positif, dan setiap bilangan positif dapat dicapai. Jadi, <InlineMath math="t" /> bergerak pada selang <InlineMath math="t>0" />, bukan pada seluruh bilangan real.
+
+Bentuk <InlineMath math="(t-3)^2-4" /> menunjukkan bahwa nilai terkecilnya <InlineMath math="-4" /> tercapai di <InlineMath math="t=3" />. Nilai <InlineMath math="t=3" /> memang termasuk <InlineMath math="t>0" />, yaitu saat <InlineMath math="3^x=3" /> atau <InlineMath math="x=1" />. Untuk <InlineMath math="t>3" />, nilai fungsi naik tanpa batas ketika <InlineMath math="t" /> makin besar, sehingga setiap nilai yang lebih dari atau sama dengan <InlineMath math="-4" /> tercapai.
+
+<MathVisual
+  title="Fungsi kuadrat dalam t untuk t positif"
+  description={<>Sumbu mendatar menyatakan <InlineMath math="t=3^x" /> dan sumbu tegak menyatakan nilai <InlineMath math="f" />. Kurva <InlineMath math="(t-3)^2-4" /> hanya dipakai untuk <InlineMath math="t>0" />. Titik puncaknya <InlineMath math="(3,-4)" /> termasuk bagian ini, sedangkan titik <InlineMath math="(0,5)" /> tidak tercapai karena <InlineMath math="t" /> tidak pernah nol.</>}
+  labels={{
+    vertex: <InlineMath math="(3,-4)" />,
+    start: <InlineMath math="(0,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -6, c: 5 }, domain: { min: 0, max: 7 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+      { id: "start-point", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "start", objectId: "start-point", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Sebagai pemeriksaan, <InlineMath math="f(1)=9-2\cdot9+5=-4" />, dan <InlineMath math="f(2)=81-2\cdot27+5=32" />, yang lebih besar dari <InlineMath math="-4" />.
+
+Jadi, daerah hasil fungsi <InlineMath math="f" /> adalah <InlineMath math="[-4,\infty)" />.
+
+- <InlineMath math="(-\infty,-4]" /> membalik arah selang. Parabola dalam <InlineMath math="t" /> terbuka ke atas, jadi <InlineMath math="-4" /> adalah nilai terkecil, bukan nilai terbesar.
+- <InlineMath math="(-4,\infty)" /> mengira nilai <InlineMath math="-4" /> tidak tercapai. Nilai itu tercapai di <InlineMath math="x=1" />.
+- <InlineMath math="[-4,5)" /> hanya memakai bagian <InlineMath math="0<t\le3" />. Untuk <InlineMath math="t>3" />, nilai fungsi terus naik melewati <InlineMath math="5" />.
+- <InlineMath math="[5,\infty)" /> mengira fungsi selalu naik dari nilai <InlineMath math="5" /> di dekat <InlineMath math="t=0" />. Padahal titik puncak <InlineMath math="t=3" /> berada di dalam selang <InlineMath math="t>0" />, sehingga nilai fungsi sempat turun sampai <InlineMath math="-4" />.

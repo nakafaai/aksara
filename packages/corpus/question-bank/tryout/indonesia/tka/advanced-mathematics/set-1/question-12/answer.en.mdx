@@ -1,0 +1,54 @@
+The given facts are the lengths of three vectors: <InlineMath math="|\vec{F}_1|=30" />, <InlineMath math="|\vec{F}_2|=50" />, and <InlineMath math="|\vec{F}_1+\vec{F}_2|=70" />, all in newtons. The relation that links the length of the resultant to the angle between the two vectors is **the squared length of a sum of two vectors**, which contains the dot product <InlineMath math="\vec{F}_1\cdot\vec{F}_2=|\vec{F}_1||\vec{F}_2|\cos\theta" />.
+
+<BlockMath math="|\vec{F}_1+\vec{F}_2|^2=|\vec{F}_1|^2+|\vec{F}_2|^2+2|\vec{F}_1||\vec{F}_2|\cos\theta" />
+
+Substitute the three magnitudes and solve for <InlineMath math="\cos\theta" />.
+
+<BlockMath math="\begin{aligned}
+70^2&=30^2+50^2+2\cdot30\cdot50\cos\theta \\
+4900&=3400+3000\cos\theta \\
+\cos\theta&=\frac{1500}{3000}=\frac12
+\end{aligned}" />
+
+The angle between two vectors lies between <InlineMath math="0^\circ" /> and <InlineMath math="180^\circ" />, and on that interval only <InlineMath math="\theta=60^\circ" /> satisfies <InlineMath math="\cos\theta=\frac12" />. The result makes sense. If the two forces were perpendicular, the resultant would be <InlineMath math="\sqrt{3400}\approx58\text{ N}" />. A resultant of <InlineMath math="70\text{ N}" /> is larger than that, so the angle must be acute.
+
+<MathVisual
+  title="Parallelogram of forces"
+  description={<>The force <InlineMath math="\vec{F}_1" /> of length <InlineMath math="30" /> lies horizontally, and the force <InlineMath math="\vec{F}_2" /> of length <InlineMath math="50" /> makes an angle of <InlineMath math="60^\circ" /> with it. The diagonal of the parallelogram from the point of application is the resultant of length <InlineMath math="70" />.</>}
+  labels={{
+    "force-one": <InlineMath math="\vec{F}_1" />,
+    "force-two": <InlineMath math="\vec{F}_2" />,
+    resultant: <InlineMath math="\vec{F}_1+\vec{F}_2" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 60 },
+      y: { min: -5, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 25, y: 25 * Math.sqrt(3) } },
+      { id: "side-a", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "side-b", kind: "segment", appearance: "construction", from: { x: 25, y: 25 * Math.sqrt(3) }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "between", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 8, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "force-one", objectId: "first", at: { x: 15, y: 0 }, placement: "below" },
+      { key: "force-two", objectId: "second", at: { x: 12.5, y: 12.5 * Math.sqrt(3) }, placement: "left" },
+      { key: "resultant", objectId: "sum", at: { x: 27.5, y: 12.5 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "angle", objectId: "between", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+So the angle between <InlineMath math="\vec{F}_1" /> and <InlineMath math="\vec{F}_2" /> is <InlineMath math="60^\circ" />.
+
+- <InlineMath math="30^\circ" /> comes from linking the value <InlineMath math="\frac12" /> to sine, because <InlineMath math="\sin30^\circ=\frac12" />. Here it is the cosine that equals <InlineMath math="\frac12" />.
+- <InlineMath math="90^\circ" /> assumes that the forces are perpendicular. At that angle the resultant is only <InlineMath math="\sqrt{30^2+50^2}=\sqrt{3400}\approx58\text{ N}" />, not <InlineMath math="70\text{ N}" />.
+- <InlineMath math="120^\circ" /> comes from using the law of cosines for an interior angle of a triangle, with a minus sign before <InlineMath math="2|\vec{F}_1||\vec{F}_2|\cos\theta" />. That <InlineMath math="120^\circ" /> is the angle of the triangle opposite the resultant, not the angle between the forces.
+- <InlineMath math="150^\circ" /> is the supplement of <InlineMath math="30^\circ" />, so it combines the sine mix-up behind <InlineMath math="30^\circ" /> with a reversed sign.

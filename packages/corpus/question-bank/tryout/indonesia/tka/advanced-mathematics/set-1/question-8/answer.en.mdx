@@ -1,0 +1,47 @@
+The bases <InlineMath math="9" /> and <InlineMath math="3" /> are related because <InlineMath math="9=3^2" />. So both exponential terms can be written with one quantity <InlineMath math="t=3^x" />, and <InlineMath math="f" /> becomes a **quadratic function of <InlineMath math="t" />**.
+
+<BlockMath math="\begin{aligned}
+9^x&=(3^2)^x=(3^x)^2=t^2 \\
+2\cdot3^{x+1}&=2\cdot3\cdot3^x=6t \\
+f(x)&=t^2-6t+5=(t-3)^2-4
+\end{aligned}" />
+
+The decisive step is **the allowed values of <InlineMath math="t" />**. For every real <InlineMath math="x" />, the value of <InlineMath math="3^x" /> is positive, and every positive number is reached. So <InlineMath math="t" /> runs over <InlineMath math="t>0" />, not over all real numbers.
+
+The form <InlineMath math="(t-3)^2-4" /> shows that the smallest value <InlineMath math="-4" /> occurs at <InlineMath math="t=3" />. The value <InlineMath math="t=3" /> is allowed, since <InlineMath math="3^x=3" /> when <InlineMath math="x=1" />. For <InlineMath math="t>3" />, the function grows without bound as <InlineMath math="t" /> increases, so every value greater than or equal to <InlineMath math="-4" /> is reached.
+
+<MathVisual
+  title="Quadratic in t for positive t"
+  description={<>The horizontal axis shows <InlineMath math="t=3^x" /> and the vertical axis shows the value of <InlineMath math="f" />. The curve <InlineMath math="(t-3)^2-4" /> is used only for <InlineMath math="t>0" />. Its vertex <InlineMath math="(3,-4)" /> belongs to this part, while the point <InlineMath math="(0,5)" /> is never reached because <InlineMath math="t" /> is never zero.</>}
+  labels={{
+    vertex: <InlineMath math="(3,-4)" />,
+    start: <InlineMath math="(0,5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -6, c: 5 }, domain: { min: 0, max: 7 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+      { id: "start-point", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "start", objectId: "start-point", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
+As a check, <InlineMath math="f(1)=9-2\cdot9+5=-4" />, and <InlineMath math="f(2)=81-2\cdot27+5=32" />, which is larger than <InlineMath math="-4" />.
+
+So the range of <InlineMath math="f" /> is <InlineMath math="[-4,\infty)" />.
+
+- <InlineMath math="(-\infty,-4]" /> reverses the interval. The parabola in <InlineMath math="t" /> opens upward, so <InlineMath math="-4" /> is the smallest value, not the largest.
+- <InlineMath math="(-4,\infty)" /> assumes that <InlineMath math="-4" /> is never reached. It is reached at <InlineMath math="x=1" />.
+- <InlineMath math="[-4,5)" /> uses only the part <InlineMath math="0<t\le3" />. For <InlineMath math="t>3" />, the function keeps rising past <InlineMath math="5" />.
+- <InlineMath math="[5,\infty)" /> assumes that the function only rises from the value <InlineMath math="5" /> near <InlineMath math="t=0" />. The vertex <InlineMath math="t=3" /> lies inside <InlineMath math="t>0" />, so the function first falls to <InlineMath math="-4" />.

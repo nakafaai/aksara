@@ -1,0 +1,56 @@
+Each point <InlineMath math="(x,y)" /> on the line <InlineMath math="g" /> is mapped to a point <InlineMath math="(x',y')" />. The image equation is the condition that <InlineMath math="(x',y')" /> satisfies. The known condition is written in <InlineMath math="x" /> and <InlineMath math="y" />, so **express <InlineMath math="x" /> and <InlineMath math="y" /> in terms of <InlineMath math="x'" /> and <InlineMath math="y'" />**, then substitute.
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x+2y \\ y \end{pmatrix}" />
+
+The second row gives <InlineMath math="y=y'" />. The first row gives <InlineMath math="x=x'-2y=x'-2y'" />. This is the same as multiplying by <InlineMath math="M^{-1}=\begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}" />. Substitute into the equation of <InlineMath math="g" />.
+
+<BlockMath math="\begin{aligned}
+2(x'-2y')-y'+4&=0 \\
+2x'-4y'-y'+4&=0 \\
+2x'-5y'+4&=0
+\end{aligned}" />
+
+Check with two points on <InlineMath math="g" />. The point <InlineMath math="(0,4)" /> maps to <InlineMath math="(0+2\cdot4,4)=(8,4)" />, and <InlineMath math="2\cdot8-5\cdot4+4=0" />. The point <InlineMath math="(-2,0)" /> maps to itself, and <InlineMath math="2\cdot(-2)-5\cdot0+4=0" />. Both images lie on the line found.
+
+<MathVisual
+  title="The line g and its image"
+  description={<>The line <InlineMath math="g" /> passes through <InlineMath math="(-2,0)" /> and <InlineMath math="(0,4)" />. Its image passes through <InlineMath math="(-2,0)" /> and <InlineMath math="(8,4)" />, because the matrix <InlineMath math="M" /> shifts every point horizontally by twice its y-coordinate.</>}
+  labels={{
+    original: <InlineMath math="g" />,
+    image: <InlineMath math="2x-5y+4=0" />,
+    "point-before": <InlineMath math="(0,4)" />,
+    "point-after": <InlineMath math="(8,4)" />,
+    fixed: <InlineMath math="(-2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 10 },
+      y: { min: -3, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 1, y: 6 } },
+      { id: "line-image", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 8, y: 4 } },
+      { id: "shift", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "before-point", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "after-point", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
+      { id: "fixed-point", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "original", objectId: "line-g", at: { x: 0.5, y: 5 }, placement: "left" },
+      { key: "image", objectId: "line-image", at: { x: 5.5, y: 3 }, placement: "below-right" },
+      { key: "point-before", objectId: "before-point", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "point-after", objectId: "after-point", at: { x: 8, y: 4 }, placement: "above" },
+      { key: "fixed", objectId: "fixed-point", at: { x: -2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+So the equation of the image of <InlineMath math="g" /> is <InlineMath math="2x-5y+4=0" />.
+
+- <InlineMath math="2x+3y+4=0" /> comes from applying <InlineMath math="M" /> itself to <InlineMath math="(x',y')" />, that is, <InlineMath math="x=x'+2y'" />, although the inverse is needed.
+- <InlineMath math="2x-5y-4=0" /> has the wrong sign on the constant term. The linear transformation does not change the constant term of this equation.
+- <InlineMath math="5x-2y+4=0" /> swaps the coefficients of <InlineMath math="x" /> and <InlineMath math="y" />. The point <InlineMath math="(8,4)" /> does not satisfy it, because <InlineMath math="40-8+4\ne0" />.
+- <InlineMath math="4x-y+4=0" /> comes from using the transpose <InlineMath math="M^T=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}" />, so that <InlineMath math="y'=2x+y" />.

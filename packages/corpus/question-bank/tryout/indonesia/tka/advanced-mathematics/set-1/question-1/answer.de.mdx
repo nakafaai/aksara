@@ -1,0 +1,29 @@
+Die Gleichung vergleicht zwei Determinanten. Deshalb wandelst du zuerst **jede Determinante in einen algebraischen Ausdruck in** <InlineMath math="x" /> um. Danach wird aus der Determinantengleichung eine gewöhnliche quadratische Gleichung.
+
+Die Determinante einer <InlineMath math="2\times2" />-Matrix ist das Produkt der Hauptdiagonale minus das Produkt der Nebendiagonale.
+
+<BlockMath math="\begin{vmatrix} x & 2 \\ 3 & x-1 \end{vmatrix}=x(x-1)-2\cdot3=x^2-x-6" />
+
+Die <InlineMath math="3\times3" />-Determinante entwickelst du nach der ersten Zeile. Das mittlere Element dieser Zeile ist <InlineMath math="0" />, also brauchst du nur zwei Kofaktoren. Die Vorzeichen der Kofaktoren in der ersten Zeile sind positiv, negativ, positiv.
+
+<BlockMath math="\begin{aligned}
+\begin{vmatrix} 1 & 0 & 2 \\ 0 & x & 1 \\ 1 & 1 & 3 \end{vmatrix}&=1\begin{vmatrix} x & 1 \\ 1 & 3 \end{vmatrix}-0\begin{vmatrix} 0 & 1 \\ 1 & 3 \end{vmatrix}+2\begin{vmatrix} 0 & x \\ 1 & 1 \end{vmatrix} \\
+&=1(3x-1)-0+2(0\cdot1-x\cdot1) \\
+&=3x-1-2x=x-1
+\end{aligned}" />
+
+Setze beide Ergebnisse gleich und bringe alle Terme auf die linke Seite.
+
+<BlockMath math="\begin{aligned}
+x^2-x-6&=x-1 \\
+x^2-2x-5&=0
+\end{aligned}" />
+
+Die Diskriminante dieser quadratischen Gleichung ist <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Wegen <InlineMath math="D>0" /> gibt es zwei verschiedene reelle Werte für <InlineMath math="x" />, nämlich <InlineMath math="x=1+\sqrt6" /> und <InlineMath math="x=1-\sqrt6" />. Der Satz über die Summe der Lösungen liefert <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, und das direkte Addieren ergibt denselben Wert, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+
+Die Summe aller reellen Werte von <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="2" />.
+
+- <InlineMath math="-5" /> ist das **Produkt** der beiden Lösungen, <InlineMath math="\frac{c}{a}" />, nicht ihre Summe.
+- <InlineMath math="-2" /> entsteht, wenn das Minuszeichen in der Formel <InlineMath math="-\frac{b}{a}" /> vergessen wird.
+- <InlineMath math="1" /> entsteht, wenn nur <InlineMath math="x^2-x-6=0" /> gelöst wird, als wäre die rechte Seite null. Die <InlineMath math="3\times3" />-Determinante hat aber den Wert <InlineMath math="x-1" />.
+- <InlineMath math="6" /> entsteht, wenn der Minor des dritten Elements als <InlineMath math="x\cdot1-0\cdot1=x" /> statt als <InlineMath math="0\cdot1-x\cdot1=-x" /> berechnet wird. Die rechte Determinante wird dann zu <InlineMath math="5x-1" />, und die Gleichung <InlineMath math="x^2-6x-5=0" /> hat die Lösungssumme <InlineMath math="6" />.

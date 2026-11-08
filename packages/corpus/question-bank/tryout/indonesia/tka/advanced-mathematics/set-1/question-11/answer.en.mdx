@@ -1,0 +1,53 @@
+The equation <InlineMath math="\vec{w}=a\vec{u}+b\vec{v}" /> says that <InlineMath math="\vec{w}" /> is a **linear combination** of <InlineMath math="\vec{u}" /> and <InlineMath math="\vec{v}" />. Two vectors are equal exactly when their components are equal, so this vector equation becomes two ordinary equations in <InlineMath math="a" /> and <InlineMath math="b" />.
+
+<BlockMath math="a\begin{pmatrix} 2 \\ -1 \end{pmatrix}+b\begin{pmatrix} 1 \\ 3 \end{pmatrix}=\begin{pmatrix} 2a+b \\ -a+3b \end{pmatrix}=\begin{pmatrix} 8 \\ 17 \end{pmatrix}" />
+
+The first component gives <InlineMath math="b=8-2a" />. Substitute it into the equation of the second component.
+
+<BlockMath math="\begin{aligned}
+-a+3(8-2a)&=17 \\
+-a+24-6a&=17 \\
+-7a&=-7 \\
+a&=1 \\
+b&=8-2\cdot1=6
+\end{aligned}" />
+
+Check by rebuilding <InlineMath math="\vec{w}" />: <InlineMath math="1\cdot\vec{u}+6\vec{v}" /> has components <InlineMath math="2+6=8" /> and <InlineMath math="-1+18=17" />, exactly those of <InlineMath math="\vec{w}" />. The figure shows the tip-to-tail arrangement: <InlineMath math="\vec{u}" /> from the origin, then <InlineMath math="6\vec{v}" /> from the tip of <InlineMath math="\vec{u}" />, ending at the tip of <InlineMath math="\vec{w}" />.
+
+<MathVisual
+  title="Building w from u and 6v"
+  description={<>The segment from <InlineMath math="(0,0)" /> to <InlineMath math="(2,-1)" /> represents <InlineMath math="\vec{u}" />. The segment from <InlineMath math="(2,-1)" /> to <InlineMath math="(8,17)" /> represents <InlineMath math="6\vec{v}" />. The segment from <InlineMath math="(0,0)" /> to <InlineMath math="(8,17)" /> represents <InlineMath math="\vec{w}" />.</>}
+  labels={{
+    "vector-u": <InlineMath math="\vec{u}" />,
+    "vector-six-v": <InlineMath math="6\vec{v}" />,
+    "vector-w": <InlineMath math="\vec{w}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -3, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: -1 } },
+      { id: "six-v", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 8, y: 17 } },
+      { id: "w", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: 17 } },
+      { id: "tip-u", kind: "point", appearance: "reference", at: { x: 2, y: -1 } },
+      { id: "tip-w", kind: "point", appearance: "reference", at: { x: 8, y: 17 } },
+    ],
+    labels: [
+      { key: "vector-u", objectId: "u", at: { x: 1, y: -0.5 }, placement: "below" },
+      { key: "vector-six-v", objectId: "six-v", at: { x: 5, y: 8 }, placement: "right" },
+      { key: "vector-w", objectId: "w", at: { x: 4, y: 8.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+So the value of <InlineMath math="a+b" /> is <InlineMath math="1+6=7" />.
+
+- <InlineMath math="1" /> is only the value of <InlineMath math="a" />. The question asks for the sum of both coefficients.
+- <InlineMath math="5" /> is the difference <InlineMath math="b-a" />, not the sum.
+- <InlineMath math="6" /> is only the value of <InlineMath math="b" />, which also equals the product <InlineMath math="ab=6" />.
+- <InlineMath math="8" /> is the first component of <InlineMath math="\vec{w}" />, the value of <InlineMath math="2a+b" />. That component equation is not <InlineMath math="a+b" />.

@@ -1,0 +1,21 @@
+Einsetzen von <InlineMath math="x=0" /> ergibt <InlineMath math="\frac{1-1}{0\cdot0}=\frac00" />, der Ausdruck muss also umgeformt werden. Entscheidend ist, **<InlineMath math="1-\cos4x" /> in ein Sinusquadrat umzuwandeln** und dann den Grundgrenzwert <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" /> zu verwenden.
+
+Die Doppelwinkelformel <InlineMath math="\cos2\theta=1-2\sin^2\theta" /> mit <InlineMath math="\theta=2x" /> liefert <InlineMath math="1-\cos4x=2\sin^22x" />. Ein Faktor <InlineMath math="\sin2x" /> kürzt sich dann mit dem Nenner, denn <InlineMath math="\sin2x\ne0" /> für <InlineMath math="x" /> nahe bei <InlineMath math="0" />, aber ungleich <InlineMath math="0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{1-\cos4x}{x\sin2x}&=\frac{2\sin^22x}{x\sin2x}=\frac{2\sin2x}{x} \\
+&=4\cdot\frac{\sin2x}{2x}
+\end{aligned}" />
+
+Für <InlineMath math="x\to0" /> geht auch der Winkel <InlineMath math="2x" /> gegen <InlineMath math="0" />, also <InlineMath math="\frac{\sin2x}{2x}\to1" />.
+
+<BlockMath math="\lim_{x\to0}\frac{1-\cos4x}{x\sin2x}=4\cdot1=4" />
+
+Eine Kontrolle mit Näherungen für kleine Winkel liefert dasselbe. Für <InlineMath math="u" /> nahe <InlineMath math="0" /> gilt <InlineMath math="1-\cos u\approx\frac{u^2}{2}" /> und <InlineMath math="\sin u\approx u" />. Der Bruch nähert sich also <InlineMath math="\frac{\frac{(4x)^2}{2}}{x\cdot2x}=\frac{8x^2}{2x^2}=4" />.
+
+Der Grenzwert beträgt also <InlineMath math="4" />.
+
+- <InlineMath math="8" /> entsteht, wenn <InlineMath math="1-\cos4x" /> durch <InlineMath math="(4x)^2" /> ohne den Faktor <InlineMath math="\frac12" /> angenähert wird.
+- <InlineMath math="2" /> entsteht, wenn der Faktor <InlineMath math="2" /> in <InlineMath math="1-\cos4x=2\sin^22x" /> vergessen wird. Dann bleibt nur <InlineMath math="\frac{\sin2x}{x}" /> übrig.
+- <InlineMath math="1" /> entsteht, wenn jeder Sinus geteilt durch eine Variable als <InlineMath math="1" /> gelesen wird, ohne auf den Koeffizienten im Winkel zu achten.
+- <InlineMath math="0" /> entsteht, wenn die Form <InlineMath math="\frac00" /> als null gelesen wird.

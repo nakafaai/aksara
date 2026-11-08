@@ -1,0 +1,54 @@
+Yang diketahui adalah panjang ketiga vektor: <InlineMath math="|\vec{F}_1|=30" />, <InlineMath math="|\vec{F}_2|=50" />, dan <InlineMath math="|\vec{F}_1+\vec{F}_2|=70" />, semuanya dalam newton. Hubungan yang mengaitkan panjang resultan dengan sudut antara kedua vektor adalah **kuadrat panjang jumlah dua vektor**, yang memuat hasil kali titik <InlineMath math="\vec{F}_1\cdot\vec{F}_2=|\vec{F}_1||\vec{F}_2|\cos\theta" />.
+
+<BlockMath math="|\vec{F}_1+\vec{F}_2|^2=|\vec{F}_1|^2+|\vec{F}_2|^2+2|\vec{F}_1||\vec{F}_2|\cos\theta" />
+
+Substitusikan ketiga besar gaya, lalu selesaikan untuk <InlineMath math="\cos\theta" />.
+
+<BlockMath math="\begin{aligned}
+70^2&=30^2+50^2+2\cdot30\cdot50\cos\theta \\
+4900&=3400+3000\cos\theta \\
+\cos\theta&=\frac{1500}{3000}=\frac12
+\end{aligned}" />
+
+Sudut antara dua vektor berada di antara <InlineMath math="0^\circ" /> dan <InlineMath math="180^\circ" />, dan pada selang itu hanya <InlineMath math="\theta=60^\circ" /> yang memenuhi <InlineMath math="\cos\theta=\frac12" />. Hasil ini masuk akal. Jika kedua gaya tegak lurus, besar resultannya <InlineMath math="\sqrt{3400}\approx58\text{ N}" />. Resultan <InlineMath math="70\text{ N}" /> lebih besar dari itu, jadi sudutnya harus lancip.
+
+<MathVisual
+  title="Jajaran genjang gaya"
+  description={<>Gaya <InlineMath math="\vec{F}_1" /> sepanjang <InlineMath math="30" /> satuan terletak mendatar, dan gaya <InlineMath math="\vec{F}_2" /> sepanjang <InlineMath math="50" /> satuan membentuk sudut <InlineMath math="60^\circ" /> dengannya. Diagonal jajaran genjang dari titik tangkap adalah resultan sepanjang <InlineMath math="70" /> satuan.</>}
+  labels={{
+    "force-one": <InlineMath math="\vec{F}_1" />,
+    "force-two": <InlineMath math="\vec{F}_2" />,
+    resultant: <InlineMath math="\vec{F}_1+\vec{F}_2" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 60 },
+      y: { min: -5, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 25, y: 25 * Math.sqrt(3) } },
+      { id: "side-a", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "side-b", kind: "segment", appearance: "construction", from: { x: 25, y: 25 * Math.sqrt(3) }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "between", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 8, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "force-one", objectId: "first", at: { x: 15, y: 0 }, placement: "below" },
+      { key: "force-two", objectId: "second", at: { x: 12.5, y: 12.5 * Math.sqrt(3) }, placement: "left" },
+      { key: "resultant", objectId: "sum", at: { x: 27.5, y: 12.5 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "angle", objectId: "between", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, besar sudut antara <InlineMath math="\vec{F}_1" /> dan <InlineMath math="\vec{F}_2" /> adalah <InlineMath math="60^\circ" />.
+
+- <InlineMath math="30^\circ" /> muncul jika nilai <InlineMath math="\frac12" /> dikaitkan dengan sinus, karena <InlineMath math="\sin30^\circ=\frac12" />. Yang bernilai <InlineMath math="\frac12" /> di sini adalah kosinus.
+- <InlineMath math="90^\circ" /> menganggap kedua gaya tegak lurus. Untuk sudut itu, resultannya hanya <InlineMath math="\sqrt{30^2+50^2}=\sqrt{3400}\approx58\text{ N}" />, bukan <InlineMath math="70\text{ N}" />.
+- <InlineMath math="120^\circ" /> muncul jika rumus aturan kosinus untuk sudut dalam segitiga dipakai, yaitu dengan tanda negatif di depan <InlineMath math="2|\vec{F}_1||\vec{F}_2|\cos\theta" />. Sudut <InlineMath math="120^\circ" /> itu adalah sudut segitiga di hadapan resultan, bukan sudut antara kedua gaya.
+- <InlineMath math="150^\circ" /> adalah pelurus <InlineMath math="30^\circ" />, jadi berasal dari kekeliruan yang sama dengan pilihan <InlineMath math="30^\circ" />, ditambah tanda yang terbalik.

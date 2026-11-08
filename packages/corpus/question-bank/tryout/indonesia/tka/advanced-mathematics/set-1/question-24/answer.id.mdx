@@ -1,0 +1,21 @@
+Substitusi <InlineMath math="x=0" /> memberi <InlineMath math="\frac{1-1}{0\cdot0}=\frac00" />, jadi bentuknya harus diubah. Kuncinya adalah **mengubah <InlineMath math="1-\cos4x" /> menjadi kuadrat sinus**, lalu memakai limit dasar <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" />.
+
+Identitas sudut rangkap <InlineMath math="\cos2\theta=1-2\sin^2\theta" /> dengan <InlineMath math="\theta=2x" /> memberi <InlineMath math="1-\cos4x=2\sin^22x" />. Satu faktor <InlineMath math="\sin2x" /> lalu dapat dicoret dengan penyebut, karena <InlineMath math="\sin2x\ne0" /> untuk <InlineMath math="x" /> yang cukup dekat dengan <InlineMath math="0" /> tetapi bukan <InlineMath math="0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{1-\cos4x}{x\sin2x}&=\frac{2\sin^22x}{x\sin2x}=\frac{2\sin2x}{x} \\
+&=4\cdot\frac{\sin2x}{2x}
+\end{aligned}" />
+
+Ketika <InlineMath math="x\to0" />, sudut <InlineMath math="2x" /> juga menuju <InlineMath math="0" />, sehingga <InlineMath math="\frac{\sin2x}{2x}\to1" />.
+
+<BlockMath math="\lim_{x\to0}\frac{1-\cos4x}{x\sin2x}=4\cdot1=4" />
+
+Pemeriksaan dengan pendekatan sudut kecil memberi hasil yang sama. Untuk <InlineMath math="u" /> dekat <InlineMath math="0" />, <InlineMath math="1-\cos u\approx\frac{u^2}{2}" /> dan <InlineMath math="\sin u\approx u" />. Jadi, pecahan itu mendekati <InlineMath math="\frac{\frac{(4x)^2}{2}}{x\cdot2x}=\frac{8x^2}{2x^2}=4" />.
+
+Jadi, nilai limit tersebut adalah <InlineMath math="4" />.
+
+- <InlineMath math="8" /> muncul jika <InlineMath math="1-\cos4x" /> didekati dengan <InlineMath math="(4x)^2" />, tanpa faktor <InlineMath math="\frac12" />.
+- <InlineMath math="2" /> muncul jika faktor <InlineMath math="2" /> dari identitas <InlineMath math="1-\cos4x=2\sin^22x" /> terlupa, sehingga yang tersisa hanya <InlineMath math="\frac{\sin2x}{x}" />.
+- <InlineMath math="1" /> muncul jika setiap bentuk sinus dibagi variabel dianggap bernilai <InlineMath math="1" />, tanpa memperhatikan koefisien sudutnya.
+- <InlineMath math="0" /> muncul jika bentuk <InlineMath math="\frac00" /> dianggap bernilai nol.

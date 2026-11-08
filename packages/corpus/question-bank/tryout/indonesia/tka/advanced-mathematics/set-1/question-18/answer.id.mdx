@@ -1,0 +1,50 @@
+Setiap transformasi linear pada bidang memiliki matriks yang **kolom-kolomnya adalah bayangan titik satuan**. Kolom pertama adalah bayangan <InlineMath math="(1,0)" />, dan kolom kedua adalah bayangan <InlineMath math="(0,1)" />. Jadi, kedua informasi pada soal langsung menyusun matriks <InlineMath math="T" />.
+
+<BlockMath math="M_T=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=2\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> adalah rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="O" />, karena matriks rotasi sebesar <InlineMath math="\theta" /> adalah <InlineMath math="\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}" /> dan <InlineMath math="\cos90^\circ=0" />, <InlineMath math="\sin90^\circ=1" />. Faktor <InlineMath math="2" /> di depannya adalah dilatasi dengan pusat <InlineMath math="O" /> dan faktor skala <InlineMath math="2" />, yang bermatriks <InlineMath math="2I" />.
+
+<BlockMath math="\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=M_T" />
+
+Periksa dengan titik pada soal. Rotasi <InlineMath math="90^\circ" /> memindahkan <InlineMath math="(1,0)" /> ke <InlineMath math="(0,1)" />, lalu dilatasi menggandakannya menjadi <InlineMath math="(0,2)" />. Titik <InlineMath math="(0,1)" /> berputar ke <InlineMath math="(-1,0)" />, lalu menjadi <InlineMath math="(-2,0)" />. Keduanya sesuai.
+
+<MathVisual
+  title="Persegi satuan dan bayangannya"
+  description={<>Persegi satuan dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(1,0)" />, <InlineMath math="(1,1)" />, dan <InlineMath math="(0,1)" /> dipetakan oleh <InlineMath math="T" /> ke persegi dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(0,2)" />, <InlineMath math="(-2,2)" />, dan <InlineMath math="(-2,0)" />. Bayangannya berputar seperempat putaran berlawanan arah jarum jam dan sisinya menjadi dua kali panjang semula.</>}
+  labels={{
+    "image-x": <InlineMath math="(0,2)" />,
+    "image-y": <InlineMath math="(-2,0)" />,
+    "unit-x": <InlineMath math="(1,0)" />,
+    "unit-y": <InlineMath math="(0,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 2 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit-square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "image-square", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -2, y: 0 }] },
+      { id: "unit-x-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "unit-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
+      { id: "image-x-point", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+      { id: "image-y-point", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "unit-x", objectId: "unit-x-point", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "unit-y", objectId: "unit-y-point", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "image-x", objectId: "image-x-point", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "image-y", objectId: "image-y-point", at: { x: -2, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Jadi, <InlineMath math="T" /> sama dengan rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam dengan pusat <InlineMath math="O" />, dilanjutkan dilatasi dengan pusat <InlineMath math="O" /> dan faktor skala <InlineMath math="2" />.
+
+- Rotasi <InlineMath math="90^\circ" /> searah jarum jam yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}" />. Transformasi itu memetakan <InlineMath math="(1,0)" /> ke <InlineMath math="(0,-2)" />, bukan ke <InlineMath math="(0,2)" />.
+- Pencerminan terhadap <InlineMath math="y=x" /> yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}" />. Transformasi itu memetakan <InlineMath math="(0,1)" /> ke <InlineMath math="(2,0)" />, bukan ke <InlineMath math="(-2,0)" />.
+- Rotasi <InlineMath math="180^\circ" /> yang dilanjutkan dilatasi faktor <InlineMath math="2" /> bermatriks <InlineMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" /> dan memetakan <InlineMath math="(1,0)" /> ke <InlineMath math="(-2,0)" />.
+- Dilatasi dengan faktor skala <InlineMath math="\frac12" /> memperkecil jarak. Bayangan <InlineMath math="(1,0)" /> justru berjarak <InlineMath math="2" /> dari <InlineMath math="O" />, jadi faktor skalanya <InlineMath math="2" />.

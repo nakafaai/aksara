@@ -1,0 +1,20 @@
+Substituting <InlineMath math="x=4" /> gives the numerator <InlineMath math="0" /> and the denominator <InlineMath math="\sqrt9-3=0" />. The denominator contains a root, so its factor <InlineMath math="x-4" /> is not visible yet. The right move is to **multiply by the conjugate** <InlineMath math="\sqrt{2x+1}+3" />, because <InlineMath math="(\sqrt{p}-3)(\sqrt{p}+3)=p-9" /> removes the root.
+
+<BlockMath math="\begin{aligned}
+\frac{x-4}{\sqrt{2x+1}-3}&=\frac{x-4}{\sqrt{2x+1}-3}\cdot\frac{\sqrt{2x+1}+3}{\sqrt{2x+1}+3} \\
+&=\frac{(x-4)(\sqrt{2x+1}+3)}{(2x+1)-9} \\
+&=\frac{(x-4)(\sqrt{2x+1}+3)}{2(x-4)}
+\end{aligned}" />
+
+The denominator <InlineMath math="2x-8" /> turns out to be <InlineMath math="2(x-4)" />. For <InlineMath math="x\ne4" />, the factor <InlineMath math="x-4" /> may be cancelled, and then direct substitution is safe.
+
+<BlockMath math="\lim_{x\to4}\frac{\sqrt{2x+1}+3}{2}=\frac{\sqrt9+3}{2}=\frac{3+3}{2}=3" />
+
+As a check, at <InlineMath math="x=4.01" /> we get <InlineMath math="\sqrt{9.02}\approx3.00333" />, so the original fraction is about <InlineMath math="\frac{0.01}{0.00333}\approx3" />.
+
+So the value of the limit is <InlineMath math="3" />.
+
+- <InlineMath math="0" /> comes from looking only at the numerator. The denominator also approaches zero, so the form is <InlineMath math="\frac00" />, not zero.
+- <InlineMath math="\frac13" /> is the reciprocal of the result, the limit of <InlineMath math="\frac{\sqrt{2x+1}-3}{x-4}" />.
+- <InlineMath math="\frac32" /> comes from writing the remaining expression as <InlineMath math="\frac{\sqrt{2x+1}}{2}" />, forgetting the <InlineMath math="+3" /> of the conjugate.
+- <InlineMath math="6" /> comes from treating <InlineMath math="(2x+1)-9" /> as <InlineMath math="x-4" />, which loses the factor <InlineMath math="2" /> in the denominator.

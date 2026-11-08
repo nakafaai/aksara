@@ -1,0 +1,54 @@
+Gegeben sind die Längen von drei Vektoren: <InlineMath math="|\vec{F}_1|=30" />, <InlineMath math="|\vec{F}_2|=50" /> und <InlineMath math="|\vec{F}_1+\vec{F}_2|=70" />, jeweils in Newton. Die Beziehung zwischen der Länge der Resultierenden und dem Winkel zwischen den beiden Vektoren ist **das Quadrat der Länge einer Vektorsumme**. Sie enthält das Skalarprodukt <InlineMath math="\vec{F}_1\cdot\vec{F}_2=|\vec{F}_1||\vec{F}_2|\cos\theta" />.
+
+<BlockMath math="|\vec{F}_1+\vec{F}_2|^2=|\vec{F}_1|^2+|\vec{F}_2|^2+2|\vec{F}_1||\vec{F}_2|\cos\theta" />
+
+Setze die drei Beträge ein und löse nach <InlineMath math="\cos\theta" /> auf.
+
+<BlockMath math="\begin{aligned}
+70^2&=30^2+50^2+2\cdot30\cdot50\cos\theta \\
+4900&=3400+3000\cos\theta \\
+\cos\theta&=\frac{1500}{3000}=\frac12
+\end{aligned}" />
+
+Der Winkel zwischen zwei Vektoren liegt zwischen <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" />, und in diesem Bereich erfüllt nur <InlineMath math="\theta=60^\circ" /> die Gleichung <InlineMath math="\cos\theta=\frac12" />. Das Ergebnis ist plausibel. Stünden die Kräfte senkrecht aufeinander, wäre die Resultierende <InlineMath math="\sqrt{3400}\approx58\text{ N}" /> groß. Eine Resultierende von <InlineMath math="70\text{ N}" /> ist größer, also muss der Winkel spitz sein.
+
+<MathVisual
+  title="Kräfteparallelogramm"
+  description={<>Die Kraft <InlineMath math="\vec{F}_1" /> der Länge <InlineMath math="30" /> liegt waagerecht, die Kraft <InlineMath math="\vec{F}_2" /> der Länge <InlineMath math="50" /> schließt mit ihr einen Winkel von <InlineMath math="60^\circ" /> ein. Die Diagonale des Parallelogramms vom Angriffspunkt aus ist die Resultierende der Länge <InlineMath math="70" />.</>}
+  labels={{
+    "force-one": <InlineMath math="\vec{F}_1" />,
+    "force-two": <InlineMath math="\vec{F}_2" />,
+    resultant: <InlineMath math="\vec{F}_1+\vec{F}_2" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 60 },
+      y: { min: -5, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 25, y: 25 * Math.sqrt(3) } },
+      { id: "side-a", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "side-b", kind: "segment", appearance: "construction", from: { x: 25, y: 25 * Math.sqrt(3) }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "sum", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 55, y: 25 * Math.sqrt(3) } },
+      { id: "between", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 8, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "force-one", objectId: "first", at: { x: 15, y: 0 }, placement: "below" },
+      { key: "force-two", objectId: "second", at: { x: 12.5, y: 12.5 * Math.sqrt(3) }, placement: "left" },
+      { key: "resultant", objectId: "sum", at: { x: 27.5, y: 12.5 * Math.sqrt(3) }, placement: "below-right" },
+      { key: "angle", objectId: "between", at: { x: 4 * Math.sqrt(3), y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Der Winkel zwischen <InlineMath math="\vec{F}_1" /> und <InlineMath math="\vec{F}_2" /> beträgt also <InlineMath math="60^\circ" />.
+
+- <InlineMath math="30^\circ" /> entsteht, wenn der Wert <InlineMath math="\frac12" /> dem Sinus zugeordnet wird, denn <InlineMath math="\sin30^\circ=\frac12" />. Hier ist aber der Kosinus gleich <InlineMath math="\frac12" />.
+- <InlineMath math="90^\circ" /> nimmt an, dass die Kräfte senkrecht aufeinander stehen. Bei diesem Winkel wäre die Resultierende nur <InlineMath math="\sqrt{30^2+50^2}=\sqrt{3400}\approx58\text{ N}" /> groß, nicht <InlineMath math="70\text{ N}" />.
+- <InlineMath math="120^\circ" /> entsteht, wenn der Kosinussatz für einen Innenwinkel des Dreiecks verwendet wird, also mit einem Minuszeichen vor <InlineMath math="2|\vec{F}_1||\vec{F}_2|\cos\theta" />. Dieser Winkel von <InlineMath math="120^\circ" /> liegt im Dreieck der Resultierenden gegenüber, er ist nicht der Winkel zwischen den Kräften.
+- <InlineMath math="150^\circ" /> ist der Nebenwinkel von <InlineMath math="30^\circ" /> und verbindet die Verwechslung mit dem Sinus mit einem umgedrehten Vorzeichen.

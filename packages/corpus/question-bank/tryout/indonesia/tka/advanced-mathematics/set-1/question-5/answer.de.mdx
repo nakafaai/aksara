@@ -1,0 +1,63 @@
+Die Grenzen für Zuschnitt und Lackieren ändern sich nicht, also **bleibt der zulässige Bereich gleich**. Nur die Zielfunktion ändert sich. Es sei <InlineMath math="x" /> die Anzahl der Stühle und <InlineMath math="y" /> die Anzahl der Tische in einem Monat.
+
+<BlockMath math="\begin{aligned}
+2x+3y&\le120 \\
+x+3y&\le90 \\
+x\ge0,\quad y&\ge0
+\end{aligned}" />
+
+Mit dem neuen Gewinn pro Tisch beträgt der Monatsgewinn <InlineMath math="g(x,y)=150{.}000x+500{.}000y" /> Rupiah. Das Maximum einer linearen Funktion über dem zulässigen Bereich liegt in einem Eckpunkt. Das Additionsverfahren mit den beiden Randgeraden liefert den Schnittpunkt <InlineMath math="(30,20)" />, denn <InlineMath math="(2x+3y)-(x+3y)=120-90" /> ergibt <InlineMath math="x=30" />, und <InlineMath math="30+3y=90" /> ergibt <InlineMath math="y=20" />. Die übrigen Eckpunkte sind <InlineMath math="(0,0)" />, <InlineMath math="(60,0)" /> und <InlineMath math="(0,30)" />.
+
+<MathVisual
+  title="Eckpunkte nach dem höheren Tischgewinn"
+  description={<>Der zulässige Bereich wird weiterhin von den Geraden <InlineMath math="2x+3y=120" /> und <InlineMath math="x+3y=90" /> begrenzt. Mit dem neuen Gewinn pro Tisch liefert der Eckpunkt <InlineMath math="(0,30)" /> den größten Gewinn.</>}
+  labels={{
+    "line-cutting": <InlineMath math="2x+3y=120" />,
+    "line-painting": <InlineMath math="x+3y=90" />,
+    "corner-x": <InlineMath math="(60,0)" />,
+    "corner-middle": <InlineMath math="(30,20)" />,
+    "corner-y": <InlineMath math="(0,30)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 70 },
+      y: { min: -5, max: 45 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 30, y: 20 }, { x: 0, y: 30 }] },
+      { id: "cutting", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 60, y: 0 } },
+      { id: "painting", kind: "segment", appearance: "primary", from: { x: 0, y: 30 }, to: { x: 60, y: 10 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "corner-middle-point", kind: "point", appearance: "reference", at: { x: 30, y: 20 } },
+      { id: "corner-y-point", kind: "point", appearance: "answer", at: { x: 0, y: 30 } },
+    ],
+    labels: [
+      { key: "line-cutting", objectId: "cutting", at: { x: 15, y: 30 }, placement: "above-right" },
+      { key: "line-painting", objectId: "painting", at: { x: 45, y: 15 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "corner-middle", objectId: "corner-middle-point", at: { x: 30, y: 20 }, placement: "above-right" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 30 }, placement: "left" },
+    ],
+  }}
+/>
+
+Berechne den neuen Gewinn in jedem Eckpunkt.
+
+| Eckpunkt | Neuer Gewinn |
+| --- | ---: |
+| <InlineMath math="(0,0)" /> | <InlineMath math="\text{Rp}0" /> |
+| <InlineMath math="(60,0)" /> | <InlineMath math="150{.}000\cdot60=\text{Rp}9{.}000{.}000" /> |
+| <InlineMath math="(30,20)" /> | <InlineMath math="150{.}000\cdot30+500{.}000\cdot20=\text{Rp}14{.}500{.}000" /> |
+| <InlineMath math="(0,30)" /> | <InlineMath math="500{.}000\cdot30=\text{Rp}15{.}000{.}000" /> |
+
+Der größte Gewinn liegt jetzt in <InlineMath math="(0,30)" />. Den Grund zeigt der Tausch entlang der Lackiergeraden <InlineMath math="x+3y=90" />. Der Schritt von <InlineMath math="(0,30)" /> nach <InlineMath math="(30,20)" /> bedeutet <InlineMath math="30" /> Stühle mehr und <InlineMath math="10" /> Tische weniger. Die Stühle bringen nur <InlineMath math="30\cdot150{.}000=4{.}500{.}000" /> zusätzlich, die fehlenden Tische kosten aber <InlineMath math="10\cdot500{.}000=5{.}000{.}000" />. Dieser Schritt senkt den Gewinn also.
+
+Für den größten Gewinn baut die Werkstatt also <InlineMath math="0" /> Stühle und <InlineMath math="30" /> Tische im Monat und verdient <InlineMath math="\text{Rp}15{.}000{.}000{,}00" />.
+
+- <InlineMath math="0" /> Stühle und <InlineMath math="40" /> Tische halten die Zuschnittgrenze ein, das Lackieren bräuchte aber <InlineMath math="3\cdot40=120" /> Stunden, mehr als <InlineMath math="90" /> Stunden.
+- <InlineMath math="20" /> Stühle und <InlineMath math="30" /> Tische brauchen <InlineMath math="2\cdot20+3\cdot30=130" /> Stunden Zuschnitt, mehr als <InlineMath math="120" /> Stunden. Diese Kombination entsteht, wenn die Koordinaten des Eckpunkts <InlineMath math="(30,20)" /> vertauscht werden.
+- <InlineMath math="30" /> Stühle und <InlineMath math="20" /> Tische sind das Optimum für den alten Tischgewinn. Mit dem neuen Gewinn bringt dieser Punkt nur <InlineMath math="\text{Rp}14{.}500{.}000{,}00" />.
+- <InlineMath math="60" /> Stühle und <InlineMath math="0" /> Tische bringen nur <InlineMath math="\text{Rp}9{.}000{.}000{,}00" />, weil kein Tisch gebaut wird, obwohl Tische jetzt am meisten einbringen.

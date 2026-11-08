@@ -1,0 +1,53 @@
+Die Gleichung <InlineMath math="\vec{w}=a\vec{u}+b\vec{v}" /> besagt, dass <InlineMath math="\vec{w}" /> eine **Linearkombination** von <InlineMath math="\vec{u}" /> und <InlineMath math="\vec{v}" /> ist. Zwei Vektoren sind genau dann gleich, wenn ihre Komponenten übereinstimmen. Aus der Vektorgleichung werden also zwei gewöhnliche Gleichungen in <InlineMath math="a" /> und <InlineMath math="b" />.
+
+<BlockMath math="a\begin{pmatrix} 2 \\ -1 \end{pmatrix}+b\begin{pmatrix} 1 \\ 3 \end{pmatrix}=\begin{pmatrix} 2a+b \\ -a+3b \end{pmatrix}=\begin{pmatrix} 8 \\ 17 \end{pmatrix}" />
+
+Aus der ersten Komponente folgt <InlineMath math="b=8-2a" />. Setze das in die Gleichung der zweiten Komponente ein.
+
+<BlockMath math="\begin{aligned}
+-a+3(8-2a)&=17 \\
+-a+24-6a&=17 \\
+-7a&=-7 \\
+a&=1 \\
+b&=8-2\cdot1=6
+\end{aligned}" />
+
+Zur Kontrolle baust du <InlineMath math="\vec{w}" /> wieder zusammen: <InlineMath math="1\cdot\vec{u}+6\vec{v}" /> hat die Komponenten <InlineMath math="2+6=8" /> und <InlineMath math="-1+18=17" />, genau wie <InlineMath math="\vec{w}" />. Die Abbildung zeigt das Aneinanderhängen: <InlineMath math="\vec{u}" /> vom Ursprung aus, dann <InlineMath math="6\vec{v}" /> von der Spitze von <InlineMath math="\vec{u}" /> aus, bis zur Spitze von <InlineMath math="\vec{w}" />.
+
+<MathVisual
+  title="w aus u und 6v zusammensetzen"
+  description={<>Die Strecke von <InlineMath math="(0,0)" /> nach <InlineMath math="(2,-1)" /> stellt <InlineMath math="\vec{u}" /> dar. Die Strecke von <InlineMath math="(2,-1)" /> nach <InlineMath math="(8,17)" /> stellt <InlineMath math="6\vec{v}" /> dar. Die Strecke von <InlineMath math="(0,0)" /> nach <InlineMath math="(8,17)" /> stellt <InlineMath math="\vec{w}" /> dar.</>}
+  labels={{
+    "vector-u": <InlineMath math="\vec{u}" />,
+    "vector-six-v": <InlineMath math="6\vec{v}" />,
+    "vector-w": <InlineMath math="\vec{w}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -3, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: -1 } },
+      { id: "six-v", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 8, y: 17 } },
+      { id: "w", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: 17 } },
+      { id: "tip-u", kind: "point", appearance: "reference", at: { x: 2, y: -1 } },
+      { id: "tip-w", kind: "point", appearance: "reference", at: { x: 8, y: 17 } },
+    ],
+    labels: [
+      { key: "vector-u", objectId: "u", at: { x: 1, y: -0.5 }, placement: "below" },
+      { key: "vector-six-v", objectId: "six-v", at: { x: 5, y: 8 }, placement: "right" },
+      { key: "vector-w", objectId: "w", at: { x: 4, y: 8.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Der Wert von <InlineMath math="a+b" /> ist also <InlineMath math="1+6=7" />.
+
+- <InlineMath math="1" /> ist nur der Wert von <InlineMath math="a" />. Gefragt ist die Summe beider Koeffizienten.
+- <InlineMath math="5" /> ist die Differenz <InlineMath math="b-a" />, nicht die Summe.
+- <InlineMath math="6" /> ist nur der Wert von <InlineMath math="b" /> und zugleich das Produkt <InlineMath math="ab=6" />.
+- <InlineMath math="8" /> ist die erste Komponente von <InlineMath math="\vec{w}" />, also der Wert von <InlineMath math="2a+b" />. Diese Komponentengleichung ist nicht <InlineMath math="a+b" />.

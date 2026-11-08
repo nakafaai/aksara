@@ -1,0 +1,56 @@
+Jeder Punkt <InlineMath math="(x,y)" /> der Geraden <InlineMath math="g" /> wird auf einen Punkt <InlineMath math="(x',y')" /> abgebildet. Die Bildgleichung ist die Bedingung, die <InlineMath math="(x',y')" /> erfüllt. Die bekannte Bedingung ist in <InlineMath math="x" /> und <InlineMath math="y" /> geschrieben, also **drückst du <InlineMath math="x" /> und <InlineMath math="y" /> durch <InlineMath math="x'" /> und <InlineMath math="y'" /> aus** und setzt ein.
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix}=\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x+2y \\ y \end{pmatrix}" />
+
+Aus der zweiten Zeile folgt <InlineMath math="y=y'" />, aus der ersten <InlineMath math="x=x'-2y=x'-2y'" />. Das entspricht der Multiplikation mit <InlineMath math="M^{-1}=\begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}" />. Setze in die Gleichung von <InlineMath math="g" /> ein.
+
+<BlockMath math="\begin{aligned}
+2(x'-2y')-y'+4&=0 \\
+2x'-4y'-y'+4&=0 \\
+2x'-5y'+4&=0
+\end{aligned}" />
+
+Kontrolliere mit zwei Punkten von <InlineMath math="g" />. Der Punkt <InlineMath math="(0,4)" /> wird auf <InlineMath math="(0+2\cdot4,4)=(8,4)" /> abgebildet, und <InlineMath math="2\cdot8-5\cdot4+4=0" />. Der Punkt <InlineMath math="(-2,0)" /> bleibt fest, und <InlineMath math="2\cdot(-2)-5\cdot0+4=0" />. Beide Bildpunkte liegen auf der gefundenen Geraden.
+
+<MathVisual
+  title="Die Gerade g und ihr Bild"
+  description={<>Die Gerade <InlineMath math="g" /> verläuft durch <InlineMath math="(-2,0)" /> und <InlineMath math="(0,4)" />. Ihr Bild verläuft durch <InlineMath math="(-2,0)" /> und <InlineMath math="(8,4)" />, weil die Matrix <InlineMath math="M" /> jeden Punkt waagerecht um das Doppelte seiner y-Koordinate verschiebt.</>}
+  labels={{
+    original: <InlineMath math="g" />,
+    image: <InlineMath math="2x-5y+4=0" />,
+    "point-before": <InlineMath math="(0,4)" />,
+    "point-after": <InlineMath math="(8,4)" />,
+    fixed: <InlineMath math="(-2,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 10 },
+      y: { min: -3, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -3, y: -2 }, to: { x: 1, y: 6 } },
+      { id: "line-image", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 8, y: 4 } },
+      { id: "shift", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "before-point", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "after-point", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
+      { id: "fixed-point", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "original", objectId: "line-g", at: { x: 0.5, y: 5 }, placement: "left" },
+      { key: "image", objectId: "line-image", at: { x: 5.5, y: 3 }, placement: "below-right" },
+      { key: "point-before", objectId: "before-point", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "point-after", objectId: "after-point", at: { x: 8, y: 4 }, placement: "above" },
+      { key: "fixed", objectId: "fixed-point", at: { x: -2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Die Gleichung der Bildgeraden von <InlineMath math="g" /> lautet also <InlineMath math="2x-5y+4=0" />.
+
+- <InlineMath math="2x+3y+4=0" /> entsteht, wenn <InlineMath math="M" /> selbst auf <InlineMath math="(x',y')" /> angewendet wird, also <InlineMath math="x=x'+2y'" />, obwohl die Inverse gebraucht wird.
+- <InlineMath math="2x-5y-4=0" /> hat das falsche Vorzeichen beim Absolutglied. Die lineare Abbildung ändert das Absolutglied dieser Gleichung nicht.
+- <InlineMath math="5x-2y+4=0" /> vertauscht die Koeffizienten von <InlineMath math="x" /> und <InlineMath math="y" />. Der Punkt <InlineMath math="(8,4)" /> erfüllt sie nicht, denn <InlineMath math="40-8+4\ne0" />.
+- <InlineMath math="4x-y+4=0" /> entsteht, wenn die Transponierte <InlineMath math="M^T=\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}" /> verwendet wird, sodass <InlineMath math="y'=2x+y" /> gilt.

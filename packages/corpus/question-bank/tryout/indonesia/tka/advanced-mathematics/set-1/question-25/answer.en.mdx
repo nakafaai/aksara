@@ -1,0 +1,30 @@
+The denominator <InlineMath math="x-2" /> approaches <InlineMath math="0" /> as <InlineMath math="x\to2" />, yet the limit is finite, equal to <InlineMath math="7" />. That is possible only if **the numerator also approaches <InlineMath math="0" />**. If the numerator approached a nonzero number, the fraction would grow without bound and the limit would not exist.
+
+# Finding a and b
+
+The numerator is a polynomial, so approaching <InlineMath math="0" /> means that **its value at <InlineMath math="x=2" /> is <InlineMath math="0" />**.
+
+<BlockMath math="\begin{aligned}
+2^2+2a+b&=0 \\
+b&=-4-2a
+\end{aligned}" />
+
+With <InlineMath math="b=-4-2a" />, the numerator has the factor <InlineMath math="x-2" />, and that factor cancels for <InlineMath math="x\ne2" />.
+
+<BlockMath math="\begin{aligned}
+x^2+ax-4-2a&=(x-2)(x+a+2) \\
+f(x)&=x+a+2\quad\text{for }x\ne2 \\
+\lim_{x\to2}f(x)&=4+a=7
+\end{aligned}" />
+
+So <InlineMath math="a=3" /> and <InlineMath math="b=-4-2\cdot3=-10" />, which gives <InlineMath math="f(x)=\frac{x^2+3x-10}{x-2}=x+5" /> for every <InlineMath math="x\ne2" />.
+
+# Judging each statement
+
+1. The statement <InlineMath math="f(2)=7" /> is false. The function <InlineMath math="f" /> is defined only for <InlineMath math="x\ne2" />, so **<InlineMath math="f(2)" /> does not exist**. The value <InlineMath math="7" /> is the limit near <InlineMath math="x=2" />, not the value of the function at that point.
+2. The statement <InlineMath math="a=3" /> is true, as computed above.
+3. The statement <InlineMath math="\lim_{x\to\infty}\frac{f(x)}{x}=2" /> is false. For large <InlineMath math="x" />, <InlineMath math="\frac{f(x)}{x}=\frac{x+5}{x}=1+\frac5x" />, which approaches <InlineMath math="1" />.
+4. The statement <InlineMath math="b=-10" /> is true, as computed above.
+5. The statement <InlineMath math="\lim_{x\to-5}f(x)=0" /> is true. Near <InlineMath math="x=-5" />, <InlineMath math="f(x)=x+5" />, so the limit is <InlineMath math="-5+5=0" />. Substituting into the original formula gives the same value: <InlineMath math="\frac{25-15-10}{-7}=0" />.
+
+So the true statements are <InlineMath math="a=3" />, <InlineMath math="b=-10" />, and <InlineMath math="\lim_{x\to-5}f(x)=0" />.

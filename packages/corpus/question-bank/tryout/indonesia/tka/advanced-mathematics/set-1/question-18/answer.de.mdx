@@ -1,0 +1,50 @@
+Jede lineare Abbildung der Ebene hat eine Matrix, deren **Spalten die Bilder der Einheitspunkte sind**. Die erste Spalte ist das Bild von <InlineMath math="(1,0)" />, die zweite Spalte das Bild von <InlineMath math="(0,1)" />. Die beiden Angaben der Aufgabe liefern also direkt die Matrix von <InlineMath math="T" />.
+
+<BlockMath math="M_T=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=2\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+Die Matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> ist die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" />, denn die Drehmatrix für den Winkel <InlineMath math="\theta" /> lautet <InlineMath math="\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}" />, und es gilt <InlineMath math="\cos90^\circ=0" /> sowie <InlineMath math="\sin90^\circ=1" />. Der Faktor <InlineMath math="2" /> davor ist die zentrische Streckung mit Zentrum <InlineMath math="O" /> und Streckfaktor <InlineMath math="2" />, deren Matrix <InlineMath math="2I" /> ist.
+
+<BlockMath math="\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}=M_T" />
+
+Kontrolliere mit den Punkten der Aufgabe. Die Drehung um <InlineMath math="90^\circ" /> bringt <InlineMath math="(1,0)" /> nach <InlineMath math="(0,1)" />, die Streckung verdoppelt das zu <InlineMath math="(0,2)" />. Der Punkt <InlineMath math="(0,1)" /> dreht sich nach <InlineMath math="(-1,0)" /> und wird dann zu <InlineMath math="(-2,0)" />. Beides stimmt.
+
+<MathVisual
+  title="Einheitsquadrat und sein Bild"
+  description={<>Das Einheitsquadrat mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(1,0)" />, <InlineMath math="(1,1)" /> und <InlineMath math="(0,1)" /> wird von <InlineMath math="T" /> auf das Quadrat mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(0,2)" />, <InlineMath math="(-2,2)" /> und <InlineMath math="(-2,0)" /> abgebildet. Das Bild ist um eine Vierteldrehung gegen den Uhrzeigersinn gedreht, und seine Seiten sind doppelt so lang.</>}
+  labels={{
+    "image-x": <InlineMath math="(0,2)" />,
+    "image-y": <InlineMath math="(-2,0)" />,
+    "unit-x": <InlineMath math="(1,0)" />,
+    "unit-y": <InlineMath math="(0,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 2 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit-square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "image-square", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -2, y: 0 }] },
+      { id: "unit-x-point", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "unit-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 1 } },
+      { id: "image-x-point", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+      { id: "image-y-point", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "unit-x", objectId: "unit-x-point", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "unit-y", objectId: "unit-y-point", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "image-x", objectId: "image-x-point", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "image-y", objectId: "image-y-point", at: { x: -2, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+<InlineMath math="T" /> ist also die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" />, gefolgt von der zentrischen Streckung mit Zentrum <InlineMath math="O" /> und Streckfaktor <InlineMath math="2" />.
+
+- Eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn mit anschließender Streckung mit Faktor <InlineMath math="2" /> hat die Matrix <InlineMath math="\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}" />. Sie bildet <InlineMath math="(1,0)" /> auf <InlineMath math="(0,-2)" /> ab, nicht auf <InlineMath math="(0,2)" />.
+- Eine Spiegelung an <InlineMath math="y=x" /> mit anschließender Streckung mit Faktor <InlineMath math="2" /> hat die Matrix <InlineMath math="\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}" />. Sie bildet <InlineMath math="(0,1)" /> auf <InlineMath math="(2,0)" /> ab, nicht auf <InlineMath math="(-2,0)" />.
+- Eine Drehung um <InlineMath math="180^\circ" /> mit anschließender Streckung mit Faktor <InlineMath math="2" /> hat die Matrix <InlineMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" /> und bildet <InlineMath math="(1,0)" /> auf <InlineMath math="(-2,0)" /> ab.
+- Eine Streckung mit Faktor <InlineMath math="\frac12" /> verkleinert Abstände. Das Bild von <InlineMath math="(1,0)" /> ist aber <InlineMath math="2" /> von <InlineMath math="O" /> entfernt, also ist der Streckfaktor <InlineMath math="2" />.

@@ -1,0 +1,21 @@
+Substituting <InlineMath math="x=0" /> gives <InlineMath math="\frac{1-1}{0\cdot0}=\frac00" />, so the expression has to be rewritten. The key is to **turn <InlineMath math="1-\cos4x" /> into a squared sine**, then use the basic limit <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" />.
+
+The double-angle identity <InlineMath math="\cos2\theta=1-2\sin^2\theta" /> with <InlineMath math="\theta=2x" /> gives <InlineMath math="1-\cos4x=2\sin^22x" />. One factor <InlineMath math="\sin2x" /> then cancels with the denominator, because <InlineMath math="\sin2x\ne0" /> for <InlineMath math="x" /> close to <InlineMath math="0" /> but not equal to <InlineMath math="0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{1-\cos4x}{x\sin2x}&=\frac{2\sin^22x}{x\sin2x}=\frac{2\sin2x}{x} \\
+&=4\cdot\frac{\sin2x}{2x}
+\end{aligned}" />
+
+As <InlineMath math="x\to0" />, the angle <InlineMath math="2x" /> also approaches <InlineMath math="0" />, so <InlineMath math="\frac{\sin2x}{2x}\to1" />.
+
+<BlockMath math="\lim_{x\to0}\frac{1-\cos4x}{x\sin2x}=4\cdot1=4" />
+
+A small-angle check gives the same result. For <InlineMath math="u" /> near <InlineMath math="0" />, <InlineMath math="1-\cos u\approx\frac{u^2}{2}" /> and <InlineMath math="\sin u\approx u" />. So the fraction approaches <InlineMath math="\frac{\frac{(4x)^2}{2}}{x\cdot2x}=\frac{8x^2}{2x^2}=4" />.
+
+So the value of the limit is <InlineMath math="4" />.
+
+- <InlineMath math="8" /> comes from approximating <InlineMath math="1-\cos4x" /> by <InlineMath math="(4x)^2" />, without the factor <InlineMath math="\frac12" />.
+- <InlineMath math="2" /> comes from forgetting the factor <InlineMath math="2" /> in <InlineMath math="1-\cos4x=2\sin^22x" />, which leaves only <InlineMath math="\frac{\sin2x}{x}" />.
+- <InlineMath math="1" /> comes from treating every sine over a variable as <InlineMath math="1" />, ignoring the coefficient of the angle.
+- <InlineMath math="0" /> comes from treating the form <InlineMath math="\frac00" /> as zero.
