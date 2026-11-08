@@ -1,6 +1,11 @@
 import { Array as Arr, Option, Order, Result, Schema } from "effect";
 import type { PlaneCurveObjectSchemas } from "#contracts/math/curve";
 import {
+  type SampleBox,
+  type SamplePoint,
+  SamplePointSchema,
+} from "#contracts/math/formula/box";
+import {
   compileFormula,
   type FormulaEvaluator,
   type FormulaScope,
@@ -12,12 +17,8 @@ import {
 } from "#contracts/math/formula/contour";
 import { SampleGridSchema } from "#contracts/math/formula/mesh";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
-import {
-  type SampleBox,
-  type SamplePoint,
-  SamplePointSchema,
-  sampleCurve,
-} from "#contracts/math/formula/sample";
+import { sampleCurve } from "#contracts/math/formula/sample";
+import type { FormulaError } from "#contracts/math/formula/syntax";
 
 const BranchSchema = Schema.Array(SamplePointSchema);
 
@@ -65,6 +66,13 @@ function planePoint(x: number, y: number): SamplePoint {
   return { x, y, z: 0 };
 }
 
+/** How far a boundary piece lies from one inequality's edge, and whether that edge is strict. */
+const ConstraintGapSchema = Schema.Struct({
+  gap: Schema.Finite,
+  strict: Schema.Boolean,
+});
+type ConstraintGap = typeof ConstraintGapSchema.Type;
+
 /** The signed room an inequality leaves at a point: positive where it holds. */
 function margin(text: string) {
   return Result.map(readRelation(text), ({ comparison, left, right }) => {
@@ -99,12 +107,14 @@ function regionGeometry(
       field: each.field(scope),
       strict: each.strict,
     }));
+    /** The tightest margin at a point: where it is not negative, every inequality holds. */
     const field: SampleField = (x, y) =>
       Math.min(...Arr.map(constraints, (each) => each.field(x, y)));
     const byGap = Order.mapInput(
       Order.Number,
-      ({ gap }: { readonly gap: number }) => gap
+      (piece: ConstraintGap) => piece.gap
     );
+    /** Whether the inequality nearest a boundary piece is strict, so it draws dashed. */
     const strictAt = (from: SamplePoint, to: SamplePoint) => {
       const x = (from.x + to.x) / 2;
       const y = (from.y + to.y) / 2;
@@ -140,7 +150,7 @@ export function planeFormulaGeometry(
   box: SampleBox,
   scope: FormulaScope,
   named: readonly number[] = []
-): Result.Result<FormulaGeometry, { readonly message: string }> {
+): Result.Result<FormulaGeometry, FormulaError> {
   return Result.gen(function* () {
     if (object.kind === "function") {
       const f = yield* compileText(object.formula);
@@ -189,6 +199,7 @@ export function planeFormulaGeometry(
       const relation = yield* readRelation(object.equation);
       const left = compileFormula(relation.left);
       const right = compileFormula(relation.right);
+      /** How far the two sides of the equation are apart at a point. */
       const field: SampleField = (x, y) => {
         const point = { ...scope, x, y };
         return left(point) - right(point);

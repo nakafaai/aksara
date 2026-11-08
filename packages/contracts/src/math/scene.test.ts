@@ -196,6 +196,7 @@ describe("formula and solid scene coordinates", () => {
       { x: 2, y: 0, z: 0 },
       { x: 0, y: 2, z: 0 },
     ];
+    /** Decodes one space object of a kind. */
     const solid = (kind: string, fields: Record<string, unknown>) =>
       Schema.decodeUnknownSync(SpaceMathObjectSchema)({
         appearance: "primary",

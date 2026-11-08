@@ -1,13 +1,12 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
-
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import { contourFill, contourLines } from "#contracts/math/formula/contour";
-import type { SampleBox } from "#contracts/math/formula/sample";
 
 const box: SampleBox = { x: { max: 3, min: -3 }, y: { max: 3, min: -3 } };
 
 /** The area of a simple polygon by the shoelace formula. */
-function area(points: readonly { readonly x: number; readonly y: number }[]) {
+function area(points: readonly SamplePoint[]) {
   return (
     Math.abs(
       Arr.reduce(points, 0, (sum, point, index) => {
@@ -28,7 +27,7 @@ describe("contourLines", () => {
     for (const { x, y } of line) {
       assert.closeTo(Math.hypot(x, y), 2, 0.01);
     }
-    const first = line[0];
+    const [first] = line;
     const last = line.at(-1);
     assert.isTrue(first !== undefined && last !== undefined);
     assert.closeTo(

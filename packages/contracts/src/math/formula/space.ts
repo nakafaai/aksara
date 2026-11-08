@@ -1,5 +1,5 @@
 import { Array as Arr, Result } from "effect";
-
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import type { FormulaScope } from "#contracts/math/formula/compile";
 import { sampleGrid } from "#contracts/math/formula/mesh";
 import {
@@ -7,11 +7,8 @@ import {
   evaluateWith,
   type FormulaGeometry,
 } from "#contracts/math/formula/plane";
-import {
-  type SampleBox,
-  type SamplePoint,
-  sampleCurve,
-} from "#contracts/math/formula/sample";
+import { sampleCurve } from "#contracts/math/formula/sample";
+import type { FormulaError } from "#contracts/math/formula/syntax";
 import type { SpaceSolidObjectSchemas } from "#contracts/math/solid";
 
 type Face = readonly [SamplePoint, SamplePoint, SamplePoint, ...SamplePoint[]];
@@ -78,7 +75,7 @@ export function spaceFormulaGeometry(
   object: SpaceFormulaObject,
   box: SampleBox,
   scope: FormulaScope
-): Result.Result<FormulaGeometry, { readonly message: string }> {
+): Result.Result<FormulaGeometry, FormulaError> {
   return Result.gen(function* () {
     if (object.kind === "prism") {
       return {

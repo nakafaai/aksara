@@ -103,23 +103,25 @@ export const FormulaNodeSchema: Schema.Codec<FormulaNode> = Schema.Union([
   Schema.Struct({ kind: Schema.Literal("name"), name: Schema.String }),
   Schema.Struct({
     kind: Schema.Literal("negate"),
-    operand: Schema.suspend(() => FormulaNodeSchema),
+    operand: Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema),
   }),
   Schema.Struct({
     kind: Schema.Literal("binary"),
-    left: Schema.suspend(() => FormulaNodeSchema),
+    left: Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema),
     operator: FormulaOperatorSchema,
-    right: Schema.suspend(() => FormulaNodeSchema),
+    right: Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema),
   }),
   Schema.Struct({
-    args: Schema.NonEmptyArray(Schema.suspend(() => FormulaNodeSchema)),
+    args: Schema.NonEmptyArray(
+      Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema)
+    ),
     callee: FormulaFunctionSchema,
     kind: Schema.Literal("call"),
   }),
   Schema.Struct({
-    base: Schema.suspend(() => FormulaNodeSchema),
+    base: Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema),
     kind: Schema.Literal("logarithm"),
-    value: Schema.suspend(() => FormulaNodeSchema),
+    value: Schema.suspend((): Schema.Codec<FormulaNode> => FormulaNodeSchema),
   }),
 ]);
 

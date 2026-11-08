@@ -1,12 +1,8 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Array as Arr, Order, Result, Schema } from "effect";
+import { Result, Schema } from "effect";
 
 import { compileFormula } from "#contracts/math/formula/compile";
-import {
-  formulaNames,
-  readFormula,
-  readRelation,
-} from "#contracts/math/formula/parse";
+import { readFormula, readRelation } from "#contracts/math/formula/parse";
 import {
   type FormulaError,
   FormulaNodeSchema,
@@ -67,17 +63,6 @@ describe("readFormula", () => {
     assert.closeTo(value("sin(30°)"), 0.5, 1e-12);
     assert.strictEqual(value("2 × 3 − 6 ÷ 2 · 1"), 3);
     assert.strictEqual(value("e^0 + pi - π"), 1);
-  });
-
-  it("names every variable and parameter it reads, and no constant", () => {
-    const node = readFormula("-a sin(theta) + log_(b)(x) + max(y, 2) - pi e");
-    assert.isTrue(Result.isSuccess(node));
-    if (Result.isSuccess(node)) {
-      assert.deepStrictEqual(
-        Arr.sort(Arr.fromIterable(formulaNames(node.success)), Order.String),
-        ["a", "b", "theta", "x", "y"]
-      );
-    }
   });
 
   it.each<readonly [string, FormulaProblem, number]>([

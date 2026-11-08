@@ -1,25 +1,19 @@
 import { Array as Arr, MutableList, Order, Schema } from "effect";
 
-/** One sampled position; a plane curve keeps z at zero. */
-export const SamplePointSchema = Schema.Struct({
-  x: Schema.Finite,
-  y: Schema.Finite,
-  z: Schema.Finite,
-});
-export type SamplePoint = typeof SamplePointSchema.Type;
+import {
+  type AXES,
+  clipSegment,
+  finite,
+  insideBox,
+  type SampleBox,
+  type SamplePoint,
+  SamplePointSchema,
+  type SampleRange,
+  spanDistance,
+} from "#contracts/math/formula/box";
 
 /** One visible, unbroken run of a sampled curve, in authored coordinates. */
 export type SampleBranch = readonly SamplePoint[];
-
-/** The frame a sampled curve is clipped to; a plane frame has no z range. */
-export const SampleBoxSchema = Schema.Struct({
-  x: Schema.Struct({ max: Schema.Finite, min: Schema.Finite }),
-  y: Schema.Struct({ max: Schema.Finite, min: Schema.Finite }),
-  z: Schema.optionalKey(
-    Schema.Struct({ max: Schema.Finite, min: Schema.Finite })
-  ),
-});
-export type SampleBox = typeof SampleBoxSchema.Type;
 
 /** Where a curve stands for one parameter value; NaN where it is undefined. */
 export type SampleTrace = (parameter: number) => SamplePoint;
@@ -36,39 +30,13 @@ const JUMP = 0.2;
 /** A chord this long at the deepest split crosses a break, a step, or an asymptote. */
 const BREAK = 0.004;
 
-const AXES = ["x", "y", "z"] as const;
-
-/** Whether every coordinate of a point is finite. */
-function finite(point: SamplePoint) {
-  return (
-    Number.isFinite(point.x) &&
-    Number.isFinite(point.y) &&
-    Number.isFinite(point.z)
-  );
-}
-
-/** The frame's ranges, with a plane frame's z pinned to zero. */
-function ranges(box: SampleBox) {
-  return { x: box.x, y: box.y, z: box.z ?? { max: 0, min: 0 } };
-}
-
-/** Distance between two points measured in frame spans, so every axis counts alike. */
-function spanDistance(box: SampleBox, from: SamplePoint, to: SamplePoint) {
-  const all = ranges(box);
-  return Math.hypot(
-    ...Arr.map(AXES, (axis) => {
-      const span = all[axis].max - all[axis].min;
-      return span > 0 ? (to[axis] - from[axis]) / span : 0;
-    })
-  );
-}
-
 /** One sample: its parameter, its point, and whether a break follows it. */
-interface Sample {
-  broken: boolean;
-  readonly parameter: number;
-  readonly point: SamplePoint;
-}
+const SampleSchema = Schema.Struct({
+  broken: Schema.mutableKey(Schema.Boolean),
+  parameter: Schema.Finite,
+  point: SamplePointSchema,
+});
+type Sample = typeof SampleSchema.Type;
 
 /**
  * Splits one interval until the curve is flat between its samples, and marks
@@ -162,33 +130,9 @@ function sampleRange(
   );
 }
 
-/**
- * Where a segment enters and leaves the frame, as fractions along it, or
- * nothing when it misses the frame (Liang and Barsky's clipping).
- */
-function clipSegment(box: SampleBox, from: SamplePoint, to: SamplePoint) {
-  const all = ranges(box);
-  let enter = 0;
-  let leave = 1;
-  for (const axis of AXES) {
-    const delta = to[axis] - from[axis];
-    const { max, min } = all[axis];
-    if (delta === 0) {
-      if (from[axis] < min || from[axis] > max) {
-        return;
-      }
-      continue;
-    }
-    const first = (min - from[axis]) / delta;
-    const second = (max - from[axis]) / delta;
-    enter = Math.max(enter, Math.min(first, second));
-    leave = Math.min(leave, Math.max(first, second));
-  }
-  return enter <= leave ? { enter, leave } : undefined;
-}
-
 /** The point a fraction of the way along a segment, and its parameter. */
 function along(from: Sample, to: Sample, fraction: number): Sample {
+  /** One coordinate the same fraction of the way along. */
   const at = (axis: (typeof AXES)[number]) =>
     from.point[axis] + (to.point[axis] - from.point[axis]) * fraction;
   return {
@@ -196,18 +140,6 @@ function along(from: Sample, to: Sample, fraction: number): Sample {
     parameter: from.parameter + (to.parameter - from.parameter) * fraction,
     point: { x: at("x"), y: at("y"), z: at("z") },
   };
-}
-
-/** Whether a point lies inside the frame, its edges included. */
-function insideBox(box: SampleBox, point: SamplePoint) {
-  const all = ranges(box);
-  return (
-    finite(point) &&
-    Arr.every(
-      AXES,
-      (axis) => point[axis] >= all[axis].min && point[axis] <= all[axis].max
-    )
-  );
 }
 
 const EDGE_STEPS = 48;
@@ -236,59 +168,87 @@ function edge(
   return { broken: false, parameter: inside, point: trace(inside) };
 }
 
+/** Where a segment's fractions along it enter and leave the frame. */
+type Clip = NonNullable<ReturnType<typeof clipSegment>>;
+
+/** The sample where a visible piece of a segment starts: its start, or its entry on the curve. */
+function entry(
+  trace: SampleTrace,
+  box: SampleBox,
+  from: Sample,
+  to: Sample,
+  clip: Clip
+) {
+  if (clip.enter === 0) {
+    return from;
+  }
+  return clip.leave === 1
+    ? edge(trace, box, to, from)
+    : along(from, to, clip.enter);
+}
+
+/** The sample where a visible piece of a segment ends: its end, or its exit on the curve. */
+function exit(
+  trace: SampleTrace,
+  box: SampleBox,
+  from: Sample,
+  to: Sample,
+  clip: Clip
+) {
+  if (clip.leave === 1) {
+    return to;
+  }
+  return clip.enter === 0
+    ? edge(trace, box, from, to)
+    : along(from, to, clip.leave);
+}
+
+/** Collects runs of samples, keeping only runs of two or more. */
+function runCollector() {
+  const runs = MutableList.make<Arr.NonEmptyReadonlyArray<Sample>>();
+  let run = MutableList.make<Sample>();
+  return {
+    add: (sample: Sample) => MutableList.append(run, sample),
+    close: () => {
+      const items = MutableList.toArray(run);
+      if (Arr.isReadonlyArrayNonEmpty(items) && items.length > 1) {
+        MutableList.append(runs, items);
+      }
+      run = MutableList.make<Sample>();
+    },
+    empty: () => run.length === 0,
+    runs: () => MutableList.toArray(runs),
+  };
+}
+
 /** Splits samples into visible runs inside the frame, cut exactly at its edges. */
 function visibleRuns(
   trace: SampleTrace,
   box: SampleBox,
   samples: readonly Sample[]
 ) {
-  const runs = MutableList.make<Arr.NonEmptyReadonlyArray<Sample>>();
-  let run = MutableList.make<Sample>();
-  const close = () => {
-    const items = MutableList.toArray(run);
-    if (Arr.isReadonlyArrayNonEmpty(items) && items.length > 1) {
-      MutableList.append(runs, items);
-    }
-    run = MutableList.make<Sample>();
-  };
+  const collector = runCollector();
   Arr.forEach(samples, (from, index) => {
     const to = samples[index + 1];
-    if (!to || from.broken || !(finite(from.point) && finite(to.point))) {
-      close();
+    const clip =
+      to && !from.broken && finite(from.point) && finite(to.point)
+        ? clipSegment(box, from.point, to.point)
+        : undefined;
+    if (!(to && clip)) {
+      collector.close();
       return;
     }
-    const clipped = clipSegment(box, from.point, to.point);
-    if (!clipped) {
-      close();
-      return;
+    if (clip.enter > 0 || collector.empty()) {
+      collector.close();
+      collector.add(entry(trace, box, from, to, clip));
     }
-    const fromInside = clipped.enter === 0;
-    const toInside = clipped.leave === 1;
-    if (!fromInside || run.length === 0) {
-      close();
-      MutableList.append(
-        run,
-        fromInside
-          ? from
-          : toInside
-            ? edge(trace, box, to, from)
-            : along(from, to, clipped.enter)
-      );
-    }
-    MutableList.append(
-      run,
-      toInside
-        ? to
-        : fromInside
-          ? edge(trace, box, from, to)
-          : along(from, to, clipped.leave)
-    );
-    if (!toInside) {
-      close();
+    collector.add(exit(trace, box, from, to, clip));
+    if (clip.leave < 1) {
+      collector.close();
     }
   });
-  close();
-  return MutableList.toArray(runs);
+  collector.close();
+  return collector.runs();
 }
 
 /**
@@ -300,7 +260,7 @@ function visibleRuns(
 export function sampleCurve(
   trace: SampleTrace,
   box: SampleBox,
-  range: { readonly max: number; readonly min: number },
+  range: SampleRange,
   named: readonly number[] = []
 ): readonly SampleBranch[] {
   const runs = visibleRuns(

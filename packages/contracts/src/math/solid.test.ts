@@ -1,7 +1,8 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Result, Schema } from "effect";
+import { Array as Arr, Result, Schema } from "effect";
 
 import { SpaceMathObjectSchema } from "#contracts/math/space";
+import { MathVisualSchema } from "#contracts/math/visual";
 
 const base = [
   { x: 0, y: 0, z: 0 },
@@ -52,5 +53,70 @@ describe("prisms and pyramids", () => {
         accepts({ apex: { x: 0, y: 0, z: 3 }, base: face, kind: "pyramid" })
       );
     }
+  });
+});
+
+describe("space formula objects in a scene", () => {
+  const frame = {
+    kind: "cartesian",
+    x: { max: 10, min: -10 },
+    y: { max: 10, min: -10 },
+    z: { max: 10, min: -10 },
+  } as const;
+
+  /** Decodes one space scene and returns whether it passed. */
+  const scene = (objects: readonly Record<string, unknown>[]) =>
+    Result.isSuccess(
+      Schema.decodeUnknownResult(MathVisualSchema)({
+        frame,
+        objects: Arr.map(objects, (object, index) => ({
+          appearance: "primary",
+          id: `solid-${index}`,
+          ...object,
+        })),
+        space: "space",
+        view: { kind: "fit" },
+      })
+    );
+
+  it("accepts solids and surfaces inside the frame", () => {
+    assert.isTrue(
+      scene([
+        { base, kind: "prism", offset: { x: 0, y: 0, z: 2 } },
+        { apex: { x: 0, y: 0, z: 2 }, base, kind: "pyramid" },
+        { formula: "x y / 10", kind: "function" },
+        {
+          axis: "x",
+          domain: { max: 2, min: 0 },
+          formula: "x",
+          kind: "revolution",
+        },
+        {
+          kind: "parametric",
+          parameter: { max: 6, min: 0 },
+          x: "cos(t)",
+          y: "sin(t)",
+          z: "t",
+        },
+      ])
+    );
+  });
+
+  it("refuses a prism that leaves the frame and a surface outside it", () => {
+    assert.isFalse(
+      scene([{ base, kind: "prism", offset: { x: 0, y: 0, z: 20 } }])
+    );
+    assert.isFalse(
+      scene([
+        {
+          kind: "surface",
+          u: { max: 1, min: 0 },
+          v: { max: 1, min: 0 },
+          x: "u + 40",
+          y: "v",
+          z: "0",
+        },
+      ])
+    );
   });
 });

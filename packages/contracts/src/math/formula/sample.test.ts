@@ -1,10 +1,9 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
 
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import {
   MINIMUM_BRANCH_SAMPLES,
-  type SampleBox,
-  type SamplePoint,
   sampleCurve,
 } from "#contracts/math/formula/sample";
 

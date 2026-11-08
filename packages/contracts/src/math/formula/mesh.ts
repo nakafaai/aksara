@@ -3,7 +3,8 @@ import { Array as Arr, Option, Schema } from "effect";
 import {
   type SamplePoint,
   SamplePointSchema,
-} from "#contracts/math/formula/sample";
+  type SampleRange,
+} from "#contracts/math/formula/box";
 
 /** Cells along each side of a sampled surface. */
 export const MESH_CELLS = 96;
@@ -25,8 +26,8 @@ export type SampleSurface = (u: number, v: number) => SamplePoint;
 /** Samples a surface over two parameter ranges on an even grid. */
 export function sampleGrid(
   surface: SampleSurface,
-  u: { readonly max: number; readonly min: number },
-  v: { readonly max: number; readonly min: number },
+  u: SampleRange,
+  v: SampleRange,
   cells: { readonly columns: number; readonly rows: number } = {
     columns: MESH_CELLS,
     rows: MESH_CELLS,

@@ -85,10 +85,7 @@ function sampledVisible(
   geometry: Result.Result<FormulaGeometry, unknown>,
   frame: PlaneMathFrame | SpaceMathFrame
 ) {
-  return Result.match(geometry, {
-    onFailure: () => true,
-    onSuccess: (sampled) => geometryVisible(sampled, frame),
-  });
+  return Result.isFailure(geometry) || geometryVisible(geometry.success, frame);
 }
 
 /** Checks whether one plane object shows visible geometry in its frame. */

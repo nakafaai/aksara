@@ -5,28 +5,29 @@ import {
   Order,
   Record as Rec,
   Result,
-  type Schema,
+  Schema,
 } from "effect";
-
+import type {
+  SampleBox,
+  SamplePoint,
+  SampleRange,
+} from "#contracts/math/formula/box";
 import type { FormulaScope } from "#contracts/math/formula/compile";
 import type { FormulaParameter } from "#contracts/math/formula/field";
-import {
-  formulaNames,
-  readFormula,
-  readRelation,
-} from "#contracts/math/formula/parse";
+import { formulaNames } from "#contracts/math/formula/names";
+import { readFormula, readRelation } from "#contracts/math/formula/parse";
 import type { FormulaGeometry } from "#contracts/math/formula/plane";
-import type { SampleBox, SamplePoint } from "#contracts/math/formula/sample";
 import type { PlaneMathObject } from "#contracts/math/plane";
 import type { SpaceMathObject } from "#contracts/math/space";
 
 /** One authored formula of an object: where it stands and what it may read. */
-export interface FormulaField {
-  readonly path: readonly (string | number)[];
-  readonly relation: boolean;
-  readonly text: string;
-  readonly variables: readonly string[];
-}
+const FormulaFieldSchema = Schema.Struct({
+  path: Schema.Array(Schema.Union([Schema.String, Schema.Int])),
+  relation: Schema.Boolean,
+  text: Schema.String,
+  variables: Schema.Array(Schema.String),
+});
+export type FormulaField = typeof FormulaFieldSchema.Type;
 
 /** Builds one expression field. */
 function expression(
@@ -170,10 +171,9 @@ export function parameterScope(
 
 /** Whether a point lies inside a box; a plane box ignores z. */
 function inside(box: SampleBox, point: SamplePoint) {
-  const within = (
-    value: number,
-    range: { readonly max: number; readonly min: number }
-  ) => value >= range.min && value <= range.max;
+  /** Whether a value lies inside one range, its ends included. */
+  const within = (value: number, range: SampleRange) =>
+    value >= range.min && value <= range.max;
   return (
     within(point.x, box.x) &&
     within(point.y, box.y) &&

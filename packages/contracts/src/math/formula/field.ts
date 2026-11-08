@@ -3,13 +3,12 @@ import { Array as Arr, Result, Schema } from "effect";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
 import {
   type FormulaComparison,
+  type FormulaError,
   FormulaParameterNameSchema,
 } from "#contracts/math/formula/syntax";
 
 /** Passes a formula that reads, or names the problem of one that does not. */
-function readable<A>(
-  read: (text: string) => Result.Result<A, { readonly message: string }>
-) {
+function readable<A>(read: (text: string) => Result.Result<A, FormulaError>) {
   return (text: string) =>
     Result.match(read(text), {
       onFailure: (problem) => problem.message,

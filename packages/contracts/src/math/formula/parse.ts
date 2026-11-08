@@ -1,26 +1,23 @@
-import {
-  Array as Arr,
-  HashSet,
-  MutableList,
-  Option,
-  Result,
-  Schema,
-} from "effect";
+import { Array as Arr, MutableList, Option, Result, Schema } from "effect";
 
 import {
-  FORMULA_CONSTANTS,
+  at,
+  expect,
+  finished,
+  here,
+  peek,
+  problemAt,
+  type Reader,
+  startReader,
+} from "#contracts/math/formula/reader";
+import {
   type FormulaComparison,
-  FormulaError,
+  type FormulaError,
   type FormulaFunction,
   FormulaFunctionSchema,
   type FormulaNode,
-  type FormulaProblem,
   type FormulaRelation,
 } from "#contracts/math/formula/syntax";
-import {
-  type FormulaToken,
-  tokenizeFormula,
-} from "#contracts/math/formula/token";
 
 /** How tightly each operator holds its operands; implicit products bind like `*`. */
 const SUM = 10;
@@ -29,50 +26,7 @@ const SIGN = 25;
 const POWER = 30;
 const DEGREE = 40;
 
-/** The tokens of one formula and the reader's place in them. */
-interface Reader {
-  bars: number;
-  index: number;
-  readonly length: number;
-  readonly tokens: readonly FormulaToken[];
-}
-
 const isFunction = Schema.is(FormulaFunctionSchema);
-
-/** Builds the failure for one problem at one place in the text. */
-function problemAt(problem: FormulaProblem, position: number, message: string) {
-  return Result.fail(new FormulaError({ message, position, problem }));
-}
-
-/** Returns the current token without moving past it. */
-function peek(reader: Reader) {
-  return Arr.get(reader.tokens, reader.index);
-}
-
-/** Whether the current token is one symbol. */
-function at(reader: Reader, symbol: string) {
-  return Option.exists(
-    peek(reader),
-    (token) => token.kind === "symbol" && token.symbol === symbol
-  );
-}
-
-/** Where the current token starts, or the end of the text. */
-function here(reader: Reader) {
-  return Option.match(peek(reader), {
-    onNone: () => reader.length,
-    onSome: (token) => token.position,
-  });
-}
-
-/** Moves past one expected symbol, or fails where it should stand. */
-function expect(reader: Reader, symbol: string) {
-  if (!at(reader, symbol)) {
-    return problemAt("group-unclosed", here(reader), `Expected "${symbol}".`);
-  }
-  reader.index += 1;
-  return Result.succeed(symbol);
-}
 
 /** Whether the current token can begin a factor of an implicit product. */
 function startsFactor(reader: Reader) {
@@ -168,7 +122,55 @@ function readExponent(reader: Reader) {
   return readPrefix(reader);
 }
 
-/** Reads one factor: a number, a name, a call, a group, bars, a root, or a sign. */
+/** Reads what one symbol opens: a group, absolute bars, a root, or a sign. */
+function readSymbol(
+  reader: Reader,
+  symbol: string,
+  position: number
+): Result.Result<FormulaNode, FormulaError> {
+  return Result.gen(function* () {
+    if (symbol === "(") {
+      const outerBars = reader.bars;
+      reader.bars = 0;
+      const inner = yield* readExpression(reader, 0);
+      yield* expect(reader, ")");
+      reader.bars = outerBars;
+      return inner;
+    }
+    if (symbol === "|") {
+      reader.bars += 1;
+      const inner = yield* readExpression(reader, 0);
+      yield* expect(reader, "|");
+      reader.bars -= 1;
+      return {
+        args: [inner],
+        callee: "abs",
+        kind: "call",
+      } satisfies FormulaNode;
+    }
+    if (symbol === "√") {
+      const inner = yield* readExpression(reader, POWER);
+      return {
+        args: [inner],
+        callee: "sqrt",
+        kind: "call",
+      } satisfies FormulaNode;
+    }
+    if (symbol === "-" || symbol === "+") {
+      const operand = yield* readExpression(reader, SIGN);
+      return symbol === "-"
+        ? ({ kind: "negate", operand } satisfies FormulaNode)
+        : operand;
+    }
+    return yield* problemAt(
+      "value-expected",
+      position,
+      `Expected a value, not "${symbol}".`
+    );
+  });
+}
+
+/** Reads one factor: a number, a name, a call, or what a symbol opens. */
 function readPrefix(reader: Reader): Result.Result<FormulaNode, FormulaError> {
   return Result.gen(function* () {
     const token = peek(reader);
@@ -196,44 +198,7 @@ function readPrefix(reader: Reader): Result.Result<FormulaNode, FormulaError> {
         "Expected a value before the comparison."
       );
     }
-    if (current.symbol === "(") {
-      const outerBars = reader.bars;
-      reader.bars = 0;
-      const inner = yield* readExpression(reader, 0);
-      yield* expect(reader, ")");
-      reader.bars = outerBars;
-      return inner;
-    }
-    if (current.symbol === "|") {
-      reader.bars += 1;
-      const inner = yield* readExpression(reader, 0);
-      yield* expect(reader, "|");
-      reader.bars -= 1;
-      return {
-        args: [inner],
-        callee: "abs",
-        kind: "call",
-      } satisfies FormulaNode;
-    }
-    if (current.symbol === "√") {
-      const inner = yield* readExpression(reader, POWER);
-      return {
-        args: [inner],
-        callee: "sqrt",
-        kind: "call",
-      } satisfies FormulaNode;
-    }
-    if (current.symbol === "-" || current.symbol === "+") {
-      const operand = yield* readExpression(reader, SIGN);
-      return current.symbol === "-"
-        ? ({ kind: "negate", operand } satisfies FormulaNode)
-        : operand;
-    }
-    return yield* problemAt(
-      "value-expected",
-      current.position,
-      `Expected a value, not "${current.symbol}".`
-    );
+    return yield* readSymbol(reader, current.symbol, current.position);
   });
 }
 
@@ -251,79 +216,62 @@ function infixAhead(reader: Reader) {
   return Arr.findFirst(INFIX, ({ operator }) => at(reader, operator));
 }
 
+/**
+ * Extends what has been read with every operator ahead that binds tighter
+ * than `minimum`: degrees, written operators, and implicit products.
+ */
+function extend(
+  reader: Reader,
+  minimum: number,
+  left: FormulaNode
+): Result.Result<FormulaNode, FormulaError> {
+  return Result.gen(function* () {
+    if (at(reader, "°") && DEGREE > minimum) {
+      reader.index += 1;
+      const right = { kind: "number", value: Math.PI / 180 } as const;
+      return yield* extend(reader, minimum, {
+        kind: "binary",
+        left,
+        operator: "*",
+        right,
+      });
+    }
+    const infix = infixAhead(reader);
+    if (Option.isSome(infix)) {
+      if (infix.value.power <= minimum) {
+        return left;
+      }
+      reader.index += 1;
+      const right = yield* readExpression(reader, infix.value.right);
+      const { operator } = infix.value;
+      return yield* extend(reader, minimum, {
+        kind: "binary",
+        left,
+        operator,
+        right,
+      });
+    }
+    if (startsFactor(reader) && PRODUCT > minimum) {
+      const right = yield* readExpression(reader, PRODUCT + 1);
+      return yield* extend(reader, minimum, {
+        kind: "binary",
+        left,
+        operator: "*",
+        right,
+      });
+    }
+    return left;
+  });
+}
+
 /** Reads operators that bind tighter than `minimum`, the core of a Pratt parser. */
 function readExpression(
   reader: Reader,
   minimum: number
 ): Result.Result<FormulaNode, FormulaError> {
-  return Result.gen(function* () {
-    let left = yield* readPrefix(reader);
-    while (true) {
-      if (at(reader, "°") && DEGREE > minimum) {
-        reader.index += 1;
-        left = {
-          kind: "binary",
-          left,
-          operator: "*",
-          right: { kind: "number", value: Math.PI / 180 },
-        };
-        continue;
-      }
-      const infix = infixAhead(reader);
-      if (Option.isSome(infix)) {
-        if (infix.value.power <= minimum) {
-          return left;
-        }
-        reader.index += 1;
-        const right = yield* readExpression(reader, infix.value.right);
-        left = {
-          kind: "binary",
-          left,
-          operator: infix.value.operator,
-          right,
-        };
-        continue;
-      }
-      if (startsFactor(reader) && PRODUCT > minimum) {
-        const right = yield* readExpression(reader, PRODUCT + 1);
-        left = { kind: "binary", left, operator: "*", right };
-        continue;
-      }
-      return left;
-    }
-  });
-}
-
-/** Starts reading the tokens of one formula. */
-function startReader(text: string) {
-  return Result.map(
-    tokenizeFormula(text),
-    (tokens): Reader => ({
-      bars: 0,
-      index: 0,
-      length: text.length,
-      tokens,
-    })
+  return Result.flatMap(readPrefix(reader), (left) =>
+    extend(reader, minimum, left)
   );
-}
-
-/** Fails on the first token a complete reading left behind. */
-function finished(reader: Reader) {
-  return Option.match(peek(reader), {
-    onNone: () => Result.succeed(reader),
-    onSome: (token) =>
-      token.kind === "comparison"
-        ? problemAt(
-            "comparison-unexpected",
-            token.position,
-            "Expected an expression, not an equation or an inequality."
-          )
-        : problemAt(
-            "operator-expected",
-            token.position,
-            "Expected an operator or the end of the formula."
-          ),
-  });
 }
 
 /** Reads a formula that is one expression, such as `2x^2 - 3x + 1`. */
@@ -361,28 +309,4 @@ export function readRelation(text: string) {
     yield* finished(reader);
     return { comparison, left, right } satisfies FormulaRelation;
   });
-}
-
-/** Every variable and parameter a node reads; constants are left out. */
-export function formulaNames(node: FormulaNode): HashSet.HashSet<string> {
-  if (node.kind === "number") {
-    return HashSet.empty();
-  }
-  if (node.kind === "name") {
-    return node.name in FORMULA_CONSTANTS
-      ? HashSet.empty()
-      : HashSet.make(node.name);
-  }
-  if (node.kind === "negate") {
-    return formulaNames(node.operand);
-  }
-  if (node.kind === "binary") {
-    return HashSet.union(formulaNames(node.left), formulaNames(node.right));
-  }
-  if (node.kind === "logarithm") {
-    return HashSet.union(formulaNames(node.base), formulaNames(node.value));
-  }
-  return Arr.reduce(node.args, HashSet.empty<string>(), (names, each) =>
-    HashSet.union(names, formulaNames(each))
-  );
 }

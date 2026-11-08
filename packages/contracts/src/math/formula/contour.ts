@@ -5,13 +5,15 @@ import {
   MutableList,
   Option,
   Result,
+  Schema,
 } from "effect";
 
-import type {
-  SampleBox,
-  SampleBranch,
-  SamplePoint,
-} from "#contracts/math/formula/sample";
+import {
+  type SampleBox,
+  type SamplePoint,
+  SamplePointSchema,
+} from "#contracts/math/formula/box";
+import type { SampleBranch } from "#contracts/math/formula/sample";
 
 /** A field over the plane: its value at one point, NaN where it is undefined. */
 export type SampleField = (x: number, y: number) => number;
@@ -19,28 +21,42 @@ export type SampleField = (x: number, y: number) => number;
 /** Cells per frame side, enough for a smooth outline at the largest card size. */
 export const CONTOUR_CELLS = 240;
 
-/** One grid corner: its column, its row, its point, and the field's value there. */
-interface Corner {
-  readonly key: string;
-  readonly point: SamplePoint;
-  readonly value: number;
-}
+/** One grid corner: its key, its point, and the field's value there when defined. */
+const CornerSchema = Schema.Struct({
+  key: Schema.String,
+  point: SamplePointSchema,
+  value: Schema.Option(Schema.Finite),
+});
+type Corner = typeof CornerSchema.Type;
+
+/** One grid corner whose value is defined. */
+const LocatedSchema = Schema.Struct({
+  key: Schema.String,
+  point: SamplePointSchema,
+  value: Schema.Finite,
+});
+type Located = typeof LocatedSchema.Type;
 
 /** One crossing on a cell edge: the shared key of that edge and its point. */
-interface Crossing {
-  readonly key: string;
-  readonly point: SamplePoint;
-}
+const CrossingSchema = Schema.Struct({
+  key: Schema.String,
+  point: SamplePointSchema,
+});
+type Crossing = typeof CrossingSchema.Type;
 
 /** One segment of an outline, with the order it was found in. */
-interface Segment {
-  readonly from: Crossing;
-  readonly index: number;
-  readonly to: Crossing;
-}
+const SegmentSchema = Schema.Struct({
+  from: CrossingSchema,
+  index: Schema.Int,
+  to: CrossingSchema,
+});
+type Segment = typeof SegmentSchema.Type;
 
 /** The four corners of one cell, counterclockwise from the bottom left. */
 type Cell = readonly [Corner, Corner, Corner, Corner];
+
+/** The four corners of one cell whose values are all defined. */
+type Square = readonly [Located, Located, Located, Located];
 
 /** Reads the field once at every corner of a square grid over the frame. */
 function grid(
@@ -57,7 +73,7 @@ function grid(
       return {
         key: `${column}:${row}`,
         point: { x, y, z: 0 },
-        value: field(x, y),
+        value: Option.liftPredicate(field(x, y), Number.isFinite),
       };
     })
   );
@@ -87,13 +103,26 @@ function grid(
   );
 }
 
+/** One corner with its defined value, or nothing where the field is undefined. */
+function locate(corner: Corner) {
+  return Option.map(
+    corner.value,
+    (value): Located => ({ key: corner.key, point: corner.point, value })
+  );
+}
+
+/** The corners of a cell with their values, or nothing when any is undefined. */
+function square([a, b, c, d]: Cell): Option.Option<Square> {
+  return Option.all([locate(a), locate(b), locate(c), locate(d)]);
+}
+
 /** Whether a corner lies where the field is at least zero. */
-function inside(corner: Corner) {
+function inside(corner: Located) {
   return corner.value >= 0;
 }
 
 /** Where the field crosses zero between two corners, if it does. */
-function crossing(from: Corner, to: Corner) {
+function crossing(from: Located, to: Located) {
   if (inside(from) === inside(to)) {
     return Option.none<Crossing>();
   }
@@ -108,18 +137,13 @@ function crossing(from: Corner, to: Corner) {
   });
 }
 
-/** Whether every corner of a cell has a defined value. */
-function defined([a, b, c, d]: Cell) {
-  return !Arr.some([a, b, c, d], (corner) => Number.isNaN(corner.value));
-}
-
 /**
  * The zero-crossing segments inside one cell. A saddle, where opposite
  * corners agree, is resolved by the field's value at the cell center.
  */
 function cellSegments(
   field: SampleField,
-  cell: Cell
+  cell: Square
 ): readonly (readonly [Crossing, Crossing])[] {
   const [a, b, c, d] = cell;
   const bottom = crossing(a, b);
@@ -172,7 +196,7 @@ function join(segments: readonly Segment[]) {
     const line = MutableList.make<SamplePoint>();
     MutableList.append(line, start.from.point);
     MutableList.append(line, start.to.point);
-    let key = start.to.key;
+    let { key } = start.to;
     let next = Option.none<Segment>();
     do {
       next = Arr.findFirst(
@@ -203,10 +227,8 @@ export function contourLines(
   box: SampleBox,
   cells: number = CONTOUR_CELLS
 ): readonly SampleBranch[] {
-  const usable = Arr.filter(grid(field, box, cells), (cell: Cell) =>
-    defined(cell)
-  );
-  const found = Arr.flatMap(usable, (cell: Cell) => cellSegments(field, cell));
+  const squares = Arr.getSomes(Arr.map(grid(field, box, cells), square));
+  const found = Arr.flatMap(squares, (cell) => cellSegments(field, cell));
   return join(Arr.map(found, ([from, to], index) => ({ from, index, to })));
 }
 
@@ -221,7 +243,7 @@ export function contourFill(
   cells: number = CONTOUR_CELLS
 ): readonly SampleBranch[] {
   return Arr.filterMap(
-    Arr.filter(grid(field, box, cells), (cell) => defined(cell)),
+    Arr.getSomes(Arr.map(grid(field, box, cells), square)),
     ([a, b, c, d]) => {
       const outline = Arr.flatMap(
         [

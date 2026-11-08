@@ -8,15 +8,20 @@ import {
   InequalityTextSchema,
 } from "#contracts/math/formula/field";
 
-/** Decodes one value and returns whether it passed. */
-function passes<S extends Schema.Top>(schema: S, value: unknown) {
-  return Result.isSuccess(Schema.decodeUnknownResult(schema)(value));
+/** Decodes one authored formula and returns whether it passed. */
+function passes(schema: Schema.Codec<string>, value: string) {
+  return Result.isSuccess(Schema.decodeResult(schema)(value));
+}
+
+/** Decodes one slider and returns whether it passed. */
+function slides(value: typeof FormulaParameterSchema.Encoded) {
+  return Result.isSuccess(Schema.decodeResult(FormulaParameterSchema)(value));
 }
 
 describe("formula fields", () => {
   it("accepts an expression and names the problem of one that does not read", () => {
     assert.isTrue(passes(FormulaTextSchema, "2x^2 - 3x + 1"));
-    const failed = Schema.decodeUnknownResult(FormulaTextSchema)("2 +");
+    const failed = Schema.decodeResult(FormulaTextSchema)("2 +");
     assert.isTrue(Result.isFailure(failed));
     assert.include(
       String(Result.isFailure(failed) ? failed.failure : ""),
@@ -34,12 +39,12 @@ describe("formula fields", () => {
 
   it("checks a slider's name, range, value, and step", () => {
     const slider = { max: 3, min: -3, name: "a", value: 1 };
-    assert.isTrue(passes(FormulaParameterSchema, slider));
-    assert.isTrue(passes(FormulaParameterSchema, { ...slider, step: 0.5 }));
-    assert.isFalse(passes(FormulaParameterSchema, { ...slider, name: "x" }));
-    assert.isFalse(passes(FormulaParameterSchema, { ...slider, name: "e" }));
-    assert.isFalse(passes(FormulaParameterSchema, { ...slider, value: 4 }));
-    assert.isFalse(passes(FormulaParameterSchema, { ...slider, max: -3 }));
-    assert.isFalse(passes(FormulaParameterSchema, { ...slider, step: 0 }));
+    assert.isTrue(slides(slider));
+    assert.isTrue(slides({ ...slider, step: 0.5 }));
+    assert.isFalse(slides({ ...slider, name: "x" }));
+    assert.isFalse(slides({ ...slider, name: "e" }));
+    assert.isFalse(slides({ ...slider, value: 4 }));
+    assert.isFalse(slides({ ...slider, max: -3 }));
+    assert.isFalse(slides({ ...slider, step: 0 }));
   });
 });

@@ -167,8 +167,8 @@ export function tokenizeFormula(text: string) {
       index += 1;
       continue;
     }
-    const spelling = Arr.findFirst(SPELLINGS, ([written]) =>
-      rest.startsWith(written)
+    const spelling = Arr.findFirst(SPELLINGS, ([spelled]) =>
+      rest.startsWith(spelled)
     );
     if (Option.isNone(spelling)) {
       return Result.fail(

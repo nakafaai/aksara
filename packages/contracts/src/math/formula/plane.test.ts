@@ -1,11 +1,10 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr, Result } from "effect";
-
+import type { SampleBox } from "#contracts/math/formula/box";
 import {
   type FormulaGeometry,
   planeFormulaGeometry,
 } from "#contracts/math/formula/plane";
-import type { SampleBox } from "#contracts/math/formula/sample";
 
 const box: SampleBox = { x: { max: 4, min: -4 }, y: { max: 4, min: -4 } };
 const fields = { appearance: "primary", id: "curve" } as const;
@@ -119,11 +118,11 @@ describe("planeFormulaGeometry", () => {
     assert.strictEqual(sampled.kind, "region");
     if (sampled.kind === "region") {
       assert.isAbove(sampled.fill.length, 0);
-      const strict = Arr.filter(sampled.boundary, ({ strict }) => strict);
-      const solid = Arr.filter(sampled.boundary, ({ strict }) => !strict);
+      const dashed = Arr.filter(sampled.boundary, (piece) => piece.strict);
+      const solid = Arr.filter(sampled.boundary, (piece) => !piece.strict);
       assert.isTrue(
         Arr.every(
-          strict,
+          dashed,
           ({ points: [from] }) =>
             Math.abs((from?.y ?? 0) - (from?.x ?? 0)) < 0.05
         )
