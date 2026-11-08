@@ -15,32 +15,32 @@ Python memiliki tujuh operator aritmatika utama. Prioritas operator menentukan <
 
 Perbesar grafik ini dan ikuti kedua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu tingkat setiap kali <InlineMath math="x" /> melewati kelipatan <InlineMath math="3" />, dan untuk bilangan negatif ia tetap membulatkan ke bawah, jadi `-5 // 3` hasilnya `-2`. Garis hijau toska `x % 3` naik dari <InlineMath math="0" /> lalu jatuh kembali di setiap kelipatan <InlineMath math="3" />, sehingga sisanya selalu di antara <InlineMath math="0" /> dan <InlineMath math="3" />. Di setiap titik berlaku `x == 3 * (x // 3) + x % 3`.
 
-<LineEquation
+<MathVisual
   title="Pembagian bulat // dan sisa %"
-  description="Garis ungu adalah x // 3, garis hijau toska adalah x % 3 untuk −6 ≤ x < 6. Lingkaran penuh menandai nilai yang termasuk, lingkaran kosong yang tidak."
-  showZAxis={false}
-  cameraPosition={[0, 0.5, 10]}
-  cameraTarget={[0, 0.5, 0]}
-  data={[
-    ...[-2, -1, 0, 1].flatMap((k) => [
-      {
-        points: [{ x: 3 * k, y: k, z: 0 }, { x: 3 * k + 3, y: k, z: 0 }],
-        color: "#8242e5",
-        endpoints: { start: "closed", end: "open" },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: "x // 3", at: 1, offset: [0.7, 0.3, 0] }] } : {}),
-      },
-      {
-        points: [{ x: 3 * k, y: 0, z: 0 }, { x: 3 * k + 3, y: 3, z: 0 }],
-        color: "#0d9488",
-        endpoints: { start: "closed", end: "open" },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: "x % 3", at: 1, offset: [0.7, 0, 0] }] } : {}),
-      },
-    ]),
-  ]}
+  description="Garis ungu adalah x // 3, garis hijau toska adalah x % 3 untuk −6 ≤ x < 6. Setiap potongan memuat ujung kirinya dan berhenti tepat sebelum kelipatan 3 berikutnya."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor-a", kind: "segment", from: { x: -6, y: -2 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "floor-b", kind: "segment", from: { x: -3, y: -1 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "floor-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "floor-d", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "rest-a", kind: "segment", from: { x: -6, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "rest-b", kind: "segment", from: { x: -3, y: 0 }, to: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "rest-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "rest-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor-d", at: { x: 6, y: 1 }, placement: "below-left" },
+      { key: "rest", objectId: "rest-d", at: { x: 6, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "floor": "x // 3",
+    "rest": "x % 3",
+  }}
 />
 
 ## Urutan Prioritas Operator

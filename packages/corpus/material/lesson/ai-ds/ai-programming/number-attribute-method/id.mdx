@@ -211,53 +211,35 @@ Mengalikan <InlineMath math="z" /> dengan konjugatnya menghapus bagian imajiner 
 
 Gambar `z = 3+4j` sebagai titik di bidang kompleks dan perhatikan apa yang dibaca setiap atribut. `z.real` adalah jarak mendatar `3.0`, sedangkan `z.imag` adalah tinggi `4.0`. Metode `z.conjugate()` mencerminkan titik itu ke bawah sumbu real menjadi `3-4j`, dan `abs(z)` adalah jari-jari `5.0` yang sama untuk keduanya. Atribut dibaca tanpa tanda kurung, metode dipanggil dengan tanda kurung.
 
-<LineEquation
+<MathVisual
   title="Atribut dan metode z = 3+4j"
-  description="Panah ungu adalah z, panah hijau toska adalah z.conjugate(). Ruas kuning dan titik kuning menunjukkan z.imag dan z.real, dan lingkaran abu-abu berjari-jari abs(z)."
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: 5 * Math.cos(angle), y: 5 * Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "abs(z) = 5.0", at: 135, offset: [-0.9, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.35 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z = 3+4j", at: 1, offset: [0.6, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.35 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z.conjugate() = 3-4j", at: 1, offset: [1.2, -0.4, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#b98d00",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z.imag = 4.0", at: 0, offset: [1.1, 1.6, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }],
-      color: "#b98d00",
-      showPoints: true,
-      labels: [{ text: "z.real = 3.0", at: 0, offset: [1, -0.4, 0] }],
-    },
-  ]}
+  description="Ruas ungu adalah z, ruas hijau toska adalah z.conjugate(). Ruas kuning dan titik kuning menunjukkan z.imag dan z.real, dan lingkaran abu-abu berjari-jari abs(z)."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "modulus", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "reference" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -4 }, appearance: "construction" },
+      { id: "imag", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "real", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "modulus", objectId: "modulus", at: { x: -5 * Math.SQRT1_2, y: 5 * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "z", objectId: "z", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "imag", objectId: "imag", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "real", objectId: "real", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "modulus": "abs(z) = 5.0",
+    "z": "z = 3+4j",
+    "conjugate": "z.conjugate() = 3-4j",
+    "imag": "z.imag = 4.0",
+    "real": "z.real = 3.0",
+  }}
 />
 
 ## Method pada Bilangan Bulat dan Float

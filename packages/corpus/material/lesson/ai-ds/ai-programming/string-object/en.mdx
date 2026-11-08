@@ -310,40 +310,58 @@ SyntaxError ...`
 
 See how three strings join into one in this picture. Each piece keeps the order of its characters and is attached right after the previous piece, so `W` starts at index <InlineMath math="6" />, just after the <InlineMath math="5" /> characters of `Hello` and one space. The length of the result is the sum of the piece lengths, <InlineMath math="5+1+5=11" />. The three original strings stay the same, because the `+` operator creates a new string.
 
-<LineEquation
+<MathVisual
   title="Joining 'Hello' + ' ' + 'World'"
   description="Each piece has its own color, and the segment below it marks its length. The symbol ␣ is a space."
-  showZAxis={false}
-  cameraPosition={[5, -0.2, 8]}
-  cameraTarget={[5, -0.2, 0]}
-  data={[
-    ...(() => {
-      const pieces = [
-        { text: "Hello", color: "#8242e5", label: 'len("Hello") = 5', drop: 0.6 },
-        { text: " ", color: "#0d9488", label: 'len(" ") = 1', drop: 1.2 },
-        { text: "World", color: "#c026d3", label: 'len("World") = 5', drop: 0.6 },
-      ];
-      const series = [];
-      let start = 0;
-      for (const { text, color, label, drop } of pieces) {
-        Array.from(text).forEach((char, index) => {
-          series.push({
-            points: [{ x: start + index, y: 0, z: 0 }],
-            color,
-            showPoints: true,
-            labels: [{ text: char === " " ? "␣" : char, at: 0, offset: [0, 0.35, 0] }],
-          });
-        });
-        series.push({
-          points: [{ x: start, y: -0.4, z: 0 }, { x: start + text.length - 1, y: -0.4, z: 0 }],
-          color,
-          smooth: false,
-          showPoints: true,
-          labels: [{ text: label, at: 0, offset: [(text.length - 1) / 2, -drop + 0.1, 0] }],
-        });
-        start += text.length;
-      }
-      return series;
-    })(),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "hello-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "hello-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "hello-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "hello-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "hello-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "space-a", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "world-a", kind: "point", at: { x: 6, y: 0 }, appearance: "answer" },
+      { id: "world-b", kind: "point", at: { x: 7, y: 0 }, appearance: "answer" },
+      { id: "world-c", kind: "point", at: { x: 8, y: 0 }, appearance: "answer" },
+      { id: "world-d", kind: "point", at: { x: 9, y: 0 }, appearance: "answer" },
+      { id: "world-e", kind: "point", at: { x: 10, y: 0 }, appearance: "answer" },
+      { id: "hello-length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "secondary" },
+      { id: "space-length", kind: "point", at: { x: 5, y: -0.4 }, appearance: "construction" },
+      { id: "world-length", kind: "segment", from: { x: 6, y: -0.4 }, to: { x: 10, y: -0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "hello-a", objectId: "hello-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "hello-b", objectId: "hello-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "hello-c", objectId: "hello-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "hello-d", objectId: "hello-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "hello-e", objectId: "hello-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "space-a", objectId: "space-a", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "world-a", objectId: "world-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "world-b", objectId: "world-b", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "world-c", objectId: "world-c", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "world-d", objectId: "world-d", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "world-e", objectId: "world-e", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "hello-length", objectId: "hello-length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "world-length", objectId: "world-length", at: { x: 8, y: -0.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "hello-a": "H",
+    "hello-b": "e",
+    "hello-c": "l",
+    "hello-d": "l",
+    "hello-e": "o",
+    "space-a": "␣",
+    "world-a": "W",
+    "world-b": "o",
+    "world-c": "r",
+    "world-d": "l",
+    "world-e": "d",
+    "hello-length": "len('Hello') = 5",
+    "world-length": "len('World') = 5",
+  }}
 />

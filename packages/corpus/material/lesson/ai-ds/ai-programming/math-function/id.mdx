@@ -331,54 +331,34 @@ print(f"Luas lingkaran dengan radius {lingkaran_radius}: {luas_lingkaran}")`
   ]}
 />
 
-Ikuti kedua kurva dari modul `math` ini. Kurva `math.sqrt(x)` mulai di <InlineMath math="0" /> dan tumbuh makin pelan, jadi `math.sqrt(4)` memberi `2.0`. Kurva `math.log(x)` hanya ada untuk <InlineMath math="x>0" />, memotong sumbu di `math.log(1) = 0.0`, dan mencapai `1.0` tepat di `math.e`. Coba perbesar dekat <InlineMath math="x=0" />: logaritma terus turun tanpa batas, dan itu sebabnya `math.log(0)` menimbulkan error.
+Ikuti kurva ungu `math.sqrt(x)` dari modul `math`. Kurva ini mulai di `0` dan tumbuh makin pelan, jadi `math.sqrt(4)` memberi `2.0` dan `math.sqrt(9)` memberi `3.0`. Bentuknya adalah parabola `x = y**2` yang direbahkan, karena setiap hasil yang dikuadratkan memberi kembali masukannya. `math.sqrt(2)` jatuh di antara keduanya, kira-kira `1.414`, sedangkan `math.sqrt(-1)` menimbulkan `ValueError`, karena tidak ada titik di kiri `0`.
 
-<LineEquation
-  title="math.sqrt dan math.log"
-  description="Kurva ungu adalah math.sqrt(x) untuk 0 ≤ x ≤ 9, kurva hijau toska adalah math.log(x). Titik magenta adalah tiga panggilan yang hasilnya kamu bisa cek."
-  showZAxis={false}
-  cameraPosition={[4.5, 0.5, 10]}
-  cameraTarget={[4.5, 0.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const t = index / 400;
-        return { x: 9 * t ** 2, y: 3 * t, z: 0 };
-      }),
-      color: "#8242e5",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "math.sqrt(x)", at: 400, offset: [0.4, 0.35, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const u = -2 + (index / 400) * (Math.log(9) + 2);
-        return { x: Math.exp(u), y: u, z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "math.log(x)", at: 400, offset: [0.4, -0.35, 0] }],
-    },
-    {
-      points: [{ x: 4, y: 2, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: "math.sqrt(4) = 2.0", at: 0, offset: [-0.3, 0.45, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: "math.log(1) = 0.0", at: 0, offset: [0.4, -0.45, 0] }],
-    },
-    {
-      points: [{ x: Math.E, y: 1, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: "math.log(math.e) = 1.0", at: 0, offset: [1.3, -0.3, 0] }],
-    },
-  ]}
+<MathVisual
+  title="Kurva math.sqrt"
+  description="Kurva ungu adalah math.sqrt(x) untuk 0 ≤ x ≤ 9. Titik magenta adalah tiga panggilan yang hasilnya bisa kamu cek."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3 }, inputAxis: "y", appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "nine", kind: "point", at: { x: 9, y: 3 }, appearance: "answer" },
+      { id: "two", kind: "point", at: { x: 2, y: Math.SQRT2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: 6.25, y: 2.5 }, placement: "above-left" },
+      { key: "four", objectId: "four", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "nine", objectId: "nine", at: { x: 9, y: 3 }, placement: "below-left" },
+      { key: "two", objectId: "two", at: { x: 2, y: Math.SQRT2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "root": "math.sqrt(x)",
+    "four": "math.sqrt(4) = 2.0",
+    "nine": "math.sqrt(9) = 3.0",
+    "two": "math.sqrt(2)",
+  }}
 />
 
 ## Memilih Cara Import Modul

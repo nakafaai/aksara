@@ -120,40 +120,29 @@ Operator `and` dan `or` menggunakan <Highlight>evaluasi short-circuit</Highlight
 
 Setiap perbandingan bernilai `True` di satu daerah garis bilangan. Di gambar ini, baris ungu menandai semua <InlineMath math="x" /> dengan `x > 2`, dan baris hijau toska semua <InlineMath math="x" /> dengan `x < 5`. Operator `and` hanya memberi `True` di bagian yang tertutup kedua baris sekaligus, yaitu baris magenta antara <InlineMath math="2" /> dan <InlineMath math="5" />. Ujung <InlineMath math="2" /> dan <InlineMath math="5" /> kosong, karena `2 > 2` dan `5 < 5` sama-sama `False`.
 
-<LineEquation
+<MathVisual
   title="Perbandingan sebagai daerah pada garis bilangan"
-  description="Baris ungu adalah x > 2, baris hijau toska adalah x < 5, dan baris magenta adalah x > 2 and x < 5. Lingkaran kosong berarti nilai itu tidak termasuk."
-  showZAxis={false}
-  cameraPosition={[3.5, 2, 9]}
-  cameraTarget={[3.5, 2, 0]}
-  data={[
-    {
-      points: [{ x: 2, y: 3, z: 0 }, { x: 8, y: 3, z: 0 }],
-      color: "#8242e5",
-      endpoints: { start: "open" },
-      cone: { position: "end", size: 0.25 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "x > 2", at: 0, offset: [-0.9, 0, 0] }],
-    },
-    {
-      points: [{ x: -1, y: 2, z: 0 }, { x: 5, y: 2, z: 0 }],
-      color: "#0d9488",
-      endpoints: { end: "open" },
-      cone: { position: "start", size: 0.25 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "x < 5", at: 1, offset: [0.9, 0, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }, { x: 5, y: 1, z: 0 }],
-      color: "#c026d3",
-      endpoints: { start: "open", end: "open" },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "x > 2 and x < 5", at: 1, offset: [1.8, 0, 0] }],
-    },
-  ]}
+  description="Baris ungu adalah x > 2, baris hijau toska adalah x < 5, dan baris magenta adalah x > 2 and x < 5. Setiap baris berhenti tepat di 2 atau 5, dan nilai itu sendiri tidak termasuk."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "segment", from: { x: 2, y: 3 }, to: { x: 8, y: 3 }, appearance: "secondary" },
+      { id: "below", kind: "segment", from: { x: -1, y: 2 }, to: { x: 5, y: 2 }, appearance: "construction" },
+      { id: "both", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "above", objectId: "above", at: { x: 8, y: 3 }, placement: "right" },
+      { key: "below", objectId: "below", at: { x: -1, y: 2 }, placement: "left" },
+      { key: "both", objectId: "both", at: { x: 5, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "above": "x > 2",
+    "below": "x < 5",
+    "both": "x > 2 and x < 5",
+  }}
 />
 
 ## Nilai dalam Konteks Boolean

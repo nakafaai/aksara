@@ -15,32 +15,32 @@ Python provides seven main arithmetic operators. Their precedence determines <Hi
 
 Zoom into this graph and follow both lines from left to right. The violet line `x // 3` steps up by one each time <InlineMath math="x" /> passes a multiple of <InlineMath math="3" />, and for negative numbers it still rounds down, so `-5 // 3` gives `-2`. The teal line `x % 3` climbs from <InlineMath math="0" /> and drops back at every multiple of <InlineMath math="3" />, so the remainder always stays between <InlineMath math="0" /> and <InlineMath math="3" />. At every point, `x == 3 * (x // 3) + x % 3` holds.
 
-<LineEquation
+<MathVisual
   title="Floor division // and remainder %"
-  description="The violet line is x // 3, the teal line is x % 3 for −6 ≤ x < 6. Filled circles mark included values, open circles excluded ones."
-  showZAxis={false}
-  cameraPosition={[0, 0.5, 10]}
-  cameraTarget={[0, 0.5, 0]}
-  data={[
-    ...[-2, -1, 0, 1].flatMap((k) => [
-      {
-        points: [{ x: 3 * k, y: k, z: 0 }, { x: 3 * k + 3, y: k, z: 0 }],
-        color: "#8242e5",
-        endpoints: { start: "closed", end: "open" },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: "x // 3", at: 1, offset: [0.7, 0.3, 0] }] } : {}),
-      },
-      {
-        points: [{ x: 3 * k, y: 0, z: 0 }, { x: 3 * k + 3, y: 3, z: 0 }],
-        color: "#0d9488",
-        endpoints: { start: "closed", end: "open" },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: "x % 3", at: 1, offset: [0.7, 0, 0] }] } : {}),
-      },
-    ]),
-  ]}
+  description="The violet line is x // 3, the teal line is x % 3 for −6 ≤ x < 6. Each piece includes its left end and stops just before the next multiple of 3."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor-a", kind: "segment", from: { x: -6, y: -2 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "floor-b", kind: "segment", from: { x: -3, y: -1 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "floor-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "floor-d", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "rest-a", kind: "segment", from: { x: -6, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "rest-b", kind: "segment", from: { x: -3, y: 0 }, to: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "rest-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "rest-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor-d", at: { x: 6, y: 1 }, placement: "below-left" },
+      { key: "rest", objectId: "rest-d", at: { x: 6, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "floor": "x // 3",
+    "rest": "x % 3",
+  }}
 />
 
 ## Operator Precedence Order

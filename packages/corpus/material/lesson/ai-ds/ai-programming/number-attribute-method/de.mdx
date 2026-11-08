@@ -211,53 +211,35 @@ Die Multiplikation von <InlineMath math="z" /> mit seinem Konjugat löscht den I
 
 Zeichne `z = 3+4j` als Punkt in der komplexen Ebene und achte darauf, was jedes Attribut liest. `z.real` ist der waagerechte Abstand `3.0`, `z.imag` die Höhe `4.0`. Die Methode `z.conjugate()` spiegelt den Punkt unter die reelle Achse zu `3-4j`, und `abs(z)` ist der gemeinsame Radius `5.0`. Ein Attribut liest du ohne Klammern, eine Methode rufst du mit Klammern auf.
 
-<LineEquation
+<MathVisual
   title="Attribute und Methoden von z = 3+4j"
-  description="Der violette Pfeil ist z, der türkise Pfeil z.conjugate(). Die gelbe Strecke und der gelbe Punkt zeigen z.imag und z.real, und der graue Kreis hat den Radius abs(z)."
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: 5 * Math.cos(angle), y: 5 * Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "abs(z) = 5.0", at: 135, offset: [-0.9, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.35 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z = 3+4j", at: 1, offset: [0.6, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.35 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z.conjugate() = 3-4j", at: 1, offset: [1.2, -0.4, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#b98d00",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "z.imag = 4.0", at: 0, offset: [1.1, 1.6, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }],
-      color: "#b98d00",
-      showPoints: true,
-      labels: [{ text: "z.real = 3.0", at: 0, offset: [1, -0.4, 0] }],
-    },
-  ]}
+  description="Die violette Strecke ist z, die türkise Strecke z.conjugate(). Die gelbe Strecke und der gelbe Punkt zeigen z.imag und z.real, und der graue Kreis hat den Radius abs(z)."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "modulus", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "reference" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -4 }, appearance: "construction" },
+      { id: "imag", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "real", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "modulus", objectId: "modulus", at: { x: -5 * Math.SQRT1_2, y: 5 * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "z", objectId: "z", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "imag", objectId: "imag", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "real", objectId: "real", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "modulus": "abs(z) = 5.0",
+    "z": "z = 3+4j",
+    "conjugate": "z.conjugate() = 3-4j",
+    "imag": "z.imag = 4.0",
+    "real": "z.real = 3.0",
+  }}
 />
 
 ## Methoden für ganze Zahlen und Floats

@@ -152,49 +152,50 @@ Mengubah `end` memungkinkan beberapa pemanggilan melanjutkan output pada baris y
 
 Gambar ini menjalankan `print("A", "B", "C", sep="-")`, lalu `print("x", end=" ")`, lalu `print("y")`, dan menaruh setiap karakter di tempat ia muncul. `sep` hanya disisipkan di antara argumen, jadi tanda hubung hijau toska muncul dua kali untuk tiga argumen. `end` ditambahkan sekali di akhir setiap panggilan: baris baru ↵ memindahkan kursor ke baris berikutnya, sedangkan `end=" "` membuat `y` tetap di baris yang sama dengan `x`.
 
-<LineEquation
+<MathVisual
   title="Tiga panggilan print di aliran keluaran"
   description="Karakter ungu berasal dari argumen, karakter hijau toska dari sep, dan karakter oranye dari end. Simbol ↵ adalah baris baru dan ␣ adalah spasi."
-  showZAxis={false}
-  cameraPosition={[2.5, -0.5, 6]}
-  cameraTarget={[2.5, -0.5, 0]}
-  data={[
-    ...(() => {
-      const calls = [
-        { args: ["A", "B", "C"], sep: "-", end: "\n" },
-        { args: ["x"], sep: " ", end: " " },
-        { args: ["y"], sep: " ", end: "\n" },
-      ];
-      const cells = [];
-      let column = 0;
-      let row = 0;
-      const put = (char, color) => {
-        const shown = char === "\n" ? "↵" : char === " " ? "␣" : char;
-        cells.push({ x: column, y: -row, shown, color });
-        if (char === "\n") {
-          row += 1;
-          column = 0;
-          return;
-        }
-        column += 1;
-      };
-      for (const { args, sep, end } of calls) {
-        args.forEach((arg, index) => {
-          if (index > 0) {
-            Array.from(sep).forEach((char) => put(char, "#0d9488"));
-          }
-          Array.from(arg).forEach((char) => put(char, "#8242e5"));
-        });
-        Array.from(end).forEach((char) => put(char, "#bb6800"));
-      }
-      return cells.map(({ x, y, shown, color }) => ({
-        points: [{ x, y, z: 0 }],
-        color,
-        showPoints: true,
-        labels: [{ text: shown, at: 0, offset: [0, 0.35, 0] }],
-      }));
-    })(),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first-b", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "first-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "first-d", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "first-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "first-f", kind: "point", at: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "second-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "second-b", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "second-d", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-a", objectId: "first-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first-b", objectId: "first-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "first-c", objectId: "first-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "first-d", objectId: "first-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "first-e", objectId: "first-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "first-f", objectId: "first-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "second-a", objectId: "second-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "second-b", objectId: "second-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "second-c", objectId: "second-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "second-d", objectId: "second-d", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "first-a": "A",
+    "first-b": "-",
+    "first-c": "B",
+    "first-d": "-",
+    "first-e": "C",
+    "first-f": "↵",
+    "second-a": "x",
+    "second-b": "␣",
+    "second-c": "y",
+    "second-d": "↵",
+  }}
 />
 
 ## Menampilkan Berbagai Tipe Data

@@ -228,31 +228,38 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
   ]}
 />
 
-Spesifikasi `.1f` menampilkan setiap bilangan dengan satu angka desimal, jadi semua <InlineMath math="x" /> di satu anak tangga tampil sebagai angka yang sama. Perbesar tangga ungu: setiap anak tangga selebar <InlineMath math="0.1" /> dan berpusat di nilai yang ditampilkan, misalnya semua nilai antara <InlineMath math="0.35" /> dan <InlineMath math="0.45" /> tampil sebagai `0.4`. Tepat di batas seperti <InlineMath math="0.25" />, hasilnya bergantung pada nilai biner yang tersimpan, jadi ujung anak tangga digambar kosong. Nilai aslinya tidak berubah, hanya tampilannya.
+Spesifikasi `.1f` menampilkan setiap bilangan dengan satu angka desimal, jadi semua <InlineMath math="x" /> di satu anak tangga tampil sebagai angka yang sama. Perbesar tangga ungu: setiap anak tangga selebar <InlineMath math="0.1" /> dan berpusat di nilai yang ditampilkan, misalnya semua nilai antara <InlineMath math="0.35" /> dan <InlineMath math="0.45" /> tampil sebagai `0.4`. Tepat di batas seperti <InlineMath math="0.25" />, hasilnya bergantung pada nilai biner yang tersimpan, jadi gambar ini tidak menandai nilai di batasnya. Nilai aslinya tidak berubah, hanya tampilannya.
 
-<LineEquation
+<MathVisual
   title="Presisi .1f sebagai tangga pembulatan"
   description="Tangga ungu adalah nilai yang tampil dengan .1f untuk 0 ≤ x ≤ 1, garis abu-abu adalah y = x."
-  showZAxis={false}
-  cameraPosition={[0.5, 0.5, 2.4]}
-  cameraTarget={[0.5, 0.5, 0]}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "y = x", at: 1, offset: [0.12, 0.05, 0] }],
-    },
-    ...Array.from({ length: 11 }, (_, k) => ({
-      points: [{ x: Math.max(0, k / 10 - 0.05), y: k / 10, z: 0 }, { x: Math.min(1, k / 10 + 0.05), y: k / 10, z: 0 }],
-      color: "#8242e5",
-      endpoints: k === 0 ? { end: "open" } : k === 10 ? { start: "open" } : { start: "open", end: "open" },
-      smooth: false,
-      showPoints: false,
-      ...(k === 4 ? { labels: [{ text: 'float(f"{x:.1f}")', at: 1, offset: [0.25, -0.05, 0] }] } : {}),
-    })),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 20, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1 / 20, y: 1 / 10 }, to: { x: 3 / 20, y: 1 / 10 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 3 / 20, y: 2 / 10 }, to: { x: 5 / 20, y: 2 / 10 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 5 / 20, y: 3 / 10 }, to: { x: 7 / 20, y: 3 / 10 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: 7 / 20, y: 4 / 10 }, to: { x: 9 / 20, y: 4 / 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: 9 / 20, y: 5 / 10 }, to: { x: 11 / 20, y: 5 / 10 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: 11 / 20, y: 6 / 10 }, to: { x: 13 / 20, y: 6 / 10 }, appearance: "secondary" },
+      { id: "step-h", kind: "segment", from: { x: 13 / 20, y: 7 / 10 }, to: { x: 15 / 20, y: 7 / 10 }, appearance: "secondary" },
+      { id: "step-i", kind: "segment", from: { x: 15 / 20, y: 8 / 10 }, to: { x: 17 / 20, y: 8 / 10 }, appearance: "secondary" },
+      { id: "step-j", kind: "segment", from: { x: 17 / 20, y: 9 / 10 }, to: { x: 19 / 20, y: 9 / 10 }, appearance: "secondary" },
+      { id: "step-k", kind: "segment", from: { x: 19 / 20, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "step", objectId: "step-e", at: { x: 9 / 20, y: 4 / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "identity": "y = x",
+    "step": 'float(f"{x:.1f}")',
+  }}
 />
 
 ## F Strings dan Template Dinamis

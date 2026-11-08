@@ -191,56 +191,65 @@ In diesem Beispiel erstellt `\t` übersichtliche Spalten, `\n` trennt Zeilen und
 
 Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem fertigen String. `\n` besteht im Quellcode beispielsweise aus zwei Zeichen, steht im String aber für genau einen Zeilenumbruch.
 
-Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Pfeile zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Der orange Pfeil zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
+Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Strecken zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Die orange Strecke zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
 
-<LineEquation
+<MathVisual
   title="Wohin der Cursor bei \t und \n springt"
-  description="Violette Zeichen sind normaler Text, gelbe Pfeile Tabsprünge und orange Pfeile Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten."
-  showZAxis={false}
-  cameraPosition={[5, -0.5, 10]}
-  cameraTarget={[5, -0.5, 0]}
-  data={[
-    ...(() => {
-      const text = "Name\tAge\nBob\t25";
-      const series = [];
-      let column = 0;
-      let row = 0;
-      Array.from(text).forEach((char) => {
-        if (char === "\t") {
-          const stop = (Math.floor(column / 8) + 1) * 8;
-          series.push({
-            points: [{ x: column, y: -row, z: 0 }, { x: stop, y: -row, z: 0 }],
-            color: "#b98d00",
-            cone: { position: "end", size: 0.3 },
-            smooth: false,
-            showPoints: false,
-            labels: [{ text: "\\t", at: 0, offset: [0.7, 0.35, 0] }],
-          });
-          column = stop;
-          return;
-        }
-        if (char === "\n") {
-          series.push({
-            points: [{ x: column, y: -row, z: 0 }, { x: 0, y: -row - 1, z: 0 }],
-            color: "#bb6800",
-            cone: { position: "end", size: 0.3 },
-            smooth: false,
-            showPoints: false,
-            labels: [{ text: "\\n", at: 0, offset: [0.5, 0.35, 0] }],
-          });
-          row += 1;
-          column = 0;
-          return;
-        }
-        series.push({
-          points: [{ x: column, y: -row, z: 0 }],
-          color: "#8242e5",
-          showPoints: true,
-          labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
-        });
-        column += 1;
-      });
-      return series;
-    })(),
-  ]}
+  description="Violette Zeichen sind normaler Text, gelbe Strecken Tabsprünge und orange Strecken Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "name-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "name-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "name-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "name-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "age-a", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "age-b", kind: "point", at: { x: 9, y: 0 }, appearance: "secondary" },
+      { id: "age-c", kind: "point", at: { x: 10, y: 0 }, appearance: "secondary" },
+      { id: "bob-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "bob-b", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "bob-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "num-a", kind: "point", at: { x: 8, y: -1 }, appearance: "secondary" },
+      { id: "num-b", kind: "point", at: { x: 9, y: -1 }, appearance: "secondary" },
+      { id: "tab-a", kind: "segment", from: { x: 4, y: 0 }, to: { x: 8, y: 0 }, appearance: "highlight" },
+      { id: "newline", kind: "segment", from: { x: 11, y: 0 }, to: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "tab-b", kind: "segment", from: { x: 3, y: -1 }, to: { x: 8, y: -1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "name-a", objectId: "name-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "name-b", objectId: "name-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "name-c", objectId: "name-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "name-d", objectId: "name-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "age-a", objectId: "age-a", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "age-b", objectId: "age-b", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "age-c", objectId: "age-c", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "bob-a", objectId: "bob-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "bob-b", objectId: "bob-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "bob-c", objectId: "bob-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "num-a", objectId: "num-a", at: { x: 8, y: -1 }, placement: "above" },
+      { key: "num-b", objectId: "num-b", at: { x: 9, y: -1 }, placement: "above" },
+      { key: "tab-a", objectId: "tab-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "newline", objectId: "newline", at: { x: 11 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "tab-b", objectId: "tab-b", at: { x: 11 / 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "name-a": "N",
+    "name-b": "a",
+    "name-c": "m",
+    "name-d": "e",
+    "age-a": "A",
+    "age-b": "g",
+    "age-c": "e",
+    "bob-a": "B",
+    "bob-b": "o",
+    "bob-c": "b",
+    "num-a": "2",
+    "num-b": "5",
+    "tab-a": "\\t",
+    "newline": "\\n",
+    "tab-b": "\\t",
+  }}
 />

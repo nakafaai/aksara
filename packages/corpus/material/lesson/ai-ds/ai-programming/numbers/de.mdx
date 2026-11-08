@@ -213,49 +213,38 @@ Der Konstruktor `complex()` erzeugt komplexe Zahlen aus **einer oder zwei reelle
 
 Vergleich die violette Treppe mit der grauen Linie <InlineMath math="y=x" />. Bei positiven Zahlen wirft `int()` den Nachkommateil weg, also liegt das Ergebnis unter der Linie, zum Beispiel wird `int(2.9)` zu `2`. Bei negativen Zahlen liegt das Ergebnis über der Linie, denn `int(-2.9)` wird zu `-2`, nicht zu `-3`. `int()` schneidet also immer Richtung null ab, und die Stufe um null ist breiter als die anderen.
 
-<LineEquation
+<MathVisual
   title="int() schneidet Richtung null ab"
   description="Die violette Treppe ist int(x), die graue Linie y = x. Magentafarbene Punkte markieren int(2.9) und int(-2.9)."
-  showZAxis={false}
-  cameraPosition={[0, 0, 10]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: [{ x: -3.5, y: -3.5, z: 0 }, { x: 3.5, y: 3.5, z: 0 }],
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "y = x", at: 1, offset: [0.5, 0.2, 0] }],
-    },
-    ...[
-      { from: -1, to: 1, value: 0, endpoints: { start: "open", end: "open" } },
-      { from: 1, to: 2, value: 1, endpoints: { start: "closed", end: "open" } },
-      { from: 2, to: 3, value: 2, endpoints: { start: "closed", end: "open" } },
-      { from: 3, to: 3.5, value: 3, endpoints: { start: "closed" } },
-      { from: -2, to: -1, value: -1, endpoints: { start: "open", end: "closed" } },
-      { from: -3, to: -2, value: -2, endpoints: { start: "open", end: "closed" } },
-      { from: -3.5, to: -3, value: -3, endpoints: { end: "closed" } },
-    ].map(({ from, to, value, endpoints }) => ({
-      points: [{ x: from, y: value, z: 0 }, { x: to, y: value, z: 0 }],
-      color: "#8242e5",
-      endpoints,
-      smooth: false,
-      showPoints: false,
-      ...(value === 3 ? { labels: [{ text: "int(x)", at: 1, offset: [0.6, 0, 0] }] } : {}),
-    })),
-    {
-      points: [{ x: 2.9, y: 2, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: "int(2.9) = 2", at: 0, offset: [0.9, -0.45, 0] }],
-    },
-    {
-      points: [{ x: -2.9, y: -2, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: "int(-2.9) = -2", at: 0, offset: [-0.9, 0.45, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: -3.5, y: -3.5 }, to: { x: 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 2, y: 2 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3.5, y: 3 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: -2, y: -1 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: -3, y: -2 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: -3.5, y: -3 }, to: { x: -3, y: -3 }, appearance: "secondary" },
+      { id: "positive", kind: "point", at: { x: 2.9, y: 2 }, appearance: "answer" },
+      { id: "negative", kind: "point", at: { x: -2.9, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
+      { key: "step", objectId: "step-d", at: { x: 3.5, y: 3 }, placement: "right" },
+      { key: "positive", objectId: "positive", at: { x: 2.9, y: 2 }, placement: "below-right" },
+      { key: "negative", objectId: "negative", at: { x: -2.9, y: -2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "identity": "y = x",
+    "step": "int(x)",
+    "positive": "int(2.9) = 2",
+    "negative": "int(-2.9) = -2",
+  }}
 />
 
 ## Zusammenfassungstabelle für Zahlendatentypen

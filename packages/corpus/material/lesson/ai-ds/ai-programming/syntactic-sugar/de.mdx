@@ -112,30 +112,44 @@ Beispielsweise kann `[i**2 for i in range(4)]` die Liste `[0, 1, 4, 9]` erzeugen
 
 Führ die List Comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` mit Blick auf dieses Bild aus. Der `for`-Teil nimmt jedes <InlineMath math="x" /> von <InlineMath math="-3" /> bis <InlineMath math="3" />, der `if`-Teil lässt nur gerade Zahlen durch, und der Ausdruck vorne berechnet `x**2`. Das Ergebnis sind die drei magentafarbenen Punkte auf der Kurve, also `[4, 0, 4]`. Die türkisen Punkte für ungerade <InlineMath math="x" /> liegen zwar auf der Kurve, kommen aber nie in die Liste.
 
-<LineEquation
+<MathVisual
   title="Was [x**2 for x in range(-3, 4) if x % 2 == 0] auswählt"
   description="Die graue Kurve ist x**2. Magentafarbene Punkte sind die Elemente, die die if-Bedingung erfüllen, türkise werden übersprungen."
-  showZAxis={false}
-  cameraPosition={[0, 4.5, 11]}
-  cameraTarget={[0, 4.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const x = -3 + (index / 400) * 6;
-        return { x, y: x ** 2, z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "x**2", at: 400, offset: [0.5, 0, 0] }],
-    },
-    ...Array.from({ length: 7 }, (_, index) => index - 3).map((x) => ({
-      points: [{ x, y: x ** 2, z: 0 }],
-      color: x % 2 === 0 ? "#c026d3" : "#0d9488",
-      showPoints: true,
-      labels: [{ text: String(x), at: 0, offset: [0, -0.5, 0] }],
-    })),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -3, max: 3 }, inputAxis: "x", appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: -3, y: 9 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: -2, y: 4 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: -1, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "value-e", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "value-f", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "value-g", kind: "point", at: { x: 3, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: -3, y: 9 }, placement: "below" },
+      { key: "value-b", objectId: "value-b", at: { x: -2, y: 4 }, placement: "below" },
+      { key: "value-c", objectId: "value-c", at: { x: -1, y: 1 }, placement: "below" },
+      { key: "value-d", objectId: "value-d", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "value-e", objectId: "value-e", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "value-f", objectId: "value-f", at: { x: 2, y: 4 }, placement: "below" },
+      { key: "value-g", objectId: "value-g", at: { x: 3, y: 9 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "square": "x**2",
+    "value-a": "-3",
+    "value-b": "-2",
+    "value-c": "-1",
+    "value-d": "0",
+    "value-e": "1",
+    "value-f": "2",
+    "value-g": "3",
+  }}
 />
 
 ## Lambdafunktionen

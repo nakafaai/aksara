@@ -255,27 +255,35 @@ print(all([]))  # Output: True`
 
 Check the list `[3, 8, 1, 6]` against the condition `v > 5`. The two magenta points, <InlineMath math="8" /> and <InlineMath math="6" />, sit above the line, so `any(v > 5 for v in values)` is `True`. The teal points <InlineMath math="3" /> and <InlineMath math="1" /> sit below it, so `all(v > 5 for v in values)` is `False`. With the condition `v > 0`, every point passes and `all` becomes `True`.
 
-<LineEquation
+<MathVisual
   title="any and all on [3, 8, 1, 6]"
   description="Each point is one value at its position. Magenta points meet v > 5, teal points don't, and the gray line is the threshold 5."
-  showZAxis={false}
-  cameraPosition={[1.5, 4, 11]}
-  cameraTarget={[1.5, 4, 0]}
-  data={[
-    {
-      points: [{ x: -0.5, y: 5, z: 0 }, { x: 3.5, y: 5, z: 0 }],
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "v > 5", at: 1, offset: [0.6, 0, 0] }],
-    },
-    ...[3, 8, 1, 6].map((value, index) => ({
-      points: [{ x: index, y: value, z: 0 }],
-      color: value > 5 ? "#c026d3" : "#0d9488",
-      showPoints: true,
-      labels: [{ text: String(value), at: 0, offset: [0.35, 0, 0] }],
-    })),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "limit", kind: "segment", from: { x: -0.5, y: 5 }, to: { x: 3.5, y: 5 }, appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 3.5, y: 5 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "limit": "v > 5",
+    "value-a": "3",
+    "value-b": "8",
+    "value-c": "1",
+    "value-d": "6",
+  }}
 />
 
 ## Unpacking Operator

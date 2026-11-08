@@ -191,56 +191,65 @@ Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` 
 
 Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.
 
-Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Panah kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Panah oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
+Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Ruas kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Ruas oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
 
-<LineEquation
+<MathVisual
   title="Ke mana kursor pergi untuk \t dan \n"
-  description="Karakter ungu adalah teks biasa, panah kuning adalah lompatan tab, dan panah oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom."
-  showZAxis={false}
-  cameraPosition={[5, -0.5, 10]}
-  cameraTarget={[5, -0.5, 0]}
-  data={[
-    ...(() => {
-      const text = "Name\tAge\nBob\t25";
-      const series = [];
-      let column = 0;
-      let row = 0;
-      Array.from(text).forEach((char) => {
-        if (char === "\t") {
-          const stop = (Math.floor(column / 8) + 1) * 8;
-          series.push({
-            points: [{ x: column, y: -row, z: 0 }, { x: stop, y: -row, z: 0 }],
-            color: "#b98d00",
-            cone: { position: "end", size: 0.3 },
-            smooth: false,
-            showPoints: false,
-            labels: [{ text: "\\t", at: 0, offset: [0.7, 0.35, 0] }],
-          });
-          column = stop;
-          return;
-        }
-        if (char === "\n") {
-          series.push({
-            points: [{ x: column, y: -row, z: 0 }, { x: 0, y: -row - 1, z: 0 }],
-            color: "#bb6800",
-            cone: { position: "end", size: 0.3 },
-            smooth: false,
-            showPoints: false,
-            labels: [{ text: "\\n", at: 0, offset: [0.5, 0.35, 0] }],
-          });
-          row += 1;
-          column = 0;
-          return;
-        }
-        series.push({
-          points: [{ x: column, y: -row, z: 0 }],
-          color: "#8242e5",
-          showPoints: true,
-          labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
-        });
-        column += 1;
-      });
-      return series;
-    })(),
-  ]}
+  description="Karakter ungu adalah teks biasa, ruas kuning adalah lompatan tab, dan ruas oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "name-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "name-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "name-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "name-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "age-a", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "age-b", kind: "point", at: { x: 9, y: 0 }, appearance: "secondary" },
+      { id: "age-c", kind: "point", at: { x: 10, y: 0 }, appearance: "secondary" },
+      { id: "bob-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "bob-b", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "bob-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "num-a", kind: "point", at: { x: 8, y: -1 }, appearance: "secondary" },
+      { id: "num-b", kind: "point", at: { x: 9, y: -1 }, appearance: "secondary" },
+      { id: "tab-a", kind: "segment", from: { x: 4, y: 0 }, to: { x: 8, y: 0 }, appearance: "highlight" },
+      { id: "newline", kind: "segment", from: { x: 11, y: 0 }, to: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "tab-b", kind: "segment", from: { x: 3, y: -1 }, to: { x: 8, y: -1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "name-a", objectId: "name-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "name-b", objectId: "name-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "name-c", objectId: "name-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "name-d", objectId: "name-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "age-a", objectId: "age-a", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "age-b", objectId: "age-b", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "age-c", objectId: "age-c", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "bob-a", objectId: "bob-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "bob-b", objectId: "bob-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "bob-c", objectId: "bob-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "num-a", objectId: "num-a", at: { x: 8, y: -1 }, placement: "above" },
+      { key: "num-b", objectId: "num-b", at: { x: 9, y: -1 }, placement: "above" },
+      { key: "tab-a", objectId: "tab-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "newline", objectId: "newline", at: { x: 11 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "tab-b", objectId: "tab-b", at: { x: 11 / 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "name-a": "N",
+    "name-b": "a",
+    "name-c": "m",
+    "name-d": "e",
+    "age-a": "A",
+    "age-b": "g",
+    "age-c": "e",
+    "bob-a": "B",
+    "bob-b": "o",
+    "bob-c": "b",
+    "num-a": "2",
+    "num-b": "5",
+    "tab-a": "\\t",
+    "newline": "\\n",
+    "tab-b": "\\t",
+  }}
 />

@@ -166,42 +166,77 @@ Python clips slice bounds to the valid range of the string or list. Therefore, `
 
 Every character of `s = "Python"` has two addresses: a positive index from the left and a negative index from the right, so `s[0]` and `s[-6]` are both `P`. The amber segment shows the half-open rule: `s[1:4]` starts at index <InlineMath math="1" />, which is included, and stops before index <InlineMath math="4" />. The result is the three magenta characters `"yth"`, and its length is always <InlineMath math="4-1=3" />.
 
-<LineEquation
+<MathVisual
   title="Positive indices, negative indices, and s[1:4]"
   description="For s = 'Python': violet numbers are positive indices, teal numbers are negative indices, and the magenta characters are the result of s[1:4]."
-  showZAxis={false}
-  cameraPosition={[2.5, -0.4, 7]}
-  cameraTarget={[2.5, -0.4, 0]}
-  data={[
-    ...Array.from("Python").flatMap((char, index) => [
-      {
-        points: [{ x: index, y: 0, z: 0 }],
-        color: index >= 1 && index < 4 ? "#c026d3" : "#64748b",
-        showPoints: true,
-        labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
-      },
-      {
-        points: [{ x: index, y: -0.7, z: 0 }],
-        color: "#8242e5",
-        showPoints: false,
-        labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }],
-      },
-      {
-        points: [{ x: index, y: -1.3, z: 0 }],
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: String(index - 6), at: 0, offset: [0, 0, 0] }],
-      },
-    ]),
-    {
-      points: [{ x: 1, y: 0.9, z: 0 }, { x: 4, y: 0.9, z: 0 }],
-      color: "#b98d00",
-      endpoints: { start: "closed", end: "open" },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "s[1:4]", at: 1, offset: [0.7, 0, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "pos-a", kind: "point", at: { x: 0, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-b", kind: "point", at: { x: 1, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-c", kind: "point", at: { x: 2, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-d", kind: "point", at: { x: 3, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-e", kind: "point", at: { x: 4, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-f", kind: "point", at: { x: 5, y: -0.7 }, appearance: "secondary" },
+      { id: "neg-a", kind: "point", at: { x: 0, y: -1.4 }, appearance: "construction" },
+      { id: "neg-b", kind: "point", at: { x: 1, y: -1.4 }, appearance: "construction" },
+      { id: "neg-c", kind: "point", at: { x: 2, y: -1.4 }, appearance: "construction" },
+      { id: "neg-d", kind: "point", at: { x: 3, y: -1.4 }, appearance: "construction" },
+      { id: "neg-e", kind: "point", at: { x: 4, y: -1.4 }, appearance: "construction" },
+      { id: "neg-f", kind: "point", at: { x: 5, y: -1.4 }, appearance: "construction" },
+      { id: "slice", kind: "segment", from: { x: 1, y: 0.9 }, to: { x: 4, y: 0.9 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "pos-a", objectId: "pos-a", at: { x: 0, y: -0.7 }, placement: "right" },
+      { key: "pos-b", objectId: "pos-b", at: { x: 1, y: -0.7 }, placement: "right" },
+      { key: "pos-c", objectId: "pos-c", at: { x: 2, y: -0.7 }, placement: "right" },
+      { key: "pos-d", objectId: "pos-d", at: { x: 3, y: -0.7 }, placement: "right" },
+      { key: "pos-e", objectId: "pos-e", at: { x: 4, y: -0.7 }, placement: "right" },
+      { key: "pos-f", objectId: "pos-f", at: { x: 5, y: -0.7 }, placement: "right" },
+      { key: "neg-a", objectId: "neg-a", at: { x: 0, y: -1.4 }, placement: "right" },
+      { key: "neg-b", objectId: "neg-b", at: { x: 1, y: -1.4 }, placement: "right" },
+      { key: "neg-c", objectId: "neg-c", at: { x: 2, y: -1.4 }, placement: "right" },
+      { key: "neg-d", objectId: "neg-d", at: { x: 3, y: -1.4 }, placement: "right" },
+      { key: "neg-e", objectId: "neg-e", at: { x: 4, y: -1.4 }, placement: "right" },
+      { key: "neg-f", objectId: "neg-f", at: { x: 5, y: -1.4 }, placement: "right" },
+      { key: "slice", objectId: "slice", at: { x: 4, y: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "P",
+    "char-b": "y",
+    "char-c": "t",
+    "char-d": "h",
+    "char-e": "o",
+    "char-f": "n",
+    "pos-a": "0",
+    "pos-b": "1",
+    "pos-c": "2",
+    "pos-d": "3",
+    "pos-e": "4",
+    "pos-f": "5",
+    "neg-a": "-6",
+    "neg-b": "-5",
+    "neg-c": "-4",
+    "neg-d": "-3",
+    "neg-e": "-2",
+    "neg-f": "-1",
+    "slice": "s[1:4]",
+  }}
 />
 
 ## Indices Selected by a Slice
