@@ -1,14 +1,16 @@
-Among the <InlineMath math="60" /> equally likely integers, there are <InlineMath math="\frac{60}{4}=15" /> multiples of <InlineMath math="4" /> and <InlineMath math="\frac{60}{6}=10" /> multiples of <InlineMath math="6" />. Integers divisible by both are multiples of their least common multiple, <InlineMath math="12" />, giving <InlineMath math="5" /> such integers.
-
-The question requires **exactly one divisibility condition**. Remove the five common multiples from both counts.
-
-| Divisibility | Number of integers | Included? |
-| --- | --- | --- |
-| By 4 only | 15 − 5 = 10 | Yes |
-| By 6 only | 10 − 5 = 5 | Yes |
-| By both | 12, 24, 36, 48, 60: five integers | No |
+The two eggs are drawn **at the same time**, so without replacement and without order. Count the favourable pairs and all pairs with binomial coefficients.
 
 <BlockMath math="\begin{aligned}
-N&=(15-5)+(10-5)=15 \\
-P&=\frac{15}{60}=\frac14
+\text{all pairs}&=\binom{12}{2}=66 \\
+\text{pairs of sound eggs}&=\binom92=36 \\
+P&=\frac{36}{66}=\frac{6}{11}
 \end{aligned}" />
+
+As a check, drawing one after the other, <InlineMath math="\frac{9}{12}\cdot\frac{8}{11}=\frac{72}{132}=\frac{6}{11}" />.
+
+So the probability is <InlineMath math="\frac{6}{11}" />.
+
+- <InlineMath math="\frac{1}{22}=\frac{3}{66}" /> is the probability that both eggs are cracked.
+- <InlineMath math="\frac{9}{22}=\frac{27}{66}" /> is the probability of exactly one cracked egg.
+- <InlineMath math="\frac{9}{16}=\left(\frac34\right)^2" /> works with replacement, as if the first egg went back into the container.
+- <InlineMath math="\frac34" /> is the probability for a single sound egg.

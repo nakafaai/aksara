@@ -1,34 +1,16 @@
-Reflection in <InlineMath math="y=x" /> swaps the coordinates. Then add the translation vector.
+A reflection in the <InlineMath math="y" />-axis maps <InlineMath math="(x,y)" /> to <InlineMath math="(-x,y)" />. So **replace <InlineMath math="x" /> with <InlineMath math="-x" />** in the equation of the line.
 
 <BlockMath math="\begin{aligned}
-M(x,y)&=(y,x)+(2,-1) \\
-&=(y+2,x-1) \\
-M(3,-2)&=(-2+2,3-1)=(0,2)
+3(-x)-2y+6&=0 \\
+-3x-2y+6&=0 \\
+3x+2y-6&=0
 \end{aligned}" />
 
-Both reflection and translation preserve distances. Reflection **reverses orientation** and translation preserves it, so their composition reverses orientation. Applying the transformation twice gives:
+As a check, the point <InlineMath math="(-2,0)" /> lies on <InlineMath math="g" />, and its image <InlineMath math="(2,0)" /> satisfies <InlineMath math="3\cdot2+0-6=0" />. The point <InlineMath math="(0,3)" /> on the <InlineMath math="y" />-axis stays put and also satisfies <InlineMath math="0+6-6=0" />.
 
-Write the coordinates after the second application as <InlineMath math="x_2" /> and <InlineMath math="y_2" />.
+So the image of <InlineMath math="g" /> is <InlineMath math="3x+2y-6=0" />.
 
-<BlockMath math="\begin{gathered}
-M^2(x,y)=M(y+2,x-1) \\
-x_2=(x-1)+2=x+1 \\
-y_2=(y+2)-1=y+1 \\
-M^2(x,y)=(x+1,y+1)
-\end{gathered}" />
-
-A fixed point must satisfy <InlineMath math="x=y+2" /> and <InlineMath math="y=x-1" />. Substitution gives the impossible equation <InlineMath math="x=x+1" />. There are no fixed points. The four statements about the image, distances, orientation, and <InlineMath math="M^2" /> are true.
-
-Orientation means the order around the vertices. In the diagram, A to B to C is counterclockwise, while A′ to B′ to C′ is clockwise. The two triangles remain congruent.
-
-<LineEquation
-  title="Before and after the transformation"
-  description="Purple shows the original triangle. Orange shows its image after reflection and translation."
-  cameraPosition={[3,1.5,8]}
-  cameraTarget={[3,1.5,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 1, y: 2, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 1, y: 3, z: 0 }, { x: 1, y: 2, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [-0.2, -0.35, 0] }, { text: "B", at: 1, offset: [0.2, 0.3, 0] }, { text: "C", at: 2, offset: [-0.2, 0.3, 0] }] },
-    { points: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 2, z: 0 }, { x: 5, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "A′", at: 0, offset: [-0.2, -0.35, 0] }, { text: "B′", at: 1, offset: [0.2, 0.3, 0] }, { text: "C′", at: 2, offset: [0.2, -0.35, 0] }] },
-  ]}
-/>
+- <InlineMath math="2x-3y-6=0" /> is the reflection in the line <InlineMath math="y=x" />, which swaps <InlineMath math="x" /> and <InlineMath math="y" />.
+- <InlineMath math="2x-3y+6=0" /> is the reflection in the line <InlineMath math="y=-x" />.
+- <InlineMath math="3x-2y-6=0" /> replaces both <InlineMath math="x" /> and <InlineMath math="y" />, the reflection in the origin.
+- <InlineMath math="3x+2y+6=0" /> replaces <InlineMath math="y" /> with <InlineMath math="-y" />, the reflection in the <InlineMath math="x" />-axis.

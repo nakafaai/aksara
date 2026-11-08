@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "culvert",
+  stimulus: "milk-cans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$0{,}44\\text{ m}^2$$",
+          label: "$$192$$ kaleng",
         },
         {
           correct: false,
-          label: "$$0{,}88\\text{ m}^2$$",
+          label: "$$96$$ kaleng",
         },
         {
           correct: false,
-          label: "$$2{,}2\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$3{,}52\\text{ m}^2$$",
+          label: "$$61$$ kaleng",
         },
         {
           correct: true,
-          label: "$$1{,}76\\text{ m}^2$$",
+          label: "$$48$$ kaleng",
+        },
+        {
+          correct: false,
+          label: "$$24$$ kaleng",
         },
       ],
     },

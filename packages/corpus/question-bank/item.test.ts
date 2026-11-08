@@ -10,6 +10,7 @@ const choice = {
     { correct: false, label: "Dua" },
   ],
 };
+const number = { kind: "numericEntry", unit: "hari", value: "12.5" };
 const matrix = {
   columns: ["Benar", "Salah"],
   kind: "matrix",
@@ -64,6 +65,8 @@ describe("item source", () => {
         en: matrix,
         id: { ...matrix, statements: Arr.reverse(matrix.statements) },
       },
+      { en: number, id: { ...number, value: "0.5" } },
+      { en: number, id: choice },
     ]) {
       expect(Exit.isFailure(decode({ versions }))).toBe(true);
     }
@@ -82,6 +85,28 @@ describe("item source", () => {
           },
         })
       )
+    ).toBe(true);
+  });
+
+  it("asks a typed number with one canonical value and a unit in each language", () => {
+    expect(
+      Exit.isSuccess(
+        decode({
+          versions: {
+            de: { ...number, unit: "Tage" },
+            en: { ...number, unit: "days" },
+            id: number,
+          },
+        })
+      )
+    ).toBe(true);
+    for (const value of ["0.750", "+3", "3,5", "007", ""]) {
+      expect(
+        Exit.isFailure(decode({ versions: { id: { ...number, value } } }))
+      ).toBe(true);
+    }
+    expect(
+      Exit.isFailure(decode({ versions: { id: { ...number, unit: " " } } }))
     ).toBe(true);
   });
 });

@@ -1,0 +1,50 @@
+Die Lage zweier Kreise zueinander hängt vom **Abstand ihrer Mittelpunkte** im Vergleich zu den Radien ab. Bringe deshalb zuerst <InlineMath math="L_2" /> durch quadratische Ergänzung in die Normalform.
+
+<BlockMath math="\begin{aligned}
+x^2-8x+y^2-6y+21&=0 \\
+(x-4)^2-16+(y-3)^2-9+21&=0 \\
+(x-4)^2+(y-3)^2&=4
+\end{aligned}" />
+
+Der Kreis <InlineMath math="L_1" /> hat den Mittelpunkt <InlineMath math="O(0,0)" /> und den Radius <InlineMath math="r_1=3" />, der Kreis <InlineMath math="L_2" /> den Mittelpunkt <InlineMath math="P(4,3)" /> und den Radius <InlineMath math="r_2=2" />. Der Abstand der Mittelpunkte ist <InlineMath math="OP=\sqrt{4^2+3^2}=5" />, also genau <InlineMath math="r_1+r_2=3+2" />. Die Kreise **berühren sich von außen** und haben genau einen gemeinsamen Punkt.
+
+<MathVisual
+  title="Zwei Kreise, die sich berühren"
+  description={<>Der Kreis <InlineMath math="L_1" /> hat den Mittelpunkt <InlineMath math="(0,0)" /> und den Radius <InlineMath math="3" />, der Kreis <InlineMath math="L_2" /> den Mittelpunkt <InlineMath math="(4,3)" /> und den Radius <InlineMath math="2" />. Sie berühren sich in <InlineMath math="\left(\frac{12}{5},\frac95\right)" />, und die Gerade <InlineMath math="4x+3y=15" /> berührt beide in diesem Punkt. Der Punkt <InlineMath math="(0,3)" /> liegt auf <InlineMath math="L_1" /> und außerhalb von <InlineMath math="L_2" />.</>}
+  labels={{
+    "first-circle": <InlineMath math="L_1" />,
+    "second-circle": <InlineMath math="L_2" />,
+    tangent: <InlineMath math="4x+3y=15" />,
+    test: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 7 },
+      y: { min: -4, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 2 },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -1.5, y: 7 }, to: { x: 6, y: -3 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: 12 / 5, y: 9 / 5 } },
+      { id: "test-point", kind: "point", appearance: "warning", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "first-circle", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second-circle", objectId: "second", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 4.5, y: -1 }, placement: "right" },
+      { key: "test", objectId: "test-point", at: { x: 0, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+1. Die Aussage, dass sich <InlineMath math="L_1" /> und <InlineMath math="L_2" /> in zwei Punkten schneiden, ist falsch. Zwei Schnittpunkte gibt es nur, wenn der Mittelpunktsabstand kleiner als <InlineMath math="r_1+r_2" /> ist, hier ist er aber genau <InlineMath math="r_1+r_2" />.
+2. Die Aussage über den Berührpunkt <InlineMath math="\left(\frac{12}{5},\frac95\right)" /> ist wahr. Der Berührpunkt liegt auf der Strecke <InlineMath math="OP" /> im Abstand <InlineMath math="r_1=3" /> von <InlineMath math="O" />, also bei <InlineMath math="\frac35(4,3)=\left(\frac{12}{5},\frac95\right)" />. Er erfüllt beide Gleichungen: <InlineMath math="\frac{144}{25}+\frac{81}{25}=9" /> und <InlineMath math="\left(-\frac85\right)^2+\left(-\frac65\right)^2=\frac{100}{25}=4" />.
+3. Die Aussage über die Gerade <InlineMath math="4x+3y=15" /> ist wahr. Der Abstand von <InlineMath math="O" /> zur Geraden ist <InlineMath math="\frac{|0+0-15|}{5}=3=r_1" />, der Abstand von <InlineMath math="P" /> zur Geraden ist <InlineMath math="\frac{|16+9-15|}{5}=2=r_2" />. Beide Abstände sind gleich dem jeweiligen Radius, also berührt die Gerade beide Kreise.
+4. Die Aussage, dass <InlineMath math="(0,3)" /> innerhalb von <InlineMath math="L_2" /> liegt, ist falsch. Der Abstand zu <InlineMath math="P(4,3)" /> beträgt <InlineMath math="4" /> und ist größer als <InlineMath math="r_2=2" />. Auch das Einsetzen in die Gleichung von <InlineMath math="L_2" /> ergibt <InlineMath math="0+9-0-18+21=12>0" />, ein Zeichen für einen Punkt außerhalb des Kreises.
+
+Wahr sind also die Aussagen über den Berührpunkt und über die Gerade <InlineMath math="4x+3y=15" />, falsch sind die Aussagen über zwei Schnittpunkte und über den Punkt <InlineMath math="(0,3)" />.

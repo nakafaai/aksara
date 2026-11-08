@@ -1,35 +1,12 @@
-A point on <InlineMath math="y=x+1" /> can be written <InlineMath math="P=(t,t+1)" />. Compare **squared distances** from the two given points.
+<InlineMath math="\angle AOB" /> is a central angle and <InlineMath math="\angle ACB" /> an inscribed angle. Since <InlineMath math="C" /> lies on the major arc, both **stand on the same minor arc <InlineMath math="AB" />**, so the inscribed angle is half the central angle.
 
-<BlockMath math="\begin{aligned}
-PA^2&=(t+2)^2+(t-3)^2 \\
-&=t^2+4t+4+t^2-6t+9 \\
-&=2t^2-2t+13 \\
-PB^2&=(t-6)^2+(t+1)^2 \\
-&=t^2-12t+36+t^2+2t+1 \\
-&=2t^2-10t+37
-\end{aligned}" />
+<BlockMath math="\angle ACB=\frac12\cdot\angle AOB=\frac12\cdot124^\circ=62^\circ" />
 
-Equate the squared distances and simplify.
+As a check, an inscribed angle on the major arc <InlineMath math="AB" /> measures <InlineMath math="\frac12\,(360^\circ-124^\circ)=118^\circ" />, and <InlineMath math="62^\circ+118^\circ=180^\circ" />, like opposite angles of a cyclic quadrilateral.
 
-<BlockMath math="\begin{aligned}
-2t^2-2t+13&=2t^2-10t+37 \\
-8t&=24 \\
-t&=3
-\end{aligned}" />
+So <InlineMath math="\angle ACB=62^\circ" />.
 
-Thus <InlineMath math="P=(3,4)" />. Its squared distance from the origin is:
-
-<BlockMath math="OP^2=3^2+4^2=25" />
-
-<LineEquation
-  title="An equidistant point"
-  description="The purple segments PA and PB both have length 5. Orange connects P to the origin."
-  cameraPosition={[2,2.5,14]}
-  cameraTarget={[2,2.5,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -2, y: -1, z: 0 }, { x: 5, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: -2, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }, { x: 6, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [-0.3, 0.4, 0] }, { text: "P", at: 1, offset: [0.3, 0.4, 0] }, { text: "B", at: 2, offset: [0.3, -0.4, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#d97706", smooth: false, showPoints: false, labels: [{ text: "O", at: 0, offset: [-0.4, -0.4, 0] }] },
-  ]}
-/>
+- <InlineMath math="28^\circ" /> is <InlineMath math="90^\circ-62^\circ" />, the complement of the angle sought.
+- <InlineMath math="118^\circ" /> is the inscribed angle on the major arc, the angle at a point of the minor arc.
+- <InlineMath math="124^\circ" /> treats the inscribed angle as equal to the central angle.
+- <InlineMath math="248^\circ" /> doubles the central angle instead of halving it.

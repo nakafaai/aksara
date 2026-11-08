@@ -1,0 +1,44 @@
+Die Basen <InlineMath math="9" /> und <InlineMath math="3" /> hängen zusammen, denn <InlineMath math="9=3^2" />. Deshalb kannst du beide Exponentialterme mit einer Größe <InlineMath math="t=3^x" /> schreiben, und <InlineMath math="f" /> wird zu einer **quadratischen Funktion in <InlineMath math="t" />**.
+
+<BlockMath math="\begin{aligned}
+9^x&=(3^2)^x=(3^x)^2=t^2 \\
+2\cdot3^{x+1}&=2\cdot3\cdot3^x=6t \\
+f(x)&=t^2-6t+5=(t-3)^2-4
+\end{aligned}" />
+
+Entscheidend sind **die möglichen Werte von <InlineMath math="t" />**. Für jede reelle Zahl <InlineMath math="x" /> ist <InlineMath math="3^x" /> positiv, und jede positive Zahl wird erreicht. Also durchläuft <InlineMath math="t" /> den Bereich <InlineMath math="t>0" />, nicht alle reellen Zahlen.
+
+Die Form <InlineMath math="(t-3)^2-4" /> zeigt, dass der kleinste Wert <InlineMath math="-4" /> bei <InlineMath math="t=3" /> angenommen wird. Der Wert <InlineMath math="t=3" /> ist erlaubt, denn <InlineMath math="3^x=3" /> gilt für <InlineMath math="x=1" />. Für <InlineMath math="t>3" /> wächst die Funktion mit wachsendem <InlineMath math="t" /> unbeschränkt, also wird jeder Wert ab <InlineMath math="-4" /> erreicht.
+
+<MathVisual
+  title={<>Quadratische Funktion in <InlineMath math="t" /> für <InlineMath math="t>0" /></>}
+  description={<>Die waagerechte Achse zeigt <InlineMath math="t=3^x" />, die senkrechte Achse den Funktionswert <InlineMath math="f" />. Die Kurve <InlineMath math="(t-3)^2-4" /> gilt nur für <InlineMath math="t>0" />. Ihr Scheitel <InlineMath math="(3,-4)" /> gehört zu diesem Teil. Wenn <InlineMath math="t" /> gegen <InlineMath math="0" /> geht, nähert sich <InlineMath math="f" /> dem Wert <InlineMath math="5" />, ohne ihn zu erreichen.</>}
+  labels={{
+    vertex: <InlineMath math="(3,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -6, c: 5 }, domain: { min: 0, max: 7 }, inputAxis: "x" },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
+Zur Kontrolle: <InlineMath math="f(1)=9-2\cdot9+5=-4" /> und <InlineMath math="f(2)=81-2\cdot27+5=32" />, also größer als <InlineMath math="-4" />.
+
+Die Wertemenge von <InlineMath math="f" /> ist also <InlineMath math="[-4,\infty)" />.
+
+- <InlineMath math="(-\infty,-4]" /> dreht das Intervall um. Die Parabel in <InlineMath math="t" /> ist nach oben geöffnet, also ist <InlineMath math="-4" /> der kleinste Wert, nicht der größte.
+- <InlineMath math="(-4,\infty)" /> nimmt an, dass <InlineMath math="-4" /> nie erreicht wird. Der Wert wird bei <InlineMath math="x=1" /> erreicht.
+- <InlineMath math="[-4,5)" /> berücksichtigt nur den Teil <InlineMath math="0<t\le3" />. Für <InlineMath math="t>3" /> steigt die Funktion weiter über <InlineMath math="5" /> hinaus.
+- <InlineMath math="[5,\infty)" /> nimmt an, dass die Funktion vom Wert <InlineMath math="5" /> nahe <InlineMath math="t=0" /> nur steigt. Der Scheitel bei <InlineMath math="t=3" /> liegt aber in <InlineMath math="t>0" />, also fällt die Funktion zuerst bis <InlineMath math="-4" />.

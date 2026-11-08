@@ -3,7 +3,7 @@ export const metadata = {
     description: "Vertausche Zeilen und Spalten einer Matrix und nutze die Eigenschaften der Transponierten in vollständig gelösten Beispielen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Matrix",
 };
 
@@ -53,6 +53,130 @@ Die Transponierte der Matrix <InlineMath math="B" />, also <InlineMath math="B^T
 
 - Die erste Zeile von <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) wird zur ersten Spalte von <InlineMath math="B^T" />.
 - Die zweite Zeile von <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) wird zur zweiten Spalte von <InlineMath math="B^T" />.
+
+Setz jeden Eintrag dorthin, wo er auf dem Papier steht: die Spaltennummer nach rechts und die Zeilennummer nach unten. Die sechs Einträge von <InlineMath math="B" /> füllen zwei Zeilen. Transponieren spiegelt jeden Eintrag an der Hauptdiagonale, der Geraden durch <InlineMath math="b_{11}" /> und <InlineMath math="b_{22}" />. Die <InlineMath math="3" /> aus Zeile 1, Spalte 3 wandert in Zeile 3, Spalte 1. Die <InlineMath math="2" /> und die <InlineMath math="4" /> tauschen die Plätze. Die <InlineMath math="1" /> und die <InlineMath math="5" /> liegen auf der Diagonale und bleiben, wo sie sind.
+
+<MathVisual
+  title={<>Transponieren spiegelt <InlineMath math="B" /> an der Hauptdiagonale</>}
+  description={<>Die Einträge von <InlineMath math="B" /> stehen rechts oberhalb ihrer Position, die verschobenen Einträge von <InlineMath math="B^T" /> links unterhalb. Jede Strecke verbindet die alte Position eines Eintrags mit der neuen.</>}
+  labels={{
+    diagonal: <>Hauptdiagonale</>,
+    b11: <InlineMath math="1" />,
+    b12: <InlineMath math="2" />,
+    b13: <InlineMath math="3" />,
+    b21: <InlineMath math="4" />,
+    b22: <InlineMath math="5" />,
+    b23: <InlineMath math="6" />,
+    t12: <InlineMath math="4" />,
+    t21: <InlineMath math="2" />,
+    t31: <InlineMath math="3" />,
+    t32: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "swap24", kind: "segment", from: { x: 2, y: -1 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "swap3", kind: "segment", from: { x: 3, y: -1 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "swap6", kind: "segment", from: { x: 3, y: -2 }, to: { x: 2, y: -3 }, appearance: "construction" },
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "t31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "t32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 0.5, y: -0.5 }, placement: "above-right" },
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "t12", objectId: "swap24", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
+      { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Auch der ganze Block klappt um. <InlineMath math="B" /> füllt 2 Zeilen und 3 Spalten. Spiegelst du diesen Block an der Hauptdiagonale, wird er 3 Zeilen hoch und 2 Spalten breit. <InlineMath math="B^T" /> hat also das Format <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>Das Format von <InlineMath math="B" /> wechselt von <InlineMath math="2 \times 3" /> zu <InlineMath math="3 \times 2" /></>}
+  description={<>Der Block von <InlineMath math="B" />, 3 Spalten breit und 2 Zeilen hoch, und sein Spiegelbild <InlineMath math="B^T" />, 2 Spalten breit und 3 Zeilen hoch.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Manche Matrizen ändern sich beim Transponieren überhaupt nicht. In <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" /> hat jeder Eintrag einen gleichen Partner jenseits der Hauptdiagonale: die beiden <InlineMath math="2" />, die beiden <InlineMath math="3" /> und die beiden <InlineMath math="5" />. Das Spiegeln tauscht gleiche Werte, also <InlineMath math="S^T = S" />, und <InlineMath math="S" /> ist symmetrisch.
+
+<MathVisual
+  title={<>Eine symmetrische Matrix ist ihre eigene Transponierte</>}
+  description={<>Die Einträge von <InlineMath math="S" /> nach Spalte und Zeile angeordnet, an der Hauptdiagonale auf gleiche Werte gespiegelt.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ### Spaltenmatrix zur Zeilenmatrix
 
 Wenn <InlineMath math="C" /> eine Spaltenmatrix ist:
