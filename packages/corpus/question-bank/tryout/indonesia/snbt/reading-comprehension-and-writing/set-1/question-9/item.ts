@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
     contentDomain: "writing",
-    topic: "sentence-core",
+    topic: "coherence",
   },
   stimulus: "rooftop-garden",
   versions: {
@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Gelas-gelas itu diletakkan pada pipa paralon.",
+          label: "sesudah kalimat (2)",
         },
         {
           correct: true,
-          label: "Gelas-gelas itu diletakkan.",
+          label: "sesudah kalimat (3)",
         },
         {
           correct: false,
-          label: "Pipa paralon dialiri larutan nutrisi.",
+          label: "sesudah kalimat (5)",
         },
         {
           correct: false,
-          label: "Gelas-gelas dialiri larutan.",
+          label: "sesudah kalimat (6)",
         },
         {
           correct: false,
-          label: "Larutan nutrisi diletakkan terus-menerus.",
+          label: "sesudah kalimat (8)",
         },
       ],
     },

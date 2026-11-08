@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "kalimat (7) dan (8)",
+          label: "kalimat (2) dan (6)",
         },
       ],
     },

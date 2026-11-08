@@ -25,7 +25,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Nasabah yang menyetor sampah dengan berat yang sama dapat memperoleh nilai tabungan yang berbeda.",
+          label: "Nasabah yang menyetor 1 kilogram botol plastik bening dan nasabah yang menyetor 1 kilogram kardus memperoleh nilai tabungan yang berbeda.",
         },
         {
           correct: false,

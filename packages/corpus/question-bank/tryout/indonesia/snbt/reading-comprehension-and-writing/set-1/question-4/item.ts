@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "_karena_ diganti _sehingga_",
+          label: "_ialah_ diganti _adalah_",
         },
         {
           correct: false,
-          label: "_dapat_ diganti _harus_",
+          label: "_didengar_ diganti _didengarkan_",
         },
         {
           correct: false,
-          label: "_menentukan_ diganti _menentukannya_",
+          label: "_kabar_ diganti _khabar_",
         },
         {
           correct: true,
-          label: "_pada_ diganti _dengan_",
+          label: "_jam_ diganti _pukul_",
         },
         {
           correct: false,
-          label: "_lebih_ diganti _paling_",
+          label: "_setiap_ diganti _tiap-tiap_",
         },
       ],
     },

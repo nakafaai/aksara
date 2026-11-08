@@ -26,7 +26,7 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Seluruh uang hasil penjualan sampah dibagikan kepada nasabah.",
+          label: "Seluruh uang hasil penjualan sampah dipakai untuk membeli tempat sampah terpilah.",
         },
       ],
     },
