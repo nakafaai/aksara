@@ -151,7 +151,7 @@ Jede normalverteilte Größe lässt sich aus der Standardnormalverteilung als <I
 
 <BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
 
-Dieselbe Beziehung erklärt den z-Wert <InlineMath math="z = \frac{x - \mu}{\sigma}" />. Er misst den Abstand von der Mitte in Standardabweichungen, und der mittlere vorzeichenbehaftete Abstand ist null. Deshalb genügt eine Tabelle für <InlineMath math="Z" />, um Wahrscheinlichkeiten jeder [Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/normalverteilung) zu bestimmen.
+Dieselbe Beziehung erklärt den z-Wert <InlineMath math="z = \frac{x - \mu}{\sigma}" />, den Abstand von der Mitte in Standardabweichungen, dessen Mittelwert null ist. Weil <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> standardnormalverteilt ist, gilt <InlineMath math="P(X < x) = \Phi\left(\frac{x - \mu}{\sigma}\right)" />, also genügt eine Tabelle für <InlineMath math="Z" /> für jede [Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/normalverteilung).
 
 ## Linearität des Erwartungswerts
 
@@ -162,7 +162,7 @@ Zwei Regeln lösen die meisten Aufgaben. Für feste Zahlen <InlineMath math="a" 
   <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-**Beispiel 1**. Die Mittagstemperatur in Jakarta im Juni ist normalverteilt mit <InlineMath math="\mu = 28^\circ\text{C}" /> und <InlineMath math="\sigma = 3^\circ\text{C}" />. Die Umrechnung in Fahrenheit lautet <InlineMath math="F = 1{,}8C + 32" />, also die Form <InlineMath math="aC + b" /> mit <InlineMath math="a = 1{,}8" /> und <InlineMath math="b = 32" />:
+**Beispiel 1**. Die mittlere Tagestemperatur in Jakarta im Juni ist normalverteilt mit <InlineMath math="\mu = 28^\circ\text{C}" /> und <InlineMath math="\sigma = 3^\circ\text{C}" />. Die Umrechnung in Fahrenheit lautet <InlineMath math="F = 1{,}8C + 32" />, also die Form <InlineMath math="aC + b" /> mit <InlineMath math="a = 1{,}8" /> und <InlineMath math="b = 32" />:
 
 <BlockMath math="E(F) = 1{,}8 \cdot 28 + 32 = 82{,}4^\circ\text{F}" />
 
@@ -172,7 +172,7 @@ Probe mit einem symmetrischen Temperaturpaar. Die Temperaturen <InlineMath math=
 
 <BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{.}000 = 20{.}000\text{ g}" />
 
-Probe durch Zurückteilen: <InlineMath math="\frac{20{.}000}{20} = 1{.}000\text{ g}" /> pro Beutel. Die Standardabweichung von <InlineMath math="15\text{ g}" /> spielt keine Rolle, weil sie nur die Streuung des Gesamtgewichts beeinflusst, nicht seine Mitte.
+Probe mit zehn Beutelpaaren: Jedes Paar hat den Erwartungswert <InlineMath math="1{.}000 + 1{.}000 = 2{.}000\text{ g}" />, und <InlineMath math="10 \cdot 2{.}000 = 20{.}000\text{ g}" />. Die Standardabweichung von <InlineMath math="15\text{ g}" /> spielt keine Rolle, weil sie nur die Streuung des Gesamtgewichts beeinflusst, nicht seine Mitte.
 
 ## Die Mitte aus gegebenen Wahrscheinlichkeiten finden
 
@@ -182,11 +182,11 @@ Manchmal nennt eine Aufgabe <InlineMath math="\mu" /> nicht direkt, sondern gibt
 
 <BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-Probe: <InlineMath math="40 = 50 - 10" /> und <InlineMath math="60 = 50 + 10" />. Gleiche Abstände zur Mitte ergeben gleiche Randflächen, unabhängig vom Wert von <InlineMath math="\sigma" />.
+Probe mit einem Wert der Standardabweichung, etwa <InlineMath math="\sigma = 10" />: <InlineMath math="P(X < 40) = P(Z < -1) \approx 0{,}1587" /> und <InlineMath math="P(X > 60) = P(Z > 1) \approx 0{,}1587" />. Beide Ränder sind gleich groß, und das gilt für jedes <InlineMath math="\sigma" />, weil <InlineMath math="40" /> und <InlineMath math="60" /> immer gleich weit von <InlineMath math="50" /> entfernt liegen.
 
 **Beispiel 4**. Die Hälfte der Fahrten eines Busses dauert weniger als <InlineMath math="42" /> Minuten, und die Fahrzeit ist normalverteilt. Diese Aussage bedeutet <InlineMath math="P(X < 42) = 0{,}5" />, also sind <InlineMath math="42" /> Minuten der Median. Bei einer Normalverteilung ist der Median gleich dem Mittelwert, also gilt <InlineMath math="E(X) = 42" /> Minuten.
 
-Probe: Eine Normalverteilungskurve teilt ihre Fläche bei <InlineMath math="x = \mu" /> in zwei gleiche Hälften, also gilt <InlineMath math="P(X < \mu) = 0{,}5" /> für jede Normalverteilung.
+Probe mit der Symmetrie, etwa für <InlineMath math="\sigma = 6" /> Minuten: <InlineMath math="P(X < 36) = P(X > 48) \approx 0{,}1587" />, also sind die Flächen links und rechts von <InlineMath math="42" /> gleich groß.
 
 ## Häufige Fehler
 
@@ -196,9 +196,9 @@ Probe: Eine Normalverteilungskurve teilt ihre Fläche bei <InlineMath math="x = 
 | Glauben, <InlineMath math="X" /> sei genau <InlineMath math="\mu" /> | Bei einer stetigen Größe gilt <InlineMath math="P(X = \mu) = 0" /> | Der Erwartungswert ist ein langfristiger Durchschnitt, kein einzelnes Ergebnis |
 | <InlineMath math="E(X^2) = \mu^2" /> schreiben | Quadrieren ist nicht linear, also <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | Für <InlineMath math="Z \sim N(0, 1)" /> gilt <InlineMath math="E(Z^2) = 1" />, nicht <InlineMath math="0" /> |
 | <InlineMath math="b" /> in <InlineMath math="E(aX + b)" /> vergessen | Die Verschiebung <InlineMath math="b" /> bewegt die Mitte der Kurve | Ein symmetrisches Wertepaar umrechnen und seine Mitte prüfen |
-| Für eine Summe Unabhängigkeit verlangen | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> gilt auch ohne sie | Unabhängigkeit spielt erst bei der Varianz einer Summe eine Rolle |
+| Für eine Summe Unabhängigkeit verlangen | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> gilt auch ohne sie | Die Varianz einer Summe ist nur dann die Summe der Varianzen, wenn <InlineMath math="X" /> und <InlineMath math="Y" /> unkorreliert sind, etwa unabhängig |
 
-Eine Frage fängt die meisten dieser Fehler ab: **liegt deine Antwort noch auf der Symmetrieachse der Kurve**? Eine Breite, das Quadrat der Mitte oder eine Mitte ohne Verschiebung fällt bei dieser Probe sofort durch.
+Bei einer Frage nach <InlineMath math="E(X)" /> oder <InlineMath math="E(aX + b)" /> fängt eine Frage den ersten und vierten Fehler ab: **liegt deine Antwort auf der Symmetrieachse der gefragten Kurve**? Für <InlineMath math="E(X^2)" /> prüfst du mit der Varianz, denn <InlineMath math="E(X^2) - [E(X)]^2" /> muss <InlineMath math="\sigma^2" /> ergeben.
 
 ## Übungen
 

@@ -15,7 +15,7 @@ Jika <InlineMath math="X" /> menghitung banyak sukses dalam <InlineMath math="n"
 
 Seorang pemain memasukkan setiap lemparan bebas dengan peluang <InlineMath math="p = 0{,}8" />, lalu melempar <InlineMath math="n = 10" /> kali. Nilai harapannya <InlineMath math="E(X) = 10 \cdot 0{,}8 = 8" />. Artinya, **rata-rata banyak masukan dari banyak set sepuluh lemparan mendekati <InlineMath math="8" />**. Dalam satu set, hasilnya bisa <InlineMath math="6" />, <InlineMath math="9" />, atau <InlineMath math="10" />.
 
-Seberapa jauh hasil satu set biasanya menyimpang dari <InlineMath math="8" />? Ukurannya varians <InlineMath math="np(1 - p) = 10 \cdot 0{,}8 \cdot 0{,}2 = 1{,}6" />, jadi simpangan bakunya <InlineMath math="\sqrt{1{,}6} \approx 1{,}26" /> masukan. Nilai harapan juga boleh berupa pecahan, walaupun <InlineMath math="X" /> sendiri hanya bernilai bulat.
+Seberapa jauh hasil satu set biasanya menyimpang dari <InlineMath math="8" />? Ukurannya simpangan baku, akar dari varians <InlineMath math="np(1 - p) = 10 \cdot 0{,}8 \cdot 0{,}2 = 1{,}6" />, yaitu <InlineMath math="\sqrt{1{,}6} \approx 1{,}26" /> masukan. Nilai harapan juga boleh berupa pecahan, walaupun <InlineMath math="X" /> sendiri hanya bernilai bulat.
 
 ## Syarat Percobaan Binomial
 
@@ -61,7 +61,7 @@ Banyak sukses adalah jumlah semua penanda, karena setiap sukses menyumbang tepat
   <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ kali}} = np" />
 </MathContainer>
 
-Periksa dengan tiga lemparan koin: tiga penanda masing-masing bernilai harapan <InlineMath math="\frac{1}{2}" />, dan jumlahnya <InlineMath math="1{,}5" />, sama dengan hasil tabel. Langkah penjumlahan tidak memakai syarat saling bebas. Syarat itu diperlukan agar rumus peluang binomial berlaku, sedangkan rumus <InlineMath math="np" /> tetap benar selama setiap percobaan punya peluang sukses <InlineMath math="p" />. Untuk besaran kontinu, jumlah seperti ini berubah menjadi integral, misalnya pada [nilai harapan distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/nilai-harapan-distribusi-normal).
+Periksa dengan tiga lemparan koin: tiga penanda masing-masing bernilai harapan <InlineMath math="\frac{1}{2}" />, dan jumlahnya <InlineMath math="1{,}5" />, sama dengan jumlah <InlineMath math="k \cdot P(X = k)" />. Langkah penjumlahan tidak memakai syarat saling bebas. Syarat itu diperlukan agar rumus peluang binomial berlaku, sedangkan rumus <InlineMath math="np" /> tetap benar selama setiap percobaan punya peluang sukses <InlineMath math="p" />. Untuk besaran kontinu, jumlah seperti ini berubah menjadi integral, misalnya pada [nilai harapan distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/nilai-harapan-distribusi-normal).
 
 ## Contoh Tujuh Lemparan Dadu
 
@@ -71,7 +71,7 @@ Sebuah dadu adil dilempar <InlineMath math="7" /> kali, dan <InlineMath math="X"
 
 Nilai <InlineMath math="1{,}17" /> tidak mungkin muncul dalam satu set tujuh lemparan, karena banyak angka lima selalu bulat dari <InlineMath math="0" /> sampai <InlineMath math="7" />. Jika kamu mengulang tujuh lemparan itu ratusan kali, **rata-rata banyak angka lima per set mendekati <InlineMath math="1{,}17" />**.
 
-Nilai harapan juga berbeda dari hasil yang paling mungkin. Dari rumus binomial, <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" />, dan <InlineMath math="P(X = 2) \approx 0{,}234" />. Hasil yang paling mungkin adalah satu angka lima, sedangkan nilai harapannya terletak di antara <InlineMath math="1" /> dan <InlineMath math="2" />. Periksa dengan penanda: setiap lemparan menyumbang <InlineMath math="\frac{1}{6}" />, dan tujuh lemparan menyumbang <InlineMath math="\frac{7}{6}" />.
+Nilai harapan juga berbeda dari hasil yang paling mungkin. Dari rumus binomial, <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" />, dan <InlineMath math="P(X = 2) \approx 0{,}234" />. Hasil yang paling mungkin adalah satu angka lima, sedangkan nilai harapannya terletak di antara <InlineMath math="1" /> dan <InlineMath math="2" />. Periksa dengan definisi nilai harapan: <InlineMath math="1(0{,}3907) + 2(0{,}2344) + 3(0{,}0781) + 4(0{,}0156) + 5(0{,}0019) + 6(0{,}0001) \approx 1{,}166" />, sama dengan <InlineMath math="\frac{7}{6} \approx 1{,}167" /> sampai pembulatan.
 
 ## Contoh Menebak Soal Pilihan Ganda
 
@@ -93,7 +93,7 @@ Periksa per soal: satu tebakan bernilai harapan <InlineMath math="4 \cdot \frac{
 | Memakai <InlineMath math="p" /> padahal yang dihitung kegagalan | Banyak gagal bernilai harapan <InlineMath math="n(1 - p)" /> | Nilai harapan sukses dan gagal harus berjumlah <InlineMath math="n" /> |
 | Memakai <InlineMath math="np" /> saat peluang tiap percobaan berbeda | Penanda ke-<InlineMath math="k" /> bernilai harapan <InlineMath math="p_k" /> | Jumlahkan <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
 
-Sebelum memakai <InlineMath math="np" />, **sebutkan dulu apa yang dihitung sebagai sukses** dan berapa peluangnya. Langkah itu mencegah dua kesalahan terakhir, yang paling sering muncul pada soal cerita.
+Sebelum memakai <InlineMath math="np" />, **sebutkan dulu apa yang dihitung sebagai sukses** dan berapa peluangnya. Langkah itu mencegah dua kesalahan terakhir.
 
 ## Latihan Soal
 
@@ -103,7 +103,7 @@ Soal pertama dan kedua memakai rumus langsung, soal ketiga membalik rumusnya, da
 
 2. Seorang siswa menebak <InlineMath math="30" /> soal yang masing-masing punya <InlineMath math="4" /> pilihan. Tentukan nilai harapan banyak jawaban benar dan banyak jawaban salah.
 
-3. Sebuah mesin diharapkan menghasilkan <InlineMath math="6" /> barang cacat dari <InlineMath math="150" /> barang, dan setiap barang cacat dengan peluang yang sama. Tentukan peluang itu, lalu nilai harapan banyak barang cacat dari <InlineMath math="400" /> barang.
+3. Sebuah mesin diharapkan menghasilkan <InlineMath math="6" /> barang cacat dari <InlineMath math="150" /> barang, dan setiap barang memiliki peluang cacat yang sama. Tentukan peluang itu, lalu nilai harapan banyak barang cacat dari <InlineMath math="400" /> barang.
 
 4. Sebuah tes punya <InlineMath math="25" /> soal dengan <InlineMath math="5" /> pilihan. Jawaban benar mendapat <InlineMath math="4" /> poin dan jawaban salah dikurangi <InlineMath math="0{,}5" /> poin. Tentukan nilai harapan skor jika semua soal ditebak.
 
@@ -122,7 +122,7 @@ Periksa: gambar dan angka sama mungkin, jadi **nilai harapan keduanya sama**, ma
   <BlockMath math="E(\text{salah}) = 30 \cdot \frac{3}{4} = 22{,}5" />
 </MathContainer>
 
-Periksa: <InlineMath math="7{,}5 + 22{,}5 = 30" />, jadi **nilai harapan benar dan salah berjumlah banyak soal**.
+Periksa: <InlineMath math="7{,}5 + 22{,}5 = 30" />, jadi **jumlah nilai harapan benar dan salah sama dengan banyaknya soal**.
 
 **Soal 3**. Dari <InlineMath math="np = 6" /> dan <InlineMath math="n = 150" />, peluang cacatnya <InlineMath math="p = \frac{6}{150} = 0{,}04" />. Untuk <InlineMath math="400" /> barang:
 

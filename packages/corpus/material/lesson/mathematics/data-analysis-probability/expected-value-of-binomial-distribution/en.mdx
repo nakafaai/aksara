@@ -15,7 +15,7 @@ If <InlineMath math="X" /> counts the successes in <InlineMath math="n" /> indep
 
 A player makes each free throw with probability <InlineMath math="p = 0.8" /> and shoots <InlineMath math="n = 10" /> times. The expected value is <InlineMath math="E(X) = 10 \cdot 0.8 = 8" />. This means that **the average number of baskets over many sets of ten shots approaches <InlineMath math="8" />**. In a single set, the result can be <InlineMath math="6" />, <InlineMath math="9" />, or <InlineMath math="10" />.
 
-How far does one set usually stray from <InlineMath math="8" />? The measure is the variance <InlineMath math="np(1 - p) = 10 \cdot 0.8 \cdot 0.2 = 1.6" />, so the standard deviation is <InlineMath math="\sqrt{1.6} \approx 1.26" /> baskets. An expected value can also be a fraction, even though <InlineMath math="X" /> itself only takes whole numbers.
+How far does one set usually stray from <InlineMath math="8" />? The measure is the standard deviation, the square root of the variance <InlineMath math="np(1 - p) = 10 \cdot 0.8 \cdot 0.2 = 1.6" />, which is <InlineMath math="\sqrt{1.6} \approx 1.26" /> baskets. An expected value can also be a fraction, even though <InlineMath math="X" /> itself only takes whole numbers.
 
 ## Conditions for a Binomial Experiment
 
@@ -61,7 +61,7 @@ The number of successes is the sum of all indicators, because each success contr
   <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ times}} = np" />
 </MathContainer>
 
-Check with three coin tosses: three indicators each have expected value <InlineMath math="\frac{1}{2}" />, and their sum is <InlineMath math="1.5" />, the same as the table. The step that adds expected values does not use independence. Independence is needed for the binomial probability formula, while the rule <InlineMath math="np" /> stays true as long as every trial has success probability <InlineMath math="p" />. For a continuous variable, a sum like this becomes an integral, as in the [expected value of a normal distribution](/en/subjects/mathematics/data-analysis-probability/expected-value-of-normal-distribution).
+Check with three coin tosses: three indicators each have expected value <InlineMath math="\frac{1}{2}" />, and their sum is <InlineMath math="1.5" />, the same as the sum of <InlineMath math="k \cdot P(X = k)" />. The step that adds expected values does not use independence. Independence is needed for the binomial probability formula, while the rule <InlineMath math="np" /> stays true as long as every trial has success probability <InlineMath math="p" />. For a continuous variable, a sum like this becomes an integral, as in the [expected value of a normal distribution](/en/subjects/mathematics/data-analysis-probability/expected-value-of-normal-distribution).
 
 ## Example with Seven Dice Rolls
 
@@ -71,7 +71,7 @@ A fair die is rolled <InlineMath math="7" /> times, and <InlineMath math="X" /> 
 
 The value <InlineMath math="1.17" /> cannot occur in one set of seven rolls, because the number of fives is always a whole number from <InlineMath math="0" /> to <InlineMath math="7" />. If you repeat the seven rolls hundreds of times, **the average number of fives per set approaches <InlineMath math="1.17" />**.
 
-The expected value also differs from the most likely result. The binomial formula gives <InlineMath math="P(X = 0) \approx 0.279" />, <InlineMath math="P(X = 1) \approx 0.391" />, and <InlineMath math="P(X = 2) \approx 0.234" />. The most likely result is one five, while the expected value lies between <InlineMath math="1" /> and <InlineMath math="2" />. Check with indicators: each roll contributes <InlineMath math="\frac{1}{6}" />, and seven rolls contribute <InlineMath math="\frac{7}{6}" />.
+The expected value also differs from the most likely result. The binomial formula gives <InlineMath math="P(X = 0) \approx 0.279" />, <InlineMath math="P(X = 1) \approx 0.391" />, and <InlineMath math="P(X = 2) \approx 0.234" />. The most likely result is one five, while the expected value lies between <InlineMath math="1" /> and <InlineMath math="2" />. Check with the definition of expected value: <InlineMath math="1(0.3907) + 2(0.2344) + 3(0.0781) + 4(0.0156) + 5(0.0019) + 6(0.0001) \approx 1.166" />, which matches <InlineMath math="\frac{7}{6} \approx 1.167" /> up to rounding.
 
 ## Example with Guessing on a Multiple Choice Test
 
@@ -93,7 +93,7 @@ Check per question: one guess has an expected value of <InlineMath math="4 \cdot
 | Using <InlineMath math="p" /> when failures are counted | The number of failures has expected value <InlineMath math="n(1 - p)" /> | Expected successes and failures must add up to <InlineMath math="n" /> |
 | Using <InlineMath math="np" /> when each trial has its own probability | Indicator <InlineMath math="k" /> has expected value <InlineMath math="p_k" /> | Add <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
 
-Before you use <InlineMath math="np" />, **say what counts as a success** and what its probability is. That step prevents the last two mistakes, which come up most often in word problems.
+Before you use <InlineMath math="np" />, **say what counts as a success** and what its probability is. That step prevents the last two mistakes.
 
 ## Exercises
 

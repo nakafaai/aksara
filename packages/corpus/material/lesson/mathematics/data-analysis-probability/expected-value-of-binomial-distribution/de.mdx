@@ -15,7 +15,7 @@ Zählt <InlineMath math="X" /> die Treffer in <InlineMath math="n" /> unabhängi
 
 Eine Spielerin verwandelt jeden Freiwurf mit der Wahrscheinlichkeit <InlineMath math="p = 0{,}8" /> und wirft <InlineMath math="n = 10" /> Mal. Der Erwartungswert ist <InlineMath math="E(X) = 10 \cdot 0{,}8 = 8" />. Das bedeutet: **Der Durchschnitt der Treffer über viele Serien von zehn Würfen nähert sich <InlineMath math="8" />**. In einer einzelnen Serie können es <InlineMath math="6" />, <InlineMath math="9" /> oder <InlineMath math="10" /> sein.
 
-Wie weit weicht eine Serie meist von <InlineMath math="8" /> ab? Das Maß ist die Varianz <InlineMath math="np(1 - p) = 10 \cdot 0{,}8 \cdot 0{,}2 = 1{,}6" />, die Standardabweichung beträgt also <InlineMath math="\sqrt{1{,}6} \approx 1{,}26" /> Treffer. Ein Erwartungswert darf auch ein Bruch sein, obwohl <InlineMath math="X" /> selbst nur ganze Zahlen annimmt.
+Wie weit weicht eine Serie meist von <InlineMath math="8" /> ab? Das Maß ist die Standardabweichung, die Wurzel aus der Varianz <InlineMath math="np(1 - p) = 10 \cdot 0{,}8 \cdot 0{,}2 = 1{,}6" />, also <InlineMath math="\sqrt{1{,}6} \approx 1{,}26" /> Treffer. Ein Erwartungswert darf auch ein Bruch sein, obwohl <InlineMath math="X" /> selbst nur ganze Zahlen annimmt.
 
 ## Bedingungen für eine Binomialverteilung
 
@@ -61,9 +61,9 @@ Die Trefferzahl ist die Summe aller Indikatoren, weil jeder Treffer genau eins b
   <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ Mal}} = np" />
 </MathContainer>
 
-Probe mit drei Münzwürfen: Drei Indikatoren haben je den Erwartungswert <InlineMath math="\frac{1}{2}" />, ihre Summe ist <InlineMath math="1{,}5" />, wie in der Tabelle. Der Schritt, der Erwartungswerte addiert, braucht keine Unabhängigkeit. Die Unabhängigkeit ist für die Formel der Binomialwahrscheinlichkeiten nötig, während die Regel <InlineMath math="np" /> gilt, solange jeder Versuch die Trefferwahrscheinlichkeit <InlineMath math="p" /> hat. Bei einer stetigen Größe wird aus einer solchen Summe ein Integral, wie beim [Erwartungswert der Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/erwartungswert-der-normalverteilung).
+Probe mit drei Münzwürfen: Drei Indikatoren haben je den Erwartungswert <InlineMath math="\frac{1}{2}" />, ihre Summe ist <InlineMath math="1{,}5" />, genau wie die Summe von <InlineMath math="k \cdot P(X = k)" />. Der Schritt, der Erwartungswerte addiert, braucht keine Unabhängigkeit. Die Unabhängigkeit ist für die Formel der Binomialwahrscheinlichkeiten nötig, während die Regel <InlineMath math="np" /> gilt, solange jeder Versuch die Trefferwahrscheinlichkeit <InlineMath math="p" /> hat. Bei einer stetigen Größe wird aus einer solchen Summe ein Integral, wie beim [Erwartungswert der Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/erwartungswert-der-normalverteilung).
 
-## Beispiel mit sieben Würfelwürfen
+## Beispiel mit sieben Würfen eines Würfels
 
 Ein fairer Würfel wird <InlineMath math="7" /> Mal geworfen, und <InlineMath math="X" /> zählt, wie oft eine <InlineMath math="5" /> fällt. Jeder Wurf hat zwei Ergebnisse, die Anzahl der Würfe steht fest, die Würfe sind unabhängig, und die Trefferwahrscheinlichkeit ist immer <InlineMath math="p = \frac{1}{6}" />, also gilt <InlineMath math="X \sim B\left(7, \frac{1}{6}\right)" />:
 
@@ -71,7 +71,7 @@ Ein fairer Würfel wird <InlineMath math="7" /> Mal geworfen, und <InlineMath ma
 
 Der Wert <InlineMath math="1{,}17" /> kann in einer Serie von sieben Würfen nicht vorkommen, weil die Anzahl der Fünfen immer eine ganze Zahl von <InlineMath math="0" /> bis <InlineMath math="7" /> ist. Wiederholst du die sieben Würfe hunderte Male, **nähert sich die durchschnittliche Anzahl der Fünfen pro Serie <InlineMath math="1{,}17" />**.
 
-Der Erwartungswert unterscheidet sich auch vom wahrscheinlichsten Ergebnis. Die Binomialformel liefert <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" /> und <InlineMath math="P(X = 2) \approx 0{,}234" />. Am wahrscheinlichsten ist eine Fünf, während der Erwartungswert zwischen <InlineMath math="1" /> und <InlineMath math="2" /> liegt. Probe mit Indikatoren: Jeder Wurf trägt <InlineMath math="\frac{1}{6}" /> bei, sieben Würfe tragen <InlineMath math="\frac{7}{6}" /> bei.
+Der Erwartungswert unterscheidet sich auch vom wahrscheinlichsten Ergebnis. Die Binomialformel liefert <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" /> und <InlineMath math="P(X = 2) \approx 0{,}234" />. Am wahrscheinlichsten ist eine Fünf, während der Erwartungswert zwischen <InlineMath math="1" /> und <InlineMath math="2" /> liegt. Probe mit der Definition des Erwartungswerts: <InlineMath math="1(0{,}3907) + 2(0{,}2344) + 3(0{,}0781) + 4(0{,}0156) + 5(0{,}0019) + 6(0{,}0001) \approx 1{,}166" />, also bis auf Rundung <InlineMath math="\frac{7}{6} \approx 1{,}167" />.
 
 ## Beispiel mit Raten bei einem Auswahltest
 
@@ -93,13 +93,13 @@ Probe pro Frage: Ein geratener Versuch hat den Erwartungswert <InlineMath math="
 | <InlineMath math="p" /> nutzen, obwohl Nieten gezählt werden | Die Anzahl der Nieten hat den Erwartungswert <InlineMath math="n(1 - p)" /> | Erwartete Treffer und Nieten ergeben zusammen <InlineMath math="n" /> |
 | <InlineMath math="np" /> nutzen, wenn jeder Versuch eine eigene Wahrscheinlichkeit hat | Indikator <InlineMath math="k" /> hat den Erwartungswert <InlineMath math="p_k" /> | Addiere <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
 
-Bevor du <InlineMath math="np" /> nutzt, **legst du fest, was als Treffer zählt** und wie groß seine Wahrscheinlichkeit ist. Dieser Schritt verhindert die letzten beiden Fehler, die in Textaufgaben am häufigsten auftreten.
+Bevor du <InlineMath math="np" /> nutzt, **legst du fest, was als Treffer zählt** und wie groß seine Wahrscheinlichkeit ist. Dieser Schritt verhindert die letzten beiden Fehler.
 
 ## Übungen
 
 Die ersten beiden Aufgaben nutzen die Formel direkt, die dritte kehrt sie um, und die vierte verbindet den Erwartungswert mit einer Punkteregel. **Bestimme zuerst <InlineMath math="n" /> und <InlineMath math="p" />** und prüfe deine Antwort, bevor du die Lösung liest.
 
-1. Eine faire Münze wird <InlineMath math="40" /> Mal geworfen. Bestimme den Erwartungswert für die Anzahl von Kopf.
+1. Eine faire Münze wird <InlineMath math="40" /> Mal geworfen. Bestimme den Erwartungswert dafür, wie oft Kopf fällt.
 
 2. Eine Schülerin rät <InlineMath math="30" /> Fragen mit je <InlineMath math="4" /> Antwortmöglichkeiten. Bestimme den Erwartungswert der richtigen und der falschen Antworten.
 

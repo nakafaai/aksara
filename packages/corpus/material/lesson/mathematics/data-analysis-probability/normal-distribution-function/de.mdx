@@ -11,7 +11,7 @@ export const metadata = {
 
 Die Normalverteilung ist ein Wahrscheinlichkeitsmodell für eine stetige Größe, deren Werte sich **um einen mittleren Wert sammeln und nach beiden Seiten symmetrisch seltener werden**. Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" /> und Standardabweichung <InlineMath math="\sigma > 0" />, geschrieben <InlineMath math="X \sim N(\mu, \sigma^2)" />, dann ist ihre Kurve glockenförmig und symmetrisch zur Geraden <InlineMath math="x = \mu" />. Die Wahrscheinlichkeit, dass <InlineMath math="X" /> in ein Intervall fällt, ist die Fläche unter der Kurve über diesem Intervall, und die Gesamtfläche beträgt <InlineMath math="1" />.
 
-In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" /> ihr Maximum in der Mitte. Zwei senkrechte Strecken markieren die Wendepunkte bei <InlineMath math="\mu - \sigma" /> und <InlineMath math="\mu + \sigma" />, wo die Kurve von rechtsgekrümmt zu linksgekrümmt wechselt.
+In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" /> ihr Maximum in der Mitte. Zwei senkrechte Strecken markieren die Wendepunkte bei <InlineMath math="\mu - \sigma" /> und <InlineMath math="\mu + \sigma" />, an denen die Krümmung wechselt: Zwischen den beiden Punkten ist die Kurve rechtsgekrümmt, außerhalb linksgekrümmt.
 
 <LineEquation
   title="Kurve der Standardnormalverteilung"
@@ -53,7 +53,7 @@ In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <Inlin
   ]}
 />
 
-Mittelwert, Median und Modus fallen bei <InlineMath math="\mu" /> zusammen, weil die Kurve symmetrisch ist und nur ein Maximum hat. Die Kurve berührt die <InlineMath math="x" />-Achse nie: Ihre Dichte ist für jedes <InlineMath math="x" /> positiv und nähert sich weit weg von der Mitte der Null. Abraham de Moivre leitete diese Kurve im Jahr <InlineMath math="1733" /> als Näherung der [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/binomialverteilung) für eine große Zahl von Versuchen her.
+Mittelwert, Median und Modus fallen bei <InlineMath math="\mu" /> zusammen, weil die Kurve symmetrisch ist und nur ein Maximum hat. Die Kurve berührt die <InlineMath math="x" />-Achse nie: Ihre Dichte ist für jedes <InlineMath math="x" /> positiv und fällt weit von der Mitte entfernt gegen null. Abraham de Moivre leitete diese Kurve im Jahr <InlineMath math="1733" /> als Näherung der [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/binomialverteilung) mit <InlineMath math="p = \frac{1}{2}" /> für eine große Zahl von Versuchen her, und Pierre-Simon Laplace erweiterte sie später auf andere Trefferwahrscheinlichkeiten.
 
 ## Die Formel der Dichtefunktion
 
@@ -115,7 +115,7 @@ Die Standardabweichung <InlineMath math="\sigma" /> spielt dieselbe Rolle wie di
 
 ## Die Fläche um die Mitte der Kurve
 
-Jede Normalverteilung teilt ihre Fläche gleich auf, wenn Abstände in Standardabweichungen gemessen werden. Diese Anteile heißen **die Regel von <InlineMath math="68" />, <InlineMath math="95" /> und <InlineMath math="99{,}7" /> Prozent**:
+Jede Normalverteilung teilt ihre Fläche gleich auf, wenn Abstände in Standardabweichungen gemessen werden. Diese Anteile sind als **Regel von <InlineMath math="68" />, <InlineMath math="95" /> und <InlineMath math="99{,}7" /> Prozent** bekannt:
 
 | Intervall | Fläche unter der Kurve |
 | --- | --- |
@@ -133,14 +133,14 @@ Der z-Wert macht aus einem Wert <InlineMath math="x" /> seinen Abstand vom Mitte
 
 Ist <InlineMath math="X \sim N(\mu, \sigma^2)" />, dann ist <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> **standardnormalverteilt mit <InlineMath math="N(0, 1)" />**. Deshalb genügt eine einzige Tabelle der Verteilungsfunktion <InlineMath math="\Phi(z) = P(Z < z)" /> für jede Normalverteilung. Tabellen enthalten meist nur positive <InlineMath math="z" />, und die Symmetrie der Kurve liefert den Rest: <InlineMath math="\Phi(-z) = 1 - \Phi(z)" />.
 
-Mit z-Werten vergleichst du auch Werte aus verschiedenen Gruppen. Eine Mathematiknote von <InlineMath math="80" /> Punkten stammt aus einer Verteilung mit Mittelwert <InlineMath math="70" /> und Standardabweichung <InlineMath math="5" />, eine Physiknote von <InlineMath math="90" /> Punkten aus einer Verteilung mit Mittelwert <InlineMath math="80" /> und Standardabweichung <InlineMath math="10" />.
+Mit z-Werten vergleichst du auch Werte aus verschiedenen Gruppen. Ein Mathematikergebnis von <InlineMath math="80" /> Punkten stammt aus einer Verteilung mit Mittelwert <InlineMath math="70" /> und Standardabweichung <InlineMath math="5" />, ein Physikergebnis von <InlineMath math="90" /> Punkten aus einer Verteilung mit Mittelwert <InlineMath math="80" /> und Standardabweichung <InlineMath math="10" />.
 
 | Fach | z-Wert |
 | --- | --- |
 | Mathematik | <InlineMath math="z = \frac{80 - 70}{5} = 2" /> |
 | Physik | <InlineMath math="z = \frac{90 - 80}{10} = 1" /> |
 
-Das Mathematikergebnis ist **relativ zur eigenen Gruppe höher**, obwohl <InlineMath math="80" /> Punkte weniger sind als <InlineMath math="90" />. Der Vergleich misst die Lage in der jeweiligen Verteilung und macht die beiden Prüfungen nicht gleich schwer.
+Das Mathematikergebnis ist **relativ zur eigenen Gruppe höher**, obwohl <InlineMath math="80" /> Punkte weniger sind als <InlineMath math="90" />. Der Vergleich misst die Lage in der jeweiligen Verteilung, sagt aber nichts darüber, wie schwer die beiden Prüfungen waren.
 
 ## Wahrscheinlichkeiten aus der Tabelle berechnen
 
@@ -245,7 +245,7 @@ Die erste Aufgabe übt den z-Wert, die zweite und dritte berechnen Flächen, und
 
 <BlockMath math="z = \frac{82 - 70}{8} = \frac{12}{8} = 1{,}5" />
 
-<InlineMath math="82" /> Punkte liegen **anderthalb Standardabweichungen über dem Mittelwert**. Probe: <InlineMath math="70 + 1{,}5 \cdot 8 = 82" />.
+<InlineMath math="82" /> Punkte liegen **anderthalb Standardabweichungen über dem Mittelwert**. Die Tabelle liefert <InlineMath math="\Phi(1{,}5) \approx 0{,}9332" />, also liegt dieses Ergebnis über etwa <InlineMath math="93\%" /> der Klausurergebnisse.
 
 **Aufgabe 2**. Der z-Wert von <InlineMath math="58" /> ist <InlineMath math="\frac{58 - 70}{8} = -1{,}5" />. Die Tabelle enthält nur positive z, also nutzt du die Symmetrie:
 

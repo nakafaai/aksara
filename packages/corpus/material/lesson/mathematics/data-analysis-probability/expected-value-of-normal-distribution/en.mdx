@@ -151,7 +151,7 @@ Every normal variable can be written from the standard normal as <InlineMath mat
 
 <BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
 
-The same relation explains the z-score <InlineMath math="z = \frac{x - \mu}{\sigma}" />. It measures the distance from the center in standard deviations, and the average signed distance is zero. That is why one table for <InlineMath math="Z" /> is enough to find probabilities for every [normal distribution](/en/subjects/mathematics/data-analysis-probability/normal-distribution-function).
+The same relation explains the z-score <InlineMath math="z = \frac{x - \mu}{\sigma}" />, the distance from the center in standard deviations, whose average is zero. Because <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> has the standard normal distribution, <InlineMath math="P(X < x)" /> equals <InlineMath math="\Phi\left(\frac{x - \mu}{\sigma}\right)" />, so one table for <InlineMath math="Z" /> serves every [normal distribution](/en/subjects/mathematics/data-analysis-probability/normal-distribution-function).
 
 ## Linearity of Expected Value
 
@@ -162,7 +162,7 @@ Two rules settle most problems. For fixed numbers <InlineMath math="a" /> and <I
   <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-**Example 1**. Midday temperature in Jakarta in June is normally distributed with <InlineMath math="\mu = 28^\circ\text{C}" /> and <InlineMath math="\sigma = 3^\circ\text{C}" />. The conversion to Fahrenheit is <InlineMath math="F = 1.8C + 32" />, the form <InlineMath math="aC + b" /> with <InlineMath math="a = 1.8" /> and <InlineMath math="b = 32" />:
+**Example 1**. The daily mean temperature in Jakarta in June is normally distributed with <InlineMath math="\mu = 28^\circ\text{C}" /> and <InlineMath math="\sigma = 3^\circ\text{C}" />. The conversion to Fahrenheit is <InlineMath math="F = 1.8C + 32" />, the form <InlineMath math="aC + b" /> with <InlineMath math="a = 1.8" /> and <InlineMath math="b = 32" />:
 
 <BlockMath math="E(F) = 1.8 \cdot 28 + 32 = 82.4^\circ\text{F}" />
 
@@ -172,7 +172,7 @@ Check with a symmetric pair of temperatures. The temperatures <InlineMath math="
 
 <BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{,}000 = 20{,}000\text{ g}" />
 
-Check by dividing back: <InlineMath math="\frac{20{,}000}{20} = 1{,}000\text{ g}" /> per bag. The standard deviation of <InlineMath math="15\text{ g}" /> plays no part, because it affects only the spread of the total weight, not its center.
+Check with ten pairs of bags: each pair has an expected weight of <InlineMath math="1{,}000 + 1{,}000 = 2{,}000\text{ g}" />, and <InlineMath math="10 \cdot 2{,}000 = 20{,}000\text{ g}" />. The standard deviation of <InlineMath math="15\text{ g}" /> plays no part, because it affects only the spread of the total weight, not its center.
 
 ## Finding the Center from Given Probabilities
 
@@ -182,11 +182,11 @@ Sometimes a problem does not state <InlineMath math="\mu" /> directly but gives 
 
 <BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-Check: <InlineMath math="40 = 50 - 10" /> and <InlineMath math="60 = 50 + 10" />. Equal distances from the center give equal tail areas, whatever the value of <InlineMath math="\sigma" />.
+Check with one value of the standard deviation, for example <InlineMath math="\sigma = 10" />: <InlineMath math="P(X < 40) = P(Z < -1) \approx 0.1587" /> and <InlineMath math="P(X > 60) = P(Z > 1) \approx 0.1587" />. The two tails are equal, and the same holds for every <InlineMath math="\sigma" />, because <InlineMath math="40" /> and <InlineMath math="60" /> always lie the same distance from <InlineMath math="50" />.
 
 **Example 4**. Half of a bus's trips finish in less than <InlineMath math="42" /> minutes, and the travel time is normally distributed. That statement means <InlineMath math="P(X < 42) = 0.5" />, so <InlineMath math="42" /> minutes is the median. For a normal distribution the median equals the mean, so <InlineMath math="E(X) = 42" /> minutes.
 
-Check: a normal curve splits its area into two equal halves at <InlineMath math="x = \mu" />, so <InlineMath math="P(X < \mu) = 0.5" /> holds for every normal distribution.
+Check with symmetry, for example with <InlineMath math="\sigma = 6" /> minutes: <InlineMath math="P(X < 36) = P(X > 48) \approx 0.1587" />, so the areas to the left and right of <InlineMath math="42" /> are equal.
 
 ## Common Mistakes
 
@@ -196,9 +196,9 @@ Check: a normal curve splits its area into two equal halves at <InlineMath math=
 | Thinking <InlineMath math="X" /> must equal <InlineMath math="\mu" /> | For a continuous variable, <InlineMath math="P(X = \mu) = 0" /> | The expected value is a long-run average, not the result of one observation |
 | Writing <InlineMath math="E(X^2) = \mu^2" /> | Squaring is not linear, so <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | For <InlineMath math="Z \sim N(0, 1)" />, <InlineMath math="E(Z^2) = 1" />, not <InlineMath math="0" /> |
 | Forgetting to add <InlineMath math="b" /> in <InlineMath math="E(aX + b)" /> | The shift <InlineMath math="b" /> moves the center of the curve | Transform a symmetric pair of values and check their midpoint |
-| Thinking a sum needs independence | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> holds without it | Independence matters only for the variance of a sum |
+| Thinking a sum needs independence | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> holds without it | The variance of a sum equals the sum of the variances only when <InlineMath math="X" /> and <InlineMath math="Y" /> are uncorrelated, for example independent |
 
-One question catches most of these mistakes: **does your answer still lie on the axis of symmetry of the curve**? An answer that is a width, the square of the center, or a center without its shift fails that check at once.
+For a question about <InlineMath math="E(X)" /> or <InlineMath math="E(aX + b)" />, one question catches the first and fourth mistakes: **does your answer lie on the axis of symmetry of the curve in question**? For <InlineMath math="E(X^2)" />, check with the variance, because <InlineMath math="E(X^2) - [E(X)]^2" /> must equal <InlineMath math="\sigma^2" />.
 
 ## Exercises
 

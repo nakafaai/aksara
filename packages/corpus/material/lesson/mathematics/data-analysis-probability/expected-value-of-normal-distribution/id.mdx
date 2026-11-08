@@ -151,7 +151,7 @@ Setiap besaran normal bisa ditulis dari normal baku sebagai <InlineMath math="X 
 
 <BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
 
-Hubungan yang sama menjelaskan skor <InlineMath math="z = \frac{x - \mu}{\sigma}" />. Skor itu mengukur jarak dari pusat dalam satuan simpangan baku, dan rata-rata jarak bertanda itu nol. Karena itu satu tabel untuk <InlineMath math="Z" /> cukup untuk menghitung peluang setiap [distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/fungsi-distribusi-normal).
+Hubungan yang sama menjelaskan skor <InlineMath math="z = \frac{x - \mu}{\sigma}" />, yaitu jarak dari pusat dalam satuan simpangan baku, dengan rata-rata nol. Karena <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> berdistribusi normal baku, peluang <InlineMath math="P(X < x)" /> sama dengan <InlineMath math="\Phi\left(\frac{x - \mu}{\sigma}\right)" />, sehingga satu tabel untuk <InlineMath math="Z" /> cukup untuk setiap [distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/fungsi-distribusi-normal).
 
 ## Sifat Linear Nilai Harapan
 
@@ -162,7 +162,7 @@ Dua aturan menyelesaikan sebagian besar soal. Untuk bilangan tetap <InlineMath m
   <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-**Contoh 1**. Suhu siang di Jakarta pada bulan Juni berdistribusi normal dengan <InlineMath math="\mu = 28^\circ\text{C}" /> dan <InlineMath math="\sigma = 3^\circ\text{C}" />. Konversi ke Fahrenheit adalah <InlineMath math="F = 1{,}8C + 32" />, bentuk <InlineMath math="aC + b" /> dengan <InlineMath math="a = 1{,}8" /> dan <InlineMath math="b = 32" />:
+**Contoh 1**. Suhu rata-rata harian di Jakarta pada bulan Juni berdistribusi normal dengan <InlineMath math="\mu = 28^\circ\text{C}" /> dan <InlineMath math="\sigma = 3^\circ\text{C}" />. Konversi ke Fahrenheit adalah <InlineMath math="F = 1{,}8C + 32" />, bentuk <InlineMath math="aC + b" /> dengan <InlineMath math="a = 1{,}8" /> dan <InlineMath math="b = 32" />:
 
 <BlockMath math="E(F) = 1{,}8 \cdot 28 + 32 = 82{,}4^\circ\text{F}" />
 
@@ -172,7 +172,7 @@ Periksa dengan sepasang suhu simetris. Suhu <InlineMath math="25^\circ\text{C}" 
 
 <BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{.}000 = 20{.}000\text{ g}" />
 
-Periksa dengan membagi kembali: <InlineMath math="\frac{20{.}000}{20} = 1{.}000\text{ g}" /> per kantong. Simpangan baku <InlineMath math="15\text{ g}" /> tidak ikut dihitung, karena simpangan baku hanya memengaruhi sebaran berat total, bukan pusatnya.
+Periksa dengan sepuluh pasang kantong: setiap pasang bernilai harapan <InlineMath math="1{.}000 + 1{.}000 = 2{.}000\text{ g}" />, dan <InlineMath math="10 \cdot 2{.}000 = 20{.}000\text{ g}" />. Simpangan baku <InlineMath math="15\text{ g}" /> tidak ikut dihitung, karena simpangan baku hanya memengaruhi sebaran berat total, bukan pusatnya.
 
 ## Menemukan Pusat Kurva dari Peluang yang Diketahui
 
@@ -182,11 +182,11 @@ Kadang soal tidak menyebut <InlineMath math="\mu" /> secara langsung, tetapi mem
 
 <BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-Periksa: <InlineMath math="40 = 50 - 10" /> dan <InlineMath math="60 = 50 + 10" />. Jarak yang sama ke pusat memberi luas ekor yang sama, berapa pun nilai <InlineMath math="\sigma" />.
+Periksa dengan satu nilai simpangan baku, misalnya <InlineMath math="\sigma = 10" />: <InlineMath math="P(X < 40) = P(Z < -1) \approx 0{,}1587" /> dan <InlineMath math="P(X > 60) = P(Z > 1) \approx 0{,}1587" />. Kedua ekor sama luas, dan hal yang sama terjadi untuk setiap <InlineMath math="\sigma" />, karena <InlineMath math="40" /> dan <InlineMath math="60" /> selalu berjarak sama dari <InlineMath math="50" />.
 
 **Contoh 4**. Separuh perjalanan sebuah bus selesai dalam waktu kurang dari <InlineMath math="42" /> menit, dan waktu tempuhnya berdistribusi normal. Pernyataan itu berarti <InlineMath math="P(X < 42) = 0{,}5" />, jadi <InlineMath math="42" /> menit adalah median. Pada distribusi normal median sama dengan rata-rata, sehingga <InlineMath math="E(X) = 42" /> menit.
 
-Periksa: kurva normal membagi luasnya menjadi dua bagian yang sama di <InlineMath math="x = \mu" />, sehingga <InlineMath math="P(X < \mu) = 0{,}5" /> berlaku untuk setiap distribusi normal.
+Periksa dengan simetri, misalnya untuk <InlineMath math="\sigma = 6" /> menit: <InlineMath math="P(X < 36) = P(X > 48) \approx 0{,}1587" />, jadi luas di kiri dan kanan <InlineMath math="42" /> sama besar.
 
 ## Kesalahan yang Sering Terjadi
 
@@ -196,9 +196,9 @@ Periksa: kurva normal membagi luasnya menjadi dua bagian yang sama di <InlineMat
 | Mengira <InlineMath math="X" /> pasti bernilai <InlineMath math="\mu" /> | Untuk besaran kontinu, <InlineMath math="P(X = \mu) = 0" /> | Nilai harapan adalah rata-rata jangka panjang, bukan hasil satu pengamatan |
 | Menulis <InlineMath math="E(X^2) = \mu^2" /> | Kuadrat tidak linear, sehingga <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | Untuk <InlineMath math="Z \sim N(0, 1)" />, <InlineMath math="E(Z^2) = 1" />, bukan <InlineMath math="0" /> |
 | Lupa menambahkan <InlineMath math="b" /> pada <InlineMath math="E(aX + b)" /> | Pergeseran <InlineMath math="b" /> memindahkan pusat kurva | Ubah sepasang nilai simetris dan periksa titik tengahnya |
-| Mengira penjumlahan butuh syarat saling bebas | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> berlaku tanpa syarat itu | Syarat saling bebas baru diperlukan untuk varians jumlah |
+| Mengira penjumlahan butuh syarat saling bebas | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> berlaku tanpa syarat itu | Varians jumlah sama dengan jumlah varians hanya jika <InlineMath math="X" /> dan <InlineMath math="Y" /> tidak berkorelasi, misalnya saling bebas |
 
-Sebagian besar kesalahan ini tertangkap oleh satu pertanyaan: **apakah jawabanmu tetap berada di sumbu simetri kurva**? Jawaban berupa lebar sebaran, kuadrat pusat, atau pusat tanpa pergeseran langsung gagal pada pemeriksaan itu.
+Untuk soal <InlineMath math="E(X)" /> atau <InlineMath math="E(aX + b)" />, satu pertanyaan menangkap kesalahan pertama dan keempat: **apakah jawabanmu berada di sumbu simetri kurva yang ditanyakan**? Untuk <InlineMath math="E(X^2)" />, periksa dengan varians, karena <InlineMath math="E(X^2) - [E(X)]^2" /> harus sama dengan <InlineMath math="\sigma^2" />.
 
 ## Latihan Soal
 
