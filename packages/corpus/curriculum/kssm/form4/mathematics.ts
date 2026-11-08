@@ -12,6 +12,24 @@ export const kssmForm4MathematicsTopicNodes = [
       }),
     ],
     key: "form-4-mathematics-quadratic-functions-and-equations-in-one-variable",
+    materialCard: {
+      de: {
+        description: "Zeichne Parabeln und löse quadratische Gleichungen.",
+        title: "Quadratische Funktionen und Gleichungen in einer Variablen",
+      },
+      en: {
+        description: "Sketch parabolas and solve quadratic equations.",
+        title: "Quadratic Functions and Equations in One Variable",
+      },
+      id: {
+        description: "Gambar parabola dan selesaikan persamaan kuadrat.",
+        title: "Fungsi dan Persamaan Kuadrat Satu Variabel",
+      },
+      ms: {
+        description: "Lakar parabola dan selesaikan persamaan kuadratik.",
+        title: "Fungsi dan Persamaan Kuadratik dalam Satu Pemboleh Ubah",
+      },
+    },
     order: 10,
     translations: {
       de: {
@@ -94,6 +112,24 @@ export const kssmForm4MathematicsTopicNodes = [
       }),
     ],
     key: "form-4-mathematics-linear-inequalities-in-two-variables",
+    materialCard: {
+      de: {
+        description: "Markiere die Bereiche, die Ungleichungen erlauben.",
+        title: "Lineare Ungleichungen in zwei Variablen",
+      },
+      en: {
+        description: "Shade the regions that two-variable inequalities allow.",
+        title: "Linear Inequalities in Two Variables",
+      },
+      id: {
+        description: "Arsir daerah yang memenuhi pertidaksamaan dua variabel.",
+        title: "Pertidaksamaan Linear Dua Variabel",
+      },
+      ms: {
+        description: "Lorek rantau yang memenuhi ketaksamaan linear.",
+        title: "Ketaksamaan Linear dalam Dua Pemboleh Ubah",
+      },
+    },
     order: 60,
     translations: {
       de: {
@@ -134,6 +170,24 @@ export const kssmForm4MathematicsTopicNodes = [
       }),
     ],
     key: "form-4-mathematics-measures-of-dispersion-for-ungrouped-data",
+    materialCard: {
+      de: {
+        description: "Miss, wie weit ungruppierte Daten streuen.",
+        title: "Streuungsmaße für Einzeldaten",
+      },
+      en: {
+        description: "Measure how widely ungrouped data spread out.",
+        title: "Measures of Dispersion for Ungrouped Data",
+      },
+      id: {
+        description: "Ukur seberapa menyebar data tunggal.",
+        title: "Ukuran Penyebaran Data Tunggal",
+      },
+      ms: {
+        description: "Ukur sejauh mana data tak terkumpul tersebar.",
+        title: "Sukatan Serakan Data Tak Terkumpul",
+      },
+    },
     order: 80,
     translations: {
       de: {
@@ -164,6 +218,24 @@ export const kssmForm4MathematicsTopicNodes = [
       }),
     ],
     key: "form-4-mathematics-probability-of-combined-events",
+    materialCard: {
+      de: {
+        description: "Berechne die Chance zweier Ereignisse zusammen.",
+        title: "Wahrscheinlichkeit verknüpfter Ereignisse",
+      },
+      en: {
+        description: "Find the chance of two events happening together.",
+        title: "Probability of Combined Events",
+      },
+      id: {
+        description: "Hitung peluang dua kejadian yang terjadi bersamaan.",
+        title: "Peluang Kejadian Majemuk",
+      },
+      ms: {
+        description: "Cari kebarangkalian dua peristiwa berlaku bersama.",
+        title: "Kebarangkalian Peristiwa Bergabung",
+      },
+    },
     order: 90,
     translations: {
       de: {

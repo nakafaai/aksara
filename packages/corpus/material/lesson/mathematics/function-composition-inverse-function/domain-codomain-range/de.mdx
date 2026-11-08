@@ -3,7 +3,7 @@ export const metadata = {
   description: "Unterscheide zulässige Eingaben, festgelegte Zielwerte und tatsächlich erreichte Funktionswerte anhand konkreter Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
@@ -38,6 +38,37 @@ Hier wird die Quadratwurzel der Eingabe gebildet. Für <InlineMath math="-4" /> 
 Im Bereich der reellen Zahlen ist die Quadratwurzel einer negativen Zahl nicht definiert. Zulässig sind deshalb nur <InlineMath math="0" /> und positive Zahlen.
 
 Die Definitionsmenge von <InlineMath math="g(x) = \sqrt{x}" /> besteht also aus allen reellen Zahlen größer oder gleich <InlineMath math="0" />, das heißt mit <InlineMath math="x \ge 0" />.
+
+Die Definitionsmenge bestimmt, welche Punkte der Graph hat. Mit <InlineMath math="f(x) = x^2" /> und der Definitionsmenge <InlineMath math="\{0, 1, 2, 3\}" /> besteht der Graph nur aus den vier Punkten <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" /> und <InlineMath math="(3, 9)" /> auf der blass gezeichneten Parabel. Änderst du die Definitionsmenge, ändern sich die Punkte mit.
+
+<MathVisual
+  title={<>Ein Graph aus vier Punkten</>}
+  description={<>Die Punkte von <InlineMath math="y = x^2" /> für die Eingaben 0, 1, 2 und 3 auf der blass dahinter gezeichneten Parabel.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Zielmenge
 
@@ -93,6 +124,59 @@ Die Bildmenge <InlineMath math="\{0, 1, 4, 9, ...\}" /> ist eine echte Teilmenge
 
 Nicht jedes Element der Zielmenge gehört zur Bildmenge.
 
+Hier bildet <InlineMath math="f(x) = x^2" /> die Definitionsmenge <InlineMath math="\{-2, -1, 0, 1, 2\}" /> in die Zielmenge <InlineMath math="\{0, 1, 2, 3, 4\}" /> ab. Jede Eingabe hat genau einen Pfeil, aber nur <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="4" /> werden getroffen. Diese Werte bilden die Wertemenge, <InlineMath math="2" /> und <InlineMath math="3" /> bleiben in der Zielmenge, ohne getroffen zu werden.
+
+<MathVisual
+  title={<>Definitions-, Ziel- und Wertemenge von x Quadrat</>}
+  description={<>Pfeile von jeder Eingabe zu ihrem Quadrat. Die hervorgehobenen Ausgaben 0, 1 und 4 bilden die Wertemenge in der Zielmenge.</>}
+  labels={{
+    a0: <InlineMath math="-2" />,
+    a1: <InlineMath math="-1" />,
+    a2: <InlineMath math="0" />,
+    a3: <InlineMath math="1" />,
+    a4: <InlineMath math="2" />,
+    b0: <InlineMath math="0" />,
+    b1: <InlineMath math="1" />,
+    b2: <InlineMath math="2" />,
+    b3: <InlineMath math="3" />,
+    b4: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "m0", kind: "segment", from: { x: 0, y: -2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 0, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m4", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: -2 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "b1", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "b2", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "b3", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "b4", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 0, y: -2 }, placement: "left" },
+      { key: "a1", objectId: "a1", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "a2", objectId: "a2", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "a3", objectId: "a3", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a4", objectId: "a4", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "b0", objectId: "b0", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b1", objectId: "b1", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "b2", objectId: "b2", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "b3", objectId: "b3", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "b4", objectId: "b4", at: { x: 4, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Aufgaben von Definitionsmenge Zielmenge und Bildmenge
 
 Die Definitionsmenge schließt ungültige Eingaben wie eine Division durch null aus. Die Zielmenge legt den Ausgaberaum fest, und die Bildmenge zeigt, welche Werte darin tatsächlich erreicht werden.
@@ -100,8 +184,8 @@ Die Definitionsmenge schließt ungültige Eingaben wie eine Division durch null 
 Beschränken wir das Quadratbeispiel auf <InlineMath math="D=\{-2,-1,0,1,2\}" /> und wählen <InlineMath math="K=\{0,1,2,3,4\}" />. **Von jeder Eingabe geht ein Pfeil aus**, aber manche Elemente der Zielmenge werden nicht erreicht.
 
 <Mermaid
-  title="Definitionsmenge Zielmenge und erreichte Ausgaben"
-  description="Pfeile ordnen fünf Eingaben ihre Quadrate zu. Die Bildmenge liegt innerhalb der Zielmenge. Zwei Elemente der Zielmenge werden nicht erreicht."
+  title={<>Definitionsmenge Zielmenge und erreichte Ausgaben</>}
+  description={<>Pfeile ordnen fünf Eingaben ihre Quadrate zu. Die Bildmenge liegt innerhalb der Zielmenge. Zwei Elemente der Zielmenge werden nicht erreicht.</>}
   chart={`flowchart LR
   subgraph D["Definitionsmenge D"]
     d1["-2"]
@@ -127,6 +211,31 @@ Beschränken wir das Quadratbeispiel auf <InlineMath math="D=\{-2,-1,0,1,2\}" />
 />
 
 Die Pfeile erreichen <InlineMath math="0,1,4" />, also gilt <InlineMath math="R=\{0,1,4\}" />. Die Werte <InlineMath math="2" /> und <InlineMath math="3" /> bleiben in der Zielmenge, gehören jedoch nicht zur Bildmenge dieses eingeschränkten Beispiels.
+
+Im Graphen werden dieselben Ideen zu Intervallen. Mit der Definitionsmenge <InlineMath math="-2 \le x \le 2" /> überdeckt die Parabel <InlineMath math="y = x^2" /> die Höhen von <InlineMath math="0" /> bis <InlineMath math="4" />. Dieses Intervall auf der y-Achse ist die Wertemenge, eine Zielmenge wie alle reellen Zahlen kann größer sein.
+
+<MathVisual
+  title={<>Definitions- und Wertemenge im Graphen</>}
+  description={<>Die Parabel <InlineMath math="y = x^2" /> über der Definitionsmenge von <InlineMath math="-2" /> bis <InlineMath math="2" />, mit der Wertemenge von 0 bis 4 auf der y-Achse markiert.</>}
+  labels={{
+    dom: <>Definitionsmenge</>,
+    rng: <>Wertemenge</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "dom", kind: "segment", from: { x: -2, y: 0 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "rng", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dom", objectId: "dom", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "rng", objectId: "rng", at: { x: 0, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Mathematische Beziehung
 

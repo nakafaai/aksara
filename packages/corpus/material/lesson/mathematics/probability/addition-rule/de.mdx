@@ -3,7 +3,7 @@ export const metadata = {
   description: "Wende die Additionsregel auf disjunkte und überlappende Ereignisse an, mit klaren Beispielen, Formeln und vollständig gerechneten Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Wahrscheinlichkeit",
 };
 
@@ -85,6 +85,92 @@ Im Beispiel „Summe <InlineMath math="8" /> ODER Pasch“ gilt:
 
 Direktes Addieren ergibt <InlineMath math="5/36 + 6/36 = 11/36" />. Das Paar <InlineMath math="(4,4)" /> liegt jedoch in beiden Gruppen. Seine Wahrscheinlichkeit muss einmal abgezogen werden, damit es insgesamt nur einmal zählt.
 
+Im Raster zweier Würfel liegen die Pasche auf einer Diagonale und die Summen <InlineMath math="8" /> auf einer anderen. Sie kreuzen sich bei <InlineMath math="(4, 4)" />, einem Pasch mit Summe 8. Zählst du beide Listen, zählst du diesen Punkt doppelt, also <InlineMath math="P = \frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<MathVisual
+  title={<>Pasche und Summe acht teilen ein Ergebnis</>}
+  description={<>Die 36 Ergebnisse zweier Würfel mit den sechs Paschen, den fünf Summen 8 und ihrem gemeinsamen Ergebnis <InlineMath math="(4, 4)" />.</>}
+  labels={{
+    d44: <InlineMath math="(4, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d44", objectId: "d44", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dieselbe Zählung als Diagramm: <InlineMath math="5" /> Pasche, die keine Summe 8 haben, <InlineMath math="4" /> Summen 8, die keine Pasche sind, und <InlineMath math="1" /> Ergebnis in beiden. Die Vereinigung enthält <InlineMath math="5 + 1 + 4 = 10" /> Ergebnisse, genau wie die Formel.
+
+<MathVisual
+  title={<>Die Schnittmenge einmal gezählt</>}
+  description={<>Zwei sich überschneidende Kreise für Pasche und Summen 8 mit 5, 1 und 4 Ergebnissen in den drei Bereichen.</>}
+  labels={{
+    a: <>Pasche</>,
+    b: <InlineMath math="x + y = 8" />,
+    onlya: <InlineMath math="5" />,
+    onlyb: <InlineMath math="4" />,
+    both: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Formel für sich nicht gegenseitig ausschließende Ereignisse
 
 Für Ereignisse <InlineMath math="A" /> und <InlineMath math="B" />, die sich nicht gegenseitig ausschließen, wird die Wahrscheinlichkeit von „A ODER B“ wie folgt berechnet:
@@ -119,6 +205,17 @@ Die beiden Formeln unterscheiden sich in einer Frage, nämlich ob die Ereignisse
 | Ja, die Ereignisse überschneiden sich | <InlineMath math="P(A \text{ oder } B) = P(A) + P(B) - P(A \text{ und } B)" /> |
 
 Die zweite Formel zieht die Überschneidung ab, weil die Ergebnisse, die zu beiden Ereignissen gehören, doppelt gezählt wurden, einmal für <InlineMath math="A" /> und einmal für <InlineMath math="B" />.
+
+Mit einer Überschneidung stapeln sich die Balken nicht mehr. Pasche haben <InlineMath math="\frac{6}{36}" />, Summen 8 haben <InlineMath math="\frac{5}{36}" />, aber <InlineMath math="(4, 4)" /> gehört zu beiden, also hat eines von beiden <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<BarChart
+  title={<>Zwei sich überschneidende Ereignisse addieren</>}
+  description={<>Balken für Pasch, Summe 8, beides und eines von beiden, mit <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["Pasch", 6 / 36], ["Summe 8", 5 / 36], ["beides", 1 / 36], ["eines von beiden", 10 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Übung
 
 In einer Klasse mit <InlineMath math="30" /> Schülerinnen und Schülern gehören <InlineMath math="18" /> zur Mathematik-AG, <InlineMath math="14" /> zur Naturwissenschafts-AG und <InlineMath math="8" /> zu beiden Arbeitsgemeinschaften. Eine Person wird zufällig ausgewählt.

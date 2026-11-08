@@ -35,6 +35,7 @@ node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/chec
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles --strict-review
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/question-bank --strict-review
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/pages --strict-review
 ```
 
 Run that suite before the corpus gate when changing a voice rule. The
@@ -90,16 +91,18 @@ rule does. The CLI default mode is a debugging filter for a focused run, not a
 release exception: narrow or repair the rule and the sentence before landing a
 change that leaves any finding.
 
-The gate owns three authored scopes: lessons in
-`packages/corpus/material/lesson`, articles in `packages/corpus/articles`, and
-assessed questions with worked answers in `packages/corpus/question-bank`.
-All three suites assert zero findings. Keep each document's locale siblings
+The gate owns four authored scopes: lessons in
+`packages/corpus/material/lesson`, articles in `packages/corpus/articles`,
+assessed questions with worked answers in `packages/corpus/question-bank`, and
+public pages in `packages/corpus/pages`. All four suites assert zero findings. Keep each document's locale siblings
 clean, and point the command at one directory with `--root` while editing.
 Question prompts and worked answers use separate profiles and parity groups,
 as defined in [checker limits and gate scope](checker.md#deterministic-gate-scope).
-`packages/corpus/pages` remains out of scope: it holds the legal notice,
-privacy policy, security policy, and developer resources, which are reviewed as
-public legal and product copy under their own acceptance path.
+A page holds the legal notice, the terms, the privacy and security policies, or
+the developer resources, so the gate applies only the address rules to it:
+Nakafa never addresses a reader formally, not even in a contract. Everything
+else on a page is public legal and product copy that its own acceptance path
+reviews.
 
 Rule ownership and admission criteria live in
 [checker limits](checker.md#evidence-and-checker-limits). Record a new
