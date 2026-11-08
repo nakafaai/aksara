@@ -1,172 +1,28 @@
-Gegeben ist eine regelmäßige Pyramide <InlineMath math="T.ABCD" /> mit <InlineMath math="AB = 4 \text{ cm}" />. Der Punkt <InlineMath math="O" /> ist der Schnittpunkt der Strecken <InlineMath math="AC" /> und <InlineMath math="BD" />.
+Beide Größen lassen sich berechnen, ohne vorher jede Seite zu bestimmen. Entscheidend ist **die Flächenformel mit dem Inkreisradius**, zusammen mit der Länge der Hypotenuse.
 
-Das Volumen der Pyramide berechnen wir mit
+# Größe P berechnen
 
-<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times G \times h\\&=\frac{1}{3} \times s^2 \times h\end{aligned}" />
+Für jedes Dreieck ist der **Flächeninhalt gleich Inkreisradius mal halber Umfang**, <InlineMath math="A=r\cdot s" />. Hier ist <InlineMath math="s=\tfrac{24}{2}=12" />.
 
-Dabei ist <InlineMath math="G" /> der Grundflächeninhalt, <InlineMath math="s" /> die Seitenlänge der quadratischen Grundfläche und <InlineMath math="h" /> die **Höhe der Pyramide**.
+<BlockMath math="r=\frac{A}{s}=\frac{24}{12}=2" />
 
-Da <InlineMath math="AB = 4 \text{ cm}" /> gilt, ist die Grundfläche <InlineMath math="G = 4^2 = 16 \text{ cm}^2" />.
+Also ist <InlineMath math="P=2" />.
 
-Für das Volumen fehlt uns also noch die Höhe <InlineMath math="h = TO" />.
+# Größe Q berechnen
 
-**Aussage (1)**: <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />
+Die Katheten seien <InlineMath math="a" /> und <InlineMath math="b" />, die Hypotenuse <InlineMath math="c" />. Aus dem Flächeninhalt folgt <InlineMath math="ab=48" />, aus dem Umfang <InlineMath math="a+b=24-c" />. **Der Satz des Pythagoras** verbindet beides.
 
-Die Diagonale eines Quadrats mit der Seite <InlineMath math="s" /> ist <InlineMath math="s\sqrt{2}" />.
+<BlockMath math="\begin{aligned}
+(a+b)^2&=a^2+b^2+2ab\\
+(24-c)^2&=c^2+96\\
+576-48c&=96\\
+c&=10
+\end{aligned}" />
 
-Wenn <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />, dann:
+Die Höhe auf die Hypotenuse ergibt sich aus zwei Schreibweisen desselben Flächeninhalts, <InlineMath math="\tfrac12ab=\tfrac12c\,t" />.
 
-<BlockMath math="s\sqrt{2} = 4\sqrt{2}" />
+<BlockMath math="t=\frac{ab}{c}=\frac{48}{10}=4{,}8" />
 
-<BlockMath math="s = 4" />
+Also ist <InlineMath math="Q=\tfrac12(4{,}8)=2{,}4" />. Die Seiten sind 6, 8 und 10, was tatsächlich Umfang 24 und Flächeninhalt 24 ergibt.
 
-Das bestätigt lediglich die bereits bekannte Seitenlänge <InlineMath math="AB = 4 \text{ cm}" />.
-
-Punkt <InlineMath math="O" /> ist der Mittelpunkt der Diagonale, also:
-
-<BlockMath math="\begin{aligned}AO&=OC\\&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
-
-Die Aussage (1) liefert jedoch keine Informationen über die Höhe der Pyramide <InlineMath math="TO" />. Ohne die Höhe kann das Volumen nicht bestimmt werden.
-
-Daher reicht die Aussage (1) allein nicht aus.
-
-**Aussage (2)**: <InlineMath math="AT = \sqrt{17} \text{ cm}" />
-
-Für <InlineMath math="AB = 4 \text{ cm}" /> beträgt die Basisdiagonale <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />.
-
-Punkt <InlineMath math="O" /> ist der Mittelpunkt der Diagonale, also:
-
-<BlockMath math="\begin{aligned}AO&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
-
-Wir betrachten das rechtwinklige Dreieck <InlineMath math="AOT" />. Der rechte Winkel liegt bei <InlineMath math="O" />, weil <InlineMath math="TO" /> senkrecht auf der Grundfläche steht.
-
-Mit dem Satz des Pythagoras:
-
-<BlockMath math="AT^2 = AO^2 + TO^2" />
-
-<BlockMath math="(\sqrt{17})^2 = (2\sqrt{2})^2 + TO^2" />
-
-<BlockMath math="17 = 8 + TO^2" />
-
-<BlockMath math="TO^2 = 9" />
-
-<BlockMath math="TO = 3 \text{ cm}" />
-
-Mit Höhe <InlineMath math="TO = 3 \text{ cm}" /> und Grundfläche <InlineMath math="G = 16 \text{ cm}^2" /> lässt sich das Volumen der Pyramide berechnen:
-
-<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times 16 \times 3\\&=16 \text{ cm}^3\end{aligned}" />
-
-Daher reicht die Aussage (2) allein aus, um die Frage zu beantworten.
-
-<MathVisual
-  title={<>Regelmäßige Pyramide <InlineMath math="T.ABCD" /> mit beschrifteten Seitenlängen</>}
-  description={<>Visualisierung einer regelmäßigen Pyramide <InlineMath math="T.ABCD" /> mit Beschriftung für Seitenlängen.</>}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -1, max: 4 },
-      z: { min: -3, max: 3 },
-    },
-    view: { kind: "camera", position: { x: -6, y: 7, z: 8 }, target: { x: 0, y: 1, z: 0 } },
-    objects: [
-      {
-        id: "base-abcd",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: -2, y: 0, z: -2 },
-          { x: 2, y: 0, z: -2 },
-          { x: 2, y: 0, z: 2 },
-          { x: -2, y: 0, z: 2 },
-        ],
-      },
-      {
-        id: "diagonal-ac",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: -2, y: 0, z: -2 },
-        to: { x: 2, y: 0, z: 2 },
-      },
-      {
-        id: "diagonal-bd",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: 2, y: 0, z: -2 },
-        to: { x: -2, y: 0, z: 2 },
-      },
-      {
-        id: "center-o",
-        kind: "point",
-        appearance: "highlight",
-        at: { x: 0, y: 0, z: 0 },
-      },
-      {
-        id: "height-ot",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 0, y: 0, z: 0 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-at",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: -2, y: 0, z: -2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-bt",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 2, y: 0, z: -2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-ct",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 2, y: 0, z: 2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-dt",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: -2, y: 0, z: 2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-    ],
-    labels: [
-      { key: "point-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "below" },
-      { key: "point-a", objectId: "base-abcd", at: { x: -2, y: 0, z: -2 }, placement: "above-left" },
-      { key: "point-b", objectId: "base-abcd", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
-      { key: "point-c", objectId: "base-abcd", at: { x: 2, y: 0, z: 2 }, placement: "below" },
-      { key: "point-d", objectId: "base-abcd", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "point-t", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-left" },
-      { key: "side-cd", objectId: "base-abcd", at: { x: 0, y: 0, z: 2 }, placement: "below" },
-      { key: "diagonal-ac-length", objectId: "diagonal-ac", at: { x: 2, y: 0, z: 2 }, placement: "right" },
-      { key: "radius-ao-length", objectId: "diagonal-ac", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
-      { key: "height-length", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
-      { key: "edge-at-length", objectId: "edge-at", at: { x: -0.6, y: 2.1, z: -0.6 }, placement: "above-left" },
-    ],
-  }}
-  labels={{
-    "point-o": <><InlineMath math="O" /></>,
-    "point-a": <><InlineMath math="A" /></>,
-    "point-b": <><InlineMath math="B" /></>,
-    "point-c": <><InlineMath math="C" /></>,
-    "point-d": <><InlineMath math="D" /></>,
-    "point-t": <><InlineMath math="T" /></>,
-    "side-cd": <><InlineMath math="4" /></>,
-    "diagonal-ac-length": <><InlineMath math="4\sqrt{2}" /></>,
-    "radius-ao-length": <><InlineMath math="2\sqrt{2}" /></>,
-    "height-length": <><InlineMath math="3" /></>,
-    "edge-at-length": <><InlineMath math="\sqrt{17}" /></>,
-  }}
-/>
-
-**Schlussfolgerung**:
-
-Die Aussage (1) allein reicht nicht aus. Die Aussage (2) allein reicht dagegen aus.
+Wegen <InlineMath math="2{,}4>2" /> gilt **<InlineMath math="Q>P" />**. Die Wahl, die Informationen reichten nicht aus, ist falsch, denn Umfang und Flächeninhalt legen dieses rechtwinklige Dreieck zusammen fest.

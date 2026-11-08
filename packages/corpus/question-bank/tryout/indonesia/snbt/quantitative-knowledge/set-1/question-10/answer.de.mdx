@@ -1,77 +1,68 @@
-Die Funktion <InlineMath math="f" /> ist definiert durch:
+Die Diagonalen teilen das Trapez in vier Dreiecke: <InlineMath math="ABE" />, <InlineMath math="BCE" />, <InlineMath math="CDE" /> und <InlineMath math="DAE" />. Der Flächeninhalt des Trapezes ist ihre Summe, und **das Verhältnis der parallelen Seiten** legt alle vier über den Inhalt von <InlineMath math="CDE" /> fest.
 
-<BlockMath math="f(x) = \frac{1}{\sqrt{-x^2 + 4x + 21}}" />
-
-Außerdem gilt <InlineMath math="P = 7" />.
-
-Um <InlineMath math="Q" /> zu bestimmen, ermitteln wir alle ganzzahligen Werte von <InlineMath math="x" />, für die <InlineMath math="f(x)" /> reell definiert ist.
-
-Damit <InlineMath math="f(x)" /> reell definiert ist, muss der Radikand **echt positiv** sein. Dadurch ist die Wurzel reell und zugleich von null verschieden:
-
-<BlockMath math="\sqrt{-x^2 + 4x + 21} \neq 0" />
-
-<BlockMath math="-x^2 + 4x + 21 > 0" />
-
-Wir multiplizieren die Ungleichung mit <InlineMath math="-1" /> und kehren dabei das Ungleichheitszeichen um:
-
-<BlockMath math="x^2 - 4x - 21 < 0" />
-
-Nun faktorisieren wir den quadratischen Ausdruck:
-
-<BlockMath math="(x - 7)(x + 3) < 0" />
-
-Die Wurzeln von <InlineMath math="(x - 7)(x + 3) = 0" /> sind <InlineMath math="x = 7" /> und <InlineMath math="x = -3" />.
-
-Auf dem Zahlenstrahl ist <InlineMath math="(x - 7)(x + 3) < 0" /> zwischen den beiden Nullstellen erfüllt. Daher gilt <InlineMath math="-3 < x < 7" />.
-
-<NumberLine
-  title="Zahlenstrahl"
-  description={<>Visualisierung der Lösung der Ungleichung <InlineMath math="(x - 7)(x + 3) < 0" /> auf einer Zahlengeraden.</>}
-  min={-5}
-  max={9}
-  segments={[
-    {
-      end: -3,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: false,
-      showPoints: true,
-      startLabel: <InlineMath math="-\infty" />,
-      endLabel: <InlineMath math="-3" />,
-      label: <InlineMath math="+" />,
+<MathVisual
+  title={<>Trapez <InlineMath math="ABCD" /></>}
+  description={<>Die Seite <InlineMath math="AB" /> ist parallel zur Seite <InlineMath math="DC" />. Die Diagonalen <InlineMath math="AC" /> und <InlineMath math="BD" /> schneiden sich in <InlineMath math="E" /> und teilen das Trapez in vier Dreiecke.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 7 },
     },
-    {
-      start: -3,
-      end: 7,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: true,
-      showPoints: true,
-      startLabel: <InlineMath math="-3" />,
-      endLabel: <InlineMath math="7" />,
-      label: <InlineMath math="-" />,
-    },
-    {
-      start: 7,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: false,
-      showPoints: true,
-      startLabel: <InlineMath math="7" />,
-      endLabel: <InlineMath math="+\infty" />,
-      label: <InlineMath math="+" />,
-    },
-  ]}
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "trapezoid",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 12, y: 0 },
+          { x: 8, y: 6 },
+          { x: 4, y: 6 },
+        ],
+      },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 12, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "trapezoid", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "trapezoid", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "trapezoid", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "trapezoid", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
 />
 
-Der Definitionsbereich von <InlineMath math="f" /> ist somit <InlineMath math="-3 < x < 7" />.
 
-Die Ganzzahlwerte von <InlineMath math="x" />, die dies erfüllen, sind die Ganzzahlen im Intervall <InlineMath math="(-3, 7)" />, also <InlineMath math="-2" /> bis <InlineMath math="6" />.
+# Die ähnlichen Dreiecke
 
-<BlockMath math="Q=6-(-2)+1=9" />
+Wegen <InlineMath math="AB\parallel DC" /> ist der Winkel <InlineMath math="EAB" /> gleich dem Winkel <InlineMath math="ECD" /> und der Winkel <InlineMath math="EBA" /> gleich dem Winkel <InlineMath math="EDC" /> (Wechselwinkel). Das Dreieck <InlineMath math="ABE" /> ist also **ähnlich** zum Dreieck <InlineMath math="CDE" />, mit dem Streckfaktor <InlineMath math="AB:DC=12:4=3:1" />.
 
-Die Anzahl solcher Werte von <InlineMath math="x" /> beträgt <InlineMath math="9" />, also <InlineMath math="Q = 9" />.
+Daraus folgen <InlineMath math="AE:EC=3:1" /> und <InlineMath math="BE:ED=3:1" />. Die Flächeninhalte ähnlicher Figuren verhalten sich wie das Quadrat des Streckfaktors.
 
-Aus <InlineMath math="P = 7" /> und <InlineMath math="Q = 9" /> folgt <InlineMath math="P < Q" />.
+<BlockMath math="[ABE]=3^2\times[CDE]=9\times3=27\text{ cm}^2" />
 
-Daher ist die Größe <InlineMath math="P" /> kleiner als die Größe <InlineMath math="Q" />.
+# Die beiden seitlichen Dreiecke
+
+Die Dreiecke <InlineMath math="DAE" /> und <InlineMath math="DCE" /> haben die gemeinsame Spitze <InlineMath math="D" />, und ihre Grundseiten liegen auf der Geraden <InlineMath math="AC" />. Sie **haben dieselbe Höhe**, also verhalten sich ihre Flächeninhalte wie die Grundseiten, <InlineMath math="AE:EC=3:1" />. Dieselbe Überlegung auf der Geraden <InlineMath math="BD" /> liefert <InlineMath math="[BCE]:[DCE]=BE:ED=3:1" />.
+
+<BlockMath math="[DAE]=[BCE]=3\times3=9\text{ cm}^2" />
+
+Der Flächeninhalt des Trapezes ist die Summe der vier Dreiecke.
+
+<BlockMath math="[ABCD]=27+9+9+3=48\text{ cm}^2" />
+
+Der Wert 30 nimmt das Flächenverhältnis als <InlineMath math="3:1" /> statt <InlineMath math="9:1" />. Der Wert 39 vergisst ein seitliches Dreieck. Der Wert 36 gibt jedem seitlichen Dreieck den Inhalt von <InlineMath math="CDE" />. Der Wert 54 verdoppelt den Inhalt von <InlineMath math="ABE" />.
+
+Der Flächeninhalt des Trapezes <InlineMath math="ABCD" /> beträgt also **<InlineMath math="48\text{ cm}^2" />**.

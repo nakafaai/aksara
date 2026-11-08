@@ -1,45 +1,33 @@
-Bestimme <InlineMath math="k" /> und <InlineMath math="m" /> durch das **Eliminationsverfahren** aus den beiden gegebenen Ergebnissen. Setze danach die gesuchten Eingaben in die Rechenvorschrift ein.
+Wegen <InlineMath math="63=7\times9" /> und weil 7 und 9 außer 1 keinen gemeinsamen Teiler haben, legen die beiden Restbedingungen **genau einen Rest** von <InlineMath math="n" /> bei Division durch 63 fest. Kennst du diesen Rest, folgt der Rest von <InlineMath math="2n+1" /> direkt.
 
-Aus <InlineMath math="\triangle(2, 4) = 8" /> folgt:
+# Rest der Zahl bestimmen
 
-<BlockMath math="\triangle(2, 4) = 2k + \frac{4}{m} = 8" />
+Die Bedingung für die Division durch 9 bedeutet <InlineMath math="n=9k+5" /> für eine ganze Zahl <InlineMath math="k\ge0" />. Die Werte <InlineMath math="k=0" /> bis <InlineMath math="k=6" /> decken schon alle möglichen Reste bei Division durch 63 ab. Prüfe deshalb jeden Wert bei Division durch 7.
 
-Wir multiplizieren beide Seiten mit <InlineMath math="m" />:
+| <InlineMath math="k" /> | <InlineMath math="9k+5" /> | Rest bei Division durch 7 |
+| ---: | ---: | ---: |
+| 0 | 5 | 5 |
+| 1 | 14 | 0 |
+| 2 | 23 | 2 |
+| 3 | 32 | 4 |
+| 4 | 41 | 6 |
+| 5 | 50 | 1 |
+| 6 | 59 | 3 |
 
-<BlockMath math="2km + 4 = 8m \quad \ldots \text{(1)}" />
+**Nur 59** lässt bei Division durch 7 den Rest 3. Also gilt <InlineMath math="n=63m+59" /> für eine ganze Zahl <InlineMath math="m\ge0" />.
 
-Aus <InlineMath math="\triangle(3, 5) = 11" /> folgt entsprechend:
+# Gesuchten Rest berechnen
 
-<BlockMath math="\triangle(3, 5) = 3k + \frac{5}{m} = 11" />
+Setze die allgemeine Form von <InlineMath math="n" /> in <InlineMath math="2n+1" /> ein und spalte die Vielfachen von 63 ab.
 
-Auch hier multiplizieren wir beide Seiten mit <InlineMath math="m" />:
+<BlockMath math="\begin{aligned}
+2n+1&=2(63m+59)+1\\
+&=126m+119\\
+&=63(2m+1)+56
+\end{aligned}" />
 
-<BlockMath math="3km + 5 = 11m \quad \ldots \text{(2)}" />
+Wegen <InlineMath math="0\le56<63" /> ist der Rest 56. Zur Probe mit <InlineMath math="n=59" />: <InlineMath math="2(59)+1=119=63+56" />.
 
-Um <InlineMath math="km" /> zu eliminieren, multiplizieren wir Gleichung (1) mit <InlineMath math="3" /> und Gleichung (2) mit <InlineMath math="2" />:
+Der Wert 59 ist der Rest von <InlineMath math="n" /> selbst und noch nicht der Rest von <InlineMath math="2n+1" />. Der Wert 119 ist nicht reduziert, obwohl ein Rest bei Division durch 63 kleiner als 63 sein muss. Der Wert 25 entsteht, wenn die beiden Reste vertauscht werden: Dann wäre <InlineMath math="n=12" />, also Rest 5 bei Division durch 7 und Rest 3 bei Division durch 9. Der Wert 11 nutzt nur die Bedingung für die Division durch 9, nämlich <InlineMath math="2(5)+1" />.
 
-<BlockMath math="6km + 12 = 24m \quad \ldots \text{(1a)}" />
-
-<BlockMath math="6km + 10 = 22m \quad \ldots \text{(2a)}" />
-
-Nun ziehen wir Gleichung (2a) von Gleichung (1a) ab:
-
-<BlockMath math="\begin{aligned}&(6km+12)-(6km+10)\\&=24m-22m\end{aligned}" />
-
-<BlockMath math="2 = 2m" />
-
-<BlockMath math="m = 1" />
-
-Wir setzen <InlineMath math="m = 1" /> in Gleichung (1) ein:
-
-<BlockMath math="2k(1) + 4 = 8(1)" />
-
-<BlockMath math="2k + 4 = 8" />
-
-<BlockMath math="2k = 4" />
-
-<BlockMath math="k = 2" />
-
-Mit <InlineMath math="k = 2" /> und <InlineMath math="m = 1" /> erhalten wir für <InlineMath math="\triangle(5, 9)" />:
-
-<BlockMath math="\begin{aligned}\triangle(5,9)&amp;=2(5)+\frac91\\&amp;=10+9\\&amp;=19\end{aligned}" />
+Der Rest von <InlineMath math="2n+1" /> bei Division durch 63 ist also **56**.

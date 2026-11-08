@@ -1,51 +1,19 @@
-The product is given as:
+The three numbers have different bases and different exponents, so they cannot be compared directly. The exponents 30, 20, and 12 are all divisible by 2, which lets you write each number as **the square of a smaller number**.
 
-<BlockMath math="AB = \begin{pmatrix} 1 & 3 \\ 17 & 11 \end{pmatrix}" />
+# Matching the exponents
 
-Multiplying each row of <InlineMath math="A" /> by each column of <InlineMath math="B" /> gives:
+Write each number as some number squared.
 
-<BlockMath math="AB = \begin{pmatrix} 2 & -1 \\ 4 & 3 \end{pmatrix} \begin{pmatrix} a & 2 \\ b & 1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned}
+a&=2^{30}=\left(2^{15}\right)^2=32{,}768^2\\
+b&=3^{20}=\left(3^{10}\right)^2=59{,}049^2\\
+c&=5^{12}=\left(5^{6}\right)^2=15{,}625^2
+\end{aligned}" />
 
-<BlockMath math="AB = \begin{pmatrix} 2a - b & 4 - 1 \\ 4a + 3b & 8 + 3 \end{pmatrix}" />
+For positive numbers, **squaring keeps the order**. Since <InlineMath math="15{,}625<32{,}768<59{,}049" />, it follows that <InlineMath math="c<a<b" />.
 
-<BlockMath math="AB = \begin{pmatrix} 2a - b & 3 \\ 4a + 3b & 11 \end{pmatrix}" />
+# Checking the other orders
 
-Equating **corresponding entries** with the given product gives:
+The order <InlineMath math="a<b<c" /> looks **only at the bases**, although <InlineMath math="c" /> has the smallest exponent. The order <InlineMath math="c<b<a" /> looks only at the exponents. The orders <InlineMath math="a<c<b" /> and <InlineMath math="b<a<c" /> contradict the comparison of the squared numbers above.
 
-<BlockMath math="2a - b = 1 \quad \ldots \text{(1)}" />
-
-<BlockMath math="4a + 3b = 17 \quad \ldots \text{(2)}" />
-
-Eliminate <InlineMath math="a" /> by multiplying equation (1) by <InlineMath math="2" />
-
-<BlockMath math="4a - 2b = 2 \quad \ldots \text{(1a)}" />
-
-<BlockMath math="4a + 3b = 17 \quad \ldots \text{(2)}" />
-
-Subtract equation (1a) from equation (2)
-
-<BlockMath math="\begin{aligned}&(4a+3b)-(4a-2b)\\&=17-2\end{aligned}" />
-
-<BlockMath math="5b = 15" />
-
-<BlockMath math="b = 3" />
-
-Substitute <InlineMath math="b = 3" /> into equation (1)
-
-<BlockMath math="2a - 3 = 1" />
-
-<BlockMath math="2a = 4" />
-
-<BlockMath math="a = 2" />
-
-With <InlineMath math="a = 2" /> and <InlineMath math="b = 3" />, matrix <InlineMath math="B" /> is
-
-<BlockMath math="B = \begin{pmatrix} 2 & 2 \\ 3 & 1 \end{pmatrix}" />
-
-Calculate <InlineMath math="D = 3A + B" />
-
-<BlockMath math="D = 3 \begin{pmatrix} 2 & -1 \\ 4 & 3 \end{pmatrix} + \begin{pmatrix} 2 & 2 \\ 3 & 1 \end{pmatrix}" />
-
-<BlockMath math="D = \begin{pmatrix} 6 & -3 \\ 12 & 9 \end{pmatrix} + \begin{pmatrix} 2 & 2 \\ 3 & 1 \end{pmatrix}" />
-
-<BlockMath math="D = \begin{pmatrix} 8 & -1 \\ 15 & 10 \end{pmatrix}" />
+So the order from smallest to largest is **<InlineMath math="c<a<b" />**.

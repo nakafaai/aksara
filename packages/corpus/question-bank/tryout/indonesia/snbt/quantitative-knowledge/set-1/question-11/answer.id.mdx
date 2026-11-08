@@ -1,63 +1,78 @@
-Diketahui data nilai matematika tiga kelompok siswa:
+Lingkaran yang melalui <InlineMath math="A" /> dan <InlineMath math="B" /> memiliki pusat yang sama jauh dari kedua titik itu. Jadi **pusatnya terletak pada sumbu ruas <InlineMath math="AB" />**, yaitu garis tegak lurus <InlineMath math="AB" /> yang melalui titik tengahnya.
 
-**Kelompok 1**: <InlineMath math="8, 2, 5, 8, 7" />
+<MathVisual
+  title={<>Lingkaran melalui <InlineMath math="A" /> dan <InlineMath math="B" /></>}
+  description={<>Pusat <InlineMath math="O" /> terletak pada garis tengah <InlineMath math="MT" />. Jari-jari <InlineMath math="OA" /> dan <InlineMath math="OT" /> sama panjang.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -3, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "square",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 8, y: 0 },
+          { x: 8, y: 8 },
+          { x: 0, y: 8 },
+        ],
+      },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 5 },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 0, y: 0 } },
+      { id: "radius-ot", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 4, y: 8 } },
+      { id: "height-om", kind: "segment", appearance: "construction", from: { x: 4, y: 3 }, to: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 8, y: 8 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "o", objectId: "center", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "t", objectId: "radius-ot", at: { x: 4, y: 8 }, placement: "above" },
+      { key: "m", objectId: "height-om", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    t: <InlineMath math="T" />,
+    m: <InlineMath math="M" />,
+  }}
+/>
 
-**Kelompok 2**: <InlineMath math="6, 9, 7" />
+# Menyusun persamaan jari-jari
 
-**Kelompok 3**: <InlineMath math="3, b, 10, 8" />
+Misalkan <InlineMath math="M" /> titik tengah <InlineMath math="AB" />, <InlineMath math="T" /> titik tengah <InlineMath math="CD" />, dan pusat <InlineMath math="O" /> berjarak <InlineMath math="h" /> dari <InlineMath math="AB" />. Lingkaran menyinggung <InlineMath math="CD" />, sehingga **jarak pusat ke <InlineMath math="CD" /> sama dengan jari-jari**.
 
-Jumlah dari modus nilai Kelompok 1 dan median nilai Kelompok 2 sama dengan <InlineMath math="2\text{ kali}" /> rata-rata nilai Kelompok 3.
+<BlockMath math="r=OT=8-h" />
 
-**Langkah 1**: Menentukan modus Kelompok 1
+Jari-jari juga sama dengan <InlineMath math="OA" />. Segitiga <InlineMath math="OMA" /> siku-siku di <InlineMath math="M" /> dengan <InlineMath math="AM=4" /> dan <InlineMath math="OM=h" />.
 
-Data Kelompok 1: <InlineMath math="8, 2, 5, 8, 7" />
+<BlockMath math="r^2=OA^2=4^2+h^2" />
 
-Frekuensi masing-masing nilai:
-| <InlineMath math="x" /> | Frekuensi |
-| :---: | :---: |
-| 2 | 1 |
-| 5 | 1 |
-| 7 | 1 |
-| 8 | 2 |
+# Menyelesaikan persamaan
 
-Modus Kelompok 1 adalah <InlineMath math="8" />.
+**Samakan kedua bentuk** <InlineMath math="r^2" />.
 
-**Langkah 2**: Menentukan median Kelompok 2
+<BlockMath math="\begin{aligned}
+(8-h)^2&=16+h^2\\
+64-16h+h^2&=16+h^2\\
+48&=16h\\
+h&=3
+\end{aligned}" />
 
-Data Kelompok 2: <InlineMath math="6, 9, 7" />
+Jadi <InlineMath math="r=8-3=5" />. Cek: <InlineMath math="OA=\sqrt{4^2+3^2}=5" />, sama dengan <InlineMath math="OT=5" />.
 
-Urutkan data: <InlineMath math="6, 7, 9" />
+Nilai 4 adalah jari-jari lingkaran berdiameter <InlineMath math="AB" />, yang tidak menyentuh <InlineMath math="CD" />. Nilai <InlineMath math="4\sqrt2" /> adalah jari-jari lingkaran luar persegi, yang memotong <InlineMath math="CD" /> di dua titik. Nilai 3 adalah jarak <InlineMath math="h" />, bukan jari-jari. Nilai 8 muncul jika <InlineMath math="AM" /> diganti seluruh sisi, yaitu dari <InlineMath math="r^2=8^2+(8-r)^2" />.
 
-Karena banyaknya data ganjil (<InlineMath math="3" />), median adalah **nilai tengah**, yaitu <InlineMath math="7" />.
-
-**Langkah 3**: Menentukan rata-rata Kelompok 3
-
-Data Kelompok 3: <InlineMath math="3, b, 10, 8" />
-
-Rata-rata Kelompok 3:
-
-<BlockMath math="\begin{aligned}\bar X_3&=\frac{3+b+10+8}{4}\\&=\frac{21+b}{4}\end{aligned}" />
-
-**Langkah 4**: Menyusun persamaan
-
-Berdasarkan informasi yang diberikan:
-
-Gunakan <InlineMath math="m_1" /> untuk modus kelompok pertama dan <InlineMath math="d_2" /> untuk median kelompok kedua. Rata-rata kelompok ketiga adalah <InlineMath math="\bar X_3" />.
-
-<BlockMath math="m_1+d_2=2\bar X_3" />
-
-<BlockMath math="8 + 7 = 2 \times \frac{21 + b}{4}" />
-
-<BlockMath math="15 = \frac{21 + b}{2}" />
-
-Kalikan kedua ruas dengan <InlineMath math="2" />:
-
-<BlockMath math="30 = 21 + b" />
-
-<BlockMath math="b = 9" />
-
-Jadi nilai <InlineMath math="b = 9" />, sehingga <InlineMath math="P = 9" /> dan <InlineMath math="Q = 8" />.
-
-Karena <InlineMath math="P = 9" /> dan <InlineMath math="Q = 8" />, maka <InlineMath math="P > Q" />.
-
-Jadi kuantitas <InlineMath math="P" /> lebih besar daripada <InlineMath math="Q" />.
+Jadi, panjang jari-jari lingkaran adalah **<InlineMath math="5\text{ cm}" />**.

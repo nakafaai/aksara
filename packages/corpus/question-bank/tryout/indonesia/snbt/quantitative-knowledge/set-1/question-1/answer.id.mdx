@@ -1,45 +1,33 @@
-Gunakan **eliminasi** pada dua hasil operasi untuk menentukan <InlineMath math="k" /> dan <InlineMath math="m" />. Setelah kedua konstanta diketahui, substitusikan masukan yang ditanyakan ke aturan operasi.
+Karena <InlineMath math="63=7\times9" /> dan 7 tidak memiliki faktor persekutuan dengan 9 selain 1, kedua syarat sisa menentukan **tepat satu sisa** <InlineMath math="n" /> terhadap 63. Setelah sisa itu diketahui, sisa <InlineMath math="2n+1" /> tinggal dihitung.
 
-Dari <InlineMath math="\triangle(2, 4) = 8" />, diperoleh
+# Menentukan sisa bilangan
 
-<BlockMath math="\triangle(2, 4) = 2k + \frac{4}{m} = 8" />
+Syarat pembagian oleh 9 berarti <InlineMath math="n=9k+5" /> untuk suatu bilangan bulat <InlineMath math="k\ge0" />. Nilai <InlineMath math="k=0" /> sampai <InlineMath math="k=6" /> sudah mencakup semua sisa yang mungkin terhadap 63, jadi periksa sisa masing-masing terhadap 7.
 
-Kalikan kedua ruas dengan <InlineMath math="m" />
+| <InlineMath math="k" /> | <InlineMath math="9k+5" /> | Sisa jika dibagi 7 |
+| ---: | ---: | ---: |
+| 0 | 5 | 5 |
+| 1 | 14 | 0 |
+| 2 | 23 | 2 |
+| 3 | 32 | 4 |
+| 4 | 41 | 6 |
+| 5 | 50 | 1 |
+| 6 | 59 | 3 |
 
-<BlockMath math="2km + 4 = 8m \quad \ldots \text{(1)}" />
+**Hanya 59** yang bersisa 3 jika dibagi 7. Jadi <InlineMath math="n=63m+59" /> untuk suatu bilangan bulat <InlineMath math="m\ge0" />.
 
-Dari <InlineMath math="\triangle(3, 5) = 11" />, diperoleh
+# Menghitung sisa yang ditanyakan
 
-<BlockMath math="\triangle(3, 5) = 3k + \frac{5}{m} = 11" />
+Substitusikan bentuk umum <InlineMath math="n" /> ke <InlineMath math="2n+1" />, lalu pisahkan kelipatan 63.
 
-Kalikan kedua ruas dengan <InlineMath math="m" />
+<BlockMath math="\begin{aligned}
+2n+1&=2(63m+59)+1\\
+&=126m+119\\
+&=63(2m+1)+56
+\end{aligned}" />
 
-<BlockMath math="3km + 5 = 11m \quad \ldots \text{(2)}" />
+Karena <InlineMath math="0\le56<63" />, sisanya 56. Cek dengan <InlineMath math="n=59" />: <InlineMath math="2(59)+1=119=63+56" />.
 
-Eliminasi <InlineMath math="km" /> dengan mengalikan persamaan (1) dengan <InlineMath math="3" /> dan persamaan (2) dengan <InlineMath math="2" />
+Nilai 59 adalah sisa <InlineMath math="n" /> sendiri, belum sisa <InlineMath math="2n+1" />. Nilai 119 belum direduksi, padahal sisa pembagian oleh 63 harus kurang dari 63. Nilai 25 muncul jika kedua sisa tertukar, yaitu dari <InlineMath math="n=12" /> yang bersisa 5 jika dibagi 7 dan bersisa 3 jika dibagi 9. Nilai 11 hanya memakai syarat pembagian oleh 9, yaitu <InlineMath math="2(5)+1" />.
 
-<BlockMath math="6km + 12 = 24m \quad \ldots \text{(1a)}" />
-
-<BlockMath math="6km + 10 = 22m \quad \ldots \text{(2a)}" />
-
-Kurangkan persamaan (2a) dari persamaan (1a)
-
-<BlockMath math="\begin{aligned}&(6km+12)-(6km+10)\\&=24m-22m\end{aligned}" />
-
-<BlockMath math="2 = 2m" />
-
-<BlockMath math="m = 1" />
-
-Substitusikan <InlineMath math="m = 1" /> ke persamaan (1)
-
-<BlockMath math="2k(1) + 4 = 8(1)" />
-
-<BlockMath math="2k + 4 = 8" />
-
-<BlockMath math="2k = 4" />
-
-<BlockMath math="k = 2" />
-
-Dengan <InlineMath math="k = 2" /> dan <InlineMath math="m = 1" />, nilai <InlineMath math="\triangle(5, 9)" /> adalah
-
-<BlockMath math="\begin{aligned}\triangle(5,9)&amp;=2(5)+\frac91\\&amp;=10+9\\&amp;=19\end{aligned}" />
+Jadi, sisa pembagian <InlineMath math="2n+1" /> oleh 63 adalah **56**.

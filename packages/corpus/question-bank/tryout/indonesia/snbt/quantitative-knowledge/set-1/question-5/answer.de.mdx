@@ -1,88 +1,27 @@
-Da der Umfang der Raute <InlineMath math="PQRS" /> <InlineMath math="20\text{ Einheiten}" /> beträgt, ist jede Seite
+Die Funktionsvorschrift von <InlineMath math="g" /> ist nicht gegeben, wohl aber die Verkettung <InlineMath math="f\circ g" />. Weil <InlineMath math="f" /> die Eingabe nur mit 2 multipliziert und dann 3 abzieht, **lässt sich <InlineMath math="g" /> aus der Verkettung zurückgewinnen**.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ Einheiten}\end{aligned}" />
+# Vorschrift von g bestimmen
 
-Die Diagonalen einer Raute **halbieren sich rechtwinklig**. Der Mittelpunkt von <InlineMath math="PR" /> ist <InlineMath math="O(4,0)" />, also gilt <InlineMath math="PO=4" />. Im rechtwinkligen Dreieck <InlineMath math="POQ" /> ist <InlineMath math="PQ=5" /> die Hypotenuse.
+Die Verkettung <InlineMath math="(f\circ g)(x)" /> bedeutet, dass **<InlineMath math="f" /> auf die Ausgabe von <InlineMath math="g" /> wirkt**.
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+<BlockMath math="\begin{aligned}
+(f\circ g)(x)&=f\bigl(g(x)\bigr)=2g(x)-3\\
+2g(x)-3&=4x^2+2x-5\\
+2g(x)&=4x^2+2x-2\\
+g(x)&=2x^2+x-1
+\end{aligned}" />
 
-Da <InlineMath math="Q" /> oberhalb der waagerechten Achse liegt, hat dieser Punkt die Koordinaten <InlineMath math="Q(4,3)" />. Gegenüber liegt <InlineMath math="S(4,-3)" />.
+Probe an einer Stelle: <InlineMath math="g(0)=-1" /> und <InlineMath math="f(-1)=-5" />, passend zu <InlineMath math="(f\circ g)(0)=-5" />.
 
-Zur Kontrolle berechnen wir die Länge der Seite <InlineMath math="PQ" />
+# Gesuchten Wert berechnen
 
-<BlockMath math="\begin{aligned}PQ&=\sqrt{(4-0)^2 + (3-0)^2}\\&=\sqrt{16 + 9}\\&=\sqrt{25}\\&=5 \text{ Einheiten}\end{aligned}" />
+Bei <InlineMath math="(g\circ f)(3)" /> **wirkt zuerst <InlineMath math="f" />**, und das Ergebnis wird zur Eingabe von <InlineMath math="g" />.
 
-Dies entspricht dem angegebenen Umfang.
+<BlockMath math="\begin{aligned}
+f(3)&=2(3)-3=3\\
+(g\circ f)(3)&=g(3)=2(3)^2+3-1=20
+\end{aligned}" />
 
-<MathVisual
-  title={<>Raute <InlineMath math="PQRS" /> mit Hilfslinien</>}
-  description={<>Die Hilfslinien in der Raute <InlineMath math="PQRS" /> bilden ein rechtwinkliges Dreieck. Damit lässt sich die Länge der Seite <InlineMath math="PQ" /> berechnen.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 4 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "horizontal-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 0, y: 0 },
-        to: { x: 4, y: 0 },
-      },
-      {
-        id: "vertical-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 4, y: 0 },
-        to: { x: 4, y: 3 },
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "side-length", objectId: "rhombus-pqrs", at: { x: 2, y: 1.5 }, placement: "above-left" },
-      { key: "horizontal-length", objectId: "horizontal-leg", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "vertical-length", objectId: "vertical-leg", at: { x: 4, y: 1.5 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S" /></>,
-    "side-length": <><InlineMath math="5" /></>,
-    "horizontal-length": <><InlineMath math="4" /></>,
-    "vertical-length": <><InlineMath math="3" /></>,
-  }}
-/>
+Der Wert 37 ist <InlineMath math="(f\circ g)(3)" /> und verwendet die umgekehrte Reihenfolge der Verkettung. Der Wert 3 bleibt bei <InlineMath math="f(3)" /> stehen. Der Wert 17 entsteht, wenn auf der rechten Seite 3 abgezogen statt addiert wird, sodass <InlineMath math="g(x)=2x^2+x-4" /> herauskommt. Der Wert 14 entsteht, wenn das Vorzeichen des Terms mit <InlineMath math="x" /> kippt, also bei <InlineMath math="g(x)=2x^2-x-1" />.
 
-Wir berechnen die Steigung von <InlineMath math="QR" /> mit der Steigungsformel:
-
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
-
-Für <InlineMath math="Q(4, 3)" /> und <InlineMath math="R(8, 0)" /> gilt:
-
-<BlockMath math="m_{QR} = \frac{0 - 3}{8 - 4}" />
-
-<BlockMath math="m_{QR} = \frac{-3}{4}" />
-
-<BlockMath math="m_{QR} = -\frac{3}{4}" />
-
-Die Gerade fällt um <InlineMath math="3\text{ Einheiten}" />, während sie sich um <InlineMath math="4\text{ Einheiten}" /> nach rechts bewegt. Ihre Steigung muss deshalb negativ sein. Die Steigung der Geraden <InlineMath math="QR" /> beträgt also <InlineMath math="-\frac{3}{4}" />.
+Der Wert von <InlineMath math="(g\circ f)(3)" /> ist also **20**.

@@ -1,63 +1,78 @@
-Given the mathematics scores of three student groups:
+A circle through <InlineMath math="A" /> and <InlineMath math="B" /> has its center equally far from both points. So **the center lies on the perpendicular bisector of <InlineMath math="AB" />**, the line perpendicular to <InlineMath math="AB" /> through its midpoint.
 
-**Group 1**: <InlineMath math="8, 2, 5, 8, 7" />
+<MathVisual
+  title={<>Circle through <InlineMath math="A" /> and <InlineMath math="B" /></>}
+  description={<>The center <InlineMath math="O" /> lies on the midline <InlineMath math="MT" />. The radii <InlineMath math="OA" /> and <InlineMath math="OT" /> are equal.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -3, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "square",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 8, y: 0 },
+          { x: 8, y: 8 },
+          { x: 0, y: 8 },
+        ],
+      },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 5 },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 0, y: 0 } },
+      { id: "radius-ot", kind: "segment", appearance: "answer", from: { x: 4, y: 3 }, to: { x: 4, y: 8 } },
+      { id: "height-om", kind: "segment", appearance: "construction", from: { x: 4, y: 3 }, to: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 8, y: 8 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 8 }, placement: "above-left" },
+      { key: "o", objectId: "center", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "t", objectId: "radius-ot", at: { x: 4, y: 8 }, placement: "above" },
+      { key: "m", objectId: "height-om", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    o: <InlineMath math="O" />,
+    t: <InlineMath math="T" />,
+    m: <InlineMath math="M" />,
+  }}
+/>
 
-**Group 2**: <InlineMath math="6, 9, 7" />
+# Setting up the radius equation
 
-**Group 3**: <InlineMath math="3, b, 10, 8" />
+Let <InlineMath math="M" /> be the midpoint of <InlineMath math="AB" />, <InlineMath math="T" /> the midpoint of <InlineMath math="CD" />, and let the center <InlineMath math="O" /> be at distance <InlineMath math="h" /> from <InlineMath math="AB" />. The circle touches <InlineMath math="CD" />, so **the distance from the center to <InlineMath math="CD" /> equals the radius**.
 
-The sum of the mode of Group 1's scores and the median of Group 2's scores is equal to <InlineMath math="2\text{ times}" /> the average of Group 3's scores.
+<BlockMath math="r=OT=8-h" />
 
-**Step 1**: Determine the mode of Group 1
+The radius also equals <InlineMath math="OA" />. Triangle <InlineMath math="OMA" /> has a right angle at <InlineMath math="M" />, with <InlineMath math="AM=4" /> and <InlineMath math="OM=h" />.
 
-Group 1 data: <InlineMath math="8, 2, 5, 8, 7" />
+<BlockMath math="r^2=OA^2=4^2+h^2" />
 
-Frequency of each value:
-| <InlineMath math="x" /> | Frequency |
-| :---: | :---: |
-| 2 | 1 |
-| 5 | 1 |
-| 7 | 1 |
-| 8 | 2 |
+# Solving the equation
 
-The mode of Group 1 is <InlineMath math="8" />.
+**Set the two expressions** for <InlineMath math="r^2" /> **equal**.
 
-**Step 2**: Determine the median of Group 2
+<BlockMath math="\begin{aligned}
+(8-h)^2&=16+h^2\\
+64-16h+h^2&=16+h^2\\
+48&=16h\\
+h&=3
+\end{aligned}" />
 
-Group 2 data: <InlineMath math="6, 9, 7" />
+So <InlineMath math="r=8-3=5" />. Check: <InlineMath math="OA=\sqrt{4^2+3^2}=5" />, which matches <InlineMath math="OT=5" />.
 
-Sort the data: <InlineMath math="6, 7, 9" />
+The value 4 is the radius of the circle with diameter <InlineMath math="AB" />, which does not reach <InlineMath math="CD" />. The value <InlineMath math="4\sqrt2" /> is the radius of the square's circumcircle, which cuts <InlineMath math="CD" /> at two points. The value 3 is the distance <InlineMath math="h" />, not the radius. The value 8 comes from replacing <InlineMath math="AM" /> with the whole side, as in <InlineMath math="r^2=8^2+(8-r)^2" />.
 
-Since the number of data points is odd (<InlineMath math="3" />), the median is the **middle value**, which is <InlineMath math="7" />.
-
-**Step 3**: Determine the average of Group 3
-
-Group 3 data: <InlineMath math="3, b, 10, 8" />
-
-Average of Group 3:
-
-<BlockMath math="\begin{aligned}\bar X_3&=\frac{3+b+10+8}{4}\\&=\frac{21+b}{4}\end{aligned}" />
-
-**Step 4**: Set up the equation
-
-Based on the given information:
-
-Let <InlineMath math="m_1" /> be the first group’s mode and <InlineMath math="d_2" /> the second group’s median. The third group’s mean is <InlineMath math="\bar X_3" />.
-
-<BlockMath math="m_1+d_2=2\bar X_3" />
-
-<BlockMath math="8 + 7 = 2 \times \frac{21 + b}{4}" />
-
-<BlockMath math="15 = \frac{21 + b}{2}" />
-
-Multiply both sides by <InlineMath math="2" />:
-
-<BlockMath math="30 = 21 + b" />
-
-<BlockMath math="b = 9" />
-
-So the value <InlineMath math="b = 9" />, thus <InlineMath math="P = 9" /> and <InlineMath math="Q = 8" />.
-
-Since <InlineMath math="P = 9" /> and <InlineMath math="Q = 8" />, we have <InlineMath math="P > Q" />.
-
-Therefore, quantity <InlineMath math="P" /> is greater than quantity <InlineMath math="Q" />.
+So the radius of the circle is **<InlineMath math="5\text{ cm}" />**.

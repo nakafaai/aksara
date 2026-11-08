@@ -1,88 +1,27 @@
-Diketahui keliling belah ketupat <InlineMath math="PQRS" /> adalah <InlineMath math="20\text{ satuan}" />, sehingga panjang setiap sisinya adalah
+Rumus <InlineMath math="g" /> belum diketahui, tetapi komposisi <InlineMath math="f\circ g" /> diketahui. Karena <InlineMath math="f" /> hanya mengalikan masukannya dengan 2 lalu mengurangkan 3, **rumus <InlineMath math="g" /> dapat dibongkar** dari komposisi itu.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ satuan}\end{aligned}" />
+# Menemukan rumus fungsi g
 
-Diagonal belah ketupat **saling membagi dua secara tegak lurus**. Titik tengah <InlineMath math="PR" /> adalah <InlineMath math="O(4,0)" />, sehingga <InlineMath math="PO=4" />. Pada segitiga siku-siku <InlineMath math="POQ" />, sisi miringnya <InlineMath math="PQ=5" />.
+Komposisi <InlineMath math="(f\circ g)(x)" /> berarti **<InlineMath math="f" /> bekerja pada keluaran** <InlineMath math="g(x)" />.
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+<BlockMath math="\begin{aligned}
+(f\circ g)(x)&=f\bigl(g(x)\bigr)=2g(x)-3\\
+2g(x)-3&=4x^2+2x-5\\
+2g(x)&=4x^2+2x-2\\
+g(x)&=2x^2+x-1
+\end{aligned}" />
 
-Karena titik <InlineMath math="Q" /> berada di atas sumbu horizontal, koordinatnya <InlineMath math="Q(4,3)" />. Titik yang berhadapan adalah <InlineMath math="S(4,-3)" />.
+Cek di satu titik: <InlineMath math="g(0)=-1" /> dan <InlineMath math="f(-1)=-5" />, sama dengan <InlineMath math="(f\circ g)(0)=-5" />.
 
-Verifikasi panjang sisi <InlineMath math="PQ" />
+# Menghitung nilai yang ditanyakan
 
-<BlockMath math="\begin{aligned}PQ&=\sqrt{(4-0)^2 + (3-0)^2}\\&=\sqrt{16 + 9}\\&=\sqrt{25}\\&=5 \text{ satuan}\end{aligned}" />
+Pada <InlineMath math="(g\circ f)(3)" />, **fungsi <InlineMath math="f" /> bekerja lebih dulu**, lalu hasilnya menjadi masukan <InlineMath math="g" />.
 
-Sesuai dengan keliling yang diberikan.
+<BlockMath math="\begin{aligned}
+f(3)&=2(3)-3=3\\
+(g\circ f)(3)&=g(3)=2(3)^2+3-1=20
+\end{aligned}" />
 
-<MathVisual
-  title={<>Belah Ketupat <InlineMath math="PQRS" /> dengan Garis Bantu</>}
-  description={<>Visualisasi belah ketupat <InlineMath math="PQRS" /> dengan garis bantu segitiga siku-siku untuk menghitung panjang sisi <InlineMath math="PQ" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 4 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "horizontal-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 0, y: 0 },
-        to: { x: 4, y: 0 },
-      },
-      {
-        id: "vertical-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 4, y: 0 },
-        to: { x: 4, y: 3 },
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "side-length", objectId: "rhombus-pqrs", at: { x: 2, y: 1.5 }, placement: "above-left" },
-      { key: "horizontal-length", objectId: "horizontal-leg", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "vertical-length", objectId: "vertical-leg", at: { x: 4, y: 1.5 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S" /></>,
-    "side-length": <><InlineMath math="5" /></>,
-    "horizontal-length": <><InlineMath math="4" /></>,
-    "vertical-length": <><InlineMath math="3" /></>,
-  }}
-/>
+Nilai 37 adalah <InlineMath math="(f\circ g)(3)" />, yang memakai urutan komposisi terbalik. Nilai 3 berhenti di <InlineMath math="f(3)" />. Nilai 17 muncul jika ruas kanan dikurangi 3, bukan ditambah 3, sehingga <InlineMath math="g(x)=2x^2+x-4" />. Nilai 14 muncul jika tanda suku <InlineMath math="x" /> berubah menjadi <InlineMath math="g(x)=2x^2-x-1" />.
 
-Hitung gradien <InlineMath math="QR" /> menggunakan rumus gradien
-
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
-
-Dengan <InlineMath math="Q(4, 3)" /> dan <InlineMath math="R(8, 0)" />
-
-<BlockMath math="m_{QR} = \frac{0 - 3}{8 - 4}" />
-
-<BlockMath math="m_{QR} = \frac{-3}{4}" />
-
-<BlockMath math="m_{QR} = -\frac{3}{4}" />
-
-Garis tersebut turun <InlineMath math="3\text{ satuan}" /> ketika bergerak <InlineMath math="4\text{ satuan}" /> ke kanan, sehingga gradiennya harus negatif. Jadi, gradien garis <InlineMath math="QR" /> adalah <InlineMath math="-\frac{3}{4}" />.
+Jadi, nilai <InlineMath math="(g\circ f)(3)" /> adalah **20**.

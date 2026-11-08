@@ -1,45 +1,33 @@
-Use **elimination** on the two given operation results to determine <InlineMath math="k" /> and <InlineMath math="m" />. Then substitute the requested inputs into the operation rule.
+Since <InlineMath math="63=7\times9" /> and 7 and 9 share no factor other than 1, the two remainder conditions fix **exactly one remainder** of <InlineMath math="n" /> modulo 63. Once that remainder is known, the remainder of <InlineMath math="2n+1" /> follows.
 
-From <InlineMath math="\triangle(2, 4) = 8" />, we get
+# Finding the remainder of n
 
-<BlockMath math="\triangle(2, 4) = 2k + \frac{4}{m} = 8" />
+The condition for division by 9 means <InlineMath math="n=9k+5" /> for some integer <InlineMath math="k\ge0" />. The values <InlineMath math="k=0" /> to <InlineMath math="k=6" /> already cover every possible remainder modulo 63, so check each one against division by 7.
 
-Multiply both sides by <InlineMath math="m" />
+| <InlineMath math="k" /> | <InlineMath math="9k+5" /> | Remainder when divided by 7 |
+| ---: | ---: | ---: |
+| 0 | 5 | 5 |
+| 1 | 14 | 0 |
+| 2 | 23 | 2 |
+| 3 | 32 | 4 |
+| 4 | 41 | 6 |
+| 5 | 50 | 1 |
+| 6 | 59 | 3 |
 
-<BlockMath math="2km + 4 = 8m \quad \ldots \text{(1)}" />
+**Only 59** leaves remainder 3 when divided by 7. So <InlineMath math="n=63m+59" /> for some integer <InlineMath math="m\ge0" />.
 
-From <InlineMath math="\triangle(3, 5) = 11" />, we get
+# Computing the requested remainder
 
-<BlockMath math="\triangle(3, 5) = 3k + \frac{5}{m} = 11" />
+Substitute the general form of <InlineMath math="n" /> into <InlineMath math="2n+1" /> and split off the multiples of 63.
 
-Multiply both sides by <InlineMath math="m" />
+<BlockMath math="\begin{aligned}
+2n+1&=2(63m+59)+1\\
+&=126m+119\\
+&=63(2m+1)+56
+\end{aligned}" />
 
-<BlockMath math="3km + 5 = 11m \quad \ldots \text{(2)}" />
+Because <InlineMath math="0\le56<63" />, the remainder is 56. A check with <InlineMath math="n=59" /> gives <InlineMath math="2(59)+1=119=63+56" />.
 
-Eliminate <InlineMath math="km" /> by multiplying equation (1) by <InlineMath math="3" /> and equation (2) by <InlineMath math="2" />
+The value 59 is the remainder of <InlineMath math="n" /> itself, not of <InlineMath math="2n+1" />. The value 119 has not been reduced, although a remainder on division by 63 must be less than 63. The value 25 comes from swapping the two remainders, which gives <InlineMath math="n=12" />, a number that leaves 5 on division by 7 and 3 on division by 9. The value 11 uses only the condition for division by 9, namely <InlineMath math="2(5)+1" />.
 
-<BlockMath math="6km + 12 = 24m \quad \ldots \text{(1a)}" />
-
-<BlockMath math="6km + 10 = 22m \quad \ldots \text{(2a)}" />
-
-Subtract equation (2a) from equation (1a)
-
-<BlockMath math="\begin{aligned}&(6km+12)-(6km+10)\\&=24m-22m\end{aligned}" />
-
-<BlockMath math="2 = 2m" />
-
-<BlockMath math="m = 1" />
-
-Substitute <InlineMath math="m = 1" /> into equation (1)
-
-<BlockMath math="2k(1) + 4 = 8(1)" />
-
-<BlockMath math="2k + 4 = 8" />
-
-<BlockMath math="2k = 4" />
-
-<BlockMath math="k = 2" />
-
-With <InlineMath math="k = 2" /> and <InlineMath math="m = 1" />, the value of <InlineMath math="\triangle(5, 9)" /> is
-
-<BlockMath math="\begin{aligned}\triangle(5,9)&amp;=2(5)+\frac91\\&amp;=10+9\\&amp;=19\end{aligned}" />
+So the remainder when <InlineMath math="2n+1" /> is divided by 63 is **56**.

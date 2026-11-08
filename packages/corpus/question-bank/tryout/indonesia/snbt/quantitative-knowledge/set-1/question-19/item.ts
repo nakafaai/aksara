@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "(1), (2), dan (3) SAJA yang benar",
-        },
-        {
-          correct: true,
-          label: "(4) SAJA yang benar",
-        },
-        {
-          correct: false,
-          label: "(1) dan (3) SAJA yang benar",
-        },
-        {
-          correct: false,
-          label: "(2) dan (4) SAJA yang benar",
-        },
-        {
-          correct: false,
-          label: "SEMUA pernyataan benar",
-        },
+        { correct: false, label: "$$140$$" },
+        { correct: false, label: "$$160$$" },
+        { correct: false, label: "$$180$$" },
+        { correct: true, label: "$$200$$" },
+        { correct: false, label: "$$240$$" },
       ],
     },
   },

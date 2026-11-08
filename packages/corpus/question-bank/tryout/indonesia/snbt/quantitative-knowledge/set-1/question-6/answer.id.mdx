@@ -1,95 +1,26 @@
-Diketahui keliling belah ketupat <InlineMath math="PQRS" /> adalah <InlineMath math="20\text{ satuan}" />, sehingga panjang setiap sisinya adalah
+Pertidaksamaan <InlineMath math="\lvert A\rvert<B" /> setara dengan <InlineMath math="-B<A<B" />. Bentuk ini sekaligus memaksa <InlineMath math="B>0" />, jadi **kedua batas harus dipenuhi bersamaan**.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ satuan}\end{aligned}" />
+# Menyelesaikan kedua batas
 
-Diagonal belah ketupat **saling membagi dua secara tegak lurus**. Titik tengah <InlineMath math="PR" /> adalah <InlineMath math="O(4,0)" />, sehingga <InlineMath math="PO=4" />. Pada segitiga siku-siku <InlineMath math="POQ" />, sisi miringnya <InlineMath math="PQ=5" />.
+Dengan <InlineMath math="A=2x-5" /> dan <InlineMath math="B=x+1" />, pertidaksamaannya menjadi
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+<BlockMath math="-(x+1)<2x-5<x+1" />
 
-Karena titik <InlineMath math="Q" /> berada di atas sumbu horizontal, koordinatnya <InlineMath math="Q(4,3)" />. Titik yang berhadapan adalah <InlineMath math="S(4,-3)" />.
+Selesaikan batas kanan dan batas kiri secara terpisah.
 
-Hitung gradien garis <InlineMath math="PS" />
+<BlockMath math="\begin{aligned}
+2x-5&<x+1 &&\Rightarrow\quad x<6\\
+2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+\end{aligned}" />
 
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
+**Irisan kedua batas** adalah <InlineMath math="\tfrac43<x<6" />. Pada selang ini <InlineMath math="x+1>0" />, jadi syarat <InlineMath math="B>0" /> otomatis terpenuhi.
 
-Dengan <InlineMath math="P(0, 0)" /> dan <InlineMath math="S(4, -3)" />
+# Menjumlahkan bilangan bulat
 
-<BlockMath math="m_{PS} = \frac{-3 - 0}{4 - 0}" />
+Bilangan bulat pada selang <InlineMath math="\tfrac43<x<6" /> adalah 2, 3, 4, dan 5. **Cek batasnya**: <InlineMath math="x=5" /> memberi <InlineMath math="5<6" />, sedangkan <InlineMath math="x=6" /> memberi <InlineMath math="7<7" /> yang salah, dan <InlineMath math="x=1" /> memberi <InlineMath math="3<2" /> yang juga salah.
 
-<BlockMath math="m_{PS} = \frac{-3}{4}" />
+<BlockMath math="2+3+4+5=14" />
 
-<BlockMath math="m_{PS} = -\frac{3}{4}" />
+Nilai 12 hanya memakai kasus <InlineMath math="2x-5\ge0" />, sehingga kehilangan <InlineMath math="x=2" />. Nilai 15 membulatkan batas <InlineMath math="\tfrac43" /> ke bawah sehingga ikut memasukkan <InlineMath math="x=1" />. Nilai 20 memasukkan <InlineMath math="x=6" />, padahal tandanya kurang dari, bukan kurang dari atau sama dengan. Nilai 21 melakukan kedua kesalahan itu.
 
-Karena garis yang dicari tegak lurus terhadap <InlineMath math="PS" />, maka
-
-<BlockMath math="m_1 \cdot m_2 = -1" />
-
-<BlockMath math="-\frac{3}{4} \cdot m_2 = -1" />
-
-<BlockMath math="m_2 = \frac{-1}{-\frac{3}{4}} = \frac{4}{3}" />
-
-Jadi gradien garis yang melalui <InlineMath math="Q" /> dan tegak lurus <InlineMath math="PS" /> adalah <InlineMath math="m = \frac{4}{3}" />.
-
-Gunakan **bentuk titik-gradien** dengan titik <InlineMath math="Q(4,3)" /> untuk menentukan garis yang tepat:
-
-<BlockMath math="\begin{aligned}y-3&=\frac43(x-4)\\3y-9&=4x-16\\4x-3y&=7\end{aligned}" />
-
-<MathVisual
-  title="Garis Tegak Lurus Sisi"
-  description={<>Visualisasi garis <InlineMath math="PS" /> dan garis yang melalui <InlineMath math="Q" /> dan tegak lurus terhadap <InlineMath math="PS" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "perpendicular-line",
-        kind: "line",
-        appearance: "secondary",
-        through: [
-          { x: 1, y: -1 },
-          { x: 7, y: 7 },
-        ],
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above-left" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "line-equation", objectId: "perpendicular-line", at: { x: 5.5, y: 5 }, placement: "below-right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S(4,-3)" /></>,
-    "line-equation": <><InlineMath math="4x-3y=7" /></>,
-  }}
-/>
-
-Opsi <InlineMath math="4x - 3y = 7" /> memiliki gradien
-
-<BlockMath math="m = -\frac{4}{-3} = \frac{4}{3}" />
-
-Verifikasi bahwa garis ini melalui <InlineMath math="Q(4, 3)" />
-
-<BlockMath math="4(4) - 3(3) = 16 - 9 = 7" />
-
-Sesuai. Jadi persamaan garis yang melalui <InlineMath math="Q" /> dan tegak lurus terhadap <InlineMath math="PS" /> adalah <InlineMath math="4x - 3y = 7" />.
+Jadi, jumlah semua bilangan bulat yang memenuhi adalah **14**.
