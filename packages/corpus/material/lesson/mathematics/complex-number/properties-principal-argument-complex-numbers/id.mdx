@@ -1,138 +1,107 @@
 export const metadata = {
   title: "Sifat Argumen Utama Bilangan Kompleks",
-  description: "Sesuaikan argumen utama setelah mengalikan atau membagi bilangan kompleks dalam bentuk polar.",
+  description: "Argumen hasil kali adalah jumlah argumen dan argumen hasil bagi adalah selisihnya. Kembalikan hasilnya ke selang utama, juga untuk pangkat dan konjugat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
-## Menjumlahkan dan Mengurangkan Sudut pada Operasi Bilangan Kompleks
+## Argumen Hasil Kali dan Hasil Bagi
 
-Perkalian <Highlight>menggabungkan arah dengan menjumlahkan sudut</Highlight>, sedangkan pembagian membandingkan arah dengan mengurangkannya. Misalkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> adalah bilangan kompleks tak nol dalam bentuk polar:
+Saat dua bilangan kompleks tak nol dikalikan, **argumennya dijumlahkan**, dan saat dibagi, argumennya dikurangkan. Untuk argumen utama, hasil penjumlahan atau pengurangan itu mungkin keluar dari selang <InlineMath math="(-180^\circ, 180^\circ]" />, jadi tambahkan atau kurangkan satu putaran penuh bila perlu:
 
 <MathContainer>
-  <BlockMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" />
-  <BlockMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />
+  <BlockMath math="\operatorname{Arg}(z_1 z_2) = \operatorname{Arg} z_1 + \operatorname{Arg} z_2 + 360^\circ k" />
+  <BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = \operatorname{Arg} z_1 - \operatorname{Arg} z_2 + 360^\circ k" />
 </MathContainer>
 
-Pada persamaan tersebut, <InlineMath math="\theta_1" /> adalah salah satu argumen dari <InlineMath math="z_1" />, sedangkan <InlineMath math="\theta_2" /> adalah salah satu argumen dari <InlineMath math="z_2" />.
+Bilangan bulat <InlineMath math="k" /> selalu <InlineMath math="-1" />, <InlineMath math="0" />, atau <InlineMath math="1" />, karena jumlah atau selisih dua sudut di selang utama berada di antara <InlineMath math="-360^\circ" /> dan <InlineMath math="360^\circ" />. Misalnya <InlineMath math="\operatorname{Arg}(i) = 90^\circ" /> dan <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ" /> memberi <InlineMath math="\operatorname{Arg}\big(i(1 + i)\big) = 135^\circ" />, dan memang <InlineMath math="i(1 + i) = -1 + i" />.
 
-### Argumen Hasil Kali
+Modulus ikut dikalikan atau dibagi, tetapi modulus yang positif tidak mengubah arah. Karena itu argumen hasil kali hanya bergantung pada argumen kedua faktornya.
 
-Argumen dari hasil kali dua bilangan kompleks (<InlineMath math="z_1 \times z_2" />) adalah **jumlah** dari argumen masing-masing bilangan kompleks.
+## Mengapa Sudut Ikut Dijumlahkan
 
-Kesamaan berikut dipahami modulo satu putaran penuh:
-
-<BlockMath math="\begin{aligned} &amp;\arg(z_1 z_2) \\ &amp;\equiv \arg(z_1) + \arg(z_2) \pmod{2\pi} \end{aligned}" />
-
-Ini berarti jika <InlineMath math="\theta_1" /> adalah argumen <InlineMath math="z_1" /> dan <InlineMath math="\theta_2" /> adalah argumen <InlineMath math="z_2" />,
-
-maka <InlineMath math="\theta_1 + \theta_2" /> adalah salah satu argumen dari <InlineMath math="z_1 z_2" />.
-
-Untuk mencari Argumen Utama <InlineMath math="\text{Arg}(z_1 z_2)" />:
-
-1.  Hitung <InlineMath math="\text{Arg}(z_1) + \text{Arg}(z_2)" />.
-2.  Jika hasilnya sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" /> atau <InlineMath math="(-\pi, \pi]" />, hasil itu adalah Argumen Utamanya.
-3.  Jika belum, tambahkan atau kurangkan putaran penuh sampai hasilnya masuk ke interval tersebut.
-
-Identitas penjumlahan sudut menjelaskan asal rumus perkalian. Kalikan kedua bentuk polar dan kelompokkan komponen riil serta imajiner:
+Tulis kedua bilangan dalam bentuk polar, <InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" />. Saat keduanya dikalikan dan suku nyata serta imajiner dikelompokkan, **rumus jumlah sudut** untuk kosinus dan sinus muncul:
 
 <BlockMath math="\begin{aligned}\frac{z_1z_2}{r_1r_2}&amp;=(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)\\&amp;\quad+i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2)\\&amp;=\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\end{aligned}" />
 
-### Argumen Hasil Bagi
+Hasil kali punya modulus <InlineMath math="r_1 r_2" /> dan argumen <InlineMath math="\theta_1 + \theta_2" />, sesuai dengan [perkalian bilangan kompleks](/id/materi/matematika/bilangan-kompleks/perkalian-bilangan-kompleks) dalam bentuk polar. Pembagian adalah kebalikan perkalian: jika <InlineMath math="w = \frac{z_1}{z_2}" />, maka <InlineMath math="w z_2 = z_1" />, sehingga <InlineMath math="\arg w + \arg z_2 = \arg z_1" /> dan argumen <InlineMath math="w" /> adalah selisih kedua argumen.
 
-Argumen dari hasil bagi dua bilangan kompleks (<InlineMath math="\frac{z_1}{z_2}" />, dengan <InlineMath math="z_2 \neq 0" />) adalah **selisih** dari argumen bilangan kompleks pembilang (<InlineMath math="z_1" />) dikurangi argumen bilangan kompleks penyebut (<InlineMath math="z_2" />).
+## Ketika Jumlah Sudut Keluar dari Selang Utama
 
-Sekali lagi, kesamaan berikut dipahami modulo satu putaran penuh:
+**Contoh 1**. Misalkan <InlineMath math="z_1 = -1 + i" /> dengan <InlineMath math="\operatorname{Arg} z_1 = 135^\circ" />, dan <InlineMath math="z_2 = -1 + \sqrt{3}i" /> dengan <InlineMath math="\operatorname{Arg} z_2 = 120^\circ" />. Jumlah kedua argumen melewati <InlineMath math="180^\circ" />, jadi kurangkan satu putaran:
 
-<BlockMath math="\begin{aligned} &amp;\arg\left(\frac{z_1}{z_2}\right) \\ &amp;\equiv \arg(z_1) - \arg(z_2) \pmod{2\pi} \end{aligned}" />
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 135^\circ + 120^\circ - 360^\circ = -105^\circ" />
 
-Ini berarti jika <InlineMath math="\theta_1" /> adalah argumen <InlineMath math="z_1" /> dan <InlineMath math="\theta_2" /> adalah argumen <InlineMath math="z_2" />,
+Periksa dengan mengalikan langsung:
 
-maka <InlineMath math="\theta_1 - \theta_2" /> adalah salah satu argumen dari <InlineMath math="\frac{z_1}{z_2}" />.
+<BlockMath math="(-1 + i)(-1 + \sqrt{3}i) = (1 - \sqrt{3}) - (1 + \sqrt{3})i \approx -0{,}73 - 2{,}73i" />
 
-Untuk mencari Argumen Utama <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:
+Kedua komponen negatif, jadi **hasil kali ada di kuadran III**, tempat argumen utama bernilai negatif. Sudut acuannya <InlineMath math="\arctan\frac{2{,}73}{0{,}73} \approx 75^\circ" />, dan <InlineMath math="-180^\circ + 75^\circ = -105^\circ" />, cocok dengan hasil rumus. Modulusnya juga cocok: <InlineMath math="\sqrt{2} \cdot 2 = 2\sqrt{2} \approx 2{,}83" />.
 
-1.  Hitung <InlineMath math="\text{Arg}(z_1) - \text{Arg}(z_2)" />.
-2.  Jika hasilnya sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" /> atau <InlineMath math="(-\pi, \pi]" />, hasil itu adalah Argumen Utamanya.
-3.  Jika belum, masukkan hasilnya ke interval tersebut dengan langkah putaran penuh yang sama seperti pada hasil kali.
+**Contoh 2**. Untuk hasil bagi <InlineMath math="\frac{-1 - i}{i}" />, argumen pembilang <InlineMath math="-135^\circ" /> dan argumen penyebut <InlineMath math="90^\circ" />. Selisihnya kurang dari <InlineMath math="-180^\circ" />, jadi tambahkan satu putaran:
 
-### Mengembalikan Sudut ke Interval Utama
+<BlockMath math="\operatorname{Arg}\left(\frac{-1 - i}{i}\right) = -135^\circ - 90^\circ + 360^\circ = 135^\circ" />
 
-Jumlah atau selisih sudut belum tentu merupakan argumen utama. **Kurangi atau tambahkan satu putaran penuh** untuk memilih sudut pada interval yang ditetapkan. Perhatikan pula batas kiri yang tidak termasuk.
+Periksa: kalikan pembilang dan penyebut dengan <InlineMath math="-i" />, sehingga <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. Bilangan <InlineMath math="-1 + i" /> memang punya argumen utama <InlineMath math="135^\circ" />.
 
-| Operasi | Sudut sebelum penyesuaian | Argumen utama |
+## Argumen Pangkat dan Konjugat
+
+Pangkat adalah perkalian berulang, jadi **argumen pangkat ke-<InlineMath math="n" /> adalah <InlineMath math="n" /> kali argumennya**, lalu dikembalikan ke selang utama:
+
+<BlockMath math="\operatorname{Arg}(z^n) = n \operatorname{Arg} z + 360^\circ k" />
+
+Untuk <InlineMath math="(-1 + i)^3" />, nilai <InlineMath math="3 \cdot 135^\circ = 405^\circ" /> dikurangi satu putaran menjadi <InlineMath math="45^\circ" />. Periksa: <InlineMath math="(-1 + i)^2 = -2i" />, lalu <InlineMath math="-2i(-1 + i) = 2 + 2i" />, bilangan di kuadran I dengan argumen <InlineMath math="45^\circ" />.
+
+[Konjugat](/id/materi/matematika/bilangan-kompleks/konjugat-bilangan-kompleks) <InlineMath math="\bar{z} = x - iy" /> adalah cerminan <InlineMath math="z" /> terhadap sumbu nyata, jadi argumennya berganti tanda: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. Satu pengecualian ada di sumbu nyata negatif. Bilangan <InlineMath math="-4" /> sama dengan konjugatnya, dan argumen utama keduanya <InlineMath math="180^\circ" />, karena <InlineMath math="-180^\circ" /> tidak termasuk dalam selang.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa keliru | Cara memeriksa |
 | --- | --- | --- |
-| Perkalian | <InlineMath math="120^\circ+120^\circ=240^\circ" /> | <InlineMath math="240^\circ-360^\circ=-120^\circ" /> |
-| Pembagian | <InlineMath math="-150^\circ-60^\circ=-210^\circ" /> | <InlineMath math="-210^\circ+360^\circ=150^\circ" /> |
-| Batas interval | <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> |
+| Menulis jumlah argumen tanpa penyesuaian | <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> berada di luar selang utama | Hasil akhir harus di antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" /> |
+| Membagi argumen saat membagi bilangan | Hasil bagi mengurangkan argumen, bukan membaginya | Kalikan hasilnya dengan penyebut dan periksa argumennya |
+| Mengurangkan dengan urutan terbalik | <InlineMath math="\operatorname{Arg}\frac{z_1}{z_2}" /> memakai argumen pembilang dikurangi penyebut | Untuk <InlineMath math="\frac{1}{i} = -i" />, argumennya <InlineMath math="-90^\circ" />, bukan <InlineMath math="90^\circ" /> |
+| Menganggap modulus memengaruhi arah | Modulus positif hanya mengubah panjang vektor | Argumen <InlineMath math="2z" /> sama dengan argumen <InlineMath math="z" /> |
+| Menulis <InlineMath math="\operatorname{Arg}\bar{z} = -180^\circ" /> untuk bilangan real negatif | Ujung kiri selang tidak termasuk | Bilangan real negatif sama dengan konjugatnya |
 
-## Penggunaan Sifat Argumen
+Pemeriksaan yang paling dapat diandalkan adalah **menghitung bilangan hasil operasinya secara langsung**, lalu membaca kuadrannya. Jika kuadran itu cocok dengan argumen yang kamu peroleh, penyesuaiannya sudah benar.
 
-Gunakan **penjumlahan sudut** untuk hasil kali dan pengurangan sudut untuk hasil bagi. Kedua modulus positif hanya mengubah panjang vektor. Diberikan:
+## Latihan Soal
 
-<MathContainer>
-  <BlockMath math="z_1 = 2(\cos 45^\circ + i\sin 45^\circ)" />
-  <BlockMath math="z_2 = 3(\cos 95^\circ + i\sin 95^\circ)" />
-</MathContainer>
+Soal pertama dan kedua melatih penyesuaian setelah hasil kali dan hasil bagi, soal ketiga memakai pangkat, dan soal keempat memakai konjugat. **Hitung dulu jumlah, selisih, atau kelipatannya**, lalu kembalikan ke selang <InlineMath math="(-180^\circ, 180^\circ]" />.
 
-Tentukan Argumen Utama dari <InlineMath math="z_1 \times z_2" /> dan <InlineMath math="\frac{z_1}{z_2}" />.
+1. Diketahui <InlineMath math="\operatorname{Arg} z_1 = 150^\circ" /> dan <InlineMath math="\operatorname{Arg} z_2 = 100^\circ" />. Tentukan <InlineMath math="\operatorname{Arg}(z_1 z_2)" />.
 
-**Penyelesaian**:
+2. Diketahui <InlineMath math="\operatorname{Arg} z_1 = -170^\circ" /> dan <InlineMath math="\operatorname{Arg} z_2 = 40^\circ" />. Tentukan <InlineMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right)" />.
 
-Kita tahu Argumen Utama dari masing-masing adalah:
+3. Tentukan <InlineMath math="\operatorname{Arg}\big((1 + i)^6\big)" /> dan periksa dengan menghitung pangkatnya.
 
-<MathContainer>
-  <BlockMath math="\text{Arg}(z_1) = 45^\circ" />
-  <BlockMath math="\text{Arg}(z_2) = 95^\circ" />
-</MathContainer>
-
-1. **Argumen Hasil Kali (<InlineMath math="z_1 \times z_2" />)**:
-
-   Jumlah Argumen Utama:
-
-   <BlockMath math="\begin{aligned} \text{Arg}(z_1) + \text{Arg}(z_2) &amp;= 45^\circ + 95^\circ \\ &amp;= 140^\circ \end{aligned}" />
-
-   Karena <InlineMath math="140^\circ" /> sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" />:
-
-   <BlockMath math="\text{Arg}(z_1 \times z_2) = 140^\circ" />
-
-   Himpunan semua argumen hasil operasi adalah <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
-
-2. **Argumen Hasil Bagi (<InlineMath math="\frac{z_1}{z_2}" />)**:
-
-   Selisih Argumen Utama:
-
-   <BlockMath math="\begin{aligned} \text{Arg}(z_1) - \text{Arg}(z_2) &amp;= 45^\circ - 95^\circ \\ &amp;= -50^\circ \end{aligned}" />
-
-   Karena <InlineMath math="-50^\circ" /> sudah berada dalam <InlineMath math="(-180^\circ, 180^\circ]" />:
-
-   <BlockMath math="\text{Arg}\left(\frac{z_1}{z_2}\right) = -50^\circ" />
-
-   Himpunan semua argumen hasil operasi adalah <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
-
-## Latihan
-
-Kedua bilangan sudah ditulis dalam bentuk polar, sehingga kedua argumennya dapat digabungkan langsung, dan **selang argumen utama** menentukan apakah hasilnya perlu ditambah atau dikurangi satu putaran penuh. Diketahui <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> dan <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Tentukan:
-
-1.  <InlineMath math="\text{Arg}(z_a \times z_b)" />
-2.  <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right)" />
+4. Tentukan argumen utama konjugat dari <InlineMath math="z = -\sqrt{3} + i" />.
 
 ### Pembahasan
 
-Diketahui <InlineMath math="\text{Arg}(z_a) = 120^\circ" /> dan <InlineMath math="\text{Arg}(z_b) = 50^\circ" />.
+**Soal 1**. Jumlah kedua argumen melewati <InlineMath math="180^\circ" />, jadi kurangkan satu putaran:
 
-**Modulus yang positif** tidak mengubah arah kedua bilangan kompleks, sehingga kita hanya memerlukan kedua argumennya.
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 150^\circ + 100^\circ - 360^\circ = -110^\circ" />
 
-1.  **Argumen Hasil Kali**:
+Periksa: <InlineMath math="-110^\circ" /> berada di selang utama dan **berbeda tepat satu putaran dari <InlineMath math="250^\circ" />**.
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) + \text{Arg}(z_b) &amp;= 120^\circ + 50^\circ \\ &amp;= 170^\circ \end{aligned}" />
+**Soal 2**. Selisih kedua argumen kurang dari <InlineMath math="-180^\circ" />, jadi tambahkan satu putaran:
 
-    Karena <InlineMath math="170^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z_a z_b) = 170^\circ" />.
+<BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = -170^\circ - 40^\circ + 360^\circ = 150^\circ" />
 
-2.  **Argumen Hasil Bagi**:
+Periksa: <InlineMath math="150^\circ + 40^\circ = 190^\circ" />, dan <InlineMath math="190^\circ - 360^\circ = -170^\circ" />, jadi **hasil bagi dikali penyebut kembali ke arah <InlineMath math="z_1" />**.
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) - \text{Arg}(z_b) &amp;= 120^\circ - 50^\circ \\ &amp;= 70^\circ \end{aligned}" />
+**Soal 3**. Argumen <InlineMath math="1 + i" /> adalah <InlineMath math="45^\circ" />, jadi <InlineMath math="6 \cdot 45^\circ = 270^\circ" />, lalu kurangkan satu putaran:
 
-    Karena <InlineMath math="70^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right) = 70^\circ" />.
+<BlockMath math="\operatorname{Arg}\big((1 + i)^6\big) = 270^\circ - 360^\circ = -90^\circ" />
+
+Periksa: <InlineMath math="(1 + i)^2 = 2i" />, jadi <InlineMath math="(1 + i)^6 = (2i)^3 = 8i^3 = -8i" />. Bilangan <InlineMath math="-8i" /> ada di sumbu imajiner negatif, jadi **argumennya memang <InlineMath math="-90^\circ" />**.
+
+**Soal 4**. Titik <InlineMath math="(-\sqrt{3}, 1)" /> ada di kuadran II dengan <InlineMath math="\operatorname{Arg} z = 150^\circ" />. Konjugat mencerminkan titik terhadap sumbu nyata:
+
+<BlockMath math="\operatorname{Arg}\bar{z} = -150^\circ" />
+
+Periksa: <InlineMath math="\bar{z} = -\sqrt{3} - i" /> ada di kuadran III, dengan sudut acuan <InlineMath math="30^\circ" /> dan argumen <InlineMath math="-180^\circ + 30^\circ = -150^\circ" />, jadi **cerminan membalik tanda argumen**.

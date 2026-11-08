@@ -1,138 +1,107 @@
 export const metadata = {
-  title: "Properties of Principal Argument of Complex Numbers",
-  description: "Adjust the principal argument after multiplying or dividing complex numbers in polar form.",
+  title: "Properties of the Principal Argument",
+  description: "The argument of a product is the sum of the arguments, and of a quotient their difference. Bring the result back into the principal range, also for powers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
-## Angles Add in Products and Subtract in Quotients
+## The Argument of a Product and a Quotient
 
-Multiplication <Highlight>combines directions by adding angles</Highlight>, while division compares directions by subtracting them. Let <InlineMath math="z_1" /> and <InlineMath math="z_2" /> be nonzero complex numbers in polar form:
+When two nonzero complex numbers are multiplied, **their arguments add**, and when they are divided, the arguments subtract. For the principal argument, that sum or difference can leave the range <InlineMath math="(-180^\circ, 180^\circ]" />, so add or subtract one full turn when needed:
 
 <MathContainer>
-  <BlockMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" />
-  <BlockMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />
+  <BlockMath math="\operatorname{Arg}(z_1 z_2) = \operatorname{Arg} z_1 + \operatorname{Arg} z_2 + 360^\circ k" />
+  <BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = \operatorname{Arg} z_1 - \operatorname{Arg} z_2 + 360^\circ k" />
 </MathContainer>
 
-Where <InlineMath math="\theta_1" /> is one argument of <InlineMath math="z_1" /> and <InlineMath math="\theta_2" /> is one argument of <InlineMath math="z_2" />.
+The integer <InlineMath math="k" /> is always <InlineMath math="-1" />, <InlineMath math="0" />, or <InlineMath math="1" />, because the sum or difference of two angles in the principal range lies between <InlineMath math="-360^\circ" /> and <InlineMath math="360^\circ" />. For example, <InlineMath math="\operatorname{Arg}(i) = 90^\circ" /> and <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ" /> give <InlineMath math="\operatorname{Arg}\big(i(1 + i)\big) = 135^\circ" />, and indeed <InlineMath math="i(1 + i) = -1 + i" />.
 
-### Argument of Product
+The moduli are multiplied or divided as well, but a positive modulus does not change a direction. That is why the argument of a product depends only on the arguments of its two factors.
 
-The argument of the product of two complex numbers (<InlineMath math="z_1 \times z_2" />) is the **sum** of the arguments of the individual complex numbers.
+## Why the Angles Add
 
-The equality is understood modulo one full turn:
-
-<BlockMath math="\begin{aligned} &amp;\arg(z_1 z_2) \\ &amp;\equiv \arg(z_1) + \arg(z_2) \pmod{2\pi} \end{aligned}" />
-
-This means if <InlineMath math="\theta_1" /> is an argument of <InlineMath math="z_1" /> and <InlineMath math="\theta_2" /> is an argument of <InlineMath math="z_2" />,
-
-then <InlineMath math="\theta_1 + \theta_2" /> is one of the arguments of <InlineMath math="z_1 z_2" />.
-
-To find the Principal Argument <InlineMath math="\text{Arg}(z_1 z_2)" />:
-
-1.  Calculate <InlineMath math="\text{Arg}(z_1) + \text{Arg}(z_2)" />.
-2.  If the result is already within <InlineMath math="(-180^\circ, 180^\circ]" /> or <InlineMath math="(-\pi, \pi]" />, it is the Principal Argument.
-3.  Otherwise, add or subtract full turns until it lies in that interval.
-
-The angle addition identities explain the product rule. Multiply the polar forms and collect the real and imaginary components:
+Write both numbers in polar form, <InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /> and <InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" />. When you multiply them and group the real and imaginary terms, **the angle sum identities** for cosine and sine appear:
 
 <BlockMath math="\begin{aligned}\frac{z_1z_2}{r_1r_2}&amp;=(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)\\&amp;\quad+i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2)\\&amp;=\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\end{aligned}" />
 
-### Argument of Quotient
+The product has modulus <InlineMath math="r_1 r_2" /> and argument <InlineMath math="\theta_1 + \theta_2" />, which matches [multiplication of complex numbers](/en/subjects/mathematics/complex-number/multiplication-complex-numbers) in polar form. Division undoes multiplication: if <InlineMath math="w = \frac{z_1}{z_2}" />, then <InlineMath math="w z_2 = z_1" />, so <InlineMath math="\arg w + \arg z_2 = \arg z_1" />, and the argument of <InlineMath math="w" /> is the difference of the two arguments.
 
-The argument of the quotient of two complex numbers (<InlineMath math="\frac{z_1}{z_2}" />, with <InlineMath math="z_2 \neq 0" />) is the **difference** between the argument of the numerator complex number (<InlineMath math="z_1" />) and the argument of the denominator complex number (<InlineMath math="z_2" />).
+## When the Sum of Angles Leaves the Principal Range
 
-Again, the equality is understood modulo one full turn:
+**Example 1**. Let <InlineMath math="z_1 = -1 + i" /> with <InlineMath math="\operatorname{Arg} z_1 = 135^\circ" />, and <InlineMath math="z_2 = -1 + \sqrt{3}i" /> with <InlineMath math="\operatorname{Arg} z_2 = 120^\circ" />. The sum of the arguments passes <InlineMath math="180^\circ" />, so subtract one turn:
 
-<BlockMath math="\begin{aligned} &amp;\arg\left(\frac{z_1}{z_2}\right) \\ &amp;\equiv \arg(z_1) - \arg(z_2) \pmod{2\pi} \end{aligned}" />
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 135^\circ + 120^\circ - 360^\circ = -105^\circ" />
 
-This means if <InlineMath math="\theta_1" /> is an argument of <InlineMath math="z_1" /> and <InlineMath math="\theta_2" /> is an argument of <InlineMath math="z_2" />,
+Check by multiplying directly:
 
-then <InlineMath math="\theta_1 - \theta_2" /> is one of the arguments of <InlineMath math="\frac{z_1}{z_2}" />.
+<BlockMath math="(-1 + i)(-1 + \sqrt{3}i) = (1 - \sqrt{3}) - (1 + \sqrt{3})i \approx -0.73 - 2.73i" />
 
-To find the Principal Argument <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:
+Both components are negative, so **the product lies in quadrant III**, where the principal argument is negative. The reference angle is <InlineMath math="\arctan\frac{2.73}{0.73} \approx 75^\circ" />, and <InlineMath math="-180^\circ + 75^\circ = -105^\circ" />, which matches the formula. The modulus matches too: <InlineMath math="\sqrt{2} \cdot 2 = 2\sqrt{2} \approx 2.83" />.
 
-1.  Calculate <InlineMath math="\text{Arg}(z_1) - \text{Arg}(z_2)" />.
-2.  If the result is already within <InlineMath math="(-180^\circ, 180^\circ]" /> or <InlineMath math="(-\pi, \pi]" />, it is the Principal Argument.
-3.  Otherwise, bring it into that interval with the same full-turn step as for the product.
+**Example 2**. For the quotient <InlineMath math="\frac{-1 - i}{i}" />, the numerator has argument <InlineMath math="-135^\circ" /> and the denominator <InlineMath math="90^\circ" />. Their difference is below <InlineMath math="-180^\circ" />, so add one turn:
 
-### Returning an Angle to the Principal Interval
+<BlockMath math="\operatorname{Arg}\left(\frac{-1 - i}{i}\right) = -135^\circ - 90^\circ + 360^\circ = 135^\circ" />
 
-An angle sum or difference is not always the principal argument. **Subtract or add one full turn** to select the angle in the chosen interval. The left endpoint is excluded.
+Check: multiply the numerator and denominator by <InlineMath math="-i" />, so <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. The number <InlineMath math="-1 + i" /> does have principal argument <InlineMath math="135^\circ" />.
 
-| Operation | Angle before adjustment | Principal argument |
+## The Argument of a Power and a Conjugate
+
+A power is repeated multiplication, so **the argument of the <InlineMath math="n" />th power is <InlineMath math="n" /> times the argument**, brought back into the principal range:
+
+<BlockMath math="\operatorname{Arg}(z^n) = n \operatorname{Arg} z + 360^\circ k" />
+
+For <InlineMath math="(-1 + i)^3" />, the value <InlineMath math="3 \cdot 135^\circ = 405^\circ" /> minus one turn gives <InlineMath math="45^\circ" />. Check: <InlineMath math="(-1 + i)^2 = -2i" />, then <InlineMath math="-2i(-1 + i) = 2 + 2i" />, a number in quadrant I with argument <InlineMath math="45^\circ" />.
+
+The [conjugate](/en/subjects/mathematics/complex-number/conjugate-complex-numbers) <InlineMath math="\bar{z} = x - iy" /> is the mirror image of <InlineMath math="z" /> in the real axis, so its argument changes sign: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. The one exception is the negative real axis. The number <InlineMath math="-4" /> equals its own conjugate, and both have principal argument <InlineMath math="180^\circ" />, because <InlineMath math="-180^\circ" /> is outside the range.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
 | --- | --- | --- |
-| Product | <InlineMath math="120^\circ+120^\circ=240^\circ" /> | <InlineMath math="240^\circ-360^\circ=-120^\circ" /> |
-| Quotient | <InlineMath math="-150^\circ-60^\circ=-210^\circ" /> | <InlineMath math="-210^\circ+360^\circ=150^\circ" /> |
-| Interval endpoint | <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> |
+| Writing the sum of arguments without adjusting it | <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> lies outside the principal range | The final result must lie between <InlineMath math="-180^\circ" /> and <InlineMath math="180^\circ" /> |
+| Dividing the arguments when dividing the numbers | A quotient subtracts the arguments instead of dividing them | Multiply the result by the denominator and check its argument |
+| Subtracting in the wrong order | <InlineMath math="\operatorname{Arg}\frac{z_1}{z_2}" /> uses the numerator's argument minus the denominator's | For <InlineMath math="\frac{1}{i} = -i" />, the argument is <InlineMath math="-90^\circ" />, not <InlineMath math="90^\circ" /> |
+| Thinking the modulus affects the direction | A positive modulus only changes the length of the vector | The argument of <InlineMath math="2z" /> equals the argument of <InlineMath math="z" /> |
+| Writing <InlineMath math="\operatorname{Arg}\bar{z} = -180^\circ" /> for a negative real number | The left end of the range is excluded | A negative real number equals its own conjugate |
 
-## Using Argument Properties
+The most reliable check is **computing the resulting number directly**, then reading its quadrant. If that quadrant matches the argument you found, the adjustment is right.
 
-Use **angle addition** for products and angle subtraction for quotients. The **positive moduli** affect only the vector lengths. Given:
+## Exercises
 
-<MathContainer>
-  <BlockMath math="z_1 = 2(\cos 45^\circ + i\sin 45^\circ)" />
-  <BlockMath math="z_2 = 3(\cos 95^\circ + i\sin 95^\circ)" />
-</MathContainer>
+The first two problems practice the adjustment after a product and a quotient, the third uses a power, and the fourth uses a conjugate. **Compute the sum, difference, or multiple first**, then bring it back into <InlineMath math="(-180^\circ, 180^\circ]" />.
 
-Find the Principal Argument of <InlineMath math="z_1 \times z_2" /> and <InlineMath math="\frac{z_1}{z_2}" />.
+1. Given <InlineMath math="\operatorname{Arg} z_1 = 150^\circ" /> and <InlineMath math="\operatorname{Arg} z_2 = 100^\circ" />, find <InlineMath math="\operatorname{Arg}(z_1 z_2)" />.
 
-**Solution**:
+2. Given <InlineMath math="\operatorname{Arg} z_1 = -170^\circ" /> and <InlineMath math="\operatorname{Arg} z_2 = 40^\circ" />, find <InlineMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right)" />.
 
-We know the Principal Arguments are:
+3. Find <InlineMath math="\operatorname{Arg}\big((1 + i)^6\big)" /> and check it by computing the power.
 
-<MathContainer>
-  <BlockMath math="\text{Arg}(z_1) = 45^\circ" />
-  <BlockMath math="\text{Arg}(z_2) = 95^\circ" />
-</MathContainer>
+4. Find the principal argument of the conjugate of <InlineMath math="z = -\sqrt{3} + i" />.
 
-1.  **Argument of Product (<InlineMath math="z_1 \times z_2" />)**:
+### Worked Solutions
 
-    Sum of Principal Arguments:
+**Problem 1**. The sum of the arguments passes <InlineMath math="180^\circ" />, so subtract one turn:
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_1) + \text{Arg}(z_2) &amp;= 45^\circ + 95^\circ \\ &amp;= 140^\circ \end{aligned}" />
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 150^\circ + 100^\circ - 360^\circ = -110^\circ" />
 
-    Since <InlineMath math="140^\circ" /> is already within <InlineMath math="(-180^\circ, 180^\circ]" />:
+Check: <InlineMath math="-110^\circ" /> lies in the principal range and **differs from <InlineMath math="250^\circ" /> by exactly one turn**.
 
-    <BlockMath math="\text{Arg}(z_1 \times z_2) = 140^\circ" />
+**Problem 2**. The difference of the arguments is below <InlineMath math="-180^\circ" />, so add one turn:
 
-    The set of all arguments is <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
+<BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = -170^\circ - 40^\circ + 360^\circ = 150^\circ" />
 
-2.  **Argument of Quotient (<InlineMath math="\frac{z_1}{z_2}" />)**:
+Check: <InlineMath math="150^\circ + 40^\circ = 190^\circ" />, and <InlineMath math="190^\circ - 360^\circ = -170^\circ" />, so **the quotient times the denominator returns to the direction of <InlineMath math="z_1" />**.
 
-    Difference of Principal Arguments:
+**Problem 3**. The argument of <InlineMath math="1 + i" /> is <InlineMath math="45^\circ" />, so <InlineMath math="6 \cdot 45^\circ = 270^\circ" />, then subtract one turn:
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_1) - \text{Arg}(z_2) &amp;= 45^\circ - 95^\circ \\ &amp;= -50^\circ \end{aligned}" />
+<BlockMath math="\operatorname{Arg}\big((1 + i)^6\big) = 270^\circ - 360^\circ = -90^\circ" />
 
-    Since <InlineMath math="-50^\circ" /> already lies in <InlineMath math="(-180^\circ, 180^\circ]" />:
+Check: <InlineMath math="(1 + i)^2 = 2i" />, so <InlineMath math="(1 + i)^6 = (2i)^3 = 8i^3 = -8i" />. The number <InlineMath math="-8i" /> lies on the negative imaginary axis, so **its argument is indeed <InlineMath math="-90^\circ" />**.
 
-    <BlockMath math="\text{Arg}\left(\frac{z_1}{z_2}\right) = -50^\circ" />
+**Problem 4**. The point <InlineMath math="(-\sqrt{3}, 1)" /> lies in quadrant II with <InlineMath math="\operatorname{Arg} z = 150^\circ" />. The conjugate mirrors the point in the real axis:
 
-    The set of all arguments is <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
+<BlockMath math="\operatorname{Arg}\bar{z} = -150^\circ" />
 
-## Exercise
-
-Given <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> and <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Both numbers are already in polar form, so the two arguments combine directly, and the **principal range** tells you whether the result needs one more full turn. Find:
-
-1.  <InlineMath math="\text{Arg}(z_a \times z_b)" />
-2.  <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right)" />
-
-### Worked Solution
-
-Given <InlineMath math="\text{Arg}(z_a) = 120^\circ" /> and <InlineMath math="\text{Arg}(z_b) = 50^\circ" />.
-
-The **positive moduli** do not change the direction of either complex number, so only the two arguments are needed.
-
-1.  **Argument of Product**:
-
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) + \text{Arg}(z_b) &amp;= 120^\circ + 50^\circ \\ &amp;= 170^\circ \end{aligned}" />
-
-    Since <InlineMath math="170^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z_a z_b) = 170^\circ" />.
-
-2.  **Argument of Quotient**:
-
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) - \text{Arg}(z_b) &amp;= 120^\circ - 50^\circ \\ &amp;= 70^\circ \end{aligned}" />
-
-    Since <InlineMath math="70^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right) = 70^\circ" />.
+Check: <InlineMath math="\bar{z} = -\sqrt{3} - i" /> lies in quadrant III, with reference angle <InlineMath math="30^\circ" /> and argument <InlineMath math="-180^\circ + 30^\circ = -150^\circ" />, so **the mirror image flips the sign of the argument**.
