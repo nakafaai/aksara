@@ -21,7 +21,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "tagihan",
+          label: "tagihan bulanan",
         },
         {
           correct: true,

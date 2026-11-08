@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kalimat (6) dan (7) menjelaskan penyebab munculnya pengepul kecil yang disebut pada kalimat (5).",
+            "Kalimat (6) dan (7) menjelaskan penyebab munculnya banyak pengepul kecil tanpa peralatan pelindung yang disebut pada kalimat (5).",
         },
         {
           correct: false,

@@ -33,7 +33,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kalimat (8) menyebutkan syarat agar keadaan pada kalimat (7) terjadi.",
+            "Kalimat (8) menyebutkan syarat yang harus dipenuhi agar pemulihan warna karang pada kalimat (7) dapat terjadi.",
         },
       ],
     },

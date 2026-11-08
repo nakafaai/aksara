@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pestisida adalah satu-satunya penyebab berkurangnya lebah.",
+          label:
+            "Pestisida adalah satu-satunya penyebab berkurangnya lebah, sehingga larangan pestisida sudah cukup untuk memulihkan populasi lebah di semua negara.",
         },
         {
           correct: false,

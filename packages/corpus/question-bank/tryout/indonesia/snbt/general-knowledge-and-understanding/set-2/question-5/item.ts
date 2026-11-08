@@ -23,7 +23,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Gending sama sekali tidak dapat dimainkan oleh perangkat B.",
+          label:
+            "Gending sama sekali tidak dapat dimainkan oleh perangkat B karena jumlah nada pada saron itu berbeda.",
         },
         {
           correct: false,

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembuat gamelan menyetel instrumen dengan mengikir atau menempa logam.",
+            "Pembuat gamelan menyetel setiap instrumen dengan mengikir atau menempa bagian logamnya sampai bunyinya cocok.",
         },
         {
           correct: true,

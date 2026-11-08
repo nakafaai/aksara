@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pemilahan komponen sejak awal sudah cukup untuk membuat pengolahan sampah elektronik aman.",
+            "Pemilahan komponen sejak awal sudah cukup untuk membuat seluruh proses pengolahan sampah elektronik menjadi aman bagi pekerja dan warga.",
         },
       ],
     },

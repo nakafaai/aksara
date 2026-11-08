@@ -26,7 +26,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pengajaran bahasa daerah di sekolah formal.",
+          label:
+            "Pengajaran bahasa daerah oleh guru di sekolah formal sebagai mata pelajaran wajib bagi setiap murid.",
         },
         {
           correct: false,

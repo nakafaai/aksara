@@ -25,7 +25,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "tersembunyi",
+          label: "tersembunyi dari pandangan",
         },
         {
           correct: false,

@@ -22,7 +22,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Petugas kebersihan yang digaji pemerintah daerah.",
+          label:
+            "Petugas kebersihan yang digaji pemerintah daerah untuk mengangkut sampah rumah tangga.",
         },
         {
           correct: false,

@@ -30,7 +30,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Pembagian padi kepada warga ketika musim paceklik datang.",
+          label:
+            "Pembagian padi dari leuit secara merata kepada seluruh warga kampung ketika musim paceklik datang.",
         },
       ],
     },

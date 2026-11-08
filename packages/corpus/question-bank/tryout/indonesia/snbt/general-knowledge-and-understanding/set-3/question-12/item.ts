@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "sumbangan",
+          label: "sumbangan sukarela",
         },
       ],
     },

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Masyarakat adat melarang semua bentuk perdagangan hasil pertanian.",
+            "Masyarakat adat di Jawa Barat dan Banten melarang semua bentuk perdagangan hasil pertanian dari kampung mereka.",
         },
         {
           correct: false,

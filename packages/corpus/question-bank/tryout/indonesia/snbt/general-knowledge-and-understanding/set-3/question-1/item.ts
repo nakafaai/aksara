@@ -25,7 +25,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Mencuci kain dengan air mendidih sesudah dicelup.",
+          label:
+            "Mencuci kain dengan air mendidih sesudah dicelup agar warnanya lebih cerah.",
         },
         {
           correct: false,

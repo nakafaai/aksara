@@ -18,7 +18,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Gempa yang sangat dalam selalu menimbulkan tsunami paling tinggi.",
+            "Gempa yang pusatnya sangat dalam selalu menimbulkan tsunami paling tinggi karena energinya tersimpan lebih lama di dalam bumi sebelum dilepaskan.",
         },
         {
           correct: false,

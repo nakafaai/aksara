@@ -31,7 +31,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kain itu tidak diakui oleh UNESCO karena dibuat setelah tahun $$2009$$.",
+            "Kain itu tidak diakui oleh UNESCO karena dibuat setelah tahun $$2009$$, ketika batik ditetapkan sebagai warisan budaya.",
         },
       ],
     },

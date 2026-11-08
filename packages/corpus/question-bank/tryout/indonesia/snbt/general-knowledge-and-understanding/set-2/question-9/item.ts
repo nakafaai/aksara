@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Agar gelombang dipantulkan kembali ke tengah laut untuk selamanya.",
+            "Agar gelombang dipantulkan kembali ke tengah laut untuk selamanya sehingga pantai tidak pernah tergerus.",
         },
       ],
     },

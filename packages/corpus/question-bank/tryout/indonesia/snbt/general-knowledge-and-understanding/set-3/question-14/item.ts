@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bunga majemuk hanya menguntungkan jika uang disimpan kurang dari satu tahun.",
+            "Bunga majemuk hanya menguntungkan penabung jika uangnya disimpan di bank kurang dari satu tahun.",
         },
         {
           correct: false,

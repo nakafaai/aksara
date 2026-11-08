@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pemerintah membeli semua kerajinan dan kompos dengan harga tetap.",
+            "Pemerintah daerah membeli semua kerajinan dan kompos buatan bank sampah dengan harga tetap sepanjang tahun, berapa pun harga barang bekas di pasar.",
         },
         {
           correct: false,

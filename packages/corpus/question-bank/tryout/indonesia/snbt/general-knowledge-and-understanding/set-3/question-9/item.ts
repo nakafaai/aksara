@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menjelaskan cara lembaga resmi mengukur tinggi gelombang tsunami.",
+            "Menjelaskan cara lembaga resmi mengukur tinggi dan kecepatan gelombang tsunami sebelum peringatan dini disebarkan kepada warga.",
         },
         {
           correct: false,

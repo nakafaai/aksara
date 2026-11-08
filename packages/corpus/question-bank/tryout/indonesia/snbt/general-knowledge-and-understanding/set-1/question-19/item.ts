@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Alga hanya dapat tumbuh di jaringan karang ketika suhu air tinggi.",
+            "Alga hanya dapat tumbuh kembali di jaringan karang ketika suhu air laut tetap tinggi selama beberapa minggu.",
         },
         {
           correct: false,

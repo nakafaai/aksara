@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Atmosfer Bumi menghamburkan seluruh cahaya Matahari pada sebagian besar bulan purnama.",
+            "Atmosfer Bumi menghamburkan seluruh cahaya Matahari pada sebagian besar bulan purnama sehingga bayangan Bumi tidak pernah terbentuk.",
         },
         {
           correct: false,

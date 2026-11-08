@@ -21,7 +21,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "meluap",
+          label: "meluap ke daratan",
         },
         {
           correct: false,

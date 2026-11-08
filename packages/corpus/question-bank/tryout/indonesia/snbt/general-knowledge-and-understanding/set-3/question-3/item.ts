@@ -21,7 +21,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata lain.",
+          label:
+            "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata lain agar keunggulan batik cap lebih mudah dipahami.",
         },
         {
           correct: true,

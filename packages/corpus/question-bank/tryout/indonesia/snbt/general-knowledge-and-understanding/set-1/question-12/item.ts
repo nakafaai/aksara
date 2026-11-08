@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Paragraf pertama memberikan contoh, sedangkan paragraf kedua menyimpulkan contoh itu.",
+            "Paragraf pertama memberikan beberapa contoh bahasa daerah, sedangkan paragraf kedua menarik simpulan umum dari contoh-contoh itu.",
         },
       ],
     },

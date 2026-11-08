@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Tabel yang memuat data ketinggian air laut.",
+          label:
+            "Tabel yang memuat data ketinggian air laut di beberapa stasiun pengamatan.",
         },
         {
           correct: true,
