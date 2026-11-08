@@ -27,7 +27,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "an unintended effect that works against the purpose of the rule.",
+            "an unintended effect that worsens the problem the rule was meant to manage.",
         },
         {
           correct: false,

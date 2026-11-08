@@ -29,7 +29,8 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Rapor tanpa peringkat akan mengurangi beban kerja guru.",
+          label:
+            "Rapor yang diusulkan penulis akan mengurangi beban kerja guru.",
         },
       ],
     },

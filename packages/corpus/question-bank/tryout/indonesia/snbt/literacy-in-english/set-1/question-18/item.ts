@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Some old harbours in city centres declined partly because they had no room to expand.",
+            "The passage links the decline of some old city-centre harbours to their lack of room to expand.",
         },
         {
           column: 2,

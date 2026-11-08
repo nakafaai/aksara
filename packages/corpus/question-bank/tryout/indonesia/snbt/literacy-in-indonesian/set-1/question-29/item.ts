@@ -29,8 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "Sabar menerima keadaan dan memilih menunggu musim berikutnya.",
+          label: "Sabar menerima keadaan dan memilih untuk menunggu.",
         },
       ],
     },

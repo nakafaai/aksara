@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kerja yang bergantung pada alam menuntut kesabaran, meskipun hasilnya sering tidak sebanding dengan jerih payah.",
+            "Kerja yang bergantung pada alam menuntut kesabaran, meskipun hasilnya belum tentu sebanding dengan jerih payah.",
         },
         {
           correct: false,

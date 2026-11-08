@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menyiratkan bahwa Laila akan mengalami nasib yang sama dengan ibunya.",
+            "Menyiratkan bahwa Laila akan mengalami nasib yang sama dengan istri Pak Rasyid.",
         },
       ],
     },

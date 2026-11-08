@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Teks 1 ingin segera memperluas program, sedangkan Teks 2 meminta dampaknya di sekitar Jalan Merdeka diukur lebih dahulu.",
+            "Teks 1 mengusulkan perluasan program, sedangkan Teks 2 meminta dampaknya di jalan-jalan pengalihan diukur sebelum program diperluas.",
         },
         {
           correct: false,

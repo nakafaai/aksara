@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Bertahannya aksara turunan Kawi kini lebih ditopang oleh nilai budaya daripada oleh kebutuhan praktis menulis sehari-hari.",
+            "Aksara turunan Kawi kembali dipelajari meskipun tidak lagi menjadi alat tulis utama sehari-hari karena masyarakat menganggapnya bagian dari jati diri.",
         },
       ],
     },
