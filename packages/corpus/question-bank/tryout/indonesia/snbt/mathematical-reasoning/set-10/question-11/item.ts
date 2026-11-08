@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "class-photo",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$58$$",
+          column: 1,
+          label: "Banyak susunan dengan Citra di posisi tengah adalah 24.",
         },
         {
-          correct: false,
-          label: "$$62$$",
+          column: 1,
+          label:
+            "Banyak susunan dengan Ani di sebelah kiri Budi, tidak harus berdampingan, sama dengan banyak susunan dengan Budi di sebelah kiri Ani.",
         },
         {
-          correct: false,
-          label: "$$70$$",
+          column: 2,
+          label:
+            "Jika hanya 3 dari 5 siswa itu yang berfoto berjajar, banyak susunannya adalah 10.",
         },
         {
-          correct: false,
-          label: "$$74$$",
-        },
-        {
-          correct: true,
-          label: "$$66$$",
+          column: 2,
+          label:
+            "Banyak susunan dengan Dodi dan Eka menempati kedua ujung baris adalah 6.",
         },
       ],
     },

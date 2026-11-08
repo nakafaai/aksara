@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "photo-frame",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$35{.}280$$",
-        },
-        {
-          correct: true,
-          label: "$$80{.}640$$",
-        },
-        {
-          correct: false,
-          label: "$$58{.}800$$",
-        },
-        {
-          correct: false,
-          label: "$$70{.}560$$",
-        },
-        {
-          correct: false,
-          label: "$$161{.}280$$",
-        },
+        { correct: false, label: "$$189\\text{ cm}^2$$" },
+        { correct: false, label: "$$324\\text{ cm}^2$$" },
+        { correct: false, label: "$$360\\text{ cm}^2$$" },
+        { correct: false, label: "$$369\\text{ cm}^2$$" },
+        { correct: true, label: "$$396\\text{ cm}^2$$" },
       ],
     },
   },

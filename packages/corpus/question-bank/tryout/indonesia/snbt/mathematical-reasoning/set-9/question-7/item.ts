@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika pompa A diganti pompa yang dua kali lebih cepat, waktu mengisi kolam kosong bersama pompa B menjadi setengah dari waktu semula.",
+            "Dengan saluran pembuangan tertutup, jika pompa A diganti pompa yang dua kali lebih cepat, waktu mengisi kolam kosong bersama pompa B menjadi setengah dari waktu semula.",
         },
         {
           column: 2,

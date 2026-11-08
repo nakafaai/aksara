@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "bakery-plan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$900$$",
+          column: 2,
+          label:
+            "Bu Sari dapat membuat 80 roti cokelat dan 30 roti keju dalam sehari.",
         },
         {
-          correct: false,
-          label: "$$825$$",
+          column: 2,
+          label:
+            "Bu Sari dapat membuat 30 roti cokelat dan 60 roti keju dalam sehari.",
         },
         {
-          correct: false,
-          label: "$$850$$",
+          column: 1,
+          label:
+            "Jika hanya membuat roti keju, Bu Sari dapat membuat paling banyak 70 roti dalam sehari.",
         },
         {
-          correct: false,
-          label: "$$875$$",
-        },
-        {
-          correct: false,
-          label: "$$925$$",
+          column: 1,
+          label:
+            "Membuat 100 roti cokelat saja dalam sehari memenuhi semua batasan.",
         },
       ],
     },

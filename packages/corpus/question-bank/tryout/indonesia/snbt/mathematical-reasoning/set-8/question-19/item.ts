@@ -21,7 +21,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika peta itu difotokopi dengan perbesaran 200%, skala peta hasil fotokopi menjadi 1 : 500.000.",
+            "Jika peta itu difotokopi dan diperbesar sehingga setiap panjang pada peta menjadi dua kali semula, skala peta hasil fotokopi menjadi 1 : 500.000.",
         },
       ],
     },

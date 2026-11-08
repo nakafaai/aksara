@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "train-departures",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$69$$",
-        },
-        {
-          correct: false,
-          label: "$$54$$",
-        },
-        {
-          correct: false,
-          label: "$$60$$",
-        },
-        {
-          correct: false,
-          label: "$$66$$",
-        },
-        {
-          correct: false,
-          label: "$$72$$",
-        },
+        { correct: true, label: "6 kali" },
+        { correct: false, label: "7 kali" },
+        { correct: false, label: "12 kali" },
+        { correct: false, label: "17 kali" },
+        { correct: false, label: "18 kali" },
       ],
     },
   },
