@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "fuel-trip",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$188$$",
+          column: 1,
+          label:
+            "Biaya bensin untuk seluruh perjalanan itu adalah $$\\text{Rp}160{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$220$$",
+          column: 2,
+          label:
+            "Rata-rata jarak per liter selama perjalanan sama dengan rata-rata dari 10 km dan 15 km.",
         },
         {
-          correct: false,
-          label: "$$300$$",
+          column: 2,
+          label:
+            "Dengan tangki penuh, mobil itu dapat menempuh 500 km jika seluruhnya melalui jalan tol.",
         },
         {
-          correct: true,
-          label: "$$246$$",
-        },
-        {
-          correct: false,
-          label: "$$306$$",
+          column: 1,
+          label:
+            "Jika bagian 60 km itu juga ditempuh melalui jalan tol, bensin yang dipakai berkurang 2 liter.",
         },
       ],
     },

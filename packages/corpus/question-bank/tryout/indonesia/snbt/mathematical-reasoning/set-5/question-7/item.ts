@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "phone-storage",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$47$$",
+          column: 1,
+          label:
+            "Bagian memori yang terpakai oleh sistem lebih dari $$14\\%$$ kapasitas ponsel.",
         },
         {
-          correct: false,
-          label: "$$51$$",
+          column: 2,
+          label: "Memori sebesar 1 GB dapat menampung tepat 250 foto.",
         },
         {
-          correct: false,
-          label: "$$90$$",
+          column: 1,
+          label:
+            "Video 4K berdurasi 1 menit memerlukan memori yang sama dengan 100 foto.",
         },
         {
-          correct: false,
-          label: "$$92$$",
-        },
-        {
-          correct: true,
-          label: "$$85$$",
+          column: 2,
+          label:
+            "Setelah 20.000 foto disimpan, video HD berdurasi 4 jam masih dapat direkam.",
         },
       ],
     },

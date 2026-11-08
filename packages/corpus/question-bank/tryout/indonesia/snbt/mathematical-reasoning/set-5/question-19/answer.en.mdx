@@ -1,37 +1,19 @@
-We will determine the values of <InlineMath math="a" /> and <InlineMath math="b" /> based on how **linear transformations** affect the mean and range of a dataset.
+Each statement needs a different way of counting. Choose a way that **counts every PIN exactly once**.
 
-Let the initial mean be <InlineMath math="\bar{x}_1 = 5" /> and the initial range be <InlineMath math="R_1 = 4" />. The data transformation involves multiplying each value by <InlineMath math="a" /> and then adding <InlineMath math="b" />.
+# Increasing PINs and palindromic PINs
 
-# Change in range
+For a PIN with increasing digits, choose 4 different digits from 0 to 9. Each choice can be arranged in increasing order in only one way, so there are <InlineMath math="\binom{10}{4}=210" />, **not 252**. The first statement is false.
 
-The range is the **difference between the maximum and minimum values**. Adding a constant <InlineMath math="b" /> shifts all data points equally, so the difference remains unchanged. Multiplying by <InlineMath math="a" /> scales the range by <InlineMath math="|a|" />:
+A PIN that reads the same backwards has the form <InlineMath math="abba" />. The first two digits are free, and the last two are fixed by them, so there are <InlineMath math="10\cdot10=100" />. The second statement is true.
 
-<BlockMath math="R_2 = |a| \cdot R_1" />
+# The digit 7 and the sum 36
 
-The question states <InlineMath math="a > 0" />. With <InlineMath math="R_2 = 12" /> and <InlineMath math="R_1 = 4" />:
+Count the opposite: a PIN with no 7 has 9 choices at each position.
 
-<BlockMath math="12 = a \cdot 4" />
+<BlockMath math="10{,}000-9^4=10{,}000-6{,}561=3{,}439" />
 
-<BlockMath math="a = \frac{12}{4} = 3" />
+There are 3,439, **not 4,000**. The third statement is false.
 
-# Change in mean
+The largest digit is 9, so the largest sum of four digits is <InlineMath math="4\cdot9=36" />. A sum of 36 happens only when every digit is 9, the PIN 9999. The fourth statement is true.
 
-The mean is affected by **both multiplication and addition**. The transformation formula for the mean is:
-
-<BlockMath math="\bar{x}_2 = a \cdot \bar{x}_1 + b" />
-
-Substitute the known values (<InlineMath math="\bar{x}_2 = 19" />, <InlineMath math="\bar{x}_1 = 5" />, and <InlineMath math="a = 3" />):
-
-<BlockMath math="19 = 3(5) + b" />
-
-<BlockMath math="19 = 15 + b" />
-
-<BlockMath math="b = 19 - 15 = 4" />
-
-The question asks for the value of <InlineMath math="3a - b" />:
-
-<BlockMath math="3a - b = 3(3) - 4" />
-
-<BlockMath math="3a - b = 9 - 4 = 5" />
-
-Thus, the value of <InlineMath math="3a - b" /> is <InlineMath math="5" />.
+So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
