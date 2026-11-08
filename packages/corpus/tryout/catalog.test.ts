@@ -4,8 +4,8 @@ import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option } from "effect";
 import { testExamInput, titled } from "#corpus/test/exam";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
-import { paperId } from "#corpus/tryout/exam";
 import { defineExamSource } from "#corpus/tryout/schema";
+import { paperId } from "#corpus/tryout/track";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
@@ -34,33 +34,57 @@ describe("projectTryoutCatalog", () => {
       const rows = yield* projectTryoutCatalog([exam], paperOf);
       const english = Arr.filter(rows, ({ appLocale }) => appLocale === "en");
 
-      expect(rows).toHaveLength(9 * ACTIVE_APP_LOCALES.length);
+      expect(rows).toHaveLength(11 * ACTIVE_APP_LOCALES.length);
       expect(
         Arr.map(english, (row) => [row.kind, row.publicPath ?? null])
       ).toEqual([
         ["country", "try-out/test-country"],
         ["exam", "try-out/test-country/test-exam"],
-        ["track", "try-out/test-country/test-exam/test-subject"],
-        ["set", "try-out/test-country/test-exam/test-subject/set-1"],
+        ["group", "try-out/test-country/test-exam/test-lower"],
+        ["track", "try-out/test-country/test-exam/test-lower/test-subject"],
+        ["set", "try-out/test-country/test-exam/test-lower/test-subject/set-1"],
         ["section", null],
-        ["track", "try-out/test-country/test-exam/2027"],
-        ["set", "try-out/test-country/test-exam/2027/set-1"],
-        ["section", "try-out/test-country/test-exam/2027/set-1/test-reasoning"],
-        ["section", "try-out/test-country/test-exam/2027/set-1/test-english"],
+        ["group", "try-out/test-country/test-exam/test-upper"],
+        ["track", "try-out/test-country/test-exam/test-upper/year-2027"],
+        ["set", "try-out/test-country/test-exam/test-upper/year-2027/set-1"],
+        [
+          "section",
+          "try-out/test-country/test-exam/test-upper/year-2027/set-1/test-reasoning",
+        ],
+        [
+          "section",
+          "try-out/test-country/test-exam/test-upper/year-2027/set-1/test-english",
+        ],
       ]);
       expect(english[0]).toMatchObject({ description: "A test country." });
-      expect(english[1]).toMatchObject({ description: "A test exam." });
+      expect(english[1]).toMatchObject({
+        description: "A test exam.",
+        groupAxis: "grade",
+      });
+      expect(english[2]).toMatchObject({
+        groupKey: "test-lower",
+        order: 1,
+        title: "Test Lower",
+      });
       expect(english[3]).toMatchObject({
+        groupKey: "test-lower",
+        trackKey: "test-subject",
+      });
+      expect(english[4]).toMatchObject({
         internalEntrySectionKey: "test-subject",
         paper: { hash, id: "test-country/test-exam/test-subject/set-1" },
       });
-      expect(english[4]).toMatchObject({
+      expect(english[5]).toMatchObject({
         order: 1,
         sectionKey: "test-subject",
         visibility: "internal-entry",
       });
-      expect(english[6]).not.toHaveProperty("internalEntrySectionKey");
-      expect(english[8]).toMatchObject({ order: 2, visibility: "visible" });
+      expect(english[7]).toMatchObject({
+        groupKey: "test-upper",
+        trackKey: "2027",
+      });
+      expect(english[8]).not.toHaveProperty("internalEntrySectionKey");
+      expect(english[10]).toMatchObject({ order: 2, visibility: "visible" });
     })
   );
 
