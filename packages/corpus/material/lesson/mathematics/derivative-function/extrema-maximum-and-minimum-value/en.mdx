@@ -1,31 +1,35 @@
-
-
 export const metadata = {
   title: "Extrema and the First and Second Derivative Tests",
-  description: "Use first and second derivatives to locate and classify stationary points, then calculate local maximum and minimum values from worked examples.",
+  description: "Find local maxima and minima with the first and second derivative tests, handle the case f''(c) = 0, and find the largest value on a closed interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Derivative Functions",
 };
 
-## Extreme Points
+## Where a Function Can Have an Extremum
 
-In everyday life, we often look for the "best" value, like the biggest profit, the smallest cost, or the shortest distance. In mathematics, these optimal values are known as **extreme values**, which consist of **maximum values** and **minimum values**. The points where these values occur are called **extreme points**.
+A function has a **local maximum** at <InlineMath math="c" /> when <InlineMath math="f(c)" /> is the largest value nearby, and a **local minimum** when it is the smallest value nearby. <Highlight>For a differentiable function, every local extremum inside the domain sits at a stationary point</Highlight>, where <InlineMath math="f'(c)=0" />. Find those points first, then test each one, because not every stationary point is an extremum.
 
-<Highlight>An interior local extremum of a differentiable function</Highlight> is [a stationary point](/en/subjects/mathematics/derivative-function/increasing-decreasing-and-stationary-function), where <InlineMath math="f'(x)=0" />. More generally, local extrema may also occur where the derivative is undefined or at an endpoint of the domain. Every stationary point is a candidate for a local extremum, but it still needs to be checked. The checks below use the First and Second Derivative Tests.
+For <InlineMath math="f(x)=x^2-4x" />, the derivative <InlineMath math="f'(x)=2x-4" /> is zero at <InlineMath math="x=2" />. The graph falls before <InlineMath math="x=2" /> and rises after it, so <InlineMath math="f(2)=-4" /> is a local minimum.
+
+Three kinds of points can hold an extremum:
+
+- a [stationary point](/en/subjects/mathematics/derivative-function/increasing-decreasing-and-stationary-function), where <InlineMath math="f'(x)=0" />
+- a point where <InlineMath math="f'(x)" /> does not exist, such as the corner of <InlineMath math="|x|" /> at <InlineMath math="x=0" />
+- an endpoint, when the function is only looked at on a closed interval
+
+In everyday problems these are the best values, such as the largest profit, the smallest cost, or the shortest distance. The derivative finds them without drawing the whole graph.
 
 ## First Derivative Test
 
-This method focuses on the change in the function's behavior, i.e., whether it's increasing or decreasing, around a stationary point. By observing the sign of <InlineMath math="f'(x)" />, we can identify the type of stationary point.
+The first derivative test reads the **sign of <InlineMath math="f'(x)" /> on both sides** of a stationary point, which tells you whether the function rises or falls there.
 
--   **Maximum Turning Point**: Occurs if the function changes from **increasing to decreasing**. This means the sign of <InlineMath math="f'(x)" /> changes from **positive (+) to negative (-)**, as on the slope toward a hilltop.
+-   **Maximum turning point**: the function changes from increasing to decreasing, so <InlineMath math="f'(x)" /> changes from positive to negative, as at a hilltop.
+-   **Minimum turning point**: the function changes from decreasing to increasing, so <InlineMath math="f'(x)" /> changes from negative to positive, as at the bottom of a valley.
+-   **No local extremum**: the sign of <InlineMath math="f'(x)" /> does not change. The point may be a horizontal inflection point, which needs its own check that the concavity changes.
 
--   **Minimum Turning Point**: Occurs if the function changes from **decreasing to increasing**. The sign of <InlineMath math="f'(x)" /> changes from **negative (-) to positive (+)**, as at the bottom of a valley.
-
--   **No Local Extremum**: If the sign of <InlineMath math="f'(x)" /> does not change, the stationary point is neither a local maximum nor a local minimum. It may be a horizontal inflection point, but that requires a separate check that the concavity changes.
-
-The visualization below shows the horizontal tangents at a local maximum and a local minimum.
+The graph shows the horizontal tangents at a local maximum and a local minimum.
 
 <LineEquation
   title={<>First Derivative Test Visualization</>}
@@ -88,23 +92,18 @@ The visualization below shows the horizontal tangents at a local maximum and a l
   ]}
 />
 
-### Cubic extrema from derivative signs
+## Example with the First Derivative Test
 
 Determine the stationary values of <InlineMath math="f(x) = x(x-3)^2" /> with the first derivative test.
 
-**Solution**:
+**Step 1**: Expand the function and differentiate it.
 
-**Step 1**: Find the first derivative
+<MathContainer>
+    <BlockMath math="f(x) = x(x^2 - 6x + 9) = x^3 - 6x^2 + 9x" />
+    <BlockMath math="f'(x) = 3x^2 - 12x + 9" />
+</MathContainer>
 
-First, expand the function: <InlineMath math="f(x) = x(x^2 - 6x + 9) = x^3 - 6x^2 + 9x" />.
-
-Its derivative is:
-
-<BlockMath math="f'(x) = 3x^2 - 12x + 9" />
-
-**Step 2**: Find the stationary points
-
-Set <InlineMath math="f'(x) = 0" />.
+**Step 2**: Set <InlineMath math="f'(x) = 0" />.
 
 <MathContainer>
     <BlockMath math="3x^2 - 12x + 9 = 0" />
@@ -112,23 +111,26 @@ Set <InlineMath math="f'(x) = 0" />.
     <BlockMath math="(x-1)(x-3) = 0" />
 </MathContainer>
 
-The stationary points occur at <InlineMath math="x = 1" /> and <InlineMath math="x = 3" />.
+The stationary points are <InlineMath math="x = 1" /> and <InlineMath math="x = 3" />.
 
-**Step 3**: Test the sign around the stationary points
+**Step 3**: Test the sign of <InlineMath math="f'" /> on each side.
 
--   **Around <InlineMath math="x = 1" />**: For <InlineMath math="x < 1" /> (e.g., <InlineMath math="x=0" />), <InlineMath math="f'(0) = 9" /> (positive). For <InlineMath math="1 < x < 3" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). Since the sign changes from (+) to (-), <InlineMath math="x=1" /> is a maximum turning point.
+| Interval | Test value | Sign of <InlineMath math="f'" /> | Behavior |
+| --- | --- | --- | --- |
+| <InlineMath math="x < 1" /> | <InlineMath math="f'(0) = 9" /> | positive | increasing |
+| <InlineMath math="1 < x < 3" /> | <InlineMath math="f'(2) = -3" /> | negative | decreasing |
+| <InlineMath math="x > 3" /> | <InlineMath math="f'(4) = 9" /> | positive | increasing |
 
--   **Around <InlineMath math="x = 3" />**: For <InlineMath math="1 < x < 3" /> (e.g., <InlineMath math="x=2" />), <InlineMath math="f'(2) = -3" /> (negative). For <InlineMath math="x > 3" /> (e.g., <InlineMath math="x=4" />), <InlineMath math="f'(4) = 9" /> (positive). Since the sign changes from (-) to (+), <InlineMath math="x=3" /> is a minimum turning point.
+The sign changes from positive to negative at <InlineMath math="x=1" />, **a maximum**, and from negative to positive at <InlineMath math="x=3" />, **a minimum**.
 
-**Step 4**: Determine the stationary values
+**Step 4**: Substitute into the *original* function.
 
-To get the turning point values (<InlineMath math="y" />-values), substitute the stationary point <InlineMath math="x" />-coordinates (<InlineMath math="x = 1" /> and <InlineMath math="x = 3" />) back into the *original* function <InlineMath math="f(x)" />.
+<MathContainer>
+    <BlockMath math="f(1) = 1(1-3)^2 = 4" />
+    <BlockMath math="f(3) = 3(3-3)^2 = 0" />
+</MathContainer>
 
--   Local maximum value: <InlineMath math="f(1) = 1(1-3)^2 = 4" />.
-
--   Local minimum value: <InlineMath math="f(3) = 3(3-3)^2 = 0" />.
-
-So, the local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4)" />, and the local minimum value is <InlineMath math="0" /> at <InlineMath math="(3,0)" />.
+The local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4)" />, and the local minimum value is <InlineMath math="0" /> at <InlineMath math="(3,0)" />. Check with nearby points: <InlineMath math="f(0.9) = 3.969" /> and <InlineMath math="f(1.1) = 3.971" /> are both below <InlineMath math="4" />, while <InlineMath math="f(2.9)=0.029" /> and <InlineMath math="f(3.1)=0.031" /> are both above <InlineMath math="0" />.
 
 <LineEquation
   title={<>Extreme Points Visualization</>}
@@ -186,53 +188,47 @@ So, the local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4
 
 ## Second Derivative Test
 
-This method uses the second derivative at the stationary point without testing signs in neighboring intervals. It uses the second derivative, <InlineMath math="f''(x)" />, to determine the concavity of the curve at a stationary point.
+The second derivative test decides the type at the stationary point itself, without testing neighboring intervals. It uses **the concavity given by <InlineMath math="f''(c)" />**. Suppose <InlineMath math="f'(c) = 0" /> and <InlineMath math="f''" /> is continuous near <InlineMath math="c" />.
 
-Suppose <InlineMath math="f'(c) = 0" /> and <InlineMath math="f''" /> is continuous on an interval containing <InlineMath math="c" />.
+-   If <InlineMath math="f''(c) < 0" />, the curve is concave down like an upside-down bowl, and <InlineMath math="f(c)" /> is a local maximum.
+-   If <InlineMath math="f''(c) > 0" />, the curve is concave up like an open bowl, and <InlineMath math="f(c)" /> is a local minimum.
+-   If <InlineMath math="f''(c) = 0" />, the test gives no answer. The point could be a maximum, a minimum, or neither.
 
--   If <InlineMath math="f''(c) < 0" />, then <InlineMath math="f(c)" /> is a **local maximum value**. The curve is concave down at that point, like an upside-down bowl.
+The second derivative usually comes quickly from the [derivative rules for algebraic functions](/en/subjects/mathematics/derivative-function/derivative-of-algebraic-function), so this test is often faster than a sign table.
 
--   If <InlineMath math="f''(c) > 0" />, then <InlineMath math="f(c)" /> is a **local minimum value**. The curve is concave up at that point, like an open bowl.
+## Example with the Second Derivative Test
 
--   If <InlineMath math="f''(c) = 0" />, the test is **inconclusive**. Use the First Derivative Test or another argument. The point could be a maximum, a minimum, an inflection point, or none of these.
+Determine the extreme values of <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> with the second derivative test.
 
-### Cubic extrema from concavity
-
-Determine the extreme values of <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> using the second derivative test.
-
-**Solution**:
-
-**Step 1**: Find the first and second derivatives
+**Step 1**: Find both derivatives.
 
 <MathContainer>
     <BlockMath math="f'(x) = x^2 - 2x - 3" />
     <BlockMath math="f''(x) = 2x - 2" />
 </MathContainer>
 
-**Step 2**: Find the stationary points
+**Step 2**: Solve <InlineMath math="f'(x) = 0" />.
 
 <MathContainer>
     <BlockMath math="x^2 - 2x - 3 = 0" />
     <BlockMath math="(x-3)(x+1) = 0" />
 </MathContainer>
 
-The stationary points occur at <InlineMath math="x = 3" /> and <InlineMath math="x = -1" />.
+The stationary points are <InlineMath math="x = 3" /> and <InlineMath math="x = -1" />.
 
-**Step 3**: Test the stationary points with the second derivative
+**Step 3**: Evaluate <InlineMath math="f''" /> at each one.
 
--   For <InlineMath math="x = 3" />: <InlineMath math="f''(3) = 2(3) - 2 = 4" />. Since <InlineMath math="4 > 0" />, this gives a **local minimum**.
+-   <InlineMath math="f''(3) = 4 > 0" />, so <InlineMath math="x=3" /> gives a **local minimum**.
+-   <InlineMath math="f''(-1) = -4 < 0" />, so <InlineMath math="x=-1" /> gives a **local maximum**.
 
--   For <InlineMath math="x = -1" />: <InlineMath math="f''(-1) = 2(-1) - 2 = -4" />. Since <InlineMath math="-4 < 0" />, this gives a **local maximum**.
+**Step 4**: Substitute into the original function.
 
-**Step 4**: Calculate the extreme values
+<MathContainer>
+    <BlockMath math="f(3) = 9 - 9 - 9 + 2 = -7" />
+    <BlockMath math="f(-1) = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />
+</MathContainer>
 
-Substitute <InlineMath math="x=3" /> and <InlineMath math="x=-1" /> into the original function to get their extreme values.
-
--   Local minimum value: <InlineMath math="f(3) = \frac{1}{3}(3)^3 - (3)^2 - 3(3) + 2 = 9 - 9 - 9 + 2 = -7" />.
-
--   Local maximum value: <InlineMath math="f(-1) = \frac{1}{3}(-1)^3 - (-1)^2 - 3(-1) + 2 = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />.
-
-The curve is concave down at the point <InlineMath math="x=-1" /> and concave up at the point <InlineMath math="x=3" />.
+Check the maximum with a nearby point: <InlineMath math="f(-2) = -\frac{8}{3} - 4 + 6 + 2 = \frac{4}{3}" />, which is less than <InlineMath math="\frac{11}{3}" />. The curve is concave down at <InlineMath math="x=-1" /> and concave up at <InlineMath math="x=3" />.
 
 <LineEquation
   title={<>Second Derivative Test Visualization</>}
@@ -289,30 +285,80 @@ The curve is concave down at the point <InlineMath math="x=-1" /> and concave up
   ]}
 />
 
+## When the Second Derivative Test Gives No Answer
+
+When <InlineMath math="f'(c)=0" /> and <InlineMath math="f''(c)=0" />, **go back to the first derivative test**. Two functions show why the second test cannot decide on its own.
+
+For <InlineMath math="f(x)=x^3" />, both <InlineMath math="f'(0)=0" /> and <InlineMath math="f''(0)=0" />. The derivative <InlineMath math="f'(x)=3x^2" /> is positive on both sides of <InlineMath math="0" />, so the sign never changes and <InlineMath math="x=0" /> is not an extremum. It is a horizontal inflection point.
+
+For <InlineMath math="f(x)=x^4" />, again <InlineMath math="f'(0)=0" /> and <InlineMath math="f''(0)=0" />. This time <InlineMath math="f'(x)=4x^3" /> is negative for <InlineMath math="x<0" /> and positive for <InlineMath math="x>0" />, so <InlineMath math="f(0)=0" /> is a local minimum. Check: <InlineMath math="x^4 \ge 0" /> for every <InlineMath math="x" />.
+
+<Mermaid
+  title="Choosing a test for a stationary point"
+  description="The second derivative decides quickly when it is not zero, and the first derivative decides every remaining case."
+  chart={`flowchart TD
+  A["f'(c) = 0"] --> B{"Sign of f''(c)?"}
+  B -->|"negative"| C["Local maximum"]
+  B -->|"positive"| D["Local minimum"]
+  B -->|"zero"| E{"Sign change of f' at c?"}
+  E -->|"positive to negative"| C
+  E -->|"negative to positive"| D
+  E -->|"no change"| F["No extremum"]`}
+/>
+
+## Largest and Smallest Values on a Closed Interval
+
+On a closed interval <InlineMath math="[a,b]" />, a continuous function always reaches a largest and a smallest value. They can sit at a stationary point or at an endpoint, so **compare the function values at all candidates**.
+
+**Problem**: Find the largest and smallest values of <InlineMath math="f(x)=x^3-3x" /> on <InlineMath math="[-2,3]" />.
+
+The derivative <InlineMath math="f'(x)=3x^2-3" /> is zero at <InlineMath math="x=-1" /> and <InlineMath math="x=1" />, both inside the interval. Evaluate <InlineMath math="f" /> at these two points and at both endpoints:
+
+| <InlineMath math="x" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="f(x)" /> | <InlineMath math="-2" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="18" /> |
+
+The largest value is <InlineMath math="18" /> at the endpoint <InlineMath math="x=3" />, even though the local maximum at <InlineMath math="x=-1" /> is only <InlineMath math="2" />. The smallest value is <InlineMath math="-2" />, reached twice, at <InlineMath math="x=-2" /> and <InlineMath math="x=1" />. Word problems about the best size or the lowest cost use exactly this comparison, as the [applications of the derivative](/en/subjects/mathematics/derivative-function/application-of-derivative) show.
+
+## Common Mistakes
+
+Most wrong answers come from **skipping a check**, not from the derivative itself.
+
+| Mistake | Why it is wrong | Fix |
+| --- | --- | --- |
+| Calling every stationary point an extremum | <InlineMath math="f(x)=x^3" /> has <InlineMath math="f'(0)=0" /> but no extremum | Test each stationary point |
+| Reporting the <InlineMath math="x" />-value as the extreme value | The value is <InlineMath math="f(c)" />, not <InlineMath math="c" /> | Substitute <InlineMath math="c" /> into the original function |
+| Substituting into <InlineMath math="f'" /> instead of <InlineMath math="f" /> | <InlineMath math="f'(c)=0" /> at every stationary point | Use <InlineMath math="f" /> for values, <InlineMath math="f''" /> for the type |
+| Treating <InlineMath math="f''(c)=0" /> as an inflection point | <InlineMath math="x^4" /> has a minimum there | Go back to the first derivative test |
+| Forgetting the endpoints on a closed interval | The largest value can sit at an endpoint | Compare stationary points and endpoints |
+
 ## Exercises
 
-To classify the stationary point, use the **first or second derivative test**. A horizontal tangent alone does not determine whether the function reaches a maximum or a minimum.
+To classify a stationary point, use the **first or second derivative test**. A horizontal tangent alone does not tell you whether the function reaches a maximum or a minimum.
 
-1. Determine the stationary point for the function <InlineMath math="y = x^2 + 2x - 3" />.
+1. Determine the stationary point of <InlineMath math="y = x^2 + 2x - 3" /> and its type.
+2. Find and classify the stationary points of <InlineMath math="f(x) = 2x^3 - 3x^2 - 12x + 1" />.
+3. Find the largest and smallest values of <InlineMath math="f(x) = x^2 - 6x + 5" /> on <InlineMath math="[0, 4]" />.
 
 ### Worked Solution
 
-1.  **Solution**:
+1. The derivative is <InlineMath math="f'(x) = 2x + 2" />, which is zero at <InlineMath math="x = -1" />. Substitute into the original function:
 
-    **Step 1**: Find the first derivative
+    <BlockMath math="y = (-1)^2 + 2(-1) - 3 = -4" />
 
-    <BlockMath math="f'(x) = 2x + 2" />
+    The stationary point is <InlineMath math="(-1, -4)" />, and <InlineMath math="f''(x)=2 > 0" /> makes it a **minimum**. Check: <InlineMath math="y=(x+1)^2-4" />, so <InlineMath math="y" /> is never below <InlineMath math="-4" />.
 
-    **Step 2**: Find the stationary point
+2. The derivative is <InlineMath math="f'(x) = 6x^2 - 6x - 12 = 6(x-2)(x+1)" />, so the stationary points are <InlineMath math="x=2" /> and <InlineMath math="x=-1" />. With <InlineMath math="f''(x) = 12x - 6" />:
 
-    Set <InlineMath math="f'(x) = 0" />.
+    <MathContainer>
+        <BlockMath math="f''(-1) = -18 < 0, \qquad f(-1) = -2 - 3 + 12 + 1 = 8" />
+        <BlockMath math="f''(2) = 18 > 0, \qquad f(2) = 16 - 12 - 24 + 1 = -19" />
+    </MathContainer>
 
-    <BlockMath math="2x + 2 = 0 \implies x = -1" />
+    The local maximum is <InlineMath math="8" /> at <InlineMath math="x=-1" />, and the local minimum is <InlineMath math="-19" /> at <InlineMath math="x=2" />. Check: <InlineMath math="f(0)=1" /> lies between them, as it must for a point between the two turning points.
 
-    **Step 3**: Find the <InlineMath math="y" />-value
+3. The derivative <InlineMath math="f'(x) = 2x - 6" /> is zero at <InlineMath math="x=3" />, inside <InlineMath math="[0,4]" />. Compare the candidates:
 
-    Substitute <InlineMath math="x = -1" /> into the original function.
+    <BlockMath math="f(0) = 5, \qquad f(3) = -4, \qquad f(4) = -3" />
 
-    <BlockMath math="\begin{aligned} y &amp;= (-1)^2 + 2(-1) - 3 \\ &amp;= 1 - 2 - 3 \\ &amp;= -4 \end{aligned}" />
-
-    So, the stationary point is <InlineMath math="(-1, -4)" />. With the Second Derivative Test (<InlineMath math="f''(x)=2 > 0" />), this point is a minimum.
+    The largest value is <InlineMath math="5" /> at <InlineMath math="x=0" />, and the smallest value is <InlineMath math="-4" /> at <InlineMath math="x=3" />. Check: <InlineMath math="f(x)=(x-3)^2-4" />, whose vertex is <InlineMath math="(3,-4)" />.
