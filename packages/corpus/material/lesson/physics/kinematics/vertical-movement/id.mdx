@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Gerak Vertikal",
-  description:
-    "Gerak vertikal adalah GLBB satu dimensi dengan percepatan gravitasi yang mengarah ke bawah.",
+  title: "Gerak Vertikal dan Jatuh Bebas",
+  description: "Gerak vertikal adalah gerak naik atau turun dengan percepatan gravitasi tetap. Hitung waktu, tinggi maksimum, dan kecepatan saat dilempar atau dijatuhkan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematika",
 };
 
+## Gerak Vertikal dan Percepatan Gravitasi
 
-## Sumbu Vertikal Perlu Arah Positif
-
-Gerak vertikal adalah gerak naik atau turun sepanjang <Highlight>satu garis tegak</Highlight>. Supaya tandanya jelas, kita pilih arah ke atas sebagai positif dan arah ke bawah sebagai negatif.
-
-Dalam model jatuh bebas di dekat permukaan Bumi, percepatan gravitasi ditulis <InlineMath math="-g" /> karena arahnya ke bawah menurut kesepakatan tanda ini.
+Gerak vertikal adalah gerak benda naik atau turun sepanjang **satu garis tegak**, dengan gravitasi sebagai satu-satunya penyebab perubahan kecepatannya. Percepatannya tetap, besarnya <InlineMath math="g" /> dan arahnya selalu ke bawah. Kalau arah ke atas dipilih positif, posisi <InlineMath math="y" /> dan kecepatan <InlineMath math="v_y" /> pada waktu <InlineMath math="t" /> mengikuti tiga persamaan:
 
 <MathContainer>
   <BlockMath math="y=y_0+v_0t-\frac{1}{2}gt^2" />
@@ -21,7 +17,11 @@ Dalam model jatuh bebas di dekat permukaan Bumi, percepatan gravitasi ditulis <I
   <BlockMath math="v_y^2=v_0^2-2g(y-y_0)" />
 </MathContainer>
 
-> Persamaan ini memodelkan gerak di dekat permukaan Bumi dengan <InlineMath math="g" /> tetap dan tanpa hambatan udara. [Nilai percepatan gravitasi standar](https://physics.nist.gov/cuu/pdf/sp811.pdf) adalah <InlineMath math="g_n=9{,}80665\text{ m/s}^2" />. Hitungan berikut memakai <InlineMath math="g=10\text{ m/s}^2" /> agar perhitungannya lebih mudah dilakukan dengan tangan.
+Di sini <InlineMath math="y_0" /> adalah posisi awal dan <InlineMath math="v_0" /> kecepatan awal. Gerak vertikal adalah [gerak lurus berubah beraturan](/id/materi/fisika/kinematika/gerak-lurus-berubah-beraturan) dengan percepatan <InlineMath math="-g" />, jadi persamaannya sama dengan persamaan GLBB.
+
+> Persamaan ini berlaku di dekat permukaan Bumi dengan <InlineMath math="g" /> tetap dan tanpa hambatan udara. [Nilai percepatan gravitasi standar](https://physics.nist.gov/cuu/pdf/sp811.pdf) adalah <InlineMath math="g_n=9{,}80665\text{ m/s}^2" />. Hitungan di halaman ini memakai <InlineMath math="g=10\text{ m/s}^2" /> agar angkanya bulat.
+
+Simulasi bola pada gerak vertikal memperlihatkan kedua cara bola mulai bergerak. Pilih dilempar ke atas atau dijatuhkan, lalu amati tinggi dan kecepatannya berubah.
 
 <VerticalMovementLab
   decimalSeparator="comma"
@@ -46,69 +46,199 @@ Dalam model jatuh bebas di dekat permukaan Bumi, percepatan gravitasi ditulis <I
   }}
 />
 
-## Gravitasi Tetap Bekerja Saat Benda Naik
+## Tiga Cara Benda Bergerak Vertikal
 
-Ketika benda dilempar ke atas, kecepatan awalnya positif. Setelah itu, <Highlight>gravitasi mengurangi kecepatan vertikalnya</Highlight> sedikit demi sedikit sampai benda berhenti sesaat di titik tertinggi.
+Ketiga jenis gerak vertikal memakai persamaan yang sama. Yang membedakan hanya **tanda dan nilai kecepatan awal** <InlineMath math="v_0" />.
 
-> Di titik tertinggi, kecepatan vertikal sesaat nol, tetapi percepatan gravitasi tetap ke bawah.
+| Jenis gerak | Kecepatan awal | Contoh |
+| --- | --- | --- |
+| Dilempar ke atas | <InlineMath math="v_0 > 0" /> | Bola dilempar tegak ke atas |
+| Jatuh bebas | <InlineMath math="v_0 = 0" /> | Buah lepas dari tangkainya |
+| Dilempar ke bawah | <InlineMath math="v_0 < 0" /> | Batu dilempar ke bawah dari jembatan |
 
-Gaya gravitasi tidak hilang di titik tertinggi. Pada saat itu, kecepatan vertikal bernilai nol sedangkan percepatannya tetap <InlineMath math="-g" />.
+Pada ketiganya, percepatan tetap <InlineMath math="-g" /> sepanjang gerak, termasuk di titik tertinggi. Tanda negatif berasal dari pilihan arah ke atas sebagai positif, bukan dari gravitasi yang berubah arah.
 
-## Bola Berhenti Sesaat di Titik Tertinggi
+<Mermaid
+  title="Memilih jenis gerak vertikal"
+  description="Arah kecepatan awal menentukan jenis gerak, tetapi persamaannya tetap sama."
+  chart={`flowchart TD
+  A{"Arah kecepatan awal?"} -->|"ke atas"| B["Dilempar ke atas, v₀ positif"]
+  A -->|"nol"| C["Jatuh bebas, v₀ = 0"]
+  A -->|"ke bawah"| D["Dilempar ke bawah, v₀ negatif"]
+  B --> E["v = v₀ - gt dan y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
 
-Misalkan bola dilempar ke atas dengan kecepatan awal <InlineMath math="20\text{ m/s}" /> dari posisi <InlineMath math="y_0=0" />. Ambil <InlineMath math="g=10\text{ m/s}^2" />. Di titik tertinggi, kecepatan vertikalnya <InlineMath math="v_y=0" />.
+## Benda Dilempar ke Atas
+
+Saat benda dilempar ke atas, kecepatannya positif lalu **berkurang terus karena gravitasi** sampai nol di titik tertinggi. Dari <InlineMath math="v_y = 0" />, waktu naik dan tinggi maksimum terhadap titik lempar adalah:
 
 <MathContainer>
-  <BlockMath math="v_y=v_0-gt" />
-  <BlockMath math="0=20-10t" />
-  <BlockMath math="t=2\text{ s}" />
+  <BlockMath math="t_{\text{naik}} = \frac{v_0}{g}" />
+  <BlockMath math="h_{\text{maks}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-**Tinggi maksimum terhadap titik lempar** dapat dihitung dari persamaan posisi.
+Misalkan bola dilempar ke atas dengan <InlineMath math="v_0 = 20\text{ m/s}" />. Waktu naiknya <InlineMath math="\frac{20}{10} = 2\text{ s}" /> dan tinggi maksimumnya <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. Persamaan posisi memberi hasil yang sama:
 
-<BlockMath math="\begin{aligned}
-y-y_0&=v_0t-\frac{1}{2}gt^2\\
-&=20(2)-\frac{1}{2}(10)(2^2)\\
-&=20\text{ m}
-\end{aligned}" />
+<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
 
-Jadi, bola membutuhkan <InlineMath math="2\text{ s}" /> untuk mencapai puncak dan naik setinggi <InlineMath math="20\text{ m}" /> dari titik awal.
+Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <InlineMath math="-g" />. Substitusikan beberapa nilai <InlineMath math="t" /> ke <InlineMath math="y = 20t - 5t^2" /> dan <InlineMath math="v_y = 20 - 10t" /> untuk mengikuti gerak naik dan turunnya:
 
-## Membaca Tanda Kecepatan
-
-Tanda pada <InlineMath math="v_y" /> memberi tahu **arah gerak saat itu**. Nilai positif berarti benda sedang bergerak ke atas, nilai negatif berarti benda sedang bergerak ke bawah, dan nol berarti benda berhenti sesaat.
-
-Perhatikan bahwa tinggi <InlineMath math="y" /> tidak otomatis menentukan arah gerak. Benda bisa berada di ketinggian yang sama saat naik dan saat turun, tetapi tanda kecepatannya berbeda.
-
-Untuk bola yang tadi dilempar ke atas, masukkan tiap waktu ke <InlineMath math="y=20t-5t^2" /> dan <InlineMath math="v_y=20-10t" />. Pada <InlineMath math="t=1\text{ s}" />, misalnya, <InlineMath math="y=20-5=15\text{ m}" /> dan <InlineMath math="v_y=20-10=10\text{ m/s}" />.
-
-| Waktu | Tinggi | Kecepatan vertikal | Gerak |
+| Waktu | Tinggi | Kecepatan | Arah gerak |
 | --- | --- | --- | --- |
 | <InlineMath math="0\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="20\text{ m/s}" /> | Naik |
 | <InlineMath math="1\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="10\text{ m/s}" /> | Naik |
 | <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Berhenti sesaat |
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Turun |
-| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Sesaat sebelum kembali ke titik lempar |
+| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Kembali ke titik lempar |
 
-## Bola Dijatuhkan dari Ketinggian
+Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-1 dan ke-3, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
 
-Misalkan bola dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> **tanpa kecepatan awal**. Dengan <InlineMath math="g=10\text{ m/s}^2" />, waktu sampai tanah diperoleh dari:
+## Benda Jatuh Bebas
 
-<BlockMath math="\begin{aligned}
-0&=20-\frac{1}{2}(10)t^2\\
-5t^2&=20\\
-t^2&=4\\
-t&=\sqrt{4}=2\text{ s}
-\end{aligned}" />
+Dalam pelajaran fisika sekolah, jatuh bebas berarti benda dilepas **tanpa kecepatan awal**, jadi <InlineMath math="v_0 = 0" />. Sebagian buku menyebut semua gerak di bawah gravitasi saja sebagai jatuh bebas, termasuk lemparan, tetapi halaman ini memakai arti yang pertama. Untuk benda yang jatuh setinggi <InlineMath math="h" />, waktu jatuh dan kelajuan saat menyentuh tanah adalah:
 
-Kecepatan sesaat sebelum menyentuh tanah:
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
+  <BlockMath math="v = \sqrt{2gh}" />
+</MathContainer>
 
-<BlockMath math="v_y=0-10(2)=-20\text{ m/s}" />
+Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> mencapai tanah setelah <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Kecepatannya saat itu:
 
-Tanda negatif menunjukkan arah ke bawah. Jadi, besar kecepatannya <InlineMath math="20\text{ m/s}" />, tetapi arah geraknya turun.
+<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
-Contoh ini menunjukkan mengapa tanda pada gerak vertikal tidak boleh diabaikan. Besar kecepatan menjawab seberapa cepat bola bergerak, sedangkan tanda menjawab arah geraknya.
+Tanda negatif berarti bola bergerak ke bawah. Periksa kelajuannya dengan rumus kedua: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Kelajuan ini sama dengan kelajuan bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" /> saat kembali ke titik lemparnya, karena keduanya menempuh <InlineMath math="20\text{ m}" /> turun dari keadaan diam sesaat.
 
-## Gerak Vertikal dalam Gerak Parabola
+## Benda Dilempar ke Bawah
 
-Persamaan jatuh bebas yang sama berlaku pada komponen vertikal peluru, bola yang dilempar, atau air yang keluar dari selang. Pada [gerak parabola](/id/materi/fisika/kinematika/gerak-parabola), **kecepatan horizontalnya tetap**, sedangkan kecepatan vertikalnya berubah mengikuti persamaan gravitasi.
+Benda yang dilempar ke bawah sudah punya kecepatan awal ke bawah, jadi **kecepatan awalnya negatif**. Gravitasi menambah kelajuannya sejak awal, sehingga benda sampai ke tanah lebih cepat daripada benda yang dijatuhkan dari tinggi yang sama.
+
+Misalkan batu dilempar ke bawah dengan kelajuan <InlineMath math="5\text{ m/s}" /> dari ketinggian <InlineMath math="30\text{ m}" />. Dengan <InlineMath math="y_0 = 30" /> dan <InlineMath math="v_0 = -5" />, batu sampai di tanah saat <InlineMath math="y = 0" />:
+
+<MathContainer>
+  <BlockMath math="0 = 30 - 5t - 5t^2" />
+  <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
+  <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+</MathContainer>
+
+Nilai <InlineMath math="t = -3" /> berarti tiga detik sebelum batu dilempar, jadi dibuang, dan batu sampai setelah <InlineMath math="2\text{ s}" />. Periksa dengan persamaan ketiga: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, sehingga kelajuannya <InlineMath math="25\text{ m/s}" />.
+
+## Gerak Vertikal di Dalam Gerak Parabola
+
+Tanpa hambatan udara, persamaan yang sama berlaku pada komponen vertikal bola yang dilempar miring. Pada [gerak parabola](/id/materi/fisika/kinematika/gerak-parabola), **kecepatan mendatarnya tetap**, sedangkan kecepatan vertikalnya berubah persis seperti benda yang dilempar ke atas.
+
+Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vertikal saja. Bola yang ditendang miring dengan komponen vertikal awal <InlineMath math="20\text{ m/s}" /> tetap naik selama <InlineMath math="2\text{ s}" /> dan mendarat setelah <InlineMath math="4\text{ s}" /> di tanah datar, sama seperti bola yang dilempar tegak ke atas dengan <InlineMath math="20\text{ m/s}" />.
+
+<LineEquation
+  title="Dua bola dengan kecepatan vertikal awal yang sama"
+  description="Satu kotak grafik mewakili 5 m. Bola teal ditendang dengan v_x = 10 m/s dan v_0y = 20 m/s, bola jingga dilempar tegak ke atas dengan 20 m/s. Garis abu-abu menghubungkan posisi keduanya pada waktu yang sama, dan tingginya selalu sama."
+  showZAxis={false}
+  cameraPosition={[4, 2, 12]}
+  cameraTarget={[4, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * index) / 400;
+        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{ditendang miring}" />, at: 400, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{tegak ke atas}" />, at: 2, offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    }
+  ]}
+/>
+
+## Kesalahan yang Sering Terjadi
+
+Sebelum menghitung, tetapkan dulu **arah positif** dan pakai secara konsisten.
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menganggap percepatan nol di titik tertinggi | Yang nol hanya kecepatan, gravitasi tetap bekerja | Percepatan selalu <InlineMath math="-g" /> sepanjang gerak |
+| Memakai <InlineMath math="h = \frac{1}{2}gt^2" /> untuk benda yang dilempar ke atas | Rumus itu hanya untuk jatuh bebas dengan <InlineMath math="v_0 = 0" /> | Periksa apakah ada kecepatan awal |
+| Menulis kecepatan awal positif untuk lemparan ke bawah | Arah ke bawah negatif jika ke atas dipilih positif | Tanda <InlineMath math="v_0" /> harus cocok dengan arah lemparan |
+| Mencampur kecepatan dan kelajuan | Kecepatan bertanda, kelajuan selalu positif | Kecepatan saat jatuh harus negatif |
+
+Kesalahan tanda paling mudah dicek di akhir. Benda yang sedang turun harus punya <InlineMath math="v_y" /> negatif, dan waktu yang negatif selalu dibuang.
+
+## Latihan Soal Gerak Vertikal
+
+Pakai <InlineMath math="g = 10\text{ m/s}^2" /> dan arah ke atas sebagai positif. Untuk setiap soal, tentukan dulu **tanda kecepatan awal** dan posisi awal.
+
+1. Bola dilempar tegak ke atas dengan kecepatan <InlineMath math="15\text{ m/s}" />. Tentukan waktu naik dan tinggi maksimumnya.
+
+2. Buah kelapa jatuh dari pohon setinggi <InlineMath math="45\text{ m}" />. Tentukan waktu jatuh dan kelajuannya saat menyentuh tanah.
+
+3. Bola dilempar ke atas dengan kecepatan <InlineMath math="20\text{ m/s}" /> dari atap gedung setinggi <InlineMath math="25\text{ m}" />. Kapan bola menyentuh tanah, dan berapa kecepatannya saat itu?
+
+4. Batu dilempar ke bawah dengan kelajuan <InlineMath math="10\text{ m/s}" /> dari jembatan setinggi <InlineMath math="15\text{ m}" />. Tentukan waktu sampai ke air dan kelajuannya.
+
+### Pembahasan
+
+**Soal 1**. Di titik tertinggi **kecepatannya nol**, jadi:
+
+<MathContainer>
+  <BlockMath math="t_{\text{naik}} = \frac{15}{10} = 1{,}5\text{ s}" />
+  <BlockMath math="h_{\text{maks}} = \frac{15^2}{2 \times 10} = 11{,}25\text{ m}" />
+</MathContainer>
+
+Periksa dengan persamaan posisi: <InlineMath math="15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />.
+
+**Soal 2**. Buah jatuh **tanpa kecepatan awal**:
+
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+</MathContainer>
+
+Periksa: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, jadi kelajuannya <InlineMath math="30\text{ m/s}" />.
+
+**Soal 3**. Ambil atap sebagai <InlineMath math="y_0 = 25" />, jadi tanah adalah <InlineMath math="y = 0" />. Persamaan posisi memberi **persamaan kuadrat dalam** <InlineMath math="t" />:
+
+<MathContainer>
+  <BlockMath math="0 = 25 + 20t - 5t^2" />
+  <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
+  <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+</MathContainer>
+
+Waktu negatif dibuang, jadi bola menyentuh tanah setelah <InlineMath math="5\text{ s}" /> dengan kecepatan <InlineMath math="30\text{ m/s}" /> ke bawah. Periksa: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+
+**Soal 4**. Kecepatan awalnya **negatif**, <InlineMath math="v_0 = -10" />, dan <InlineMath math="y_0 = 15" />:
+
+<MathContainer>
+  <BlockMath math="0 = 15 - 10t - 5t^2" />
+  <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
+  <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+</MathContainer>
+
+Batu sampai ke air setelah <InlineMath math="1\text{ s}" /> dengan kelajuan <InlineMath math="20\text{ m/s}" />. Periksa: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.

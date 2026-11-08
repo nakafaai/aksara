@@ -1,29 +1,27 @@
 export const metadata = {
   title: "Kedudukan Garis terhadap Lingkaran",
-  description: "Tentukan apakah garis memotong, menyinggung, atau tidak bertemu lingkaran melalui diskriminan, lalu hitung titik potongnya.",
+  description: "Garis bisa memotong, menyinggung, atau tidak menyentuh lingkaran. Tentukan kedudukannya dengan diskriminan atau jarak pusat ke garis.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
+## Tiga Kedudukan Garis terhadap Lingkaran
 
+Garis dan lingkaran pada bidang yang sama hanya punya tiga kemungkinan. Garis **memotong lingkaran di dua titik**, **menyinggung lingkaran di tepat satu titik**, atau **tidak memotong lingkaran sama sekali**. Garis yang memotong di dua titik disebut garis potong, dan garis yang menyentuh di satu titik disebut garis singgung.
 
-## Banyaknya Titik Potong Garis dan Lingkaran
+Kamu bisa menentukan kedudukan itu dengan dua cara, dan keduanya selalu memberi jawaban yang sama:
 
-Gambarlah sebuah lingkaran dan garis lurus pada bidang yang sama. <Highlight>Tepat ada tiga kemungkinan kedudukan</Highlight>.
-
-Garis itu dapat **memotong lingkaran di dua titik**, **menyinggung di satu titik**, atau **tidak bertemu lingkaran sama sekali**. Letakkan pensil di atas sebuah cincin. Bergantung pada posisinya, pensil dapat melintasi cincin, hanya menyentuh tepinya, atau berada sepenuhnya di luar.
-
-Substitusi persamaan garis ke persamaan lingkaran menghasilkan persamaan kuadrat. Dua solusi real berarti ada dua titik potong, satu solusi kembar berarti garis menyinggung lingkaran, dan tidak ada solusi real berarti garis tidak bertemu lingkaran. Pemeriksaan yang sama dapat memodelkan apakah jalan yang direncanakan melintasi kawasan lindung berbentuk lingkaran atau apakah suatu lintasan mencapai zona tertentu.
-
-## Tiga Kemungkinan Posisi
-
-Visualisasi berikut membandingkan ketiga kasus sekaligus:
+| Kedudukan | Diskriminan hasil substitusi | Jarak pusat ke garis |
+| --- | --- | --- |
+| Memotong di dua titik | <InlineMath math="\Delta > 0" /> | <InlineMath math="d < r" /> |
+| Menyinggung di satu titik | <InlineMath math="\Delta = 0" /> | <InlineMath math="d = r" /> |
+| Tidak memotong | <InlineMath math="\Delta < 0" /> | <InlineMath math="d > r" /> |
 
 <LineEquation
-  title="Kedudukan Garis Terhadap Lingkaran"
-  description="Visualisasi tiga kemungkinan posisi garis relatif terhadap lingkaran."
+  title="Tiga garis mendatar dan lingkaran berjari-jari 3"
+  description={<>Garis <InlineMath math="y = 1" /> memotong lingkaran, garis <InlineMath math="y = 3" /> menyinggungnya di <InlineMath math="(0, 3)" />, dan garis <InlineMath math="y = 4{,}5" /> tidak menyentuhnya.</>}
   data={[
     {
       smooth: false,
@@ -132,21 +130,11 @@ Visualisasi berikut membandingkan ketiga kasus sekaligus:
   cameraPosition={[0, 0, 14]}
 />
 
-Garis paling atas tidak memiliki titik persekutuan dengan lingkaran. Garis tengah menyentuhnya sekali. Garis paling bawah melewati lingkaran sehingga mempunyai dua titik potong.
+Lingkaran pada grafik berpusat di <InlineMath math="P(0, 0)" /> dengan jari-jari <InlineMath math="3" />. Garis <InlineMath math="y = 1" /> berjarak <InlineMath math="1" /> dari pusat, lebih dekat daripada jari-jari, jadi garis itu masuk ke dalam lingkaran. Garis <InlineMath math="y = 3" /> berjarak tepat <InlineMath math="3" /> dan hanya menyentuh titik <InlineMath math="(0, 3)" />. Garis <InlineMath math="y = 4{,}5" /> lewat di atas lingkaran tanpa menyentuhnya.
 
-1. **Garis potong** melewati bagian dalam lingkaran dan bertemu kelilingnya di dua titik berbeda.
+## Mengapa Diskriminan Menghitung Titik Potong
 
-2. **Garis singgung** menyentuh keliling lingkaran tepat di satu titik.
-
-3. **Garis di luar lingkaran** berada sepenuhnya di luar sehingga tidak memiliki titik potong dengan lingkaran.
-
-## Metode Diskriminan
-
-Untuk menentukan jumlah titik potong secara aljabar, substitusikan persamaan garis ke persamaan lingkaran. Substitusi tersebut menghasilkan persamaan kuadrat. Tanda **diskriminan** menentukan apakah garis dan lingkaran memiliki dua, satu, atau tidak ada titik potong real.
-
-Misalkan kita punya garis dengan persamaan <InlineMath math="y = mx + c" /> dan lingkaran dengan persamaan <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
-
-Ganti setiap <InlineMath math="y" /> pada persamaan lingkaran dengan <InlineMath math="mx+c" />:
+Titik potong garis dan lingkaran harus memenuhi **kedua persamaan sekaligus**. Karena itu, substitusikan garis <InlineMath math="y = mx + c" /> ke lingkaran <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />. Hasilnya persamaan kuadrat dalam <InlineMath math="x" />:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;x^2 + (mx + c)^2 + Dx \\ &amp;\quad{}+ E(mx + c) + F = 0 \end{aligned}" />
@@ -154,7 +142,7 @@ Ganti setiap <InlineMath math="y" /> pada persamaan lingkaran dengan <InlineMath
   <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + (2mc + D + Em)x \\ &amp;\quad{}+ (c^2 + Ec + F) = 0 \end{aligned}" />
 </MathContainer>
 
-Hasil substitusi ini membentuk persamaan kuadrat dalam bentuk <InlineMath math="Ax^2 + Bx + C = 0" />. Huruf kapital membedakan koefisien tersebut dari konstanta <InlineMath math="c" /> pada persamaan garis:
+Koefisiennya ditulis dengan huruf kapital supaya tidak tertukar dengan konstanta <InlineMath math="c" /> milik garis:
 
 <MathContainer>
   <BlockMath math="A = 1 + m^2" />
@@ -162,27 +150,62 @@ Hasil substitusi ini membentuk persamaan kuadrat dalam bentuk <InlineMath math="
   <BlockMath math="C = c^2 + Ec + F" />
 </MathContainer>
 
-Sekarang hitung **diskriminan** dari koefisien <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> di atas:
+Setiap akar real <InlineMath math="x" /> memberi tepat satu titik potong, karena nilai <InlineMath math="y" /> pasangannya langsung didapat dari persamaan garis. Jadi banyaknya titik potong sama dengan banyaknya akar real yang berbeda, dan banyaknya akar itu dibaca dari **diskriminan**:
 
 <BlockMath math="\Delta = B^2 - 4AC" />
 
-> Untuk **garis vertikal**, bentuk <InlineMath math="y=mx+c" /> tidak berlaku. Substitusikan <InlineMath math="x=k" /> langsung ke lingkaran dan selesaikan persamaan kuadrat dalam <InlineMath math="y" />. Misalnya, <InlineMath math="x=3" /> pada <InlineMath math="x^2+y^2=9" /> memberikan <InlineMath math="9+y^2=9" />, sehingga <InlineMath math="y=0" />. Garis itu menyinggung di <InlineMath math="(3,0)" />.
+Koefisien <InlineMath math="A = 1 + m^2" /> tidak pernah nol, jadi hasil substitusi selalu persamaan kuadrat. Aturan tandanya sama dengan aturan [jenis-jenis akar persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/jenis-jenis-akar-persamaan-kuadrat): dua akar real berbeda, satu akar kembar, atau tidak ada akar real.
 
-## Arti Nilai Diskriminan
+Garis tegak <InlineMath math="x = k" /> tidak bisa ditulis sebagai <InlineMath math="y = mx + c" />. Untuk garis seperti itu, substitusikan <InlineMath math="x = k" /> dan selesaikan persamaan kuadrat dalam <InlineMath math="y" />. Contohnya, <InlineMath math="x = 3" /> pada <InlineMath math="x^2 + y^2 = 9" /> memberi <InlineMath math="9 + y^2 = 9" />, sehingga <InlineMath math="y = 0" /> adalah akar kembar. Garis <InlineMath math="x = 3" /> menyinggung lingkaran di <InlineMath math="(3, 0)" />. Periksa: jarak pusat <InlineMath math="(0, 0)" /> ke garis <InlineMath math="x = 3" /> adalah <InlineMath math="3 = r" />.
 
-Setiap solusi real untuk <InlineMath math="x" /> mewakili satu titik potong. Karena itu, diskriminan menghasilkan tiga kemungkinan:
+## Membandingkan Jarak Pusat dengan Jari-jari
 
-| Nilai diskriminan | Akar real | Kedudukan garis |
-| --- | --- | --- |
-| <InlineMath math="\Delta>0" /> | Dua akar berbeda | **Memotong di dua titik** |
-| <InlineMath math="\Delta=0" /> | Satu akar kembar | **Menyinggung di satu titik** |
-| <InlineMath math="\Delta<0" /> | Tidak ada | **Tidak berpotongan** |
+Cara kedua memakai geometri. Garis singgung selalu **tegak lurus jari-jari di titik singgungnya**, jadi jarak terpendek dari pusat ke garis singgung sama dengan jari-jari. Garis yang lebih dekat ke pusat pasti masuk ke dalam lingkaran, dan garis yang lebih jauh pasti lewat di luarnya.
 
-## Menentukan Garis Potong dengan Diskriminan
+Untuk lingkaran berpusat <InlineMath math="(a, b)" /> dan garis <InlineMath math="px + qy + s = 0" />, jarak pusat ke garis adalah
 
-Tentukan kedudukan garis <InlineMath math="y=2x-1" /> terhadap lingkaran <InlineMath math="x^2+y^2-4x+2y-4=0" />.
+<BlockMath math="d = \frac{|pa + qb + s|}{\sqrt{p^2 + q^2}}" />
 
-Kita substitusikan <InlineMath math="y = 2x - 1" /> ke dalam persamaan lingkaran:
+Bandingkan <InlineMath math="d" /> dengan jari-jari <InlineMath math="r" />: <InlineMath math="d < r" /> berarti dua titik potong, <InlineMath math="d = r" /> berarti satu titik singgung, dan <InlineMath math="d > r" /> berarti tidak ada titik persekutuan. Cara ini tidak memerlukan substitusi, jadi cocok ketika kamu hanya perlu kedudukannya. Ide yang sama dipakai pada [kedudukan titik terhadap lingkaran](/id/materi/matematika/geometri-analitik/kedudukan-suatu-titik-terhadap-lingkaran), tempat jarak sebuah titik ke pusat dibandingkan dengan <InlineMath math="r" />.
+
+<MathVisual
+  title="Tiga garis sejajar dan satu jari-jari tegak lurus"
+  description={<>Lingkaran <InlineMath math="x^2 + y^2 = 9" /> dengan garis <InlineMath math="3x + 4y = 10" />, <InlineMath math="3x + 4y = 15" />, dan <InlineMath math="3x + 4y = 20" />. Ruas dari <InlineMath math="O" /> tegak lurus ketiga garis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "near", kind: "line", through: [{ x: -2, y: 4 }, { x: 2, y: 1 }], appearance: "secondary" },
+      { id: "touch", kind: "line", through: [{ x: 1, y: 3 }, { x: 5, y: 0 }], appearance: "highlight" },
+      { id: "far", kind: "line", through: [{ x: 0, y: 5 }, { x: 4, y: 2 }], appearance: "warning" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: 12 / 5, y: 16 / 5 }, appearance: "construction" },
+      { id: "touch-point", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: -2, y: 4 }, placement: "above-right" },
+      { key: "touch", objectId: "touch", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="d = 2" />,
+    touch: <InlineMath math="d = 3" />,
+    far: <InlineMath math="d = 4" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+Ketiga garis sejajar, jadi jaraknya dari <InlineMath math="O" /> diukur sepanjang satu ruas yang tegak lurus. Untuk <InlineMath math="3x + 4y - 15 = 0" />, jaraknya <InlineMath math="d = \frac{|-15|}{\sqrt{3^2 + 4^2}} = \frac{15}{5} = 3 = r" />, sehingga garis itu menyinggung. Kaki ruas tegak lurusnya, <InlineMath math="\left(\frac{9}{5}, \frac{12}{5}\right)" />, adalah titik singgungnya. Periksa: <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />. Dengan rumus yang sama, garis <InlineMath math="3x + 4y = 10" /> berjarak <InlineMath math="2" /> dan memotong lingkaran, sedangkan <InlineMath math="3x + 4y = 20" /> berjarak <InlineMath math="4" /> dan tidak menyentuhnya.
+
+## Contoh Garis Memotong dan Titik Potongnya
+
+Tentukan kedudukan garis <InlineMath math="y = 2x - 1" /> terhadap lingkaran <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />, lalu cari titik potongnya.
+
+Substitusikan <InlineMath math="y = 2x - 1" /> ke persamaan lingkaran:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;x^2 + (2x - 1)^2 - 4x \\ &amp;\quad{}+ 2(2x - 1) - 4 = 0 \end{aligned}" />
@@ -190,113 +213,61 @@ Kita substitusikan <InlineMath math="y = 2x - 1" /> ke dalam persamaan lingkaran
   <BlockMath math="5x^2 - 4x - 5 = 0" />
 </MathContainer>
 
-Dari persamaan kuadrat <InlineMath math="5x^2 - 4x - 5 = 0" />, kita identifikasi koefisiennya: <InlineMath math="a = 5" />, <InlineMath math="b = -4" />, dan <InlineMath math="c = -5" />.
+Koefisiennya <InlineMath math="A = 5" />, <InlineMath math="B = -4" />, dan <InlineMath math="C = -5" />, sehingga
 
-Hitung diskriminan:
+<BlockMath math="\Delta = (-4)^2 - 4(5)(-5) = 16 + 100 = 116" />
 
-<MathContainer>
-  <BlockMath math="\Delta = b^2 - 4ac = (-4)^2 - 4(5)(-5)" />
-  <BlockMath math="\Delta = 16 + 100 = 116" />
-</MathContainer>
-
-Karena <InlineMath math="\Delta = 116 > 0" />, maka garis <InlineMath math="y = 2x - 1" /> **memotong lingkaran di dua titik**.
-
-Kita dapat **menentukan titik potongnya** dengan rumus kuadrat, lalu memasukkan kembali nilai absis ke persamaan garis:
+Karena <InlineMath math="\Delta = 116 > 0" />, garis **memotong lingkaran di dua titik**. Rumus kuadrat memberi absis kedua titik itu, lalu persamaan garis memberi ordinatnya:
 
 <MathContainer>
   <BlockMath math="x=\frac{4\pm\sqrt{116}}{10}=\frac{4\pm2\sqrt{29}}{10}=\frac{2\pm\sqrt{29}}5" />
   <BlockMath math="y=2x-1=\frac{4\pm2\sqrt{29}}5-1=\frac{-1\pm2\sqrt{29}}5" />
 </MathContainer>
 
-Tanda atas dipasangkan dengan tanda atas, dan tanda bawah dengan tanda bawah. Kedua pasangan koordinat memenuhi persamaan garis sekaligus persamaan lingkaran.
+Tanda atas dipasangkan dengan tanda atas. Jadi titik potongnya <InlineMath math="A\left(\frac{2+\sqrt{29}}5, \frac{-1+2\sqrt{29}}5\right)" /> dan <InlineMath math="B\left(\frac{2-\sqrt{29}}5, \frac{-1-2\sqrt{29}}5\right)" />. Dalam desimal, <InlineMath math="A" /> berada di sekitar <InlineMath math="x \approx 1{,}48" /> dan <InlineMath math="B" /> di sekitar <InlineMath math="x \approx -0{,}68" />.
 
-> Tanda diskriminan menentukan jumlah titik potong. Besarnya diskriminan bukan jarak geometris garis dari kondisi menyinggung karena mengalikan persamaan dengan suatu faktor juga mengubah nilai diskriminan.
+<MathVisual
+  title="Garis memotong lingkaran di A dan B"
+  description={<>Lingkaran berpusat <InlineMath math="C(2, -1)" /> dengan jari-jari <InlineMath math="3" />. Ruas <InlineMath math="d" /> tegak lurus garis dan jatuh di tengah tali busur <InlineMath math="AB" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -5, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 2, y: -1 }, radius: 3, appearance: "primary" },
+      { id: "line", kind: "line", through: [{ x: 0, y: -1 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "distance", kind: "segment", from: { x: 2, y: -1 }, to: { x: 2 / 5, y: -1 / 5 }, appearance: "construction" },
+      { id: "radius", kind: "segment", from: { x: 2, y: -1 }, to: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: (2 + Math.sqrt(29)) / 5, y: (-1 + 2 * Math.sqrt(29)) / 5 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: (2 - Math.sqrt(29)) / 5, y: (-1 - 2 * Math.sqrt(29)) / 5 }, placement: "right" },
+      { key: "center", objectId: "center", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "distance", objectId: "distance", at: { x: 6 / 5, y: -3 / 5 }, placement: "below" },
+      { key: "radius", objectId: "radius", at: { x: (12 + Math.sqrt(29)) / 10, y: (-6 + 2 * Math.sqrt(29)) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    center: <InlineMath math="C" />,
+    distance: <InlineMath math="d" />,
+    radius: <InlineMath math="r = 3" />,
+  }}
+/>
 
-## Kasus Lingkaran Standar
+Periksa dengan cara jarak. Melengkapkan kuadrat memberi <InlineMath math="(x - 2)^2 + (y + 1)^2 = 9" />, jadi pusatnya <InlineMath math="C(2, -1)" /> dan <InlineMath math="r = 3" />, seperti pada [persamaan lingkaran](/id/materi/matematika/geometri-analitik/persamaan-lingkaran). Tulis garisnya sebagai <InlineMath math="2x - y - 1 = 0" />, lalu hitung <InlineMath math="d = \frac{|2 \cdot 2 - (-1) - 1|}{\sqrt{5}} = \frac{4}{\sqrt{5}} \approx 1{,}79" />. Karena <InlineMath math="1{,}79 < 3" />, cara jarak juga menyatakan garis memotong lingkaran.
 
-Pada lingkaran yang berpusat di titik asal, <InlineMath math="x^2 + y^2 = r^2" />, **kedua koordinat pusat bernilai nol**. Substitusi <InlineMath math="y=mx+c" /> tidak menghasilkan suku pergeseran horizontal atau vertikal.
+Kaki ruas <InlineMath math="d" /> jatuh di <InlineMath math="\left(\frac{2}{5}, -\frac{1}{5}\right)" />. Titik itu juga titik tengah <InlineMath math="AB" />, karena <InlineMath math="CA = CB = r" /> sehingga ruas tegak lurus dari <InlineMath math="C" /> membagi tali busur menjadi dua bagian sama panjang. Hitungannya cocok: tanda <InlineMath math="\pm" /> saling menghapus saat kedua koordinat dirata-ratakan. Panjang tali busurnya <InlineMath math="AB = 2\sqrt{r^2 - d^2} = 2\sqrt{9 - \frac{16}{5}} \approx 4{,}82" />.
 
-Substitusikan garis ke lingkaran:
+## Contoh Syarat Garis Menyinggung Lingkaran
 
-<MathContainer>
-  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
-  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 = r^2" />
-  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
-</MathContainer>
+Tentukan nilai <InlineMath math="k" /> agar garis <InlineMath math="y = x + k" /> menyinggung lingkaran <InlineMath math="x^2 + y^2 = 18" />.
 
-Diskriminan untuk kasus ini adalah:
-
-<BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2)" />
-
-Setelah disederhanakan:
-
-<BlockMath math="\Delta = 4[r^2(1 + m^2) - c^2]" />
-
-Kesimpulannya sama seperti sebelumnya: <InlineMath math="\Delta > 0" /> berarti garis memotong lingkaran di dua titik, <InlineMath math="\Delta = 0" /> berarti menyinggung di satu titik, dan <InlineMath math="\Delta < 0" /> berarti tidak berpotongan.
-
-## Latihan dengan Pembahasan Lengkap
-
-Setiap soal memberikan garis dan lingkaran, dan tugasnya menentukan apakah keduanya berpotongan di dua titik, bersinggungan, atau tidak berpotongan. Substitusikan garisnya ke persamaan lingkaran lalu **baca diskriminannya**.
-
-1. Tentukan kedudukan garis <InlineMath math="y = x + 3" /> terhadap lingkaran <InlineMath math="x^2 + y^2 = 8" />.
-
-2. Selidiki kedudukan garis <InlineMath math="y = -2x + 5" /> terhadap lingkaran <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />.
-
-3. Garis <InlineMath math="2x + y - 4 = 0" /> dan lingkaran <InlineMath math="x^2 + y^2 = 5" />. Bagaimana kedudukan keduanya?
-
-4. Tentukan nilai <InlineMath math="k" /> agar garis <InlineMath math="y = x + k" /> menyinggung lingkaran <InlineMath math="x^2 + y^2 = 18" />.
-
-### Pembahasan Lengkap
-
-**Pembahasan 1**:
-
-Substitusi <InlineMath math="y = x + 3" /> ke <InlineMath math="x^2 + y^2 = 8" />:
-
-<MathContainer>
-  <BlockMath math="x^2 + (x + 3)^2 = 8" />
-  <BlockMath math="x^2 + x^2 + 6x + 9 = 8" />
-  <BlockMath math="2x^2 + 6x + 1 = 0" />
-</MathContainer>
-
-Diskriminan: <InlineMath math="\Delta = 6^2 - 4(2)(1) = 36 - 8 = 28" />
-
-Karena <InlineMath math="\Delta = 28 > 0" />, garis **memotong lingkaran di dua titik**.
-
-**Pembahasan 2**:
-
-Substitusi <InlineMath math="y = -2x + 5" /> ke <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />:
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;x^2 + (-2x + 5)^2 \\ &amp;\quad{}- 6x + 4(-2x + 5) + 9 = 0 \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 20x + 25 \\ &amp;\quad{}- 6x - 8x + 20 + 9 = 0 \end{aligned}" />
-  <BlockMath math="5x^2 - 34x + 54 = 0" />
-</MathContainer>
-
-Diskriminan: <InlineMath math="\Delta = (-34)^2 - 4(5)(54) = 1156 - 1080 = 76" />
-
-Karena <InlineMath math="\Delta = 76 > 0" />, garis **memotong lingkaran di dua titik**.
-
-**Pembahasan 3**:
-
-Susun ulang garis <InlineMath math="2x + y - 4 = 0" /> terhadap <InlineMath math="y" /> sehingga diperoleh <InlineMath math="y = -2x + 4" />.
-
-Substitusi ke <InlineMath math="x^2 + y^2 = 5" />:
-
-<MathContainer>
-  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
-  <BlockMath math="x^2 + 4x^2 - 16x + 16 = 5" />
-  <BlockMath math="5x^2 - 16x + 11 = 0" />
-</MathContainer>
-
-Diskriminan: <InlineMath math="\Delta = (-16)^2 - 4(5)(11) = 256 - 220 = 36" />
-
-Karena <InlineMath math="\Delta = 36 > 0" />, garis **memotong lingkaran di dua titik**.
-
-**Pembahasan 4**:
-
-Agar garis menyinggung lingkaran, diskriminan harus sama dengan nol.
-
-Substitusi <InlineMath math="y = x + k" /> ke <InlineMath math="x^2 + y^2 = 18" />:
+Garis menyinggung tepat ketika **diskriminannya nol**. Substitusikan garis ke lingkaran:
 
 <MathContainer>
   <BlockMath math="x^2 + (x + k)^2 = 18" />
@@ -304,15 +275,128 @@ Substitusi <InlineMath math="y = x + k" /> ke <InlineMath math="x^2 + y^2 = 18" 
   <BlockMath math="2x^2 + 2kx + (k^2 - 18) = 0" />
 </MathContainer>
 
-Diskriminan: <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = 4k^2 - 8k^2 + 144 = -4k^2 + 144" />
-
-Supaya <InlineMath math="\Delta = 0" />:
+Diskriminannya <InlineMath math="\Delta = (2k)^2 - 4(2)(k^2 - 18) = -4k^2 + 144" />. Syarat <InlineMath math="\Delta = 0" /> memberi:
 
 <MathContainer>
   <BlockMath math="-4k^2 + 144 = 0" />
-  <BlockMath math="4k^2 = 144" />
   <BlockMath math="k^2 = 36" />
-  <BlockMath math="k = \pm 6" />
+  <BlockMath math="k = 6 \quad \text{atau} \quad k = -6" />
 </MathContainer>
 
-Jadi nilai <InlineMath math="k = 6" /> atau <InlineMath math="k = -6" />.
+Untuk <InlineMath math="k = 6" />, persamaannya menjadi <InlineMath math="2x^2 + 12x + 18 = 0" /> atau <InlineMath math="(x + 3)^2 = 0" />, jadi titik singgungnya <InlineMath math="(-3, 3)" />. Untuk <InlineMath math="k = -6" />, titik singgungnya <InlineMath math="(3, -3)" />.
+
+<MathVisual
+  title="Dua garis singgung bergradien 1"
+  description={<>Lingkaran <InlineMath math="x^2 + y^2 = 18" /> berjari-jari <InlineMath math="3\sqrt{2}" />. Jari-jari ke setiap titik singgung tegak lurus garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3 * Math.SQRT2, appearance: "primary" },
+      { id: "upper", kind: "line", through: [{ x: -6, y: 0 }, { x: 0, y: 6 }], appearance: "secondary" },
+      { id: "lower", kind: "line", through: [{ x: 0, y: -6 }, { x: 6, y: 0 }], appearance: "highlight" },
+      { id: "upper-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "lower-radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -3 }, appearance: "construction" },
+      { id: "upper-point", kind: "point", at: { x: -3, y: 3 }, appearance: "answer" },
+      { id: "lower-point", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: -6, y: 0 }, placement: "left" },
+      { key: "lower", objectId: "lower", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "upper-point", objectId: "upper-point", at: { x: -3, y: 3 }, placement: "above-left" },
+      { key: "lower-point", objectId: "lower-point", at: { x: 3, y: -3 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    upper: <InlineMath math="y = x + 6" />,
+    lower: <InlineMath math="y = x - 6" />,
+    "upper-point": <InlineMath math="(-3, 3)" />,
+    "lower-point": <InlineMath math="(3, -3)" />,
+    center: <InlineMath math="O" />,
+  }}
+/>
+
+Periksa dengan jarak. Garis <InlineMath math="x - y + k = 0" /> berjarak <InlineMath math="\frac{|k|}{\sqrt{2}}" /> dari <InlineMath math="O" />. Syarat <InlineMath math="d = r" /> memberi <InlineMath math="\frac{|k|}{\sqrt{2}} = 3\sqrt{2}" />, jadi <InlineMath math="|k| = 6" />, sama dengan hasil diskriminan. Titik <InlineMath math="(-3, 3)" /> juga memenuhi <InlineMath math="(-3)^2 + 3^2 = 18" />, dan jari-jari ke titik itu tegak lurus garis karena gradien keduanya, <InlineMath math="-1" /> dan <InlineMath math="1" />, berhasil kali <InlineMath math="-1" />.
+
+## Rumus Cepat untuk Lingkaran Berpusat di O
+
+Pada lingkaran <InlineMath math="x^2 + y^2 = r^2" />, koefisien <InlineMath math="D" />, <InlineMath math="E" /> sama dengan nol dan <InlineMath math="F = -r^2" />. Untuk garis yang tidak tegak, substitusi <InlineMath math="y = mx + c" /> menjadi lebih pendek:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+  <BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2) = 4\left[r^2(1 + m^2) - c^2\right]" />
+</MathContainer>
+
+Faktor <InlineMath math="4" /> selalu positif, jadi tanda <InlineMath math="\Delta" /> sama dengan tanda <InlineMath math="r^2(1 + m^2) - c^2" />. Garis menyinggung tepat ketika <InlineMath math="c^2 = r^2(1 + m^2)" />. Bagi kedua ruas dengan <InlineMath math="1 + m^2" /> lalu tarik akarnya: <InlineMath math="\frac{|c|}{\sqrt{1 + m^2}} = r" />. Ruas kiri adalah jarak <InlineMath math="O" /> ke garis <InlineMath math="mx - y + c = 0" />, jadi **rumus cepat ini adalah uji jarak dalam bentuk lain**.
+
+Dari syarat yang sama lahir rumus garis singgung bergradien <InlineMath math="m" />, yaitu <InlineMath math="y = mx \pm r\sqrt{1 + m^2}" />, yang menjadi alat utama di [persamaan garis singgung lingkaran](/id/materi/matematika/geometri-analitik/persamaan-garis-singgung-lingkaran). Untuk garis <InlineMath math="y = x + k" /> dan lingkaran <InlineMath math="x^2 + y^2 = 18" />, nilai <InlineMath math="m = 1" /> dan <InlineMath math="r = 3\sqrt{2}" /> memberi <InlineMath math="c = \pm 3\sqrt{2} \cdot \sqrt{2} = \pm 6" />.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai <InlineMath math="c" /> milik garis sebagai <InlineMath math="C" /> pada <InlineMath math="\Delta" /> | Konstanta garis berbeda dengan konstanta persamaan kuadrat | Tulis <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> lengkap sebelum menghitung |
+| Membandingkan <InlineMath math="d" /> dengan <InlineMath math="r^2" /> | <InlineMath math="d" /> adalah panjang, <InlineMath math="r^2" /> adalah kuadrat panjang | Untuk <InlineMath math="x^2 + y^2 = 9" />, bandingkan <InlineMath math="d" /> dengan <InlineMath math="3" /> |
+| Membaca pusat dengan tanda terbalik | <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" /> berpusat di <InlineMath math="(2, -1)" />, bukan <InlineMath math="(-2, 1)" /> | Pusatnya <InlineMath math="\left(-\frac{D}{2}, -\frac{E}{2}\right)" /> |
+| Memakai rumus jarak pada <InlineMath math="y = 2x - 1" /> | Rumus jarak butuh bentuk <InlineMath math="px + qy + s = 0" /> | Pindahkan semua suku ke satu ruas: <InlineMath math="2x - y - 1 = 0" /> |
+| Menganggap besar <InlineMath math="\Delta" /> sebagai jarak | Mengalikan persamaan kuadrat hasil substitusi dengan <InlineMath math="2" /> membuat <InlineMath math="\Delta" /> empat kali lipat tanpa menggeser garis | Hanya tanda <InlineMath math="\Delta" /> yang bermakna |
+
+Cara memeriksa yang paling cepat adalah memakai cara kedua. Jika diskriminan dan uji jarak memberi kedudukan yang berbeda, **pasti ada hitungan yang salah**, biasanya pada pusat lingkaran atau pada penjabaran kuadrat.
+
+## Latihan Soal
+
+Tentukan kedudukan setiap garis dengan diskriminan, lalu **periksa dengan jarak pusat ke garis**.
+
+1. Tentukan kedudukan garis <InlineMath math="y = x + 3" /> terhadap lingkaran <InlineMath math="x^2 + y^2 = 8" />.
+
+2. Selidiki kedudukan garis <InlineMath math="x + y = 7" /> terhadap lingkaran <InlineMath math="x^2 + y^2 - 2x - 4y + 1 = 0" />.
+
+3. Tentukan kedudukan garis <InlineMath math="2x + y - 4 = 0" /> terhadap lingkaran <InlineMath math="x^2 + y^2 = 5" />. Jika keduanya berpotongan, tentukan titik potongnya.
+
+4. Tentukan nilai <InlineMath math="m" /> agar garis <InlineMath math="y = mx + 5" /> menyinggung lingkaran <InlineMath math="x^2 + y^2 = 5" />, lalu tentukan titik singgungnya.
+
+### Pembahasan
+
+**Soal 1**. Substitusikan <InlineMath math="y = x + 3" />:
+
+<MathContainer>
+  <BlockMath math="x^2 + (x + 3)^2 = 8" />
+  <BlockMath math="2x^2 + 6x + 1 = 0" />
+  <BlockMath math="\Delta = 6^2 - 4(2)(1) = 28" />
+</MathContainer>
+
+Karena <InlineMath math="\Delta = 28 > 0" />, garis **memotong lingkaran di dua titik**. Periksa: garis <InlineMath math="x - y + 3 = 0" /> berjarak <InlineMath math="\frac{3}{\sqrt{2}} \approx 2{,}12" /> dari pusat, lebih kecil dari <InlineMath math="r = \sqrt{8} \approx 2{,}83" />.
+
+**Soal 2**. Tulis garisnya sebagai <InlineMath math="y = 7 - x" />, lalu substitusikan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (7 - x)^2 - 2x - 4(7 - x) + 1 = 0" />
+  <BlockMath math="x^2 + 49 - 14x + x^2 - 2x - 28 + 4x + 1 = 0" />
+  <BlockMath math="2x^2 - 12x + 22 = 0" />
+</MathContainer>
+
+Diskriminannya <InlineMath math="\Delta = (-12)^2 - 4(2)(22) = 144 - 176 = -32" />. Karena <InlineMath math="\Delta < 0" />, garis **tidak memotong lingkaran**. Periksa: lingkaran berpusat di <InlineMath math="(1, 2)" /> dengan <InlineMath math="r = \sqrt{1 + 4 - 1} = 2" />, dan jaraknya ke garis <InlineMath math="x + y - 7 = 0" /> adalah <InlineMath math="\frac{|1 + 2 - 7|}{\sqrt{2}} = 2\sqrt{2} \approx 2{,}83" />, lebih besar dari <InlineMath math="2" />.
+
+**Soal 3**. Tulis garisnya sebagai <InlineMath math="y = -2x + 4" />, lalu substitusikan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (-2x + 4)^2 = 5" />
+  <BlockMath math="5x^2 - 16x + 11 = 0" />
+  <BlockMath math="(x - 1)(5x - 11) = 0" />
+</MathContainer>
+
+Diskriminannya <InlineMath math="256 - 220 = 36 > 0" />, jadi garis **memotong lingkaran di dua titik**. Akar <InlineMath math="x = 1" /> memberi <InlineMath math="y = 2" />, dan <InlineMath math="x = \frac{11}{5}" /> memberi <InlineMath math="y = -\frac{2}{5}" />. Periksa: <InlineMath math="1^2 + 2^2 = 5" /> dan <InlineMath math="\frac{121}{25} + \frac{4}{25} = 5" />, jadi kedua titik terletak pada lingkaran.
+
+**Soal 4**. Pakai syarat menyinggung untuk lingkaran berpusat di <InlineMath math="O" />, yaitu <InlineMath math="c^2 = r^2(1 + m^2)" /> dengan <InlineMath math="c = 5" /> dan <InlineMath math="r^2 = 5" />:
+
+<MathContainer>
+  <BlockMath math="25 = 5(1 + m^2)" />
+  <BlockMath math="m^2 = 4" />
+  <BlockMath math="m = 2 \quad \text{atau} \quad m = -2" />
+</MathContainer>
+
+Untuk <InlineMath math="m = 2" />, substitusi memberi <InlineMath math="5x^2 + 20x + 20 = 0" /> atau <InlineMath math="(x + 2)^2 = 0" />, jadi titik singgungnya <InlineMath math="(-2, 1)" />. Untuk <InlineMath math="m = -2" />, titik singgungnya <InlineMath math="(2, 1)" />. Periksa: <InlineMath math="(-2)^2 + 1^2 = 5" />, dan jari-jari ke <InlineMath math="(-2, 1)" /> bergradien <InlineMath math="-\frac{1}{2}" />, tegak lurus garis bergradien <InlineMath math="2" />.

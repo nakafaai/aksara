@@ -308,6 +308,19 @@ know, so it is not the full id list.
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
 
+Three pending rules carry owner requirements that the corpus does not meet
+yet: `plain-math-text` (D37, [mathematics rules](math.md)) finds Unicode sub-
+and superscripts, math symbols and arrows, Greek letters, element formulas with
+a count that does not start with 0, the diatomic gases, and simple equations
+between numbers and one-letter variables in the text a learner reads, headings
+and component text props included, with math components, code, links, and
+metadata kept out; `string-visual-text` (D39) finds a title, description,
+labels, facts, or legend prop written as a string instead of JSX; and
+`retired-visual` (D36) finds a retired visual component. The gate prints each
+rule's count, its fix, and every occurrence on each run and fails on none yet.
+The change that clears a rule's last occurrence adds it to the blocking set,
+with no allowlist.
+
 The address rules are authored-voice rules, not raw pronoun bans. Indonesian
 `Anda` and `saya` are blocked only in learner-visible authored prose. German
 formal address is blocked in direct-address syntax such as a formal imperative

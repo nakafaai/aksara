@@ -162,6 +162,14 @@ Two rules settle most problems. For fixed numbers <InlineMath math="a" /> and <I
   <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
+<Mermaid
+  title="Shifting and scaling the expected value"
+  description="Every step applied to the temperature applies to its expected value too."
+  chart={`flowchart LR
+  A["C with E(C) = 28"] -->|"times 1.8"| B["1.8C with E = 50.4"]
+  B -->|"plus 32"| C["F = 1.8C + 32 with E(F) = 82.4"]`}
+/>
+
 **Example 1**. The daily mean temperature in Jakarta in June is normally distributed with <InlineMath math="\mu = 28^\circ\text{C}" /> and <InlineMath math="\sigma = 3^\circ\text{C}" />. The conversion to Fahrenheit is <InlineMath math="F = 1.8C + 32" />, the form <InlineMath math="aC + b" /> with <InlineMath math="a = 1.8" /> and <InlineMath math="b = 32" />:
 
 <BlockMath math="E(F) = 1.8 \cdot 28 + 32 = 82.4^\circ\text{F}" />

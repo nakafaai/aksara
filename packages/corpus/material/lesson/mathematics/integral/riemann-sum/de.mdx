@@ -1,46 +1,50 @@
 export const metadata = {
     title: "Riemannsumme",
-    description: "Riemannsummen zerlegen ein Intervall in Teilintervalle und addieren vorzeichenbehaftete Rechteckbeiträge. Bei nicht negativen Funktionen nähert das Ergebnis die Fläche unter dem Graphen an.",
+    description: "Schätze ein Integral mit Rechtecken f(x)Δx ab, vergleiche linke, rechte und Mittelpunktsummen und bilde den Grenzwert, der die exakte Fläche liefert.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrale",
 };
 
-## Eine Grundstücksfläche mit Rechteckstreifen schätzen
+## Rechtecke addieren um ein Integral zu schätzen
 
-Stell dir ein Grundstück vor, das an einer Seite von einer unregelmäßigen Kurve begrenzt wird. Um seine Fläche zu schätzen, können wir das Grundstück in gleich breite rechteckige Streifen zerlegen. Anschließend berechnen wir die Fläche jedes Streifens und addieren die Ergebnisse.
+Eine **Riemannsumme** schätzt das Integral von <InlineMath math="f" /> auf <InlineMath math="[a,b]" />: Du zerlegst das Intervall in <InlineMath math="n" /> gleich breite Streifen, wählst in jedem Streifen eine Stützstelle <InlineMath math="x_i^*" /> und <Highlight>addierst die Rechteckbeiträge</Highlight> <InlineMath math="f(x_i^*)\,\Delta x" />:
 
-Eine **Riemannsumme** zerlegt ein Intervall in Teilintervalle, wählt in jedem Teilintervall eine Stützstelle und <Highlight>addiert die vorzeichenbehafteten Rechteckbeiträge</Highlight>. Für eine Riemann-integrierbare Funktion nähern sich diese Summen dem bestimmten Integral, wenn die Breite des größten Teilintervalls gegen null geht. Ist die Funktion nicht negativ, entspricht die vorzeichenbehaftete Akkumulation der Fläche unter dem Graphen. Bei gleich breiten Teilintervallen werden die Rechtecke schmaler, wenn ihre Anzahl steigt. Ein zusätzliches Rechteck muss die Summe jedoch nicht bei jedem Schritt näher an den Wert des bestimmten Integrals bringen.
+<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*)\,\Delta x, \qquad \Delta x = \frac{b-a}{n}" />
 
-## Intervallzerlegung und Breite
+Je schmaler die Streifen werden, desto näher kommt die Summe dem [bestimmten Integral](/de/faecher/mathematik/integralrechnung/bestimmtes-integral). Für <InlineMath math="f(x)=x" /> auf <InlineMath math="[0,7]" /> ergeben sieben Rechtecke, deren Höhe am linken Rand abgelesen wird, zusammen <InlineMath math="21" />. Das Dreieck unter der Geraden hat dagegen die Fläche <InlineMath math="\frac{1}{2}\cdot7\cdot7=24{,}5" />. Mehr Streifen verkleinern diesen Abstand.
 
-Vier Größen bestimmen eine Riemannsumme mit **gleich breiten Teilintervallen**:
+Stell dir ein Grundstück vor, das an einer Seite von einer Kurve begrenzt wird. Keine einzelne Formel liefert seine Fläche, aber du kannst es in gleich breite Streifen schneiden, jeden Streifen wie ein Rechteck behandeln und alles addieren. Genau das macht eine Riemannsumme, mit dem Funktionswert als Höhe jedes Streifens.
+
+## Streifenbreite und Stützstellen
+
+Vier Größen legen eine **Riemannsumme mit gleich breiten Streifen** fest:
 
 | Symbol | Bedeutung |
 | :----- | :-------- |
 | <InlineMath math="[a,b]" /> | Intervall, das in Teilintervalle zerlegt wird |
 | <InlineMath math="n" /> | Anzahl der Teilintervalle |
 | <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Breite jedes Teilintervalls |
-| <InlineMath math="x_i^*" /> | Stützstelle im Teilintervall <InlineMath math="i" />, deren Funktionswert <InlineMath math="f(x_i^*)" /> die Rechteckhöhe angibt |
+| <InlineMath math="x_i^*" /> | Stützstelle im Teilintervall <InlineMath math="i" />, die die Rechteckhöhe <InlineMath math="f(x_i^*)" /> liefert |
 
-Als Stützstelle kann der linke Randpunkt, der rechte Randpunkt, der Mittelpunkt oder ein anderer Punkt im Teilintervall gewählt werden.
+Die drei üblichen Stützstellen sind für <InlineMath math="i = 1, 2, \ldots, n" /> der linke Randpunkt, der rechte Randpunkt und der Mittelpunkt jedes Streifens:
 
-## Die Riemannsche Summenformel
+<MathContainer>
+  <BlockMath math="\text{links: } x_i^* = a + (i-1)\Delta x" />
+  <BlockMath math="\text{rechts: } x_i^* = a + i\,\Delta x" />
+  <BlockMath math="\text{Mitte: } x_i^* = a + \left(i-\tfrac{1}{2}\right)\Delta x" />
+</MathContainer>
 
-Wenn wir alle diese Komponenten kombinieren, erhalten wir die allgemeine Formel für eine Riemann-Summe:
-
-<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
-
-Die Sigma-Notation addiert **vorzeichenbehaftete Beiträge**: jeden Funktionswert an einer Stützstelle mal Teilintervallbreite. Ein negativer Funktionswert ergibt einen negativen Summanden, obwohl der geometrische Rechteckinhalt nicht negativ ist.
+Die Wahl der Stützstelle **ändert die Schätzung** und lässt den Grenzwert unverändert. Steigt die Funktion auf dem ganzen Intervall, liegt jeder linke Randpunkt an der niedrigen Seite seines Streifens. Die linke Summe unterschätzt dann und die rechte Summe überschätzt. Fällt die Funktion, tauschen die beiden ihre Rollen.
 
 ## Linke Riemannsumme einer linearen Funktion
 
-**Aufgabe**: Bestimme die Riemann-Summe für die Funktion <InlineMath math="f(x) = x" /> im Intervall <InlineMath math="[0, 7]" />. Zerlege das Intervall dazu in <InlineMath math="7" /> gleich lange Teilintervalle und verwende jeweils den **linken Randpunkt** als Stützstelle.
+**Aufgabe**: Bestimme die Riemannsumme für <InlineMath math="f(x) = x" /> auf <InlineMath math="[0, 7]" /> mit <InlineMath math="7" /> gleich breiten Teilintervallen und dem **linken Randpunkt** jedes Teilintervalls als Stützstelle.
 
 <LineEquation
   showZAxis={false}
-  title="Visualisierung der Riemann-Summe"
+  title="Visualisierung der Riemannsumme"
   description={<>Graph der Funktion <InlineMath math="f(x)=x" /> mit <InlineMath math="7" /> Rechtecken, deren Höhen am linken Randpunkt bestimmt werden.</>}
   data={[
     {
@@ -74,45 +78,160 @@ Die Sigma-Notation addiert **vorzeichenbehaftete Beiträge**: jeden Funktionswer
 
 **Schritt 1**: Breite und Stützstellen bestimmen.
 
-Auf <InlineMath math="[0,7]" /> mit <InlineMath math="n=7" /> hat jedes Teilintervall die Breite:
-
 <BlockMath math="\Delta x=\frac{7-0}{7}=1" />
 
-Mit **linken Randpunkten** erhalten wir die Stützstellen <InlineMath math="0,1,2,3,4,5,6" />. Wegen <InlineMath math="f(x)=x" /> entspricht jede Rechteckhöhe der gewählten Koordinate.
-
-| Teilintervall | Stützstelle | Höhe | Beitrag |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,1]" /> | <InlineMath math="0" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="0\cdot1=0" /> |
-| <InlineMath math="[1,2]" /> | <InlineMath math="1" /> | <InlineMath math="f(1)=1" /> | <InlineMath math="1\cdot1=1" /> |
-| <InlineMath math="[2,3]" /> | <InlineMath math="2" /> | <InlineMath math="f(2)=2" /> | <InlineMath math="2\cdot1=2" /> |
-| <InlineMath math="[3,4]" /> | <InlineMath math="3" /> | <InlineMath math="f(3)=3" /> | <InlineMath math="3\cdot1=3" /> |
-| <InlineMath math="[4,5]" /> | <InlineMath math="4" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="4\cdot1=4" /> |
-| <InlineMath math="[5,6]" /> | <InlineMath math="5" /> | <InlineMath math="f(5)=5" /> | <InlineMath math="5\cdot1=5" /> |
-| <InlineMath math="[6,7]" /> | <InlineMath math="6" /> | <InlineMath math="f(6)=6" /> | <InlineMath math="6\cdot1=6" /> |
+Die linken Randpunkte sind <InlineMath math="0,1,2,3,4,5,6" />. Wegen <InlineMath math="f(x)=x" /> ist jedes Rechteck genau so hoch wie seine Stützstelle.
 
 **Schritt 2**: Die sieben Beiträge addieren.
 
-Multipliziere jede Höhe mit der Breite <InlineMath math="1" /> und addiere die Beiträge. Das erste Rechteck trägt null bei, weil seine Höhe bei <InlineMath math="x=0" /> null ist.
-
 <BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
 
-Die linke Riemannsumme schätzt die Fläche somit auf <InlineMath math="21" /> Flächeneinheiten.
+Das erste Rechteck trägt null bei, weil seine Höhe bei <InlineMath math="x=0" /> null ist. Prüfe das Ergebnis an der exakten Fläche. Die rechten Randpunkte <InlineMath math="1" /> bis <InlineMath math="7" /> ergeben <InlineMath math="28" />, und die wahre Fläche <InlineMath math="24{,}5" /> liegt zwischen <InlineMath math="21" /> und <InlineMath math="28" />, wie es bei einer steigenden Funktion sein muss. Der Mittelwert <InlineMath math="\frac{21+28}{2}=24{,}5" /> trifft die Fläche hier sogar genau, weil der Graph eine Gerade ist.
 
-> Auf <InlineMath math="[0,7]" /> ist <InlineMath math="f(x)=x" /> nicht negativ und streng monoton steigend. Deshalb liegen die Rechtecke mit linken Randpunkten unter dem Graphen und unterschätzen die tatsächliche Fläche. Rechtecke mit rechten Randpunkten überschätzen sie dagegen.
+## Linke rechte und Mittelpunktsumme im Vergleich
 
-## Übungen
+**Aufgabe**: Schätze die Fläche unter <InlineMath math="f(x)=\frac{x^2}{4}" /> auf <InlineMath math="[0,4]" /> mit <InlineMath math="n=4" /> durch die linke Summe, die rechte Summe und die Mittelpunktsumme.
 
-In jeder Aufgabe ist eine Fläche durch Rechtecke anzunähern, deshalb legst du zuerst die Anzahl der Teilintervalle und den Stützpunkt in jedem Teilintervall fest, bevor du die Terme addierst.
+Die Breite ist <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, also ist jede Summe einfach die **Summe der vier Höhen**:
 
-1.  Berechne die Riemann-Summe für die Funktion <InlineMath math="f(x) = x^2 + 1" /> im Intervall <InlineMath math="[0, 4]" /> mit <InlineMath math="4" /> gleich breiten Teilintervallen und dem **rechten Randpunkt** als Stützstelle.
+| Streifen | Höhe links | Höhe rechts | Höhe Mitte |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="f(1)=0{,}25" /> | <InlineMath math="f(0{,}5)=0{,}0625" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="f(1)=0{,}25" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(1{,}5)=0{,}5625" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(3)=2{,}25" /> | <InlineMath math="f(2{,}5)=1{,}5625" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="f(3)=2{,}25" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="f(3{,}5)=3{,}0625" /> |
 
-### Ausführliche Lösung
+<MathContainer>
+  <BlockMath math="L_4 = 0+0{,}25+1+2{,}25 = 3{,}5" />
+  <BlockMath math="R_4 = 0{,}25+1+2{,}25+4 = 7{,}5" />
+  <BlockMath math="M_4 = 0{,}0625+0{,}5625+1{,}5625+3{,}0625 = 5{,}25" />
+</MathContainer>
 
-Wir berechnen die Riemann-Summe für <InlineMath math="f(x) = x^2+1" /> auf <InlineMath math="[0,4]" /> mit <InlineMath math="n=4" />.
+Die exakte Fläche liefert der [Hauptsatz der Differential- und Integralrechnung](/de/faecher/mathematik/integralrechnung/hauptsatz-der-differential-und-integralrechnung): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5{,}333" />. Die linke Summe liegt etwa <InlineMath math="1{,}83" /> daneben und die rechte etwa <InlineMath math="2{,}17" />, die Mittelpunktsumme aber nur <InlineMath math="0{,}083" />. In jedem Streifen ragt das Mittelpunktrechteck auf einer Seite über die Kurve hinaus und lässt auf der anderen eine Lücke, und beide heben sich fast auf.
 
 <LineEquation
   showZAxis={false}
-title="Visualisierung der Riemann-Summenübung"
+  title="Mittelpunktrechtecke unter einer Parabel"
+  description={<>Die Kurve <InlineMath math="f(x)=\frac{x^2}{4}" /> auf <InlineMath math="[0,4]" /> mit vier Rechtecken, deren Höhen an den Mittelpunkten abgelesen werden. Zusammen ergeben sie <InlineMath math="5{,}25" />, nahe an der exakten Fläche <InlineMath math="\frac{16}{3}" />.</>}
+  cameraPosition={[2, 2, 10]}
+  cameraTarget={[2, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = (4 * index) / 400;
+        return { x, y: x ** 2 / 4, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=\frac{x^2}{4}" />, at: 340, offset: [-1.4, 0.6, 0] }],
+    },
+    ...Array.from({ length: 4 }, (_, i) => {
+      const height = (i + 0.5) ** 2 / 4;
+      return {
+        points: [
+          { x: i, y: 0, z: 0 },
+          { x: i + 1, y: 0, z: 0 },
+          { x: i + 1, y: height, z: 0 },
+          { x: i, y: height, z: 0 },
+          { x: i, y: 0, z: 0 },
+        ],
+        color: "#7c3aed",
+        showPoints: false,
+        smooth: false,
+      };
+    }),
+  ]}
+/>
+
+Prüfe die beiden Randsummen gegeneinander. Sie teilen drei Höhen und unterscheiden sich nur an den Enden, also gilt <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, und tatsächlich ist <InlineMath math="7{,}5 - 3{,}5 = 4" />.
+
+## Von der Summe zum bestimmten Integral
+
+Für eine integrierbare Funktion nähern sich die Riemannsummen einer festen Zahl, wenn die Streifen schmaler werden, egal welche Stützstellen du wählst. **Dieser Grenzwert ist das bestimmte Integral**:
+
+<BlockMath math="\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x" />
+
+**Aufgabe**: Bestimme die rechte Summe von <InlineMath math="f(x)=x" /> auf <InlineMath math="[0,7]" /> für beliebiges <InlineMath math="n" /> und lass <InlineMath math="n" /> dann wachsen.
+
+Mit <InlineMath math="\Delta x = \frac{7}{n}" /> und den rechten Randpunkten <InlineMath math="x_i = \frac{7i}{n}" /> schließt die Formel <InlineMath math="1+2+\cdots+n=\frac{n(n+1)}{2}" /> den Ausdruck:
+
+<BlockMath math="\begin{aligned}R_n &= \sum_{i=1}^{n} \frac{7i}{n}\cdot\frac{7}{n} = \frac{49}{n^2}\cdot\frac{n(n+1)}{2} \\ &= \frac{49}{2}\cdot\frac{n+1}{n}\end{aligned}" />
+
+Für <InlineMath math="n=7" /> ergibt das <InlineMath math="\frac{49}{2}\cdot\frac{8}{7}=28" />, die rechte Summe aus dem ersten Beispiel. Für <InlineMath math="n=70" /> ergibt sich etwa <InlineMath math="24{,}85" /> und für <InlineMath math="n=700" /> etwa <InlineMath math="24{,}535" />. Für <InlineMath math="n\to\infty" /> strebt der Faktor <InlineMath math="\frac{n+1}{n}" /> gegen <InlineMath math="1" />, die Summen streben also gegen <InlineMath math="\frac{49}{2}=24{,}5" />, die Fläche des Dreiecks.
+
+Ein zusätzliches Rechteck bringt eine Summe nicht immer näher an das Integral, aber für integrierbare Funktionen stellt sich der Grenzwert immer ein. Alle [Eigenschaften bestimmter Integrale](/de/faecher/mathematik/integralrechnung/eigenschaften-bestimmter-integrale) folgen aus diesem Grenzwert von Summen.
+
+## Negative Werte in einer Riemannsumme
+
+Eine Riemannsumme addiert **vorzeichenbehaftete Beiträge**. Ist <InlineMath math="f(x_i^*)" /> negativ, dann ist auch der Beitrag <InlineMath math="f(x_i^*)\Delta x" /> negativ, obwohl das Rechteck unter der x-Achse eine positive geometrische Fläche hat.
+
+**Aufgabe**: Bestimme die Mittelpunktsumme von <InlineMath math="f(x)=x-2" /> auf <InlineMath math="[0,4]" /> mit <InlineMath math="n=4" /> und vergleiche sie mit der Fläche zwischen Graph und x-Achse.
+
+Die Mittelpunkte sind <InlineMath math="0{,}5" />, <InlineMath math="1{,}5" />, <InlineMath math="2{,}5" /> und <InlineMath math="3{,}5" />, und es gilt <InlineMath math="\Delta x = 1" />:
+
+<BlockMath math="M_4 = (-1{,}5) + (-0{,}5) + 0{,}5 + 1{,}5 = 0" />
+
+<MathVisual
+  title="Vorzeichenbehaftete Rechtecke einer Riemannsumme"
+  description={<>Mittelpunktrechtecke von <InlineMath math="f(x)=x-2" /> auf <InlineMath math="[0,4]" />. Die beiden Beiträge unter der x-Achse sind negativ und heben die beiden darüber auf, sodass die Summe <InlineMath math="0" /> ist, während die Rechtecke eine Fläche von <InlineMath math="4" /> bedecken.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -2.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "segment", from: { x: 0, y: 0 - 2 }, to: { x: 4, y: 4 - 2 }, appearance: "primary" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 - 2 }, { x: 0, y: 0.5 - 2 }], appearance: "warning" },
+      { id: "second", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1.5 - 2 }, { x: 1, y: 1.5 - 2 }], appearance: "warning" },
+      { id: "third", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2.5 - 2 }, { x: 2, y: 2.5 - 2 }], appearance: "secondary" },
+      { id: "fourth", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.5 - 2 }, { x: 3, y: 3.5 - 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "graph", objectId: "graph", at: { x: 4, y: 4 - 2 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0.5 - 2 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 1.5, y: 1.5 - 2 }, placement: "below" },
+      { key: "third", objectId: "third", at: { x: 2.5, y: 2.5 - 2 }, placement: "above" },
+      { key: "fourth", objectId: "fourth", at: { x: 3.5, y: 3.5 - 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    graph: <InlineMath math="f(x)=x-2" />,
+    first: <InlineMath math="-1{,}5" />,
+    second: <InlineMath math="-0{,}5" />,
+    third: <InlineMath math="0{,}5" />,
+    fourth: <InlineMath math="1{,}5" />,
+  }}
+/>
+
+Das exakte Integral stimmt damit überein: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. Die Fläche zwischen Graph und Achse besteht aber aus zwei Dreiecken mit je <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, sie beträgt also <InlineMath math="4" />. Für eine Fläche teilst du das Intervall an der Nullstelle <InlineMath math="x=2" /> und addierst die Beträge, so wie bei der [Fläche zwischen Kurve und Achse](/de/faecher/mathematik/integralrechnung/flaecheninhalt).
+
+## Häufige Fehler
+
+Die meisten falschen Riemannsummen scheitern an **Streifenbreite oder Stützstellen**. Das Rechnen selbst ist selten das Problem.
+
+| Fehler | Warum er falsch ist | Korrektur |
+| --- | --- | --- |
+| Höhen addieren, ohne mit <InlineMath math="\Delta x" /> zu multiplizieren | Jeder Beitrag ist ein Rechteck, Höhe mal Breite | Multipliziere die Summe der Höhen mit <InlineMath math="\Delta x" />, was nur bei <InlineMath math="\Delta x = 1" /> unsichtbar bleibt |
+| <InlineMath math="n+1" /> Stützstellen verwenden | Beide Enden von <InlineMath math="[a,b]" /> werden gezählt, ein Rechteck zu viel | Nimm <InlineMath math="n" /> Stellen: <InlineMath math="a" /> bis <InlineMath math="b-\Delta x" /> links, <InlineMath math="a+\Delta x" /> bis <InlineMath math="b" /> rechts |
+| Linke und rechte Randpunkte verwechseln | Die Formeln unterscheiden sich um einen Streifen | Schreibe <InlineMath math="x_i^*" /> aus seiner Formel auf, bevor du einsetzt |
+| Eine negative Summe oder null als Fläche lesen | Beiträge unter der x-Achse zählen negativ | An den Nullstellen teilen und für die Fläche Beträge addieren |
+| Erwarten, dass jedes weitere Rechteck die Schätzung verbessert | Sicher ist nur der Grenzwert | Mit dem exakten Integral vergleichen oder <InlineMath math="n\to\infty" /> bilden |
+
+## Übungen
+
+Jede Aufgabe fragt nach Rechtecken unter einer Kurve. Lege deshalb zuerst die Anzahl der Teilintervalle und die Stützstelle in jedem fest, bevor du die Beiträge addierst.
+
+1. Berechne die Riemannsumme für <InlineMath math="f(x) = x^2 + 1" /> auf <InlineMath math="[0, 4]" /> mit <InlineMath math="4" /> gleich breiten Teilintervallen und dem **rechten Randpunkt** als Stützstelle.
+2. Berechne die linke Riemannsumme von <InlineMath math="f(x) = 2x + 1" /> auf <InlineMath math="[1, 3]" /> mit <InlineMath math="n = 4" /> und vergleiche sie mit dem exakten Integral.
+3. Schreibe <InlineMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3" /> als bestimmtes Integral und bestimme seinen Wert.
+
+### Ausführliche Lösung
+
+1. Die Breite ist <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, und die **rechten Randpunkte** sind <InlineMath math="1, 2, 3, 4" />.
+
+<LineEquation
+  showZAxis={false}
+title="Visualisierung der Riemannsummenübung"
 description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
 cameraPosition={[2, 8.5, 21.5]}
 cameraTarget={[2, 8.5, 0]}
@@ -148,43 +267,20 @@ data={[
 ]}
 />
 
-**Schritt 1**: Hauptkomponenten bestimmen.
-Die Funktion ist <InlineMath math="f(x)=x^2+1" />, das Intervall <InlineMath math="[0,4]" /> und die Anzahl der Teilintervalle <InlineMath math="n=4" />. Die Höhe folgt jeweils aus dem **rechten Randpunkt**.
+Die Höhen sind <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" /> und <InlineMath math="f(4)=17" />, also
 
-**Schritt 2**: Teilintervallbreite berechnen.
+<BlockMath math="R_4 = (2 + 5 + 10 + 17)\cdot 1 = 34" />
 
-<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
+Probe: Das exakte Integral ist <InlineMath math="\int_0^4 (x^2+1)\,dx = \frac{64}{3} + 4 = \frac{76}{3} \approx 25{,}33" />. Die rechte Summe ist größer, wie es bei einer auf <InlineMath math="[0,4]" /> steigenden Funktion sein muss.
 
-**Schritt 3**: Rechte Randpunkte als Stützstellen bestimmen.
+2. Die Breite ist <InlineMath math="\Delta x = \frac{3-1}{4} = 0{,}5" />. Die linken Randpunkte <InlineMath math="1" />, <InlineMath math="1{,}5" />, <InlineMath math="2" /> und <InlineMath math="2{,}5" /> haben die Höhen <InlineMath math="3, 4, 5, 6" />:
 
-Die Teilintervalle sind:
+<BlockMath math="L_4 = (3+4+5+6)\cdot 0{,}5 = 9" />
 
-<BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
+Probe: <InlineMath math="\int_1^3 (2x+1)\,dx = \left[x^2+x\right]_1^3 = 12-2 = 10" />. Die linke Summe ist kleiner, wie bei einer steigenden Funktion erwartet.
 
-Für die Methode des rechten Endpunkts nehmen wir den Wert von <InlineMath math="x" /> von der rechten Seite jedes Teilintervalls:
+3. Der Faktor <InlineMath math="\frac{2}{n}" /> ist <InlineMath math="\Delta x" /> für ein Intervall der Länge <InlineMath math="2" />, und <InlineMath math="\frac{2i}{n}" /> durchläuft rechte Randpunkte ab <InlineMath math="0" />. Das Intervall ist also <InlineMath math="[0,2]" /> mit <InlineMath math="f(x)=x^3" />:
 
-<BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
+<BlockMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3 = \int_0^2 x^3\,dx = \frac{2^4}{4} = 4" />
 
-**Schritt 4**: Höhe jedes Rechtecks berechnen.
-
-Die Höhe jedes Rechtecks ist der Funktionswert von <InlineMath math="f(x) = x^2 + 1" /> am rechten Randpunkt:
-
-<MathContainer>
-<BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
-<BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
-<BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
-<BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
-</MathContainer>
-
-**Schritt 5**: Gesamte Riemann-Summe berechnen.
-
-Jetzt summieren wir die Flächen aller Rechtecke (<InlineMath math="\text{Höhe} \times \text{Breite}" />):
-
-<MathContainer>
-<BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
-<BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
-<BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
-<BlockMath math="= 34" />
-</MathContainer>
-
-Somit ist die Riemann-Summe für die Funktion <InlineMath math="34" />.
+Probe mit der Summe selbst: <InlineMath math="1^3+2^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}" /> ergibt <InlineMath math="R_n = \frac{16}{n^4}\cdot\frac{n^2(n+1)^2}{4} = 4\left(\frac{n+1}{n}\right)^2" />, was gegen <InlineMath math="4" /> strebt.

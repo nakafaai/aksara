@@ -1,25 +1,35 @@
 export const metadata = {
   title: "Position of Two Circles",
-  description: "Classify two circles as intersecting, tangent, separate, or concentric from their center distance and radii.",
+  description: "Compare the distance between the centers with the sum and difference of the radii to see if two circles intersect, touch, or stay apart.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Analytic Geometry",
 };
 
+## Seven Positions of Two Circles
 
+The position of two circles depends on the **distance between the centers <InlineMath math="d" />** compared with the **sum of the radii <InlineMath math="r_1 + r_2" />** and the **difference of the radii <InlineMath math="|r_1 - r_2|" />**. For the centers <InlineMath math="(x_1, y_1)" /> and <InlineMath math="(x_2, y_2)" />, the distance between them is
 
-## Comparing the Distance Between Centers with the Radii
+<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
 
-Two distinct circles may cross at two points, touch at one point, or have no common points. If both centers and radii are equal, the circles coincide and every point on their circumference is shared.
+Once you know <InlineMath math="d" />, match it with this table. Every pair of circles with positive radii falls into exactly one row.
 
-In analytic geometry, the centers and radii are enough to determine the relationship precisely. Compare the **distance between centers** with the sum and absolute difference of the radii.
+| Position | Condition | Common points |
+| --- | --- | --- |
+| Separate, outside each other | <InlineMath math="d > r_1 + r_2" /> | none |
+| Externally tangent | <InlineMath math="d = r_1 + r_2" /> | one |
+| Intersecting | <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | two |
+| Internally tangent | <InlineMath math="d = \lvert r_1 - r_2 \rvert > 0" /> | one |
+| One circle inside the other | <InlineMath math="0 < d < \lvert r_1 - r_2 \rvert" /> | none |
+| Concentric | <InlineMath math="d = 0" /> and <InlineMath math="r_1 \ne r_2" /> | none |
+| Coincident | <InlineMath math="d = 0" /> and <InlineMath math="r_1 = r_2" /> | every point |
 
-The same comparison appears when checking whether circular regions overlap, touch, or leave a gap, for example in coverage maps or geometric designs.
+Imagine sliding the second circle straight toward the first. If the radii differ, the distance <InlineMath math="d" /> shrinks and the position changes **exactly in the order of the table's rows**, from separate to concentric. If the radii are equal, the slide jumps from intersecting straight to coincident.
 
-## Intersecting Circles
+## Two Intersecting Circles
 
-Two circles are **intersecting** when they have exactly two common points. Their disks overlap, while their circumferences cross at those two points.
+Two circles **intersect** when their circumferences meet at exactly two points. Their overlap is a lens bounded by the two arcs that join those points.
 
 <LineEquation
   title="Two Intersecting Circles"
@@ -108,19 +118,15 @@ Two circles are **intersecting** when they have exactly two common points. Their
   cameraPosition={[0, 0, 12]}
 />
 
-For two circles with radii <InlineMath math="r_1" /> and <InlineMath math="r_2" /> and distance between centers <InlineMath math="d" />, the intersection condition occurs when:
+The condition is
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-The two strict bounds explain the condition:
+This condition comes from a triangle. An intersection point <InlineMath math="A" />, the center <InlineMath math="P_1" />, and the center <InlineMath math="P_2" /> form a triangle with sides <InlineMath math="r_1" />, <InlineMath math="r_2" />, and <InlineMath math="d" />. Each side of a triangle is shorter than the sum of the other two, so <InlineMath math="d < r_1 + r_2" /> and <InlineMath math="d > |r_1 - r_2|" />. When one <InlineMath math="<" /> becomes <InlineMath math="=" />, **the triangle flattens into a single line**, and the two intersection points merge into one point of contact. Conversely, when the inequality holds, a triangle with sides <InlineMath math="r_1" />, <InlineMath math="r_2" />, and <InlineMath math="d" /> can be built on either side of the line <InlineMath math="P_1P_2" />, and its two apexes are the intersection points.
 
-- **Upper bound**: At <InlineMath math="r_1 + r_2" />, the circles are externally tangent
-- **Lower bound**: At <InlineMath math="|r_1 - r_2|>0" />, the smaller circle is internally tangent to the larger circle
-- **Between the bounds**: The circumferences cross at two points
+## External and Internal Tangency
 
-## Tangent Circles
-
-Two circles are **tangent** when they have exactly one common point. The tangency may occur outside both circles or inside the larger circle.
+Two circles are **tangent** when their circumferences meet at exactly one point <InlineMath math="T" />. That point of contact always lies on the line through the two centers.
 
 <LineEquation
   title="Externally Tangent Circles"
@@ -204,13 +210,9 @@ Two circles are **tangent** when they have exactly one common point. The tangenc
   cameraPosition={[0, 0, 12]}
 />
 
-For two noncoincident circles, there are two tangency cases:
+**External tangency** happens when <InlineMath math="d = r_1 + r_2" />. The circles lie on opposite sides of <InlineMath math="T" />. In this case the two [internal common tangents](/en/subjects/mathematics/circle/external-tangent-line-and-internal-tangent-line) merge into one line through <InlineMath math="T" />, perpendicular to <InlineMath math="P_1P_2" />.
 
-1. **External tangency** occurs when <InlineMath math="d = r_1 + r_2" />. Both circles are separate and touch at one point.
-
-2. **Internal tangency** occurs when <InlineMath math="d = |r_1 - r_2| > 0" />. The smaller circle is inside the larger one and they touch at one point.
-
-The next diagram shows internal tangency:
+**Internal tangency** happens when <InlineMath math="d = |r_1 - r_2| > 0" />. The small circle lies inside the large one and touches it from the inside.
 
 <LineEquation
   title="Internally Tangent Circles"
@@ -294,9 +296,13 @@ The next diagram shows internal tangency:
   cameraPosition={[0, 0, 12]}
 />
 
-## Separate Circles
+For internal tangency, take <InlineMath math="P_1" /> as the center of the larger circle. With that choice, in both kinds of tangency the point of contact lies at distance <InlineMath math="r_1" /> from <InlineMath math="P_1" /> in the direction of <InlineMath math="P_1P_2" />:
 
-Two circles are externally separate when neither their circumferences nor their disks meet.
+<BlockMath math="T = P_1 + \frac{r_1}{d}\,(P_2 - P_1)" />
+
+## Apart or One Inside the Other
+
+Two circles with different centers can have no common point in two ways. They are **separate, outside each other**, when <InlineMath math="d > r_1 + r_2" />.
 
 <LineEquation
   title="Two Separate Circles"
@@ -382,14 +388,9 @@ Two circles are externally separate when neither their circumferences nor their 
   cameraPosition={[0, 0, 12]}
 />
 
-The separate condition occurs when the distance between centers is greater than the sum of both radii:
+The shortest gap between the two circumferences lies on the line through the centers and has length <InlineMath math="d - (r_1 + r_2)" />. No point belongs to both discs at once.
 
-<BlockMath math="d > r_1 + r_2" />
-
-In this case, no point belongs to both disks.
-
-
-One circle can also lie **inside another without touching**, even when their centers differ. In this diagram, the larger radius is <InlineMath math="4" />, the smaller radius is <InlineMath math="1" />, and the center distance is <InlineMath math="1" />.
+The second way is **one circle inside the other without touching**, when <InlineMath math="0 < d < |r_1 - r_2|" />. Take a large circle with radius <InlineMath math="4" />, a small circle with radius <InlineMath math="1" />, and centers <InlineMath math="1" /> apart.
 
 <LineEquation
   title="Contained Circles without Contact"
@@ -426,11 +427,11 @@ One circle can also lie **inside another without touching**, even when their cen
   ]}
 />
 
-Since <InlineMath math="0<1<4-1" />, the smaller circle lies strictly inside the larger one. Their centers differ, so they are not concentric.
+Since <InlineMath math="0 < 1 < 4 - 1" />, the small circle lies completely inside the large one. The shortest gap is <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />.
 
 ## Concentric and Coincident Circles
 
-**Concentric circles** have the same center but different radii, like the circular boundaries on an archery target.
+**Concentric circles** share a center but have different radii, like the rings of an archery target.
 
 <LineEquation
   title="Concentric Circles"
@@ -518,46 +519,20 @@ Since <InlineMath math="0<1<4-1" />, the smaller circle lies strictly inside the
   cameraPosition={[0, 0, 12]}
 />
 
-For concentric circles, the distance between centers is zero (<InlineMath math="d = 0" />) but the radii are different (<InlineMath math="r_1 \ne r_2" />).
+For concentric circles, <InlineMath math="d = 0" /> and <InlineMath math="r_1 \ne r_2" />. Their circumferences never meet, and the gap between them is the same in every direction, namely <InlineMath math="|r_1 - r_2|" />.
 
-**Coincident circles** have the same center and the same radius. Their circumferences lie exactly on top of each other, so they appear as one circle.
-
-The coincident condition occurs when:
+**Coincident circles** have the same center and the same radius. The two circumferences cover each other exactly, so every point of one circle also lies on the other:
 
 <MathContainer>
   <BlockMath math="d = 0" />
   <BlockMath math="r_1 = r_2" />
 </MathContainer>
 
-## How to Determine Position
+## Example of a Position from the Equations
 
-To classify two circles, calculate the distance between their centers and compare it with the sum and absolute difference of their radii.
+Find the position of the circles <InlineMath math="x^2 + y^2 = 9" /> and <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 
-Suppose the first circle is centered at <InlineMath math="(x_1, y_1)" /> with radius <InlineMath math="r_1" />, and the second circle is centered at <InlineMath math="(x_2, y_2)" /> with radius <InlineMath math="r_2" />.
-
-The distance between centers is calculated using the formula:
-
-<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
-
-Assuming both radii are positive, the following conditions are exhaustive and do not overlap:
-
-- **Coincident**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 = r_2" /> (the same circumference)
-- **Concentric but distinct**: <InlineMath math="d = 0" /> and <InlineMath math="r_1 \ne r_2" /> (the same center, different radii)
-- **Contained without touching and nonconcentric**: <InlineMath math="0 < d < |r_1-r_2|" /> (one circle lies strictly inside the other)
-- **Internally tangent**: <InlineMath math="d = |r_1-r_2| > 0" /> (one internal point of contact)
-- **Intersecting**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (two common points)
-- **Externally tangent**: <InlineMath math="d = r_1+r_2" /> (one external point of contact)
-- **Externally separate**: <InlineMath math="d > r_1+r_2" /> (the two disks do not meet)
-
-### Classifying Two Circles from Their Equations
-
-Classify the circles with equations <InlineMath math="x^2 + y^2 = 9" /> and <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
-
-**Step 1**: Identify the center and radius of each circle.
-
-First circle: center <InlineMath math="(0, 0)" />, radius <InlineMath math="r_1 = 3" />
-
-For the second circle, we complete the square:
+The first circle has center <InlineMath math="(0, 0)" /> and <InlineMath math="r_1 = 3" />. For the second circle, complete the square as in the [equation of a circle](/en/subjects/mathematics/analytic-geometry/equation-of-circle):
 
 <MathContainer>
   <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
@@ -565,17 +540,139 @@ For the second circle, we complete the square:
   <BlockMath math="(x - 3)^2 + (y - 4)^2 = 25" />
 </MathContainer>
 
-Second circle: center <InlineMath math="(3, 4)" />, radius <InlineMath math="r_2 = 5" />
-
-**Step 2**: Calculate the distance between centers.
-
-<BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-0)^2 + (4-0)^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
-
-**Step 3**: Compare with position conditions.
+The second circle has center <InlineMath math="(3, 4)" /> and <InlineMath math="r_2 = 5" />. Compute the distance between the centers, then compare:
 
 <MathContainer>
-  <BlockMath math="r_1 + r_2 = 3 + 5 = 8" />
-  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2" />
+  <BlockMath math="d = \sqrt{(3 - 0)^2 + (4 - 0)^2} = \sqrt{25} = 5" />
+  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2, \qquad r_1 + r_2 = 3 + 5 = 8" />
 </MathContainer>
 
-Since <InlineMath math="2 < 5 < 8" />, the two circles are **intersecting**.
+Since <InlineMath math="2 < 5 < 8" />, the circles **intersect at two points**.
+
+<MathVisual
+  title="Two intersecting circles and their common chord"
+  description={<>The circle <InlineMath math="L_1" /> has center <InlineMath math="O" /> and radius <InlineMath math="3" />, and <InlineMath math="L_2" /> has center <InlineMath math="P(3, 4)" /> and radius <InlineMath math="5" />. The line <InlineMath math="6x + 8y = 9" /> passes through both intersection points.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -4, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "second", kind: "circle", center: { x: 3, y: 4 }, radius: 5, appearance: "secondary" },
+      { id: "chord", kind: "line", through: [{ x: 3 / 2, y: 0 }, { x: -7 / 2, y: 15 / 4 }], appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "upper", kind: "point", at: { x: (27 - 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 - 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: (27 + 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 + 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "chord", objectId: "chord", at: { x: -7 / 2, y: 15 / 4 }, placement: "above" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    chord: <InlineMath math="6x + 8y = 9" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Check it another way. Subtract the second equation from the first: <InlineMath math="(x^2 + y^2 - 9) - (x^2 + y^2 - 6x - 8y) = 6x + 8y - 9" />. The line <InlineMath math="6x + 8y = 9" /> contains both intersection points, because every point that satisfies both equations also satisfies their difference. The distance from <InlineMath math="O" /> to that line is <InlineMath math="\frac{9}{10}" />, less than <InlineMath math="r_1 = 3" />, so by the rule for [line and circle intersection](/en/subjects/mathematics/analytic-geometry/position-of-a-line-to-a-circle) the line cuts <InlineMath math="L_1" /> at two points. The result agrees.
+
+## Example of the Radius for Tangent Circles
+
+The circle <InlineMath math="L_1: x^2 + y^2 = 25" /> and a circle <InlineMath math="L_2" /> with center <InlineMath math="P(6, 8)" /> and radius <InlineMath math="r" /> are given. Find <InlineMath math="r" /> so that the circles are tangent, then find the point of contact.
+
+The distance between the centers is <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />. External and internal tangency give two equations:
+
+<MathContainer>
+  <BlockMath math="\text{external: } 5 + r = 10 \quad\Longrightarrow\quad r = 5" />
+  <BlockMath math="\text{internal: } |r - 5| = 10 \quad\Longrightarrow\quad r = 15" />
+</MathContainer>
+
+The value <InlineMath math="r = -5" /> from the internal equation is rejected, because **a radius must be positive**. For <InlineMath math="r = 5" />, the formula for the point of contact gives <InlineMath math="T = (0, 0) + \frac{5}{10}(6, 8) = (3, 4)" />. For <InlineMath math="r = 15" />, the circle <InlineMath math="L_2" /> is the larger one, so <InlineMath math="T = (6, 8) + \frac{15}{10}(-6, -8) = (-3, -4)" />.
+
+<MathVisual
+  title="Two radii that make the circles tangent"
+  description={<>A circle with center <InlineMath math="O" /> and radius <InlineMath math="5" />. The circle with center <InlineMath math="P(6, 8)" /> touches it from outside when <InlineMath math="r = 5" /> and encloses it, touching from the inside, when <InlineMath math="r = 15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 22 }, y: { min: -8, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "outer", kind: "circle", center: { x: 6, y: 8 }, radius: 5, appearance: "secondary" },
+      { id: "inner", kind: "circle", center: { x: 6, y: 8 }, radius: 15, appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "outer-point", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "inner-point", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 6, y: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 11, y: 8 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 6, y: 23 }, placement: "below" },
+      { key: "outer-point", objectId: "outer-point", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "inner-point", objectId: "inner-point", at: { x: -3, y: -4 }, placement: "left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 6, y: 8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    outer: <InlineMath math="r = 5" />,
+    inner: <InlineMath math="r = 15" />,
+    "outer-point": <InlineMath math="(3, 4)" />,
+    "inner-point": <InlineMath math="(-3, -4)" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Check each point of contact on both circles. The point <InlineMath math="(3, 4)" /> satisfies <InlineMath math="3^2 + 4^2 = 25" /> and <InlineMath math="(3 - 6)^2 + (4 - 8)^2 = 25 = 5^2" />. The point <InlineMath math="(-3, -4)" /> satisfies <InlineMath math="(-3)^2 + (-4)^2 = 25" /> and <InlineMath math="(-9)^2 + (-12)^2 = 225 = 15^2" />.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Comparing <InlineMath math="d" /> only with <InlineMath math="r_1 + r_2" /> | <InlineMath math="x^2 + y^2 = 25" /> and <InlineMath math="(x - 1)^2 + y^2 = 1" /> have <InlineMath math="d = 1 < 6" /> but do not intersect | Also compute <InlineMath math="\lvert r_1 - r_2 \rvert = 4" /> |
+| Writing <InlineMath math="r_1 - r_2" /> without the absolute value | For <InlineMath math="r_1 = 3" /> and <InlineMath math="r_2 = 5" />, the result is <InlineMath math="-2" /> and the lower bound disappears | Use <InlineMath math="\lvert 3 - 5 \rvert = 2" /> |
+| Reading <InlineMath math="r^2" /> as <InlineMath math="r" /> | <InlineMath math="(x - 3)^2 + (y - 4)^2 = 25" /> has radius <InlineMath math="5" />, not <InlineMath math="25" /> | Take the square root of the right side |
+| Completing the square when the coefficient of <InlineMath math="x^2" /> is not <InlineMath math="1" /> | The center of <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> comes out wrong | Divide by <InlineMath math="2" /> first to get <InlineMath math="x^2 + y^2 - 4x = 0" /> |
+| Treating concentric circles as coincident | Concentric circles have different radii and no common point | Coincident needs <InlineMath math="d = 0" /> and <InlineMath math="r_1 = r_2" /> |
+
+For two intersecting circles, **subtracting the two equations** is a useful check. The result is the line that contains both intersection points, and that line must cut each circle at two points.
+
+## Practice Problems
+
+Find the centers, the radii, and the distance between the centers first, then **match them with the table of positions**.
+
+1. Find the position of the circles <InlineMath math="x^2 + y^2 = 4" /> and <InlineMath math="x^2 + y^2 - 10x + 16 = 0" />. If they are tangent, find the point of contact.
+
+2. Find the position of the circles <InlineMath math="x^2 + y^2 - 2x - 4y - 4 = 0" /> and <InlineMath math="x^2 + y^2 - 14x - 20y + 140 = 0" />, then find the shortest gap between their circumferences.
+
+3. Find the position of the circles <InlineMath math="x^2 + y^2 = 36" /> and <InlineMath math="x^2 + y^2 - 4x - 2y + 1 = 0" />.
+
+4. The circles <InlineMath math="(x - a)^2 + y^2 = 16" /> and <InlineMath math="x^2 + y^2 = 1" /> are tangent. Find every possible value of <InlineMath math="a" />.
+
+### Solutions
+
+**Problem 1**. The first circle has center <InlineMath math="O" /> and <InlineMath math="r_1 = 2" />. The second circle can be written as <InlineMath math="(x - 5)^2 + y^2 = 9" />, so it has center <InlineMath math="(5, 0)" /> and <InlineMath math="r_2 = 3" />. The distance is <InlineMath math="d = 5 = 2 + 3" />, so the circles are **externally tangent**. The point of contact is <InlineMath math="T = (0, 0) + \frac{2}{5}(5, 0) = (2, 0)" />. Check: <InlineMath math="2^2 + 0^2 = 4" /> and <InlineMath math="(2 - 5)^2 + 0^2 = 9" />.
+
+**Problem 2**. Complete the square in both equations:
+
+<MathContainer>
+  <BlockMath math="(x - 1)^2 + (y - 2)^2 = 1 + 4 + 4 = 9" />
+  <BlockMath math="(x - 7)^2 + (y - 10)^2 = 49 + 100 - 140 = 9" />
+</MathContainer>
+
+Both circles have radius <InlineMath math="3" />, with centers <InlineMath math="(1, 2)" /> and <InlineMath math="(7, 10)" />. The distance is <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, greater than <InlineMath math="3 + 3 = 6" />, so the circles are **separate, outside each other**. The shortest gap is <InlineMath math="10 - 6 = 4" />. Check: the point <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> on the first circle and the point <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> on the second circle are <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" /> apart. Both points do lie on their circles, because <InlineMath math="\left(\frac{9}{5}\right)^2 + \left(\frac{12}{5}\right)^2 = 9" /> and <InlineMath math="\left(-\frac{9}{5}\right)^2 + \left(-\frac{12}{5}\right)^2 = 9" />.
+
+**Problem 3**. The first circle has center <InlineMath math="O" /> and <InlineMath math="r_1 = 6" />. The second circle can be written as <InlineMath math="(x - 2)^2 + (y - 1)^2 = 4" />, so it has center <InlineMath math="(2, 1)" /> and <InlineMath math="r_2 = 2" />. The distance is <InlineMath math="d = \sqrt{5} \approx 2.24" />, and <InlineMath math="0 < \sqrt{5} < |6 - 2| = 4" />, so the small circle **lies inside the large one without touching it**. Check: the point of the small circle farthest from <InlineMath math="O" /> is <InlineMath math="\sqrt{5} + 2 \approx 4.24" /> away, still less than <InlineMath math="6" />.
+
+**Problem 4**. The distance between the centers is <InlineMath math="d = |a|" />, with radii <InlineMath math="4" /> and <InlineMath math="1" />. External tangency gives <InlineMath math="|a| = 4 + 1 = 5" />, and internal tangency gives <InlineMath math="|a| = 4 - 1 = 3" />. So <InlineMath math="a = 5" />, <InlineMath math="a = -5" />, <InlineMath math="a = 3" />, or <InlineMath math="a = -3" />. Check for <InlineMath math="a = 3" />: the point <InlineMath math="(-1, 0)" /> satisfies <InlineMath math="(-1)^2 + 0^2 = 1" /> and <InlineMath math="(-1 - 3)^2 + 0^2 = 16" />, so the circles meet there, and the small circle lies inside the large one.
