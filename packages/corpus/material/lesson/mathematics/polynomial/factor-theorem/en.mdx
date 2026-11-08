@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Connecting Polynomial Roots to Linear Factors
 
-**The factor theorem** says that <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" /> if and only if <InlineMath math="P(c) = 0" />. So every zero <InlineMath math="c" /> gives one linear factor, and the graph of <InlineMath math="y = P(x)" /> crosses the <InlineMath math="x" />-axis exactly at that zero.
+**The factor theorem** says that <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" /> if and only if <InlineMath math="P(c) = 0" />. So every zero <InlineMath math="c" /> gives one linear factor, and the graph of <InlineMath math="y = P(x)" /> meets the <InlineMath math="x" />-axis exactly at that zero: it crosses at a single zero and touches at a double zero.
 
 When we divide a polynomial <InlineMath math="P(x)" /> by <InlineMath math="(x - c)" />, sometimes the remainder is zero. We know from the Remainder Theorem that if the remainder is zero, then <InlineMath math="P(c) = 0" />. So, what does it mean if <InlineMath math="P(c) = 0" />?
 
@@ -100,7 +100,7 @@ Combine all factors.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
-Check the factorization with the graph and by substitution. The graph of <InlineMath math="y = P(x)" /> crosses the <InlineMath math="x" />-axis exactly at <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" />, and substitution gives <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> and <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. A polynomial of degree three has at most three zeros, so the factorization is complete.
+Check the factorization with the graph and by substitution. The graph of <InlineMath math="y = P(x)" /> crosses the <InlineMath math="x" />-axis exactly at <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" />, and substitution gives <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> and <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. The zeros <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" /> give three linear factors. Their product has degree three and leading coefficient <InlineMath math="1" />, like <InlineMath math="P(x)" />, so <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> exactly.
 
 <LineEquation
   title={<>Graph of <InlineMath math="y = x^3 + 2x^2 - 13x + 10" /></>}
@@ -144,9 +144,9 @@ Check the factorization with the graph and by substitution. The graph of <Inline
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
 | Writing the factor <InlineMath math="(x + 1)" /> for the zero <InlineMath math="1" /> | The zero <InlineMath math="c" /> gives the factor <InlineMath math="(x - c)" /> | Substitute <InlineMath math="c" /> into the factor, the result must be zero |
-| Stopping after the first factor | The quotient may still factor | The degrees of all factors must add up to the degree of the polynomial |
+| Stopping after the first factor | The quotient may still factor | Every factor must be linear or have no real roots, so try to factor the quotient again |
 | Treating a nonzero remainder as a factor | A remainder <InlineMath math="P(c) \ne 0" /> means <InlineMath math="(x - c)" /> is not a factor | Evaluate <InlineMath math="P(c)" /> before dividing |
-| Dropping the leading coefficient | <InlineMath math="2x^3 - 2x^2 + 2x - 2 = 2(x - 1)(x^2 + 1)" />, not without the <InlineMath math="2" /> | Expand the factorization and compare it with the original polynomial |
+| Dropping the leading coefficient | Without the <InlineMath math="2" />, the product is only half of <InlineMath math="2x^3 - 2x^2 + 2x - 2" /> | Expand the factorization and compare it with the original polynomial |
 
 The strongest check is **expanding the factorization again**. The result must equal the original polynomial exactly.
 
@@ -210,10 +210,10 @@ For this quotient, <InlineMath math="-6+3=-3" /> and <InlineMath math="(-6)(3)=-
 
 <BlockMath math="x^3 - 3x^2 + 4 = (x - 2)(x^2 - x - 2) = (x - 2)^2(x + 1)" />
 
-The factor <InlineMath math="(x - 2)" /> appears twice, so <InlineMath math="2" /> is a double zero. Check: <InlineMath math="(x^2 - 4x + 4)(x + 1) = x^3 - 3x^2 + 4" />.
+The factor <InlineMath math="(x - 2)" /> appears twice, so <InlineMath math="2" /> is a double zero, and the graph only touches the <InlineMath math="x" />-axis there. Check: <InlineMath math="(x^2 - 4x + 4)(x + 1) = x^3 - 3x^2 + 4" />.
 
-**Problem 3**. The factor <InlineMath math="(x + 2)" /> means <InlineMath math="P(-2) = 0" />:
+**Problem 3**. Since <InlineMath math="(x + 2)" /> is a factor, <InlineMath math="P(-2) = 0" />:
 
 <BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
 
-For <InlineMath math="k = 3" />, Horner with <InlineMath math="c = -2" /> gives the quotient <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, so <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Check: <InlineMath math="P(2) = 8 + 12 - 8 - 12 = 0" />.
+For <InlineMath math="k = 3" />, the Horner method with <InlineMath math="c = -2" /> on the coefficients <InlineMath math="1, 3, -4, -12" /> gives <InlineMath math="1, 1, -6, 0" />, so the quotient is <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> and <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Check by expanding: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" />, and <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
