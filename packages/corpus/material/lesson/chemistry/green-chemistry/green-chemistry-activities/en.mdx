@@ -43,6 +43,20 @@ Begin by recording every material used, the changes it undergoes, the products, 
 
 A green claim is <Highlight>testable only when it includes evidence</Highlight>. Words such as "natural", "efficient", and "eco-friendly" do not identify which hazard or waste has decreased. A fair comparison must also keep the required function constant. Using less cleaner is not an improvement if the surface remains dirty, and a replacement material must still perform the same task.
 
+Here is that record as a flow you can fill in for any activity.
+
+<Mermaid
+  title="Tracing One Activity from Input to Evidence"
+  description="Follow the materials through the process to what leaves it, then to the evidence and the hazard that changed."
+  chart={`flowchart LR
+    A["Input materials"] --> B["Process"]
+    B --> C["Product"]
+    B --> D["Residue"]
+    C --> E["Measured evidence"]
+    D --> E
+    E --> F["Which hazard or waste fell?"]`}
+/>
+
 ## Use Enough Soap without Adding Excess Residue
 
 Lots of foam can be mistaken for better cleaning. With dish soap, too much product can lengthen rinsing and add more cleaning residue to wastewater. Compare the dose that removes the dirt with a larger dose, then check the residue and water needed for rinsing. This comparison measures the soap dose during use. The cleaner formulation remains unchanged.
@@ -61,6 +75,33 @@ As a **hypothetical data example**, two cleaner formulations are tested on the s
 
 <BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
 
+In the scene below, each column is the dose needed for the same clean surface, with one grid step for <InlineMath math="2 \mathrm{mL}" />. The gray block on top of B is the part B no longer needs. It is exactly one fifth of A's column, which is the <InlineMath math="20\%" /> from the calculation. Rotate the scene: the saving shows up only because both columns do the same job.
+
+<MathVisual
+  title="The Same Clean Surface with Less Product"
+  description="Hypothetical doses of two cleaner formulations for the same stain and surface area. One grid step up is 2 mL."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
+      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
+      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
+    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
+    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
+  }}
+/>
+
 This result shows reduced product volume in that test. Claiming that B is safer or saves water still requires data on composition, hazards, and rinse water.
 
 ## Composting Treats Waste That Already Exists
@@ -74,6 +115,19 @@ Dry leaves, fruit peels, and food scraps contain organic matter. Burning causes 
 | Compost it properly | Microorganisms gradually decompose the organic matter. | Biological treatment handles the organic waste after it has been produced. |
 
 [Composting](https://www.epa.gov/sustainable-management-food/approaches-composting) still needs controlled moisture, oxygen flow, pile structure, and nutrient balance. A poorly managed pile can become anaerobic, smell, or release leachate. These conditions affect microbial activity and temperature. In this example, composting is waste treatment. An activity is product or process redesign when it changes the chemical design to prevent waste at the source.
+
+Compare the two pathways that start from the same pile of leaves.
+
+<Mermaid
+  title="Burning or Composting the Same Waste"
+  description="Burning oxidizes organic matter fast into smoke, while composting lets microorganisms break it down slowly into compost."
+  chart={`flowchart LR
+    A["Leaves and food scraps"] --> B["Burning"]
+    A --> C["Composting"]
+    B --> D["Fast oxidation: smoke and pollutants"]
+    C --> E["Microorganisms work slowly"]
+    E --> F["Compost for soil"]`}
+/>
 
 ## Natural Materials Still Need Evidence
 

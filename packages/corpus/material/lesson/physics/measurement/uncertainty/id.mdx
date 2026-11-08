@@ -68,6 +68,18 @@ Jika kita menulis hasil diameter dengan ketidakpastian sebaran data, bentuknya m
 
 Angka <InlineMath math="3{,}13 \text{ cm}" /> adalah nilai wakil data. Angka <InlineMath math="0{,}02 \text{ cm}" /> menunjukkan bahwa hasil pengukuran berulang tidak persis sama.
 
+Ini seluruh hitungan dari bacaan mentah sampai dua ukuran sebaran.
+
+<Mermaid
+  title="Dari Bacaan ke Sebaran"
+  description="Rata-rata dihitung dulu, lalu simpangan, lalu sebaran sampel dan ketidakpastian rata-rata."
+  chart={`flowchart LR
+    A["Lima bacaan"] --> B["Rata-rata: 3,132 cm"]
+    B --> C["Simpangan dari rata-rata"]
+    C --> D["s_d = 0,0164 cm"]
+    D --> E["u = s_d / akar 5 = 0,00735 cm"]`}
+/>
+
 ## Sebaran Data dan Ketidakpastian Rata-rata
 
 Beberapa soal pengukuran berulang memakai bentuk aljabar ringkas berikut.
@@ -94,7 +106,78 @@ Untuk pembacaan yang independen dengan sebaran yang sama, **ketidakpastian baku 
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
 
+Adegan di bawah menjajarkan kelima bacaan. Setiap batang hijau toska adalah jarak satu bacaan dari rata-rata, digambar <InlineMath math="100" /> kali lebih besar. Garis oranye di <InlineMath math="\pm s_d" /> menunjukkan seberapa jauh bacaan tunggal menyebar, sedangkan garis ungu yang lebih rapat di <InlineMath math="\pm u(\bar d)" /> menunjukkan seberapa baik rata-ratanya diketahui. Coba jumlahkan batang di atas garis abu-abu dan batang di bawahnya: hasilnya saling menghapus, karena simpangan dari rata-rata selalu berjumlah nol.
+
+<LineEquation
+  title="Lima Bacaan di Sekitar Rata-ratanya"
+  description="Setiap batang adalah bacaan dikurangi rata-rata, dalam satuan 0,01 cm. Garis oranye menandai sebaran s, garis ungu ketidakpastian rata-rata u."
+  data={(() => {
+    // Measured diameters in cm. The vertical axis shows d_i - mean in units of 0.01 cm.
+    const readings = [3.12, 3.14, 3.15, 3.11, 3.14];
+    const count = readings.length;
+    const mean = readings.reduce((sum, d) => sum + d, 0) / count;
+    const spread = Math.sqrt(readings.reduce((sum, d) => sum + (d - mean) ** 2, 0) / (count - 1));
+    const meanUncertainty = spread / Math.sqrt(count);
+    const scale = 100;
+    const level = (value, color, text) => ({
+      points: [{ x: 0.5, y: value * scale, z: 0 }, { x: count + 0.5, y: value * scale, z: 0 }],
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [0.8, 0, 0], anchorX: "center" }],
+    });
+    return [
+      level(0, "#64748b", <InlineMath math="\bar d" />),
+      level(spread, "#bb6800", <InlineMath math="+s_d" />),
+      level(-spread, "#bb6800", <InlineMath math="-s_d" />),
+      level(meanUncertainty, "#8242e5", <InlineMath math="+u(\bar d)" />),
+      level(-meanUncertainty, "#8242e5", <InlineMath math="-u(\bar d)" />),
+      ...readings.map((d, i) => ({
+        points: [{ x: i + 1, y: 0, z: 0 }, { x: i + 1, y: (d - mean) * scale, z: 0 }],
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`d_${i + 1}`} />, at: 1, offset: [0, d > mean ? 0.4 : -0.4, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3.3, 0, 7.5]}
+  cameraTarget={[3.3, 0, 0]}
+/>
+
 Ikuti notasi yang ditetapkan pada soal pengukuran. Jika <InlineMath math="\Delta x" /> menyatakan rumus ringkas di atas, maka <InlineMath math="\Delta x" /> adalah simpangan baku sampel dari setiap hasil ukur. Jangan samakan sebaran ini dengan ketidakpastian baku nilai rata-rata <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
+
+Grafik di bawah memakai sebaran <InlineMath math="s_d" /> yang sama lalu bertanya apa yang terjadi kalau bacaannya lebih banyak. Ketidakpastian rata-rata turun cepat di awal lalu makin pelan, karena mengecil sebanding dengan <InlineMath math="\sqrt N" />: empat kali lebih banyak bacaan hanya membuatnya separuh.
+
+<LineEquation
+  title="Bacaan Lebih Banyak, Rata-rata Lebih Tajam"
+  description="u = s/√N untuk N = 1 sampai 20 bacaan dengan sebaran s_d tutup botol. Mendatar: N dalam satuan 4. Tegak: u dalam satuan 0,004 cm."
+  data={(() => {
+    // u(N) = s / sqrt(N) with the cap's s_d. Horizontal: N / 4. Vertical: u in units of 0.004 cm.
+    const s = Math.sqrt(0.00108 / 4);
+    const counts = Array.from({ length: 20 }, (_, i) => i + 1);
+    return [
+      {
+        points: counts.map((N) => ({ x: N / 4, y: s / Math.sqrt(N) / 0.004, z: 0 })),
+        color: "#8242e5",
+        showPoints: true,
+        smooth: false,
+        labels: [{ text: <InlineMath math="u=\frac{s_d}{\sqrt N}" />, at: 15, offset: [0, 0.6, 0], anchorX: "center" }],
+      },
+      {
+        points: [{ x: 5 / 4, y: s / Math.sqrt(5) / 0.004, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />, at: 0, offset: [1.8, 0.3, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.6, 2, 7]}
+  cameraTarget={[2.6, 2, 0]}
+/>
 
 ## Luas dari Data Diameter
 

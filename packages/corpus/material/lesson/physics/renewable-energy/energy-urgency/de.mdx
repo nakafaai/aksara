@@ -20,6 +20,18 @@ Die Energie stammt aus einer Quelle und wird in elektrische Energie umgewandelt.
 
 Kraftwerke müssen genug Leistung erzeugen, und das Stromnetz muss sie bei steigendem Bedarf übertragen können.
 
+Hier sind diese verbundenen Stufen von der Quelle bis zum Nutzer.
+
+<Mermaid
+  title="Von der Quelle zum Nutzer"
+  description="Energie wird in Strom umgewandelt, vom Netz transportiert und von Geräten genutzt. Fällt eine Stufe aus, stoppt die Versorgung."
+  chart={`flowchart LR
+    A["Energiequelle"] --> B["Kraftwerk"]
+    B --> C["Übertragungsnetz"]
+    C --> D["Verteilnetz"]
+    D --> E["Haushalte, Schulen, Kliniken"]`}
+/>
+
 ## Der Bedarf vieler Geräte summiert sich
 
 Eine einzelne Lampe wirkt unbedeutend. Der Energiebedarf wird jedoch groß, wenn viele Menschen viele Geräte gleichzeitig nutzen.
@@ -56,6 +68,50 @@ Vergleiche zwei Geräte, die jeweils eine Stunde lang konstant <InlineMath math=
 | Beide laufen von 18:00 bis 19:00 Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Erstes Gerät von 18:00 bis 19:00 Uhr, zweites von 19:00 bis 20:00 Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
+Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf eine Spitze von <InlineMath math="2\text{ kW}" />. Der violette Plan verteilt dieselbe Arbeit auf zwei Stunden und kommt nie über <InlineMath math="1\text{ kW}" />. Zähl die Fläche unter jeder Linie, also Leistung mal Zeit: Beide enthalten <InlineMath math="2\text{ kWh}" />. Die Energie bleibt gleich, nur die Spitze, die das Netz liefern muss, ändert sich.
+
+<LineEquation
+  title="Gleiche Energie, andere Spitze"
+  description="Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW."
+  data={(() => {
+    // Two 1 kW devices, one hour each. Horizontal: clock time from 17:00 in hours. Vertical: kW.
+    const scale = 1;
+    const load = (runs) => (t) => runs.filter(([start, end]) => t >= start && t < end).length;
+    const together = load([[18, 19], [18, 19]]);
+    const staggered = load([[18, 19], [19, 20]]);
+    const corners = [17, 18, 19, 20, 21];
+    const steps = (power) =>
+      corners.slice(0, -1).flatMap((t, i) => [
+        { x: t - 17, y: power(t) * scale, z: 0 },
+        { x: corners.at(i + 1) - 17, y: power(t) * scale, z: 0 },
+      ]);
+    return [
+      {
+        points: steps(together),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="2\text{ kW}" />, at: 2, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: steps(staggered),
+        color: "#8242e5",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="1\text{ kW}" />, at: 4, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      ...[18, 19, 20].map((hour) => ({
+        points: [{ x: hour - 17, y: 0, z: 0 }],
+        showPoints: false,
+        labels: [{ text: `${hour}:00`, at: 0, offset: [0, -0.35, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.1, 6]}
+  cameraTarget={[2, 1.1, 0]}
+/>
+
 ## Landesweite Quoten und örtliche Versorgungslücken
 
 Die **Elektrifizierungsquote** gibt den Anteil der Haushalte mit Stromzugang an. Die **Quote elektrifizierter Dörfer** bezeichnet den Anteil der Dörfer und städtischen Ortsteile, die bereits mit Strom versorgt werden.
@@ -80,6 +136,34 @@ Landesweite Quoten brauchen örtlichen Kontext. Die verbleibenden unversorgten G
 Steigende Nachfrage kann auf nützliche Leistungen wie Lernen, Gesundheitsversorgung, Lebensmittelproduktion, Verkehr und kleine Unternehmen zurückgehen. Das Risiko entsteht, wenn Versorgung und Netze nicht mithalten können. Dann drohen Stromausfälle, höhere Kosten oder ein stärkerer Einsatz umweltschädlicherer Energiequellen.
 
 Tagesenergiebedarf und Spitzenleistung sind zwei verschiedene Anforderungen. Ein System kann über den Tag genug Energie liefern und trotzdem überlastet sein, wenn viele Geräte gleichzeitig laufen. Erzeugung, Netz und Speicher müssen deshalb sowohl den gesamten Energiebedarf als auch <Highlight>die höchste gleichzeitige Leistungsanforderung</Highlight> abdecken.
+
+Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve unten multipliziert ab 2026 jedes Jahr mit <InlineMath math="1{,}036" />, also liegt die Nachfrage 2030 etwa <InlineMath math="15{,}2\%" /> höher, etwas mehr als das Vierfache von <InlineMath math="3{,}6\%" />.
+
+<LineEquation
+  title="Nachfragewachstum verzinst sich"
+  description="Wachstum der Stromnachfrage um 3,6 % pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von 4 %."
+  data={(() => {
+    // Demand index D(t) = 1.036^t from 2026, 3.6% average yearly growth. Horizontal: years after 2026. Vertical: growth in % / 4.
+    const rate = 0.036;
+    const samples = 201;
+    const growth = (t) => (Math.pow(1 + rate, t) - 1) * 100;
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const t = (4 * i) / (samples - 1);
+          return { x: t, y: growth(t) / 4, z: 0 };
+        }),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math={`2030:\\ +${growth(4).toFixed(1).replace(".", "{,}")}\\%`} />, at: samples - 1, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
 
 ## Sechs Fragen zur Bewertung des Energiebedarfs
 

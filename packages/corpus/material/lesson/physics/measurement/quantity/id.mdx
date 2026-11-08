@@ -48,6 +48,18 @@ v &= \frac{s}{t} \\
 \dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
 \end{aligned}" />
 
+Kelajuan mengikuti pola yang sama dengan luas, dibangun dari dua besaran pokok.
+
+<Mermaid
+  title="Kelajuan dari Besaran Pokok"
+  description="Jarak dan waktu bergabung menjadi kelajuan, satuan SI-nya, dan dimensinya."
+  chart={`flowchart TD
+    A["Jarak s"] --> C["Kelajuan v = s / t"]
+    B["Waktu t"] --> C
+    C --> D["Satuan: m / s = m s^-1"]
+    C --> E["Dimensi: L T^-1"]`}
+/>
+
 ## Dimensi dan Pemeriksaan Rumus
 
 <Highlight>Dimensi menunjukkan besaran pokok</Highlight> beserta pangkat yang membentuk suatu besaran. Satuan memberikan acuan untuk nilai pengukuran, sedangkan dimensi menunjukkan apakah besaran pada kedua ruas rumus sudah sesuai.
@@ -73,6 +85,45 @@ A &= l \times w \\
 &= 0{,}30 \text{ m} \times 0{,}20 \text{ m} \\
 &= 0{,}060 \text{ m}^2
 \end{aligned}" />
+
+Adegan di bawah menggambar kertas itu dengan satu kotak grid untuk setiap <InlineMath math="0{,}10\text{ m}" />. Coba hitung persegi kecilnya: <InlineMath math="3" /> di sepanjang panjang dan <InlineMath math="2" /> di sepanjang lebar, jadi ada <InlineMath math="6" /> persegi. Setiap persegi luasnya <InlineMath math="0{,}10\text{ m}\times0{,}10\text{ m}=0{,}010\text{ m}^2" />, jadi enam persegi memberi <InlineMath math="0{,}060\text{ m}^2" />, sama dengan hasil rumus. Itulah sebabnya luas adalah besaran yang dibangun dari dua panjang.
+
+<LineEquation
+  title="Luas Dihitung dengan Persegi"
+  description="Kertas digambar dengan satu kotak grid untuk setiap 0,10 m. Setiap persegi kecil luasnya 0,010 m²."
+  data={(() => {
+    // One grid step is 0.10 m. The sheet is l = 0.30 m by w = 0.20 m.
+    const step = 0.1;
+    const length = 0.3;
+    const width = 0.2;
+    const columns = Math.round(length / step);
+    const rows = Math.round(width / step);
+    const tile = (from, to) => ({
+      points: [from, to].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+    });
+    return [
+      ...Array.from({ length: columns - 1 }, (_, i) => tile([(i + 1) * step, 0], [(i + 1) * step, width])),
+      ...Array.from({ length: rows - 1 }, (_, i) => tile([0, (i + 1) * step], [length, (i + 1) * step])),
+      {
+        points: [[0, 0], [length, 0], [length, width], [0, width], [0, 0]].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math="l=0{,}30\text{ m}" />, at: 0, offset: [length / step / 2, -0.4, 0], anchorX: "center" },
+          { text: <InlineMath math="w=0{,}20\text{ m}" />, at: 1, offset: [0.9, width / step / 2, 0], anchorX: "center" },
+          { text: <InlineMath math={`${columns}\\times${rows}=${columns * rows}\\text{ persegi}`} />, at: 3, offset: [length / step / 2, 0.45, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.5, 1, 6]}
+  cameraTarget={[1.5, 1, 0]}
+/>
 
 Nilai <InlineMath math="0{,}060 \text{ m}^2" /> adalah nilai besaran untuk luas. Karena luas dibentuk dari <InlineMath math="2" /> besaran panjang, luas termasuk besaran turunan.
 

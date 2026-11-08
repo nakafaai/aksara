@@ -18,7 +18,74 @@ Vergleiche bei Biomasse **Ernterate und Nachwuchsrate**. Wird einem Wald schnell
 
 Die Bezeichnung „erneuerbar“ beschreibt, wie eine Quelle <Highlight>durch natürliche Prozesse wieder verfügbar wird</Highlight>. Die nutzbare Leistung hängt weiterhin vom Ort, vom Zeitpunkt und vom Zustand der Quelle ab.
 
+So sieht „hängt von der Zeit ab“ bei einer Solaranlage aus. In einem einfachen Modell folgt eine Anlage mit <InlineMath math="3\text{ kW}" /> Spitzenleistung einer halben Sinuswelle vom Sonnenaufgang um 6:00 Uhr bis zum Sonnenuntergang um 18:00 Uhr und liefert nachts nichts. Die Energie eines Tages ist die Fläche unter der Kurve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, an einem klaren Tag also etwa <InlineMath math="22{,}9\text{ kWh}" />. An einem bewölkten Tag mit halber Spitze enthält die violette Kurve nur halb so viel. Die Quelle erneuert sich jeden Morgen, aber die Leistung ist nicht immer da, wenn du sie brauchst.
+
+<LineEquation
+  title="Solarleistung über einen Tag"
+  description="Ein einfaches Modell einer 3-kW-Anlage an einem klaren Tag und an einem bewölkten Tag mit halber Spitze. Waagrecht: Uhrzeit in Einheiten von 2 h. Senkrecht: Leistung in kW."
+  data={(() => {
+    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
+    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
+    const day = (peak, color, text) => ({
+      curve: {
+        kind: "sin",
+        amplitude: peak,
+        frequency: Math.PI / 6,
+        phase: -Math.PI / 2,
+        shift: 0,
+        domain: [3, 9],
+        samples: 201,
+      },
+      color,
+      showPoints: false,
+      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
+    });
+    const night = (from, to) => ({
+      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+    });
+    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", "{,}");
+    return [
+      night(0, 3),
+      night(9, 12),
+      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
+      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1{,}5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 1.6, 8]}
+  cameraTarget={[6, 1.6, 0]}
+/>
+
 Frage zuerst: „Ist diese Quelle erneuerbar?“ Prüfe danach, ob am benötigten Ort und zur benötigten Zeit genug davon verfügbar ist. Bei bewirtschafteten Ressourcen wie Biomasse und Wasser müssen zusätzlich die Grenzen des Ökosystems und die örtliche Erholungsrate geprüft werden.
+
+Probier es mit ausgedachten Zahlen: Ein Wald hat <InlineMath math="100" /> Einheiten Holz und wächst jedes Jahr um <InlineMath math="2" /> Einheiten nach. Die drei Linien unten ernten <InlineMath math="h=1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten pro Jahr. Nur die pinke Linie, die schneller erntet, als der Wald nachwächst, verliert Holz, obwohl die Quelle erneuerbar ist.
+
+<LineEquation
+  title="Erntemenge gegen Nachwachsen"
+  description="Ein ausgedachter Vorrat von 100 Einheiten, der um 2 Einheiten pro Jahr nachwächst, mit drei Ernteraten h. Waagrecht: Jahre in Einheiten von 5. Senkrecht: Vorrat in Einheiten von 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
 
 ## Eine Quelle muss zum Standort passen
 
@@ -47,6 +114,21 @@ Nenne die Quelle und ihre ursprüngliche Energieform. Bestimme dann die Anlage, 
 In einer [Windkraftanlage](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt.
 
 Bei der [Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works) hängt die verfügbare Energie von Wasserdurchfluss und Höhenunterschied ab. Das Wasser strömt durch eine Druckrohrleitung, treibt eine Turbine an und bewegt dadurch einen Generator. Der Generator erzeugt Strom.
+
+Hier sind die Wege für Sonnenlicht, Wind und Wasser nebeneinander.
+
+<Mermaid
+  title="Drei Umwandlungswege"
+  description="Sonnenlicht, Wind und Wasser erreichen den Strom jeweils über ein eigenes Gerät."
+  chart={`flowchart LR
+    S["Sonnenlicht"] --> P["Photovoltaikzelle"]
+    W["Wind"] --> B["Rotorblätter und Rotor"]
+    H["Fallendes Wasser"] --> T["Druckrohr und Turbine"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Strom"]
+    G --> E`}
+/>
 
 ## Einige Quellen brauchen besondere Bedingungen
 

@@ -36,6 +36,40 @@ Compare these two cases. Object A stays still throughout the observation. Object
 
 Both have displacement <InlineMath math="20-20=0\text{ m}" />. A travels no distance, while B travels <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. The intermediate position distinguishes the two cases.
 
+Draw both cases as position against time, then follow each line from left to right. A stays flat at <InlineMath math="20\text{ m}" />, while B climbs to <InlineMath math="50\text{ m}" /> at <InlineMath math="3\text{ s}" /> and comes back. Both lines start and end at the same point, and that's exactly why both displacements are zero.
+
+<LineEquation
+  title="Same Endpoints, Different Motion"
+  description="Time in seconds runs to the right. Position goes up in units of 10 m, so 5 means 50 m. Compare where A and B are at 3 s."
+  data={(() => {
+    // Position x(t) in meters; the vertical axis shows x / 10.
+    const positionA = () => 20;
+    const positionB = (t) => (t <= 3 ? 20 + 10 * t : 50 - 10 * (t - 3));
+    return [
+      {
+        points: [0, 3, 6].map((t) => ({ x: t, y: positionA(t) / 10, z: 0 })),
+        color: "#0d9488",
+        showPoints: true,
+        smooth: false,
+        labels: [{ text: <InlineMath math="A" />, at: 2, offset: [0.35, -0.35, 0] }],
+      },
+      {
+        points: [0, 3, 6].map((t) => ({ x: t, y: positionB(t) / 10, z: 0 })),
+        color: "#bb6800",
+        showPoints: true,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math="B" />, at: 1, offset: [0, 0.45, 0] },
+          { text: <InlineMath math="50\text{ m}" />, at: 1, offset: [1.6, 0, 0] },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3.2, 9]}
+  cameraTarget={[3, 3.2, 0]}
+/>
+
 ## Keep the Reference Consistent
 
 When calculating a change in position, the initial and final positions must be read from the **same reference point**. Do not take the initial position from the store and the final position from another house, because that no longer describes the same motion in one reference frame.
@@ -58,6 +92,17 @@ On a straight line, we may choose one direction as positive. In this example, **
 
 A negative sign does not mean the motion is smaller or wrong. It only tells the direction of the position change.
 
+Every displacement question runs through the same four steps.
+
+<Mermaid
+  title="Four Steps to a Displacement"
+  description="Read both positions from one reference, subtract final minus initial, then turn the sign into a direction."
+  chart={`flowchart LR
+    A["Initial and final position from one reference"] --> B["Delta x = x_final - x_initial"]
+    B --> C["Read the sign"]
+    C --> D["Positive: east. Negative: west. Zero: same place"]`}
+/>
+
 ## Subtract the Final and Initial Positions
 
 A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few seconds later, the student is <InlineMath math="40 \text{ m}" /> east of the gate. The change in position is:
@@ -72,3 +117,39 @@ A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few second
 The student's **displacement** is therefore <InlineMath math="30 \text{ m}" /> east. These two positions do not determine the distance traveled. If the student reversed direction during the trip, the distance exceeds <InlineMath math="30 \text{ m}" />.
 
 Notice the order of subtraction. We always read final position minus initial position, then use <Highlight>the sign of the result</Highlight> to decide the direction of the position change.
+
+The arrow below starts at the initial position and ends at the final one. Its length is the size of the displacement, and pointing east makes the sign positive.
+
+<LineEquation
+  title="The Student's Displacement"
+  description="Positions east of the gate, one grid step per 10 m. The arrow runs from 10 m to 40 m."
+  data={(() => {
+    // Positions east of the gate in meters; one grid step is 10 m.
+    const initial = 10;
+    const final = 40;
+    const change = final - initial;
+    return [
+      {
+        points: [0, 5].map((x) => ({ x, y: 0, z: 0 })),
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Gate", at: 0, offset: [0, -0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: [initial, final].map((x) => ({ x: x / 10, y: 0.6, z: 0 })),
+        color: "#bb6800",
+        cone: { position: "end", size: 0.22 },
+        showPoints: true,
+        pointIndices: [0],
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`\\Delta x=${final}-${initial}=+${change}\\text{ m}`} />, at: 0, offset: [change / 20, 0.45, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 0.4, 6]}
+  cameraTarget={[2.5, 0.4, 0]}
+/>

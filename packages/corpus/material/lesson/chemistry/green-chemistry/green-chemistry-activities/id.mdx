@@ -43,6 +43,20 @@ Mulailah dengan mencatat setiap bahan yang dipakai, perubahan yang terjadi, prod
 
 Klaim hijau <Highlight>baru dapat diuji jika disertai bukti</Highlight>. Kata "alami", "hemat", atau "ramah lingkungan" belum menjelaskan bahaya atau limbah apa yang berkurang. Perbandingan juga harus mempertahankan fungsi yang sama. Memakai lebih sedikit pembersih bukan perbaikan jika permukaannya tetap kotor, dan bahan pengganti harus mampu menjalankan fungsi yang sama.
 
+Ini catatan itu sebagai alur yang bisa kamu isi untuk kegiatan apa pun.
+
+<Mermaid
+  title="Menelusuri Satu Kegiatan dari Masukan sampai Bukti"
+  description="Ikuti bahan melewati proses sampai ke yang keluar, lalu ke bukti dan bahaya yang berubah."
+  chart={`flowchart LR
+    A["Bahan masukan"] --> B["Proses"]
+    B --> C["Produk"]
+    B --> D["Residu"]
+    C --> E["Bukti terukur"]
+    D --> E
+    E --> F["Bahaya atau limbah apa yang turun?"]`}
+/>
+
 ## Gunakan Sabun Secukupnya tanpa Menambah Residu
 
 Busa yang banyak sering disangka sebagai tanda bahwa sabun membersihkan lebih baik. Padahal, terlalu banyak sabun cuci piring dapat memperlama pembilasan dan menambah sisa zat pembersih di air buangan. Bandingkan dosis yang cukup membersihkan dengan dosis yang lebih besar, lalu periksa residu dan air bilas. Perbandingan ini hanya menilai dosis sabun saat dipakai. Rancangan bahan pembersih tetap sama.
@@ -61,6 +75,33 @@ Sebagai **contoh data rekaan**, dua formula pembersih diuji pada noda dan luas p
 
 <BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
 
+Pada adegan di bawah, setiap kolom adalah dosis yang dibutuhkan untuk permukaan yang sama bersihnya, dengan satu kotak grid untuk <InlineMath math="2 \mathrm{mL}" />. Balok abu-abu di atas B adalah bagian yang tidak lagi dibutuhkan B. Ukurannya tepat seperlima kolom A, yaitu <InlineMath math="20\%" /> dari perhitungan tadi. Putar adegannya: penghematan itu baru bermakna karena kedua kolom mengerjakan tugas yang sama.
+
+<MathVisual
+  title="Permukaan Sama Bersih dengan Produk Lebih Sedikit"
+  description="Dosis hipotetis dua formulasi pembersih untuk noda dan luas permukaan yang sama. Satu kotak grid ke atas sama dengan 2 mL."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
+      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
+      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
+    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
+    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
+  }}
+/>
+
 Hasil ini membuktikan pengurangan volume produk pada uji tersebut. Untuk menyatakan B lebih aman atau lebih hemat air, kita masih perlu data komposisi, bahaya, dan air bilas.
 
 ## Pengomposan Mengolah Limbah yang Sudah Terbentuk
@@ -74,6 +115,19 @@ Daun kering, kulit buah, dan sisa makanan mengandung bahan organik. Pembakaran m
 | Dikomposkan dengan benar | Mikroorganisme mengurai bahan organik secara bertahap. | Pengolahan biologis menangani limbah organik setelah limbah terbentuk. |
 
 [Pengomposan](https://www.epa.gov/sustainable-management-food/approaches-composting) tetap membutuhkan pengaturan kelembapan, aliran oksigen, struktur tumpukan, dan keseimbangan nutrien. Tumpukan yang kekurangan oksigen dapat berbau atau melepaskan lindi, yaitu cairan yang keluar dari tumpukan dan membawa zat terlarut. Kondisi tersebut memengaruhi aktivitas mikroba dan suhu. Pada contoh ini, pengomposan termasuk pengolahan limbah. Suatu kegiatan termasuk perancangan ulang produk atau proses jika desain kimianya diubah untuk mencegah limbah sejak awal.
+
+Bandingkan dua jalur yang berangkat dari tumpukan daun yang sama.
+
+<Mermaid
+  title="Membakar atau Mengomposkan Limbah yang Sama"
+  description="Pembakaran mengoksidasi bahan organik dengan cepat menjadi asap, sedangkan pengomposan membiarkan mikroorganisme menguraikannya perlahan menjadi kompos."
+  chart={`flowchart LR
+    A["Daun dan sisa makanan"] --> B["Dibakar"]
+    A --> C["Dikomposkan"]
+    B --> D["Oksidasi cepat: asap dan polutan"]
+    C --> E["Mikroorganisme bekerja perlahan"]
+    E --> F["Kompos untuk tanah"]`}
+/>
 
 ## Bahan Alami Tetap Perlu Bukti
 

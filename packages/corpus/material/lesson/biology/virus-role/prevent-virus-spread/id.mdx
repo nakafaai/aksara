@@ -34,6 +34,20 @@ Tabel berikut memberi tiga contoh umum. Penularan lewat makanan, air, hubungan s
 | Kontak tangan dan permukaan | Perpindahan dari permukaan ke tangan lalu ke mata, hidung, atau mulut | Cuci tangan dengan sabun, bersihkan permukaan yang sering disentuh | Membersihkan benda tetapi tetap sering menyentuh wajah |
 | Vektor nyamuk | Gigitan dan tempat nyamuk berkembang biak | Kurangi genangan, pakai perlindungan dari gigitan, jaga lingkungan rumah | Memakai strategi virus pernapasan untuk masalah nyamuk |
 
+Pakai peta ini saat kamu memilih tindakan: mulai dari jalur penularannya, bukan dari tindakan yang paling kamu suka.
+
+<Mermaid
+  title="Dari Jalur Penularan ke Tindakan"
+  description="Setiap jalur bercabang ke tindakan yang memutusnya."
+  chart={`flowchart LR
+    A["Bagaimana virus menyebar?"] --> B["Partikel pernapasan"]
+    A --> C["Tangan dan permukaan"]
+    A --> D["Gigitan nyamuk"]
+    B --> E["Ventilasi, jarak, masker saat risiko tinggi"]
+    C --> F["Cuci tangan pakai sabun, bersihkan permukaan yang sering disentuh"]
+    D --> G["Buang genangan air, cegah gigitan"]`}
+/>
+
 ## Cara Memutus Setiap Jalur Penularan
 
 Setiap jalur penularan dapat diputus pada tahap tertentu. Setelah jalur penularan diketahui, alasan pemakaian masker, sabun, vaksin, atau pengendalian vektor dapat dijelaskan langsung. Tindakan yang tepat bergantung pada **cara patogen keluar dari satu tubuh dan masuk ke tubuh lain**.
@@ -43,6 +57,32 @@ Setiap jalur penularan dapat diputus pada tahap tertentu. Setelah jalur penulara
 Pada penularan pernapasan, risiko paparan dipengaruhi oleh **jumlah partikel pernapasan, ventilasi, dan lama berada di dalam ruangan**. Pada penularan melalui kontak, virus dapat berpindah ketika tangan atau permukaan yang terkontaminasi menyentuh mata, hidung, mulut, atau luka. Nyamuk menularkan virus saat menggigit, sehingga pencegahan juga perlu mengurangi tempat berkembang biak dan mencegah gigitan.
 
 Pencegahan biasanya menggabungkan beberapa tindakan yang sesuai dengan jalur penularan. Untuk virus pernapasan, jarak, ventilasi, masker saat risiko tinggi, dan kebersihan tangan saling melengkapi. Untuk virus yang dibawa nyamuk, kurangi genangan air yang dapat menjadi tempat berkembang biak nyamuk, lindungi tubuh dari gigitan, dan pantau kondisi lingkungan.
+
+Inilah alasan tindakan perlu digabungkan. Sebut <InlineMath math="R" /> sebagai rata-rata banyaknya orang yang ditulari satu kasus. Dengan angka ilustrasi, rantai yang setiap kasusnya menulari <InlineMath math="2" /> orang tumbuh menjadi <InlineMath math="2^5=32" /> kasus baru pada generasi kelima. Kalau masker, ventilasi, dan cuci tangan bersama-sama menurunkan setiap kasus menjadi rata-rata <InlineMath math="0{,}8" /> penularan, rantai yang sama justru menyusut sampai sekitar <InlineMath math="0{,}33" />. Ikuti kedua garis dari kiri ke kanan dan perhatikan bahwa titik baliknya ada di <InlineMath math="R=1" />.
+
+<MathVisual
+  title="Satu Kasus, Lima Generasi"
+  description="Rantai penularan ilustrasi yang dimulai dari satu kasus. Mendatar: generasi. Tegak: kasus baru dalam satuan 4."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unchecked", kind: "polyline", appearance: "warning", vertices: [{ x: 1.5 * 0, y: 2 ** 0 / 4 }, { x: 1.5 * 1, y: 2 ** 1 / 4 }, { x: 1.5 * 2, y: 2 ** 2 / 4 }, { x: 1.5 * 3, y: 2 ** 3 / 4 }, { x: 1.5 * 4, y: 2 ** 4 / 4 }, { x: 1.5 * 5, y: 2 ** 5 / 4 }] },
+      { id: "unchecked-end", kind: "point", appearance: "warning", at: { x: 1.5 * 5, y: 2 ** 5 / 4 } },
+      { id: "layered", kind: "polyline", appearance: "construction", vertices: [{ x: 1.5 * 0, y: 0.8 ** 0 / 4 }, { x: 1.5 * 1, y: 0.8 ** 1 / 4 }, { x: 1.5 * 2, y: 0.8 ** 2 / 4 }, { x: 1.5 * 3, y: 0.8 ** 3 / 4 }, { x: 1.5 * 4, y: 0.8 ** 4 / 4 }, { x: 1.5 * 5, y: 0.8 ** 5 / 4 }] },
+      { id: "layered-end", kind: "point", appearance: "construction", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 } },
+    ],
+    labels: [
+      { key: "unchecked", objectId: "unchecked-end", at: { x: 1.5 * 5, y: 2 ** 5 / 4 }, placement: "left" },
+      { key: "layered", objectId: "layered-end", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    unchecked: <InlineMath math="R=2:\ 2^5=32" />,
+    layered: <InlineMath math="R=0{,}8:\ 0{,}8^5\approx0{,}33" />,
+  }}
+/>
 
 Virus dengue terutama menular melalui [gigitan nyamuk Aedes](https://www.cdc.gov/dengue/prevention/index.html). Karena itu, pencegahan berfokus pada perlindungan dari gigitan dan pengendalian nyamuk di sekitar rumah. Pencegahan virus pernapasan berfokus pada partikel yang dilepaskan ke udara dan paparan dari jarak dekat.
 

@@ -18,7 +18,74 @@ For biomass, compare **the harvest rate with the regrowth rate**. A forest harve
 
 The term renewable describes how a source <Highlight>becomes available again through natural processes</Highlight>. Available power still depends on the place, time, and condition of the resource.
 
+Here's what "depends on time" looks like for a solar panel. In a simple model, a panel system rated <InlineMath math="3\text{ kW}" /> at its peak follows half a sine wave from sunrise at 06:00 to sunset at 18:00 and gives nothing at night. The energy of a day is the area under the curve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, so a clear day gives about <InlineMath math="22.9\text{ kWh}" />. On a cloudy day with half the peak, the violet curve holds only half as much. The source renews itself every morning, but the power isn't there whenever you want it.
+
+<LineEquation
+  title="Solar Power over One Day"
+  description="A simple model of a 3 kW panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of 2 h. Vertical: power in kW."
+  data={(() => {
+    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
+    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
+    const day = (peak, color, text) => ({
+      curve: {
+        kind: "sin",
+        amplitude: peak,
+        frequency: Math.PI / 6,
+        phase: -Math.PI / 2,
+        shift: 0,
+        domain: [3, 9],
+        samples: 201,
+      },
+      color,
+      showPoints: false,
+      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
+    });
+    const night = (from, to) => ({
+      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+    });
+    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", ".");
+    return [
+      night(0, 3),
+      night(9, 12),
+      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
+      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1.5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 1.6, 8]}
+  cameraTarget={[6, 1.6, 0]}
+/>
+
 After asking whether a source is renewable, ask whether enough of it is available at the location and time when energy is needed. For managed resources such as biomass and water, also check ecosystem limits and how quickly the local resource can recover.
+
+Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of wood and regrows <InlineMath math="2" /> units a year. The three lines below harvest <InlineMath math="h=1" />, <InlineMath math="2" /> and <InlineMath math="3" /> units a year. Only the pink line, which harvests faster than the forest regrows, loses wood, even though the source is renewable.
+
+<LineEquation
+  title="Harvest Rate against Regrowth"
+  description="An illustrative stock of 100 units regrowing 2 units a year with three harvest rates h. Horizontal: years in units of 5. Vertical: stock in units of 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
 
 ## Match Each Source to the Site
 
@@ -47,6 +114,21 @@ Name the source and its initial energy form, then identify the **device that con
 In a [wind turbine](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), wind turns the turbine blades, the rotor drives a generator, and the generator produces electricity.
 
 In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), the available energy depends on water flow and height difference. Water flows through a penstock to spin a turbine, which then drives a generator. The generator produces electricity.
+
+Here are the paths for sunlight, wind and water side by side.
+
+<Mermaid
+  title="Three Conversion Paths"
+  description="Sunlight, wind and water each reach electricity through their own device."
+  chart={`flowchart LR
+    S["Sunlight"] --> P["Photovoltaic cell"]
+    W["Wind"] --> B["Blades and rotor"]
+    H["Falling water"] --> T["Penstock and turbine"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Electricity"]
+    G --> E`}
+/>
 
 ## Some Sources Need More Specific Conditions
 

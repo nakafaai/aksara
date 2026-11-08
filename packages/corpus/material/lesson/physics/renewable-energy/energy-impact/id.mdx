@@ -22,6 +22,19 @@ Mulai dari eksplorasi sumber energi, lalu pengambilan, konversi, distribusi, dan
 
 Dampak dapat muncul di tambang, sumur, bendungan, jaringan listrik, panel surya, turbin, dan baterai. Pada setiap tahap, dampak tersebut dapat memengaruhi udara, air, tanah, serta masyarakat di sekitarnya.
 
+Inilah rantai itu, tahap demi tahap.
+
+<Mermaid
+  title="Tahap-tahap Rantai Energi"
+  description="Setiap tahap dari eksplorasi sampai residu adalah tempat untuk memeriksa dampak."
+  chart={`flowchart LR
+    A["Eksplorasi"] --> B["Pengambilan"]
+    B --> C["Konversi"]
+    C --> D["Distribusi"]
+    D --> E["Penggunaan"]
+    E --> F["Residu dan akhir masa pakai"]`}
+/>
+
 ## Dampak di Seluruh Rantai Energi
 
 **Dampak lingkungan** adalah perubahan pada udara, air, tanah, makhluk hidup, atau bentang alam akibat suatu kegiatan. **Emisi** adalah zat atau energi yang dilepaskan ke lingkungan, misalnya gas buang dari pembakaran bahan bakar.
@@ -37,6 +50,51 @@ Hampir semua bagian [sistem listrik](https://www.epa.gov/energy/about-us-electri
 | Penggunaan | Energi dipakai untuk alat, transportasi, rumah, atau industri. | Cek efisiensi alat, pola pemakaian, dan limbah yang tersisa saat masa pakai alat berakhir. |
 
 Pada setiap tahap, bandingkan besar dampak, lamanya dampak, wilayah yang terkena, dan bukti yang tersedia. Sebagian dampak terlihat langsung, sedangkan dampak lain baru terlihat setelah berlangsung lama atau menyebar ke wilayah yang luas.
+
+Kehilangan energi adalah salah satu dampak yang bisa kamu ukur tahap demi tahap. Ambil efisiensi bulat sebagai ilustrasi: pembangkit mengubah <InlineMath math="35\%" /> energi bahan bakar menjadi listrik, lalu jaringan menyalurkan <InlineMath math="95\%" /> dari listrik itu. Pada adegan di bawah, setiap kolom tetap setinggi <InlineMath math="100\text{ J}" />, karena energi kekal. Yang berubah hanya pembagiannya: bagian hijau toska adalah energi yang masih berguna, bagian abu-abu adalah kalor yang sudah lepas ke lingkungan. Putar adegannya dan bandingkan seberapa banyak bagian abu-abu muncul pada tahap konversi.
+
+<LineEquation
+  title="Sisa 100 J di Sepanjang Rantai"
+  description="Rantai energi ilustrasi dengan efisiensi konversi 0,35 dan efisiensi jaringan 0,95. Satu kotak grid ke atas sama dengan 20 J."
+  data={(() => {
+    // Illustrative chain per 100 J of fuel energy: conversion efficiency 0.35, grid efficiency 0.95.
+    // Each column stacks the energy still useful (teal) under the energy already lost as heat (slate).
+    // One grid step up is 20 J, so every column is 100 J tall.
+    const input = 100;
+    const stages = [
+      { x: 0, useful: input },
+      { x: 2.5, useful: input * 0.35 },
+      { x: 5, useful: input * 0.35 * 0.95 },
+    ];
+    const block = (x, bottom, energy, color) => ({
+      kind: "cuboid",
+      center: { x, y: (bottom + energy / 2) / 20, z: 0 },
+      length: 1.2,
+      width: 1.2,
+      height: energy / 20,
+      color,
+    });
+    const write = (value) => `${Number(value.toFixed(2))}`.replace(".", "{,}");
+    return [
+      ...stages.flatMap(({ x, useful }) => [
+        block(x, 0, useful, "#0d9488"),
+        ...(useful < input ? [block(x, useful, input - useful, "#64748b")] : []),
+      ]),
+      ...stages.map(({ x, useful }) => ({
+        points: [{ x, y: -0.5, z: 0.6 }],
+        showPoints: false,
+        labels: [{ text: <InlineMath math={`${write(useful)}\\text{ J}`} />, at: 0, offset: [0, 0, 0], anchorX: "center" }],
+      })),
+      ...["Bahan bakar", "Pembangkit", "Rumah"].map((name, i) => ({
+        points: [{ x: i * 2.5, y: input / 20 + 0.5, z: 0.6 }],
+        showPoints: false,
+        labels: [{ text: name, at: 0, offset: [0, 0, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  cameraPosition={[3.5, 3.5, 10]}
+  cameraTarget={[2.5, 2.3, 0]}
+/>
 
 ## Dampak Berbeda menurut Sumber dan Tahap
 
@@ -59,6 +117,20 @@ Pada tambang terbuka batu bara, lapisan tanah dan batuan di atas cadangan batu b
 [Penambangan batu bara](https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php) dapat memengaruhi tanah, air, udara, dan habitat sekitar.
 
 Saat mengamati area tambang, periksa tanah yang dipindahkan, arah aliran air, sebaran debu oleh angin, dan kemungkinan pemulihan lahan setelah kegiatan selesai.
+
+Ubah pertanyaan-pertanyaan itu menjadi jalur yang bisa kamu telusuri di tambang mana pun.
+
+<Mermaid
+  title="Pertanyaan di Tambang Terbuka"
+  description="Ikuti tanah, air, dan debunya, lalu tanyakan apakah lahannya bisa dipulihkan."
+  chart={`flowchart TD
+    A["Tambang terbuka batu bara"] --> B["Tanah dan batuan mana yang dipindahkan?"]
+    A --> C["Ke mana air mengalir?"]
+    A --> D["Ke mana angin membawa debu?"]
+    B --> E["Bisakah lahan dipulihkan sesudahnya?"]
+    C --> E
+    D --> E`}
+/>
 
 ## Bandingkan Manfaat dan Dampak di Setiap Tahap
 

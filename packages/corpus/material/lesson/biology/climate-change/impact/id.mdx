@@ -43,6 +43,36 @@ Terumbu karang tampak seperti batu, tetapi sebenarnya dibangun oleh hewan karang
 
 Pemutihan karang menunjukkan stres berat dan dapat terjadi sebelum karang mati. Jika suhu laut tetap terlalu tinggi, karang dapat melemah dan mati. Ikan kehilangan habitat, sedangkan masyarakat pesisir dapat kehilangan hasil perikanan dan perlindungan pantai dari terumbu karang.
 
+Stres panas pada terumbu bertambah dari minggu ke minggu. NOAA Coral Reef Watch mengukurnya dalam **degree heating weeks**: setiap minggu, ambil berapa derajat air berada di atas ambang pemutihan karang, lalu jumlahkan minggu-minggunya. Pada contoh ilustrasi di bawah, garis kuning adalah kelebihan panas mingguan itu, dan garis merah muda adalah jumlah berjalannya. Ikuti garis merah muda ke atas: garis itu melewati <InlineMath math="4\ ^\circ\text{C-minggu}" />, saat pemutihan yang berarti mungkin terjadi, lalu <InlineMath math="8" />, saat pemutihan parah dan kematian karang mungkin terjadi. Perhatikan bahwa garis merah muda tetap di ketinggiannya setelah air mendingin, karena stresnya sudah terjadi.
+
+<MathVisual
+  title="Stres Panas Menumpuk pada Terumbu"
+  description="Gelombang panas laut ilustrasi selama enam minggu. Mendatar: minggu. Tegak: derajat di atas ambang pemutihan (kuning) dan jumlah berjalannya dalam °C-minggu (merah muda)."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "hotspot", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1.5 }, { x: 3, y: 2 }, { x: 4, y: 2 }, { x: 5, y: 1.5 }, { x: 6, y: 1 }, { x: 7, y: 0 }] },
+      { id: "stress", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 + 1.5 }, { x: 3, y: 1 + 1.5 + 2 }, { x: 4, y: 1 + 1.5 + 2 + 2 }, { x: 5, y: 1 + 1.5 + 2 + 2 + 1.5 }, { x: 6, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }, { x: 7, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }] },
+      { id: "alert-one", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "alert-two", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "hotspot", objectId: "hotspot", at: { x: 3.5, y: 2 }, placement: "above" },
+      { key: "stress", objectId: "stress", at: { x: 7, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }, placement: "above" },
+      { key: "one", objectId: "alert-one", at: { x: 8, y: 4 }, placement: "above-left" },
+      { key: "two", objectId: "alert-two", at: { x: 0, y: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    hotspot: "kelebihan panas per minggu",
+    stress: <InlineMath math="9\ ^\circ\text{C-minggu}" />,
+    one: "4: pemutihan mungkin terjadi",
+    two: "8: pemutihan parah, kematian mungkin",
+  }}
+/>
+
 ### Warna Pucat Adalah Tanda Stres
 
 [Pemutihan karang](https://oceanservice.noaa.gov/facts/coral_bleach.html) adalah respons stres ketika karang melepaskan alga yang hidup di jaringan karang. Air yang terlalu hangat dapat mengganggu hubungan ini. Tanpa cukup alga, karang kehilangan salah satu sumber energi utamanya dan dapat memutih.
@@ -55,6 +85,20 @@ Pemutihan karang menunjukkan stres berat dan dapat terjadi sebelum karang mati. 
 | Terjadi pemutihan | Karang masih dapat hidup, tetapi kehilangan banyak alga dan pasokan energi. |
 | Stres mereda cukup cepat | Karang dapat memperoleh kembali alga dan pulih. |
 | Stres berlangsung lama | Risiko penyakit dan kematian meningkat, lalu fungsi habitat terumbu dapat menurun. |
+
+Kisah karang ini punya percabangan, dan cabangnya bergantung pada seberapa lama panasnya bertahan.
+
+<Mermaid
+  title="Dua Akhir Setelah Pemutihan"
+  description="Air yang hangat menekan kerja sama karang dan alga. Stres singkat memberi kesempatan pulih, stres panjang menaikkan risiko kematian."
+  chart={`flowchart TD
+    A["Air laut terlalu hangat"] --> B["Simbiosis karang dan alga tertekan"]
+    B --> C["Karang melepas alga dan memutih"]
+    C --> D["Panas segera berakhir"]
+    C --> E["Panas bertahan lama"]
+    D --> F["Alga kembali, karang pulih"]
+    E --> G["Risiko penyakit dan kematian naik"]`}
+/>
 
 ## Perubahan Pola Hujan Memengaruhi Pangan dan Air
 

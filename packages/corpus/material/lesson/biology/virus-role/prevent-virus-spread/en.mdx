@@ -34,6 +34,20 @@ The table gives three common examples. Foodborne, waterborne, sexual, bloodborne
 | Hands and surfaces | Movement from surfaces to hands, then eyes, nose, or mouth | Wash hands with soap, clean frequently touched surfaces | Cleaning objects while still touching the face often |
 | Mosquito vector | Bites and mosquito breeding sites | Reduce standing water, prevent bites, manage the home environment | Using a respiratory-virus strategy for a mosquito problem |
 
+Use this map when you pick a measure: start from the route, not from the measure you like best.
+
+<Mermaid
+  title="From Transmission Route to Measure"
+  description="Each route branches to the measures that interrupt it."
+  chart={`flowchart LR
+    A["How does the virus spread?"] --> B["Respiratory particles"]
+    A --> C["Hands and surfaces"]
+    A --> D["Mosquito bites"]
+    B --> E["Ventilation, distance, masks when risk is high"]
+    C --> F["Handwashing with soap, cleaning touched surfaces"]
+    D --> G["Remove standing water, prevent bites"]`}
+/>
+
 ## Where Each Transmission Route Can Be Interrupted
 
 Each transmission route can be interrupted at particular stages. **Once the route is known**, the reason for using masks, soap, vaccination, or vector control can be stated directly.
@@ -43,6 +57,32 @@ Each transmission route can be interrupted at particular stages. **Once the rout
 For respiratory spread, exposure risk depends on **respiratory particles, ventilation, and time spent indoors**. During contact spread, a virus can move when contaminated hands or surfaces touch the eyes, nose, mouth, or a wound. Mosquitoes transmit viruses when they bite, so prevention must also reduce breeding sites and prevent bites.
 
 Prevention usually combines several measures suited to the transmission route. For respiratory viruses, distance, ventilation, masks during higher risk, and hand hygiene support one another. For mosquito-borne viruses, use standing-water control, bite prevention, and environmental monitoring.
+
+Here's why layering measures matters. Call <InlineMath math="R" /> the average number of people one case infects. With illustrative numbers, a chain where each case infects <InlineMath math="2" /> others grows to <InlineMath math="2^5=32" /> new cases in the fifth generation. If masks, ventilation and handwashing together bring each case down to <InlineMath math="0.8" /> infections on average, the same chain shrinks instead, to about <InlineMath math="0.33" />. Follow both lines from left to right and notice that the turning point is <InlineMath math="R=1" />.
+
+<MathVisual
+  title="One Case, Five Generations"
+  description="Illustrative chains of infection starting from one case. Horizontal: generation. Vertical: new cases in units of 4."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unchecked", kind: "polyline", appearance: "warning", vertices: [{ x: 1.5 * 0, y: 2 ** 0 / 4 }, { x: 1.5 * 1, y: 2 ** 1 / 4 }, { x: 1.5 * 2, y: 2 ** 2 / 4 }, { x: 1.5 * 3, y: 2 ** 3 / 4 }, { x: 1.5 * 4, y: 2 ** 4 / 4 }, { x: 1.5 * 5, y: 2 ** 5 / 4 }] },
+      { id: "unchecked-end", kind: "point", appearance: "warning", at: { x: 1.5 * 5, y: 2 ** 5 / 4 } },
+      { id: "layered", kind: "polyline", appearance: "construction", vertices: [{ x: 1.5 * 0, y: 0.8 ** 0 / 4 }, { x: 1.5 * 1, y: 0.8 ** 1 / 4 }, { x: 1.5 * 2, y: 0.8 ** 2 / 4 }, { x: 1.5 * 3, y: 0.8 ** 3 / 4 }, { x: 1.5 * 4, y: 0.8 ** 4 / 4 }, { x: 1.5 * 5, y: 0.8 ** 5 / 4 }] },
+      { id: "layered-end", kind: "point", appearance: "construction", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 } },
+    ],
+    labels: [
+      { key: "unchecked", objectId: "unchecked-end", at: { x: 1.5 * 5, y: 2 ** 5 / 4 }, placement: "left" },
+      { key: "layered", objectId: "layered-end", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    unchecked: <InlineMath math="R=2:\ 2^5=32" />,
+    layered: <InlineMath math="R=0.8:\ 0.8^5\approx0.33" />,
+  }}
+/>
 
 Dengue viruses spread mainly through [bites from Aedes mosquitoes](https://www.cdc.gov/dengue/prevention/index.html), so prevention focuses on avoiding bites and controlling mosquitoes around homes. Prevention for respiratory viruses instead addresses particles released into shared air and close-range exposure.
 

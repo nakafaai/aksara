@@ -28,6 +28,57 @@ Ein Objekt liegt bei der Koordinate <InlineMath math="30 \text{ m}" />, wenn das
 
 Das **Objekt bewegt sich nicht**, wenn sich der Ursprung ändert. Nur seine Koordinate ändert sich. Wird der Ursprung nach rechts verschoben, kann aus einer großen positiven Koordinate eine kleinere positive Koordinate, null oder eine negative Koordinate werden.
 
+Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt sich nie. Jeder Pfeil startet an einem anderen Ursprung und endet am Objekt, also ist seine Beschriftung die Koordinate des Objekts von diesem Ursprung aus. Zähl die Gitterschritte ruhig selbst nach: Ein Schritt sind <InlineMath math="10\text{ m}" />, und ein Pfeil nach Westen bekommt ein negatives Vorzeichen.
+
+<LineEquation
+  title="Ein Objekt, drei Ursprünge"
+  description="Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt sind 10 m."
+  data={(() => {
+    // Street coordinates in meters, east positive; one grid unit is 10 m.
+    const object = 30;
+    const origins = [
+      { name: "Geschäft", at: 0, row: 2, color: "#bb6800" },
+      { name: "Ranis Haus", at: 20, row: 1, color: "#8242e5" },
+      { name: "Nayas Haus", at: 50, row: 0, color: "#c026d3" },
+    ];
+    return [
+      {
+        points: [{ x: object / 10, y: -0.5, z: 0 }, { x: object / 10, y: 2.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Objekt", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => {
+        const coordinate = object - origin.at;
+        const sign = coordinate > 0 ? "+" : "";
+        return {
+          points: [
+            { x: origin.at / 10, y: origin.row, z: 0 },
+            { x: object / 10, y: origin.row, z: 0 },
+          ],
+          color: origin.color,
+          cone: { position: "end", size: 0.22 },
+          showPoints: false,
+          smooth: false,
+          labels: [
+            { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+            {
+              text: <InlineMath math={`x'=${sign}${coordinate}\\text{ m}`} />,
+              at: 0,
+              offset: [(object - origin.at) / 20, 0.35, 0],
+              anchorX: "center",
+            },
+          ],
+        };
+      }),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1, 8]}
+  cameraTarget={[2.5, 1, 0]}
+/>
+
 ## Vorzeichen und Richtung lesen
 
 Das Vorzeichen einer Position sagt uns, <Highlight>auf welcher Seite des Bezugspunkts</Highlight> sich das Objekt befindet. Im Straßenbeispiel wird Osten positiv gewählt. Ein positiver Wert bedeutet also, dass sich das Objekt östlich des Bezugspunkts befindet, während ein negativer Wert bedeutet, dass sich das Objekt westlich davon befindet.
@@ -69,3 +120,41 @@ x'
 \end{aligned}" />
 
 Die Markierung liegt also <InlineMath math="10 \text{ m}" /> östlich von Dimas' Haus. Mit dem Geschäft als Ursprung lautet ihre Koordinate <InlineMath math="40 \text{ m}" />. Mit Dimas' Haus als Ursprung lautet sie <InlineMath math="+10 \text{ m}" />. Beide Aussagen sind richtig, weil sie verschiedene Ursprünge in einem eindeutig beschriebenen Bezugssystem verwenden.
+
+Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Ursprung, ändert sich, und mit ihm die Zahl im Positionssatz.
+
+<LineEquation
+  title="Eine Markierung, zwei Ursprünge"
+  description="Die Markierung bei 40 m vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei 30 m. Ein Gitterschritt sind 10 m."
+  data={(() => {
+    // Street coordinates from the store in meters; one grid step is 10 m.
+    const marker = 40;
+    const origins = [
+      { name: "Geschäft", at: 0, row: 1, color: "#bb6800" },
+      { name: "Dimas' Haus", at: 30, row: 0, color: "#8242e5" },
+    ];
+    return [
+      {
+        points: [{ x: marker / 10, y: -0.5, z: 0 }, { x: marker / 10, y: 1.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Markierung", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => ({
+        points: [{ x: origin.at / 10, y: origin.row, z: 0 }, { x: marker / 10, y: origin.row, z: 0 }],
+        color: origin.color,
+        cone: { position: "end", size: 0.22 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+          { text: <InlineMath math={`+${marker - origin.at}\\text{ m}`} />, at: 0, offset: [(marker - origin.at) / 20, 0.35, 0], anchorX: "center" },
+        ],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.5, 6]}
+  cameraTarget={[2, 0.5, 0]}
+/>

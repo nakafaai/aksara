@@ -57,6 +57,35 @@ Take methanol synthesis, with **methanol as the desired product**. Use rounded r
 
 The remaining formula mass, <InlineMath math="50-32=18" />, enters water as a by-product. The <InlineMath math="64\%" /> value comes from the equation, not from measuring reaction yield.
 
+The scene below compares this route with a second one that also makes methanol, <InlineMath math="\mathrm{CO}+2\mathrm{H_2}\rightarrow\mathrm{CH_3OH}" />. Each block is a formula mass, with one grid step for <InlineMath math="8" /> units. In both routes the reactant column and the product column are equally tall, because mass is conserved. Look at the top of the first product column: the pink block is water, the <InlineMath math="18" /> units that miss the desired product. The second route has no by-product, so its atom economy is <InlineMath math="100\%" />. Rotate the scene and compare the two product columns.
+
+<MathVisual
+  title="Atom Economy of Two Routes to Methanol"
+  description="Formula masses with Ar(H) = 1, Ar(C) = 12 and Ar(O) = 16, one grid step up for 8. Gray and violet are reactants, fuchsia is methanol, pink is water."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10.5 }, y: { min: 0, max: 7.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 11, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 0, y: (12 + 2 * 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 2 * 16) / 8, width: 1.4 } },
+      { id: "hydrogen-three", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (12 + 2 * 16) / 8 + (3 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (3 * 2 * 1) / 8, width: 1.4 } },
+      { id: "methanol-one", kind: "cuboid", appearance: "answer", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
+      { id: "water", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 8 + (2 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (2 * 1 + 16) / 8, width: 1.4 } },
+      { id: "carbon-monoxide", kind: "cuboid", appearance: "reference", center: { x: 6.5, y: (12 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 16) / 8, width: 1.4 } },
+      { id: "hydrogen-two", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: (12 + 16) / 8 + (2 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (2 * 2 * 1) / 8, width: 1.4 } },
+      { id: "methanol-two", kind: "cuboid", appearance: "answer", center: { x: 9, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
+    ],
+    labels: [
+      { key: "first", objectId: "water", at: { x: 2.5, y: (12 + 2 * 16 + 3 * 2 * 1) / 8 + 0.5, z: 0 }, placement: "above" },
+      { key: "second", objectId: "methanol-two", at: { x: 9, y: (12 + 4 * 1 + 16) / 8 + 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="\frac{32}{50}\times100\%=64\%" />,
+    second: <InlineMath math="\frac{32}{32}\times100\%=100\%" />,
+  }}
+/>
+
 Atom economy shows how reactant atoms are distributed. A complete assessment also checks solvent hazards, the energy used to reach the operating temperature and pressure, and what happens to the product after use.
 
 | What you notice | Principle being checked |
@@ -74,6 +103,18 @@ Bioplastic from fruit peels uses organic waste as a feedstock. This supports the
 
 Reusing a plastic bottle as a plant pot reduces waste by keeping the material in use. Green chemistry addresses a different step by designing a chemical reaction or product so it creates less hazard from the start.
 
+Risk needs both a hazard and an exposure, so the path below shows two places where a design can cut it.
+
+<Mermaid
+  title="Two Places to Cut Chemical Risk"
+  description="Risk comes from a hazardous material and from contact with it. A safer material or less exposure both lower the risk."
+  chart={`flowchart LR
+    A["Hazard of the material"] --> C["Risk"]
+    B["Exposure: dose and contact"] --> C
+    D["Choose a safer material"] -.-> A
+    E["Reduce contact and amount"] -.-> B`}
+/>
+
 ## Evaluating Reactions and Feedstocks
 
 Some chemical processes use less energy when a reaction can run at room temperature or ordinary pressure. A catalyst can provide a pathway with **lower activation energy**, which may let a particular process run under milder conditions. A selective catalyst may also reduce by-product formation. Its effect depends on the reaction mechanism, selectivity, catalyst lifetime, and separation requirements.
@@ -81,6 +122,19 @@ Some chemical processes use less energy when a reaction can run at room temperat
 A [catalyst](https://goldbook.iupac.org/terms/view/C00876) increases the reaction rate without changing the reaction's overall standard Gibbs energy change. It participates in the reaction and is regenerated overall. It can still deactivate or be lost during a real process. The change in energy use and waste depends on the operating temperature and pressure, selectivity, toxicity, scarcity, recoverability, and useful lifetime.
 
 Renewable feedstocks also need careful study. Fruit peels, starch, and plant oils can be replenished, but growing, transporting, extracting, and processing them still uses land, water, and energy. Include all of those stages in the assessment.
+
+Use these checks in order when you judge one reaction and its feedstock.
+
+<Mermaid
+  title="Checking a Reaction and Its Feedstock"
+  description="Start from the balanced equation and work through atom economy, conditions, catalyst and feedstock."
+  chart={`flowchart TD
+    A["Balanced equation"] --> B["Atom economy from formula masses"]
+    B --> C["Temperature, pressure and energy"]
+    C --> D["Catalyst for milder conditions, fewer by-products"]
+    D --> E["Renewable or waste-based feedstock"]
+    E --> F["Safer product and end of use"]`}
+/>
 
 ## Checking Green Claims
 
