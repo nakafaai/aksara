@@ -3,7 +3,7 @@ export const metadata = {
     description: "Connect derivatives, accumulation functions, and definite integrals through both parts of the Fundamental Theorem of Calculus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
@@ -42,6 +42,16 @@ If the upper limit is <InlineMath math="x^2" />, the rate at which this limit ch
 <BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
 
 The factor <InlineMath math="2x" /> is the derivative of the upper limit <InlineMath math="x^2" />. At <InlineMath math="x=0" />, that upper limit has zero rate of change, so the accumulation function also has zero derivative despite a positive integrand.
+
+Evaluate <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> at five inputs from <InlineMath math="0" /> to <InlineMath math="2" /> in steps of <InlineMath math="0.5" />. The first bar is <InlineMath math="0" /> because the upper limit <InlineMath math="x^2" /> is not moving at <InlineMath math="x = 0" />. After that both the factor <InlineMath math="2x" /> and the root grow, so the rate climbs quickly, to <InlineMath math="4\sqrt6 \approx 9.8" /> at <InlineMath math="x = 2" />.
+
+<BarChart
+  title={<>The rate <InlineMath math="G'(x)" /> at five inputs</>}
+  description={<>Bars of <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> for <InlineMath math="x" /> from 0 to 2 in steps of <InlineMath math="0.5" />, starting at 0.</>}
+  yAxisLabel="Rate"
+  data={[0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 2 * x * Math.sqrt(2 + x ** 2) }))}
+  chartConfig={{ value: { label: "Rate", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Evaluating Integrals with Antiderivatives
 
@@ -85,3 +95,54 @@ Find the value of <InlineMath math="\int_{1}^{5} (2x-1) \, dx" />.
     </MathContainer>
 
 The Fundamental Theorem of Calculus calculates a definite integral from an antiderivative. Find the antiderivative, then subtract its value at the lower bound from its value at the upper bound.
+
+Check the second example against a shape you can measure. Under <InlineMath math="y = 2x - 1" /> from <InlineMath math="1" /> to <InlineMath math="5" /> sits a trapezoid with parallel sides <InlineMath math="1" /> and <InlineMath math="9" /> and width <InlineMath math="4" />: area <InlineMath math="\tfrac{1 + 9}{2} \cdot 4 = 20" />. The antiderivative gives the same number, <InlineMath math="F(5) - F(1) = 20 - 0 = 20" /> with <InlineMath math="F(x) = x^2 - x" />.
+
+<MathVisual
+  title={<>F(5) minus F(1) is the trapezoid area</>}
+  description={<>The line <InlineMath math="y = 2x - 1" /> and the trapezoid under it from 1 to 5, whose area 20 equals <InlineMath math="F(5) - F(1)" />.</>}
+  labels={{
+    f: <InlineMath math="y = 2x - 1" />,
+    area: <InlineMath math="20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 1, y: 1 }, { x: 5, y: 9 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 9 }, { x: 1, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5.5, y: 10 }, placement: "left" },
+      { key: "area", objectId: "area", at: { x: 3, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+The first example works the same way under a curve. The region under <InlineMath math="y = x^2" /> between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> has area <InlineMath math="\left[\tfrac13 x^3\right]_1^3 = 9 - \tfrac13 = \tfrac{26}{3}" />. No rectangles are needed once you know an antiderivative.
+
+<MathVisual
+  title={<>The area under x squared from 1 to 3</>}
+  description={<>The parabola <InlineMath math="y = x^2" /> with the region between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> outlined, area <InlineMath math="\tfrac{26}{3}" />.</>}
+  labels={{
+    f: <InlineMath math="y = x^2" />,
+    area: <InlineMath math="\tfrac{26}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.2 }, appearance: "reference" },
+      { id: "top", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 1, max: 3 }, appearance: "primary" },
+      { id: "left", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "base", kind: "segment", from: { x: 1, y: 0 }, to: { x: 3, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 3.2, y: 10.24 }, placement: "left" },
+      { key: "area", objectId: "base", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
