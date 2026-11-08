@@ -1,4 +1,4 @@
-import { Array as Arr, type Schema } from "effect";
+import { Array as Arr, Result, type Schema } from "effect";
 import {
   arcContained,
   axisContains,
@@ -6,6 +6,13 @@ import {
   cuboidContained,
   quadraticContained,
 } from "#contracts/math/extent";
+import type { FormulaScope } from "#contracts/math/formula/compile";
+import {
+  type FormulaGeometry,
+  planeFormulaGeometry,
+} from "#contracts/math/formula/plane";
+import { geometryVisible } from "#contracts/math/formula/scope";
+import { spaceFormulaGeometry } from "#contracts/math/formula/space";
 import { infinitePathIntersectsBox } from "#contracts/math/intersection";
 import type {
   PlaneLabelAnchor,
@@ -70,11 +77,45 @@ function spaceAxes(
   ];
 }
 
-/** Checks whether one plane object has complete visible geometry in its frame. */
+/**
+ * Whether a formula's samples show anything inside the frame. A formula that
+ * does not read is reported by its own field, so it is not reported again.
+ */
+function sampledVisible(
+  geometry: Result.Result<FormulaGeometry, unknown>,
+  frame: PlaneMathFrame | SpaceMathFrame
+) {
+  return Result.match(geometry, {
+    onFailure: () => true,
+    onSuccess: (sampled) => geometryVisible(sampled, frame),
+  });
+}
+
+/** Checks whether one plane object shows visible geometry in its frame. */
 function planeObjectContained(
   frame: PlaneMathFrame,
-  object: PlaneMathObject
+  object: PlaneMathObject,
+  scope: FormulaScope,
+  labels: readonly PlaneLabelAnchor[]
 ): boolean {
+  if (object.kind === "function") {
+    const axis = object.inputAxis ?? "x";
+    const named = Arr.flatMap(labels, ({ at, objectId }) =>
+      objectId === object.id ? [at[axis]] : []
+    );
+    return sampledVisible(
+      planeFormulaGeometry(object, frame, scope, named),
+      frame
+    );
+  }
+  if (
+    object.kind === "implicit" ||
+    object.kind === "parametric" ||
+    object.kind === "polar" ||
+    object.kind === "region"
+  ) {
+    return sampledVisible(planeFormulaGeometry(object, frame, scope), frame);
+  }
   if (object.kind === "line") {
     const [start, through] = object.through;
     return infinitePathIntersectsBox(
@@ -111,8 +152,19 @@ function planeObjectContained(
 /** Checks whether one space object has complete visible geometry in its frame. */
 function spaceObjectContained(
   frame: SpaceMathFrame,
-  object: SpaceMathObject
+  object: SpaceMathObject,
+  scope: FormulaScope
 ): boolean {
+  if (
+    object.kind === "function" ||
+    object.kind === "parametric" ||
+    object.kind === "prism" ||
+    object.kind === "pyramid" ||
+    object.kind === "revolution" ||
+    object.kind === "surface"
+  ) {
+    return sampledVisible(spaceFormulaGeometry(object, frame, scope), frame);
+  }
   if (object.kind === "line") {
     const [start, through] = object.through;
     return infinitePathIntersectsBox(
@@ -144,11 +196,12 @@ function spaceObjectContained(
 export function planeBoundsIssues(
   frame: PlaneMathFrame,
   objects: readonly PlaneMathObject[],
-  labels: readonly PlaneLabelAnchor[]
+  labels: readonly PlaneLabelAnchor[],
+  scope: FormulaScope = {}
 ): readonly Schema.FilterIssue[] {
   return [
     ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
-      planeObjectContained(frame, object)
+      planeObjectContained(frame, object, scope, labels)
         ? []
         : [
             {
@@ -176,7 +229,8 @@ export function spaceBoundsIssues(
   frame: SpaceMathFrame,
   objects: readonly SpaceMathObject[],
   labels: readonly SpaceLabelAnchor[],
-  view: SpaceMathView
+  view: SpaceMathView,
+  scope: FormulaScope = {}
 ): readonly Schema.FilterIssue[] {
   const viewIssues: readonly Schema.FilterIssue[] =
     view.kind === "isometric" &&
@@ -191,7 +245,7 @@ export function spaceBoundsIssues(
       : [];
   return [
     ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
-      spaceObjectContained(frame, object)
+      spaceObjectContained(frame, object, scope)
         ? []
         : [
             {
