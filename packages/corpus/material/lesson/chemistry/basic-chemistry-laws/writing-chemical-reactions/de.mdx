@@ -71,6 +71,36 @@ Die Atomzahl ergibt sich aus **Koeffizient mal Index**. Koeffizienten dürfen ve
 
 Der Koeffizient <InlineMath math="2" /> vor <InlineMath math="\mathrm{O_2}" /> bedeutet zwei Sauerstoffmoleküle. Der Index in <InlineMath math="\mathrm{O_2}" /> ist Teil der Sauerstoffformel und darf daher nicht in <InlineMath math="\mathrm{O_4}" /> geändert werden.
 
+Zähl die Atome in <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" />, indem du jeden Koeffizienten mit seinen Indizes multiplizierst. In der Szene hat jedes Element eine hintere Säule für die Edukte und eine vordere für die Produkte, ein Gitterschritt für <InlineMath math="2" /> Atome. Dreh sie: Jedes Paar ist gleich hoch, also ist die Gleichung ausgeglichen.
+
+<MathVisual
+  title="Atome auf beiden Seiten der Gleichung"
+  description="Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange), gezählt in den Edukten (hinten) und Produkten (vorn). Ein Gitterschritt nach oben sind 2 Atome."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (1 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (1 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (4 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (4 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((2 * 2) / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (2 * 2) / 2, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((2 + 2 * 1) / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (2 + 2 * 1) / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 1, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 2.5, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 2.5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 1=1" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 4=2\times2" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 2\times2=2+2" />,
+  }}
+/>
+
 ## Zustandssymbole stehen hinter der Formel
 
 Ist der Aggregatzustand bekannt, steht sein Symbol direkt hinter der jeweiligen Formel. Bei der hohen Temperatur einer Methanflamme liegt das Wasserprodukt als Dampf vor. Die Gleichung kann daher so geschrieben werden:
@@ -103,3 +133,15 @@ Mit dem Koeffizientenverhältnis <InlineMath math="1:1:1:1" /> ist diese Gleichu
 5. Zustandssymbole ergänzen, sofern die Zustände bekannt sind.
 
 Eine falsche Stoffformel lässt sich nicht <Highlight>durch das Ausgleichen der Gleichung beheben</Highlight>. Prüfe deshalb jede Formel, bevor du die Koeffizienten anpasst.
+
+Hier sind die Schritte als ein Weg vom Satz zur Gleichung.
+
+<Mermaid
+  title="Vom Satz zur Gleichung"
+  description="Stoffe benennen, korrekte Formeln schreiben, mit Koeffizienten ausgleichen, dann Zustandssymbole ergänzen."
+  chart={`flowchart LR
+    A["Satz: Edukte und Produkte"] --> B["Korrekte Formeln"]
+    B --> C["Nur mit Koeffizienten ausgleichen"]
+    C --> D["Zustandssymbole ergänzen"]
+    D --> E["Atome zählen zur Kontrolle"]`}
+/>

@@ -19,6 +19,18 @@ Die Beweiskette reicht von Thomsons Kathodenstrahlversuch über Rutherfords Gold
 
 Im Jahr <InlineMath math="1897" /> entdeckte J. J. Thomson das Elektron und zeigte, dass dieses Teilchen sehr viel leichter als ein Atom ist.
 
+Jedes Experiment beantwortete eine Frage und öffnete die nächste.
+
+<Mermaid
+  title="Von festen Kugeln zu drei Teilchen"
+  description="Auf Daltons Kugeln folgten das Elektron, der Kern, das Proton und das Neutron."
+  chart={`flowchart LR
+    A["Dalton: feste Kugeln"] --> B["Thomson: Kathodenstrahlen, Elektron"]
+    B --> C["Rutherfords Team: winziger dichter Kern"]
+    C --> D["Wasserstoffkerne: Proton"]
+    D --> E["Fehlende Masse: Neutron"]`}
+/>
+
 ## Belege aus drei Experimenten
 
 Wechsle unten den Modus. Beobachte zuerst die **Bewegungsrichtung**, **welche Bahn abgelenkt wird** und **welche gerade bleibt**.
@@ -154,3 +166,29 @@ Ein neutrales Atom hat die gleiche Anzahl an Protonen und Elektronen. Wenn ein A
 <BlockMath math="\begin{aligned} \text{neutrales Atom} &amp;\Rightarrow \text{Anzahl von } p^+ \\ &amp;= \text{Anzahl von } e^- \end{aligned}" />
 
 Merke dir drei Beziehungen: **Protonen bestimmen die Elementidentität**, **Neutronen tragen zur Masse bei** und **Elektronen prägen viele chemische Eigenschaften**. Nutze sie gemeinsam, um Ladung, Masse und Atomidentität zu vergleichen.
+
+Hier sind die relativen Ladungen als Säulen über und unter null. Das Elektron reicht bis <InlineMath math="-1" /> hinunter, das Proton bis <InlineMath math="+1" /> hinauf, und das Neutron hat gar keine Säule. Ein Proton und ein Elektron heben sich auf, deshalb hat ein neutrales Atom von beiden gleich viele.
+
+<MathVisual
+  title="Relative Ladungen der drei Teilchen"
+  description="Elektron −1 unter null, Proton +1 über null, Neutron 0."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 0, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1) / 2 + -1, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+    ],
+    labels: [
+      { key: "electron", objectId: "electron", at: { x: 0, y: -1.5, z: 0 }, placement: "below" },
+      { key: "proton", objectId: "proton", at: { x: 2.5, y: 1.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "proton", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    electron: <InlineMath math="e^-:\ -1" />,
+    proton: <InlineMath math="p^+:\ +1" />,
+    neutron: <InlineMath math="n^0:\ 0" />,
+  }}
+/>

@@ -30,6 +30,18 @@ Zwei gegensätzliche Vorstellungen prägten die frühe Diskussion.
 
 Demokrit nannte den kleinsten Baustein *atomos*, griechisch für „unzerschneidbar“.
 
+Die beiden Antworten verzweigen sich so.
+
+<Mermaid
+  title="Zwei Antworten auf eine Frage"
+  description="Entweder lässt sich Materie ohne Ende teilen, oder sie endet bei der kleinsten unteilbaren Einheit, dem Atomos."
+  chart={`flowchart TD
+    A["Lässt sich Materie ewig teilen?"] --> B["Ja: kein kleinster Teil"]
+    A --> C["Nein: kleinste unteilbare Einheit"]
+    C --> D["Demokrit: Atomos"]
+    D --> E["Viel später von der Chemie geprüft"]`}
+/>
+
 ## Ausprobieren der Denkweise Demokrits
 
 Das folgende Gedankenexperiment behandelt die Teilbarkeit von Materie. Stell dir vor, ein Objekt werde wiederholt zerschnitten, und vergleiche dann zwei Positionen: Aristoteles hielt eine **unbegrenzte Teilung** für möglich, während Demokrit einen **kleinsten Bestandteil** annahm. Die tatsächliche Form eines Atoms wird nicht dargestellt.
@@ -70,6 +82,33 @@ Das folgende Gedankenexperiment behandelt die Teilbarkeit von Materie. Stell dir
         tab: "Winzig",
       },
     },
+  }}
+/>
+
+Verfolg das Gedankenexperiment in Zahlen. Jeder Schnitt halbiert das Stück, nach <InlineMath math="n" /> Schnitten ist es also <InlineMath math="1/2^n" /> des Anfangs. Die Säulen unten zeigen nur vier Schnitte, und das letzte Stück ist schon ein Sechzehntel des ersten. Die Frage des Demokrit war, ob das ewig weitergeht oder bei einer unteilbaren Einheit aufhören muss.
+
+<MathVisual
+  title="Ein Stück immer wieder halbieren"
+  description="Ein 8 Einheiten hohes Stück wird viermal halbiert. Jede Säule ist halb so hoch wie die vorige."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: 14 }, target: { x: 5, y: 3, z: 0 } },
+    objects: [
+      { id: "piece-0", kind: "cuboid", appearance: "primary", center: { x: 0.0, y: (8 / 2 ** 0) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 0, width: 1.2 } },
+      { id: "piece-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (8 / 2 ** 1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 1, width: 1.2 } },
+      { id: "piece-2", kind: "cuboid", appearance: "primary", center: { x: 5.0, y: (8 / 2 ** 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 2, width: 1.2 } },
+      { id: "piece-3", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: (8 / 2 ** 3) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 3, width: 1.2 } },
+      { id: "piece-4", kind: "cuboid", appearance: "answer", center: { x: 10.0, y: (8 / 2 ** 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "piece-0", at: { x: 0, y: 8.5, z: 0 }, placement: "above" },
+      { key: "last", objectId: "piece-4", at: { x: 10, y: 1, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="8" />,
+    last: <InlineMath math="8/2^4=0{,}5" />,
   }}
 />
 

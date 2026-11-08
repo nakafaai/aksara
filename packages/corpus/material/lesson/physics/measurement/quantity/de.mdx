@@ -48,18 +48,6 @@ v &= \frac{s}{t} \\
 \dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
 \end{aligned}" />
 
-Die Geschwindigkeit folgt demselben Muster wie die Fläche, gebaut aus zwei Basisgrößen.
-
-<Mermaid
-  title="Geschwindigkeit aus Basisgrößen"
-  description="Strecke und Zeit verbinden sich zur Geschwindigkeit, ihrer SI-Einheit und ihrer Dimension."
-  chart={`flowchart TD
-    A["Strecke s"] --> C["Geschwindigkeit v = s / t"]
-    B["Zeit t"] --> C
-    C --> D["Einheit: m / s = m s^-1"]
-    C --> E["Dimension: L T^-1"]`}
-/>
-
 ## Dimensionen und Formelprüfung
 
 Eine Dimension zeigt in kompakter Form, <Highlight>aus welchen Grundgrößen eine Größe aufgebaut ist</Highlight>. Sie ersetzt keine Einheit, hilft aber dabei, Formeln auf Plausibilität zu prüfen.
@@ -85,45 +73,6 @@ A &= l \times w \\
 &= 0{,}30 \text{ m} \times 0{,}20 \text{ m} \\
 &= 0{,}060 \text{ m}^2
 \end{aligned}" />
-
-Die Szene unten zeichnet das Blatt mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Zähl die kleinen Quadrate: <InlineMath math="3" /> entlang der Länge und <InlineMath math="2" /> entlang der Breite ergeben <InlineMath math="6" /> Quadrate. Jedes Quadrat hat <InlineMath math="0{,}10\text{ m}\times0{,}10\text{ m}=0{,}010\text{ m}^2" />, also ergeben sechs davon <InlineMath math="0{,}060\text{ m}^2" />, genau wie die Formel. Deshalb ist die Fläche eine Größe, die aus zwei Längen entsteht.
-
-<LineEquation
-  title="Fläche in Quadraten gezählt"
-  description="Das Blatt Papier mit einem Gitterschritt pro 0,10 m. Jedes kleine Quadrat hat 0,010 m² Fläche."
-  data={(() => {
-    // One grid step is 0.10 m. The sheet is l = 0.30 m by w = 0.20 m.
-    const step = 0.1;
-    const length = 0.3;
-    const width = 0.2;
-    const columns = Math.round(length / step);
-    const rows = Math.round(width / step);
-    const tile = (from, to) => ({
-      points: [from, to].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-    });
-    return [
-      ...Array.from({ length: columns - 1 }, (_, i) => tile([(i + 1) * step, 0], [(i + 1) * step, width])),
-      ...Array.from({ length: rows - 1 }, (_, i) => tile([0, (i + 1) * step], [length, (i + 1) * step])),
-      {
-        points: [[0, 0], [length, 0], [length, width], [0, width], [0, 0]].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="l=0{,}30\text{ m}" />, at: 0, offset: [length / step / 2, -0.4, 0], anchorX: "center" },
-          { text: <InlineMath math="w=0{,}20\text{ m}" />, at: 1, offset: [0.9, width / step / 2, 0], anchorX: "center" },
-          { text: <InlineMath math={`${columns}\\times${rows}=${columns * rows}\\text{ Quadrate}`} />, at: 3, offset: [length / step / 2, 0.45, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.5, 1, 6]}
-  cameraTarget={[1.5, 1, 0]}
-/>
 
 Der Wert <InlineMath math="0{,}060 \text{ m}^2" /> ist der Größenwert der Fläche. Weil die Fläche aus <InlineMath math="2" /> Längengrößen aufgebaut ist, gehört sie zu den **abgeleiteten Größen**.
 

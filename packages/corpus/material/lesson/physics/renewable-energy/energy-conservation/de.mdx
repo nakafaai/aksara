@@ -68,43 +68,6 @@ E_p &= mgh \\
 
 Wenn keine Energie an die Umgebung gelangt, werden die <InlineMath math="120 \text{ J}" /> vollständig in kinetische Energie des Wassers umgewandelt. In einer realen Anlage gelangt dagegen ein Teil als Wärme, Schall oder Vibration an die Umgebung.
 
-Verfolge das fallende Wasser im Diagramm unten, von <InlineMath math="h=12\text{ m}" /> rechts bis zum Boden links. Die orange potenzielle Energie nimmt genau so stark ab, wie die türkise kinetische Energie zunimmt, deshalb bleibt die violette Linie ihrer Summe immer bei <InlineMath math="120\text{ J}" />. Auf halber Höhe, bei <InlineMath math="6\text{ m}" />, teilen sich beide Formen die Energie gleich auf.
-
-<LineEquation
-  title="Potenzielle Energie wird zu kinetischer Energie"
-  description="Wasser mit 1 kg fällt aus 12 m mit g = 10 m/s² ohne Verluste. Waagrecht: Höhe in Einheiten von 2 m. Senkrecht: Energie in Einheiten von 20 J."
-  data={(() => {
-    // Water of mass 1 kg falls from 12 m with g = 10 m/s^2 and no energy leaving the system.
-    // Horizontal: height h / 2 m. Vertical: energy / 20 J.
-    const m = 1;
-    const g = 10;
-    const top = 12;
-    const heights = Array.from({ length: 13 }, (_, i) => i);
-    const line = (energy, color, text, at, offset) => ({
-      points: heights.map((h) => ({ x: h / 2, y: energy(h) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at, offset, anchorX: "center" }],
-    });
-    const half = top / 2;
-    return [
-      line((h) => m * g * h, "#bb6800", <InlineMath math="E_p=mgh" />, 10, [0.9, 0.2, 0]),
-      line((h) => m * g * (top - h), "#0d9488", <InlineMath math="E_k=mg(12\text{ m}-h)" />, 2, [0.4, 0.8, 0]),
-      line((h) => m * g * h + m * g * (top - h), "#8242e5", <InlineMath math="E_m=120\text{ J}" />, 6, [0, 0.45, 0]),
-      {
-        points: [{ x: half / 2, y: (m * g * half) / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />, at: 0, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
-/>
-
 ## Nutzenergie hängt vom Zweck des Geräts ab
 
 In einer Anlage für erneuerbare Energien ist die gewünschte Ausgabe meist **Nutzenergie**, etwa elektrische Energie. Die Energieerhaltung gilt weiterhin, doch die zugeführte Energie wird nicht vollständig in Strom umgewandelt.
@@ -123,17 +86,6 @@ E_{\text{Umgebung}}
 Die <InlineMath math="30 \text{ J}" /> sind also nicht verschwunden. Sie wurden an die Umgebung abgegeben, etwa als Wärme an der Welle, als Schall oder als Vibration der Konstruktion.
 
 [Wasserkraftwerke](https://www.energy.gov/cmei/water/how-hydropower-works) nutzen einen Höhenunterschied des Wassers, um Turbinen und Generatoren anzutreiben.
-
-Hier ist die Energiebilanz der Turbine. Die beiden Ausgänge ergeben zusammen immer den Eingang.
-
-<Mermaid
-  title="Die Energiebilanz der Turbine"
-  description="120 J aus strömendem Wasser werden zu 90 J elektrischer Energie und 30 J, die an die Umgebung gehen."
-  chart={`flowchart LR
-    A["Eingang: 120 J"] --> B["Turbine und Generator"]
-    B --> C["Nutzbare elektrische Energie: 90 J"]
-    B --> D["An die Umgebung: 30 J Wärme, Schall, Vibration"]`}
-/>
 
 ## Energieaussagen mit dem Erhaltungsgesetz prüfen
 

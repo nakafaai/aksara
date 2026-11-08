@@ -18,49 +18,6 @@ Let <InlineMath math="r_{\mathrm{use}}" /> be the human use rate and <InlineMath
 
 The symbol <InlineMath math="\gg" /> means "much greater than". To judge a fuel supply, check <Highlight>the amount available and the rate of use</Highlight>.
 
-Try the inequality with round, made-up numbers. A stock of <InlineMath math="S_0=100" /> units is used at <InlineMath math="r_{\mathrm{use}}=2" /> units per year, so it shrinks by <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> each year. If nature replaced half of what we use, the violet line would last a full <InlineMath math="100" /> years, twice as long. When <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, the orange line hits zero after only about <InlineMath math="50" /> years, almost as if nothing formed at all.
-
-<LineEquation
-  title="A Stock That Forms Too Slowly"
-  description="An illustrative stock of 100 units used at 2 units per year with two formation rates. Horizontal: time in units of 20 years. Vertical: stock in units of 20."
-  data={(() => {
-    // Illustrative stock model: S(t) = S0 - (r_use - r_form) t, cut at zero.
-    // Horizontal: years / 20. Vertical: stock / 20 units.
-    const start = 100;
-    const use = 2;
-    const stock = (form) => {
-      const empty = start / (use - form);
-      const end = Math.min(empty, 100);
-      return [0, end].map((t) => ({ x: t / 20, y: (start - (use - form) * t) / 20, z: 0 }));
-    };
-    const fast = use / 1000;
-    const slow = use / 2;
-    return [
-      {
-        points: stock(slow),
-        color: "#8242e5",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />, at: 1, offset: [0, 0.5, 0], anchorX: "center" }],
-      },
-      {
-        points: stock(fast),
-        color: "#bb6800",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />, at: 0, offset: [1.9, -0.5, 0], anchorX: "center" },
-          { text: <InlineMath math={`t=\\frac{S_0}{r_{\\mathrm{use}}-r_{\\mathrm{form}}}\\approx${Math.round(start / (use - fast))}\\text{ years}`} />, at: 1, offset: [0, 0.8, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 8]}
-  cameraTarget={[2.5, 2.5, 0]}
-/>
-
 ## Fossil Fuels and Nuclear Fuel
 
 The two main groups of non-renewable sources are fossil fuels and nuclear fuel. [**Fossil fuels**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) formed from ancient living remains that were buried, then changed by pressure and heat over millions of years.
@@ -102,35 +59,6 @@ Power plants do not all supply electricity in the same way. Nuclear plants usual
 In the U.S. electricity system, these are called [base-load, intermediate-load, and peak-load roles](https://www.eia.gov/energyexplained/electricity/electricity-in-the-us-generation-capacity-and-sales.php).
 
 This operating pattern determines whether a plant supplies steady base load, follows changes in demand, or serves a short peak. Evaluating its energy source also requires checking the fuel stock, emissions, waste, and the effects of mining or drilling.
-
-In this illustrative day, the gray line is the steady base load that a plant running at constant output can carry. The orange demand rises and falls above it, and the evening peak near 19:00 is what fast-responding plants have to cover.
-
-<LineEquation
-  title="Base Load and Peak in One Day"
-  description="An illustrative demand curve over one day above a steady base load. Horizontal: clock time in units of 2 h. Vertical: power in arbitrary units."
-  data={(() => {
-    // Illustrative daily demand peaking near 19:00 above a steady base load. Horizontal: clock time / 2 h. Vertical: power in arbitrary units.
-    const base = 2;
-    return [
-      {
-        points: [0, 12].map((x) => ({ x, y: base, z: 0 })),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Base load", at: 0, offset: [1.4, -0.35, 0], anchorX: "center" }],
-      },
-      {
-        curve: { kind: "sin", amplitude: 1.2, frequency: Math.PI / 6, phase: Math.PI / 2 - (9.5 * Math.PI) / 6, shift: 3.5, domain: [0, 12], samples: 241 },
-        color: "#bb6800",
-        showPoints: false,
-        labels: [{ text: "Evening peak", at: 190, offset: [0, 0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[6, 2.6, 9]}
-  cameraTarget={[6, 2.6, 0]}
-/>
 
 ## Risks Across the Full Energy Chain
 

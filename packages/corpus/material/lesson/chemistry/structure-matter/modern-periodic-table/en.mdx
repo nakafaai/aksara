@@ -88,6 +88,45 @@ A **group** is a vertical column. Groups are read from top to bottom and numbere
 
 Elements in one group are not identical. In the main groups, similar numbers and arrangements of valence electrons often produce similar reaction patterns.
 
+Count the elements in each period of the modern table and a pattern appears: <InlineMath math="2, 8, 8, 18, 18, 32, 32" />. Each column below is one period, one grid step for <InlineMath math="4" /> elements. The jumps to <InlineMath math="18" /> and <InlineMath math="32" /> are where the transition metals and then the lanthanides and actinides join.
+
+<MathVisual
+  title="Elements in Each Period"
+  description="The number of elements in periods 1 to 7 of the modern periodic table. One grid step up is 4 elements."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 14, y: 8, z: 15 }, target: { x: 6, y: 3, z: 0 } },
+    objects: [
+      { id: "period-1", kind: "cuboid", appearance: "construction", center: { x: 0, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "period-2", kind: "cuboid", appearance: "construction", center: { x: 2, y: (8 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "period-3", kind: "cuboid", appearance: "construction", center: { x: 4, y: (8 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "period-4", kind: "cuboid", appearance: "construction", center: { x: 6, y: (18 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 18 / 4, width: 1.2 } },
+      { id: "period-5", kind: "cuboid", appearance: "construction", center: { x: 8, y: (18 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 18 / 4, width: 1.2 } },
+      { id: "period-6", kind: "cuboid", appearance: "construction", center: { x: 10, y: (32 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 4, width: 1.2 } },
+      { id: "period-7", kind: "cuboid", appearance: "construction", center: { x: 12, y: (32 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "period-1", at: { x: 0, y: 1.0, z: 0 }, placement: "above" },
+      { key: "p2", objectId: "period-2", at: { x: 2, y: 2.5, z: 0 }, placement: "above" },
+      { key: "p3", objectId: "period-3", at: { x: 4, y: 2.5, z: 0 }, placement: "above" },
+      { key: "p4", objectId: "period-4", at: { x: 6, y: 5.0, z: 0 }, placement: "above" },
+      { key: "p5", objectId: "period-5", at: { x: 8, y: 5.0, z: 0 }, placement: "above" },
+      { key: "p6", objectId: "period-6", at: { x: 10, y: 8.5, z: 0 }, placement: "above" },
+      { key: "p7", objectId: "period-7", at: { x: 12, y: 8.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p1: <InlineMath math="2" />,
+    p2: <InlineMath math="8" />,
+    p3: <InlineMath math="8" />,
+    p4: <InlineMath math="18" />,
+    p5: <InlineMath math="18" />,
+    p6: <InlineMath math="32" />,
+    p7: <InlineMath math="32" />,
+  }}
+/>
+
 ## Colors Mark Element Regions
 
 The periodic table also divides elements into regions.
@@ -119,3 +158,15 @@ Use the periodic-table model in the interactive card to check your own answers.
 | Why do main-group elements in one group often have similar chemical properties? | Main-group elements in the same group usually have the same number of valence electrons, so they often react in similar ways. |
 
 The [modern periodic table](https://iupac.org/what-we-do/periodic-table-of-elements/) lists element names and atomic numbers. Arranging the elements by atomic number <Highlight>into periods and groups reveals recurring patterns</Highlight>.
+
+Reading any box of the table takes the same three steps.
+
+<Mermaid
+  title="Reading an Element's Position"
+  description="The atomic number orders the elements, the row gives the period and the column gives the group."
+  chart={`flowchart LR
+    A["Atomic number"] --> B["Position in order"]
+    B --> C["Row: period"]
+    B --> D["Column: group"]
+    D --> E["Similar chemical behavior in a group"]`}
+/>

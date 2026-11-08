@@ -102,6 +102,35 @@ Semua isotop hidrogen memiliki <InlineMath math="1" /> proton. Karena jumlah pro
 
 Deuterium kadang ditulis <InlineMath math="\mathrm{D}" />, dan tritium kadang ditulis <InlineMath math="\mathrm{T}" />. Kedua simbol singkat itu tidak berarti unsur baru. Deuterium dan tritium tetap hidrogen karena jumlah protonnya tetap <InlineMath math="1" />.
 
+Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di belakang dan neutron berwarna abu-abu di depan. Kolom protonnya tidak pernah berubah, itulah yang membuat semuanya tetap hidrogen. Hanya kolom neutronnya yang bertambah, dari <InlineMath math="0" /> ke <InlineMath math="1" /> lalu <InlineMath math="2" />, dan nomor massanya ikut naik.
+
+<MathVisual
+  title="Tiga Isotop Hidrogen"
+  description="Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan 1 partikel."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
+      { key: "two", objectId: "two-n", at: { x: 2.5, y: 1.5, z: 0.75 }, placement: "above" },
+      { key: "three", objectId: "three-n", at: { x: 5, y: 2.5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="{}^{1}\mathrm{H}:\ n^0=0" />,
+    two: <InlineMath math="{}^{2}\mathrm{H}:\ n^0=1" />,
+    three: <InlineMath math="{}^{3}\mathrm{H}:\ n^0=2" />,
+  }}
+/>
+
 ## Isotop Karbon Berbeda dalam Jumlah Neutron
 
 Karbon selalu memiliki <InlineMath math="6" /> proton. Dari <InlineMath math="{}^{12}_{6}\mathrm{C}" /> sampai <InlineMath math="{}^{14}_{6}\mathrm{C}" />, jumlah neutron bertambah dari <InlineMath math="6" /> menjadi <InlineMath math="8" />.
@@ -130,6 +159,18 @@ Jika atomnya netral, elektron tetap sama dengan proton:
 <BlockMath math="\text{atom netral} \Rightarrow e^- = p^+" />
 
 Jadi, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> netral memiliki <InlineMath math="6" /> proton, <InlineMath math="6" /> elektron, dan <InlineMath math="8" /> neutron.
+
+Tanyakan jumlah partikel mana yang berubah, maka namanya mengikuti.
+
+<Mermaid
+  title="Isotop atau Ion"
+  description="Neutron berbeda dengan proton yang sama menghasilkan isotop. Elektron yang berbeda menghasilkan ion."
+  chart={`flowchart TD
+    A["Unsur sama, proton sama"] --> B["Jumlah neutron berbeda"]
+    A --> C["Jumlah elektron berbeda"]
+    B --> D["Isotop: nomor massa berbeda"]
+    C --> E["Ion: muatan tidak nol"]`}
+/>
 
 ## Kegunaan Isotop
 

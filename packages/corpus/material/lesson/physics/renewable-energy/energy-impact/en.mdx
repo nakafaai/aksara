@@ -22,19 +22,6 @@ Start with exploration of the resource, then its extraction, conversion, distrib
 
 Energy systems can affect mines, wells, dams, transmission lines, solar panels, turbines, batteries, air, water, soil, and nearby communities at different stages of the energy chain.
 
-Here is that chain, stage by stage.
-
-<Mermaid
-  title="The Stages of an Energy Chain"
-  description="Each stage from exploration to residue is a place to check impacts."
-  chart={`flowchart LR
-    A["Exploration"] --> B["Extraction"]
-    B --> C["Conversion"]
-    C --> D["Distribution"]
-    D --> E["Use"]
-    E --> F["Residues and end of life"]`}
-/>
-
 ## Assess Impacts across the Full Energy Chain
 
 **Environmental impact** means a change in air, water, soil, living things, or landscape caused by an activity. **Emission** means matter or energy released into the environment, such as exhaust gas from burning fuel.
@@ -50,51 +37,6 @@ Nearly every part of the [electricity system](https://www.epa.gov/energy/about-u
 | Use | Energy runs devices, transportation, homes, or industry. | Check device efficiency, use patterns, and waste left when equipment reaches the end of its service life. |
 
 For each stage, record the magnitude, duration, affected area, and available evidence. A short, visible impact may be less severe than one that lasts for years or affects a much larger area.
-
-Energy losses are one impact you can measure stage by stage. Take round, illustrative efficiencies: the power plant turns <InlineMath math="35\%" /> of the fuel energy into electricity, and the grid delivers <InlineMath math="95\%" /> of that. In the scene below, each column is still <InlineMath math="100\text{ J}" /> tall, because energy is conserved. Only the split changes: the teal part is the energy still useful, the gray part is the heat already released to the surroundings. Rotate it and compare how much gray appears at the conversion stage.
-
-<LineEquation
-  title="What Is Left of 100 J along the Chain"
-  description="An illustrative energy chain with a conversion efficiency of 0.35 and a grid efficiency of 0.95. One grid step up is 20 J."
-  data={(() => {
-    // Illustrative chain per 100 J of fuel energy: conversion efficiency 0.35, grid efficiency 0.95.
-    // Each column stacks the energy still useful (teal) under the energy already lost as heat (slate).
-    // One grid step up is 20 J, so every column is 100 J tall.
-    const input = 100;
-    const stages = [
-      { x: 0, useful: input },
-      { x: 2.5, useful: input * 0.35 },
-      { x: 5, useful: input * 0.35 * 0.95 },
-    ];
-    const block = (x, bottom, energy, color) => ({
-      kind: "cuboid",
-      center: { x, y: (bottom + energy / 2) / 20, z: 0 },
-      length: 1.2,
-      width: 1.2,
-      height: energy / 20,
-      color,
-    });
-    const write = (value) => `${Number(value.toFixed(2))}`.replace(".", ".");
-    return [
-      ...stages.flatMap(({ x, useful }) => [
-        block(x, 0, useful, "#0d9488"),
-        ...(useful < input ? [block(x, useful, input - useful, "#64748b")] : []),
-      ]),
-      ...stages.map(({ x, useful }) => ({
-        points: [{ x, y: -0.5, z: 0.6 }],
-        showPoints: false,
-        labels: [{ text: <InlineMath math={`${write(useful)}\\text{ J}`} />, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-      })),
-      ...["Fuel", "Power plant", "Home"].map((name, i) => ({
-        points: [{ x: i * 2.5, y: input / 20 + 0.5, z: 0.6 }],
-        showPoints: false,
-        labels: [{ text: name, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-      })),
-    ];
-  })()}
-  cameraPosition={[3.5, 3.5, 10]}
-  cameraTarget={[2.5, 2.3, 0]}
-/>
 
 ## Impacts Differ by Source and Stage
 
@@ -117,20 +59,6 @@ In open-pit coal mining, layers of soil and rock above the coal deposit can be r
 [Coal mining](https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php) can affect land, water, air, and nearby habitats.
 
 When examining a mining area, ask what soil is moved, where water flows, where wind carries the dust, and whether the land can be restored after the activity ends.
-
-Turn those questions into a path you can walk through at any mine.
-
-<Mermaid
-  title="Questions at an Open Pit Mine"
-  description="Follow the soil, the water and the dust, then ask whether the land can be restored."
-  chart={`flowchart TD
-    A["Open pit coal mine"] --> B["Which soil and rock are moved?"]
-    A --> C["Where does the water flow?"]
-    A --> D["Where does the wind carry dust?"]
-    B --> E["Can the land be restored afterwards?"]
-    C --> E
-    D --> E`}
-/>
 
 ## Compare Benefits and Impacts at Every Stage
 

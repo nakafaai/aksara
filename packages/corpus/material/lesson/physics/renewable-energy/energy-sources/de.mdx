@@ -20,44 +20,6 @@ Verfolge die Energie von ihrer Quelle durch eine [Umwandlungsanlage](/de/faecher
 
 Eine erneuerbare Energiequelle wird durch natürliche Prozesse <Highlight>im menschlichen Zeitmaßstab wieder aufgefüllt</Highlight>. Sie ist jedoch nicht jederzeit verfügbar. Sonnenlicht hängt von Tag und Wetter ab, Wind von den Luftbedingungen und fließendes Wasser von der Jahreszeit und davon, wie viel Wasser sich tatsächlich bewegt.
 
-Am Wind siehst du, wie stark „gerade verfügbar“ schwanken kann. Die Leistung, die der Wind durch einen Rotor mit der Fläche <InlineMath math="A" /> trägt, ist <InlineMath math="P=\tfrac12\rho Av^3" />, weil schnellere Luft jede Sekunde mehr Kilogramm heranbringt und jedes Kilogramm mehr Energie trägt. Im Diagramm unten hat der Rotor einen Radius von <InlineMath math="1\text{ m}" />, und die Luft hat <InlineMath math="\rho=1{,}2\text{ kg/m}^3" />. Vergleich die beiden Punkte: Verdoppelt sich die Windgeschwindigkeit von <InlineMath math="4" /> auf <InlineMath math="8\text{ m/s}" />, wird die Leistung <InlineMath math="2^3=8" />-mal so groß.
-
-<LineEquation
-  title="Windleistung hängt von der Windgeschwindigkeit ab"
-  description="Leistung des Windes durch einen Rotor mit 1 m Radius bei einer Luftdichte von 1,2 kg/m³. Waagrecht: Windgeschwindigkeit in Einheiten von 2 m/s. Senkrecht: Leistung in Einheiten von 500 W."
-  data={(() => {
-    // Power in the wind through a rotor of radius 1 m: P = (1/2) rho A v^3, rho = 1.2 kg/m^3.
-    // Horizontal: v / 2 m/s. Vertical: P / 500 W.
-    const rho = 1.2;
-    const area = Math.PI * 1 ** 2;
-    const power = (v) => 0.5 * rho * area * v ** 3;
-    const samples = 241;
-    const marked = (v, color, offset) => ({
-      points: [{ x: v / 2, y: power(v) / 500, z: 0 }],
-      color,
-      showPoints: true,
-      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ P\\approx${Math.round(power(v))}\\text{ W}`} />, at: 0, offset, anchorX: "center" }],
-    });
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const v = (10 * i) / (samples - 1);
-          return { x: v / 2, y: power(v) / 500, z: 0 };
-        }),
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="P=\tfrac12\rho Av^3" />, at: 216, offset: [-1.5, 0.4, 0], anchorX: "center" }],
-      },
-      marked(4, "#bb6800", [1.6, 0.2, 0]),
-      marked(8, "#c026d3", [-1.9, 0.2, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 1.9, 7.5]}
-  cameraTarget={[2.5, 1.9, 0]}
-/>
-
 <Mermaid
   title="Bedingungen für die Verfügbarkeit von Energie"
   description="Die Darstellung trennt natürliche Erneuerung von den Standort-, Wetter- und Technikbedingungen der tatsächlichen Nutzung."
@@ -108,15 +70,3 @@ Bei einem Dampfkraftwerk, Windkraftwerk, Solarkraftwerk, Wasserkraftwerk oder Ge
 Bestimme die Quelle und ihre anfängliche Energieform. Betrachte anschließend die Anlage, die daraus elektrische Energie erzeugt.
 
 Nach Klärung der Umwandlungskette lassen sich physikalische Bedingungen, Kosten, Emissionen, Flächen- oder Wasserbedarf und Wartung vergleichen.
-
-Hier ist der vollständige Umwandlungsweg eines Dampfkraftwerks, die Form, die du für jede Quelle vergleichst.
-
-<Mermaid
-  title="In einem Dampfkraftwerk"
-  description="Wärme aus Brennstoff oder Geothermalfluid erzeugt Dampf, der Dampf dreht eine Turbine, und der Generator liefert Strom."
-  chart={`flowchart LR
-    A["Wärmequelle: Brennstoff oder Geothermalfluid"] --> B["Dampf"]
-    B --> C["Turbine"]
-    C --> D["Generator"]
-    D --> E["Elektrische Energie"]`}
-/>

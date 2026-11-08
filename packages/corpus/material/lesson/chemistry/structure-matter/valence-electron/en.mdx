@@ -110,6 +110,51 @@ Examples:
 
 Do not add all electrons when looking for valence electrons. Calcium has <InlineMath math="20" /> total electrons, but only <InlineMath math="2" /> valence electrons because only the outermost occupied shell is counted.
 
+Here is chlorine, <InlineMath math="2, 8, 7" />. Its outermost occupied shell is M, and the seven fuchsia electrons there are its valence electrons, one short of a full set of eight.
+
+<MathVisual
+  title="Chlorine's Seven Valence Electrons"
+  description="Chlorine's 17 electrons in shells K, L and M, with the valence electrons in fuchsia."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 7) } },
+      { id: "electron-m-2", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (1 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (1 + 0.125)) / 7) } },
+      { id: "electron-m-3", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (2 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (2 + 0.125)) / 7) } },
+      { id: "electron-m-4", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (3 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (3 + 0.125)) / 7) } },
+      { id: "electron-m-5", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (4 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (4 + 0.125)) / 7) } },
+      { id: "electron-m-6", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (5 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (5 + 0.125)) / 7) } },
+      { id: "electron-m-7", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (6 + 0.125)) / 7), y: 3 * Math.sin((2 * Math.PI * (6 + 0.125)) / 7) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 7" />,
+  }}
+/>
+
 ## Patterns in the Same Group
 
 **Main-group elements** in the same group often have the same number of valence electrons. That is why their chemical properties can be similar.
@@ -186,3 +231,14 @@ The table lists the shell configuration and the valence-electron count for each 
 Elements <InlineMath math="\mathrm{B}" />, <InlineMath math="\mathrm{Al}" />, <InlineMath math="\mathrm{Ga}" />, <InlineMath math="\mathrm{In}" />, and <InlineMath math="\mathrm{Tl}" /> are in group <InlineMath math="13" />. The quick main-group pattern is <InlineMath math="3" /> valence electrons.
 
 <InlineMath math="\mathrm{Na}" /> and <InlineMath math="\mathrm{K}" /> sit in group <InlineMath math="1" />, so the same pattern gives each <InlineMath math="1" /> valence electron that is easily lost, and both tend to form <InlineMath math="+1" /> ions. Argon is less reactive than chlorine because it has a stable **valence octet**. An octet means eight valence electrons, not that shell M has reached its full capacity of 18. Chlorine often gains one electron when forming an ion or shares electrons in covalent bonds.
+
+Use these steps for any main-group atom.
+
+<Mermaid
+  title="Finding Valence Electrons"
+  description="Write the shell configuration, find the outermost occupied shell and count its electrons."
+  chart={`flowchart LR
+    A["Atomic number"] --> B["Shell configuration"]
+    B --> C["Outermost occupied shell"]
+    C --> D["Count its electrons: valence electrons"]`}
+/>

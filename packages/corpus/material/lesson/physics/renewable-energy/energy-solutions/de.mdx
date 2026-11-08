@@ -20,18 +20,6 @@ Gehe vom Bedarf aus, <Highlight>wähle eine passende örtliche Quelle</Highlight
 
 Kosten, Sicherheit, Wartung und Umweltschutz müssen in jeder Stufe geprüft werden. Auch die Quelle und die Anlagen müssen zum Standort passen.
 
-Hier ist dieser Plan als ein zusammenhängender Weg.
-
-<Mermaid
-  title="Vom Bedarf zur Energiedienstleistung"
-  description="Ein Plan beginnt beim Bedarf und endet bei der Dienstleistung, und Kosten, Sicherheit, Wartung und Umwelt werden bei jedem Schritt geprüft."
-  chart={`flowchart LR
-    A["Energiebedarf"] --> B["Passende lokale Quelle"]
-    B --> C["Umwandlung"]
-    C --> D["Verteilung oder Speicherung"]
-    D --> E["Energiedienstleistung"]`}
-/>
-
 ## Kleine Wasserkraftanlagen in Plaosan
 
 Ein Mikro-Wasserkraftwerk ist ein Wasserkraftsystem mit vergleichsweise kleiner Leistung. „Mikro“ bezeichnet eine Kapazität, die deutlich unter der eines großen Wasserkraftwerks liegt.
@@ -60,44 +48,6 @@ Die Formel schätzt die nutzbare Leistung aus Wasserdichte, Gravitation, Durchfl
 Für ein **fiktives Rechenbeispiel** wählen wir die Wasserdichte <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, den Durchfluss <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, die Fallhöhe <InlineMath math="10 \text{ m}" /> und den Wirkungsgrad <InlineMath math="0{,}7" />. Diese Werte sind keine Messwerte des anschließend beschriebenen Projekts.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
-
-Dreh die Fläche unten. Jeder Punkt darauf ist die Formel mit einem Volumenstrom nach rechts und einer Fallhöhe in den Bildschirm hinein, und seine Höhe ist die Leistung in Kilowatt. Der fuchsiafarbene Punkt ist das hypothetische Beispiel oben, <InlineMath math="1\,400\text{ W}" />. Folgst du einer orangen Linie, steigt die Leistung gleichmäßig mit der Fallhöhe, entlang einer türkisen Linie steigt sie mit dem Volumenstrom. In der hinteren Ecke, wo das meiste Wasser am tiefsten fällt, liegt die Fläche am höchsten.
-
-<LineEquation
-  title="Mikrowasserkraft aus Volumenstrom und Fallhöhe"
-  description="P = ρgQhη mit ρ = 1000 kg/m³, g = 10 m/s² und η = 0,7. Nach rechts: Volumenstrom in Einheiten von 0,01 m³/s. In den Bildschirm: Fallhöhe in Einheiten von 5 m. Nach oben: Leistung in kW."
-  data={(() => {
-    // P = rho g Q h eta with rho = 1000 kg/m^3, g = 10 m/s^2, eta = 0.7.
-    // x: flow Q in units of 0.01 m^3/s. z: head h in units of 5 m. y: power in kW.
-    const power = (Q, h) => 1000 * 10 * Q * h * 0.7;
-    const flows = [0, 0.01, 0.02, 0.03, 0.04];
-    const heads = [0, 5, 10, 15, 20];
-    const at = (Q, h) => ({ x: Q * 100, y: power(Q, h) / 1000, z: h / 5 });
-    const mesh = (points, color) => ({ points, color, showPoints: false, smooth: false });
-    return [
-      ...heads.map((h) => mesh([at(0, h), at(0.04, h)], "#0d9488")),
-      ...flows.map((Q) => mesh([at(Q, 0), at(Q, 20)], "#bb6800")),
-      {
-        points: [at(0.02, 10)],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="1\,400\text{ W}" />, at: 0, offset: [0, 0.7, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0.04, 0)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0, 20)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="h" />, at: 0, offset: [0, 0, 0.6], anchorX: "center" }],
-      },
-    ];
-  })()}
-  cameraPosition={[9, 7, 9]}
-  cameraTarget={[2, 1.5, 2]}
-/>
 
 Der [Betreiber des Mikro-Wasserkraftprojekts am Kali-Pedati-Wasserfall](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) gibt eine installierte Leistung von <InlineMath math="7 \text{ kW}" /> an. Eine Gruppe aus <InlineMath math="14" /> Haushalten verwaltet die Anlage, und derselbe Betreiber nennt etwa <InlineMath math="500 \text{ W}" /> pro Haushalt. Prüfe, ob beide Angaben zusammenpassen: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, also <InlineMath math="7 \text{ kW}" />. Diese Zahlen stammen vom Betreiber und nicht aus unabhängigen Langzeitmessungen. Solche Stromproduktionsdaten wären nötig, um die Leistung der Anlage über längere Zeit zu beurteilen.
 
@@ -129,18 +79,6 @@ Die Deckung des Energiebedarfs steht in direktem Zusammenhang mit SDG <InlineMat
 SDG <InlineMath math="7" /> zielt darauf, allen Menschen [Zugang zu bezahlbarer, zuverlässiger, nachhaltiger und moderner Energie](https://sdgs.un.org/goals/goal7) zu ermöglichen.
 
 Die vier Bedingungen lassen sich mit Fragen prüfen. Können Haushalte und öffentliche Einrichtungen die Energie bezahlen und zugleich andere Grundbedürfnisse decken? Steht die Energieversorgung zur Verfügung, wenn sie benötigt wird? Kann das Energiesystem weiterarbeiten und dabei Menschen, Ökosysteme und künftige Generationen schützen? Ist die Energieversorgung sicher und leistungsfähig genug für Beleuchtung, Kommunikation, produktive Arbeit und Gesundheitsversorgung?
-
-Prüf die vier Bedingungen mit je einer Frage.
-
-<Mermaid
-  title="Vier Fragen zum Energiezugang"
-  description="SDG 7 verlangt bezahlbare, verlässliche, nachhaltige und moderne Energie. Jede Bedingung wird zu einer Frage."
-  chart={`flowchart TD
-    A["Energiezugang für alle"] --> B["Bezahlbar: reicht das Geld noch für anderes Nötige?"]
-    A --> C["Verlässlich: ist sie da, wenn man sie braucht?"]
-    A --> D["Nachhaltig: hält sie ohne Schaden?"]
-    A --> E["Modern: betreibt sie heutige Geräte und Dienste?"]`}
-/>
 
 ## Ein prüfbarer lokaler Energieplan
 

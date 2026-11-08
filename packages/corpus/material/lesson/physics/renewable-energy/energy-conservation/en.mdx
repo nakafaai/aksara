@@ -68,43 +68,6 @@ E_p &= mgh \\
 
 If no energy crosses into the surroundings, that <InlineMath math="120 \text{ J}" /> changes into the kinetic energy of the water. In a real device, some energy moves to the surroundings as heat, sound, and vibration.
 
-Follow the water down the graph below, from <InlineMath math="h=12\text{ m}" /> on the right to the ground on the left. The orange potential energy shrinks by exactly as much as the teal kinetic energy grows, so the violet line for their sum never moves from <InlineMath math="120\text{ J}" />. Halfway down, at <InlineMath math="6\text{ m}" />, the two forms share the energy equally.
-
-<LineEquation
-  title="Potential Energy Turns into Kinetic Energy"
-  description="Water of 1 kg falling from 12 m with g = 10 m/s² and no losses. Horizontal: height in units of 2 m. Vertical: energy in units of 20 J."
-  data={(() => {
-    // Water of mass 1 kg falls from 12 m with g = 10 m/s^2 and no energy leaving the system.
-    // Horizontal: height h / 2 m. Vertical: energy / 20 J.
-    const m = 1;
-    const g = 10;
-    const top = 12;
-    const heights = Array.from({ length: 13 }, (_, i) => i);
-    const line = (energy, color, text, at, offset) => ({
-      points: heights.map((h) => ({ x: h / 2, y: energy(h) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at, offset, anchorX: "center" }],
-    });
-    const half = top / 2;
-    return [
-      line((h) => m * g * h, "#bb6800", <InlineMath math="E_p=mgh" />, 10, [0.9, 0.2, 0]),
-      line((h) => m * g * (top - h), "#0d9488", <InlineMath math="E_k=mg(12\text{ m}-h)" />, 2, [0.4, 0.8, 0]),
-      line((h) => m * g * h + m * g * (top - h), "#8242e5", <InlineMath math="E_m=120\text{ J}" />, 6, [0, 0.45, 0]),
-      {
-        points: [{ x: half / 2, y: (m * g * half) / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />, at: 0, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
-/>
-
 ## Useful Energy Depends on the Device Purpose
 
 In renewable-energy technology, the desired output is usually **useful energy**, such as electrical energy. Energy conservation still applies, but the energy input does not all become electricity.
@@ -123,17 +86,6 @@ E_{\text{surroundings}}
 So the <InlineMath math="30 \text{ J}" /> has not vanished. It may leave through heat transfer from the shaft, sound carried away through the air, or vibration transferred to surrounding structures.
 
 [Hydropower plants](https://www.energy.gov/cmei/water/how-hydropower-works) use a difference in water height to drive turbines and generators.
-
-Here is the turbine's energy balance. The two outputs always add up to the input.
-
-<Mermaid
-  title="The Turbine's Energy Balance"
-  description="120 J of flowing water becomes 90 J of electrical energy and 30 J transferred to the surroundings."
-  chart={`flowchart LR
-    A["Input: 120 J"] --> B["Turbine and generator"]
-    B --> C["Useful electrical energy: 90 J"]
-    B --> D["To surroundings: 30 J heat, sound, vibration"]`}
-/>
 
 ## Testing Energy Claims with Conservation
 

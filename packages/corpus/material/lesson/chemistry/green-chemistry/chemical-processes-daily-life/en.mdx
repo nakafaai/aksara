@@ -164,6 +164,36 @@ The number of atoms of each element is now equal on both sides of the equation.
 
 To balance the equation, keep each chemical formula unchanged, <Highlight>adjust only the coefficients</Highlight>, and confirm that both sides contain the same number of atoms of every element.
 
+Here is the balanced photosynthesis equation counted atom by atom, with the reactants at the back, the products at the front and one grid step for <InlineMath math="4" /> atoms. Six carbon, twelve hydrogen and eighteen oxygen atoms on each side: light rearranges them, it doesn't create any.
+
+<MathVisual
+  title="Atoms in Balanced Photosynthesis"
+  description="6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ with carbon (gray), hydrogen (violet) and oxygen (orange). One grid step up is 4 atoms."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: ((6 * 2) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2) / 4, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (12 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 * 2 + 6 * 1) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2 + 6 * 1) / 4, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 + 6 * 2) / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (6 + 6 * 2) / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.5, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 18=18" />,
+  }}
+/>
+
 ## Evaluate the Process with Green Chemistry
 
 After we can read a reaction, we can judge whether the process fits green chemistry principles. A process can be useful but still not green if it **forms pollutants**, uses unnecessary hazardous substances, or needs too much energy.
@@ -192,3 +222,17 @@ Imagine three ways to handle dry leaves in a yard.
 Composting is a waste-treatment method, and it counts as green chemistry only when a chemical product or process is deliberately redesigned to prevent harm at the source.
 
 To analyze an everyday chemical process, identify the substances that enter, the changes that occur, the substances that leave, and the hazards that can be prevented at the source.
+
+Judge each way of handling the leaves by what it releases.
+
+<Mermaid
+  title="Three Ways to Handle Dry Leaves"
+  description="Each choice leads to different substances, so each gets a different green chemistry verdict."
+  chart={`flowchart TD
+    A["Dry leaves"] --> B["Open burning"]
+    A --> C["Composting"]
+    A --> D["Mixed trash"]
+    B --> E["Smoke and pollution"]
+    C --> F["Compost: treats existing waste"]
+    D --> G["More waste to handle"]`}
+/>

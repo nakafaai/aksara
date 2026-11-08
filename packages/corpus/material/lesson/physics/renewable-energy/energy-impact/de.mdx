@@ -22,19 +22,6 @@ Beginne bei der Erkundung der Quelle und gehe dann die Gewinnung, Umwandlung, Ve
 
 Auswirkungen können in Kraftwerken, Minen, Bohrstellen, Staudämmen, Übertragungsleitungen, Solarmodulen, Turbinen und Batterien entstehen. Auch Luft, Wasser, Boden und die Menschen in der Umgebung können betroffen sein.
 
-Hier ist diese Kette, Stufe für Stufe.
-
-<Mermaid
-  title="Die Stufen einer Energiekette"
-  description="Jede Stufe von der Erkundung bis zum Rückstand ist ein Ort, um Folgen zu prüfen."
-  chart={`flowchart LR
-    A["Erkundung"] --> B["Gewinnung"]
-    B --> C["Umwandlung"]
-    C --> D["Verteilung"]
-    D --> E["Nutzung"]
-    E --> F["Rückstände und Lebensende"]`}
-/>
-
 ## Auswirkungen entlang der gesamten Energiekette bewerten
 
 Eine **Umweltauswirkung** ist eine Veränderung von Luft, Wasser, Boden, Lebewesen oder Landschaft, die durch eine Aktivität entsteht. Eine **Emission** ist ein Stoff oder eine Energieform, die in die Umwelt gelangt, etwa Abgas bei der Verbrennung eines Brennstoffs.
@@ -50,51 +37,6 @@ Nahezu jeder Teil des [Elektrizitätssystems](https://www.epa.gov/energy/about-u
 | Nutzung | Energie versorgt Geräte, Verkehrsmittel, Haushalte oder Industrieanlagen. | Wirkungsgrad der Geräte, Nutzungsmuster und Abfälle am Ende der Nutzungsdauer |
 
 Vergleiche für jede Stufe Ausmaß, Dauer, betroffenes Gebiet und verfügbare Belege. Ein sofort sichtbarer Schaden kann kleiner sein als eine lang anhaltende oder weit verteilte Auswirkung.
-
-Energieverluste sind eine Folge, die du Stufe für Stufe messen kannst. Nimm runde Wirkungsgrade als Beispiel: Das Kraftwerk macht aus <InlineMath math="35\%" /> der Brennstoffenergie Strom, und das Netz liefert <InlineMath math="95\%" /> davon aus. In der Szene unten ist jede Säule weiterhin <InlineMath math="100\text{ J}" /> hoch, weil Energie erhalten bleibt. Nur die Aufteilung ändert sich: Der türkise Teil ist die noch nutzbare Energie, der graue Teil die Wärme, die schon an die Umgebung abgegeben wurde. Dreh die Szene und vergleich, wie viel Grau bei der Umwandlung dazukommt.
-
-<LineEquation
-  title="Was von 100 J entlang der Kette übrig bleibt"
-  description="Eine beispielhafte Energiekette mit einem Umwandlungswirkungsgrad von 0,35 und einem Netzwirkungsgrad von 0,95. Ein Gitterschritt nach oben sind 20 J."
-  data={(() => {
-    // Illustrative chain per 100 J of fuel energy: conversion efficiency 0.35, grid efficiency 0.95.
-    // Each column stacks the energy still useful (teal) under the energy already lost as heat (slate).
-    // One grid step up is 20 J, so every column is 100 J tall.
-    const input = 100;
-    const stages = [
-      { x: 0, useful: input },
-      { x: 2.5, useful: input * 0.35 },
-      { x: 5, useful: input * 0.35 * 0.95 },
-    ];
-    const block = (x, bottom, energy, color) => ({
-      kind: "cuboid",
-      center: { x, y: (bottom + energy / 2) / 20, z: 0 },
-      length: 1.2,
-      width: 1.2,
-      height: energy / 20,
-      color,
-    });
-    const write = (value) => `${Number(value.toFixed(2))}`.replace(".", "{,}");
-    return [
-      ...stages.flatMap(({ x, useful }) => [
-        block(x, 0, useful, "#0d9488"),
-        ...(useful < input ? [block(x, useful, input - useful, "#64748b")] : []),
-      ]),
-      ...stages.map(({ x, useful }) => ({
-        points: [{ x, y: -0.5, z: 0.6 }],
-        showPoints: false,
-        labels: [{ text: <InlineMath math={`${write(useful)}\\text{ J}`} />, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-      })),
-      ...["Brennstoff", "Kraftwerk", "Haushalt"].map((name, i) => ({
-        points: [{ x: i * 2.5, y: input / 20 + 0.5, z: 0.6 }],
-        showPoints: false,
-        labels: [{ text: name, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-      })),
-    ];
-  })()}
-  cameraPosition={[3.5, 3.5, 10]}
-  cameraTarget={[2.5, 2.3, 0]}
-/>
 
 ## Auswirkungen unterscheiden sich nach Quelle und Phase
 
@@ -117,20 +59,6 @@ Beim Kohletagebau können Erd- und Gesteinsschichten oberhalb der Kohlelagerstä
 [Kohleabbau](https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php) kann Land, Wasser, Luft und benachbarte Lebensräume beeinträchtigen.
 
 Prüfe in einem Bergbaugebiet die bewegte Bodenmenge, die Fließrichtung des Wassers, die Ausbreitung von Staub und die Möglichkeit, die Fläche nach dem Abbau wiederherzustellen.
-
-Mach aus diesen Fragen einen Weg, den du an jedem Tagebau durchgehen kannst.
-
-<Mermaid
-  title="Fragen an einem Tagebau"
-  description="Folge dem Boden, dem Wasser und dem Staub und frag dann, ob das Land wiederhergestellt werden kann."
-  chart={`flowchart TD
-    A["Kohletagebau"] --> B["Welcher Boden und welches Gestein werden bewegt?"]
-    A --> C["Wohin fließt das Wasser?"]
-    A --> D["Wohin trägt der Wind den Staub?"]
-    B --> E["Lässt sich das Land danach wiederherstellen?"]
-    C --> E
-    D --> E`}
-/>
 
 ## Nutzen und Auswirkungen in jeder Phase vergleichen
 

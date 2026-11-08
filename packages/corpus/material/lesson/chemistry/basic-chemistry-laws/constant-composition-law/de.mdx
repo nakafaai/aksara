@@ -30,6 +30,32 @@ Auch bei unterschiedlichen Wassermengen bleibt das Massenverhältnis des **tats�
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1{,}0080)+15{,}999 \\ &amp;=18{,}015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
+Vergleich zwei Wasserproben, Wasserstoff violett, Sauerstoff orange, ein Gitterschritt für <InlineMath math="4\ \mathrm{g}" />. Die große Probe ist doppelt so schwer, aber beide teilen sich gleich auf, etwa <InlineMath math="1:8" /> nach Masse. Genau diese feste Aufteilung meint die konstante Zusammensetzung.
+
+<MathVisual
+  title="Zwei Proben, ein Massenverhältnis"
+  description="9 g und 18 g Wasser, aufgeteilt in Wasserstoff (violett) und Sauerstoff (orange) im Verhältnis von etwa 1:8. Ein Gitterschritt nach oben sind 4 g."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 9 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "small-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1 / 4, width: 1.2 } },
+      { id: "small-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (8 / 4) / 2 + 1 / 4, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "large-h", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "large-o", kind: "cuboid", appearance: "primary", center: { x: 3, y: (16 / 4) / 2 + 2 / 4, z: 0 }, size: { length: 1.2, height: 16 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small-o", at: { x: 0, y: 2.75, z: 0 }, placement: "above" },
+      { key: "large", objectId: "large-o", at: { x: 3, y: 5.0, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    small: <InlineMath math="9\ \mathrm{g}:\ 1+8" />,
+    large: <InlineMath math="18\ \mathrm{g}:\ 2+16" />,
+  }}
+/>
+
 ## Überschüssiger Reaktant bleibt übrig
 
 Verändere im Modell die Ausgangsmassen. Je nach Mischung **bleibt Wasserstoff oder Sauerstoff übrig**. Der Wasserstoff und der Sauerstoff, die Wasser bilden, reagieren immer im Massenverhältnis <InlineMath math="1:8" />.
@@ -132,6 +158,17 @@ Das Modell zählt die Masse jedes Elements. Die folgende Gleichung zeigt, wie di
 Im Fall mit Wasserstoffüberschuss benötigen <InlineMath math="16 \mathrm{g}" /> Sauerstoff Wasserstoff im Massenverhältnis <InlineMath math="1:8" />. Berechne zuerst den reagierenden Anteil, dann den Rest:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,reagierend}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,übrig}} &=3-2=1\ \mathrm{g} \end{aligned}" />
+
+Hier ist das Beispiel mit dem Überschuss als ein Ablauf.
+
+<Mermaid
+  title="Der überschüssige Wasserstoff bleibt übrig"
+  description="16 g Sauerstoff können nur 2 g Wasserstoff nutzen, also bleibt 1 g der 3 g übrig."
+  chart={`flowchart LR
+    A["3 g H + 16 g O"] --> B["Verhältnis 1:8 nutzt 2 g H mit 16 g O"]
+    B --> C["18 g Wasser"]
+    B --> D["1 g Wasserstoff übrig"]`}
+/>
 
 ## Messdaten zu Calciumoxid prüfen
 

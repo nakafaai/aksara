@@ -142,8 +142,50 @@ Now that the oxygen mass is the same, compare the nitrogen masses:
 
 Multiplying <InlineMath math="\mathrm{N_2O}" /> to <InlineMath math="2\mathrm{N_2O}" /> puts oxygen on the same mass basis. The compound formula stays <InlineMath math="\mathrm{N_2O}" />.
 
+The scene below puts both comparisons side by side, one grid step for <InlineMath math="8\ \mathrm{g}" />. With hydrogen fixed at <InlineMath math="2\ \mathrm{g}" />, the oxygen bars stand <InlineMath math="16:32=1:2" />. With oxygen fixed at <InlineMath math="32\ \mathrm{g}" />, the nitrogen bars stand <InlineMath math="56:14=4:1" />. Each pair is a simple whole-number ratio only because one element was held fixed first.
+
+<MathVisual
+  title="Fix One Element, Compare the Other"
+  description="Orange: oxygen with 2 g of hydrogen in H₂O and H₂O₂. Violet: nitrogen with 32 g of oxygen in 2N₂O and NO₂. One grid step up is 8 g."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3.5, y: 3, z: 0 } },
+    objects: [
+      { id: "water-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "peroxide-o", kind: "cuboid", appearance: "primary", center: { x: 2, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+      { id: "dinitrogen-n", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (56 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 56 / 8, width: 1.2 } },
+      { id: "dioxide-n", kind: "cuboid", appearance: "secondary", center: { x: 7, y: (14 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 14 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-o", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "peroxide", objectId: "peroxide-o", at: { x: 2, y: 4.5, z: 0 }, placement: "above" },
+      { key: "dinitrogen", objectId: "dinitrogen-n", at: { x: 5, y: 7.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide-n", at: { x: 7, y: 2.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="\mathrm{H_2O}:\ 16" />,
+    peroxide: <InlineMath math="\mathrm{H_2O_2}:\ 32" />,
+    dinitrogen: <InlineMath math="2\mathrm{N_2O}:\ 56" />,
+    dioxide: <InlineMath math="\mathrm{NO_2}:\ 14" />,
+  }}
+/>
+
 ## Mistakes to Avoid
 
 Do not compare the total masses of water and hydrogen peroxide, because each total includes both hydrogen and oxygen. Compare only the **oxygen masses after fixing the hydrogen mass**. Water and carbon dioxide are not a suitable pair either, because their other elements differ.
 
 For one compound, the law of constant composition compares the mass ratio of its elements. For two or more compounds made from the same element pair, the law of multiple proportions compares those ratios. The resulting small whole-number ratios supported Dalton's claim that atoms combine in whole-number counts.
+
+Run every comparison through these steps so the totals don't fool you.
+
+<Mermaid
+  title="Comparing Two Compounds Correctly"
+  description="Hold one element's mass fixed, then compare the other element's masses."
+  chart={`flowchart LR
+    A["Two compounds of the same two elements"] --> B["Fix the mass of one element"]
+    B --> C["Compare the other element"]
+    C --> D["Simple whole-number ratio"]
+    A -.-> E["Never compare total masses"]`}
+/>

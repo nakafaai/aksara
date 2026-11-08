@@ -98,6 +98,33 @@ Tampilan terbuka dimulai dengan <InlineMath math="10{,}00\ \mathrm{g}" /> seng d
 
 Neraca hanya mengukur materi yang masih berada di dalam batas sistem yang dipilih. Karena <InlineMath math="1{,}00\ \mathrm{g}" /> uap belerang keluar, neraca menunjukkan <InlineMath math="11{,}00\ \mathrm{g}" />. Jika uap yang keluar tetap dimasukkan ke dalam sistem, massa totalnya tetap <InlineMath math="12{,}00\ \mathrm{g}" />.
 
+Tiga kolom di bawah adalah angka yang dibaca neraca, dengan satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Kalau semua zat tetap di dalam, kolom tertutup tetap <InlineMath math="12{,}00\ \mathrm{g}" />. Pada sistem terbuka, <InlineMath math="1{,}00\ \mathrm{g}" /> belerang keluar melewati batas sistem sebelum bereaksi, jadi neraca hanya menunjukkan <InlineMath math="11{,}00\ \mathrm{g}" />. Massanya tidak hilang, tetapi keluar dari sistem yang sedang kamu timbang.
+
+<MathVisual
+  title="Angka yang Dibaca Neraca"
+  description="10,00 g seng dan 2,00 g belerang sebelum reaksi, lalu sesudahnya dalam sistem tertutup dan terbuka. Satu kotak grid ke atas sama dengan 4 g."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "before", kind: "cuboid", appearance: "primary", center: { x: 0, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "closed", kind: "cuboid", appearance: "construction", center: { x: 3, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "open", kind: "cuboid", appearance: "warning", center: { x: 6, y: (11 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 11 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "closed", objectId: "closed", at: { x: 3, y: 3.5, z: 0 }, placement: "above" },
+      { key: "open", objectId: "open", at: { x: 6, y: 3.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="12{,}00\ \mathrm{g}" />,
+    closed: <InlineMath math="12{,}00\ \mathrm{g}" />,
+    open: <InlineMath math="11{,}00\ \mathrm{g}" />,
+  }}
+/>
+
 ## Contoh Seng dan Belerang
 
 Seorang siswa memanaskan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dengan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang. Setelah reaksi, terbentuk <InlineMath math="6{,}08\ \mathrm{g}" /> seng sulfida dan masih ada <InlineMath math="5{,}92\ \mathrm{g}" /> seng yang tidak bereaksi.
@@ -132,3 +159,14 @@ Ada tiga pertanyaan yang perlu dipisahkan.
 Persamaan reaksi harus setara karena kedua sisinya memuat jumlah atom yang sama untuk setiap unsur. Perhitungan massa mengikuti prinsip kekekalan materi.
 
 Hukum perbandingan tetap menjawab pertanyaan yang berbeda. Jika dua unsur membentuk senyawa yang sama, apakah perbandingan massanya selalu tetap?
+
+Pisahkan ketiga massa itu di cabangnya masing-masing.
+
+<Mermaid
+  title="Tiga Pertanyaan Massa"
+  description="Massa total, massa yang bereaksi, dan massa sisa menjawab pertanyaan yang berbeda."
+  chart={`flowchart TD
+    A["Percobaan Zn + S"] --> B["Total dalam sistem: 12,00 g sebelum dan sesudah"]
+    A --> C["Bereaksi: 4,08 g Zn + 2,00 g S = 6,08 g ZnS"]
+    A --> D["Sisa: 5,92 g Zn"]`}
+/>

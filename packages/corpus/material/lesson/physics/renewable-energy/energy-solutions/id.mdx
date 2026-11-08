@@ -20,18 +20,6 @@ Mulai dari kebutuhan, <Highlight>tentukan sumber lokal yang sesuai</Highlight>, 
 
 Sistem dapat gagal jika perawatan, biaya, keselamatan, atau pengelolaan dampak lingkungan tidak masuk dalam rencana. Sumber energi dan seluruh bagian pendukung sistem harus sesuai dengan kondisi lokasi.
 
-Inilah rencana itu sebagai satu jalur yang terhubung.
-
-<Mermaid
-  title="Dari Kebutuhan ke Layanan Energi"
-  description="Rencana dimulai dari kebutuhan dan berakhir pada layanan, dengan biaya, keselamatan, perawatan, dan lingkungan diperiksa di setiap langkah."
-  chart={`flowchart LR
-    A["Kebutuhan energi"] --> B["Sumber lokal yang cocok"]
-    B --> C["Konversi"]
-    C --> D["Distribusi atau penyimpanan"]
-    D --> E["Layanan energi"]`}
-/>
-
 ## Contoh Mikrohidro dari Plaosan
 
 Pembangkit Listrik Tenaga Mikrohidro (PLTMH) adalah pembangkit listrik tenaga air skala kecil. Istilah "mikro" mengacu pada kapasitas yang jauh lebih kecil daripada pembangkit listrik tenaga air besar.
@@ -60,44 +48,6 @@ Rumus tersebut memperkirakan daya dari massa jenis air, gravitasi, debit, beda t
 Untuk **contoh hitung rekaan**, ambil massa jenis air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, debit <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, beda tinggi <InlineMath math="10 \text{ m}" />, dan efisiensi <InlineMath math="0{,}7" />. Angka ini bukan hasil pengukuran proyek yang dibahas setelahnya.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
-
-Putar permukaan di bawah. Setiap titik di permukaan itu adalah rumus tadi dengan satu debit ke kanan dan satu beda tinggi ke arah dalam layar, sedangkan tingginya adalah daya dalam kilowatt. Titik fuchsia adalah contoh hipotetis di atas, <InlineMath math="1\,400\text{ W}" />. Telusuri garis oranye mana saja, dayanya naik teratur bersama beda tinggi. Telusuri garis hijau toska, dayanya naik bersama debit. Sudut terjauh, tempat air paling banyak jatuh paling tinggi, adalah bagian permukaan yang paling tinggi.
-
-<LineEquation
-  title="Daya Mikrohidro dari Debit dan Beda Tinggi"
-  description="P = ρgQhη dengan ρ = 1000 kg/m³, g = 10 m/s², dan η = 0,7. Ke kanan: debit dalam satuan 0,01 m³/s. Ke dalam layar: beda tinggi dalam satuan 5 m. Ke atas: daya dalam kW."
-  data={(() => {
-    // P = rho g Q h eta with rho = 1000 kg/m^3, g = 10 m/s^2, eta = 0.7.
-    // x: flow Q in units of 0.01 m^3/s. z: head h in units of 5 m. y: power in kW.
-    const power = (Q, h) => 1000 * 10 * Q * h * 0.7;
-    const flows = [0, 0.01, 0.02, 0.03, 0.04];
-    const heads = [0, 5, 10, 15, 20];
-    const at = (Q, h) => ({ x: Q * 100, y: power(Q, h) / 1000, z: h / 5 });
-    const mesh = (points, color) => ({ points, color, showPoints: false, smooth: false });
-    return [
-      ...heads.map((h) => mesh([at(0, h), at(0.04, h)], "#0d9488")),
-      ...flows.map((Q) => mesh([at(Q, 0), at(Q, 20)], "#bb6800")),
-      {
-        points: [at(0.02, 10)],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="1\,400\text{ W}" />, at: 0, offset: [0, 0.7, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0.04, 0)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0, 20)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="h" />, at: 0, offset: [0, 0, 0.6], anchorX: "center" }],
-      },
-    ];
-  })()}
-  cameraPosition={[9, 7, 9]}
-  cameraTarget={[2, 1.5, 2]}
-/>
 
 [Pengelola proyek PLTMH di sekitar Air Terjun Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasitas terpasang sebesar <InlineMath math="7 \text{ kW}" />. Proyek ini dikelola oleh kelompok yang terdiri atas <InlineMath math="14" /> rumah tangga, dan pengelola yang sama menyebut sekitar <InlineMath math="500 \text{ W}" /> per rumah tangga. Coba cek apakah kedua angka itu cocok: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, atau <InlineMath math="7 \text{ kW}" />. Angka tersebut berasal dari pengelola proyek. Pengukuran jangka panjang oleh pihak independen masih diperlukan untuk menilai kinerja pembangkit dari waktu ke waktu.
 
@@ -129,18 +79,6 @@ Pemenuhan kebutuhan energi berkaitan langsung dengan SDG <InlineMath math="7" />
 SDG <InlineMath math="7" /> menargetkan [**akses energi** yang terjangkau, andal, berkelanjutan, dan modern](https://sdgs.un.org/goals/goal7) untuk semua orang.
 
 Keempat unsur akses energi tersebut dapat diperiksa melalui pertanyaan. Bisakah rumah tangga dan layanan publik membayar energi sambil memenuhi kebutuhan pokok lain? Apakah pasokan energi tersedia saat dibutuhkan? Bisakah sistem terus berjalan sambil melindungi manusia, ekosistem, dan generasi berikutnya? Apakah layanan energi aman dan mampu mendukung penerangan, komunikasi, pekerjaan produktif, serta layanan kesehatan?
-
-Periksa keempat syarat itu dengan satu pertanyaan untuk masing-masing.
-
-<Mermaid
-  title="Empat Pertanyaan untuk Akses Energi"
-  description="SDG 7 meminta energi yang terjangkau, andal, berkelanjutan, dan modern. Setiap syarat menjadi satu pertanyaan."
-  chart={`flowchart TD
-    A["Akses energi untuk semua"] --> B["Terjangkau: bisa dibayar tanpa mengorbankan kebutuhan lain?"]
-    A --> C["Andal: tersedia saat dibutuhkan?"]
-    A --> D["Berkelanjutan: bisa bertahan tanpa merusak?"]
-    A --> E["Modern: bisa menjalankan alat dan layanan masa kini?"]`}
-/>
 
 ## Rencana Energi Lokal yang Dapat Diuji
 

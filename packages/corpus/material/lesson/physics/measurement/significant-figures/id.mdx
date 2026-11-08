@@ -14,59 +14,6 @@ Saat diameter tutup botol terbaca <InlineMath math="3{,}12 \text{ cm}" />, kalku
 
 Angka penting adalah <Highlight>digit yang dipertahankan untuk menyatakan resolusi</Highlight> suatu nilai ukur. Tulis nilai ukur hanya sampai tempat desimal yang didukung oleh alat. Digit terakhir menunjukkan batas ketelitian pembacaan dan dapat berubah saat nilai dibulatkan.
 
-Perbesar garis fuchsia di tepi kanan tutup botol. Garis itu sudah melewati tanda <InlineMath math="3{,}1\text{ cm}" />, tetapi belum sampai <InlineMath math="3{,}2\text{ cm}" />. Jadi, digit <InlineMath math="3" /> dan <InlineMath math="1" /> langsung terbaca dari tanda, sedangkan <InlineMath math="2" /> terakhir adalah taksiranmu di antara dua tanda. Digit taksiran itulah angka penting terakhir yang kamu laporkan. Digit kalkulator sesudahnya tidak didukung alat.
-
-<LineEquation
-  title="Membaca Tutup Botol pada Mistar"
-  description="Mistar dengan tanda setiap 0,1 cm di bawah tutup botol. Perbesar bagian tempat garis fuchsia memotong mistar."
-  data={(() => {
-    // One grid step is 1 cm. The ruler has a mark every 0.1 cm; the cap's diameter is 3.12 cm.
-    const diameter = 3.12;
-    const radius = diameter / 2;
-    const marks = Array.from({ length: 41 }, (_, i) => ({
-      x: i / 10,
-      height: i % 10 === 0 ? 0.4 : i % 5 === 0 ? 0.28 : 0.16,
-    }));
-    return [
-      {
-        points: marks.flatMap(({ x, height }) => [
-          { x, y: 0, z: 0 },
-          { x, y: height, z: 0 },
-          { x, y: 0, z: 0 },
-        ]),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [0, 1, 2, 3, 4].map((cm) => ({
-          text: `${cm}`,
-          at: 30 * cm + 1,
-          offset: [0, 0.3, 0],
-          anchorX: "center",
-        })),
-      },
-      {
-        points: Array.from({ length: 241 }, (_, i) => {
-          const angle = (i / 240) * 2 * Math.PI;
-          return { x: radius + radius * Math.cos(angle), y: 1 + radius + radius * Math.sin(angle), z: 0 };
-        }),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-      },
-      {
-        points: [{ x: diameter, y: 0, z: 0 }, { x: diameter, y: 1 + radius, z: 0 }],
-        color: "#c026d3",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="d=3{,}12\text{ cm}" />, at: 1, offset: [1.1, 0, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.2, 1.6, 7]}
-  cameraTarget={[2.2, 1.6, 0]}
-/>
-
 Aturan angka penting menjaga agar laporan tidak menyatakan ketelitian yang melampaui kemampuan alat ukur.
 
 | Situasi | Pertanyaan yang harus dijawab |
@@ -127,20 +74,6 @@ Jika banyak nilai dibulatkan, pembulatan ke genap mengurangi kecenderungan hasil
 
 Bulatkan langsung dari nilai yang belum dibulatkan ke ketelitian akhir. Jangan membulatkan melalui beberapa hasil antara.
 
-Tabel tadi menjadi satu jalur keputusan begitu kamu melihat digit pertama yang dibuang.
-
-<Mermaid
-  title="Membulatkan dari Digit Pertama yang Dibuang"
-  description="Digit pertama yang dibuang menentukan apakah digit terakhir tetap, naik, atau mengikuti pembulatan ke genap."
-  chart={`flowchart TD
-    A["Digit pertama yang dibuang"] --> B["Kurang dari 5"]
-    A --> C["Lebih dari 5, atau 5 lalu digit bukan nol"]
-    A --> D["Tepat 5 lalu hanya nol"]
-    B --> E["Digit terakhir tetap"]
-    C --> F["Digit terakhir naik 1"]
-    D --> G["Bulatkan ke genap"]`}
-/>
-
 ## Pembulatan Penjumlahan Berdasarkan Posisi Desimal
 
 Pada penjumlahan dan pengurangan, hasil akhir mengikuti **jumlah tempat desimal paling sedikit** di antara nilai yang diukur.
@@ -183,17 +116,3 @@ Jika satuan Sistem Satuan Internasional (SI) diminta, ubah <InlineMath math="\te
 <BlockMath math="\begin{aligned} 7{,}65 \text{ cm}^2 &amp;= 0{,}000765 \text{ m}^2 \\ &amp;= 7{,}65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
 
 Aturan angka penting berbeda antara penjumlahan, pengurangan, perkalian, dan pembagian. [Pembulatan ke bilangan genap serta pembulatan satu kali](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) membantu mengurangi bias dari pembulatan berulang.
-
-Sebelum membulatkan hasil hitungan, tanyakan operasi apa yang menghasilkannya.
-
-<Mermaid
-  title="Aturan Pembulatan Mana yang Berlaku"
-  description="Penjumlahan dan pengurangan mengikuti tempat desimal, perkalian dan pembagian mengikuti angka penting."
-  chart={`flowchart TD
-    A["Hasil hitungan"] --> B["Penjumlahan atau pengurangan"]
-    A --> C["Perkalian atau pembagian"]
-    B --> D["Pakai tempat desimal paling sedikit"]
-    C --> E["Pakai angka penting paling sedikit"]
-    D --> F["Bulatkan sekali di akhir"]
-    E --> F`}
-/>
