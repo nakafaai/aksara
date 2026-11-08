@@ -11,11 +11,10 @@ Langkah yang menentukan adalah **batas nilai <InlineMath math="t" />**. Untuk se
 Bentuk <InlineMath math="(t-3)^2-4" /> menunjukkan bahwa nilai terkecilnya <InlineMath math="-4" /> tercapai di <InlineMath math="t=3" />. Nilai <InlineMath math="t=3" /> memang termasuk <InlineMath math="t>0" />, yaitu saat <InlineMath math="3^x=3" /> atau <InlineMath math="x=1" />. Untuk <InlineMath math="t>3" />, nilai fungsi naik tanpa batas ketika <InlineMath math="t" /> makin besar, sehingga setiap nilai yang lebih dari atau sama dengan <InlineMath math="-4" /> tercapai.
 
 <MathVisual
-  title="Fungsi kuadrat dalam t untuk t positif"
-  description={<>Sumbu mendatar menyatakan <InlineMath math="t=3^x" /> dan sumbu tegak menyatakan nilai <InlineMath math="f" />. Kurva <InlineMath math="(t-3)^2-4" /> hanya dipakai untuk <InlineMath math="t>0" />. Titik puncaknya <InlineMath math="(3,-4)" /> termasuk bagian ini, sedangkan titik <InlineMath math="(0,5)" /> tidak tercapai karena <InlineMath math="t" /> tidak pernah nol.</>}
+  title={<>Fungsi kuadrat dalam <InlineMath math="t" /> untuk <InlineMath math="t>0" /></>}
+  description={<>Sumbu mendatar menyatakan <InlineMath math="t=3^x" /> dan sumbu tegak menyatakan nilai <InlineMath math="f" />. Kurva <InlineMath math="(t-3)^2-4" /> hanya dipakai untuk <InlineMath math="t>0" />. Titik puncaknya <InlineMath math="(3,-4)" /> termasuk bagian ini. Saat <InlineMath math="t" /> mendekati <InlineMath math="0" />, nilai <InlineMath math="f" /> mendekati <InlineMath math="5" /> tanpa pernah mencapainya.</>}
   labels={{
     vertex: <InlineMath math="(3,-4)" />,
-    start: <InlineMath math="(0,5)" />,
   }}
   scene={{
     space: "plane",
@@ -28,11 +27,9 @@ Bentuk <InlineMath math="(t-3)^2-4" /> menunjukkan bahwa nilai terkecilnya <Inli
     objects: [
       { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -6, c: 5 }, domain: { min: 0, max: 7 }, inputAxis: "x" },
       { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
-      { id: "start-point", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
     ],
     labels: [
-      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "right" },
-      { key: "start", objectId: "start-point", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "below" },
     ],
   }}
 />

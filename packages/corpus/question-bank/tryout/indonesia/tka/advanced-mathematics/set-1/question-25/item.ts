@@ -12,7 +12,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Nilai $$f(2)$$ adalah $$7$$.",
+          label: "Fungsi $$f$$ terdefinisi di $$x=2$$ dengan $$f(2)=7$$.",
         },
         {
           correct: true,

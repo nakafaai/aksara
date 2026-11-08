@@ -11,11 +11,10 @@ The decisive step is **the allowed values of <InlineMath math="t" />**. For ever
 The form <InlineMath math="(t-3)^2-4" /> shows that the smallest value <InlineMath math="-4" /> occurs at <InlineMath math="t=3" />. The value <InlineMath math="t=3" /> is allowed, since <InlineMath math="3^x=3" /> when <InlineMath math="x=1" />. For <InlineMath math="t>3" />, the function grows without bound as <InlineMath math="t" /> increases, so every value greater than or equal to <InlineMath math="-4" /> is reached.
 
 <MathVisual
-  title="Quadratic in t for positive t"
-  description={<>The horizontal axis shows <InlineMath math="t=3^x" /> and the vertical axis shows the value of <InlineMath math="f" />. The curve <InlineMath math="(t-3)^2-4" /> is used only for <InlineMath math="t>0" />. Its vertex <InlineMath math="(3,-4)" /> belongs to this part, while the point <InlineMath math="(0,5)" /> is never reached because <InlineMath math="t" /> is never zero.</>}
+  title={<>Quadratic in <InlineMath math="t" /> for <InlineMath math="t>0" /></>}
+  description={<>The horizontal axis shows <InlineMath math="t=3^x" /> and the vertical axis shows the value of <InlineMath math="f" />. The curve <InlineMath math="(t-3)^2-4" /> is used only for <InlineMath math="t>0" />. Its vertex <InlineMath math="(3,-4)" /> belongs to this part. As <InlineMath math="t" /> approaches <InlineMath math="0" />, the value of <InlineMath math="f" /> approaches <InlineMath math="5" /> without reaching it.</>}
   labels={{
     vertex: <InlineMath math="(3,-4)" />,
-    start: <InlineMath math="(0,5)" />,
   }}
   scene={{
     space: "plane",
@@ -28,11 +27,9 @@ The form <InlineMath math="(t-3)^2-4" /> shows that the smallest value <InlineMa
     objects: [
       { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -6, c: 5 }, domain: { min: 0, max: 7 }, inputAxis: "x" },
       { id: "vertex-point", kind: "point", appearance: "answer", at: { x: 3, y: -4 } },
-      { id: "start-point", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
     ],
     labels: [
-      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "right" },
-      { key: "start", objectId: "start-point", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "vertex", objectId: "vertex-point", at: { x: 3, y: -4 }, placement: "below" },
     ],
   }}
 />
