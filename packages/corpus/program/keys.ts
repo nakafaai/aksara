@@ -5,6 +5,7 @@ export const LEARNING_PROGRAM_KEYS = {
   cambridgeInternational: LearningProgramKeySchema.make(
     "cambridge-international"
   ),
+  kssm: LearningProgramKeySchema.make("kssm"),
   merdeka: LearningProgramKeySchema.make("merdeka"),
   singaporeMoe: LearningProgramKeySchema.make("singapore-moe"),
   snbt: LearningProgramKeySchema.make("snbt"),

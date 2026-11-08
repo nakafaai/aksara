@@ -1,29 +1,23 @@
 export const metadata = {
-  title: "Conjugates of Complex Numbers",
-  description: "Find the conjugate of a complex number, interpret it as a reflection across the real axis, and apply its algebraic properties.",
+  title: "Complex Conjugate",
+  description: "The conjugate of z = x + iy is x − iy, the reflection of z across the real axis. Use it to divide complex numbers and to find the modulus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
-## Changing the Sign of the Imaginary Part
+## The Conjugate Flips the Sign of the Imaginary Part
 
-Every complex number <InlineMath math="z = x + iy" /> has a **conjugate**, denoted by <InlineMath math="\bar{z}" />.
+The **conjugate** of a complex number <InlineMath math="z = x + iy" /> is <InlineMath math="\bar{z} = x - iy" />: the real part stays, and **the sign of the imaginary part flips**. In the complex plane, <InlineMath math="\bar{z}" /> is the reflection of <InlineMath math="z" /> across the real axis.
 
-It is obtained by <Highlight>reversing the sign of the imaginary part</Highlight>. The real part keeps its value and its sign, so only the term multiplied by <InlineMath math="i" /> changes.
+<BlockMath math="z = x + iy \quad\Longrightarrow\quad \bar{z} = x - iy" />
 
-## Definition of the Complex Conjugate
+The product of a number and its conjugate is always real, <InlineMath math="z\bar{z} = x^2 + y^2" />. With that property, a complex denominator can be turned into a real number, so you can **divide complex numbers**.
 
-If <InlineMath math="z = x + iy" /> is a complex number, with <InlineMath math="x" /> as the real part and <InlineMath math="y" /> as the imaginary part, then its conjugate is:
+## Examples of Finding the Conjugate
 
-<BlockMath math="\bar{z} = x - iy" />
-
-This means the **real part** (<InlineMath math="x" />) stays the same, while the sign of the imaginary part (<InlineMath math="y" />) is flipped (positive becomes negative, negative becomes positive).
-
-## Applying the Conjugate Rule to Different Forms
-
-Write down the **imaginary component with its sign** before reversing that sign. A real number stays unchanged because its imaginary component is zero. A purely imaginary number becomes its own negative.
+Write **the imaginary component with its sign** before you flip it. A real number does not change because its imaginary component is zero, while a purely imaginary number turns into its opposite.
 
 | Number | Real component | Imaginary component | Conjugate |
 | --- | --- | --- | --- |
@@ -32,9 +26,11 @@ Write down the **imaginary component with its sign** before reversing that sign.
 | <InlineMath math="3-2i" /> | <InlineMath math="3" /> | <InlineMath math="-2" /> | <InlineMath math="3-(-2)i=3+2i" /> |
 | <InlineMath math="3i=0+3i" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="0-3i=-3i" /> |
 
-## Visualization of the Conjugate
+The number <InlineMath math="3 - 2i" /> is the one most often wrong. The imaginary part of <InlineMath math="3 - 2i" /> is <InlineMath math="-2" />, so flipping its sign gives <InlineMath math="+2" />, and the conjugate is <InlineMath math="3 + 2i" />.
 
-Geometrically, the conjugate <InlineMath math="\bar{z}" /> is the **reflection** of <InlineMath math="z" /> across the **real axis** (<InlineMath math="x" />-axis) in the complex plane.
+## The Conjugate as a Reflection
+
+The points <InlineMath math="(x, y)" /> and <InlineMath math="(x, -y)" /> lie at the same distance from the real axis, one above it and one below. So <InlineMath math="\bar{z}" /> is **the reflection of <InlineMath math="z" /> across the real axis**.
 
 <LineEquation
   title={
@@ -85,25 +81,82 @@ Geometrically, the conjugate <InlineMath math="\bar{z}" /> is the **reflection**
   ]}
 />
 
-## Equality with the Conjugate
+A reflection keeps lengths, so <InlineMath math="|\bar{z}| = |z|" />. Only the direction turns over: if <InlineMath math="z" /> makes the angle <InlineMath math="\theta" /> with the positive real axis, <InlineMath math="\bar{z}" /> makes the angle <InlineMath math="-\theta" />. For <InlineMath math="z = 3 + 2i" />, both have [modulus](/en/subjects/mathematics/complex-number/modulus-argument-complex-numbers) <InlineMath math="\sqrt{13}" />, and their arguments are about <InlineMath math="33.7^\circ" /> and <InlineMath math="-33.7^\circ" />. This rule of opposite arguments holds for <InlineMath math="z \ne 0" />, up to whole turns of <InlineMath math="360^\circ" />: for a negative real number such as <InlineMath math="-2" />, the arguments of <InlineMath math="z" /> and <InlineMath math="\bar{z}" /> both equal <InlineMath math="180^\circ" />.
 
-Is it possible for a complex number <InlineMath math="z=x+iy" /> to be equal to its conjugate <InlineMath math="\bar{z}=x-iy" />? If so, what is the condition?
+## Adding and Multiplying with the Conjugate
 
-**Derivation**:
+When you add <InlineMath math="z" /> and <InlineMath math="\bar{z}" />, **the imaginary parts cancel**. When you subtract them, the real parts cancel:
 
-Start with <InlineMath math="z = \bar{z}" />:
+<BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
 
-<BlockMath math="x+iy = x-iy" />
+<MathVisual
+  title="The parallelogram of z and its conjugate"
+  description={<>The vectors <InlineMath math="z = 3 + 2i" /> and <InlineMath math="\bar{z} = 3 - 2i" /> add like vectors. Their sum is <InlineMath math="6" />, exactly on the real axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "upper-side", kind: "segment", from: { x: 3, y: 2 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "lower-side", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "difference", kind: "segment", from: { x: 3, y: -2 }, to: { x: 3, y: 2 }, appearance: "highlight" },
+      { id: "sum", kind: "point", at: { x: 6, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "difference", objectId: "difference", at: { x: 3, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    conjugate: <InlineMath math="\bar{z} = 3 - 2i" />,
+    sum: <InlineMath math="z + \bar{z} = 6" />,
+    difference: <InlineMath math="z - \bar{z} = 4i" />,
+  }}
+/>
 
-This can only happen if <InlineMath math="iy = -iy" />, which means <InlineMath math="2iy = 0" />.
+For <InlineMath math="z = 3 + 2i" />, the sum is <InlineMath math="6 = 2\operatorname{Re}(z)" /> and the difference is <InlineMath math="4i = 2i\operatorname{Im}(z)" />. In the product, the cross terms cancel, and the result is always **real and nonnegative**:
 
-Since <InlineMath math="i \neq 0" />, it must be that <InlineMath math="y=0" />.
+<BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
 
-So, a complex number is equal to its conjugate if and only if its **imaginary part is zero**, or in other words, if the complex number is **real**.
+Check with <InlineMath math="z = 3 + 2i" />: <InlineMath math="(3 + 2i)(3 - 2i) = 9 - 4i^2 = 9 + 4 = 13" />, the same as <InlineMath math="|z|^2 = 3^2 + 2^2" />.
 
-## Properties of Conjugate Operations
+## Dividing Complex Numbers with the Conjugate
 
-These rules follow from **operations on real and imaginary components**. Compare them using the same example numbers. For division and inverses, the denominator must be nonzero.
+To divide by a complex number, multiply the numerator and the denominator by **the conjugate of the denominator**. The denominator becomes the real number <InlineMath math="|z|^2" />, so the result can be written as <InlineMath math="a + bi" />.
+
+Compute <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. The conjugate of the denominator is <InlineMath math="1 + 2i" />:
+
+<MathContainer>
+  <BlockMath math="\frac{3 + 4i}{1 - 2i} \cdot \frac{1 + 2i}{1 + 2i} = \frac{(3 + 4i)(1 + 2i)}{1^2 + 2^2}" />
+  <BlockMath math="= \frac{3 + 6i + 4i + 8i^2}{5} = \frac{-5 + 10i}{5} = -1 + 2i" />
+</MathContainer>
+
+Check by multiplying back: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, the original numerator. The same method also computes the [inverse of a complex number](/en/subjects/mathematics/complex-number/inverse-complex-numbers), because <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> for <InlineMath math="z \ne 0" />.
+
+<Mermaid
+  title="Steps for dividing by a complex number"
+  description="The conjugate of the denominator turns the denominator into a real number, and multiplication checks the result."
+  chart={`flowchart LR
+  A["Write the numerator and denominator"] --> B["Multiply top and bottom by the conjugate of the denominator"]
+  B --> C["The denominator becomes the squared modulus"]
+  C --> D["Separate the real and imaginary parts"]
+  D --> E["Multiply the result by the denominator to check"]`}
+/>
+
+## When a Number Equals Its Conjugate
+
+Suppose <InlineMath math="z = \bar{z}" />, that is <InlineMath math="x + iy = x - iy" />. Subtract <InlineMath math="x" /> from both sides to get <InlineMath math="iy = -iy" />, or <InlineMath math="2iy = 0" />. Since <InlineMath math="i \ne 0" />, it follows that <InlineMath math="y = 0" />.
+
+So a complex number equals its conjugate **if and only if it is real**. Geometrically, only points on the real axis stay where they are when reflected across the real axis.
+
+## Rules for Conjugates in Operations
+
+For addition, subtraction, multiplication, division, and inverses, the conjugate **can be taken before or after the operation** with the same result. The rules below come from operating on the real and imaginary components. The examples use <InlineMath math="z_1 = 1 + i" /> and <InlineMath math="z_2 = 2 - i" />, and the denominator in division and inverses must be nonzero.
 
 | Operation | Identity | Example |
 | --- | --- | --- |
@@ -114,46 +167,64 @@ These rules follow from **operations on real and imaginary components**. Compare
 | Inverse | <InlineMath math="\overline{z^{-1}}=(\bar z)^{-1},\ z\ne0" /> | <InlineMath math="\overline{1/(1+i)}=(1+i)/2=1/(1-i)" /> |
 | Double conjugate | <InlineMath math="\overline{\bar z}=z" /> | <InlineMath math="\overline{\overline{1+i}}=\overline{1-i}=1+i" /> |
 
+The product rule is proved by expanding both sides:
+
 <BlockMath math="\begin{aligned}\overline{z_1z_2}&amp;=(x_1x_2-y_1y_2)-i(x_1y_2+y_1x_2)\\&amp;=(x_1-iy_1)(x_2-iy_2)=\bar z_1\bar z_2\end{aligned}" />
 
-### Recovering Components and the Modulus
+These rules explain why the [imaginary roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-imaginary-root) with real coefficients always come in pairs. If <InlineMath math="az^2 + bz + c = 0" /> with real <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />, then <InlineMath math="a\bar{z}^2 + b\bar{z} + c = \overline{az^2 + bz + c} = \bar{0} = 0" />, so <InlineMath math="\bar{z}" /> is a root too.
 
-When you add a conjugate pair, the **imaginary components cancel**. When you subtract the pair, the real components cancel instead:
+## Common Mistakes
 
-<BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Flipping the sign of the real part too | <InlineMath math="\overline{3 + 2i}" /> is not <InlineMath math="-3 - 2i" /> | Only the term with <InlineMath math="i" /> changes sign |
+| Taking <InlineMath math="3 - 2i" /> as its own conjugate | Its imaginary part is <InlineMath math="-2" />, so the sign becomes <InlineMath math="+2" /> | The reflection must land on the other side of the real axis |
+| Flipping the sign of the <InlineMath math="i^2" /> term, for example writing the conjugate of <InlineMath math="2 + i^2" /> as <InlineMath math="2 - i^2 = 3" /> | <InlineMath math="2 + i^2" /> is really the real number <InlineMath math="1" /> | Replace <InlineMath math="i^2" /> with <InlineMath math="-1" /> first |
+| Multiplying by the conjugate of the numerator when dividing | The denominator stays complex | Multiply by the conjugate of the denominator so it becomes <InlineMath math="\lvert z \rvert^2" /> |
+| Writing <InlineMath math="z\bar{z} = x^2 - y^2" /> | <InlineMath math="-i^2 y^2 = +y^2" /> | <InlineMath math="z\bar{z}" /> must equal the squared modulus |
 
-In the product, the cross terms also cancel. The result is always **real and nonnegative** because it is a sum of two squares:
+The quickest check after dividing is **multiplying the result by the denominator**. The product must give back the numerator.
 
-<BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
+## Practice Problems
 
-## Exercise
+Write every number as <InlineMath math="x + iy" /> first, then **check the result by multiplying**.
 
-Find the conjugate of each complex number. Two of the three contain a power of <InlineMath math="i" /> or a division by <InlineMath math="i" />, so **simplify the expression first** and read the conjugate from the simplified form.
+1. Find the conjugate of <InlineMath math="2 + i^2" /> and of <InlineMath math="1 + \frac{1}{i}" />.
 
-1. <InlineMath math="2+i^2" />
-2. <InlineMath math="1+\frac{1}{i}" />
-3. <InlineMath math="1+2i" />
+2. Compute <InlineMath math="\frac{2 - i}{3 + 4i}" /> in the form <InlineMath math="a + bi" />.
 
-### Worked Solutions
+3. Find the complex number <InlineMath math="z" /> that satisfies <InlineMath math="z + 2\bar{z} = 9 - 2i" />.
 
-1. Simplify the complex number:
+4. For <InlineMath math="z = 5 - 12i" />, compute <InlineMath math="z\bar{z}" /> and use it to find <InlineMath math="|z|" />.
 
-   <InlineMath math="z = 2+i^2 = 2+(-1) = 1" />. Since <InlineMath math="z=1" /> is
-   a real number (<InlineMath math="1+0i" />
-   ),
+### Solutions
 
-   its conjugate is <InlineMath math="\bar{z} = 1" />.
+**Problem 1**. **Simplify first**. Since <InlineMath math="i^2 = -1" />, the number <InlineMath math="2 + i^2 = 1" /> is real, so its conjugate is <InlineMath math="1" /> too. For the second number, multiply <InlineMath math="\frac{1}{i}" /> by <InlineMath math="\frac{-i}{-i}" />:
 
-2. Simplify first:
+<BlockMath math="\frac{1}{i} = \frac{-i}{-i^2} = \frac{-i}{1} = -i \quad\Longrightarrow\quad 1 + \frac{1}{i} = 1 - i" />
 
-   Rationalize the denominator by multiplying by <InlineMath math="-i" />:
+So its conjugate is <InlineMath math="1 + i" />. Check: <InlineMath math="i \cdot (-i) = -i^2 = 1" />, so <InlineMath math="-i" /> really is the reciprocal of <InlineMath math="i" />.
 
-   <BlockMath math="\begin{aligned} \frac{1}{i} &amp;= \frac{1}{i} \times \frac{-i}{-i} \\ &amp;= \frac{-i}{-i^2} \\ &amp;= \frac{-i}{-(-1)} \\ &amp;= \frac{-i}{1} \\ &amp;= -i \end{aligned}" />
+**Problem 2**. Multiply by the conjugate of the denominator, <InlineMath math="3 - 4i" />:
 
-   So, <InlineMath math="z = 1 + \frac{1}{i} = 1 - i" />.
+<MathContainer>
+  <BlockMath math="\frac{(2 - i)(3 - 4i)}{3^2 + 4^2} = \frac{6 - 8i - 3i + 4i^2}{25}" />
+  <BlockMath math="= \frac{2 - 11i}{25} = \frac{2}{25} - \frac{11}{25}i" />
+</MathContainer>
 
-   Its conjugate is <InlineMath math="\bar{z} = 1 - (-i) = 1 + i" />.
+Check: <InlineMath math="\left(\frac{2}{25} - \frac{11}{25}i\right)(3 + 4i) = \frac{6 + 8i - 33i - 44i^2}{25} = \frac{50 - 25i}{25} = 2 - i" />.
 
-3. <InlineMath math="z = 1+2i" />.
+**Problem 3**. Write <InlineMath math="z = x + iy" />, so <InlineMath math="\bar{z} = x - iy" />:
 
-   Apply the **imaginary sign change**: <InlineMath math="\bar{z} = 1 - 2i" />.
+<MathContainer>
+  <BlockMath math="(x + iy) + 2(x - iy) = 3x - iy" />
+  <BlockMath math="3x - iy = 9 - 2i \quad\Longrightarrow\quad x = 3, \quad y = 2" />
+</MathContainer>
+
+Since <InlineMath math="x" /> and <InlineMath math="y" /> are real, the real parts and the imaginary parts of both sides must match. So <InlineMath math="z = 3 + 2i" />. Check: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
+
+**Problem 4**. Multiply by the conjugate:
+
+<BlockMath math="(5 - 12i)(5 + 12i) = 25 - 144i^2 = 25 + 144 = 169" />
+
+Since <InlineMath math="z\bar{z} = |z|^2" />, the modulus is <InlineMath math="|z| = \sqrt{169} = 13" />. Check with the modulus formula: <InlineMath math="\sqrt{5^2 + (-12)^2} = \sqrt{169} = 13" />.

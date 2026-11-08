@@ -9,13 +9,14 @@ import {
 
 describe("curriculum source catalog", () => {
   it.effect(
-    "loads the four real curriculum trees in stable program order",
+    "loads the five real curriculum trees in stable program order",
     () =>
       Effect.gen(function* () {
         const curricula = yield* decodeCurriculumCatalog();
 
         expect(Arr.map(curricula, ({ programKey }) => programKey)).toEqual([
           "cambridge-international",
+          "kssm",
           "merdeka",
           "singapore-moe",
           "united-states",

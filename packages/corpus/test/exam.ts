@@ -63,10 +63,10 @@ export const testEnglishSection: SectionSourceInput = {
   visibility: "visible",
 };
 
-/** A subject track scored raw, with one section entered from its set. */
+/** A subject track of the lower group, scored raw, with one section entered from its set. */
 export const testSubjectTrack: TrackSourceInput = {
+  group: "test-lower",
   key: "test-subject",
-  kind: "subject",
   order: 1,
   profile: {
     names: titled("Test Subject Exam"),
@@ -79,10 +79,10 @@ export const testSubjectTrack: TrackSourceInput = {
   translations: titled("Test Subject"),
 };
 
-/** A year track scored by IRT with two visible sections. */
+/** A track of the upper group scored by IRT with two visible sections. */
 export const testYearTrack: TrackSourceInput = {
+  group: "test-upper",
   key: "2027",
-  kind: "year",
   order: 2,
   profile: {
     names: titled("Test Year Exam"),
@@ -91,12 +91,12 @@ export const testYearTrack: TrackSourceInput = {
     scoring: { kind: "irt" },
     sections: [testReasoningSection, testEnglishSection],
   },
-  routeSlugs: slugged("2027"),
+  routeSlugs: slugged("year-2027"),
   sets: [testSet(1)],
   translations: titled("Year 2027"),
 };
 
-/** The test exam: the subject track and the year track. */
+/** The test exam: two grade groups, each holding one of its two tracks. */
 export const testExamInput: ExamSourceInput = {
   countryCode: "ZZ",
   countryKey: "test-country",
@@ -108,6 +108,23 @@ export const testExamInput: ExamSourceInput = {
   examOrder: 1,
   examRouteSlugs: slugged("test-exam"),
   examTranslations: titled("Test Exam"),
+  grouping: {
+    axis: "grade",
+    groups: [
+      {
+        key: "test-lower",
+        order: 1,
+        routeSlugs: slugged("test-lower"),
+        translations: titled("Test Lower"),
+      },
+      {
+        key: "test-upper",
+        order: 2,
+        routeSlugs: slugged("test-upper"),
+        translations: titled("Test Upper"),
+      },
+    ],
+  },
   sourceRevision: "2026-10-26",
   tracks: [testSubjectTrack, testYearTrack],
 };

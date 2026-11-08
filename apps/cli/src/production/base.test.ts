@@ -5,7 +5,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import {
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  ActiveAppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
@@ -145,7 +145,7 @@ describe("production base identity", () => {
     Effect.gen(function* () {
       const BASE = selectSourceBase(yield* activeBundle);
       const oneLocale = ActiveAppLocaleListSchema.make([
-        AppLocaleSchema.make("en"),
+        ActiveAppLocaleSchema.make("en"),
       ]);
       const resultFailures = yield* Effect.all([
         validateRecoveryBase(null, BASE).pipe(Effect.flip),
