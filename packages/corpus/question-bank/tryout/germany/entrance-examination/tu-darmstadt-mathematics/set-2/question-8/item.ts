@@ -7,11 +7,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(-4\\mid-3)$$",
+          label: "$$(0\\mid-2)$$",
         },
         {
           correct: true,
-          label: "$$(0\\mid5)$$",
+          label: "$$(0\\mid-1)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-1\\mid0)$$",
+        },
+        {
+          correct: false,
+          label: "$$(0\\mid1)$$",
         },
         {
           correct: false,
@@ -19,15 +27,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$(1{,}5\\mid2)$$",
-        },
-        {
-          correct: false,
-          label: "$$(4\\mid3)$$",
-        },
-        {
-          correct: false,
-          label: "$$(10\\mid1)$$",
+          label: "$$(1\\mid3)$$",
         },
       ],
     },

@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$x=-3$$",
+          label: "$$L=\\{2\\}$$",
         },
         {
           correct: false,
-          label: "$$x=-\\frac83$$",
+          label: "$$L=\\{6\\}$$",
         },
         {
           correct: false,
-          label: "$$x=\\frac43$$",
+          label: "$$L=\\{-2;\\,6\\}$$",
         },
         {
           correct: false,
-          label: "$$x=\\frac{11}3$$",
+          label: "$$L=\\{-6;\\,2\\}$$",
         },
         {
           correct: true,
-          label: "$$x=4$$",
+          label: "$$L=\\{-6\\}$$",
         },
         {
           correct: false,
-          label: "$$x=12$$",
+          label: "$$L=\\emptyset$$",
         },
       ],
     },

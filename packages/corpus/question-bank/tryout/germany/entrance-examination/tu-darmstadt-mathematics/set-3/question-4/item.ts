@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$31\\text{ m}$$",
+          label: "$$59\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$44\\text{ m}$$",
+          label: "$$94\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$46\\text{ m}$$",
+          label: "$$96\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$52\\text{ m}$$",
+          label: "$$106\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$114\\text{ m}$$",
+          label: "$$420\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$228\\text{ m}$$",
+          label: "$$840\\text{ m}$$",
         },
       ],
     },
