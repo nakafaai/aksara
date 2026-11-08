@@ -3,7 +3,7 @@ export const metadata = {
   description: "Erkläre, warum komplexe Zahlen die reellen Zahlen erweitern, nutze die imaginäre Einheit und bestimme Real- sowie Imaginärteil.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Komplexe Zahl",
 };
 
@@ -14,6 +14,16 @@ Betrachte die quadratische Gleichung <InlineMath math="x^2 - 1 = 0" />. Durch Fa
 Bei <InlineMath math="x^2 + 1 = 0" /> ist das anders. Die Gleichung verlangt <InlineMath math="x^2 = -1" />, doch das Quadrat jeder reellen Zahl ist nichtnegativ. Deshalb besitzt sie keine reelle Lösung.
 
 Die komplexen Zahlen <Highlight>erweitern das reelle Zahlensystem</Highlight>, sodass auch solche Gleichungen lösbar werden.
+
+<Mermaid
+  title="Wie die Zahlbereiche ineinanderliegen"
+  description="Jeder Zahlbereich erweitert den vorigen, und die komplexen Zahlen fügen i mit i² = −1 hinzu, damit jede quadratische Gleichung Lösungen hat."
+  chart={`flowchart LR
+  N["Natürliche Zahlen"] --> Z["Ganze Zahlen"]
+  Z --> Q["Rationale Zahlen"]
+  Q --> R["Reelle Zahlen"]
+  R -->|"i mit i² = −1 hinzufügen"| C["Komplexe Zahlen a + bi"]`}
+/>
 
 ## Imaginäre Zahlen
 
@@ -49,6 +59,39 @@ Komplexe Zahlen werden im Allgemeinen in der Form <InlineMath math="z = a + bi" 
 
 Sowohl <InlineMath math="a" /> als auch <InlineMath math="b" /> sind reelle Zahlen. Der Ausdruck <InlineMath math="bi" /> ist der imaginäre Term, sein Koeffizient <InlineMath math="b" /> ist der Imaginärteil.
 
+Jede komplexe Zahl <InlineMath math="a + bi" /> ist ein Punkt in der Ebene: der Realteil <InlineMath math="a" /> nach rechts und der Imaginärteil <InlineMath math="b" /> nach oben. Reelle Zahlen wie <InlineMath math="4" /> liegen auf der waagerechten Achse, rein imaginäre Zahlen wie <InlineMath math="2i" /> auf der senkrechten.
+
+<MathVisual
+  title="Komplexe Zahlen als Punkte"
+  description="Fünf komplexe Zahlen, nach Realteil (rechts) und Imaginärteil (oben) eingetragen, darunter eine reelle und eine rein imaginäre Zahl."
+  labels={{
+    z1: <InlineMath math="3 + 2i" />,
+    z2: <InlineMath math="-1 + i" />,
+    z3: <InlineMath math="-2 - 3i" />,
+    z4: <InlineMath math="4" />,
+    z5: <InlineMath math="2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -4, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z2", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z3", kind: "point", at: { x: -2, y: -3 }, appearance: "primary" },
+      { id: "z4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "z5", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "z3", objectId: "z3", at: { x: -2, y: -3 }, placement: "below-left" },
+      { key: "z4", objectId: "z4", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "z5", objectId: "z5", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Realteil und Imaginärteil bestimmen
 
 Lies den **Koeffizienten der imaginären Einheit** ab, nicht den gesamten imaginären Term. Der Imaginärteil von fünf minus vier mal der imaginären Einheit ist somit minus vier, nicht minus vier mal der imaginären Einheit.
@@ -59,6 +102,34 @@ Lies den **Koeffizienten der imaginären Einheit** ab, nicht den gesamten imagin
 | <InlineMath math="5-4i" /> | <InlineMath math="5+(-4)i" /> | <InlineMath math="5" /> | <InlineMath math="-4" /> |
 | <InlineMath math="\sqrt2" /> | <InlineMath math="\sqrt2+0i" /> | <InlineMath math="\sqrt2" /> | <InlineMath math="0" /> |
 | <InlineMath math="-7i" /> | <InlineMath math="0+(-7)i" /> | <InlineMath math="0" /> | <InlineMath math="-7" /> |
+
+Lies die Teile von <InlineMath math="z = 3 + 2i" /> als zwei Schritte: <InlineMath math="3" /> entlang der reellen Achse, dann <InlineMath math="2" /> nach oben. <InlineMath math="\operatorname{Re}(z) = 3" /> ist der waagerechte Schritt, <InlineMath math="\operatorname{Im}(z) = 2" /> der senkrechte. Der Imaginärteil ist die Zahl <InlineMath math="2" />, nicht <InlineMath math="2i" />.
+
+<MathVisual
+  title="Realteil und Imaginärteil von 3 + 2i"
+  description={<>Der Punkt <InlineMath math="3 + 2i" />, erreicht durch einen waagerechten Schritt 3 und einen senkrechten Schritt 2.</>}
+  labels={{
+    re: <InlineMath math="\operatorname{Re}(z) = 3" />,
+    im: <InlineMath math="\operatorname{Im}(z) = 2" />,
+    z: <InlineMath math="z = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "re", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "im", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "zline", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "re", objectId: "re", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "im", objectId: "im", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Übung
 

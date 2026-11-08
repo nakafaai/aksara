@@ -3,7 +3,7 @@ export const metadata = {
   description: "Compose functions in sequence and compare the result when their order is reversed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -31,6 +31,53 @@ Mathematically, this is written as:
 The composite is defined only for inputs <InlineMath math="x" /> in the domain of <InlineMath math="g" /> whose output <InlineMath math="g(x)" /> lies in the domain of <InlineMath math="f" />:
 
 <BlockMath math="D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}" />
+
+Follow each input through the machines: first <InlineMath math="g(x) = x^2 - 3" />, then <InlineMath math="f(u) = 2u + 1" />. The input <InlineMath math="2" /> goes to <InlineMath math="1" /> and then to <InlineMath math="3" />. The inputs <InlineMath math="-1" /> and <InlineMath math="1" /> both reach <InlineMath math="-2" /> after <InlineMath math="g" />, so they end at the same output <InlineMath math="-3" />.
+
+<MathVisual
+  title="Tracing inputs through g and then f"
+  description={<>Three vertical axes for <InlineMath math="x" />, <InlineMath math="g(x)" /> and <InlineMath math="f(g(x))" />, with the paths of the inputs −1, 0, 1 and 2.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    g: <InlineMath math="g(x)" />,
+    f: <InlineMath math="f(g(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -6, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -5.5 }, to: { x: 0, y: 3.5 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -5.5 }, to: { x: 3, y: 3.5 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -5.5 }, to: { x: 6, y: 3.5 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -3 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -3 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 6, y: -5 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: -5 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: -3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 3 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 3.5 }, placement: "above" },
+      { key: "g", objectId: "axis1", at: { x: 3, y: 3.5 }, placement: "above" },
+      { key: "f", objectId: "axis2", at: { x: 6, y: 3.5 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Promo Calculation
 
@@ -111,6 +158,36 @@ Substitute <InlineMath math="x" /> in <InlineMath math="g(x)" /> with <InlineMat
 So, <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 
 Because <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, function composition is not commutative.
+
+Both orders as graphs: <InlineMath math="(f \circ g)(x) = 2(x^2 - 3) + 1 = 2x^2 - 5" /> and <InlineMath math="(g \circ f)(x) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2" />. They are two different parabolas. At <InlineMath math="x = 1" /> the first gives <InlineMath math="-3" /> and the second gives <InlineMath math="6" />, so swapping the order changes the function.
+
+<MathVisual
+  title="f∘g and g∘f are different parabolas"
+  description={<>The parabolas <InlineMath math="2x^2 - 5" /> and <InlineMath math="4x^2 + 4x - 2" /> with their values at <InlineMath math="x = 1" />: <InlineMath math="-3" /> and <InlineMath math="6" />.</>}
+  labels={{
+    fg: <InlineMath math="f \circ g" />,
+    gf: <InlineMath math="g \circ f" />,
+    a: <InlineMath math="-3" />,
+    b: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1.5 }, y: { min: -5.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "fg", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: -5 }, domain: { min: -2, max: 1.5 }, appearance: "primary" },
+      { id: "gf", kind: "quadratic", inputAxis: "x", coefficients: { a: 4, b: 4, c: -2 }, domain: { min: -2, max: 1 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "fg", objectId: "fg", at: { x: -2, y: 3 }, placement: "right" },
+      { key: "gf", objectId: "gf", at: { x: -2, y: 6 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: -3 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 1, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## The Domain Must Follow the Order
 

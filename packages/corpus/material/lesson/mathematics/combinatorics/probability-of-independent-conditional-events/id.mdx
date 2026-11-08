@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan peluang bersyarat dengan tepat, bedakan kebergantungan dari kebebasan, dan selesaikan soal pemilihan bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Kombinatorik",
 };
 
@@ -33,6 +33,16 @@ Dengan menyusun ulang definisi tersebut, kita memperoleh aturan perkalian umum:
 Jika kedua kejadian saling bebas, informasi tentang <InlineMath math="A" /> tidak mengubah peluang <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
+
+<Mermaid
+  title="Memperbarui ruang sampel"
+  description="Setelah setiap pengambilan tanpa pengembalian, keluarkan kartu yang terambil dari banyak kartu yang diinginkan dan dari totalnya sebelum menghitung peluang berikutnya."
+  chart={`flowchart LR
+  A["Pengambilan pertama: 13 hati dari 52"] --> B["Keluarkan hati yang terambil"]
+  B --> C["Pengambilan kedua: 12 hati dari 51"]
+  C --> D["P = 13/52 · 12/51 = 1/17"]`}
+/>
+
 ## Penerapan pada Pengambilan Kartu
 
 Mengambil kartu tanpa mengembalikan kartu pertama mengubah ruang sampel setelah setiap pengambilan. Kedua contoh di bawah memperbarui peluang pada pengambilan kedua. Karena kartu pertama tidak dikembalikan, **penyebut peluang kedua** berkurang satu.
@@ -56,6 +66,45 @@ Perhitungan peluang:
 
 Setelah satu As diambil, tersisa <InlineMath math="51 \text{ kartu}" />. Seluruh <InlineMath math="4 \text{ kartu King}" /> masih ada, sehingga peluang bersyarat mendapat King adalah <InlineMath math="\frac{4}{51}" />.
 
+Tanpa pengembalian, cabang kedua bergantung pada cabang pertama. Ambil as dengan peluang <InlineMath math="\frac{4}{52}" />. Lalu tersisa 51 kartu dan keempat raja masih ada, jadi raja menyusul dengan peluang <InlineMath math="\frac{4}{51}" />. Kalikan di sepanjang jalurnya: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
+
+<MathVisual
+  title="As lalu raja tanpa pengembalian"
+  description="Diagram pohon untuk dua pengambilan: as atau bukan lebih dulu, lalu raja atau bukan, dengan peluang kedua dari 51 kartu yang tersisa."
+  labels={{
+    b0: <InlineMath math="\text{as}\ \tfrac{4}{52}" />,
+    b1: <InlineMath math="\text{bukan as}\ \tfrac{48}{52}" />,
+    h0: <InlineMath math="\text{raja}\ \tfrac{4}{51}" />,
+    h1: <InlineMath math="\text{bukan raja}\ \tfrac{47}{51}" />,
+    p0: <InlineMath math="\tfrac{4}{663}" />,
+    p1: <InlineMath math="\tfrac{47}{663}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "secondary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Peluang Mengambil Dua Kartu Hati Secara Berurutan
 
 Untuk melihat perubahan **jumlah hasil yang diinginkan**, perhatikan pengambilan dua kartu Hati berturut-turut:
@@ -66,6 +115,17 @@ Untuk melihat perubahan **jumlah hasil yang diinginkan**, perhatikan pengambilan
 Jadi, peluang kedua kartu yang terambil sama-sama Hati adalah:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
+
+Bandingkan peluang hati pada pengambilan kedua. Dengan pengembalian, peluangnya tetap <InlineMath math="\frac{13}{52} = 0{,}25" />. Tanpa pengembalian, setelah hati pertama hanya tersisa <InlineMath math="12" /> hati di antara <InlineMath math="51" /> kartu, jadi peluangnya turun menjadi <InlineMath math="\frac{12}{51} \approx 0{,}235" />. Pengambilan pertama mengubah ruang sampelnya.
+
+<BarChart
+  title="Hati kedua dengan dan tanpa pengembalian"
+  description="Peluang hati pada pengambilan kedua setelah hati pertama, dengan pengembalian dan tanpa pengembalian."
+  yAxisLabel="Peluang"
+  data={[["dengan pengembalian", 13 / 52], ["tanpa pengembalian", 12 / 51]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Aplikasi dalam Seleksi Manajemen
 
 Misalkan sebuah perusahaan mempunyai data manajer berikut. Tabel membedakan gender dan tingkat jabatan, sehingga kita dapat membatasi perhitungan pada kelompok yang sesuai.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung susunan melingkar berdasarkan urutan relatif, anggap rotasi sebagai susunan yang sama, bedakan hasil pencerminan bila diperlukan, lalu selesaikan susunan dengan syarat khusus.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -14,6 +14,50 @@ Di meja bundar, memindahkan semua orang satu kursi searah jarum jam tidak mengub
 Permutasi linear memakai posisi pertama dan terakhir yang tetap. Pada permutasi siklis, tidak ada posisi awal yang istimewa.
 
 Setiap objek dapat dijadikan titik acuan. Urutan linear yang hanya berbeda karena rotasi mewakili susunan melingkar yang sama.
+
+Putar meja kiri satu kursi searah jarum jam, maka kamu mendapat meja kanan. Setiap orang tetap punya tetangga yang sama dengan urutan yang sama, jadi kedua gambar adalah satu susunan melingkar, bukan dua. Setiap susunan <InlineMath math="4" /> orang muncul <InlineMath math="4" /> kali di antara <InlineMath math="4! = 24" /> baris, sehingga tersisa <InlineMath math="24 / 4 = 3! = 6" />.
+
+<MathVisual
+  title="Rotasi tidak menghasilkan susunan baru"
+  description="Empat orang di sekeliling dua meja bundar. Meja kanan adalah meja kiri yang diputar satu kursi, dengan tetangga yang sama."
+  labels={{
+    la: <InlineMath math="A" />,
+    lb: <InlineMath math="B" />,
+    lc: <InlineMath math="C" />,
+    ld: <InlineMath math="D" />,
+    ra: <InlineMath math="A" />,
+    rb: <InlineMath math="B" />,
+    rc: <InlineMath math="C" />,
+    rd: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lring", kind: "circle", center: { x: -1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "la", kind: "point", at: { x: -1.6, y: 1 }, appearance: "primary" },
+      { id: "lb", kind: "point", at: { x: -0.6, y: 0 }, appearance: "secondary" },
+      { id: "lc", kind: "point", at: { x: -1.6, y: -1 }, appearance: "answer" },
+      { id: "ld", kind: "point", at: { x: -2.6, y: 0 }, appearance: "highlight" },
+      { id: "rring", kind: "circle", center: { x: 1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "rd", kind: "point", at: { x: 1.6, y: 1 }, appearance: "highlight" },
+      { id: "ra", kind: "point", at: { x: 2.6, y: 0 }, appearance: "primary" },
+      { id: "rb", kind: "point", at: { x: 1.6, y: -1 }, appearance: "secondary" },
+      { id: "rc", kind: "point", at: { x: 0.6, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "la", objectId: "la", at: { x: -1.6, y: 1 }, placement: "above" },
+      { key: "lb", objectId: "lb", at: { x: -0.6, y: 0 }, placement: "right" },
+      { key: "lc", objectId: "lc", at: { x: -1.6, y: -1 }, placement: "below" },
+      { key: "ld", objectId: "ld", at: { x: -2.6, y: 0 }, placement: "left" },
+      { key: "rd", objectId: "rd", at: { x: 1.6, y: 1 }, placement: "above" },
+      { key: "ra", objectId: "ra", at: { x: 2.6, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "rb", at: { x: 1.6, y: -1 }, placement: "below" },
+      { key: "rc", objectId: "rc", at: { x: 0.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Rumus Permutasi Siklis
 
@@ -49,6 +93,15 @@ Untuk <InlineMath math="3" /> anak: <InlineMath math="P_3 = (3-1)! = 2! = 2 \tim
 
 Rumus <InlineMath math="(n-1)!" /> menyamakan rotasi, tetapi masih menganggap bayangan cermin sebagai susunan berbeda. Perhitungan ini sesuai untuk orang yang menghadap ke tengah meja karena pembalikan urutan menukar tetangga kiri dan kanan. Gelang juga dapat dibalik. Untuk <InlineMath math="n\geq3" /> manik-manik yang semuanya berbeda, setiap urutan melingkar berpasangan dengan bayangan cermin yang berbeda, sehingga gelang memiliki <InlineMath math="\frac{(n-1)!}{2}" /> susunan.
 
+<Mermaid
+  title="Mengapa lingkaran memberi (n − 1)!"
+  description="Menetapkan satu orang menghapus rotasi, dan orang lainnya mengisi kursi sisanya seperti dalam satu baris."
+  chart={`flowchart LR
+  A["n orang melingkar"] --> B["Tetapkan satu orang di satu kursi"]
+  B --> C["Susun n − 1 orang lainnya"]
+  C --> D["(n − 1)! susunan"]`}
+/>
+
 ## Menghitung Susunan Melingkar
 
 Rumus yang sama menghitung **susunan tempat duduk melingkar** dan formasi lain yang mengelilingi satu titik pusat. Pertahankan satu orang sebagai acuan, lalu hitung urutan orang lain terhadap orang tersebut. Jika orang berpasangan, unit yang disusun berubah menjadi pasangan.
@@ -58,6 +111,20 @@ Rumus yang sama menghitung **susunan tempat duduk melingkar** dan formasi lain y
 Lima siswa akan duduk **mengelilingi meja bundar** untuk berdiskusi. Banyaknya cara mereka dapat duduk adalah:
 
 <BlockMath math="\begin{aligned} P_5 &amp;= (5-1)! \\ &amp;= 4! \\ &amp;= 4 \times 3 \times 2 \times 1 \\ &amp;= 24 \text{ cara} \end{aligned}" />
+
+Batangnya menunjukkan <InlineMath math="(n-1)!" /> untuk <InlineMath math="n = 3" /> sampai <InlineMath math="7" /> orang di sekeliling meja: <InlineMath math="2, 6, 24, 120, 720" />. Setiap nilai <InlineMath math="n" /> kali lebih kecil daripada <InlineMath math="n!" /> cara menjajarkan orang yang sama dalam satu baris.
+
+<BarChart
+  title="Susunan melingkar 3 sampai 7 orang"
+  description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="(n-1)!" />, yaitu susunan melingkar <InlineMath math="n" /> orang.</>}
+  yAxisLabel="Susunan"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 3;
+    return { name: `${n}`, value: Array.from({ length: n - 1 }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Permainan dalam Lingkaran
 
 Delapan anak **bermain dalam lingkaran**. Banyaknya formasi berbeda yang dapat mereka bentuk adalah:

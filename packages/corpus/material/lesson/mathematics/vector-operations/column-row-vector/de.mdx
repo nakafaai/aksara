@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schreibe Spalten- und Zeilenvektoren, transponiere sie und nutze Einheitsvektoren im kartesischen Koordinatensystem.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-19",
+   dateModified: "2026-11-08",
    subject: "Vektoren und ihre Operationen",
 };
 
@@ -24,6 +24,34 @@ In zwei Dimensionen stehen die Komponenten in der Zeile <InlineMath math="(3 \; 
 In drei Dimensionen wird aus der Zeile <InlineMath math="(2 \; 1 \; 3)" /> oder <InlineMath math="[2 \; 1 \; 3]" /> die folgende Spalte. **Die Reihenfolge der Komponenten bleibt gleich**, auch wenn sich ihre Anordnung ändert.
 
 <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+Beide Schreibweisen beschreiben denselben Pfeil. <InlineMath math="(3 \; 4)" /> als Zeile und <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> als Spalte bedeuten beide: 3 nach rechts, dann 4 nach oben. Der Pfeil vom Ursprung zu <InlineMath math="(3, 4)" /> hat die Länge <InlineMath math="\sqrt{3^2 + 4^2} = 5" />.
+
+<MathVisual
+  title="Ein Vektor, zwei Schreibweisen"
+  description={<>Der Vektor mit den Komponenten 3 und 4 als Pfeil vom Ursprung, mit seiner waagerechten und senkrechten Komponente.</>}
+  labels={{
+    v: <InlineMath math="(3 \; 4)" />,
+    cx: <InlineMath math="3" />,
+    cy: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "cy", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "cx", objectId: "cx", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "cy", objectId: "cy", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Gleichwertige Komponentendarstellungen
 
@@ -80,6 +108,28 @@ Dieselben drei Einheitsvektoren behalten als Spaltenvektor die Reihenfolge ihrer
 
 Die erste Matrix ist der Einheitsvektor entlang der <InlineMath math="x" />-Achse, die zweite entlang der <InlineMath math="y" />-Achse und die dritte entlang der <InlineMath math="z" />-Achse.
 
+Im Raum hat ein Vektor drei Komponenten. <InlineMath math="(2 \; 1 \; 3)" /> bedeutet <InlineMath math="2\vec{i} + \vec{j} + 3\vec{k}" />: 2 in x-Richtung, 1 in y-Richtung, 3 in z-Richtung. Der Weg der drei Schritte endet an der Pfeilspitze. Dreh die Szene, um die Schritte von allen Seiten zu sehen.
+
+<MathVisual
+  title="Ein Vektor im Raum und seine Einheitsvektor-Schritte"
+  description={<>Der Vektor <InlineMath math="(2 \; 1 \; 3)" /> vom Ursprung mit dem Weg 2 in x-, 1 in y- und 3 in z-Richtung.</>}
+  labels={{
+    v: <InlineMath math="(2 \; 1 \; 3)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 2 }, z: { min: 0, max: 3.5 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "steps", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1, z: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Beziehung zwischen Spaltenvektoren und Zeilenvektoren
 
 Spalten- und Zeilenvektoren hängen über das **Transponieren** zusammen. Dabei wird aus einer Zeile eine Spalte oder aus einer Spalte eine Zeile.
@@ -95,6 +145,14 @@ Betrachte umgekehrt den Spaltenvektor:
 Seine Transponierte ist ein Zeilenvektor:
 
 <BlockMath math="\vec{b}^T = (b_1 \; b_2 \; \ldots \; b_m)" />
+
+<Mermaid
+  title="Spalten- und Zeilenvektoren sind Transponierte"
+  description="Transponieren macht aus einem Spaltenvektor einen Zeilenvektor mit denselben Komponenten in derselben Reihenfolge, und umgekehrt."
+  chart={`flowchart LR
+  C["Spaltenvektor (3, 4), senkrecht geschrieben"] -->|"transponieren"| R["Zeilenvektor (3 4)"]
+  R -->|"transponieren"| C`}
+/>
 
 ## Anwendungen von Spaltenvektoren und Zeilenvektoren
 

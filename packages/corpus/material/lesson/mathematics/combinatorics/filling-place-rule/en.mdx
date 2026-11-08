@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count complete outcomes by multiplying the valid choices at each step, then verify the count with a table or tree diagram.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -30,6 +30,39 @@ A table lists all possible combinations:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Total combinations} &amp;= 3 \times 4 \\ &amp;= 12 \text{ ways} \end{aligned}" />
 </MathContainer>
+
+Each package is one pair (platform, subject), so you can lay them out as a grid: 3 rows for the platforms and 4 columns for the subjects. Every dot is one package, and the grid holds <InlineMath math="3 \times 4 = 12" /> dots. That is the multiplication rule in one picture.
+
+<MathVisual
+  title="Twelve packages as a 3 by 4 grid"
+  description={<>Three rows of platforms times four columns of subjects give twelve dots, one for each package.</>}
+  labels={{
+    g34: <InlineMath math="3 \times 4 = 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "g11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "g13", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "g14", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "g21", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "g22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "g23", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "g24", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "g31", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "g32", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "g33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "g34", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "g34", objectId: "g34", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Tree Diagram Method
 
 In a **tree diagram**, each branch records one choice. A complete path from the starting point to an endpoint represents one complete outcome.
@@ -107,6 +140,16 @@ For the same case with repetition allowed:
 <BlockMath math="\text{Each slot} = 5 \text{ choices}" />
 <BlockMath math="\begin{aligned} \text{Total numbers} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ numbers} \end{aligned}" />
 </MathContainer>
+
+Compare the two cases for three-digit numbers made from the digits <InlineMath math="1" /> to <InlineMath math="5" />. Without repetition the slots offer <InlineMath math="5 \times 4 \times 3 = 60" /> numbers, and with repetition <InlineMath math="5 \times 5 \times 5 = 125" />. Allowing repeats keeps every slot at 5 choices, so the count more than doubles.
+
+<BarChart
+  title="With and without repetition"
+  description="The number of three-digit numbers from the digits 1 to 5, without and with repetition."
+  yAxisLabel="Numbers"
+  data={[["no repetition", 5 * 4 * 3], ["repetition", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Numbers", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercises
 

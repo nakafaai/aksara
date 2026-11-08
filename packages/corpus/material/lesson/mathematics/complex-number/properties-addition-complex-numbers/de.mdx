@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze Kommutativ-, Assoziativ-, Identitäts-, Inversen- und Distributivgesetz, um Ausdrücke mit komplexen Zahlen zu vereinfachen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Komplexe Zahl",
 };
 
@@ -12,6 +12,17 @@ export const metadata = {
 Addition und Skalarmultiplikation komplexer Zahlen folgen <Highlight>denselben vertrauten Rechenregeln wie bei reellen Zahlen</Highlight>. Mit diesen Regeln lassen sich Ausdrücke umformen und vereinfachen, ohne ihren Wert zu verändern.
 
 Seien <InlineMath math="z_1" />, <InlineMath math="z_2" /> und <InlineMath math="z_3" /> beliebige komplexe Zahlen und seien <InlineMath math="c" /> und <InlineMath math="d" /> beliebige Skalare (reelle Zahlen).
+
+<Mermaid
+  title="Eigenschaften der komplexen Addition"
+  description="Die komplexe Addition ist abgeschlossen, kommutativ und assoziativ, hat das neutrale Element 0 und gibt jeder Zahl eine additive Inverse."
+  chart={`flowchart TD
+  A["z₁ + z₂ für komplexe Zahlen"] --> C1["Abgeschlossen: die Summe ist komplex"]
+  A --> C2["Kommutativ: z₁ + z₂ = z₂ + z₁"]
+  A --> C3["Assoziativ: (z₁ + z₂) + z₃ = z₁ + (z₂ + z₃)"]
+  A --> C4["Neutrales Element: z + 0 = z"]
+  A --> C5["Inverse: z + (−z) = 0"]`}
+/>
 
 ## Additionseigenschaften
 
@@ -25,6 +36,35 @@ Die komplexe Addition erfolgt **getrennt für Real- und Imaginärteil**. Bei ree
 | Assoziativ | <InlineMath math="(z_1+z_2)+z_3=z_1+(z_2+z_3)" /> | <InlineMath math="((2+i)+(1-3i))+(-1+2i)=2=(2+i)+((1-3i)+(-1+2i))" /> |
 | Neutrales Element | <InlineMath math="z+0=z" /> | <InlineMath math="(2+i)+(0+0i)=2+i" /> |
 | Gegenzahl | <InlineMath math="z+(-z)=0" /> | <InlineMath math="(5-2i)+(-5+2i)=(5-5)+(-2+2)i=0" /> |
+
+Komplexe Zahlen zu addieren heißt, ihre Pfeile aneinanderzuhängen. Nimm <InlineMath math="z_1 = 2 + i" /> und <InlineMath math="z_2 = 1 + 3i" />. Geh erst <InlineMath math="z_1" /> und dann <InlineMath math="z_2" /> entlang oder andersherum: Beide Wege enden bei <InlineMath math="z_1 + z_2 = 3 + 4i" />, der gegenüberliegenden Ecke des Parallelogramms. Das ist das Kommutativgesetz als Bild.
+
+<MathVisual
+  title="Das Parallelogramm von z₁ + z₂"
+  description={<>Die Pfeile <InlineMath math="2 + i" /> und <InlineMath math="1 + 3i" /> und ihre Summe <InlineMath math="3 + 4i" /> an der gegenüberliegenden Ecke des Parallelogramms.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + i" />,
+    z2: <InlineMath math="z_2 = 1 + 3i" />,
+    sum: <InlineMath math="3 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "c1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 1, y: 3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Skalare Multiplikation
 
@@ -47,6 +87,31 @@ Mit dem **Distributivgesetz** kannst du einen Skalar Glied für Glied in eine Su
 Das **Distributivgesetz** fasst zwei Terme mit derselben komplexen Zahl zusammen. Die entgegengesetzten Koeffizienten ergeben zusammen den Skalar null:
 
 <BlockMath math="4z+(-4)z=(4+(-4))z=0z=0" />
+
+Die additive Inverse zeigt in die Gegenrichtung. <InlineMath math="z = 3 + 2i" /> und <InlineMath math="-z = -3 - 2i" /> liegen auf einer Geraden durch den Ursprung im gleichen Abstand. Gehst du den einen und dann den anderen Pfeil entlang, bist du wieder bei <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
+
+<MathVisual
+  title="Eine Zahl und ihre additive Inverse"
+  description={<>Die Pfeile <InlineMath math="3 + 2i" /> und <InlineMath math="-3 - 2i" />, gleich lang und entgegengesetzt, mit der Summe 0.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    neg: <InlineMath math="-z = -3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Übung
 

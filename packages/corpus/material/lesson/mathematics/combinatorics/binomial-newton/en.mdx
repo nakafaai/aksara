@@ -3,7 +3,7 @@ export const metadata = {
   description: "Expand powers of a sum with the binomial theorem, then use its coefficients to find particular and constant terms.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Combinatorics",
 };
 
@@ -24,6 +24,36 @@ Look at the basic patterns for the first few powers:
 </MathContainer>
 
 The coefficients change with the power, but their positions follow one consistent rule.
+
+Take a square with side <InlineMath math="x + y" />, here <InlineMath math="x = 2" /> and <InlineMath math="y = 1" />. Cut it along <InlineMath math="x" /> on both sides: you get one <InlineMath math="x^2" /> square, two <InlineMath math="xy" /> rectangles and one <InlineMath math="y^2" /> square. That is <InlineMath math="(x + y)^2 = x^2 + 2xy + y^2" />, and the coefficient <InlineMath math="2" /> counts the two rectangles.
+
+<MathVisual
+  title="The square of a binomial as an area"
+  description={<>A square of side <InlineMath math="x + y" /> split into <InlineMath math="x^2" />, two rectangles <InlineMath math="xy" /> and <InlineMath math="y^2" />.</>}
+  labels={{
+    xx: <InlineMath math="x^2" />,
+    xy1: <InlineMath math="xy" />,
+    xy2: <InlineMath math="xy" />,
+    yy: <InlineMath math="y^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: -0.3, max: 3.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "xx", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "xy1", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "xy2", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "yy", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "xx", objectId: "xx", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "xy1", objectId: "xy1", at: { x: 2.5, y: 1 }, placement: "center" },
+      { key: "xy2", objectId: "xy2", at: { x: 1, y: 2.5 }, placement: "center" },
+      { key: "yy", objectId: "yy", at: { x: 2.5, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## General Formula and Binomial Coefficients
 
@@ -53,6 +83,87 @@ In the product <InlineMath math="(x+y)(x+y)(x+y)(x+y)" />, each term selects one
 | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4xy^3" /> |
 | <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="y^4" /> |
 
+The coefficients of <InlineMath math="(x + y)^n" /> for <InlineMath math="n = 0" /> to <InlineMath math="5" /> form Pascal's triangle. Each inner number is the sum of the two numbers above it, for example <InlineMath math="\binom{5}{2} = \binom{4}{1} + \binom{4}{2} = 4 + 6 = 10" />, and row <InlineMath math="n" /> lists <InlineMath math="\binom{n}{0}" /> to <InlineMath math="\binom{n}{n}" />.
+
+<MathVisual
+  title="Pascal's triangle up to the fifth power"
+  description={<>Rows 0 to 5 of Pascal's triangle, the coefficients <InlineMath math="\binom{n}{k}" /> of <InlineMath math="(x + y)^n" />.</>}
+  labels={{
+    c00: <InlineMath math="1" />,
+    c10: <InlineMath math="1" />,
+    c11: <InlineMath math="1" />,
+    c20: <InlineMath math="1" />,
+    c21: <InlineMath math="2" />,
+    c22: <InlineMath math="1" />,
+    c30: <InlineMath math="1" />,
+    c31: <InlineMath math="3" />,
+    c32: <InlineMath math="3" />,
+    c33: <InlineMath math="1" />,
+    c40: <InlineMath math="1" />,
+    c41: <InlineMath math="4" />,
+    c42: <InlineMath math="6" />,
+    c43: <InlineMath math="4" />,
+    c44: <InlineMath math="1" />,
+    c50: <InlineMath math="1" />,
+    c51: <InlineMath math="5" />,
+    c52: <InlineMath math="10" />,
+    c53: <InlineMath math="10" />,
+    c54: <InlineMath math="5" />,
+    c55: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c00", kind: "point", at: { x: 0 - 0 / 2, y: 0 }, appearance: "reference" },
+      { id: "c10", kind: "point", at: { x: 0 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c11", kind: "point", at: { x: 1 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c20", kind: "point", at: { x: 0 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 1 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c30", kind: "point", at: { x: 0 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c31", kind: "point", at: { x: 1 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 2 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c33", kind: "point", at: { x: 3 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c40", kind: "point", at: { x: 0 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 1 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c42", kind: "point", at: { x: 2 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c43", kind: "point", at: { x: 3 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c44", kind: "point", at: { x: 4 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c50", kind: "point", at: { x: 0 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c51", kind: "point", at: { x: 1 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 2 - 5 / 2, y: -5 }, appearance: "secondary" },
+      { id: "c53", kind: "point", at: { x: 3 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c54", kind: "point", at: { x: 4 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c55", kind: "point", at: { x: 5 - 5 / 2, y: -5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c00", objectId: "c00", at: { x: 0 - 0 / 2, y: 0 }, placement: "above" },
+      { key: "c10", objectId: "c10", at: { x: 0 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c11", objectId: "c11", at: { x: 1 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c20", objectId: "c20", at: { x: 0 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c21", objectId: "c21", at: { x: 1 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c22", objectId: "c22", at: { x: 2 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c30", objectId: "c30", at: { x: 0 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c31", objectId: "c31", at: { x: 1 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c32", objectId: "c32", at: { x: 2 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c33", objectId: "c33", at: { x: 3 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c40", objectId: "c40", at: { x: 0 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c41", objectId: "c41", at: { x: 1 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c42", objectId: "c42", at: { x: 2 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c43", objectId: "c43", at: { x: 3 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c44", objectId: "c44", at: { x: 4 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c50", objectId: "c50", at: { x: 0 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c51", objectId: "c51", at: { x: 1 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c52", objectId: "c52", at: { x: 2 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c53", objectId: "c53", at: { x: 3 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c54", objectId: "c54", at: { x: 4 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c55", objectId: "c55", at: { x: 5 - 5 / 2, y: -5 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Finding Specific Coefficients
 
 Newton's binomial theorem can find the coefficient of a selected term <Highlight>without expanding the entire expression</Highlight>.
@@ -75,6 +186,19 @@ Calculating the binomial coefficient:
 </MathContainer>
 
 The coefficient of <InlineMath math="x^2" /> is <InlineMath math="2{,}027{,}091" />.
+
+For the tenth power the coefficients are <InlineMath math="\binom{10}{k}" />: <InlineMath math="1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1" />. The middle term <InlineMath math="252x^5y^5" /> has the largest coefficient, and the row falls away symmetrically on both sides.
+
+<BarChart
+  title="Coefficients of (x + y) to the tenth"
+  description={<>Bar <InlineMath math="k" /> shows <InlineMath math="\binom{10}{k}" />, the coefficient of <InlineMath math="x^{10-k}y^k" />.</>}
+  yAxisLabel="Coefficient"
+  data={Array.from({ length: 11 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(10) / (factorial(k) * factorial(10 - k)) };
+  })}
+  chartConfig={{ value: { label: "Coefficient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Finding the Constant Term
 

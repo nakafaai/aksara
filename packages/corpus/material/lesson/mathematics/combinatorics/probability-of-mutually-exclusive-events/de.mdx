@@ -3,7 +3,7 @@ export const metadata = {
    description: "Disjunkte Ereignisse erkennen, von unabhängigen Ereignissen unterscheiden und ihre Wahrscheinlichkeiten ohne Doppelzählung addieren.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -18,6 +18,31 @@ Ziehst du eine Karte aus einem üblichen Kartenspiel, kann sie nicht zugleich ro
 ## Wie sich disjunkte Ereignisse verhalten
 
 Disjunkte Ereignisse haben **kein gemeinsames Ergebnis**, ihr Schnitt trägt also nichts zur Summe bei. Die drei Prüfungen unten beschreiben diesen Gedanken über Ergebnisse und Wahrscheinlichkeiten.
+
+Im Diagramm sind unvereinbare Ereignisse zwei Kreise ohne Überschneidung. Mit einem Würfel ist <InlineMath math="A" /> = eine gerade Zahl <InlineMath math="\{2, 4, 6\}" /> und <InlineMath math="B" /> = die Zahl <InlineMath math="1" />: Kein Ergebnis liegt in beiden, also wird nichts doppelt gezählt.
+
+<MathVisual
+  title="Zwei Ereignisse ohne Überschneidung"
+  description="Zwei getrennte Kreise für die Ereignisse A und B, die kein Ergebnis teilen."
+  labels={{
+    a: <InlineMath math="A = \{2, 4, 6\}" />,
+    b: <InlineMath math="B = \{1\}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -1.5, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.5, y: 0 }, radius: 1.1, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.5, y: 0 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Leere Schnittmenge
 
 Disjunkte Ereignisse haben **keine gemeinsamen Ergebnisse**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> disjunkt, dann gilt:
@@ -171,6 +196,64 @@ Um <InlineMath math="\frac{1}{9} + \frac{1}{6}" /> zu addieren, benötigen wir d
 <BlockMath math="P(A \cup B) = \frac{2}{18} + \frac{3}{18} = \frac{5}{18}" />
 </MathContainer>
 
+Im Raster zweier Würfel liegen die Pasche auf einer Diagonale und die Summen <InlineMath math="7" /> auf der anderen. Die beiden Diagonalen teilen keinen Punkt, weil ein Pasch <InlineMath math="(k, k)" /> eine gerade Summe hat. Die Ereignisse sind also unvereinbar und <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
+
+<MathVisual
+  title="Pasche und Summe sieben treffen sich nie"
+  description="Die 36 Ergebnisse zweier Würfel. Die sechs Pasche und die sechs Ergebnisse mit Summe 7 teilen keinen Punkt."
+  labels={{
+    d11: "Pasch",
+    d16: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "primary" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d11", objectId: "d11", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "d16", objectId: "d16", at: { x: 1, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## So gehst du eine Aufgabe zu disjunkten Ereignissen an
 
 Prüfe vor dem Addieren zweier Wahrscheinlichkeiten, <Highlight>ob die Ereignisse ein Ergebnis teilen</Highlight>. Die Schritte unten stellen diese Prüfung zuerst und bestätigen danach das Ergebnis. Ohne diese Prüfung wird ein gemeinsames Ergebnis doppelt gezählt.
@@ -184,6 +267,15 @@ Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
 3. **Prüfe ihre Schnittmenge**
 4. **Berechne die Einzelwahrscheinlichkeiten**
 5. **Wende die Formel an** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
+
+<Mermaid
+  title="Erst die Schnittmenge prüfen, dann addieren"
+  description="Addier die Wahrscheinlichkeiten nur, wenn die Ereignisse nicht zusammen eintreten können. Sonst zieh die Überschneidung einmal ab."
+  chart={`flowchart TD
+  A["Ereignisse A und B"] --> Q{"Ist A ∩ B leer?"}
+  Q -->|"Ja"| E["P(A ∪ B) = P(A) + P(B)"]
+  Q -->|"Nein"| N["P(A ∪ B) = P(A) + P(B) − P(A ∩ B)"]`}
+/>
 
 ### Kontrollen für das Endergebnis
 

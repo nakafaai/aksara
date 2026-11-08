@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use the zero vector as the additive identity and interpret it in algebra, physics, and computer graphics.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Vector and Operations",
 };
 
@@ -29,6 +29,16 @@ Zero vector has several special properties that distinguish it from other vector
 
 6. Multiplying it by any real scalar still gives the zero vector: <InlineMath math="k \cdot \vec{0} = \vec{0}" />
 
+<Mermaid
+  title="How the zero vector behaves"
+  description="The zero vector has length 0 and no direction, leaves every vector unchanged in addition, and is what a vector minus itself or zero times a vector gives."
+  chart={`flowchart TD
+  Z["Zero vector 0⃗"] --> L["Length |0⃗| = 0, no direction"]
+  Z --> A["a⃗ + 0⃗ = a⃗"]
+  Z --> S["a⃗ − a⃗ = 0⃗"]
+  Z --> K["0 · a⃗ = 0⃗ and k · 0⃗ = 0⃗"]`}
+/>
+
 ## Representation of Zero Vector
 
 **Every Cartesian component** of the zero vector equals zero, so its length is zero and it has no direction. The list below shows the coordinates in one, two, and three dimensions.
@@ -53,6 +63,36 @@ Take east as positive and the starting position as <InlineMath math="0\text{ m}"
 
 <BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
 
+Walk from <InlineMath math="A" /> to <InlineMath math="B" />, then to <InlineMath math="C" />, then back to <InlineMath math="A" />. The three displacements <InlineMath math="\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA}" /> bring you to where you started, so their sum is the zero vector <InlineMath math="\vec 0" />: no change of position at all.
+
+<MathVisual
+  title="A closed path adds up to the zero vector"
+  description={<>The triangle path from A to B to C and back to A, whose three displacement vectors add up to <InlineMath math="\vec 0" />.</>}
+  labels={{
+    pa: <InlineMath math="A" />,
+    pb: <InlineMath math="B" />,
+    pc: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "ca", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pb", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "pa", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "pb", objectId: "pb", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "pc", objectId: "pc", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Zero Vector in Vector Operations
 
 Adding the zero vector and subtracting the zero vector both **preserve the original vector**. Subtraction order matters: subtracting a vector from the zero vector gives that vector's opposite.
@@ -75,6 +115,33 @@ For any vector <InlineMath math="\vec{a}" />:
   <BlockMath math="\vec{a} - \vec{0} = \vec{a},\qquad (3,-2)-(0,0)=(3,-2)" />
   <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
 </MathContainer>
+
+A vector minus itself leaves nothing. <InlineMath math="\vec a = (3, 1)" /> and <InlineMath math="-\vec a = (-3, -1)" /> have the same length and opposite directions, so <InlineMath math="\vec a - \vec a = \vec a + (-\vec a) = \vec 0" />, a vector of length <InlineMath math="0" /> that sits at the origin.
+
+<MathVisual
+  title="A vector and its opposite cancel"
+  description={<>The vectors <InlineMath math="(3, 1)" /> and <InlineMath math="(-3, -1)" /> from the origin, which add up to the zero vector at the origin.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    neg: <InlineMath math="-\vec a" />,
+    zero: <InlineMath math="\vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Scalar Multiplication with Zero Vector
 

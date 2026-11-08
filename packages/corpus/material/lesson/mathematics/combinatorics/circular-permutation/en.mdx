@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count circular arrangements by relative order, treat rotations as equivalent, distinguish reflections when needed, and solve constrained arrangements.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -14,6 +14,50 @@ At a round table, moving every person one seat clockwise does not change who sit
 This differs from a linear permutation. In a row, the first and last positions are fixed. In a circle, there is no distinguished starting position.
 
 Any object can therefore serve as the reference point. Linear orders that differ only by a rotation represent the same circular arrangement.
+
+Turn the left table one seat clockwise and you get the right table. Every person still has the same neighbors in the same order, so the two pictures are one circular arrangement, not two. Each arrangement of <InlineMath math="4" /> people appears <InlineMath math="4" /> times among the <InlineMath math="4! = 24" /> lines, which leaves <InlineMath math="24 / 4 = 3! = 6" />.
+
+<MathVisual
+  title="A rotation does not make a new arrangement"
+  description="Four people around two round tables. The right table is the left one turned by one seat, with the same neighbors."
+  labels={{
+    la: <InlineMath math="A" />,
+    lb: <InlineMath math="B" />,
+    lc: <InlineMath math="C" />,
+    ld: <InlineMath math="D" />,
+    ra: <InlineMath math="A" />,
+    rb: <InlineMath math="B" />,
+    rc: <InlineMath math="C" />,
+    rd: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lring", kind: "circle", center: { x: -1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "la", kind: "point", at: { x: -1.6, y: 1 }, appearance: "primary" },
+      { id: "lb", kind: "point", at: { x: -0.6, y: 0 }, appearance: "secondary" },
+      { id: "lc", kind: "point", at: { x: -1.6, y: -1 }, appearance: "answer" },
+      { id: "ld", kind: "point", at: { x: -2.6, y: 0 }, appearance: "highlight" },
+      { id: "rring", kind: "circle", center: { x: 1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "rd", kind: "point", at: { x: 1.6, y: 1 }, appearance: "highlight" },
+      { id: "ra", kind: "point", at: { x: 2.6, y: 0 }, appearance: "primary" },
+      { id: "rb", kind: "point", at: { x: 1.6, y: -1 }, appearance: "secondary" },
+      { id: "rc", kind: "point", at: { x: 0.6, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "la", objectId: "la", at: { x: -1.6, y: 1 }, placement: "above" },
+      { key: "lb", objectId: "lb", at: { x: -0.6, y: 0 }, placement: "right" },
+      { key: "lc", objectId: "lc", at: { x: -1.6, y: -1 }, placement: "below" },
+      { key: "ld", objectId: "ld", at: { x: -2.6, y: 0 }, placement: "left" },
+      { key: "rd", objectId: "rd", at: { x: 1.6, y: 1 }, placement: "above" },
+      { key: "ra", objectId: "ra", at: { x: 2.6, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "rb", at: { x: 1.6, y: -1 }, placement: "below" },
+      { key: "rc", objectId: "rc", at: { x: 0.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Circular Permutation Formula
 
@@ -49,6 +93,15 @@ For <InlineMath math="3" /> children: <InlineMath math="P_3 = (3-1)! = 2! = 2 \t
 
 The formula <InlineMath math="(n-1)!" /> identifies rotations but still treats mirror images as different. Treating mirror images as different is appropriate for people facing the center of a table because reversing the order swaps left and right neighbors. A bracelet can also be flipped. For <InlineMath math="n\geq3" /> distinct beads, every circular order pairs with a different mirror image, so the bracelet has <InlineMath math="\frac{(n-1)!}{2}" /> arrangements.
 
+<Mermaid
+  title="Why a circle gives (n − 1)!"
+  description="Fixing one person removes the rotations, and the remaining people fill the other seats in a row."
+  chart={`flowchart LR
+  A["n people around a circle"] --> B["Fix one person in a seat"]
+  B --> C["Arrange the other n − 1 people"]
+  C --> D["(n − 1)! arrangements"]`}
+/>
+
 ## Counting Circular Arrangements
 
 The same formula counts **circular seating orders** and other formations arranged around a center. Keep one person fixed as a reference, then count the order of the others relative to that person. When people form pairs, the units being arranged become pairs.
@@ -58,6 +111,20 @@ The same formula counts **circular seating orders** and other formations arrange
 Five students will sit **around a round table** for discussion. The number of ways they can sit is:
 
 <BlockMath math="\begin{aligned} P_5 &amp;= (5-1)! \\ &amp;= 4! \\ &amp;= 4 \times 3 \times 2 \times 1 \\ &amp;= 24 \text{ ways} \end{aligned}" />
+
+The bars show <InlineMath math="(n-1)!" /> for <InlineMath math="n = 3" /> to <InlineMath math="7" /> people around a table: <InlineMath math="2, 6, 24, 120, 720" />. Each value is <InlineMath math="n" /> times smaller than the <InlineMath math="n!" /> ways to line the same people up in a row.
+
+<BarChart
+  title="Circular arrangements of 3 to 7 people"
+  description={<>Bar <InlineMath math="n" /> shows <InlineMath math="(n-1)!" />, the circular arrangements of <InlineMath math="n" /> people.</>}
+  yAxisLabel="Arrangements"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 3;
+    return { name: `${n}`, value: Array.from({ length: n - 1 }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### A Game in a Circle
 
 Eight children **play in a circle**. The number of different formations they can form is:

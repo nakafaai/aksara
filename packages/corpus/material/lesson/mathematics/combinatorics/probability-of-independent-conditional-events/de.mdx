@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bedingte Wahrscheinlichkeiten berechnen, Abhängigkeit von Unabhängigkeit unterscheiden und mehrstufige Ziehungen lösen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
     subject: "Kombinatorik",
 };
 
@@ -33,6 +33,16 @@ Durch Neuordnung der Definition erhält man die allgemeine Multiplikationsregel:
 Sind die Ereignisse unabhängig, ändert die Information über <InlineMath math="A" /> nichts an der Wahrscheinlichkeit von <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
+
+<Mermaid
+  title="Die Ergebnismenge aktualisieren"
+  description="Nimm nach jedem Zug ohne Zurücklegen die gezogene Karte aus der Anzahl der günstigen Karten und aus der Gesamtzahl, bevor du die nächste Wahrscheinlichkeit berechnest."
+  chart={`flowchart LR
+  A["Erster Zug: 13 Herzen von 52"] --> B["Gezogenes Herz entfernen"]
+  B --> C["Zweiter Zug: 12 Herzen von 51"]
+  C --> D["P = 13/52 · 12/51 = 1/17"]`}
+/>
+
 ## Anwendung beim Kartenziehen
 
 Beim Ziehen ohne Zurücklegen ändert sich der Ergebnisraum nach jeder Karte. Beide Beispiele unten aktualisieren die Wahrscheinlichkeiten beim zweiten Zug. Weil die erste Karte nicht zurückgelegt wird, ist der **Nenner der zweiten Wahrscheinlichkeit** um eins kleiner.
@@ -56,6 +66,45 @@ Wahrscheinlichkeitsrechnung:
 
 Nachdem ein Ass gezogen wurde, bleiben <InlineMath math="51 \text{ Karten}" /> übrig. Alle <InlineMath math="4 \text{ Könige}" /> sind noch vorhanden, daher beträgt die bedingte Wahrscheinlichkeit, einen König zu ziehen, <InlineMath math="\frac{4}{51}" />.
 
+Ohne Zurücklegen hängt der zweite Ast vom ersten ab. Ein Ass ziehst du mit Wahrscheinlichkeit <InlineMath math="\frac{4}{52}" />. Danach bleiben 51 Karten, und alle 4 Könige sind noch da, also folgt ein König mit <InlineMath math="\frac{4}{51}" />. Multiplizier entlang des Pfads: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
+
+<MathVisual
+  title="Erst Ass, dann König, ohne Zurücklegen"
+  description="Ein Baum für zwei Züge: zuerst Ass oder nicht, dann König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten."
+  labels={{
+    b0: <InlineMath math="\text{Ass}\ \tfrac{4}{52}" />,
+    b1: <InlineMath math="\text{kein Ass}\ \tfrac{48}{52}" />,
+    h0: <InlineMath math="\text{König}\ \tfrac{4}{51}" />,
+    h1: <InlineMath math="\text{kein König}\ \tfrac{47}{51}" />,
+    p0: <InlineMath math="\tfrac{4}{663}" />,
+    p1: <InlineMath math="\tfrac{47}{663}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "secondary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Zwei Herzkarten nacheinander
 
 Beim Ziehen zweier Herzkarten verändert sich auch die **Anzahl der günstigen Karten**:
@@ -66,6 +115,17 @@ Beim Ziehen zweier Herzkarten verändert sich auch die **Anzahl der günstigen K
 Die Wahrscheinlichkeit, bei beiden Ziehungen ein Herz zu ziehen, beträgt daher:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
+
+Vergleich die Chance auf ein Herz beim zweiten Zug. Mit Zurücklegen bleibt sie <InlineMath math="\frac{13}{52} = 0{,}25" />. Ohne Zurücklegen sind nach einem ersten Herz nur noch <InlineMath math="12" /> Herzen unter <InlineMath math="51" /> Karten, sie sinkt also auf <InlineMath math="\frac{12}{51} \approx 0{,}235" />. Der erste Zug hat die Ergebnismenge verändert.
+
+<BarChart
+  title="Zweites Herz mit und ohne Zurücklegen"
+  description="Die Wahrscheinlichkeit eines Herzens beim zweiten Zug nach einem ersten Herz, mit und ohne Zurücklegen."
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["mit Zurücklegen", 13 / 52], ["ohne Zurücklegen", 12 / 51]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Anwendung in der Managementauswahl
 
 Angenommen, ein Unternehmen hat die folgenden Daten über seine Führungskräfte. Die Tabelle unterscheidet Geschlecht und Führungsebene, sodass wir eine Berechnung auf die passende Gruppe beschränken können.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Jelaskan alasan bilangan kompleks memperluas bilangan real, gunakan satuan imajiner, lalu tentukan bagian real dan imajinernya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -14,6 +14,16 @@ Perhatikan persamaan kuadrat <InlineMath math="x^2 - 1 = 0" />. Pemfaktoran memb
 Persamaan <InlineMath math="x^2 + 1 = 0" /> berbeda. Persamaan itu mengharuskan <InlineMath math="x^2 = -1" />, sedangkan kuadrat setiap bilangan real selalu tidak negatif. Karena itu, persamaan tersebut tidak memiliki solusi real.
 
 Bilangan kompleks <Highlight>memperluas sistem bilangan real</Highlight> agar persamaan seperti ini dapat diselesaikan.
+
+<Mermaid
+  title="Cara himpunan bilangan bersarang"
+  description="Setiap himpunan bilangan memperluas himpunan sebelumnya, dan bilangan kompleks menambahkan i dengan i² = −1 agar setiap persamaan kuadrat punya penyelesaian."
+  chart={`flowchart LR
+  N["Bilangan asli"] --> Z["Bilangan bulat"]
+  Z --> Q["Bilangan rasional"]
+  Q --> R["Bilangan real"]
+  R -->|"tambah i dengan i² = −1"| C["Bilangan kompleks a + bi"]`}
+/>
 
 ## Bilangan Imajiner
 
@@ -49,6 +59,39 @@ Bilangan kompleks secara umum ditulis sebagai <InlineMath math="z = a + bi" /> d
 
 Nilai <InlineMath math="a" /> dan <InlineMath math="b" /> keduanya bilangan real. Bentuk <InlineMath math="bi" /> merupakan suku imajiner, sedangkan koefisiennya, <InlineMath math="b" />, merupakan bagian imajiner.
 
+Setiap bilangan kompleks <InlineMath math="a + bi" /> adalah titik di bidang: bagian real <InlineMath math="a" /> ke kanan dan bagian imajiner <InlineMath math="b" /> ke atas. Bilangan real seperti <InlineMath math="4" /> terletak di sumbu mendatar, dan bilangan imajiner murni seperti <InlineMath math="2i" /> terletak di sumbu tegak.
+
+<MathVisual
+  title="Bilangan kompleks sebagai titik"
+  description="Lima bilangan kompleks diletakkan menurut bagian real ke kanan dan bagian imajiner ke atas, termasuk satu bilangan real dan satu bilangan imajiner murni."
+  labels={{
+    z1: <InlineMath math="3 + 2i" />,
+    z2: <InlineMath math="-1 + i" />,
+    z3: <InlineMath math="-2 - 3i" />,
+    z4: <InlineMath math="4" />,
+    z5: <InlineMath math="2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -4, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z2", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z3", kind: "point", at: { x: -2, y: -3 }, appearance: "primary" },
+      { id: "z4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "z5", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "z3", objectId: "z3", at: { x: -2, y: -3 }, placement: "below-left" },
+      { key: "z4", objectId: "z4", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "z5", objectId: "z5", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Menentukan Bagian Real dan Imajiner
 
 Bandingkan **koefisien dari satuan imajiner**, bukan seluruh suku imajinernya. Jadi bagian imajiner pada lima dikurangi empat kali satuan imajiner adalah minus empat, bukan minus empat kali satuan imajiner.
@@ -59,6 +102,34 @@ Bandingkan **koefisien dari satuan imajiner**, bukan seluruh suku imajinernya. J
 | <InlineMath math="5-4i" /> | <InlineMath math="5+(-4)i" /> | <InlineMath math="5" /> | <InlineMath math="-4" /> |
 | <InlineMath math="\sqrt2" /> | <InlineMath math="\sqrt2+0i" /> | <InlineMath math="\sqrt2" /> | <InlineMath math="0" /> |
 | <InlineMath math="-7i" /> | <InlineMath math="0+(-7)i" /> | <InlineMath math="0" /> | <InlineMath math="-7" /> |
+
+Baca bagian-bagian <InlineMath math="z = 3 + 2i" /> sebagai dua langkah: <InlineMath math="3" /> di sepanjang sumbu real, lalu <InlineMath math="2" /> ke atas. <InlineMath math="\operatorname{Re}(z) = 3" /> adalah langkah mendatar, <InlineMath math="\operatorname{Im}(z) = 2" /> adalah langkah tegak. Bagian imajinernya adalah bilangan <InlineMath math="2" />, bukan <InlineMath math="2i" />.
+
+<MathVisual
+  title="Bagian real dan bagian imajiner 3 + 2i"
+  description={<>Titik <InlineMath math="3 + 2i" /> dicapai dengan langkah mendatar 3 dan langkah tegak 2.</>}
+  labels={{
+    re: <InlineMath math="\operatorname{Re}(z) = 3" />,
+    im: <InlineMath math="\operatorname{Im}(z) = 2" />,
+    z: <InlineMath math="z = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "re", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "im", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "zline", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "re", objectId: "re", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "im", objectId: "im", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Latihan
 

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Test whether events are independent and calculate their joint probability without relying on misleading keywords.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -61,6 +61,34 @@ Since independent events do not affect each other, calculating their joint proba
 
 This formula shows that the probability of both events <InlineMath math="A" /> and <InlineMath math="B" /> occurring together equals the multiplication of the probability of each event.
 
+Picture all outcomes as a unit square of probability. Event <InlineMath math="A" />, an even first die, takes the left half, width <InlineMath math="\tfrac12" />. Event <InlineMath math="B" />, a second die of 1 or 2, takes the bottom third, height <InlineMath math="\tfrac13" />. Because the dice do not affect each other, the overlap is a rectangle of area <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, which is <InlineMath math="P(A \cap B)" />.
+
+<MathVisual
+  title="Independence as a rectangle of area P(A)P(B)"
+  description={<>A unit square with the strip <InlineMath math="A" /> of width one half, the strip <InlineMath math="B" /> of height one third, and their overlap of area one sixth.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="\tfrac16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1 / 4, y: 2 / 3 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 3 / 4, y: 1 / 6 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1 / 4, y: 1 / 6 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Why Multiplying the Probabilities Works
 
 For independent events, the **conditional probability** equals the ordinary probability. Because <InlineMath math="P(A|B) = P(A)" />, the multiplication rule becomes:
@@ -112,6 +140,40 @@ Both events are **independent** because the result of the die does not affect th
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
+Roll a die and toss a coin: there are <InlineMath math="6 \cdot 2 = 12" /> equally likely pairs. The highlighted three are an even number with heads, so <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Each column of the grid has the same share of heads, which is what independence looks like.
+
+<MathVisual
+  title="Twelve outcomes of a die and a coin"
+  description="Die results across and the coin up, with the three outcomes even and heads highlighted."
+  labels={{
+    c12: "heads",
+    c11: "tails",
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "c12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2, y: 2 }, appearance: "answer" },
+      { id: "c31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "c42", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "c51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "c61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "c62", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "c11", objectId: "c11", at: { x: 1, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Independent Sensor Self Tests
 
 Two independently powered monitoring sensors run a daily self-test. Sensor <InlineMath math="A" /> succeeds with probability <InlineMath math="0.98" />, while sensor <InlineMath math="B" /> succeeds with probability <InlineMath math="0.92" />. Under the stated independence model, what is the probability that both tests succeed?
@@ -147,6 +209,15 @@ To solve probability problems involving independent events, follow these steps:
 3. **Calculate individual probabilities** of each event
 4. **Apply the formula** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Check the result** to see if it makes sense in the problem context
+
+<Mermaid
+  title="Checking independence before multiplying"
+  description="Multiply the probabilities only after you have checked that knowing one event leaves the other probability unchanged."
+  chart={`flowchart TD
+  A["Events A and B"] --> Q{"P(B | A) = P(B)?"}
+  Q -->|"Yes, independent"| M1["P(A ∩ B) = P(A) · P(B)"]
+  Q -->|"No, dependent"| M2["P(A ∩ B) = P(A) · P(B | A)"]`}
+/>
 
 ### Checks for the Final Answer
 

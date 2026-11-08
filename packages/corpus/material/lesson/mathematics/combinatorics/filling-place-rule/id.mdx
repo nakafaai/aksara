@@ -3,7 +3,7 @@ export const metadata = {
    description: "Hitung banyak susunan dengan mengalikan pilihan yang sah pada setiap langkah, lalu periksa jumlah susunan melalui tabel atau diagram pohon.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -30,6 +30,39 @@ Tabel berikut memuat semua kombinasi yang mungkin:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Total kombinasi} &amp;= 3 \times 4 \\ &amp;= 12 \text{ cara} \end{aligned}" />
 </MathContainer>
+
+Setiap paket adalah satu pasangan (platform, mata pelajaran), jadi kamu bisa menatanya sebagai kisi: 3 baris untuk platform dan 4 kolom untuk mata pelajaran. Setiap titik adalah satu paket, dan kisinya berisi <InlineMath math="3 \times 4 = 12" /> titik. Itulah aturan perkalian dalam satu gambar.
+
+<MathVisual
+  title="Dua belas paket sebagai kisi 3 kali 4"
+  description={<>Tiga baris platform dikali empat kolom mata pelajaran memberi dua belas titik, satu untuk setiap paket.</>}
+  labels={{
+    g34: <InlineMath math="3 \times 4 = 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "g11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "g13", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "g14", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "g21", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "g22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "g23", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "g24", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "g31", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "g32", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "g33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "g34", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "g34", objectId: "g34", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Metode Diagram Cabang
 
 Pada **diagram cabang**, setiap cabang mewakili satu pilihan. Satu lintasan lengkap dari titik awal sampai ujung cabang mewakili satu hasil.
@@ -107,6 +140,16 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 <BlockMath math="\text{Setiap tempat} = 5 \text{ pilihan}" />
 <BlockMath math="\begin{aligned} \text{Total bilangan} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ bilangan} \end{aligned}" />
 </MathContainer>
+
+Bandingkan dua kasus untuk bilangan tiga angka dari angka <InlineMath math="1" /> sampai <InlineMath math="5" />. Tanpa pengulangan, tempatnya memberi <InlineMath math="5 \times 4 \times 3 = 60" /> bilangan, dan dengan pengulangan <InlineMath math="5 \times 5 \times 5 = 125" />. Pengulangan membuat setiap tempat tetap punya 5 pilihan, jadi banyaknya lebih dari dua kali lipat.
+
+<BarChart
+  title="Dengan dan tanpa pengulangan"
+  description="Banyak bilangan tiga angka dari angka 1 sampai 5, tanpa dan dengan pengulangan."
+  yAxisLabel="Bilangan"
+  data={[["tanpa pengulangan", 5 * 4 * 3], ["dengan pengulangan", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Bilangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 

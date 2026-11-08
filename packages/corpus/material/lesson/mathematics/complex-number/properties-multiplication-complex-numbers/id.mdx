@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan hukum perkalian dan invers perkalian untuk mengubah serta membuktikan ekspresi bilangan kompleks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -27,6 +27,33 @@ Misal <InlineMath math="z_1 = 1+2i" /> dan <InlineMath math="z_2 = 3-i" />.
 </MathContainer>
 
 Kedua hasil kali bernilai <InlineMath math="5+5i" />, sehingga sifat komutatif terverifikasi pada contoh ini.
+
+Hasil kali juga punya gambar. Untuk <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 + i" />, hasil kalinya <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Panjangnya <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, hasil kali kedua panjang, dan menukar faktornya memberi titik yang sama.
+
+<MathVisual
+  title="Hasil kali 1 + i dan 2 + i"
+  description={<>Panah <InlineMath math="1 + i" />, <InlineMath math="2 + i" />, dan hasil kalinya <InlineMath math="1 + 3i" />, yang panjangnya <InlineMath math="\sqrt{10}" /> sama dengan <InlineMath math="\sqrt2 \cdot \sqrt5" />.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="2 + i" />,
+    p: <InlineMath math="1 + 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Asosiatif
 
@@ -86,6 +113,41 @@ Gunakan **distributif** untuk menghasilkan empat suku, lalu **komutatif** untuk 
 
 <BlockMath math="\begin{aligned}(z_1+z_2)^2&amp;=(z_1+z_2)(z_1+z_2) \\ &amp;=z_1(z_1+z_2)+z_2(z_1+z_2) \\ &amp;=z_1^2+z_1z_2+z_2z_1+z_2^2 \\ &amp;=z_1^2+z_1z_2+z_1z_2+z_2^2 \\ &amp;=z_1^2+2z_1z_2+z_2^2\end{aligned}" />
 
+Mengalikan dengan <InlineMath math="i" /> memutar bilangan seperempat putaran mengelilingi titik asal. Mulai dari <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Tiga perkalian lagi memberi <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" />, dan kembali ke <InlineMath math="3 + i" />, yaitu pojok-pojok sebuah persegi, karena <InlineMath math="i^4 = 1" />.
+
+<MathVisual
+  title="Mengalikan dengan i memutar 90 derajat"
+  description={<>Titik <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" />, dan <InlineMath math="i^3z" /> untuk <InlineMath math="z = 3 + i" />, keempat pojok persegi di sekeliling titik asal.</>}
+  labels={{
+    w0: <InlineMath math="z = 3 + i" />,
+    w1: <InlineMath math="iz = -1 + 3i" />,
+    w2: <InlineMath math="i^2 z = -3 - i" />,
+    w3: <InlineMath math="i^3 z = 1 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -1, y: 3 }, { x: -3, y: -1 }, { x: 1, y: -3 }], appearance: "reference" },
+      { id: "w0r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "w1r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "construction" },
+      { id: "w2r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "w3r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "w0", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "w1", kind: "point", at: { x: -1, y: 3 }, appearance: "primary" },
+      { id: "w2", kind: "point", at: { x: -3, y: -1 }, appearance: "primary" },
+      { id: "w3", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "w0", objectId: "w0", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "w1", objectId: "w1", at: { x: -1, y: 3 }, placement: "above" },
+      { key: "w2", objectId: "w2", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "w3", objectId: "w3", at: { x: 1, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Invers Perkalian
 
 Setiap bilangan kompleks <InlineMath math="z = x + iy \neq 0" /> memiliki **invers perkalian**, dinotasikan sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />, sedemikian sehingga <InlineMath math="z \times z^{-1} = 1" />.
@@ -131,3 +193,14 @@ Jadi, invers perkalian dari <InlineMath math="z = x+iy" /> adalah:
 Perhatikan bahwa <InlineMath math="x^2+y^2 = |z|^2" /> dan <InlineMath math="x-iy = \bar{z}" />. Maka rumus invers bisa juga ditulis sebagai:
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
+
+<Mermaid
+  title="Sifat perkalian bilangan kompleks"
+  description="Perkalian bilangan kompleks bersifat komutatif dan asosiatif, punya identitas 1, distributif terhadap penjumlahan, dan memberi setiap bilangan tak nol sebuah invers."
+  chart={`flowchart TD
+  A["z₁ · z₂ untuk bilangan kompleks"] --> C1["Komutatif: z₁z₂ = z₂z₁"]
+  A --> C2["Asosiatif: (z₁z₂)z₃ = z₁(z₂z₃)"]
+  A --> C3["Identitas: 1 · z = z"]
+  A --> C4["Distributif: z₁(z₂ + z₃) = z₁z₂ + z₁z₃"]
+  A --> C5["Invers: z · 1/z = 1 untuk z ≠ 0"]`}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Modelkan kejadian dengan ruang sampel, hitung peluang kejadian, lalu jelaskan arti nilai peluang dalam konteks soal.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -47,6 +47,15 @@ Pada rumus ini:
 
 **Komplemen**: Komplemen <InlineMath math="A" /> memuat seluruh hasil dalam ruang sampel yang **tidak** termasuk <InlineMath math="A" />. Jika <InlineMath math="A" /> adalah “mendapat bilangan genap,” maka <InlineMath math="A'" /> adalah “mendapat bilangan ganjil.”
 
+<Mermaid
+  title="Menghitung peluang suatu kejadian"
+  description="Daftarkan hasil yang sama mungkin, hitung yang termasuk kejadian, bagi, dan pakai komplemen jika lebih mudah dihitung."
+  chart={`flowchart LR
+  S["Ruang sampel S, hasil sama mungkin"] --> A["Hitung n(A)"]
+  A --> P["P(A) = n(A) / n(S)"]
+  P --> C["P(A′) = 1 − P(A)"]`}
+/>
+
 ## Peluang Jumlah Dua Dadu Sama dengan Sembilan
 
 **Analisis Pelemparan Dua Dadu**:
@@ -65,6 +74,63 @@ Daftarkan **pasangan terurut** yang jumlahnya sembilan. Menukar hasil dadu perta
 Empat pasangan memenuhi syarat, sehingga <InlineMath math="n(A)=4" />.
 
 <BlockMath math="P(\text{jumlah}=9)=\frac{4}{36}=\frac{1}{9}\approx 0{,}111" />
+
+Setiap titik adalah satu hasil dua dadu: dadu pertama ke kanan, dadu kedua ke atas, semuanya <InlineMath math="36" /> titik. Empat titik yang disorot terletak pada garis <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" />, dan <InlineMath math="(6, 3)" />. Jadi <InlineMath math="P(\text{jumlah} = 9) = \frac{4}{36} = \frac19" />.
+
+<MathVisual
+  title="Empat dari 36 hasil berjumlah sembilan"
+  description={<>Ke-36 hasil dua dadu sebagai kisi 6 kali 6, dengan empat hasil pada <InlineMath math="x + y = 9" /> disorot.</>}
+  labels={{
+    nine: <InlineMath math="x + y = 9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "nine", kind: "line", through: [{ x: 3, y: 6 }, { x: 6, y: 3 }], appearance: "construction" },
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "answer" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "answer" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "nine", objectId: "nine", at: { x: 6, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ### Memperkirakan Banyak Kupon Hadiah
 
@@ -85,6 +151,20 @@ Ada <InlineMath math="6" /> cara untuk mendapat jumlah <InlineMath math="7" />: 
 <BlockMath math="P(\text{jumlah} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
 
 Nilai ini merupakan peluang terbesar di antara semua jumlah yang mungkin. Namun, peluang tersebut tidak menjamin pelemparan berikutnya menghasilkan <InlineMath math="7" />. Peluang menggambarkan model jangka panjang.
+
+Hitung hasil untuk setiap jumlah, maka polanya muncul: <InlineMath math="1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1" /> dari <InlineMath math="36" /> untuk jumlah <InlineMath math="2" /> sampai <InlineMath math="12" />. Jumlah <InlineMath math="7" /> paling mungkin dengan <InlineMath math="\frac{6}{36}" />, dan jumlah <InlineMath math="9" /> punya <InlineMath math="\frac{4}{36}" />.
+
+<BarChart
+  title="Peluang setiap jumlah dua dadu"
+  description={<>Batang <InlineMath math="s" /> menunjukkan peluang <InlineMath math="\frac{6 - |s - 7|}{36}" /> bahwa jumlah dua dadu adalah <InlineMath math="s" />.</>}
+  yAxisLabel="Peluang"
+  data={Array.from({ length: 11 }, (_, i) => {
+    const s = i + 2;
+    return { name: `${s}`, value: (6 - Math.abs(s - 7)) / 36 };
+  })}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Latihan
 
 Kerjakan setiap soal sebelum membaca pembahasannya. Nyatakan ruang sampel dan kejadiannya dengan jelas sebelum memasukkan angka ke dalam rumus. Keempat soal memakai **hasil yang sama mungkin**, jadi tuliskan dulu banyak anggotanya lalu bagi pada langkah terakhir.

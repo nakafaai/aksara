@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use combinations to count selections in which order does not matter, including constrained cases.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -20,6 +20,42 @@ In daily life, we often encounter combinations when:
 - Determining color combinations for design
 
 For a permutation, <InlineMath math="ABC" /> and <InlineMath math="BAC" /> are different arrangements. For a combination, they <Highlight>represent the same selection</Highlight> because their members are identical.
+
+Choosing 2 of 4 friends ignores order, so each choice is one segment between two dots. Count the segments: 4 sides and 2 diagonals, <InlineMath math="6" /> in all. That matches <InlineMath math="\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6" />, while ordered pairs would count every segment twice, <InlineMath math="12" />.
+
+<MathVisual
+  title="Six ways to choose 2 of 4"
+  description="Four friends A, B, C and D as dots. Each of the six segments is one way to choose two of them."
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "ac", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "ad", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "bc", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "bd", kind: "segment", from: { x: 1, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cd", kind: "segment", from: { x: 1, y: 0 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Combination Formula
 
@@ -50,6 +86,19 @@ Choosing two of three students A, B, and C shows why we divide by <InlineMath ma
 | B, C | BC, CB |
 
 <BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
+The bars show <InlineMath math="\binom{6}{k}" /> for <InlineMath math="k = 0" /> to <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. The row is symmetric, because choosing <InlineMath math="k" /> objects to take is the same as choosing <InlineMath math="6 - k" /> objects to leave.
+
+<BarChart
+  title="Choosing k of 6"
+  description={<>Bar <InlineMath math="k" /> shows <InlineMath math="\binom{6}{k}" />, which is symmetric about <InlineMath math="k = 3" />.</>}
+  yAxisLabel="Combinations"
+  data={Array.from({ length: 7 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(6) / (factorial(k) * factorial(6 - k)) };
+  })}
+  chartConfig={{ value: { label: "Combinations", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Counting Selections With and Without Conditions
 
@@ -103,6 +152,16 @@ Some selections include **additional conditions**. For example, from <InlineMath
 </MathContainer>
 
 **Total**: <InlineMath math="210 + 70 + 5 = 285" /> ways
+
+<Mermaid
+  title="Permutation or combination"
+  description="If the order of the chosen objects matters, count permutations. If it does not, count combinations, which are the permutations divided by the r! orders of each selection."
+  chart={`flowchart TD
+  A["Choose r of n objects"] --> Q{"Does the order matter?"}
+  Q -->|"Yes"| P["Permutation: n! / (n − r)!"]
+  Q -->|"No"| C["Combination: n! / ((n − r)! · r!)"]
+  P -->|"divide by r!"| C`}
+/>
 
 ## Practice Problems
 

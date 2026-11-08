@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan identitas komposisi, invers dari invers, serta pertukaran domain dan daerah hasil untuk memeriksa fungsi invers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -34,6 +34,53 @@ Kita tahu bahwa jika <InlineMath math="f(x) = 2x + 3" />, maka inversnya adalah 
 
 Kedua komposisi membawa kita kembali ke nilai awal <InlineMath math="x" />.
 
+Ikuti masukan melewati <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> lalu <InlineMath math="f(x) = 2x + 3" />. Masukan <InlineMath math="5" /> menuju <InlineMath math="1" /> dan kembali ke <InlineMath math="5" />, dan setiap jalur lain kembali ke titik awalnya. Itulah <InlineMath math="(f \circ f^{-1})(x) = x" />.
+
+<MathVisual
+  title="f membatalkan inversnya"
+  description={<>Tiga sumbu untuk <InlineMath math="x" />, <InlineMath math="f^{-1}(x)" />, dan <InlineMath math="f(f^{-1}(x))" />, tempat setiap jalur kembali ke nilai awalnya.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    inv: <InlineMath math="f^{-1}(x)" />,
+    back: <InlineMath math="f(f^{-1}(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -3 }, to: { x: 0, y: 6 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -3 }, to: { x: 6, y: 6 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 3 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 5 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "inv", objectId: "axis1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "back", objectId: "axis2", at: { x: 6, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Sifat Invers dari Invers
 
 Jika kita mencari invers dari suatu fungsi invers, kita akan kembali ke fungsi aslinya.
@@ -48,6 +95,38 @@ Pasangan masukan dan keluaran mengalami **dua kali pertukaran**. Untuk fungsi ta
 | --- | --- | --- |
 | <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
 | <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
+Grafik <InlineMath math="f^{-1}" /> adalah cerminan <InlineMath math="f" /> terhadap garis <InlineMath math="y = x" />. Untuk <InlineMath math="f(x) = 2x + 3" />, titik <InlineMath math="(1, 5)" /> pada <InlineMath math="f" /> bercermin menjadi <InlineMath math="(5, 1)" /> pada <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" />. Cerminkan sekali lagi, maka kamu kembali ke <InlineMath math="f" />, dan itulah sebabnya <InlineMath math="(f^{-1})^{-1} = f" />.
+
+<MathVisual
+  title="f dan inversnya saling bercermin"
+  description={<>Garis <InlineMath math="f(x) = 2x + 3" /> dan <InlineMath math="f^{-1}(x) = \tfrac{x-3}{2}" />, saling bercermin terhadap <InlineMath math="y = x" />, dengan titik cerminan <InlineMath math="(1, 5)" /> dan <InlineMath math="(5, 1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inv: <InlineMath math="f^{-1}" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 7 }, y: { min: -2, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "inv", kind: "line", through: [{ x: 3, y: 0 }, { x: 5, y: 1 }], appearance: "secondary" },
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Sifat Invers dari Komposisi Fungsi
 

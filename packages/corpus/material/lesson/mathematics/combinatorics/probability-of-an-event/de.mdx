@@ -3,7 +3,7 @@ export const metadata = {
    description: "Beschreibe ein Ereignis im Ergebnisraum, berechne seine Wahrscheinlichkeit und erkläre die Bedeutung des Ergebnisses im Sachzusammenhang.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -47,6 +47,15 @@ Die Größen in dieser Formel bedeuten:
 
 **Gegenereignis**: Das Gegenereignis zu <InlineMath math="A" /> enthält jedes Ergebnis des Ergebnisraums, das **nicht** zu <InlineMath math="A" /> gehört. Bedeutet <InlineMath math="A" /> etwa „eine gerade Zahl würfeln“, so steht <InlineMath math="A'" /> für „eine ungerade Zahl würfeln“.
 
+<Mermaid
+  title="Die Wahrscheinlichkeit eines Ereignisses berechnen"
+  description="Liste die gleich wahrscheinlichen Ergebnisse auf, zähl die im Ereignis, teil, und nutz das Gegenereignis, wenn es leichter zu zählen ist."
+  chart={`flowchart LR
+  S["Ergebnismenge S, gleich wahrscheinlich"] --> A["n(A) zählen"]
+  A --> P["P(A) = n(A) / n(S)"]
+  P --> C["P(A′) = 1 − P(A)"]`}
+/>
+
 ## Wahrscheinlichkeit für die Summe Neun bei zwei Würfeln
 
 **Zwei Würfel untersuchen**:
@@ -65,6 +74,63 @@ Liste die **geordneten Paare** mit Summe neun auf. Werden die Augenzahlen des er
 Vier Paare erfüllen die Bedingung, also gilt <InlineMath math="n(A)=4" />.
 
 <BlockMath math="P(\text{Summe}=9)=\frac{4}{36}=\frac{1}{9}\approx 0{,}111" />
+
+Jeder Punkt ist ein Ergebnis zweier Würfel: der erste Würfel nach rechts, der zweite nach oben, insgesamt <InlineMath math="36" /> Punkte. Die vier hervorgehobenen Punkte liegen auf der Geraden <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" /> und <InlineMath math="(6, 3)" />. Also <InlineMath math="P(\text{Summe} = 9) = \frac{4}{36} = \frac19" />.
+
+<MathVisual
+  title="Vier von 36 Ergebnissen ergeben neun"
+  description={<>Die 36 Ergebnisse zweier Würfel als Raster 6 mal 6, die vier Ergebnisse auf <InlineMath math="x + y = 9" /> hervorgehoben.</>}
+  labels={{
+    nine: <InlineMath math="x + y = 9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "nine", kind: "line", through: [{ x: 3, y: 6 }, { x: 6, y: 3 }], appearance: "construction" },
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "answer" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "answer" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "nine", objectId: "nine", at: { x: 6, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ### Die Anzahl der Gewinncoupons schätzen
 
@@ -85,6 +151,20 @@ Es gibt <InlineMath math="6" /> Möglichkeiten für die Summe <InlineMath math="
 <BlockMath math="P(\text{Summe} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
 
 Das ist die größte Wahrscheinlichkeit unter allen möglichen Summen. Trotzdem muss der nächste Wurf nicht <InlineMath math="7" /> ergeben. Die Rechnung beschreibt, wie sich die Ergebnisse über viele Würfe verteilen. Sie legt den nächsten einzelnen Wurf nicht fest.
+
+Zähl die Ergebnisse für jede Summe, dann zeigt sich das Muster: <InlineMath math="1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1" /> von <InlineMath math="36" /> für die Summen <InlineMath math="2" /> bis <InlineMath math="12" />. Die Summe <InlineMath math="7" /> ist mit <InlineMath math="\frac{6}{36}" /> am wahrscheinlichsten, die Summe <InlineMath math="9" /> hat <InlineMath math="\frac{4}{36}" />.
+
+<BarChart
+  title="Wahrscheinlichkeit jeder Augensumme zweier Würfel"
+  description={<>Balken <InlineMath math="s" /> zeigt die Wahrscheinlichkeit <InlineMath math="\frac{6 - |s - 7|}{36}" />, dass zwei Würfel die Summe <InlineMath math="s" /> ergeben.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={Array.from({ length: 11 }, (_, i) => {
+    const s = i + 2;
+    return { name: `${s}`, value: (6 - Math.abs(s - 7)) / 36 };
+  })}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Übungsaufgaben
 
 Versuche jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Notiere zuerst den **Ergebnisraum und das Ereignis**. Setze erst danach Zahlen in die Formel ein.

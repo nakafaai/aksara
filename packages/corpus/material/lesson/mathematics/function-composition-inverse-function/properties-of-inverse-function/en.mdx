@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use composition identities, double inversion, and domain-range swaps to check inverse functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -34,6 +34,53 @@ We know that if <InlineMath math="f(x) = 2x + 3" />, its inverse is <InlineMath 
 
 Both compositions return the original input <InlineMath math="x" />.
 
+Follow inputs through <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> and then <InlineMath math="f(x) = 2x + 3" />. The input <InlineMath math="5" /> goes to <InlineMath math="1" /> and comes back to <InlineMath math="5" />, and every other path returns to where it started. That is <InlineMath math="(f \circ f^{-1})(x) = x" />.
+
+<MathVisual
+  title="f undoes its inverse"
+  description={<>Three axes for <InlineMath math="x" />, <InlineMath math="f^{-1}(x)" /> and <InlineMath math="f(f^{-1}(x))" />, where every path returns to its starting value.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    inv: <InlineMath math="f^{-1}(x)" />,
+    back: <InlineMath math="f(f^{-1}(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -3 }, to: { x: 0, y: 6 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -3 }, to: { x: 6, y: 6 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 3 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 5 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "inv", objectId: "axis1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "back", objectId: "axis2", at: { x: 6, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Property of the Inverse of an Inverse
 
 If we find the inverse of an inverse function, we get back the original function.
@@ -48,6 +95,38 @@ The input and output undergo **two exchanges**. For the function above, follow t
 | --- | --- | --- |
 | <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
 | <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
+The graph of <InlineMath math="f^{-1}" /> is the mirror image of <InlineMath math="f" /> in the line <InlineMath math="y = x" />. For <InlineMath math="f(x) = 2x + 3" /> the point <InlineMath math="(1, 5)" /> on <InlineMath math="f" /> mirrors to <InlineMath math="(5, 1)" /> on <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" />. Mirror once more and you are back on <InlineMath math="f" />, which is why <InlineMath math="(f^{-1})^{-1} = f" />.
+
+<MathVisual
+  title="f and its inverse mirror each other"
+  description={<>The lines <InlineMath math="f(x) = 2x + 3" /> and <InlineMath math="f^{-1}(x) = \tfrac{x-3}{2}" />, mirror images in <InlineMath math="y = x" />, with the mirrored points <InlineMath math="(1, 5)" /> and <InlineMath math="(5, 1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inv: <InlineMath math="f^{-1}" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 7 }, y: { min: -2, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "inv", kind: "line", through: [{ x: 3, y: 0 }, { x: 5, y: 1 }], appearance: "secondary" },
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Property of the Inverse of a Composition
 

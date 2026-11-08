@@ -3,7 +3,7 @@ export const metadata = {
    description: "Bedakan gabungan, irisan, kejadian saling bebas, dan kejadian tidak saling bebas, lalu pilih aturan peluang yang tepat.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -18,6 +18,17 @@ Bayangkan kamu melempar sebuah dadu dan sebuah koin. Satu kejadian dapat berfoku
 ## Jenis Kejadian Majemuk
 
 Dua kejadian bisa berbagi hasil atau saling meniadakan, dan perbedaan itu menentukan rumus yang dipakai. Satu hasil bersama membuktikan adanya irisan. Untuk membuktikan kejadian saling lepas, kamu harus menunjukkan bahwa **tidak ada hasil bersama**. Kebebasan kejadian menjawab pertanyaan berbeda, yaitu apakah informasi tentang satu kejadian mengubah peluang kejadian lain.
+
+<Mermaid
+  title="Aturan untuk kejadian majemuk"
+  description="Untuk atau, jumlahkan lalu kurangkan irisan jika ada. Untuk dan, kalikan, dengan peluang bersyarat jika kejadiannya bergantung."
+  chart={`flowchart TD
+  A["Kejadian majemuk"] --> Q{"A atau B, atau A dan B?"}
+  Q -->|"atau"| U["P(A) + P(B) − P(A ∩ B)"]
+  Q -->|"dan"| I{"Saling bebas?"}
+  I -->|"Ya"| M1["P(A) · P(B)"]
+  I -->|"Tidak"| M2["P(A) · P(B | A)"]`}
+/>
 
 ### Kejadian Saling Lepas
 
@@ -89,6 +100,36 @@ Irisan (kartu merah dan bergambar): <InlineMath math="6 \text{ kartu}" /> (Jack,
 <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{3}{13} - \frac{3}{26} = \frac{13}{26} + \frac{6}{26} - \frac{3}{26} = \frac{16}{26} = \frac{8}{13}" />
 </MathContainer>
 
+Dengan satu dadu, misalkan <InlineMath math="A = \{2, 4, 6\}" /> dan <InlineMath math="B = \{4, 5, 6\}" />. Kedua lingkaran beririsan di <InlineMath math="\{4, 6\}" />, jadi menjumlahkan <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> akan menghitung <InlineMath math="4" /> dan <InlineMath math="6" /> dua kali. Kurangkan irisannya sekali: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
+
+<MathVisual
+  title="Kejadian beririsan menghitung irisannya sekali"
+  description={<>Dua lingkaran beririsan: hanya <InlineMath math="A" /> berisi 2, hanya <InlineMath math="B" /> berisi 5, dan irisannya berisi 4 dan 6.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    onlya: <InlineMath math="2" />,
+    onlyb: <InlineMath math="5" />,
+    both: <InlineMath math="4, 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Kejadian Saling Bebas
 
 Dua kejadian **saling bebas** jika informasi bahwa satu kejadian telah terjadi tidak mengubah distribusi peluang kejadian lainnya. Waktu terjadinya kedua kejadian belum menentukan sifat ini. Periksa peluangnya.
@@ -115,6 +156,57 @@ Karena hasil dadu pertama tidak memengaruhi hasil dadu kedua, kedua kejadian ter
 <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}" />
 </MathContainer>
+
+Kejadian saling bebas dikalikan, dan diagram pohon menunjukkan alasannya. Pertama dadu: genap atau ganjil, masing-masing <InlineMath math="\frac12" />. Lalu koin: angka atau gambar, masing-masing <InlineMath math="\frac12" />, apa pun hasil dadunya. Setiap jalur mengalikan cabangnya, jadi <InlineMath math="P(\text{genap dan angka}) = \frac12 \cdot \frac12 = \frac14" />, dan keempat jalur berjumlah <InlineMath math="1" />.
+
+<MathVisual
+  title="Diagram pohon peluang untuk dadu dan koin"
+  description="Diagram pohon dengan hasil dadu lebih dulu dan koin kedua, setiap cabang berlabel setengah, dan hasil kali seperempat di setiap ujung."
+  labels={{
+    b0: <InlineMath math="\text{genap}\ \tfrac12" />,
+    b1: <InlineMath math="\text{ganjil}\ \tfrac12" />,
+    h0: <InlineMath math="A\ \tfrac12" />,
+    h1: <InlineMath math="G\ \tfrac12" />,
+    h2: <InlineMath math="A\ \tfrac12" />,
+    h3: <InlineMath math="G\ \tfrac12" />,
+    p0: <InlineMath math="\tfrac14" />,
+    p1: <InlineMath math="\tfrac14" />,
+    p2: <InlineMath math="\tfrac14" />,
+    p3: <InlineMath math="\tfrac14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "l2", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "e2", kind: "point", at: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "l3", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "e3", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+      { key: "h2", objectId: "l2", at: { x: 3, y: (-1.8 + -0.6) / 2 }, placement: "above" },
+      { key: "p2", objectId: "e2", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "h3", objectId: "l3", at: { x: 3, y: (-1.8 + -3) / 2 }, placement: "above" },
+      { key: "p3", objectId: "e3", at: { x: 4, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Kejadian Tidak Saling Bebas
 

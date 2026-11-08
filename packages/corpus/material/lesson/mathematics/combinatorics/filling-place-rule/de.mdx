@@ -3,7 +3,7 @@ export const metadata = {
    description: "Zähle vollständige Ergebnisse, indem du die gültigen Möglichkeiten jedes Schritts multiplizierst, und prüfe die Anzahl mit einer Tabelle oder einem Baumdiagramm.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -30,6 +30,39 @@ Die Tabelle enthält alle möglichen Kombinationen:
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Gesamtkombinationen} &amp;= 3 \times 4 \\ &amp;= 12 \text{ Wege} \end{aligned}" />
 </MathContainer>
+
+Jedes Paket ist ein Paar (Plattform, Fach), also kannst du sie als Raster anordnen: 3 Zeilen für die Plattformen und 4 Spalten für die Fächer. Jeder Punkt ist ein Paket, und das Raster enthält <InlineMath math="3 \times 4 = 12" /> Punkte. Das ist die Multiplikationsregel in einem Bild.
+
+<MathVisual
+  title="Zwölf Pakete als Raster 3 mal 4"
+  description={<>Drei Zeilen Plattformen mal vier Spalten Fächer ergeben zwölf Punkte, einen für jedes Paket.</>}
+  labels={{
+    g34: <InlineMath math="3 \times 4 = 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "g11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "g13", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "g14", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "g21", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "g22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "g23", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "g24", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "g31", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "g32", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "g33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "g34", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "g34", objectId: "g34", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Auswahl in einem Baumdiagramm
 
 In einem **Baumdiagramm** steht jeder Zweig für eine Auswahl. Ein vollständiger Pfad vom Startpunkt bis zu einem Endpunkt entspricht einem vollständigen Ergebnis.
@@ -107,6 +140,16 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 <BlockMath math="\text{Jede Stelle} = 5 \text{ Möglichkeiten}" />
 <BlockMath math="\begin{aligned} \text{Gesamtzahlen} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ Zahlen} \end{aligned}" />
 </MathContainer>
+
+Vergleich die beiden Fälle für dreistellige Zahlen aus den Ziffern <InlineMath math="1" /> bis <InlineMath math="5" />. Ohne Wiederholung bieten die Plätze <InlineMath math="5 \times 4 \times 3 = 60" /> Zahlen, mit Wiederholung <InlineMath math="5 \times 5 \times 5 = 125" />. Mit Wiederholung behält jeder Platz 5 Möglichkeiten, die Anzahl wird also mehr als doppelt so groß.
+
+<BarChart
+  title="Mit und ohne Wiederholung"
+  description="Die Anzahl dreistelliger Zahlen aus den Ziffern 1 bis 5, ohne und mit Wiederholung."
+  yAxisLabel="Zahlen"
+  data={[["ohne Wiederholung", 5 * 4 * 3], ["mit Wiederholung", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Zahlen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übungen
 

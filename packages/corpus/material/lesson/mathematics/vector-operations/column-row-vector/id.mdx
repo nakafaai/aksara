@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tulis vektor kolom dan baris, transposkan keduanya, lalu gunakan vektor satuan Kartesius dalam perhitungan aljabar linear.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-12",
-   dateModified: "2026-09-19",
+   dateModified: "2026-11-08",
    subject: "Vektor dan Operasinya",
 };
 
@@ -24,6 +24,34 @@ Dalam dua dimensi, komponen ditulis berurutan sebagai baris <InlineMath math="(3
 Dalam tiga dimensi, baris <InlineMath math="(2 \; 1 \; 3)" /> atau <InlineMath math="[2 \; 1 \; 3]" /> berubah menjadi kolom berikut. **Urutan komponen tetap sama** meskipun susunannya berubah.
 
 <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+Kedua notasi menggambarkan panah yang sama. <InlineMath math="(3 \; 4)" /> sebagai baris dan <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> sebagai kolom sama-sama berarti: 3 ke kanan, lalu 4 ke atas. Panah dari titik asal ke <InlineMath math="(3, 4)" /> panjangnya <InlineMath math="\sqrt{3^2 + 4^2} = 5" />.
+
+<MathVisual
+  title="Satu vektor, dua notasi"
+  description={<>Vektor dengan komponen 3 dan 4 sebagai panah dari titik asal, dengan komponen mendatar dan tegaknya digambar.</>}
+  labels={{
+    v: <InlineMath math="(3 \; 4)" />,
+    cx: <InlineMath math="3" />,
+    cy: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "cy", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "cx", objectId: "cx", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "cy", objectId: "cy", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Representasi Komponen yang Ekuivalen
 
@@ -80,6 +108,28 @@ Ketiga vektor satuan yang sama, jika ditulis sebagai vektor kolom, menempatkan k
 
 Matriks pertama adalah vektor satuan sepanjang sumbu <InlineMath math="x" />, matriks kedua sepanjang sumbu <InlineMath math="y" />, dan matriks ketiga sepanjang sumbu <InlineMath math="z" />.
 
+Di ruang, vektor punya tiga komponen. <InlineMath math="(2 \; 1 \; 3)" /> berarti <InlineMath math="2\vec{i} + \vec{j} + 3\vec{k}" />: 2 searah x, 1 searah y, 3 searah z. Jalur ketiga langkah itu berakhir di ujung panah. Putar adegannya untuk melihat langkah-langkahnya dari segala sisi.
+
+<MathVisual
+  title="Vektor di ruang dan langkah vektor satuannya"
+  description={<>Vektor <InlineMath math="(2 \; 1 \; 3)" /> dari titik asal, dengan jalur 2 searah x, 1 searah y, dan 3 searah z.</>}
+  labels={{
+    v: <InlineMath math="(2 \; 1 \; 3)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 2 }, z: { min: 0, max: 3.5 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "steps", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1, z: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Hubungan Vektor Kolom dan Vektor Baris
 
 Vektor kolom dan vektor baris saling berhubungan melalui operasi transpos. **Transpos** adalah operasi mengubah baris menjadi kolom atau sebaliknya.
@@ -95,6 +145,14 @@ Sebaliknya, perhatikan vektor kolom:
 Transposnya adalah vektor baris:
 
 <BlockMath math="\vec{b}^T = (b_1 \; b_2 \; \ldots \; b_m)" />
+
+<Mermaid
+  title="Vektor kolom dan vektor baris saling transpose"
+  description="Transpose mengubah vektor kolom menjadi vektor baris dengan komponen yang sama dan urutan yang sama, dan sebaliknya."
+  chart={`flowchart LR
+  C["Vektor kolom (3, 4) ditulis tegak"] -->|"transpose"| R["Vektor baris (3 4)"]
+  R -->|"transpose"| C`}
+/>
 
 ## Aplikasi Vektor Kolom dan Vektor Baris
 

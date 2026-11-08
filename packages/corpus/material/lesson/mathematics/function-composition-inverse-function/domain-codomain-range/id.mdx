@@ -4,7 +4,7 @@ export const metadata = {
     "Bedakan masukan yang diizinkan, himpunan sasaran yang ditetapkan, dan keluaran yang benar-benar dicapai fungsi melalui contoh konkret.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -94,6 +94,59 @@ Perhatikan bahwa range ini (<InlineMath math="\{0, 1, 4, 9, ...\}" />) merupakan
 
 Tidak semua anggota kodomain menjadi bagian dari range.
 
+Di sini <InlineMath math="f(x) = x^2" /> memetakan domain <InlineMath math="\{-2, -1, 0, 1, 2\}" /> ke kodomain <InlineMath math="\{0, 1, 2, 3, 4\}" />. Setiap masukan punya tepat satu panah, tetapi hanya <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="4" /> yang menerimanya. Nilai-nilai itu membentuk daerah hasil, sedangkan <InlineMath math="2" /> dan <InlineMath math="3" /> tetap di kodomain tanpa tercapai.
+
+<MathVisual
+  title="Domain, kodomain, dan daerah hasil x kuadrat"
+  description={<>Panah dari setiap masukan ke kuadratnya. Keluaran yang disorot, 0, 1, dan 4, membentuk daerah hasil di dalam kodomain.</>}
+  labels={{
+    a0: <InlineMath math="-2" />,
+    a1: <InlineMath math="-1" />,
+    a2: <InlineMath math="0" />,
+    a3: <InlineMath math="1" />,
+    a4: <InlineMath math="2" />,
+    b0: <InlineMath math="0" />,
+    b1: <InlineMath math="1" />,
+    b2: <InlineMath math="2" />,
+    b3: <InlineMath math="3" />,
+    b4: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "m0", kind: "segment", from: { x: 0, y: -2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 0, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m4", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: -2 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "b1", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "b2", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "b3", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "b4", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 0, y: -2 }, placement: "left" },
+      { key: "a1", objectId: "a1", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "a2", objectId: "a2", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "a3", objectId: "a3", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a4", objectId: "a4", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "b0", objectId: "b0", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b1", objectId: "b1", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "b2", objectId: "b2", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "b3", objectId: "b3", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "b4", objectId: "b4", at: { x: 4, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Membedakan Domain Kodomain dan Range
 
 Domain mencegah masukan tidak sah seperti pembagian dengan nol. Kodomain menetapkan ruang sasaran, sedangkan range menunjukkan nilai yang benar-benar dicapai fungsi. Ketiga himpunan itu dipakai bersama saat membaca notasi fungsi.
@@ -128,6 +181,31 @@ Untuk melihat perbedaannya, batasi contoh kuadrat pada <InlineMath math="D=\{-2,
 />
 
 Panah mencapai <InlineMath math="0,1,4" />, sehingga <InlineMath math="R=\{0,1,4\}" />. Nilai <InlineMath math="2" /> dan <InlineMath math="3" /> tetap anggota kodomain, tetapi bukan anggota range contoh terbatas ini.
+
+Pada grafik, gagasan yang sama menjadi selang. Dengan domain <InlineMath math="-2 \le x \le 2" />, parabola <InlineMath math="y = x^2" /> mencakup ketinggian dari <InlineMath math="0" /> sampai <InlineMath math="4" />. Selang di sumbu y itu adalah daerah hasilnya, sedangkan kodomain seperti seluruh bilangan real bisa lebih besar.
+
+<MathVisual
+  title="Domain dan daerah hasil pada grafik"
+  description={<>Parabola <InlineMath math="y = x^2" /> pada domain dari −2 sampai 2, dengan daerah hasil dari 0 sampai 4 ditandai di sumbu y.</>}
+  labels={{
+    dom: "domain",
+    rng: "daerah hasil",
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "dom", kind: "segment", from: { x: -2, y: 0 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "rng", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dom", objectId: "dom", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "rng", objectId: "rng", at: { x: 0, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Hubungan Matematis
 

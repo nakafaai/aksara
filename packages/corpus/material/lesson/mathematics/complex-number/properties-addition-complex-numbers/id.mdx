@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan sifat komutatif, asosiatif, identitas, invers, dan distributif untuk menyederhanakan ekspresi bilangan kompleks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -12,6 +12,17 @@ export const metadata = {
 Penjumlahan dan perkalian skalar pada bilangan kompleks <Highlight>mengikuti aturan aljabar yang sama</Highlight> seperti pada bilangan real. Dengan aturan tersebut, ekspresi dapat disusun ulang dan disederhanakan tanpa mengubah nilai ekspresi.
 
 Misalkan <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath math="z_3" /> adalah bilangan kompleks sembarang, serta <InlineMath math="c" /> dan <InlineMath math="d" /> adalah skalar (bilangan real) sembarang.
+
+<Mermaid
+  title="Sifat penjumlahan bilangan kompleks"
+  description="Penjumlahan bilangan kompleks bersifat tertutup, komutatif, dan asosiatif, punya identitas 0, dan memberi setiap bilangan invers penjumlahan."
+  chart={`flowchart TD
+  A["z₁ + z₂ untuk bilangan kompleks"] --> C1["Tertutup: jumlahnya kompleks"]
+  A --> C2["Komutatif: z₁ + z₂ = z₂ + z₁"]
+  A --> C3["Asosiatif: (z₁ + z₂) + z₃ = z₁ + (z₂ + z₃)"]
+  A --> C4["Identitas: z + 0 = z"]
+  A --> C5["Invers: z + (−z) = 0"]`}
+/>
 
 ## Penjumlahan
 
@@ -25,6 +36,35 @@ Penjumlahan kompleks dihitung **secara terpisah pada bagian real dan imajiner**.
 | Asosiatif | <InlineMath math="(z_1+z_2)+z_3=z_1+(z_2+z_3)" /> | <InlineMath math="((2+i)+(1-3i))+(-1+2i)=2=(2+i)+((1-3i)+(-1+2i))" /> |
 | Identitas | <InlineMath math="z+0=z" /> | <InlineMath math="(2+i)+(0+0i)=2+i" /> |
 | Invers | <InlineMath math="z+(-z)=0" /> | <InlineMath math="(5-2i)+(-5+2i)=(5-5)+(-2+2)i=0" /> |
+
+Menjumlahkan bilangan kompleks menjumlahkan panahnya. Ambil <InlineMath math="z_1 = 2 + i" /> dan <InlineMath math="z_2 = 1 + 3i" />. Ikuti <InlineMath math="z_1" /> lalu <InlineMath math="z_2" />, atau sebaliknya: kedua rute berakhir di <InlineMath math="z_1 + z_2 = 3 + 4i" />, pojok jauh jajargenjang. Itulah sifat komutatif dalam gambar.
+
+<MathVisual
+  title="Jajargenjang z₁ + z₂"
+  description={<>Panah <InlineMath math="2 + i" /> dan <InlineMath math="1 + 3i" /> serta jumlahnya <InlineMath math="3 + 4i" /> di pojok jauh jajargenjang.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + i" />,
+    z2: <InlineMath math="z_2 = 1 + 3i" />,
+    sum: <InlineMath math="3 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "c1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 1, y: 3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Perkalian Skalar
 
@@ -47,6 +87,31 @@ Perkalian skalar berarti **mengalikan kedua komponen dengan faktor yang sama**. 
 **Sifat distributif** menggabungkan dua suku yang mengandung bilangan kompleks yang sama. Setelah koefisien berlawanan dijumlahkan, faktor skalarnya menjadi nol:
 
 <BlockMath math="4z+(-4)z=(4+(-4))z=0z=0" />
+
+Invers penjumlahan menunjuk ke arah sebaliknya. <InlineMath math="z = 3 + 2i" /> dan <InlineMath math="-z = -3 - 2i" /> terletak pada satu garis melalui titik asal dengan jarak yang sama, jadi berjalan mengikuti yang satu lalu yang lain membawamu kembali ke <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
+
+<MathVisual
+  title="Sebuah bilangan dan invers penjumlahannya"
+  description={<>Panah <InlineMath math="3 + 2i" /> dan <InlineMath math="-3 - 2i" />, sama panjang dan berlawanan arah, yang jumlahnya 0.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    neg: <InlineMath math="-z = -3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Latihan
 

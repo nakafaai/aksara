@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze Rechengesetze und den Kehrwert, um Ausdrücke mit komplexen Zahlen umzuformen und zu beweisen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Komplexe Zahl",
 };
 
@@ -27,6 +27,33 @@ Seien <InlineMath math="z_1 = 1+2i" /> und <InlineMath math="z_2 = 3-i" />.
 </MathContainer>
 
 Beide Produkte ergeben <InlineMath math="5+5i" />. Damit ist die Kommutativität in diesem Beispiel bestätigt.
+
+Auch ein Produkt hat ein Bild. Für <InlineMath math="z_1 = 1 + i" /> und <InlineMath math="z_2 = 2 + i" /> ist das Produkt <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Seine Länge ist <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, das Produkt der beiden Längen, und das Vertauschen der Faktoren ergibt denselben Punkt.
+
+<MathVisual
+  title="Das Produkt von 1 + i und 2 + i"
+  description={<>Die Pfeile <InlineMath math="1 + i" />, <InlineMath math="2 + i" /> und ihr Produkt <InlineMath math="1 + 3i" />, dessen Länge <InlineMath math="\sqrt{10}" /> gleich <InlineMath math="\sqrt2 \cdot \sqrt5" /> ist.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="2 + i" />,
+    p: <InlineMath math="1 + 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Assoziativgesetz
 
@@ -86,6 +113,41 @@ Wende das **Distributivgesetz** an, um vier Terme zu erhalten. Mit dem **Kommuta
 
 <BlockMath math="\begin{aligned}(z_1+z_2)^2&amp;=(z_1+z_2)(z_1+z_2) \\ &amp;=z_1(z_1+z_2)+z_2(z_1+z_2) \\ &amp;=z_1^2+z_1z_2+z_2z_1+z_2^2 \\ &amp;=z_1^2+z_1z_2+z_1z_2+z_2^2 \\ &amp;=z_1^2+2z_1z_2+z_2^2\end{aligned}" />
 
+Die Multiplikation mit <InlineMath math="i" /> dreht eine Zahl um eine Vierteldrehung um den Ursprung. Start bei <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Drei weitere Produkte ergeben <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" /> und wieder <InlineMath math="3 + i" />, die Ecken eines Quadrats, weil <InlineMath math="i^4 = 1" /> gilt.
+
+<MathVisual
+  title="Multiplikation mit i dreht um 90 Grad"
+  description={<>Die Punkte <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" /> und <InlineMath math="i^3z" /> für <InlineMath math="z = 3 + i" />, die vier Ecken eines Quadrats um den Ursprung.</>}
+  labels={{
+    w0: <InlineMath math="z = 3 + i" />,
+    w1: <InlineMath math="iz = -1 + 3i" />,
+    w2: <InlineMath math="i^2 z = -3 - i" />,
+    w3: <InlineMath math="i^3 z = 1 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -1, y: 3 }, { x: -3, y: -1 }, { x: 1, y: -3 }], appearance: "reference" },
+      { id: "w0r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "w1r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "construction" },
+      { id: "w2r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "w3r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "w0", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "w1", kind: "point", at: { x: -1, y: 3 }, appearance: "primary" },
+      { id: "w2", kind: "point", at: { x: -3, y: -1 }, appearance: "primary" },
+      { id: "w3", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "w0", objectId: "w0", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "w1", objectId: "w1", at: { x: -1, y: 3 }, placement: "above" },
+      { key: "w2", objectId: "w2", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "w3", objectId: "w3", at: { x: 1, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Multiplikatives Inverses
 
 Jede **komplexe Zahl ungleich null** <InlineMath math="z = x + iy \neq 0" /> hat ein multiplikatives Inverses. Es wird als <InlineMath math="z^{-1}" /> oder <InlineMath math="1/z" /> geschrieben und erfüllt <InlineMath math="z \times z^{-1} = 1" />.
@@ -131,3 +193,14 @@ Das multiplikative Inverse von <InlineMath math="z = x+iy" /> ist also:
 Da <InlineMath math="x^2+y^2 = |z|^2" /> und <InlineMath math="x-iy = \bar{z}" /> gilt, lässt sich der Kehrwert auch so schreiben:
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
+
+<Mermaid
+  title="Eigenschaften der komplexen Multiplikation"
+  description="Die komplexe Multiplikation ist kommutativ und assoziativ, hat das neutrale Element 1, ist distributiv über der Addition und gibt jeder Zahl ungleich null eine Inverse."
+  chart={`flowchart TD
+  A["z₁ · z₂ für komplexe Zahlen"] --> C1["Kommutativ: z₁z₂ = z₂z₁"]
+  A --> C2["Assoziativ: (z₁z₂)z₃ = z₁(z₂z₃)"]
+  A --> C3["Neutrales Element: 1 · z = z"]
+  A --> C4["Distributiv: z₁(z₂ + z₃) = z₁z₂ + z₁z₃"]
+  A --> C5["Inverse: z · 1/z = 1 für z ≠ 0"]`}
+/>

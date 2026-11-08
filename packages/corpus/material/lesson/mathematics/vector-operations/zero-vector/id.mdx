@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan vektor nol sebagai identitas penjumlahan dan jelaskan perannya dalam aljabar, fisika, serta grafika komputer.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Vektor dan Operasinya",
 };
 
@@ -29,6 +29,16 @@ Vektor nol memiliki beberapa sifat khusus yang membedakannya dari vektor lainnya
 
 6. Perkalian dengan sebarang skalar real tetap menghasilkan vektor nol: <InlineMath math="k \cdot \vec{0} = \vec{0}" />
 
+<Mermaid
+  title="Perilaku vektor nol"
+  description="Vektor nol panjangnya 0 dan tidak berarah, tidak mengubah vektor apa pun dalam penjumlahan, dan merupakan hasil vektor dikurangi dirinya sendiri atau nol kali sebuah vektor."
+  chart={`flowchart TD
+  Z["Vektor nol 0⃗"] --> L["Panjang |0⃗| = 0, tanpa arah"]
+  Z --> A["a⃗ + 0⃗ = a⃗"]
+  Z --> S["a⃗ − a⃗ = 0⃗"]
+  Z --> K["0 · a⃗ = 0⃗ dan k · 0⃗ = 0⃗"]`}
+/>
+
 ## Representasi Vektor Nol
 
 **Setiap komponen Kartesius** vektor nol bernilai nol, sehingga panjang vektor nol adalah nol dan arahnya tidak ditentukan. Daftar berikut menampilkan koordinat vektor nol di ruang dimensi satu, dua, dan tiga.
@@ -53,6 +63,36 @@ Ambil arah timur sebagai arah positif dan posisi awal sebagai <InlineMath math="
 
 <BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
 
+Berjalanlah dari <InlineMath math="A" /> ke <InlineMath math="B" />, lalu ke <InlineMath math="C" />, lalu kembali ke <InlineMath math="A" />. Ketiga perpindahan <InlineMath math="\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA}" /> membawamu ke titik awal, jadi jumlahnya adalah vektor nol <InlineMath math="\vec 0" />: posisimu sama sekali tidak berubah.
+
+<MathVisual
+  title="Jalur tertutup berjumlah vektor nol"
+  description={<>Jalur segitiga dari A ke B ke C dan kembali ke A, yang ketiga vektor perpindahannya berjumlah <InlineMath math="\vec 0" />.</>}
+  labels={{
+    pa: <InlineMath math="A" />,
+    pb: <InlineMath math="B" />,
+    pc: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "ca", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pb", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "pa", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "pb", objectId: "pb", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "pc", objectId: "pc", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Vektor Nol dalam Operasi Vektor
 
 Penjumlahan dengan vektor nol dan pengurangan vektor nol sama-sama **mempertahankan vektor semula**. Urutan pengurangan perlu diperhatikan: mengurangkan suatu vektor dari vektor nol menghasilkan lawan vektor tersebut.
@@ -75,6 +115,33 @@ Untuk sebarang vektor <InlineMath math="\vec{a}" />:
   <BlockMath math="\vec{a} - \vec{0} = \vec{a},\qquad (3,-2)-(0,0)=(3,-2)" />
   <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
 </MathContainer>
+
+Vektor dikurangi dirinya sendiri tidak menyisakan apa-apa. <InlineMath math="\vec a = (3, 1)" /> dan <InlineMath math="-\vec a = (-3, -1)" /> sama panjang dan berlawanan arah, jadi <InlineMath math="\vec a - \vec a = \vec a + (-\vec a) = \vec 0" />, yaitu vektor sepanjang <InlineMath math="0" /> yang berada di titik asal.
+
+<MathVisual
+  title="Vektor dan lawannya saling meniadakan"
+  description={<>Vektor <InlineMath math="(3, 1)" /> dan <InlineMath math="(-3, -1)" /> dari titik asal, yang jumlahnya vektor nol di titik asal.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    neg: <InlineMath math="-\vec a" />,
+    zero: <InlineMath math="\vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Perkalian Skalar dengan Vektor Nol
 

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Vereinigung und Schnitt unterscheiden, Abhängigkeiten erkennen und die passende Wahrscheinlichkeitsregel wählen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -18,6 +18,17 @@ Angenommen, du wirfst einen Würfel und eine Münze. Ein einzelnes Ereignis betr
 ## Typen zusammengesetzter Ereignisse
 
 Zwei Ereignisse teilen entweder Ergebnisse oder schließen einander aus, und dieser Unterschied entscheidet über die Formel. Ein gemeinsames Ergebnis beweist eine Überschneidung. Um gegenseitigen Ausschluss zu beweisen, musst du zeigen, dass es **kein gemeinsames Ergebnis** gibt. Unabhängigkeit beantwortet eine andere Frage: Ändert die Information über ein Ereignis die Wahrscheinlichkeit des anderen?
+
+<Mermaid
+  title="Welche Regel für ein zusammengesetztes Ereignis"
+  description="Bei oder addierst du und ziehst eine Überschneidung ab. Bei und multiplizierst du, bei abhängigen Ereignissen mit der bedingten Wahrscheinlichkeit."
+  chart={`flowchart TD
+  A["Zusammengesetztes Ereignis"] --> Q{"A oder B, oder A und B?"}
+  Q -->|"oder"| U["P(A) + P(B) − P(A ∩ B)"]
+  Q -->|"und"| I{"Unabhängig?"}
+  I -->|"Ja"| M1["P(A) · P(B)"]
+  I -->|"Nein"| M2["P(A) · P(B | A)"]`}
+/>
 
 ### Sich ausschließende Ereignisse
 
@@ -89,6 +100,36 @@ Schnittmenge (rote Bildkarten): <InlineMath math="6 \text{ Karten}" /> (Bube, Da
 <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{3}{13} - \frac{3}{26} = \frac{13}{26} + \frac{6}{26} - \frac{3}{26} = \frac{16}{26} = \frac{8}{13}" />
 </MathContainer>
 
+Mit einem Würfel sei <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" />. Die Kreise überschneiden sich in <InlineMath math="\{4, 6\}" />, also würde <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> die <InlineMath math="4" /> und die <InlineMath math="6" /> doppelt zählen. Zieh die Überschneidung einmal ab: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
+
+<MathVisual
+  title="Bei sich überschneidenden Ereignissen zählt die Schnittmenge einmal"
+  description={<>Zwei sich überschneidende Kreise: nur in <InlineMath math="A" /> liegt 2, nur in <InlineMath math="B" /> liegt 5, und in der Schnittmenge liegen 4 und 6.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    onlya: <InlineMath math="2" />,
+    onlyb: <InlineMath math="5" />,
+    both: <InlineMath math="4, 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Unabhängige Ereignisse
 
 Zwei Ereignisse sind **unabhängig**, wenn die Erkenntnis, dass eines eingetreten ist, die Wahrscheinlichkeitsverteilung des anderen nicht ändert. Ob sie gleichzeitig stattfinden können, beantwortet eine andere Frage.
@@ -115,6 +156,57 @@ Da das Ergebnis des ersten Würfels keinen Einfluss auf den zweiten Würfel hat,
 <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}" />
 </MathContainer>
+
+Unabhängige Ereignisse werden multipliziert, und ein Baum zeigt warum. Zuerst der Würfel: gerade oder ungerade, je <InlineMath math="\frac12" />. Dann die Münze: Kopf oder Zahl, je <InlineMath math="\frac12" />, egal was der Würfel zeigte. Jeder Pfad multipliziert seine Äste, also <InlineMath math="P(\text{gerade und Kopf}) = \frac12 \cdot \frac12 = \frac14" />, und die vier Pfade ergeben zusammen <InlineMath math="1" />.
+
+<MathVisual
+  title="Ein Wahrscheinlichkeitsbaum für Würfel und Münze"
+  description="Ein Baum mit dem Würfel zuerst und der Münze danach, jeder Ast mit einhalb beschriftet und am Ende jeweils das Produkt ein Viertel."
+  labels={{
+    b0: <InlineMath math="\text{gerade}\ \tfrac12" />,
+    b1: <InlineMath math="\text{ungerade}\ \tfrac12" />,
+    h0: <InlineMath math="K\ \tfrac12" />,
+    h1: <InlineMath math="Z\ \tfrac12" />,
+    h2: <InlineMath math="K\ \tfrac12" />,
+    h3: <InlineMath math="Z\ \tfrac12" />,
+    p0: <InlineMath math="\tfrac14" />,
+    p1: <InlineMath math="\tfrac14" />,
+    p2: <InlineMath math="\tfrac14" />,
+    p3: <InlineMath math="\tfrac14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "l2", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "e2", kind: "point", at: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "l3", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "e3", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+      { key: "h2", objectId: "l2", at: { x: 3, y: (-1.8 + -0.6) / 2 }, placement: "above" },
+      { key: "p2", objectId: "e2", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "h3", objectId: "l3", at: { x: 3, y: (-1.8 + -3) / 2 }, placement: "above" },
+      { key: "p3", objectId: "e3", at: { x: 4, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Abhängige Ereignisse
 
