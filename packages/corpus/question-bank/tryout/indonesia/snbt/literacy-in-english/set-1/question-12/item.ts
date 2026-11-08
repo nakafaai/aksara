@@ -1,33 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "campus-commute",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "UNESCO works only to protect famous cultural monuments.",
-        },
-        {
-          correct: false,
           label:
-            "UNESCO mainly writes domestic laws that every government must adopt.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO was created to manage the Sustainable Development Goals after 2015.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO replaces national education and science institutions with one global system.",
+            "Bus users form the largest group, and a station shuttle would solve their timetable problems.",
         },
         {
           correct: true,
           label:
-            "UNESCO builds peace through international cooperation, shared standards, knowledge, and programs across its fields of expertise.",
+            "Train users have the longest trips and a high lateness rate, and they blame the walk from the station, which a shuttle would replace.",
+        },
+        {
+          correct: false,
+          label:
+            "Students who walk have the lowest lateness rate of all the groups.",
+        },
+        {
+          correct: false,
+          label:
+            "Students who travel by car or motorbike spend 26 minutes on an average trip.",
+        },
+        {
+          correct: false,
+          label:
+            "Forty percent of students who do not cycle would consider cycling if secure parking were available.",
         },
       ],
     },

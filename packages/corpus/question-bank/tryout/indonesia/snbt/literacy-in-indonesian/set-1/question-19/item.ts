@@ -1,29 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "car-free-day",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Jumlah pengunjung Jalan Merdeka pada setiap Minggu pagi selama program berlangsung.",
+        },
+        {
+          correct: false,
+          label: "Kadar karbon monoksida di Jalan Merdeka pada hari kerja.",
+        },
+        {
           correct: true,
-          label: "Tekun mengembangkan kemampuan aktingnya",
+          label:
+            "Kualitas udara di Jalan Kenanga dan Jalan Cempaka pada Minggu pagi sebelum dan selama program berlangsung.",
         },
         {
           correct: false,
-          label: "Mudah menerima citra yang ditentukan orang lain",
+          label:
+            "Pendapatan pedagang kaki lima yang mendapat lapak di Jalan Merdeka.",
         },
         {
           correct: false,
-          label: "Berani meninggalkan dunia perfilman",
-        },
-        {
-          correct: false,
-          label: "Mengutamakan ketenaran daripada keterampilan",
-        },
-        {
-          correct: false,
-          label: "Tidak puas terhadap penghargaan yang diterimanya",
+          label:
+            "Jumlah sepeda yang melintas di Jalan Merdeka selama jam bebas kendaraan.",
         },
       ],
     },

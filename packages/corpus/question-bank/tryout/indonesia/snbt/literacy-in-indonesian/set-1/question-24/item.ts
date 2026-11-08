@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "kawi-script",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (6)",
+          label:
+            "Teks-teks Jawa Kuno pada awalnya ditulis di Bali, bukan di Jawa.",
         },
         {
           correct: false,
-          label: "Kalimat (7)",
-        },
-        {
-          correct: false,
-          label: "Kalimat (8)",
+          label: "Aksara Bali lebih tua daripada aksara Kawi.",
         },
         {
           correct: true,
-          label: "Kalimat (10)",
+          label:
+            "Teks-teks itu dapat bertahan karena terus disalin, sementara naskah aslinya kemungkinan sudah rusak.",
         },
         {
           correct: false,
-          label: "Kalimat (9)",
+          label:
+            "Salinan yang dibuat di Bali pasti sama persis dengan naskah aslinya.",
+        },
+        {
+          correct: false,
+          label: "Daun lontar lebih awet di Bali daripada di Jawa.",
         },
       ],
     },
