@@ -1,29 +1,26 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "lawn-sprinklers",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp}4{.}800{.}000{,}00$$",
+          column: 1,
+          label:
+            "Titik tengah sisi $$AB$$ terkena air dari kedua alat penyiram.",
         },
         {
-          correct: true,
-          label: "$$\\text{Rp}5{.}900{.}000{,}00$$",
+          column: 1,
+          label: "Titik potong kedua diagonal halaman tidak terkena air.",
         },
+        { column: 2, label: "Titik sudut $$D$$ terkena air." },
         {
-          correct: false,
-          label: "$$\\text{Rp}5{.}200{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}6{.}300{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}7{.}200{.}000{,}00$$",
+          column: 2,
+          label:
+            "Jika jangkauan kedua alat penyiram diperbesar menjadi 7 m, titik potong kedua diagonal halaman terkena air.",
         },
       ],
     },

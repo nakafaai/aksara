@@ -1,29 +1,15 @@
-# Probability of First Green Ball
+Andra wins with **more than half of the valid votes**. Half of 240 is 120, so Andra needs at least 121 votes.
 
-The bag contains <InlineMath math="4" /> green balls and <InlineMath math="5" /> black balls.
+# Setting up the inequality
 
-<BlockMath math="4 + 5 = 9" />
+Let <InlineMath math="k" /> voters switch to Andra. **The number of valid votes stays 240**, because the votes only move from other candidates.
 
-The probability of drawing a green ball on the first draw is the **number of green balls divided by the total number of balls**.
+<BlockMath math="96+k>120\;\Longleftrightarrow\;k>24" />
 
-<BlockMath math="P(G_1) = \frac{4}{9}" />
+# The smallest whole number
 
-# Probability of Second Green Ball
+The number of voters is a whole number, so the smallest value is <InlineMath math="k=25" />, giving Andra 121 votes. For <InlineMath math="k=24" />, Andra has exactly 120 votes, **exactly 50%, not more than 50%**.
 
-Given that the first ball is green and the draw is **without replacement**, the number of green balls decreases to <InlineMath math="3" /> and the total number of balls decreases to <InlineMath math="8" />.
+The value 121 is the number of votes Andra needs, not the number of voters who switch. The values 48 and 49 come from treating the switched voters as removing valid votes or from doubling the extra votes.
 
-<BlockMath math="P(G_2 \mid G_1) = \frac{3}{8}" />
-
-# Calculating Total Probability
-
-The probability that both balls are green is the **product of these two probabilities**:
-
-<BlockMath math="\begin{aligned}&P(G_1 \cap G_2) \\ &=P(G_1)\,P(G_2 \mid G_1)\end{aligned}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{4}{9} \times \frac{3}{8}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{12}{72}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{1}{6}" />
-
-Thus, the probability that both balls are green is <InlineMath math="\frac{1}{6}" />.
+So at least **25 voters** must switch.
