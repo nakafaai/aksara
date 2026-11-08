@@ -3,7 +3,7 @@ export const metadata = {
    description: "Calculate relative frequency to find data proportions and percentages. Learn to compare groups and interpret statistical results with clear examples.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
    subject: "Statistics",
 };
 
@@ -45,6 +45,33 @@ Relative Frequency is usually expressed in the form of:
 - **Decimal**: The result of the fraction division.
 - **Percentage**: The decimal form multiplied by <InlineMath math="100\%" />. This form states how many observations occur per hundred.
 
+Relative frequencies split one whole. Laid side by side on a strip of length <InlineMath math="1" />, the shares <InlineMath math="\frac{12}{30}" />, <InlineMath math="\frac{10}{30}" /> and <InlineMath math="\frac{8}{30}" /> fill it exactly, with no gap and no overlap.
+
+<MathVisual
+  title={<>Three shares filling one whole</>}
+  description={<>A strip of length 1 split into the shares of Apple, Samsung and Xiaomi.</>}
+  labels={{
+    apple: <>Apple</>,
+    samsung: <>Samsung</>,
+    xiaomi: <>Xiaomi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.05 }, y: { min: -0.15, max: 0.35 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "apple", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 12 / 30, y: 0 }, { x: 12 / 30, y: 0.2 }, { x: 0, y: 0.2 }], appearance: "primary" },
+      { id: "samsung", kind: "polygon", vertices: [{ x: 12 / 30, y: 0 }, { x: 22 / 30, y: 0 }, { x: 22 / 30, y: 0.2 }, { x: 12 / 30, y: 0.2 }], appearance: "secondary" },
+      { id: "xiaomi", kind: "polygon", vertices: [{ x: 22 / 30, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.2 }, { x: 22 / 30, y: 0.2 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "apple", objectId: "apple", at: { x: (0 + 12 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "samsung", objectId: "samsung", at: { x: (12 / 30 + 22 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "xiaomi", objectId: "xiaomi", at: { x: (22 / 30 + 1) / 2, y: 0.2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Example of Calculating Relative Frequency
 
 Consider the phone-brand data from the <InlineMath math="30 \text{ students}" /> above:
@@ -77,6 +104,16 @@ Calculate each percentage directly from the fraction so rounding a decimal first
 
 The sum of relative frequencies (in decimal form) should always be <InlineMath math="1" />, and in percent should be <InlineMath math="100\%" />. There might be slight differences due to rounding, but it should be very close to <InlineMath math="1" /> or <InlineMath math="100\%" />.
 
+First the raw counts. Apple has the tallest bar with <InlineMath math="12" /> of the <InlineMath math="30" /> students, then Samsung with <InlineMath math="10" /> and Xiaomi with <InlineMath math="8" />. Counts answer "how many", but they change when the group size changes.
+
+<BarChart
+  title={<>How many students use each brand</>}
+  description={<>The number of students who use each phone brand, out of 30 students.</>}
+  yAxisLabel="Students"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
+  chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Interpreting Relative Frequency
 
 From the relative frequency table above, we can say:
@@ -88,3 +125,13 @@ From the relative frequency table above, we can say:
 The table shows at a glance how the <InlineMath math="30 \text{ students}" /> are distributed among the three brands.
 
 Relative frequency <Highlight>makes absolute counts comparable</Highlight> by relating each count to the size of the complete dataset.
+
+Divide every count by the total <InlineMath math="30" /> and you get the relative frequencies <InlineMath math="0.40" />, <InlineMath math="0.33" /> and <InlineMath math="0.27" />, rounded to two decimals. The bars keep exactly the same shape, but now they show shares of the whole and add up to <InlineMath math="1" />, so you can compare them with a class of any size.
+
+<BarChart
+  title={<>The share of students for each brand</>}
+  description={<>Each bar is the count divided by 30: <InlineMath math="12/30" />, <InlineMath math="10/30" /> and <InlineMath math="8/30" />, which add up to 1.</>}
+  yAxisLabel="Relative frequency"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}
+  chartConfig={{ value: { label: "Relative frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

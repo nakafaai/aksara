@@ -193,61 +193,74 @@ describe("validateAssessmentQuestionReadiness", () => {
     })
   );
 
-  it.effect("rejects a false topic owner, response mix, or group count", () =>
-    Effect.gen(function* () {
-      const loaded = yield* loadTkaReadiness;
-      const { sets } = loaded;
-      const questions = Arr.flatMap(sets, (set) => set.questions);
-      const numbers = Arr.findFirst(
-        questions,
-        ({ item }) => item.blueprint?.contentDomain === "numbers"
-      );
-      const algebra = Arr.findFirst(
-        questions,
-        ({ item }) => item.blueprint?.contentDomain === "algebra"
-      );
-      const single = yield* Effect.fromOption(
-        Arr.findFirst(
+  it.effect(
+    "rejects a false topic owner, response mix, short answer, or group count",
+    () =>
+      Effect.gen(function* () {
+        const loaded = yield* loadTkaReadiness;
+        const { sets } = loaded;
+        const questions = Arr.flatMap(sets, (set) => set.questions);
+        const numbers = Arr.findFirst(
           questions,
-          ({ item }) =>
-            item.versions.id?.kind === "choice" &&
-            Arr.filter(item.versions.id.options, ({ correct }) => correct)
-              .length === 1
-        )
-      );
-      const fields = yield* Effect.all([
-        rejectField(
-          loaded,
-          mapBlueprints(sets, (blueprint, question) => {
-            if (Option.isSome(numbers) && question === numbers.value) {
-              return { ...blueprint, contentDomain: "algebra" };
-            }
-            return Option.isSome(algebra) && question === algebra.value
-              ? { ...blueprint, contentDomain: "numbers" }
-              : blueprint;
-          })
-        ),
-        rejectField(
-          loaded,
-          mapQuestions(sets, (question) => ({
-            ...question,
-            item: { ...question.item, versions: single.item.versions },
-          }))
-        ),
-        rejectField(
-          loaded,
-          mapQuestions(sets, (question) => {
-            const { stimulus: _stimulus, ...item } = question.item;
-            return { ...question, item };
-          })
-        ),
-      ]);
+          ({ item }) => item.blueprint?.contentDomain === "numbers"
+        );
+        const algebra = Arr.findFirst(
+          questions,
+          ({ item }) => item.blueprint?.contentDomain === "algebra"
+        );
+        const single = yield* Effect.fromOption(
+          Arr.findFirst(
+            questions,
+            ({ item }) =>
+              item.versions.id?.kind === "choice" &&
+              Arr.filter(item.versions.id.options, ({ correct }) => correct)
+                .length === 1
+          )
+        );
+        const fields = yield* Effect.all([
+          rejectField(
+            loaded,
+            mapBlueprints(sets, (blueprint, question) => {
+              if (Option.isSome(numbers) && question === numbers.value) {
+                return { ...blueprint, contentDomain: "algebra" };
+              }
+              return Option.isSome(algebra) && question === algebra.value
+                ? { ...blueprint, contentDomain: "numbers" }
+                : blueprint;
+            })
+          ),
+          rejectField(
+            loaded,
+            mapQuestions(sets, (question) => ({
+              ...question,
+              item: { ...question.item, versions: single.item.versions },
+            }))
+          ),
+          rejectField(
+            loaded,
+            mapQuestions(sets, (question) => {
+              const { stimulus: _stimulus, ...item } = question.item;
+              return { ...question, item };
+            })
+          ),
+          rejectField(
+            loaded,
+            mapQuestions(sets, (question) => ({
+              ...question,
+              item: {
+                ...question.item,
+                versions: { id: { kind: "numericEntry", value: "1" } },
+              },
+            }))
+          ),
+        ]);
 
-      expect(fields).toEqual([
-        "topicDomain:real-numbers",
-        "responseKind:multiple-choice",
-        "groupedStimulus",
-      ]);
-    })
+        expect(fields).toEqual([
+          "topicDomain:real-numbers",
+          "responseKind:multiple-choice",
+          "groupedStimulus",
+          "responseKindCoverage",
+        ]);
+      })
   );
 });

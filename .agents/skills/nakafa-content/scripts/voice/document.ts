@@ -37,6 +37,9 @@ export function findDocumentIssues(
   tree: MdxNode
 ) {
   const profile = documentProfile(file);
+  if (profile === "page") {
+    return findLessonVoiceIssues(locale, source, tree, undefined, "page");
+  }
   const bank = profile === "question" || profile === "answer";
   const structural = [
     ...(bank ? [] : findMathStackIssues(source, tree)),

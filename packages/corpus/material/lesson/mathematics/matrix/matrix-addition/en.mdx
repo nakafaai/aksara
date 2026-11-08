@@ -3,7 +3,7 @@ export const metadata = {
   description: "Add matrices of the same order and verify the commutative and associative properties in worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -54,6 +54,97 @@ Then, <InlineMath math="P+Q" /> is:
 </MathContainer>
 
 The matrix above is the sum <InlineMath math="P+Q" />.
+
+You can watch this addition happen. Read each row of <InlineMath math="P" /> as a point <InlineMath math="(x, y)" />, so <InlineMath math="P" /> is a triangle. Adding <InlineMath math="Q" /> moves each corner by the matching row of <InlineMath math="Q" />: the corner <InlineMath math="(1, 5)" /> moves by <InlineMath math="(6, -3)" /> and lands on <InlineMath math="(7, 2)" />, the first row of <InlineMath math="P+Q" />. Every corner moves by its own row, which is what adding entries in matching positions means.
+
+<MathVisual
+  title={<>Adding <InlineMath math="Q" /> moves each row of <InlineMath math="P" /></>}
+  description={<>Each row of <InlineMath math="P" /> is a corner of a triangle. The matching row of <InlineMath math="Q" /> moves that corner to the matching row of <InlineMath math="P+Q" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    sum: <InlineMath math="P + Q" />,
+    q1: <InlineMath math="+(6, -3)" />,
+    q2: <InlineMath math="+(8, 1)" />,
+    q3: <InlineMath math="+(-2, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 8 }, y: { min: -1, max: 17 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p", kind: "polygon", vertices: [{ x: 1, y: 5 }, { x: -2, y: 0 }, { x: 4, y: 7 }], appearance: "primary" },
+      { id: "sum", kind: "polygon", vertices: [{ x: 7, y: 2 }, { x: 6, y: 1 }, { x: 2, y: 16 }], appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "q3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 16 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
+      { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+The order of the two matrices does not matter. Start at the origin and step by row 1 of <InlineMath math="P" />, <InlineMath math="(1, 5)" />, then by row 1 of <InlineMath math="Q" />, <InlineMath math="(6, -3)" />. Or take the two steps the other way round. Both routes end at <InlineMath math="(7, 2)" />, and that parallelogram is why <InlineMath math="P+Q=Q+P" />.
+
+<MathVisual
+  title={<>Two routes to row 1 of <InlineMath math="P+Q" /></>}
+  description={<>Stepping by <InlineMath math="(1, 5)" /> then <InlineMath math="(6, -3)" />, or in the reverse order, ends at the same point <InlineMath math="(7, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(6, -3)" />,
+    sum: <InlineMath math="(7, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: -3 }, appearance: "secondary" },
+      { id: "pq", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "qp", kind: "segment", from: { x: 6, y: -3 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "point", at: { x: 7, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Two special matrices finish the picture. Adding the zero matrix <InlineMath math="O" /> moves no point, so <InlineMath math="P + O = P" />. Adding <InlineMath math="-P" /> sends every row to the origin: row 1, <InlineMath math="(1, 5)" />, plus <InlineMath math="(-1, -5)" /> is <InlineMath math="(0, 0)" />, so <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>The zero matrix and the opposite matrix</>}
+  description={<>Row 1 of <InlineMath math="P" /> at <InlineMath math="(1, 5)" />, its opposite at <InlineMath math="(-1, -5)" />, and their sum at the origin.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Matrices That Cannot Be Added
 
 These two matrices have **different orders**:

@@ -1,0 +1,20 @@
+Keempat pernyataan menguji **sifat-sifat matriks <InlineMath math="2\times2" />**: determinan kelipatan matriks, pengurangan, invers, dan determinan hasil kali. Hitung dulu kedua determinan, karena keduanya dipakai berulang.
+
+<BlockMath math="\begin{aligned}
+\det A&=3\cdot(-4)-(-2)\cdot5=-12+10=-2 \\
+\det B&=1\cdot0-4\cdot(-3)=12
+\end{aligned}" />
+
+1. Pernyataan <InlineMath math="\det(3A)=-6" /> salah. Jika hanya dikalikan <InlineMath math="3" /> sekali, diperoleh <InlineMath math="3\det A=-6" />. Padahal faktor <InlineMath math="3" /> ada di kedua baris, sehingga <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
+2. Pernyataan tentang <InlineMath math="A-B" /> benar, karena matriks dikurangkan elemen demi elemen.
+3. Pernyataan tentang <InlineMath math="A^{-1}" /> salah. Untuk invers, kamu menukar elemen diagonal utama, mengganti tanda elemen diagonal sekunder, lalu membagi dengan <InlineMath math="\det A=-2" />. Pernyataan itu membagi dengan <InlineMath math="2" />, bukan <InlineMath math="-2" />, jadi tanda determinannya hilang.
+4. Pernyataan <InlineMath math="\det(AB)=-24" /> benar, karena <InlineMath math="\det(AB)=\det A\cdot\det B=(-2)\cdot12=-24" />.
+
+Invers dan hasil kali sebagai pemeriksaan:
+
+<BlockMath math="\begin{aligned}
+A^{-1}&=\frac{1}{-2}\begin{pmatrix} -4 & 2 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ \frac52 & -\frac32 \end{pmatrix} \\
+AB&=\begin{pmatrix} 3\cdot1+(-2)\cdot(-3) & 3\cdot4+(-2)\cdot0 \\ 5\cdot1+(-4)\cdot(-3) & 5\cdot4+(-4)\cdot0 \end{pmatrix}=\begin{pmatrix} 9 & 12 \\ 17 & 20 \end{pmatrix},\qquad \det(AB)=180-204=-24
+\end{aligned}" />
+
+Jadi, pernyataan tentang <InlineMath math="A-B" /> dan <InlineMath math="\det(AB)" /> benar, sedangkan pernyataan tentang <InlineMath math="\det(3A)" /> dan <InlineMath math="A^{-1}" /> salah.

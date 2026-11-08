@@ -3,7 +3,7 @@ export const metadata = {
    description: "Distinguish unions, intersections, independent events, and dependent events, then choose the right probability rule.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -81,13 +81,42 @@ Intersection (red and face cards): <InlineMath math="6 \text{ cards}" /> (Jack, 
 | Black | 6 | 20 | 26 |
 | Total | 12 | 40 | 52 |
 
-
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
 <BlockMath math="P(A \cap B) = \frac{6}{52} = \frac{3}{26}" />
 <BlockMath math="P(A \cup B) = \frac{1}{2} + \frac{3}{13} - \frac{3}{26} = \frac{13}{26} + \frac{6}{26} - \frac{3}{26} = \frac{16}{26} = \frac{8}{13}" />
 </MathContainer>
+
+With one die let <InlineMath math="A = \{2, 4, 6\}" /> and <InlineMath math="B = \{4, 5, 6\}" />. The circles overlap in <InlineMath math="\{4, 6\}" />, so adding <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> would count <InlineMath math="4" /> and <InlineMath math="6" /> twice. Subtract the overlap once: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
+
+<MathVisual
+  title={<>Overlapping events count the overlap once</>}
+  description={<>Two overlapping circles: only <InlineMath math="A" /> holds 2, only <InlineMath math="B" /> holds 5, and the overlap holds 4 and 6.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    onlya: <InlineMath math="2" />,
+    onlyb: <InlineMath math="5" />,
+    both: <InlineMath math="4, 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
 
 ### Independent Events
 
@@ -115,6 +144,57 @@ Since the result of the first die does not affect the second die, both events ar
 <BlockMath math="P(B) = \frac{3}{6} = \frac{1}{2}" />
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}" />
 </MathContainer>
+
+Independent events multiply, and a tree shows why. First the die: even or odd, each <InlineMath math="\frac12" />. Then the coin: heads or tails, each <InlineMath math="\frac12" />, whatever the die showed. Each path multiplies its branches, so <InlineMath math="P(\text{even and heads}) = \frac12 \cdot \frac12 = \frac14" />, and the four paths add to <InlineMath math="1" />.
+
+<MathVisual
+  title={<>A probability tree for a die and a coin</>}
+  description={<>A tree with the die result first and the coin second, each branch labelled one half, and the product one quarter at each end.</>}
+  labels={{
+    b0: <InlineMath math="\text{even}\ \tfrac12" />,
+    b1: <InlineMath math="\text{odd}\ \tfrac12" />,
+    h0: <InlineMath math="H\ \tfrac12" />,
+    h1: <InlineMath math="T\ \tfrac12" />,
+    h2: <InlineMath math="H\ \tfrac12" />,
+    h3: <InlineMath math="T\ \tfrac12" />,
+    p0: <InlineMath math="\tfrac14" />,
+    p1: <InlineMath math="\tfrac14" />,
+    p2: <InlineMath math="\tfrac14" />,
+    p3: <InlineMath math="\tfrac14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "secondary" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "l2", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "e2", kind: "point", at: { x: 4, y: -0.6 }, appearance: "secondary" },
+      { id: "l3", kind: "segment", from: { x: 2, y: -1.8 }, to: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "e3", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+      { key: "h2", objectId: "l2", at: { x: 3, y: (-1.8 + -0.6) / 2 }, placement: "above" },
+      { key: "p2", objectId: "e2", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "h3", objectId: "l3", at: { x: 3, y: (-1.8 + -3) / 2 }, placement: "above" },
+      { key: "p3", objectId: "e3", at: { x: 4, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Dependent Events
 
@@ -165,6 +245,16 @@ To find the probability of “event <InlineMath math="A" /> **AND** event <Inlin
 In a standard deck, red even-numbered cards have values <InlineMath math="2,4,6,8,10" /> in the two red suits, Hearts and Diamonds. There are <InlineMath math="5\times2=10" /> cards meeting **both conditions together**.
 
 <BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
+
+Compare the four probabilities for <InlineMath math="A = \{2, 4, 6\}" /> and <InlineMath math="B = \{4, 5, 6\}" /> on one die. The union bar is shorter than the two event bars stacked, by exactly the intersection: <InlineMath math="\frac36 + \frac36 - \frac26 = \frac46" />.
+
+<BarChart
+  title={<>Union and intersection on one die</>}
+  description={<>Bars for <InlineMath math="P(A)" />, <InlineMath math="P(B)" />, the intersection and the union of the events.</>}
+  yAxisLabel="Probability"
+  data={[["A", 3 / 6], ["B", 3 / 6], ["A and B", 2 / 6], ["A or B", 4 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Problem Solving Strategy
 
@@ -228,8 +318,8 @@ Since drawing is **without replacement**, conditions change after the first draw
 
 Total possibilities is <InlineMath math="6 \times 6 = 36" />
 
-- Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ ways}" />
-- Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ ways}" />
+- Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> <InlineMath math="\rightarrow 6 \text{ ways}" />
+- Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> <InlineMath math="\rightarrow 2 \text{ ways}" />
 
 Both events are mutually exclusive because it's impossible for the dice sum to be both <InlineMath math="7" /> and <InlineMath math="11" />.
 

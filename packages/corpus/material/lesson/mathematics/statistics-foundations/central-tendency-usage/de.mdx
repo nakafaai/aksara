@@ -3,7 +3,7 @@ export const metadata = {
   description: "Entscheide passend zum Datensatz, ob Mittelwert, Median oder Modus die Mitte sinnvoll beschreibt, und prüfe den Einfluss ungewöhnlich großer oder kleiner Werte.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -12,6 +12,38 @@ export const metadata = {
 **Mittelwert, Median und Modus** beschreiben jeweils die Mitte eines Datensatzes. Der Mittelwert bezieht alle Werte ein, der Median richtet sich nach der mittleren Position und der Modus nach der größten Häufigkeit. Deshalb beantworten die drei Maße nicht immer dieselbe Frage.
 
 Wähle das Lagemaß nach Datenart, Verteilungsform und Fragestellung. Der Mittelwert ändert sich mit Extremwerten, der Median verwendet die Rangfolge ohne die Abstände zwischen den Werten zu messen und der Modus nennt nur den häufigsten Wert oder die häufigste Kategorie.
+
+Hier sind die Punktzahlen <InlineMath math="7, 8, 8, 9, 10" /> als Punkte. Der Mittelwert <InlineMath math="8{,}4" /> ist der Schwerpunkt, der Median ist der mittlere Punkt bei <InlineMath math="8" />, und der Modus <InlineMath math="8" /> ist der höchste Stapel. Bei so gleichmäßigen Daten liegen die drei Maße nah beieinander.
+
+<MathVisual
+  title={<>Drei Mitten derselben Punktzahlen</>}
+  description={<>Punkte für die fünf Punktzahlen mit dem Mittelwert 8,4 als Stütze, Median und Modus beide bei 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8{,}4" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 6, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 42 / 5, y: 0 }, { x: 42 / 5 - 0.5, y: -0.5 }, { x: 42 / 5 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 42 / 5 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Verhalten von Mittelwert Median und Modus
 
@@ -32,6 +64,39 @@ Addiere alle Datenwerte und teile die Summe durch ihre Anzahl. Weil jeder Wert i
   <BlockMath math="\bar x_{\text{vorher}}=\frac{7+8+9+8+10}{5}=\frac{42}{5}=8{,}4" />
   <BlockMath math="\bar x_{\text{nachher}}=\frac{42+1}{6}=\frac{43}{6}\approx7{,}17" />
 </MathContainer>
+
+Füg die extreme Punktzahl <InlineMath math="1" /> hinzu. Der Schwerpunkt rutscht nach links auf <InlineMath math="43 / 6 \approx 7{,}17" />, weil der weit entfernte Punkt an ihm zieht. Median und Modus bleiben bei <InlineMath math="8" />: Die Mitte und der höchste Stapel haben sich nicht bewegt.
+
+<MathVisual
+  title={<>Ein Extremwert verschiebt nur den Mittelwert</>}
+  description={<>Die sechs Punktzahlen mit der zusätzlichen 1. Die Stütze des Mittelwerts wandert auf etwa 7,17, Median und Modus bleiben bei 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} \approx 7{,}17" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 0, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 1, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 43 / 6, y: 0 }, { x: 43 / 6 - 0.5, y: -0.5 }, { x: 43 / 6 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 43 / 6 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ### Median
 
@@ -57,3 +122,13 @@ Die folgende Übersicht zeigt, welches Lagemaß zu welcher Fragestellung passt:
 - **Ein typisches Einkommen beschreiben**: Einige sehr hohe Einkommen können den Mittelwert stark anheben. Der **Median** beschreibt dann eher, was für die Mitte der Bevölkerung typisch ist.
 - **Die meistverkaufte Schuhgröße bestimmen**: Gesucht ist die am häufigsten gekaufte Größe. Dafür verwenden wir den **Modus**.
 - **Die beliebteste Farbe einer Lerngruppe bestimmen**: Farben sind Kategorien. Ihr häufigster Wert lässt sich mit dem **Modus** angeben.
+
+Zähl, wie oft jede Punktzahl in <InlineMath math="7, 8, 9, 8, 10" /> vorkommt. Der höchste Balken gehört zu <InlineMath math="8" />, das zweimal vorkommt, der Modus ist also <InlineMath math="8" />. Den Modus liest du direkt am Diagramm ab, sogar bei Kategorien ohne Zahlen.
+
+<BarChart
+  title={<>Wie oft jede Punktzahl vorkommt</>}
+  description={<>Die Häufigkeit jeder Punktzahl unter 7, 8, 9, 8 und 10. Die 8 kommt zweimal vor.</>}
+  yAxisLabel="Häufigkeit"
+  data={[["7", 1], ["8", 2], ["9", 1], ["10", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Häufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "geometry-objects",
   },
+  stimulus: "playground",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$9$$",
+          label: "$$1\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$10$$",
+          label: "$$2\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$11$$",
+          label: "$$3\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$12$$",
+          label: "$$6\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$12\\text{ m}$$",
         },
       ],
     },

@@ -1,0 +1,55 @@
+Pusat lingkaran sudah diketahui, jadi yang perlu dicari hanya **jari-jarinya**. Garis singgung menyentuh lingkaran di satu titik, dan jari-jari ke titik singgung tegak lurus garis itu. Akibatnya, jari-jari sama dengan **jarak dari pusat ke garis singgung**.
+
+Jarak titik <InlineMath math="(x_0,y_0)" /> ke garis <InlineMath math="ax+by+c=0" /> adalah <InlineMath math="\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}" />. Untuk pusat <InlineMath math="(3,-2)" /> dan garis <InlineMath math="4x-3y+2=0" />, perhatikan tanda pada suku <InlineMath math="-3y" /> ketika <InlineMath math="y=-2" />.
+
+<BlockMath math="r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4" />
+
+Lingkaran dengan pusat <InlineMath math="(a,b)" /> dan jari-jari <InlineMath math="r" /> memiliki persamaan <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Substitusikan pusat dan jari-jari, lalu jabarkan ke bentuk umum.
+
+<BlockMath math="\begin{aligned}
+(x-3)^2+(y+2)^2&=16 \\
+x^2-6x+9+y^2+4y+4&=16 \\
+x^2+y^2-6x+4y-3&=0
+\end{aligned}" />
+
+Sebagai pemeriksaan, titik singgungnya adalah <InlineMath math="\left(-\frac15,\frac25\right)" />. Titik itu terletak pada garis, karena <InlineMath math="4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0" />, dan jaraknya ke pusat adalah <InlineMath math="\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4" />.
+
+<MathVisual
+  title="Lingkaran yang menyinggung garis"
+  description={<>Lingkaran berpusat di <InlineMath math="(3,-2)" /> dengan jari-jari <InlineMath math="4" />. Garis <InlineMath math="4x-3y+2=0" /> menyentuhnya di <InlineMath math="\left(-\frac15,\frac25\right)" />, dan ruas dari pusat ke titik itu tegak lurus garis.</>}
+  labels={{
+    center: <InlineMath math="(3,-2)" />,
+    contact: <InlineMath math="\left(-\frac15,\frac25\right)" />,
+    radius: <InlineMath math="r=4" />,
+    tangent: <InlineMath math="4x-3y+2=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -2 }, radius: 4 },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -2, y: -2 }, to: { x: 4, y: 6 } },
+      { id: "radius-segment", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: -1 / 5, y: 2 / 5 } },
+      { id: "center-point", kind: "point", appearance: "reference", at: { x: 3, y: -2 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: -1 / 5, y: 2 / 5 } },
+    ],
+    labels: [
+      { key: "center", objectId: "center-point", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "contact", objectId: "contact-point", at: { x: -1 / 5, y: 2 / 5 }, placement: "left" },
+      { key: "radius", objectId: "radius-segment", at: { x: 1.4, y: -0.8 }, placement: "below-left" },
+      { key: "tangent", objectId: "line", at: { x: 2.5, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Jadi, persamaan lingkaran tersebut adalah <InlineMath math="x^2+y^2-6x+4y-3=0" />.
+
+- <InlineMath math="x^2+y^2+6x-4y-3=0" /> adalah lingkaran berpusat di <InlineMath math="(-3,2)" />. Tanda koordinat pusat terbalik saat menulis <InlineMath math="(x-a)^2+(y-b)^2" />.
+- <InlineMath math="x^2+y^2-6x+4y+9=0" /> berasal dari <InlineMath math="(x-3)^2+(y+2)^2=4" />, yaitu jari-jari <InlineMath math="4" /> ditulis di ruas kanan tanpa dikuadratkan.
+- <InlineMath math="x^2+y^2-6x+4y-7=0" /> berasal dari <InlineMath math="r^2=20" />. Pembilang rumus jarak, <InlineMath math="20" />, dipakai sebagai <InlineMath math="r^2" /> tanpa dibagi <InlineMath math="\sqrt{25}=5" />.
+- <InlineMath math="x^2+y^2-6x+4y-12=0" /> berasal dari <InlineMath math="r=5" />, yaitu panjang <InlineMath math="\sqrt{4^2+(-3)^2}" /> pada penyebut rumus jarak dikira sebagai jari-jari.

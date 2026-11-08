@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
+  stimulus: "daily-temperature",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$36$$",
+          label: "$$32{,}0^\\circ\\text{C}$$",
         },
         {
           correct: true,
-          label: "$$144$$",
+          label: "$$32{,}5^\\circ\\text{C}$$",
         },
         {
           correct: false,
-          label: "$$72$$",
+          label: "$$32{,}7^\\circ\\text{C}$$",
         },
         {
           correct: false,
-          label: "$$81$$",
+          label: "$$33{,}0^\\circ\\text{C}$$",
         },
         {
           correct: false,
-          label: "$$324$$",
+          label: "$$32{,}2^\\circ\\text{C}$$",
         },
       ],
     },

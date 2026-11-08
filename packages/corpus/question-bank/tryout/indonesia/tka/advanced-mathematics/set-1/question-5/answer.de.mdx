@@ -1,0 +1,53 @@
+Die Grenzen bleiben gleich, also auch der zulässige Bereich mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> und <InlineMath math="(0,40)" />. Geändert hat sich nur die Zielfunktion, und damit kann sich **die beste Ecke verschieben**.
+
+<BlockMath math="\begin{aligned}
+G&=180{.}000x+100{.}000y \\
+G(40,0)&=7{.}200{.}000 \\
+G(20,30)&=3{.}600{.}000+3{.}000{.}000=6{.}600{.}000 \\
+G(0,40)&=4{.}000{.}000
+\end{aligned}" />
+
+<MathVisual
+  title="Zulässiger Bereich mit neuem Optimum"
+  description={<>Der zulässige Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> und <InlineMath math="(0,40)" />. Er liegt unter der Geraden <InlineMath math="3x+2y=120" /> und unter der Geraden <InlineMath math="x+2y=80" />.</>}
+  labels={{
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "reference", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Weil die Aufgabe ausdrücklich nur eine Gemüsesorte erlaubt, ist die Ecke <InlineMath math="(40,0)" /> ein zulässiger Plan. Dasselbe Ergebnis liefert ein Vergleich der Steigungen. Die Niveaulinien <InlineMath math="180x+100y=k" /> haben die Steigung <InlineMath math="-1{,}8" />. Sie sind steiler als die Grenze <InlineMath math="3x+2y=120" /> mit der Steigung <InlineMath math="-1{,}5" />. Wird eine Niveaulinie nach außen verschoben, verlässt sie den Bereich deshalb zuletzt in der Ecke <InlineMath math="(40,0)" />.
+
+Am meisten Gewinn bringen also <InlineMath math="40" /> Salatregale und <InlineMath math="0" /> Pak-Choi-Regale.
+
+- <InlineMath math="20" /> Salatregale und <InlineMath math="30" /> Pak-Choi-Regale waren bei den alten Gewinnen optimal und bringen jetzt nur <InlineMath math="\text{Rp}6{.}600{.}000{,}00" />.
+- <InlineMath math="0" /> Salatregale und <InlineMath math="40" /> Pak-Choi-Regale bringen nur <InlineMath math="\text{Rp}4{.}000{.}000{,}00" />.
+- <InlineMath math="30" /> Salatregale und <InlineMath math="20" /> Pak-Choi-Regale brauchen <InlineMath math="90+40=130" /> Liter Nährlösung und liegen außerhalb des Bereichs.
+- <InlineMath math="80" /> Salatregale beachten nur die Pflegestunden. Sie bräuchten <InlineMath math="240" /> Liter Nährlösung.
