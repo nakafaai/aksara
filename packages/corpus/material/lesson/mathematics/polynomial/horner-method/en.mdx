@@ -70,6 +70,18 @@ In each column, **multiply the previous result and add the next coefficient**. T
 
 Start with the first coefficient, two. After every coefficient has been processed, the last result is the polynomial value at the divisor’s root. By the Remainder Theorem, it is the remainder. The earlier results give the quotient coefficients.
 
+<Mermaid
+  title="The flow of the Horner method"
+  description="Each column repeats multiply, then add, until the coefficients run out."
+  chart={`flowchart TD
+  A["Write every coefficient, with zero for a missing term"] --> B["Bring down the first coefficient"]
+  B --> C["Multiply the latest result by c"]
+  C --> D["Add it to the next coefficient"]
+  D --> E{"Any coefficients left?"}
+  E -->|"yes"| C
+  E -->|"no"| F["The last number is the remainder, the others are the quotient"]`}
+/>
+
 ## Using the Horner Method
 
 Divide <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> by <InlineMath math="x+3" /> using both methods.
@@ -148,6 +160,16 @@ For a divisor <InlineMath math="ax-b" /> with <InlineMath math="a\ne0" />, use <
 For example, use the same scheme for <InlineMath math="2x+6=2(x+3)" />. To preserve the product, divide the previous quotient by two:
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
+
+<Mermaid
+  title="The value of c from the form of the divisor"
+  description="The form of the divisor decides the number on the left of the scheme and whether the quotient needs another division."
+  chart={`flowchart TD
+  A{"Form of the divisor?"} -->|"x - c"| B["Use c"]
+  A -->|"x + c"| C["Use -c"]
+  A -->|"ax - b"| D["Use b divided by a"]
+  D --> E["Divide the quotient coefficients by a, the remainder stays"]`}
+/>
 
 ## Common Mistakes
 

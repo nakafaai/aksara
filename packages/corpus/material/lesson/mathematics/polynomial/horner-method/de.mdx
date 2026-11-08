@@ -70,6 +70,18 @@ In jeder Spalte **multiplizierst du das vorige Ergebnis und addierst den nächst
 
 Beginne mit dem ersten Koeffizienten, also zwei. Nach dem letzten Koeffizienten erhältst du den Polynomwert an der Nullstelle des Divisors. Nach dem Restsatz ist das der Divisionsrest. Die vorigen Ergebnisse sind die Koeffizienten des Quotienten.
 
+<Mermaid
+  title="Der Ablauf des Hornerverfahrens"
+  description="Jede Spalte wiederholt erst multiplizieren, dann addieren, bis alle Koeffizienten verbraucht sind."
+  chart={`flowchart TD
+  A["Alle Koeffizienten aufschreiben, null für fehlende Glieder"] --> B["Den ersten Koeffizienten herunterziehen"]
+  B --> C["Das letzte Ergebnis mit c multiplizieren"]
+  C --> D["Zum nächsten Koeffizienten addieren"]
+  D --> E{"Noch Koeffizienten übrig?"}
+  E -->|"ja"| C
+  E -->|"nein"| F["Die letzte Zahl ist der Rest, die anderen bilden den Quotienten"]`}
+/>
+
 ## Das Hornerverfahren anwenden
 
 Teilen wir <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> durch <InlineMath math="x+3" /> mit beiden Methoden.
@@ -148,6 +160,16 @@ Bei einem Divisor <InlineMath math="ax-b" /> mit <InlineMath math="a\ne0" /> ver
 Dasselbe Schema funktioniert zum Beispiel für <InlineMath math="2x+6=2(x+3)" />. Damit das Produkt gleich bleibt, teilst du den bisherigen Quotienten durch zwei:
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
+
+<Mermaid
+  title="Der Wert c aus der Form des Divisors"
+  description="Die Form des Divisors bestimmt die Zahl links im Schema und ob der Quotient noch geteilt werden muss."
+  chart={`flowchart TD
+  A{"Form des Divisors?"} -->|"x - c"| B["c verwenden"]
+  A -->|"x + c"| C["-c verwenden"]
+  A -->|"ax - b"| D["b geteilt durch a verwenden"]
+  D --> E["Koeffizienten des Quotienten durch a teilen, der Rest bleibt"]`}
+/>
 
 ## Typische Fehler
 

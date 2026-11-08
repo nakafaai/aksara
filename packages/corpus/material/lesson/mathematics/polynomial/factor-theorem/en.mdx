@@ -74,9 +74,30 @@ And from the Remainder Theorem, we know <InlineMath math="S = P(c)" />.
 - If <InlineMath math="(x - c)" /> is a factor, it means <InlineMath math="P(x)" /> is divisible by <InlineMath math="(x - c)" />. This only happens if the remainder is zero. Thus, <InlineMath math="S = P(c) = 0" />.
 - If <InlineMath math="P(c) = 0" />, then <InlineMath math="S = 0" />. The equation becomes <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" />, or <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Therefore, <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" />.
 
+<Mermaid
+  title="Four equivalent statements"
+  description="For a polynomial P(x) and a real number c, these four statements are always true together or false together."
+  chart={`flowchart LR
+  A["P(c) = 0"] <--> B["Dividing P(x) by x - c leaves remainder 0"]
+  B <--> C["x - c is a factor of P(x)"]
+  C <--> D["The graph of y = P(x) meets the x-axis at c"]`}
+/>
+
 ## Using the Factor Theorem to Factor Polynomials
 
 Each **verified root** gives one linear factor. Divide the polynomial by that factor, then factor the quotient. Division by a linear factor reduces the degree by one, making the next calculation simpler.
+
+<Mermaid
+  title="Steps for factoring with the factor theorem"
+  description="Each confirmed zero gives one linear factor and lowers the degree of the quotient."
+  chart={`flowchart TD
+  A["Try a candidate zero c"] --> B{"P(c) = 0?"}
+  B -->|"no"| A
+  B -->|"yes"| C["Divide P(x) by x - c with Horner"]
+  C --> D{"Can the quotient still be factored?"}
+  D -->|"yes"| A
+  D -->|"no"| E["Multiply all factors to check"]`}
+/>
 
 Factorization depends on the number system. Over the reals, <InlineMath math="x^2+1" /> cannot be split into linear factors because <InlineMath math="x^2+1>0" />. Retain such factors and any required leading coefficient. For example:
 

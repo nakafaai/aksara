@@ -74,9 +74,30 @@ Dan dari Teorema Sisa, kita tahu <InlineMath math="S = P(c)" />.
 - Jika <InlineMath math="(x - c)" /> adalah faktor, artinya <InlineMath math="P(x)" /> habis dibagi <InlineMath math="(x - c)" />. Ini hanya terjadi jika sisa pembagiannya nol. Maka, <InlineMath math="S = P(c) = 0" />.
 - Jika <InlineMath math="P(c) = 0" />, maka <InlineMath math="S = 0" />. Persamaan menjadi <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" />, atau <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Jadi, <InlineMath math="(x - c)" /> adalah faktor dari <InlineMath math="P(x)" />.
 
+<Mermaid
+  title="Empat pernyataan yang setara"
+  description="Untuk polinomial P(x) dan bilangan real c, keempat pernyataan ini selalu benar bersama atau salah bersama."
+  chart={`flowchart LR
+  A["P(c) = 0"] <--> B["Sisa P(x) dibagi x - c adalah 0"]
+  B <--> C["x - c faktor dari P(x)"]
+  C <--> D["Grafik y = P(x) bertemu sumbu x di c"]`}
+/>
+
 ## Menggunakan Teorema Faktor untuk Memfaktorkan Polinomial
 
 Setiap **akar yang telah diverifikasi** memberi satu faktor linear. Bagi polinomial dengan faktor itu, lalu faktorkan hasil baginya. Derajat berkurang satu pada setiap pembagian oleh faktor linear, sehingga perhitungan berikutnya lebih sederhana.
+
+<Mermaid
+  title="Langkah memfaktorkan dengan teorema faktor"
+  description="Setiap pembuat nol yang terbukti memberi satu faktor linear dan menurunkan derajat hasil bagi."
+  chart={`flowchart TD
+  A["Coba calon pembuat nol c"] --> B{"P(c) = 0?"}
+  B -->|"tidak"| A
+  B -->|"ya"| C["Bagi P(x) dengan x - c memakai Horner"]
+  C --> D{"Hasil bagi masih bisa difaktorkan?"}
+  D -->|"ya"| A
+  D -->|"tidak"| E["Kalikan semua faktor untuk memeriksa"]`}
+/>
 
 Faktorisasi bergantung pada sistem bilangan. Dalam bilangan real, <InlineMath math="x^2+1" /> tidak dapat dipecah menjadi faktor linear karena <InlineMath math="x^2+1>0" />. Simpan faktor seperti ini, beserta koefisien utama yang diperlukan. Contohnya:
 

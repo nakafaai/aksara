@@ -74,9 +74,30 @@ Und aus dem Restsatz wissen wir <InlineMath math="S = P(c)" />.
 - Wenn <InlineMath math="(x - c)" /> ein Faktor ist, bedeutet dies, dass <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> teilbar ist. Dies geschieht nur, wenn der Rest Null ist. Also <InlineMath math="S = P(c) = 0" />.
 - Wenn <InlineMath math="P(c) = 0" />, dann <InlineMath math="S = 0" />. Die Gleichung lautet <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" /> oder <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Daher ist <InlineMath math="(x - c)" /> ein Faktor von <InlineMath math="P(x)" />.
 
+<Mermaid
+  title="Vier gleichwertige Aussagen"
+  description="Für ein Polynom P(x) und eine reelle Zahl c sind diese vier Aussagen immer zusammen wahr oder zusammen falsch."
+  chart={`flowchart LR
+  A["P(c) = 0"] <--> B["P(x) durch x - c lässt den Rest 0"]
+  B <--> C["x - c ist ein Faktor von P(x)"]
+  C <--> D["Der Graph von y = P(x) trifft die x-Achse bei c"]`}
+/>
+
 ## Verwendung des Faktorsatzes zur Faktorisierung von Polynomen
 
 Jede **bestätigte Nullstelle** liefert einen Linearfaktor. Dividiere das Polynom durch diesen Faktor und zerlege anschließend den Quotienten. Bei jeder Division durch einen Linearfaktor sinkt der Grad um eins. Dadurch wird die nächste Rechnung einfacher.
+
+<Mermaid
+  title="Schritte beim Faktorisieren mit dem Faktorsatz"
+  description="Jede bestätigte Nullstelle liefert einen Linearfaktor und senkt den Grad des Quotienten."
+  chart={`flowchart TD
+  A["Mögliche Nullstelle c testen"] --> B{"P(c) = 0?"}
+  B -->|"nein"| A
+  B -->|"ja"| C["P(x) mit Horner durch x - c teilen"]
+  C --> D{"Lässt sich der Quotient weiter zerlegen?"}
+  D -->|"ja"| A
+  D -->|"nein"| E["Alle Faktoren zur Probe ausmultiplizieren"]`}
+/>
 
 Die Faktorisierung hängt vom Zahlbereich ab. Über den reellen Zahlen lässt sich <InlineMath math="x^2+1" /> nicht in Linearfaktoren zerlegen, denn <InlineMath math="x^2+1>0" />. Behalte solche Faktoren sowie einen gegebenenfalls nötigen Leitkoeffizienten bei. Zum Beispiel:
 

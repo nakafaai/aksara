@@ -70,6 +70,18 @@ Pada setiap kolom, **kalikan hasil sebelumnya lalu tambahkan koefisien berikutny
 
 Mulai dari koefisien pertama, yaitu dua. Setelah semua koefisien diproses, hasil terakhir adalah nilai polinomial pada akar pembagi, sehingga sama dengan sisa menurut Teorema Sisa. Hasil sebelumnya adalah koefisien hasil bagi.
 
+<Mermaid
+  title="Alur metode Horner"
+  description="Setiap kolom mengulang langkah kali lalu tambah sampai koefisien habis."
+  chart={`flowchart TD
+  A["Tulis semua koefisien, isi nol untuk suku yang hilang"] --> B["Turunkan koefisien pertama"]
+  B --> C["Kalikan hasil terakhir dengan c"]
+  C --> D["Tambahkan ke koefisien berikutnya"]
+  D --> E{"Masih ada koefisien?"}
+  E -->|"ya"| C
+  E -->|"tidak"| F["Angka terakhir adalah sisa, angka sebelumnya koefisien hasil bagi"]`}
+/>
+
 ## Penggunaan Metode Horner
 
 Bagi <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> dengan <InlineMath math="x+3" /> menggunakan kedua metode.
@@ -148,6 +160,16 @@ Jika pembagi berbentuk <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0
 Misalnya, skema yang sama dapat digunakan untuk pembagi <InlineMath math="2x+6=2(x+3)" />. Supaya hasil perkaliannya tetap sama, bagi hasil bagi sebelumnya dengan dua:
 
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
+
+<Mermaid
+  title="Nilai c dari bentuk pembagi"
+  description="Bentuk pembagi menentukan angka di kiri skema dan apakah hasil bagi perlu dibagi lagi."
+  chart={`flowchart TD
+  A{"Bentuk pembagi?"} -->|"x - c"| B["Pakai c"]
+  A -->|"x + c"| C["Pakai -c"]
+  A -->|"ax - b"| D["Pakai b dibagi a"]
+  D --> E["Bagi koefisien hasil bagi dengan a, sisa tetap"]`}
+/>
 
 ## Kesalahan yang Sering Terjadi
 
