@@ -13,10 +13,6 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10\\,\\%$$",
-        },
-        {
-          correct: false,
           label: "$$20\\,\\%$$",
         },
         {
@@ -30,6 +26,10 @@ const item: ItemSource = {
         {
           correct: false,
           label: "$$50\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$75\\,\\%$$",
         },
       ],
     },

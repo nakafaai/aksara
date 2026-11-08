@@ -16,7 +16,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$31{,}5\\text{ m}$$",
+          label: "$$31{,}2\\text{ m}$$",
         },
         {
           correct: false,
@@ -24,11 +24,11 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "$$41{,}5\\text{ m}$$",
+          label: "$$41{,}2\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$51{,}5\\text{ m}$$",
+          label: "$$51{,}2\\text{ m}$$",
         },
       ],
     },

@@ -24,11 +24,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Menerapkan $$T$$ dua kali berturut-turut mengembalikan setiap titik ke posisi semula.",
+          label: "$$T$$ memetakan garis $$y=x$$ ke garis itu sendiri.",
         },
         {
           correct: true,
-          label: "Menerapkan $$T$$ dua kali berturut-turut sama dengan translasi $$\\begin{pmatrix} 0 \\\\ 6 \\end{pmatrix}$$.",
+          label: "Bayangan setiap titik pada garis $$x=1$$ tetap terletak pada garis $$x=1$$.",
         },
       ],
     },

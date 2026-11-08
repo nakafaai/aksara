@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5$$ putaran",
+          label: "$$5$$ lilitan",
         },
         {
           correct: false,
-          label: "$$25$$ putaran",
+          label: "$$25$$ lilitan",
         },
         {
           correct: true,
-          label: "$$50$$ putaran",
+          label: "$$50$$ lilitan",
         },
         {
           correct: false,
-          label: "$$100$$ putaran",
+          label: "$$100$$ lilitan",
         },
         {
           correct: false,
-          label: "$$500$$ putaran",
+          label: "$$500$$ lilitan",
         },
       ],
     },
