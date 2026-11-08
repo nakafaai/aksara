@@ -1,0 +1,51 @@
+Transformasi oleh matriks <InlineMath math="M" /> mengalikan setiap luas dengan **nilai mutlak determinan** <InlineMath math="M" />. Jadi, cukup hitung luas segitiga semula dan determinan matriksnya. Nilai mutlak diperlukan karena determinan negatif hanya menandakan bahwa urutan titik sudut terbalik, sedangkan luas selalu positif.
+
+Sisi <InlineMath math="AB" /> mendatar, karena <InlineMath math="A" /> dan <InlineMath math="B" /> sama-sama berordinat <InlineMath math="1" />. Panjangnya <InlineMath math="4-1=3" />, dan tinggi segitiga terhadap sisi itu adalah selisih ordinat <InlineMath math="C" /> dengan garis <InlineMath math="y=1" />, yaitu <InlineMath math="5-1=4" />.
+
+<BlockMath math="\begin{aligned}
+L_{ABC}&=\frac12\cdot3\cdot4=6 \\
+\det M&=3\cdot(-1)-1\cdot1=-4 \\
+L'&=|\det M|\cdot L_{ABC}=4\cdot6=24
+\end{aligned}" />
+
+Periksa dengan menghitung bayangan setiap titik sudut, lalu memakai rumus luas segitiga dari koordinat.
+
+<BlockMath math="\begin{aligned}
+A'&=(3\cdot1+1,\ 1-1)=(4,0) \\
+B'&=(3\cdot4+1,\ 4-1)=(13,3) \\
+C'&=(3\cdot2+5,\ 2-5)=(11,-3) \\
+L'&=\frac12\left|4(3-(-3))+13(-3-0)+11(0-3)\right|=\frac12|24-39-33|=24
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segitiga <InlineMath math="ABC" /> dan bayangannya</>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan luas <InlineMath math="6" /> dipetakan ke segitiga <InlineMath math="A'B'C'" /> dengan titik sudut <InlineMath math="(4,0)" />, <InlineMath math="(13,3)" />, dan <InlineMath math="(11,-3)" />, yang luasnya <InlineMath math="24" />.</>}
+  labels={{
+    original: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -4, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 1 }, { x: 4, y: 1 }, { x: 2, y: 5 }] },
+      { id: "triangle-image", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0 }, { x: 13, y: 3 }, { x: 11, y: -3 }] },
+    ],
+    labels: [
+      { key: "original", objectId: "triangle", at: { x: 2, y: 5 }, placement: "above" },
+      { key: "image", objectId: "triangle-image", at: { x: 13, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Jadi, luas segitiga bayangan adalah <InlineMath math="24" /> satuan luas.
+
+- <InlineMath math="-24" /> memakai determinan tanpa nilai mutlak. Luas tidak pernah negatif.
+- <InlineMath math="6" /> adalah luas segitiga semula. Pengaruh transformasi belum diperhitungkan.
+- <InlineMath math="10" /> diperoleh dengan **menjumlahkan** luas dan besar determinan, <InlineMath math="6+4" />. Determinan adalah faktor pengali luas.
+- <InlineMath math="12" /> memakai jumlah elemen diagonal utama, <InlineMath math="3+(-1)=2" />, sebagai faktor pengali. Faktor pengali luas adalah <InlineMath math="|\det M|" />, bukan jumlah diagonal.

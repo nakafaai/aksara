@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bentuk transpos matriks dengan menukar baris dan kolom, lalu gunakan sifat transpos dalam contoh dan latihan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-06",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Matriks",
 };
 
@@ -49,6 +49,130 @@ Transpos dari matriks <InlineMath math="B" />, yaitu <InlineMath math="B^T" />, 
 
 - Baris pertama <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) menjadi kolom pertama <InlineMath math="B^T" />.
 - Baris kedua <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) menjadi kolom kedua <InlineMath math="B^T" />.
+
+Taruh setiap entri di tempatnya pada kertas: nomor kolom ke kanan dan nomor baris ke bawah. Enam entri <InlineMath math="B" /> mengisi dua baris. Transpose mencerminkan setiap entri terhadap diagonal utama, yaitu garis yang melalui <InlineMath math="b_{11}" /> dan <InlineMath math="b_{22}" />. Angka <InlineMath math="3" /> di baris 1 kolom 3 pindah ke baris 3 kolom 1. Angka <InlineMath math="2" /> dan <InlineMath math="4" /> bertukar tempat. Angka <InlineMath math="1" /> dan <InlineMath math="5" /> ada di diagonal, jadi keduanya tidak bergerak.
+
+<MathVisual
+  title={<>Transpose <InlineMath math="B" /> mencerminkannya terhadap diagonal utama</>}
+  description={<>Entri <InlineMath math="B" /> ditulis di kanan atas posisinya, sedangkan entri <InlineMath math="B^T" /> yang berpindah ditulis di kiri bawah. Setiap ruas garis menghubungkan posisi lama sebuah entri dengan posisi barunya.</>}
+  labels={{
+    diagonal: <>diagonal utama</>,
+    b11: <InlineMath math="1" />,
+    b12: <InlineMath math="2" />,
+    b13: <InlineMath math="3" />,
+    b21: <InlineMath math="4" />,
+    b22: <InlineMath math="5" />,
+    b23: <InlineMath math="6" />,
+    t12: <InlineMath math="4" />,
+    t21: <InlineMath math="2" />,
+    t31: <InlineMath math="3" />,
+    t32: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "swap24", kind: "segment", from: { x: 2, y: -1 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "swap3", kind: "segment", from: { x: 3, y: -1 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "swap6", kind: "segment", from: { x: 3, y: -2 }, to: { x: 2, y: -3 }, appearance: "construction" },
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "t31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "t32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 0.5, y: -0.5 }, placement: "above-right" },
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "t12", objectId: "swap24", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
+      { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Seluruh bloknya juga ikut terbalik. <InlineMath math="B" /> mengisi 2 baris dan 3 kolom. Cerminkan blok itu terhadap diagonal utama, maka tingginya menjadi 3 baris dan lebarnya 2 kolom, jadi <InlineMath math="B^T" /> berordo <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>Ordo <InlineMath math="B" /> berubah dari <InlineMath math="2 \times 3" /> menjadi <InlineMath math="3 \times 2" /></>}
+  description={<>Blok <InlineMath math="B" /> selebar 3 kolom dan setinggi 2 baris, serta cerminannya <InlineMath math="B^T" /> selebar 2 kolom dan setinggi 3 baris.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Ada matriks yang sama sekali tidak berubah saat ditranspose. Pada <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" />, setiap entri punya pasangan yang sama di seberang diagonal utama: dua angka <InlineMath math="2" />, dua angka <InlineMath math="3" />, dan dua angka <InlineMath math="5" />. Pencerminan menukar nilai yang sama, jadi <InlineMath math="S^T = S" />, dan <InlineMath math="S" /> simetris.
+
+<MathVisual
+  title={<>Matriks simetris sama dengan transposenya</>}
+  description={<>Entri <InlineMath math="S" /> diletakkan menurut kolom dan baris, dicerminkan terhadap diagonal utama ke nilai yang sama.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ### Matriks Kolom menjadi Matriks Baris
 
 Jika <InlineMath math="C" /> adalah matriks kolom:

@@ -1,0 +1,62 @@
+Garis bayangan terdiri atas titik-titik <InlineMath math="(x',y')" /> yang **titik asalnya terletak pada <InlineMath math="g" />**. Karena itu, nyatakan <InlineMath math="x" /> dan <InlineMath math="y" /> dalam <InlineMath math="x'" /> dan <InlineMath math="y'" /> dengan matriks invers.
+
+<BlockMath math="\begin{aligned}
+\det M&=5\cdot1-2\cdot2=1 \\
+M^{-1}&=\begin{pmatrix} 1 & -2 \\ -2 & 5 \end{pmatrix} \\
+x=x'-2y',&\qquad y=-2x'+5y'
+\end{aligned}" />
+
+Substitusikan keduanya ke persamaan <InlineMath math="g" />.
+
+<BlockMath math="\begin{aligned}
+(x'-2y')-3(-2x'+5y')+2&=0 \\
+x'-2y'+6x'-15y'+2&=0 \\
+7x'-17y'+2&=0
+\end{aligned}" />
+
+<MathVisual
+  title="Garis dan bayangannya"
+  description={<>Garis <InlineMath math="x-3y+2=0" /> melalui <InlineMath math="(1,1)" /> dan <InlineMath math="(-2,0)" />. Matriks itu memetakan kedua titik ke <InlineMath math="(7,3)" /> dan <InlineMath math="(-10,-4)" />, dan keduanya terletak pada garis bayangan <InlineMath math="7x-17y+2=0" />.</>}
+  labels={{
+    original: <InlineMath math="x-3y+2=0" />,
+    image: <InlineMath math="7x-17y+2=0" />,
+    a: <InlineMath math="(1,1)" />,
+    "a-image": <InlineMath math="(7,3)" />,
+    b: <InlineMath math="(-2,0)" />,
+    "b-image": <InlineMath math="(-10,-4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 9 },
+      y: { min: -5.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "original-line", kind: "segment", appearance: "primary", from: { x: -5, y: -1 }, to: { x: 4, y: 2 } },
+      { id: "image-line", kind: "segment", appearance: "answer", from: { x: -10, y: -4 }, to: { x: 7, y: 3 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-a-image", kind: "point", appearance: "answer", at: { x: 7, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "point-b-image", kind: "point", appearance: "answer", at: { x: -10, y: -4 } },
+    ],
+    labels: [
+      { key: "original", objectId: "original-line", at: { x: -5, y: -1 }, placement: "above-left" },
+      { key: "image", objectId: "image-line", at: { x: 7, y: 3 }, placement: "below" },
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "a-image", objectId: "point-a-image", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "b-image", objectId: "point-b-image", at: { x: -10, y: -4 }, placement: "below" },
+    ],
+  }}
+/>
+
+Sebagai pemeriksaan dengan dua titik pada <InlineMath math="g" />, <InlineMath math="M(1,1)=(7,3)" /> dan <InlineMath math="49-51+2=0" />, serta <InlineMath math="M(-2,0)=(-10,-4)" /> dan <InlineMath math="-70+68+2=0" />.
+
+Jadi, persamaan bayangan garis <InlineMath math="g" /> adalah <InlineMath math="7x-17y+2=0" />.
+
+- <InlineMath math="x+y-2=0" /> memakai <InlineMath math="M" />, bukan <InlineMath math="M^{-1}" />, yaitu <InlineMath math="x=5x'+2y'" /> dan <InlineMath math="y=2x'+y'" />.
+- <InlineMath math="7x-17y-2=0" /> kehilangan tanda konstanta saat menyusun ulang persamaan. Titik bayangan <InlineMath math="(7,3)" /> tidak memenuhinya.
+- <InlineMath math="5x+13y-2=0" /> muncul dari invers yang salah, yaitu ketika elemen diagonal sekunder tidak berganti tanda.
+- <InlineMath math="17x-7y-2=0" /> menukar peran <InlineMath math="x" /> dan <InlineMath math="y" /> pada persamaan yang benar.

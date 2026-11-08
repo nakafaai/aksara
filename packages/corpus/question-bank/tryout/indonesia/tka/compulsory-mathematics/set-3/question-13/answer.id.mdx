@@ -1,25 +1,15 @@
-Jumlahkan kedua vektor translasi, lalu **kurangkan vektor total** dari titik akhir untuk memperoleh titik awal.
+Pencerminan terhadap garis tegak <InlineMath math="x=-1" /> **hanya mengubah absis**: titik dan bayangannya berjarak sama dari garis itu, jadi <InlineMath math="x'=2\cdot(-1)-x" />. Setelah itu, translasi menambahkan <InlineMath math="-3" /> pada absis dan <InlineMath math="5" /> pada ordinat.
 
 <BlockMath math="\begin{aligned}
-v&=(6,-1)+(-2,4) \\
-&=(6-2,-1+4)=(4,3) \\
-P&=Q-v=(10,9)-(4,3) \\
-&=(10-4,9-3)=(6,6)
+P(-4,7)&\to P'(-2-(-4),\,7)=P'(2,7) \\
+P'(2,7)&\to P''(2-3,\,7+5)=P''(-1,12)
 \end{aligned}" />
 
-Jarak Manhattan menjumlahkan nilai mutlak kedua koordinat.
+Sebagai pemeriksaan, <InlineMath math="P" /> berjarak <InlineMath math="3" /> satuan di kiri garis <InlineMath math="x=-1" />, dan <InlineMath math="P'(2,7)" /> berjarak <InlineMath math="3" /> satuan di kanannya.
 
-<BlockMath math="|6|+|6|=12" />
+Jadi, bayangan akhirnya <InlineMath math="(-1,12)" />.
 
-<LineEquation
-  title="Translasi dan jarak Manhattan"
-  description="Rute abu-abu menuju P terdiri dari 6 satuan mendatar dan 6 satuan tegak. Dua panah berwarna menunjukkan translasi dari P melalui R menuju Q."
-  cameraPosition={[6,4.5,21]}
-  cameraTarget={[6,4.5,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "6", at: 0, offset: [3, -0.5, 0] }, { text: "6", at: 1, offset: [-0.5, 3, 0] }] },
-    { points: [{ x: 6, y: 6, z: 0 }, { x: 12, y: 5, z: 0 }], color: "#9333ea", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0.4, -0.4, 0] }] },
-    { points: [{ x: 12, y: 5, z: 0 }, { x: 10, y: 9, z: 0 }], color: "#d97706", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "Q", at: 1, offset: [0.3, 0.4, 0] }] },
-  ]}
-/>
+- <InlineMath math="(-7,-4)" /> mencerminkan terhadap garis <InlineMath math="y=-1" />, bukan <InlineMath math="x=-1" />.
+- <InlineMath math="(0,12)" /> menghitung absis bayangan sebagai <InlineMath math="-1-(-4)=3" />, yaitu jarak ke garis, bukan posisi bayangannya.
+- <InlineMath math="(1,12)" /> mencerminkan terhadap sumbu <InlineMath math="y" />, seolah-olah garisnya <InlineMath math="x=0" />.
+- <InlineMath math="(5,12)" /> mengerjakan translasi lebih dulu, lalu mencerminkan <InlineMath math="(-7,12)" />.

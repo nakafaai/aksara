@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
-  stimulus: "courier-prices",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$2:1$$",
+          column: 1,
+          label:
+            "Perahu dapat mengangkut $$12$$ karung beras dan $$14$$ karung gula sekaligus.",
         },
         {
-          correct: false,
-          label: "$$5:2$$",
+          column: 2,
+          label:
+            "Jika perahu hanya mengangkut karung beras, paling banyak $$23$$ karung dapat diangkut sekaligus.",
         },
         {
-          correct: false,
-          label: "$$9:4$$",
+          column: 1,
+          label:
+            "Jika perahu mengangkut tepat $$28$$ karung, paling banyak $$10$$ di antaranya karung beras.",
         },
         {
-          correct: false,
-          label: "$$13:5$$",
-        },
-        {
-          correct: true,
-          label: "$$11:5$$",
+          column: 2,
+          label:
+            "Berat seluruh karung dalam satu kali angkut dapat mencapai tepat $$1{.}136\\text{ kg}$$.",
         },
       ],
     },

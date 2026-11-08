@@ -1,25 +1,16 @@
-Misalkan <InlineMath math="u=\sqrt a" /> dan <InlineMath math="v=\sqrt b" />. Jumlah keduanya <InlineMath math="7" /> dan **hasil kali kedua akar** <InlineMath math="10" />. Jadi, keduanya merupakan akar persamaan berikut.
+Untuk membandingkan bilangan berpangkat dengan basis yang berbeda, ubah semuanya ke **pangkat yang sama**. Setelah itu, cukup bandingkan basisnya.
 
 <BlockMath math="\begin{aligned}
-(t-u)(t-v)&=t^2-(u+v)t+uv \\
-&=t^2-7t+10 \\
-t^2-7t+10&=0 \\
-(t-5)(t-2)&=0
+p&=2^{48}=\left(2^{3}\right)^{16}=8^{16}, & q&=3^{32}=\left(3^{2}\right)^{16}=9^{16} \\
+p&=2^{48}=\left(2^{12}\right)^{4}=4{.}096^{4}, & r&=5^{20}=\left(5^{5}\right)^{4}=3{.}125^{4}
 \end{aligned}" />
 
-Maka <InlineMath math="\{u,v\}=\{5,2\}" /> dan <InlineMath math="\{a,b\}=\{25,4\}" />. Urutan kedua bilangan tidak mengubah jumlah maupun nilai mutlak selisihnya.
+Dari sini diperoleh <InlineMath math="r<p<q" />.
 
-<BlockMath math="\begin{aligned}
-a+b&=25+4=29 \\
-|a-b|&=25-4=21 \\
-(a-b)^2&=21^2=441
-\end{aligned}" />
+- Karena <InlineMath math="9^{16}>8^{16}" />, berlaku <InlineMath math="q>p" />. Pernyataan ini benar.
+- Karena <InlineMath math="4{.}096^{4}>3{.}125^{4}" />, berlaku <InlineMath math="p>r" />. Pernyataan ini benar.
+- Dari <InlineMath math="r<p<q" /> diperoleh <InlineMath math="r<q" />. Pernyataan ini salah.
+- Pasangkan setiap faktor <InlineMath math="2" /> dengan satu faktor <InlineMath math="5" /> menjadi <InlineMath math="10" />, sehingga <InlineMath math="p\cdot r=2^{28}\cdot10^{20}" />. Karena <InlineMath math="2^{28}=2^{20}\cdot2^{8}=1{.}048{.}576\cdot256=268{.}435{.}456" />, bilangan itu terdiri atas <InlineMath math="9+20=29" /> angka. Pernyataan ini benar.
+- <InlineMath math="q=9^{16}=81^{8}>80^{8}=8^{8}\cdot10^{8}=16{.}777{.}216\cdot10^{8}" />, dan bilangan ini lebih besar daripada <InlineMath math="10^{15}" />. Pernyataan ini salah.
 
-Untuk jumlah kebalikan akar, gunakan penyebut bersama.
-
-<BlockMath math="\begin{aligned}
-\frac1{\sqrt a}+\frac1{\sqrt b}&=\frac{u+v}{uv} \\
-&=\frac7{10}
-\end{aligned}" />
-
-Keempat hasil tersebut benar. Pernyataan <InlineMath math="\sqrt{a+b}=7" /> salah karena <InlineMath math="\sqrt{a+b}=\sqrt{29}" />.
+Jadi, pernyataan yang benar adalah <InlineMath math="q>p" />, <InlineMath math="p>r" />, dan pernyataan tentang <InlineMath math="29" /> angka.

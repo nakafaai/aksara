@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "application",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "$$M(3,-2)=(0,2)$$.",
-        },
-        {
-          correct: true,
-          label: "$$M$$ mempertahankan jarak.",
-        },
-        {
-          correct: true,
-          label: "$$M$$ membalik orientasi.",
-        },
-        {
-          correct: true,
-          label: "$$M^2(x,y)=(x+1,y+1)$$.",
+          correct: false,
+          label: "$$2x-3y-6=0$$",
         },
         {
           correct: false,
-          label: "$$M$$ memiliki sedikitnya satu titik tetap.",
+          label: "$$2x-3y+6=0$$",
+        },
+        {
+          correct: false,
+          label: "$$3x-2y-6=0$$",
+        },
+        {
+          correct: false,
+          label: "$$3x+2y+6=0$$",
+        },
+        {
+          correct: true,
+          label: "$$3x+2y-6=0$$",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Classify matrices as row, column, square, triangular, diagonal, identity, zero, or symmetric matrices.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -161,6 +161,83 @@ Example:
   <BlockMath math="O_{2 \times 2} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
   <BlockMath math="O_{2 \times 3} = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
 </MathContainer>
+
+The special square types also behave differently when they act on points. Write each corner <InlineMath math="(x, y)" /> of the unit square as a column and multiply it by a <InlineMath math="2 \times 2" /> matrix. The identity <InlineMath math="I_2" /> sends every corner to itself, so the square stays where it is. The diagonal matrix with <InlineMath math="3" /> and <InlineMath math="2" /> on its diagonal stretches <InlineMath math="x" /> by <InlineMath math="3" /> and <InlineMath math="y" /> by <InlineMath math="2" />: the corner <InlineMath math="(1, 1)" /> goes to <InlineMath math="(3, 2)" />, and the square becomes a <InlineMath math="3" /> by <InlineMath math="2" /> rectangle. The zero matrix <InlineMath math="O" /> sends every corner to <InlineMath math="(0, 0)" />.
+
+<MathVisual
+  title={<>What three square matrices do to the unit square</>}
+  description={<>The unit square stays fixed under <InlineMath math="I_2" />, stretches into a 3 by 2 rectangle under a diagonal matrix, and collapses to the origin under <InlineMath math="O" />.</>}
+  labels={{
+    square: <InlineMath math="I_2" />,
+    stretch: <InlineMath math="\begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}" />,
+    zero: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "stretch", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Triangular matrices slide the square instead of stretching it. The upper triangular matrix <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> keeps the bottom edge and pushes the top edge 2 to the right. The lower triangular matrix <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> keeps the left edge and lifts the right edge by 2. Both keep the area at 1, the product of the diagonal entries.
+
+<MathVisual
+  title={<>Two triangular matrices slide the unit square</>}
+  description={<>The upper triangular matrix slides the square sideways, the lower triangular matrix slides it upward, and both keep its area.</>}
+  labels={{
+    upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
+    lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "upper", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "lower", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+A scalar matrix has one number repeated on the diagonal. <InlineMath math="2I" /> doubles every distance from the origin, so the unit square becomes a <InlineMath math="2" /> by <InlineMath math="2" /> square. <InlineMath math="-I" /> sends every corner to the opposite side of the origin, a half turn of the square.
+
+<MathVisual
+  title={<>The scalar matrices <InlineMath math="2I" /> and <InlineMath math="-I" /></>}
+  description={<>The unit square, its image under <InlineMath math="2I" /> with side 2, and its image under <InlineMath math="-I" /> on the opposite side of the origin.</>}
+  labels={{
+    two: <InlineMath math="2I" />,
+    neg: <InlineMath math="-I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "two", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "neg", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "neg", objectId: "neg", at: { x: -1, y: -1 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Symmetric Matrix
 

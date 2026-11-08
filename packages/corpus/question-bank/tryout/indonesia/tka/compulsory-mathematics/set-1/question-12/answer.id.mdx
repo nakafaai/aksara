@@ -1,58 +1,17 @@
-Misalkan panjang rusuk balok <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. **Teorema Pythagoras** pada ketiga jenis sisi memberi:
+Tangga, tanah, dan perosotan membentuk segitiga siku-siku. Tinggi <InlineMath math="2{,}4\text{ m}" /> berada di depan sudut <InlineMath math="\alpha" />, dan perosotan adalah sisi miring. Jadi, yang diperlukan adalah **sinus**, padahal yang diketahui tangen.
+
+Dari <InlineMath math="\tan\alpha=\frac34" /> diperoleh segitiga siku-siku dengan sisi siku-siku <InlineMath math="3" /> dan <InlineMath math="4" /> serta sisi miring <InlineMath math="5" />, sehingga <InlineMath math="\sin\alpha=\frac35" />.
 
 <BlockMath math="\begin{aligned}
-a^2+b^2&=41 \\
-a^2+c^2&=52 \\
-b^2+c^2&=61
+\sin\alpha&=\frac{2{,}4}{\ell} \\
+\ell&=\frac{2{,}4}{\frac35}=4\text{ m}
 \end{aligned}" />
 
-Jumlahkan dua persamaan yang memuat kuadrat rusuk yang dicari, lalu kurangi persamaan ketiga. Hasilnya dua kali kuadrat rusuk tersebut.
+Sebagai pemeriksaan, jarak mendatarnya <InlineMath math="\frac{2{,}4}{\tan\alpha}=3{,}2\text{ m}" />, dan <InlineMath math="2{,}4^2+3{,}2^2=5{,}76+10{,}24=16=4^2" />.
 
-<BlockMath math="(a^2+b^2)+(a^2+c^2)-(b^2+c^2)=2a^2=41+52-61" />
+Jadi, panjang perosotan itu adalah <InlineMath math="4\text{ m}" />.
 
-<BlockMath math="\begin{aligned}
-a^2&=\frac{41+52-61}{2}=16 \\
-b^2&=\frac{41+61-52}{2}=25 \\
-c^2&=\frac{52+61-41}{2}=36
-\end{aligned}" />
-
-Panjang rusuk positif, jadi <InlineMath math="a=4" />, <InlineMath math="b=5" />, dan <InlineMath math="c=6" />.
-
-<BlockMath math="a+b+c=4+5+6=15" />
-
-<MathVisual
-  title="Tiga jenis diagonal sisi"
-  description="Setiap diagonal menghubungkan dua sudut pada satu sisi. Putar balok untuk mengikuti dua rusuk tegak lurus yang membentuk tiap diagonal."
-  labels={{
-    a: <InlineMath math="a=4" />,
-    b: <InlineMath math="b=5" />,
-    c: <InlineMath math="c=6" />,
-    ab: <InlineMath math="\sqrt{41}" />,
-    ac: <InlineMath math="\sqrt{52}" />,
-    bc: <InlineMath math="\sqrt{61}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -4, max: 4 },
-      z: { min: -3.5, max: 3.5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [
-      { id: "cuboid", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 4, width: 5, height: 6 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: -2, y: 3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "ac", kind: "segment", appearance: "secondary", from: { x: -2, y: -3, z: 2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-      { id: "bc", kind: "segment", appearance: "highlight", from: { x: 2, y: -3, z: -2.5 }, to: { x: 2, y: 3, z: 2.5 } },
-    ],
-    labels: [
-      { key: "a", objectId: "cuboid", at: { x: 0, y: -3, z: 2.5 }, placement: "below" },
-      { key: "b", objectId: "cuboid", at: { x: 2, y: -3, z: 0 }, placement: "right" },
-      { key: "c", objectId: "cuboid", at: { x: -2, y: 0, z: 2.5 }, placement: "left" },
-      { key: "ab", objectId: "ab", at: { x: 0, y: 3, z: 0 }, placement: "above" },
-      { key: "ac", objectId: "ac", at: { x: 0, y: 0, z: 2.5 }, placement: "left" },
-      { key: "bc", objectId: "bc", at: { x: 2, y: 0, z: 0 }, placement: "right" },
-    ],
-  }}
-/>
+- <InlineMath math="4{,}8\text{ m}" /> menganggap sudut kemiringannya <InlineMath math="30^\circ" />, yaitu <InlineMath math="\sin\alpha=\frac12" />. Padahal <InlineMath math="\tan\alpha=\frac34" /> memberikan <InlineMath math="\sin\alpha=\frac35" />.
+- <InlineMath math="3\text{ m}" /> membagi dengan <InlineMath math="\cos\alpha=\frac45" />, bukan dengan <InlineMath math="\sin\alpha" />.
+- <InlineMath math="3{,}2\text{ m}" /> adalah jarak mendatar antara tangga dan ujung perosotan.
+- <InlineMath math="5{,}6\text{ m}" /> menjumlahkan tinggi dan jarak mendatar, bukan memakai teorema Pythagoras.

@@ -1,24 +1,66 @@
-Sei <InlineMath math="b" /> der Preis eines Hefts und <InlineMath math="p" /> der Preis eines Bleistifts, jeweils in Rupiah. Aus den beiden Paketen folgt das Gleichungssystem:
+Es seien <InlineMath math="x" /> die Zahl der Chilischalen und <InlineMath math="y" /> die Zahl der Tomatenschalen. Die beiden Grenzen sind **Arbeitszeit und Materialbudget**. Das Budget teilst du durch <InlineMath math="10{.}000" />, damit die Zahlen klein bleiben.
 
 <BlockMath math="\begin{aligned}
-2b+3p&=15{.}750 \\
-3b+p&=15{.}750
+2x+3y&\le240 \\
+30{.}000x+20{.}000y\le3{.}000{.}000\iff 3x+2y&\le300 \\
+x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-Beide Pakete haben **denselben Preis**. Subtrahierst du die erste Gleichung von der zweiten, ergibt die rechte Seite null. Setze die erhaltene Beziehung zwischen den Stückpreisen in die zweite Gleichung ein.
+Die Ecke, in der beide Grenzen gleichzeitig ausgeschöpft sind, erhältst du aus dem Gleichungssystem.
 
 <BlockMath math="\begin{aligned}
-(3b+p)-(2b+3p)&=0 \\
-b-2p&=0 \\
-b&=2p \\
-3(2p)+p&=15{.}750 \\
-7p&=15{.}750 \\
-p&=\frac{15{.}750}{7}=2{.}250 \\
-b&=2(2{.}250)=4{.}500
+2\cdot(2x+3y)=4x+6y&=480 \\
+3\cdot(3x+2y)=9x+6y&=900 \\
+5x&=420\ \Rightarrow\ x=84,\quad y=\frac{240-168}{3}=24
 \end{aligned}" />
 
-Der Preisunterschied zwischen einem Heft und einem Bleistift beträgt:
+<MathVisual
+  title="Zulässiger Bereich"
+  description={<>Der zulässige Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(100,0)" />, <InlineMath math="(84,24)" /> und <InlineMath math="(0,80)" />. Er liegt unter der Geraden <InlineMath math="2x+3y=240" /> und unter der Geraden <InlineMath math="3x+2y=300" />.</>}
+  labels={{
+    optimum: <InlineMath math="(84,24)" />,
+    "corner-x": <InlineMath math="(100,0)" />,
+    "corner-y": <InlineMath math="(0,80)" />,
+    labour: <InlineMath math="2x+3y=240" />,
+    budget: <InlineMath math="3x+2y=300" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 130 },
+      y: { min: -10, max: 160 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 84, y: 24 }, { x: 0, y: 80 }] },
+      { id: "labour-line", kind: "segment", appearance: "primary", from: { x: 0, y: 80 }, to: { x: 120, y: 0 } },
+      { id: "budget-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 150 }, to: { x: 100, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 84, y: 24 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 100, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 80 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 84, y: 24 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 100, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 80 }, placement: "left" },
+      { key: "labour", objectId: "labour-line", at: { x: 105, y: 10 }, placement: "above-right" },
+      { key: "budget", objectId: "budget-line", at: { x: 30, y: 105 }, placement: "right" },
+    ],
+  }}
+/>
 
-<BlockMath math="b-p=4{.}500-2{.}250=2{.}250" />
+Setze die Ecken in den Gewinn <InlineMath math="G=25{.}000x+30{.}000y" /> ein.
 
-Der Unterschied beträgt <InlineMath math="\text{Rp }2{.}250" />.
+<BlockMath math="\begin{aligned}
+G(100,0)&=2{.}500{.}000 \\
+G(0,80)&=2{.}400{.}000 \\
+G(84,24)&=2{.}100{.}000+720{.}000=2{.}820{.}000
+\end{aligned}" />
+
+Der höchste Gewinn liegt bei <InlineMath math="84" /> Chilischalen und <InlineMath math="24" /> Tomatenschalen.
+
+- <InlineMath math="84" /> Chilischalen und <InlineMath math="24" /> Tomatenschalen liefern den höchsten Gewinn. Die Aussage ist richtig.
+- Im Optimum kostet das Material <InlineMath math="30{.}000\cdot84+20{.}000\cdot24=3{.}000{.}000" />, das Budget ist also ganz verbraucht. Die Aussage ist falsch.
+- Der höchste Gewinn ist <InlineMath math="\text{Rp}2{.}820{.}000" />. Der Betrag <InlineMath math="\text{Rp}2{.}500{.}000" /> gehört zur Ecke <InlineMath math="(100,0)" />. Die Aussage ist falsch.
+- Mit <InlineMath math="G=25{.}000x+45{.}000y" /> ergibt sich für <InlineMath math="80" /> Tomatenschalen ohne Chilischalen <InlineMath math="G(0,80)=3{.}600{.}000" />, mehr als <InlineMath math="G(84,24)=3{.}180{.}000" /> und <InlineMath math="G(100,0)=2{.}500{.}000" />. Die Aussage ist richtig.
