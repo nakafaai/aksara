@@ -42,37 +42,32 @@ Bei der folgenden Matrix sind beide Spalten identisch. Nur die Summe der Paramet
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
-Nimm <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> und <InlineMath math="b=(2,2)^T" />. Die zweite Spalte ist das Doppelte der ersten, also legen die Daten nur die Kombination <InlineMath math="x_1+2x_2" /> fest. Dreh diese Szene: Die Funktion <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> bildet ein Tal, dessen Boden die magentafarbene Gerade <InlineMath math="x_1+2x_2=2" /> ist, kein einzelner Punkt. Jeder Punkt auf dieser Geraden passt gleich gut, also ist <InlineMath math="x" /> nicht identifizierbar. Der violette Punkt <InlineMath math="x^+=(2/5,4/5)^T" /> ist die Wahl kleinster Norm am Talboden.
+Nimm <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> und <InlineMath math="b=(2,2)^T" />. Die zweite Spalte ist das Doppelte der ersten, also legen die Daten nur die Kombination <InlineMath math="x_1+2x_2" /> fest. Die Funktion <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> ist auf der ganzen magentafarbenen Geraden <InlineMath math="x_1+2x_2=2" /> null, zum Beispiel im türkisen Punkt <InlineMath math="(2,0)^T" />, also passt jeder Punkt dieser Geraden gleich gut, und <InlineMath math="x" /> ist nicht identifizierbar. Die orange Strecke vom Ursprung trifft die Gerade im rechten Winkel bei <InlineMath math="x^+=(2/5,4/5)^T" />, deshalb ist das die Wahl kleinster Norm.
 
-<LineEquation
-  title={<>Ein Tal der kleinsten Quadrate ohne einzelnen tiefsten Punkt</>}
-  description={<>Die türkisen Kurven sind Schnitte von <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Die magentafarbene Gerade am Boden enthält jeden Minimierer, und der violette Punkt ist die Lösung kleinster Norm <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
-  cameraPosition={[5, 4, 6]}
-  cameraTarget={[1, 0.8, 0.5]}
-  data={[
-    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
-      points: Array.from({ length: 201 }, (_, index) => {
-        const x1 = 1 - 2 * x2 + index / 100;
-        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-    })),
-    {
-      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Die Gerade der Minimierer und die Lösung kleinster Norm</>}
+  description={<>Die magentafarbene Gerade enthält jeden Minimierer von <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Der violette Punkt ist die Lösung kleinster Norm <InlineMath math="x^+=(2/5,4/5)^T" />, und die orange Strecke ist ihr Abstand zum Ursprung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
 />
 
 ## Eindeutigkeit der Lösung und numerische Stabilität

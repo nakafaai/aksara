@@ -125,46 +125,28 @@ Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine
 
 Diese Formel zeigt unmittelbar, dass <InlineMath math="H" /> genau dann positiv definit ist, wenn alle Eigenwerte positiv sind.
 
-Nimm die reelle symmetrische Matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> und dreh die Schale <InlineMath math="q(x)=x^TAx" /> unten. Entlang des Einheitseigenvektors <InlineMath math="v_1=(1,1)^T/\sqrt2" /> ist der magentafarbene Schnitt <InlineMath math="3s^2" />. Entlang <InlineMath math="v_2=(1,-1)^T/\sqrt2" /> ist der türkise Schnitt <InlineMath math="s^2" />. Die Krümmung entlang jeder Hauptachse ist also ihr Eigenwert, und die beiden Achsen stehen senkrecht aufeinander.
+Nimm die reelle symmetrische Matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> und schneide die quadratische Form <InlineMath math="q(x)=x^TAx" /> entlang jedes Einheitseigenvektors. Entlang <InlineMath math="v_1=(1,1)^T/\sqrt2" /> ist der Schnitt die magentafarbene Parabel <InlineMath math="3s^2" />. Entlang <InlineMath math="v_2=(1,-1)^T/\sqrt2" /> ist der Schnitt die türkise Parabel <InlineMath math="s^2" />. Die Krümmung entlang jeder Hauptachse ist also ihr Eigenwert, und weil <InlineMath math="A" /> symmetrisch ist, stehen die beiden Achsen senkrecht aufeinander.
 
-<LineEquation
-  title={<>Die Schale der quadratischen Form <InlineMath math="q(x)=x^TAx" /></>}
-  description={<>Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: Die grauen Ellipsen sind die Niveaus <InlineMath math="q=0.5,1,2,3" />, die magentafarbene und die türkise Kurve sind Schnitte entlang der Eigenvektoren. Der Wert <InlineMath math="q" /> zeigt nach oben.</>}
-  cameraPosition={[4, 4.5, 4]}
-  cameraTarget={[0, 1.2, 0]}
-  data={[
-    ...[0.5, 1, 2, 3].map((level) => ({
-      points: Array.from({ length: 361 }, (_, index) => {
-        const t = (index / 360) * 2 * Math.PI;
-        const along = (Math.sqrt(level) * Math.cos(t)) / Math.sqrt(3);
-        const across = Math.sqrt(level) * Math.sin(t);
-        return { x: (along + across) / Math.SQRT2, y: level, z: (along - across) / Math.SQRT2 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    })),
-    {
-      points: Array.from({ length: 201 }, (_, index) => {
-        const s = -1 + index / 100;
-        return { x: s / Math.SQRT2, y: 3 * s ** 2, z: s / Math.SQRT2 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="3s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, index) => {
-        const s = Math.sqrt(3) * (-1 + index / 100);
-        return { x: s / Math.SQRT2, y: s ** 2, z: -s / Math.SQRT2 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Schnitte der quadratischen Form <InlineMath math="q(x)=x^TAx" /> entlang der Eigenvektoren</>}
+  description={<>Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: Die magentafarbene Parabel ist <InlineMath math="q(sv_1)" /> und die türkise Parabel <InlineMath math="q(sv_2)" />, wobei <InlineMath math="s" /> der Abstand entlang des Einheitseigenvektors ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -0.3, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "steep", kind: "quadratic", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "flat", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "construction" },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 7 / 4, y: 49 / 16 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "steep": <InlineMath math="q(sv_1)=3s^2" />,
+    "flat": <InlineMath math="q(sv_2)=s^2" />,
+  }}
 />
 
 ## Vollständig gerechnete hermitesche Diagonalisierung

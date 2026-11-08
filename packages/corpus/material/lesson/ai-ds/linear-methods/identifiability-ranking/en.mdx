@@ -42,37 +42,32 @@ For a concrete example, the two columns of the following matrix are identical. O
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
-Take <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> and <InlineMath math="b=(2,2)^T" />. The second column is twice the first, so the data only fix the combination <InlineMath math="x_1+2x_2" />. Rotate this scene: the function <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> forms a valley whose floor is the magenta line <InlineMath math="x_1+2x_2=2" />, not a single point. Every point on that line fits equally well, so <InlineMath math="x" /> is not identifiable. The violet point <InlineMath math="x^+=(2/5,4/5)^T" /> is the minimum-norm choice on the valley floor.
+Take <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> and <InlineMath math="b=(2,2)^T" />. The second column is twice the first, so the data only fix the combination <InlineMath math="x_1+2x_2" />. The function <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> is zero on the whole magenta line <InlineMath math="x_1+2x_2=2" />, for example at the teal point <InlineMath math="(2,0)^T" />, so every point on that line fits equally well and <InlineMath math="x" /> is not identifiable. The orange segment from the origin meets the line at a right angle at <InlineMath math="x^+=(2/5,4/5)^T" />, so that is the choice with the smallest norm.
 
-<LineEquation
-  title={<>A least-squares valley without a single lowest point</>}
-  description={<>Teal curves are slices of <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. The magenta line on the floor holds every minimizer, and the violet point is the minimum-norm solution <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
-  cameraPosition={[5, 4, 6]}
-  cameraTarget={[1, 0.8, 0.5]}
-  data={[
-    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
-      points: Array.from({ length: 201 }, (_, index) => {
-        const x1 = 1 - 2 * x2 + index / 100;
-        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-    })),
-    {
-      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>The line of minimizers and the minimum-norm solution</>}
+  description={<>The magenta line holds every minimizer of <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. The violet point is the minimum-norm solution <InlineMath math="x^+=(2/5,4/5)^T" />, and the orange segment is its distance to the origin.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
 />
 
 ## Solution Uniqueness and Numerical Stability

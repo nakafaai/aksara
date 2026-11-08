@@ -122,45 +122,31 @@ Jadi setiap nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />.
 
 Bidang kompleks di bawah menunjukkan di mana nilai eigen dua keluarga matriks normal berada. Matriks Hermitian <InlineMath math="H" /> di atas punya nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" />, keduanya di sumbu real. Rotasi <InlineMath math="R(60^\circ)" /> adalah matriks uniter, dan nilai eigennya <InlineMath math="e^{\pm i\pi/3}" /> ada di lingkaran satuan karena <InlineMath math="|\lambda|=1" />. Perbesar adegannya dan cek: tidak ada titik ungu yang keluar dari sumbu real, dan tidak ada titik oranye yang keluar dari lingkaran.
 
-<LineEquation
+<MathVisual
   title={<>Letak nilai eigen matriks Hermitian dan uniter</>}
   description={<>Titik ungu adalah nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" /> dari <InlineMath math="H" />. Titik oranye adalah nilai eigen <InlineMath math="e^{\pm i\pi/3}" /> dari rotasi <InlineMath math="R(60^\circ)" /> di lingkaran satuan abu-abu.</>}
-  showZAxis={false}
-  cameraPosition={[1.3, 0, 7.5]}
-  cameraTarget={[1.3, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: 1 * Math.cos(angle), y: 1 * Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0.15, -0.3, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 0 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-    {
-      points: [{ x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3), z: 0 }],
-      color: "#bb6800",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="e^{i\pi/3}" />, at: 0, offset: [0.35, 0.2, 0] }],
-    },
-    {
-      points: [{ x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3), z: 0 }],
-      color: "#bb6800",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="e^{-i\pi/3}" />, at: 0, offset: [0.4, -0.2, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 3.4 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "up", kind: "point", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "primary" },
+      { id: "down", kind: "point", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "one": <InlineMath math="1" />,
+    "three": <InlineMath math="3" />,
+    "up": <InlineMath math="e^{i\pi/3}" />,
+    "down": <InlineMath math="e^{-i\pi/3}" />,
+  }}
 />

@@ -42,37 +42,32 @@ Sebagai contoh, kedua kolom matriks berikut sama. Hanya jumlah kedua parameter y
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
-Ambil <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> dan <InlineMath math="b=(2,2)^T" />. Kolom kedua sama dengan dua kali kolom pertama, jadi data hanya menentukan kombinasi <InlineMath math="x_1+2x_2" />. Putar adegan ini: fungsi <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> membentuk lembah yang dasarnya garis magenta <InlineMath math="x_1+2x_2=2" />, bukan satu titik. Setiap titik di garis itu cocok sama baiknya, sehingga <InlineMath math="x" /> tidak teridentifikasi. Titik ungu <InlineMath math="x^+=(2/5,4/5)^T" /> adalah pilihan norma terkecil di dasar lembah.
+Ambil <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> dan <InlineMath math="b=(2,2)^T" />. Kolom kedua sama dengan dua kali kolom pertama, jadi data hanya menentukan kombinasi <InlineMath math="x_1+2x_2" />. Fungsi <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> bernilai nol di seluruh garis magenta <InlineMath math="x_1+2x_2=2" />, misalnya di titik hijau toska <InlineMath math="(2,0)^T" />, jadi setiap titik di garis itu cocok sama baiknya dan <InlineMath math="x" /> tidak teridentifikasi. Ruas oranye dari titik asal menyentuh garis itu secara tegak lurus di <InlineMath math="x^+=(2/5,4/5)^T" />, jadi itulah pilihan dengan norma terkecil.
 
-<LineEquation
-  title={<>Lembah kuadrat terkecil tanpa satu titik terendah</>}
-  description={<>Kurva hijau toska adalah irisan <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Garis magenta di dasar memuat semua minimizer, dan titik ungu adalah solusi norma terkecil <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
-  cameraPosition={[5, 4, 6]}
-  cameraTarget={[1, 0.8, 0.5]}
-  data={[
-    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
-      points: Array.from({ length: 201 }, (_, index) => {
-        const x1 = 1 - 2 * x2 + index / 100;
-        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-    })),
-    {
-      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Garis minimizer dan solusi norma terkecil</>}
+  description={<>Garis magenta memuat semua minimizer <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Titik ungu adalah solusi norma terkecil <InlineMath math="x^+=(2/5,4/5)^T" />, dan ruas oranye adalah jaraknya ke titik asal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
 />
 
 ## Keunikan Solusi dan Kestabilan Numerik

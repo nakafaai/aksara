@@ -119,58 +119,32 @@ These properties show that <InlineMath math="\|\cdot\|_2" /> satisfies the defin
 
 Draw each entry of <InlineMath math="v" /> as a point in the complex plane, as in this scene. The conjugate <InlineMath math="\overline{v_i}" /> is that point mirrored across the real axis, and <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> is the squared radius of its circle. So <InlineMath math="v^Hv=2+5=7" /> adds two squared radii, not the complex entries. Without the conjugate, <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> is not even a real number.
 
-<LineEquation
+<MathVisual
   title={<>The length of the complex vector <InlineMath math="v=(1+i,2-i)^T" /></>}
   description={<>Each entry is drawn in the complex plane. The violet circle has radius <InlineMath math="|v_1|=\sqrt2" />, the teal circle radius <InlineMath math="|v_2|=\sqrt5" />, and the small points are the conjugates.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 7]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.SQRT2 * Math.cos(angle), y: Math.SQRT2 * Math.sin(angle), z: 0 };
-      }),
-      color: "#8242e5",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="v_1=1+i" />, at: 1, offset: [0.5, 0.2, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: -1, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="v_2=2-i" />, at: 1, offset: [0.55, -0.15, 0] }],
-    },
-    {
-      points: [{ x: 1, y: -1, z: 0 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="\overline{v_1}" />, at: 0, offset: [-0.3, -0.2, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }],
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="\overline{v_2}" />, at: 0, offset: [0.35, 0.15, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "secondary" },
+      { id: "second-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "first-bar", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "second-bar", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "first-bar", objectId: "first-bar", at: { x: 1, y: -1 }, placement: "below-left" },
+      { key: "second-bar", objectId: "second-bar", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1=1+i" />,
+    "second": <InlineMath math="v_2=2-i" />,
+    "first-bar": <InlineMath math="\overline{v_1}" />,
+    "second-bar": <InlineMath math="\overline{v_2}" />,
+  }}
 />

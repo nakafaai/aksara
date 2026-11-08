@@ -136,53 +136,32 @@ Jadi,
 
 Setelah faktor diketahui, selesaikan <InlineMath math="Ax=b" /> melalui **dua sistem segitiga**: <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian <InlineMath math="\tilde L^Tx=y" />. Cara ini menghindari perhitungan invers matriks.
 
-Faktor <InlineMath math="L" /> dari contoh ini memetakan lingkaran satuan ke elips <InlineMath math="x^TA^{-1}x=1" />, karena <InlineMath math="(Lu)^TA^{-1}(Lu)=u^TL^T(LL^T)^{-1}Lu=u^Tu=1" />. Perhatikan bentuk segitiganya di adegan ini: kolom pertama <InlineMath math="\ell_1=(2,1)^T" /> boleh miring, tapi kolom kedua <InlineMath math="\ell_2=(0,2)^T" /> lurus ke atas karena entri kanan atas <InlineMath math="L" /> nol. Elips magenta menyimpan seluruh informasi <InlineMath math="A" />, dan <InlineMath math="L" /> membangunnya satu kolom demi satu kolom.
+Faktor <InlineMath math="L" /> dari contoh ini memetakan persegi satuan ke jajar genjang yang direntang kolom-kolomnya. Perhatikan bentuk segitiganya di adegan ini: kolom pertama <InlineMath math="\ell_1=(2,1)^T" /> boleh miring, tapi kolom kedua <InlineMath math="\ell_2=(0,2)^T" /> lurus ke atas karena entri kanan atas <InlineMath math="L" /> nol. Luas jajar genjang itu <InlineMath math="\det L=2\cdot2=4" />, dan karena <InlineMath math="A=LL^T" />, luas itu sama dengan <InlineMath math="\sqrt{\det A}=\sqrt{16}" />.
 
-<LineEquation
-  title={<>Faktor <InlineMath math="L" /> mengubah lingkaran menjadi elips</>}
-  description={<>Lingkaran abu-abu berisi vektor satuan <InlineMath math="u" />, elips magenta berisi <InlineMath math="Lu" /> untuk <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />. Kolom <InlineMath math="\ell_1,\ell_2" /> ditampilkan sebagai panah.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 7]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        return { x: 1 * Math.cos(angle), y: 1 * Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 361 }, (_, index) => {
-        const angle = (index / 360) * 2 * Math.PI;
-        const u = Math.cos(angle);
-        const v = Math.sin(angle);
-        return { x: 2 * u, y: u + 2 * v, z: 0 };
-      }),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Lu,\ \|u\|=1" />, at: 300, offset: [0.7, -0.2, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\ell_1=(2,1)^T" />, at: 1, offset: [0.6, -0.2, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.2 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\ell_2=(0,2)^T" />, at: 1, offset: [-0.7, 0.2, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<>Faktor <InlineMath math="L" /> memetakan persegi satuan</>}
+  description={<>Persegi abu-abu dipetakan oleh <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" /> ke jajar genjang magenta yang direntang kolom <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 3 }, { x: 0, y: 2 }], appearance: "answer" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l1", objectId: "l1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="L\cdot\text{square}" />,
+    "l1": <InlineMath math="\ell_1=(2,1)^T" />,
+    "l2": <InlineMath math="\ell_2=(0,2)^T" />,
+  }}
 />
 
 ## Kompleksitas Algoritma Cholesky

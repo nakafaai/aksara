@@ -111,63 +111,40 @@ Damit gilt
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Die gelbe Projektion <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> ist der Teil von <InlineMath math="a_2" />, der in Richtung <InlineMath math="q_1" /> zeigt. Der orange Rest <InlineMath math="\widetilde q_2" /> von der Spitze der Projektion zur Spitze von <InlineMath math="a_2" /> steht senkrecht auf <InlineMath math="q_1" />, und normiert ergibt er <InlineMath math="q_2" />. Aus jedem Blickwinkel bilden die beiden magentafarbenen Pfeile einen rechten Winkel.
+Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Die gelbe Projektion <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> ist der Teil von <InlineMath math="a_2" />, der in Richtung <InlineMath math="q_1" /> zeigt. Der orange Rest <InlineMath math="\widetilde q_2" /> von der Spitze der Projektion zur Spitze von <InlineMath math="a_2" /> steht senkrecht auf <InlineMath math="q_1" />, und normiert ergibt er <InlineMath math="q_2" />. Aus jedem Blickwinkel bilden die beiden magentafarbenen Strecken einen rechten Winkel.
 
-<LineEquation
+<MathVisual
   title={<>Gram-Schmidt für <InlineMath math="a_1,a_2" /></>}
-  description={<>Violetter und türkiser Pfeil sind die Spalten von <InlineMath math="A" />, der gelbe Pfeil ist die Projektion <InlineMath math="r_{12}q_1" />, der orange Pfeil der Rest <InlineMath math="\widetilde q_2" />, und die magentafarbenen Pfeile sind <InlineMath math="q_1,q_2" />.</>}
-  cameraPosition={[2.6, 2.2, 3.2]}
-  cameraTarget={[0.4, 0.3, 0.4]}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.1 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="a_1" />, at: 1, offset: [0.15, 0.15, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 1 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.1 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="a_2" />, at: 1, offset: [0.15, 0.1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / 2, y: 1 / 2, z: 0 }],
-      color: "#b98d00",
-      cone: { position: "end", size: 0.08 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="r_{12}q_1" />, at: 1, offset: [0.35, -0.15, 0] }],
-    },
-    {
-      points: [{ x: 1 / 2, y: 1 / 2, z: 0 }, { x: 1, y: 0, z: 1 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.08 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\widetilde q_2" />, at: 1, offset: [-0.25, 0.15, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.08 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [-0.2, 0.15, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.08 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="q_2" />, at: 1, offset: [-0.2, 0.15, 0] }],
-    },
-  ]}
+  description={<>Violetter und türkiser Strecke sind die Spalten von <InlineMath math="A" />, die gelbe Strecke ist die Projektion <InlineMath math="r_{12}q_1" />, die orange Strecke der Rest <InlineMath math="\widetilde q_2" />, und die magentafarbenen Strecken sind <InlineMath math="q_1,q_2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.8, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0.4, z: 0.4 } },
+    objects: [
+      { id: "a1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "construction" },
+      { id: "projection", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / 2, y: 1 / 2, z: 0 }, appearance: "highlight" },
+      { id: "remainder", kind: "segment", from: { x: 1 / 2, y: 1 / 2, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "answer" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a1", objectId: "a1", at: { x: 1, y: 1, z: 0 }, placement: "above-right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 0, z: 1 }, placement: "right" },
+      { key: "projection", objectId: "projection", at: { x: 1 / 2, y: 1 / 2, z: 0 }, placement: "below-right" },
+      { key: "remainder", objectId: "remainder", at: { x: 3 / 4, y: 1 / 4, z: 1 / 2 }, placement: "right" },
+      { key: "q1", objectId: "q1", at: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "above-left" },
+      { key: "q2", objectId: "q2", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "a1": <InlineMath math="a_1" />,
+    "a2": <InlineMath math="a_2" />,
+    "projection": <InlineMath math="r_{12}q_1" />,
+    "remainder": <InlineMath math="\widetilde q_2" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+  }}
 />
 
 ## Householderverfahren zur Zerlegung mit QR
