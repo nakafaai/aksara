@@ -92,6 +92,17 @@ On a straight line, we may choose one direction as positive. In this example, **
 
 A negative sign does not mean the motion is smaller or wrong. It only tells the direction of the position change.
 
+Every displacement question runs through the same four steps.
+
+<Mermaid
+  title="Four Steps to a Displacement"
+  description="Read both positions from one reference, subtract final minus initial, then turn the sign into a direction."
+  chart={`flowchart LR
+    A["Initial and final position from one reference"] --> B["Delta x = x_final - x_initial"]
+    B --> C["Read the sign"]
+    C --> D["Positive: east. Negative: west. Zero: same place"]`}
+/>
+
 ## Subtract the Final and Initial Positions
 
 A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few seconds later, the student is <InlineMath math="40 \text{ m}" /> east of the gate. The change in position is:
@@ -106,3 +117,39 @@ A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few second
 The student's **displacement** is therefore <InlineMath math="30 \text{ m}" /> east. These two positions do not determine the distance traveled. If the student reversed direction during the trip, the distance exceeds <InlineMath math="30 \text{ m}" />.
 
 Notice the order of subtraction. We always read final position minus initial position, then use <Highlight>the sign of the result</Highlight> to decide the direction of the position change.
+
+The arrow below starts at the initial position and ends at the final one. Its length is the size of the displacement, and pointing east makes the sign positive.
+
+<LineEquation
+  title="The Student's Displacement"
+  description="Positions east of the gate, one grid step per 10 m. The arrow runs from 10 m to 40 m."
+  data={(() => {
+    // Positions east of the gate in meters; one grid step is 10 m.
+    const initial = 10;
+    const final = 40;
+    const change = final - initial;
+    return [
+      {
+        points: [0, 5].map((x) => ({ x, y: 0, z: 0 })),
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Gate", at: 0, offset: [0, -0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: [initial, final].map((x) => ({ x: x / 10, y: 0.6, z: 0 })),
+        color: "#bb6800",
+        cone: { position: "end", size: 0.22 },
+        showPoints: true,
+        pointIndices: [0],
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`\\Delta x=${final}-${initial}=+${change}\\text{ m}`} />, at: 0, offset: [change / 20, 0.45, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 0.4, 6]}
+  cameraTarget={[2.5, 0.4, 0]}
+/>

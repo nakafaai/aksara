@@ -113,6 +113,21 @@ Kata kerja saja belum cukup. Kata **melindungi** bisa dipakai untuk kedua tujuan
     D --> G["Bisa membantu keduanya"]`}
 />
 
+Lewatkan setiap tindakan melalui dua pertanyaan ini, dengan urutan ini, sebelum kamu menyebut kelompoknya.
+
+<Mermaid
+  title="Kelompokkan Tindakan dengan Dua Pertanyaan"
+  description="Tanyakan apakah tindakan itu mengurangi gas rumah kaca dan apakah tindakan itu mengurangi kerugian akibat dampak. Jawabannya menentukan kelompoknya."
+  chart={`flowchart TD
+    A["Tindakan"] --> B{"Mengurangi gas rumah kaca atau melindungi penyerap karbon?"}
+    B -->|Ya| C{"Juga mengurangi kerugian akibat dampak?"}
+    B -->|Tidak| D{"Mengurangi kerugian akibat dampak?"}
+    C -->|Ya| E["Manfaat ganda"]
+    C -->|Tidak| F["Mitigasi"]
+    D -->|Ya| G["Adaptasi"]
+    D -->|Tidak| H["Bukan keduanya: periksa lagi klaimnya"]`}
+/>
+
 ## Satu Tindakan Bisa Memiliki Dua Fungsi
 
 Kalimat "desa pesisir menanam mangrove agar abrasi berkurang dan rumah warga lebih terlindungi" terutama menekankan adaptasi karena tindakan tersebut mengurangi kerugian di pesisir. Mangrove tetap dapat menyimpan karbon, tetapi hasil yang disebut dalam kalimat itu adalah perlindungan rumah warga.

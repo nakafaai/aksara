@@ -113,6 +113,21 @@ A verb alone is insufficient. **Protecting** can describe either goal:
     D --> G["Can support both"]`}
 />
 
+Run any action through these two questions, in this order, before you name its group.
+
+<Mermaid
+  title="Classify an Action in Two Questions"
+  description="Ask whether the action cuts greenhouse gases and whether it cuts harm from impacts. The answers give its group."
+  chart={`flowchart TD
+    A["Action"] --> B{"Does it cut greenhouse gases or protect carbon sinks?"}
+    B -->|Yes| C{"Does it also cut harm from impacts?"}
+    B -->|No| D{"Does it cut harm from impacts?"}
+    C -->|Yes| E["Dual benefit"]
+    C -->|No| F["Mitigation"]
+    D -->|Yes| G["Adaptation"]
+    D -->|No| H["Neither: check the claim again"]`}
+/>
+
 ## One Action Can Serve Two Purposes
 
 The sentence "a coastal village plants mangroves so erosion decreases and homes are better protected" mainly emphasizes adaptation because the action reduces coastal harm. Mangroves can still store carbon, but the stated result is protection for homes.

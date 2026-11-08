@@ -103,6 +103,35 @@ Im US-amerikanischen Stromsystem heißen diese Aufgaben [Grundlast, Mittellast u
 
 Dieses Betriebsmuster bestimmt, ob ein Kraftwerk eine gleichmäßige Grundlast liefert, wechselndem Bedarf folgt oder eine kurze Lastspitze abdeckt. Zur Bewertung seiner Energiequelle gehören außerdem Brennstoffvorrat, Emissionen, Abfälle sowie die Folgen von Bergbau oder Bohrungen.
 
+An diesem Beispieltag ist die graue Linie die gleichmäßige Grundlast, die ein Kraftwerk mit konstanter Leistung tragen kann. Die orange Nachfrage steigt und fällt darüber, und die kurze Abendspitze gegen 19:00 Uhr müssen schnell regelbare Kraftwerke abdecken.
+
+<LineEquation
+  title="Grundlast und Spitze an einem Tag"
+  description="Eine beispielhafte Nachfragekurve über einen Tag oberhalb einer gleichmäßigen Grundlast. Waagrecht: Uhrzeit in Einheiten von 2 h. Senkrecht: Leistung in beliebigen Einheiten."
+  data={(() => {
+    // Illustrative daily demand peaking near 19:00 above a steady base load. Horizontal: clock time / 2 h. Vertical: power in arbitrary units.
+    const base = 2;
+    return [
+      {
+        points: [0, 12].map((x) => ({ x, y: base, z: 0 })),
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Grundlast", at: 0, offset: [1.4, -0.35, 0], anchorX: "center" }],
+      },
+      {
+        curve: { kind: "sin", amplitude: 1.2, frequency: Math.PI / 6, phase: Math.PI / 2 - (9.5 * Math.PI) / 6, shift: 3.5, domain: [0, 12], samples: 241 },
+        color: "#bb6800",
+        showPoints: false,
+        labels: [{ text: "Abendspitze", at: 190, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 2.6, 9]}
+  cameraTarget={[6, 2.6, 0]}
+/>
+
 ## Risiken entlang der gesamten Energiekette
 
 Die Folgen einer nicht erneuerbaren Quelle beginnen vor dem Kraftwerk und reichen über die Energieerzeugung hinaus. Eine vollständige Bewertung umfasst deshalb **die gesamte Kette**.

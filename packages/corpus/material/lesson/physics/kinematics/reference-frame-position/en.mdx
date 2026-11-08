@@ -120,3 +120,41 @@ x'
 \end{aligned}" />
 
 So, the marker is <InlineMath math="10 \text{ m}" /> east of Dimas's house. With the store as origin, its coordinate is <InlineMath math="40 \text{ m}" />. With Dimas's house as origin, its coordinate is <InlineMath math="+10 \text{ m}" />. Both statements are correct because they use different origins in a clearly defined reference frame.
+
+Both arrows below end at the same marker. Only their starting point, the origin, changes, and with it the number in the position sentence.
+
+<LineEquation
+  title="One Marker, Two Origins"
+  description="The marker at 40 m from the store, measured from the store and from Dimas's house at 30 m. One grid step is 10 m."
+  data={(() => {
+    // Street coordinates from the store in meters; one grid step is 10 m.
+    const marker = 40;
+    const origins = [
+      { name: "Store", at: 0, row: 1, color: "#bb6800" },
+      { name: "Dimas's house", at: 30, row: 0, color: "#8242e5" },
+    ];
+    return [
+      {
+        points: [{ x: marker / 10, y: -0.5, z: 0 }, { x: marker / 10, y: 1.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Marker", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => ({
+        points: [{ x: origin.at / 10, y: origin.row, z: 0 }, { x: marker / 10, y: origin.row, z: 0 }],
+        color: origin.color,
+        cone: { position: "end", size: 0.22 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+          { text: <InlineMath math={`+${marker - origin.at}\\text{ m}`} />, at: 0, offset: [(marker - origin.at) / 20, 0.35, 0], anchorX: "center" },
+        ],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.5, 6]}
+  cameraTarget={[2, 0.5, 0]}
+/>

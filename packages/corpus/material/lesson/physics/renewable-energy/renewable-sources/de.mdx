@@ -61,6 +61,32 @@ So sieht „hängt von der Zeit ab“ bei einer Solaranlage aus. In einem einfac
 
 Frage zuerst: „Ist diese Quelle erneuerbar?“ Prüfe danach, ob am benötigten Ort und zur benötigten Zeit genug davon verfügbar ist. Bei bewirtschafteten Ressourcen wie Biomasse und Wasser müssen zusätzlich die Grenzen des Ökosystems und die örtliche Erholungsrate geprüft werden.
 
+Probier es mit ausgedachten Zahlen: Ein Wald hat <InlineMath math="100" /> Einheiten Holz und wächst jedes Jahr um <InlineMath math="2" /> Einheiten nach. Die drei Linien unten ernten <InlineMath math="h=1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten pro Jahr. Nur die pinke Linie, die schneller erntet, als der Wald nachwächst, verliert Holz, obwohl die Quelle erneuerbar ist.
+
+<LineEquation
+  title="Erntemenge gegen Nachwachsen"
+  description="Ein ausgedachter Vorrat von 100 Einheiten, der um 2 Einheiten pro Jahr nachwächst, mit drei Ernteraten h. Waagrecht: Jahre in Einheiten von 5. Senkrecht: Vorrat in Einheiten von 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
+
 ## Eine Quelle muss zum Standort passen
 
 Wähle eine erneuerbare Energiequelle anhand der **physikalischen Bedingungen am Standort**. Jede Quelle benötigt bestimmte Mengen an Sonnenlicht, Wind, Wasserdurchfluss, Wärme oder nutzbarem Material.
@@ -88,6 +114,21 @@ Nenne die Quelle und ihre ursprüngliche Energieform. Bestimme dann die Anlage, 
 In einer [Windkraftanlage](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt.
 
 Bei der [Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works) hängt die verfügbare Energie von Wasserdurchfluss und Höhenunterschied ab. Das Wasser strömt durch eine Druckrohrleitung, treibt eine Turbine an und bewegt dadurch einen Generator. Der Generator erzeugt Strom.
+
+Hier sind die Wege für Sonnenlicht, Wind und Wasser nebeneinander.
+
+<Mermaid
+  title="Drei Umwandlungswege"
+  description="Sonnenlicht, Wind und Wasser erreichen den Strom jeweils über ein eigenes Gerät."
+  chart={`flowchart LR
+    S["Sonnenlicht"] --> P["Photovoltaikzelle"]
+    W["Wind"] --> B["Rotorblätter und Rotor"]
+    H["Fallendes Wasser"] --> T["Druckrohr und Turbine"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Strom"]
+    G --> E`}
+/>
 
 ## Einige Quellen brauchen besondere Bedingungen
 

@@ -160,6 +160,32 @@ A device operates at a constant voltage of <InlineMath math="12 \text{ V}" /> an
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0.5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
+Compare this straight line with the kinetic energy curve above. Potential energy grows in proportion to height, so every extra meter adds the same <InlineMath math="mg=20\text{ J}" />.
+
+<LineEquation
+  title="Potential Energy Grows Evenly with Height"
+  description="E_p = mgh for 2 kg with g = 10 m/s². Horizontal: height in m. Vertical: energy in units of 20 J."
+  data={(() => {
+    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
+    const m = 2;
+    const g = 10;
+    const potential = (h) => m * g * h;
+    return [
+      {
+        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
+        color: "#bb6800",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 7]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## One Power Plant Converts Several Forms of Energy
 
 Hydropower, for example, follows this chain:

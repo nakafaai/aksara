@@ -160,6 +160,32 @@ Sebuah alat bekerja pada tegangan tetap <InlineMath math="12 \text{ V}" /> dan a
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
+Bandingkan garis lurus ini dengan kurva energi kinetik di atas. Energi potensial tumbuh sebanding dengan ketinggian, jadi setiap tambahan satu meter menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
+
+<LineEquation
+  title="Energi Potensial Tumbuh Rata seiring Ketinggian"
+  description="E_p = mgh untuk 2 kg dengan g = 10 m/s². Mendatar: ketinggian dalam m. Tegak: energi dalam satuan 20 J."
+  data={(() => {
+    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
+    const m = 2;
+    const g = 10;
+    const potential = (h) => m * g * h;
+    return [
+      {
+        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
+        color: "#bb6800",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 7]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## Satu Pembangkit Mengubah Beberapa Bentuk Energi
 
 Pembangkit listrik tenaga air, misalnya, mengikuti rantai berikut:

@@ -20,6 +20,18 @@ Energy starts at a source and is converted into electricity. The grid then carri
 
 Generators must supply enough power, and the grid must deliver it when demand rises.
 
+Here are those connected stages from source to user.
+
+<Mermaid
+  title="From Source to User"
+  description="Energy is converted into electricity, carried by the grid, and used by devices. A failure at any stage stops the service."
+  chart={`flowchart LR
+    A["Energy source"] --> B["Power plant"]
+    B --> C["Transmission grid"]
+    C --> D["Distribution grid"]
+    D --> E["Homes, schools, clinics"]`}
+/>
+
 ## Demand Adds Up across Many Devices
 
 One lamp may look simple. However, energy demand becomes large when many devices are used by many people at the same time.
@@ -124,6 +136,34 @@ National ratios need local context. The remaining unserved locations may be diff
 Electricity demand can rise because more energy is needed for education, health care, food production, transportation, and businesses. The risk appears when supply and grids cannot keep up, which can lead to blackouts, higher costs, or heavier use of more polluting energy sources.
 
 Daily energy demand and peak power are different requirements. A system may supply enough energy over a full day and still fail when many devices run at the same time. Generation, the grid, or storage must therefore cover both total energy use and <Highlight>the highest simultaneous power demand</Highlight>.
+
+Growth of <InlineMath math="3.6\%" /> a year compounds. The curve below multiplies by <InlineMath math="1.036" /> each year from 2026, so by 2030 demand is about <InlineMath math="15.2\%" /> higher, a little more than four times <InlineMath math="3.6\%" />.
+
+<LineEquation
+  title="Demand Growth Compounds"
+  description="Growth of electricity demand at 3.6% a year from 2026 to 2030. Horizontal: years after 2026. Vertical: growth in units of 4%."
+  data={(() => {
+    // Demand index D(t) = 1.036^t from 2026, 3.6% average yearly growth. Horizontal: years after 2026. Vertical: growth in % / 4.
+    const rate = 0.036;
+    const samples = 201;
+    const growth = (t) => (Math.pow(1 + rate, t) - 1) * 100;
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const t = (4 * i) / (samples - 1);
+          return { x: t, y: growth(t) / 4, z: 0 };
+        }),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math={`2030:\\ +${growth(4).toFixed(1).replace(".", ".")}\\%`} />, at: samples - 1, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
 
 ## Questions for Assessing Energy Needs
 

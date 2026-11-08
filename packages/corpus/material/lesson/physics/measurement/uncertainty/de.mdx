@@ -68,6 +68,18 @@ Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
 
 Der Wert <InlineMath math="3{,}13 \text{ cm}" /> beschreibt die Lage der Daten. Die Abweichung von <InlineMath math="0{,}02 \text{ cm}" /> zeigt, dass die einzelnen Ablesungen nicht genau übereinstimmten.
 
+Hier ist die ganze Rechnung von den Messwerten bis zu den beiden Streumaßen.
+
+<Mermaid
+  title="Von Messwerten zur Streuung"
+  description="Zuerst kommt der Mittelwert, dann die Abweichungen, dann die Stichprobenstreuung und die Unsicherheit des Mittelwerts."
+  chart={`flowchart LR
+    A["Fünf Messwerte"] --> B["Mittelwert: 3,132 cm"]
+    B --> C["Abweichungen vom Mittelwert"]
+    C --> D["s_d = 0,0164 cm"]
+    D --> E["u = s_d / Wurzel 5 = 0,00735 cm"]`}
+/>
+
 ## Datenstreuung und Unsicherheit des Mittelwerts
 
 In manchen Aufgaben zu wiederholten Messungen wird die folgende kompakte algebraische Form verwendet.
@@ -136,6 +148,36 @@ Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab is
 />
 
 Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)=s_x/\sqrt N" /> verwechselt werden.
+
+Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt, was mit mehr Messwerten passiert. Die Unsicherheit des Mittelwerts fällt anfangs schnell und dann langsamer, weil sie mit <InlineMath math="\sqrt N" /> schrumpft: Viermal so viele Messwerte halbieren sie nur.
+
+<LineEquation
+  title="Mehr Messwerte, schärferer Mittelwert"
+  description="u = s/√N für N = 1 bis 20 Messwerte mit der Streuung s_d des Deckels. Waagrecht: N in Einheiten von 4. Senkrecht: u in Einheiten von 0,004 cm."
+  data={(() => {
+    // u(N) = s / sqrt(N) with the cap's s_d. Horizontal: N / 4. Vertical: u in units of 0.004 cm.
+    const s = Math.sqrt(0.00108 / 4);
+    const counts = Array.from({ length: 20 }, (_, i) => i + 1);
+    return [
+      {
+        points: counts.map((N) => ({ x: N / 4, y: s / Math.sqrt(N) / 0.004, z: 0 })),
+        color: "#8242e5",
+        showPoints: true,
+        smooth: false,
+        labels: [{ text: <InlineMath math="u=\frac{s_d}{\sqrt N}" />, at: 15, offset: [0, 0.6, 0], anchorX: "center" }],
+      },
+      {
+        points: [{ x: 5 / 4, y: s / Math.sqrt(5) / 0.004, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />, at: 0, offset: [1.8, 0.3, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.6, 2, 7]}
+  cameraTarget={[2.6, 2, 0]}
+/>
 
 ## Fläche aus Durchmesserdaten berechnen
 

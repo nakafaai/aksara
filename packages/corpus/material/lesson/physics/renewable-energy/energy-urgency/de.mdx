@@ -20,6 +20,18 @@ Die Energie stammt aus einer Quelle und wird in elektrische Energie umgewandelt.
 
 Kraftwerke müssen genug Leistung erzeugen, und das Stromnetz muss sie bei steigendem Bedarf übertragen können.
 
+Hier sind diese verbundenen Stufen von der Quelle bis zum Nutzer.
+
+<Mermaid
+  title="Von der Quelle zum Nutzer"
+  description="Energie wird in Strom umgewandelt, vom Netz transportiert und von Geräten genutzt. Fällt eine Stufe aus, stoppt die Versorgung."
+  chart={`flowchart LR
+    A["Energiequelle"] --> B["Kraftwerk"]
+    B --> C["Übertragungsnetz"]
+    C --> D["Verteilnetz"]
+    D --> E["Haushalte, Schulen, Kliniken"]`}
+/>
+
 ## Der Bedarf vieler Geräte summiert sich
 
 Eine einzelne Lampe wirkt unbedeutend. Der Energiebedarf wird jedoch groß, wenn viele Menschen viele Geräte gleichzeitig nutzen.
@@ -124,6 +136,34 @@ Landesweite Quoten brauchen örtlichen Kontext. Die verbleibenden unversorgten G
 Steigende Nachfrage kann auf nützliche Leistungen wie Lernen, Gesundheitsversorgung, Lebensmittelproduktion, Verkehr und kleine Unternehmen zurückgehen. Das Risiko entsteht, wenn Versorgung und Netze nicht mithalten können. Dann drohen Stromausfälle, höhere Kosten oder ein stärkerer Einsatz umweltschädlicherer Energiequellen.
 
 Tagesenergiebedarf und Spitzenleistung sind zwei verschiedene Anforderungen. Ein System kann über den Tag genug Energie liefern und trotzdem überlastet sein, wenn viele Geräte gleichzeitig laufen. Erzeugung, Netz und Speicher müssen deshalb sowohl den gesamten Energiebedarf als auch <Highlight>die höchste gleichzeitige Leistungsanforderung</Highlight> abdecken.
+
+Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve unten multipliziert ab 2026 jedes Jahr mit <InlineMath math="1{,}036" />, also liegt die Nachfrage 2030 etwa <InlineMath math="15{,}2\%" /> höher, etwas mehr als das Vierfache von <InlineMath math="3{,}6\%" />.
+
+<LineEquation
+  title="Nachfragewachstum verzinst sich"
+  description="Wachstum der Stromnachfrage um 3,6 % pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von 4 %."
+  data={(() => {
+    // Demand index D(t) = 1.036^t from 2026, 3.6% average yearly growth. Horizontal: years after 2026. Vertical: growth in % / 4.
+    const rate = 0.036;
+    const samples = 201;
+    const growth = (t) => (Math.pow(1 + rate, t) - 1) * 100;
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const t = (4 * i) / (samples - 1);
+          return { x: t, y: growth(t) / 4, z: 0 };
+        }),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math={`2030:\\ +${growth(4).toFixed(1).replace(".", "{,}")}\\%`} />, at: samples - 1, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
 
 ## Sechs Fragen zur Bewertung des Energiebedarfs
 

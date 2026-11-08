@@ -42,6 +42,34 @@ Jadi, kotak menerima energi sebesar <InlineMath math="30 \text{ J}" /> melalui d
 
 > Kalau gaya diberikan tetapi benda tidak berpindah, usaha mekanik pada benda bernilai <InlineMath math="0 \text{ J}" />. Orang yang mendorong tetap memakai energi metabolik dan dapat merasa lelah, tetapi benda yang diam tidak menerima energi melalui perpindahan.
 
+Gambar dorongan itu sebagai gaya terhadap perpindahan, maka usahanya menjadi luas. Persegi panjang di bawah tingginya <InlineMath math="15\text{ N}" /> dan lebarnya <InlineMath math="2\text{ m}" />, jadi isinya tepat <InlineMath math="30\text{ J}" /> yang diterima kotak.
+
+<LineEquation
+  title="Usaha sebagai Luas"
+  description="Gaya tetap 15 N sepanjang 2 m. Mendatar: perpindahan dalam m. Tegak: gaya dalam satuan 5 N."
+  data={(() => {
+    // Constant force F = 15 N over 2 m. Horizontal: displacement in m. Vertical: force / 5 N.
+    const force = 15;
+    const distance = 2;
+    const at = (s, F) => ({ x: s, y: F / 5, z: 0 });
+    return [
+      {
+        points: [at(0, 0), at(0, force), at(distance, force), at(distance, 0)],
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`F=${force}\\text{ N}`} />, at: 1, offset: [1, 0.4, 0], anchorX: "center" },
+          { text: <InlineMath math={`W=${force}\\times${distance}=${force * distance}\\text{ J}`} />, at: 0, offset: [1, 1.5, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1, 1.6, 6]}
+  cameraTarget={[1, 1.6, 0]}
+/>
+
 ## Joule adalah Satuan Energi
 
 Dalam SI, satuan untuk energi adalah joule, dengan simbol <InlineMath math="\text{J}" />. Karena energi dapat dihitung dari **gaya dikali perpindahan**, satuan joule dapat dibaca sebagai:

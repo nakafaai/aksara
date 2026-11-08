@@ -137,6 +137,17 @@ The measured diameter supports <InlineMath math="3" /> significant figures, so t
 
 > Be careful with powered units. The conversion factor is powered too. From <InlineMath math="\text{cm}" /> to <InlineMath math="\text{m}" />, the factor is <InlineMath math="10^{-2}" />, but from <InlineMath math="\text{cm}^2" /> to <InlineMath math="\text{m}^2" />, the factor is <InlineMath math="10^{-4}" />.
 
+Powered units need their conversion factor powered too. Follow the chain for the cap's area.
+
+<Mermaid
+  title="Converting a Powered Unit"
+  description="The factor from cm to m is squared for an area, so cm² to m² uses 10^-4."
+  chart={`flowchart LR
+    A["1 cm = 10^-2 m"] --> B["1 cm^2 = (10^-2 m)^2 = 10^-4 m^2"]
+    B --> C["7.645... cm^2 = 7.645... x 10^-4 m^2"]
+    C --> D["Round once: 7.65 x 10^-4 m^2"]`}
+/>
+
 ## Calculations with Scientific Notation
 
 In scientific notation, **multiply the coefficients and add the exponents** of <InlineMath math="10" /> separately.
@@ -153,3 +164,15 @@ A &= (2.5 \times 10^{-6})(4.0 \times 10^{-7}) \text{ m}^2 \\
 The last step does two jobs. The coefficient <InlineMath math="10.0" /> is not in standard form because it is not less than <InlineMath math="10" />, and both measured lengths carry only <InlineMath math="2" /> significant figures. We therefore report <InlineMath math="1.0 \times 10^{-12}" />.
 
 NIST publishes the official value-writing rules in [SP 811 Chapter 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) and the unit-conversion factors in [SP 811 Appendix B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors).
+
+Here is the whole multiplication as a path you can reuse.
+
+<Mermaid
+  title="Multiplying in Scientific Notation"
+  description="Multiply the coefficients, add the exponents, move the decimal point back into standard form, then round once."
+  chart={`flowchart LR
+    A["2.5 x 4.0 = 10.0"] --> C["10.0 x 10^-13"]
+    B["-6 + -7 = -13"] --> C
+    C --> D["Standard form: 1.00 x 10^-12"]
+    D --> E["Round to 2 significant figures: 1.0 x 10^-12"]`}
+/>

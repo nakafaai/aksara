@@ -61,6 +61,32 @@ Begini wujud "bergantung pada waktu" untuk panel surya. Dalam model sederhana, s
 
 Karena itu, periksa apakah sumber tersebut dapat tersedia kembali dan apakah jumlahnya cukup di lokasi serta waktu yang dibutuhkan. Untuk biomassa dan air yang dikelola, periksa juga berapa banyak bahan atau air yang dapat dipakai tanpa mengganggu pemulihan sumber dan ekosistem setempat.
 
+Coba dengan angka buatan: sebuah hutan menyimpan <InlineMath math="100" /> satuan kayu dan tumbuh kembali <InlineMath math="2" /> satuan per tahun. Tiga garis di bawah memanen <InlineMath math="h=1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan per tahun. Hanya garis merah muda, yang memanen lebih cepat daripada pertumbuhan hutannya, yang kehilangan kayu, walaupun sumbernya terbarukan.
+
+<LineEquation
+  title="Laju Panen dan Laju Tumbuh Kembali"
+  description="Persediaan ilustrasi 100 satuan yang tumbuh kembali 2 satuan per tahun dengan tiga laju panen h. Mendatar: tahun dalam satuan 5. Tegak: persediaan dalam satuan 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
+
 ## Cocokkan Setiap Sumber dengan Kondisi Lokasi
 
 Pilih sumber terbarukan dengan memeriksa **kondisi fisik lokasi**. Setiap sumber membutuhkan jumlah sinar Matahari, angin, aliran air, panas, atau bahan yang berbeda.
@@ -88,6 +114,21 @@ Sebutkan sumber dan bentuk energi awalnya, lalu kenali alat yang mengubah energi
 Pada [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), angin memutar bilah turbin, rotor memutar generator, lalu generator menghasilkan listrik.
 
 Pada [tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works), energi yang tersedia dipengaruhi oleh debit air dan beda ketinggian. Air mengalir melalui penstock untuk memutar turbin, lalu turbin memutar generator. Generator tersebut menghasilkan listrik.
+
+Inilah jalur untuk cahaya matahari, angin, dan air secara berdampingan.
+
+<Mermaid
+  title="Tiga Jalur Konversi"
+  description="Cahaya matahari, angin, dan air masing-masing sampai ke listrik lewat alatnya sendiri."
+  chart={`flowchart LR
+    S["Cahaya matahari"] --> P["Sel fotovoltaik"]
+    W["Angin"] --> B["Bilah dan rotor"]
+    H["Air yang jatuh"] --> T["Pipa pesat dan turbin"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Listrik"]
+    G --> E`}
+/>
 
 ## Kondisi untuk Panas Bumi Biogas dan Energi Laut
 

@@ -127,6 +127,20 @@ Bei einem exakten Halbwert verhindert die Rundung zur geraden Zahl, dass eine la
 
 Runde direkt vom ungerundeten Wert auf die endgültige Genauigkeit. Runde nicht über mehrere Zwischenwerte.
 
+Die Tabelle wird zu einem Entscheidungsweg, sobald du auf die erste weggelassene Ziffer schaust.
+
+<Mermaid
+  title="Runden nach der ersten weggelassenen Ziffer"
+  description="Die erste weggelassene Ziffer entscheidet, ob die letzte behaltene Ziffer bleibt, steigt oder auf gerade gerundet wird."
+  chart={`flowchart TD
+    A["Erste weggelassene Ziffer"] --> B["Kleiner als 5"]
+    A --> C["Größer als 5, oder 5 und danach keine Null"]
+    A --> D["Genau 5 und danach nur Nullen"]
+    B --> E["Letzte Ziffer bleibt"]
+    C --> F["Letzte Ziffer um 1 erhöhen"]
+    D --> G["Auf gerade runden"]`}
+/>
+
 ## Summen nach der geringsten Anzahl an Dezimalstellen runden
 
 Bei Addition und Subtraktion richtet sich das Ergebnis nach den Nachkommastellen. Der Messwert mit den **wenigsten Nachkommastellen** bestimmt die letzte zulässige Stelle.
@@ -169,3 +183,17 @@ Ist eine SI-Angabe verlangt, wird <InlineMath math="\text{cm}^2" /> in <InlineMa
 <BlockMath math="\begin{aligned} 7{,}65 \text{ cm}^2 &amp;= 0{,}000765 \text{ m}^2 \\ &amp;= 7{,}65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
 
 Bei Addition und Subtraktion richtet sich die Rundung nach der geringsten Anzahl an Dezimalstellen. Bei Multiplikation und Division richtet sie sich nach der geringsten Anzahl an signifikanten Stellen. [Ergebnisse werden erst am Ende gerundet](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation).
+
+Bevor du ein berechnetes Ergebnis rundest, frag, welche Rechenart es erzeugt hat.
+
+<Mermaid
+  title="Welche Rundungsregel gilt"
+  description="Summen und Differenzen folgen den Nachkommastellen, Produkte und Quotienten den signifikanten Stellen."
+  chart={`flowchart TD
+    A["Berechnetes Ergebnis"] --> B["Addition oder Subtraktion"]
+    A --> C["Multiplikation oder Division"]
+    B --> D["Wenigste Nachkommastellen behalten"]
+    C --> E["Wenigste signifikante Stellen behalten"]
+    D --> F["Einmal am Ende runden"]
+    E --> F`}
+/>

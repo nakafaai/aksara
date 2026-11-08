@@ -103,6 +103,35 @@ In the U.S. electricity system, these are called [base-load, intermediate-load, 
 
 This operating pattern determines whether a plant supplies steady base load, follows changes in demand, or serves a short peak. Evaluating its energy source also requires checking the fuel stock, emissions, waste, and the effects of mining or drilling.
 
+In this illustrative day, the gray line is the steady base load that a plant running at constant output can carry. The orange demand rises and falls above it, and the short evening peak near 19:00 is what fast-responding plants have to cover.
+
+<LineEquation
+  title="Base Load and Peak in One Day"
+  description="An illustrative demand curve over one day above a steady base load. Horizontal: clock time in units of 2 h. Vertical: power in arbitrary units."
+  data={(() => {
+    // Illustrative daily demand peaking near 19:00 above a steady base load. Horizontal: clock time / 2 h. Vertical: power in arbitrary units.
+    const base = 2;
+    return [
+      {
+        points: [0, 12].map((x) => ({ x, y: base, z: 0 })),
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Base load", at: 0, offset: [1.4, -0.35, 0], anchorX: "center" }],
+      },
+      {
+        curve: { kind: "sin", amplitude: 1.2, frequency: Math.PI / 6, phase: Math.PI / 2 - (9.5 * Math.PI) / 6, shift: 3.5, domain: [0, 12], samples: 241 },
+        color: "#bb6800",
+        showPoints: false,
+        labels: [{ text: "Evening peak", at: 190, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 2.6, 9]}
+  cameraTarget={[6, 2.6, 0]}
+/>
+
 ## Risks Across the Full Energy Chain
 
 The effects of a non-renewable source begin **before the power plant** and continue after energy production.

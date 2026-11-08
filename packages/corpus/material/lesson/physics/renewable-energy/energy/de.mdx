@@ -42,6 +42,34 @@ Durch das Schieben werden also <InlineMath math="30 \text{ J}" /> Energie auf di
 
 > Wirkt eine Kraft, ohne dass sich das Objekt verschiebt, beträgt die mechanische Arbeit an diesem Objekt <InlineMath math="0 \text{ J}" />. Die schiebende Person verbraucht trotzdem Stoffwechselenergie und kann ermüden, aber das ruhende Objekt erhält keine Energie durch eine Verschiebung.
 
+Zeichne das Schieben als Kraft über der Verschiebung, dann wird die Arbeit zu einer Fläche. Das Rechteck unten ist <InlineMath math="15\text{ N}" /> hoch und <InlineMath math="2\text{ m}" /> breit, enthält also genau die <InlineMath math="30\text{ J}" />, die die Kiste bekommen hat.
+
+<LineEquation
+  title="Arbeit als Fläche"
+  description="Eine konstante Kraft von 15 N über 2 m. Waagrecht: Verschiebung in m. Senkrecht: Kraft in Einheiten von 5 N."
+  data={(() => {
+    // Constant force F = 15 N over 2 m. Horizontal: displacement in m. Vertical: force / 5 N.
+    const force = 15;
+    const distance = 2;
+    const at = (s, F) => ({ x: s, y: F / 5, z: 0 });
+    return [
+      {
+        points: [at(0, 0), at(0, force), at(distance, force), at(distance, 0)],
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`F=${force}\\text{ N}`} />, at: 1, offset: [1, 0.4, 0], anchorX: "center" },
+          { text: <InlineMath math={`W=${force}\\times${distance}=${force * distance}\\text{ J}`} />, at: 0, offset: [1, 1.5, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1, 1.6, 6]}
+  cameraTarget={[1, 1.6, 0]}
+/>
+
 ## Energie wird in Joule gemessen
 
 Im SI ist die Einheit für Energie das Joule mit dem Symbol <InlineMath math="\text{J}" />. Da Energie aus **Kraft mal Verschiebung** berechnet werden kann, kann ein Joule wie folgt gelesen werden:

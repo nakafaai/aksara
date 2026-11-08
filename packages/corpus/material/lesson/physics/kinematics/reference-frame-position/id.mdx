@@ -120,3 +120,41 @@ x'
 \end{aligned}" />
 
 Jadi, penanda berada <InlineMath math="10 \text{ m}" /> di timur rumah Dimas. Dengan toko sebagai titik asal, koordinatnya <InlineMath math="40 \text{ m}" />. Dengan rumah Dimas sebagai titik asal, koordinatnya <InlineMath math="+10 \text{ m}" />. Keduanya benar karena memakai titik asal berbeda dalam kerangka acuan yang dijelaskan dengan jelas.
+
+Kedua panah di bawah berakhir di patok yang sama. Yang berubah hanya titik berangkatnya, yaitu titik asal, dan bersama itu angka dalam kalimat posisinya.
+
+<LineEquation
+  title="Satu Patok, Dua Titik Asal"
+  description="Patok di 40 m dari toko, diukur dari toko dan dari rumah Dimas di 30 m. Satu kotak grid sama dengan 10 m."
+  data={(() => {
+    // Street coordinates from the store in meters; one grid step is 10 m.
+    const marker = 40;
+    const origins = [
+      { name: "Toko", at: 0, row: 1, color: "#bb6800" },
+      { name: "Rumah Dimas", at: 30, row: 0, color: "#8242e5" },
+    ];
+    return [
+      {
+        points: [{ x: marker / 10, y: -0.5, z: 0 }, { x: marker / 10, y: 1.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Patok", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => ({
+        points: [{ x: origin.at / 10, y: origin.row, z: 0 }, { x: marker / 10, y: origin.row, z: 0 }],
+        color: origin.color,
+        cone: { position: "end", size: 0.22 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+          { text: <InlineMath math={`+${marker - origin.at}\\text{ m}`} />, at: 0, offset: [(marker - origin.at) / 20, 0.35, 0], anchorX: "center" },
+        ],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.5, 6]}
+  cameraTarget={[2, 0.5, 0]}
+/>

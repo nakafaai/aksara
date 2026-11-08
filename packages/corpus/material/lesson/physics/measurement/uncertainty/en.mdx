@@ -68,6 +68,18 @@ If we report the diameter with the spread of the repeated data, the result becom
 
 The value <InlineMath math="3.13 \text{ cm}" /> represents the data. The value <InlineMath math="0.02 \text{ cm}" /> reminds the reader that the repeated readings were not exactly the same.
 
+Here is the whole calculation from raw readings to the two spreads.
+
+<Mermaid
+  title="From Readings to Spread"
+  description="The mean comes first, then the deviations, then the sample spread and the uncertainty of the mean."
+  chart={`flowchart LR
+    A["Five readings"] --> B["Mean: 3.132 cm"]
+    B --> C["Deviations from the mean"]
+    C --> D["s_d = 0.0164 cm"]
+    D --> E["u = s_d / sqrt 5 = 0.00735 cm"]`}
+/>
+
 ## Data Spread and Uncertainty of the Mean
 
 Some repeated-measurement exercises use the compact algebraic form below.
@@ -136,6 +148,36 @@ The scene below puts the five readings side by side. Each teal stem is one readi
 />
 
 For a measurement problem, follow the notation defined in its statement. If <InlineMath math="\Delta x" /> denotes the compact formula above, then <InlineMath math="\Delta x" /> is the sample standard deviation of the individual measurements. Do not confuse this spread with the standard uncertainty of the mean <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
+
+The graph below keeps the same spread <InlineMath math="s_d" /> and asks what happens with more readings. The uncertainty of the mean falls fast at first and then more slowly, because it shrinks with <InlineMath math="\sqrt N" />: four times as many readings only halve it.
+
+<LineEquation
+  title="More Readings, a Sharper Mean"
+  description="u = s/√N for N = 1 to 20 readings with the cap's spread s_d. Horizontal: N in units of 4. Vertical: u in units of 0.004 cm."
+  data={(() => {
+    // u(N) = s / sqrt(N) with the cap's s_d. Horizontal: N / 4. Vertical: u in units of 0.004 cm.
+    const s = Math.sqrt(0.00108 / 4);
+    const counts = Array.from({ length: 20 }, (_, i) => i + 1);
+    return [
+      {
+        points: counts.map((N) => ({ x: N / 4, y: s / Math.sqrt(N) / 0.004, z: 0 })),
+        color: "#8242e5",
+        showPoints: true,
+        smooth: false,
+        labels: [{ text: <InlineMath math="u=\frac{s_d}{\sqrt N}" />, at: 15, offset: [0, 0.6, 0], anchorX: "center" }],
+      },
+      {
+        points: [{ x: 5 / 4, y: s / Math.sqrt(5) / 0.004, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="N=5:\ u\approx0.00735\text{ cm}" />, at: 0, offset: [1.8, 0.3, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.6, 2, 7]}
+  cameraTarget={[2.6, 2, 0]}
+/>
 
 ## Area Calculated from Diameter Data
 

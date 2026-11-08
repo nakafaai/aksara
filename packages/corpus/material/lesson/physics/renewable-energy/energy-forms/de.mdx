@@ -160,6 +160,32 @@ Ein Gerät arbeitet <InlineMath math="60 \text{ s}" /> lang mit konstanter Spann
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
+Vergleich diese Gerade mit der Kurve der kinetischen Energie oben. Die potenzielle Energie wächst proportional zur Höhe, also bringt jeder zusätzliche Meter dieselben <InlineMath math="mg=20\text{ J}" />.
+
+<LineEquation
+  title="Potenzielle Energie wächst gleichmäßig mit der Höhe"
+  description="E_p = mgh für 2 kg mit g = 10 m/s². Waagrecht: Höhe in m. Senkrecht: Energie in Einheiten von 20 J."
+  data={(() => {
+    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
+    const m = 2;
+    const g = 10;
+    const potential = (h) => m * g * h;
+    return [
+      {
+        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
+        color: "#bb6800",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 7]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## Ein Kraftwerk wandelt mehrere Energieformen um
 
 Zunächst besitzt das Wasser **potenzielle Gravitationsenergie**. Beim Abwärtsfließen wird daraus kinetische Energie des Wassers, dann kinetische Energie der rotierenden Turbine und schließlich elektrische Energie.

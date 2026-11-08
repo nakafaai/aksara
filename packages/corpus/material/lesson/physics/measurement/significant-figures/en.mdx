@@ -127,6 +127,20 @@ For an exact halfway case, round-to-even avoids a long series of values being bi
 
 Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
+The table turns into one decision path once you look at the first digit you drop.
+
+<Mermaid
+  title="Rounding from the First Dropped Digit"
+  description="The first dropped digit decides whether the last kept digit stays, goes up, or follows round-to-even."
+  chart={`flowchart TD
+    A["First dropped digit"] --> B["Less than 5"]
+    A --> C["More than 5, or 5 then a nonzero digit"]
+    A --> D["Exactly 5 then only zeros"]
+    B --> E["Keep the last digit"]
+    C --> F["Raise the last digit by 1"]
+    D --> G["Round to even"]`}
+/>
+
 ## Rounding Sums by Decimal Position
 
 For addition and subtraction, the result keeps the decimal place of the measurement with the **fewest decimal places**.
@@ -169,3 +183,17 @@ If the International System of Units (SI) is required, convert <InlineMath math=
 <BlockMath math="\begin{aligned} 7.65 \text{ cm}^2 &amp;= 0.000765 \text{ m}^2 \\ &amp;= 7.65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
 
 For addition and subtraction, round by decimal position. For multiplication and division, round by the fewest significant figures among the measured values. [Round-to-even and one-step rounding](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) prevent repeated rounding from biasing the result.
+
+Before you round a calculated result, ask which operation produced it.
+
+<Mermaid
+  title="Which Rounding Rule Applies"
+  description="Sums and differences follow decimal places, products and quotients follow significant figures."
+  chart={`flowchart TD
+    A["Calculated result"] --> B["Addition or subtraction"]
+    A --> C["Multiplication or division"]
+    B --> D["Keep the fewest decimal places"]
+    C --> E["Keep the fewest significant figures"]
+    D --> F["Round once at the end"]
+    E --> F`}
+/>

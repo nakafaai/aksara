@@ -61,6 +61,32 @@ Here's what "depends on time" looks like for a solar panel. In a simple model, a
 
 After asking whether a source is renewable, ask whether enough of it is available at the location and time when energy is needed. For managed resources such as biomass and water, also check ecosystem limits and how quickly the local resource can recover.
 
+Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of wood and regrows <InlineMath math="2" /> units a year. The three lines below harvest <InlineMath math="h=1" />, <InlineMath math="2" /> and <InlineMath math="3" /> units a year. Only the pink line, which harvests faster than the forest regrows, loses wood, even though the source is renewable.
+
+<LineEquation
+  title="Harvest Rate against Regrowth"
+  description="An illustrative stock of 100 units regrowing 2 units a year with three harvest rates h. Horizontal: years in units of 5. Vertical: stock in units of 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
+
 ## Match Each Source to the Site
 
 Choose a renewable source by checking the **physical conditions at the site**. Each source needs different amounts of sunlight, wind, water flow, heat, or usable material.
@@ -88,6 +114,21 @@ Name the source and its initial energy form, then identify the **device that con
 In a [wind turbine](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), wind turns the turbine blades, the rotor drives a generator, and the generator produces electricity.
 
 In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), the available energy depends on water flow and height difference. Water flows through a penstock to spin a turbine, which then drives a generator. The generator produces electricity.
+
+Here are the paths for sunlight, wind and water side by side.
+
+<Mermaid
+  title="Three Conversion Paths"
+  description="Sunlight, wind and water each reach electricity through their own device."
+  chart={`flowchart LR
+    S["Sunlight"] --> P["Photovoltaic cell"]
+    W["Wind"] --> B["Blades and rotor"]
+    H["Falling water"] --> T["Penstock and turbine"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Electricity"]
+    G --> E`}
+/>
 
 ## Some Sources Need More Specific Conditions
 

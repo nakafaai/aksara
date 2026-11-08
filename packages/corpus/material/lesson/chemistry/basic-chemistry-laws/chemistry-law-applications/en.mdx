@@ -21,6 +21,22 @@ The following list connects each type of data with the appropriate law.
 - If two different compounds are made from the same two elements, use multiple proportions.
 - If all compared substances are gases at the same temperature and pressure, use combining volumes.
 
+Here is the same list as a decision path. Start at the top with the data you were given.
+
+<Mermaid
+  title="Pick the Law from the Data"
+  description="Each branch names the kind of data in a problem and the basic law that fits it."
+  chart={`flowchart TD
+    A["What does the data describe?"] --> B["Every substance in a closed system"]
+    A --> C["One pure compound"]
+    A --> D["Two compounds of the same two elements"]
+    A --> E["Gases at the same temperature and pressure"]
+    B --> F["Conservation of mass"]
+    C --> G["Constant composition"]
+    D --> H["Multiple proportions"]
+    E --> I["Combining volumes"]`}
+/>
+
 ## Mass and Volume Patterns
 
 Before calculating, identify **which quantity stays fixed** and which quantities are being compared. That choice determines the law and ratio used in the calculation. The patterns below separate mass ratios from volume ratios, because the two follow different laws.
@@ -144,3 +160,15 @@ V_{\mathrm{CO_2}} &= 1 \times 50 = 50\ \mathrm{mL}
 The answer is <InlineMath math="100\ \mathrm{mL}" /> of oxygen gas and <InlineMath math="50\ \mathrm{mL}" /> of carbon dioxide gas. If the water product has condensed into liquid, its volume is not read directly from the gas ratio.
 
 The laws of definite and multiple proportions show mass patterns that support the idea that atoms combine in fixed ratios.
+
+Read the coefficients as volumes, then scale every one by the same 50 mL.
+
+<Mermaid
+  title="Methane Combustion by Volume"
+  description="At the same temperature and pressure, the coefficients 1:2:1:2 give the gas volumes for 50 mL of methane."
+  chart={`flowchart LR
+    A["1 CH4: 50 mL"] --> C["1 CO2: 50 mL"]
+    B["2 O2: 100 mL"] --> C
+    A --> D["2 H2O as gas: 100 mL"]
+    B --> D`}
+/>

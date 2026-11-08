@@ -42,6 +42,34 @@ So, the box receives <InlineMath math="30 \text{ J}" /> of energy through that p
 
 > If a force is applied but the object does not move, the mechanical work on the object is <InlineMath math="0 \text{ J}" />. The person still uses metabolic energy and may feel tired, but the stationary object receives no energy through displacement.
 
+Draw the push as force against displacement and the work becomes an area. The rectangle below is <InlineMath math="15\text{ N}" /> tall and <InlineMath math="2\text{ m}" /> wide, so it holds exactly the <InlineMath math="30\text{ J}" /> the box received.
+
+<LineEquation
+  title="Work as an Area"
+  description="A constant force of 15 N over 2 m. Horizontal: displacement in m. Vertical: force in units of 5 N."
+  data={(() => {
+    // Constant force F = 15 N over 2 m. Horizontal: displacement in m. Vertical: force / 5 N.
+    const force = 15;
+    const distance = 2;
+    const at = (s, F) => ({ x: s, y: F / 5, z: 0 });
+    return [
+      {
+        points: [at(0, 0), at(0, force), at(distance, force), at(distance, 0)],
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`F=${force}\\text{ N}`} />, at: 1, offset: [1, 0.4, 0], anchorX: "center" },
+          { text: <InlineMath math={`W=${force}\\times${distance}=${force * distance}\\text{ J}`} />, at: 0, offset: [1, 1.5, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1, 1.6, 6]}
+  cameraTarget={[1, 1.6, 0]}
+/>
+
 ## Energy Is Measured in Joules
 
 In SI, the unit for energy is the joule, with symbol <InlineMath math="\text{J}" />. Because energy can be calculated from **force times displacement**, a joule can be read as:
