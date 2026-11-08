@@ -3,7 +3,7 @@ export const metadata = {
    description: "Unterscheide arithmetische und geometrische Folgen anhand konstanter Differenzen und Quotienten und wende beide Modelle gezielt an.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Folgen und Reihen",
 };
 
@@ -69,6 +69,17 @@ Prüfe nacheinander Differenzen und Quotienten:
 
    <BlockMath math="r = \frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ..." />
 
+<Mermaid
+  title="Die beiden Folgenarten unterscheiden"
+  description="Prüf zuerst die Differenzen, dann die Quotienten. Gleiche Differenzen heißen arithmetisch, gleiche Quotienten geometrisch, und eine Folge kann auch keins von beiden sein."
+  chart={`flowchart TD
+  A["Folge U₁, U₂, U₃, …"] --> D{"Ist Uₙ₊₁ − Uₙ immer gleich?"}
+  D -->|"Ja"| AR["Arithmetisch, Differenz b"]
+  D -->|"Nein"| R{"Ist Uₙ₊₁ / Uₙ immer gleich?"}
+  R -->|"Ja"| GE["Geometrisch, Quotient r"]
+  R -->|"Nein"| N["Keins von beiden"]`}
+/>
+
 ### Muster und Formel im Vergleich
 
 Die Tabelle stellt beide Typen **nebeneinander**, sodass sich die beiden Formeln Zeile für Zeile vergleichen lassen.
@@ -123,6 +134,19 @@ Jeder Schritt addiert denselben Betrag, also bleibt die Differenz <InlineMath ma
 
    <BlockMath math="H(3)=15+3\cdot3=24\text{ cm}" />
 
+Hier sind die Spareinlagen Monat für Monat, <InlineMath math="U_n = 5{.}000 + (n-1)2{.}000" />. Jeder Balken ist genau <InlineMath math="2{.}000" /> höher als der vorige, die Spitzen liegen also auf einer Geraden. So sieht eine konstante Differenz aus.
+
+<BarChart
+  title="Spareinlagen wachsen um denselben Betrag"
+  description={<>Monatliche Einlagen von Monat 1 bis Monat 10, jede 2.000 Rupiah höher als im Vormonat.</>}
+  yAxisLabel="Einlage (Rp)"
+  data={Array.from({ length: 10 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: 5000 + (n - 1) * 2000 };
+  })}
+  chartConfig={{ value: { label: "Einlage (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Beispiele für geometrische Folgen
 
 Jeder Schritt multipliziert mit demselben Faktor, also bleibt der Quotient <InlineMath math="r" /> konstant.
@@ -138,6 +162,16 @@ Jeder Schritt multipliziert mit demselben Faktor, also bleibt der Quotient <Inli
    Nach drei Verdopplungsintervallen ist die Bakterienzahl achtmal so groß wie der Anfangsbestand:
 
    <BlockMath math="B(3)=B_0\cdot2^3=8B_0" />
+
+Lass das Verdopplungsmodell jetzt mit <InlineMath math="100" /> Bakterien beginnen. Nach <InlineMath math="t" /> Stunden sind es dann <InlineMath math="100 \cdot 2^t" />. Jeder Balken ist doppelt so hoch wie der vorige. Die ersten Schritte wirken klein, doch nach 8 Stunden sind es <InlineMath math="25{.}600" />. Ein konstanter Quotient lässt das Wachstum immer schneller werden.
+
+<BarChart
+  title="Eine Population, die sich stündlich verdoppelt"
+  description={<>Die Bakterienzahl <InlineMath math="100 \cdot 2^t" /> für <InlineMath math="t = 0" /> bis <InlineMath math="8" /> Stunden, jeder Balken doppelt so hoch wie der vorige.</>}
+  yAxisLabel="Bakterien"
+  data={Array.from({ length: 9 }, (_, t) => ({ name: `${t}`, value: 100 * 2 ** t }))}
+  chartConfig={{ value: { label: "Bakterien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übung
 

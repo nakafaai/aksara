@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun barisan aritmetika dari beda tetap, turunkan rumus suku umum, lalu selesaikan aplikasi dan latihan secara lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-05",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Barisan dan Deret",
 };
 
@@ -24,6 +24,29 @@ Pada barisan ini:
 - Selisih antara suku keempat dan ketiga: <InlineMath math="10 - 8 = 2" />
 
 Karena selisih antara dua suku berurutan selalu sama yaitu <InlineMath math="2" />, maka barisan ini merupakan barisan aritmetika dengan beda <InlineMath math="b = 2" />.
+
+Setiap langkah pada <InlineMath math="4, 6, 8, 10, \ldots" /> naik dengan tinggi yang sama. Gambar suku <InlineMath math="U_n" /> di atas posisi <InlineMath math="n" />: setiap anak tangga tingginya tepat <InlineMath math="2" />, yaitu bedanya, dan setiap pijakan panjangnya satu posisi.
+
+<LineEquation
+  title="Langkah sama besar pada barisan aritmetika"
+  description={<>Suku <InlineMath math="4, 6, 8, 10, 12" /> digambar di atas posisi 1 sampai 5, dihubungkan tangga yang setiap anak tangganya setinggi <InlineMath math="b = 2" />.</>}
+  cameraPosition={[3, 8, 14]}
+  cameraTarget={[3, 8, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 9 }, (_, i) => ({ x: 1 + Math.ceil(i / 2), y: 4 + 2 * Math.floor(i / 2), z: 0 })),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="+2" />, at: 2, offset: [0.35, -1, 0] }],
+    },
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="U_5 = 12" />, at: 0, offset: [0.6, 0.4, 0] }] : [] };
+    })
+  ]}
+/>
 
 ## Beda pada Barisan Aritmetika
 
@@ -70,6 +93,15 @@ Dari suku pertama ke suku keempat ada **tiga perpindahan**, bukan empat. Setiap 
 Pola tersebut menghasilkan suku ke-<InlineMath math="n" /> berikut:
 
 <BlockMath math="U_n = a + (n-1)b" />
+
+<Mermaid
+  title="Mengapa rumusnya memakai n dikurangi 1"
+  description="Dari suku pertama ke suku ke-n ada n dikurangi 1 langkah, dan setiap langkah menambahkan b."
+  chart={`flowchart LR
+  U1["U₁ = a"] -->|"+ b"| U2["U₂ = a + b"]
+  U2 -->|"+ b"| U3["U₃ = a + 2b"]
+  U3 -->|"… total n − 1 langkah"| Un["Uₙ = a + (n − 1)b"]`}
+/>
 
 ### Bentuk Rekursif
 
@@ -131,6 +163,30 @@ Barisan aritmetika naik jika <InlineMath math="b>0" />, turun jika <InlineMath m
 <BlockMath math="12,9,6,3,\ldots\qquad b=-3" />
 
 Jadi, **tanda beda** menunjukkan arah perubahan barisan.
+
+Tanda <InlineMath math="b" /> menentukan arah barisannya. Setiap kumpulan titik di bawah adalah barisan aritmetika pada posisi 1 sampai 5: <InlineMath math="b = 2" /> naik, <InlineMath math="b = -3" /> turun dari <InlineMath math="12" /> lewat <InlineMath math="9, 6, 3" /> sampai <InlineMath math="0" />, dan <InlineMath math="b = 0" /> tetap datar di <InlineMath math="6" />.
+
+<LineEquation
+  title="Naik, turun, dan tetap"
+  description={<>Tiga barisan aritmetika digambar terhadap posisinya: satu dengan <InlineMath math="b = 2" />, satu dengan <InlineMath math="b = -3" />, dan satu dengan <InlineMath math="b = 0" />.</>}
+  cameraPosition={[3, 6, 16]}
+  cameraTarget={[3, 6, 0]}
+  showZAxis={false}
+  data={[
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="b = 2" />, at: 0, offset: [0.7, 0, 0] }] : [] };
+    }),
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 15 - 3 * n, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 5 ? [{ text: <InlineMath math="b = -3" />, at: 0, offset: [0.8, 0, 0] }] : [] };
+    }),
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 6, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 5 ? [{ text: <InlineMath math="b = 0" />, at: 0, offset: [0.8, 0, 0] }] : [] };
+    })
+  ]}
+/>
 
 ## Latihan Pertama
 

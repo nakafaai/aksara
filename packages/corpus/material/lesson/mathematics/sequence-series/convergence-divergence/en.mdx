@@ -3,7 +3,7 @@ export const metadata = {
   description: "Distinguish convergence from divergence using partial sums, then classify geometric, arithmetic, and harmonic examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Sequence and Series",
 };
 
@@ -63,6 +63,31 @@ A series is **divergent** when its partial sums do not approach a finite value. 
 - Keep decreasing toward negative infinity (<InlineMath math="-\infty" />).
 - Oscillate between several values without ever settling.
 
+Compare three series by their partial sums <InlineMath math="S_n" /> for <InlineMath math="n = 1" /> to <InlineMath math="12" />. The sums of <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> settle on <InlineMath math="2" />, so that series converges. The sums of <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> creep upward with no ceiling, and the sums of <InlineMath math="1 - 1 + 1 - \cdots" /> jump between <InlineMath math="1" /> and <InlineMath math="0" />. Both of those diverge, in two different ways.
+
+<LineEquation
+  title="One series settles, two do not"
+  description={<>Partial sums of three series: a geometric series approaching 2, the harmonic series rising without a bound, and an alternating series jumping between 1 and 0.</>}
+  cameraPosition={[6.5, 1.5, 12]}
+  cameraTarget={[6.5, 1.5, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 13, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 - 2 ** (1 - n), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac14 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: Array.from({ length: n }, (_, k) => 1 / (k + 1)).reduce((sum, term) => sum + term, 0), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac13 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 + (-1) ** (n + 1)) / 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 12 ? [{ text: <InlineMath math="1 - 1 + 1 - \cdots" />, at: 0, offset: [0.6, -0.3, 0] }] : [] };
+    })
+  ]}
+/>
+
 ### Partial Sums Fail to Settle
 
 A divergent series either has **no single limit** or moves without bound. The two conditions below separate those cases.
@@ -101,6 +126,28 @@ For <InlineMath math="a\ne0" />, **every possible ratio** falls into one of thes
 
 A divergent series therefore does not always have the value <InlineMath math="\infty" />. Oscillation and unbounded negative growth are different forms of divergence.
 
+Two convergent geometric series with <InlineMath math="a = 1" /> show that the ratio decides how the sums arrive. With <InlineMath math="r = -\frac12" /> the sums zigzag above and below their limit <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. With <InlineMath math="r = \frac35" /> they climb steadily toward <InlineMath math="\frac{1}{1 - \frac35} = 2.5" />. Both limits come from <InlineMath math="\frac{a}{1 - r}" />.
+
+<LineEquation
+  title="Two ways to converge"
+  description={<>Partial sums for <InlineMath math="r = -\frac12" /> zigzag toward <InlineMath math="\frac23" />, while those for <InlineMath math="r = \frac35" /> rise toward 2.5.</>}
+  cameraPosition={[5.5, 1.25, 10]}
+  cameraTarget={[5.5, 1.25, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2 / 3, z: 0 }, { x: 11, y: 2 / 3, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="\frac23" />, at: 1, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 0, y: 2.5, z: 0 }, { x: 11, y: 2.5, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2.5" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (-1 / 2) ** n) / (1 + 1 / 2), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 10 ? [{ text: <InlineMath math="r = -\frac12" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    }),
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (3 / 5) ** n) / (1 - 3 / 5), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 10 ? [{ text: <InlineMath math="r = \frac35" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    })
+  ]}
+/>
+
 ## Sequences That Move One Way and Stay Limited
 
 Every monotone and bounded sequence converges. This criterion is useful when a limit is difficult to read directly from a formula.
@@ -118,6 +165,17 @@ The table collects the three tests, so the partial-sum behavior, the term condit
 | **Partial sums** | Approach a _finite_ value <InlineMath math="L" />. <InlineMath math="S_\infty = L" /> | Do not approach a finite value. They may approach <InlineMath math="+\infty" /> or <InlineMath math="-\infty" />, or they may oscillate |
 | **General term** | <InlineMath math="u_n\to0" /> is necessary | If <InlineMath math="u_n\not\to0" />, divergence is certain. However, <InlineMath math="u_n\to0" /> may also hold |
 | **Examples** | Geometric series <InlineMath math="\lvert r\rvert < 1" />                                          | Nonzero arithmetic series, geometric series with a nonzero first term and <InlineMath math="\lvert r\rvert \geq 1" />, harmonic series                               |
+
+<Mermaid
+  title="Deciding whether a series converges"
+  description="Terms that do not shrink to zero force divergence. Terms that do shrink still need partial sums that settle on one finite value."
+  chart={`flowchart TD
+  A["Series u₁ + u₂ + u₃ + …"] --> T{"Does uₙ approach 0?"}
+  T -->|"No"| D["Diverges"]
+  T -->|"Yes"| S{"Do the partial sums Sₙ settle on one finite value?"}
+  S -->|"Yes"| C["Converges to that value"]
+  S -->|"No"| D`}
+/>
 
 ## Exercise
 

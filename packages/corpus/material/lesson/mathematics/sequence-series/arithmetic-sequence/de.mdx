@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite das allgemeine Glied einer arithmetischen Folge her und nutze die Formel in Sachaufgaben.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -24,6 +24,29 @@ Die aufeinanderfolgenden Differenzen sind:
 - Differenz zwischen dem vierten und dem dritten Glied: <InlineMath math="10 - 8 = 2" />
 
 Da die Differenz zwischen aufeinanderfolgenden Gliedern immer <InlineMath math="2" /> beträgt, ist dies eine arithmetische Folge mit der gemeinsamen Differenz <InlineMath math="b = 2" />.
+
+Jeder Schritt von <InlineMath math="4, 6, 8, 10, \ldots" /> steigt um dieselbe Höhe. Trag das Glied <InlineMath math="U_n" /> über der Position <InlineMath math="n" /> ein: Jede Stufe der Treppe ist genau <InlineMath math="2" /> hoch, die Differenz, und jede Trittfläche ist eine Position lang.
+
+<LineEquation
+  title="Gleiche Stufen einer arithmetischen Folge"
+  description={<>Die Glieder <InlineMath math="4, 6, 8, 10, 12" /> über den Positionen 1 bis 5, verbunden durch eine Treppe, deren Stufen alle die Höhe <InlineMath math="b = 2" /> haben.</>}
+  cameraPosition={[3, 8, 14]}
+  cameraTarget={[3, 8, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 9 }, (_, i) => ({ x: 1 + Math.ceil(i / 2), y: 4 + 2 * Math.floor(i / 2), z: 0 })),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="+2" />, at: 2, offset: [0.35, -1, 0] }],
+    },
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="U_5 = 12" />, at: 0, offset: [0.6, 0.4, 0] }] : [] };
+    })
+  ]}
+/>
 
 ## Gemeinsame Differenz
 
@@ -70,6 +93,15 @@ Vom ersten zum vierten Glied brauchst du **drei Schritte**, nicht vier. Bei jede
 Das Muster führt für das <InlineMath math="n" />-te Glied zur allgemeinen Formel:
 
 <BlockMath math="U_n = a + (n-1)b" />
+
+<Mermaid
+  title="Warum die Formel n minus 1 enthält"
+  description="Vom ersten zum n-ten Glied sind es n minus 1 Schritte, und jeder Schritt addiert b."
+  chart={`flowchart LR
+  U1["U₁ = a"] -->|"+ b"| U2["U₂ = a + b"]
+  U2 -->|"+ b"| U3["U₃ = a + 2b"]
+  U3 -->|"… insgesamt n − 1 Schritte"| Un["Uₙ = a + (n − 1)b"]`}
+/>
 
 ### Rekursive Form
 
@@ -131,6 +163,30 @@ Eine arithmetische Folge steigt für <InlineMath math="b>0" />, fällt für <Inl
 <BlockMath math="12,9,6,3,\ldots\qquad b=-3" />
 
 Das Vorzeichen der gemeinsamen Differenz zeigt somit, wie sich die Folge entwickelt.
+
+Das Vorzeichen von <InlineMath math="b" /> bestimmt die Richtung der Folge. Jede Punktgruppe unten ist eine arithmetische Folge über den Positionen 1 bis 5: <InlineMath math="b = 2" /> steigt, <InlineMath math="b = -3" /> fällt von <InlineMath math="12" /> über <InlineMath math="9, 6, 3" /> auf <InlineMath math="0" />, und <InlineMath math="b = 0" /> bleibt waagerecht bei <InlineMath math="6" />.
+
+<LineEquation
+  title="Steigend, fallend und konstant"
+  description={<>Drei arithmetische Folgen über ihrer Position: eine mit <InlineMath math="b = 2" />, eine mit <InlineMath math="b = -3" /> und eine mit <InlineMath math="b = 0" />.</>}
+  cameraPosition={[3, 6, 16]}
+  cameraTarget={[3, 6, 0]}
+  showZAxis={false}
+  data={[
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="b = 2" />, at: 0, offset: [0.7, 0, 0] }] : [] };
+    }),
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 15 - 3 * n, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 5 ? [{ text: <InlineMath math="b = -3" />, at: 0, offset: [0.8, 0, 0] }] : [] };
+    }),
+    ...Array.from({ length: 5 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 6, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 5 ? [{ text: <InlineMath math="b = 0" />, at: 0, offset: [0.8, 0, 0] }] : [] };
+    })
+  ]}
+/>
 
 ## Erste Übung
 

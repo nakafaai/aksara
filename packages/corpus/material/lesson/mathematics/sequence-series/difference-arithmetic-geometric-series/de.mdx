@@ -3,7 +3,7 @@ export const metadata = {
   description: "Unterscheide arithmetische und geometrische Reihen anhand ihrer Glieder und wähle die passende Summenformel für vollständige Rechnungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -53,6 +53,15 @@ Die Tabelle stellt die beiden Summenformeln nebeneinander, sodass sich das addie
 | **Summenformel** <InlineMath math="S_n" /> | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" /> | <InlineMath math="\frac{a(r^n - 1)}{r-1}" /> |
 | **Muster** | Konstante Addition/Subtraktion | Konstante Multiplikation/Division |
 
+<Mermaid
+  title="Welche Summenformel gilt"
+  description="Eine konstante Differenz verlangt die arithmetische Formel, ein konstanter Quotient ungleich 1 die geometrische."
+  chart={`flowchart TD
+  A["Summe der ersten n Glieder"] --> Q{"Muster zwischen den Gliedern"}
+  Q -->|"konstante Differenz b"| AR["Sₙ = n/2 · (2a + (n − 1)b)"]
+  Q -->|"konstanter Quotient r ≠ 1"| GE["Sₙ = a(rⁿ − 1)/(r − 1)"]`}
+/>
+
 ## Arithmetische und geometrische Summen berechnen
 
 Für die arithmetische Reihe:
@@ -71,6 +80,19 @@ Der gemeinsame Quotient ist <InlineMath math="r=2" />. Daher:
 
 <BlockMath math="S_5=5\frac{2^5-1}{2-1}=155" />
 
+Schau zu, wie die arithmetischen Summen wachsen. Jeder Balken ist die Summe nach <InlineMath math="n" /> Gliedern von <InlineMath math="5 + 8 + 11 + 14 + 17" />: <InlineMath math="5, 13, 24, 38, 55" />. Jeder neue Balken addiert ein Glied, das um <InlineMath math="3" /> größer ist als das zuletzt addierte.
+
+<BarChart
+  title="Partialsummen einer arithmetischen Reihe"
+  description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="S_n = \frac{n}{2}(2 \cdot 5 + (n-1)3)" /> für <InlineMath math="n = 1" /> bis <InlineMath math="5" />.</>}
+  yAxisLabel="Summe"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n / 2) * (2 * 5 + (n - 1) * 3) };
+  })}
+  chartConfig={{ value: { label: "Summe", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Muster der Glieder und Partialsummen
 
 Arithmetische Glieder hängen linear vom Index ab. Ihre Partialsummen sind quadratisch, wenn die Differenz ungleich null ist. In einer geometrischen Folge wird **jedes Glied mit einem festen Quotienten multipliziert**. Ein positiver Quotient ungleich eins ergibt ein exponentielles Muster. Bei einem negativen Quotienten wechseln die Vorzeichen.
@@ -86,6 +108,19 @@ Vergleiche für die beiden berechneten Beispiele, welche Summe nach jedem zusät
 | <InlineMath math="5" /> | <InlineMath math="55" /> | <InlineMath math="155" /> |
 
 Der Name einer Reihe bezieht sich auf die Folge ihrer Glieder. Er sagt nicht, dass die Partialsummen <InlineMath math="S_1,S_2,S_3,\ldots" /> selbst eine arithmetische oder geometrische Folge bilden.
+
+Jetzt die geometrischen Summen für <InlineMath math="5 + 10 + 20 + 40 + 80" />: <InlineMath math="5, 15, 35, 75, 155" />. Jedes neue Glied ist so groß wie alle früheren Glieder zusammen plus <InlineMath math="5" />, die Summe verdoppelt sich also ungefähr bei jedem Schritt. Vergleich die Höhen mit dem arithmetischen Diagramm: gleiches erstes Glied, ganz anderes Wachstum.
+
+<BarChart
+  title="Partialsummen einer geometrischen Reihe"
+  description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="S_n = 5(2^n - 1)" /> für <InlineMath math="n = 1" /> bis <InlineMath math="5" />.</>}
+  yAxisLabel="Summe"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (5 * (2 ** n - 1)) / (2 - 1) };
+  })}
+  chartConfig={{ value: { label: "Summe", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übung
 

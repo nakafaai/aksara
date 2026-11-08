@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bedakan konvergensi dan divergensi melalui jumlah parsial, lalu klasifikasikan contoh deret geometri, aritmetika, dan harmonik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Barisan dan Deret",
 };
 
@@ -63,6 +63,31 @@ Sebuah deret disebut **divergen** jika jumlah parsialnya tidak mendekati nilai b
 - Terus mengecil menuju tak hingga negatif (<InlineMath math="-\infty" />).
 - Berayun (berosilasi) di antara beberapa nilai tanpa pernah menetap.
 
+Bandingkan tiga deret lewat jumlah parsialnya <InlineMath math="S_n" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="12" />. Jumlah <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> menetap di <InlineMath math="2" />, jadi deret itu konvergen. Jumlah <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> merayap naik tanpa batas atas, dan jumlah <InlineMath math="1 - 1 + 1 - \cdots" /> melompat antara <InlineMath math="1" /> dan <InlineMath math="0" />. Keduanya divergen, dengan dua cara yang berbeda.
+
+<LineEquation
+  title="Satu deret menetap, dua tidak"
+  description={<>Jumlah parsial tiga deret: deret geometri yang mendekati 2, deret harmonik yang naik tanpa batas, dan deret berselang-seling yang melompat antara 1 dan 0.</>}
+  cameraPosition={[6.5, 1.5, 12]}
+  cameraTarget={[6.5, 1.5, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 13, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 - 2 ** (1 - n), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac14 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: Array.from({ length: n }, (_, k) => 1 / (k + 1)).reduce((sum, term) => sum + term, 0), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac13 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 + (-1) ** (n + 1)) / 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 12 ? [{ text: <InlineMath math="1 - 1 + 1 - \cdots" />, at: 0, offset: [0.6, -0.3, 0] }] : [] };
+    })
+  ]}
+/>
+
 ### Jumlah Parsial Tidak Menetap
 
 Deret divergen **tidak memiliki satu limit** atau bergerak tanpa batas. Dua kondisi berikut memisahkan kedua kasus itu.
@@ -101,6 +126,28 @@ Untuk <InlineMath math="a\ne0" />, **setiap kemungkinan rasio** masuk ke salah s
 
 Jadi, deret divergen tidak selalu mempunyai nilai <InlineMath math="\infty" />. Osilasi dan penurunan tanpa batas merupakan bentuk divergensi yang berbeda.
 
+Dua deret geometri konvergen dengan <InlineMath math="a = 1" /> menunjukkan bahwa rasio menentukan cara jumlahnya tiba. Dengan <InlineMath math="r = -\frac12" />, jumlahnya zig-zag di atas dan di bawah limitnya, <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. Dengan <InlineMath math="r = \frac35" />, jumlahnya naik terus menuju <InlineMath math="\frac{1}{1 - \frac35} = 2{,}5" />. Kedua limit berasal dari <InlineMath math="\frac{a}{1 - r}" />.
+
+<LineEquation
+  title="Dua cara menuju konvergen"
+  description={<>Jumlah parsial untuk <InlineMath math="r = -\frac12" /> zig-zag menuju <InlineMath math="\frac23" />, sedangkan untuk <InlineMath math="r = \frac35" /> naik menuju 2,5.</>}
+  cameraPosition={[5.5, 1.25, 10]}
+  cameraTarget={[5.5, 1.25, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2 / 3, z: 0 }, { x: 11, y: 2 / 3, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="\frac23" />, at: 1, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 0, y: 2.5, z: 0 }, { x: 11, y: 2.5, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2{,}5" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (-1 / 2) ** n) / (1 + 1 / 2), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 10 ? [{ text: <InlineMath math="r = -\frac12" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    }),
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (3 / 5) ** n) / (1 - 3 / 5), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 10 ? [{ text: <InlineMath math="r = \frac35" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    })
+  ]}
+/>
+
 ## Barisan yang Bergerak Satu Arah dan Terbatas
 
 Setiap barisan yang monoton dan terbatas pasti konvergen. Kriteria ini berguna ketika limit sulit dibaca langsung dari suatu rumus.
@@ -118,6 +165,17 @@ Tabel mengumpulkan ketiga uji yang sudah dibahas, sehingga perilaku jumlah parsi
 | **Jumlah**                          | Menuju nilai _terbatas_ tertentu (<InlineMath math="L" />). <InlineMath math="S_\infty = L" /> | Tidak menuju nilai terbatas. <InlineMath math="\pm \infty" /> atau berosilasi                                        |
 | **Suku umum** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen. Meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
 | **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika selain deret nol, geometri dengan suku pertama tidak nol dan <InlineMath math="\lvert r\rvert \geq 1" />, serta harmonik                                              |
+
+<Mermaid
+  title="Menentukan apakah deret konvergen"
+  description="Suku yang tidak mengecil ke nol pasti membuat deret divergen. Suku yang mengecil pun masih memerlukan jumlah parsial yang menetap di satu nilai berhingga."
+  chart={`flowchart TD
+  A["Deret u₁ + u₂ + u₃ + …"] --> T{"Apakah uₙ mendekati 0?"}
+  T -->|"Tidak"| D["Divergen"]
+  T -->|"Ya"| S{"Apakah jumlah parsial Sₙ menetap di satu nilai berhingga?"}
+  S -->|"Ya"| C["Konvergen ke nilai itu"]
+  S -->|"Tidak"| D`}
+/>
 
 ## Latihan
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Unterscheide eine geordnete Folge von der Summe ihrer Glieder und verstehe, wie Partialsummen beide Begriffe verbinden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -42,6 +42,16 @@ Die Tabelle stellt beide Formen nebeneinander. Eine Folge hält die Glieder in i
 | **Darstellung** | Geordnete Liste, deren Glieder durch Kommas getrennt sind, etwa <InlineMath math="U_1, U_2, U_3, \dots" /> | Summe, deren Glieder durch Pluszeichen verbunden sind, etwa <InlineMath math="U_1 + U_2 + U_3 + \dots" /> |
 | **Fokus** | Muster und Wert jedes einzelnen Gliedes | Wert der Summe |
 
+Hier ist die Folge <InlineMath math="a_n = n" /> als Balken: <InlineMath math="1, 2, 3, \ldots, 8" />. Jeder Balken ist ein einzelnes Glied. Noch wird nichts addiert, Balken 8 ist also einfach <InlineMath math="8" />.
+
+<BarChart
+  title="Die Glieder einer Folge"
+  description={<>Balken <InlineMath math="n" /> zeigt das Glied <InlineMath math="a_n = n" /> für <InlineMath math="n = 1" /> bis <InlineMath math="8" />.</>}
+  yAxisLabel="Glied"
+  data={Array.from({ length: 8 }, (_, i) => ({ name: `${i + 1}`, value: i + 1 }))}
+  chartConfig={{ value: { label: "Glied", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Partialsummen aus Folgengliedern
 
 Die Summe der ersten <InlineMath math="n" /> Glieder einer Folge ist die <InlineMath math="n" />-te **Partialsumme**:
@@ -57,11 +67,33 @@ Eine Folge <InlineMath math="(a_n)" /> erzeugt damit eine neue Folge <InlineMath
 
 Die Summe der Glieder von <InlineMath math="a_n=n" /> ergibt eine neue Folge, nämlich <InlineMath math="1, 3, 6, 10, \dots" />, und diese Partialsummen wachsen schneller als die ursprünglichen Glieder.
 
+Addiere die Glieder jetzt nach und nach. Balken <InlineMath math="n" /> ist die Partialsumme <InlineMath math="S_n = 1 + 2 + \cdots + n" />, die Balken zeigen also <InlineMath math="1, 3, 6, 10, \ldots, 36" />. Vergleich Balken 8 mit dem vorigen Diagramm: Das Glied ist <InlineMath math="8" />, die Summe der ersten acht Glieder aber <InlineMath math="36" />.
+
+<BarChart
+  title="Die Partialsummen derselben Folge"
+  description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="S_n = \frac{n(n+1)}{2}" /> für <InlineMath math="n = 1" /> bis <InlineMath math="8" />.</>}
+  yAxisLabel="Partialsumme"
+  data={Array.from({ length: 8 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n * (n + 1)) / 2 };
+  })}
+  chartConfig={{ value: { label: "Partialsumme", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Endliche und unendliche Summen
 
 <InlineMath math="S_{20}" /> ist eine endliche Summe aus zwanzig Gliedern. Bei einer unendlichen Reihe fragen wir, ob sich <InlineMath math="S_n" /> für <InlineMath math="n\to\infty" /> einem Grenzwert nähert.
 
 Eine unendliche Reihe wird über den **Grenzwert ihrer Partialsummen** verstanden. Nähern sich die Partialsummen einem festen Wert, konvergiert die unendliche Reihe. Das Thema [konvergente und divergente Reihen](/de/faecher/mathematik/folgen-und-reihen/konvergenz-und-divergenz) nutzt diesen Grenzwert, um Reihen mit festem Wert von den übrigen zu trennen.
+
+<Mermaid
+  title="Von der Folge zu ihrer Reihe"
+  description="Die Summe der ersten n Glieder einer Folge ist eine Partialsumme. Die Partialsummen bilden eine neue Folge, und eine unendliche Reihe ist deren Grenzwert, falls er existiert."
+  chart={`flowchart LR
+  A["Folge a₁, a₂, a₃, …"] -->|"erste n Glieder addieren"| B["Partialsumme Sₙ"]
+  B -->|"S₁, S₂, S₃, … auflisten"| C["Folge der Partialsummen"]
+  C -->|"Grenzwert, falls er existiert"| D["Wert der unendlichen Reihe"]`}
+/>
 
 ## Übung
 

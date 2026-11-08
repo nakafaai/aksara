@@ -3,7 +3,7 @@ export const metadata = {
   description: "Unterscheide Konvergenz und Divergenz bei Folgen und Reihen, arbeite mit Partialsummen und prüfe geometrische sowie harmonische Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -63,6 +63,31 @@ Eine Reihe heißt **divergent**, wenn ihre Partialsummen keinen endlichen Grenzw
 - gegen negative Unendlichkeit <InlineMath math="-\infty" /> fallen oder
 - zwischen verschiedenen Werten schwanken, ohne sich einem Grenzwert zu nähern.
 
+Vergleich drei Reihen über ihre Partialsummen <InlineMath math="S_n" /> für <InlineMath math="n = 1" /> bis <InlineMath math="12" />. Die Summen von <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> pendeln sich bei <InlineMath math="2" /> ein, diese Reihe konvergiert. Die Summen von <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> kriechen ohne Obergrenze nach oben, und die Summen von <InlineMath math="1 - 1 + 1 - \cdots" /> springen zwischen <InlineMath math="1" /> und <InlineMath math="0" />. Beide divergieren, auf zwei verschiedene Arten.
+
+<LineEquation
+  title="Eine Reihe pendelt sich ein, zwei nicht"
+  description={<>Partialsummen dreier Reihen: eine geometrische Reihe, die sich 2 nähert, die harmonische Reihe, die unbeschränkt wächst, und eine alternierende Reihe, die zwischen 1 und 0 springt.</>}
+  cameraPosition={[6.5, 1.5, 12]}
+  cameraTarget={[6.5, 1.5, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2, z: 0 }, { x: 13, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: 2 - 2 ** (1 - n), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac14 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: Array.from({ length: n }, (_, k) => 1 / (k + 1)).reduce((sum, term) => sum + term, 0), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac13 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
+    }),
+    ...Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 + (-1) ** (n + 1)) / 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 12 ? [{ text: <InlineMath math="1 - 1 + 1 - \cdots" />, at: 0, offset: [0.6, -0.3, 0] }] : [] };
+    })
+  ]}
+/>
+
 ### Partialsummen finden keinen Grenzwert
 
 Eine divergente Reihe hat **keinen einzelnen Grenzwert** oder wächst über jede Schranke hinaus. Die beiden Bedingungen unten trennen diese Fälle.
@@ -101,6 +126,28 @@ Für <InlineMath math="a\ne0" /> gehört jeder mögliche **Wert des Quotienten**
 
 Eine divergente Reihe besitzt keinen endlichen Grenzwert. Sie kann unbegrenzt wachsen, unbegrenzt fallen oder oszillieren.
 
+Zwei konvergente geometrische Reihen mit <InlineMath math="a = 1" /> zeigen, dass der Quotient bestimmt, wie die Summen ankommen. Mit <InlineMath math="r = -\frac12" /> springen die Summen im Zickzack über und unter ihren Grenzwert <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. Mit <InlineMath math="r = \frac35" /> steigen sie gleichmäßig auf <InlineMath math="\frac{1}{1 - \frac35} = 2{,}5" /> zu. Beide Grenzwerte kommen aus <InlineMath math="\frac{a}{1 - r}" />.
+
+<LineEquation
+  title="Zwei Arten zu konvergieren"
+  description={<>Die Partialsummen für <InlineMath math="r = -\frac12" /> nähern sich im Zickzack <InlineMath math="\frac23" />, die für <InlineMath math="r = \frac35" /> steigen auf 2,5 zu.</>}
+  cameraPosition={[5.5, 1.25, 10]}
+  cameraTarget={[5.5, 1.25, 0]}
+  showZAxis={false}
+  data={[
+    { points: [{ x: 0, y: 2 / 3, z: 0 }, { x: 11, y: 2 / 3, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="\frac23" />, at: 1, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 0, y: 2.5, z: 0 }, { x: 11, y: 2.5, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2{,}5" />, at: 1, offset: [0.4, 0, 0] }] },
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (-1 / 2) ** n) / (1 + 1 / 2), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 10 ? [{ text: <InlineMath math="r = -\frac12" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    }),
+    ...Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return { points: [{ x: n, y: (1 - (3 / 5) ** n) / (1 - 3 / 5), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 10 ? [{ text: <InlineMath math="r = \frac35" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
+    })
+  ]}
+/>
+
 ## Folgen mit einer Richtung und einer Schranke
 
 Jede monotone und beschränkte Folge konvergiert. Dieses Kriterium ist nützlich, wenn ein Grenzwert nur schwer direkt aus einer Formel abzulesen ist.
@@ -118,6 +165,17 @@ Die Tabelle sammelt die drei Prüfungen, sodass du Partialsummenverhalten, Glied
 | **Partialsummen** | Nähern sich einem _endlichen_ Wert <InlineMath math="L" />. <InlineMath math="S_\infty = L" /> | Nähern sich keinem endlichen Wert. Sie können gegen <InlineMath math="\pm \infty" /> streben oder oszillieren |
 | **Allgemeines Glied** | <InlineMath math="u_n\to0" /> ist notwendig | Aus <InlineMath math="u_n\not\to0" /> folgt sicher Divergenz. Dennoch kann auch <InlineMath math="u_n\to0" /> gelten |
 | **Beispiele** | Geometrische Reihe mit <InlineMath math="\lvert r\rvert < 1" /> | Nichttriviale arithmetische Reihe, geometrische Reihe mit erstem Glied ungleich null und <InlineMath math="\lvert r\rvert \geq 1" />, harmonische Reihe |
+
+<Mermaid
+  title="Entscheiden, ob eine Reihe konvergiert"
+  description="Glieder, die nicht gegen null gehen, erzwingen Divergenz. Glieder, die gegen null gehen, brauchen trotzdem Partialsummen, die sich bei einem endlichen Wert einpendeln."
+  chart={`flowchart TD
+  A["Reihe u₁ + u₂ + u₃ + …"] --> T{"Geht uₙ gegen 0?"}
+  T -->|"Nein"| D["Divergiert"]
+  T -->|"Ja"| S{"Pendeln sich die Partialsummen Sₙ bei einem endlichen Wert ein?"}
+  S -->|"Ja"| C["Konvergiert gegen diesen Wert"]
+  S -->|"Nein"| D`}
+/>
 
 ## Übung
 
