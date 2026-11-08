@@ -57,6 +57,7 @@ const ANSWER_LABELS = {
   de: "Antwort",
   en: "Answer",
   id: "Jawaban",
+  ms: "Jawapan",
 } satisfies Record<AppLocaleCode, string>;
 
 /**

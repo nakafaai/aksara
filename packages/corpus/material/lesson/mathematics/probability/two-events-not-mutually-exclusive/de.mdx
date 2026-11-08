@@ -1,88 +1,198 @@
 export const metadata = {
-  title: "Überlappende Ereignisse A und B",
-  description: "Berechne Wahrscheinlichkeiten überlappender Ereignisse und vermeide Doppelzählungen anhand von Schnittmengen und ausgearbeiteten Lösungen.",
+  title: "Additionssatz für vereinbare Ereignisse",
+  description: "Können A und B gemeinsam eintreten, gilt P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Verstehe den Abzug mit Venn-Diagrammen, Beispielen und Übungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Wahrscheinlichkeit",
 };
 
-## Zwei Ereignisse können gleichzeitig eintreten
+## Die Wahrscheinlichkeit von A oder B bei gemeinsamen Ergebnissen
 
-Zwei Ereignisse sind **vereinbar**, wenn sie in demselben Zufallsexperiment gemeinsam eintreten können. In der Sprache der Mengen gehört dann mindestens ein Ergebnis zu beiden Ereignissen.
+Zwei Ereignisse sind **vereinbar**, wenn beide beim selben Ergebnis eintreten können, ihre Schnittmenge also nicht leer ist, <InlineMath math="A \cap B \ne \varnothing" />. Für zwei Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> liefert der [Additionssatz](/de/faecher/mathematik/wahrscheinlichkeit/additionssatz) die Wahrscheinlichkeit von <InlineMath math="A" /> oder <InlineMath math="B" />:
 
-Ihre Ergebnismengen haben daher eine nicht leere Schnittmenge.
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-Bei einem Kartenzug und einem Würfelwurf findest du die Schnittmenge, indem du die **Ergebnisse mit beiden Eigenschaften** auflistest.
+Die Schnittmenge wird **einmal** abgezogen, weil ihre Ergebnisse schon in <InlineMath math="P(A)" /> und noch einmal in <InlineMath math="P(B)" /> gezählt werden.
 
-| Versuch | Ereignis <InlineMath math="A" /> | Ereignis <InlineMath math="B" /> | Schnittmenge |
+<MathVisual
+  title="Ein Venn-Diagramm für einen Würfelwurf"
+  description={<>Das Ereignis <InlineMath math="A" /> = gerade Augenzahl und <InlineMath math="B" /> = Augenzahl größer als 3. Die Ergebnisse 4 und 6 liegen in der Überschneidung beider Kreise.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.8, y: 0 }, appearance: "primary" },
+      { id: "four", kind: "point", at: { x: 0, y: 0.5 }, appearance: "highlight" },
+      { id: "six", kind: "point", at: { x: 0, y: -0.5 }, appearance: "highlight" },
+      { id: "five", kind: "point", at: { x: 1.8, y: 0 }, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -3.2, y: 1.8 }, appearance: "reference" },
+      { id: "three", kind: "point", at: { x: 3.2, y: 1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "two", objectId: "two", at: { x: -1.8, y: 0 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0, y: 0.5 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 0, y: -0.5 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3.2, y: 1.8 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3.2, y: 1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="\Omega" />,
+    two: <InlineMath math="2" />,
+    four: <InlineMath math="4" />,
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    one: <InlineMath math="1" />,
+    three: <InlineMath math="3" />,
+  }}
+/>
+
+Beim Würfel ist <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" />, also <InlineMath math="A \cap B = \{4, 6\}" />. Die Formel liefert <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Probe durch Aufzählen: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> enthält 4 der 6 Ergebnisse.
+
+## Vereinbare Ereignisse erkennen
+
+Du prüfst eine Überschneidung, indem du **die Ergebnisse notierst, die beide Bedingungen zugleich erfüllen**. Gibt es mindestens ein solches Ergebnis, sind die Ereignisse vereinbar.
+
+| Zufallsexperiment | Ereignis <InlineMath math="A" /> | Ereignis <InlineMath math="B" /> | Schnittmenge |
 | --- | --- | --- | --- |
-| Eine Karte ziehen | Herzkarten | Könige | Herzkönig <InlineMath math="K\heartsuit" /> |
+| Eine Spielkarte ziehen | Eine Herzkarte | Ein König | Der Herzkönig |
 | Einmal würfeln | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
+| Eine Person auswählen | Mag Mathematik | Mag Physik | Mag beides |
 
-## Schnittmenge überlappender Ereignisse
+Das Gegenstück sind [unvereinbare Ereignisse](/de/faecher/mathematik/wahrscheinlichkeit/zwei-unvereinbare-ereignisse), deren Schnittmenge leer ist, sodass <InlineMath math="P(A \cap B) = 0" /> gilt. Die Formel gilt auch für unvereinbare Ereignisse, weil der Schnittterm dann null ist.
 
-Bei vereinbaren Ereignissen können Ergebnisse zugleich zu <InlineMath math="A" /> und zu <InlineMath math="B" /> gehören. Diese gemeinsamen Ergebnisse bilden die **Schnittmenge** <InlineMath math="A \cap B" />.
+## Warum die Schnittmenge einmal abgezogen wird
 
-Die Definition bezieht sich auf die Ergebnismengen: Zwei Ereignisse schließen sich nicht gegenseitig aus, wenn ihre Schnittmenge nicht leer ist.
+Zähle zuerst die Elemente. Addierst du <InlineMath math="n(A)" /> und <InlineMath math="n(B)" />, landet jedes Element der Schnittmenge in beiden Zählungen, wird also **doppelt** gezählt. Ziehe die Schnittmenge einmal ab, damit jedes Element genau einmal erfasst wird:
 
-<BlockMath math="A \cap B \ne \varnothing" />
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-In einer endlichen Ergebnismenge, in der jedes Elementarereignis eine positive Wahrscheinlichkeit besitzt, hat eine nicht leere Schnittmenge ebenfalls eine positive Wahrscheinlichkeit:
+Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisraum mit gleichwahrscheinlichen Ergebnissen, erhältst du die Formel für Wahrscheinlichkeiten. Die Formel selbst gilt für jeden Ergebnisraum, nur das Teilen durch <InlineMath math="n(\Omega)" /> braucht gleichwahrscheinliche Ergebnisse. Beim Würfel sind es <InlineMath math="3 + 3 - 2 = 4" /> Elemente, wie in der Liste <InlineMath math="\{2, 4, 5, 6\}" />. Ohne den Abzug käme <InlineMath math="\frac{6}{6} = 1" /> heraus, als würde jeder Wurf in <InlineMath math="A" /> oder <InlineMath math="B" /> landen, obwohl 1 und 3 zu keinem der beiden gehören.
 
-<BlockMath math="P(A \cap B) > 0" />
+<Mermaid
+  title="Die Formel für P(A oder B) wählen"
+  description="Der Inhalt der Schnittmenge entscheidet, ob ihre Wahrscheinlichkeit abgezogen werden muss."
+  chart={`flowchart TD
+  A["Schnittmenge von A und B aufschreiben"] --> B{"Ist die Schnittmenge leer?"}
+  B -->|"ja, unvereinbar"| C["P(A) + P(B)"]
+  B -->|"nein, vereinbar"| D["P(A) + P(B) - P(A und B)"]
+  C --> E["Durch Aufzählen der Vereinigung prüfen"]
+  D --> E`}
+/>
 
-Bei unvereinbaren Ereignissen hat die Schnittmenge die Wahrscheinlichkeit <InlineMath math="P(A \cap B) = 0" />.
+## Beispiel mit Herz oder König
 
-## Wahrscheinlichkeit einer Vereinigung berechnen
+Aus 52 Spielkarten wird eine Karte gezogen. Wie groß ist die Wahrscheinlichkeit, eine Herzkarte oder einen König zu ziehen?
 
-Bei einer einfachen Addition würde die Schnittmenge <InlineMath math="A \cap B" /> **doppelt gezählt**, einmal in <InlineMath math="P(A)" /> und einmal in <InlineMath math="P(B)" />.
+Es gibt <InlineMath math="13" /> Herzkarten, <InlineMath math="4" /> Könige und **<InlineMath math="1" /> Karte, die zu beiden gehört**, den Herzkönig:
 
-Deshalb ziehen wir die Wahrscheinlichkeit der doppelt gezählten Schnittmenge einmal ab. So erhalten wir die **allgemeine Additionsregel**:
+<BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
-<BlockMath math="\begin{aligned} P(A \text{ oder } B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+<MathVisual
+  title="Die Anzahl der Karten in jedem Bereich des Venn-Diagramms"
+  description={<>Der Kreis <InlineMath math="A" /> enthält die 13 Herzkarten und der Kreis <InlineMath math="B" /> die 4 Könige. Der Herzkönig liegt in der Überschneidung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "deck", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "hearts", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "kings", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "hearts-only", kind: "point", at: { x: -1.6, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "kings-only", kind: "point", at: { x: 1.6, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "hearts", objectId: "hearts", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "kings", objectId: "kings", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "hearts-only", objectId: "hearts-only", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "kings-only", objectId: "kings-only", at: { x: 1.6, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    hearts: <InlineMath math="A" />,
+    kings: <InlineMath math="B" />,
+    "hearts-only": <InlineMath math="12" />,
+    both: <InlineMath math="1" />,
+    "kings-only": <InlineMath math="3" />,
+    neither: <InlineMath math="36" />,
+  }}
+/>
 
-Mit Vereinigungs- und Schnittmengensymbolen:
+Prüfe durch Zählen der Bereiche: 12 Herzkarten außer dem König, 1 Herzkönig und 3 weitere Könige, also <InlineMath math="12 + 1 + 3 = 16" /> Karten. Die übrigen <InlineMath math="52 - 16 = 36" /> Karten gehören zu keinem der beiden Ereignisse.
 
-<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+## Beispiel mit Umfragedaten
 
-Diese Formel gilt in beiden Fällen. Für unvereinbare Ereignisse ist <InlineMath math="P(A \cap B)=0" />, sodass sie sich zu <InlineMath math="P(A \cup B) = P(A) + P(B)" /> vereinfacht.
+Von 40 Lernenden mögen 25 Mathematik, 18 Physik und 10 beides. Eine Person wird zufällig ausgewählt. Sei <InlineMath math="M" /> das Ereignis „mag Mathematik“ und <InlineMath math="F" /> das Ereignis „mag Physik“. Bestimme die Wahrscheinlichkeit, dass sie Mathematik oder Physik mag, und die Wahrscheinlichkeit, dass sie keines von beiden mag.
 
-## Wahrscheinlichkeit für eine Herzkarte oder einen König
+<MathContainer>
+  <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
+  <BlockMath math="P(\text{keines}) = 1 - \frac{33}{40} = \frac{7}{40}" />
+</MathContainer>
 
-Nehmen wir das Kartenbeispiel:
+Die zweite Wahrscheinlichkeit nutzt das **Gegenereignis**: Wer keines von beiden mag, liegt außerhalb von <InlineMath math="M \cup F" />. Probe mit den Bereichen im Venn-Diagramm: <InlineMath math="25 - 10 = 15" /> mögen nur Mathematik, <InlineMath math="18 - 10 = 8" /> nur Physik und <InlineMath math="10" /> beides. Das sind <InlineMath math="33" />, und <InlineMath math="40 - 33 = 7" /> Personen mögen keines von beiden.
 
-- Ereignis <InlineMath math="A" />: Eine Herzkarte ziehen (<InlineMath math="\heartsuit" />). Unter den <InlineMath math="52" /> Karten sind <InlineMath math="13" /> Herzkarten. <InlineMath math="P(A) = 13/52" />.
-- Ereignis <InlineMath math="B" />: Einen König ziehen. Unter den <InlineMath math="52" /> Karten sind <InlineMath math="4" /> Könige. <InlineMath math="P(B) = 4/52" />.
-- Ereignis <InlineMath math="A" /> **und** B: Den Herzkönig ziehen (<InlineMath math="K\heartsuit" />). Es gibt genau <InlineMath math="1" /> Herzkönig. <InlineMath math="P(A \cap B) = 1/52" />.
+## Typische Fehler
 
-Die Wahrscheinlichkeit, ein Herz ODER einen König zu bekommen, beträgt also:
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="P(A) + P(B)" /> addieren, ohne die Schnittmenge abzuziehen | Ergebnisse in der Schnittmenge werden doppelt gezählt | Beim Würfel käme <InlineMath math="1" /> heraus, obwohl 1 und 3 zu keinem Ereignis gehören |
+| Die Schnittmenge zweimal abziehen | Die Schnittmenge ist nur einmal zu viel gezählt | Zähle die Elemente der Vereinigung durch Aufzählen |
+| Vereinbar mit unabhängig verwechseln | Vereinbar betrifft die Schnittmenge, unabhängig bedeutet <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Prüfe beide Bedingungen getrennt |
+| Eine Karte vergessen, die zu beiden Ereignissen gehört | Der Herzkönig ist Herzkarte und König zugleich | Schreibe die Schnittmenge auf, bevor du rechnest |
+| Eine Wahrscheinlichkeit über 1 erhalten | Ohne Abzug kann die Summe 1 überschreiten | Die Wahrscheinlichkeit einer Vereinigung ist nie größer als 1 |
 
-<BlockMath math="\begin{aligned}P(A \cup B) &= P(A) + P(B) \\ &\quad{}- P(A \cap B)  \\ &= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} \\ &= \frac{16}{52} = \frac{4}{13}\end{aligned}" />
+Die einfachste Probe ist, **jeden Bereich des Venn-Diagramms zu zählen** und zu addieren. Die Summe muss mit der Formel übereinstimmen.
 
-Durch den Abzug von <InlineMath math="1/52" /> wird der Herzkönig genau einmal gezählt.
+## Übungsaufgaben
 
-## Übung
+Schreibe zuerst die Schnittmenge auf und **prüfe deine Antwort durch Aufzählen oder Zählen der Venn-Bereiche**.
 
-Ein **fairer sechsseitiger Würfel** wird einmal geworfen. Es sei <InlineMath math="A=\{2,4,6\}" /> das Ereignis „Das Ergebnis ist gerade“ und <InlineMath math="B=\{5,6\}" /> das Ereignis „Das Ergebnis ist größer als <InlineMath math="4" />“.
+1. Ein Würfel wird einmal geworfen. <InlineMath math="A" /> ist das Ereignis einer Primzahl und <InlineMath math="B" /> das Ereignis einer ungeraden Zahl. Bestimme <InlineMath math="P(A \cup B)" />.
 
-1.  Begründe, warum <InlineMath math="A" /> und <InlineMath math="B" /> sich nicht gegenseitig ausschließen.
-2.  Bestimme <InlineMath math="P(A \cup B)" /> mit der allgemeinen Additionsregel.
-3.  Prüfe den Wert von <InlineMath math="P(A \cup B)" />, indem du die Elemente der Vereinigung auflistest.
-### Ausführliche Lösung
+2. Aus 52 Spielkarten wird eine Karte gezogen. Bestimme die Wahrscheinlichkeit, eine rote Karte oder ein Ass zu ziehen.
 
-**Aufgabe 1**. Die Schnittmenge enthält **ein gemeinsames Ergebnis**, nämlich <InlineMath math="6" />:
+3. Gegeben sind <InlineMath math="P(A) = 0{,}5" />, <InlineMath math="P(B) = 0{,}4" /> und <InlineMath math="P(A \cup B) = 0{,}7" />. Bestimme <InlineMath math="P(A \cap B)" /> und entscheide, ob <InlineMath math="A" /> und <InlineMath math="B" /> unvereinbar sind.
 
-<BlockMath math="A \cap B=\{6\}" />
+4. Aus den Zahlen 1 bis 30 wird eine zufällig gewählt. Bestimme die Wahrscheinlichkeit, dass sie durch 3 oder durch 5 teilbar ist.
 
-Die Ereignisse schließen sich daher **nicht gegenseitig aus**.
+### Lösungen
 
-**Aufgabe 2**. Die Wahrscheinlichkeiten der Ereignisse und ihrer Schnittmenge sind
+**Aufgabe 1**. <InlineMath math="A = \{2, 3, 5\}" />, <InlineMath math="B = \{1, 3, 5\}" /> und <InlineMath math="A \cap B = \{3, 5\}" />:
 
-<BlockMath math="\begin{aligned} &amp;P(A)=\frac{3}{6}, \\ &amp;P(B)=\frac{2}{6}, \\ &amp;P(A \cap B)=\frac{1}{6} \end{aligned}" />
+<BlockMath math="P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />
 
-Nun wenden wir die allgemeine Additionsregel an:
+Probe: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> enthält 4 der 6 Ergebnisse.
 
-<BlockMath math="\begin{aligned}P(A \cup B) &=P(A)+P(B) \\ &\quad{}-P(A \cap B)  \\ &=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+**Aufgabe 2**. Es gibt <InlineMath math="26" /> rote Karten, <InlineMath math="4" /> Asse und <InlineMath math="2" /> rote Asse (Herz und Karo):
 
-**Aufgabe 3**. Direktes Auflisten ergibt <InlineMath math="A \cup B=\{2,4,5,6\}" />. Die Vereinigung enthält <InlineMath math="4" /> der <InlineMath math="6" /> möglichen Ergebnisse. Beide Wege liefern somit <InlineMath math="2/3" />.
+<BlockMath math="P = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52} = \frac{7}{13}" />
+
+Probe: 26 rote Karten und die 2 schwarzen Asse ergeben 28 Karten.
+
+**Aufgabe 3**. Stelle die Formel um:
+
+<BlockMath math="P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0{,}5 + 0{,}4 - 0{,}7 = 0{,}2" />
+
+Wegen <InlineMath math="P(A \cap B) = 0{,}2 \ne 0" /> sind die Ereignisse **vereinbar**, also nicht unvereinbar. Probe: <InlineMath math="0{,}5 + 0{,}4 - 0{,}2 = 0{,}7" />, die gegebene Wahrscheinlichkeit der Vereinigung.
+
+**Aufgabe 4**. Es gibt <InlineMath math="10" /> Vielfache von 3, <InlineMath math="6" /> Vielfache von 5 und <InlineMath math="2" /> Vielfache von beiden, also von 15 (15 und 30):
+
+<BlockMath math="P = \frac{10}{30} + \frac{6}{30} - \frac{2}{30} = \frac{14}{30} = \frac{7}{15}" />
+
+Probe durch Aufzählen: 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30, also 14 Zahlen.

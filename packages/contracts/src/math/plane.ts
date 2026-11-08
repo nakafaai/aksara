@@ -14,6 +14,13 @@ import {
   samePlanePoint,
 } from "#contracts/math/base";
 import { planeBoundsIssues } from "#contracts/math/bounds";
+import { PlaneCurveObjectSchemas } from "#contracts/math/curve";
+import { FormulaParameterSchema } from "#contracts/math/formula/field";
+import {
+  formulaScopeIssues,
+  parameterScope,
+  planeFormulaFields,
+} from "#contracts/math/formula/scope";
 import {
   MATH_LINE_MESSAGE,
   MATH_POLYLINE_MESSAGE,
@@ -188,6 +195,7 @@ const PlaneQuadraticObjectSchema = Schema.Struct({
 
 /** Mathematical objects supported by a Cartesian plane scene. */
 export const PlaneMathObjectSchema = Schema.Union([
+  ...PlaneCurveObjectSchemas,
   PlaneArcObjectSchema,
   PlaneCircleObjectSchema,
   PlaneLineObjectSchema,
@@ -226,14 +234,23 @@ export const PlaneMathVisualSchema = Schema.Struct({
   frame: PlaneMathFrameSchema,
   labels: Schema.optionalKey(Schema.Array(PlaneLabelAnchorSchema)),
   objects: Schema.NonEmptyArray(PlaneMathObjectSchema),
+  parameters: Schema.optionalKey(Schema.Array(FormulaParameterSchema)),
   space: Schema.Literal("plane"),
   view: PlaneMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ frame, labels = [], objects, view }) => [
-      ...mathVisualIdentityIssues(objects, labels),
-      ...planeBoundsIssues(frame, objects, labels),
-      ...planeResolutionIssues(frame, objects, labels, view),
-    ])
+    Schema.makeFilter(
+      ({ frame, labels = [], objects, parameters = [], view }) => [
+        ...mathVisualIdentityIssues(objects, labels),
+        ...formulaScopeIssues(objects, planeFormulaFields, parameters),
+        ...planeBoundsIssues(
+          frame,
+          objects,
+          labels,
+          parameterScope(parameters)
+        ),
+        ...planeResolutionIssues(frame, objects, labels, view),
+      ]
+    )
   )
 );
