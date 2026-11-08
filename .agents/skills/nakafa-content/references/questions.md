@@ -135,6 +135,18 @@ to reduce line count.
   `statements`, each with its `label` and the one-based number of its correct
   `column`. Array position is the authoring order. Publication derives every
   option, column, and statement identifier once, so authors never write them.
+- A `numericEntry` is a short answer the learner types as a number. Its
+  `value` is the exact key as a canonical decimal string, the same in every
+  language: a dot separator, no plus sign, no leading or trailing zeros, such
+  as `"12"`, `"0.75"`, or `"-3"`. Choose a task whose answer is a whole number
+  or a terminating decimal; there is no tolerance. An optional `unit` is plain
+  text shown beside the field, written in each language, such as `"cm"`,
+  `"Rp"`, or `"hari"`, so the learner types the number only. Publication lets
+  a learner type a fraction such as `3/4` exactly when the value is not a whole
+  number, and reads a decimal comma as well as a dot. The prompt says what to
+  type, such as the unit or the rounding. A section allows a numeric entry only
+  where the official format asks short answers; the plan of a paper refuses an
+  item whose kind its section does not list.
 - A label is one non-empty rich Markdown string that becomes a document. Plain
   prose needs no wrapper. Use no-space `$$...$$` for inline math, such as
   `The result is $$x=4$$.`. Options, columns, and statements keep mathematics

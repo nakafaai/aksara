@@ -482,8 +482,9 @@ Aksara then publishes a genesis release, as the release record describes.
 Authors keep MDX for prompts, readings, and explanations, and an `item.ts` for
 the interaction. The source of an item is `ItemSource` in the corpus: its
 blueprint, the key of its set's reading, and its interaction in each language it
-is asked in, a `choice` of options that are correct or not, or a `matrix` of
-statements in columns. Publication derives every identifier, the key, the
+is asked in, a `choice` of options that are correct or not, a `matrix` of
+statements in columns, or a `numericEntry` with its exact decimal value and an
+optional unit. Publication derives every identifier, the key, the
 prompt with its interaction placed after the stem, and the hashes. A reading is
 its own file in the set, `<reading>/stimulus.<language>.mdx`, used by key; the
 migration moved each of the 159 readings out of the 887 prompts that copied it.

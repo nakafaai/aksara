@@ -7,13 +7,14 @@ import { Array as Arr, Effect, HashSet, Schema } from "effect";
 
 /**
  * The response formats of the official frameworks: a single choice, a choice
- * of several answers, and a category table. An authored choice with one correct
- * option is a single choice, with several a multiple choice, and a matrix is a
- * category table.
+ * of several answers, a category table, and a short answer. An authored choice
+ * with one correct option is a single choice, with several a multiple choice, a
+ * matrix is a category table, and a typed number is a short answer.
  */
 export const ResponseFormatSchema = Schema.Literals([
   "category",
   "multiple-choice",
+  "short-answer",
   "single-choice",
 ]);
 export type ResponseFormat = typeof ResponseFormatSchema.Type;

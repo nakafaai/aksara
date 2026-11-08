@@ -47,6 +47,7 @@ import {
   Record as Rec,
   Result,
   Schema,
+  String as Str,
 } from "effect";
 
 /**
@@ -102,13 +103,33 @@ export const readAssessmentSource = Effect.fn(
   return { ...site, rawMdx };
 });
 
-/** The interaction and its answer that one authored task becomes, with document labels. */
+/**
+ * The interaction and its answer that one authored task becomes, with document
+ * labels. A typed number takes a fraction such as `3/4` exactly when its value
+ * is not a whole number.
+ */
 const assembleInteraction = Effect.fn("AksaraPublisher.assembleInteraction")(
   function* (
     source: InteractionSource,
     language: AppLocaleCode,
     site: AssessmentSite
   ) {
+    if (source.kind === "numericEntry") {
+      return {
+        interaction: {
+          acceptsFractions: Str.includes(".")(source.value),
+          id: "number",
+          kind: "numericEntry",
+          label: ANSWER_LABELS[language],
+          ...(source.unit === undefined ? {} : { unit: source.unit }),
+        },
+        key: {
+          interaction: "number",
+          kind: "numericEntry",
+          value: source.value,
+        },
+      };
+    }
     /** Compiles one authored label into the label document of this site. */
     const label = (text: string) => labelDocument(text, site);
     if (source.kind === "matrix") {
