@@ -4,7 +4,7 @@ export const metadata = {
     "Entferne Wurzeln aus Nennern, indem du mit eins in Form eines passenden Wurzelfaktors oder eines konjugierten Ausdrucks multiplizierst, einschließlich vollständiger Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Exponenten und Logarithmen",
 };
 
@@ -29,6 +29,30 @@ Für <InlineMath math="b>0" /> wird mit dem Faktor <InlineMath math="\frac{\sqrt
 
 Der passende Wurzelfaktor ist eine **Darstellung der Zahl eins**. Er heißt nicht konjugierter Ausdruck, da er nur aus einem Term besteht.
 
+Das Rationalmachen <InlineMath math="\tfrac{1}{\sqrt 2} = \tfrac{\sqrt 2}{2}" /> ändert die Form, nie die Länge. Die Strecke von einer Ecke des Einheitsquadrats zu seinem Mittelpunkt ist die halbe Diagonale, <InlineMath math="\tfrac{\sqrt 2}{2}" />, und genau diese Strecke misst auch <InlineMath math="\tfrac{1}{\sqrt 2}" />.
+
+<MathVisual
+  title="Eins durch Wurzel 2 ist Wurzel 2 durch 2"
+  description={<>Das Einheitsquadrat mit der Strecke von einer Ecke zum Mittelpunkt, der Länge <InlineMath math="\tfrac{\sqrt 2}{2} = \tfrac{1}{\sqrt 2}" />.</>}
+  labels={{
+    half: <InlineMath math="\tfrac{\sqrt 2}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "rest", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0.5, y: 0.5 }, appearance: "primary" },
+      { id: "center", kind: "point", at: { x: 0.5, y: 0.5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 0.25, y: 0.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ### Summe oder Differenz zweier Wurzeln
 
 Es gelte <InlineMath math="a,b\geq0" /> und <InlineMath math="a\neq b" />. Multipliziere mit dem **konjugierten Ausdruck des Nenners**:
@@ -45,6 +69,34 @@ Zum Beispiel:
   <BlockMath math="\begin{aligned} \frac2{\sqrt5-\sqrt2} &amp;=\frac{2(\sqrt5+\sqrt2)}{5-2} \\ &amp;=\frac{2(\sqrt5+\sqrt2)}3 \end{aligned}" />
 </MathContainer>
 
+Die konjugierte Zahl funktioniert wegen einer Fläche. Ein Rechteck mit den Seiten <InlineMath math="\sqrt 3 + \sqrt 2" /> und <InlineMath math="\sqrt 3 - \sqrt 2" /> hat den Flächeninhalt <InlineMath math="(\sqrt 3)^2 - (\sqrt 2)^2 = 3 - 2 = 1" />, genau wie das Einheitsquadrat daneben. Die Multiplikation mit der Konjugierten macht aus einer Summe von Wurzeln eine ganze Zahl.
+
+<MathVisual
+  title="Ein langes, schmales Rechteck mit Fläche 1"
+  description={<>Ein Rechteck mit den Seiten <InlineMath math="\sqrt 3 + \sqrt 2" /> und <InlineMath math="\sqrt 3 - \sqrt 2" /> hat die Fläche 1, wie das Einheitsquadrat.</>}
+  labels={{
+    long: <InlineMath math="\sqrt 3 + \sqrt 2" />,
+    short: <InlineMath math="\sqrt 3 - \sqrt 2" />,
+    unit: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.5 }, y: { min: -1.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rect", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, { x: 0, y: Math.sqrt(3) - Math.sqrt(2) }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: -1.4 }, { x: 1, y: -1.4 }, { x: 1, y: -0.4 }, { x: 0, y: -0.4 }], appearance: "secondary" },
+      { id: "long", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, appearance: "primary" },
+      { id: "short", kind: "segment", from: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: (Math.sqrt(3) + Math.sqrt(2)) / 2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "short", at: { x: Math.sqrt(3) + Math.sqrt(2), y: (Math.sqrt(3) - Math.sqrt(2)) / 2 }, placement: "right" },
+      { key: "unit", objectId: "unit", at: { x: 0.5, y: -0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Ein rationaler Term und ein Wurzelterm
 
 Es gelte <InlineMath math="b\geq0" /> und <InlineMath math="a^2\neq b" />. Der konjugierte Ausdruck erzeugt wieder eine **Differenz von Quadraten**:
@@ -60,6 +112,16 @@ Zum Beispiel:
   <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
   <BlockMath math="\begin{aligned} \frac3{2-\sqrt5} &amp;=\frac{3(2+\sqrt5)}{4-5} \\ &amp;=-3(2+\sqrt5) \end{aligned}" />
 </MathContainer>
+
+<Mermaid
+  title="Den Faktor wählen, der den Nenner rational macht"
+  description="Der Nenner bestimmt den Faktor: Eine einzelne Wurzel wird mit sich selbst erweitert, eine Summe oder Differenz mit ihrer Konjugierten."
+  chart={`flowchart TD
+  A["Wurzel im Nenner"] --> Q{"Form des Nenners"}
+  Q -->|"√b"| S["Mit √b / √b erweitern"]
+  Q -->|"a + √b"| C1["Mit (a − √b) / (a − √b) erweitern"]
+  Q -->|"√a − √b"| C2["Mit (√a + √b) / (√a + √b) erweitern"]`}
+/>
 
 ## Wurzelausdrücke und Potenzausdrücke vereinfachen
 

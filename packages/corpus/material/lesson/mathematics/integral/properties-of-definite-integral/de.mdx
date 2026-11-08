@@ -3,7 +3,7 @@ export const metadata = {
     description: "Nutze die Regeln für Nullintervalle, vertauschte Grenzen, Linearität und Intervalladdition bei bestimmten Integralen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrale",
 };
 
@@ -31,6 +31,15 @@ Eine Stammfunktion von <InlineMath math="f(x)=x" /> ist <InlineMath math="x^2/2"
 
 <BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
 
+<Mermaid
+  title="Regeln, die aus F(b) − F(a) folgen"
+  description="Gleiche Grenzen ergeben null, vertauschte Grenzen wechseln das Vorzeichen, und ein geteiltes Intervall addiert seine Teile."
+  chart={`flowchart TD
+  A["∫ₐᵇ f(x) dx = F(b) − F(a)"] --> B["∫ₐᵃ f(x) dx = F(a) − F(a) = 0"]
+  A --> C["∫ᵦᵃ f(x) dx = F(a) − F(b) = −∫ₐᵇ f(x) dx"]
+  A --> D["∫ₐᶜ = ∫ₐᵇ + ∫ᵦᶜ"]`}
+/>
+
 ## Regel für konstante Vielfache
 
 Genau wie bei unbestimmten Integralen kann eine Konstante aus dem Integral herausgerechnet werden, um die Berechnung zu vereinfachen.
@@ -42,6 +51,32 @@ Werden alle Funktionswerte mit einer Konstanten <InlineMath math="k" /> multipli
 Für <InlineMath math="k=3" /> wird jeder Beitrag **dreimal so groß**. Die Integrationsgrenzen bleiben unverändert, wenn du die Konstante vor das Integral ziehst:
 
 <BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
+
+Verdoppelst du die Funktion, verdoppelt sich jede Höhe, also auch die Fläche. Auf <InlineMath math="[0, 2]" /> ist die Fläche unter <InlineMath math="y = x + 1" /> gleich <InlineMath math="4" />, die Fläche unter <InlineMath math="y = 2(x + 1)" /> gleich <InlineMath math="8 = 2 \cdot 4" />.
+
+<MathVisual
+  title="Ein konstanter Faktor skaliert die Fläche"
+  description={<>Die Trapeze unter <InlineMath math="y = x + 1" /> und <InlineMath math="y = 2(x + 1)" /> auf <InlineMath math="[0, 2]" />, mit den Flächen 4 und 8.</>}
+  labels={{
+    single: <InlineMath math="4" />,
+    double: <InlineMath math="8" />,
+    top: <InlineMath math="y = 2(x + 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: 1, y: 3 }, placement: "center" },
+      { key: "top", objectId: "double", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Summenregel und Differenzenregel
 
@@ -74,3 +109,30 @@ Teile das Intervall <InlineMath math="[0,2]" /> an der Stelle <InlineMath math="
 | <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
 
 Beide Teile ergeben zusammen <InlineMath math="\frac12+\frac32=2" />, genau wie <InlineMath math="\int_0^2 x\,dx" />. **Derselbe Teilungspunkt** ist die Obergrenze des ersten und die Untergrenze des zweiten Integrals. So wird kein Teil des Intervalls ausgelassen.
+
+Teil das Intervall, und die Flächen addieren sich. Unter <InlineMath math="y = x + 1" /> hat der Bereich von <InlineMath math="0" /> bis <InlineMath math="2" /> die Fläche <InlineMath math="4" /> und der Bereich von <InlineMath math="2" /> bis <InlineMath math="4" /> die Fläche <InlineMath math="8" />. Zusammen ergeben sie die ganze Fläche <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
+
+<MathVisual
+  title="Flächen addieren sich, wenn das Intervall geteilt wird"
+  description={<>Zwei Trapeze unter <InlineMath math="y = x + 1" />, von 0 bis 2 mit Fläche 4 und von 2 bis 4 mit Fläche 8, zusammen 12.</>}
+  labels={{
+    left: <InlineMath math="4" />,
+    right: <InlineMath math="8" />,
+    f: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "right", objectId: "right", at: { x: 3, y: 2 }, placement: "center" },
+      { key: "f", objectId: "f", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use the zero-width, reversed-bound, linearity, and interval-addition properties of definite integrals.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
@@ -31,6 +31,15 @@ For <InlineMath math="f(x)=x" />, an antiderivative is <InlineMath math="x^2/2" 
 
 <BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
 
+<Mermaid
+  title="Rules that follow from F(b) − F(a)"
+  description="Equal limits give zero, swapping the limits changes the sign, and a split interval adds its parts."
+  chart={`flowchart TD
+  A["∫ₐᵇ f(x) dx = F(b) − F(a)"] --> B["∫ₐᵃ f(x) dx = F(a) − F(a) = 0"]
+  A --> C["∫ᵦᵃ f(x) dx = F(a) − F(b) = −∫ₐᵇ f(x) dx"]
+  A --> D["∫ₐᶜ = ∫ₐᵇ + ∫ᵦᶜ"]`}
+/>
+
 ## Constant Multiple Rule
 
 Just as with indefinite integrals, a constant can be factored out of the integral to simplify the calculation.
@@ -42,6 +51,32 @@ Multiplying every value of a function by a constant <InlineMath math="k" /> mult
 With <InlineMath math="k=3" />, every contribution becomes **three times as large**. Keep the integration limits unchanged when taking the constant outside:
 
 <BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
+
+Doubling the function doubles every height, so the area doubles too. On <InlineMath math="[0, 2]" /> the area under <InlineMath math="y = x + 1" /> is <InlineMath math="4" />, and the area under <InlineMath math="y = 2(x + 1)" /> is <InlineMath math="8 = 2 \cdot 4" />.
+
+<MathVisual
+  title="A constant factor scales the area"
+  description={<>The trapezoids under <InlineMath math="y = x + 1" /> and <InlineMath math="y = 2(x + 1)" /> on <InlineMath math="[0, 2]" />, with areas 4 and 8.</>}
+  labels={{
+    single: <InlineMath math="4" />,
+    double: <InlineMath math="8" />,
+    top: <InlineMath math="y = 2(x + 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: 1, y: 3 }, placement: "center" },
+      { key: "top", objectId: "double", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Sum and Difference Rule
 
@@ -74,3 +109,30 @@ Split the interval <InlineMath math="[0,2]" /> at <InlineMath math="x=1" />. The
 | <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
 
 The two parts add to <InlineMath math="\frac12+\frac32=2" />, agreeing with <InlineMath math="\int_0^2 x\,dx" />. The **same split point** is the upper limit of the first integral and the lower limit of the second, so no part of the interval is omitted.
+
+Split an interval and the areas add. Under <InlineMath math="y = x + 1" />, the region from <InlineMath math="0" /> to <InlineMath math="2" /> has area <InlineMath math="4" /> and the region from <InlineMath math="2" /> to <InlineMath math="4" /> has area <InlineMath math="8" />. Together they make the whole area <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
+
+<MathVisual
+  title="Areas add when the interval splits"
+  description={<>Two trapezoids under <InlineMath math="y = x + 1" />, from 0 to 2 with area 4 and from 2 to 4 with area 8, total 12.</>}
+  labels={{
+    left: <InlineMath math="4" />,
+    right: <InlineMath math="8" />,
+    f: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "right", objectId: "right", at: { x: 3, y: 2 }, placement: "center" },
+      { key: "f", objectId: "f", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

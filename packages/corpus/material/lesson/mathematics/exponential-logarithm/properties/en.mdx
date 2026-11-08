@@ -4,7 +4,7 @@ export const metadata = {
     "Use seven exponent properties with correct domain conditions, a base-two pattern table, and worked integer and rational examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -27,6 +27,16 @@ The table shows a repeated pattern. Moving down one row **increases the exponent
 
 For example, <InlineMath math="2^5\cdot2^3" /> combines five factors of two with three more factors. The result has eight factors of two, so <InlineMath math="2^5\cdot2^3=2^8" />.
 
+Each step up the list multiplies by <InlineMath math="2" />, so the bars double: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. The exponent counts how many factors of <InlineMath math="2" /> were multiplied, which is why <InlineMath math="2^0 = 1" /> starts the list with no factors at all.
+
+<BarChart
+  title="Powers of two"
+  description={<>Bar <InlineMath math="n" /> shows <InlineMath math="2^n" /> for <InlineMath math="n = 0" /> to <InlineMath math="6" />.</>}
+  yAxisLabel="Value"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Seven Exponent Properties
 
 | Situation | Property | Conditions used here |
@@ -40,6 +50,34 @@ For example, <InlineMath math="2^5\cdot2^3" /> combines five factors of two with
 | Multiply general rational powers | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
 The **base stays the same** when powers with equal bases are multiplied or divided. Only the exponents are combined. By contrast, a power outside parentheses acts on the entire expression inside the parentheses.
+
+Multiplying powers of the same base adds the exponents. On the exponent line, <InlineMath math="2^3" /> is a step of length <InlineMath math="3" /> and <InlineMath math="2^2" /> a step of length <InlineMath math="2" />. Put them end to end and you land on exponent <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title="Exponents add when powers multiply"
+  description={<>Two steps on the exponent line, of lengths 3 and 2, ending at exponent 5 for <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Conditions for Exponent Rules
 
@@ -60,6 +98,17 @@ The table links each operation in the expression to the **first step in simplify
 | Power outside a power | Multiply the exponents |
 | Product or quotient inside parentheses | Distribute the outer exponent |
 | Rational exponents with different denominators | Rewrite them with a common denominator |
+
+<Mermaid
+  title="Which exponent rule an operation calls for"
+  description="The operation between the powers decides the rule: multiplying adds exponents, dividing subtracts them, and raising a power to a power multiplies them."
+  chart={`flowchart LR
+  A["aᵐ · aⁿ"] --> A1["aᵐ⁺ⁿ"]
+  B["aᵐ ÷ aⁿ"] --> B1["aᵐ⁻ⁿ"]
+  C["(aᵐ)ⁿ"] --> C1["aᵐⁿ"]
+  D["(ab)ⁿ"] --> D1["aⁿbⁿ"]
+  E["a⁻ⁿ"] --> E1["1 / aⁿ"]`}
+/>
 
 ## Simplifying Products Quotients and Powers
 

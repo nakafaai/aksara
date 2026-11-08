@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan sifat interval nol, pembalikan batas, linearitas, dan penambahan interval pada integral tentu.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
@@ -31,6 +31,15 @@ Untuk <InlineMath math="f(x)=x" />, antiturunannya adalah <InlineMath math="x^2/
 
 <BlockMath math="\begin{aligned}\int_0^2 x\,dx&=\frac{2^2}{2}-\frac{0^2}{2}=2\\\int_2^0 x\,dx&=\frac{0^2}{2}-\frac{2^2}{2}=-2\end{aligned}" />
 
+<Mermaid
+  title="Aturan yang muncul dari F(b) − F(a)"
+  description="Batas yang sama memberi nol, menukar batas mengubah tanda, dan selang yang dipecah menjumlahkan bagian-bagiannya."
+  chart={`flowchart TD
+  A["∫ₐᵇ f(x) dx = F(b) − F(a)"] --> B["∫ₐᵃ f(x) dx = F(a) − F(a) = 0"]
+  A --> C["∫ᵦᵃ f(x) dx = F(a) − F(b) = −∫ₐᵇ f(x) dx"]
+  A --> D["∫ₐᶜ = ∫ₐᵇ + ∫ᵦᶜ"]`}
+/>
+
 ## Aturan Kelipatan Konstanta
 
 Sama seperti pada integral tak tentu, konstanta dapat dikeluarkan dari integral untuk menyederhanakan perhitungan.
@@ -42,6 +51,32 @@ Jika setiap nilai fungsi dikalikan konstanta <InlineMath math="k" />, nilai inte
 Pada <InlineMath math="k=3" />, semua kontribusi integral menjadi **tiga kali semula**. Batas integrasi harus tetap sama saat faktor konstanta dikeluarkan:
 
 <BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
+
+Menggandakan fungsi menggandakan setiap ketinggian, jadi luasnya juga menjadi dua kali. Pada <InlineMath math="[0, 2]" />, luas di bawah <InlineMath math="y = x + 1" /> adalah <InlineMath math="4" />, dan luas di bawah <InlineMath math="y = 2(x + 1)" /> adalah <InlineMath math="8 = 2 \cdot 4" />.
+
+<MathVisual
+  title="Faktor konstanta menskalakan luas"
+  description={<>Trapesium di bawah <InlineMath math="y = x + 1" /> dan <InlineMath math="y = 2(x + 1)" /> pada <InlineMath math="[0, 2]" />, dengan luas 4 dan 8.</>}
+  labels={{
+    single: <InlineMath math="4" />,
+    double: <InlineMath math="8" />,
+    top: <InlineMath math="y = 2(x + 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: 1, y: 3 }, placement: "center" },
+      { key: "top", objectId: "double", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Aturan Penjumlahan dan Pengurangan
 
@@ -74,3 +109,30 @@ Pisahkan interval <InlineMath math="[0,2]" /> pada <InlineMath math="x=1" />. Ni
 | <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
 
 Jumlah kedua bagian adalah <InlineMath math="\frac12+\frac32=2" />, sama dengan <InlineMath math="\int_0^2 x\,dx" />. **Titik pembagi yang sama** menjadi batas atas integral pertama dan batas bawah integral kedua, sehingga tidak ada interval yang terlewat.
+
+Pecah selangnya, maka luasnya dijumlahkan. Di bawah <InlineMath math="y = x + 1" />, daerah dari <InlineMath math="0" /> sampai <InlineMath math="2" /> luasnya <InlineMath math="4" /> dan daerah dari <InlineMath math="2" /> sampai <InlineMath math="4" /> luasnya <InlineMath math="8" />. Bersama-sama keduanya membentuk luas keseluruhan <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
+
+<MathVisual
+  title="Luas dijumlahkan saat selangnya dipecah"
+  description={<>Dua trapesium di bawah <InlineMath math="y = x + 1" />, dari 0 sampai 2 seluas 4 dan dari 2 sampai 4 seluas 8, totalnya 12.</>}
+  labels={{
+    left: <InlineMath math="4" />,
+    right: <InlineMath math="8" />,
+    f: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "right", objectId: "right", at: { x: 3, y: 2 }, placement: "center" },
+      { key: "f", objectId: "f", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

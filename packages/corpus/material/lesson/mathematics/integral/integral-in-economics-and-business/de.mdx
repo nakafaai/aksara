@@ -3,7 +3,7 @@ export const metadata = {
    description: "Wende Integrale auf wirtschaftliche Situationen an und berechne Absatz, Umsatzänderungen, Produktionskosten und Konsumentenrente.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integrale",
 };
 
@@ -20,6 +20,14 @@ Die waagerechte Achse zeigt die Integrationsvariable: Zeit bei einer Absatzrate 
 | Stück pro Monat | Monate | Verkaufte Stückzahl |
 | Tausend Rupiah pro Stück | Produzierte Stückzahl | Tausend Rupiah |
 | Tausend Rupiah pro Monat | Monate | Tausend Rupiah |
+
+<Mermaid
+  title="Von der Rate zur Summe"
+  description="Eine Grenzrate, über ein Intervall integriert, ergibt die Gesamtänderung auf diesem Intervall, ob Verkauf, Erlös oder Kosten."
+  chart={`flowchart LR
+  A["Rate: S′(t), R′(t) oder C′(x)"] -->|"von a bis b integrieren"| B["Gesamtänderung auf [a, b]"]
+  B --> C["Hinzugekommener Verkauf, Erlös oder Kosten"]`}
+/>
 
 ## Verkaufsanalyse mit Integralen
 
@@ -45,6 +53,16 @@ Für den Wurzelausdruck eignet sich die Substitution <InlineMath math="u = t + 1
 </MathContainer>
 
 Das kontinuierliche Modell liefert für die ersten <InlineMath math="3 \text{ Monate}" /> den Wert <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" />. Als ganze Geräte sind das ungefähr <InlineMath math="11733" /> Smartphones.
+
+Ein Integral summiert eine Rate auf. Bei der Verkaufsrate <InlineMath math="2000\sqrt{t + 1} + 800" /> Einheiten pro Jahr zeigen die Balken die Gesamtverkäufe nach <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Jahren, jeweils berechnet als <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Der letzte Balken liegt bei etwa <InlineMath math="11.733" /> Einheiten, dem Ergebnis oben.
+
+<BarChart
+  title="Gesamtverkäufe aus einer Rate"
+  description={<>Gesamtverkäufe nach 1, 2 und 3 Jahren, jeweils das Integral der Verkaufsrate von 0 bis zu diesem Jahr.</>}
+  yAxisLabel="Verkaufte Einheiten"
+  data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
+  chartConfig={{ value: { label: "Verkaufte Einheiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Analyse des Umsatzwachstums
 
@@ -104,6 +122,34 @@ Die Konsumentenrente von <InlineMath math="1600 \text{ Rupiah}" /> misst den ges
 Die Preisdifferenz bildet ein **Dreieck**: Bei <InlineMath math="Q=0" /> beträgt seine Höhe <InlineMath math="40" /> Rupiah pro Stück, bei <InlineMath math="Q=80" /> ist sie null. Prüfe das Integral mit der Dreiecksfläche:
 
 <BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
+Die Konsumentenrente ist die Fläche eines Dreiecks. Käufer würden bis zur Nachfragegeraden <InlineMath math="P = 100 - 0{,}5Q" /> zahlen, aber alle zahlen den Marktpreis <InlineMath math="60" />. Die Lücke zwischen beiden über die ersten <InlineMath math="80" /> Einheiten ist ein Dreieck mit Grundseite <InlineMath math="80" /> und Höhe <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, genau wie das Integral.
+
+<MathVisual
+  title="Die Konsumentenrente als Dreieck"
+  description={<>Die Nachfragegerade <InlineMath math="P = 100 - 0{,}5Q" />, die Preisgerade 60 und das Dreieck dazwischen bis <InlineMath math="Q = 80" />, mit Fläche 1600.</>}
+  labels={{
+    demand: <InlineMath math="P = 100 - 0{,}5Q" />,
+    price: <InlineMath math="P = 60" />,
+    surplus: <InlineMath math="1600" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 5 },
+    objects: [
+      { id: "demand", kind: "line", through: [{ x: 0, y: 100 }, { x: 200, y: 0 }], appearance: "reference" },
+      { id: "price", kind: "line", through: [{ x: 0, y: 60 }, { x: 200, y: 60 }], appearance: "secondary" },
+      { id: "surplus", kind: "polygon", vertices: [{ x: 0, y: 100 }, { x: 0, y: 60 }, { x: 80, y: 60 }], appearance: "primary" },
+      { id: "market", kind: "point", at: { x: 80, y: 60 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "demand", objectId: "demand", at: { x: 140, y: 30 }, placement: "above-right" },
+      { key: "price", objectId: "price", at: { x: 170, y: 60 }, placement: "above" },
+      { key: "surplus", objectId: "surplus", at: { x: 80 / 3, y: 220 / 3 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Übungen
 

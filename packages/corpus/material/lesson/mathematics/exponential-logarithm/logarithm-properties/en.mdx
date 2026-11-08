@@ -4,7 +4,7 @@ export const metadata = {
     "Eight logarithm properties are derived and applied to equations and growth models.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-04",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -31,6 +31,16 @@ Whenever <InlineMath math="m" /> or <InlineMath math="b" /> is used as a logarit
 
 The first three rules come directly from <InlineMath math="a^1=a" />, <InlineMath math="a^0=1" />, and the inverse relationship between logarithms and exponents.
 
+A logarithm counts doublings. <InlineMath math="\log_2 x" /> asks how many factors of <InlineMath math="2" /> make <InlineMath math="x" />, so the bars for <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> climb by exactly <InlineMath math="1" /> each time <InlineMath math="x" /> doubles: <InlineMath math="0, 1, 2, 3, 4, 5" />.
+
+<BarChart
+  title="Base 2 logarithms of powers of two"
+  description={<>Bars for <InlineMath math="\log_2 x" /> at <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, rising by 1 each time x doubles.</>}
+  yAxisLabel="log₂ x"
+  data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
+  chartConfig={{ value: { label: "log₂ x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Where the Logarithm Rules Come From
 
 Every logarithm rule follows from the **matching exponent rule**. A logarithm reports the exponent that produces a given number, so a rule about exponents becomes a rule about logarithms.
@@ -51,6 +61,34 @@ Multiplying <InlineMath math="b" /> and <InlineMath math="c" /> **adds their exp
 Taking the base-<InlineMath math="a" /> logarithm gives:
 
 <BlockMath math="\log_a(bc)=x+y=\log_a b+\log_a c" />
+
+The product rule is the exponent rule seen from the other side. <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> are two steps on the exponent line. Placed end to end they reach <InlineMath math="5" />, and <InlineMath math="2^5 = 32 = 8 \cdot 4" />, so <InlineMath math="\log_2 (8 \cdot 4) = \log_2 8 + \log_2 4" />.
+
+<MathVisual
+  title="Logarithms add when numbers multiply"
+  description={<>Steps of length <InlineMath math="\log_2 8 = 3" /> and <InlineMath math="\log_2 4 = 2" /> end at 5, which is <InlineMath math="\log_2 32" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 8" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 32 = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Quotient Rule
 
@@ -105,6 +143,14 @@ Because <InlineMath math="125=5^3" />, the **inverse relationship** and power ru
 </MathContainer>
 
 The result also answers the original exponent question: <InlineMath math="5^3=125" />.
+
+<Mermaid
+  title="Exponential form and logarithmic form"
+  description="The two forms state the same fact, so either one can be rewritten as the other."
+  chart={`flowchart LR
+  E["aᶜ = b"] <-->|"same statement, a > 0, a ≠ 1, b > 0"| L["log_a b = c"]
+  L --> X["Example: 2⁵ = 32 means log₂ 32 = 5"]`}
+/>
 
 ## Exercises
 

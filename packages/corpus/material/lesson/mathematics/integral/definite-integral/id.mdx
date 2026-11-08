@@ -3,7 +3,7 @@ export const metadata = {
     description: "Definisikan integral tentu sebagai limit jumlahan Riemann dan evaluasi satu contoh langsung dari limit tersebut.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
@@ -25,6 +25,14 @@ Notasi ini memiliki arti spesifik:
 - <InlineMath math="dx" />: Sama seperti pada integral tak tentu, ini menandakan bahwa kita mengintegrasikan terhadap variabel <InlineMath math="x" />.
 
 Integral tak tentu memuat semua fungsi berbentuk <InlineMath math="F(x) + C" />. Integral tentu menghasilkan sebuah **angka tunggal** yang menyatakan akumulasi bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nilai tersebut sama dengan luas geometris jika fungsi yang diintegralkan tidak negatif pada seluruh interval.
+
+<Mermaid
+  title="Dari persegi panjang ke integral tentu"
+  description="Persegi panjang menaksir luasnya, persegi panjang yang lebih banyak dan tipis memperbaiki taksiran, dan limit jumlahnya adalah luas tepat."
+  chart={`flowchart LR
+  A["Bagi [a, b] menjadi n jalur selebar Δx"] --> B["Jumlah f(xᵢ*)·Δx"]
+  B -->|"n → ∞"| C["∫ₐᵇ f(x) dx, luas tepat"]`}
+/>
 
 ## Menghitung Integral Tentu dengan Limit
 
@@ -87,6 +95,35 @@ Terakhir, kita ambil limit saat <InlineMath math="n \to \infty" />. Pada limit i
 
 Karena <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" /> sampai <InlineMath math="x=7" />, integral tentu ini juga merupakan luas geometris: <InlineMath math="\frac{49}{2}" /> atau <InlineMath math="24{,}5" /> satuan luas. Limit tersebut mengubah hampiran persegi panjang menjadi nilai eksak.
 
+Ini cara kerja limitnya. Luas tepat di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> sampai <InlineMath math="7" /> adalah segitiga <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Tujuh persegi panjang titik ujung kanan selebar <InlineMath math="1" /> menutupinya dengan sedikit kelebihan di atas: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, sesuai dengan <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+
+<MathVisual
+  title="Tujuh persegi panjang di atas luas tepatnya"
+  description={<>Segitiga di bawah <InlineMath math="y = x" /> dari 0 sampai 7, luasnya <InlineMath math="\tfrac{49}{2}" />, ditutupi tujuh persegi panjang dengan total luas 28.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: (1 * 7) / 7 }, { x: (0 * 7) / 7, y: (1 * 7) / 7 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: (2 * 7) / 7 }, { x: (1 * 7) / 7, y: (2 * 7) / 7 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: (3 * 7) / 7 }, { x: (2 * 7) / 7, y: (3 * 7) / 7 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: (4 * 7) / 7 }, { x: (3 * 7) / 7, y: (4 * 7) / 7 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: (5 * 7) / 7 }, { x: (4 * 7) / 7, y: (5 * 7) / 7 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: (6 * 7) / 7 }, { x: (5 * 7) / 7, y: (6 * 7) / 7 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: (7 * 7) / 7 }, { x: (6 * 7) / 7, y: (7 * 7) / 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Membandingkan Banyak Persegi Panjang
 
 Tuliskan jumlahan ujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Kita dapat memeriksa beberapa nilai <InlineMath math="n" /> sebelum mengambil limit. Karena grafik naik, setiap persegi panjang ujung kanan memberi **hampiran dari atas**.
@@ -102,3 +139,39 @@ Tuliskan jumlahan ujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac
 Selisih hampiran dari nilai eksak adalah <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Jadi, menggandakan banyak persegi panjang membagi dua galat pada contoh linear ini. Kamu juga dapat memeriksa luas eksaknya sebagai segitiga dengan alas dan tinggi <InlineMath math="7" />:
 
 <BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+
+Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masing selebar <InlineMath math="\tfrac12" />. Kelebihan di atasnya makin tipis, dan totalnya turun menjadi <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26{,}25" />. Setiap kali <InlineMath math="n" /> bertambah, jumlahnya makin dekat ke <InlineMath math="24{,}5" />.
+
+<MathVisual
+  title="Empat belas persegi panjang yang lebih tipis"
+  description={<>Empat belas persegi panjang selebar setengah di bawah <InlineMath math="y = x" />, dengan total luas 26,25 dibanding luas tepat 24,5.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: (1 * 7) / 14 }, { x: (0 * 7) / 14, y: (1 * 7) / 14 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: (2 * 7) / 14 }, { x: (1 * 7) / 14, y: (2 * 7) / 14 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: (3 * 7) / 14 }, { x: (2 * 7) / 14, y: (3 * 7) / 14 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: (4 * 7) / 14 }, { x: (3 * 7) / 14, y: (4 * 7) / 14 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: (5 * 7) / 14 }, { x: (4 * 7) / 14, y: (5 * 7) / 14 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: (6 * 7) / 14 }, { x: (5 * 7) / 14, y: (6 * 7) / 14 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: (7 * 7) / 14 }, { x: (6 * 7) / 14, y: (7 * 7) / 14 }], appearance: "secondary" },
+      { id: "r8", kind: "polygon", vertices: [{ x: (7 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: (8 * 7) / 14 }, { x: (7 * 7) / 14, y: (8 * 7) / 14 }], appearance: "secondary" },
+      { id: "r9", kind: "polygon", vertices: [{ x: (8 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: (9 * 7) / 14 }, { x: (8 * 7) / 14, y: (9 * 7) / 14 }], appearance: "secondary" },
+      { id: "r10", kind: "polygon", vertices: [{ x: (9 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: (10 * 7) / 14 }, { x: (9 * 7) / 14, y: (10 * 7) / 14 }], appearance: "secondary" },
+      { id: "r11", kind: "polygon", vertices: [{ x: (10 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: (11 * 7) / 14 }, { x: (10 * 7) / 14, y: (11 * 7) / 14 }], appearance: "secondary" },
+      { id: "r12", kind: "polygon", vertices: [{ x: (11 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: (12 * 7) / 14 }, { x: (11 * 7) / 14, y: (12 * 7) / 14 }], appearance: "secondary" },
+      { id: "r13", kind: "polygon", vertices: [{ x: (12 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: (13 * 7) / 14 }, { x: (12 * 7) / 14, y: (13 * 7) / 14 }], appearance: "secondary" },
+      { id: "r14", kind: "polygon", vertices: [{ x: (13 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: (14 * 7) / 14 }, { x: (13 * 7) / 14, y: (14 * 7) / 14 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

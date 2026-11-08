@@ -3,7 +3,7 @@ export const metadata = {
    description: "Apply integrals to example business models to calculate total sales, cost changes, revenue growth, and consumer surplus.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integrals",
 };
 
@@ -20,6 +20,14 @@ The horizontal axis follows the integration variable: time for sales rate, or pr
 | Units per month | Months | Units sold |
 | Thousand rupiah per unit | Units produced | Thousand rupiah |
 | Thousand rupiah per month | Months | Thousand rupiah |
+
+<Mermaid
+  title="From a rate to a total"
+  description="A marginal rate integrated over an interval gives the total change over that interval, whether sales, revenue or cost."
+  chart={`flowchart LR
+  A["Rate: S′(t), R′(t) or C′(x)"] -->|"integrate from a to b"| B["Total change over [a, b]"]
+  B --> C["Sales, revenue or cost gained"]`}
+/>
 
 ## Sales Analysis Using Integrals
 
@@ -45,6 +53,16 @@ For integrals containing square roots, we can use substitution. Let <InlineMath 
 </MathContainer>
 
 The continuous model predicts <InlineMath math="S = \frac{35200}{3} \approx 11733.33" /> smartphone units in the first <InlineMath math="3 \text{ months}" />. Interpreted as whole devices, that is approximately <InlineMath math="11733" /> smartphones.
+
+An integral adds up a rate. With the sales rate <InlineMath math="2000\sqrt{t + 1} + 800" /> units per year, the bars show the total sold after <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" /> years, each computed as <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. The last bar is about <InlineMath math="11733" /> units, the result above.
+
+<BarChart
+  title="Total sales accumulated from a rate"
+  description={<>Total sales after 1, 2 and 3 years, each the integral of the sales rate from 0 to that year.</>}
+  yAxisLabel="Units sold"
+  data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
+  chartConfig={{ value: { label: "Units sold", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Revenue Growth Analysis
 
@@ -104,6 +122,34 @@ A consumer surplus of <InlineMath math="1600 \text{ rupiah}" /> measures the tot
 The price difference forms a **triangle**: its height is <InlineMath math="40" /> rupiah per unit at <InlineMath math="Q=0" /> and falls to zero at <InlineMath math="Q=80" />. Check the integral using the triangle area:
 
 <BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
+The consumer surplus is the area of a triangle. Buyers would pay up to the demand line <InlineMath math="P = 100 - 0.5Q" />, but everyone pays the market price <InlineMath math="60" />. The gap between the two over the first <InlineMath math="80" /> units is a triangle with base <InlineMath math="80" /> and height <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, the same as the integral.
+
+<MathVisual
+  title="Consumer surplus as a triangle"
+  description={<>The demand line <InlineMath math="P = 100 - 0.5Q" />, the price line 60 and the triangle between them up to <InlineMath math="Q = 80" />, of area 1600.</>}
+  labels={{
+    demand: <InlineMath math="P = 100 - 0.5Q" />,
+    price: <InlineMath math="P = 60" />,
+    surplus: <InlineMath math="1600" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 5 },
+    objects: [
+      { id: "demand", kind: "line", through: [{ x: 0, y: 100 }, { x: 200, y: 0 }], appearance: "reference" },
+      { id: "price", kind: "line", through: [{ x: 0, y: 60 }, { x: 200, y: 60 }], appearance: "secondary" },
+      { id: "surplus", kind: "polygon", vertices: [{ x: 0, y: 100 }, { x: 0, y: 60 }, { x: 80, y: 60 }], appearance: "primary" },
+      { id: "market", kind: "point", at: { x: 80, y: 60 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "demand", objectId: "demand", at: { x: 140, y: 30 }, placement: "above-right" },
+      { key: "price", objectId: "price", at: { x: 170, y: 60 }, placement: "above" },
+      { key: "surplus", objectId: "surplus", at: { x: 80 / 3, y: 220 / 3 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Exercises
 

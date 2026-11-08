@@ -4,7 +4,7 @@ export const metadata = {
     "Nutze sieben Potenzgesetze mit korrekten Definitionsbedingungen, einer Zweierpotenztabelle und Beispielen zu ganzzahligen und rationalen Exponenten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Exponenten und Logarithmen",
 };
 
@@ -27,6 +27,16 @@ Die Tabelle zeigt ein wiederkehrendes Muster. Eine Zeile weiter unten **steigt d
 
 Zum Beispiel verbindet <InlineMath math="2^5\cdot2^3" /> fünf Faktoren zwei mit drei weiteren Faktoren zwei. Das Ergebnis besitzt acht Faktoren zwei. Daher gilt <InlineMath math="2^5\cdot2^3=2^8" />.
 
+Jeder Schritt nach oben multipliziert mit <InlineMath math="2" />, die Balken verdoppeln sich also: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Der Exponent zählt, wie viele Faktoren <InlineMath math="2" /> multipliziert wurden. Darum beginnt <InlineMath math="2^0 = 1" /> die Liste ganz ohne Faktor.
+
+<BarChart
+  title="Zweierpotenzen"
+  description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="2^n" /> für <InlineMath math="n = 0" /> bis <InlineMath math="6" />.</>}
+  yAxisLabel="Wert"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Sieben Potenzgesetze
 
 | Form des Ausdrucks | Gesetz | Hier verwendete Bedingungen |
@@ -40,6 +50,34 @@ Zum Beispiel verbindet <InlineMath math="2^5\cdot2^3" /> fünf Faktoren zwei mit
 | Allgemeine rationale Potenzen multiplizieren | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
 Beim Multiplizieren oder Dividieren gleicher Basen bleibt **die Basis unverändert**. Nur die Exponenten werden miteinander verknüpft. Eine Potenz außerhalb einer Klammer wirkt dagegen auf den gesamten Ausdruck in der Klammer.
+
+Multiplizierst du Potenzen mit gleicher Basis, addieren sich die Exponenten. Auf der Exponentenlinie ist <InlineMath math="2^3" /> ein Schritt der Länge <InlineMath math="3" /> und <InlineMath math="2^2" /> ein Schritt der Länge <InlineMath math="2" />. Hängst du sie aneinander, landest du bei Exponent <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title="Exponenten addieren sich, wenn Potenzen multipliziert werden"
+  description={<>Zwei Schritte auf der Exponentenlinie, der Länge 3 und 2, enden bei Exponent 5 für <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Bedingungen für Potenzgesetze
 
@@ -60,6 +98,17 @@ Die Tabelle verbindet jede Operation im Term mit dem **ersten Vereinfachungsschr
 | Eine Potenz steht außerhalb einer Potenz | Exponenten multiplizieren |
 | Produkt oder Quotient steht in Klammern | Äußeren Exponenten verteilen |
 | Rationale Exponenten haben verschiedene Nenner | Auf einen gemeinsamen Nenner bringen |
+
+<Mermaid
+  title="Welche Potenzregel eine Rechenart verlangt"
+  description="Die Rechenart zwischen den Potenzen bestimmt die Regel: Multiplizieren addiert Exponenten, Dividieren subtrahiert sie, und Potenzieren einer Potenz multipliziert sie."
+  chart={`flowchart LR
+  A["aᵐ · aⁿ"] --> A1["aᵐ⁺ⁿ"]
+  B["aᵐ ÷ aⁿ"] --> B1["aᵐ⁻ⁿ"]
+  C["(aᵐ)ⁿ"] --> C1["aᵐⁿ"]
+  D["(ab)ⁿ"] --> D1["aⁿbⁿ"]
+  E["a⁻ⁿ"] --> E1["1 / aⁿ"]`}
+/>
 
 ## Produkte Quotienten und Potenzen vereinfachen
 

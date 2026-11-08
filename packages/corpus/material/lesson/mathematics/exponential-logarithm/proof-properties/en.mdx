@@ -4,7 +4,7 @@ export const metadata = {
     "Prove seven exponent properties with valid domain conditions, then use them in fully worked simplification examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -24,6 +24,16 @@ Exponent rules depend on the **kind of exponent** and the **sign of the base**. 
 
 The integer rules can sometimes be extended to other domains, but those extensions require extra conditions. Under the conditions listed in the table, every expression is well-defined over the real numbers.
 
+<Mermaid
+  title="Checking the base before using a rule"
+  description="Integer exponents allow any nonzero base, while rational exponents need a positive base so that every root is defined."
+  chart={`flowchart TD
+  A["Exponent rule to use"] --> Q{"Exponents"}
+  Q -->|"positive whole numbers"| W["Any base a"]
+  Q -->|"negative or zero"| N["Base a ≠ 0"]
+  Q -->|"rational"| R["Base a > 0"]`}
+/>
+
 ## Proofs for Integer Exponents
 
 The proofs below write each power as **repeated multiplication**. That form shows directly why the exponents add, subtract, or multiply. Read each proof as a short chain of equalities, and check that every step uses only the definition of a power.
@@ -39,6 +49,35 @@ For positive integers <InlineMath math="m" /> and <InlineMath math="n" />, write
 </MathContainer>
 
 The zero case follows from <InlineMath math="a^0=1" />. Negative integer exponents follow from <InlineMath math="a^{-k}=\frac1{a^k}" />, which is why <InlineMath math="a" /> must be nonzero.
+
+Count the factors and the rule proves itself. Each square is one factor <InlineMath math="a" />. <InlineMath math="a^3" /> gives three squares and <InlineMath math="a^4" /> gives four, so the product holds <InlineMath math="3 + 4 = 7" /> factors in a row: <InlineMath math="a^3 \cdot a^4 = a^7" />.
+
+<MathVisual
+  title="Seven factors in a row"
+  description={<>Three squares for <InlineMath math="a^3" /> and four for <InlineMath math="a^4" /> make seven factors of <InlineMath math="a" />.</>}
+  labels={{
+    a: <InlineMath math="a^3" />,
+    b: <InlineMath math="a^4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7.5 }, y: { min: -0.5, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q00", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q01", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q02", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2 + 0.8, y: 0 }, { x: 2 + 0.8, y: 0 + 0.8 }, { x: 2, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q10", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 + 0.8, y: 0 }, { x: 3 + 0.8, y: 0 + 0.8 }, { x: 3, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q11", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 4 + 0.8, y: 0 }, { x: 4 + 0.8, y: 0 + 0.8 }, { x: 4, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q12", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 5 + 0.8, y: 0 }, { x: 5 + 0.8, y: 0 + 0.8 }, { x: 5, y: 0 + 0.8 }], appearance: "secondary" },
+      { id: "q13", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 + 0.8, y: 0 }, { x: 6 + 0.8, y: 0 + 0.8 }, { x: 6, y: 0 + 0.8 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "q00", at: { x: 0, y: 0 + 0.4 }, placement: "left" },
+      { key: "b", objectId: "q10", at: { x: 3, y: 0 + 0.4 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Same Base Quotient
 
@@ -57,6 +96,36 @@ For positive <InlineMath math="n" />, the factor <InlineMath math="a^m" /> **app
 <BlockMath math="\begin{aligned} (a^m)^n &amp;=\underbrace{a^m a^m\cdots a^m}_{n\text{ factors}} \\ &amp;=a^{m+m+\cdots+m} \\ &amp;=a^{mn} \end{aligned}" />
 
 The zero exponent covers <InlineMath math="n=0" />, and the reciprocal covers negative <InlineMath math="n" />.
+
+A power of a power stacks copies. <InlineMath math="(a^2)^3" /> means three copies of <InlineMath math="a^2" />, one per row, each with two factors. The grid holds <InlineMath math="2 \cdot 3 = 6" /> squares, so <InlineMath math="(a^2)^3 = a^6" />.
+
+<MathVisual
+  title="Three rows of two factors"
+  description={<>Three rows, one for each copy of <InlineMath math="a^2" />, with two squares each: six factors of <InlineMath math="a" />.</>}
+  labels={{
+    a: <InlineMath math="a^2" />,
+    b: <InlineMath math="a^2" />,
+    c: <InlineMath math="a^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -2.5, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q00", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0 + 0.8 }, { x: 0, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q01", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0 + 0.8 }, { x: 1, y: 0 + 0.8 }], appearance: "primary" },
+      { id: "q10", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: 0 + 0.8, y: -1 }, { x: 0 + 0.8, y: -1 + 0.8 }, { x: 0, y: -1 + 0.8 }], appearance: "secondary" },
+      { id: "q11", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: 1 + 0.8, y: -1 }, { x: 1 + 0.8, y: -1 + 0.8 }, { x: 1, y: -1 + 0.8 }], appearance: "secondary" },
+      { id: "q20", kind: "polygon", vertices: [{ x: 0, y: -2 }, { x: 0 + 0.8, y: -2 }, { x: 0 + 0.8, y: -2 + 0.8 }, { x: 0, y: -2 + 0.8 }], appearance: "construction" },
+      { id: "q21", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: 1 + 0.8, y: -2 }, { x: 1 + 0.8, y: -2 + 0.8 }, { x: 1, y: -2 + 0.8 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "a", objectId: "q00", at: { x: 0, y: 0 + 0.4 }, placement: "left" },
+      { key: "b", objectId: "q10", at: { x: 0, y: -1 + 0.4 }, placement: "left" },
+      { key: "c", objectId: "q20", at: { x: 0, y: -2 + 0.4 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Power of a Product and Quotient
 

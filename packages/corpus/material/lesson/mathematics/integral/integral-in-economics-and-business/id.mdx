@@ -3,7 +3,7 @@ export const metadata = {
    description: "Terapkan integral pada contoh model bisnis untuk menghitung total penjualan, perubahan biaya, pertumbuhan pendapatan, dan surplus konsumen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integral",
 };
 
@@ -20,6 +20,14 @@ Sumbu horizontal mengikuti variabel integrasi: waktu untuk laju penjualan, atau 
 | Unit per bulan | Bulan | Unit terjual |
 | Ribu rupiah per unit | Unit produksi | Ribu rupiah |
 | Ribu rupiah per bulan | Bulan | Ribu rupiah |
+
+<Mermaid
+  title="Dari laju ke total"
+  description="Laju marginal yang diintegralkan pada sebuah selang memberi perubahan total pada selang itu, baik penjualan, pendapatan, maupun biaya."
+  chart={`flowchart LR
+  A["Laju: S′(t), R′(t), atau C′(x)"] -->|"integralkan dari a sampai b"| B["Perubahan total pada [a, b]"]
+  B --> C["Penjualan, pendapatan, atau biaya yang bertambah"]`}
+/>
 
 ## Analisis Penjualan Menggunakan Integral
 
@@ -45,6 +53,16 @@ Untuk integral yang mengandung akar, kita bisa gunakan substitusi. Misalkan <Inl
 </MathContainer>
 
 Model kontinu tersebut memprediksi <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" /> unit smartphone dalam <InlineMath math="3 \text{ bulan}" /> pertama. Jika dinyatakan sebagai jumlah perangkat utuh, hasilnya sekitar <InlineMath math="11733" /> smartphone.
+
+Integral menjumlahkan sebuah laju. Dengan laju penjualan <InlineMath math="2000\sqrt{t + 1} + 800" /> unit per tahun, batangnya menunjukkan total terjual setelah <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> tahun, masing-masing dihitung sebagai <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Batang terakhir sekitar <InlineMath math="11.733" /> unit, sama dengan hasil di atas.
+
+<BarChart
+  title="Total penjualan yang terkumpul dari laju"
+  description={<>Total penjualan setelah 1, 2, dan 3 tahun, masing-masing integral laju penjualan dari 0 sampai tahun itu.</>}
+  yAxisLabel="Unit terjual"
+  data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
+  chartConfig={{ value: { label: "Unit terjual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Analisis Pertumbuhan Pendapatan
 
@@ -104,6 +122,34 @@ Surplus konsumen sebesar <InlineMath math="1600 \text{ rupiah}" /> mengukur manf
 Selisih harga membentuk **segitiga**: pada <InlineMath math="Q=0" /> tingginya <InlineMath math="40" /> rupiah per unit, lalu turun ke nol pada <InlineMath math="Q=80" />. Cek hasil integral dengan luas segitiga:
 
 <BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
+Surplus konsumen adalah luas sebuah segitiga. Pembeli mau membayar sampai garis permintaan <InlineMath math="P = 100 - 0{,}5Q" />, tetapi semua membayar harga pasar <InlineMath math="60" />. Selisih keduanya untuk <InlineMath math="80" /> unit pertama membentuk segitiga dengan alas <InlineMath math="80" /> dan tinggi <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, sama dengan hasil integralnya.
+
+<MathVisual
+  title="Surplus konsumen sebagai segitiga"
+  description={<>Garis permintaan <InlineMath math="P = 100 - 0{,}5Q" />, garis harga 60, dan segitiga di antaranya sampai <InlineMath math="Q = 80" />, seluas 1600.</>}
+  labels={{
+    demand: <InlineMath math="P = 100 - 0{,}5Q" />,
+    price: <InlineMath math="P = 60" />,
+    surplus: <InlineMath math="1600" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 5 },
+    objects: [
+      { id: "demand", kind: "line", through: [{ x: 0, y: 100 }, { x: 200, y: 0 }], appearance: "reference" },
+      { id: "price", kind: "line", through: [{ x: 0, y: 60 }, { x: 200, y: 60 }], appearance: "secondary" },
+      { id: "surplus", kind: "polygon", vertices: [{ x: 0, y: 100 }, { x: 0, y: 60 }, { x: 80, y: 60 }], appearance: "primary" },
+      { id: "market", kind: "point", at: { x: 80, y: 60 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "demand", objectId: "demand", at: { x: 140, y: 30 }, placement: "above-right" },
+      { key: "price", objectId: "price", at: { x: 170, y: 60 }, placement: "above" },
+      { key: "surplus", objectId: "surplus", at: { x: 80 / 3, y: 220 / 3 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Latihan
 

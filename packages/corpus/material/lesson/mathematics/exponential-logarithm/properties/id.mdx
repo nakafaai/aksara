@@ -4,7 +4,7 @@ export const metadata = {
     "Gunakan tujuh sifat eksponen dengan syarat domain yang tepat, tabel pola bilangan pokok dua, serta contoh pangkat bulat dan rasional.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -27,6 +27,16 @@ Tabel berikut menunjukkan pola berulang. Turun satu baris berarti **menambah pan
 
 Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua dengan tiga faktor dua lainnya. Hasilnya memiliki delapan faktor dua, sehingga <InlineMath math="2^5\cdot2^3=2^8" />.
 
+Setiap langkah naik dikalikan <InlineMath math="2" />, jadi batangnya berlipat dua: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Pangkat menghitung berapa faktor <InlineMath math="2" /> yang dikalikan, karena itu <InlineMath math="2^0 = 1" /> memulai daftar tanpa faktor sama sekali.
+
+<BarChart
+  title="Perpangkatan dua"
+  description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai <InlineMath math="6" />.</>}
+  yAxisLabel="Nilai"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Tujuh Sifat Eksponen
 
 | Bentuk dalam soal | Sifat | Syarat yang digunakan |
@@ -40,6 +50,34 @@ Sebagai contoh, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua 
 | Mengalikan pangkat rasional umum | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
 
 Bilangan pokok tetap sama ketika bilangan pokok yang sama dikalikan atau dibagi. Hanya **pangkatnya yang digabungkan**. Sebaliknya, pangkat di luar tanda kurung bekerja pada seluruh bentuk di dalam tanda kurung.
+
+Mengalikan perpangkatan berbasis sama menjumlahkan pangkatnya. Pada garis pangkat, <InlineMath math="2^3" /> adalah langkah sepanjang <InlineMath math="3" /> dan <InlineMath math="2^2" /> langkah sepanjang <InlineMath math="2" />. Sambungkan ujung ke ujung, maka kamu mendarat di pangkat <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title="Pangkat dijumlahkan saat perpangkatan dikalikan"
+  description={<>Dua langkah pada garis pangkat, sepanjang 3 dan 2, berakhir di pangkat 5 untuk <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Syarat Penggunaan Sifat Eksponen
 
@@ -60,6 +98,17 @@ Tabel menghubungkan setiap operasi pada bentuk dengan **langkah pertama penyeder
 | Pangkat berada di luar pangkat | Kalikan pangkat |
 | Perkalian atau pembagian di dalam tanda kurung | Sebarkan pangkat luar |
 | Pangkat rasional berpenyebut berbeda | Ubah ke penyebut bersama |
+
+<Mermaid
+  title="Aturan pangkat yang diminta sebuah operasi"
+  description="Operasi di antara perpangkatan menentukan aturannya: perkalian menjumlahkan pangkat, pembagian mengurangkannya, dan pangkat dari pangkat mengalikannya."
+  chart={`flowchart LR
+  A["aᵐ · aⁿ"] --> A1["aᵐ⁺ⁿ"]
+  B["aᵐ ÷ aⁿ"] --> B1["aᵐ⁻ⁿ"]
+  C["(aᵐ)ⁿ"] --> C1["aᵐⁿ"]
+  D["(ab)ⁿ"] --> D1["aⁿbⁿ"]
+  E["a⁻ⁿ"] --> E1["1 / aⁿ"]`}
+/>
 
 ## Menyederhanakan Perkalian Pembagian dan Perpangkatan
 

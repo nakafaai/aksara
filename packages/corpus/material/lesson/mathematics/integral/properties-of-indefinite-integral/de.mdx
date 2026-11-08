@@ -3,7 +3,7 @@ export const metadata = {
     description: "Wende Potenz-, Faktor-, Summen-, Differenz- und Substitutionsregel auf unbestimmte Integrale mit vollständigen Lösungen an.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Integrale",
 };
 
@@ -26,6 +26,39 @@ Hier ist <InlineMath math="n=5" />, also:
 <BlockMath math="= \frac{1}{6}x^6 + C" />
 </MathContainer>
 
+Jede Stammfunktion von <InlineMath math="2x" /> hat die Form <InlineMath math="x^2 + C" />, und die Konstante schiebt die Parabel nur nach oben oder unten. Bei <InlineMath math="x = 1" /> sind alle drei Tangenten parallel mit Steigung <InlineMath math="2" />, weil jede Kurve dieselbe Ableitung <InlineMath math="2x" /> hat.
+
+<MathVisual
+  title="Die Schar x Quadrat plus C"
+  description={<>Die Parabeln <InlineMath math="x^2 - 2" />, <InlineMath math="x^2" /> und <InlineMath math="x^2 + 2" /> mit parallelen Tangenten der Steigung 2 bei <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="x^2 - 2" />,
+    c1: <InlineMath math="x^2" />,
+    c2: <InlineMath math="x^2 + 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: -2 }, domain: { min: -2, max: 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "c2", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 2 }, domain: { min: -2, max: 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 0.4, y: -2 - 0.2 }, to: { x: 1.6, y: -2 + 2.2 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 0.4, y: 0 - 0.2 }, to: { x: 1.6, y: 0 + 2.2 }, appearance: "primary" },
+      { id: "t2", kind: "segment", from: { x: 0.4, y: 2 - 0.2 }, to: { x: 1.6, y: 2 + 2.2 }, appearance: "construction" },
+      { id: "p0", kind: "point", at: { x: 1, y: 1 + -2 }, appearance: "secondary" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 + 0 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 1, y: 1 + 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: -1.8, y: 3.24 + -2 }, placement: "left" },
+      { key: "c1", objectId: "c1", at: { x: -1.8, y: 3.24 + 0 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: -1.8, y: 3.24 + 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Regel für konstante Vielfache
 
 Ein <Highlight>konstanter Faktor kann vor das Integral gezogen werden</Highlight>:
@@ -39,6 +72,31 @@ Die Integrationskonstante bleibt erhalten, auch wenn <InlineMath math="a=0" /> i
 <BlockMath math="\int -3x^2\,dx=-3\frac{x^3}{3}+C=-x^3+C" />
 
 > Dabei muss <InlineMath math="a" /> bezüglich der Integrationsvariablen konstant sein.
+
+Ein konstanter Faktor geht direkt durch das Integral hindurch. Wegen <InlineMath math="\int 2x\,dx = x^2 + C" /> ist das Integral der dreifachen Funktion die dreifache Stammfunktion: <InlineMath math="\int 6x\,dx = 3x^2 + C" />. Die violette Parabel ist die orange, um den Faktor <InlineMath math="3" /> gestreckt.
+
+<MathVisual
+  title="Dreifache Funktion, dreifache Stammfunktion"
+  description={<>Die Stammfunktionen <InlineMath math="x^2" /> von <InlineMath math="2x" /> und <InlineMath math="3x^2" /> von <InlineMath math="6x" />, wobei <InlineMath math="3x^2" /> an jeder Stelle dreimal so hoch ist.</>}
+  labels={{
+    one: <InlineMath math="x^2" />,
+    three: <InlineMath math="3x^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "primary" },
+      { id: "three", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "lift", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 2.25 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 1.5, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Summenregel und Differenzenregel
 
@@ -55,6 +113,15 @@ Um beispielsweise <InlineMath math="\int (x^4 - x^3) \, dx" /> zu lösen, trenne
 </MathContainer>
 
 Am Ende genügt eine Integrationskonstante <InlineMath math="C" />. Formal können die Konstanten der beiden Stammfunktionen als <InlineMath math="C_1" /> und <InlineMath math="C_2" /> bezeichnet werden. Ihre Summe oder Differenz ist wieder eine beliebige Konstante, die eine einzige <InlineMath math="C" /> vollständig erfasst.
+
+<Mermaid
+  title="Die Potenzregel anwenden"
+  description="Für jeden Exponenten außer −1 erhöhst du die Potenz um eins und teilst durch die neue Potenz. Der Exponent −1 liefert den natürlichen Logarithmus."
+  chart={`flowchart TD
+  A["∫ xⁿ dx"] --> Q{"n = −1?"}
+  Q -->|"Nein"| R["xⁿ⁺¹ / (n + 1) + C"]
+  Q -->|"Ja"| L["ln|x| + C"]`}
+/>
 
 ## Substitutionsregel
 

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan aturan pangkat, kelipatan konstanta, jumlah, selisih, dan substitusi pada integral tak tentu dengan pembahasan lengkap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
@@ -26,6 +26,39 @@ Di sini, <InlineMath math="n=5" />, sehingga:
 <BlockMath math="= \frac{1}{6}x^6 + C" />
 </MathContainer>
 
+Setiap antiturunan <InlineMath math="2x" /> berbentuk <InlineMath math="x^2 + C" />, dan konstantanya hanya menggeser parabola ke atas atau ke bawah. Di <InlineMath math="x = 1" />, ketiga garis singgung sejajar dengan kemiringan <InlineMath math="2" />, karena setiap kurva punya turunan yang sama, <InlineMath math="2x" />.
+
+<MathVisual
+  title="Keluarga x kuadrat ditambah C"
+  description={<>Parabola <InlineMath math="x^2 - 2" />, <InlineMath math="x^2" />, dan <InlineMath math="x^2 + 2" /> dengan garis singgung sejajar berkemiringan 2 di <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="x^2 - 2" />,
+    c1: <InlineMath math="x^2" />,
+    c2: <InlineMath math="x^2 + 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: -2 }, domain: { min: -2, max: 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "c2", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 2 }, domain: { min: -2, max: 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 0.4, y: -2 - 0.2 }, to: { x: 1.6, y: -2 + 2.2 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 0.4, y: 0 - 0.2 }, to: { x: 1.6, y: 0 + 2.2 }, appearance: "primary" },
+      { id: "t2", kind: "segment", from: { x: 0.4, y: 2 - 0.2 }, to: { x: 1.6, y: 2 + 2.2 }, appearance: "construction" },
+      { id: "p0", kind: "point", at: { x: 1, y: 1 + -2 }, appearance: "secondary" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 + 0 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 1, y: 1 + 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: -1.8, y: 3.24 + -2 }, placement: "left" },
+      { key: "c1", objectId: "c1", at: { x: -1.8, y: 3.24 + 0 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: -1.8, y: 3.24 + 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Aturan Kelipatan Konstanta
 
 <Highlight>Faktor konstan dapat dipindahkan ke luar integral</Highlight>:
@@ -39,6 +72,31 @@ Konstanta integrasi tetap ditambahkan, termasuk ketika <InlineMath math="a=0" />
 <BlockMath math="\int -3x^2\,dx=-3\frac{x^3}{3}+C=-x^3+C" />
 
 > Aturan ini mensyaratkan <InlineMath math="a" /> konstan terhadap variabel integrasi.
+
+Faktor konstanta langsung lolos melewati integral. Karena <InlineMath math="\int 2x\,dx = x^2 + C" />, integral dari tiga kali fungsi itu adalah tiga kali antiturunannya: <InlineMath math="\int 6x\,dx = 3x^2 + C" />. Parabola ungu adalah parabola oranye yang diregangkan <InlineMath math="3" /> kali.
+
+<MathVisual
+  title="Tiga kali fungsinya, tiga kali antiturunannya"
+  description={<>Antiturunan <InlineMath math="x^2" /> dari <InlineMath math="2x" /> dan <InlineMath math="3x^2" /> dari <InlineMath math="6x" />, dengan <InlineMath math="3x^2" /> tiga kali lebih tinggi di setiap titik.</>}
+  labels={{
+    one: <InlineMath math="x^2" />,
+    three: <InlineMath math="3x^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "primary" },
+      { id: "three", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
+      { id: "lift", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1.5, y: 2.25 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 1.5, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Aturan Penjumlahan dan Pengurangan
 
@@ -55,6 +113,15 @@ Contohnya, untuk menyelesaikan <InlineMath math="\int (x^4 - x^3) \, dx" />, kit
 </MathContainer>
 
 Tuliskan satu konstanta <InlineMath math="C" /> di akhir. Secara formal, kita dapat menulis <InlineMath math="C_1" /> dan <InlineMath math="C_2" /> untuk kedua antiturunan, tetapi jumlah atau selisih kedua konstanta itu kembali menjadi konstanta sembarang. Karena itu, satu <InlineMath math="C" /> sudah mencakup semua nilai yang mungkin.
+
+<Mermaid
+  title="Menerapkan aturan pangkat"
+  description="Untuk pangkat selain −1, naikkan pangkatnya satu lalu bagi dengan pangkat baru. Pangkat −1 memberi logaritma natural."
+  chart={`flowchart TD
+  A["∫ xⁿ dx"] --> Q{"n = −1?"}
+  Q -->|"Tidak"| R["xⁿ⁺¹ / (n + 1) + C"]
+  Q -->|"Ya"| L["ln|x| + C"]`}
+/>
 
 ## Aturan Substitusi
 
