@@ -1,23 +1,19 @@
-Rata-rata berubah karena jumlah tinggi berubah. Cara paling aman adalah **bekerja dengan jumlah tinggi**, bukan dengan rata-ratanya.
+Rata-rata langsung bergantung pada <InlineMath math="x" />, yaitu <InlineMath math="\frac{505+x}{8}" />, karena tujuh nilai lainnya berjumlah 505. Median adalah rata-rata data ke-4 dan ke-5 setelah diurutkan, dan **data tengah itu bergantung pada letak <InlineMath math="x" />**. Jadi soal ini harus diselesaikan per kasus.
 
-# Jumlah tinggi pada setiap tahap
+# Tiga kasus letak x
 
-Jumlah tinggi selalu **rata-rata dikali banyak anak**.
+| Letak <InlineMath math="x" /> | Data ke-4 dan ke-5 | Median | Persamaan | <InlineMath math="x" /> | Sesuai kasus? |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="x\le70" /> | 70 dan 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Ya |
+| <InlineMath math="70<x<75" /> | 70 dan <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | Tidak |
+| <InlineMath math="x\ge75" /> | 70 dan 75 | 72,5 | <InlineMath math="505+x=580" /> | 75 | Ya |
 
-<BlockMath math="\begin{aligned}
-\text{awal}&=12\times150=1800\\
-\text{setelah satu anak keluar}&=11\times149=1639\\
-\text{setelah satu anak bergabung}&=12\times150{,}5=1806
-\end{aligned}" />
+Pada kasus tengah, <InlineMath math="x=75" /> **tidak memenuhi syarat** <InlineMath math="70<x<75" />, jadi kasus itu tidak menghasilkan penyelesaian baru.
 
-Anak yang keluar setinggi <InlineMath math="1800-1639=161\text{ cm}" />, dan anak yang bergabung setinggi <InlineMath math="1806-1639=167\text{ cm}" />.
+# Memeriksa kedua penyelesaian
 
-<BlockMath math="167-161=6\text{ cm}" />
+Untuk <InlineMath math="x=55" />, rata-ratanya <InlineMath math="\frac{560}{8}=70" /> dan mediannya 70. Untuk <InlineMath math="x=75" />, rata-ratanya <InlineMath math="\frac{580}{8}=72{,}5" /> dan mediannya <InlineMath math="\frac{70+75}{2}=72{,}5" />. **Keduanya sah**, jadi jumlahnya <InlineMath math="55+75=130" />.
 
-# Jalan pintas
+Nilai 55 dan 75 masing-masing hanya satu penyelesaian. Nilai 72,5 adalah median pada kasus ketiga, bukan nilai <InlineMath math="x" />. Nilai 205 menghitung 75 dua kali, padahal kasus tengah tidak sah.
 
-Banyak anak di awal dan di akhir sama, yaitu 12. Jadi **selisih kedua anak sama dengan perubahan jumlah tinggi** dari awal ke akhir, <InlineMath math="1806-1800=12\times(150{,}5-150)=6" />. Rata-rata 149 di tengah tidak diperlukan untuk menjawab.
-
-Nilai 0,5 adalah selisih rata-rata awal dan akhir, belum dikalikan banyak anak. Nilai 5,5 mengalikan selisih itu dengan 11, padahal kelompok akhir berisi 12 anak. Nilai 1 dan 1,5 hanya membandingkan rata-rata, yaitu <InlineMath math="150-149" /> dan <InlineMath math="150{,}5-149" />.
-
-Jadi, selisih tinggi badan kedua anak adalah **<InlineMath math="6\text{ cm}" />**.
+Jadi, jumlah semua nilai <InlineMath math="x" /> yang mungkin adalah **130**.

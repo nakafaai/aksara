@@ -1,23 +1,19 @@
-A mean changes because the total changes. The safest approach is **to work with the total height**, not with the means.
+The mean depends directly on <InlineMath math="x" />: it is <InlineMath math="\frac{505+x}{8}" />, because the other seven scores add up to 505. The median is the mean of the 4th and 5th values in order, and **those middle values depend on where <InlineMath math="x" /> falls**. So the problem has to be solved case by case.
 
-# The total height at each stage
+# Three cases for the position of x
 
-A total is always **the mean times the number of children**.
+| Position of <InlineMath math="x" /> | 4th and 5th values | Median | Equation | <InlineMath math="x" /> | Fits the case? |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="x\le70" /> | 70 and 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Yes |
+| <InlineMath math="70<x<75" /> | 70 and <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | No |
+| <InlineMath math="x\ge75" /> | 70 and 75 | 72.5 | <InlineMath math="505+x=580" /> | 75 | Yes |
 
-<BlockMath math="\begin{aligned}
-\text{start}&=12\times150=1800\\
-\text{after one child leaves}&=11\times149=1639\\
-\text{after one child joins}&=12\times150.5=1806
-\end{aligned}" />
+In the middle case, <InlineMath math="x=75" /> **does not satisfy** <InlineMath math="70<x<75" />, so that case gives no new solution.
 
-The child who left is <InlineMath math="1800-1639=161\text{ cm}" /> tall, and the child who joined is <InlineMath math="1806-1639=167\text{ cm}" /> tall.
+# Checking both solutions
 
-<BlockMath math="167-161=6\text{ cm}" />
+For <InlineMath math="x=55" />, the mean is <InlineMath math="\frac{560}{8}=70" /> and the median is 70. For <InlineMath math="x=75" />, the mean is <InlineMath math="\frac{580}{8}=72.5" /> and the median is <InlineMath math="\frac{70+75}{2}=72.5" />. **Both are valid**, so their sum is <InlineMath math="55+75=130" />.
 
-# A shortcut
+The values 55 and 75 are each only one of the solutions. The value 72.5 is the median in the third case, not a value of <InlineMath math="x" />. The value 205 counts 75 twice, although the middle case is not valid.
 
-The group has 12 children at the start and at the end. So **the difference between the two children equals the change in the total height** from start to end, <InlineMath math="1806-1800=12\times(150.5-150)=6" />. The mean of 149 in the middle is not needed for the answer.
-
-The value 0.5 is the difference between the first and last means, not yet multiplied by the number of children. The value 5.5 multiplies that difference by 11, although the final group has 12 children. The values 1 and 1.5 only compare means, namely <InlineMath math="150-149" /> and <InlineMath math="150.5-149" />.
-
-So the difference in height between the two children is **<InlineMath math="6\text{ cm}" />**.
+So the sum of all possible values of <InlineMath math="x" /> is **130**.
