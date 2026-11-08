@@ -7,23 +7,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$L=\\{2\\}$$",
+          label: "$$L=\\{-4\\}$$",
         },
         {
           correct: false,
-          label: "$$L=\\{6\\}$$",
+          label: "$$L=\\{4\\}$$",
         },
         {
           correct: false,
-          label: "$$L=\\{-2;\\,6\\}$$",
+          label: "$$L=\\{-\\tfrac52;\\,4\\}$$",
         },
         {
           correct: false,
-          label: "$$L=\\{-6;\\,2\\}$$",
+          label: "$$L=\\{-4;\\,\\tfrac52\\}$$",
         },
         {
           correct: true,
-          label: "$$L=\\{-6\\}$$",
+          label: "$$L=\\{\\tfrac52\\}$$",
         },
         {
           correct: false,
