@@ -18,6 +18,17 @@ Die Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> sind genau dann
 
 Wenn eine dieser beiden Bedingungen nicht erfüllt ist, ist die Matrix <InlineMath math="A" /> nicht gleich der Matrix <InlineMath math="B" /> (geschrieben als <InlineMath math="A \neq B" />).
 
+<Mermaid
+  title="Prüfen, ob zwei Matrizen gleich sind"
+  description="Zwei Matrizen sind nur gleich, wenn sie dasselbe Format haben und jedes Paar passender Einträge gleich ist."
+  chart={`flowchart TD
+  A["Matrizen A und B"] --> O{"Gleiches Format?"}
+  O -->|"Nein"| N["A ≠ B"]
+  O -->|"Ja"| E{"Alle passenden Einträge gleich?"}
+  E -->|"Ja"| Y["A = B"]
+  E -->|"Nein"| N`}
+/>
+
 ## Beispiele für Matrixgleichheit
 
 Über die Gleichheit zweier Matrizen entscheiden zwei Prüfungen. Beide Matrizen müssen dasselbe Format haben, danach muss jedes Element an derselben Position übereinstimmen. Die Beispiele zeigen ein Paar, das beide Prüfungen besteht, und zwei Paare, die <Highlight>genau eine Prüfung nicht bestehen</Highlight>, danach folgt ein Fall mit unbekannten Variablen.
@@ -55,7 +66,7 @@ Stell dir jede Zeile als Punkt <InlineMath math="(x, y)" /> vor. Gleiche Matrize
 
 <MathVisual
   title={<><InlineMath math="S" /> und <InlineMath math="T" /> teilen eine Zeile, aber nicht die andere</>}
-  description={<>Die Zeilen von <InlineMath math="S" /> und <InlineMath math="T" /> als Punkte. Zeile 1 ist für beide Matrizen derselbe Punkt, Zeile 2 landet an zwei verschiedenen Punkten.</>}
+  description={<>Die Zeilen von <InlineMath math="S" /> und <InlineMath math="T" /> als Strecken vom Punkt der Zeile 1 zum Punkt der Zeile 2. Zeile 1 ist für beide Matrizen derselbe Punkt, Zeile 2 landet an zwei verschiedenen Punkten.</>}
   labels={{
     shared: <>Zeile 1 beider <InlineMath math="(5, 0)" /></>,
     s: <><InlineMath math="S" /> Zeile 2 <InlineMath math="(-2, 8)" /></>,
@@ -74,6 +85,36 @@ Stell dir jede Zeile als Punkt <InlineMath math="(x, y)" /> vor. Gleiche Matrize
       { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
       { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
       { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Das letzte Paar von Einträgen liefert <InlineMath math="z^2 = 9" />. Zeichne die Kurve von <InlineMath math="z^2" /> und die Höhe <InlineMath math="9" />: Sie treffen sich zweimal, bei <InlineMath math="z = -3" /> und <InlineMath math="z = 3" />. Beide Werte machen <InlineMath math="A" /> und <InlineMath math="B" /> gleich. Eine Matrixgleichung kann also für eine Variable mehr als eine Lösung haben.
+
+<MathVisual
+  title={<><InlineMath math="z^2 = 9" /> aus <InlineMath math="a_{22} = b_{22}" /> lösen</>}
+  description={<>Die Parabel <InlineMath math="z^2" /> trifft die Höhe 9 bei <InlineMath math="z = -3" /> und <InlineMath math="z = 3" />.</>}
+  labels={{
+    square: <InlineMath math="z^2" />,
+    level: <InlineMath math="9" />,
+    left: <InlineMath math="z = -3" />,
+    right: <InlineMath math="z = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 16 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -4, max: 4 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: -4, y: 9 }, { x: 4, y: 9 }], appearance: "reference" },
+      { id: "left", kind: "point", at: { x: -3, y: 9 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: 3, y: 9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
     ],
   }}
 />

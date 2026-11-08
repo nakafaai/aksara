@@ -71,6 +71,16 @@ Atau, setelah tanda negatif didistribusikan:
 
 <BlockMath math="\begin{aligned} \det(A) &amp;= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;\quad{}+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;\quad{}- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
+<Mermaid
+  title="Resep Sarrus"
+  description="Salin dua kolom pertama, jumlahkan tiga hasil kali di setiap arah diagonal, lalu kurangkan jumlah kedua dari jumlah pertama."
+  chart={`flowchart LR
+  A["Tulis matriks 3 × 3"] --> B["Salin kolom 1 dan 2 ke kanan"]
+  B --> C["D₊: jumlahkan tiga hasil kali dari kiri atas ke kanan bawah"]
+  C --> D["D₋: jumlahkan tiga hasil kali dari kanan atas ke kiri bawah"]
+  D --> E["det = D₊ − D₋"]`}
+/>
+
 ### Contoh Numerik dengan Pembahasan
 
 Hitung determinan matriks <InlineMath math="P" /> berikut:
@@ -121,6 +131,34 @@ Bilangan yang dihasilkan Sarrus juga punya bentuk. Anggap tiga baris <InlineMath
       { key: "row2", objectId: "row2", at: { x: 2, y: 6, z: 2 }, placement: "left" },
       { key: "row3", objectId: "row3", at: { x: 5, y: 9, z: 4 }, placement: "right" },
       { key: "volume", objectId: "e9", at: { x: 8, y: 18, z: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Kalau satu baris adalah jumlah dua baris lainnya, kotaknya tidak punya tinggi. Dengan baris <InlineMath math="(1, 3, 2)" />, <InlineMath math="(2, 6, 2)" />, dan <InlineMath math="(3, 9, 4)" />, rusuk ketiga terletak di bidang dua rusuk pertama, jadi volumenya <InlineMath math="0" />. Sarrus setuju: <InlineMath math="D_+ = 24 + 18 + 36 = 78" /> dan <InlineMath math="D_- = 36 + 18 + 24 = 78" />, jadi determinannya <InlineMath math="78 - 78 = 0" />.
+
+<MathVisual
+  title="Kotak pipih punya determinan 0"
+  description={<>Baris 3 sama dengan baris 1 ditambah baris 2, jadi ketiga rusuk terletak di satu bidang dan volume kotaknya 0.</>}
+  labels={{
+    row1: <InlineMath math="(1, 3, 2)" />,
+    row2: <InlineMath math="(2, 6, 2)" />,
+    row3: <InlineMath math="(3, 9, 4)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 9 }, z: { min: 0, max: 4 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 4.5, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 9, z: 4 }, { x: 2, y: 6, z: 2 }], appearance: "reference" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "row2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 6, z: 2 }, appearance: "secondary" },
+      { id: "row3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 9, z: 4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+      { key: "row2", objectId: "row2", at: { x: 2, y: 6, z: 2 }, placement: "right" },
+      { key: "row3", objectId: "row3", at: { x: 3, y: 9, z: 4 }, placement: "above" },
     ],
   }}
 />

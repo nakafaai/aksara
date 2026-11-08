@@ -17,6 +17,14 @@ Hat die Matrix <InlineMath math="A" /> das Format <InlineMath math="m \times n" 
 
 Dies bedeutet, dass das Element in der <InlineMath math="j" />-ten Zeile und <InlineMath math="i" />-ten Spalte von <InlineMath math="A^T" /> das gleiche ist wie das Element in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte von <InlineMath math="A" />.
 
+<Mermaid
+  title="Zweimal transponieren ergibt die Matrix zurück"
+  description="Transponieren tauscht das Format von m mal n zu n mal m, und erneutes Transponieren liefert die ursprüngliche Matrix."
+  chart={`flowchart LR
+  A["A, Format m × n"] -->|"Zeilen werden Spalten"| T["Aᵀ, Format n × m"]
+  T -->|"erneut transponieren"| B["(Aᵀ)ᵀ = A, Format m × n"]`}
+/>
+
 ## So wird eine Matrix transponiert
 
 So entsteht die transponierte Matrix:
@@ -102,6 +110,31 @@ Setz jeden Eintrag dorthin, wo er auf dem Papier steht: die Spaltennummer nach r
       { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
       { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
       { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Auch der ganze Block klappt um. <InlineMath math="B" /> füllt 2 Zeilen und 3 Spalten. Spiegelst du diesen Block an der Hauptdiagonale, wird er 3 Zeilen hoch und 2 Spalten breit. <InlineMath math="B^T" /> hat also das Format <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>Das Format von <InlineMath math="B" /> wechselt von <InlineMath math="2 \times 3" /> zu <InlineMath math="3 \times 2" /></>}
+  description={<>Der Block von <InlineMath math="B" />, 3 Spalten breit und 2 Zeilen hoch, und sein Spiegelbild <InlineMath math="B^T" />, 2 Spalten breit und 3 Zeilen hoch.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
     ],
   }}
 />

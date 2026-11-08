@@ -134,6 +134,33 @@ This rule has a picture. For a <InlineMath math="2 \times 2" /> matrix, <InlineM
   }}
 />
 
+Swapping the two rows of <InlineMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix}" /> gives <InlineMath math="B" /> and mirrors the parallelogram of the columns across the line <InlineMath math="y = x" />. The area stays <InlineMath math="2" />, but the orientation flips, which is why <InlineMath math="\det(B) = 2 = -\det(A)" />.
+
+<MathVisual
+  title={<>Swapping rows mirrors the parallelogram</>}
+  description={<>The column parallelograms of <InlineMath math="A" /> and of <InlineMath math="B" />, its rows swapped, are mirror images across <InlineMath math="y = x" /> with the same area 2.</>}
+  labels={{
+    a: <InlineMath math="A: \det = -2" />,
+    b: <InlineMath math="B: \det = 2" />,
+    mirror: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 1 }, { x: 7, y: 3 }, { x: 4, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 7 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 7, y: 3 }, placement: "below" },
+      { key: "mirror", objectId: "mirror", at: { x: 6, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Other Determinant Properties
 
 The product and whole-matrix scaling laws are part of a larger set of useful rules. In the table, <InlineMath math="A" /> is square and every row operation produces a new matrix <InlineMath math="B" />.
@@ -149,6 +176,17 @@ The product and whole-matrix scaling laws are part of a larger set of useful rul
 | Two equal rows, or one zero row | <InlineMath math="\det(A)=0" /> |
 
 Do not confuse **scaling one row** with scaling the whole matrix. In an <InlineMath math="n\times n" /> matrix, <InlineMath math="kA" /> scales all <InlineMath math="n" /> rows by <InlineMath math="k" />, so the factor <InlineMath math="k" /> appears <InlineMath math="n" /> times and gives <InlineMath math="k^n" />.
+
+<Mermaid
+  title="How each change of A changes its determinant"
+  description="Each operation on A changes the determinant in a fixed way, so the new determinant follows without expanding again."
+  chart={`flowchart LR
+  A["det A"] -->|"multiply by B"| P["det A · det B"]
+  A -->|"multiply A by k, n × n"| K["kⁿ · det A"]
+  A -->|"swap two rows"| S["−det A"]
+  A -->|"multiply one row by c"| C["c · det A"]
+  A -->|"add a multiple of a row to another"| U["det A, unchanged"]`}
+/>
 
 ## Check Your Understanding
 

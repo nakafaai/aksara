@@ -13,6 +13,17 @@ Matrizen lassen sich miteinander verknüpfen oder mit einer einzigen Zahl skalie
 
 Sind beispielsweise alle Einträge einer Messmatrix in Metern angegeben, werden beim Umrechnen der gesamten Tabelle in Zentimeter alle Einträge mit <InlineMath math="100" /> multipliziert. Die Skalarmultiplikation beschreibt diese einheitliche Änderung, ohne jede Rechnung einzeln neu anzusetzen.
 
+<Mermaid
+  title="Was der Skalar mit jedem Eintrag macht"
+  description="Der Wert von k entscheidet, ob sich jeder Eintrag ungleich null von null entfernt, sich null nähert, bleibt, verschwindet oder sein Vorzeichen wechselt."
+  chart={`flowchart TD
+  K{"Wert von k"} -->|"k > 1"| A["Jeder Eintrag entfernt sich von 0"]
+  K -->|"0 < k < 1"| B["Jeder Eintrag nähert sich 0"]
+  K -->|"k = 1"| C["Die Matrix bleibt A"]
+  K -->|"k = 0"| D["Die Nullmatrix O"]
+  K -->|"k = −1"| E["Die Gegenmatrix −A"]`}
+/>
+
 ## Die Ergebnismatrix elementweise aufschreiben
 
 Bei der Skalarmultiplikation wird <Highlight>jeder Eintrag einer Matrix mit einem Skalar multipliziert</Highlight>.
@@ -101,6 +112,35 @@ So sieht Beispiel 1 als Bild aus. Lies jede Zeile von <InlineMath math="P" /> al
       { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
       { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
       { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Negative Skalare und die Null folgen derselben Regel. <InlineMath math="(-1)P" /> schickt jede Zeile auf die andere Seite des Ursprungs: Aus <InlineMath math="(9, 7)" /> wird <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> drückt jede Zeile auf <InlineMath math="(0, 0)" /> zusammen, das ist die Nullmatrix <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> und <InlineMath math="0P" /></>}
+  description={<>Die Zeilen von <InlineMath math="P" />, ihre Gegenpunkte in <InlineMath math="(-1)P" /> durch den Ursprung und <InlineMath math="0P" /> im Ursprung.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
     ],
   }}
 />

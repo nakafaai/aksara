@@ -26,6 +26,16 @@ Nicht jede quadratische Matrix besitzt eine Inverse. Eine Matrix <InlineMath mat
 - Eine Matrix <InlineMath math="A" /> heißt **nichtsingulär**, wenn <InlineMath math="\det(A) \neq 0" /> gilt. Sie besitzt dann eine Inverse.
 - Eine Matrix <InlineMath math="A" /> heißt **singulär**, wenn <InlineMath math="\det(A) = 0" /> gilt. Sie besitzt dann keine Inverse.
 
+<Mermaid
+  title="Hat eine Matrix eine Inverse"
+  description="Eine quadratische Matrix hat genau dann eine Inverse, wenn ihre Determinante nicht null ist, und die Inverse prüfst du, indem du zur Einheitsmatrix zurückmultiplizierst."
+  chart={`flowchart TD
+  A["Quadratische Matrix A"] --> D{"det A = 0?"}
+  D -->|"Ja"| S["Singulär: keine Inverse"]
+  D -->|"Nein"| N["Regulär: A⁻¹ = adj(A) / det A"]
+  N --> C["Probe: A · A⁻¹ = I"]`}
+/>
+
 ## Inverse einer Matrix mit zwei Zeilen und zwei Spalten
 
 Für eine <InlineMath math="2 \times 2" />-Matrix <InlineMath math="A" /> sei:
@@ -170,6 +180,30 @@ So sieht <InlineMath math="X=A^{-1}B" /> als Bild aus. Nimm die Matrix <InlineMa
       { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
       { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
       { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Probier jetzt die singuläre Matrix <InlineMath math="K = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}" /> mit der Determinante <InlineMath math="2(2) - 4(1) = 0" />. Ihr System <InlineMath math="2x + 4y = 6" /> und <InlineMath math="x + 2y = 1" /> liefert zwei parallele Geraden. Sie schneiden sich nie, kein Punkt löst beide Gleichungen, und <InlineMath math="K" /> hat keine Inverse, die einen finden könnte.
+
+<MathVisual
+  title={<>Eine singuläre Matrix liefert parallele Geraden</>}
+  description={<>Die Gleichungen von <InlineMath math="KX = \begin{bmatrix} 6 \\ 1 \end{bmatrix}" /> als Geraden. Sie sind parallel, das System hat also keine Lösung.</>}
+  labels={{
+    first: <InlineMath math="2x + 4y = 6" />,
+    second: <InlineMath math="x + 2y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 3, y: 0 }, { x: -1, y: 2 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 0 }, { x: -1, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "below-left" },
     ],
   }}
 />

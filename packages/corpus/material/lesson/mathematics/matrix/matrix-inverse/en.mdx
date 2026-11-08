@@ -26,6 +26,16 @@ Not all square matrices have an inverse. A matrix <InlineMath math="A" /> has an
 - Matrix <InlineMath math="A" /> is called a **nonsingular matrix** if <InlineMath math="\det(A) \neq 0" />. A nonsingular matrix always has an inverse.
 - Matrix <InlineMath math="A" /> is called a **singular matrix** if <InlineMath math="\det(A) = 0" />. A singular matrix does not have an inverse.
 
+<Mermaid
+  title="Does a matrix have an inverse"
+  description="A square matrix has an inverse exactly when its determinant is not zero, and the inverse is checked by multiplying back to the identity."
+  chart={`flowchart TD
+  A["Square matrix A"] --> D{"det A = 0?"}
+  D -->|"Yes"| S["Singular: no inverse"]
+  D -->|"No"| N["Nonsingular: A⁻¹ = adj(A) / det A"]
+  N --> C["Check: A · A⁻¹ = I"]`}
+/>
+
 ## Inverse of a Two by Two Matrix
 
 For a <InlineMath math="2 \times 2" /> matrix <InlineMath math="A" />, let:
@@ -170,6 +180,30 @@ Here is <InlineMath math="X=A^{-1}B" /> as a picture. Take the matrix <InlineMat
       { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
       { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
       { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Now try the singular matrix <InlineMath math="K = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}" />, whose determinant is <InlineMath math="2(2) - 4(1) = 0" />. Its system <InlineMath math="2x + 4y = 6" /> and <InlineMath math="x + 2y = 1" /> gives two parallel lines. They never cross, so no point solves both, and <InlineMath math="K" /> has no inverse that could find one.
+
+<MathVisual
+  title={<>A singular matrix gives parallel lines</>}
+  description={<>The equations of <InlineMath math="KX = \begin{bmatrix} 6 \\ 1 \end{bmatrix}" /> drawn as lines. They are parallel, so the system has no solution.</>}
+  labels={{
+    first: <InlineMath math="2x + 4y = 6" />,
+    second: <InlineMath math="x + 2y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 3, y: 0 }, { x: -1, y: 2 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 0 }, { x: -1, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "below-left" },
     ],
   }}
 />

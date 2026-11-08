@@ -13,6 +13,16 @@ Bei der Matrixaddition werden <Highlight>die Einträge mehrerer Matrizen positio
 
 Das Ergebnis ist eine neue Matrix desselben Formats. Jeder ihrer Einträge ist die Summe der Einträge an derselben Position in den Ausgangsmatrizen.
 
+<Mermaid
+  title="Wann sich zwei Matrizen addieren lassen"
+  description="Matrizen mit gleichem Format werden Eintrag für Eintrag addiert und ergeben eine Matrix desselben Formats. Bei verschiedenen Formaten ist die Summe nicht definiert."
+  chart={`flowchart TD
+  A["Matrizen A und B"] --> Q{"Gleiches Format?"}
+  Q -->|"Ja"| S["Einträge an gleicher Position addieren"]
+  S --> R["A + B hat dasselbe Format"]
+  Q -->|"Nein"| U["A + B ist nicht definiert"]`}
+/>
+
 ## Formale Definition der Matrixaddition
 
 Zwei Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> können genau dann addiert werden, wenn sie **dasselbe Format** haben.
@@ -84,6 +94,35 @@ Diese Addition kannst du direkt sehen. Lies jede Zeile von <InlineMath math="P" 
       { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
       { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
       { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Die Reihenfolge der beiden Matrizen spielt keine Rolle. Geh vom Ursprung aus um Zeile 1 von <InlineMath math="P" />, <InlineMath math="(1, 5)" />, und dann um Zeile 1 von <InlineMath math="Q" />, <InlineMath math="(6, -3)" />. Oder mach die beiden Schritte andersherum. Beide Wege enden bei <InlineMath math="(7, 2)" />, und dieses Parallelogramm ist der Grund für <InlineMath math="P+Q=Q+P" />.
+
+<MathVisual
+  title={<>Zwei Wege zu Zeile 1 von <InlineMath math="P+Q" /></>}
+  description={<>Erst <InlineMath math="(1, 5)" /> und dann <InlineMath math="(6, -3)" /> oder umgekehrt: Beide Wege enden im selben Punkt <InlineMath math="(7, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(6, -3)" />,
+    sum: <InlineMath math="(7, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: -3 }, appearance: "secondary" },
+      { id: "pq", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "qp", kind: "segment", from: { x: 6, y: -3 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "point", at: { x: 7, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
     ],
   }}
 />

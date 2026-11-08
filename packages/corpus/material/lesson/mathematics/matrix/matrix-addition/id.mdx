@@ -13,6 +13,16 @@ Penjumlahan matriks menggabungkan dua matriks atau lebih menjadi matriks baru. O
 
 Penjumlahan menghasilkan matriks baru dengan ordo yang sama. Setiap elemen diperoleh dengan <Highlight>menjumlahkan elemen yang letaknya sama</Highlight> pada matriks awal.
 
+<Mermaid
+  title="Kapan dua matriks bisa dijumlahkan"
+  description="Matriks berordo sama dijumlahkan entri demi entri dan menghasilkan matriks berordo sama. Ordo berbeda membuat jumlahnya tidak terdefinisi."
+  chart={`flowchart TD
+  A["Matriks A dan B"] --> Q{"Ordonya sama?"}
+  Q -->|"Ya"| S["Jumlahkan entri yang seletak"]
+  S --> R["A + B berordo sama"]
+  Q -->|"Tidak"| U["A + B tidak terdefinisi"]`}
+/>
+
 ## Definisi Formal Penjumlahan Matriks
 
 Dua matriks, katakanlah matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dapat dijumlahkan jika dan hanya jika kedua matriks tersebut memiliki **ordo yang sama**.
@@ -84,6 +94,35 @@ Penjumlahan ini bisa kamu lihat langsung. Baca setiap baris <InlineMath math="P"
       { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
       { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
       { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Urutan kedua matriks tidak berpengaruh. Mulai dari titik asal, melangkah sejauh baris 1 <InlineMath math="P" />, yaitu <InlineMath math="(1, 5)" />, lalu sejauh baris 1 <InlineMath math="Q" />, yaitu <InlineMath math="(6, -3)" />. Atau ambil kedua langkah dengan urutan terbalik. Kedua rute berakhir di <InlineMath math="(7, 2)" />, dan jajargenjang itulah alasan <InlineMath math="P+Q=Q+P" />.
+
+<MathVisual
+  title={<>Dua rute menuju baris 1 <InlineMath math="P+Q" /></>}
+  description={<>Melangkah <InlineMath math="(1, 5)" /> lalu <InlineMath math="(6, -3)" />, atau dengan urutan terbalik, berakhir di titik yang sama, <InlineMath math="(7, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(6, -3)" />,
+    sum: <InlineMath math="(7, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: -3 }, appearance: "secondary" },
+      { id: "pq", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "qp", kind: "segment", from: { x: 6, y: -3 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "point", at: { x: 7, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
     ],
   }}
 />

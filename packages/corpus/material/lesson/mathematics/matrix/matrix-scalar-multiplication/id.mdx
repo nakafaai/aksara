@@ -13,6 +13,17 @@ Matriks dapat dioperasikan dengan matriks lain atau dikalikan dengan satu bilang
 
 Misalnya, jika setiap elemen dalam matriks pengukuran dinyatakan dalam meter, mengubah seluruh tabel ke sentimeter berarti mengalikan setiap elemen dengan <InlineMath math="100" />. Perkalian skalar menyatakan satu perubahan yang konsisten tanpa menulis ulang setiap perhitungan secara terpisah.
 
+<Mermaid
+  title="Pengaruh skalar pada setiap entri"
+  description="Nilai k menentukan apakah setiap entri tak nol menjauhi nol, mendekati nol, tetap, hilang, atau berganti tanda."
+  chart={`flowchart TD
+  K{"Nilai k"} -->|"k > 1"| A["Setiap entri menjauhi 0"]
+  K -->|"0 < k < 1"| B["Setiap entri mendekati 0"]
+  K -->|"k = 1"| C["Matriksnya tetap A"]
+  K -->|"k = 0"| D["Matriks nol O"]
+  K -->|"k = −1"| E["Matriks lawan −A"]`}
+/>
+
 ## Cara Mengalikan Matriks dengan Skalar
 
 Perkalian matriks dengan skalar adalah <Highlight>operasi mengalikan setiap elemen dalam matriks</Highlight> dengan sebuah bilangan skalar.
@@ -101,6 +112,35 @@ Ini Contoh 1 dalam bentuk gambar. Baca setiap baris <InlineMath math="P" /> seba
       { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
       { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
       { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Skalar negatif dan nol mengikuti aturan yang sama. <InlineMath math="(-1)P" /> mengirim setiap baris ke sisi seberang titik asal: <InlineMath math="(9, 7)" /> menjadi <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> memampatkan setiap baris ke <InlineMath math="(0, 0)" />, yaitu matriks nol <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> dan <InlineMath math="0P" /></>}
+  description={<>Baris-baris <InlineMath math="P" />, lawannya di <InlineMath math="(-1)P" /> melalui titik asal, dan <InlineMath math="0P" /> di titik asal.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
     ],
   }}
 />

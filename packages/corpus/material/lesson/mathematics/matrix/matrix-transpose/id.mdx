@@ -13,6 +13,14 @@ Transpos matriks <Highlight>diperoleh dengan menukar baris dan kolom</Highlight>
 
 Transpos matriks <InlineMath math="A" /> ditulis sebagai <InlineMath math="A^T" /> atau <InlineMath math="A'" />. Jika <InlineMath math="A" /> berordo <InlineMath math="m \times n" />, maka <InlineMath math="A^T" /> berordo <InlineMath math="n \times m" />.
 
+<Mermaid
+  title="Transpose dua kali kembali ke matriks semula"
+  description="Transpose menukar ordo dari m kali n menjadi n kali m, dan transpose sekali lagi mengembalikan matriks semula."
+  chart={`flowchart LR
+  A["A, ordo m × n"] -->|"baris menjadi kolom"| T["Aᵀ, ordo n × m"]
+  T -->|"transpose lagi"| B["(Aᵀ)ᵀ = A, ordo m × n"]`}
+/>
+
 ## Cara Menentukan Matriks Transpos
 
 Untuk mendapatkan matriks transpos, ikuti langkah berikut:
@@ -98,6 +106,31 @@ Taruh setiap entri di tempatnya pada kertas: nomor kolom ke kanan dan nomor bari
       { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
       { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
       { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Seluruh bloknya juga ikut terbalik. <InlineMath math="B" /> mengisi 2 baris dan 3 kolom. Cerminkan blok itu terhadap diagonal utama, maka tingginya menjadi 3 baris dan lebarnya 2 kolom, jadi <InlineMath math="B^T" /> berordo <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>Ordo <InlineMath math="B" /> berubah dari <InlineMath math="2 \times 3" /> menjadi <InlineMath math="3 \times 2" /></>}
+  description={<>Blok <InlineMath math="B" /> selebar 3 kolom dan setinggi 2 baris, serta cerminannya <InlineMath math="B^T" /> selebar 2 kolom dan setinggi 3 baris.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
     ],
   }}
 />

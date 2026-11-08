@@ -95,6 +95,16 @@ Welche Zeile oder Spalte wir wählen, ändert das Ergebnis nicht.
 
 Wähle nach Möglichkeit <Highlight>eine Zeile oder Spalte mit vielen Nullen</Highlight>. Jedes Nullelement lässt sein Produkt entfallen, sodass weniger Terme berechnet werden müssen.
 
+<Mermaid
+  title="Kofaktorentwicklung Schritt für Schritt"
+  description="Wähle eine Zeile, mach aus jedem Eintrag über seinen Minor und sein Vorzeichen einen Kofaktor und addiere die Einträge mal ihre Kofaktoren."
+  chart={`flowchart TD
+  A["Zeile i wählen"] --> B["Für jeden Eintrag a_ij Zeile i und Spalte j streichen"]
+  B --> C["Minor M_ij: Determinante des Rests"]
+  C --> D["Kofaktor k_ij = (−1)^(i+j) · M_ij"]
+  D --> E["det A = Summe der a_ij · k_ij entlang Zeile i"]`}
+/>
+
 ## Beispiel für die Determinantenberechnung
 
 Berechnen wir die Determinante der folgenden Matrix <InlineMath math="P" /> mit der Kofaktorentwicklung:
@@ -150,7 +160,7 @@ Die Determinante der Matrix <InlineMath math="P" /> ist also <InlineMath math="-
 
 Beachte <InlineMath math="k_{12}=(-1)(-2)=2" />. Eine Position mit Minuszeichen kann einen **positiven Kofaktor** ergeben, wenn der Minor negativ ist. Beim Einsetzen in die Summe darfst du das Minuszeichen nicht noch einmal anwenden.
 
-Die drei Kofaktoren von Zeile 1 haben auch eine Form. Die Zeilen 2 und 3 von <InlineMath math="P" /> spannen ein Parallelogramm auf. Der Pfeil <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> steht senkrecht darauf, und seine Länge <InlineMath math="\sqrt{184}" /> ist genau der Flächeninhalt dieses Parallelogramms. Die Entwicklung <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> misst, wie weit Zeile 1 in Richtung dieses Pfeils reicht. Dreh die Szene: Zeile 1 zeigt auf die andere Seite des Parallelogramms, deshalb ist die Determinante negativ.
+Die drei Kofaktoren von Zeile 1 haben auch eine Form. Die Zeilen 2 und 3 von <InlineMath math="P" /> spannen ein Parallelogramm auf. Der Pfeil <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> steht senkrecht darauf, und seine Länge <InlineMath math="\sqrt{184}" /> ist genau der Flächeninhalt dieses Parallelogramms. Die Entwicklung <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> ist die Länge dieses Pfeils mal der Strecke, die Zeile 1 in seiner Richtung zurücklegt. Dreh die Szene: Zeile 1 zeigt auf die andere Seite des Parallelogramms, deshalb ist die Determinante negativ.
 
 <MathVisual
   title="Die Kofaktoren von Zeile 1 bilden einen Pfeil quer zu den anderen Zeilen"
@@ -173,6 +183,51 @@ Die drei Kofaktoren von Zeile 1 haben auch eine Form. Die Zeilen 2 und 3 von <In
       { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
       { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
       { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Das Vorzeichen <InlineMath math="(-1)^{i+j}" /> folgt einem Schachbrettmuster. Beginn mit <InlineMath math="+" /> oben links und wechsle entlang jeder Zeile und Spalte. Darum tragen die Kofaktoren von Zeile 1 die Vorzeichen <InlineMath math="+, -, +" />, und darum gilt <InlineMath math="k_{12} = -M_{12}" />.
+
+<MathVisual
+  title={<>Das Vorzeichenmuster von <InlineMath math="(-1)^{i+j}" /></>}
+  description={<>Jede Position einer 3-mal-3-Matrix trägt <InlineMath math="+" />, wenn <InlineMath math="i+j" /> gerade ist, und <InlineMath math="-" />, wenn es ungerade ist.</>}
+  labels={{
+    s11: <InlineMath math="+" />,
+    s12: <InlineMath math="-" />,
+    s13: <InlineMath math="+" />,
+    s21: <InlineMath math="-" />,
+    s22: <InlineMath math="+" />,
+    s23: <InlineMath math="-" />,
+    s31: <InlineMath math="+" />,
+    s32: <InlineMath math="-" />,
+    s33: <InlineMath math="+" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "warning" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "warning" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "warning" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "warning" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
     ],
   }}
 />

@@ -13,6 +13,14 @@ A matrix transpose <Highlight>is formed by swapping rows and columns</Highlight>
 
 The transpose of <InlineMath math="A" /> is written as <InlineMath math="A^T" /> or <InlineMath math="A'" />. If <InlineMath math="A" /> has dimensions <InlineMath math="m \times n" />, then <InlineMath math="A^T" /> has dimensions <InlineMath math="n \times m" /> and satisfies <InlineMath math="(A^T)_{ji} = a_{ij}" />.
 
+<Mermaid
+  title="Transposing twice returns the matrix"
+  description="Transposing swaps the order from m by n to n by m, and transposing again returns the original matrix."
+  chart={`flowchart LR
+  A["A, order m × n"] -->|"rows become columns"| T["Aᵀ, order n × m"]
+  T -->|"transpose again"| B["(Aᵀ)ᵀ = A, order m × n"]`}
+/>
+
 ## How to Determine the Matrix Transpose
 
 To obtain the matrix transpose, follow these steps:
@@ -98,6 +106,31 @@ Place every entry where it sits on the page: its column number across and its ro
       { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
       { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
       { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+The whole block flips too. <InlineMath math="B" /> fills 2 rows and 3 columns. Reflect that block across the main diagonal and it becomes 3 rows tall and 2 columns wide, so <InlineMath math="B^T" /> has order <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>The order of <InlineMath math="B" /> flips from <InlineMath math="2 \times 3" /> to <InlineMath math="3 \times 2" /></>}
+  description={<>The block of <InlineMath math="B" />, 3 columns wide and 2 rows tall, and its reflection <InlineMath math="B^T" />, 2 columns wide and 3 rows tall.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
     ],
   }}
 />

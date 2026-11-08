@@ -13,6 +13,15 @@ Pengurangan matriks menghitung **selisih elemen yang seletak** dari dua matriks.
 
 Hasil pengurangan memiliki ordo yang sama dengan kedua matriks awal. Setiap elemennya diperoleh dengan mengurangkan elemen-elemen yang letaknya sama.
 
+<Mermaid
+  title="Dua rute menuju selisih yang sama"
+  description="Untuk matriks berordo sama, mengurangkan entri yang seletak dan menambahkan matriks lawan memberi hasil yang sama."
+  chart={`flowchart LR
+  A["P dan Q, ordo sama"] -->|"kurangkan entri seletak"| R["P − Q"]
+  A -->|"bentuk −Q"| B["P + (−Q)"]
+  B -->|"jumlahkan entri seletak"| R`}
+/>
+
 ## Definisi Formal Pengurangan Matriks
 
 Ada dua cara umum untuk mendefinisikan pengurangan matriks, yang keduanya mengarah pada hasil yang sama.
@@ -113,6 +122,35 @@ Baca setiap baris sebagai titik untuk melihat apa yang diukur oleh selisihnya. B
       { key: "q2", objectId: "q2", at: { x: -1, y: 4 }, placement: "left" },
       { key: "d1", objectId: "d1", at: { x: 5, y: 3 }, placement: "below-right" },
       { key: "d2", objectId: "d2", at: { x: 1, y: 5.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Mengurangkan <InlineMath math="Q" /> sama dengan menambahkan <InlineMath math="-Q" />. Baris 1 <InlineMath math="-Q" /> adalah <InlineMath math="(-2, -1)" />. Menambahkannya ke <InlineMath math="(8, 5)" /> mendarat di <InlineMath math="(6, 4)" />, baris yang sama dengan hasil pengurangan entri demi entri.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> sama dengan <InlineMath math="P + (-Q)" /></>}
+  description={<>Baris 1 <InlineMath math="P" /> ditambah baris 1 <InlineMath math="-Q" /> menghasilkan titik <InlineMath math="(6, 4)" />.</>}
+  labels={{
+    p: <InlineMath math="(8, 5)" />,
+    negq: <InlineMath math="(-2, -1)" />,
+    diff: <InlineMath math="(6, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "negq", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -1 }, appearance: "secondary" },
+      { id: "s1", kind: "segment", from: { x: 8, y: 5 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: -2, y: -1 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "diff", kind: "point", at: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
     ],
   }}
 />

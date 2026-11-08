@@ -72,6 +72,17 @@ Example:
 
 Matrix <InlineMath math="M" /> is a square matrix of order <InlineMath math="3 \times 3" />. Its main diagonal elements are <InlineMath math="1, 5, 9" />. Its anti-diagonal elements are <InlineMath math="3, 5, 7" />.
 
+<Mermaid
+  title="Special kinds of square matrices"
+  description="Every diagonal matrix is triangular, the identity is a diagonal matrix, and a diagonal matrix is also symmetric."
+  chart={`flowchart TD
+  S["Square matrix, n × n"] --> T["Triangular: zeros on one side of the main diagonal"]
+  T --> D["Diagonal: zeros everywhere off the main diagonal"]
+  D --> I["Identity: ones on the main diagonal"]
+  S --> Y["Symmetric: Aᵀ = A"]
+  D -.->|"also"| Y`}
+/>
+
 ## Rectangular Matrix
 
 A rectangular matrix is a matrix where **the number of rows and columns are not equal** (<InlineMath math="m \neq n" />).
@@ -185,6 +196,31 @@ The special square types also behave differently when they act on points. Write 
       { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
       { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
       { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Triangular matrices slide the square instead of stretching it. The upper triangular matrix <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> keeps the bottom edge and pushes the top edge 2 to the right. The lower triangular matrix <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> keeps the left edge and lifts the right edge by 2. Both keep the area at 1, the product of the diagonal entries.
+
+<MathVisual
+  title="Two triangular matrices slide the unit square"
+  description="The upper triangular matrix slides the square sideways, the lower triangular matrix slides it upward, and both keep its area."
+  labels={{
+    upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
+    lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "upper", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "lower", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
     ],
   }}
 />

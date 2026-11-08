@@ -31,6 +31,16 @@ The same matrix can also be written with parentheses:
 
 <InlineMath math="80, 75, 70, 95, 95, 75" /> are the elements of matrix <InlineMath math="A" />.
 
+<Mermaid
+  title="From a table to the order of a matrix"
+  description="The score table keeps only its numbers, which form matrix A with 3 rows and 2 columns, so its order is 3 by 2."
+  chart={`flowchart LR
+  A["Score table"] --> B["Keep only the numbers"]
+  B --> C["Matrix A"]
+  C --> D["3 rows, 2 columns"]
+  D --> E["Order 3 × 2"]`}
+/>
+
 ## Rows Columns and Elements
 
 Three terms describe a matrix's structure:
@@ -136,6 +146,51 @@ For example:
 - <InlineMath math="b_{11} = 2" /> is the element in row <InlineMath math="1" />, column <InlineMath math="1" />.
 - <InlineMath math="b_{23} = 1" /> is the element in row <InlineMath math="2" />, column <InlineMath math="3" />.
 - <InlineMath math="b_{32} = 2" /> is the element in row <InlineMath math="3" />, column <InlineMath math="2" />.
+
+Here is matrix <InlineMath math="B" /> with every entry placed where it sits: column number across, row number down. The first index counts rows down and the second counts columns across, so <InlineMath math="b_{23} = 1" /> sits in row 2, column 3, while <InlineMath math="b_{32} = 2" /> sits in row 3, column 2.
+
+<MathVisual
+  title={<>Where <InlineMath math="b_{ij}" /> sits in <InlineMath math="B" /></>}
+  description={<>The nine entries of <InlineMath math="B" /> placed by column (across) and row (down), with <InlineMath math="b_{11}" />, <InlineMath math="b_{23}" /> and <InlineMath math="b_{32}" /> named.</>}
+  labels={{
+    b11: <InlineMath math="b_{11} = 2" />,
+    b12: <InlineMath math="1" />,
+    b13: <InlineMath math="0" />,
+    b21: <InlineMath math="3" />,
+    b22: <InlineMath math="1" />,
+    b23: <InlineMath math="b_{23} = 1" />,
+    b31: <InlineMath math="1" />,
+    b32: <InlineMath math="b_{32} = 2" />,
+    b33: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "reference" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "reference" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "b31", kind: "point", at: { x: 1, y: -3 }, appearance: "reference" },
+      { id: "b32", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+      { id: "b33", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "b31", objectId: "b31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "b32", objectId: "b32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "b33", objectId: "b33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## General Matrix Notation
 

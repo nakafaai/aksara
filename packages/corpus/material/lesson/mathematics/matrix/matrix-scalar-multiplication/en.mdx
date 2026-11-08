@@ -13,6 +13,17 @@ Matrices can be combined with other matrices, but they can also be scaled by one
 
 For example, if every entry in a measurement matrix is recorded in meters, converting the whole table to centimeters multiplies every entry by <InlineMath math="100" />. Scalar multiplication expresses that one consistent change without rewriting each calculation separately.
 
+<Mermaid
+  title="What the scalar does to every entry"
+  description="The value of k decides whether each nonzero entry moves away from zero, toward zero, stays, vanishes or changes sign."
+  chart={`flowchart TD
+  K{"Value of k"} -->|"k > 1"| A["Each entry moves away from 0"]
+  K -->|"0 < k < 1"| B["Each entry moves toward 0"]
+  K -->|"k = 1"| C["The matrix stays A"]
+  K -->|"k = 0"| D["The zero matrix O"]
+  K -->|"k = −1"| E["The opposite matrix −A"]`}
+/>
+
 ## Writing Scalar Multiplication Entry by Entry
 
 Matrix scalar multiplication is the operation of <Highlight>multiplying every element in a matrix</Highlight> by a scalar number.
@@ -101,6 +112,35 @@ Here is Example 1 as a picture. Read each row of <InlineMath math="P" /> as a po
       { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
       { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
       { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Negative and zero scalars follow the same rule. <InlineMath math="(-1)P" /> sends each row to the opposite side of the origin: <InlineMath math="(9, 7)" /> becomes <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> squeezes every row onto <InlineMath math="(0, 0)" />, which is the zero matrix <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> and <InlineMath math="0P" /></>}
+  description={<>The rows of <InlineMath math="P" />, their opposites in <InlineMath math="(-1)P" /> through the origin, and <InlineMath math="0P" /> at the origin.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
     ],
   }}
 />

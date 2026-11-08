@@ -91,6 +91,16 @@ Expanding along any row or column gives the same determinant.
 
 <Highlight>Choose a row or column with many zeros</Highlight> when one is available. Every zero eliminates its product, so fewer terms remain to calculate.
 
+<Mermaid
+  title="Cofactor expansion step by step"
+  description="Choose a row, turn each entry into a cofactor through its minor and sign, then add the entries times their cofactors."
+  chart={`flowchart TD
+  A["Choose a row i"] --> B["For each entry a_ij, cross out row i and column j"]
+  B --> C["Minor M_ij: determinant of what is left"]
+  C --> D["Cofactor k_ij = (−1)^(i+j) · M_ij"]
+  D --> E["det A = sum of a_ij · k_ij along row i"]`}
+/>
+
 ## Example of Determinant Calculation
 
 Calculate the determinant of the following matrix <InlineMath math="P" /> using the cofactor expansion method:
@@ -146,7 +156,7 @@ So, the determinant of matrix <InlineMath math="P" /> is <InlineMath math="-12" 
 
 Notice <InlineMath math="k_{12}=(-1)(-2)=2" />. A minus-sign position can produce a **positive cofactor** when its minor is negative. Do not apply the minus sign again when substituting that cofactor into the final sum.
 
-The three cofactors of row 1 have a shape too. Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The arrow <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> stands at a right angle to it, and its length <InlineMath math="\sqrt{184}" /> equals the area of that parallelogram. The expansion <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> measures how far row 1 reaches along that arrow. Turn the scene: row 1 points to the other side of the parallelogram, which is why the determinant comes out negative.
+The three cofactors of row 1 have a shape too. Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The arrow <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> stands at a right angle to it, and its length <InlineMath math="\sqrt{184}" /> equals the area of that parallelogram. The expansion <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> is the length of that arrow times how far row 1 reaches along it. Turn the scene: row 1 points to the other side of the parallelogram, which is why the determinant comes out negative.
 
 <MathVisual
   title="The cofactors of row 1 form an arrow across the other two rows"
@@ -169,6 +179,51 @@ The three cofactors of row 1 have a shape too. Rows 2 and 3 of <InlineMath math=
       { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
       { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
       { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+The sign <InlineMath math="(-1)^{i+j}" /> follows a checkerboard. Start with <InlineMath math="+" /> in the top left corner and alternate along every row and column. That is why the cofactors of row 1 carry the signs <InlineMath math="+, -, +" />, and why <InlineMath math="k_{12} = -M_{12}" />.
+
+<MathVisual
+  title={<>The sign pattern of <InlineMath math="(-1)^{i+j}" /></>}
+  description={<>Each position of a 3 by 3 matrix carries <InlineMath math="+" /> when <InlineMath math="i+j" /> is even and <InlineMath math="-" /> when it is odd.</>}
+  labels={{
+    s11: <InlineMath math="+" />,
+    s12: <InlineMath math="-" />,
+    s13: <InlineMath math="+" />,
+    s21: <InlineMath math="-" />,
+    s22: <InlineMath math="+" />,
+    s23: <InlineMath math="-" />,
+    s31: <InlineMath math="+" />,
+    s32: <InlineMath math="-" />,
+    s33: <InlineMath math="+" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "warning" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "warning" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "warning" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "warning" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
     ],
   }}
 />

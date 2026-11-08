@@ -13,6 +13,15 @@ Bei der Matrixsubtraktion berechnen wir die **Differenzen entsprechender Einträ
 
 Das Ergebnis ist eine Matrix desselben Formats. Jeder ihrer Einträge entsteht aus der Differenz der Einträge an derselben Position.
 
+<Mermaid
+  title="Zwei Wege zur selben Differenz"
+  description="Bei Matrizen gleichen Formats liefern das Abziehen passender Einträge und das Addieren der Gegenmatrix dasselbe Ergebnis."
+  chart={`flowchart LR
+  A["P und Q, gleiches Format"] -->|"passende Einträge abziehen"| R["P − Q"]
+  A -->|"−Q bilden"| B["P + (−Q)"]
+  B -->|"passende Einträge addieren"| R`}
+/>
+
 ## Formale Definition der Matrixsubtraktion
 
 Die Matrixsubtraktion lässt sich auf zwei gleichwertige Arten beschreiben.
@@ -113,6 +122,35 @@ Lies jede Zeile als Punkt, dann siehst du, was die Differenz misst. Zeile 1 von 
       { key: "q2", objectId: "q2", at: { x: -1, y: 4 }, placement: "left" },
       { key: "d1", objectId: "d1", at: { x: 5, y: 3 }, placement: "below-right" },
       { key: "d2", objectId: "d2", at: { x: 1, y: 5.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+<InlineMath math="Q" /> abzuziehen ist dasselbe, wie <InlineMath math="-Q" /> zu addieren. Zeile 1 von <InlineMath math="-Q" /> ist <InlineMath math="(-2, -1)" />. Addierst du sie zu <InlineMath math="(8, 5)" />, landest du bei <InlineMath math="(6, 4)" />, derselben Zeile wie beim Abziehen Eintrag für Eintrag.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> ist <InlineMath math="P + (-Q)" /></>}
+  description={<>Zeile 1 von <InlineMath math="P" /> plus Zeile 1 von <InlineMath math="-Q" /> ergibt den Punkt <InlineMath math="(6, 4)" />.</>}
+  labels={{
+    p: <InlineMath math="(8, 5)" />,
+    negq: <InlineMath math="(-2, -1)" />,
+    diff: <InlineMath math="(6, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "negq", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -1 }, appearance: "secondary" },
+      { id: "s1", kind: "segment", from: { x: 8, y: 5 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: -2, y: -1 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "diff", kind: "point", at: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
     ],
   }}
 />

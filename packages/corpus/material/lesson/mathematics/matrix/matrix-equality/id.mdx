@@ -18,6 +18,17 @@ Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> dikatakan **sama**, 
 
 Jika salah satu dari kedua syarat di atas tidak terpenuhi, maka matriks <InlineMath math="A" /> tidak sama dengan matriks <InlineMath math="B" /> (ditulis <InlineMath math="A \neq B" />).
 
+<Mermaid
+  title="Menguji apakah dua matriks sama"
+  description="Dua matriks sama hanya jika ordonya sama dan setiap pasangan entri yang seletak sama."
+  chart={`flowchart TD
+  A["Matriks A dan B"] --> O{"Ordonya sama?"}
+  O -->|"Tidak"| N["A ≠ B"]
+  O -->|"Ya"| E{"Semua entri seletak sama?"}
+  E -->|"Ya"| Y["A = B"]
+  E -->|"Tidak"| N`}
+/>
+
 ## Contoh Kesamaan Dua Matriks
 
 Kesamaan dua matriks ditentukan oleh dua pemeriksaan. Kedua matriks harus berordo sama, lalu setiap elemen yang seletak harus bernilai sama. Contoh berikut memperlihatkan satu pasangan yang lolos kedua pemeriksaan dan dua pasangan yang <Highlight>gagal pada salah satu</Highlight> syarat, lalu ditutup dengan kasus yang memuat variabel belum diketahui.
@@ -55,7 +66,7 @@ Bayangkan setiap baris sebagai titik <InlineMath math="(x, y)" />. Dua matriks y
 
 <MathVisual
   title={<><InlineMath math="S" /> dan <InlineMath math="T" /> sama di satu baris, beda di baris lain</>}
-  description={<>Baris <InlineMath math="S" /> dan <InlineMath math="T" /> digambar sebagai titik. Baris 1 menjadi titik yang sama untuk kedua matriks, sedangkan baris 2 mendarat di dua titik berbeda.</>}
+  description={<>Baris <InlineMath math="S" /> dan <InlineMath math="T" /> digambar sebagai ruas garis dari titik baris 1 ke titik baris 2. Baris 1 menjadi titik yang sama untuk kedua matriks, sedangkan baris 2 mendarat di dua titik berbeda.</>}
   labels={{
     shared: <>baris 1 keduanya <InlineMath math="(5, 0)" /></>,
     s: <><InlineMath math="S" /> baris 2 <InlineMath math="(-2, 8)" /></>,
@@ -74,6 +85,36 @@ Bayangkan setiap baris sebagai titik <InlineMath math="(x, y)" />. Dua matriks y
       { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
       { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
       { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pasangan entri terakhir memberi <InlineMath math="z^2 = 9" />. Gambar kurva <InlineMath math="z^2" /> dan garis setinggi <InlineMath math="9" />: keduanya bertemu dua kali, di <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />. Kedua nilai membuat <InlineMath math="A" /> dan <InlineMath math="B" /> sama, jadi persamaan matriks bisa punya lebih dari satu solusi untuk satu variabel.
+
+<MathVisual
+  title={<>Menyelesaikan <InlineMath math="z^2 = 9" /> dari <InlineMath math="a_{22} = b_{22}" /></>}
+  description={<>Parabola <InlineMath math="z^2" /> bertemu garis setinggi 9 di <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />.</>}
+  labels={{
+    square: <InlineMath math="z^2" />,
+    level: <InlineMath math="9" />,
+    left: <InlineMath math="z = -3" />,
+    right: <InlineMath math="z = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 16 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -4, max: 4 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: -4, y: 9 }, { x: 4, y: 9 }], appearance: "reference" },
+      { id: "left", kind: "point", at: { x: -3, y: 9 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: 3, y: 9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
     ],
   }}
 />

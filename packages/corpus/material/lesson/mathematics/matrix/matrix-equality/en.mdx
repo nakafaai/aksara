@@ -18,6 +18,17 @@ Matrices <InlineMath math="A" /> and <InlineMath math="B" /> are **equal**, writ
 
 If one of these two conditions is not met, then matrix <InlineMath math="A" /> is not equal to matrix <InlineMath math="B" /> (written as <InlineMath math="A \neq B" />).
 
+<Mermaid
+  title="Testing whether two matrices are equal"
+  description="Two matrices are equal only when they have the same order and every pair of matching entries is equal."
+  chart={`flowchart TD
+  A["Matrices A and B"] --> O{"Same order?"}
+  O -->|"No"| N["A ≠ B"]
+  O -->|"Yes"| E{"Every matching entry equal?"}
+  E -->|"Yes"| Y["A = B"]
+  E -->|"No"| N`}
+/>
+
 ## Examples of Matrix Equality
 
 Matrix equality is decided by two checks. The two matrices must have the same format, and then every entry at the same position must match. The examples below show one pair that passes both checks and two pairs that <Highlight>fail exactly one</Highlight> of them, followed by a case where the entries contain unknown variables.
@@ -55,7 +66,7 @@ Picture each row as a point <InlineMath math="(x, y)" />. Equal matrices put eve
 
 <MathVisual
   title={<><InlineMath math="S" /> and <InlineMath math="T" /> share one row but not the other</>}
-  description={<>Rows of <InlineMath math="S" /> and <InlineMath math="T" /> drawn as points. Row 1 is the same point for both matrices, while row 2 lands on two different points.</>}
+  description={<>Rows of <InlineMath math="S" /> and <InlineMath math="T" /> drawn as segments from the row 1 point to the row 2 point. Row 1 is the same point for both matrices, while row 2 lands on two different points.</>}
   labels={{
     shared: <>row 1 of both <InlineMath math="(5, 0)" /></>,
     s: <><InlineMath math="S" /> row 2 <InlineMath math="(-2, 8)" /></>,
@@ -74,6 +85,36 @@ Picture each row as a point <InlineMath math="(x, y)" />. Equal matrices put eve
       { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
       { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
       { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+The last pair of entries gives <InlineMath math="z^2 = 9" />. Draw the curve of <InlineMath math="z^2" /> and the level <InlineMath math="9" />: they meet twice, at <InlineMath math="z = -3" /> and <InlineMath math="z = 3" />. Both values make <InlineMath math="A" /> and <InlineMath math="B" /> equal, so a matrix equation can have more than one solution for a variable.
+
+<MathVisual
+  title={<>Solving <InlineMath math="z^2 = 9" /> from <InlineMath math="a_{22} = b_{22}" /></>}
+  description={<>The parabola <InlineMath math="z^2" /> meets the level 9 at <InlineMath math="z = -3" /> and <InlineMath math="z = 3" />.</>}
+  labels={{
+    square: <InlineMath math="z^2" />,
+    level: <InlineMath math="9" />,
+    left: <InlineMath math="z = -3" />,
+    right: <InlineMath math="z = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 16 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -4, max: 4 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: -4, y: 9 }, { x: 4, y: 9 }], appearance: "reference" },
+      { id: "left", kind: "point", at: { x: -3, y: 9 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: 3, y: 9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
     ],
   }}
 />

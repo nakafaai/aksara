@@ -23,6 +23,15 @@ Hasil perkaliannya, sebut saja matriks <InlineMath math="C = AB" />, akan memili
 
 Pemeriksaan ordo dapat diringkas dalam satu baris: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{n\times p}" /> menghasilkan <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. Ordo dalam <InlineMath math="n" /> dipakai pada setiap hasil kali titik, sedangkan ordo luar <InlineMath math="m" /> dan <InlineMath math="p" /> menentukan bentuk hasil.
 
+<Mermaid
+  title="Kapan hasil kali matriks ada"
+  description="AB ada hanya jika banyak kolom A sama dengan banyak baris B, dan hasilnya mengambil banyak baris A dan banyak kolom B."
+  chart={`flowchart TD
+  A["A berordo m × n, B berordo p × q"] --> Q{"n = p?"}
+  Q -->|"Ya"| R["AB ada dan berordo m × q"]
+  Q -->|"Tidak"| U["AB tidak terdefinisi"]`}
+/>
+
 ### Cara Menghitung Elemen Hasil Perkalian
 
 Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />) dihitung dengan mengalikan setiap elemen pada baris ke-<InlineMath math="i" /> dari matriks <InlineMath math="A" /> dengan elemen yang bersesuaian pada kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="B" />, kemudian **menjumlahkan semua hasil perkalian** tersebut.
@@ -122,6 +131,37 @@ Perkalian matriks bisa memindahkan satu bangun sekaligus. Tulis titik sudut segi
       { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
       { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
       { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Urutan itu penting. Ambil <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}" /> dan titik <InlineMath math="(1, 1)" />. Kebetulan <InlineMath math="N" /> dan <InlineMath math="M" /> sama-sama mengirimnya dulu ke <InlineMath math="(1, 2)" />. <InlineMath math="MN" /> menerapkan <InlineMath math="N" /> lalu <InlineMath math="M" />, jadi titiknya mendarat di <InlineMath math="(0, 3)" />. <InlineMath math="NM" /> menerapkan <InlineMath math="M" /> lalu <InlineMath math="N" />, jadi titiknya mendarat di <InlineMath math="(1, 4)" />. Titiknya berbeda, jadi <InlineMath math="MN \neq NM" />.
+
+<MathVisual
+  title={<><InlineMath math="MN" /> dan <InlineMath math="NM" /> mengirim <InlineMath math="(1, 1)" /> ke titik berbeda</>}
+  description={<>Dari <InlineMath math="(1, 1)" /> kedua urutan melewati <InlineMath math="(1, 2)" />, lalu <InlineMath math="MN" /> berakhir di <InlineMath math="(0, 3)" /> dan <InlineMath math="NM" /> di <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    start: <InlineMath math="(1, 1)" />,
+    middle: <InlineMath math="(1, 2)" />,
+    mn: <InlineMath math="MN: (0, 3)" />,
+    nm: <InlineMath math="NM: (1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "mn", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "nm", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "start", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "middle", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
     ],
   }}
 />

@@ -72,6 +72,17 @@ Beispiel:
 
 Die Matrix <InlineMath math="M" /> ist eine quadratische Matrix im Format <InlineMath math="3 \times 3" />. Ihre Hauptdiagonale enthält <InlineMath math="1, 5, 9" />, ihre Gegendiagonale enthält <InlineMath math="3, 5, 7" />.
 
+<Mermaid
+  title="Besondere Arten quadratischer Matrizen"
+  description="Jede Diagonalmatrix ist eine Dreiecksmatrix, die Einheitsmatrix ist eine Diagonalmatrix, und eine Diagonalmatrix ist auch symmetrisch."
+  chart={`flowchart TD
+  S["Quadratische Matrix, n × n"] --> T["Dreiecksmatrix: Nullen auf einer Seite der Hauptdiagonale"]
+  T --> D["Diagonalmatrix: Nullen überall außerhalb der Hauptdiagonale"]
+  D --> I["Einheitsmatrix: Einsen auf der Hauptdiagonale"]
+  S --> Y["Symmetrisch: Aᵀ = A"]
+  D -.->|"auch"| Y`}
+/>
+
 ## Rechteckige Matrix
 
 Eine rechteckige Matrix ist eine Matrix, bei der **die Anzahl der Zeilen und Spalten nicht gleich ist** (<InlineMath math="m \neq n" />).
@@ -185,6 +196,31 @@ Die besonderen quadratischen Typen verhalten sich auch unterschiedlich, wenn sie
       { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
       { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
       { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Dreiecksmatrizen verschieben das Quadrat schräg, statt es zu strecken. Die obere Dreiecksmatrix <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> lässt die untere Kante liegen und schiebt die obere Kante um 2 nach rechts. Die untere Dreiecksmatrix <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> lässt die linke Kante liegen und hebt die rechte Kante um 2 an. Beide behalten den Flächeninhalt 1, das Produkt der Diagonaleinträge.
+
+<MathVisual
+  title="Zwei Dreiecksmatrizen verschieben das Einheitsquadrat"
+  description="Die obere Dreiecksmatrix schiebt das Quadrat seitlich, die untere schiebt es nach oben, und beide behalten seinen Flächeninhalt."
+  labels={{
+    upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
+    lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "upper", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "lower", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
     ],
   }}
 />

@@ -26,6 +26,16 @@ Tidak semua matriks persegi memiliki invers. Sebuah matriks <InlineMath math="A"
 - Matriks <InlineMath math="A" /> disebut **matriks nonsingular** jika <InlineMath math="\det(A) \neq 0" />. Matriks nonsingular selalu memiliki invers.
 - Matriks <InlineMath math="A" /> disebut **matriks singular** jika <InlineMath math="\det(A) = 0" />. Matriks singular tidak memiliki invers.
 
+<Mermaid
+  title="Apakah matriks punya invers"
+  description="Matriks persegi punya invers tepat ketika determinannya tidak nol, dan inversnya dicek dengan mengalikannya kembali menjadi identitas."
+  chart={`flowchart TD
+  A["Matriks persegi A"] --> D{"det A = 0?"}
+  D -->|"Ya"| S["Singular: tidak punya invers"]
+  D -->|"Tidak"| N["Nonsingular: A⁻¹ = adj(A) / det A"]
+  N --> C["Cek: A · A⁻¹ = I"]`}
+/>
+
 ## Invers Matriks Ordo Dua
 
 Untuk matriks <InlineMath math="A" /> berordo <InlineMath math="2 \times 2" />, misalkan:
@@ -170,6 +180,30 @@ Ini <InlineMath math="X=A^{-1}B" /> dalam bentuk gambar. Ambil matriks <InlineMa
       { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
       { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
       { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Sekarang coba matriks singular <InlineMath math="K = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}" />, yang determinannya <InlineMath math="2(2) - 4(1) = 0" />. Sistemnya, <InlineMath math="2x + 4y = 6" /> dan <InlineMath math="x + 2y = 1" />, memberi dua garis sejajar. Keduanya tidak pernah berpotongan, jadi tidak ada titik yang memenuhi keduanya, dan <InlineMath math="K" /> tidak punya invers untuk menemukannya.
+
+<MathVisual
+  title={<>Matriks singular memberi garis sejajar</>}
+  description={<>Persamaan <InlineMath math="KX = \begin{bmatrix} 6 \\ 1 \end{bmatrix}" /> digambar sebagai garis. Keduanya sejajar, jadi sistemnya tidak punya solusi.</>}
+  labels={{
+    first: <InlineMath math="2x + 4y = 6" />,
+    second: <InlineMath math="x + 2y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 3, y: 0 }, { x: -1, y: 2 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 0 }, { x: -1, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "below-left" },
     ],
   }}
 />
