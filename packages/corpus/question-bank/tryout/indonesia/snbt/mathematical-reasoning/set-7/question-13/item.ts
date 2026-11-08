@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "temperature-scales",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$1{,}2 \\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$4{,}8 \\text{ menit}$$",
-        },
-        {
-          correct: true,
-          label: "$$16{,}8 \\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$18{,}8 \\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$14{,}2 \\text{ menit}$$",
-        },
+        { correct: false, label: "$$66{,}6^\\circ\\text{F}$$" },
+        { correct: true, label: "$$98{,}6^\\circ\\text{F}$$" },
+        { correct: false, label: "$$99{,}6^\\circ\\text{F}$$" },
+        { correct: false, label: "$$124{,}2^\\circ\\text{F}$$" },
+        { correct: false, label: "$$130{,}6^\\circ\\text{F}$$" },
       ],
     },
   },

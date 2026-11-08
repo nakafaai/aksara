@@ -1,20 +1,13 @@
-# Count the Meeting Intervals
+The file size is in megabytes, while the speed is in megabits per second. **Convert the file size to megabits first**, then divide by the speed.
 
-The initial arrival counts as the first meeting. The fourth meeting therefore follows **three equal intervals**, not four. Let <InlineMath math="T" /> be the time between simultaneous arrivals, in hours.
+# File size in megabits
 
-<BlockMath math="3T=18\quad\Rightarrow\quad T=\frac{18}{3}=6" />
+<BlockMath math="600\text{ MB}\cdot8=4{,}800\text{ megabits}" />
 
-| Meeting | Elapsed time in hours |
-| --- | ---: |
-| First | <InlineMath math="0" /> |
-| Second | <InlineMath math="6" /> |
-| Third | <InlineMath math="12" /> |
-| Fourth | <InlineMath math="18" /> |
+# Download time
 
-# Check the Possible Period
+<BlockMath math="\frac{4{,}800}{40}=120\text{ seconds}" />
 
-A joint arrival occurs when the elapsed time is a **common multiple of all three periods**. The smallest positive such time is their least common multiple:
+Without matching the units, the result is 15 seconds, which is **eight times too fast**.
 
-<BlockMath math="\begin{aligned}\operatorname{LCM}(2,3,x)&=6 \\ \operatorname{LCM}(6,x)&=6\end{aligned}" />
-
-Every listed value of <InlineMath math="x" /> is a positive integer. It must divide <InlineMath math="6" /> for the joint interval to remain <InlineMath math="6\text{ hours}" />. The divisors are <InlineMath math="1,2,3,6" />. Of the listed values <InlineMath math="5,7,6,8,9" />, only <InlineMath math="x=6" /> works. With that period, all vans return at the elapsed times in the table.
+So the file downloads in **120 seconds**.

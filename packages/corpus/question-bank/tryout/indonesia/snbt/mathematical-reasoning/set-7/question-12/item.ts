@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "delivery-robot",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$60 \\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$50 \\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$80 \\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$90 \\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$95 \\text{ km}$$",
-        },
+        { correct: false, label: "$$4$$" },
+        { correct: false, label: "$$6$$" },
+        { correct: false, label: "$$8$$" },
+        { correct: true, label: "$$12$$" },
+        { correct: false, label: "$$16$$" },
       ],
     },
   },

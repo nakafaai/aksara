@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "delivery-robot",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{3}{70}$$",
+          column: 2,
+          label:
+            "Jarak tempuh terpendek antara pelanggan A dan pelanggan C adalah 500 m.",
         },
         {
-          correct: false,
-          label: "$$\\frac{7}{20}$$",
+          column: 1,
+          label:
+            "Jarak garis lurus dari G ke A adalah 500 m, tetapi jarak tempuh terpendek robot dari G ke A adalah 700 m.",
         },
         {
-          correct: false,
-          label: "$$\\frac{17}{20}$$",
+          column: 1,
+          label:
+            "Perjalanan pulang pergi dari G ke B melalui jalur terpendek menghabiskan $$24\\%$$ baterai.",
         },
         {
-          correct: false,
-          label: "$$\\frac{61}{70}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{12}{70}$$",
+          column: 2,
+          label:
+            "Robot dengan sisa baterai $$40\\%$$ dapat mengunjungi ketiga pelanggan lalu kembali ke G.",
         },
       ],
     },

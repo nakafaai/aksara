@@ -1,22 +1,16 @@
-# Count Segments Before Counting Time
+Use the formula <InlineMath math="F=\tfrac95C+32" /> in the right order: **multiply by <InlineMath math="\tfrac95" /> first, then add 32**.
 
-The first trip from <InlineMath math="A" /> to <InlineMath math="C" /> covers **half a lap**, or two equal segments. Each later arrival at <InlineMath math="C" /> adds a full lap of four segments:
+# Substitution
 
-| Arrival at C | Total segments from the start |
-| --- | ---: |
-| First | <InlineMath math="2" /> |
-| Second | <InlineMath math="2+4=6" /> |
-| Third | <InlineMath math="6+4=10" /> |
-| Fourth | <InlineMath math="10+4=14" /> |
+<BlockMath math="\begin{aligned}
+F&=\tfrac95\cdot37+32\\
+&=66.6+32=98.6
+\end{aligned}" />
 
-# Convert Segments to Time
+# Check
 
-At **constant speed**, equal segments take equal amounts of time. The third arrival takes twelve minutes for ten segments, so the time per segment is:
+One degree Celsius equals 1.8 degrees Fahrenheit, and 37 °C is 37 Celsius degrees above freezing, which is <InlineMath math="37\cdot1.8=66.6" /> Fahrenheit degrees. **Adding 32** gives 98.6 °F.
 
-<BlockMath math="t_s=\frac{12}{10}=1.2\text{ minutes}" />
+The value 66.6 °F forgets to add 32. The value 124.2 °F adds 32 before multiplying, <InlineMath math="(37+32)\cdot\tfrac95" />. The values 99.6 °F and 130.6 °F do not fit the formula.
 
-The fourth arrival therefore occurs at:
-
-<BlockMath math="T=14\times1.2=16.8\text{ minutes}" />
-
-This is measured from the start. As a check, one extra lap takes <InlineMath math="4\times1.2=4.8" /> minutes, so <InlineMath math="12+4.8=16.8" /> minutes.
+So normal body temperature is **98.6 °F**.

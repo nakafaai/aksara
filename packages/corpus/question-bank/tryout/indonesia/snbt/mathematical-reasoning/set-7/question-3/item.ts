@@ -1,21 +1,28 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "home-internet",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "Buku tulis" },
-        { correct: false, label: "Bolpoin" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Kecepatan 40 Mbps sama dengan 5 MB per detik." },
         {
-          correct: false,
-          label: "Buku tulis dan pensil",
+          column: 2,
+          label:
+            "Internet itu cukup untuk 14 perangkat yang menonton video HD bersamaan.",
         },
         {
-          correct: false,
-          label: "Semua memberikan keuntungan sama",
+          column: 2,
+          label:
+            "Dengan seluruh kecepatan 40 Mbps, berkas berukuran 2 GB terunduh dalam waktu kurang dari 6 menit.",
         },
-        { correct: true, label: "Pensil" },
+        {
+          column: 1,
+          label:
+            "Jika kecepatan internet dinaikkan menjadi 100 Mbps, waktu unduh setiap berkas berkurang $$60\\%$$.",
+        },
       ],
     },
   },

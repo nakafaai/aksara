@@ -1,157 +1,19 @@
-# Die Geometrie der Skizze lesen
+Hin- und Rückflug verbrauchen den Akku mit **unterschiedlicher Rate**, weil die Last verschieden ist. Bestimme die Zeit jedes Abschnitts und rechne sie in Akkuprozent um.
 
-Die Skizze zeigt eine gerade Sichtlinie, die die Wasseroberfläche schneidet. Der Fisch befindet sich unterhalb der Oberfläche, der Adler oberhalb davon.
+# Zeit jedes Abschnitts
 
-<LineEquation
-  title="Adler- und Fischpositionen"
-  description={<>Die <InlineMath math="18\text{ m}" /> lange Sichtlinie bildet mit der waagerechten Wasseroberfläche einen Winkel von <InlineMath math="30^\circ" />.</>}
-  cameraPosition={[1.2, 0.6, 15]}
-  cameraTarget={[1.2, 0.6, 0]}
-  data={[
-    {
-      points: [
-        { x: -7.5, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 2.2, y: 0, z: 0 },
-        { x: 7.5, y: 0, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      labels: [
-        { text: "Wasseroberfläche", at: 2, offset: [0, -0.6, 0] },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 1.75, y: 0, z: 0 },
-        { x: 1.7493355373, y: 0.0482200991, z: 0 },
-        { x: 1.7473426538, y: 0.0964035806, z: 0 },
-        { x: 1.7440228628, y: 0.1445138546, z: 0 },
-        { x: 1.7393786853, y: 0.1925143867, z: 0 },
-        { x: 1.7334136481, y: 0.2403687262, z: 0 },
-        { x: 1.726132281, y: 0.288040533, z: 0 },
-        { x: 1.7175401132, y: 0.3354936059, z: 0 },
-        { x: 1.7076436696, y: 0.3826919096, z: 0 },
-        { x: 1.6964504654, y: 0.4295996025, z: 0 },
-        { x: 1.6839690005, y: 0.4761810635, z: 0 },
-        { x: 1.6702087533, y: 0.5224009193, z: 0 },
-        { x: 1.655180173, y: 0.5682240711, z: 0 },
-        { x: 1.6388946721, y: 0.6136157216, z: 0 },
-        { x: 1.6213646176, y: 0.6585414009, z: 0 },
-        { x: 1.6026033216, y: 0.7029669931, z: 0 },
-        { x: 1.5826250312, y: 0.7468587621, z: 0 },
-        { x: 1.5614449176, y: 0.790183377, z: 0 },
-        { x: 1.5390790646, y: 0.8329079378, z: 0 },
-        { x: 1.5155444566, y: 0.875, z: 0 },
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2.4148145657, y: 0.6470476128, z: 0 },
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="30^\circ" />,
-          at: 0,
-          offset: [0, 0, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -2.5980762114, y: -1.5, z: 0 },
-        { x: 1.2990381057, y: 0.75, z: 0 },
-        { x: 5.1961524227, y: 3, z: 0 },
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="18\text{ m}" />,
-          at: 1,
-          offset: [0, 1, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -2.5980762114, y: -1.5, z: 0 },
-        { x: -2.5980762114, y: -0.75, z: 0 },
-        { x: -2.5980762114, y: 0, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="3\,\text{m}" />,
-          at: 1,
-          offset: [-0.8, 0, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 5.1961524227, y: 3, z: 0 },
-        { x: 5.1961524227, y: 1.5, z: 0 },
-        { x: 5.1961524227, y: 0, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="h = ?" />,
-          at: 1,
-          offset: [1, 0, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -2.5980762114, y: -1.5, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: "Fisch", at: 0, offset: [0, -0.8, 0] },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 5.1961524227, y: 3, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: true,
-      labels: [
-        { text: "Adler", at: 0, offset: [0, 0.8, 0] },
-      ],
-      smooth: false,
-    },
-  ]}
-/>
+36 km/h **sind 0,6 km pro Minute**, jede Richtung dauert also <InlineMath math="\tfrac{5{,}4}{0{,}6}=9" /> Minuten.
 
-Mit <InlineMath math="h" /> bezeichnen wir die Flughöhe des Adlers über dem Wasser. Der **gesamte Höhenunterschied** zwischen Adler und Fisch beträgt dann <InlineMath math="h+3" /> Meter. Im rechtwinkligen Dreieck liegt dieser Höhenunterschied dem Winkel von <InlineMath math="30^\circ" /> gegenüber. Die <InlineMath math="18\text{ m}" /> lange Sichtlinie ist die Hypotenuse.
+# Akkuverbrauch
 
-# Das Sinusverhältnis verwenden
+Mit 2,5 kg Last hält ein voller Akku <InlineMath math="30-4\cdot2{,}5=20" /> Minuten, ohne Last 30 Minuten.
 
-Der Sinus vergleicht **Gegenkathete und Hypotenuse**. Zur Gegenkathete gehören sowohl die Flughöhe des Adlers als auch die Tiefe des Fisches:
+<BlockMath math="\begin{aligned}
+\text{hin}&:\quad \tfrac{9}{20}\cdot100\%=45\%\\
+\text{zurück}&:\quad \tfrac{9}{30}\cdot100\%=30\%\\
+\text{Rest}&=100\%-45\%-30\%=25\%
+\end{aligned}" />
 
-<BlockMath math="\sin 30^\circ = \frac{h+3}{18}" />
+Der Wert 75 % ist der **verbrauchte** Akku, nicht der Rest. Die Werte 30 % und 45 % sind der Verbrauch nur eines Abschnitts, und 55 % bleiben nach dem Hinflug allein übrig.
 
-<BlockMath math="\frac{1}{2} = \frac{h+3}{18}" />
-
-<BlockMath math="h+3=9" />
-
-<BlockMath math="h=6" />
-
-Der Adler fliegt also <InlineMath math="6\text{ m}" /> über der Wasseroberfläche.
+Bei der Rückkehr sind also noch **25 %** Akku übrig.

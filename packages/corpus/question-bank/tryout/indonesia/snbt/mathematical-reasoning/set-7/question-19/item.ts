@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "delivery-drone",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$100(\\sqrt{3} - 1) \\, \\text{m/s}$$",
+          column: 2,
+          label:
+            "Dengan beban 5 kg, drone dapat terbang selama 15 menit dengan baterai penuh.",
         },
         {
-          correct: false,
-          label: "$$150\\sqrt{3} \\, \\text{m/s}$$",
+          column: 1,
+          label:
+            "Setiap tambahan beban 1 kg mengurangi lama terbang dengan baterai penuh sebanyak 4 menit.",
         },
         {
-          correct: false,
-          label: "$$300\\sqrt{3} \\, \\text{m/s}$$",
+          column: 2,
+          label:
+            "Dengan beban 4 kg dan baterai penuh, drone dapat menempuh jarak 10 km.",
         },
         {
-          correct: false,
-          label: "$$450\\sqrt{3} \\, \\text{m/s}$$",
-        },
-        {
-          correct: false,
-          label: "$$250\\sqrt{3} \\, \\text{m/s}$$",
+          column: 1,
+          label:
+            "Tanpa beban dan dengan baterai penuh, drone dapat menempuh jarak paling jauh 18 km.",
         },
       ],
     },

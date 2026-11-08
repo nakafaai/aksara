@@ -1,22 +1,21 @@
-# Recover the Two Totals
+The linear relation between the reading <InlineMath math="R" /> and the true temperature <InlineMath math="C" /> is fixed by **the two known pairs of data**, just as the Fahrenheit formula is fixed by the freezing and boiling points.
 
-Use **sum equals count times mean** before comparing the data sets:
+# Finding the thermometer formula
 
-| Data set | Count | Mean | Sum |
-| --- | ---: | ---: | ---: |
-| Original | <InlineMath math="22" /> | <InlineMath math="5" /> | <InlineMath math="22\times5=110" /> |
-| After removing two values | <InlineMath math="22-2=20" /> | <InlineMath math="4.9" /> | <InlineMath math="20\times4.9=98" /> |
+From 0 °C to 100 °C the reading rises from <InlineMath math="-4" /> to 86, an increase of 90. So **each 1 °C raises the reading by 0.9**.
 
-The two removed values therefore sum to <InlineMath math="110-98=12" />.
+<BlockMath math="R=0.9C-4" />
 
-# Combine the Sum and the Range
+# Finding the true temperature
 
-Let <InlineMath math="m" /> be the minimum and <InlineMath math="M" /> the maximum. The **range is maximum minus minimum**, so:
+<BlockMath math="\begin{aligned}
+0.9C-4&=32\\
+0.9C&=36\\
+C&=40
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}m+M&=12 \\ M-m&=4\quad\Rightarrow\quad M=m+4\end{aligned}" />
+Check: <InlineMath math="0.9\cdot40-4=32" />. At this temperature the thermometer **reads lower** than the true value.
 
-Substitute the range relation into the sum:
+The value 32 °C trusts the reading. The value 36 °C corrects only the offset of 4, not the factor 0.9.
 
-<BlockMath math="\begin{aligned}m+(m+4)&=12 \\ 2m&=12-4=8 \\ m&=4\end{aligned}" />
-
-The lowest score is <InlineMath math="4" />. Check: the highest is <InlineMath math="8" />, giving range <InlineMath math="8-4=4" /> and original sum <InlineMath math="98+4+8=110" />.
+So the true temperature is **40 °C**.
