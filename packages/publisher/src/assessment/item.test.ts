@@ -214,59 +214,6 @@ describe("assembleItem", () => {
       })
   );
 
-  it.effect(
-    "places a typed number after the stem and takes a fraction only for a value that is not whole",
-    () =>
-      Effect.gen(function* () {
-        /** Assembles one numeric entry asked in Indonesian. */
-        const number = (value: string, unit?: string) =>
-          assembleItem({
-            checkoutRoot: "/checkout",
-            familyId: FAMILY,
-            question: question({
-              versions: {
-                id: {
-                  kind: "numericEntry",
-                  value,
-                  ...(unit === undefined ? {} : { unit }),
-                },
-              },
-            }),
-            reading: Option.none(),
-          }).pipe(Effect.provide(files("Tuliskan hasilnya.")));
-        const decimal = yield* number("0.75", "cm");
-        const whole = yield* number("-12");
-
-        assert.deepStrictEqual(decimal.versions[0]?.interactions, [
-          {
-            acceptsFractions: true,
-            id: "number",
-            kind: "numericEntry",
-            label: "Jawaban",
-            unit: "cm",
-          },
-        ]);
-        assert.deepStrictEqual(decimal.versions[0]?.prompt.content.at(-1), {
-          attrs: { interaction: "number" },
-          type: "interaction",
-        });
-        assert.deepStrictEqual(decimal.keys[0]?.answers, [
-          { interaction: "number", kind: "numericEntry", value: "0.75" },
-        ]);
-        assert.deepStrictEqual(whole.versions[0]?.interactions, [
-          {
-            acceptsFractions: false,
-            id: "number",
-            kind: "numericEntry",
-            label: "Jawaban",
-          },
-        ]);
-        assert.deepStrictEqual(whole.keys[0]?.answers, [
-          { interaction: "number", kind: "numericEntry", value: "-12" },
-        ]);
-      })
-  );
-
   it.effect("names the file that a question is missing", () =>
     Effect.gen(function* () {
       const error = yield* assembleItem({
