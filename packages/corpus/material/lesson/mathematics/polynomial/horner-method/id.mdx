@@ -119,8 +119,8 @@ Periksa sisanya dengan menghitung nilai polinomial langsung: <InlineMath math="P
 <LineEquation
   title={<>Grafik <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
   description={<>Nilai grafik di <InlineMath math="x = -3" /> sama dengan sisa pembagian oleh <InlineMath math="x + 3" />, yaitu <InlineMath math="-3" />.</>}
-  cameraPosition={[-1, 2, 22]}
-  cameraTarget={[-1, 2, 0]}
+  cameraPosition={[-1, 2.3, 24]}
+  cameraTarget={[-1, 2.3, 0]}
   showZAxis={false}
   data={[
     {
@@ -153,12 +153,12 @@ Misalnya, skema yang sama dapat digunakan untuk pembagi <InlineMath math="2x+6=2
 
 | Kesalahan | Mengapa salah | Cara memeriksa |
 | --- | --- | --- |
-| Memakai <InlineMath math="c = 3" /> untuk pembagi <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, jadi <InlineMath math="c = -3" /> | Akar pembagi adalah nilai yang membuat pembagi nol |
-| Melewatkan suku yang tidak tertulis | <InlineMath math="2x^3 + 5x^2 + 6" /> butuh koefisien nol untuk <InlineMath math="x" /> | Banyak koefisien harus derajat ditambah satu |
-| Menjumlahkan sebelum mengalikan | Setiap kolom memakai hasil sebelumnya dikali <InlineMath math="c" /> | Ulangi satu kolom dengan urutan kali lalu tambah |
+| Memakai <InlineMath math="c = 3" /> untuk pembagi <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, jadi <InlineMath math="c = -3" /> | Substitusikan <InlineMath math="x = -3" /> ke <InlineMath math="x + 3" />, hasilnya harus <InlineMath math="0" /> |
+| Melewatkan suku yang tidak tertulis | <InlineMath math="2x^3 + 5x^2 + 6" /> butuh koefisien nol untuk <InlineMath math="x" /> | <InlineMath math="2x^3 + 5x^2 + 6" /> harus punya empat koefisien: <InlineMath math="2, 5, 0, 6" /> |
+| Menjumlahkan sebelum mengalikan | Setiap kolom memakai hasil sebelumnya dikali <InlineMath math="c" /> | Hitung ulang satu kolom: kalikan dulu, lalu tambahkan |
 | Lupa membagi hasil bagi untuk pembagi <InlineMath math="ax - b" /> | Skema memakai <InlineMath math="x - \frac{b}{a}" />, bukan <InlineMath math="ax - b" /> | Kalikan balik pembagi dan hasil bagi, lalu tambahkan sisa |
 
-Pemeriksaan paling cepat adalah **menghitung <InlineMath math="P(c)" /> langsung**. Hasilnya harus sama dengan angka terakhir pada skema.
+Pemeriksaan yang sederhana adalah **menghitung <InlineMath math="P(c)" /> langsung**. Hasilnya harus sama dengan angka terakhir pada skema.
 
 ## Latihan
 
@@ -220,11 +220,23 @@ x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
 
 <BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
 
-**Soal 2**. Dengan <InlineMath math="c = 2" />, skemanya memberi baris bawah <InlineMath math="1, -4, 3, 0" />. Hasil baginya <InlineMath math="x^2 - 4x + 3" /> dan sisanya <InlineMath math="0" />. Periksa: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. Sisa nol berarti <InlineMath math="x - 2" /> adalah faktor, sesuai [teorema faktor](/id/materi/matematika/polinomial/teorema-faktor).
+**Soal 2**. Skema Horner dengan <InlineMath math="c = 2" />:
 
-**Soal 3**. Pembagi <InlineMath math="x + 1" /> memberi <InlineMath math="c = -1" />, dan baris bawahnya <InlineMath math="2, -5, 9, -14" />. Hasil baginya <InlineMath math="2x^2 - 5x + 9" /> dan sisanya <InlineMath math="-14" />. Periksa: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+<BlockMath math="\begin{array}{c|cccc} 2 & 1 & -6 & 11 & -6 \\ & & 2 & -8 & 6 \\ \hline & 1 & -4 & 3 & \boxed{0} \end{array}" />
 
-**Soal 4**. Pakai <InlineMath math="c = \frac12" /> dengan koefisien <InlineMath math="1, 2, 0, -5" />. Baris bawahnya <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Karena pembaginya <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, bagi koefisien hasil bagi dengan <InlineMath math="2" />:
+Baris bawahnya <InlineMath math="1, -4, 3, 0" />. Hasil baginya <InlineMath math="x^2 - 4x + 3" /> dan sisanya <InlineMath math="0" />. Periksa: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. Sisa nol berarti <InlineMath math="x - 2" /> adalah faktor, sesuai [teorema faktor](/id/materi/matematika/polinomial/teorema-faktor).
+
+**Soal 3**. Pembagi <InlineMath math="x + 1" /> memberi <InlineMath math="c = -1" />:
+
+<BlockMath math="\begin{array}{c|cccc} -1 & 2 & -3 & 4 & -5 \\ & & -2 & 5 & -9 \\ \hline & 2 & -5 & 9 & \boxed{-14} \end{array}" />
+
+Baris bawahnya <InlineMath math="2, -5, 9, -14" />. Hasil baginya <InlineMath math="2x^2 - 5x + 9" /> dan sisanya <InlineMath math="-14" />. Periksa: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Soal 4**. Pakai <InlineMath math="c = \frac12" /> dengan koefisien <InlineMath math="1, 2, 0, -5" />. 
+
+<BlockMath math="\begin{array}{c|cccc} \frac12 & 1 & 2 & 0 & -5 \\ & & \frac12 & \frac54 & \frac58 \\ \hline & 1 & \frac52 & \frac54 & \boxed{-\frac{35}{8}} \end{array}" />
+
+Baris bawahnya <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Karena pembaginya <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, bagi koefisien hasil bagi dengan <InlineMath math="2" />:
 
 <BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
 

@@ -119,8 +119,8 @@ Check the remainder by evaluating the polynomial directly: <InlineMath math="P(-
 <LineEquation
   title={<>Graph of <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
   description={<>The value of the graph at <InlineMath math="x = -3" /> equals the remainder of division by <InlineMath math="x + 3" />, namely <InlineMath math="-3" />.</>}
-  cameraPosition={[-1, 2, 22]}
-  cameraTarget={[-1, 2, 0]}
+  cameraPosition={[-1, 2.3, 24]}
+  cameraTarget={[-1, 2.3, 0]}
   showZAxis={false}
   data={[
     {
@@ -153,12 +153,12 @@ For example, use the same scheme for <InlineMath math="2x+6=2(x+3)" />. To prese
 
 | Mistake | Why it fails | How to check |
 | --- | --- | --- |
-| Using <InlineMath math="c = 3" /> for the divisor <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, so <InlineMath math="c = -3" /> | The root of the divisor is the value that makes the divisor zero |
-| Skipping a missing term | <InlineMath math="2x^3 + 5x^2 + 6" /> needs a zero coefficient for <InlineMath math="x" /> | The number of coefficients must be the degree plus one |
-| Adding before multiplying | Each column uses the previous result times <InlineMath math="c" /> | Redo one column in the order multiply, then add |
+| Using <InlineMath math="c = 3" /> for the divisor <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, so <InlineMath math="c = -3" /> | Substitute <InlineMath math="x = -3" /> into <InlineMath math="x + 3" />, the result must be <InlineMath math="0" /> |
+| Skipping a missing term | <InlineMath math="2x^3 + 5x^2 + 6" /> needs a zero coefficient for <InlineMath math="x" /> | <InlineMath math="2x^3 + 5x^2 + 6" /> must have four coefficients: <InlineMath math="2, 5, 0, 6" /> |
+| Adding before multiplying | Each column uses the previous result times <InlineMath math="c" /> | Redo one column: multiply first, then add |
 | Forgetting to divide the quotient for a divisor <InlineMath math="ax - b" /> | The scheme uses <InlineMath math="x - \frac{b}{a}" />, not <InlineMath math="ax - b" /> | Multiply the divisor by the quotient and add the remainder |
 
-The quickest check is **evaluating <InlineMath math="P(c)" /> directly**. The result must equal the last number of the scheme.
+A simple check is **evaluating <InlineMath math="P(c)" /> directly**. The result must equal the last number of the scheme.
 
 ## Exercise
 
@@ -220,11 +220,23 @@ x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
 
 <BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
 
-**Problem 2**. With <InlineMath math="c = 2" />, the scheme gives the bottom row <InlineMath math="1, -4, 3, 0" />. The quotient is <InlineMath math="x^2 - 4x + 3" /> and the remainder is <InlineMath math="0" />. Check: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. A remainder of zero means <InlineMath math="x - 2" /> is a factor, as the [factor theorem](/en/subjects/mathematics/polynomial/factor-theorem) says.
+**Problem 2**. The Horner scheme with <InlineMath math="c = 2" />:
 
-**Problem 3**. The divisor <InlineMath math="x + 1" /> gives <InlineMath math="c = -1" />, and the bottom row is <InlineMath math="2, -5, 9, -14" />. The quotient is <InlineMath math="2x^2 - 5x + 9" /> and the remainder is <InlineMath math="-14" />. Check: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+<BlockMath math="\begin{array}{c|cccc} 2 & 1 & -6 & 11 & -6 \\ & & 2 & -8 & 6 \\ \hline & 1 & -4 & 3 & \boxed{0} \end{array}" />
 
-**Problem 4**. Use <InlineMath math="c = \frac12" /> with the coefficients <InlineMath math="1, 2, 0, -5" />. The bottom row is <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Since the divisor is <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, divide the quotient coefficients by <InlineMath math="2" />:
+The bottom row is <InlineMath math="1, -4, 3, 0" />. The quotient is <InlineMath math="x^2 - 4x + 3" /> and the remainder is <InlineMath math="0" />. Check: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. A remainder of zero means <InlineMath math="x - 2" /> is a factor, as the [factor theorem](/en/subjects/mathematics/polynomial/factor-theorem) says.
+
+**Problem 3**. The divisor <InlineMath math="x + 1" /> gives <InlineMath math="c = -1" />:
+
+<BlockMath math="\begin{array}{c|cccc} -1 & 2 & -3 & 4 & -5 \\ & & -2 & 5 & -9 \\ \hline & 2 & -5 & 9 & \boxed{-14} \end{array}" />
+
+The bottom row is <InlineMath math="2, -5, 9, -14" />. The quotient is <InlineMath math="2x^2 - 5x + 9" /> and the remainder is <InlineMath math="-14" />. Check: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Problem 4**. Use <InlineMath math="c = \frac12" /> with the coefficients <InlineMath math="1, 2, 0, -5" />. 
+
+<BlockMath math="\begin{array}{c|cccc} \frac12 & 1 & 2 & 0 & -5 \\ & & \frac12 & \frac54 & \frac58 \\ \hline & 1 & \frac52 & \frac54 & \boxed{-\frac{35}{8}} \end{array}" />
+
+The bottom row is <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Since the divisor is <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, divide the quotient coefficients by <InlineMath math="2" />:
 
 <BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
 
