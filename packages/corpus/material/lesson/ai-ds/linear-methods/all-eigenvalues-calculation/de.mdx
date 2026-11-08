@@ -80,3 +80,42 @@ Der **Betrag der Nebendiagonaleinträge** ist bereits von <InlineMath math="1" /
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 Die Grenzdiagonale enthält die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Da jede Iterierte zu <InlineMath math="A_0" /> ähnlich ist, sind dies die Eigenwerte der ursprünglichen Matrix und keine durch eine veränderte Aufgabe erzeugten Näherungen.
+
+Jeder Schritt <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" /> dreht die Ellipse <InlineMath math="x^TA_kx=1" /> nur, weil <InlineMath math="Q_k" /> orthogonal ist. Zoom in die Szene unten: Jede Ellipse hat dieselben Halbachsen <InlineMath math="1/\sqrt3" /> und <InlineMath math="1" />, also bleiben die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Nur die Richtung ändert sich. Die Ellipse von <InlineMath math="A_0" /> ist um <InlineMath math="45^\circ" /> geneigt, dann richten sich <InlineMath math="A_1" /> und <InlineMath math="A_2" /> immer näher an den Achsen aus, bis der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" /> auf den Achsen liegt und du seine Eigenwerte auf der Diagonale ablesen kannst.
+
+<LineEquation
+  title={<>Die <InlineMath math="\mathrm{QR}" />-Iteration dreht die Ellipse, ohne ihre Form zu ändern</>}
+  description={<>Jede Kurve ist <InlineMath math="x^TA_kx=1" />. Grau ist <InlineMath math="A_0" />, gelb <InlineMath math="A_1" />, orange <InlineMath math="A_2" /> und magenta der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 3.8]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const step = ([[a, b], [c, d]]) => {
+      const n = Math.hypot(a, c);
+      const q1 = [a / n, c / n];
+      const r12 = q1[0] * b + q1[1] * d;
+      const u = [b - r12 * q1[0], d - r12 * q1[1]];
+      const r22 = Math.hypot(u[0], u[1]);
+      const q2 = [u[0] / r22, u[1] / r22];
+      return [
+        [n * q1[0] + r12 * q1[1], n * q2[0] + r12 * q2[1]],
+        [r22 * q1[1], r22 * q2[1]],
+      ];
+    };
+    const a0 = [[2, 1], [1, 2]];
+    const a1 = step(a0);
+    const a2 = step(a1);
+    const ellipse = ([[a, b], [, d]]) =>
+      Array.from({ length: 361 }, (_, index) => {
+        const phi = (index / 360) * 2 * Math.PI;
+        const radius = 1 / Math.sqrt(a * Math.cos(phi) ** 2 + 2 * b * Math.cos(phi) * Math.sin(phi) + d * Math.sin(phi) ** 2);
+        return { x: radius * Math.cos(phi), y: radius * Math.sin(phi), z: 0 };
+      });
+    return [
+      { points: ellipse(a0), color: "#64748b", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_0" />, at: 135, offset: [-0.25, 0.2, 0] }] },
+      { points: ellipse(a1), color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_1" />, at: 288, offset: [0.15, -0.25, 0] }] },
+      { points: ellipse(a2), color: "#bb6800", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_2" />, at: 276, offset: [-0.3, -0.3, 0] }] },
+      { points: ellipse([[3, 0], [0, 1]]), color: "#c026d3", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_\infty" />, at: 90, offset: [0.3, 0.2, 0] }] },
+    ];
+  })()}
+/>

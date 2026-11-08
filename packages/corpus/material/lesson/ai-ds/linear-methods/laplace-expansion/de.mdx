@@ -127,6 +127,43 @@ Da das **erste Element Null** ist, lautet die Berechnung:
 
 Durch die Auswahl von Zeilen oder Spalten mit vielen Nullen können wir Berechnungen einsparen.
 
+Entwickelst du dieselbe Matrix nach der ersten Spalte, bekommst du die Kofaktoren <InlineMath math="C_{11}=2" />, <InlineMath math="C_{21}=-3" /> und <InlineMath math="C_{31}=-6" />, also <InlineMath math="\det A=0\cdot2+2\cdot(-3)+1\cdot(-6)=-12" />. In der Szene zeigt jede Gerade die Determinante, wenn du einen Eintrag der ersten Spalte durch einen Wert <InlineMath math="v" /> ersetzt und den Rest behältst. Alle drei Geraden gehen durch einen magentafarbenen Punkt bei <InlineMath math="\det A=-12" />, und jede Steigung ist genau der Kofaktor ihres Eintrags. Die grauen Punkte bei <InlineMath math="v=6" />, <InlineMath math="v=-2" /> und <InlineMath math="v=-1" /> markieren die Werte, bei denen die Matrix singulär wird.
+
+<LineEquation
+  title={<>Die Determinante ist linear in jedem Eintrag der ersten Spalte</>}
+  description={<>Jede Gerade zeigt <InlineMath math="\det A" />, wenn ein Eintrag der ersten Spalte durch <InlineMath math="v" /> ersetzt wird. Ihre Steigung ist der Kofaktor dieses Eintrags.</>}
+  showZAxis={false}
+  cameraPosition={[2, -8, 30]}
+  cameraTarget={[2, -8, 0]}
+  data={[
+    ...[
+      { entry: 0, cofactor: 2, color: "#8242e5", label: <InlineMath math="a_{11}:\ C_{11}=2" />, at: 1, offset: [0.3, 1.2, 0] },
+      { entry: 2, cofactor: -3, color: "#0d9488", label: <InlineMath math="a_{21}:\ C_{21}=-3" />, at: 0, offset: [-0.6, 1.2, 0] },
+      { entry: 1, cofactor: -6, color: "#bb6800", label: <InlineMath math="a_{31}:\ C_{31}=-6" />, at: 1, offset: [1.6, -1, 0] },
+    ].map(({ entry, cofactor, color, label, at, offset }) => {
+      const det = (value) => -12 + cofactor * (value - entry);
+      const ends = [entry + (4 + 12) / cofactor, entry + (-20 + 12) / cofactor].sort((left, right) => left - right);
+      return {
+        points: ends.map((value) => ({ x: value, y: det(value), z: 0 })),
+        color,
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: label, at, offset }],
+      };
+    }),
+    ...[0, 2, 1].map((entry) => ({
+      points: [{ x: entry, y: -12, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+    })),
+    ...[6, -2, -1].map((value) => ({
+      points: [{ x: value, y: 0, z: 0 }],
+      color: "#64748b",
+      showPoints: true,
+    })),
+  ]}
+/>
+
 ## Determinante der transponierten Matrix
 
 Aus der Laplace-Entwicklung folgt außerdem:

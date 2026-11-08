@@ -64,6 +64,55 @@ Die oben angegebene lineare Hülle enthält alle skalaren Vielfachen des dargest
 | Einheitsmatrix <InlineMath math="I_2" /> | 2 | 2 | Ja |
 | Matrix <InlineMath math="A" /> oben | 2 | 1 | Nein |
 
+Versuch, in dieser Szene eine zweite Richtung zu finden, die bleibt. Das graue Einheitsquadrat wird seitlich zum magentafarbenen Parallelogramm geschoben: Seine untere Kante entlang <InlineMath math="e_1" /> bleibt an Ort und Stelle, aber jeder andere Vektor kippt zur <InlineMath math="x" />-Achse, so wie <InlineMath math="e_2" />, das zu <InlineMath math="Ae_2=(2,1)^T" /> wird. Die einzige Eigenrichtung ist <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, und das reicht nicht für eine Basis der Ebene.
+
+<LineEquation
+  title={<>Die Scherung <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> lässt nur eine Eigenrichtung übrig</>}
+  description={<>Das graue Einheitsquadrat wird auf das magentafarbene Parallelogramm abgebildet. Der Vektor <InlineMath math="e_1" /> bleibt, während <InlineMath math="e_2" /> zu <InlineMath math="Ae_2=(2,1)^T" /> kippt.</>}
+  showZAxis={false}
+  cameraPosition={[1.2, 0.8, 6.5]}
+  cameraTarget={[1.2, 0.8, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="A\cdot\text{square}" />, at: 2, offset: [0.6, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.3, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ae_2" />, at: 1, offset: [-0.1, 0.35, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1=Ae_1" />, at: 1, offset: [0.2, -0.35, 0] }],
+    },
+  ]}
+/>
+
 ## Voraussetzungen für die Matrixdiagonalisierung
 
 Wenn eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> diagonalisierbar ist, dann faktorisiert das charakteristische Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath math="A" /> über <InlineMath math="\mathbb{K}" /> in lineare Faktoren:

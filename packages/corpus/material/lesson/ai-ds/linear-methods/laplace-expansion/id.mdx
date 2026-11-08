@@ -127,6 +127,43 @@ Karena **elemen pertama bernilai nol**, ekspansi kofaktor baris pertama menyisak
 
 Dengan memilih baris atau kolom yang memiliki banyak nol, kita dapat menghemat perhitungan.
 
+Ekspansi matriks yang sama di sepanjang kolom pertama memberi kofaktor <InlineMath math="C_{11}=2" />, <InlineMath math="C_{21}=-3" />, dan <InlineMath math="C_{31}=-6" />, sehingga <InlineMath math="\det A=0\cdot2+2\cdot(-3)+1\cdot(-6)=-12" />. Di adegan ini, setiap garis menunjukkan determinan saat kamu mengganti satu entri kolom pertama dengan nilai <InlineMath math="v" /> dan entri lain tetap. Ketiga garis lewat titik magenta di <InlineMath math="\det A=-12" />, dan kemiringan masing-masing tepat sama dengan kofaktornya. Titik abu-abu di <InlineMath math="v=6" />, <InlineMath math="v=-2" />, dan <InlineMath math="v=-1" /> menandai nilai yang membuat matriks singular.
+
+<LineEquation
+  title={<>Determinan linear terhadap setiap entri kolom pertama</>}
+  description={<>Setiap garis menunjukkan <InlineMath math="\det A" /> saat satu entri kolom pertama diganti nilai <InlineMath math="v" />. Kemiringannya adalah kofaktor entri itu.</>}
+  showZAxis={false}
+  cameraPosition={[2, -8, 30]}
+  cameraTarget={[2, -8, 0]}
+  data={[
+    ...[
+      { entry: 0, cofactor: 2, color: "#8242e5", label: <InlineMath math="a_{11}:\ C_{11}=2" />, at: 1, offset: [0.3, 1.2, 0] },
+      { entry: 2, cofactor: -3, color: "#0d9488", label: <InlineMath math="a_{21}:\ C_{21}=-3" />, at: 0, offset: [-0.6, 1.2, 0] },
+      { entry: 1, cofactor: -6, color: "#bb6800", label: <InlineMath math="a_{31}:\ C_{31}=-6" />, at: 1, offset: [1.6, -1, 0] },
+    ].map(({ entry, cofactor, color, label, at, offset }) => {
+      const det = (value) => -12 + cofactor * (value - entry);
+      const ends = [entry + (4 + 12) / cofactor, entry + (-20 + 12) / cofactor].sort((left, right) => left - right);
+      return {
+        points: ends.map((value) => ({ x: value, y: det(value), z: 0 })),
+        color,
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: label, at, offset }],
+      };
+    }),
+    ...[0, 2, 1].map((entry) => ({
+      points: [{ x: entry, y: -12, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+    })),
+    ...[6, -2, -1].map((value) => ({
+      points: [{ x: value, y: 0, z: 0 }],
+      color: "#64748b",
+      showPoints: true,
+    })),
+  ]}
+/>
+
 ## Determinan Matriks Transpos
 
 Pengembangan Laplace juga menghasilkan sifat berikut:

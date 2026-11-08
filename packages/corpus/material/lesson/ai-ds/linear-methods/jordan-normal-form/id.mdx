@@ -106,3 +106,33 @@ Ketika <InlineMath math="\lambda=0" />, gunakan langsung <InlineMath math="J_s(0
 Rumus ini menjelaskan mengapa pangkat matriks yang tidak dapat didiagonalisasi mengandung **faktor polinomial** dalam <InlineMath math="m" />, selain pangkat nilai eigennya. Rumus tersebut memberikan pangkat matriks eksak yang digunakan untuk menganalisis relasi rekurensi dan persamaan diferensial.
 
 Bentuk Jordan terutama digunakan untuk klasifikasi aljabar eksak. Bentuk ini sangat peka terhadap gangguan numerik kecil. Karena itu, perangkat lunak numerik biasanya memakai dekomposisi Schur, yang lebih stabil terhadap pembulatan dan perubahan kecil pada entri matriks.
+
+Ikuti titik magenta di bawah dari <InlineMath math="x_0=e_2" />. Dengan <InlineMath math="J_2(0.8)^m=\begin{pmatrix}0.8^m&m\cdot0.8^{m-1}\\0&0.8^m\end{pmatrix}" />, kedua nilai eigen sama dengan <InlineMath math="0.8<1" />, jadi semuanya akhirnya meluruh ke nol. Tapi komponen pertama naik dulu sampai <InlineMath math="2.048" /> di <InlineMath math="m=4" /> dan <InlineMath math="m=5" />, karena faktor <InlineMath math="m" /> dari blok Jordan. Matriks diagonal <InlineMath math="0.8I" /> hanya menyusutkan <InlineMath math="e_2" /> lurus ke bawah, seperti titik abu-abu.
+
+<LineEquation
+  title={<>Iterasi <InlineMath math="x_m=J_2(0.8)^me_2" /> naik dulu sebelum meluruh</>}
+  description={<>Titik magenta adalah <InlineMath math="x_m=(m\cdot0.8^{m-1},0.8^m)^T" /> untuk <InlineMath math="m=0,\ldots,20" />. Titik abu-abu adalah <InlineMath math="(0.8I)^me_2" />.</>}
+  showZAxis={false}
+  cameraPosition={[1, 0.5, 4.2]}
+  cameraTarget={[1, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: m * 0.8 ** (m - 1), y: 0.8 ** m, z: 0 })),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="x_0=e_2" />, at: 0, offset: [0.4, 0.1, 0] },
+        { text: <InlineMath math="x_4" />, at: 4, offset: [0.15, 0.2, 0] },
+        { text: <InlineMath math="x_5" />, at: 5, offset: [0.25, -0.05, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: 0, y: 0.8 ** m, z: 0 })),
+      color: "#64748b",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(0.8I)^me_2" />, at: 6, offset: [-0.55, 0, 0] }],
+    },
+  ]}
+/>

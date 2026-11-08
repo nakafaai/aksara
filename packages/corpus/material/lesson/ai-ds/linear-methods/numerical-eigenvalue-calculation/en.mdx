@@ -91,6 +91,50 @@ The other eigenvalue is <InlineMath math="1" />, so the **expected convergence f
 | 1 | <InlineMath math="14/5" /> | <InlineMath math="3/5" /> |
 | 2 | <InlineMath math="122/41" /> | <InlineMath math="9/41" /> |
 
+For a unit vector <InlineMath math="q=(\cos\theta,\sin\theta)^T" />, the Rayleigh quotient of this matrix is <InlineMath math="\rho(\theta)=2+\sin2\theta" />. Follow the magenta points below: <InlineMath math="q_0" /> starts at <InlineMath math="\rho=2" />, <InlineMath math="q_1" /> climbs to <InlineMath math="14/5" />, and <InlineMath math="q_2" /> to <InlineMath math="122/41" />. The curve peaks at <InlineMath math="\theta=\pi/4" /> with value <InlineMath math="3" />, the largest eigenvalue. Because the peak is flat, the eigenvalue estimate is already very close to <InlineMath math="3" /> while the direction of <InlineMath math="q_k" /> is still slightly off.
+
+<LineEquation
+  title={<>The Rayleigh quotient climbs to <InlineMath math="\lambda_1=3" /></>}
+  description={<>The teal curve is <InlineMath math="\rho(\theta)=q^TAq=2+\sin2\theta" /> for <InlineMath math="q=(\cos\theta,\sin\theta)^T" />. Magenta points are the power iterates <InlineMath math="q_k" />.</>}
+  showZAxis={false}
+  cameraPosition={[1.57, 1.8, 6]}
+  cameraTarget={[1.57, 1.8, 0]}
+  data={[
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 2, domain: [0, Math.PI], samples: 401 },
+      color: "#0d9488",
+      showPoints: false,
+    },
+    ...[
+      { k: 0, label: <InlineMath math="q_0" />, offset: [0.3, -0.25, 0] },
+      { k: 1, label: <InlineMath math="q_1" />, offset: [-0.4, 0.1, 0] },
+      { k: 2, label: <InlineMath math="q_2" />, offset: [-0.2, -0.4, 0] },
+      { k: 3 },
+      { k: 4 },
+    ].map(({ k, label, offset }) => {
+      const theta = Math.atan2(3 ** k - 1, 3 ** k + 1);
+      return {
+        points: [{ x: theta, y: 2 + Math.sin(2 * theta), z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        ...(label ? { labels: [{ text: label, at: 0, offset }] } : {}),
+      };
+    }),
+    {
+      points: [{ x: Math.PI / 4, y: 3, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\lambda_1=3" />, at: 0, offset: [0.2, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (3 * Math.PI) / 4, y: 1, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\lambda_2=1" />, at: 0, offset: [0, -0.4, 0] }],
+    },
+  ]}
+/>
+
 ## Shifted Inverse
 
 Choose a shift that is **not an eigenvalue**. Convergence to one eigendirection requires a uniquely closest eigenvalue and a nonzero coefficient in its eigenbasis direction. A tie in distance can prevent convergence to one direction. Iteration

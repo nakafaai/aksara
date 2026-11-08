@@ -103,6 +103,46 @@ Untuk contoh tersebut,
 
 Substitusi langsung mengonfirmasi <InlineMath math="Ax=b" />.
 
+Putar ketiga bidang dari sistem segitiga atas <InlineMath math="Ux=y" /> di bawah. Persamaan terakhir hanya memuat <InlineMath math="x_3" />, jadi bidang ungunya datar di ketinggian <InlineMath math="x_3=3" />. Persamaan kedua tidak memuat <InlineMath math="x_1" />, sehingga bidang hijau toska sejajar sumbu <InlineMath math="x_1" />. Substitusi mundur mengikuti urutan itu: tinggi dulu, lalu <InlineMath math="x_2=2" />, lalu <InlineMath math="x_1=1" /> dari bidang kuning. Ketiganya bertemu tepat di titik magenta <InlineMath math="x=(1,2,3)^T" />.
+
+<LineEquation
+  title={<>Tiga bidang dari <InlineMath math="Ux=y" /> bertemu di <InlineMath math="x=(1,2,3)^T" /></>}
+  description={<>Bidang ungu <InlineMath math="x_3=3" />, bidang hijau toska <InlineMath math="2x_2+x_3=7" />, dan bidang kuning <InlineMath math="2x_1+x_2+x_3=7" />. Sumbu <InlineMath math="x_3" /> mengarah ke atas.</>}
+  cameraPosition={[7, 6, 8]}
+  cameraTarget={[1, 3, 2]}
+  data={[
+    ...[
+      { first: [1, 0, 0], second: [0, 1, 0], color: "#8242e5", label: <InlineMath math="x_3=3" /> },
+      { first: [1, 0, 0], second: [0, 1 / Math.sqrt(5), -2 / Math.sqrt(5)], color: "#0d9488", label: <InlineMath math="2x_2+x_3=7" /> },
+      { first: [1 / Math.sqrt(5), -2 / Math.sqrt(5), 0], second: [2 / Math.sqrt(30), 1 / Math.sqrt(30), -5 / Math.sqrt(30)], color: "#b98d00", label: <InlineMath math="2x_1+x_2+x_3=7" /> },
+    ].flatMap(({ first, second, color, label }) => {
+      const point = (s, t) => {
+        const x1 = 1 + s * first[0] + t * second[0];
+        const x2 = 2 + s * first[1] + t * second[1];
+        const x3 = 3 + s * first[2] + t * second[2];
+        return { x: x1, y: x3, z: x2 };
+      };
+      const steps = [-1.5, -0.75, 0, 0.75, 1.5];
+      return [
+        ...steps.map((s, index) => ({
+          points: [point(s, -1.5), point(s, 1.5)],
+          color,
+          smooth: false,
+          showPoints: false,
+          ...(index === 4 ? { labels: [{ text: label, at: 1, offset: [0.4, 0.3, 0] }] } : {}),
+        })),
+        ...steps.map((t) => ({ points: [point(-1.5, t), point(1.5, t)], color, smooth: false, showPoints: false })),
+      ];
+    }),
+    {
+      points: [{ x: 1, y: 3, z: 2 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x=(1,2,3)^T" />, at: 0, offset: [0.5, 0.4, 0] }],
+    },
+  ]}
+/>
+
 ## Biaya dan penggunaan ulang
 
 Faktorisasi <InlineMath math="\mathrm{LU}" /> padat membutuhkan sekitar

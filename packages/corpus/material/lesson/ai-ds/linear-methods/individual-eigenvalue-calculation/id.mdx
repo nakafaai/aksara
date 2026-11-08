@@ -89,6 +89,65 @@ Periksa juga residual pertama. Estimasinya membaik, tetapi belum konvergen:
 
 <BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
+Kedua metode di bawah mulai dari vektor ungu <InlineMath math="q_0" /> yang sama. Iterasi invers dengan geseran <InlineMath math="\mu=1" /> mengalikan komponen kedua dengan <InlineMath math="1/4" /> di tiap langkah, jadi panah hijau toska <InlineMath math="q_k\propto(1,4^{-k})^T" /> rebah ke sumbu pertama, yaitu vektor eigen untuk <InlineMath math="2" />. Iterasi pangkat biasa memakai <InlineMath math="A" /> sendiri, sehingga panah oranye <InlineMath math="p_k\propto(2^k,5^k)^T" /> naik menuju vektor eigen untuk <InlineMath math="5" />. Geseran menentukan nilai eigen mana yang kamu dapat.
+
+<LineEquation
+  title={<>Iterasi invers bergeser dan iterasi pangkat menuju arah berbeda</>}
+  description={<>Untuk <InlineMath math="A=\operatorname{diag}(2,5)" /> dan <InlineMath math="q_0=(1,1)^T/\sqrt2" />: panah hijau toska adalah <InlineMath math="q_k" /> dengan geseran <InlineMath math="\mu=1" />, panah oranye adalah iterasi pangkat <InlineMath math="p_k" />.</>}
+  showZAxis={false}
+  cameraPosition={[0.5, 0.5, 3.4]}
+  cameraTarget={[0.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 91 }, (_, index) => {
+        const angle = (index / 90) * (Math.PI / 2);
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...Array.from({ length: 3 }, (_, index) => {
+      const k = index + 1;
+      const x = 1;
+      const y = 1 / 4 ** k;
+      const length = Math.hypot(x, y);
+      return {
+        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
+        color: "#0d9488",
+        cone: { position: "end", size: 0.08 },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [0.2, 0.05, 0] }] } : {}),
+        ...(k === 3 ? { labels: [{ text: <InlineMath math="q_3" />, at: 1, offset: [0.2, -0.1, 0] }] } : {}),
+      };
+    }),
+    ...Array.from({ length: 3 }, (_, index) => {
+      const k = index + 1;
+      const x = 2 ** k;
+      const y = 5 ** k;
+      const length = Math.hypot(x, y);
+      return {
+        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
+        color: "#bb6800",
+        cone: { position: "end", size: 0.08 },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: <InlineMath math="p_1" />, at: 1, offset: [0.15, 0.15, 0] }] } : {}),
+        ...(k === 3 ? { labels: [{ text: <InlineMath math="p_3" />, at: 1, offset: [-0.2, 0.15, 0] }] } : {}),
+      };
+    }),
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_0" />, at: 1, offset: [0.15, 0.15, 0] }],
+    },
+  ]}
+/>
+
 ## Pemeriksaan Praktis
 
 Pemeriksaan berikut memutuskan apakah pasangan nilai eigen dan vektor eigen hasil hitunganmu benar tanpa mengulang seluruh determinan. Kerjakan berurutan untuk setiap pasangan yang kamu peroleh, karena setiap langkah menyaring jenis kesalahan yang berbeda: satu langkah menangkap penyimpangan angka, langkah lain menangkap pilihan tanda yang bebas.

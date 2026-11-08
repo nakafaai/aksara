@@ -106,3 +106,33 @@ Für <InlineMath math="\lambda=0" /> verwendest du direkt <InlineMath math="J_s(
 Die Formel erklärt, warum Potenzen einer nicht diagonalisierbaren Matrix neben Eigenwertpotenzen auch **Polynomfaktoren** in <InlineMath math="m" /> enthalten. Sie liefert die exakten Matrixpotenzen, die zur Analyse von Rekursionen und Differentialgleichungen benötigt werden.
 
 Die Jordan-Form dient vor allem der exakten algebraischen Klassifikation. Sie reagiert sehr empfindlich auf kleine numerische Störungen. Numerische Software berechnet deshalb gewöhnlich eine Schur-Zerlegung, weil sie auf diese Störungen stabiler reagiert.
+
+Folg den magentafarbenen Punkten unten ab <InlineMath math="x_0=e_2" />. Mit <InlineMath math="J_2(0.8)^m=\begin{pmatrix}0.8^m&m\cdot0.8^{m-1}\\0&0.8^m\end{pmatrix}" /> sind beide Eigenwerte <InlineMath math="0.8<1" />, also klingt am Ende alles auf null ab. Trotzdem wächst die erste Komponente zuerst bis <InlineMath math="2.048" /> bei <InlineMath math="m=4" /> und <InlineMath math="m=5" />, wegen des Faktors <InlineMath math="m" /> aus dem Jordan-Block. Die Diagonalmatrix <InlineMath math="0.8I" /> schrumpft <InlineMath math="e_2" /> nur gerade nach unten, wie die grauen Punkte.
+
+<LineEquation
+  title={<>Die Iterierten <InlineMath math="x_m=J_2(0.8)^me_2" /> wachsen, bevor sie abklingen</>}
+  description={<>Die magentafarbenen Punkte sind <InlineMath math="x_m=(m\cdot0.8^{m-1},0.8^m)^T" /> für <InlineMath math="m=0,\ldots,20" />. Die grauen Punkte sind <InlineMath math="(0.8I)^me_2" />.</>}
+  showZAxis={false}
+  cameraPosition={[1, 0.5, 4.2]}
+  cameraTarget={[1, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: m * 0.8 ** (m - 1), y: 0.8 ** m, z: 0 })),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="x_0=e_2" />, at: 0, offset: [0.4, 0.1, 0] },
+        { text: <InlineMath math="x_4" />, at: 4, offset: [0.15, 0.2, 0] },
+        { text: <InlineMath math="x_5" />, at: 5, offset: [0.25, -0.05, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: 0, y: 0.8 ** m, z: 0 })),
+      color: "#64748b",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(0.8I)^me_2" />, at: 6, offset: [-0.55, 0, 0] }],
+    },
+  ]}
+/>

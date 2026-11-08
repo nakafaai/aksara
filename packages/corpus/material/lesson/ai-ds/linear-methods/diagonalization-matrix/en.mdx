@@ -64,6 +64,55 @@ The span shown above contains all scalar multiples of the displayed vector and h
 | Identity <InlineMath math="I_2" /> | 2 | 2 | Yes |
 | Matrix <InlineMath math="A" /> above | 2 | 1 | No |
 
+Try to find a second direction that stays put in this scene. The gray unit square is pushed sideways into the magenta parallelogram: its bottom edge, along <InlineMath math="e_1" />, stays in place, but every other vector tilts toward the <InlineMath math="x" />-axis, like <InlineMath math="e_2" />, which becomes <InlineMath math="Ae_2=(2,1)^T" />. The only eigendirection is <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, and that is not enough for a basis of the plane.
+
+<LineEquation
+  title={<>The shear <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> leaves only one eigendirection</>}
+  description={<>The gray unit square maps to the magenta parallelogram. The vector <InlineMath math="e_1" /> stays put, while <InlineMath math="e_2" /> tilts to <InlineMath math="Ae_2=(2,1)^T" />.</>}
+  showZAxis={false}
+  cameraPosition={[1.2, 0.8, 6.5]}
+  cameraTarget={[1.2, 0.8, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="A\cdot\text{square}" />, at: 2, offset: [0.6, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.3, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ae_2" />, at: 1, offset: [-0.1, 0.35, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1=Ae_1" />, at: 1, offset: [0.2, -0.35, 0] }],
+    },
+  ]}
+/>
+
 ## Requirements for Matrix Diagonalization
 
 If a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is diagonalizable, then the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath math="A" /> over <InlineMath math="\mathbb{K}" /> factors into linear factors:

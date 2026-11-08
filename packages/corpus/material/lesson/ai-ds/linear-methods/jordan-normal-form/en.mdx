@@ -106,3 +106,33 @@ When <InlineMath math="\lambda=0" />, use <InlineMath math="J_s(0)^m=N^m" /> dir
 This formula explains why powers of a non-diagonalizable matrix contain **polynomial factors** in <InlineMath math="m" /> in addition to powers of the eigenvalues. It gives the exact matrix powers used to analyze recurrences and differential equations.
 
 Jordan form is primarily an exact algebraic classification. It is highly sensitive to small numerical perturbations, so numerical software usually computes a Schur decomposition for stable calculations.
+
+Follow the magenta points below from <InlineMath math="x_0=e_2" />. With <InlineMath math="J_2(0.8)^m=\begin{pmatrix}0.8^m&m\cdot0.8^{m-1}\\0&0.8^m\end{pmatrix}" />, both eigenvalues equal <InlineMath math="0.8<1" />, so everything eventually decays to zero. Still, the first component first grows to <InlineMath math="2.048" /> at <InlineMath math="m=4" /> and <InlineMath math="m=5" />, because of the factor <InlineMath math="m" /> from the Jordan block. The diagonal matrix <InlineMath math="0.8I" /> only shrinks <InlineMath math="e_2" /> straight down, like the gray points.
+
+<LineEquation
+  title={<>The iterates <InlineMath math="x_m=J_2(0.8)^me_2" /> grow before they decay</>}
+  description={<>Magenta points are <InlineMath math="x_m=(m\cdot0.8^{m-1},0.8^m)^T" /> for <InlineMath math="m=0,\ldots,20" />. Gray points are <InlineMath math="(0.8I)^me_2" />.</>}
+  showZAxis={false}
+  cameraPosition={[1, 0.5, 4.2]}
+  cameraTarget={[1, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: m * 0.8 ** (m - 1), y: 0.8 ** m, z: 0 })),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="x_0=e_2" />, at: 0, offset: [0.4, 0.1, 0] },
+        { text: <InlineMath math="x_4" />, at: 4, offset: [0.15, 0.2, 0] },
+        { text: <InlineMath math="x_5" />, at: 5, offset: [0.25, -0.05, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 21 }, (_, m) => ({ x: 0, y: 0.8 ** m, z: 0 })),
+      color: "#64748b",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="(0.8I)^me_2" />, at: 6, offset: [-0.55, 0, 0] }],
+    },
+  ]}
+/>

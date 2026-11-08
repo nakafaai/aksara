@@ -179,6 +179,50 @@ Ihr charakteristisches Polynom lautet:
 
 Der Eigenwert ist <InlineMath math="\lambda = 1" /> mit <InlineMath math="\mu_A(1) = 2" />.
 
+Vergleich die fünf Parabeln unten, eine für jeden Drehwinkel. Der tiefste Punkt jeder Parabel liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Nur für <InlineMath math="\alpha=0" /> und <InlineMath math="\alpha=\pi" /> ist dieser Wert null, und die Parabel berührt die <InlineMath math="t" />-Achse bei <InlineMath math="t=1" /> oder <InlineMath math="t=-1" />. Für jeden anderen Winkel schwebt die Parabel über der Achse, ihre Nullstellen sind komplex, und die Drehung erhält keine einzige Richtung.
+
+<LineEquation
+  title={<>Charakteristisches Polynom einer Drehung <InlineMath math="t^2-2t\cos\alpha+1" /></>}
+  description={<>Eine Parabel für jeden Winkel <InlineMath math="\alpha" />. Ihr tiefster Punkt liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="\sin^2\alpha" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 2, 9]}
+  cameraTarget={[0, 2, 0]}
+  data={[
+    ...[
+      { angle: 0, color: "#8242e5", label: <InlineMath math="\alpha=0" />, end: 400, offset: [0.5, 0.3, 0] },
+      { angle: Math.PI / 3, color: "#0d9488", label: <InlineMath math="\alpha=\tfrac\pi3" />, end: 0, offset: [-0.5, 0.35, 0] },
+      { angle: Math.PI / 2, color: "#b98d00", label: <InlineMath math="\alpha=\tfrac\pi2" />, end: 400, offset: [0.35, 0.35, 0] },
+      { angle: (2 * Math.PI) / 3, color: "#bb6800", label: <InlineMath math="\alpha=\tfrac{2\pi}3" />, end: 0, offset: [-0.55, 0.35, 0] },
+      { angle: Math.PI, color: "#c026d3", label: <InlineMath math="\alpha=\pi" />, end: 400, offset: [0.3, 0.35, 0] },
+    ].map(({ angle, color, label, end, offset }) => {
+      const c = Math.cos(angle);
+      const reach = Math.sqrt(c ** 2 + 3);
+      return {
+        points: Array.from({ length: 401 }, (_, index) => {
+          const t = c - reach + (index / 400) * 2 * reach;
+          return { x: t, y: t ** 2 - 2 * c * t + 1, z: 0 };
+        }),
+        color,
+        smooth: false,
+        showPoints: false,
+        labels: [{ text: label, at: end, offset }],
+      };
+    }),
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=1" />, at: 0, offset: [0.35, -0.35, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.4, -0.35, 0] }],
+    },
+  ]}
+/>
+
 ## Eigenschaften ähnlicher Matrizen
 
 Ähnliche Matrizen beschreiben **dieselbe lineare Abbildung** in verschiedenen Basen. Sie besitzen deshalb dasselbe charakteristische Polynom, dieselben Eigenwerte, dieselbe Spur und dieselbe Determinante.

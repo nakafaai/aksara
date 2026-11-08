@@ -64,6 +64,55 @@ Rentang yang ditulis di atas memuat semua kelipatan skalar vektor yang ditampilk
 | Identitas <InlineMath math="I_2" /> | 2 | 2 | Ya |
 | Matriks <InlineMath math="A" /> di atas | 2 | 1 | Tidak |
 
+Coba cari arah kedua yang tidak berubah di adegan ini. Persegi satuan abu-abu digeser ke samping menjadi jajar genjang magenta: sisi bawahnya, searah <InlineMath math="e_1" />, tetap di tempat, tapi setiap vektor lain miring ke arah sumbu <InlineMath math="x" />, seperti <InlineMath math="e_2" /> yang menjadi <InlineMath math="Ae_2=(2,1)^T" />. Satu-satunya arah eigen adalah <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, dan itu tidak cukup untuk membentuk basis bidang.
+
+<LineEquation
+  title={<>Geseran <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> hanya menyisakan satu arah eigen</>}
+  description={<>Persegi satuan abu-abu dipetakan ke jajar genjang magenta. Vektor <InlineMath math="e_1" /> tidak berubah, sedangkan <InlineMath math="e_2" /> miring menjadi <InlineMath math="Ae_2=(2,1)^T" />.</>}
+  showZAxis={false}
+  cameraPosition={[1.2, 0.8, 6.5]}
+  cameraTarget={[1.2, 0.8, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="A\cdot\text{square}" />, at: 2, offset: [0.6, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.3, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ae_2" />, at: 1, offset: [-0.1, 0.35, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1=Ae_1" />, at: 1, offset: [0.2, -0.35, 0] }],
+    },
+  ]}
+/>
+
 ## Syarat Diagonalisasi Matriks
 
 Jika matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dapat didiagonalisasi, maka polinomial karakteristik <InlineMath math="\chi_A(t)" /> dari <InlineMath math="A" /> dalam <InlineMath math="\mathbb{K}" /> terurai menjadi faktor linear:

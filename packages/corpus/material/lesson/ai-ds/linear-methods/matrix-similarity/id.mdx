@@ -93,6 +93,65 @@ Mengubah kembali koordinat menghasilkan **vektor keluaran yang sama**:
 
 <BlockMath math="S\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1+3\\3\end{pmatrix}=\begin{pmatrix}4\\3\end{pmatrix}=Ax" />
 
+Grid abu-abu di bawah dibangun dari kolom <InlineMath math="s_1=(1,0)^T" /> dan <InlineMath math="s_2=(1,1)^T" />, jadi setiap titik potongnya punya koordinat bulat terhadap basis baru. Panah oranye <InlineMath math="x" /> berakhir di titik <InlineMath math="1\cdot s_1+1\cdot s_2" />, sesuai <InlineMath math="\xi=(1,1)^T" />. Panah magenta <InlineMath math="Ax=(4,3)^T" /> dicapai lewat jalur kuning <InlineMath math="1\cdot s_1+3\cdot s_2" />, sesuai <InlineMath math="B\xi=(1,3)^T" />. Panahnya sama, cuma cara membaca koordinatnya yang berbeda.
+
+<LineEquation
+  title={<>Vektor yang sama dibaca dalam basis <InlineMath math="s_1,s_2" /></>}
+  description={<>Grid abu-abu mengikuti kolom <InlineMath math="S" />. Panah <InlineMath math="x=(2,1)^T" /> dan <InlineMath math="Ax=(4,3)^T" />, serta jalur kuning <InlineMath math="1\cdot s_1+3\cdot s_2" /> yang menghasilkan <InlineMath math="Ax" />.</>}
+  showZAxis={false}
+  cameraPosition={[3, 1.6, 9.5]}
+  cameraTarget={[3, 1.6, 0]}
+  data={[
+    ...Array.from({ length: 6 }, (_, index) => {
+      const u = index - 1;
+      return { points: [{ x: u, y: 0, z: 0 }, { x: u + 3.5, y: 3.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false };
+    }),
+    ...Array.from({ length: 3 }, (_, index) => {
+      const t = index + 1;
+      return { points: [{ x: t - 1, y: t, z: 0 }, { x: t + 4, y: t, z: 0 }], color: "#64748b", smooth: false, showPoints: false };
+    }),
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 4, y: 3, z: 0 }],
+      color: "#b98d00",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1\cdot s_1+3\cdot s_2" />, at: 1, offset: [1.4, -0.35, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="s_1" />, at: 1, offset: [-0.2, -0.35, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="s_2" />, at: 1, offset: [-0.35, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x" />, at: 1, offset: [0.3, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 0 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ax" />, at: 1, offset: [0.15, 0.35, 0] }],
+    },
+  ]}
+/>
+
 ## Sifat Invarian Matriks Serupa
 
 Karena matriks serupa menjelaskan transformasi yang sama dalam koordinat berbeda, <Highlight>sifat yang tidak bergantung pada basis tetap terjaga</Highlight>. Keduanya memiliki polinomial karakteristik, determinan, jejak, peringkat, nilai eigen beserta multiplisitas aljabar, polinomial minimal, dan ukuran blok Jordan yang sama.

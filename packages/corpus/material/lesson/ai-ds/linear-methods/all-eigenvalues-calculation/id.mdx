@@ -80,3 +80,42 @@ Satu faktorisasi <InlineMath math="\mathrm{QR}" /> dan perkalian terbalik mengha
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 Diagonal hasil limit memuat nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />. Setiap hasil iterasi serupa dengan <InlineMath math="A_0" />, sehingga kedua nilai tersebut memang milik matriks semula.
+
+Setiap iterasi <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" /> hanya memutar elips <InlineMath math="x^TA_kx=1" />, karena <InlineMath math="Q_k" /> ortogonal. Perbesar adegan di bawah: semua elips punya setengah sumbu yang sama, <InlineMath math="1/\sqrt3" /> dan <InlineMath math="1" />, jadi nilai eigennya tetap <InlineMath math="3" /> dan <InlineMath math="1" />. Yang berubah hanya arahnya. Elips <InlineMath math="A_0" /> miring <InlineMath math="45^\circ" />, lalu <InlineMath math="A_1" /> dan <InlineMath math="A_2" /> makin dekat ke sumbu koordinat, sampai elips limit <InlineMath math="\operatorname{diag}(3,1)" /> sejajar sumbu dan nilai eigennya terbaca di diagonal.
+
+<LineEquation
+  title={<>Iterasi <InlineMath math="\mathrm{QR}" /> memutar elips tanpa mengubah bentuknya</>}
+  description={<>Setiap kurva adalah <InlineMath math="x^TA_kx=1" />. Kurva abu-abu untuk <InlineMath math="A_0" />, kuning untuk <InlineMath math="A_1" />, oranye untuk <InlineMath math="A_2" />, dan magenta untuk limit <InlineMath math="\operatorname{diag}(3,1)" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 3.8]}
+  cameraTarget={[0, 0, 0]}
+  data={(() => {
+    const step = ([[a, b], [c, d]]) => {
+      const n = Math.hypot(a, c);
+      const q1 = [a / n, c / n];
+      const r12 = q1[0] * b + q1[1] * d;
+      const u = [b - r12 * q1[0], d - r12 * q1[1]];
+      const r22 = Math.hypot(u[0], u[1]);
+      const q2 = [u[0] / r22, u[1] / r22];
+      return [
+        [n * q1[0] + r12 * q1[1], n * q2[0] + r12 * q2[1]],
+        [r22 * q1[1], r22 * q2[1]],
+      ];
+    };
+    const a0 = [[2, 1], [1, 2]];
+    const a1 = step(a0);
+    const a2 = step(a1);
+    const ellipse = ([[a, b], [, d]]) =>
+      Array.from({ length: 361 }, (_, index) => {
+        const phi = (index / 360) * 2 * Math.PI;
+        const radius = 1 / Math.sqrt(a * Math.cos(phi) ** 2 + 2 * b * Math.cos(phi) * Math.sin(phi) + d * Math.sin(phi) ** 2);
+        return { x: radius * Math.cos(phi), y: radius * Math.sin(phi), z: 0 };
+      });
+    return [
+      { points: ellipse(a0), color: "#64748b", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_0" />, at: 135, offset: [-0.25, 0.2, 0] }] },
+      { points: ellipse(a1), color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_1" />, at: 288, offset: [0.15, -0.25, 0] }] },
+      { points: ellipse(a2), color: "#bb6800", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_2" />, at: 276, offset: [-0.3, -0.3, 0] }] },
+      { points: ellipse([[3, 0], [0, 1]]), color: "#c026d3", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_\infty" />, at: 90, offset: [0.3, 0.2, 0] }] },
+    ];
+  })()}
+/>

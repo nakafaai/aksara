@@ -89,6 +89,65 @@ Prüfe auch das erste Residuum: Die Schätzung verbessert sich, ist aber noch ni
 
 <BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
+Beide Verfahren unten starten beim selben violetten Vektor <InlineMath math="q_0" />. Die inverse Iteration mit Shift <InlineMath math="\mu=1" /> multipliziert die zweite Komponente in jedem Schritt mit <InlineMath math="1/4" />, also kippen die türkisen Pfeile <InlineMath math="q_k\propto(1,4^{-k})^T" /> auf die erste Achse, den Eigenvektor zu <InlineMath math="2" />. Die einfache Potenzmethode benutzt <InlineMath math="A" /> selbst, deshalb steigen die orangen Pfeile <InlineMath math="p_k\propto(2^k,5^k)^T" /> zum Eigenvektor zu <InlineMath math="5" />. Der Shift entscheidet, welchen Eigenwert du bekommst.
+
+<LineEquation
+  title={<>Verschobene inverse Iteration und Potenzmethode laufen in verschiedene Richtungen</>}
+  description={<>Für <InlineMath math="A=\operatorname{diag}(2,5)" /> und <InlineMath math="q_0=(1,1)^T/\sqrt2" />: Türkise Pfeile sind <InlineMath math="q_k" /> mit Shift <InlineMath math="\mu=1" />, orange Pfeile die Iterierten <InlineMath math="p_k" /> der Potenzmethode.</>}
+  showZAxis={false}
+  cameraPosition={[0.5, 0.5, 3.4]}
+  cameraTarget={[0.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 91 }, (_, index) => {
+        const angle = (index / 90) * (Math.PI / 2);
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...Array.from({ length: 3 }, (_, index) => {
+      const k = index + 1;
+      const x = 1;
+      const y = 1 / 4 ** k;
+      const length = Math.hypot(x, y);
+      return {
+        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
+        color: "#0d9488",
+        cone: { position: "end", size: 0.08 },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [0.2, 0.05, 0] }] } : {}),
+        ...(k === 3 ? { labels: [{ text: <InlineMath math="q_3" />, at: 1, offset: [0.2, -0.1, 0] }] } : {}),
+      };
+    }),
+    ...Array.from({ length: 3 }, (_, index) => {
+      const k = index + 1;
+      const x = 2 ** k;
+      const y = 5 ** k;
+      const length = Math.hypot(x, y);
+      return {
+        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
+        color: "#bb6800",
+        cone: { position: "end", size: 0.08 },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: <InlineMath math="p_1" />, at: 1, offset: [0.15, 0.15, 0] }] } : {}),
+        ...(k === 3 ? { labels: [{ text: <InlineMath math="p_3" />, at: 1, offset: [-0.2, 0.15, 0] }] } : {}),
+      };
+    }),
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_0" />, at: 1, offset: [0.15, 0.15, 0] }],
+    },
+  ]}
+/>
+
 ## Praktische Prüfungen
 
 Mit diesen Prüfungen entscheidest du, ob ein berechnetes Paar aus Eigenwert und Eigenvektor stimmt, ohne die ganze Determinante erneut zu rechnen. Arbeite sie der Reihe nach für dein Ergebnis ab.

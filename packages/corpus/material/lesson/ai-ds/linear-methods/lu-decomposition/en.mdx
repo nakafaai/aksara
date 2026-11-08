@@ -103,6 +103,46 @@ For the example,
 
 Direct substitution confirms <InlineMath math="Ax=b" />.
 
+Rotate the three planes of the upper triangular system <InlineMath math="Ux=y" /> below. The last equation contains only <InlineMath math="x_3" />, so its violet plane lies flat at height <InlineMath math="x_3=3" />. The second equation has no <InlineMath math="x_1" />, so its teal plane runs parallel to the <InlineMath math="x_1" />-axis. Backward substitution follows that order: the height first, then <InlineMath math="x_2=2" />, then <InlineMath math="x_1=1" /> from the amber plane. All three meet exactly at the magenta point <InlineMath math="x=(1,2,3)^T" />.
+
+<LineEquation
+  title={<>The three planes of <InlineMath math="Ux=y" /> meet at <InlineMath math="x=(1,2,3)^T" /></>}
+  description={<>Violet plane <InlineMath math="x_3=3" />, teal plane <InlineMath math="2x_2+x_3=7" />, and amber plane <InlineMath math="2x_1+x_2+x_3=7" />. The <InlineMath math="x_3" />-axis points up.</>}
+  cameraPosition={[7, 6, 8]}
+  cameraTarget={[1, 3, 2]}
+  data={[
+    ...[
+      { first: [1, 0, 0], second: [0, 1, 0], color: "#8242e5", label: <InlineMath math="x_3=3" /> },
+      { first: [1, 0, 0], second: [0, 1 / Math.sqrt(5), -2 / Math.sqrt(5)], color: "#0d9488", label: <InlineMath math="2x_2+x_3=7" /> },
+      { first: [1 / Math.sqrt(5), -2 / Math.sqrt(5), 0], second: [2 / Math.sqrt(30), 1 / Math.sqrt(30), -5 / Math.sqrt(30)], color: "#b98d00", label: <InlineMath math="2x_1+x_2+x_3=7" /> },
+    ].flatMap(({ first, second, color, label }) => {
+      const point = (s, t) => {
+        const x1 = 1 + s * first[0] + t * second[0];
+        const x2 = 2 + s * first[1] + t * second[1];
+        const x3 = 3 + s * first[2] + t * second[2];
+        return { x: x1, y: x3, z: x2 };
+      };
+      const steps = [-1.5, -0.75, 0, 0.75, 1.5];
+      return [
+        ...steps.map((s, index) => ({
+          points: [point(s, -1.5), point(s, 1.5)],
+          color,
+          smooth: false,
+          showPoints: false,
+          ...(index === 4 ? { labels: [{ text: label, at: 1, offset: [0.4, 0.3, 0] }] } : {}),
+        })),
+        ...steps.map((t) => ({ points: [point(-1.5, t), point(1.5, t)], color, smooth: false, showPoints: false })),
+      ];
+    }),
+    {
+      points: [{ x: 1, y: 3, z: 2 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x=(1,2,3)^T" />, at: 0, offset: [0.5, 0.4, 0] }],
+    },
+  ]}
+/>
+
 ## Cost and reuse
 
 Dense <InlineMath math="\mathrm{LU}" /> factorization requires approximately
