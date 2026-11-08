@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-7$$",
+          label: "$$\\text{Rp}8{.}000$$",
         },
         {
           correct: false,
-          label: "$$0$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac73$$",
+          label: "$$\\text{Rp}9{.}000$$",
         },
         {
           correct: true,
-          label: "$$-\\frac73$$",
+          label: "$$\\text{Rp}10{.}000$$",
         },
         {
           correct: false,
-          label: "$$7$$",
+          label: "$$\\text{Rp}11{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}12{.}000$$",
         },
       ],
     },

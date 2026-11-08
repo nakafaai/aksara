@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "water-tank",
+  stimulus: "swimming-pool",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$0{,}88$$",
+          label: "$$3$$ jam $$20$$ menit",
         },
         {
           correct: true,
-          label: "$$0{,}96$$",
+          label: "$$5$$ jam",
         },
         {
           correct: false,
-          label: "$$0{,}92$$",
+          label: "$$8$$ jam $$20$$ menit",
         },
         {
           correct: false,
-          label: "$$1{,}00$$",
+          label: "$$50$$ jam",
         },
         {
           correct: false,
-          label: "$$1{,}04$$",
+          label: "$$300$$ jam",
         },
       ],
     },

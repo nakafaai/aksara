@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$T(x,y)=(y,x)$$",
+          label: "Translasi mempertahankan panjang setiap sisi segitiga.",
         },
         {
           correct: true,
-          label: "$$T(2,-3)=(-3,2)$$",
-        },
-        {
-          correct: true,
-          label: "$$T^2$$ adalah identitas.",
-        },
-        {
-          correct: true,
-          label: "Semua titik tetap T terletak pada $$y=x$$.",
+          label: "Pencerminan terhadap suatu garis mempertahankan luas segitiga.",
         },
         {
           correct: false,
-          label: "$$T$$ mempertahankan orientasi.",
+          label: "Dilatasi dengan faktor skala $$-2$$ menghasilkan segitiga yang luasnya $$2$$ kali luas semula.",
+        },
+        {
+          correct: true,
+          label: "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ sama dengan dilatasi berpusat di $$O$$ dengan faktor skala $$-1$$.",
+        },
+        {
+          correct: false,
+          label: "Pencerminan terhadap sumbu $$x$$ dilanjutkan pencerminan terhadap sumbu $$y$$ sama dengan sebuah translasi.",
         },
       ],
     },

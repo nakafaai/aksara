@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
+  stimulus: "swimming-pool",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$48\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$36\\pi-48\\sqrt3$$",
-        },
-        {
           correct: true,
-          label: "$$48\\pi-36\\sqrt3$$",
+          label: "$$375{.}000$$ liter",
         },
         {
           correct: false,
-          label: "$$36\\pi-24\\sqrt3$$",
+          label: "$$250{.}000$$ liter",
         },
         {
           correct: false,
-          label: "$$24\\pi-36\\sqrt3$$",
+          label: "$$500{.}000$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$750{.}000$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$3{.}750{.}000$$ liter",
         },
       ],
     },

@@ -1,32 +1,16 @@
-Die Grundfläche beträgt <InlineMath math="2(1{,}5)=3\,\mathrm{m}^2" />. Das Anfangsvolumen ist Grundfläche mal Wassertiefe. Die **Differenz zwischen Zufluss und Abfluss** bestimmt das zusätzliche Volumen.
+Zu füllen sind nur noch die **fehlenden <InlineMath math="60\,\%" />** des Volumens. Teile diese Menge durch die Förderrate und rechne die Sekunden in Stunden um.
 
 <BlockMath math="\begin{aligned}
-V_0&=3(0{,}8)=2{,}4\,\mathrm{m}^3 \\
-\Delta V&=(18-6)40=480\,\mathrm{L} \\
-&=\frac{480}{1000}\,\mathrm{m}^3=0{,}48\,\mathrm{m}^3 \\
-V&=2{,}4+0{,}48=2{,}88\,\mathrm{m}^3
+\text{fehlend}&=0{,}6\cdot375{.}000=225{.}000\text{ Liter} \\
+t&=\frac{225{.}000}{12{,}5}=18{.}000\text{ s} \\
+t&=\frac{18{.}000}{3{.}600}\text{ h}=5\text{ h}
 \end{aligned}" />
 
-Teile das Endvolumen durch die Grundfläche, um die Wassertiefe zu bestimmen.
+Zur Kontrolle: In einer Stunde fördert die Pumpe <InlineMath math="12{,}5\cdot3{.}600=45{.}000" /> Liter, in fünf Stunden also <InlineMath math="225{.}000" /> Liter.
 
-<BlockMath math="h=\frac{2{,}88}{3}=0{,}96\,\mathrm{m}" />
+Die Pumpe braucht also <InlineMath math="5" /> Stunden.
 
-<MathVisual
-  title="Die zusätzliche Wasserschicht"
-  description="Die untere Schicht von 0,8 m ist das ursprüngliche Wasser. Weitere 480 Liter heben den Pegel über derselben Grundfläche um 0,16 m."
-  labels={{ base: "2 m", width: "1,5 m", rise: <InlineMath math="\Delta h=\frac{0{,}48}{3}=0{,}16\,\mathrm{m}" /> }}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: 0, max: 1.15 }, z: { min: -0.95, max: 0.95 } },
-    view: { kind: "isometric", target: { x: 0, y: 0.48, z: 0 } },
-    objects: [
-      { id: "initial", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.4, z: 0 }, size: { length: 2, width: 1.5, height: 0.8 } },
-      { id: "added", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.88, z: 0 }, size: { length: 2, width: 1.5, height: 0.16 } },
-    ],
-    labels: [
-      { key: "base", objectId: "initial", at: { x: 0, y: 0, z: 0.75 }, placement: "below" },
-      { key: "width", objectId: "initial", at: { x: 1, y: 0, z: 0 }, placement: "right" },
-      { key: "rise", objectId: "added", at: { x: 0, y: 0.96, z: 0 }, placement: "above" },
-    ],
-  }}
-/>
+- <InlineMath math="3" /> Stunden <InlineMath math="20" /> Minuten sind die Zeit für die bereits vorhandenen <InlineMath math="40\,\%" />, nicht für den Rest.
+- <InlineMath math="8" /> Stunden <InlineMath math="20" /> Minuten füllen das ganze Becken von leer an.
+- <InlineMath math="50" /> Stunden teilen <InlineMath math="18{.}000" /> durch <InlineMath math="360" /> statt durch <InlineMath math="3{.}600" />.
+- <InlineMath math="300" /> Stunden behandeln die <InlineMath math="18{.}000" /> Sekunden wie Minuten.

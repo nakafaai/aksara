@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "combined-class-scores",
+  stimulus: "daily-temperature",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$75{,}6$$",
-        },
-        {
-          correct: false,
-          label: "$$76{,}8$$",
-        },
-        {
-          correct: false,
-          label: "$$77{,}2$$",
+          correct: true,
+          label: "Lebih dari $$40\\,\\%$$ hari bersuhu maksimum di atas rata-rata.",
         },
         {
           correct: true,
-          label: "$$78$$",
+          label: "Median data sama dengan modusnya.",
         },
         {
           correct: false,
-          label: "$$79{,}2$$",
+          label: "Rata-rata data lebih kecil daripada mediannya.",
+        },
+        {
+          correct: true,
+          label: "Ada tepat $$3$$ hari yang suhu maksimumnya di bawah $$32^\\circ\\text{C}$$.",
+        },
+        {
+          correct: false,
+          label: "Jangkauan data adalah $$5^\\circ\\text{C}$$.",
         },
       ],
     },

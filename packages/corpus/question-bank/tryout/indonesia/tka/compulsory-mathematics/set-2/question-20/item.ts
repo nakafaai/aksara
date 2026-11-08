@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4\\sqrt3$$",
+          label: "$$10\\sqrt3\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$5$$",
+          label: "$$30\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$5\\sqrt3$$",
+          label: "$$30(\\sqrt3-1)\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$2\\sqrt{21}$$",
+          label: "$$30\\sqrt3\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$10$$",
+          label: "$$30(\\sqrt3+1)\\text{ m}$$",
         },
       ],
     },

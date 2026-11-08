@@ -1,21 +1,16 @@
-Ada <InlineMath math="\binom82=\frac{8\cdot7}{2\cdot1}=28" /> **pasangan tak berurutan** yang sama mungkin. Jumlah ganjil terjadi jika satu kartu ganjil dan satu kartu genap. Masing-masing kelompok berisi empat kartu.
-
-Untuk kejadian yang tidak bergantung pada urutan, setiap pasangan tak berurutan berasal dari dua urutan yang sama mungkin. Karena itu, semua pasangan tersebut juga sama mungkin.
-
-<BlockMath math="P=\frac{4\cdot4}{28}=\frac47" />
-
-Bilangan prima yang tersedia adalah <InlineMath math="2,3,5,7" />. Jika bilangan terbesar harus <InlineMath math="8" />, kartu lainnya dapat berupa salah satu dari tujuh kartu yang lebih kecil.
+Urutan pemilihan tidak berpengaruh, jadi hitunglah dengan **kombinasi**. Tepat satu penjaga gawang berarti satu dari <InlineMath math="2" /> penjaga gawang dan empat dari <InlineMath math="6" /> pemain lapangan.
 
 <BlockMath math="\begin{aligned}
-P(\text{dua prima})&=\frac{\binom42}{28}=\frac{4\cdot3}{2\cdot1\cdot28}=\frac6{28}=\frac3{14} \\
-P(\max=8)&=\frac7{28}=\frac14
+\text{seluruh pilihan}&=\binom85=56 \\
+\text{tepat 1 penjaga gawang}&=\binom21\binom64=2\cdot15=30 \\
+P&=\frac{30}{56}=\frac{15}{28}
 \end{aligned}" />
 
-Jika kartu pertama genap, empat kartu ganjil masih tersedia di antara tujuh kartu. Peluang kartu kedua ganjil menjadi <InlineMath math="\frac47" />. Nilai ini berbeda dari peluang tanpa syarat <InlineMath math="\frac48=\frac12" />, sehingga kedua kejadian tidak saling bebas.
+Sebagai pemeriksaan, tanpa penjaga gawang ada <InlineMath math="\binom65=6" /> pilihan, dengan dua penjaga gawang ada <InlineMath math="\binom22\binom63=20" /> pilihan, dan <InlineMath math="6+30+20=56" />.
 
-Keempat pernyataan peluang benar. Pernyataan saling bebas salah.
+Jadi, peluangnya adalah <InlineMath math="\frac{15}{28}" />.
 
-| Kartu pertama | Kartu genap tersisa | Kartu ganjil tersisa |
-| --- | --- | --- |
-| Genap | 3 | 4 |
-| Ganjil | 4 | 3 |
+- <InlineMath math="\frac{3}{28}=\frac{6}{56}" /> adalah peluang tidak ada penjaga gawang yang terpilih.
+- <InlineMath math="\frac{5}{14}=\frac{20}{56}" /> adalah peluang kedua penjaga gawang terpilih.
+- <InlineMath math="\frac12" /> memerlukan <InlineMath math="28" /> pilihan yang memenuhi, padahal ada <InlineMath math="30" />.
+- <InlineMath math="\frac{25}{28}=\frac{50}{56}" /> adalah peluang paling sedikit satu penjaga gawang, termasuk dua penjaga gawang.

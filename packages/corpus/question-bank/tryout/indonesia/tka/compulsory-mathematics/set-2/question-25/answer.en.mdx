@@ -1,21 +1,16 @@
-There are <InlineMath math="\binom82=\frac{8\cdot7}{2\cdot1}=28" /> equally likely **unordered pairs**. An odd sum requires one odd card and one even card. Each group contains four cards.
-
-For events that do not depend on order, each unordered pair comes from two equally likely ordered draws. All unordered pairs are therefore equally likely too.
-
-<BlockMath math="P=\frac{4\cdot4}{28}=\frac47" />
-
-The available primes are <InlineMath math="2,3,5,7" />. For the larger number to be <InlineMath math="8" />, the other card can be any of the seven smaller cards.
+The order of selection does not matter, so count with **binomial coefficients**. Exactly one goalkeeper means one of the <InlineMath math="2" /> goalkeepers and four of the <InlineMath math="6" /> outfield players.
 
 <BlockMath math="\begin{aligned}
-P(\text{both prime})&=\frac{\binom42}{28}=\frac{4\cdot3}{2\cdot1\cdot28}=\frac6{28}=\frac3{14} \\
-P(\max=8)&=\frac7{28}=\frac14
+\text{all selections}&=\binom85=56 \\
+\text{exactly 1 goalkeeper}&=\binom21\binom64=2\cdot15=30 \\
+P&=\frac{30}{56}=\frac{15}{28}
 \end{aligned}" />
 
-Given an even first card, four odd cards remain among seven. The probability of an odd second card is <InlineMath math="\frac47" />. This differs from the unconditional probability <InlineMath math="\frac48=\frac12" />, so the events are not independent.
+As a check, no goalkeeper gives <InlineMath math="\binom65=6" /> selections, two goalkeepers give <InlineMath math="\binom22\binom63=20" />, and <InlineMath math="6+30+20=56" />.
 
-The four numerical probability statements are true. The independence statement is false.
+So the probability is <InlineMath math="\frac{15}{28}" />.
 
-| First card | Even cards remaining | Odd cards remaining |
-| --- | --- | --- |
-| Even | 3 | 4 |
-| Odd | 4 | 3 |
+- <InlineMath math="\frac{3}{28}=\frac{6}{56}" /> is the probability that no goalkeeper is chosen.
+- <InlineMath math="\frac{5}{14}=\frac{20}{56}" /> is the probability for both goalkeepers.
+- <InlineMath math="\frac12" /> would need <InlineMath math="28" /> favourable selections, but there are <InlineMath math="30" />.
+- <InlineMath math="\frac{25}{28}=\frac{50}{56}" /> is the probability of at least one goalkeeper, which includes two goalkeepers.

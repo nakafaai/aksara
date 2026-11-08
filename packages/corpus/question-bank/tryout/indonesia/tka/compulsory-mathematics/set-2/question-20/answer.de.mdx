@@ -1,27 +1,16 @@
-Fälle das **Lot** von <InlineMath math="B" /> auf die Gerade <InlineMath math="SA" /> mit Lotfuß <InlineMath math="H" />. Im rechtwinkligen Dreieck <InlineMath math="SHB" /> ist <InlineMath math="SB" /> die Hypotenuse. Prüfe zuerst, ob <InlineMath math="H" /> auf der Strecke <InlineMath math="SA" /> liegt.
-
-<BlockMath math="SH=10\cos60^\circ=10\cdot\frac12=5" />
-
-Wegen <InlineMath math="0<5<8" /> liegt <InlineMath math="H" /> zwischen <InlineMath math="S" /> und <InlineMath math="A" />. Der gesuchte kürzeste Abstand ist die Lotlänge <InlineMath math="BH" />.
+Ein Senkungswinkel von der Turmspitze ist gleich groß wie der Erhebungswinkel vom Boot zur Spitze, denn die beiden Winkel sind Wechselwinkel an parallelen Geraden. So entstehen **zwei rechtwinklige Dreiecke** mit der gemeinsamen Kathete <InlineMath math="30\text{ m}" />. Den waagerechten Abstand jedes Boots vom Turmfuß liefert der Tangens.
 
 <BlockMath math="\begin{aligned}
-\sin60^\circ&=\frac{BH}{10} \\
-BH&=10\cdot\frac{\sqrt3}{2}=5\sqrt3
+\tan45^\circ=\frac{30}{d_1}\ &\Rightarrow\ d_1=30\text{ m} \\
+\tan30^\circ=\frac{30}{d_2}\ &\Rightarrow\ d_2=\frac{30}{\frac{1}{\sqrt3}}=30\sqrt3\text{ m} \\
+d_2-d_1&=30\sqrt3-30=30(\sqrt3-1)\text{ m}
 \end{aligned}" />
 
-Der kürzeste Abstand beträgt <InlineMath math="5\sqrt3\,\mathrm{km}" />.
+Zur Kontrolle: <InlineMath math="30(\sqrt3-1)\approx30\cdot0{,}732\approx22\text{ m}" />. Das weiter entfernte Boot liegt etwa <InlineMath math="52\text{ m}" /> vom Turm, das nähere <InlineMath math="30\text{ m}" />.
 
-<LineEquation
-  title="Abstand eines Punktes zu einer Strecke"
-  description="H liegt innerhalb der Strecke SA. Deshalb erreicht die Lotstrecke BH den kürzesten Abstand zu SA."
-  cameraPosition={[4, 4, 16]}
-  cameraTarget={[4, 4, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#64748b", labels: [{ text: "S", at: 0, offset: [-0.4, -0.4, 0] }, { text: "A", at: 1, offset: [0.4, -0.4, 0] }, { text: "8 km", at: 0, offset: [3.5, -0.7, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 5 * Math.sqrt(3), z: 0 }], smooth: false, color: "#9333ea", labels: [{ text: "B", at: 1, offset: [0, 0.5, 0] }, { text: "10 km", at: 0, offset: [1.5, 4.5, 0] }] },
-    { points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: 5 * Math.sqrt(3), z: 0 }], smooth: false, color: "#d97706", labels: [{ text: "H", at: 0, offset: [0.4, -0.35, 0] }] },
-    { points: [{ x: 4.5, y: 0, z: 0 }, { x: 4.5, y: 0.5, z: 0 }, { x: 5, y: 0.5, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: Array.from({ length: 31 }, (_, i) => { const t = Math.PI * i / 90; return { x: 1.4 * Math.cos(t), y: 1.4 * Math.sin(t), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "60°", at: 15, offset: [0.7, 0.4, 0] }] },
-  ]}
-/>
+Die Boote liegen also <InlineMath math="30(\sqrt3-1)\text{ m}" /> auseinander.
+
+- <InlineMath math="10\sqrt3\text{ m}" /> rechnet beim Winkel <InlineMath math="30^\circ" /> mit <InlineMath math="d_2=30\cdot\tan30^\circ" /> statt <InlineMath math="d_2=\frac{30}{\tan30^\circ}" />.
+- <InlineMath math="30\text{ m}" /> ist der Abstand des näheren Boots vom Turm.
+- <InlineMath math="30\sqrt3\text{ m}" /> ist der Abstand des weiter entfernten Boots vom Turm.
+- <InlineMath math="30(\sqrt3+1)\text{ m}" /> setzt die Boote auf verschiedene Seiten des Turms.
