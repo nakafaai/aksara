@@ -138,6 +138,16 @@ Compute <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. The conjugate of the denomi
 
 Check by multiplying back: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, the original numerator. The same method also computes the [inverse of a complex number](/en/subjects/mathematics/complex-number/inverse-complex-numbers), because <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> for <InlineMath math="z \ne 0" />.
 
+<Mermaid
+  title="Steps for dividing by a complex number"
+  description="The conjugate of the denominator turns the denominator into a real number, and multiplication checks the result."
+  chart={`flowchart LR
+  A["Write the numerator and denominator"] --> B["Multiply top and bottom by the conjugate of the denominator"]
+  B --> C["The denominator becomes the squared modulus"]
+  C --> D["Separate the real and imaginary parts"]
+  D --> E["Multiply the result by the denominator to check"]`}
+/>
+
 ## When a Number Equals Its Conjugate
 
 Suppose <InlineMath math="z = \bar{z}" />, that is <InlineMath math="x + iy = x - iy" />. Subtract <InlineMath math="x" /> from both sides to get <InlineMath math="iy = -iy" />, or <InlineMath math="2iy = 0" />. Since <InlineMath math="i \ne 0" />, it follows that <InlineMath math="y = 0" />.
