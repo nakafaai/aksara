@@ -1,6 +1,6 @@
 import {
+  GroupAxisSchema,
   SectionVisibilitySchema,
-  TrackKindSchema,
 } from "@nakafa/aksara-contracts/assessment/catalog";
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { InteractionKindSchema } from "@nakafa/aksara-contracts/assessment/interaction";
@@ -11,7 +11,7 @@ import {
 } from "@nakafa/aksara-contracts/assessment/scoring";
 import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
 import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
+import { Array as Arr, Effect, MutableHashSet, Option, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import {
   PublicRouteSegmentSchema,
@@ -89,10 +89,14 @@ export const SetSourceSchema = Schema.Struct({
 });
 export type SetSource = typeof SetSourceSchema.Type;
 
-/** One track of an exam: a year, a subject, or an institution, with its profile and sets. */
+/**
+ * One track of an exam: one paper format, such as a subject or a year's test,
+ * with its profile and sets, in the group of the exam that holds it. Its key
+ * is unique within the exam, so it names the track in every group.
+ */
 export const TrackSourceSchema = Schema.Struct({
+  group: KebabKeySchema,
   key: KebabKeySchema,
-  kind: TrackKindSchema,
   order: PositiveIntSchema,
   profile: ProfileSourceSchema,
   routeSlugs: PublicRouteSlugMapSchema,
@@ -112,13 +116,33 @@ const CountrySourceSchema = Schema.Struct({
 });
 export type CountrySourceInput = typeof CountrySourceSchema.Encoded;
 
-/** One authored try-out exam: its country, its names and routes, and its tracks. */
+/**
+ * One group of an exam on its axis: a year such as 2027, a grade such as
+ * SMA/MA/SMK, or an institution such as a Studienkolleg, with its names and
+ * routes. A year's route is the year itself.
+ */
+export const GroupSourceSchema = Schema.Struct({
+  key: KebabKeySchema,
+  order: PositiveIntSchema,
+  routeSlugs: PublicRouteSlugMapSchema,
+  translations: TranslationMapSchema,
+});
+export type GroupSource = typeof GroupSourceSchema.Type;
+
+/** The one axis that divides an exam's tracks, and the groups on it. */
+const GroupingSourceSchema = Schema.Struct({
+  axis: GroupAxisSchema,
+  groups: Schema.NonEmptyArray(GroupSourceSchema),
+});
+
+/** One authored try-out exam: its country, its names and routes, its groups, and its tracks. */
 export const ExamSourceSchema = Schema.Struct({
   ...CountrySourceSchema.fields,
   examKey: KebabKeySchema,
   examOrder: PositiveIntSchema,
   examRouteSlugs: PublicRouteSlugMapSchema,
   examTranslations: TranslationMapSchema,
+  grouping: GroupingSourceSchema,
   sourceRevision: PublicRouteSegmentSchema,
   tracks: Schema.Array(TrackSourceSchema),
 });
@@ -130,6 +154,18 @@ export class ExamSourceDecodeError extends Schema.TaggedError<
   ExamSourceDecodeError,
   { readonly brand: unique symbol }
 >()("ExamSourceDecodeError", { cause: Schema.Unknown }) {}
+
+/**
+ * A track names a group its exam does not declare, or a group holds no
+ * track, which would be a page with nothing to sit.
+ */
+export class ExamSourceGroupError extends Schema.TaggedError<
+  ExamSourceGroupError,
+  { readonly brand: unique symbol }
+>()("ExamSourceGroupError", {
+  key: KebabKeySchema,
+  reason: Schema.Literals(["empty", "undeclared"]),
+}) {}
 
 /** One authored scope contains the same stable key twice. */
 export class ExamSourceDuplicateError extends Schema.TaggedError<
@@ -152,16 +188,40 @@ function requireUniqueKeys(keys: readonly string[], scope: string) {
   return Effect.void;
 }
 
-/** Strictly decodes one try-out exam and validates its stable keys. */
+/** Requires every track to name a declared group, and every group to hold a track. */
+function requireGroupedTracks(source: ExamSource) {
+  const declared = Arr.map(source.grouping.groups, ({ key }) => key);
+  const used = Arr.map(source.tracks, ({ group }) => group);
+  const undeclared = Arr.findFirst(used, (key) => !Arr.contains(declared, key));
+  if (Option.isSome(undeclared)) {
+    return Effect.fail(
+      new ExamSourceGroupError({ key: undeclared.value, reason: "undeclared" })
+    );
+  }
+  const empty = Arr.findFirst(declared, (key) => !Arr.contains(used, key));
+  if (Option.isSome(empty)) {
+    return Effect.fail(
+      new ExamSourceGroupError({ key: empty.value, reason: "empty" })
+    );
+  }
+  return Effect.void;
+}
+
+/** Strictly decodes one try-out exam and validates its stable keys and groups. */
 export const defineExamSource = Effect.fn("AksaraCorpus.defineExamSource")(
   function* (input: ExamSourceInput) {
     const source = yield* Schema.decodeEffect(ExamSourceSchema)(input, {
       onExcessProperty: "error",
     }).pipe(Effect.mapError((cause) => new ExamSourceDecodeError({ cause })));
     yield* requireUniqueKeys(
+      Arr.map(source.grouping.groups, ({ key }) => key),
+      `${source.examKey}:groups`
+    );
+    yield* requireUniqueKeys(
       Arr.map(source.tracks, ({ key }) => key),
       `${source.examKey}:tracks`
     );
+    yield* requireGroupedTracks(source);
     for (const track of source.tracks) {
       yield* requireUniqueKeys(
         Arr.map(track.sets, ({ key }) => key),

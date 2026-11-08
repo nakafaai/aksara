@@ -56,12 +56,55 @@ describe("tryout routes", () => {
       );
 
       expect(paths).toContain(
-        "try-out/indonesien/snbt/2027/aufgabensatz-1/leseverstaendnis-und-schreiben"
+        "try-out/indonesien/snbt/2027/utbk/aufgabensatz-1/leseverstaendnis-und-schreiben"
       );
       expect(paths).toContain(
-        "try-out/indonesia/snbt/2027/set-1/literasi-dalam-bahasa-inggris"
+        "try-out/indonesia/snbt/2027/utbk/set-1/literasi-dalam-bahasa-inggris"
+      );
+      expect(paths).toContain(
+        "try-out/indonesia/tka/sma-ma-smk/matematika-wajib/set-1"
+      );
+      expect(paths).toContain(
+        "try-out/indonesien/tka/oberstufe/pflichtmathematik/aufgabensatz-1"
       );
     })
+  );
+
+  it.effect(
+    "spells a grade's route from its title, and a year's from the year",
+    () =>
+      Effect.gen(function* () {
+        const rows = yield* catalogRows;
+        const grade = yield* Effect.fromOption(
+          Arr.findFirst(
+            rows,
+            (row) =>
+              row.kind === "group" &&
+              row.appLocale === "en" &&
+              row.examKey === "tka"
+          )
+        );
+        const year = yield* Effect.fromOption(
+          Arr.findFirst(
+            rows,
+            (row) =>
+              row.kind === "group" &&
+              row.appLocale === "en" &&
+              row.examKey === "snbt"
+          )
+        );
+        const error = yield* validateTryoutRoutes([
+          { ...grade, title: "High School" },
+        ]).pipe(Effect.flip);
+
+        expect(year).toMatchObject({
+          publicPath: "try-out/indonesia/snbt/2027",
+        });
+        expect(error).toMatchObject({
+          _tag: "TryoutRouteTitleError",
+          publicPath: "try-out/indonesia/tka/senior-high-school",
+        });
+      })
   );
 
   it.effect("rejects a route that does not spell its page title", () =>
