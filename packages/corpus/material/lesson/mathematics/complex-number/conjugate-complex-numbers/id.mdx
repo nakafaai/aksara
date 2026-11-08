@@ -26,7 +26,7 @@ Tulis **komponen imajiner beserta tandanya** sebelum membaliknya. Bilangan real 
 | <InlineMath math="3-2i" /> | <InlineMath math="3" /> | <InlineMath math="-2" /> | <InlineMath math="3-(-2)i=3+2i" /> |
 | <InlineMath math="3i=0+3i" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="0-3i=-3i" /> |
 
-Baris ketiga paling sering salah. Bagian imajiner <InlineMath math="3 - 2i" /> adalah <InlineMath math="-2" />, jadi membalik tandanya memberi <InlineMath math="+2" />, dan konjugatnya <InlineMath math="3 + 2i" />.
+Bilangan <InlineMath math="3 - 2i" /> paling sering salah. Bagian imajiner <InlineMath math="3 - 2i" /> adalah <InlineMath math="-2" />, jadi membalik tandanya memberi <InlineMath math="+2" />, dan konjugatnya <InlineMath math="3 + 2i" />.
 
 ## Konjugat sebagai Pencerminan
 
@@ -81,7 +81,7 @@ Titik <InlineMath math="(x, y)" /> dan <InlineMath math="(x, -y)" /> berjarak sa
   ]}
 />
 
-Pencerminan tidak mengubah panjang, jadi <InlineMath math="|\bar{z}| = |z|" />. Arahnya saja yang berbalik: jika <InlineMath math="z" /> membentuk sudut <InlineMath math="\theta" /> dengan sumbu real positif, <InlineMath math="\bar{z}" /> membentuk sudut <InlineMath math="-\theta" />. Untuk <InlineMath math="z = 3 + 2i" />, keduanya punya [modulus](/id/materi/matematika/bilangan-kompleks/modulus-dan-argumen-bilangan-kompleks) <InlineMath math="\sqrt{13}" />, dan argumennya sekitar <InlineMath math="33{,}7^\circ" /> dan <InlineMath math="-33{,}7^\circ" />.
+Pencerminan tidak mengubah panjang, jadi <InlineMath math="|\bar{z}| = |z|" />. Arahnya saja yang berbalik: jika <InlineMath math="z" /> membentuk sudut <InlineMath math="\theta" /> dengan sumbu real positif, <InlineMath math="\bar{z}" /> membentuk sudut <InlineMath math="-\theta" />. Untuk <InlineMath math="z = 3 + 2i" />, keduanya punya [modulus](/id/materi/matematika/bilangan-kompleks/modulus-dan-argumen-bilangan-kompleks) <InlineMath math="\sqrt{13}" />, dan argumennya sekitar <InlineMath math="33{,}7^\circ" /> dan <InlineMath math="-33{,}7^\circ" />. Aturan argumen berlawanan ini berlaku untuk <InlineMath math="z \ne 0" /> dan dihitung modulo <InlineMath math="360^\circ" />: untuk bilangan real negatif seperti <InlineMath math="-2" />, argumen <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> sama-sama <InlineMath math="180^\circ" />.
 
 ## Menjumlahkan dan Mengalikan dengan Konjugat
 
@@ -119,7 +119,7 @@ Saat <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> dijumlahkan, **ba
   }}
 />
 
-Untuk <InlineMath math="z = 3 + 2i" />, jumlahnya <InlineMath math="6 = 2 \cdot 3" /> dan selisihnya <InlineMath math="4i = 2i \cdot 2" />. Pada perkalian, suku silangnya saling menghapus, dan hasilnya selalu **real dan tak negatif**:
+Untuk <InlineMath math="z = 3 + 2i" />, jumlahnya <InlineMath math="6 = 2\operatorname{Re}(z)" /> dan selisihnya <InlineMath math="4i = 2i\operatorname{Im}(z)" />. Pada perkalian, suku silangnya saling menghapus, dan hasilnya selalu **real dan tak negatif**:
 
 <BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
 
@@ -136,7 +136,7 @@ Hitung <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. Konjugat penyebutnya <Inline
   <BlockMath math="= \frac{3 + 6i + 4i + 8i^2}{5} = \frac{-5 + 10i}{5} = -1 + 2i" />
 </MathContainer>
 
-Periksa dengan mengalikan balik: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, yaitu pembilang semula. Cara yang sama memberi [invers bilangan kompleks](/id/materi/matematika/bilangan-kompleks/invers-bilangan-kompleks), karena <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" />.
+Periksa dengan mengalikan balik: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, yaitu pembilang semula. Cara yang sama juga menghitung [invers bilangan kompleks](/id/materi/matematika/bilangan-kompleks/invers-bilangan-kompleks), karena <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> untuk <InlineMath math="z \ne 0" />.
 
 ## Kapan Bilangan Sama dengan Konjugatnya
 
@@ -146,7 +146,7 @@ Jadi bilangan kompleks sama dengan konjugatnya **jika dan hanya jika bilangan it
 
 ## Sifat Operasi Konjugat
 
-Konjugat **bisa dihitung sebelum atau sesudah operasi**, hasilnya sama. Aturan berikut berasal dari operasi pada komponen real dan imajiner. Contohnya memakai <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 - i" />, dan penyebut pada pembagian serta invers harus tak nol.
+Untuk penjumlahan, pengurangan, perkalian, pembagian, dan invers, konjugat **bisa dihitung sebelum atau sesudah operasi** dengan hasil yang sama. Aturan berikut berasal dari operasi pada komponen real dan imajiner. Contohnya memakai <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 - i" />, dan penyebut pada pembagian serta invers harus tak nol.
 
 | Operasi | Identitas | Contoh |
 | --- | --- | --- |
@@ -161,7 +161,7 @@ Sifat hasil kali dibuktikan dengan menjabarkan kedua ruas:
 
 <BlockMath math="\begin{aligned}\overline{z_1z_2}&amp;=(x_1x_2-y_1y_2)-i(x_1y_2+y_1x_2)\\&amp;=(x_1-iy_1)(x_2-iy_2)=\bar z_1\bar z_2\end{aligned}" />
 
-Sifat ini menjelaskan mengapa [akar imajiner persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/akar-tidak-nyata-atau-imajiner) berkoefisien real selalu berpasangan: konjugat dari ruas kiri yang bernilai nol tetap nol.
+Sifat ini menjelaskan mengapa [akar imajiner persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/akar-tidak-nyata-atau-imajiner) berkoefisien real selalu berpasangan. Jika <InlineMath math="az^2 + bz + c = 0" /> dengan <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" /> real, maka <InlineMath math="a\bar{z}^2 + b\bar{z} + c = \overline{az^2 + bz + c} = \bar{0} = 0" />, jadi <InlineMath math="\bar{z}" /> juga akar.
 
 ## Kesalahan yang Sering Terjadi
 
@@ -169,7 +169,7 @@ Sifat ini menjelaskan mengapa [akar imajiner persamaan kuadrat](/id/materi/matem
 | --- | --- | --- |
 | Membalik tanda bagian real juga | <InlineMath math="\overline{3 + 2i}" /> bukan <InlineMath math="-3 - 2i" /> | Hanya suku yang memuat <InlineMath math="i" /> yang berubah tanda |
 | Menganggap konjugat <InlineMath math="3 - 2i" /> adalah <InlineMath math="3 - 2i" /> | Bagian imajinernya <InlineMath math="-2" />, jadi tandanya menjadi <InlineMath math="+2" /> | Pencerminan harus berpindah ke sisi lain sumbu real |
-| Mengambil konjugat sebelum menyederhanakan <InlineMath math="i^2" /> atau <InlineMath math="\frac{1}{i}" /> | <InlineMath math="2 + i^2" /> sebenarnya bilangan real <InlineMath math="1" /> | Tulis dulu dalam bentuk <InlineMath math="x + iy" /> |
+| Membalik tanda suku <InlineMath math="i^2" />, misalnya menulis konjugat <InlineMath math="2 + i^2" /> sebagai <InlineMath math="2 - i^2 = 3" /> | <InlineMath math="2 + i^2" /> sebenarnya bilangan real <InlineMath math="1" /> | Ganti <InlineMath math="i^2" /> dengan <InlineMath math="-1" /> dulu |
 | Mengalikan dengan konjugat pembilang saat membagi | Penyebut tetap kompleks | Kalikan dengan konjugat penyebut agar penyebut menjadi <InlineMath math="\lvert z \rvert^2" /> |
 | Menulis <InlineMath math="z\bar{z} = x^2 - y^2" /> | <InlineMath math="-i^2 y^2 = +y^2" /> | Hasil <InlineMath math="z\bar{z}" /> harus sama dengan kuadrat modulus |
 
@@ -211,7 +211,7 @@ Periksa: <InlineMath math="\left(\frac{2}{25} - \frac{11}{25}i\right)(3 + 4i) = 
   <BlockMath math="3x - iy = 9 - 2i \quad\Longrightarrow\quad x = 3, \quad y = 2" />
 </MathContainer>
 
-Jadi <InlineMath math="z = 3 + 2i" />. Periksa: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
+Karena <InlineMath math="x" /> dan <InlineMath math="y" /> real, bagian real dan bagian imajiner kedua ruas harus sama. Jadi <InlineMath math="z = 3 + 2i" />. Periksa: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
 
 **Soal 4**. Kalikan dengan konjugatnya:
 

@@ -26,7 +26,7 @@ Write **the imaginary component with its sign** before you flip it. A real numbe
 | <InlineMath math="3-2i" /> | <InlineMath math="3" /> | <InlineMath math="-2" /> | <InlineMath math="3-(-2)i=3+2i" /> |
 | <InlineMath math="3i=0+3i" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="0-3i=-3i" /> |
 
-The third row is the one most often wrong. The imaginary part of <InlineMath math="3 - 2i" /> is <InlineMath math="-2" />, so flipping its sign gives <InlineMath math="+2" />, and the conjugate is <InlineMath math="3 + 2i" />.
+The number <InlineMath math="3 - 2i" /> is the one most often wrong. The imaginary part of <InlineMath math="3 - 2i" /> is <InlineMath math="-2" />, so flipping its sign gives <InlineMath math="+2" />, and the conjugate is <InlineMath math="3 + 2i" />.
 
 ## The Conjugate as a Reflection
 
@@ -81,7 +81,7 @@ The points <InlineMath math="(x, y)" /> and <InlineMath math="(x, -y)" /> lie at
   ]}
 />
 
-A reflection keeps lengths, so <InlineMath math="|\bar{z}| = |z|" />. Only the direction turns over: if <InlineMath math="z" /> makes the angle <InlineMath math="\theta" /> with the positive real axis, <InlineMath math="\bar{z}" /> makes the angle <InlineMath math="-\theta" />. For <InlineMath math="z = 3 + 2i" />, both have [modulus](/en/subjects/mathematics/complex-number/modulus-argument-complex-numbers) <InlineMath math="\sqrt{13}" />, and their arguments are about <InlineMath math="33.7^\circ" /> and <InlineMath math="-33.7^\circ" />.
+A reflection keeps lengths, so <InlineMath math="|\bar{z}| = |z|" />. Only the direction turns over: if <InlineMath math="z" /> makes the angle <InlineMath math="\theta" /> with the positive real axis, <InlineMath math="\bar{z}" /> makes the angle <InlineMath math="-\theta" />. For <InlineMath math="z = 3 + 2i" />, both have [modulus](/en/subjects/mathematics/complex-number/modulus-argument-complex-numbers) <InlineMath math="\sqrt{13}" />, and their arguments are about <InlineMath math="33.7^\circ" /> and <InlineMath math="-33.7^\circ" />. This rule of opposite arguments holds for <InlineMath math="z \ne 0" /> and is read modulo <InlineMath math="360^\circ" />: for a negative real number such as <InlineMath math="-2" />, the arguments of <InlineMath math="z" /> and <InlineMath math="\bar{z}" /> both equal <InlineMath math="180^\circ" />.
 
 ## Adding and Multiplying with the Conjugate
 
@@ -119,7 +119,7 @@ When you add <InlineMath math="z" /> and <InlineMath math="\bar{z}" />, **the im
   }}
 />
 
-For <InlineMath math="z = 3 + 2i" />, the sum is <InlineMath math="6 = 2 \cdot 3" /> and the difference is <InlineMath math="4i = 2i \cdot 2" />. In the product, the cross terms cancel, and the result is always **real and nonnegative**:
+For <InlineMath math="z = 3 + 2i" />, the sum is <InlineMath math="6 = 2\operatorname{Re}(z)" /> and the difference is <InlineMath math="4i = 2i\operatorname{Im}(z)" />. In the product, the cross terms cancel, and the result is always **real and nonnegative**:
 
 <BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
 
@@ -136,7 +136,7 @@ Compute <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. The conjugate of the denomi
   <BlockMath math="= \frac{3 + 6i + 4i + 8i^2}{5} = \frac{-5 + 10i}{5} = -1 + 2i" />
 </MathContainer>
 
-Check by multiplying back: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, the original numerator. The same method gives the [inverse of a complex number](/en/subjects/mathematics/complex-number/inverse-complex-numbers), because <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" />.
+Check by multiplying back: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, the original numerator. The same method also computes the [inverse of a complex number](/en/subjects/mathematics/complex-number/inverse-complex-numbers), because <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> for <InlineMath math="z \ne 0" />.
 
 ## When a Number Equals Its Conjugate
 
@@ -146,7 +146,7 @@ So a complex number equals its conjugate **if and only if it is real**. Geometri
 
 ## Rules for Conjugates in Operations
 
-The conjugate **can be taken before or after an operation** with the same result. The rules below come from operating on the real and imaginary components. The examples use <InlineMath math="z_1 = 1 + i" /> and <InlineMath math="z_2 = 2 - i" />, and the denominator in division and inverses must be nonzero.
+For addition, subtraction, multiplication, division, and inverses, the conjugate **can be taken before or after the operation** with the same result. The rules below come from operating on the real and imaginary components. The examples use <InlineMath math="z_1 = 1 + i" /> and <InlineMath math="z_2 = 2 - i" />, and the denominator in division and inverses must be nonzero.
 
 | Operation | Identity | Example |
 | --- | --- | --- |
@@ -161,7 +161,7 @@ The product rule is proved by expanding both sides:
 
 <BlockMath math="\begin{aligned}\overline{z_1z_2}&amp;=(x_1x_2-y_1y_2)-i(x_1y_2+y_1x_2)\\&amp;=(x_1-iy_1)(x_2-iy_2)=\bar z_1\bar z_2\end{aligned}" />
 
-These rules explain why the [imaginary roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-imaginary-root) with real coefficients always come in pairs: the conjugate of a left side equal to zero is still zero.
+These rules explain why the [imaginary roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-imaginary-root) with real coefficients always come in pairs. If <InlineMath math="az^2 + bz + c = 0" /> with real <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />, then <InlineMath math="a\bar{z}^2 + b\bar{z} + c = \overline{az^2 + bz + c} = \bar{0} = 0" />, so <InlineMath math="\bar{z}" /> is a root too.
 
 ## Common Mistakes
 
@@ -169,7 +169,7 @@ These rules explain why the [imaginary roots of a quadratic equation](/en/subjec
 | --- | --- | --- |
 | Flipping the sign of the real part too | <InlineMath math="\overline{3 + 2i}" /> is not <InlineMath math="-3 - 2i" /> | Only the term with <InlineMath math="i" /> changes sign |
 | Taking <InlineMath math="3 - 2i" /> as its own conjugate | Its imaginary part is <InlineMath math="-2" />, so the sign becomes <InlineMath math="+2" /> | The reflection must land on the other side of the real axis |
-| Taking the conjugate before simplifying <InlineMath math="i^2" /> or <InlineMath math="\frac{1}{i}" /> | <InlineMath math="2 + i^2" /> is really the real number <InlineMath math="1" /> | Write the number as <InlineMath math="x + iy" /> first |
+| Flipping the sign of the <InlineMath math="i^2" /> term, for example writing the conjugate of <InlineMath math="2 + i^2" /> as <InlineMath math="2 - i^2 = 3" /> | <InlineMath math="2 + i^2" /> is really the real number <InlineMath math="1" /> | Replace <InlineMath math="i^2" /> with <InlineMath math="-1" /> first |
 | Multiplying by the conjugate of the numerator when dividing | The denominator stays complex | Multiply by the conjugate of the denominator so it becomes <InlineMath math="\lvert z \rvert^2" /> |
 | Writing <InlineMath math="z\bar{z} = x^2 - y^2" /> | <InlineMath math="-i^2 y^2 = +y^2" /> | <InlineMath math="z\bar{z}" /> must equal the squared modulus |
 
@@ -211,7 +211,7 @@ Check: <InlineMath math="\left(\frac{2}{25} - \frac{11}{25}i\right)(3 + 4i) = \f
   <BlockMath math="3x - iy = 9 - 2i \quad\Longrightarrow\quad x = 3, \quad y = 2" />
 </MathContainer>
 
-So <InlineMath math="z = 3 + 2i" />. Check: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
+Since <InlineMath math="x" /> and <InlineMath math="y" /> are real, the real parts and the imaginary parts of both sides must match. So <InlineMath math="z = 3 + 2i" />. Check: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
 
 **Problem 4**. Multiply by the conjugate:
 

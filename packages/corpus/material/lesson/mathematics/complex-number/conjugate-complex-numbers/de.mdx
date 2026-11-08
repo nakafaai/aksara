@@ -26,7 +26,7 @@ Schreibe **den Imaginärteil mit seinem Vorzeichen** auf, bevor du es umkehrst. 
 | <InlineMath math="3-2i" /> | <InlineMath math="3" /> | <InlineMath math="-2" /> | <InlineMath math="3-(-2)i=3+2i" /> |
 | <InlineMath math="3i=0+3i" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="0-3i=-3i" /> |
 
-Die dritte Zeile geht am häufigsten schief. Der Imaginärteil von <InlineMath math="3 - 2i" /> ist <InlineMath math="-2" />, also wird daraus <InlineMath math="+2" />, und die Konjugierte ist <InlineMath math="3 + 2i" />.
+Bei <InlineMath math="3 - 2i" /> passiert am häufigsten ein Fehler. Der Imaginärteil von <InlineMath math="3 - 2i" /> ist <InlineMath math="-2" />, also wird daraus <InlineMath math="+2" />, und die Konjugierte ist <InlineMath math="3 + 2i" />.
 
 ## Die Konjugierte als Spiegelung
 
@@ -35,7 +35,7 @@ Die Punkte <InlineMath math="(x, y)" /> und <InlineMath math="(x, -y)" /> haben 
 <LineEquation
   title={
     <>
-      <InlineMath math="z=3+2i" /> und sein Konjugiertes{" "}
+      <InlineMath math="z=3+2i" /> und ihre Konjugierte{" "}
       <InlineMath math="\bar{z} = 3-2i" />
     </>
   }
@@ -81,7 +81,7 @@ Die Punkte <InlineMath math="(x, y)" /> und <InlineMath math="(x, -y)" /> haben 
   ]}
 />
 
-Eine Spiegelung erhält Längen, also gilt <InlineMath math="|\bar{z}| = |z|" />. Nur die Richtung dreht sich um: Bildet <InlineMath math="z" /> mit der positiven reellen Achse den Winkel <InlineMath math="\theta" />, so bildet <InlineMath math="\bar{z}" /> den Winkel <InlineMath math="-\theta" />. Für <InlineMath math="z = 3 + 2i" /> haben beide den [Betrag](/de/faecher/mathematik/komplexe-zahlen/betrag-und-argument-komplexer-zahlen) <InlineMath math="\sqrt{13}" />, und ihre Argumente sind etwa <InlineMath math="33{,}7^\circ" /> und <InlineMath math="-33{,}7^\circ" />.
+Eine Spiegelung erhält Längen, also gilt <InlineMath math="|\bar{z}| = |z|" />. Nur die Richtung dreht sich um: Bildet <InlineMath math="z" /> mit der positiven reellen Achse den Winkel <InlineMath math="\theta" />, so bildet <InlineMath math="\bar{z}" /> den Winkel <InlineMath math="-\theta" />. Für <InlineMath math="z = 3 + 2i" /> haben beide den [Betrag](/de/faecher/mathematik/komplexe-zahlen/betrag-und-argument-komplexer-zahlen) <InlineMath math="\sqrt{13}" />, und ihre Argumente sind etwa <InlineMath math="33{,}7^\circ" /> und <InlineMath math="-33{,}7^\circ" />. Diese Regel entgegengesetzter Argumente gilt für <InlineMath math="z \ne 0" /> und modulo <InlineMath math="360^\circ" />: Bei einer negativen reellen Zahl wie <InlineMath math="-2" /> haben <InlineMath math="z" /> und <InlineMath math="\bar{z}" /> beide das Argument <InlineMath math="180^\circ" />.
 
 ## Addieren und Multiplizieren mit der Konjugierten
 
@@ -119,7 +119,7 @@ Addierst du <InlineMath math="z" /> und <InlineMath math="\bar{z}" />, **heben s
   }}
 />
 
-Für <InlineMath math="z = 3 + 2i" /> ist die Summe <InlineMath math="6 = 2 \cdot 3" /> und die Differenz <InlineMath math="4i = 2i \cdot 2" />. Beim Produkt heben sich die gemischten Glieder auf, und das Ergebnis ist immer **reell und nicht negativ**:
+Für <InlineMath math="z = 3 + 2i" /> ist die Summe <InlineMath math="6 = 2\operatorname{Re}(z)" /> und die Differenz <InlineMath math="4i = 2i\operatorname{Im}(z)" />. Beim Produkt heben sich die gemischten Glieder auf, und das Ergebnis ist immer **reell und nicht negativ**:
 
 <BlockMath math="\begin{aligned}z\bar z&amp;=(x+iy)(x-iy)\\&amp;=x^2-ixy+ixy-i^2y^2\\&amp;=x^2+y^2=|z|^2\end{aligned}" />
 
@@ -136,7 +136,7 @@ Berechne <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. Die Konjugierte des Nenner
   <BlockMath math="= \frac{3 + 6i + 4i + 8i^2}{5} = \frac{-5 + 10i}{5} = -1 + 2i" />
 </MathContainer>
 
-Probe durch Zurückmultiplizieren: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, also der ursprüngliche Zähler. Derselbe Weg liefert den [Kehrwert einer komplexen Zahl](/de/faecher/mathematik/komplexe-zahlen/kehrwerte-komplexer-zahlen), denn <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" />.
+Probe durch Zurückmultiplizieren: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, also der ursprüngliche Zähler. Derselbe Weg berechnet auch den [Kehrwert einer komplexen Zahl](/de/faecher/mathematik/komplexe-zahlen/kehrwerte-komplexer-zahlen), denn <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> für <InlineMath math="z \ne 0" />.
 
 ## Wann eine Zahl gleich ihrer Konjugierten ist
 
@@ -146,7 +146,7 @@ Eine komplexe Zahl ist also **genau dann gleich ihrer Konjugierten, wenn sie ree
 
 ## Rechenregeln für die Konjugierte
 
-Die Konjugierte **kann vor oder nach einer Rechenoperation gebildet werden**, das Ergebnis ist dasselbe. Die Regeln folgen aus dem Rechnen mit Real- und Imaginärteil. Die Beispiele verwenden <InlineMath math="z_1 = 1 + i" /> und <InlineMath math="z_2 = 2 - i" />, und der Nenner bei Division und Kehrwert darf nicht null sein.
+Bei Addition, Subtraktion, Multiplikation, Division und Kehrwert **kann die Konjugierte vor oder nach der Rechenoperation gebildet werden**, das Ergebnis ist dasselbe. Die Regeln folgen aus dem Rechnen mit Real- und Imaginärteil. Die Beispiele verwenden <InlineMath math="z_1 = 1 + i" /> und <InlineMath math="z_2 = 2 - i" />, und der Nenner bei Division und Kehrwert darf nicht null sein.
 
 | Operation | Regel | Beispiel |
 | --- | --- | --- |
@@ -161,7 +161,7 @@ Die Produktregel beweist du, indem du beide Seiten ausmultiplizierst:
 
 <BlockMath math="\begin{aligned}\overline{z_1z_2}&amp;=(x_1x_2-y_1y_2)-i(x_1y_2+y_1x_2)\\&amp;=(x_1-iy_1)(x_2-iy_2)=\bar z_1\bar z_2\end{aligned}" />
 
-Diese Regeln erklären, warum die [komplexen Lösungen quadratischer Gleichungen](/de/faecher/mathematik/quadratische-funktionen/komplexe-loesungen-quadratischer-gleichungen) mit reellen Koeffizienten immer paarweise auftreten: Die Konjugierte einer linken Seite, die null ist, bleibt null.
+Diese Regeln erklären, warum die [komplexen Lösungen quadratischer Gleichungen](/de/faecher/mathematik/quadratische-funktionen/komplexe-loesungen-quadratischer-gleichungen) mit reellen Koeffizienten immer paarweise auftreten. Gilt <InlineMath math="az^2 + bz + c = 0" /> mit reellen <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />, dann ist <InlineMath math="a\bar{z}^2 + b\bar{z} + c = \overline{az^2 + bz + c} = \bar{0} = 0" />, also ist auch <InlineMath math="\bar{z}" /> eine Lösung.
 
 ## Typische Fehler
 
@@ -169,7 +169,7 @@ Diese Regeln erklären, warum die [komplexen Lösungen quadratischer Gleichungen
 | --- | --- | --- |
 | Auch das Vorzeichen des Realteils umkehren | <InlineMath math="\overline{3 + 2i}" /> ist nicht <InlineMath math="-3 - 2i" /> | Nur das Glied mit <InlineMath math="i" /> wechselt das Vorzeichen |
 | <InlineMath math="3 - 2i" /> für seine eigene Konjugierte halten | Der Imaginärteil ist <InlineMath math="-2" />, also wird daraus <InlineMath math="+2" /> | Die Spiegelung muss auf der anderen Seite der reellen Achse landen |
-| Konjugieren, bevor <InlineMath math="i^2" /> oder <InlineMath math="\frac{1}{i}" /> vereinfacht ist | <InlineMath math="2 + i^2" /> ist eigentlich die reelle Zahl <InlineMath math="1" /> | Schreibe die Zahl zuerst als <InlineMath math="x + iy" /> |
+| Das Vorzeichen von <InlineMath math="i^2" /> umkehren, etwa die Konjugierte von <InlineMath math="2 + i^2" /> als <InlineMath math="2 - i^2 = 3" /> schreiben | <InlineMath math="2 + i^2" /> ist eigentlich die reelle Zahl <InlineMath math="1" /> | Ersetze <InlineMath math="i^2" /> zuerst durch <InlineMath math="-1" /> |
 | Beim Dividieren mit der Konjugierten des Zählers erweitern | Der Nenner bleibt komplex | Erweitere mit der Konjugierten des Nenners, damit er zu <InlineMath math="\lvert z \rvert^2" /> wird |
 | <InlineMath math="z\bar{z} = x^2 - y^2" /> schreiben | <InlineMath math="-i^2 y^2 = +y^2" /> | <InlineMath math="z\bar{z}" /> muss das Betragsquadrat sein |
 
@@ -211,7 +211,7 @@ Probe: <InlineMath math="\left(\frac{2}{25} - \frac{11}{25}i\right)(3 + 4i) = \f
   <BlockMath math="3x - iy = 9 - 2i \quad\Longrightarrow\quad x = 3, \quad y = 2" />
 </MathContainer>
 
-Also ist <InlineMath math="z = 3 + 2i" />. Probe: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
+Da <InlineMath math="x" /> und <InlineMath math="y" /> reell sind, müssen Realteile und Imaginärteile beider Seiten übereinstimmen. Also ist <InlineMath math="z = 3 + 2i" />. Probe: <InlineMath math="(3 + 2i) + 2(3 - 2i) = 3 + 2i + 6 - 4i = 9 - 2i" />.
 
 **Aufgabe 4**. Multipliziere mit der Konjugierten:
 
