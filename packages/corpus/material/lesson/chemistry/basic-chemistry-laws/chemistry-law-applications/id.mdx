@@ -79,6 +79,36 @@ V_{\mathrm{H_2}} &= 3 \times 300 = 900\ \mathrm{mL} \\
 V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
+Adegan di bawah menumpuk gas-gas itu sebagai balok yang sama besar, satu balok untuk setiap koefisien, dan setiap balok bernilai <InlineMath math="300\ \mathrm{mL}" />. Putar adegannya lalu hitung: dua balok amonia menjadi tiga balok hidrogen dan satu balok nitrogen. Ukuran baloknya tidak pernah berubah, jadi perbandingan volume <InlineMath math="2:3:1" /> sama dengan perbandingan koefisien. Aturan ini hanya berlaku karena semua gas diukur pada suhu dan tekanan yang sama.
+
+<MathVisual
+  title="Volume Gas Mengikuti Koefisien"
+  description="Setiap balok adalah satu bagian sebesar 300 mL pada suhu dan tekanan yang sama. Hitung balok di setiap kolom 2NH₃ → 3H₂ + N₂."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 9, z: 13 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "ammonia-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "ammonia-2", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-3", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 3 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "nitrogen-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+    ],
+    labels: [
+      { key: "ammonia", objectId: "ammonia-2", at: { x: 0, y: 2 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-3", at: { x: 3, y: 3 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "nitrogen", objectId: "nitrogen-1", at: { x: 6, y: 1 * 2 + 0.6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ammonia: <InlineMath math="2\,\mathrm{NH_3}:\ 600\ \mathrm{mL}" />,
+    hydrogen: <InlineMath math="3\,\mathrm{H_2}:\ 900\ \mathrm{mL}" />,
+    nitrogen: <InlineMath math="1\,\mathrm{N_2}:\ 300\ \mathrm{mL}" />,
+  }}
+/>
+
 Persamaan reaksi setara harus memiliki jumlah atom yang sama di sisi reaktan dan produk. Rasio volume gas mengikuti koefisien persamaan jika diukur pada suhu dan tekanan yang sama.
 
 ## Ketika Satu Soal Memakai Dua Hukum

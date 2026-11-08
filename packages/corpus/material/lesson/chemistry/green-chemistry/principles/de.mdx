@@ -57,6 +57,35 @@ Betrachte die Methanolsynthese mit **Methanol als gewünschtem Produkt**. Verwen
 
 Die übrige Formelmasse <InlineMath math="50-32=18" /> steckt im Nebenprodukt Wasser. Die <InlineMath math="64\%" /> folgen aus der Gleichung, nicht aus einer Messung der Reaktionsausbeute.
 
+Die Szene unten vergleicht diesen Weg mit einem zweiten, der ebenfalls Methanol liefert, <InlineMath math="\mathrm{CO}+2\mathrm{H_2}\rightarrow\mathrm{CH_3OH}" />. Jeder Block ist eine Formelmasse, ein Gitterschritt steht für <InlineMath math="8" /> Einheiten. Bei beiden Wegen sind die Säule der Reaktanten und die Säule der Produkte gleich hoch, weil die Masse erhalten bleibt. Schau auf die Spitze der ersten Produktsäule: Der pinke Block ist Wasser, also die <InlineMath math="18" /> Einheiten, die nicht im gewünschten Produkt landen. Der zweite Weg hat kein Nebenprodukt, seine Atomökonomie ist deshalb <InlineMath math="100\%" />. Dreh die Szene und vergleich die beiden Produktsäulen.
+
+<MathVisual
+  title="Atomökonomie zweier Wege zu Methanol"
+  description="Formelmassen mit Ar(H) = 1, Ar(C) = 12 und Ar(O) = 16, ein Gitterschritt nach oben für 8. Grau und violett sind Reaktanten, fuchsia ist Methanol, pink ist Wasser."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10.5 }, y: { min: 0, max: 7.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 11, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 0, y: (12 + 2 * 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 2 * 16) / 8, width: 1.4 } },
+      { id: "hydrogen-three", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (12 + 2 * 16) / 8 + (3 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (3 * 2 * 1) / 8, width: 1.4 } },
+      { id: "methanol-one", kind: "cuboid", appearance: "answer", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
+      { id: "water", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 8 + (2 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (2 * 1 + 16) / 8, width: 1.4 } },
+      { id: "carbon-monoxide", kind: "cuboid", appearance: "reference", center: { x: 6.5, y: (12 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 16) / 8, width: 1.4 } },
+      { id: "hydrogen-two", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: (12 + 16) / 8 + (2 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (2 * 2 * 1) / 8, width: 1.4 } },
+      { id: "methanol-two", kind: "cuboid", appearance: "answer", center: { x: 9, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
+    ],
+    labels: [
+      { key: "first", objectId: "water", at: { x: 2.5, y: (12 + 2 * 16 + 3 * 2 * 1) / 8 + 0.5, z: 0 }, placement: "above" },
+      { key: "second", objectId: "methanol-two", at: { x: 9, y: (12 + 4 * 1 + 16) / 8 + 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="\frac{32}{50}\times100\%=64\%" />,
+    second: <InlineMath math="\frac{32}{32}\times100\%=100\%" />,
+  }}
+/>
+
 Die Atomökonomie zeigt, wie sich die Atome der Reaktanten auf die Produkte verteilen. Eine vollständige Bewertung berücksichtigt außerdem die Gefahren der Lösungsmittel, den Energiebedarf zum Erreichen von Betriebstemperatur und Druck sowie den Verbleib des Produkts nach der Nutzung.
 
 | Beobachtung | Betroffenes Prinzip |

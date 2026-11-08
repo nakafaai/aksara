@@ -79,6 +79,36 @@ V_{\mathrm{H_2}} &= 3 \times 300 = 900\ \mathrm{mL} \\
 V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
+The scene below stacks the gases as equal blocks, one block for each coefficient and every block worth <InlineMath math="300\ \mathrm{mL}" />. Rotate it and count: two blocks of ammonia become three blocks of hydrogen and one block of nitrogen. The block size never changes, so the volume ratio <InlineMath math="2:3:1" /> is just the coefficient ratio, and it only works because every gas is measured at the same temperature and pressure.
+
+<MathVisual
+  title="Gas Volumes Follow the Coefficients"
+  description="Each block is one part of 300 mL at the same temperature and pressure. Count the blocks in each column of 2NH₃ → 3H₂ + N₂."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 9, z: 13 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "ammonia-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "ammonia-2", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-3", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 3 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "nitrogen-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+    ],
+    labels: [
+      { key: "ammonia", objectId: "ammonia-2", at: { x: 0, y: 2 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-3", at: { x: 3, y: 3 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "nitrogen", objectId: "nitrogen-1", at: { x: 6, y: 1 * 2 + 0.6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ammonia: <InlineMath math="2\,\mathrm{NH_3}:\ 600\ \mathrm{mL}" />,
+    hydrogen: <InlineMath math="3\,\mathrm{H_2}:\ 900\ \mathrm{mL}" />,
+    nitrogen: <InlineMath math="1\,\mathrm{N_2}:\ 300\ \mathrm{mL}" />,
+  }}
+/>
+
 A balanced equation has the same number of atoms on the reactant and product sides. At the same temperature and pressure, gas volume ratios follow the equation coefficients.
 
 ## When One Problem Uses Two Laws

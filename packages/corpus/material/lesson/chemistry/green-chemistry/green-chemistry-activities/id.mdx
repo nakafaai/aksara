@@ -61,6 +61,33 @@ Sebagai **contoh data rekaan**, dua formula pembersih diuji pada noda dan luas p
 
 <BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
 
+Pada adegan di bawah, setiap kolom adalah dosis yang dibutuhkan untuk permukaan yang sama bersihnya, dengan satu kotak grid untuk <InlineMath math="2 \mathrm{mL}" />. Balok abu-abu di atas B adalah bagian yang tidak lagi dibutuhkan B. Ukurannya tepat seperlima kolom A, yaitu <InlineMath math="20\%" /> dari perhitungan tadi. Putar adegannya: penghematan itu baru bermakna karena kedua kolom mengerjakan tugas yang sama.
+
+<MathVisual
+  title="Permukaan Sama Bersih dengan Produk Lebih Sedikit"
+  description="Dosis hipotetis dua formulasi pembersih untuk noda dan luas permukaan yang sama. Satu kotak grid ke atas sama dengan 2 mL."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
+      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
+      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
+    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
+    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
+  }}
+/>
+
 Hasil ini membuktikan pengurangan volume produk pada uji tersebut. Untuk menyatakan B lebih aman atau lebih hemat air, kita masih perlu data komposisi, bahaya, dan air bilas.
 
 ## Pengomposan Mengolah Limbah yang Sudah Terbentuk

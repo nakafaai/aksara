@@ -44,6 +44,54 @@ Elektrolisis air menunjukkan bahwa penilaian kimia hijau harus memasukkan sumber
 
 Reaksi ini tidak menghasilkan karbon dioksida secara langsung. Namun, emisi daur hidup bergantung pada sumber listrik. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) dapat menghasilkan emisi sangat rendah jika memakai listrik terbarukan atau nuklir. Jika listrik berasal dari pembangkit berbahan bakar fosil, emisi daur hidupnya lebih tinggi.
 
+Adegan di bawah menggambar molekul reaksi ini sesuai skala. Hitung atom di setiap sisi: empat atom hidrogen ungu dan dua atom oksigen oranye sebelum panah, lalu empat dan dua yang sama sesudahnya. Elektrolisis hanya menata ulang atom-atom itu, jadi tidak ada zat baru yang muncul di elektroliser. Yang dibutuhkan adalah energi listrik di atas panah, dan ke sanalah pertanyaan kimia hijau berikutnya bergerak.
+
+<MathVisual
+  title="Air Terurai Menjadi Hidrogen dan Oksigen"
+  description="Molekul digambar sesuai skala dalam angstrom: O–H 0,96 Å dengan sudut 104,5°, H–H 0,74 Å, O=O 1,21 Å. Titik oranye adalah atom oksigen, titik ungu atom hidrogen."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: -1, y: 0.5, z: 7 }, target: { x: -0.5, y: -0.25, z: 0 } },
+    objects: [
+      { id: "water-1-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: 1, z: 0 } },
+      { id: "water-1-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: -1.5, z: 0 } },
+      { id: "water-2-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "arrow", kind: "segment", appearance: "highlight", from: { x: -1.5, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-up", kind: "segment", appearance: "highlight", from: { x: -0.3, y: 0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-down", kind: "segment", appearance: "highlight", from: { x: -0.3, y: -0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "hydrogen-1-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25, z: 0 }, to: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-2-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 0.25, z: 0 }, to: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "oxygen-left", kind: "point", appearance: "primary", at: { x: 1.5, y: -1.25, z: 0 } },
+      { id: "oxygen-right", kind: "point", appearance: "primary", at: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+      { id: "oxygen-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: -1.25, z: 0 }, to: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-1-oxygen", at: { x: -3, y: 1.6, z: 0 }, placement: "above" },
+      { key: "energy", objectId: "arrow", at: { x: -0.75, y: 0.35, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-1-bond", at: { x: 1.5 + 0.74 / 2, y: 1.7, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-bond", at: { x: 1.5 + 1.21 / 2, y: -1.7, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="2\mathrm{H_2O}" />,
+    energy: "energi listrik",
+    hydrogen: <InlineMath math="2\mathrm{H_2}" />,
+    oxygen: <InlineMath math="\mathrm{O_2}" />,
+  }}
+/>
+
 Bandingkan dua pasokan listrik untuk reaksi yang sama. Produk langsungnya tetap hidrogen dan oksigen, tetapi sumber emisi di luar alat elektrolisis berbeda.
 
 | Bagian yang dinilai | Listrik dari pembakaran batu bara | Listrik dari panel surya |

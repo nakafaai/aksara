@@ -44,6 +44,54 @@ Die Wasserelektrolyse zeigt, warum bei der Bewertung nach den Prinzipien der gr�
 
 Bei dieser Reaktion entsteht nicht direkt Kohlendioxid. Ihre Lebenszyklusemissionen hängen von der Stromerzeugung ab. [Elektrolyse](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) kann mit Strom aus erneuerbaren Quellen oder Kernenergie sehr geringe Emissionen erreichen. Strom aus fossilen Kraftwerken führt zu höheren Lebenszyklusemissionen.
 
+Die Szene unten zeichnet die Moleküle dieser Reaktion maßstabsgetreu. Zähl die Atome auf jeder Seite: vier violette Wasserstoffatome und zwei orange Sauerstoffatome vor dem Pfeil, danach dieselben vier und zwei. Die Elektrolyse ordnet die Atome nur neu, am Elektrolyseur entsteht also kein neuer Stoff. Sie braucht aber die elektrische Energie über dem Pfeil, und genau dorthin wandert die Frage der grünen Chemie als Nächstes.
+
+<MathVisual
+  title="Wasser zerfällt in Wasserstoff und Sauerstoff"
+  description="Moleküle maßstabsgetreu in Ångström: O–H 0,96 Å bei einem Winkel von 104,5°, H–H 0,74 Å, O=O 1,21 Å. Orange Punkte sind Sauerstoffatome, violette Punkte Wasserstoffatome."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: -1, y: 0.5, z: 7 }, target: { x: -0.5, y: -0.25, z: 0 } },
+    objects: [
+      { id: "water-1-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: 1, z: 0 } },
+      { id: "water-1-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: -1.5, z: 0 } },
+      { id: "water-2-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "arrow", kind: "segment", appearance: "highlight", from: { x: -1.5, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-up", kind: "segment", appearance: "highlight", from: { x: -0.3, y: 0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-down", kind: "segment", appearance: "highlight", from: { x: -0.3, y: -0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "hydrogen-1-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25, z: 0 }, to: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-2-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 0.25, z: 0 }, to: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "oxygen-left", kind: "point", appearance: "primary", at: { x: 1.5, y: -1.25, z: 0 } },
+      { id: "oxygen-right", kind: "point", appearance: "primary", at: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+      { id: "oxygen-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: -1.25, z: 0 }, to: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-1-oxygen", at: { x: -3, y: 1.6, z: 0 }, placement: "above" },
+      { key: "energy", objectId: "arrow", at: { x: -0.75, y: 0.35, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-1-bond", at: { x: 1.5 + 0.74 / 2, y: 1.7, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-bond", at: { x: 1.5 + 1.21 / 2, y: -1.7, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="2\mathrm{H_2O}" />,
+    energy: "elektrische Energie",
+    hydrogen: <InlineMath math="2\mathrm{H_2}" />,
+    oxygen: <InlineMath math="\mathrm{O_2}" />,
+  }}
+/>
+
 Vergleiche zwei Stromquellen für dieselbe Reaktion. Die direkten Produkte bleiben Wasserstoff und Sauerstoff, doch die Emissionsquellen außerhalb des Elektrolyseurs unterscheiden sich.
 
 | Bewertungsbereich | Strom aus Kohleverbrennung | Strom aus Solarmodulen |
