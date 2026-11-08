@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "sidat",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "Catatan rapat mengungkap hambatan, lalu perubahan prosedur dirancang untuk mengurangi hambatan dan menguji keterwakilan.",
+          column: 1,
+          label: "Sidat dewasa meninggalkan sungai untuk memijah di laut.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bagian awal membuktikan semua kelompok telah terwakili, lalu bagian berikutnya menghapus pemeriksaan asal peserta.",
+            "Sidat muda yang baru masuk ke muara memiliki tubuh yang bening.",
         },
         {
-          correct: false,
-          label:
-            "Bagian awal membandingkan biaya angkutan, lalu bagian berikutnya memilih jadwal berdasarkan layanan termurah.",
+          column: 2,
+          label: "Sidat dapat dipijahkan dengan mudah di kolam budi daya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bagian awal menerima semua usulan, lalu bagian berikutnya menyusun cara menerapkan setiap keinginan warga.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal mengkritik undangan terbuka, lalu bagian berikutnya membatasi keputusan kepada warga dari wilayah terdekat.",
+            "Bendungan hanya menghalangi perjalanan sidat dewasa menuju laut.",
         },
       ],
     },

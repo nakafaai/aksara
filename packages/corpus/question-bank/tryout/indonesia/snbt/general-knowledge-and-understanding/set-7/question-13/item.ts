@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "panas",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "penyalinan kata demi kata tanpa perubahan medium",
-        },
-        {
-          correct: false,
-          label: "karya baru yang hanya meminjam judul sumber",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "pengolahan karya ke bentuk baru dengan perubahan yang sesuai tujuan dan mediumnya",
+            "Perbedaan suhu antara pusat kota dan daerah pinggiran paling terasa pada siang hari.",
         },
         {
-          correct: false,
-          label: "penggabungan semua versi tanpa mencatat asal setiap bagian",
+          column: 2,
+          label:
+            "Pepohonan membuat udara lebih panas karena daunnya menyerap panas matahari.",
         },
         {
-          correct: false,
-          label: "pemendekan cerita tanpa mempertimbangkan tujuan pertunjukan",
+          column: 1,
+          label: "Mesin kendaraan ikut menambah panas di kota.",
+        },
+        {
+          column: 1,
+          label:
+            "Pemakaian pendingin ruangan dapat memperparah pulau panas perkotaan.",
         },
       ],
     },

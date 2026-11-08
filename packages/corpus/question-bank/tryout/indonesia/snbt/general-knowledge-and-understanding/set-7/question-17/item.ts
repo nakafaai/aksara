@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "bayu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
+          label: "Kalimat (7) membantah keterangan pada kalimat (5) dan (6).",
         },
         {
           correct: false,
           label:
-            "Sebagian pemain ingin mempertahankan seluruh dialog lama agar pertunjukan dianggap setia.",
+            "Kalimat (7) memberikan contoh pembangkit tenaga bayu di Sulawesi Selatan.",
         },
         {
           correct: false,
           label:
-            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
+            "Kalimat (7) menjelaskan cara turbin mengubah putaran menjadi listrik.",
         },
         {
           correct: true,
           label:
-            "Tiga rekaman lisan berbeda dalam tokoh, urutan peristiwa, dan akhir.",
+            "Kalimat (7) menyimpulkan akibat dari keterangan pada kalimat (5) dan (6).",
         },
         {
           correct: false,
-          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
+          label:
+            "Kalimat (7) mengulang isi kalimat (4) dengan kata-kata yang berbeda.",
         },
       ],
     },
