@@ -6,12 +6,12 @@ import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
 import { Console, Effect, FileSystem, Schema } from "effect";
 import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
-import { findPlainMathText, printPlainMath } from "#nakafa-content/math/plain";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
+import { findPendingIssues, printPending } from "#nakafa-content/voice/pending";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { documentProfile } from "#nakafa-content/voice/profile";
 import {
@@ -160,9 +160,9 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
         )
       )
     );
-    const plainMath = documents.flatMap(
+    const pending = documents.flatMap(
       ({ locale, repositoryPath, source, tree }) =>
-        findPlainMathText(source, tree).map((issue) => ({
+        findPendingIssues(source, tree).map((issue) => ({
           file: repositoryPath,
           locale,
           ...issue,
@@ -171,7 +171,7 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
     const report: LessonVoiceReport = {
       fileCount: files.length,
       issues,
-      ...(plainMath.length > 0 ? { plainMath } : {}),
+      ...(pending.length > 0 ? { pending } : {}),
       ...(pedagogyReview
         ? {
             pedagogy: documents
@@ -233,8 +233,8 @@ const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
       yield* Console.error(line);
     }
   }
-  const { pedagogy, plainMath } = report;
-  yield* printPlainMath(options.format, plainMath);
+  const { pedagogy, pending } = report;
+  yield* printPending(options.format, pending);
   if (options.format === "text" && pedagogy) {
     for (const section of pedagogy) {
       if (section.signals.length > 0) {

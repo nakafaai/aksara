@@ -38,8 +38,8 @@ export interface LessonVoiceReport {
     file: string;
     locale: LessonVoiceLocale;
   })[];
-  /** Plain-text math the gate reports and does not fail yet (D37). */
-  plainMath?: LessonVoiceFileIssue[];
+  /** Findings the gate reports and does not fail until the last clears (D37, D39). */
+  pending?: LessonVoiceFileIssue[];
 }
 
 export interface LineState {

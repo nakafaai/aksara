@@ -1,8 +1,6 @@
 import { assert, it } from "@effect/vitest";
-import { Effect } from "effect";
-import { findPlainMathText, printPlainMath } from "#nakafa-content/math/plain";
+import { findPlainMathText } from "#nakafa-content/math/plain";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import { capture } from "#nakafa-content/points/test/console";
 
 /** The line and column of every plain-text math finding in one MDX source. */
 function findings(source: string) {
@@ -58,29 +56,3 @@ it("keeps math, code, links, metadata and ordinary words out", () => {
   ].join("\n");
   assert.deepEqual(findings(source), []);
 });
-
-it.effect("prints the count and every occurrence in a text report only", () =>
-  Effect.gen(function* () {
-    const issues = [
-      {
-        column: 6,
-        excerpt: "Jika x = 2.",
-        file: "en.mdx",
-        line: 1,
-        locale: "en" as const,
-        rule: "plain-math-text",
-      },
-    ];
-    const { log } = yield* capture(
-      Effect.gen(function* () {
-        yield* printPlainMath("json", issues);
-        yield* printPlainMath("text", undefined);
-        yield* printPlainMath("text", issues);
-      })
-    );
-    assert.deepEqual(log, [
-      "1 plain-text math or chemistry expression(s); write each as <InlineMath /> in prose or $...$ in a visual's text prop, with \\ce{...} for chemistry:",
-      "en.mdx:1:6 [plain-math-text] Jika x = 2.",
-    ]);
-  })
-);

@@ -1,15 +1,10 @@
-import { Console, Effect } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import {
   type VisibleTextScan,
   visibleTextOffsets,
 } from "#nakafa-content/mdx/visible";
-import type { CliOptions } from "#nakafa-content/voice/options";
-import type {
-  LessonVoiceFileIssue,
-  LessonVoiceIssue,
-} from "#nakafa-content/voice/types";
+import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /** Unicode sub- and superscripts, math symbols, Greek letters, and arrows. */
 const SYMBOL_PATTERN =
@@ -100,8 +95,7 @@ const PLAIN_MATH_SCAN: VisibleTextScan = {
 
 /**
  * Finds mathematics and chemistry that learner-visible MDX writes as plain
- * text, which must be math instead: `$...$`, or mhchem `$\ce{...}$` for a
- * formula or a reaction.
+ * text, which must be `<InlineMath />` or `<BlockMath />` instead.
  */
 export function findPlainMathText(
   source: string,
@@ -111,25 +105,3 @@ export function findPlainMathText(
     issueAtOffset(source, offset, "plain-math-text")
   );
 }
-
-/**
- * Prints the plain-text math count and every occurrence in a text report. The
- * list reports and does not fail, until the change that clears the last
- * occurrence moves `plain-math-text` into the blocking rules (D37).
- */
-export const printPlainMath = Effect.fn("PlainMath.print")(function* (
-  format: CliOptions["format"],
-  issues: readonly LessonVoiceFileIssue[] | undefined
-) {
-  if (format !== "text" || issues === undefined) {
-    return;
-  }
-  yield* Console.log(
-    `${issues.length} plain-text math or chemistry expression(s); write each as <InlineMath /> in prose or $...$ in a visual's text prop, with \\ce{...} for chemistry:`
-  );
-  for (const issue of issues) {
-    yield* Console.log(
-      `${issue.file}:${issue.line}:${issue.column} [plain-math-text] ${issue.excerpt}`
-    );
-  }
-});
