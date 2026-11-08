@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1{,}2\\text{ km}$$",
+          label: "$$1{,}5\\text{ km}$$",
         },
         {
           correct: true,
-          label: "$$6\\text{ km}$$",
+          label: "$$2{,}5\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$\\sqrt{45}\\text{ km}$$",
+          label: "$$3{,}5\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$7{,}5\\text{ km}$$",
+          label: "$$10\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$\\sqrt{85}\\text{ km}$$",
+          label: "$$25\\text{ km}$$",
         },
       ],
     },

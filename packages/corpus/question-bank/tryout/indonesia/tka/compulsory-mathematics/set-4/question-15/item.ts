@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "measurement",
+    topic: "geometry-transformations",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$14\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$22\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$26{,}4\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$42\\text{ cm}$$",
+          label: "$$T$$ mengubah luas setiap bangun menjadi dua kalinya.",
         },
         {
           correct: true,
-          label: "$$44\\text{ cm}$$",
+          label: "$$T(1,0)=(1,3)$$",
+        },
+        {
+          correct: true,
+          label: "$$T$$ sama dengan pencerminan terhadap garis $$x=1$$, dilanjutkan translasi $$\\begin{pmatrix} 0 \\\\ 3 \\end{pmatrix}$$.",
+        },
+        {
+          correct: false,
+          label: "Menerapkan $$T$$ dua kali berturut-turut mengembalikan setiap titik ke posisi semula.",
+        },
+        {
+          correct: true,
+          label: "Menerapkan $$T$$ dua kali berturut-turut sama dengan translasi $$\\begin{pmatrix} 0 \\\\ 6 \\end{pmatrix}$$.",
         },
       ],
     },

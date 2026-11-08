@@ -2,34 +2,31 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
-    topic: "probability",
+    topic: "data",
   },
-  stimulus: "club-choices",
+  stimulus: "school-transport",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\frac{6}{55}$$",
+          column: 1,
+          label: "Jika dipilih secara acak seorang siswa yang naik angkutan umum, peluang siswa itu dari kelas XI adalah $$0{,}3$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{6}{25}$$",
+          column: 2,
+          label: "Jika $$6$$ siswa kelas X yang diantar keluarga beralih ke sepeda, bersepeda menjadi cara berangkat yang paling banyak dipilih di kelas X.",
         },
         {
-          correct: false,
-          label: "$$\\frac{3}{10}$$",
+          column: 1,
+          label: "Perbandingan banyak siswa yang berjalan kaki di kelas X, XI, dan XII adalah $$4:3:3$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{4}{11}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{11}$$",
+          column: 2,
+          label: "Lebih dari $$55\\,\\%$$ siswa kelas XII tidak naik angkutan umum.",
         },
       ],
     },
