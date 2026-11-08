@@ -177,6 +177,31 @@ it("rejects Indonesian formal and plural learner address", () => {
   );
 });
 
+it("rejects Indonesian formal requests and keeps the plain imperative", () => {
+  const source = [
+    "Silakan hitung luas segitiga itu lebih dulu.",
+    "Mohon periksa kembali tanda setiap suku.",
+    "Jawaban dimohon ditulis dalam satuan meter.",
+    "Silahkan bandingkan kedua grafik.",
+    "Coba hitung luas segitiga itu lebih dulu.",
+    "Permohonan izin itu ditolak karena datanya tidak lengkap.",
+    "Kalimat “Mohon tenang” muncul di papan pengumuman.",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("id", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [
+      { line: 1, rule: "indonesian-formal-request" },
+      { line: 2, rule: "indonesian-formal-request" },
+      { line: 3, rule: "indonesian-formal-request" },
+      { line: 4, rule: "indonesian-formal-request" },
+    ]
+  );
+});
+
 it("accepts aku kamu and genuinely inclusive kita", () => {
   assert.deepEqual(
     findLessonVoiceIssues(
