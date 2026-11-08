@@ -3,6 +3,7 @@ import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 import type { QuestionSet } from "#corpus/question-bank/source";
 import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
+import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
@@ -16,6 +17,7 @@ const readinessPrograms = [
   tkaCompulsoryMathematicsReadiness,
   tkaIndonesianReadiness,
   tkaEnglishReadiness,
+  tkaAdvancedMathematicsReadiness,
 ];
 
 /** Returns the country and exam identity owned by one readiness gate. */

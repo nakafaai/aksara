@@ -1,0 +1,55 @@
+Setiap titik pada karet wiper bergerak melingkar dengan pusat <InlineMath math="O" />. Titik terdekat menempuh busur berjari-jari <InlineMath math="15\text{ cm}" />, sedangkan titik terjauh menempuh busur berjari-jari <InlineMath math="60\text{ cm}" />. Daerah yang tersapu berbentuk **juring cincin**: juring besar berjari-jari <InlineMath math="60\text{ cm}" /> dikurangi juring kecil berjari-jari <InlineMath math="15\text{ cm}" />, keduanya dengan sudut pusat <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title="Daerah sapuan wiper"
+  description={<>Daerah yang tersapu dibatasi busur berjari-jari <InlineMath math="15\text{ cm}" />, busur berjari-jari <InlineMath math="60\text{ cm}" />, dan dua ruas pada posisi awal serta akhir lengan wiper. Sudut pusatnya <InlineMath math="120^\circ" />.</>}
+  labels={{
+    pivot: <InlineMath math="O" />,
+    inner: <InlineMath math="15\text{ cm}" />,
+    outer: <InlineMath math="60\text{ cm}" />,
+    turn: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -55, max: 55 },
+      y: { min: -8, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 60, startDegrees: 30, sweepDegrees: 120 },
+      { id: "inner-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 15, startDegrees: 30, sweepDegrees: 120 },
+      { id: "start-edge", kind: "segment", appearance: "primary", from: { x: 7.5 * Math.sqrt(3), y: 7.5 }, to: { x: 30 * Math.sqrt(3), y: 30 } },
+      { id: "end-edge", kind: "segment", appearance: "primary", from: { x: -7.5 * Math.sqrt(3), y: 7.5 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "inner-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 7.5 * Math.sqrt(3), y: 7.5 } },
+      { id: "outer-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "turn-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 6, startDegrees: 30, sweepDegrees: 120 },
+      { id: "pivot-point", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot-point", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "inner", objectId: "inner-radius", at: { x: 3.75 * Math.sqrt(3), y: 3.75 }, placement: "below-right" },
+      { key: "outer", objectId: "outer-radius", at: { x: -15 * Math.sqrt(3), y: 15 }, placement: "below-left" },
+      { key: "turn", objectId: "turn-arc", at: { x: 0, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+Luas juring dengan sudut pusat <InlineMath math="\alpha" /> dan jari-jari <InlineMath math="r" /> adalah <InlineMath math="\frac{\alpha}{360^\circ}\pi r^2" />. Karena kedua juring memakai sudut yang sama, faktor <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" /> dapat dikeluarkan.
+
+<BlockMath math="\begin{aligned}
+L&=\frac{120^\circ}{360^\circ}\pi\cdot60^2-\frac{120^\circ}{360^\circ}\pi\cdot15^2 \\
+&=\frac13\pi\left(60^2-15^2\right) \\
+&=\frac13\pi(3{.}600-225) \\
+&=\frac13\pi\cdot3{.}375=1{.}125\pi\text{ cm}^2
+\end{aligned}" />
+
+Hasil ini masuk akal: luasnya kurang dari luas juring besar, <InlineMath math="\frac13\pi\cdot3{.}600=1{.}200\pi\text{ cm}^2" />, dan selisihnya, <InlineMath math="75\pi\text{ cm}^2" />, sama dengan luas juring kecil <InlineMath math="\frac13\pi\cdot225" />.
+
+Jadi, luas daerah kaca yang tersapu karet wiper dalam satu kali sapuan adalah <InlineMath math="1{.}125\pi\text{ cm}^2" />.
+
+- <InlineMath math="675\pi\text{ cm}^2" /> muncul jika jari-jari dikurangkan dulu, lalu hasilnya dikuadratkan: <InlineMath math="\frac13\pi(60-15)^2" />. Padahal yang dikurangkan adalah kuadrat jari-jarinya.
+- <InlineMath math="1{.}200\pi\text{ cm}^2" /> adalah luas juring besar saja. Bagian dekat poros yang tidak terkena karet ikut terhitung.
+- <InlineMath math="2{.}250\pi\text{ cm}^2" /> muncul jika pecahan sudutnya ditulis <InlineMath math="\frac{120^\circ}{180^\circ}" />, padahal satu putaran penuh adalah <InlineMath math="360^\circ" />.
+- <InlineMath math="3{.}375\pi\text{ cm}^2" /> adalah luas cincin satu putaran penuh. Faktor <InlineMath math="\frac13" /> untuk sudut <InlineMath math="120^\circ" /> terlupa.
