@@ -1,25 +1,15 @@
-Add the two translation vectors, then **subtract their sum** from the final point to recover the starting point.
+A reflection in the vertical line <InlineMath math="x=-1" /> **changes only the <InlineMath math="x" />-coordinate**: a point and its image lie the same distance from the line, so <InlineMath math="x'=2\cdot(-1)-x" />. The translation then adds <InlineMath math="-3" /> to <InlineMath math="x" /> and <InlineMath math="5" /> to <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-v&=(6,-1)+(-2,4) \\
-&=(6-2,-1+4)=(4,3) \\
-P&=Q-v=(10,9)-(4,3) \\
-&=(10-4,9-3)=(6,6)
+P(-4,7)&\to P'(-2-(-4),\,7)=P'(2,7) \\
+P'(2,7)&\to P''(2-3,\,7+5)=P''(-1,12)
 \end{aligned}" />
 
-The Manhattan distance adds the absolute values of the two coordinates.
+As a check, <InlineMath math="P" /> lies <InlineMath math="3" /> units left of the line <InlineMath math="x=-1" />, and <InlineMath math="P'(2,7)" /> lies <InlineMath math="3" /> units right of it.
 
-<BlockMath math="|6|+|6|=12" />
+So the final image is <InlineMath math="(-1,12)" />.
 
-<LineEquation
-  title="Translations and Manhattan distance"
-  description="The gray route to P has 6 horizontal and 6 vertical units. The colored arrows translate P through R to Q."
-  cameraPosition={[6,4.5,21]}
-  cameraTarget={[6,4.5,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 6, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "6", at: 0, offset: [3, -0.5, 0] }, { text: "6", at: 1, offset: [-0.5, 3, 0] }] },
-    { points: [{ x: 6, y: 6, z: 0 }, { x: 12, y: 5, z: 0 }], color: "#9333ea", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0.4, -0.4, 0] }] },
-    { points: [{ x: 12, y: 5, z: 0 }, { x: 10, y: 9, z: 0 }], color: "#d97706", smooth: false, cone: { position: "end", size: 0.25 }, labels: [{ text: "Q", at: 1, offset: [0.3, 0.4, 0] }] },
-  ]}
-/>
+- <InlineMath math="(-7,-4)" /> reflects in the line <InlineMath math="y=-1" /> instead of <InlineMath math="x=-1" />.
+- <InlineMath math="(0,12)" /> takes the image's <InlineMath math="x" />-coordinate as <InlineMath math="-1-(-4)=3" />, the distance to the line rather than the image's position.
+- <InlineMath math="(1,12)" /> reflects in the <InlineMath math="y" />-axis, as if the line were <InlineMath math="x=0" />.
+- <InlineMath math="(5,12)" /> translates first and then reflects <InlineMath math="(-7,12)" />.

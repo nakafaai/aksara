@@ -28,6 +28,10 @@ const NON_VISUAL_COMPONENTS: ReadonlySet<string> = new Set([
 /** Semantic HTML elements such as table and sup begin with a lowercase letter. */
 const HTML_ELEMENT = /^[a-z]/u;
 
+/** A lesson is one folder below the lesson root with one MDX file per locale. */
+const LESSON_FILE =
+  /(?:^|\/)(?<folder>packages\/corpus\/material\/lesson\/.+)\/[^/]+\.mdx$/u;
+
 /** Tells whether one renderer component name models a concept interactively. */
 export function isInteractiveVisual(name: string): boolean {
   return !(
@@ -53,6 +57,35 @@ export function countVisuals(
     }
   }
   return counts;
+}
+
+/** Names the lesson folder of one locale file, or nothing for any other page. */
+export function lessonFolder(file: string): string | undefined {
+  return LESSON_FILE.exec(file)?.groups?.folder;
+}
+
+/** A lesson carries at least this many interactive visual cards. */
+export const MIN_INTERACTIVE_VISUALS = 3;
+
+/**
+ * Lists every lesson folder with a locale file below the visual bar, in path
+ * order: fewer than three interactive visual cards. A Mermaid diagram, a
+ * table, or a video never counts toward the bar.
+ */
+export function lessonsBelowBar(
+  documents: Iterable<readonly [file: string, document: DocumentParts]>
+): readonly string[] {
+  const below = new Set<string>();
+  for (const [file, document] of documents) {
+    const folder = lessonFolder(file);
+    if (
+      folder !== undefined &&
+      total(countVisuals(document)) < MIN_INTERACTIVE_VISUALS
+    ) {
+      below.add(folder);
+    }
+  }
+  return [...below].sort();
 }
 
 /** Sums the counts of every component name. */

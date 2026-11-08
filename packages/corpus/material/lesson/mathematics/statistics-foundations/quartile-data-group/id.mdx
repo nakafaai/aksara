@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung kuartil data kelompok dengan menentukan posisi pada frekuensi kumulatif dan melakukan interpolasi di antara tepi kelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -20,6 +20,16 @@ Posisi setiap kuartil dihitung dengan rumus berikut:
 - Letak <InlineMath math="Q_3" /> adalah data ke-<InlineMath math="\frac{3}{4}n" />
 
 Pada rumus ini, <InlineMath math="n" /> adalah banyaknya data.
+
+Jumlahkan frekuensinya kelas demi kelas untuk mendapat frekuensi kumulatif <InlineMath math="2, 13, 23, 28, 30" />. Batang terakhir selalu total <InlineMath math="30" />, dan kelas tempat batang pertama kali melewati posisi target adalah kelas untuk interpolasi.
+
+<BarChart
+  title={<>Frekuensi kumulatif setiap kelas</>}
+  description={<>Batang untuk setiap kelas yang menunjukkan banyak data sampai tepi atasnya, sampai 30.</>}
+  yAxisLabel="Frekuensi kumulatif"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 10], ["46-48", 2 + 11 + 10 + 5], ["49-51", 2 + 11 + 10 + 5 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frekuensi kumulatif", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Langkah Mencari Nilai Kuartil Data Kelompok
 
@@ -44,6 +54,16 @@ Tepi bawah adalah batas bawah kelas dikurangi <InlineMath math="0{,}5" />.
 Tepi atas adalah batas atas kelas ditambah <InlineMath math="0{,}5" />.
 
 Panjang kelas adalah tepi atas dikurangi tepi bawah.
+
+Ini tabel penjualan sepatu dalam bentuk histogram. Sebagian besar dari <InlineMath math="30" /> pasang yang terjual berasal dari kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />, dan di situlah kuartilnya akan jatuh.
+
+<HistogramChart
+  title={<>Penjualan sepatu per kelas ukuran</>}
+  description={<>Banyak pasang sepatu terjual di setiap kelas ukuran.</>}
+  yAxisLabel="Pasang terjual"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
+  chartConfig={{ value: { label: "Pasang terjual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Tentukan Letak Kelas Kuartil
 
@@ -107,6 +127,31 @@ Masukkan ke rumus:
 </MathContainer>
 
 Jadi, nilai <InlineMath math="Q_1" /> adalah <InlineMath math="41" />. Artinya, sekitar <InlineMath math="25\%" /> sepatu yang terjual ukurannya <InlineMath math="41" /> atau lebih kecil.
+
+Kamu bisa mengecek rumus interpolasi pada garis frekuensi kumulatif. Pada ketinggian <InlineMath math="n/4 = 7{,}5" />, garisnya ada di dalam kelas <InlineMath math="40\text{-}42" />, tepat di atas <InlineMath math="Q_1 = 41" />. Pada <InlineMath math="3n/4 = 22{,}5" />, garisnya ada di dalam <InlineMath math="43\text{-}45" />, di atas <InlineMath math="Q_3 = 45{,}35" />. Di antara tepi kelas, garisnya lurus, persis seperti yang diasumsikan rumus.
+
+<MathVisual
+  title={<>Kuartil pada garis frekuensi kumulatif</>}
+  description={<>Garis frekuensi kumulatif penjualan sepatu, dibaca di 7,5 untuk <InlineMath math="Q_1 = 41" /> dan di 22,5 untuk <InlineMath math="Q_3 = 45{,}35" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 52 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 23 }, { x: 48.5, y: 28 }, { x: 51.5, y: 30 }], appearance: "secondary" },
+      { id: "q1", kind: "polyline", vertices: [{ x: 36.5, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }], appearance: "primary" },
+      { id: "q3", kind: "polyline", vertices: [{ x: 36.5, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Latihan
 

@@ -114,6 +114,17 @@ describe("item label source validation", () => {
     })
   );
 
+  it.effect("reads no Markdown label in a typed number", () =>
+    validateItemLabels(
+      {
+        versions: {
+          id: { kind: "numericEntry", unit: "US$", value: "4" },
+        },
+      },
+      sourcePath
+    )
+  );
+
   it.effect("checks both column names and statement labels", () =>
     Effect.gen(function* () {
       const item: ItemSource = {
