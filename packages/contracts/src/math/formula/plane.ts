@@ -1,11 +1,4 @@
-import {
-  Array as Arr,
-  MutableList,
-  Option,
-  Order,
-  Result,
-  Schema,
-} from "effect";
+import { Array as Arr, Option, Result, Schema } from "effect";
 import type { PlaneCurveObjectSchemas } from "#contracts/math/curve";
 import {
   type SampleBox,
@@ -18,26 +11,28 @@ import {
   type FormulaScope,
 } from "#contracts/math/formula/compile";
 import {
-  contourFill,
   contourLines,
   type SampleField,
 } from "#contracts/math/formula/contour";
+import type { PlaneFormulaPoint } from "#contracts/math/formula/field";
 import { SampleGridSchema } from "#contracts/math/formula/mesh";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
+import { regionGeometry } from "#contracts/math/formula/region";
 import { sampleCurve } from "#contracts/math/formula/sample";
 import type { FormulaError } from "#contracts/math/formula/syntax";
 
 const BranchSchema = Schema.Array(SamplePointSchema);
 
 /**
- * What a formula object draws once sampled: curves, a shaded region with
- * solid or dashed edges, a surface grid, or the flat faces of a solid.
+ * What a formula object draws once sampled: curves, marked points, a shaded
+ * region with solid or dashed edges, a surface grid, or the faces of a solid.
  */
 export const FormulaGeometrySchema = Schema.Union([
   Schema.Struct({
     branches: Schema.Array(BranchSchema),
     kind: Schema.Literal("curves"),
   }),
+  Schema.Struct({ kind: Schema.Literal("points"), points: BranchSchema }),
   Schema.Struct({
     boundary: Schema.Array(
       Schema.Struct({ points: BranchSchema, strict: Schema.Boolean })
@@ -73,124 +68,44 @@ function planePoint(x: number, y: number): SamplePoint {
   return { x, y, z: 0 };
 }
 
-/** How far a boundary piece lies from one inequality's edge, and whether that edge is strict. */
-const ConstraintGapSchema = Schema.Struct({
-  gap: Schema.Finite,
-  strict: Schema.Boolean,
-});
-type ConstraintGap = typeof ConstraintGapSchema.Type;
-
-/** One piece of a region's outline, between two consecutive samples. */
-const EdgePieceSchema = Schema.Struct({
-  next: SamplePointSchema,
-  point: SamplePointSchema,
-  strict: Schema.Boolean,
-});
-type EdgePiece = typeof EdgePieceSchema.Type;
-
-/** One run of an outline that is all strict or all inclusive. */
-const EdgeRunSchema = Schema.Struct({
-  points: Schema.Array(SamplePointSchema),
-  strict: Schema.Boolean,
-});
-type EdgeRun = typeof EdgeRunSchema.Type;
-
 /**
- * Joins consecutive outline pieces of the same kind into one line, so a
- * renderer draws a few dashed and solid edges instead of every short piece.
+ * Places one formula point with the sliders' current values. A coordinate
+ * that is not finite there, such as ln(0), places nothing.
  */
-function edgeRuns(pieces: readonly EdgePiece[]) {
-  const runs = MutableList.make<EdgeRun>();
-  let points = MutableList.make<SamplePoint>();
-  let strict = false;
-  Arr.forEach(pieces, (piece, index) => {
-    if (index === 0 || piece.strict !== strict) {
-      if (index > 0) {
-        MutableList.append(runs, {
-          points: MutableList.toArray(points),
-          strict,
-        });
-      }
-      points = MutableList.make<SamplePoint>();
-      MutableList.append(points, piece.point);
-      ({ strict } = piece);
-    }
-    MutableList.append(points, piece.next);
+export function planeFormulaPoint(
+  point: PlaneFormulaPoint,
+  scope: FormulaScope
+): Result.Result<Option.Option<SamplePoint>, FormulaError> {
+  return Result.gen(function* () {
+    const x = (yield* compileText(point.x))(scope);
+    const y = (yield* compileText(point.y))(scope);
+    return Number.isFinite(x) && Number.isFinite(y)
+      ? Option.some(planePoint(x, y))
+      : Option.none();
   });
-  MutableList.append(runs, { points: MutableList.toArray(points), strict });
-  return MutableList.toArray(runs);
 }
 
-/** The signed room an inequality leaves at a point: positive where it holds. */
-function margin(text: string) {
-  return Result.map(readRelation(text), ({ comparison, left, right }) => {
-    const leftValue = compileFormula(left);
-    const rightValue = compileFormula(right);
-    const below = comparison === "<" || comparison === "<=";
-    return {
-      field:
-        (scope: FormulaScope): SampleField =>
-        (x, y) => {
-          const point = { ...scope, x, y };
-          const gap = rightValue(point) - leftValue(point);
-          return below ? gap : -gap;
-        },
-      strict: comparison === "<" || comparison === ">",
-    };
-  });
+/** Places every point of a path; one point that is not finite breaks the path. */
+function pathBranch(
+  points: readonly PlaneFormulaPoint[],
+  closed: boolean,
+  scope: FormulaScope
+) {
+  return Result.map(
+    Result.all(Arr.map(points, (point) => planeFormulaPoint(point, scope))),
+    (placed) =>
+      Option.match(Option.all(placed), {
+        onNone: () => [],
+        onSome: (corners) => [
+          closed ? [...corners, ...Arr.take(corners, 1)] : corners,
+        ],
+      })
+  );
 }
 
 /** The plane objects a formula defines. */
 export type PlaneFormulaObject =
   (typeof PlaneCurveObjectSchemas)[number]["Type"];
-
-/** The region where every inequality holds, with each edge marked strict or not. */
-function regionGeometry(
-  inequalities: readonly [string, ...string[]],
-  box: SampleBox,
-  scope: FormulaScope
-) {
-  return Result.map(Result.all(Arr.map(inequalities, margin)), (margins) => {
-    const constraints = Arr.map(margins, (each) => ({
-      field: each.field(scope),
-      strict: each.strict,
-    }));
-    /** The tightest margin at a point: where it is not negative, every inequality holds. */
-    const field: SampleField = (x, y) =>
-      Math.min(...Arr.map(constraints, (each) => each.field(x, y)));
-    const byGap = Order.mapInput(
-      Order.Number,
-      (piece: ConstraintGap) => piece.gap
-    );
-    /** Whether the inequality nearest a boundary piece is strict, so it draws dashed. */
-    const strictAt = (from: SamplePoint, to: SamplePoint) => {
-      const x = (from.x + to.x) / 2;
-      const y = (from.y + to.y) / 2;
-      const gaps = Arr.map(constraints, (each) => ({
-        gap: Math.abs(each.field(x, y)),
-        strict: each.strict,
-      }));
-      return Option.exists(
-        Arr.head(Arr.sort(gaps, byGap)),
-        ({ strict }) => strict
-      );
-    };
-    const boundary = Arr.flatMap(contourLines(field, box), (line) =>
-      edgeRuns(
-        Arr.zipWith(line, Arr.drop(line, 1), (point, next) => ({
-          next,
-          point,
-          strict: strictAt(point, next),
-        }))
-      )
-    );
-    return {
-      boundary,
-      fill: contourFill(field, box),
-      kind: "region" as const,
-    } satisfies FormulaGeometry;
-  });
-}
 
 /**
  * Samples one plane formula object inside its frame. `named` holds the input
@@ -243,6 +158,18 @@ export function planeFormulaGeometry(
         },
         box,
         object.angle
+      );
+      return { branches, kind: "curves" as const };
+    }
+    if (object.kind === "marker") {
+      const placed = yield* planeFormulaPoint(object, scope);
+      return { kind: "points" as const, points: Option.toArray(placed) };
+    }
+    if (object.kind === "path") {
+      const branches = yield* pathBranch(
+        object.points,
+        object.closed ?? false,
+        scope
       );
       return { branches, kind: "curves" as const };
     }

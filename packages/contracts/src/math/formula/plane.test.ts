@@ -149,4 +149,66 @@ describe("planeFormulaGeometry", () => {
     );
     assert.isTrue(Result.isFailure(region));
   });
+
+  it("places a marker with the sliders and drops one that is not finite", () => {
+    const placed = geometry(
+      { ...fields, kind: "marker", x: "cos(a)", y: "sin(a)" },
+      { a: Math.PI / 2 }
+    );
+    const missing = geometry(
+      { ...fields, kind: "marker", x: "ln(a - a)", y: "0" },
+      { a: Math.PI / 2 }
+    );
+
+    assert.strictEqual(placed.kind, "points");
+    assert.deepStrictEqual(
+      placed.kind === "points" ? placed.points.length : 0,
+      1
+    );
+    assert.isTrue(
+      placed.kind === "points" &&
+        Arr.every(
+          placed.points,
+          ({ x, y }) => Math.abs(x) < 1e-12 && Math.abs(y - 1) < 1e-12
+        )
+    );
+    assert.deepStrictEqual(missing, { kind: "points", points: [] });
+  });
+
+  it("joins a path through its formula points and closes it on request", () => {
+    const corners = [
+      { x: "0", y: "0" },
+      { x: "cos(a)", y: "0" },
+      { x: "cos(a)", y: "sin(a)" },
+    ];
+    const open = geometry(
+      { ...fields, kind: "path", points: corners },
+      { a: 0 }
+    );
+    const closed = geometry(
+      { ...fields, closed: true, kind: "path", points: corners },
+      { a: 0 }
+    );
+    const broken = geometry(
+      { ...fields, kind: "path", points: [...corners, { x: "1 / 0", y: "0" }] },
+      { a: 0 }
+    );
+
+    assert.deepStrictEqual(points(open).length, 3);
+    assert.deepStrictEqual(points(closed).length, 4);
+    assert.deepStrictEqual(points(closed)[3], points(closed)[0]);
+    assert.deepStrictEqual(broken, { branches: [], kind: "curves" });
+  });
+
+  it("fails a marker whose formula does not read", () => {
+    assert.isTrue(
+      Result.isFailure(
+        planeFormulaGeometry(
+          { ...fields, kind: "marker", x: "cos(", y: "0" },
+          box,
+          {}
+        )
+      )
+    );
+  });
 });

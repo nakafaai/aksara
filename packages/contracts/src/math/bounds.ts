@@ -1,4 +1,4 @@
-import { Array as Arr, Result, type Schema } from "effect";
+import { Array as Arr, Option, Result, type Schema } from "effect";
 import {
   arcContained,
   axisContains,
@@ -7,9 +7,11 @@ import {
   quadraticContained,
 } from "#contracts/math/extent";
 import type { FormulaScope } from "#contracts/math/formula/compile";
+import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
 import {
   type FormulaGeometry,
   planeFormulaGeometry,
+  planeFormulaPoint,
 } from "#contracts/math/formula/plane";
 import { geometryVisible } from "#contracts/math/formula/scope";
 import { spaceFormulaGeometry } from "#contracts/math/formula/space";
@@ -98,7 +100,7 @@ function planeObjectContained(
   if (object.kind === "function") {
     const axis = object.inputAxis ?? "x";
     const named = Arr.flatMap(labels, ({ at, objectId }) =>
-      objectId === object.id ? [at[axis]] : []
+      objectId === object.id && !isPlaneFormulaPoint(at) ? [at[axis]] : []
     );
     return sampledVisible(
       planeFormulaGeometry(object, frame, scope, named),
@@ -107,7 +109,9 @@ function planeObjectContained(
   }
   if (
     object.kind === "implicit" ||
+    object.kind === "marker" ||
     object.kind === "parametric" ||
+    object.kind === "path" ||
     object.kind === "polar" ||
     object.kind === "region"
   ) {
@@ -189,6 +193,26 @@ function spaceObjectContained(
   return cuboidContained(frame, object);
 }
 
+/**
+ * Whether a plane label starts inside its frame. A label placed by formulas is
+ * checked where the sliders start; a formula that does not read is reported by
+ * its own field, so it is not reported again.
+ */
+function planeLabelContained(
+  frame: PlaneMathFrame,
+  label: PlaneLabelAnchor,
+  scope: FormulaScope
+) {
+  if (!isPlaneFormulaPoint(label.at)) {
+    return planeContains(frame, label.at);
+  }
+  const placed = planeFormulaPoint(label.at, scope);
+  return (
+    Result.isFailure(placed) ||
+    Option.exists(placed.success, (point) => planeContains(frame, point))
+  );
+}
+
 /** Reports every finite plane object or label that escapes its authored frame. */
 export function planeBoundsIssues(
   frame: PlaneMathFrame,
@@ -208,7 +232,7 @@ export function planeBoundsIssues(
           ]
     ),
     ...Arr.flatMap(labels, (label, index): Schema.FilterIssue[] =>
-      planeContains(frame, label.at)
+      planeLabelContained(frame, label, scope)
         ? []
         : [
             {

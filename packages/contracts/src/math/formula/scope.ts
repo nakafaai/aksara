@@ -30,7 +30,7 @@ const FormulaFieldSchema = Schema.Struct({
 export type FormulaField = typeof FormulaFieldSchema.Type;
 
 /** Builds one expression field. */
-function expression(
+export function expression(
   path: readonly (string | number)[],
   text: string,
   variables: readonly string[]
@@ -57,6 +57,15 @@ export function planeFormulaFields(
   }
   if (object.kind === "polar") {
     return [expression(["radius"], object.radius, ["theta"])];
+  }
+  if (object.kind === "marker") {
+    return [expression(["x"], object.x, []), expression(["y"], object.y, [])];
+  }
+  if (object.kind === "path") {
+    return Arr.flatMap(object.points, (point, index) => [
+      expression(["points", index, "x"], point.x, []),
+      expression(["points", index, "y"], point.y, []),
+    ]);
   }
   if (object.kind === "implicit") {
     return [
@@ -117,6 +126,27 @@ function namesOf(field: FormulaField) {
   });
 }
 
+/** Reports one formula that reads a name it may not, at its root path. */
+export function strayIssues(
+  field: FormulaField,
+  declared: readonly string[],
+  root: readonly (string | number)[]
+): Schema.FilterIssue[] {
+  const allowed = HashSet.fromIterable([...field.variables, ...declared]);
+  const stray = Arr.sort(
+    Arr.fromIterable(HashSet.difference(namesOf(field), allowed)),
+    Order.String
+  );
+  return Arr.isReadonlyArrayEmpty(stray)
+    ? []
+    : [
+        {
+          issue: `Expected only ${Arr.join([...field.variables, ...declared], ", ")} in this formula, not ${Arr.join(stray, ", ")}.`,
+          path: [...root, ...field.path],
+        },
+      ];
+}
+
 /**
  * Reports every formula that reads a name its object does not offer, and every
  * slider whose name repeats an earlier one.
@@ -141,21 +171,9 @@ export function formulaScopeIssues<Object>(
         : []
   );
   const unknown = Arr.flatMap(objects, (object, index) =>
-    Arr.flatMap(fields(object), (field): Schema.FilterIssue[] => {
-      const allowed = HashSet.fromIterable([...field.variables, ...declared]);
-      const stray = Arr.sort(
-        Arr.fromIterable(HashSet.difference(namesOf(field), allowed)),
-        Order.String
-      );
-      return Arr.isReadonlyArrayEmpty(stray)
-        ? []
-        : [
-            {
-              issue: `Expected only ${Arr.join([...field.variables, ...declared], ", ")} in this formula, not ${Arr.join(stray, ", ")}.`,
-              path: ["objects", index, ...field.path],
-            },
-          ];
-    })
+    Arr.flatMap(fields(object), (field) =>
+      strayIssues(field, declared, ["objects", index])
+    )
   );
   return [...repeated, ...unknown];
 }
@@ -188,6 +206,9 @@ export function geometryVisible(geometry: FormulaGeometry, box: SampleBox) {
   }
   if (geometry.kind === "region") {
     return Arr.isReadonlyArrayNonEmpty(geometry.fill);
+  }
+  if (geometry.kind === "points") {
+    return Arr.some(geometry.points, (point) => inside(box, point));
   }
   if (geometry.kind === "grid") {
     return Arr.some(geometry.grid.points, (point) =>
