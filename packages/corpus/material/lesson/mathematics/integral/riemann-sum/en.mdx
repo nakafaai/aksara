@@ -107,7 +107,7 @@ The width is <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, so each sum is simp
   <BlockMath math="M_4 = 0.0625+0.5625+1.5625+3.0625 = 5.25" />
 </MathContainer>
 
-The exact area comes from the [fundamental theorem of calculus](/en/subjects/mathematics/integral/fundamental-theorem-of-calculus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5.333" />. The left sum misses by about <InlineMath math="1.83" /> and the right sum by about <InlineMath math="2.17" />, but the midpoint sum misses by only <InlineMath math="0.083" />. In each strip, the midpoint rectangle cuts off a thin sliver above the curve and adds one under it, and the two nearly cancel.
+The exact area comes from the [fundamental theorem of calculus](/en/subjects/mathematics/integral/fundamental-theorem-of-calculus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5.333" />. The left sum misses by about <InlineMath math="1.83" /> and the right sum by about <InlineMath math="2.17" />, but the midpoint sum misses by only <InlineMath math="0.083" />. In each strip, the midpoint rectangle sticks out past the curve on one side of the midpoint and leaves a gap on the other, and the two nearly cancel.
 
 <LineEquation
   showZAxis={false}
@@ -160,7 +160,7 @@ With <InlineMath math="\Delta x = \frac{7}{n}" /> and right endpoints <InlineMat
 
 For <InlineMath math="n=7" /> this gives <InlineMath math="\frac{49}{2}\cdot\frac{8}{7}=28" />, the right sum from the first example. For <InlineMath math="n=70" /> it gives about <InlineMath math="24.85" />, and for <InlineMath math="n=700" /> about <InlineMath math="24.535" />. As <InlineMath math="n\to\infty" />, the factor <InlineMath math="\frac{n+1}{n}" /> tends to <InlineMath math="1" />, so the sums tend to <InlineMath math="\frac{49}{2}=24.5" />, the area of the triangle.
 
-Adding one more rectangle does not always move a sum closer to the integral, but the limit always arrives. The [properties of the definite integral](/en/subjects/mathematics/integral/properties-of-definite-integral) all follow from this limit of sums.
+Adding one more rectangle does not always move a sum closer to the integral, but for an integrable function the limit always arrives. The [properties of the definite integral](/en/subjects/mathematics/integral/properties-of-definite-integral) all follow from this limit of sums.
 
 ## Negative Values in a Riemann Sum
 
@@ -174,7 +174,7 @@ The midpoints are <InlineMath math="0.5, 1.5, 2.5, 3.5" /> and <InlineMath math=
 
 <MathVisual
   title="Signed rectangles of a Riemann sum"
-  description={<>Midpoint rectangles of <InlineMath math="f(x)=x-2" /> on <InlineMath math="[0,4]" />. The two terms under the x-axis are negative and cancel the two terms over it, so the sum is <InlineMath math="0" /> while the shaded area is not.</>}
+  description={<>Midpoint rectangles of <InlineMath math="f(x)=x-2" /> on <InlineMath math="[0,4]" />. The two terms under the x-axis are negative and cancel the two terms over it, so the sum is <InlineMath math="0" /> while the rectangles cover an area of <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -2.3, max: 2.3 } },
@@ -203,7 +203,7 @@ The midpoints are <InlineMath math="0.5, 1.5, 2.5, 3.5" /> and <InlineMath math=
   }}
 />
 
-The exact integral agrees: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. The region between the graph and the axis, however, is two triangles of area <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, so its area is <InlineMath math="4" />. To get an area, split the interval at the zero <InlineMath math="x=2" /> and add the absolute values, as the lesson on the [area of a flat region](/en/subjects/mathematics/integral/area-of-a-flat-surface) does with integrals.
+The exact integral agrees: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. The region between the graph and the axis, however, is two triangles of area <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, so its area is <InlineMath math="4" />. To get an area, split the interval at the zero <InlineMath math="x=2" /> and add the absolute values, as you do for the [area between a curve and the axis](/en/subjects/mathematics/integral/area-of-a-flat-surface).
 
 ## Common Mistakes
 
