@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
+  stimulus: "aroma-candles",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$40+20\\pi$$",
+          label: "$$132\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$154\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$264\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$80+20\\pi$$",
+          label: "$$462\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$80+16\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$80+18\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$120+20\\pi$$",
+          label: "$$1{.}848\\text{ cm}^3$$",
         },
       ],
     },

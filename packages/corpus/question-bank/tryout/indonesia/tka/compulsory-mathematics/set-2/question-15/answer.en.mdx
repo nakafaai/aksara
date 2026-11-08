@@ -1,29 +1,9 @@
-Reflection in the <InlineMath math="x" />-axis changes the second coordinate’s sign. The following rotation swaps the coordinates and changes the sign of the new first coordinate.
+Translation, reflection and rotation are **isometries**: they keep all lengths and therefore also angles and areas. A dilation with factor <InlineMath math="k" /> multiplies lengths by <InlineMath math="|k|" /> and areas by <InlineMath math="k^2" />.
 
-<BlockMath math="\begin{aligned}
-(x,y)&\longmapsto(x,-y) \\
-&\longmapsto(y,x) \\
-T(x,y)&=(y,x) \\
-T(2,-3)&=(-3,2) \\
-T^2(x,y)&=T(y,x) \\
-&=(x,y)
-\end{aligned}" />
+- A translation moves every point by the same vector, so each side keeps its length. The statement is true.
+- A reflection is an isometry, so the image is congruent and has the same area. The statement is true.
+- With <InlineMath math="k=-2" /> every length doubles, so the area is multiplied by <InlineMath math="(-2)^2=4" />, not by <InlineMath math="2" />. The statement is false.
+- The rotation by <InlineMath math="180^\circ" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-x,-y)" />, exactly like the dilation with <InlineMath math="k=-1" />. The statement is true.
+- Reflecting in the <InlineMath math="x" />-axis gives <InlineMath math="(x,-y)" />, then reflecting in the <InlineMath math="y" />-axis gives <InlineMath math="(-x,-y)" />. That is the rotation by <InlineMath math="180^\circ" />. A translation would move every point by the same vector, but here, for example, <InlineMath math="(1,0)" /> moves by <InlineMath math="(-2,0)" /> and <InlineMath math="(2,0)" /> by <InlineMath math="(-4,0)" />. The statement is false.
 
-Thus <InlineMath math="T^2" /> is the identity. A fixed point must satisfy <InlineMath math="(y,x)=(x,y)" />, so the fixed points are exactly the line <InlineMath math="y=x" />. The map <InlineMath math="(x,y)\mapsto(y,x)" /> is reflection in that line and **reverses orientation**.
-
-The four claims about the coordinate rule, point image, identity, and fixed points are true. Preservation of orientation is false.
-
-Orientation here means the order around a figure’s vertices. Triangle ABC runs counterclockwise in the diagram, while its image A′B′C′ runs clockwise. Side lengths and area stay the same because this transformation is a reflection.
-
-<LineEquation
-  title="Reflection reverses orientation"
-  description="The gray line is y = x. Swapping the coordinates of each purple vertex gives the orange image."
-  cameraPosition={[1.5, 1.5, 7]}
-  cameraTarget={[1.5, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -0.2, y: -0.2, z: 0 }, { x: 3.5, y: 3.5, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
-    { points: [{ x: 1, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 1, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [0, -0.35, 0] }, { text: "B", at: 1, offset: [0.2, -0.3, 0] }, { text: "C = C′", at: 2, offset: [0.4, 0.3, 0] }] },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 0, y: 3, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: <InlineMath math="A^{\prime}" />, at: 0, offset: [-0.35, 0, 0] }, { text: <InlineMath math="B^{\prime}" />, at: 1, offset: [-0.35, 0.2, 0] }] },
-  ]}
-/>
+So the statements about the translation, the reflection and the rotation by <InlineMath math="180^\circ" /> are true.
