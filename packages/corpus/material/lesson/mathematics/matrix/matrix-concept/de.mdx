@@ -3,7 +3,7 @@ export const metadata = {
   description: "Matrizen anhand von Zeilen, Spalten, Einträgen, Formaten und zwei vertrauten Datentabellen verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrizen",
 };
 
@@ -71,6 +71,39 @@ Für die Matrix oben bedeutet das:
 | <InlineMath math="a_{22}" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
+
+Lies jetzt jede Zeile von <InlineMath math="A" /> als Punkt <InlineMath math="(x, y)" />. Spalte 1 liefert <InlineMath math="x" />, die Mathenote, und Spalte 2 liefert <InlineMath math="y" />, die Englischnote. So wird jede Person zu einem Punkt. Schau dir Aisyah an: Ihre Hilfslinien zeigen <InlineMath math="a_{11} = 80" /> nach rechts und <InlineMath math="a_{12} = 75" /> nach oben. Tauschst du die beiden Einträge ihrer Zeile, springt der Punkt nach <InlineMath math="(75, 80)" />. Genau deshalb bestimmt die Position eines Eintrags seine Bedeutung.
+
+<MathVisual
+  title="Drei Personen als drei Punkte"
+  description={<>Zeile <InlineMath math="i" /> von <InlineMath math="A" /> wird zum Punkt (Spalte 1, Spalte 2): die Mathenote nach rechts und die Englischnote nach oben.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Format einer Matrix
 

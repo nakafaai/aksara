@@ -3,7 +3,7 @@ export const metadata = {
   description: "Klasifikasikan matriks sebagai matriks baris, kolom, persegi, segitiga, diagonal, identitas, nol, atau simetris.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -161,6 +161,33 @@ Contoh:
   <BlockMath math="O_{2 \times 2} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
   <BlockMath math="O_{2 \times 3} = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
 </MathContainer>
+
+Jenis-jenis matriks persegi khusus juga berperilaku berbeda saat dikalikan dengan titik. Tulis setiap titik sudut <InlineMath math="(x, y)" /> dari persegi satuan sebagai kolom, lalu kalikan dengan matriks <InlineMath math="2 \times 2" />. Matriks identitas <InlineMath math="I_2" /> mengirim setiap titik sudut ke dirinya sendiri, jadi perseginya tetap di tempat. Matriks diagonal dengan <InlineMath math="3" /> dan <InlineMath math="2" /> di diagonalnya meregangkan <InlineMath math="x" /> tiga kali dan <InlineMath math="y" /> dua kali: titik <InlineMath math="(1, 1)" /> pindah ke <InlineMath math="(3, 2)" />, dan perseginya menjadi persegi panjang <InlineMath math="3" /> kali <InlineMath math="2" />. Matriks nol <InlineMath math="O" /> mengirim setiap titik sudut ke <InlineMath math="(0, 0)" />.
+
+<MathVisual
+  title="Efek tiga matriks persegi pada persegi satuan"
+  description={<>Persegi satuan tetap di tempat oleh <InlineMath math="I_2" />, meregang menjadi persegi panjang 3 kali 2 oleh matriks diagonal, dan menyusut ke titik asal oleh <InlineMath math="O" />.</>}
+  labels={{
+    square: <InlineMath math="I_2" />,
+    stretch: <InlineMath math="\begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}" />,
+    zero: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "stretch", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Matriks Simetris
 

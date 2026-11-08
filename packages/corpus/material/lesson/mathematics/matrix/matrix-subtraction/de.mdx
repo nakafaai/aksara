@@ -3,7 +3,7 @@ export const metadata = {
   description: "Subtrahiere Matrizen eintragsweise, deute die Subtraktion als Addition der Gegenmatrix und prüfe dein Verständnis an vollständig gelösten Aufgaben.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -80,6 +80,43 @@ Anschließend addieren wir <InlineMath math="P" /> und <InlineMath math="-Q" />:
 </MathContainer>
 
 Beide Methoden ergeben die gleiche Matrix.
+
+Lies jede Zeile als Punkt, dann siehst du, was die Differenz misst. Zeile 1 von <InlineMath math="P" /> ist <InlineMath math="P_1(8, 5)" />, Zeile 1 von <InlineMath math="Q" /> ist <InlineMath math="Q_1(2, 1)" />. Zeile 1 von <InlineMath math="P-Q" />, also <InlineMath math="(6, 4)" />, ist der Schritt von <InlineMath math="Q_1" /> nach <InlineMath math="P_1" />: 6 nach rechts und 4 nach oben. Zeile 2 funktioniert genauso. <InlineMath math="Q-P" /> ist derselbe Schritt rückwärts, <InlineMath math="(-6, -4)" />. Deshalb ist die Subtraktion nicht kommutativ.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> ist der Schritt von jeder Zeile von <InlineMath math="Q" /> nach <InlineMath math="P" /></>}
+  description={<>Die Zeilen von <InlineMath math="P" /> und <InlineMath math="Q" /> als Punkte. Jede Strecke verbindet <InlineMath math="Q_i" /> mit <InlineMath math="P_i" /> und trägt Zeile <InlineMath math="i" /> von <InlineMath math="P-Q" />.</>}
+  labels={{
+    p1: <InlineMath math="P_1(8, 5)" />,
+    p2: <InlineMath math="P_2(3, 7)" />,
+    q1: <InlineMath math="Q_1(2, 1)" />,
+    q2: <InlineMath math="Q_2(-1, 4)" />,
+    d1: <InlineMath math="(6, 4)" />,
+    d2: <InlineMath math="(4, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p1", kind: "point", at: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: -1, y: 4 }, appearance: "secondary" },
+      { id: "d1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 8, y: 5 }, appearance: "answer" },
+      { id: "d2", kind: "segment", from: { x: -1, y: 4 }, to: { x: 3, y: 7 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "p2", objectId: "p2", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "q2", objectId: "q2", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "d1", objectId: "d1", at: { x: 5, y: 3 }, placement: "below-right" },
+      { key: "d2", objectId: "d2", at: { x: 1, y: 5.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ### Beispiel für nicht subtrahierbare Matrizen
 
 Diese beiden Matrizen haben nicht **dasselbe Format**:

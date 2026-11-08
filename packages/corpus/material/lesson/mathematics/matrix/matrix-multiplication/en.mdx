@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multiply matrices with the row by column rule, check compatible dimensions, and use the operation's main properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -95,6 +95,36 @@ Matrix <InlineMath math="B" /> has an order of <InlineMath math="3 \times 2" /> 
 The number of columns in matrix <InlineMath math="B" /> (which is <InlineMath math="2" />) is **not equal** to the number of rows in matrix <InlineMath math="A" /> (which is <InlineMath math="3" />).
 
 <InlineMath math="BA" /> is **undefined**. Whether a matrix product exists can change when the factors are reversed.
+
+A matrix product can move a whole shape at once. Write the corners of a triangle as the columns of <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" /> and multiply by <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Every entry of <InlineMath math="MT" /> is still a row of <InlineMath math="M" /> times a column of <InlineMath math="T" />. Row 1 times column 2 gives <InlineMath math="2(2) + (-1)(0) = 4" />, and row 2 times column 2 gives <InlineMath math="1(2) + 1(0) = 2" />, so the corner <InlineMath math="(2, 0)" /> moves to <InlineMath math="(4, 2)" />. In the same way the corner <InlineMath math="(1, 2)" /> moves to <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> moves every corner stored in <InlineMath math="T" /></>}
+  description={<>The columns of <InlineMath math="T" /> are the corners of a triangle. Each column of <InlineMath math="MT" /> is the matching corner after multiplication by <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Properties of Matrix Multiplication
 

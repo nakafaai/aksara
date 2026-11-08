@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate inverses of order-two and order-three matrices with determinants and adjugates, then solve linear equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -146,6 +146,33 @@ In this equation, <InlineMath math="A" /> is the coefficient matrix, <InlineMath
 </MathContainer>
 
 Multiplying both sides from the left by <InlineMath math="A^{-1}" /> gives <InlineMath math="X=A^{-1}B" />. <Highlight>The multiplication order must stay the same</Highlight> because matrix multiplication is not commutative.
+
+Here is <InlineMath math="X=A^{-1}B" /> as a picture. Take the matrix <InlineMath math="P" /> from the example above as <InlineMath math="A" /> and <InlineMath math="B = \begin{bmatrix} -4 \\ 1 \end{bmatrix}" />. The system <InlineMath math="PX = B" /> is the pair of lines <InlineMath math="3x - 7y = -4" /> and <InlineMath math="-x + 2y = 1" />. Multiplying by <InlineMath math="P^{-1}" /> gives <InlineMath math="X = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}\begin{bmatrix} -4 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}" />, exactly where the two lines cross. If the determinant were <InlineMath math="0" />, the lines would be parallel or the same line, and no inverse could pick out one crossing point.
+
+<MathVisual
+  title={<><InlineMath math="X = P^{-1}B" /> is where the two lines cross</>}
+  description={<>The two equations of <InlineMath math="PX = B" /> drawn as lines. They meet at <InlineMath math="(1, 1)" />, the solution that <InlineMath math="P^{-1}B" /> gives.</>}
+  labels={{
+    first: <InlineMath math="3x - 7y = -4" />,
+    second: <InlineMath math="-x + 2y = 1" />,
+    solution: <InlineMath math="X = (1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: -6, y: -2 }, { x: 8, y: 4 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: -1, y: 0 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Exercises
 

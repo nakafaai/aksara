@@ -3,7 +3,7 @@ export const metadata = {
   description: "Unterscheide Zeilen-, Spalten-, Quadrat-, Dreiecks-, Diagonal-, Einheits-, Null- und symmetrische Matrizen anhand klarer Definitionen und Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -161,6 +161,33 @@ Beispiel:
   <BlockMath math="O_{2 \times 2} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
   <BlockMath math="O_{2 \times 3} = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
 </MathContainer>
+
+Die besonderen quadratischen Typen verhalten sich auch unterschiedlich, wenn sie auf Punkte wirken. Schreib jede Ecke <InlineMath math="(x, y)" /> des Einheitsquadrats als Spalte und multipliziere sie mit einer <InlineMath math="2 \times 2" />-Matrix. Die Einheitsmatrix <InlineMath math="I_2" /> schickt jede Ecke auf sich selbst, das Quadrat bleibt also liegen. Die Diagonalmatrix mit <InlineMath math="3" /> und <InlineMath math="2" /> auf der Diagonale streckt <InlineMath math="x" /> um den Faktor <InlineMath math="3" /> und <InlineMath math="y" /> um den Faktor <InlineMath math="2" />: Die Ecke <InlineMath math="(1, 1)" /> landet bei <InlineMath math="(3, 2)" />, und aus dem Quadrat wird ein Rechteck mit den Seiten <InlineMath math="3" /> und <InlineMath math="2" />. Die Nullmatrix <InlineMath math="O" /> schickt jede Ecke nach <InlineMath math="(0, 0)" />.
+
+<MathVisual
+  title="Was drei quadratische Matrizen mit dem Einheitsquadrat machen"
+  description={<>Unter <InlineMath math="I_2" /> bleibt das Einheitsquadrat liegen, eine Diagonalmatrix streckt es zu einem Rechteck mit den Seiten 3 und 2, und <InlineMath math="O" /> zieht es im Ursprung zusammen.</>}
+  labels={{
+    square: <InlineMath math="I_2" />,
+    stretch: <InlineMath math="\begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}" />,
+    zero: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "stretch", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Symmetrische Matrix
 

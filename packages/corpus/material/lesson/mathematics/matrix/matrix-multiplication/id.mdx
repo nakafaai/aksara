@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kalikan matriks dengan memeriksa kecocokan ordo, menghitung hasil kali baris dan kolom, serta menerapkan sifat perkalian matriks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -95,6 +95,36 @@ Matriks <InlineMath math="B" /> berordo <InlineMath math="3 \times 2" /> dan mat
 Jumlah kolom matriks <InlineMath math="B" /> (yaitu <InlineMath math="2" />) **tidak sama** dengan jumlah baris matriks <InlineMath math="A" /> (yaitu <InlineMath math="3" />).
 
 Oleh karena itu, perkalian <InlineMath math="BA" /> **tidak terdefinisi**. Karena itu, urutan kedua matriks menentukan apakah perkalian dapat dilakukan.
+
+Perkalian matriks bisa memindahkan satu bangun sekaligus. Tulis titik sudut segitiga sebagai kolom <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" />, lalu kalikan dengan <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Setiap entri <InlineMath math="MT" /> tetap baris <InlineMath math="M" /> kali kolom <InlineMath math="T" />. Baris 1 kali kolom 2 menghasilkan <InlineMath math="2(2) + (-1)(0) = 4" />, dan baris 2 kali kolom 2 menghasilkan <InlineMath math="1(2) + 1(0) = 2" />, jadi titik <InlineMath math="(2, 0)" /> pindah ke <InlineMath math="(4, 2)" />. Dengan cara yang sama, titik <InlineMath math="(1, 2)" /> pindah ke <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> memindahkan setiap titik sudut yang disimpan di <InlineMath math="T" /></>}
+  description={<>Kolom-kolom <InlineMath math="T" /> adalah titik sudut segitiga. Setiap kolom <InlineMath math="MT" /> adalah titik sudut yang seletak setelah dikalikan dengan <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Sifat Perkalian Matriks
 

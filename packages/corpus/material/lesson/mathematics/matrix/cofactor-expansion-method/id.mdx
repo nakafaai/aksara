@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks dengan ekspansi kofaktor melalui minor dan perhitungan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -145,3 +145,30 @@ Setelah semua kofaktor didapatkan, kita masukkan kembali ke rumus determinan:
 Jadi, determinan dari matriks <InlineMath math="P" /> adalah <InlineMath math="-12" />.
 
 Perhatikan <InlineMath math="k_{12}=(-1)(-2)=2" />. Posisi dengan tanda minus dapat menghasilkan **kofaktor positif** jika minornya negatif. Jangan memberi tanda minus dua kali ketika memasukkan kofaktor ke jumlah akhir.
+
+Tiga kofaktor baris 1 juga punya bentuk. Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> tegak lurus terhadap jajargenjang itu, dan panjangnya <InlineMath math="\sqrt{184}" /> sama dengan luas jajargenjang tersebut. Ekspansi <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> mengukur seberapa jauh baris 1 menjangkau searah panah itu. Putar adegannya: baris 1 mengarah ke sisi seberang jajargenjang, dan itulah sebabnya determinannya negatif.
+
+<MathVisual
+  title="Kofaktor baris 1 membentuk panah yang menembus dua baris lain"
+  description={<>Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah kofaktor <InlineMath math="(6, 2, -12)" /> tegak lurus terhadapnya, dan baris 1 condong menjauhi panah itu.</>}
+  labels={{
+    base: "baris 2 dan 3",
+    normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
+    row1: <>baris 1 <InlineMath math="(1, 3, 2)" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: 0, max: 16 }, z: { min: -13, max: 7 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 6, z: 2 }, { x: 7, y: 15, z: 6 }, { x: 5, y: 9, z: 4 }], appearance: "secondary" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 6, y: 2, z: -12 }, appearance: "answer" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
+      { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>

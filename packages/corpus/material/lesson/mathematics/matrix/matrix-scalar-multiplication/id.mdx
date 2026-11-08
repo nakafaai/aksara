@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kalikan setiap elemen matriks dengan skalar, lalu buktikan hukum distributifnya dalam contoh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -74,6 +74,36 @@ Tuliskan setiap perkalian dengan tanda kurung: <InlineMath math="4(a)" /> berart
 </MathContainer>
 
 Matriks di atas adalah hasil <InlineMath math="4Q" />.
+
+Ini Contoh 1 dalam bentuk gambar. Baca setiap baris <InlineMath math="P" /> sebagai titik: <InlineMath math="(9, 7)" /> dan <InlineMath math="(3, 1)" />. Mengalikan dengan <InlineMath math="2" /> menggandakan kedua koordinat, jadi setiap titik bergeser di sepanjang garis yang melalui titik asal sampai jaraknya dua kali lipat, yaitu <InlineMath math="(18, 14)" /> dan <InlineMath math="(6, 2)" />. Ruas garis di antara keduanya tetap searah dan panjangnya jadi dua kali. Satu skalar mengubah semua entri dengan cara yang sama.
+
+<MathVisual
+  title={<><InlineMath math="2P" /> menggandakan setiap baris <InlineMath math="P" /></>}
+  description={<>Baris <InlineMath math="P" /> dan <InlineMath math="2P" /> sebagai titik. Setiap titik <InlineMath math="2P" /> terletak pada garis dari titik asal melalui titik <InlineMath math="P" /> yang seletak, dua kali lebih jauh.</>}
+  labels={{
+    p1: <InlineMath math="P: (9, 7)" />,
+    p2: <InlineMath math="P: (3, 1)" />,
+    d1: <InlineMath math="2P: (18, 14)" />,
+    d2: <InlineMath math="2P: (6, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 19 }, y: { min: -1, max: 15 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "ray1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 18, y: 14 }, appearance: "construction" },
+      { id: "ray2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "double", kind: "segment", from: { x: 18, y: 14 }, to: { x: 6, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p", at: { x: 9, y: 7 }, placement: "above-left" },
+      { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
+      { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Sifat Perkalian Matriks dengan Skalar
 

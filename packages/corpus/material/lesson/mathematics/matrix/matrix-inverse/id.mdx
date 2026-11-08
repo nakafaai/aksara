@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung invers matriks ordo dua dan tiga melalui determinan dan adjoin, lalu gunakan invers untuk menyelesaikan sistem persamaan linear.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -146,6 +146,33 @@ Pada persamaan tersebut, <InlineMath math="A" /> adalah matriks koefisien, <Inli
 </MathContainer>
 
 Mengalikan kedua ruas di sebelah kiri dengan <InlineMath math="A^{-1}" /> menghasilkan <InlineMath math="X=A^{-1}B" />. <Highlight>Urutan perkalian harus dipertahankan</Highlight> karena perkalian matriks tidak komutatif.
+
+Ini <InlineMath math="X=A^{-1}B" /> dalam bentuk gambar. Ambil matriks <InlineMath math="P" /> dari contoh di atas sebagai <InlineMath math="A" /> dan <InlineMath math="B = \begin{bmatrix} -4 \\ 1 \end{bmatrix}" />. Sistem <InlineMath math="PX = B" /> adalah pasangan garis <InlineMath math="3x - 7y = -4" /> dan <InlineMath math="-x + 2y = 1" />. Mengalikan dengan <InlineMath math="P^{-1}" /> menghasilkan <InlineMath math="X = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}\begin{bmatrix} -4 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}" />, tepat di titik potong kedua garis. Kalau determinannya <InlineMath math="0" />, kedua garis sejajar atau berimpit, sehingga tidak ada invers yang bisa menunjuk satu titik potong.
+
+<MathVisual
+  title={<><InlineMath math="X = P^{-1}B" /> adalah titik potong kedua garis</>}
+  description={<>Dua persamaan dari <InlineMath math="PX = B" /> digambar sebagai garis. Keduanya bertemu di <InlineMath math="(1, 1)" />, yaitu solusi yang diberikan <InlineMath math="P^{-1}B" />.</>}
+  labels={{
+    first: <InlineMath math="3x - 7y = -4" />,
+    second: <InlineMath math="-x + 2y = 1" />,
+    solution: <InlineMath math="X = (1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: -6, y: -2 }, { x: 8, y: 4 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: -1, y: 0 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Latihan
 

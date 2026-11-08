@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan kesamaan dua matriks dengan membandingkan ordo dan elemen seletak, lalu selesaikan nilai entri yang belum diketahui.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -50,6 +50,34 @@ Diberikan dua matriks:
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{dan} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
 Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> sama-sama berordo <InlineMath math="2 \times 2" />, keduanya tidak sama (<InlineMath math="S \neq T" />). **Elemen seletak** pada baris ke-<InlineMath math="2" />, kolom ke-<InlineMath math="1" /> berbeda: <InlineMath math="s_{21} = -2" />, sedangkan <InlineMath math="t_{21} = 2" />.
+
+Bayangkan setiap baris sebagai titik <InlineMath math="(x, y)" />. Dua matriks yang sama menaruh setiap barisnya tepat di titik yang sama. <InlineMath math="S" /> dan <InlineMath math="T" /> punya baris 1 yang sama, yaitu titik <InlineMath math="(5, 0)" />, tetapi baris keduanya mendarat di <InlineMath math="(-2, 8)" /> dan <InlineMath math="(2, 8)" />. Satu entri saja, <InlineMath math="s_{21} = -2" /> lawan <InlineMath math="t_{21} = 2" />, sudah cukup memisahkan kedua gambar, jadi <InlineMath math="S \neq T" />.
+
+<MathVisual
+  title={<><InlineMath math="S" /> dan <InlineMath math="T" /> sama di satu baris, beda di baris lain</>}
+  description={<>Baris <InlineMath math="S" /> dan <InlineMath math="T" /> digambar sebagai titik. Baris 1 menjadi titik yang sama untuk kedua matriks, sedangkan baris 2 mendarat di dua titik berbeda.</>}
+  labels={{
+    shared: <>baris 1 keduanya <InlineMath math="(5, 0)" /></>,
+    s: <><InlineMath math="S" /> baris 2 <InlineMath math="(-2, 8)" /></>,
+    t: <><InlineMath math="T" /> baris 2 <InlineMath math="(2, 8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "s", kind: "segment", from: { x: 5, y: 0 }, to: { x: -2, y: 8 }, appearance: "primary" },
+      { id: "t", kind: "segment", from: { x: 5, y: 0 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "shared", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Menentukan Nilai Variabel dari Kesamaan Matriks
 
 Diketahui kedua matriks berikut:

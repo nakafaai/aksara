@@ -3,7 +3,7 @@ export const metadata = {
   description: "Baca baris, kolom, elemen, dan ordo matriks dalam dua contoh tabel data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -71,6 +71,39 @@ Untuk matriks di atas:
 | <InlineMath math="a_{22}" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
+
+Sekarang baca setiap baris <InlineMath math="A" /> sebagai satu titik <InlineMath math="(x, y)" />. Kolom 1 memberi <InlineMath math="x" />, yaitu nilai Matematika, dan kolom 2 memberi <InlineMath math="y" />, yaitu nilai Bahasa Inggris. Jadi setiap siswa menjadi satu titik. Lihat titik Aisyah: garis bantunya menunjukkan <InlineMath math="a_{11} = 80" /> ke kanan dan <InlineMath math="a_{12} = 75" /> ke atas. Kalau dua entri di barisnya kamu tukar, titiknya pindah ke <InlineMath math="(75, 80)" />. Itulah alasan posisi entri menentukan maknanya.
+
+<MathVisual
+  title="Tiga siswa sebagai tiga titik"
+  description={<>Baris ke-<InlineMath math="i" /> matriks <InlineMath math="A" /> menjadi titik (kolom 1, kolom 2): nilai Matematika ke kanan dan nilai Bahasa Inggris ke atas.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Ordo Matriks
 

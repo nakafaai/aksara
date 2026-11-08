@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate matrix determinants by cofactor expansion with minors and worked calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -145,3 +145,30 @@ After all cofactors are obtained, we substitute them back into the determinant f
 So, the determinant of matrix <InlineMath math="P" /> is <InlineMath math="-12" />.
 
 Notice <InlineMath math="k_{12}=(-1)(-2)=2" />. A minus-sign position can produce a **positive cofactor** when its minor is negative. Do not apply the minus sign again when substituting that cofactor into the final sum.
+
+The three cofactors of row 1 have a shape too. Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The arrow <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> stands at a right angle to it, and its length <InlineMath math="\sqrt{184}" /> equals the area of that parallelogram. The expansion <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> measures how far row 1 reaches along that arrow. Turn the scene: row 1 points to the other side of the parallelogram, which is why the determinant comes out negative.
+
+<MathVisual
+  title="The cofactors of row 1 form an arrow across the other two rows"
+  description={<>Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The cofactor arrow <InlineMath math="(6, 2, -12)" /> is perpendicular to it, and row 1 leans away from that arrow.</>}
+  labels={{
+    base: "rows 2 and 3",
+    normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
+    row1: <>row 1 <InlineMath math="(1, 3, 2)" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: 0, max: 16 }, z: { min: -13, max: 7 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 6, z: 2 }, { x: 7, y: 15, z: 6 }, { x: 5, y: 9, z: 4 }], appearance: "secondary" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 6, y: 2, z: -12 }, appearance: "answer" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
+      { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Die Gleichheit zweier Matrizen über ihr Format und ihre entsprechenden Elemente prüfen und unbekannte Einträge bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -50,6 +50,34 @@ Gegeben sind zwei Matrizen:
 <BlockMath math="S = \begin{bmatrix} 5 &amp; 0 \\ -2 &amp; 8 \end{bmatrix} \quad \text{und} \quad T = \begin{bmatrix} 5 &amp; 0 \\ 2 &amp; 8 \end{bmatrix}" />
 
 Obwohl <InlineMath math="S" /> und <InlineMath math="T" /> dasselbe Format <InlineMath math="2 \times 2" /> haben, sind sie nicht gleich (<InlineMath math="S \neq T" />). **In Zeile** <InlineMath math="2" />, Spalte <InlineMath math="1" /> gilt <InlineMath math="s_{21} = -2" />, aber <InlineMath math="t_{21} = 2" />.
+
+Stell dir jede Zeile als Punkt <InlineMath math="(x, y)" /> vor. Gleiche Matrizen legen jede Zeile auf genau denselben Punkt. <InlineMath math="S" /> und <InlineMath math="T" /> teilen sich Zeile 1, den Punkt <InlineMath math="(5, 0)" />, aber ihre zweiten Zeilen landen bei <InlineMath math="(-2, 8)" /> und <InlineMath math="(2, 8)" />. Ein einziger Eintrag, <InlineMath math="s_{21} = -2" /> gegen <InlineMath math="t_{21} = 2" />, reicht schon, um die beiden Bilder zu trennen. Also gilt <InlineMath math="S \neq T" />.
+
+<MathVisual
+  title={<><InlineMath math="S" /> und <InlineMath math="T" /> teilen eine Zeile, aber nicht die andere</>}
+  description={<>Die Zeilen von <InlineMath math="S" /> und <InlineMath math="T" /> als Punkte. Zeile 1 ist für beide Matrizen derselbe Punkt, Zeile 2 landet an zwei verschiedenen Punkten.</>}
+  labels={{
+    shared: <>Zeile 1 beider <InlineMath math="(5, 0)" /></>,
+    s: <><InlineMath math="S" /> Zeile 2 <InlineMath math="(-2, 8)" /></>,
+    t: <><InlineMath math="T" /> Zeile 2 <InlineMath math="(2, 8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "s", kind: "segment", from: { x: 5, y: 0 }, to: { x: -2, y: 8 }, appearance: "primary" },
+      { id: "t", kind: "segment", from: { x: 5, y: 0 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "shared", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Variablenwerte aus Matrixgleichheit ermitteln
 
 Gegeben sind die folgenden Matrizen:

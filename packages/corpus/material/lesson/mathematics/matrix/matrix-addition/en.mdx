@@ -3,7 +3,7 @@ export const metadata = {
   description: "Add matrices of the same order and verify the commutative and associative properties in worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -54,6 +54,40 @@ Then, <InlineMath math="P+Q" /> is:
 </MathContainer>
 
 The matrix above is the sum <InlineMath math="P+Q" />.
+
+You can watch this addition happen. Read each row of <InlineMath math="P" /> as a point <InlineMath math="(x, y)" />, so <InlineMath math="P" /> is a triangle. Adding <InlineMath math="Q" /> moves each corner by the matching row of <InlineMath math="Q" />: the corner <InlineMath math="(1, 5)" /> moves by <InlineMath math="(6, -3)" /> and lands on <InlineMath math="(7, 2)" />, the first row of <InlineMath math="P+Q" />. Every corner moves by its own row, which is what adding entries in matching positions means.
+
+<MathVisual
+  title={<>Adding <InlineMath math="Q" /> moves each row of <InlineMath math="P" /></>}
+  description={<>Each row of <InlineMath math="P" /> is a corner of a triangle. The matching row of <InlineMath math="Q" /> moves that corner to the matching row of <InlineMath math="P+Q" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    sum: <InlineMath math="P + Q" />,
+    q1: <InlineMath math="+(6, -3)" />,
+    q2: <InlineMath math="+(8, 1)" />,
+    q3: <InlineMath math="+(-2, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 8 }, y: { min: -1, max: 17 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p", kind: "polygon", vertices: [{ x: 1, y: 5 }, { x: -2, y: 0 }, { x: 4, y: 7 }], appearance: "primary" },
+      { id: "sum", kind: "polygon", vertices: [{ x: 7, y: 2 }, { x: 6, y: 1 }, { x: 2, y: 16 }], appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "q3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 16 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
+      { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Matrices That Cannot Be Added
 
 These two matrices have **different orders**:

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Read a matrix's rows, columns, elements, and dimensions in two data-table examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -71,6 +71,39 @@ For the matrix above:
 | <InlineMath math="a_{22}" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
+
+Now read each row of <InlineMath math="A" /> as a point <InlineMath math="(x, y)" />. Column 1 gives <InlineMath math="x" />, the Mathematics score, and column 2 gives <InlineMath math="y" />, the English score, so every student becomes one point. Look at Aisyah: her guide lines show <InlineMath math="a_{11} = 80" /> across and <InlineMath math="a_{12} = 75" /> up. Swap the two entries of her row and the point jumps to <InlineMath math="(75, 80)" />, which is exactly why an entry's position decides its meaning.
+
+<MathVisual
+  title="Three students as three points"
+  description={<>Row <InlineMath math="i" /> of <InlineMath math="A" /> becomes the point (column 1, column 2): the Mathematics score across and the English score up.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Dimensions of a Matrix
 

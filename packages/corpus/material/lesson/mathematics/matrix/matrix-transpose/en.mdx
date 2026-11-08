@@ -3,7 +3,7 @@ export const metadata = {
   description: "Transpose a matrix by swapping its rows and columns, then verify the transpose properties in worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-06",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Matrix",
 };
 
@@ -49,6 +49,59 @@ The transpose of matrix <InlineMath math="B" />, denoted <InlineMath math="B^T" 
 
 - The first row of <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) becomes the first column of <InlineMath math="B^T" />.
 - The second row of <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) becomes the second column of <InlineMath math="B^T" />.
+
+Place every entry where it sits on the page: its column number across and its row number down. The six entries of <InlineMath math="B" /> fill two rows. Transposing reflects each entry across the main diagonal, the line through <InlineMath math="b_{11}" /> and <InlineMath math="b_{22}" />. The <InlineMath math="3" /> in row 1, column 3 travels to row 3, column 1. The <InlineMath math="2" /> and the <InlineMath math="4" /> trade places. The <InlineMath math="1" /> and the <InlineMath math="5" /> lie on the diagonal, so they stay put.
+
+<MathVisual
+  title={<>Transposing <InlineMath math="B" /> reflects it across the main diagonal</>}
+  description={<>Entries of <InlineMath math="B" /> sit above and to the right of their positions. Entries of <InlineMath math="B^T" /> that moved sit below and to the left. Each segment joins the old position of an entry to its new one.</>}
+  labels={{
+    diagonal: "main diagonal",
+    b11: <InlineMath math="1" />,
+    b12: <InlineMath math="2" />,
+    b13: <InlineMath math="3" />,
+    b21: <InlineMath math="4" />,
+    b22: <InlineMath math="5" />,
+    b23: <InlineMath math="6" />,
+    t12: <InlineMath math="4" />,
+    t21: <InlineMath math="2" />,
+    t31: <InlineMath math="3" />,
+    t32: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "swap24", kind: "segment", from: { x: 2, y: -1 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "swap3", kind: "segment", from: { x: 3, y: -1 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "swap6", kind: "segment", from: { x: 3, y: -2 }, to: { x: 2, y: -3 }, appearance: "construction" },
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "t31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "t32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 0.5, y: -0.5 }, placement: "above-right" },
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "t12", objectId: "swap24", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
+      { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 ### Column Matrix to Row Matrix
 
 If <InlineMath math="C" /> is a column matrix:

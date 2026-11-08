@@ -3,7 +3,7 @@ export const metadata = {
   description: "Lacak perubahan determinan pada perkalian matriks dan perkalian skalar dalam contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -101,6 +101,38 @@ Jika <InlineMath math="A" /> adalah matriks persegi berordo <InlineMath math="n 
 <BlockMath math="|kA| = k^n |A|" />
 
 Di sini, <InlineMath math="n" /> adalah ordo (jumlah baris atau kolom) dari matriks persegi <InlineMath math="A" />.
+
+Aturan ini punya gambar. Untuk matriks <InlineMath math="2 \times 2" />, <InlineMath math="|\det|" /> sama dengan luas jajargenjang yang dibentuk oleh kedua kolomnya. Kolom-kolom <InlineMath math="A" />, yaitu <InlineMath math="(-5, 1)" /> dan <InlineMath math="(2, -3)" />, membentuk luas <InlineMath math="|\det(A)| = 13" />. Menggandakan <InlineMath math="A" /> menggandakan kedua kolom, jadi kedua sisi jajargenjang menjadi dua kali dan luasnya bertambah <InlineMath math="2 \cdot 2 = 4" /> kali menjadi <InlineMath math="52" />. Itu tepat <InlineMath math="\det(2A) = 2^2 \det(A) = 4 \cdot 13 = 52" />.
+
+<MathVisual
+  title={<>Menggandakan <InlineMath math="A" /> membuat luasnya <InlineMath math="4" /> kali</>}
+  description={<>Kolom-kolom <InlineMath math="A" /> membentuk jajargenjang seluas 13. Kolom-kolom <InlineMath math="2A" /> dua kali lebih panjang dan membentuk luas 52.</>}
+  labels={{
+    single: <InlineMath math="13" />,
+    double: <InlineMath math="52" />,
+    a1: <InlineMath math="(-5, 1)" />,
+    a2: <InlineMath math="(2, -3)" />,
+    d1: <InlineMath math="(-10, 2)" />,
+    d2: <InlineMath math="(4, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -7, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -10, y: 2 }, { x: -6, y: -4 }, { x: 4, y: -6 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -5, y: 1 }, { x: -3, y: -2 }, { x: 2, y: -3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: -1.5, y: -1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: -7, y: -0.5 }, placement: "center" },
+      { key: "a1", objectId: "single", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "a2", objectId: "single", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "double", at: { x: -10, y: 2 }, placement: "above" },
+      { key: "d2", objectId: "double", at: { x: 4, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Sifat Determinan Lainnya
 

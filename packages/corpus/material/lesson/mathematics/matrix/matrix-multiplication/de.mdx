@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multipliziere Matrizen nach dem Zeile-mal-Spalte-Prinzip und nutze Dimensionen, Rechengesetze und vollständig gelöste Anwendungen sicher.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -95,6 +95,36 @@ Die Matrix <InlineMath math="B" /> hat das Format <InlineMath math="3 \times 2" 
 Die Anzahl der Spalten in der Matrix <InlineMath math="B" /> (das ist <InlineMath math="2" />) ist **nicht gleich** der Anzahl der Zeilen in der Matrix <InlineMath math="A" /> (das ist <InlineMath math="3" />).
 
 Daher ist das Produkt <InlineMath math="BA" /> **nicht definiert**. Schon die Vertauschung der Faktoren kann also darüber entscheiden, ob ein Produkt überhaupt existiert.
+
+Ein Matrixprodukt kann eine ganze Figur auf einmal bewegen. Schreib die Ecken eines Dreiecks als Spalten von <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" /> und multipliziere mit <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Jeder Eintrag von <InlineMath math="MT" /> ist weiterhin eine Zeile von <InlineMath math="M" /> mal eine Spalte von <InlineMath math="T" />. Zeile 1 mal Spalte 2 ergibt <InlineMath math="2(2) + (-1)(0) = 4" />, Zeile 2 mal Spalte 2 ergibt <InlineMath math="1(2) + 1(0) = 2" />. Die Ecke <InlineMath math="(2, 0)" /> wandert also nach <InlineMath math="(4, 2)" />. Genauso wandert die Ecke <InlineMath math="(1, 2)" /> nach <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> bewegt jede Ecke, die in <InlineMath math="T" /> steht</>}
+  description={<>Die Spalten von <InlineMath math="T" /> sind die Ecken eines Dreiecks. Jede Spalte von <InlineMath math="MT" /> ist die passende Ecke nach der Multiplikation mit <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Eigenschaften der Matrixmultiplikation
 

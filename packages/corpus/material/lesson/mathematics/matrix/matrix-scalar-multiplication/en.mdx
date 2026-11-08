@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multiply every matrix entry by a scalar and apply the distributive, identity, and zero rules in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -74,6 +74,36 @@ Write each product with parentheses: <InlineMath math="4(a)" /> means <InlineMat
 </MathContainer>
 
 The matrix above is the result of <InlineMath math="4Q" />.
+
+Here is Example 1 as a picture. Read each row of <InlineMath math="P" /> as a point: <InlineMath math="(9, 7)" /> and <InlineMath math="(3, 1)" />. Multiplying by <InlineMath math="2" /> doubles both coordinates, so each point slides along its line through the origin to twice its distance, <InlineMath math="(18, 14)" /> and <InlineMath math="(6, 2)" />. The segment between them keeps its direction and becomes twice as long. One scalar changes every entry in the same way.
+
+<MathVisual
+  title={<><InlineMath math="2P" /> doubles every row of <InlineMath math="P" /></>}
+  description={<>The rows of <InlineMath math="P" /> and <InlineMath math="2P" /> as points. Each point of <InlineMath math="2P" /> lies on the line from the origin through the matching point of <InlineMath math="P" />, twice as far out.</>}
+  labels={{
+    p1: <InlineMath math="P: (9, 7)" />,
+    p2: <InlineMath math="P: (3, 1)" />,
+    d1: <InlineMath math="2P: (18, 14)" />,
+    d2: <InlineMath math="2P: (6, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 19 }, y: { min: -1, max: 15 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "ray1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 18, y: 14 }, appearance: "construction" },
+      { id: "ray2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "double", kind: "segment", from: { x: 18, y: 14 }, to: { x: 6, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p", at: { x: 9, y: 7 }, placement: "above-left" },
+      { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
+      { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Properties of Matrix Scalar Multiplication
 

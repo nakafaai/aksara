@@ -3,7 +3,7 @@ export const metadata = {
   description: "Determinanten von Matrixprodukten und skalarmultiplizierten Matrizen folgen festen Rechenregeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -101,6 +101,38 @@ Ist <InlineMath math="A" /> eine quadratische Matrix im Format <InlineMath math=
 <BlockMath math="|kA| = k^n |A|" />
 
 Dabei ist <InlineMath math="n" /> die Anzahl der Zeilen beziehungsweise Spalten der quadratischen Matrix <InlineMath math="A" />.
+
+Diese Regel hat ein Bild. Bei einer <InlineMath math="2 \times 2" />-Matrix ist <InlineMath math="|\det|" /> der Flächeninhalt des Parallelogramms, das ihre beiden Spalten aufspannen. Die Spalten von <InlineMath math="A" />, <InlineMath math="(-5, 1)" /> und <InlineMath math="(2, -3)" />, spannen den Inhalt <InlineMath math="|\det(A)| = 13" /> auf. Verdoppelst du <InlineMath math="A" />, verdoppeln sich beide Spalten. Beide Seiten des Parallelogramms werden doppelt so lang, und der Inhalt wächst um den Faktor <InlineMath math="2 \cdot 2 = 4" /> auf <InlineMath math="52" />. Genau das sagt <InlineMath math="\det(2A) = 2^2 \det(A) = 4 \cdot 13 = 52" />.
+
+<MathVisual
+  title={<>Verdoppeln von <InlineMath math="A" /> vervierfacht den Flächeninhalt</>}
+  description={<>Die Spalten von <InlineMath math="A" /> spannen ein Parallelogramm mit Inhalt 13 auf. Die Spalten von <InlineMath math="2A" /> sind doppelt so lang und spannen Inhalt 52 auf.</>}
+  labels={{
+    single: <InlineMath math="13" />,
+    double: <InlineMath math="52" />,
+    a1: <InlineMath math="(-5, 1)" />,
+    a2: <InlineMath math="(2, -3)" />,
+    d1: <InlineMath math="(-10, 2)" />,
+    d2: <InlineMath math="(4, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -7, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -10, y: 2 }, { x: -6, y: -4 }, { x: 4, y: -6 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -5, y: 1 }, { x: -3, y: -2 }, { x: 2, y: -3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: -1.5, y: -1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: -7, y: -0.5 }, placement: "center" },
+      { key: "a1", objectId: "single", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "a2", objectId: "single", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "double", at: { x: -10, y: 2 }, placement: "above" },
+      { key: "d2", objectId: "double", at: { x: 4, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Weitere Determinanteneigenschaften
 

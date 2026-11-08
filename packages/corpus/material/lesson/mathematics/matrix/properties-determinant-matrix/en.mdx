@@ -3,7 +3,7 @@ export const metadata = {
   description: "Track how determinants change under matrix products and scalar multiplication in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -101,6 +101,38 @@ If <InlineMath math="A" /> is a square matrix of order <InlineMath math="n \time
 <BlockMath math="|kA| = k^n |A|" />
 
 Here, <InlineMath math="n" /> is the order (number of rows or columns) of the square matrix <InlineMath math="A" />.
+
+This rule has a picture. For a <InlineMath math="2 \times 2" /> matrix, <InlineMath math="|\det|" /> is the area of the parallelogram spanned by its two columns. The columns of <InlineMath math="A" />, <InlineMath math="(-5, 1)" /> and <InlineMath math="(2, -3)" />, span an area of <InlineMath math="|\det(A)| = 13" />. Doubling <InlineMath math="A" /> doubles both columns, so both sides of the parallelogram double and the area grows by <InlineMath math="2 \cdot 2 = 4" /> to <InlineMath math="52" />. That is exactly <InlineMath math="\det(2A) = 2^2 \det(A) = 4 \cdot 13 = 52" />.
+
+<MathVisual
+  title={<>Doubling <InlineMath math="A" /> multiplies the area by <InlineMath math="4" /></>}
+  description={<>The columns of <InlineMath math="A" /> span a parallelogram of area 13. The columns of <InlineMath math="2A" /> are twice as long and span area 52.</>}
+  labels={{
+    single: <InlineMath math="13" />,
+    double: <InlineMath math="52" />,
+    a1: <InlineMath math="(-5, 1)" />,
+    a2: <InlineMath math="(2, -3)" />,
+    d1: <InlineMath math="(-10, 2)" />,
+    d2: <InlineMath math="(4, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -7, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -10, y: 2 }, { x: -6, y: -4 }, { x: 4, y: -6 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -5, y: 1 }, { x: -3, y: -2 }, { x: 2, y: -3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: -1.5, y: -1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: -7, y: -0.5 }, placement: "center" },
+      { key: "a1", objectId: "single", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "a2", objectId: "single", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "double", at: { x: -10, y: 2 }, placement: "above" },
+      { key: "d2", objectId: "double", at: { x: 4, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Other Determinant Properties
 

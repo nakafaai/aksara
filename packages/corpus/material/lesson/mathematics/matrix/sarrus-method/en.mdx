@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate determinants of three by three matrices with the Sarrus diagonal products and track their signs through examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -86,6 +86,45 @@ Keep the **two diagonal sums** separate until the final subtraction. This makes 
 </MathContainer>
 
 The determinant is <InlineMath math="-12" />. Expanding the same matrix [by cofactors](/en/subjects/mathematics/matrix/cofactor-expansion-method) gives the same value, which is a useful independent check.
+
+The number Sarrus gives also has a shape. Treat the three rows of <InlineMath math="P" />, <InlineMath math="(1, 3, 2)" />, <InlineMath math="(2, 6, 2)" /> and <InlineMath math="(5, 9, 4)" />, as three edges that start at the origin. They build a slanted box, and its volume is <InlineMath math="|\det(P)| = |-12| = 12" />. Turn the box and imagine pushing row 3 into the plane of the other two: the box flattens, its volume drops to <InlineMath math="0" />, and so does the determinant.
+
+<MathVisual
+  title={<>The rows of <InlineMath math="P" /> build a box of volume <InlineMath math="12" /></>}
+  description={<>The three rows of <InlineMath math="P" /> drawn as edges from the origin span a slanted box whose volume equals <InlineMath math="|\det(P)| = 12" />.</>}
+  labels={{
+    row1: <InlineMath math="(1, 3, 2)" />,
+    row2: <InlineMath math="(2, 6, 2)" />,
+    row3: <InlineMath math="(5, 9, 4)" />,
+    volume: <>volume <InlineMath math="12" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 18 }, z: { min: 0, max: 8 } },
+    view: { kind: "isometric", target: { x: 4, y: 9, z: 4 } },
+    objects: [
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "row2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 6, z: 2 }, appearance: "secondary" },
+      { id: "row3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 9, z: 4 }, appearance: "answer" },
+      { id: "e1", kind: "segment", from: { x: 1, y: 3, z: 2 }, to: { x: 3, y: 9, z: 4 }, appearance: "reference" },
+      { id: "e2", kind: "segment", from: { x: 1, y: 3, z: 2 }, to: { x: 6, y: 12, z: 6 }, appearance: "reference" },
+      { id: "e3", kind: "segment", from: { x: 2, y: 6, z: 2 }, to: { x: 3, y: 9, z: 4 }, appearance: "reference" },
+      { id: "e4", kind: "segment", from: { x: 2, y: 6, z: 2 }, to: { x: 7, y: 15, z: 6 }, appearance: "reference" },
+      { id: "e5", kind: "segment", from: { x: 5, y: 9, z: 4 }, to: { x: 6, y: 12, z: 6 }, appearance: "reference" },
+      { id: "e6", kind: "segment", from: { x: 5, y: 9, z: 4 }, to: { x: 7, y: 15, z: 6 }, appearance: "reference" },
+      { id: "e7", kind: "segment", from: { x: 3, y: 9, z: 4 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+      { id: "e8", kind: "segment", from: { x: 6, y: 12, z: 6 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+      { id: "e9", kind: "segment", from: { x: 7, y: 15, z: 6 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+      { key: "row2", objectId: "row2", at: { x: 2, y: 6, z: 2 }, placement: "left" },
+      { key: "row3", objectId: "row3", at: { x: 5, y: 9, z: 4 }, placement: "right" },
+      { key: "volume", objectId: "e9", at: { x: 8, y: 18, z: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Sarrus Method Applies Only to Three by Three Matrices
 
 Sarrus' method is **only applicable to <InlineMath math="3 \times 3" /> matrices**. The <InlineMath math="2 \times 2" /> calculation above simply reminds us of the diagonal sign pattern. For larger matrices, such as a <InlineMath math="4 \times 4" /> matrix, use another method such as cofactor expansion or row reduction.

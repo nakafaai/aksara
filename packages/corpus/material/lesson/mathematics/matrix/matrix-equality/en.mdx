@@ -3,7 +3,7 @@ export const metadata = {
   description: "Decide when two matrices are equal by comparing their dimensions and corresponding elements, then solve for unknown entries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -50,6 +50,34 @@ Given two matrices:
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{and} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
 Although matrix <InlineMath math="S" /> and matrix <InlineMath math="T" /> have the same dimensions, <InlineMath math="2 \times 2" />, they are not equal (<InlineMath math="S \neq T" />). **Their entries** in row <InlineMath math="2" />, column <InlineMath math="1" /> differ: <InlineMath math="s_{21} = -2" />, whereas <InlineMath math="t_{21} = 2" />.
+
+Picture each row as a point <InlineMath math="(x, y)" />. Equal matrices put every row on exactly the same point. <InlineMath math="S" /> and <InlineMath math="T" /> share row 1, the point <InlineMath math="(5, 0)" />, but their second rows land on <InlineMath math="(-2, 8)" /> and <InlineMath math="(2, 8)" />. One entry, <InlineMath math="s_{21} = -2" /> against <InlineMath math="t_{21} = 2" />, is enough to split the two pictures, so <InlineMath math="S \neq T" />.
+
+<MathVisual
+  title={<><InlineMath math="S" /> and <InlineMath math="T" /> share one row but not the other</>}
+  description={<>Rows of <InlineMath math="S" /> and <InlineMath math="T" /> drawn as points. Row 1 is the same point for both matrices, while row 2 lands on two different points.</>}
+  labels={{
+    shared: <>row 1 of both <InlineMath math="(5, 0)" /></>,
+    s: <><InlineMath math="S" /> row 2 <InlineMath math="(-2, 8)" /></>,
+    t: <><InlineMath math="T" /> row 2 <InlineMath math="(2, 8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "s", kind: "segment", from: { x: 5, y: 0 }, to: { x: -2, y: 8 }, appearance: "primary" },
+      { id: "t", kind: "segment", from: { x: 5, y: 0 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "shared", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Determining Variable Values from Matrix Equality
 
 Given the following matrices:
