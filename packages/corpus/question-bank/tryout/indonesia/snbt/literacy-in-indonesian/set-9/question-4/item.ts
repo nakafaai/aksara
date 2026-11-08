@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Menyekat kanal agar air tertahan dan permukaan air tanah tetap tinggi.",
+            "Menyekat kanal agar air tertahan dan permukaan air tanah naik.",
         },
         {
           correct: false,

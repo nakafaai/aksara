@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membangun sarana air minum di Wonosari pasti menurunkan stunting di sana menjadi 14 persen.",
+            "Air dan stunting tampak berkaitan, tetapi pendapatan terbukti sama sekali tidak berpengaruh.",
         },
         {
           correct: false,

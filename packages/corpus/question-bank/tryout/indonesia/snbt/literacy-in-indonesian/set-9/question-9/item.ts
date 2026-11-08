@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Di negara berujian taruhan rendah, sekolah lebih jarang memangkas pelajaran.",
+            "Di negara yang ujiannya bertaruhan rendah, sekolah lebih jarang memangkas pelajaran.",
         },
       ],
     },

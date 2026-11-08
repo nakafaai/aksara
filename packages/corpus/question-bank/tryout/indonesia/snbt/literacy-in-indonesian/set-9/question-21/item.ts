@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Karyawan baru yang selalu bekerja dari rumah lebih lambat menguasai pekerjaannya.",
+            "Karyawan baru yang bekerja dari rumah sepenuhnya lebih lambat menguasai pekerjaannya.",
         },
         {
           correct: false,
