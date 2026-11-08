@@ -182,12 +182,6 @@ graph teaches the wrong mathematics on an education platform.
   polygons, circles, arcs, and the exact `quadratic` object, which draws a
   parabola without sampling. A space scene draws points, lines, rays,
   segments, polylines, polygons, and cuboids, plus the formula objects below.
-- **A visual's text draws real math.** Every string prop of every visual
-  (title, description, label, legend, fact) draws each formula between dollar
-  signs with KaTeX, mhchem included, so write
-  `title="$\ce{2H2(g) + O2(g) -> 2H2O(g)}$ in a closed flask"` or
-  `description="Speed $v$ changes with time $t$."`. A price such as `$5` stays
-  text, and `\$` writes a dollar sign. Rich JSX labels keep working.
 - **`MathVisual` draws a formula, not its points.** A formula object names
   what the lesson teaches, and the renderer samples it: at least two hundred
   samples per visible branch, exact samples at the domain ends and at every
