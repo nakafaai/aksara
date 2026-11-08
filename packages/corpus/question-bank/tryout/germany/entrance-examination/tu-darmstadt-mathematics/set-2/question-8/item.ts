@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$600\\text{ m}^2$$",
+          label: "$$2{.}765\\text{ m}^2$$",
         },
         {
           correct: true,
-          label: "$$6{.}000\\text{ m}^2$$",
+          label: "$$27{.}650\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$6{.}050\\text{ m}^2$$",
+          label: "$$28{.}750\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$6{.}550\\text{ m}^2$$",
+          label: "$$28{.}800\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$12{.}000\\text{ m}^2$$",
+          label: "$$55{.}300\\text{ m}^2$$",
         },
         {
           correct: false,
-          label: "$$12{.}100\\text{ m}^2$$",
+          label: "$$57{.}500\\text{ m}^2$$",
         },
       ],
     },
