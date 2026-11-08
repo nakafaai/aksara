@@ -105,8 +105,8 @@ Deuterium kadang ditulis <InlineMath math="\mathrm{D}" />, dan tritium kadang di
 Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di belakang dan neutron berwarna abu-abu di depan. Kolom protonnya tidak pernah berubah, itulah yang membuat semuanya tetap hidrogen. Hanya kolom neutronnya yang bertambah, dari <InlineMath math="0" /> ke <InlineMath math="1" /> lalu <InlineMath math="2" />, dan nomor massanya ikut naik.
 
 <MathVisual
-  title="Tiga Isotop Hidrogen"
-  description="Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan 1 partikel."
+  title={<>Tiga Isotop Hidrogen</>}
+  description={<>Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan 1 partikel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -160,16 +160,38 @@ Jika atomnya netral, elektron tetap sama dengan proton:
 
 Jadi, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> netral memiliki <InlineMath math="6" /> proton, <InlineMath math="6" /> elektron, dan <InlineMath math="8" /> neutron.
 
-Tanyakan jumlah partikel mana yang berubah, maka namanya mengikuti.
+Letakkan tiap inti menurut neutronnya di sumbu mendatar dan protonnya di sumbu tegak. Isotop satu unsur punya <InlineMath math="Z" /> yang sama, jadi isotop karbon berjajar di satu baris kuning. Ion sama sekali tidak bergeser di peta ini, karena hanya elektronnya yang berubah. Perbesar dan bandingkan <InlineMath math="^{14}\mathrm{C}" /> dengan <InlineMath math="^{14}\mathrm{N}" />: nomor massanya sama, unsurnya berbeda.
 
-<Mermaid
-  title="Isotop atau Ion"
-  description="Neutron berbeda dengan proton yang sama menghasilkan isotop. Elektron yang berbeda menghasilkan ion."
-  chart={`flowchart TD
-    A["Unsur sama, proton sama"] --> B["Jumlah neutron berbeda"]
-    A --> C["Jumlah elektron berbeda"]
-    B --> D["Isotop: nomor massa berbeda"]
-    C --> E["Ion: muatan tidak nol"]`}
+<MathVisual
+  title={<>Isotop Berjajar, Ion Tetap di Tempat</>}
+  description={<>Lima inti menurut jumlah neutron (mendatar) dan jumlah proton (tegak). Baris kuning memuat tiga isotop karbon.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "carbon-row", kind: "segment", appearance: "highlight", from: { x: 5.5, y: 6 }, to: { x: 8.5, y: 6 } },
+      { id: "c12", kind: "point", appearance: "primary", at: { x: 6, y: 6 } },
+      { id: "c13", kind: "point", appearance: "primary", at: { x: 7, y: 6 } },
+      { id: "c14", kind: "point", appearance: "primary", at: { x: 8, y: 6 } },
+      { id: "n14", kind: "point", appearance: "secondary", at: { x: 7, y: 7 } },
+      { id: "o16", kind: "point", appearance: "construction", at: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 6, y: 6 }, placement: "below" },
+      { key: "c13", objectId: "c13", at: { x: 7, y: 6 }, placement: "below" },
+      { key: "c14", objectId: "c14", at: { x: 8, y: 6 }, placement: "below" },
+      { key: "n14", objectId: "n14", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "o16", objectId: "o16", at: { x: 8, y: 8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c12: <InlineMath math="^{12}\mathrm{C}" />,
+    c13: <InlineMath math="^{13}\mathrm{C}" />,
+    c14: <InlineMath math="^{14}\mathrm{C}" />,
+    n14: <InlineMath math="^{14}\mathrm{N}" />,
+    o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
 />
 
 ## Kegunaan Isotop

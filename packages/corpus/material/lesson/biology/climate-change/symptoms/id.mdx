@@ -60,16 +60,30 @@ Ilmuwan membandingkan data satelit, pengukuran laut, catatan suhu, dan pengamata
 
 > Penilaian perubahan iklim membandingkan catatan panjang dari beberapa indikator independen.
 
-Kelompokkan setiap klaim menurut skala waktunya sebelum kamu menilainya.
+Satu tahun yang sejuk tidak membatalkan tren pemanasan. Nilai tahunan di sini naik turun di sekitar garis yang naik <InlineMath math="0{,}02\ ^\circ\mathrm{C}" /> per tahun, atau <InlineMath math="0{,}8\ ^\circ\mathrm{C}" /> dalam 40 tahun. Perbesar tahun demi tahun, lalu perkecil untuk melihat tren yang hanya terlihat dari catatan puluhan tahun.
 
-<Mermaid
-  title="Cuaca atau Iklim"
-  description="Keadaan satu hari adalah cuaca. Kecenderungan selama beberapa dekade adalah iklim."
-  chart={`flowchart TD
-    A["Pengamatan"] --> B["Satu hari atau satu kejadian"]
-    A --> C["Catatan beberapa dekade"]
-    B --> D["Cuaca: tidak bisa membuktikan atau membantah perubahan iklim"]
-    C --> E["Iklim: bandingkan beberapa indikator"]`}
+<MathVisual
+  title={<>Tiap Tahun Naik Turun, Puluhan Tahun Naik</>}
+  description={<>Selisih suhu tahunan ilustratif selama 40 tahun beserta garis trennya. Mendatar: satu kotak grid berarti 4 tahun. Tegak: satu kotak grid berarti <InlineMath math="0{,}2\ ^\circ\mathrm{C}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: (2 * 0 + 12) / 20 }, { x: 0.25, y: (2 * 1 + -18) / 20 }, { x: 0.5, y: (2 * 2 + 5) / 20 }, { x: 0.75, y: (2 * 3 + 20) / 20 }, { x: 1, y: (2 * 4 + -10) / 20 }, { x: 1.25, y: (2 * 5 + -22) / 20 }, { x: 1.5, y: (2 * 6 + 15) / 20 }, { x: 1.75, y: (2 * 7 + 2) / 20 }, { x: 2, y: (2 * 8 + -14) / 20 }, { x: 2.25, y: (2 * 9 + 18) / 20 }, { x: 2.5, y: (2 * 10 + -5) / 20 }, { x: 2.75, y: (2 * 11 + 10) / 20 }, { x: 3, y: (2 * 12 + -20) / 20 }, { x: 3.25, y: (2 * 13 + 8) / 20 }, { x: 3.5, y: (2 * 14 + 16) / 20 }, { x: 3.75, y: (2 * 15 + -12) / 20 }, { x: 4, y: (2 * 16 + 0) / 20 }, { x: 4.25, y: (2 * 17 + -24) / 20 }, { x: 4.5, y: (2 * 18 + 14) / 20 }, { x: 4.75, y: (2 * 19 + 6) / 20 }, { x: 5, y: (2 * 20 + -8) / 20 }, { x: 5.25, y: (2 * 21 + 22) / 20 }, { x: 5.5, y: (2 * 22 + -16) / 20 }, { x: 5.75, y: (2 * 23 + 4) / 20 }, { x: 6, y: (2 * 24 + 10) / 20 }, { x: 6.25, y: (2 * 25 + -20) / 20 }, { x: 6.5, y: (2 * 26 + 12) / 20 }, { x: 6.75, y: (2 * 27 + -2) / 20 }, { x: 7, y: (2 * 28 + 18) / 20 }, { x: 7.25, y: (2 * 29 + -14) / 20 }, { x: 7.5, y: (2 * 30 + 6) / 20 }, { x: 7.75, y: (2 * 31 + -22) / 20 }, { x: 8, y: (2 * 32 + 16) / 20 }, { x: 8.25, y: (2 * 33 + 0) / 20 }, { x: 8.5, y: (2 * 34 + -10) / 20 }, { x: 8.75, y: (2 * 35 + 20) / 20 }, { x: 9, y: (2 * 36 + -6) / 20 }, { x: 9.25, y: (2 * 37 + 8) / 20 }, { x: 9.5, y: (2 * 38 + -18) / 20 }, { x: 9.75, y: (2 * 39 + 14) / 20 }, { x: 10, y: (2 * 40 + 4) / 20 }] },
+      { id: "trend", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 4 } },
+      { id: "cool", kind: "point", appearance: "secondary", at: { x: 7.75, y: (2 * 31 + -22) / 20 } },
+      { id: "trend-end", kind: "point", appearance: "primary", at: { x: 10, y: 4 } },
+    ],
+    labels: [
+      { key: "cool", objectId: "cool", at: { x: 7.75, y: (2 * 31 + -22) / 20 }, placement: "below" },
+      { key: "trend", objectId: "trend-end", at: { x: 10, y: 4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    cool: <>tahun yang sejuk</>,
+    trend: <InlineMath math="+0{,}02\ ^\circ\mathrm{C}\ \text{per tahun}" />,
+  }}
 />
 
 ## Suhu Rata-rata Berbeda dari Rasa Gerah
@@ -114,6 +128,35 @@ Suhu, panas laut, es, hujan, kekeringan, dan kejadian pesisir harus dibandingkan
     C --> F
     D --> F
     E --> F`}
+/>
+
+Geser seluruh sebaran suhu harian naik <InlineMath math="1\ ^\circ\mathrm{C}" />, dan ekor panasnya membesar jauh lebih banyak daripada bagian tengahnya. Untuk kurva lonceng dengan sebaran <InlineMath math="\sigma=1\ ^\circ\mathrm{C}" />, hari yang lebih dari <InlineMath math="2\ ^\circ\mathrm{C}" /> di atas rata-rata lama naik dari sekitar <InlineMath math="2{,}3\%" /> menjadi sekitar <InlineMath math="15{,}9\%" />, hampir tujuh kali lebih sering. Itu sebabnya kejadian ekstrem harus dibandingkan selama puluhan tahun. Perbesar bagian di kanan garis merah muda.
+
+<MathVisual
+  title={<>Geser Sedikit, Hari Panas Jauh Lebih Banyak</>}
+  description={<>Kurva lonceng selisih suhu harian sebelum (abu-abu) dan sesudah (oranye) bergeser <InlineMath math="1\ ^\circ\mathrm{C}" />. Mendatar: derajat dari rata-rata lama. Tegak: seberapa sering tiap nilai muncul.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "before", kind: "polyline", appearance: "reference", vertices: [{ x: -4, y: (10 * Math.exp(-((-4 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.75, y: (10 * Math.exp(-((-3.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.5, y: (10 * Math.exp(-((-3.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.25, y: (10 * Math.exp(-((-3.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3, y: (10 * Math.exp(-((-3 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.75, y: (10 * Math.exp(-((-2.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.5, y: (10 * Math.exp(-((-2.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.25, y: (10 * Math.exp(-((-2.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2, y: (10 * Math.exp(-((-2 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.75, y: (10 * Math.exp(-((-1.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.5, y: (10 * Math.exp(-((-1.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.25, y: (10 * Math.exp(-((-1.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1, y: (10 * Math.exp(-((-1 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.75, y: (10 * Math.exp(-((-0.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.5, y: (10 * Math.exp(-((-0.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.25, y: (10 * Math.exp(-((-0.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0, y: (10 * Math.exp(-((0 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.25, y: (10 * Math.exp(-((0.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.5, y: (10 * Math.exp(-((0.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.75, y: (10 * Math.exp(-((0.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1, y: (10 * Math.exp(-((1 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.25, y: (10 * Math.exp(-((1.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.5, y: (10 * Math.exp(-((1.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.75, y: (10 * Math.exp(-((1.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2, y: (10 * Math.exp(-((2 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.25, y: (10 * Math.exp(-((2.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.5, y: (10 * Math.exp(-((2.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.75, y: (10 * Math.exp(-((2.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3, y: (10 * Math.exp(-((3 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.25, y: (10 * Math.exp(-((3.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.5, y: (10 * Math.exp(-((3.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.75, y: (10 * Math.exp(-((3.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4, y: (10 * Math.exp(-((4 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.25, y: (10 * Math.exp(-((4.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.5, y: (10 * Math.exp(-((4.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.75, y: (10 * Math.exp(-((4.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 5, y: (10 * Math.exp(-((5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }] },
+      { id: "after", kind: "polyline", appearance: "primary", vertices: [{ x: -4, y: (10 * Math.exp(-((-4 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.75, y: (10 * Math.exp(-((-3.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.5, y: (10 * Math.exp(-((-3.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.25, y: (10 * Math.exp(-((-3.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3, y: (10 * Math.exp(-((-3 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.75, y: (10 * Math.exp(-((-2.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.5, y: (10 * Math.exp(-((-2.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.25, y: (10 * Math.exp(-((-2.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2, y: (10 * Math.exp(-((-2 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.75, y: (10 * Math.exp(-((-1.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.5, y: (10 * Math.exp(-((-1.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.25, y: (10 * Math.exp(-((-1.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1, y: (10 * Math.exp(-((-1 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.75, y: (10 * Math.exp(-((-0.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.5, y: (10 * Math.exp(-((-0.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.25, y: (10 * Math.exp(-((-0.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0, y: (10 * Math.exp(-((0 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.25, y: (10 * Math.exp(-((0.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.5, y: (10 * Math.exp(-((0.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.75, y: (10 * Math.exp(-((0.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1, y: (10 * Math.exp(-((1 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.25, y: (10 * Math.exp(-((1.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.5, y: (10 * Math.exp(-((1.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.75, y: (10 * Math.exp(-((1.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2, y: (10 * Math.exp(-((2 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.25, y: (10 * Math.exp(-((2.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.5, y: (10 * Math.exp(-((2.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.75, y: (10 * Math.exp(-((2.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3, y: (10 * Math.exp(-((3 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.25, y: (10 * Math.exp(-((3.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.5, y: (10 * Math.exp(-((3.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.75, y: (10 * Math.exp(-((3.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4, y: (10 * Math.exp(-((4 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.25, y: (10 * Math.exp(-((4.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.5, y: (10 * Math.exp(-((4.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.75, y: (10 * Math.exp(-((4.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 5, y: (10 * Math.exp(-((5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }] },
+      { id: "hot", kind: "segment", appearance: "warning", from: { x: 2, y: 0 }, to: { x: 2, y: 4.4 } },
+      { id: "tail-before", kind: "point", appearance: "reference", at: { x: 2.75, y: (10 * Math.exp(-(2.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) } },
+      { id: "tail-after", kind: "point", appearance: "primary", at: { x: 2.75, y: (10 * Math.exp(-(1.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) } },
+    ],
+    labels: [
+      { key: "line", objectId: "hot", at: { x: 2, y: 4.4 }, placement: "right" },
+      { key: "before", objectId: "tail-before", at: { x: 2.75, y: (10 * Math.exp(-(2.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, placement: "right" },
+      { key: "after", objectId: "tail-after", at: { x: 2.75, y: (10 * Math.exp(-(1.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    line: <>ambang hari panas</>,
+    before: <InlineMath math="\approx2{,}3\%" />,
+    after: <InlineMath math="\approx15{,}9\%" />,
+  }}
 />
 
 ## Gabungkan Indikator Jangka Panjang Sebelum Menarik Kesimpulan

@@ -33,8 +33,8 @@ Even when different amounts of water form, the **mass ratio of hydrogen to oxyge
 Compare two samples of water, with hydrogen in violet and oxygen in orange and one grid step for <InlineMath math="4\ \mathrm{g}" />. The large sample is twice as heavy, but both split the same way, about <InlineMath math="1:8" /> by mass. That fixed split is what constant composition means.
 
 <MathVisual
-  title="Two Samples, One Mass Ratio"
-  description="9 g and 18 g of water split into hydrogen (violet) and oxygen (orange) at about 1:8. One grid step up is 4 g."
+  title={<>Two Samples, One Mass Ratio</>}
+  description={<>9 g and 18 g of water split into hydrogen (violet) and oxygen (orange) at about 1:8. One grid step up is 4 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -159,15 +159,34 @@ In the excess-hydrogen case, <InlineMath math="16 \mathrm{g}" /> of oxygen requi
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,reacting}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,remaining}} &=3-2=1\ \mathrm{g} \end{aligned}" />
 
-Here is the extra-reactant example as one flow.
+Water always holds hydrogen and oxygen in the mass ratio <InlineMath math="1:8" />. From <InlineMath math="3\ \mathrm{g}" /> of hydrogen and <InlineMath math="16\ \mathrm{g}" /> of oxygen, the oxygen can only use <InlineMath math="2\ \mathrm{g}" /> of hydrogen. Rotate the bars: the pink part of the hydrogen is left over, and the water is exactly the used hydrogen plus the oxygen.
 
-<Mermaid
-  title="The Extra Hydrogen Stays Extra"
-  description="16 g of oxygen can use only 2 g of hydrogen, so 1 g of the 3 g remains."
-  chart={`flowchart LR
-    A["3 g H + 16 g O"] --> B["Ratio 1:8 uses 2 g H with 16 g O"]
-    B --> C["18 g water"]
-    B --> D["1 g hydrogen left over"]`}
+<MathVisual
+  title={<>The Extra Hydrogen Stays Extra</>}
+  description={<>Hydrogen (violet, leftover in pink), oxygen (orange) and the water formed (teal). One grid step up is 2 grams.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 12, z: 11 }, target: { x: 3, y: 4.5, z: 0 } },
+    objects: [
+      { id: "h-used", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.6, height: 1, width: 1.6 } },
+      { id: "h-left", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.6, height: 0.5, width: 1.6 } },
+      { id: "o-used", kind: "cuboid", appearance: "primary", center: { x: 3, y: 4, z: 0 }, size: { length: 1.6, height: 8, width: 1.6 } },
+      { id: "water", kind: "cuboid", appearance: "construction", center: { x: 6, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+    ],
+    labels: [
+      { key: "used", objectId: "h-used", at: { x: 0, y: 0.5, z: 0.8 }, placement: "right" },
+      { key: "left", objectId: "h-left", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "o-used", at: { x: 3, y: 8, z: 0 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 6, y: 9, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    used: <InlineMath math="\mathrm{H}:\ 2\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{H}:\ 3-2=1\ \mathrm{g}" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 16\ \mathrm{g}" />,
+    water: <InlineMath math="\mathrm{H_2O}:\ 2+16=18\ \mathrm{g}" />,
+  }}
 />
 
 ## Testing Calcium Oxide Data

@@ -35,8 +35,8 @@ Kelompokkan tindakan berdasarkan hasil utama: mengurangi gas rumah kaca, mengura
 Risiko iklim muncul saat tiga hal bertemu: **bahaya** seperti gelombang panas atau gelombang badai, **keterpaparan** orang dan tempat yang dilaluinya, serta **kerentanan** mereka, yaitu seberapa mudah mereka dirugikan. Adegan di bawah memakai indeks ilustrasi sederhana yang mengalikan ketiganya, digambar sebagai balok dengan bahaya sebagai tingginya. Mitigasi bekerja pada penyebab, jadi baloknya makin rendah. Adaptasi bekerja pada kerugian, jadi baloknya makin tipis dari depan ke belakang. Putar adegannya: keduanya sama-sama membagi dua volume, tetapi ke arah yang berbeda, dan bersama-sama menurunkannya menjadi seperempat.
 
 <MathVisual
-  title="Dua Cara Mengecilkan Risiko Iklim"
-  description="Indeks risiko ilustrasi bahaya × keterpaparan × kerentanan. Tinggi adalah bahaya, lebar adalah keterpaparan, kedalaman adalah kerentanan."
+  title={<>Dua Cara Mengecilkan Risiko Iklim</>}
+  description={<>Indeks risiko ilustrasi <InlineMath math="\text{bahaya}\times\text{keterpaparan}\times\text{kerentanan}" />. Tinggi adalah bahaya, lebar adalah keterpaparan, kedalaman adalah kerentanan.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -113,19 +113,39 @@ Kata kerja saja belum cukup. Kata **melindungi** bisa dipakai untuk kedua tujuan
     D --> G["Bisa membantu keduanya"]`}
 />
 
-Lewatkan setiap tindakan melalui dua pertanyaan ini, dengan urutan ini, sebelum kamu menyebut kelompoknya.
+Dua pertanyaan itu membagi tindakan ke empat sudut. Bergeser ke kanan berarti tindakan itu mengurangi gas rumah kaca atau melindungi penyerap karbon, dan bergeser ke atas berarti ia mengurangi kerugian akibat dampak. Perbesar tiap titik dan periksa sudut mana yang ditentukan oleh hasil yang dituju.
 
-<Mermaid
-  title="Kelompokkan Tindakan dengan Dua Pertanyaan"
-  description="Tanyakan apakah tindakan itu mengurangi gas rumah kaca dan apakah tindakan itu mengurangi kerugian akibat dampak. Jawabannya menentukan kelompoknya."
-  chart={`flowchart TD
-    A["Tindakan"] --> B{"Mengurangi gas rumah kaca atau melindungi penyerap karbon?"}
-    B -->|Ya| C{"Juga mengurangi kerugian akibat dampak?"}
-    B -->|Tidak| D{"Mengurangi kerugian akibat dampak?"}
-    C -->|Ya| E["Manfaat ganda"]
-    C -->|Tidak| F["Mitigasi"]
-    D -->|Ya| G["Adaptasi"]
-    D -->|Tidak| H["Bukan keduanya: periksa lagi klaimnya"]`}
+<MathVisual
+  title={<>Dua Pertanyaan, Empat Sudut</>}
+  description={<>Tindakan diletakkan menurut hasil yang dituju: mitigasi (oranye), adaptasi (ungu), keduanya (fuchsia), atau bukan keduanya (abu-abu).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "neither", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "mitigation", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "adaptation", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "both", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 }, { x: 4, y: 2 }, { x: 4, y: 4 }, { x: 2, y: 4 }] },
+      { id: "forest", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "homes", kind: "point", appearance: "secondary", at: { x: 1, y: 3 } },
+      { id: "mangroves", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "homes", objectId: "homes", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "mangroves", objectId: "mangroves", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "gas", objectId: "mitigation", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "harm", objectId: "adaptation", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    forest: <>lindungi hutan demi karbonnya</>,
+    homes: <>lindungi rumah dari banjir</>,
+    mangroves: <>tanam ulang mangrove</>,
+    gas: <>mengurangi gas rumah kaca</>,
+    harm: <>mengurangi kerugian akibat dampak</>,
+  }}
 />
 
 ## Satu Tindakan Bisa Memiliki Dua Fungsi
@@ -133,3 +153,32 @@ Lewatkan setiap tindakan melalui dua pertanyaan ini, dengan urutan ini, sebelum 
 Kalimat "desa pesisir menanam mangrove agar abrasi berkurang dan rumah warga lebih terlindungi" terutama menekankan adaptasi karena tindakan tersebut mengurangi kerugian di pesisir. Mangrove tetap dapat menyimpan karbon, tetapi hasil yang disebut dalam kalimat itu adalah perlindungan rumah warga.
 
 Kelompokkan tindakan **berdasarkan hasil yang disebutkan**. Pengurangan gas rumah kaca termasuk mitigasi. Pengurangan kerugian akibat perubahan iklim termasuk adaptasi. Pemulihan ekosistem dapat membantu salah satu atau kedua tujuan, bergantung pada perubahan yang dihasilkan.
+
+Sisi perlindungan pantai dari mangrove juga bisa dimodelkan. Akar dan batangnya mengambil sebagian energi gelombang di setiap meter, jadi dalam model sederhana tinggi gelombang turun menurut <InlineMath math="H=H_0\,e^{-kx}" />. Dengan <InlineMath math="k=0{,}01" /> per meter sebagai ilustrasi, gelombang setinggi <InlineMath math="1\ \mathrm{m}" /> tinggal sekitar <InlineMath math="0{,}37\ \mathrm{m}" /> setelah 100 meter hutan mangrove. Ikuti kurvanya melintasi sabuk teal.
+
+<MathVisual
+  title={<>Gelombang Mengecil di Hutan Mangrove</>}
+  description={<>Tinggi gelombang melewati sabuk mangrove selebar 200 meter dalam model ilustratif. Mendatar: satu kotak grid berarti 25 meter. Tegak: satu kotak grid berarti 0,25 meter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "belt", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 0.4 }, { x: 0, y: 0.4 }] },
+      { id: "height", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 * Math.exp(-0.01 * 0) }, { x: 0.4, y: 4 * Math.exp(-0.01 * 10) }, { x: 0.8, y: 4 * Math.exp(-0.01 * 20) }, { x: 1.2, y: 4 * Math.exp(-0.01 * 30) }, { x: 1.6, y: 4 * Math.exp(-0.01 * 40) }, { x: 2, y: 4 * Math.exp(-0.01 * 50) }, { x: 2.4, y: 4 * Math.exp(-0.01 * 60) }, { x: 2.8, y: 4 * Math.exp(-0.01 * 70) }, { x: 3.2, y: 4 * Math.exp(-0.01 * 80) }, { x: 3.6, y: 4 * Math.exp(-0.01 * 90) }, { x: 4, y: 4 * Math.exp(-0.01 * 100) }, { x: 4.4, y: 4 * Math.exp(-0.01 * 110) }, { x: 4.8, y: 4 * Math.exp(-0.01 * 120) }, { x: 5.2, y: 4 * Math.exp(-0.01 * 130) }, { x: 5.6, y: 4 * Math.exp(-0.01 * 140) }, { x: 6, y: 4 * Math.exp(-0.01 * 150) }, { x: 6.4, y: 4 * Math.exp(-0.01 * 160) }, { x: 6.8, y: 4 * Math.exp(-0.01 * 170) }, { x: 7.2, y: 4 * Math.exp(-0.01 * 180) }, { x: 7.6, y: 4 * Math.exp(-0.01 * 190) }, { x: 8, y: 4 * Math.exp(-0.01 * 200) }] },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.exp(-1) } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 8, y: 4 * Math.exp(-2) } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 4, y: 4 * Math.exp(-1) }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 8, y: 4 * Math.exp(-2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    edge: <InlineMath math="1\ \mathrm{m}" />,
+    mid: <InlineMath math="e^{-1}\approx0{,}37\ \mathrm{m}" />,
+    end: <InlineMath math="e^{-2}\approx0{,}14\ \mathrm{m}" />,
+  }}
+/>

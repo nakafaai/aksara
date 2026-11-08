@@ -35,8 +35,8 @@ Classify an action by its main result: reducing greenhouse gases, **reducing har
 Climate risk comes from three things meeting: a **hazard** such as a heatwave or storm surge, the **exposure** of people and places in its path, and their **vulnerability**, how easily they are harmed. The scene below uses a simple illustrative index that multiplies the three, drawn as a box with the hazard as its height. Mitigation works on the cause, so it lowers the box. Adaptation works on the harm, so it makes the box thinner from front to back. Rotate the scene: both halve the volume, but in different directions, and together they bring it down to a quarter.
 
 <MathVisual
-  title="Two Ways to Shrink Climate Risk"
-  description="An illustrative risk index of hazard × exposure × vulnerability. Height is hazard, width is exposure, depth is vulnerability."
+  title={<>Two Ways to Shrink Climate Risk</>}
+  description={<>An illustrative risk index of <InlineMath math="\text{hazard}\times\text{exposure}\times\text{vulnerability}" />. Height is hazard, width is exposure, depth is vulnerability.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -113,19 +113,39 @@ A verb alone is insufficient. **Protecting** can describe either goal:
     D --> G["Can support both"]`}
 />
 
-Run any action through these two questions, in this order, before you name its group.
+The two questions split actions into four corners. Moving right means the action cuts greenhouse gases or protects a carbon sink, and moving up means it cuts harm from impacts. Zoom in on each point and check which corner its intended result puts it in.
 
-<Mermaid
-  title="Classify an Action in Two Questions"
-  description="Ask whether the action cuts greenhouse gases and whether it cuts harm from impacts. The answers give its group."
-  chart={`flowchart TD
-    A["Action"] --> B{"Does it cut greenhouse gases or protect carbon sinks?"}
-    B -->|Yes| C{"Does it also cut harm from impacts?"}
-    B -->|No| D{"Does it cut harm from impacts?"}
-    C -->|Yes| E["Dual benefit"]
-    C -->|No| F["Mitigation"]
-    D -->|Yes| G["Adaptation"]
-    D -->|No| H["Neither: check the claim again"]`}
+<MathVisual
+  title={<>Two Questions, Four Corners</>}
+  description={<>Actions placed by their intended result: mitigation (orange), adaptation (violet), both (fuchsia) or neither (gray).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "neither", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "mitigation", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "adaptation", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "both", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 }, { x: 4, y: 2 }, { x: 4, y: 4 }, { x: 2, y: 4 }] },
+      { id: "forest", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "homes", kind: "point", appearance: "secondary", at: { x: 1, y: 3 } },
+      { id: "mangroves", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "homes", objectId: "homes", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "mangroves", objectId: "mangroves", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "gas", objectId: "mitigation", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "harm", objectId: "adaptation", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    forest: <>protect a forest for its carbon</>,
+    homes: <>protect homes from floods</>,
+    mangroves: <>replant mangroves</>,
+    gas: <>cuts greenhouse gases</>,
+    harm: <>cuts harm from impacts</>,
+  }}
 />
 
 ## One Action Can Serve Two Purposes
@@ -133,3 +153,32 @@ Run any action through these two questions, in this order, before you name its g
 The sentence "a coastal village plants mangroves so erosion decreases and homes are better protected" mainly emphasizes adaptation because the action reduces coastal harm. Mangroves can still store carbon, but the stated result is protection for homes.
 
 Classify the action **by its stated result**. Reducing greenhouse gases is mitigation. Reducing climate harm is adaptation. Restoring an ecosystem can support one or both goals, depending on the change the action produces.
+
+The coastal-protection side of mangroves can be modeled too. Roots and trunks take a share of the wave's energy over every meter, so in a simple model the wave height falls as <InlineMath math="H=H_0\,e^{-kx}" />. With an illustrative <InlineMath math="k=0.01" /> per meter, a <InlineMath math="1\ \mathrm{m}" /> wave is about <InlineMath math="0.37\ \mathrm{m}" /> high after 100 meters of mangroves. Follow the curve across the teal belt.
+
+<MathVisual
+  title={<>Waves Shrink across the Mangroves</>}
+  description={<>Wave height through a 200 meter mangrove belt in an illustrative model. Horizontal: one grid step is 25 meters. Vertical: one grid step is 0.25 meters.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "belt", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 0.4 }, { x: 0, y: 0.4 }] },
+      { id: "height", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 * Math.exp(-0.01 * 0) }, { x: 0.4, y: 4 * Math.exp(-0.01 * 10) }, { x: 0.8, y: 4 * Math.exp(-0.01 * 20) }, { x: 1.2, y: 4 * Math.exp(-0.01 * 30) }, { x: 1.6, y: 4 * Math.exp(-0.01 * 40) }, { x: 2, y: 4 * Math.exp(-0.01 * 50) }, { x: 2.4, y: 4 * Math.exp(-0.01 * 60) }, { x: 2.8, y: 4 * Math.exp(-0.01 * 70) }, { x: 3.2, y: 4 * Math.exp(-0.01 * 80) }, { x: 3.6, y: 4 * Math.exp(-0.01 * 90) }, { x: 4, y: 4 * Math.exp(-0.01 * 100) }, { x: 4.4, y: 4 * Math.exp(-0.01 * 110) }, { x: 4.8, y: 4 * Math.exp(-0.01 * 120) }, { x: 5.2, y: 4 * Math.exp(-0.01 * 130) }, { x: 5.6, y: 4 * Math.exp(-0.01 * 140) }, { x: 6, y: 4 * Math.exp(-0.01 * 150) }, { x: 6.4, y: 4 * Math.exp(-0.01 * 160) }, { x: 6.8, y: 4 * Math.exp(-0.01 * 170) }, { x: 7.2, y: 4 * Math.exp(-0.01 * 180) }, { x: 7.6, y: 4 * Math.exp(-0.01 * 190) }, { x: 8, y: 4 * Math.exp(-0.01 * 200) }] },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.exp(-1) } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 8, y: 4 * Math.exp(-2) } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 4, y: 4 * Math.exp(-1) }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 8, y: 4 * Math.exp(-2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    edge: <InlineMath math="1\ \mathrm{m}" />,
+    mid: <InlineMath math="e^{-1}\approx0.37\ \mathrm{m}" />,
+    end: <InlineMath math="e^{-2}\approx0.14\ \mathrm{m}" />,
+  }}
+/>

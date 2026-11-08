@@ -29,15 +29,41 @@ Das Bohrsche Modell nutzt diskrete Energieniveaus, um das Linienspektrum von Was
 
 **Anregung** bedeutet, dass ein Elektron Energie aufnimmt und vorübergehend auf ein höheres Energieniveau wechselt. Beim Zurückkehren wird Energie als Licht frei. Ein echter Flammentest gehört wegen des Erhitzens von Chemikalien nur unter fachgerechter Aufsicht und mit passender Schutzausrüstung durchgeführt.
 
-Hier ist die Flammenfarbe als Kreislauf eines Elektrons.
+Eine Flammenfarbe ist Licht von Elektronen, die auf ein niedrigeres Niveau fallen. Beim Wasserstoff liegen die Niveaus bei <InlineMath math="E_n=-\tfrac{13{,}6}{n^2}\ \mathrm{eV}" />, also setzt ein Fall von <InlineMath math="n=3" /> auf <InlineMath math="n=2" /> <InlineMath math="1{,}89\ \mathrm{eV}" /> frei, und <InlineMath math="\lambda=\tfrac{1240}{1{,}89}\approx656\ \mathrm{nm}" /> ist rotes Licht. Zoom nach oben, wo sich die Niveaus drängen.
 
-<Mermaid
-  title="Warum eine Flamme eine Farbe hat"
-  description="Hitze hebt ein Elektron auf ein höheres Niveau, und Licht einer bestimmten Farbe entsteht, wenn es zurückfällt."
-  chart={`flowchart LR
-    A["Elektron in seiner üblichen Schale"] -->|Nimmt Wärme auf| B["Höheres Energieniveau"]
-    B -->|Fällt zurück| C["Licht einer Farbe"]
-    C --> A`}
+<MathVisual
+  title={<>Fallende Elektronen geben farbiges Licht</>}
+  description={<>Energieniveaus des Wasserstoffatoms und zwei Übergänge auf das Niveau <InlineMath math="n=2" />, rot (rosa Pfeil) und blaugrün (türkiser Pfeil). Senkrecht: Energie in Elektronenvolt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "level-1", kind: "segment", appearance: "secondary", from: { x: 0, y: -13.6 }, to: { x: 6, y: -13.6 } },
+      { id: "level-2", kind: "segment", appearance: "secondary", from: { x: 0, y: -13.6 / 2 ** 2 }, to: { x: 6, y: -13.6 / 2 ** 2 } },
+      { id: "level-3", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 3 ** 2 }, to: { x: 6, y: -13.6 / 3 ** 2 } },
+      { id: "level-4", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 4 ** 2 }, to: { x: 6, y: -13.6 / 4 ** 2 } },
+      { id: "level-5", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 5 ** 2 }, to: { x: 6, y: -13.6 / 5 ** 2 } },
+      { id: "drop-red", kind: "segment", appearance: "warning", from: { x: 2.5, y: -13.6 / 3 ** 2 }, to: { x: 2.5, y: -13.6 / 2 ** 2 } },
+      { id: "drop-teal", kind: "segment", appearance: "construction", from: { x: 4, y: -13.6 / 4 ** 2 }, to: { x: 4, y: -13.6 / 2 ** 2 } },
+      { id: "red-end", kind: "point", appearance: "warning", at: { x: 2.5, y: -13.6 / 2 ** 2 } },
+      { id: "teal-end", kind: "point", appearance: "construction", at: { x: 4, y: -13.6 / 2 ** 2 } },
+    ],
+    labels: [
+      { key: "n1", objectId: "level-1", at: { x: 6, y: -13.6 }, placement: "right" },
+      { key: "n2", objectId: "level-2", at: { x: 6, y: -13.6 / 2 ** 2 }, placement: "right" },
+      { key: "n3", objectId: "level-3", at: { x: 6, y: -13.6 / 3 ** 2 }, placement: "right" },
+      { key: "red", objectId: "drop-red", at: { x: 2.5, y: (-13.6 / 3 ** 2 + -13.6 / 2 ** 2) / 2 }, placement: "left" },
+      { key: "teal", objectId: "drop-teal", at: { x: 4, y: (-13.6 / 4 ** 2 + -13.6 / 2 ** 2) / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    n1: <InlineMath math="n=1:\ -13{,}6\ \mathrm{eV}" />,
+    n2: <InlineMath math="n=2:\ -3{,}4\ \mathrm{eV}" />,
+    n3: <InlineMath math="n=3:\ -1{,}51\ \mathrm{eV}" />,
+    red: <InlineMath math="1{,}89\ \mathrm{eV},\ 656\ \mathrm{nm}" />,
+    teal: <InlineMath math="2{,}55\ \mathrm{eV},\ 486\ \mathrm{nm}" />,
+  }}
 />
 
 ## Elektronenverteilung im Schalenmodell
@@ -139,6 +165,84 @@ Beispiel Chlor:
 e^- &= 17 \\
 \text{Konfiguration} &= 2, 8, 7
 \end{aligned}" />
+
+Füll die Schalen der Reihe nach für die ersten 20 Elemente, von Wasserstoff mit <InlineMath math="Z=1" /> bis Calcium mit <InlineMath math="Z=20" />. Jede Reihe ist eine Schale und jede Spalte ein Element, also enthält jede Spalte insgesamt <InlineMath math="Z" /> Elektronen. Dreh die Szene: Die L-Schale ist beim Neon voll, und ab Kalium kommen die nächsten Elektronen in die N-Schale.
+
+<MathVisual
+  title={<>Zwanzig Atome, Schale für Schale</>}
+  description={<>Elektronen in der K- (grau), L- (violett), M- (orange) und N-Schale (fuchsia) für die Ordnungszahlen 1 bis 20. Ein Gitterschritt nach oben entspricht 2 Elektronen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
+    view: { kind: "camera", position: { x: 16, y: 9, z: 12 }, target: { x: 5.7, y: 1, z: 1.8 } },
+    objects: [
+      { id: "z1-s0", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z2-s0", kind: "cuboid", appearance: "reference", center: { x: 0.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z3-s0", kind: "cuboid", appearance: "reference", center: { x: 1.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z3-s1", kind: "cuboid", appearance: "secondary", center: { x: 1.2, y: 0.25, z: 1.2 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z4-s0", kind: "cuboid", appearance: "reference", center: { x: 1.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z4-s1", kind: "cuboid", appearance: "secondary", center: { x: 1.8, y: 0.5, z: 1.2 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z5-s0", kind: "cuboid", appearance: "reference", center: { x: 2.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z5-s1", kind: "cuboid", appearance: "secondary", center: { x: 2.4, y: 0.75, z: 1.2 }, size: { length: 0.5, height: 1.5, width: 0.9 } },
+      { id: "z6-s0", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z6-s1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1, z: 1.2 }, size: { length: 0.5, height: 2, width: 0.9 } },
+      { id: "z7-s0", kind: "cuboid", appearance: "reference", center: { x: 3.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z7-s1", kind: "cuboid", appearance: "secondary", center: { x: 3.6, y: 1.25, z: 1.2 }, size: { length: 0.5, height: 2.5, width: 0.9 } },
+      { id: "z8-s0", kind: "cuboid", appearance: "reference", center: { x: 4.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z8-s1", kind: "cuboid", appearance: "secondary", center: { x: 4.2, y: 1.5, z: 1.2 }, size: { length: 0.5, height: 3, width: 0.9 } },
+      { id: "z9-s0", kind: "cuboid", appearance: "reference", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z9-s1", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 1.75, z: 1.2 }, size: { length: 0.5, height: 3.5, width: 0.9 } },
+      { id: "z10-s0", kind: "cuboid", appearance: "reference", center: { x: 5.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z10-s1", kind: "cuboid", appearance: "secondary", center: { x: 5.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z11-s0", kind: "cuboid", appearance: "reference", center: { x: 6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z11-s1", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z11-s2", kind: "cuboid", appearance: "primary", center: { x: 6, y: 0.25, z: 2.4 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z12-s0", kind: "cuboid", appearance: "reference", center: { x: 6.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z12-s1", kind: "cuboid", appearance: "secondary", center: { x: 6.6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z12-s2", kind: "cuboid", appearance: "primary", center: { x: 6.6, y: 0.5, z: 2.4 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z13-s0", kind: "cuboid", appearance: "reference", center: { x: 7.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z13-s1", kind: "cuboid", appearance: "secondary", center: { x: 7.2, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z13-s2", kind: "cuboid", appearance: "primary", center: { x: 7.2, y: 0.75, z: 2.4 }, size: { length: 0.5, height: 1.5, width: 0.9 } },
+      { id: "z14-s0", kind: "cuboid", appearance: "reference", center: { x: 7.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z14-s1", kind: "cuboid", appearance: "secondary", center: { x: 7.8, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z14-s2", kind: "cuboid", appearance: "primary", center: { x: 7.8, y: 1, z: 2.4 }, size: { length: 0.5, height: 2, width: 0.9 } },
+      { id: "z15-s0", kind: "cuboid", appearance: "reference", center: { x: 8.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z15-s1", kind: "cuboid", appearance: "secondary", center: { x: 8.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z15-s2", kind: "cuboid", appearance: "primary", center: { x: 8.4, y: 1.25, z: 2.4 }, size: { length: 0.5, height: 2.5, width: 0.9 } },
+      { id: "z16-s0", kind: "cuboid", appearance: "reference", center: { x: 9, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z16-s1", kind: "cuboid", appearance: "secondary", center: { x: 9, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z16-s2", kind: "cuboid", appearance: "primary", center: { x: 9, y: 1.5, z: 2.4 }, size: { length: 0.5, height: 3, width: 0.9 } },
+      { id: "z17-s0", kind: "cuboid", appearance: "reference", center: { x: 9.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z17-s1", kind: "cuboid", appearance: "secondary", center: { x: 9.6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z17-s2", kind: "cuboid", appearance: "primary", center: { x: 9.6, y: 1.75, z: 2.4 }, size: { length: 0.5, height: 3.5, width: 0.9 } },
+      { id: "z18-s0", kind: "cuboid", appearance: "reference", center: { x: 10.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z18-s1", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z18-s2", kind: "cuboid", appearance: "primary", center: { x: 10.2, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s0", kind: "cuboid", appearance: "reference", center: { x: 10.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z19-s1", kind: "cuboid", appearance: "secondary", center: { x: 10.8, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s2", kind: "cuboid", appearance: "primary", center: { x: 10.8, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s3", kind: "cuboid", appearance: "answer", center: { x: 10.8, y: 0.25, z: 3.6 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z20-s0", kind: "cuboid", appearance: "reference", center: { x: 11.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z20-s1", kind: "cuboid", appearance: "secondary", center: { x: 11.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z20-s2", kind: "cuboid", appearance: "primary", center: { x: 11.4, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z20-s3", kind: "cuboid", appearance: "answer", center: { x: 11.4, y: 0.5, z: 3.6 }, size: { length: 0.5, height: 1, width: 0.9 } },
+    ],
+    labels: [
+      { key: "k", objectId: "z20-s0", at: { x: 11.4, y: 1, z: 0 }, placement: "right" },
+      { key: "l", objectId: "z20-s1", at: { x: 11.4, y: 4, z: 1.2 }, placement: "right" },
+      { key: "m", objectId: "z20-s2", at: { x: 11.4, y: 4, z: 2.4 }, placement: "right" },
+      { key: "n", objectId: "z20-s3", at: { x: 11.4, y: 1, z: 3.6 }, placement: "right" },
+      { key: "calcium", objectId: "z20-s3", at: { x: 11.4, y: 1, z: 3.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}" />,
+    l: <InlineMath math="\mathrm{L}" />,
+    m: <InlineMath math="\mathrm{M}" />,
+    n: <InlineMath math="\mathrm{N}" />,
+    calcium: <InlineMath math="\mathrm{Ca}:\ 2,8,8,2" />,
+  }}
+/>
 
 ## Konfiguration und Spektrum verbinden
 

@@ -46,15 +46,34 @@ Shells are named <InlineMath math="\mathrm K" /> through <InlineMath math="\math
 
 The word **maximum** matters. Shell <InlineMath math="\mathrm{M}" /> can hold up to <InlineMath math="18" /> electrons, but that does not mean every atom fills <InlineMath math="\mathrm{M}" /> to <InlineMath math="18" /> before using the next shell. For the examples up to calcium, we use the simpler pattern in the interactive model.
 
-The capacity rule gives each shell its limit.
+The capacity rule gives each shell its limit: shell <InlineMath math="n" /> holds at most <InlineMath math="2n^2" /> electrons. Rotate the bars: the limit grows fast, from <InlineMath math="2" /> in the K shell to <InlineMath math="32" /> in the N shell.
 
-<Mermaid
-  title="Shell Capacity 2n²"
-  description="Shell n can hold at most 2n² electrons."
-  chart={`flowchart LR
-    A["K, n = 1: 2"] --> B["L, n = 2: 8"]
-    B --> C["M, n = 3: 18"]
-    C --> D["N, n = 4: 32"]`}
+<MathVisual
+  title={<>Shell Capacity <InlineMath math="2n^2" /></>}
+  description={<>The most electrons each of the first four shells can hold. One grid step up is 4 electrons.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 9 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 9, z: 12 }, target: { x: 3.75, y: 3.5, z: 0 } },
+    objects: [
+      { id: "shell-k", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.2, height: 0.5, width: 1.2 } },
+      { id: "shell-l", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "shell-m", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "shell-n", kind: "cuboid", appearance: "answer", center: { x: 7.5, y: 4, z: 0 }, size: { length: 1.2, height: 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 0, y: 0.5, z: 0 }, placement: "above" },
+      { key: "l", objectId: "shell-l", at: { x: 2.5, y: 2, z: 0 }, placement: "above" },
+      { key: "m", objectId: "shell-m", at: { x: 5, y: 4.5, z: 0 }, placement: "above" },
+      { key: "n", objectId: "shell-n", at: { x: 7.5, y: 8, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2\cdot1^2=2" />,
+    l: <InlineMath math="\mathrm{L}:\ 2\cdot2^2=8" />,
+    m: <InlineMath math="\mathrm{M}:\ 2\cdot3^2=18" />,
+    n: <InlineMath math="\mathrm{N}:\ 2\cdot4^2=32" />,
+  }}
 />
 
 ## Shell Model for Light Elements
@@ -140,8 +159,8 @@ After shells K and L, <InlineMath math="20-2-8=10" /> electrons remain. Eight oc
 Here is calcium in the simple shell model: <InlineMath math="2, 8, 8, 2" /> electrons from the K shell outward. Count each ring, and notice the two fuchsia electrons in shell N, even though shell M could hold more.
 
 <MathVisual
-  title="Calcium in the Shell Model"
-  description="Calcium's 20 electrons in shells K, L, M and N, with the outermost electrons in fuchsia."
+  title={<>Calcium in the Shell Model</>}
+  description={<>Calcium's 20 electrons in shells K, L, M and N, with the outermost electrons in fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },

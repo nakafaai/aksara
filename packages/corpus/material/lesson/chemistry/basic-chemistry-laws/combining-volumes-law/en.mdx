@@ -34,8 +34,8 @@ So, if every gas is measured at the **same temperature and pressure**, <InlineMa
 Each block below is one part of gas at the same temperature and pressure. Two parts of hydrogen and one part of oxygen give two parts of water vapor, so the volume ratio <InlineMath math="2:1:2" /> is just the coefficients. Notice that the volumes do not add up: three parts become two.
 
 <MathVisual
-  title="Water Vapor by Volume"
-  description="2H₂(g) + O₂(g) → 2H₂O(g) drawn as equal gas parts at the same temperature and pressure."
+  title={<>Water Vapor by Volume</>}
+  description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> drawn as equal gas parts at the same temperature and pressure.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -190,16 +190,28 @@ So decomposing <InlineMath math="600\ \mathrm{mL}" /> of ammonia gas produces <I
 
 If any of these conditions is missing, compute the mole amounts first and convert them to volumes.
 
-Check all three conditions before you read volumes from coefficients.
+Here is why every volume needs the same temperature and pressure. A gas takes up <InlineMath math="V=n\cdot V_m" />, and at <InlineMath math="1\ \mathrm{atm}" /> one mole fills <InlineMath math="22.4\ \mathrm{L}" /> at <InlineMath math="0\ ^\circ\mathrm{C}" /> but <InlineMath math="24.5\ \mathrm{L}" /> at <InlineMath math="25\ ^\circ\mathrm{C}" />. Zoom in at two moles: the same amount of gas gives two different volumes, so volumes measured under different conditions can't be compared through coefficients.
 
-<Mermaid
-  title="When Volume Ratios Apply"
-  description="A balanced equation, gases only, and one temperature and pressure for every volume."
-  chart={`flowchart TD
-    A["Balanced equation?"] -->|Yes| B["Every compared substance a gas?"]
-    B -->|Yes| C["Same temperature and pressure?"]
-    C -->|Yes| D["Volume ratio = coefficient ratio"]
-    A -->|No| E["Balance it first"]
-    B -->|No| F["Leave liquids and solids out"]
-    C -->|No| G["Volumes cannot be compared directly"]`}
+<MathVisual
+  title={<>Same Moles, Different Volumes</>}
+  description={<>Gas volume against amount at <InlineMath math="1\ \mathrm{atm}" /> for <InlineMath math="0\ ^\circ\mathrm{C}" /> (violet) and <InlineMath math="25\ ^\circ\mathrm{C}" /> (orange). Horizontal: one grid step is 1 mol. Vertical: one grid step is 10 L.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cold", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 8.96 } },
+      { id: "warm", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 9.8 } },
+      { id: "cold-two", kind: "point", appearance: "secondary", at: { x: 2, y: 4.48 } },
+      { id: "warm-two", kind: "point", appearance: "primary", at: { x: 2, y: 4.9 } },
+    ],
+    labels: [
+      { key: "cold", objectId: "cold-two", at: { x: 2, y: 4.48 }, placement: "below-right" },
+      { key: "warm", objectId: "warm-two", at: { x: 2, y: 4.9 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    cold: <InlineMath math="0\ ^\circ\mathrm{C}:\ 2\cdot22.4=44.8\ \mathrm{L}" />,
+    warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24.5=49\ \mathrm{L}" />,
+  }}
 />

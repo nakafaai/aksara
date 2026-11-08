@@ -46,8 +46,8 @@ Coral bleaching is a sign of severe stress and can happen before a coral dies. I
 Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in **degree heating weeks**: each week, take how many degrees the water sits above the coral's bleaching threshold, then add the weeks together. In the illustrative case below, the amber line is that weekly excess, and the pink line is its running sum. Follow the pink line upward: it crosses <InlineMath math="4\ ^\circ\text{C-weeks}" />, where significant bleaching becomes likely, and then <InlineMath math="8" />, where severe bleaching and coral deaths become likely. Notice that the pink line keeps its height once the water cools, because the stress already happened.
 
 <MathVisual
-  title="Heat Stress Adds Up on a Reef"
-  description="An illustrative six-week marine heatwave. Horizontal: week. Vertical: degrees above the bleaching threshold (amber) and their running sum in °C-weeks (pink)."
+  title={<>Heat Stress Adds Up on a Reef</>}
+  description={<>An illustrative six-week marine heatwave. Horizontal: week. Vertical: degrees above the bleaching threshold (amber) and their running sum in °C-weeks (pink).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -86,18 +86,41 @@ Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in
 | Stress subsides soon enough | The coral can regain algae and recover. |
 | Stress persists | Disease and mortality risks increase, and reef habitat function can decline. |
 
-The coral story has a fork in it, and the fork depends on how long the heat lasts.
+Reef scientists add up heat stress. Every week the water is at least <InlineMath math="1\ ^\circ\mathrm{C}" /> above the coral's bleaching threshold adds that excess to a total called degree heating weeks. With illustrative weekly values, the total passes <InlineMath math="4" /> in week 6, when bleaching becomes likely, and reaches <InlineMath math="8" /> in week 8, when severe bleaching and coral death become likely. Zoom in and find the weeks that add nothing.
 
-<Mermaid
-  title="Two Endings after Bleaching"
-  description="Warm water stresses the coral-algae partnership. Short stress allows recovery, and long stress raises the risk of death."
-  chart={`flowchart TD
-    A["Seawater too warm"] --> B["Coral-algae symbiosis stressed"]
-    B --> C["Coral expels algae and bleaches"]
-    C --> D["Heat ends soon"]
-    C --> E["Heat lasts"]
-    D --> F["Algae return, coral recovers"]
-    E --> G["Disease and death risk rise"]`}
+<MathVisual
+  title={<>Heat Stress Adds Up Week by Week</>}
+  description={<>Degree heating weeks over 12 illustrative weeks. Horizontal: weeks. Vertical: accumulated heat stress in <InlineMath math="^\circ\mathrm{C}" /> weeks.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bleaching", kind: "segment", appearance: "highlight", from: { x: 0, y: 4 }, to: { x: 12, y: 4 } },
+      { id: "severe", kind: "segment", appearance: "warning", from: { x: 0, y: 8 }, to: { x: 12, y: 8 } },
+      { id: "stress", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 4, y: 1 + 1 }, { x: 5, y: 1 + 1 + 1.5 }, { x: 6, y: 1 + 1 + 1.5 + 1 }, { x: 7, y: 1 + 1 + 1.5 + 1 + 2 }, { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 }, { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }] },
+      { id: "week-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "week-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "week-3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "week-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1 + 1 } },
+      { id: "week-5", kind: "point", appearance: "secondary", at: { x: 5, y: 1 + 1 + 1.5 } },
+      { id: "week-6", kind: "point", appearance: "answer", at: { x: 6, y: 1 + 1 + 1.5 + 1 } },
+      { id: "week-7", kind: "point", appearance: "secondary", at: { x: 7, y: 1 + 1 + 1.5 + 1 + 2 } },
+      { id: "week-8", kind: "point", appearance: "answer", at: { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 } },
+      { id: "week-9", kind: "point", appearance: "secondary", at: { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-10", kind: "point", appearance: "secondary", at: { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-11", kind: "point", appearance: "secondary", at: { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-12", kind: "point", appearance: "secondary", at: { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+    ],
+    labels: [
+      { key: "four", objectId: "bleaching", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "eight", objectId: "severe", at: { x: 0, y: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    four: <>4: bleaching likely</>,
+    eight: <>8: severe bleaching and death likely</>,
+  }}
 />
 
 ## Changing Rainfall Patterns Affect Food and Water
@@ -135,3 +158,33 @@ In wildlife, climate change can **shift the geographic range** in which a specie
 The coral example shows each step in a climate-impact pathway. Warmer seawater can disturb coral symbiosis. The coral then bleaches, shelter for reef fish weakens, and fishers and coastal communities can eventually be affected.
 
 The same pattern can appear in food, water, and health. **Trace the full pathway** from the first event to the organisms and people that depend on the affected system.
+
+On a gentle coast the land rises slowly, so a small rise in sea level moves the water's edge far inland. If the ground climbs <InlineMath math="1\ \mathrm{cm}" /> for every meter, its slope is <InlineMath math="s=0.01" />, and a rise of <InlineMath math="\Delta h=0.5\ \mathrm{m}" /> moves the shoreline <InlineMath math="\Delta h/s=50\ \mathrm{m}" /> inland. Zoom in where the higher water meets the ground.
+
+<MathVisual
+  title={<>Half a Meter Up, Fifty Meters In</>}
+  description={<>A gentle coast in cross-section, with the height stretched so the slope is visible. Horizontal: one grid step is 10 meters. Vertical: one grid step is 0.25 meters.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ground", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 10, y: 4 }] },
+      { id: "sea-now", kind: "segment", appearance: "secondary", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sea-high", kind: "segment", appearance: "primary", from: { x: -2, y: 2 }, to: { x: 5, y: 2 } },
+      { id: "shore-now", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "shore-high", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+      { id: "retreat", kind: "segment", appearance: "warning", from: { x: 0, y: 0.2 }, to: { x: 5, y: 0.2 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "sea-high", at: { x: -2, y: 2 }, placement: "above-right" },
+      { key: "shore", objectId: "shore-high", at: { x: 5, y: 2 }, placement: "above-left" },
+      { key: "move", objectId: "retreat", at: { x: 2.5, y: 0.2 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    rise: <InlineMath math="+0.5\ \mathrm{m}" />,
+    shore: <>new shoreline</>,
+    move: <InlineMath math="50\ \mathrm{m}" />,
+  }}
+/>

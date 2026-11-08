@@ -100,8 +100,8 @@ Die Waage erfasst nur die **Materie innerhalb der gewählten Systemgrenze**. Nac
 Die drei Säulen unten sind die Anzeigen der Waage, ein Gitterschritt für <InlineMath math="4\ \mathrm{g}" />. Bleibt jeder Stoff drinnen, bleibt die geschlossene Säule bei <InlineMath math="12{,}00\ \mathrm{g}" />. Im offenen System überquert <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefel die Grenze, bevor er reagiert, also zeigt die Waage nur <InlineMath math="11{,}00\ \mathrm{g}" />. Die Masse ist nicht verschwunden, sie hat nur das System verlassen, das du wiegst.
 
 <MathVisual
-  title="Was die Waage anzeigt"
-  description="10,00 g Zink und 2,00 g Schwefel vor der Reaktion, danach im geschlossenen und im offenen System. Ein Gitterschritt nach oben sind 4 g."
+  title={<>Was die Waage anzeigt</>}
+  description={<>10,00 g Zink und 2,00 g Schwefel vor der Reaktion, danach im geschlossenen und im offenen System. Ein Gitterschritt nach oben sind 4 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -159,13 +159,31 @@ Chemische Gleichungen müssen ausgeglichen sein, weil auf beiden Seiten dieselbe
 
 Das Gesetz der konstanten Zusammensetzung beantwortet eine andere Frage. Bleibt das Massenverhältnis gleich, wenn zwei Elemente dieselbe Verbindung bilden?
 
-Halt die drei Massen auf getrennten Zweigen.
+Halte die drei Massen im Versuch mit Zink und Schwefel auseinander. Vor der Reaktion enthält die Säule das Zink, das reagieren wird, das Zink, das übrig bleibt, und den Schwefel. Danach ist der reagierte Teil zu <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> geworden, neben demselben restlichen Zink. Dreh die Säulen: Beide Summen sind <InlineMath math="12{,}00\ \mathrm{g}" />.
 
-<Mermaid
-  title="Drei Fragen zur Masse"
-  description="Gesamtmasse, umgesetzte Masse und Restmasse beantworten verschiedene Fragen."
-  chart={`flowchart TD
-    A["Versuch Zn + S"] --> B["Gesamt im System: 12,00 g vorher und nachher"]
-    A --> C["Umgesetzt: 4,08 g Zn + 2,00 g S = 6,08 g ZnS"]
-    A --> D["Übrig: 5,92 g Zn"]`}
+<MathVisual
+  title={<>Drei Fragen zur Masse</>}
+  description={<>Vorher (links): restliches Zink (grau), reagierendes Zink (orange) und Schwefel (gelb). Nachher (rechts): restliches Zink (grau) und Zinksulfid (türkis). Ein Gitterschritt nach oben ist 1 Gramm.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 15, z: 11 }, target: { x: 1.5, y: 6, z: 0 } },
+    objects: [
+      { id: "zn-left-before", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zn-reacted", kind: "cuboid", appearance: "primary", center: { x: 0, y: 7.96, z: 0 }, size: { length: 1.6, height: 4.08, width: 1.6 } },
+      { id: "sulfur", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 11, z: 0 }, size: { length: 1.6, height: 2, width: 1.6 } },
+      { id: "zn-left-after", kind: "cuboid", appearance: "reference", center: { x: 3, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zns", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8.96, z: 0 }, size: { length: 1.6, height: 6.08, width: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "sulfur", at: { x: 0, y: 12, z: 0 }, placement: "above" },
+      { key: "after", objectId: "zns", at: { x: 3, y: 12, z: 0 }, placement: "above" },
+      { key: "left", objectId: "zn-left-after", at: { x: 3, y: 2.96, z: 0.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="4{,}08+5{,}92+2{,}00=12{,}00\ \mathrm{g}" />,
+    after: <InlineMath math="6{,}08+5{,}92=12{,}00\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{Zn}:\ 5{,}92\ \mathrm{g}" />,
+  }}
 />

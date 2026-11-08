@@ -33,8 +33,8 @@ Meskipun massa air yang terbentuk berbeda, perbandingan **massa hidrogen dan oks
 Bandingkan dua sampel air, dengan hidrogen berwarna ungu, oksigen berwarna oranye, dan satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Sampel besar dua kali lebih berat, tetapi keduanya terbagi dengan cara yang sama, sekitar <InlineMath math="1:8" /> menurut massa. Pembagian tetap itulah arti perbandingan tetap.
 
 <MathVisual
-  title="Dua Sampel, Satu Perbandingan Massa"
-  description="9 g dan 18 g air yang terbagi menjadi hidrogen (ungu) dan oksigen (oranye) sekitar 1:8. Satu kotak grid ke atas sama dengan 4 g."
+  title={<>Dua Sampel, Satu Perbandingan Massa</>}
+  description={<>9 g dan 18 g air yang terbagi menjadi hidrogen (ungu) dan oksigen (oranye) sekitar 1:8. Satu kotak grid ke atas sama dengan 4 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -160,15 +160,34 @@ Pada pilihan hidrogen berlebih, <InlineMath math="16 \mathrm{g}" /> oksigen meme
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,bereaksi}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,tersisa}} &=3-2=1\ \mathrm{g} \end{aligned}" />
 
-Inilah contoh pereaksi berlebih sebagai satu alur.
+Air selalu memuat hidrogen dan oksigen dengan perbandingan massa <InlineMath math="1:8" />. Dari <InlineMath math="3\ \mathrm{g}" /> hidrogen dan <InlineMath math="16\ \mathrm{g}" /> oksigen, oksigennya hanya bisa memakai <InlineMath math="2\ \mathrm{g}" /> hidrogen. Putar batangnya: bagian hidrogen yang merah muda tersisa, dan air yang terbentuk tepat sama dengan hidrogen yang terpakai ditambah oksigennya.
 
-<Mermaid
-  title="Hidrogen Berlebih Tetap Tersisa"
-  description="16 g oksigen hanya bisa memakai 2 g hidrogen, jadi 1 g dari 3 g itu tersisa."
-  chart={`flowchart LR
-    A["3 g H + 16 g O"] --> B["Perbandingan 1:8 memakai 2 g H dengan 16 g O"]
-    B --> C["18 g air"]
-    B --> D["1 g hidrogen tersisa"]`}
+<MathVisual
+  title={<>Hidrogen Berlebih Tetap Bersisa</>}
+  description={<>Hidrogen (ungu, sisanya merah muda), oksigen (oranye), dan air yang terbentuk (teal). Satu kotak grid ke atas berarti 2 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 12, z: 11 }, target: { x: 3, y: 4.5, z: 0 } },
+    objects: [
+      { id: "h-used", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.6, height: 1, width: 1.6 } },
+      { id: "h-left", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.6, height: 0.5, width: 1.6 } },
+      { id: "o-used", kind: "cuboid", appearance: "primary", center: { x: 3, y: 4, z: 0 }, size: { length: 1.6, height: 8, width: 1.6 } },
+      { id: "water", kind: "cuboid", appearance: "construction", center: { x: 6, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+    ],
+    labels: [
+      { key: "used", objectId: "h-used", at: { x: 0, y: 0.5, z: 0.8 }, placement: "right" },
+      { key: "left", objectId: "h-left", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "o-used", at: { x: 3, y: 8, z: 0 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 6, y: 9, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    used: <InlineMath math="\mathrm{H}:\ 2\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{H}:\ 3-2=1\ \mathrm{g}" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 16\ \mathrm{g}" />,
+    water: <InlineMath math="\mathrm{H_2O}:\ 2+16=18\ \mathrm{g}" />,
+  }}
 />
 
 ## Menguji Data Kalsium Oksida

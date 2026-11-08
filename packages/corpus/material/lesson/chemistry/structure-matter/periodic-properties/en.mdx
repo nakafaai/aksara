@@ -76,8 +76,8 @@ These trends depend on **nuclear attraction toward valence electrons**. Valence 
 Sodium shows why position predicts behavior. Its single outer electron, in fuchsia, sits alone in shell M, far from the nucleus and shielded by ten inner electrons, so it is easy to remove.
 
 <MathVisual
-  title="Sodium's Lone Outer Electron"
-  description="Sodium's 11 electrons in shells K, L and M, with the outer electron in fuchsia."
+  title={<>Sodium's Lone Outer Electron</>}
+  description={<>Sodium's 11 electrons in shells K, L and M, with the outer electron in fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -137,16 +137,49 @@ For chlorine, attaching an electron releases energy. We write <InlineMath math="
 
 Noble gases such as <InlineMath math="\mathrm{Ar}" /> have stable valence-electron configurations, so they do not easily accept extra electrons. Electron affinity has more exceptions to a simple left-to-right trend than atomic radius or first ionization energy.
 
-Here are both trends side by side, with the reason for each.
+Here are both trends in real data. Across a period the nucleus gains protons while the outer shell stays the same, so it gets harder to pull an electron off and the first ionization energy climbs. At the start of the next period a new shell adds distance and shielding, and the energy drops sharply. Zoom in on the pink drop from neon to sodium.
 
-<Mermaid
-  title="Across a Period, Down a Group"
-  description="Across a period the nuclear pull on the same shell grows, and down a group a new shell adds distance and shielding."
-  chart={`flowchart TD
-    A["Across a period, Na to Cl"] --> B["More protons, same outer shell"]
-    B --> C["Radius shrinks, ionization energy rises"]
-    D["Down a group, Li to Na"] --> E["One more inner shell"]
-    E --> F["Radius grows, ionization energy falls"]`}
+<MathVisual
+  title={<>Ionization Energy across Two Periods</>}
+  description={<>First ionization energy for atomic numbers 3 to 18, period 2 (violet) and period 3 (orange). Horizontal: one grid step is 2 in atomic number. Vertical: one grid step is <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-2", kind: "polyline", appearance: "secondary", vertices: [{ x: 1.5, y: 2.08 }, { x: 2, y: 3.596 }, { x: 2.5, y: 3.204 }, { x: 3, y: 4.344 }, { x: 3.5, y: 5.608 }, { x: 4, y: 5.256 }, { x: 4.5, y: 6.724 }, { x: 5, y: 8.324 }] },
+      { id: "period-3", kind: "polyline", appearance: "primary", vertices: [{ x: 5.5, y: 1.984 }, { x: 6, y: 2.952 }, { x: 6.5, y: 2.312 }, { x: 7, y: 3.148 }, { x: 7.5, y: 4.048 }, { x: 8, y: 4 }, { x: 8.5, y: 5.004 }, { x: 9, y: 6.084 }] },
+      { id: "drop", kind: "segment", appearance: "warning", from: { x: 5, y: 8.324 }, to: { x: 5.5, y: 1.984 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1.5, y: 2.08 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 3.596 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3.204 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4.344 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5.608 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 5.256 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 6.724 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8.324 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 5.5, y: 1.984 } },
+      { id: "z12", kind: "point", appearance: "primary", at: { x: 6, y: 2.952 } },
+      { id: "z13", kind: "point", appearance: "primary", at: { x: 6.5, y: 2.312 } },
+      { id: "z14", kind: "point", appearance: "primary", at: { x: 7, y: 3.148 } },
+      { id: "z15", kind: "point", appearance: "primary", at: { x: 7.5, y: 4.048 } },
+      { id: "z16", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "z17", kind: "point", appearance: "primary", at: { x: 8.5, y: 5.004 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 6.084 } },
+    ],
+    labels: [
+      { key: "li", objectId: "z3", at: { x: 1.5, y: 2.08 }, placement: "below" },
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8.324 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1.984 }, placement: "below" },
+      { key: "ar", objectId: "z18", at: { x: 9, y: 6.084 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}:\ 520" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ 2081" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 1521" />,
+  }}
 />
 
 ## Comparing Two Pairs of Elements

@@ -113,8 +113,8 @@ Do not add all electrons when looking for valence electrons. Calcium has <Inline
 Here is chlorine, <InlineMath math="2, 8, 7" />. Its outermost occupied shell is M, and the seven fuchsia electrons there are its valence electrons, one short of a full set of eight.
 
 <MathVisual
-  title="Chlorine's Seven Valence Electrons"
-  description="Chlorine's 17 electrons in shells K, L and M, with the valence electrons in fuchsia."
+  title={<>Chlorine's Seven Valence Electrons</>}
+  description={<>Chlorine's 17 electrons in shells K, L and M, with the valence electrons in fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -232,13 +232,50 @@ Elements <InlineMath math="\mathrm{B}" />, <InlineMath math="\mathrm{Al}" />, <I
 
 <InlineMath math="\mathrm{Na}" /> and <InlineMath math="\mathrm{K}" /> sit in group <InlineMath math="1" />, so the same pattern gives each <InlineMath math="1" /> valence electron that is easily lost, and both tend to form <InlineMath math="+1" /> ions. Argon is less reactive than chlorine because it has a stable **valence octet**. An octet means eight valence electrons, not that shell M has reached its full capacity of 18. Chlorine often gains one electron when forming an ion or shares electrons in covalent bonds.
 
-Use these steps for any main-group atom.
+Write the shell configuration, find the outermost occupied shell and count its electrons. Do that for atomic numbers 1 to 20 and the count climbs to eight, then falls back to one whenever a new shell starts. Zoom in on the drop after neon, and on chlorine, one electron short of eight.
 
-<Mermaid
-  title="Finding Valence Electrons"
-  description="Write the shell configuration, find the outermost occupied shell and count its electrons."
-  chart={`flowchart LR
-    A["Atomic number"] --> B["Shell configuration"]
-    B --> C["Outermost occupied shell"]
-    C --> D["Count its electrons: valence electrons"]`}
+<MathVisual
+  title={<>Valence Electrons Climb and Reset</>}
+  description={<>Valence electrons for atomic numbers 1 to 20. Horizontal: one grid step is 2 in atomic number. Vertical: number of valence electrons.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0.5, y: 1 }, { x: 1, y: 2 }] },
+      { id: "period-2", kind: "polyline", appearance: "reference", vertices: [{ x: 1.5, y: 1 }, { x: 2, y: 2 }, { x: 2.5, y: 3 }, { x: 3, y: 4 }, { x: 3.5, y: 5 }, { x: 4, y: 6 }, { x: 4.5, y: 7 }, { x: 5, y: 8 }] },
+      { id: "period-3", kind: "polyline", appearance: "reference", vertices: [{ x: 5.5, y: 1 }, { x: 6, y: 2 }, { x: 6.5, y: 3 }, { x: 7, y: 4 }, { x: 7.5, y: 5 }, { x: 8, y: 6 }, { x: 8.5, y: 7 }, { x: 9, y: 8 }] },
+      { id: "period-4", kind: "polyline", appearance: "reference", vertices: [{ x: 9.5, y: 1 }, { x: 10, y: 2 }] },
+      { id: "z1", kind: "point", appearance: "primary", at: { x: 0.5, y: 1 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "z3", kind: "point", appearance: "primary", at: { x: 1.5, y: 1 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 6 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 7 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8 } },
+      { id: "z11", kind: "point", appearance: "primary", at: { x: 5.5, y: 1 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 6.5, y: 3 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 7, y: 4 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 7.5, y: 5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 8, y: 6 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 8.5, y: 7 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 8 } },
+      { id: "z19", kind: "point", appearance: "primary", at: { x: 9.5, y: 1 } },
+      { id: "z20", kind: "point", appearance: "secondary", at: { x: 10, y: 2 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "cl", objectId: "z17", at: { x: 8.5, y: 7 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+  }}
 />

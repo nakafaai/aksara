@@ -166,8 +166,8 @@ Beim Ausgleichen bleiben die chemischen Formeln unverändert. <Highlight>Passe n
 Hier ist die ausgeglichene Fotosynthesegleichung Atom für Atom gezählt, Edukte hinten, Produkte vorn, ein Gitterschritt für <InlineMath math="4" /> Atome. Sechs Kohlenstoff-, zwölf Wasserstoff- und achtzehn Sauerstoffatome auf jeder Seite: Licht ordnet sie neu, es erzeugt keine.
 
 <MathVisual
-  title="Atome in der ausgeglichenen Fotosynthese"
-  description="6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ mit Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange). Ein Gitterschritt nach oben sind 4 Atome."
+  title={<>Atome in der ausgeglichenen Fotosynthese</>}
+  description={<><InlineMath math="6\mathrm{CO_2}+6\mathrm{H_2O}\rightarrow\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}" /> mit Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange). Ein Gitterschritt nach oben sind 4 Atome.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -222,16 +222,32 @@ Unter diesen drei Möglichkeiten der Abfallbehandlung ist **richtiges Kompostier
 
 Bestimme bei einem alltäglichen chemischen Prozess die Stoffe am Anfang, die Veränderungen, die Stoffe am Ende und die Gefahren, die sich bereits an der Quelle vermeiden lassen.
 
-Beurteil jede Art, mit dem Laub umzugehen, danach, was sie freisetzt.
+Verbranntes Laub lässt keine Materie verschwinden. Eine Einheit Cellulose verbrennt nach <InlineMath math="\mathrm{C_6H_{10}O_5}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+5\mathrm{H_2O}" />, also verlassen <InlineMath math="162\ \mathrm{g}" /> Blattmaterial und <InlineMath math="192\ \mathrm{g}" /> Sauerstoff das Feuer als <InlineMath math="354\ \mathrm{g}" /> Gas und Dampf, schwerer als das Laub allein. Dreh die Säulen: Die Summen stimmen überein, und der ganze Kohlenstoff landet in der Luft.
 
-<Mermaid
-  title="Drei Wege mit trockenem Laub"
-  description="Jede Wahl führt zu anderen Stoffen, also fällt auch das Urteil der grünen Chemie anders aus."
-  chart={`flowchart TD
-    A["Trockenes Laub"] --> B["Offen verbrennen"]
-    A --> C["Kompostieren"]
-    A --> D["Restmüll"]
-    B --> E["Rauch und Verschmutzung"]
-    C --> F["Kompost: behandelt vorhandenen Abfall"]
-    D --> G["Mehr Abfall zu behandeln"]`}
+<MathVisual
+  title={<>Verbranntes Laub verschwindet nicht</>}
+  description={<>Cellulose aus Laub und Sauerstoff (links) gegen das Kohlenstoffdioxid und den Wasserdampf, die daraus werden (rechts). Ein Gitterschritt nach oben entspricht 40 Gramm.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 9.85 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 11.85, z: 11 }, target: { x: 1.5, y: 4.425, z: 0 } },
+    objects: [
+      { id: "leaves", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.025, z: 0 }, size: { length: 1.6, height: 4.05, width: 1.6 } },
+      { id: "air-oxygen", kind: "cuboid", appearance: "primary", center: { x: 0, y: 6.45, z: 0 }, size: { length: 1.6, height: 4.8, width: 1.6 } },
+      { id: "smoke-gas", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3.3, z: 0 }, size: { length: 1.6, height: 6.6, width: 1.6 } },
+      { id: "vapor", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 7.725, z: 0 }, size: { length: 1.6, height: 2.25, width: 1.6 } },
+    ],
+    labels: [
+      { key: "leaves", objectId: "leaves", at: { x: 0, y: 2.025, z: 0.85 }, placement: "right" },
+      { key: "oxygen", objectId: "air-oxygen", at: { x: 0, y: 6.45, z: 0.85 }, placement: "right" },
+      { key: "gas", objectId: "smoke-gas", at: { x: 3, y: 3.3, z: 0.85 }, placement: "right" },
+      { key: "vapor", objectId: "vapor", at: { x: 3, y: 7.725, z: 0.85 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    leaves: <InlineMath math="\mathrm{C_6H_{10}O_5}:\ 162\ \mathrm{g}" />,
+    oxygen: <InlineMath math="6\mathrm{O_2}:\ 192\ \mathrm{g}" />,
+    gas: <InlineMath math="6\mathrm{CO_2}:\ 264\ \mathrm{g}" />,
+    vapor: <InlineMath math="5\mathrm{H_2O}:\ 90\ \mathrm{g}" />,
+  }}
 />

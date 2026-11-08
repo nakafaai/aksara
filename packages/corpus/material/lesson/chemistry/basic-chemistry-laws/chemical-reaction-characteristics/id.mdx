@@ -89,16 +89,33 @@ Pilih satu petunjuk, lalu bandingkan **keadaan sebelum dan sesudah perubahan**. 
 
 Pembeda utama antara perubahan kimia dan perubahan fisika adalah <Highlight>ada atau tidaknya zat baru yang terbentuk</Highlight>.
 
-Pakai tanda-tanda itu sebagai jalur, bukan satu tes saja.
+Termometer mengubah satu petunjuk menjadi angka. Dalam dua campuran ilustratif yang mulai dari suhu ruang, satu menghangat karena reaksinya melepas energi, dan yang lain mendingin karena menyerap energi. Perubahan suhu saja tetap hanya petunjuk, jadi periksa juga apakah ada zat baru. Perbesar menit-menit awal, tempat tiap kurva berbelok.
 
-<Mermaid
-  title="Dari Tanda ke Reaksi Kimia"
-  description="Tanda apa pun memulai pemeriksaan, dan zat baru dengan sifat berbeda memastikannya."
-  chart={`flowchart TD
-    A["Tanda: gas, warna, endapan, atau perubahan energi"] --> B["Periksa lebih dari satu tanda"]
-    B --> C{"Apakah terbentuk zat baru?"}
-    C -->|Ya| D["Reaksi kimia"]
-    C -->|Tidak| E["Perubahan fisika, misalnya mencair atau bercampur"]`}
+<MathVisual
+  title={<>Termometer Membaca Petunjuk Energi</>}
+  description={<>Suhu ilustratif dua campuran setelah dicampur. Mendatar: satu kotak grid berarti satu menit. Tegak: satu kotak grid berarti <InlineMath math="5\ ^\circ\mathrm{C}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "room", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 12, y: 3 } },
+      { id: "warm", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 3 }, { x: 0.5, y: 3 + (12 * (1 / 4) * Math.exp(1 - 1 / 4)) / 5 }, { x: 1, y: 3 + (12 * (2 / 4) * Math.exp(1 - 2 / 4)) / 5 }, { x: 1.5, y: 3 + (12 * (3 / 4) * Math.exp(1 - 3 / 4)) / 5 }, { x: 2, y: 3 + (12 * (4 / 4) * Math.exp(1 - 4 / 4)) / 5 }, { x: 2.5, y: 3 + (12 * (5 / 4) * Math.exp(1 - 5 / 4)) / 5 }, { x: 3, y: 3 + (12 * (6 / 4) * Math.exp(1 - 6 / 4)) / 5 }, { x: 3.5, y: 3 + (12 * (7 / 4) * Math.exp(1 - 7 / 4)) / 5 }, { x: 4, y: 3 + (12 * (8 / 4) * Math.exp(1 - 8 / 4)) / 5 }, { x: 4.5, y: 3 + (12 * (9 / 4) * Math.exp(1 - 9 / 4)) / 5 }, { x: 5, y: 3 + (12 * (10 / 4) * Math.exp(1 - 10 / 4)) / 5 }, { x: 5.5, y: 3 + (12 * (11 / 4) * Math.exp(1 - 11 / 4)) / 5 }, { x: 6, y: 3 + (12 * (12 / 4) * Math.exp(1 - 12 / 4)) / 5 }, { x: 6.5, y: 3 + (12 * (13 / 4) * Math.exp(1 - 13 / 4)) / 5 }, { x: 7, y: 3 + (12 * (14 / 4) * Math.exp(1 - 14 / 4)) / 5 }, { x: 7.5, y: 3 + (12 * (15 / 4) * Math.exp(1 - 15 / 4)) / 5 }, { x: 8, y: 3 + (12 * (16 / 4) * Math.exp(1 - 16 / 4)) / 5 }, { x: 8.5, y: 3 + (12 * (17 / 4) * Math.exp(1 - 17 / 4)) / 5 }, { x: 9, y: 3 + (12 * (18 / 4) * Math.exp(1 - 18 / 4)) / 5 }, { x: 9.5, y: 3 + (12 * (19 / 4) * Math.exp(1 - 19 / 4)) / 5 }, { x: 10, y: 3 + (12 * (20 / 4) * Math.exp(1 - 20 / 4)) / 5 }, { x: 10.5, y: 3 + (12 * (21 / 4) * Math.exp(1 - 21 / 4)) / 5 }, { x: 11, y: 3 + (12 * (22 / 4) * Math.exp(1 - 22 / 4)) / 5 }, { x: 11.5, y: 3 + (12 * (23 / 4) * Math.exp(1 - 23 / 4)) / 5 }, { x: 12, y: 3 + (12 * (24 / 4) * Math.exp(1 - 24 / 4)) / 5 }] },
+      { id: "cool", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 3 }, { x: 0.5, y: 3 + (-6 * (1 / 4) * Math.exp(1 - 1 / 4)) / 5 }, { x: 1, y: 3 + (-6 * (2 / 4) * Math.exp(1 - 2 / 4)) / 5 }, { x: 1.5, y: 3 + (-6 * (3 / 4) * Math.exp(1 - 3 / 4)) / 5 }, { x: 2, y: 3 + (-6 * (4 / 4) * Math.exp(1 - 4 / 4)) / 5 }, { x: 2.5, y: 3 + (-6 * (5 / 4) * Math.exp(1 - 5 / 4)) / 5 }, { x: 3, y: 3 + (-6 * (6 / 4) * Math.exp(1 - 6 / 4)) / 5 }, { x: 3.5, y: 3 + (-6 * (7 / 4) * Math.exp(1 - 7 / 4)) / 5 }, { x: 4, y: 3 + (-6 * (8 / 4) * Math.exp(1 - 8 / 4)) / 5 }, { x: 4.5, y: 3 + (-6 * (9 / 4) * Math.exp(1 - 9 / 4)) / 5 }, { x: 5, y: 3 + (-6 * (10 / 4) * Math.exp(1 - 10 / 4)) / 5 }, { x: 5.5, y: 3 + (-6 * (11 / 4) * Math.exp(1 - 11 / 4)) / 5 }, { x: 6, y: 3 + (-6 * (12 / 4) * Math.exp(1 - 12 / 4)) / 5 }, { x: 6.5, y: 3 + (-6 * (13 / 4) * Math.exp(1 - 13 / 4)) / 5 }, { x: 7, y: 3 + (-6 * (14 / 4) * Math.exp(1 - 14 / 4)) / 5 }, { x: 7.5, y: 3 + (-6 * (15 / 4) * Math.exp(1 - 15 / 4)) / 5 }, { x: 8, y: 3 + (-6 * (16 / 4) * Math.exp(1 - 16 / 4)) / 5 }, { x: 8.5, y: 3 + (-6 * (17 / 4) * Math.exp(1 - 17 / 4)) / 5 }, { x: 9, y: 3 + (-6 * (18 / 4) * Math.exp(1 - 18 / 4)) / 5 }, { x: 9.5, y: 3 + (-6 * (19 / 4) * Math.exp(1 - 19 / 4)) / 5 }, { x: 10, y: 3 + (-6 * (20 / 4) * Math.exp(1 - 20 / 4)) / 5 }, { x: 10.5, y: 3 + (-6 * (21 / 4) * Math.exp(1 - 21 / 4)) / 5 }, { x: 11, y: 3 + (-6 * (22 / 4) * Math.exp(1 - 22 / 4)) / 5 }, { x: 11.5, y: 3 + (-6 * (23 / 4) * Math.exp(1 - 23 / 4)) / 5 }, { x: 12, y: 3 + (-6 * (24 / 4) * Math.exp(1 - 24 / 4)) / 5 }] },
+      { id: "warm-peak", kind: "point", appearance: "warning", at: { x: 2, y: 5.4 } },
+      { id: "cool-low", kind: "point", appearance: "construction", at: { x: 2, y: 1.8 } },
+    ],
+    labels: [
+      { key: "warm", objectId: "warm-peak", at: { x: 2, y: 5.4 }, placement: "above-right" },
+      { key: "cool", objectId: "cool-low", at: { x: 2, y: 1.8 }, placement: "below-right" },
+      { key: "room", objectId: "room", at: { x: 12, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    warm: <>menghangat: energi dilepas</>,
+    cool: <>mendingin: energi diserap</>,
+    room: <InlineMath math="25\ ^\circ\mathrm{C}" />,
+  }}
 />
 
 ## Memeriksa Beberapa Ciri Reaksi Kimia
@@ -126,12 +143,28 @@ Ambil contoh oksida logam. Nikel dapat membentuk <InlineMath math="\mathrm{NiO}"
 
 Setelah pengujian menunjukkan bahwa zat baru memang terbentuk, ukur massa atau komposisi reaktan dan produk. Data tersebut dapat digunakan untuk memilih hukum kimia yang sesuai.
 
-Hitung atom pada reaksi nikel itu, maka hukum massanya mengikuti.
+Hitung atom dalam <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" />, dan hukum kekekalan massa langsung terlihat. Putar batangnya: dua atom nikel dan dua atom oksigen ada di tiap ruas, jadi massa totalnya tidak mungkin berubah.
 
-<Mermaid
-  title="Atom yang Tetap dalam 2Ni + O2 → 2NiO"
-  description="Dua atom nikel dan dua atom oksigen di setiap sisi, jadi massa totalnya tidak bisa berubah."
-  chart={`flowchart LR
-    A["2 Ni + O2: 2 atom Ni, 2 atom O"] --> B["2 NiO: 2 atom Ni, 2 atom O"]
-    B --> C["Atom sama, massa total sama"]`}
+<MathVisual
+  title={<>Atom yang Tetap dalam <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /></>}
+  description={<>Atom nikel (abu-abu) dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti 1 atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 1.25, y: 1, z: 0 } },
+    objects: [
+      { id: "ni-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "ni-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ni", objectId: "ni-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 2.5, y: 2.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ni: <InlineMath math="\mathrm{Ni}:\ 2=2" />,
+    o: <InlineMath math="\mathrm{O}:\ 2=2" />,
+  }}
 />

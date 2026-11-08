@@ -63,6 +63,49 @@ Pilze betreiben keine Fotosynthese. Ihre Zellen nehmen **organische Moleküle au
 | Abgegebene Enzyme | Stoffe, die außerhalb des Körpers wirken | Sie zerlegen komplexes Material vor der Aufnahme |
 | Chitinwand | Eine feste Zellwand aus Chitin | Sie unterscheidet Pilze von Pflanzen mit Zellulosewänden |
 
+Die weißen Fäden im Tempeh wachsen an ihren Spitzen, und jede Spitze kann sich in zwei gabeln. Nach <InlineMath math="n" /> Gabelungen gibt es bis zu <InlineMath math="2^n" /> Spitzen, und jede gibt Enzyme ab und nimmt Nahrung auf. Zoom heraus und zähl die Spitzen auf jeder Ebene.
+
+<MathVisual
+  title={<>Gegabelte Hyphen vermehren die Spitzen</>}
+  description={<>Eine Hyphe, die sich dreimal gabelt. Die violetten Punkte sind die wachsenden Spitzen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hypha-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2.4 } },
+      { id: "hypha-1", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) } },
+      { id: "hypha-2", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) } },
+      { id: "hypha-3", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) } },
+      { id: "hypha-4", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-5", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-6", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) } },
+      { id: "hypha-7", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "hypha-8", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-9", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-10", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-11", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-12", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-13", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-14", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+      { id: "tip-0", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "tip-1", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-2", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-3", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-4", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-5", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-6", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-7", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "tips", objectId: "tip-0", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    tips: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Pilze ernähren sich anders als Tiere
 
 Pilze geben Enzyme auf organisches Material ab und nehmen anschließend die **kleineren Moleküle** auf, die bei der Verdauung entstehen. Tiere verdauen Nahrung meist im Körper, während Pflanzen durch Fotosynthese Zucker herstellen.
@@ -76,19 +119,6 @@ Dieser Vorgang heißt **extrazelluläre Verdauung**. Hyphen stellen die Kontaktf
 ### Chitin trennt Pilzwände von Pflanzenwänden
 
 Pilzzellwände enthalten **Chitin**, während pflanzliche Zellwände hauptsächlich aus Zellulose bestehen. Chitin kommt auch im Außenskelett von Insekten vor. Das Material der Zellwand ist eines der Merkmale, anhand derer sich Pilze von Pflanzen unterscheiden lassen.
-
-Stell die beiden Ernährungsweisen nebeneinander, dann dreht sich die Reihenfolge der Schritte um.
-
-<Mermaid
-  title="Pilze verdauen außen, Tiere innen"
-  description="Pilze geben zuerst Enzyme ab und nehmen danach auf, Tiere nehmen Nahrung zuerst auf und verdauen sie innen."
-  chart={`flowchart TD
-    A["Pilz"] --> B["Gibt Enzyme auf die Nahrung ab"]
-    B --> C["Nahrung wird außen zerlegt"]
-    C --> D["Nimmt kleine Moleküle auf"]
-    E["Tier"] --> F["Nimmt Nahrung in den Körper auf"]
-    F --> G["Verdaut sie innen"]`}
-/>
 
 ## Ausbreitung von Pilzen durch Sporen
 
@@ -116,6 +146,34 @@ An Pflanzenwurzeln bilden manche Pilze eine [**Mykorrhiza**](https://research.fs
   chart={`flowchart LR
     P["Pflanze"] -->|"Zucker aus der Fotosynthese"| F["Mykorrhizapilz"]
     F -->|"Wasser und Mineralstoffe"| P`}
+/>
+
+Zersetzende Pilze bauen Falllaub ab, also schrumpft die Streu. Nimm als einfaches Modell an, dass alle 4 Wochen die Hälfte der restlichen Streu abgebaut wird: Nach <InlineMath math="t" /> Wochen sind noch <InlineMath math="m=100\left(\tfrac{1}{2}\right)^{t/4}" /> Gramm übrig. Folge der Kurve: Die Menge, die pro Monat abgebaut wird, wird kleiner, aber die Halbierungszeit bleibt gleich.
+
+<MathVisual
+  title={<>Pilze halbieren die Laubstreu</>}
+  description={<>Restliche Streu in einem einfachen Modell, in dem alle 4 Wochen die Hälfte abgebaut wird. Waagerecht: Ein Gitterschritt entspricht 2 Wochen. Senkrecht: Ein Gitterschritt entspricht 12,5 Gramm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "litter", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (100 * 0.5 ** (0 / 4)) / 12.5 }, { x: 0.5, y: (100 * 0.5 ** (1 / 4)) / 12.5 }, { x: 1, y: (100 * 0.5 ** (2 / 4)) / 12.5 }, { x: 1.5, y: (100 * 0.5 ** (3 / 4)) / 12.5 }, { x: 2, y: (100 * 0.5 ** (4 / 4)) / 12.5 }, { x: 2.5, y: (100 * 0.5 ** (5 / 4)) / 12.5 }, { x: 3, y: (100 * 0.5 ** (6 / 4)) / 12.5 }, { x: 3.5, y: (100 * 0.5 ** (7 / 4)) / 12.5 }, { x: 4, y: (100 * 0.5 ** (8 / 4)) / 12.5 }, { x: 4.5, y: (100 * 0.5 ** (9 / 4)) / 12.5 }, { x: 5, y: (100 * 0.5 ** (10 / 4)) / 12.5 }, { x: 5.5, y: (100 * 0.5 ** (11 / 4)) / 12.5 }, { x: 6, y: (100 * 0.5 ** (12 / 4)) / 12.5 }, { x: 6.5, y: (100 * 0.5 ** (13 / 4)) / 12.5 }, { x: 7, y: (100 * 0.5 ** (14 / 4)) / 12.5 }, { x: 7.5, y: (100 * 0.5 ** (15 / 4)) / 12.5 }, { x: 8, y: (100 * 0.5 ** (16 / 4)) / 12.5 }] },
+      { id: "half-0", kind: "point", appearance: "secondary", at: { x: 0, y: 8 } },
+      { id: "half-4", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "half-8", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "half-12", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "half-16", kind: "point", appearance: "answer", at: { x: 8, y: 0.5 } },
+    ],
+    labels: [
+      { key: "start", objectId: "half-0", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "end", objectId: "half-16", at: { x: 8, y: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="100\ \mathrm{g}" />,
+    end: <InlineMath math="6{,}25\ \mathrm{g}" />,
+  }}
 />
 
 ## Pilze nehmen Nahrung nach äußerer Verdauung auf

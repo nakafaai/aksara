@@ -125,18 +125,40 @@ The symbol <InlineMath math="q" /> is the particle charge in coulombs, and <Inli
 
 An electric field exerts a force on charged particles. A proton is pushed along the field, an electron in the opposite direction, and a neutron is not deflected in this simple model.
 
-The sign of the charge decides which way each beam bends between the plates.
+Send three beams with the same kinetic energy <InlineMath math="K" /> between charged plates. After a distance <InlineMath math="x" />, a particle with charge <InlineMath math="q" /> in the field <InlineMath math="E" /> has moved sideways by <InlineMath math="y=\tfrac{qEx^2}{4K}" />. The electron and the proton bend by the same amount in opposite directions, and the neutron goes straight. Zoom in at the end of the plates.
 
-<Mermaid
-  title="Charge Decides the Bend"
-  description="With F = qE, a negative particle bends toward the positive plate, a positive one toward the negative plate, and a neutral one goes straight."
-  chart={`flowchart TD
-    A["Beam between charged plates"] --> B["Electron, q < 0"]
-    A --> C["Proton, q > 0"]
-    A --> D["Neutron, q = 0"]
-    B --> E["Bends toward the positive plate"]
-    C --> F["Bends toward the negative plate"]
-    D --> G["Goes straight"]`}
+<MathVisual
+  title={<>Same Energy, Opposite Bends</>}
+  description={<>Paths of an electron (violet), a proton (orange) and a neutron (gray) with equal kinetic energy between a positive and a negative plate.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plate-plus", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 8, y: 3 } },
+      { id: "plate-minus", kind: "segment", appearance: "secondary", from: { x: 0, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "electron", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "proton", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (-1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (-1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (-1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (-1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (-1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (-1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (-1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (-1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (-1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (-1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (-1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (-1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (-1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (-1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (-1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (-1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "neutron", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "electron-end", kind: "point", appearance: "secondary", at: { x: 8, y: 2.5 } },
+      { id: "proton-end", kind: "point", appearance: "primary", at: { x: 8, y: -2.5 } },
+      { id: "neutron-end", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "plus", objectId: "plate-plus", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "minus", objectId: "plate-minus", at: { x: 0, y: -3 }, placement: "below-right" },
+      { key: "electron", objectId: "electron-end", at: { x: 8, y: 2.5 }, placement: "right" },
+      { key: "proton", objectId: "proton-end", at: { x: 8, y: -2.5 }, placement: "right" },
+      { key: "neutron", objectId: "neutron-end", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    plus: <>positive plate</>,
+    minus: <>negative plate</>,
+    electron: <InlineMath math="e^{-},\ q<0" />,
+    proton: <InlineMath math="p^{+},\ q>0" />,
+    neutron: <InlineMath math="n,\ q=0" />,
+  }}
 />
 
 ## Mass and Acceleration
@@ -162,8 +184,8 @@ Suppose the same force acts on a tennis ball and a bowling ball for the same amo
 Here are the three masses in u at the same scale, one grid step for <InlineMath math="0.5\ \text{u}" />. Proton and neutron stand almost equally tall. The electron's column is there too, but at about <InlineMath math="1/1836" /> of a proton you can hardly see it, which is why the mass of an atom sits in its nucleus.
 
 <MathVisual
-  title="Masses of the Three Particles"
-  description="Proton 1.0073 u, neutron 1.0087 u and electron 0.00055 u at one scale. One grid step up is 0.5 u."
+  title={<>Masses of the Three Particles</>}
+  description={<>Proton 1.0073 u, neutron 1.0087 u and electron 0.00055 u at one scale. One grid step up is 0.5 u.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },

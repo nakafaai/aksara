@@ -43,18 +43,33 @@ Erfasse zunächst alle eingesetzten Stoffe, ihre Veränderungen, die Produkte, d
 
 Eine Behauptung <Highlight>lässt sich erst mit Belegen prüfen</Highlight>. Wörter wie „natürlich“, „effizient“ oder „umweltfreundlich“ benennen noch nicht, welche Gefahr oder Abfallmenge gesunken ist. Ein fairer Vergleich hält außerdem die erforderliche Funktion konstant. Weniger Reiniger ist keine Verbesserung, wenn die Oberfläche schmutzig bleibt. Ein Ersatzmaterial muss dieselbe Aufgabe erfüllen.
 
-Hier ist diese Aufzeichnung als Ablauf, den du für jede Aktivität ausfüllen kannst.
+Verfolg eine Tätigkeit als Masse hinein und Masse heraus. Jedes Kilogramm, das hineingeht, verlässt den Prozess im Produkt oder im Rückstand, also <InlineMath math="m_\text{ein}=m_\text{Produkt}+m_\text{Rest}" />. Das Band teilt sich nach Masse: Mit Beispielzahlen ergeben <InlineMath math="10\ \mathrm{kg}" /> hinein <InlineMath math="8\ \mathrm{kg}" /> Produkt und <InlineMath math="2\ \mathrm{kg}" /> Rückstand. Zoom auf den rosa Zweig, den Teil, den ein grünerer Prozess kleiner machen will.
 
-<Mermaid
-  title="Eine Aktivität vom Eingang bis zum Beleg verfolgen"
-  description="Folge den Stoffen durch den Prozess zu dem, was ihn verlässt, und weiter zu den Belegen und der veränderten Gefahr."
-  chart={`flowchart LR
-    A["Eingesetzte Stoffe"] --> B["Prozess"]
-    B --> C["Produkt"]
-    B --> D["Rückstand"]
-    C --> E["Gemessene Belege"]
-    D --> E
-    E --> F["Welche Gefahr oder welcher Abfall ist gesunken?"]`}
+<MathVisual
+  title={<>Masse hinein gleich Masse heraus</>}
+  description={<>Ein beispielhafter Massenfluss: Das Eingangsband (grau) teilt sich in Produkt (türkis) und Rückstand (rosa), die Breiten maßstabsgetreu. Ein Gitterschritt entspricht 1 Kilogramm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "product", kind: "polygon", appearance: "construction", vertices: [{ x: 5, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "residue", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 1 }, { x: 5, y: 1 }] },
+      { id: "to-product", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-residue", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 1 }, { x: 3, y: 2 }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "product", objectId: "product", at: { x: 6.5, y: 10 }, placement: "above" },
+      { key: "residue", objectId: "residue", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="10\ \mathrm{kg}\ \text{hinein}" />,
+    product: <InlineMath math="8\ \mathrm{kg}\ \text{Produkt}" />,
+    residue: <InlineMath math="10-8=2\ \mathrm{kg}\ \text{Rückstand}" />,
+  }}
 />
 
 ## Ausreichend Spülmittel ohne unnötige Rückstände
@@ -78,8 +93,8 @@ Als **fiktives Datenbeispiel** werden zwei Reinigerformulierungen an gleicher Ve
 In der Szene unten ist jede Säule die Dosis für dieselbe saubere Fläche, ein Gitterschritt steht für <InlineMath math="2 \mathrm{mL}" />. Der graue Block auf B ist der Teil, den B nicht mehr braucht. Er ist genau ein Fünftel der Säule von A, also die <InlineMath math="20\%" /> aus der Rechnung. Dreh die Szene: Die Einsparung zählt nur, weil beide Säulen dieselbe Aufgabe erledigen.
 
 <MathVisual
-  title="Dieselbe saubere Fläche mit weniger Produkt"
-  description="Hypothetische Dosen zweier Reinigerformulierungen für denselben Fleck und dieselbe Fläche. Ein Gitterschritt nach oben sind 2 mL."
+  title={<>Dieselbe saubere Fläche mit weniger Produkt</>}
+  description={<>Hypothetische Dosen zweier Reinigerformulierungen für denselben Fleck und dieselbe Fläche. Ein Gitterschritt nach oben sind 2 mL.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
@@ -116,17 +131,32 @@ Trockene Blätter, Fruchtschalen und Speisereste enthalten organische Stoffe. Be
 
 Auch [Kompostierung](https://www.epa.gov/sustainable-management-food/approaches-composting) braucht kontrollierte Feuchtigkeit, Sauerstoffzufuhr, eine geeignete Haufenstruktur und ein ausgewogenes Nährstoffverhältnis. Ein schlecht betreuter Haufen kann anaerob werden, unangenehm riechen oder Sickerwasser freisetzen. Diese Bedingungen steuern die mikrobielle Aktivität und Temperatur. In diesem Beispiel ist Kompostierung eine Abfallbehandlung. Eine Aktivität ist eine Produkt- oder Prozessneugestaltung, wenn sie das chemische Design so verändert, dass Abfall bereits an der Quelle vermieden wird.
 
-Vergleich die beiden Wege, die vom selben Laubhaufen ausgehen.
+Verfolg den Kohlenstoff im selben Laubhaufen. Verbrennen oxidiert fast alles innerhalb von Minuten, also geht er als Rauch und Kohlenstoffdioxid davon. In einem beispielhaften Kompostmodell sind nach <InlineMath math="t" /> Wochen noch <InlineMath math="40+60e^{-t/4}" /> Prozent übrig, die Mikroorganismen arbeiten also langsam, und ein Teil des Kohlenstoffs bleibt im Kompost für den Boden. Zoom auf beide Kurven nahe am Anfang.
 
-<Mermaid
-  title="Denselben Abfall verbrennen oder kompostieren"
-  description="Verbrennen oxidiert organisches Material schnell zu Rauch, Kompostieren lässt Mikroorganismen es langsam zu Kompost abbauen."
-  chart={`flowchart LR
-    A["Laub und Essensreste"] --> B["Verbrennen"]
-    A --> C["Kompostieren"]
-    B --> D["Schnelle Oxidation: Rauch und Schadstoffe"]
-    C --> E["Mikroorganismen arbeiten langsam"]
-    E --> F["Kompost für den Boden"]`}
+<MathVisual
+  title={<>Verbrennen oder Kompostieren desselben Laubs</>}
+  description={<>Anteil des Kohlenstoffs im Haufen nach dem Verbrennen (rosa) und beim Kompostieren (türkis). Waagerecht: Ein Gitterschritt entspricht einer Woche. Senkrecht: Ein Gitterschritt entspricht 20 Prozent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "burn", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 5 }, { x: 0.003, y: 0.25 }, { x: 12, y: 0.25 }] },
+      { id: "compost", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: (40 + 60 * Math.exp(-0.5 / 4)) / 20 }, { x: 1, y: (40 + 60 * Math.exp(-1 / 4)) / 20 }, { x: 1.5, y: (40 + 60 * Math.exp(-1.5 / 4)) / 20 }, { x: 2, y: (40 + 60 * Math.exp(-2 / 4)) / 20 }, { x: 2.5, y: (40 + 60 * Math.exp(-2.5 / 4)) / 20 }, { x: 3, y: (40 + 60 * Math.exp(-3 / 4)) / 20 }, { x: 3.5, y: (40 + 60 * Math.exp(-3.5 / 4)) / 20 }, { x: 4, y: (40 + 60 * Math.exp(-4 / 4)) / 20 }, { x: 4.5, y: (40 + 60 * Math.exp(-4.5 / 4)) / 20 }, { x: 5, y: (40 + 60 * Math.exp(-5 / 4)) / 20 }, { x: 5.5, y: (40 + 60 * Math.exp(-5.5 / 4)) / 20 }, { x: 6, y: (40 + 60 * Math.exp(-6 / 4)) / 20 }, { x: 6.5, y: (40 + 60 * Math.exp(-6.5 / 4)) / 20 }, { x: 7, y: (40 + 60 * Math.exp(-7 / 4)) / 20 }, { x: 7.5, y: (40 + 60 * Math.exp(-7.5 / 4)) / 20 }, { x: 8, y: (40 + 60 * Math.exp(-8 / 4)) / 20 }, { x: 8.5, y: (40 + 60 * Math.exp(-8.5 / 4)) / 20 }, { x: 9, y: (40 + 60 * Math.exp(-9 / 4)) / 20 }, { x: 9.5, y: (40 + 60 * Math.exp(-9.5 / 4)) / 20 }, { x: 10, y: (40 + 60 * Math.exp(-10 / 4)) / 20 }, { x: 10.5, y: (40 + 60 * Math.exp(-10.5 / 4)) / 20 }, { x: 11, y: (40 + 60 * Math.exp(-11 / 4)) / 20 }, { x: 11.5, y: (40 + 60 * Math.exp(-11.5 / 4)) / 20 }, { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }] },
+      { id: "kept", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
+      { id: "compost-end", kind: "point", appearance: "construction", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 } },
+    ],
+    labels: [
+      { key: "burn", objectId: "burn", at: { x: 0.003, y: 0.25 }, placement: "above-right" },
+      { key: "compost", objectId: "compost-end", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }, placement: "above-left" },
+      { key: "kept", objectId: "kept", at: { x: 12, y: 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    burn: <>Verbrennen: in Minuten weg</>,
+    compost: <>Kompostieren: Wochen</>,
+    kept: <>im Kompost gebundener Kohlenstoff</>,
+  }}
 />
 
 ## Natürliche Materialien brauchen weiterhin Belege

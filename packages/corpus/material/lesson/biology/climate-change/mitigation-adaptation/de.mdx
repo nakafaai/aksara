@@ -35,8 +35,8 @@ Ordne eine Maßnahme nach ihrem wichtigsten Ergebnis ein: Sie begrenzt Treibhaus
 Klimarisiko entsteht, wenn drei Dinge zusammenkommen: eine **Gefahr** wie eine Hitzewelle oder Sturmflut, die **Exposition** der Menschen und Orte in ihrem Weg und ihre **Verwundbarkeit**, also wie leicht sie Schaden nehmen. Die Szene unten nutzt einen einfachen Beispielindex, der die drei multipliziert, gezeichnet als Quader mit der Gefahr als Höhe. Minderung wirkt auf die Ursache und macht den Quader niedriger. Anpassung wirkt auf den Schaden und macht ihn von vorn nach hinten dünner. Dreh die Szene: Beides halbiert das Volumen, aber in verschiedene Richtungen, und zusammen sinkt es auf ein Viertel.
 
 <MathVisual
-  title="Zwei Wege, Klimarisiko zu verkleinern"
-  description="Ein beispielhafter Risikoindex aus Gefahr × Exposition × Verwundbarkeit. Die Höhe ist die Gefahr, die Breite die Exposition, die Tiefe die Verwundbarkeit."
+  title={<>Zwei Wege, Klimarisiko zu verkleinern</>}
+  description={<>Ein beispielhafter Risikoindex aus <InlineMath math="\text{Gefahr}\times\text{Exposition}\times\text{Verwundbarkeit}" />. Die Höhe ist die Gefahr, die Breite die Exposition, die Tiefe die Verwundbarkeit.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -113,19 +113,39 @@ Ein Verb allein reicht nicht aus. **Schützen** kann beide Ziele beschreiben:
     D --> G["Kann beides leisten"]`}
 />
 
-Prüf jede Maßnahme mit diesen zwei Fragen, in dieser Reihenfolge, bevor du ihre Gruppe nennst.
+Die zwei Fragen teilen Maßnahmen in vier Ecken. Nach rechts heißt, die Maßnahme senkt Treibhausgase oder schützt eine Kohlenstoffsenke, und nach oben heißt, sie senkt Schäden durch Folgen. Zoom auf jeden Punkt und prüf, in welche Ecke ihn sein beabsichtigtes Ergebnis stellt.
 
-<Mermaid
-  title="Eine Maßnahme mit zwei Fragen einordnen"
-  description="Frag, ob die Maßnahme Treibhausgase senkt und ob sie Schäden durch Folgen senkt. Die Antworten ergeben ihre Gruppe."
-  chart={`flowchart TD
-    A["Maßnahme"] --> B{"Senkt sie Treibhausgase oder schützt sie Kohlenstoffsenken?"}
-    B -->|Ja| C{"Senkt sie auch Schäden durch Folgen?"}
-    B -->|Nein| D{"Senkt sie Schäden durch Folgen?"}
-    C -->|Ja| E["Doppelter Nutzen"]
-    C -->|Nein| F["Minderung"]
-    D -->|Ja| G["Anpassung"]
-    D -->|Nein| H["Keins von beiden: Behauptung neu prüfen"]`}
+<MathVisual
+  title={<>Zwei Fragen, vier Ecken</>}
+  description={<>Maßnahmen nach ihrem beabsichtigten Ergebnis: Minderung (orange), Anpassung (violett), beides (fuchsia) oder keins von beiden (grau).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "neither", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "mitigation", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "adaptation", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "both", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 2 }, { x: 4, y: 2 }, { x: 4, y: 4 }, { x: 2, y: 4 }] },
+      { id: "forest", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "homes", kind: "point", appearance: "secondary", at: { x: 1, y: 3 } },
+      { id: "mangroves", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "homes", objectId: "homes", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "mangroves", objectId: "mangroves", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "gas", objectId: "mitigation", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "harm", objectId: "adaptation", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    forest: <>Wald für seinen Kohlenstoff schützen</>,
+    homes: <>Häuser vor Hochwasser schützen</>,
+    mangroves: <>Mangroven neu pflanzen</>,
+    gas: <>senkt Treibhausgase</>,
+    harm: <>senkt Schäden durch Folgen</>,
+  }}
 />
 
 ## Eine Maßnahme kann zwei Wirkungen haben
@@ -133,3 +153,32 @@ Prüf jede Maßnahme mit diesen zwei Fragen, in dieser Reihenfolge, bevor du ihr
 Der Satz „Ein Küstendorf pflanzt Mangroven, damit die Erosion abnimmt und Häuser besser geschützt sind“ betont vor allem die Anpassung. Das genannte Ziel ist, Schäden an der Küste zu verringern. Die Mangroven können zusätzlich Kohlenstoff speichern, doch dieser Satz richtet den Blick auf den Schutz.
 
 Ordne die Maßnahme **nach ihrem genannten Ergebnis** ein. Eine Verringerung von Treibhausgasen ist Minderung. Eine Verringerung von Klimaschäden ist Anpassung. Die Wiederherstellung eines Ökosystems kann je nach erzielter Veränderung eines oder beide Ziele unterstützen.
+
+Auch die Küstenschutzseite der Mangroven lässt sich modellieren. Wurzeln und Stämme nehmen auf jedem Meter einen Teil der Wellenenergie auf, also sinkt die Wellenhöhe in einem einfachen Modell wie <InlineMath math="H=H_0\,e^{-kx}" />. Mit einem beispielhaften <InlineMath math="k=0{,}01" /> pro Meter ist eine <InlineMath math="1\ \mathrm{m}" /> hohe Welle nach 100 Metern Mangroven nur noch etwa <InlineMath math="0{,}37\ \mathrm{m}" /> hoch. Folge der Kurve über den türkisen Gürtel.
+
+<MathVisual
+  title={<>Wellen schrumpfen in den Mangroven</>}
+  description={<>Wellenhöhe durch einen 200 Meter breiten Mangrovengürtel in einem beispielhaften Modell. Waagerecht: Ein Gitterschritt entspricht 25 Metern. Senkrecht: Ein Gitterschritt entspricht 0,25 Metern.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "belt", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 0.4 }, { x: 0, y: 0.4 }] },
+      { id: "height", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 * Math.exp(-0.01 * 0) }, { x: 0.4, y: 4 * Math.exp(-0.01 * 10) }, { x: 0.8, y: 4 * Math.exp(-0.01 * 20) }, { x: 1.2, y: 4 * Math.exp(-0.01 * 30) }, { x: 1.6, y: 4 * Math.exp(-0.01 * 40) }, { x: 2, y: 4 * Math.exp(-0.01 * 50) }, { x: 2.4, y: 4 * Math.exp(-0.01 * 60) }, { x: 2.8, y: 4 * Math.exp(-0.01 * 70) }, { x: 3.2, y: 4 * Math.exp(-0.01 * 80) }, { x: 3.6, y: 4 * Math.exp(-0.01 * 90) }, { x: 4, y: 4 * Math.exp(-0.01 * 100) }, { x: 4.4, y: 4 * Math.exp(-0.01 * 110) }, { x: 4.8, y: 4 * Math.exp(-0.01 * 120) }, { x: 5.2, y: 4 * Math.exp(-0.01 * 130) }, { x: 5.6, y: 4 * Math.exp(-0.01 * 140) }, { x: 6, y: 4 * Math.exp(-0.01 * 150) }, { x: 6.4, y: 4 * Math.exp(-0.01 * 160) }, { x: 6.8, y: 4 * Math.exp(-0.01 * 170) }, { x: 7.2, y: 4 * Math.exp(-0.01 * 180) }, { x: 7.6, y: 4 * Math.exp(-0.01 * 190) }, { x: 8, y: 4 * Math.exp(-0.01 * 200) }] },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 0, y: 4 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.exp(-1) } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 8, y: 4 * Math.exp(-2) } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 4, y: 4 * Math.exp(-1) }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 8, y: 4 * Math.exp(-2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    edge: <InlineMath math="1\ \mathrm{m}" />,
+    mid: <InlineMath math="e^{-1}\approx0{,}37\ \mathrm{m}" />,
+    end: <InlineMath math="e^{-2}\approx0{,}14\ \mathrm{m}" />,
+  }}
+/>

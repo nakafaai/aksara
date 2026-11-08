@@ -91,8 +91,8 @@ Unsur dalam satu golongan tidak selalu identik. Pada golongan utama, jumlah dan 
 Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math="2, 8, 8, 18, 18, 32, 32" />. Setiap kolom di bawah adalah satu periode, dengan satu kotak grid untuk <InlineMath math="4" /> unsur. Lonjakan ke <InlineMath math="18" /> dan <InlineMath math="32" /> adalah tempat logam transisi, lalu lantanida dan aktinida, ikut masuk.
 
 <MathVisual
-  title="Banyak Unsur di Setiap Periode"
-  description="Banyaknya unsur pada periode 1 sampai 7 tabel periodik modern. Satu kotak grid ke atas sama dengan 4 unsur."
+  title={<>Banyak Unsur di Setiap Periode</>}
+  description={<>Banyaknya unsur pada periode 1 sampai 7 tabel periodik modern. Satu kotak grid ke atas sama dengan 4 unsur.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -159,14 +159,51 @@ Gunakan tabel periodik pada kartu interaktif untuk mengecek jawabanmu sendiri.
 
 [Tabel periodik modern](https://iupac.org/what-we-do/periodic-table-of-elements/) memuat nama dan nomor atom setiap unsur. Susunan unsur berdasarkan nomor atom dalam periode dan golongan menunjukkan pola yang berulang.
 
-Membaca kotak mana pun di tabel selalu tiga langkah yang sama.
+Ikuti nomor atom dari 1 sampai 18, dan kamu menelusuri tabel baris demi baris. Jalurnya melintasi satu periode, lalu melompat kembali ke kiri untuk memulai periode berikutnya, jadi baris tiap unsur menunjukkan periodenya dan kolomnya menunjukkan golongannya. Perbesar tiga titik fuchsia yang memulai periode baru.
 
-<Mermaid
-  title="Membaca Letak Sebuah Unsur"
-  description="Nomor atom mengurutkan unsur, baris memberi periode, dan kolom memberi golongan."
-  chart={`flowchart LR
-    A["Nomor atom"] --> B["Urutan letak"]
-    B --> C["Baris: periode"]
-    B --> D["Kolom: golongan"]
-    D --> E["Sifat kimia mirip dalam satu golongan"]`}
+<MathVisual
+  title={<>Membaca Tabel Menurut Urutan Nomor Atom</>}
+  description={<>18 unsur pertama menurut urutan nomor atom, diletakkan menurut golongan (mendatar) dan periode (baris).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "order", kind: "polyline", appearance: "reference", vertices: [{ x: 1 / 2, y: (4 - 1) * 1.5 }, { x: 18 / 2, y: (4 - 1) * 1.5 }, { x: 1 / 2, y: (4 - 2) * 1.5 }, { x: 2 / 2, y: (4 - 2) * 1.5 }, { x: 13 / 2, y: (4 - 2) * 1.5 }, { x: 14 / 2, y: (4 - 2) * 1.5 }, { x: 15 / 2, y: (4 - 2) * 1.5 }, { x: 16 / 2, y: (4 - 2) * 1.5 }, { x: 17 / 2, y: (4 - 2) * 1.5 }, { x: 18 / 2, y: (4 - 2) * 1.5 }, { x: 1 / 2, y: (4 - 3) * 1.5 }, { x: 2 / 2, y: (4 - 3) * 1.5 }, { x: 13 / 2, y: (4 - 3) * 1.5 }, { x: 14 / 2, y: (4 - 3) * 1.5 }, { x: 15 / 2, y: (4 - 3) * 1.5 }, { x: 16 / 2, y: (4 - 3) * 1.5 }, { x: 17 / 2, y: (4 - 3) * 1.5 }, { x: 18 / 2, y: (4 - 3) * 1.5 }] },
+      { id: "z1", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z10", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z18", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 3) * 1.5 } },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z2", objectId: "z2", at: { x: 18 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z3", objectId: "z3", at: { x: 1 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z10", objectId: "z10", at: { x: 18 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z11", objectId: "z11", at: { x: 1 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+      { key: "z18", objectId: "z18", at: { x: 18 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    z1: <InlineMath math="1\ \mathrm{H}" />,
+    z2: <InlineMath math="2\ \mathrm{He}" />,
+    z3: <InlineMath math="3\ \mathrm{Li}" />,
+    z10: <InlineMath math="10\ \mathrm{Ne}" />,
+    z11: <InlineMath math="11\ \mathrm{Na}" />,
+    z18: <InlineMath math="18\ \mathrm{Ar}" />,
+  }}
 />

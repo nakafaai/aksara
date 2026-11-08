@@ -94,29 +94,88 @@ Die Sicherheit eines viralen Vektors hängt von seiner Entwicklung und Prüfung 
 
 > Beurteile die Rolle eines Virus anhand des Wirts, der beobachteten Wirkung und des Maßes der Kontrolle.
 
-Jede kontrollierte Nutzung behält die Fähigkeit des Virus, in Zellen zu gelangen, und entfernt den Schaden.
+Dreh diesen viralen Vektor. Seine Proteinhülle, der Teil, der schon weiß, wie man in Zellen gelangt, bleibt. Die Gene, die krank machen, werden entfernt, und stattdessen fährt ein Therapiegen im Inneren mit.
 
-<Mermaid
-  title="Vom Virus zum kontrollierten Werkzeug"
-  description="Forschende entfernen krankmachende Gene, fügen eine nützliche Fracht hinzu und testen, wohin der Vektor gelangt."
-  chart={`flowchart LR
-    A["Virus, das in Zellen eindringt"] --> B["Krankmachende Gene entfernen"]
-    B --> C["Therapiegen oder Ziel hinzufügen"]
-    C --> D["Erreichte Zellen, Vermehrung, Ausbreitung testen"]
-    D --> E["Gentherapie, Impfstoffe, Biopestizide"]`}
+<MathVisual
+  title={<>Gleiche Hülle, neue Fracht</>}
+  description={<>Eine ikosaedrische Virushülle (violett) mit einem Therapiegen (fuchsia), daneben die entfernten Krankheitsgene (rosa).</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: 0, max: 4 }, z: { min: -2, max: 2 } },
+    view: { kind: "camera", position: { x: 5, y: 4, z: 7 }, target: { x: 0.8, y: 2, z: 0 } },
+    objects: [
+      { id: "shell-0", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-1", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-3", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-4", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-5", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-6", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-7", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-8", kind: "polygon", appearance: "secondary", vertices: [{ x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-9", kind: "polygon", appearance: "secondary", vertices: [{ x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-10", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-11", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-12", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 - 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-13", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-14", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-15", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-16", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "shell-17", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 - (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-18", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: -1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "shell-19", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 2 + 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2 + (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 2, z: 1 * 1.6 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "cargo", kind: "polyline", appearance: "answer", vertices: [{ x: -0.6, y: 1.6, z: 0 }, { x: -0.3, y: 2.3, z: 0.2 }, { x: 0, y: 1.7, z: -0.2 }, { x: 0.3, y: 2.4, z: 0.1 }, { x: 0.6, y: 1.8, z: 0 }] },
+      { id: "removed", kind: "polyline", appearance: "warning", vertices: [{ x: 2.6, y: 0.3, z: 0 }, { x: 2.9, y: 0.9, z: 0.2 }, { x: 3.2, y: 0.4, z: -0.2 }, { x: 3.5, y: 1, z: 0 }] },
+    ],
+    labels: [
+      { key: "shell", objectId: "shell-0", at: { x: 0, y: 3.6, z: 0 }, placement: "above" },
+      { key: "cargo", objectId: "cargo", at: { x: 0.6, y: 1.8, z: 0 }, placement: "right" },
+      { key: "removed", objectId: "removed", at: { x: 3.5, y: 1, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    shell: <>Proteinhülle bleibt</>,
+    cargo: <>Therapiegen im Inneren</>,
+    removed: <>Krankheitsgene entfernt</>,
+  }}
 />
 
 ## Viruswirkungen beurteilen
 
 Schädigt ein Virus Gewebe, verursacht es eine Krankheitswirkung. Verändert es mikrobielle Populationen, wirkt es auf ein Ökosystem. Wird ein Virus so verändert, dass es ein Gen in ausgewählte Zellen transportiert, dient es als biotechnologischer Vektor. In jedem Fall prüfen wir den **Wirt oder die Zielzelle, die beobachtete Veränderung** und die Kontrolle über das Virus.
 
-Nutz die drei Punkte aus dem Zitat als einen Weg.
+Leg die drei Fragen auf eine Karte. Jeder Punkt nennt einen Wirt und das Virus, das auf ihn wirkt, weiter rechts, wenn das Ergebnis für diesen Wirt besser ist, und weiter oben, wenn Menschen die Lage stärker kontrollieren. Zoom hinein und vergleich, wo die schädliche Infektion, die ökologische Rolle und die entworfenen Werkzeuge landen.
 
-<Mermaid
-  title="Die Wirkung eines Virus beurteilen"
-  description="Nenn den Wirt, beschreib die beobachtete Wirkung und beurteil dann, wie kontrolliert die Lage ist."
-  chart={`flowchart LR
-    A["Welcher Wirt?"] --> B["Welche Wirkung wird beobachtet?"]
-    B --> C["Wie kontrolliert ist es?"]
-    C --> D["Schädliche Infektion, ökologische Rolle oder entworfenes Werkzeug"]`}
+<MathVisual
+  title={<>Wirt, Wirkung und Kontrolle auf einer Karte</>}
+  description={<>Vier Virusfälle nach ihrer Wirkung auf den Wirt (waagerecht) und danach, wie kontrolliert sie sind (senkrecht).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "effect-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "control-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "flu", kind: "point", appearance: "warning", at: { x: 0.6, y: 0.6 } },
+      { id: "sea", kind: "point", appearance: "construction", at: { x: 1.2, y: 0.6 } },
+      { id: "pest", kind: "point", appearance: "primary", at: { x: 0.6, y: 3.4 } },
+      { id: "therapy", kind: "point", appearance: "answer", at: { x: 3.4, y: 3.4 } },
+    ],
+    labels: [
+      { key: "flu", objectId: "flu", at: { x: 0.6, y: 0.6 }, placement: "above-right" },
+      { key: "sea", objectId: "sea", at: { x: 1.2, y: 0.6 }, placement: "above-right" },
+      { key: "pest", objectId: "pest", at: { x: 0.6, y: 3.4 }, placement: "below-right" },
+      { key: "therapy", objectId: "therapy", at: { x: 3.4, y: 3.4 }, placement: "below-left" },
+      { key: "effect", objectId: "effect-axis", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "control", objectId: "control-axis", at: { x: 0, y: 4 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    flu: <>Grippevirus, Mensch: geschädigt</>,
+    sea: <>Phagen, Meeresbakterien: Nährstoffe recycelt</>,
+    pest: <>Biopestizid-Virus, Schadinsekt</>,
+    therapy: <>Gentherapie-Vektor, Patient</>,
+    effect: <>besser für den Wirt</>,
+    control: <>kontrollierter</>,
+  }}
 />

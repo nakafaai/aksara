@@ -70,17 +70,38 @@ An [ion](https://goldbook.iupac.org/terms/view/I03158) is an atomic or molecular
   }}
 />
 
-The sign of q tells you which kind of ion you have.
+The sign of <InlineMath math="q=p^{+}-e^{-}" /> tells you which kind of particle you have. Fewer electrons than protons leave a positive cation on the right, extra electrons give a negative anion on the left, and a neutral atom sits at zero. Zoom in and check each subtraction.
 
-<Mermaid
-  title="Cation or Anion from the Charge"
-  description="q = p⁺ − e⁻: fewer electrons give a cation, extra electrons give an anion."
-  chart={`flowchart TD
-    A["q = protons - electrons"] --> B["q > 0: lost electrons"]
-    A --> C["q < 0: gained electrons"]
-    A --> D["q = 0: neutral atom"]
-    B --> E["Cation"]
-    C --> F["Anion"]`}
+<MathVisual
+  title={<>Cation or Anion from the Charge</>}
+  description={<>Five particles placed by their charge, protons minus electrons. Cations (orange) are on the right, anions (violet) on the left.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "charge-axis", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0 }, to: { x: 2.5, y: 0 } },
+      { id: "oxide", kind: "point", appearance: "secondary", at: { x: -2, y: 0 } },
+      { id: "chloride", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "neon", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "sodium", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "magnesium", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "oxide", objectId: "oxide", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "chloride", objectId: "chloride", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "neon", objectId: "neon", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "sodium", objectId: "sodium", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "magnesium", objectId: "magnesium", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    oxide: <InlineMath math="\mathrm{O^{2-}}:\ 8-10=-2" />,
+    chloride: <InlineMath math="\mathrm{Cl^{-}}:\ 17-18=-1" />,
+    neon: <InlineMath math="\mathrm{Ne}:\ 10-10=0" />,
+    sodium: <InlineMath math="\mathrm{Na^{+}}:\ 11-10=+1" />,
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}}:\ 12-10=+2" />,
+  }}
 />
 
 ## Ion Charge from the Difference between Proton and Electron Counts
@@ -114,8 +135,8 @@ The negative sign in <InlineMath math="\mathrm{F}^{-}" /> means there are more e
 Compare a lithium atom with a lithium ion, protons in orange at the back and electrons in violet at the front. Losing one electron leaves <InlineMath math="3" /> protons against <InlineMath math="2" /> electrons, so <InlineMath math="q=3-2=+1" />.
 
 <MathVisual
-  title="Lithium Atom and Lithium Ion"
-  description="Protons (orange, back) and electrons (violet, front) in Li and Li⁺. One grid step up is 2 particles."
+  title={<>Lithium Atom and Lithium Ion</>}
+  description={<>Protons (orange, back) and electrons (violet, front) in <InlineMath math="\mathrm{Li}" /> and <InlineMath math="\mathrm{Li^+}" />. One grid step up is 2 particles.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },

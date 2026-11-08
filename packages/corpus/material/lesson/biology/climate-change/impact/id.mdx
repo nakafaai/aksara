@@ -46,8 +46,8 @@ Pemutihan karang menunjukkan stres berat dan dapat terjadi sebelum karang mati. 
 Stres panas pada terumbu bertambah dari minggu ke minggu. NOAA Coral Reef Watch mengukurnya dalam **degree heating weeks**: setiap minggu, ambil berapa derajat air berada di atas ambang pemutihan karang, lalu jumlahkan minggu-minggunya. Pada contoh ilustrasi di bawah, garis kuning adalah kelebihan panas mingguan itu, dan garis merah muda adalah jumlah berjalannya. Ikuti garis merah muda ke atas: garis itu melewati <InlineMath math="4\ ^\circ\text{C-minggu}" />, saat pemutihan yang berarti mungkin terjadi, lalu <InlineMath math="8" />, saat pemutihan parah dan kematian karang mungkin terjadi. Perhatikan bahwa garis merah muda tetap di ketinggiannya setelah air mendingin, karena stresnya sudah terjadi.
 
 <MathVisual
-  title="Stres Panas Menumpuk pada Terumbu"
-  description="Gelombang panas laut ilustrasi selama enam minggu. Mendatar: minggu. Tegak: derajat di atas ambang pemutihan (kuning) dan jumlah berjalannya dalam °C-minggu (merah muda)."
+  title={<>Stres Panas Menumpuk pada Terumbu</>}
+  description={<>Gelombang panas laut ilustrasi selama enam minggu. Mendatar: minggu. Tegak: derajat di atas ambang pemutihan (kuning) dan jumlah berjalannya dalam °C-minggu (merah muda).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -86,18 +86,41 @@ Stres panas pada terumbu bertambah dari minggu ke minggu. NOAA Coral Reef Watch 
 | Stres mereda cukup cepat | Karang dapat memperoleh kembali alga dan pulih. |
 | Stres berlangsung lama | Risiko penyakit dan kematian meningkat, lalu fungsi habitat terumbu dapat menurun. |
 
-Kisah karang ini punya percabangan, dan cabangnya bergantung pada seberapa lama panasnya bertahan.
+Ilmuwan terumbu menjumlahkan tekanan panas. Tiap minggu ketika air setidaknya <InlineMath math="1\ ^\circ\mathrm{C}" /> di atas ambang pemutihan karang, kelebihannya ditambahkan ke total yang disebut degree heating weeks. Dengan nilai mingguan ilustratif, totalnya melewati <InlineMath math="4" /> di minggu ke-6, saat pemutihan mungkin terjadi, dan mencapai <InlineMath math="8" /> di minggu ke-8, saat pemutihan parah dan kematian karang mungkin terjadi. Perbesar dan cari minggu yang tidak menambah apa pun.
 
-<Mermaid
-  title="Dua Akhir Setelah Pemutihan"
-  description="Air yang hangat menekan kerja sama karang dan alga. Stres singkat memberi kesempatan pulih, stres panjang menaikkan risiko kematian."
-  chart={`flowchart TD
-    A["Air laut terlalu hangat"] --> B["Simbiosis karang dan alga tertekan"]
-    B --> C["Karang melepas alga dan memutih"]
-    C --> D["Panas segera berakhir"]
-    C --> E["Panas bertahan lama"]
-    D --> F["Alga kembali, karang pulih"]
-    E --> G["Risiko penyakit dan kematian naik"]`}
+<MathVisual
+  title={<>Tekanan Panas Bertambah dari Minggu ke Minggu</>}
+  description={<>Degree heating weeks selama 12 minggu ilustratif. Mendatar: minggu. Tegak: tekanan panas yang terkumpul dalam <InlineMath math="^\circ\mathrm{C}" /> minggu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bleaching", kind: "segment", appearance: "highlight", from: { x: 0, y: 4 }, to: { x: 12, y: 4 } },
+      { id: "severe", kind: "segment", appearance: "warning", from: { x: 0, y: 8 }, to: { x: 12, y: 8 } },
+      { id: "stress", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 4, y: 1 + 1 }, { x: 5, y: 1 + 1 + 1.5 }, { x: 6, y: 1 + 1 + 1.5 + 1 }, { x: 7, y: 1 + 1 + 1.5 + 1 + 2 }, { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 }, { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }] },
+      { id: "week-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "week-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "week-3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "week-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1 + 1 } },
+      { id: "week-5", kind: "point", appearance: "secondary", at: { x: 5, y: 1 + 1 + 1.5 } },
+      { id: "week-6", kind: "point", appearance: "answer", at: { x: 6, y: 1 + 1 + 1.5 + 1 } },
+      { id: "week-7", kind: "point", appearance: "secondary", at: { x: 7, y: 1 + 1 + 1.5 + 1 + 2 } },
+      { id: "week-8", kind: "point", appearance: "answer", at: { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 } },
+      { id: "week-9", kind: "point", appearance: "secondary", at: { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-10", kind: "point", appearance: "secondary", at: { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-11", kind: "point", appearance: "secondary", at: { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-12", kind: "point", appearance: "secondary", at: { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+    ],
+    labels: [
+      { key: "four", objectId: "bleaching", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "eight", objectId: "severe", at: { x: 0, y: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    four: <>4: pemutihan mungkin terjadi</>,
+    eight: <>8: pemutihan parah dan kematian mungkin terjadi</>,
+  }}
 />
 
 ## Perubahan Pola Hujan Memengaruhi Pangan dan Air
@@ -135,3 +158,33 @@ Pada satwa liar, perubahan iklim dapat **menggeser wilayah geografis** tempat su
 Contoh karang menunjukkan rangkaian dampak iklim. Panas laut dapat mengganggu simbiosis karang dan memicu pemutihan. Jika terumbu rusak, ikan kehilangan tempat berlindung dan nelayan serta masyarakat pesisir dapat ikut terdampak.
 
 Dampak pada pangan, air, dan kesehatan juga terjadi sebagai **rangkaian sebab dan akibat**. Mulailah dari perubahan suhu, hujan, air, atau habitat, lalu ikuti akibatnya bagi organisme dan manusia yang bergantung pada sistem tersebut.
+
+Di pantai yang landai, daratan naik pelan-pelan, jadi kenaikan muka laut yang kecil menggeser tepi air jauh ke darat. Kalau tanahnya naik <InlineMath math="1\ \mathrm{cm}" /> tiap meter, kemiringannya <InlineMath math="s=0{,}01" />, dan kenaikan <InlineMath math="\Delta h=0{,}5\ \mathrm{m}" /> menggeser garis pantai sejauh <InlineMath math="\Delta h/s=50\ \mathrm{m}" /> ke darat. Perbesar di titik air yang lebih tinggi bertemu tanah.
+
+<MathVisual
+  title={<>Naik Setengah Meter, Masuk Lima Puluh Meter</>}
+  description={<>Penampang pantai yang landai, dengan tinggi diregangkan supaya kemiringannya terlihat. Mendatar: satu kotak grid berarti 10 meter. Tegak: satu kotak grid berarti 0,25 meter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ground", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 10, y: 4 }] },
+      { id: "sea-now", kind: "segment", appearance: "secondary", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sea-high", kind: "segment", appearance: "primary", from: { x: -2, y: 2 }, to: { x: 5, y: 2 } },
+      { id: "shore-now", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "shore-high", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+      { id: "retreat", kind: "segment", appearance: "warning", from: { x: 0, y: 0.2 }, to: { x: 5, y: 0.2 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "sea-high", at: { x: -2, y: 2 }, placement: "above-right" },
+      { key: "shore", objectId: "shore-high", at: { x: 5, y: 2 }, placement: "above-left" },
+      { key: "move", objectId: "retreat", at: { x: 2.5, y: 0.2 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    rise: <InlineMath math="+0{,}5\ \mathrm{m}" />,
+    shore: <>garis pantai baru</>,
+    move: <InlineMath math="50\ \mathrm{m}" />,
+  }}
+/>

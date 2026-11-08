@@ -106,8 +106,8 @@ Deuterium wird manchmal als <InlineMath math="\mathrm{D}" /> geschrieben, und Tr
 Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutronen grau vorn. Die Protonensäule ändert sich nie, deshalb bleiben alle Wasserstoff. Nur die Neutronensäule wächst, von <InlineMath math="0" /> auf <InlineMath math="1" /> und <InlineMath math="2" />, und mit ihr die Massenzahl.
 
 <MathVisual
-  title="Drei Isotope des Wasserstoffs"
-  description="Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, -2 und -3. Ein Gitterschritt nach oben ist 1 Teilchen."
+  title={<>Drei Isotope des Wasserstoffs</>}
+  description={<>Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, -2 und -3. Ein Gitterschritt nach oben ist 1 Teilchen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -161,16 +161,38 @@ Wenn das Atom neutral ist, sind Elektronen immer noch gleich Protonen:
 
 Ein neutrales <InlineMath math="{}^{14}_{6}\mathrm{C}" />-Atom besitzt also <InlineMath math="6" /> Protonen, <InlineMath math="6" /> Elektronen und <InlineMath math="8" /> Neutronen.
 
-Frag, welche Teilchenzahl sich geändert hat, dann folgt der Name.
+Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. Isotope eines Elements haben dasselbe <InlineMath math="Z" />, also stehen die Kohlenstoffisotope in einer gelben Reihe. Ein Ion bewegt sich auf dieser Karte gar nicht, weil sich nur seine Elektronen geändert haben. Zoom hinein und vergleiche <InlineMath math="^{14}\mathrm{C}" /> mit <InlineMath math="^{14}\mathrm{N}" />: gleiche Massenzahl, verschiedene Elemente.
 
-<Mermaid
-  title="Isotop oder Ion"
-  description="Andere Neutronenzahl bei gleichen Protonen ergibt ein Isotop. Eine andere Elektronenzahl ergibt ein Ion."
-  chart={`flowchart TD
-    A["Gleiches Element, gleiche Protonen"] --> B["Neutronenzahl verschieden"]
-    A --> C["Elektronenzahl verschieden"]
-    B --> D["Isotop: andere Massenzahl"]
-    C --> E["Ion: Ladung ungleich null"]`}
+<MathVisual
+  title={<>Isotope reihen sich auf, Ionen bleiben stehen</>}
+  description={<>Fünf Kerne nach Neutronenzahl (waagerecht) und Protonenzahl (senkrecht). Die gelbe Reihe enthält die drei Kohlenstoffisotope.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "carbon-row", kind: "segment", appearance: "highlight", from: { x: 5.5, y: 6 }, to: { x: 8.5, y: 6 } },
+      { id: "c12", kind: "point", appearance: "primary", at: { x: 6, y: 6 } },
+      { id: "c13", kind: "point", appearance: "primary", at: { x: 7, y: 6 } },
+      { id: "c14", kind: "point", appearance: "primary", at: { x: 8, y: 6 } },
+      { id: "n14", kind: "point", appearance: "secondary", at: { x: 7, y: 7 } },
+      { id: "o16", kind: "point", appearance: "construction", at: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 6, y: 6 }, placement: "below" },
+      { key: "c13", objectId: "c13", at: { x: 7, y: 6 }, placement: "below" },
+      { key: "c14", objectId: "c14", at: { x: 8, y: 6 }, placement: "below" },
+      { key: "n14", objectId: "n14", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "o16", objectId: "o16", at: { x: 8, y: 8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c12: <InlineMath math="^{12}\mathrm{C}" />,
+    c13: <InlineMath math="^{13}\mathrm{C}" />,
+    c14: <InlineMath math="^{14}\mathrm{C}" />,
+    n14: <InlineMath math="^{14}\mathrm{N}" />,
+    o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
 />
 
 ## Verwendung von Isotopen

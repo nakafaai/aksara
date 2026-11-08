@@ -91,8 +91,8 @@ Elemente einer Gruppe sind nicht identisch. In den Hauptgruppen führen ähnlich
 Zähl die Elemente jeder Periode im modernen Periodensystem, dann zeigt sich ein Muster: <InlineMath math="2, 8, 8, 18, 18, 32, 32" />. Jede Säule unten ist eine Periode, ein Gitterschritt für <InlineMath math="4" /> Elemente. Die Sprünge auf <InlineMath math="18" /> und <InlineMath math="32" /> sind die Stellen, an denen die Übergangsmetalle und dann die Lanthanoide und Actinoide hinzukommen.
 
 <MathVisual
-  title="Elemente pro Periode"
-  description="Die Anzahl der Elemente in den Perioden 1 bis 7 des modernen Periodensystems. Ein Gitterschritt nach oben sind 4 Elemente."
+  title={<>Elemente pro Periode</>}
+  description={<>Die Anzahl der Elemente in den Perioden 1 bis 7 des modernen Periodensystems. Ein Gitterschritt nach oben sind 4 Elemente.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -159,14 +159,51 @@ Das interaktive Modell hilft dabei, eigene Antworten zu prüfen.
 
 Das [moderne Periodensystem](https://iupac.org/what-we-do/periodic-table-of-elements/) führt die Namen und Ordnungszahlen der Elemente auf. Die Anordnung nach Ordnungszahl in Perioden und Gruppen <Highlight>zeigt wiederkehrende Muster</Highlight>.
 
-Jedes Kästchen des Systems liest du mit denselben drei Schritten.
+Folg den Ordnungszahlen von 1 bis 18, und du gehst die Tabelle Zeile für Zeile ab. Der Weg läuft eine Periode entlang und springt dann zurück nach links zur nächsten, also gibt die Zeile jedes Elements seine Periode und die Spalte seine Gruppe an. Zoom auf die drei fuchsia Punkte, mit denen eine neue Periode beginnt.
 
-<Mermaid
-  title="Die Position eines Elements lesen"
-  description="Die Ordnungszahl ordnet die Elemente, die Zeile gibt die Periode, die Spalte die Gruppe."
-  chart={`flowchart LR
-    A["Ordnungszahl"] --> B["Platz in der Reihenfolge"]
-    B --> C["Zeile: Periode"]
-    B --> D["Spalte: Gruppe"]
-    D --> E["Ähnliches chemisches Verhalten in einer Gruppe"]`}
+<MathVisual
+  title={<>Die Tabelle nach Ordnungszahlen lesen</>}
+  description={<>Die ersten 18 Elemente nach Ordnungszahl, nach Gruppe (waagerecht) und Periode (Zeilen) angeordnet.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "order", kind: "polyline", appearance: "reference", vertices: [{ x: 1 / 2, y: (4 - 1) * 1.5 }, { x: 18 / 2, y: (4 - 1) * 1.5 }, { x: 1 / 2, y: (4 - 2) * 1.5 }, { x: 2 / 2, y: (4 - 2) * 1.5 }, { x: 13 / 2, y: (4 - 2) * 1.5 }, { x: 14 / 2, y: (4 - 2) * 1.5 }, { x: 15 / 2, y: (4 - 2) * 1.5 }, { x: 16 / 2, y: (4 - 2) * 1.5 }, { x: 17 / 2, y: (4 - 2) * 1.5 }, { x: 18 / 2, y: (4 - 2) * 1.5 }, { x: 1 / 2, y: (4 - 3) * 1.5 }, { x: 2 / 2, y: (4 - 3) * 1.5 }, { x: 13 / 2, y: (4 - 3) * 1.5 }, { x: 14 / 2, y: (4 - 3) * 1.5 }, { x: 15 / 2, y: (4 - 3) * 1.5 }, { x: 16 / 2, y: (4 - 3) * 1.5 }, { x: 17 / 2, y: (4 - 3) * 1.5 }, { x: 18 / 2, y: (4 - 3) * 1.5 }] },
+      { id: "z1", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z10", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z18", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 3) * 1.5 } },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z2", objectId: "z2", at: { x: 18 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z3", objectId: "z3", at: { x: 1 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z10", objectId: "z10", at: { x: 18 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z11", objectId: "z11", at: { x: 1 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+      { key: "z18", objectId: "z18", at: { x: 18 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    z1: <InlineMath math="1\ \mathrm{H}" />,
+    z2: <InlineMath math="2\ \mathrm{He}" />,
+    z3: <InlineMath math="3\ \mathrm{Li}" />,
+    z10: <InlineMath math="10\ \mathrm{Ne}" />,
+    z11: <InlineMath math="11\ \mathrm{Na}" />,
+    z18: <InlineMath math="18\ \mathrm{Ar}" />,
+  }}
 />

@@ -34,8 +34,8 @@ Jadi, jika semua gas diukur pada **suhu dan tekanan yang sama**, <InlineMath mat
 Setiap balok di bawah adalah satu bagian gas pada suhu dan tekanan yang sama. Dua bagian hidrogen dan satu bagian oksigen menghasilkan dua bagian uap air, jadi perbandingan volume <InlineMath math="2:1:2" /> sama dengan koefisiennya. Perhatikan bahwa volumenya tidak dijumlahkan begitu saja: tiga bagian menjadi dua.
 
 <MathVisual
-  title="Uap Air dalam Volume"
-  description="2H₂(g) + O₂(g) → 2H₂O(g) digambar sebagai bagian gas yang sama besar pada suhu dan tekanan yang sama."
+  title={<>Uap Air dalam Volume</>}
+  description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> digambar sebagai bagian gas yang sama besar pada suhu dan tekanan yang sama.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -190,16 +190,28 @@ Jadi, penguraian <InlineMath math="600\ \mathrm{mL}" /> gas amonia menghasilkan 
 
 Jika salah satu syarat tidak terpenuhi, hitung dulu jumlah molnya, lalu ubah ke volume.
 
-Periksa ketiga syarat ini sebelum kamu membaca volume dari koefisien.
+Inilah alasan tiap volume harus diukur pada suhu dan tekanan yang sama. Gas menempati <InlineMath math="V=n\cdot V_m" />, dan pada <InlineMath math="1\ \mathrm{atm}" /> satu mol mengisi <InlineMath math="22{,}4\ \mathrm{L}" /> pada <InlineMath math="0\ ^\circ\mathrm{C}" /> tetapi <InlineMath math="24{,}5\ \mathrm{L}" /> pada <InlineMath math="25\ ^\circ\mathrm{C}" />. Perbesar di dua mol: jumlah gas yang sama memberi dua volume berbeda, jadi volume yang diukur pada kondisi berbeda tidak bisa dibandingkan lewat koefisien.
 
-<Mermaid
-  title="Kapan Perbandingan Volume Berlaku"
-  description="Persamaan setara, hanya gas, serta satu suhu dan tekanan untuk setiap volume."
-  chart={`flowchart TD
-    A["Persamaan sudah setara?"] -->|Ya| B["Semua zat yang dibandingkan berupa gas?"]
-    B -->|Ya| C["Suhu dan tekanannya sama?"]
-    C -->|Ya| D["Perbandingan volume = perbandingan koefisien"]
-    A -->|Tidak| E["Setarakan dulu"]
-    B -->|Tidak| F["Keluarkan cairan dan padatan"]
-    C -->|Tidak| G["Volume tidak bisa langsung dibandingkan"]`}
+<MathVisual
+  title={<>Mol Sama, Volume Berbeda</>}
+  description={<>Volume gas terhadap jumlah zat pada <InlineMath math="1\ \mathrm{atm}" /> untuk <InlineMath math="0\ ^\circ\mathrm{C}" /> (ungu) dan <InlineMath math="25\ ^\circ\mathrm{C}" /> (oranye). Mendatar: satu kotak grid berarti 1 mol. Tegak: satu kotak grid berarti 10 L.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "cold", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 8.96 } },
+      { id: "warm", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 9.8 } },
+      { id: "cold-two", kind: "point", appearance: "secondary", at: { x: 2, y: 4.48 } },
+      { id: "warm-two", kind: "point", appearance: "primary", at: { x: 2, y: 4.9 } },
+    ],
+    labels: [
+      { key: "cold", objectId: "cold-two", at: { x: 2, y: 4.48 }, placement: "below-right" },
+      { key: "warm", objectId: "warm-two", at: { x: 2, y: 4.9 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    cold: <InlineMath math="0\ ^\circ\mathrm{C}:\ 2\cdot22{,}4=44{,}8\ \mathrm{L}" />,
+    warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24{,}5=49\ \mathrm{L}" />,
+  }}
 />

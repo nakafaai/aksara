@@ -78,15 +78,34 @@ Pada sel prokariotik, DNA berada di daerah nukleoid **tanpa dibungkus membran in
   }}
 />
 
-Setiap perubahan sehari-hari ini berawal dari bakteri yang bekerja di dalam makanan.
+Bakteri bisa mengubah makanan secepat itu karena mereka memperbanyak diri dengan membelah. Satu sel membelah jadi dua, jadi setelah <InlineMath math="n" /> kali membelah ada <InlineMath math="2^n" /> sel. Perbesar titik-titik awal, lalu lihat betapa curamnya titik terakhir naik.
 
-<Mermaid
-  title="Bakteri Mengubah Makanan"
-  description="Bakteri dan proses yang berbeda bisa menghasilkan yoghurt dan nata de coco, atau membuat makanan yang disimpan terlalu lama menjadi basi."
-  chart={`flowchart LR
-    A["Aktivitas bakteri dalam makanan"] --> B["Susu menjadi yoghurt"]
-    A --> C["Air kelapa menjadi nata de coco"]
-    A --> D["Makanan yang disimpan terlalu lama basi"]`}
+<MathVisual
+  title={<>Membelah Menggandakan Sel</>}
+  description={<>Jumlah sel setelah tiap pembelahan, mulai dari satu sel. Mendatar: banyaknya pembelahan. Tegak: satu kotak grid berarti 10 sel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "count", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0.1 }, { x: 1, y: 0.2 }, { x: 2, y: 0.4 }, { x: 3, y: 0.8 }, { x: 4, y: 1.6 }, { x: 5, y: 3.2 }, { x: 6, y: 6.4 }] },
+      { id: "cell-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0.1 } },
+      { id: "cell-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.2 } },
+      { id: "cell-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0.4 } },
+      { id: "cell-3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8 } },
+      { id: "cell-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1.6 } },
+      { id: "cell-5", kind: "point", appearance: "secondary", at: { x: 5, y: 3.2 } },
+      { id: "cell-6", kind: "point", appearance: "answer", at: { x: 6, y: 6.4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "cell-0", at: { x: 0, y: 0.1 }, placement: "above-right" },
+      { key: "end", objectId: "cell-6", at: { x: 6, y: 6.4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="2^0=1" />,
+    end: <InlineMath math="2^6=64" />,
+  }}
 />
 
 ## Pengamatan Bentuk Sel Bakteri
@@ -122,6 +141,33 @@ Nukleoid tidak dibungkus oleh membran inti. DNA bakteri tetap dapat disalin di d
 ### Dinding Sel dan Bentuk Bakteri
 
 Banyak bakteri memiliki dinding sel yang mengandung **peptidoglikan**, jaringan molekul yang memberi bentuk dan perlindungan. Pada bakteri Gram positif, lapisan peptidoglikan cenderung tebal. Pada bakteri Gram negatif, lapisan peptidoglikan lebih tipis dan ada membran luar. Membran luar ini dapat memengaruhi ketahanan terhadap zat tertentu.
+
+Sel mengambil makanan dan membuang sisa lewat permukaannya, sedangkan kebutuhannya bertambah mengikuti volumenya. Kubus dengan sisi <InlineMath math="s" /> punya luas permukaan <InlineMath math="6s^2" /> dan volume <InlineMath math="s^3" />, jadi tiap satuan volume kebagian <InlineMath math="\tfrac{6}{s}" /> satuan permukaan. Putar kubusnya: kubus terkecil punya permukaan paling luas untuk ukurannya, dan itu membantu bakteri yang mungil bertukar zat dengan cepat.
+
+<MathVisual
+  title={<>Sel Kecil Punya Permukaan Lebih Luas per Volume</>}
+  description={<>Kubus dengan sisi 1, 2, dan 4 mikrometer. Tiap label membagi luas permukaan dengan volume.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 5, y: 6, z: 13 }, target: { x: 4, y: 1.5, z: 0 } },
+    objects: [
+      { id: "cube-1", kind: "cuboid", appearance: "answer", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1, z: 0 }, size: { length: 2, height: 2, width: 2 } },
+      { id: "cube-4", kind: "cuboid", appearance: "reference", center: { x: 7, y: 2, z: 0 }, size: { length: 4, height: 4, width: 4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "cube-1", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "cube-2", at: { x: 3, y: 2, z: 0 }, placement: "above" },
+      { key: "s4", objectId: "cube-4", at: { x: 7, y: 4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    s1: <InlineMath math="\frac{6}{1}=6" />,
+    s2: <InlineMath math="\frac{24}{8}=3" />,
+    s4: <InlineMath math="\frac{96}{64}=1{,}5" />,
+  }}
+/>
 
 ## Peran Bakteri dalam Penyakit dan Kehidupan
 

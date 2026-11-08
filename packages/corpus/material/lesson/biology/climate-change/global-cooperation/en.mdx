@@ -30,11 +30,11 @@ International climate agreements use temperature goals to guide collective actio
 
 [Climate risks and losses](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) increase with every increment of warming. The <InlineMath math="1.5\,^\circ\text{C}" /> and <InlineMath math="2\,^\circ\text{C}" /> goals provide a shared measure for judging how quickly and deeply emissions need to fall.
 
-A temperature target turns into a shared budget of carbon dioxide. The IPCC estimated that, from the start of 2020, about <InlineMath math="500" /> billion tonnes of CO₂ could still be emitted for an even chance of staying within <InlineMath math="1.5\,^\circ\text{C}" />. The scene below spends that budget at a round <InlineMath math="40" /> billion tonnes per year in two ways. Both shapes have the same area, <InlineMath math="500" />. At constant emissions the pink rectangle ends after <InlineMath math="12.5" /> years, while cutting emissions steadily to zero stretches the teal triangle to <InlineMath math="25" /> years. That's why the target says how fast emissions must fall, not only how far.
+A temperature target turns into a shared budget of carbon dioxide. The IPCC estimated that, from the start of 2020, about <InlineMath math="500" /> billion tonnes of <InlineMath math="\mathrm{CO_2}" /> could still be emitted for an even chance of staying within <InlineMath math="1.5\,^\circ\text{C}" />. The scene below spends that budget at a round <InlineMath math="40" /> billion tonnes per year in two ways. Both shapes have the same area, <InlineMath math="500" />. At constant emissions the pink rectangle ends after <InlineMath math="12.5" /> years, while cutting emissions steadily to zero stretches the teal triangle to <InlineMath math="25" /> years. That's why the target says how fast emissions must fall, not only how far.
 
 <MathVisual
-  title="Two Ways to Spend One Carbon Budget"
-  description="A 500 GtCO₂ budget spent from 40 GtCO₂ per year. Horizontal: years after 2020 in units of 5. Vertical: yearly emissions in units of 10 GtCO₂."
+  title={<>Two Ways to Spend One Carbon Budget</>}
+  description={<>A 500 <InlineMath math="\mathrm{GtCO_2}" /> budget spent from 40 <InlineMath math="\mathrm{GtCO_2}" /> per year. Horizontal: years after 2020 in units of 5. Vertical: yearly emissions in units of 10 <InlineMath math="\mathrm{GtCO_2}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
@@ -51,6 +51,33 @@ A temperature target turns into a shared budget of carbon dioxide. The IPCC esti
   labels={{
     constant: <InlineMath math="\frac{500}{40}=12.5\ \text{years}" />,
     decline: <InlineMath math="\frac{2\times500}{40}=25\ \text{years}" />,
+  }}
+/>
+
+A temperature target becomes a common measure once you turn it into a budget. The IPCC estimated how much carbon dioxide could still be emitted from 2020 for an even chance of each limit: <InlineMath math="500" />, <InlineMath math="850" /> and <InlineMath math="1350\ \mathrm{GtCO_2}" /> for <InlineMath math="1.5" />, <InlineMath math="1.7" /> and <InlineMath math="2\ ^\circ\mathrm{C}" />. Divide each by <InlineMath math="40\ \mathrm{GtCO_2}" /> a year to see how long it lasts at that rate. Rotate the bars and compare.
+
+<MathVisual
+  title={<>Each Target Has Its Own Budget</>}
+  description={<>Remaining carbon dioxide budgets from 2020 for a 50 percent chance of three warming limits. Each label divides the budget by <InlineMath math="40\ \mathrm{GtCO_2}" /> per year. One grid step up is <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "t15", kind: "cuboid", appearance: "answer", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "t17", kind: "cuboid", appearance: "highlight", center: { x: 2.5, y: 1.7, z: 0 }, size: { length: 1.2, height: 3.4, width: 1.2 } },
+      { id: "t20", kind: "cuboid", appearance: "warning", center: { x: 5, y: 2.7, z: 0 }, size: { length: 1.2, height: 5.4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t15", objectId: "t15", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "t17", objectId: "t17", at: { x: 2.5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "t20", objectId: "t20", at: { x: 5, y: 5.4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t15: <InlineMath math="1.5\ ^\circ\mathrm{C}:\ \tfrac{500}{40}=12.5\ \text{years}" />,
+    t17: <InlineMath math="1.7\ ^\circ\mathrm{C}:\ \tfrac{850}{40}=21.25\ \text{years}" />,
+    t20: <InlineMath math="2\ ^\circ\mathrm{C}:\ \tfrac{1350}{40}=33.75\ \text{years}" />,
   }}
 />
 
@@ -80,19 +107,6 @@ After submitting an NDC, countries report actions, progress, and support under t
 
 > Targets set the direction, national plans state intended action, reports record progress, and the global stocktake assesses the combined result.
 
-The pieces in the table work as one repeating cycle. Read it as a loop that returns every five years.
-
-<Mermaid
-  title="The Five-Year Cycle of Climate Plans"
-  description="National plans lead to reports, the global stocktake compares them with the goal, and the next round of plans starts from that result."
-  chart={`flowchart LR
-    A["Shared temperature goal"] --> B["National plans: NDCs"]
-    B --> C["Transparency reports"]
-    C --> D["Global stocktake"]
-    D --> E["Next, stronger NDCs"]
-    E --> C`}
-/>
-
 ## Global Agreements Shape Local Decisions
 
 Global agreements inform national plans. Those plans are then carried out through **energy policy, forest protection, and city planning**. Each policy affects electricity sources, carbon uptake, transport, or flood risk. Clear information lets communities compare the choices and their consequences.
@@ -120,3 +134,37 @@ Suppose a fictional country reports 100 million tonnes of carbon-dioxide-equival
 | Reported reduction | <InlineMath math="(100-90)/100\times100\%" /> | <InlineMath math="10\%" /> |
 
 Emissions have fallen, but **the target has not yet been reached**. Before comparing real reports, check the base year, covered sectors and gases, accounting methods, and target year.
+
+The cycle runs on two clocks that both tick every five years, three years apart. New national plans are due in the years <InlineMath math="2020+5k" />, and each global stocktake comes in <InlineMath math="2023+5k" />, two years before the next round of plans, so its findings can make those plans stronger. Zoom along the rows and follow each stocktake to the plans after it.
+
+<MathVisual
+  title={<>Each Stocktake Feeds the Next Plans</>}
+  description={<>Years of national plans (top row) and global stocktakes (bottom row) under the Paris Agreement. One grid step across is 2 years.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plans-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "takes-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 1 }, to: { x: 9, y: 1 } },
+      { id: "plan-2020", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "plan-2025", kind: "point", appearance: "primary", at: { x: 3.5, y: 2 } },
+      { id: "plan-2030", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+      { id: "plan-2035", kind: "point", appearance: "primary", at: { x: 8.5, y: 2 } },
+      { id: "take-2023", kind: "point", appearance: "secondary", at: { x: 2.5, y: 1 } },
+      { id: "take-2028", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "take-2033", kind: "point", appearance: "secondary", at: { x: 7.5, y: 1 } },
+      { id: "feed-2023", kind: "segment", appearance: "answer", from: { x: 2.5, y: 1 }, to: { x: 3.5, y: 2 } },
+      { id: "feed-2028", kind: "segment", appearance: "answer", from: { x: 5, y: 1 }, to: { x: 6, y: 2 } },
+      { id: "feed-2033", kind: "segment", appearance: "answer", from: { x: 7.5, y: 1 }, to: { x: 8.5, y: 2 } },
+    ],
+    labels: [
+      { key: "take", objectId: "take-2023", at: { x: 2.5, y: 1 }, placement: "below" },
+      { key: "plan", objectId: "plan-2025", at: { x: 3.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    take: <>first stocktake, 2023</>,
+    plan: <>new plans, 2025</>,
+  }}
+/>

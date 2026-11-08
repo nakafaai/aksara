@@ -74,8 +74,8 @@ Angka <InlineMath math="2" /> di depan <InlineMath math="\mathrm{O_2}" /> berart
 Hitung atom dalam <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" /> dengan mengalikan setiap koefisien dengan indeksnya. Pada adegan, setiap unsur punya batang belakang untuk reaktan dan batang depan untuk produk, dengan satu kotak grid untuk <InlineMath math="2" /> atom. Putar adegannya: setiap pasangan sama tinggi, jadi persamaannya sudah setara.
 
 <MathVisual
-  title="Atom di Kedua Sisi Persamaan"
-  description="Karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) dihitung pada reaktan (belakang) dan produk (depan). Satu kotak grid ke atas sama dengan 2 atom."
+  title={<>Atom di Kedua Sisi Persamaan</>}
+  description={<>Karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) dihitung pada reaktan (belakang) dan produk (depan). Satu kotak grid ke atas sama dengan 2 atom.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -134,14 +134,32 @@ Persamaan itu sudah setara dengan rasio koefisien <InlineMath math="1:1:1:1" />.
 
 Rumus kimia yang salah <Highlight>tidak dapat diperbaiki hanya dengan menyetarakan persamaan</Highlight>. Periksa setiap rumus sebelum mengatur koefisien.
 
-Inilah langkah-langkahnya sebagai satu jalur dari kalimat ke persamaan.
+Jalankan langkah terakhir pada gas di kompor kemah: <InlineMath math="\mathrm{C_3H_8}+5\mathrm{O_2}\rightarrow3\mathrm{CO_2}+4\mathrm{H_2O}" />. Hitung setiap atom di kedua ruas setelah kamu menyetarakannya. Putar batangnya: tiap pasangan sama tinggi, jadi koefisiennya sudah benar.
 
-<Mermaid
-  title="Dari Kalimat ke Persamaan"
-  description="Sebut zat-zatnya, tulis rumus yang benar, setarakan dengan koefisien, lalu tambahkan lambang wujud."
-  chart={`flowchart LR
-    A["Kalimat: reaktan dan produk"] --> B["Rumus yang benar"]
-    B --> C["Setarakan hanya dengan koefisien"]
-    C --> D["Tambahkan lambang wujud"]
-    D --> E["Hitung atom untuk memeriksa"]`}
+<MathVisual
+  title={<>Atom di Kedua Ruas</>}
+  description={<>Atom karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti 2 atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 9, z: 11 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "c-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: -0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "c-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "h-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "h-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.5, z: -0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.5, z: 0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-right", at: { x: 0, y: 1.8, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-right", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 5, y: 5.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c: <InlineMath math="\mathrm{C}:\ 3=3" />,
+    h: <InlineMath math="\mathrm{H}:\ 8=4\cdot2" />,
+    o: <InlineMath math="\mathrm{O}:\ 5\cdot2=3\cdot2+4" />,
+  }}
 />

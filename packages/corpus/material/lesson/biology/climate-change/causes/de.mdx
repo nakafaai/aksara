@@ -52,20 +52,31 @@ Vom Menschen verursachte Kohlendioxidemissionen entstehen vor allem bei der [Ver
 
 > Bestimme für jede Klimaursache die Kohlenstoffquelle, die menschliche Aktivität, das zunehmende Gas oder die abnehmende Kohlenstoffsenke und die daraus folgende Veränderung der Energiebilanz der Erde.
 
-Hier ist die Tabelle als Wege von einer Tätigkeit zu ihrer Gasänderung.
+In einem einfachen Lehrbuchmodell nimmt jede Schicht aus Treibhausgas die ganze Wärmestrahlung von unten auf und strahlt sie wieder ab, halb nach oben und halb nach unten. Mit <InlineMath math="n" /> solchen Schichten erwärmt sich der Boden auf <InlineMath math="T=255\,(n+1)^{1/4}" /> Kelvin. Dreh die Balken: Schon eine Schicht hebt den Boden von <InlineMath math="255" /> auf etwa <InlineMath math="303" /> Kelvin.
 
-<Mermaid
-  title="Von menschlicher Tätigkeit zu Treibhausgasen"
-  description="Jede Tätigkeit verändert einen anderen Teil des Kohlenstoffflusses."
-  chart={`flowchart LR
-    A["Fossile Brennstoffe verbrennen"] --> E["Mehr CO2"]
-    B["Schlecht entsorgter Bioabfall"] --> F["Mehr Methan"]
-    C["Waldverlust"] --> G["Weniger Kohlenstoffaufnahme"]
-    D["Herstellung und Entsorgung von Plastik"] --> H["Lebenszyklusemissionen"]
-    E --> W["Stärkerer Treibhauseffekt"]
-    F --> W
-    G --> W
-    H --> W`}
+<MathVisual
+  title={<>Mehr Schichten, wärmerer Boden</>}
+  description={<>Bodentemperatur im Schichtmodell mit null, einer und zwei vollständig absorbierenden Schichten. Ein Gitterschritt nach oben entspricht 50 Kelvin.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 3.5, z: 0 } },
+    objects: [
+      { id: "layers-0", kind: "cuboid", appearance: "reference", center: { x: 0, y: ((255 * 1 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 1 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: ((255 * 2 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 2 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-2", kind: "cuboid", appearance: "warning", center: { x: 5, y: ((255 * 3 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 3 ** (1 / 4)) / 50, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t0", objectId: "layers-0", at: { x: 0, y: (255 * 1 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t1", objectId: "layers-1", at: { x: 2.5, y: (255 * 2 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t2", objectId: "layers-2", at: { x: 5, y: (255 * 3 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t0: <InlineMath math="255\ \mathrm{K}" />,
+    t1: <InlineMath math="303\ \mathrm{K}" />,
+    t2: <InlineMath math="336\ \mathrm{K}" />,
+  }}
 />
 
 ## Durch Verbrennung gelangt Kohlenstoff in die Atmosphäre
@@ -110,6 +121,32 @@ Kunststoff ist [über seinen gesamten Lebenszyklus mit Emissionen verbunden](htt
     B --> G["Mehr Wärme wird zurückgehalten"]
     D --> G
     F --> B`}
+/>
+
+Stell dir die Luft als Wanne vor: Emissionen gießen Kohlenstoff hinein, und Wälder und Ozeane holen einen Teil wieder heraus. Der zusätzliche Kohlenstoff wächst jedes Jahr um <InlineMath math="\text{Zufluss}-\text{Abfluss}" />. Mit Beispielzahlen fließen <InlineMath math="10" /> Einheiten hinein und der Wald nimmt <InlineMath math="5" /> auf, also bleiben jedes Jahr <InlineMath math="5" />. Rode einen Teil des Waldes, sodass er nur noch <InlineMath math="3" /> aufnimmt, und es bleiben <InlineMath math="7" />. Zoom hinein und vergleich, wie schnell die beiden Linien steigen.
+
+<MathVisual
+  title={<>Weniger Aufnahme, schnellerer Anstieg</>}
+  description={<>Zusätzlicher Kohlenstoff in der Luft in einem beispielhaften Wannenmodell, mit ganzem Wald (grau) und nach der Rodung (rosa). Waagerecht: Jahre. Senkrecht: Ein Gitterschritt entspricht 10 Einheiten Kohlenstoff.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "forest", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: ((10 - 5) * 0) / 10 }, { x: 1, y: ((10 - 5) * 1) / 10 }, { x: 2, y: ((10 - 5) * 2) / 10 }, { x: 3, y: ((10 - 5) * 3) / 10 }, { x: 4, y: ((10 - 5) * 4) / 10 }, { x: 5, y: ((10 - 5) * 5) / 10 }, { x: 6, y: ((10 - 5) * 6) / 10 }, { x: 7, y: ((10 - 5) * 7) / 10 }, { x: 8, y: ((10 - 5) * 8) / 10 }, { x: 9, y: ((10 - 5) * 9) / 10 }, { x: 10, y: ((10 - 5) * 10) / 10 }] },
+      { id: "cleared", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: ((10 - 3) * 0) / 10 }, { x: 1, y: ((10 - 3) * 1) / 10 }, { x: 2, y: ((10 - 3) * 2) / 10 }, { x: 3, y: ((10 - 3) * 3) / 10 }, { x: 4, y: ((10 - 3) * 4) / 10 }, { x: 5, y: ((10 - 3) * 5) / 10 }, { x: 6, y: ((10 - 3) * 6) / 10 }, { x: 7, y: ((10 - 3) * 7) / 10 }, { x: 8, y: ((10 - 3) * 8) / 10 }, { x: 9, y: ((10 - 3) * 9) / 10 }, { x: 10, y: ((10 - 3) * 10) / 10 }] },
+      { id: "forest-end", kind: "point", appearance: "reference", at: { x: 10, y: 5 } },
+      { id: "cleared-end", kind: "point", appearance: "warning", at: { x: 10, y: 7 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest-end", at: { x: 10, y: 5 }, placement: "right" },
+      { key: "cleared", objectId: "cleared-end", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    forest: <InlineMath math="10-5=5" />,
+    cleared: <InlineMath math="10-3=7" />,
+  }}
 />
 
 ## Von menschlichen Aktivitäten zur Erwärmung

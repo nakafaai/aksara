@@ -21,20 +21,31 @@ Die folgende Liste verbindet die Art der Daten mit dem passenden Gesetz.
 - Bestehen zwei verschiedene Verbindungen aus denselben beiden Elementen, gilt das Gesetz der multiplen Proportionen.
 - Werden ausschließlich Gase bei gleicher Temperatur und gleichem Druck verglichen, gilt das Gesetz der Volumenverhältnisse.
 
-Hier ist dieselbe Liste als Entscheidungsweg. Fang oben mit den Daten an, die du bekommen hast.
+Bevor du ein Gesetz wählst, prüf, ob das System geschlossen war. Jeder Punkt ist ein Versuch, die Masse vorher nach rechts und nachher nach oben, also liegt ein geschlossenes System auf der grauen Linie. Wenn <InlineMath math="2\ \mathrm{g}" /> <InlineMath math="\mathrm{CaCO_3}" /> in einem offenen Becherglas mit Säure reagieren, entweichen <InlineMath math="2\ \mathrm{g}\cdot\tfrac{44}{100}=0{,}88\ \mathrm{g}" /> Kohlenstoffdioxid, und der Punkt rutscht unter die Linie. Zoom auf den rosa Punkt.
 
-<Mermaid
-  title="Das Gesetz aus den Daten wählen"
-  description="Jeder Zweig nennt die Art der Daten in einer Aufgabe und das Grundgesetz, das dazu passt."
-  chart={`flowchart TD
-    A["Was beschreiben die Daten?"] --> B["Alle Stoffe in einem geschlossenen System"]
-    A --> C["Eine reine Verbindung"]
-    A --> D["Zwei Verbindungen aus denselben zwei Elementen"]
-    A --> E["Gase bei gleicher Temperatur und gleichem Druck"]
-    B --> F["Massenerhaltung"]
-    C --> G["Konstante Proportionen"]
-    D --> H["Multiple Proportionen"]
-    E --> I["Volumengesetz"]`}
+<MathVisual
+  title={<>Punkte auf der Linie behalten ihre Masse</>}
+  description={<>Masse vorher (waagerecht) und nachher (senkrecht) für drei geschlossene Versuche und ein offenes Becherglas, in Gramm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 51 }, y: { min: 46, max: 51 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "same", kind: "segment", appearance: "reference", from: { x: 46, y: 46 }, to: { x: 51, y: 51 } },
+      { id: "flask", kind: "point", appearance: "secondary", at: { x: 47, y: 47 } },
+      { id: "bag", kind: "point", appearance: "secondary", at: { x: 48.5, y: 48.5 } },
+      { id: "sealed", kind: "point", appearance: "secondary", at: { x: 50, y: 50 } },
+      { id: "open", kind: "point", appearance: "warning", at: { x: 50, y: 49.12 } },
+    ],
+    labels: [
+      { key: "closed", objectId: "bag", at: { x: 48.5, y: 48.5 }, placement: "above-left" },
+      { key: "open", objectId: "open", at: { x: 50, y: 49.12 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    closed: <>geschlossene Systeme</>,
+    open: <InlineMath math="\text{offen: }50{,}00-0{,}88=49{,}12\ \mathrm{g}" />,
+  }}
 />
 
 ## Muster bei Massen und Volumina
@@ -98,8 +109,8 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 Die Szene unten stapelt die Gase als gleich große Blöcke, ein Block für jeden Koeffizienten, und jeder Block steht für <InlineMath math="300\ \mathrm{mL}" />. Dreh sie und zähl nach: Aus zwei Blöcken Ammoniak werden drei Blöcke Wasserstoff und ein Block Stickstoff. Die Blockgröße ändert sich nie, also ist das Volumenverhältnis <InlineMath math="2:3:1" /> einfach das Verhältnis der Koeffizienten. Das klappt nur, weil alle Gase bei gleicher Temperatur und gleichem Druck gemessen werden.
 
 <MathVisual
-  title="Gasvolumen folgen den Koeffizienten"
-  description="Jeder Block ist ein Teil von 300 mL bei gleicher Temperatur und gleichem Druck. Zähl die Blöcke in jeder Säule von 2NH₃ → 3H₂ + N₂."
+  title={<>Gasvolumen folgen den Koeffizienten</>}
+  description={<>Jeder Block ist ein Teil von 300 mL bei gleicher Temperatur und gleichem Druck. Zähl die Blöcke in jeder Säule von <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -161,14 +172,32 @@ Benötigt werden <InlineMath math="100\ \mathrm{mL}" /> Sauerstoffgas, und es en
 
 Die Gesetze der konstanten und multiplen Proportionen zeigen Massenmuster, die dafür sprechen, dass sich Atome in festen Verhältnissen verbinden.
 
-Lies die Koeffizienten als Volumen und skalier dann jeden mit denselben 50 mL. Das Wasservolumen gilt nur, solange das Wasser gasförmig bleibt.
+Lies die Koeffizienten von <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\mathrm{CO_2(g)}+2\mathrm{H_2O(g)}" /> als Volumen und multipliziere jeden mit denselben <InlineMath math="50\ \mathrm{mL}" />. Dreh die Balken: Die Gase reagieren im Verhältnis <InlineMath math="1:2:1:2" />. Das Wasservolumen gilt nur, solange das Wasser gasförmig bleibt.
 
-<Mermaid
-  title="Methanverbrennung in Volumen"
-  description="Bei gleicher Temperatur und gleichem Druck liefern die Koeffizienten 1:2:1:2 die Gasvolumen für 50 mL Methan."
-  chart={`flowchart LR
-    A["1 CH4: 50 mL"] --> C["1 CO2: 50 mL"]
-    B["2 O2: 100 mL"] --> C
-    A --> D["2 H2O als Gas: 100 mL"]
-    B --> D`}
+<MathVisual
+  title={<>Methanverbrennung in Volumen</>}
+  description={<>Gasvolumen bei gleicher Temperatur und gleichem Druck: Edukte hinten, Produkte vorne. Ein Gitterschritt nach oben entspricht 25 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.25, y: 2, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 2.3, z: -0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2.5, y: 4.3, z: -0.75 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 50\ \mathrm{mL}" />,
+    o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
+    h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
 />

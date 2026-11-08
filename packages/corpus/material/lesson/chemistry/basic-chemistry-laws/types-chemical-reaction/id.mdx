@@ -150,16 +150,30 @@ Cek **jumlah atom** setiap unsur di kedua sisi persamaan. Etanol mengandung dua 
 | H | 12 | <InlineMath math="2\times6=12" /> |
 | O | 6 | <InlineMath math="2\times1+2\times2=6" /> |
 
-Inilah keempat contoh yang dikelompokkan menurut tanda yang diberikannya.
+Contoh pembakaran <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> melepas energi berupa cahaya dan panas, dan atom-atomnya menunjukkan bahwa persamaannya setara. Putar batangnya: empat atom fosfor dan sepuluh atom oksigen di tiap ruas.
 
-<Mermaid
-  title="Empat Contoh, Empat Tanda"
-  description="Setiap reaksi menunjukkan tanda pertama yang berbeda dan mengarah ke jenisnya."
-  chart={`flowchart LR
-    A["P4 + 5O2 menjadi P4O10"] --> E["Melepas energi: pembakaran"]
-    B["Besi dengan O2 dan air"] --> F["Logam berubah: perkaratan"]
-    C["Ca(OH)2 + NaHCO3"] --> G["Padatan terbentuk: pengendapan"]
-    D["Glukosa menjadi etanol + CO2"] --> H["Gas terbentuk: fermentasi"]`}
+<MathVisual
+  title={<>Atom di Kedua Ruas</>}
+  description={<>Atom fosfor (kuning) dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti 2 atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 9, z: 11 }, target: { x: 1.25, y: 2.5, z: 0 } },
+    objects: [
+      { id: "p-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "p-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: -0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: 0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 2.5, y: 5.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ 4=4" />,
+    o: <InlineMath math="\mathrm{O}:\ 5\cdot2=10" />,
+  }}
 />
 
 ## Koefisien Tidak Mengubah Rumus
@@ -185,13 +199,29 @@ Gunakan tabel berikut untuk memeriksa setiap jenis reaksi.
 
 Setelah jenis reaksinya ditentukan, tulis reaktan di kiri dan produk di kanan. Lalu atur koefisien sampai jumlah setiap jenis atom sama pada kedua sisi.
 
-Nama jenis reaksi hanyalah dugaan pertama. Persamaan dan buktinya yang memastikan.
+Gelembung adalah petunjuk pertama, dan persamaan <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> memastikan bahwa ini fermentasi. Ambil satu mol glukosa dan pakai <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" />, serta <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> gula berubah menjadi etanol dan karbon dioksida dengan total yang sama. Putar kolomnya dan bandingkan tingginya.
 
-<Mermaid
-  title="Dari Dugaan Pertama ke Jenis yang Pasti"
-  description="Mulai dari tanda, periksa zat dalam persamaan, lalu sebutkan jenisnya."
-  chart={`flowchart LR
-    A["Tanda yang teramati"] --> B["Dugaan pertama jenisnya"]
-    B --> C["Periksa reaktan dan produk dalam persamaan"]
-    C --> D["Jenis dipastikan oleh bukti"]`}
+<MathVisual
+  title={<>Fermentasi Menjaga Massa</>}
+  description={<>Satu mol glukosa (kiri) serta etanol dan karbon dioksida yang terbentuk (kanan). Satu kotak grid ke atas berarti 20 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 12, z: 11 }, target: { x: 1.5, y: 4.5, z: 0 } },
+    objects: [
+      { id: "glucose", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+      { id: "ethanol", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2.3, z: 0 }, size: { length: 1.6, height: 4.6, width: 1.6 } },
+      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 3, y: 6.8, z: 0 }, size: { length: 1.6, height: 4.4, width: 1.6 } },
+    ],
+    labels: [
+      { key: "glucose", objectId: "glucose", at: { x: 0, y: 9, z: 0 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 2.3, z: 0.85 }, placement: "right" },
+      { key: "gas", objectId: "carbon-dioxide", at: { x: 3, y: 6.8, z: 0.85 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    glucose: <InlineMath math="\mathrm{C_6H_{12}O_6}:\ 180\ \mathrm{g}" />,
+    ethanol: <InlineMath math="2\mathrm{C_2H_5OH}:\ 2\cdot46=92\ \mathrm{g}" />,
+    gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
+  }}
 />

@@ -145,8 +145,8 @@ Wenn <InlineMath math="\mathrm{N_2O}" /> für den Vergleich als <InlineMath math
 Die Szene unten stellt beide Vergleiche nebeneinander, ein Gitterschritt für <InlineMath math="8\ \mathrm{g}" />. Bei festen <InlineMath math="2\ \mathrm{g}" /> Wasserstoff stehen die Sauerstoffsäulen <InlineMath math="16:32=1:2" />. Bei festen <InlineMath math="32\ \mathrm{g}" /> Sauerstoff stehen die Stickstoffsäulen <InlineMath math="56:14=4:1" />. Jedes Paar ergibt nur deshalb ein einfaches ganzzahliges Verhältnis, weil zuerst ein Element festgehalten wurde.
 
 <MathVisual
-  title="Ein Element festhalten, das andere vergleichen"
-  description="Orange: Sauerstoff zu 2 g Wasserstoff in H₂O und H₂O₂. Violett: Stickstoff zu 32 g Sauerstoff in 2N₂O und NO₂. Ein Gitterschritt nach oben sind 8 g."
+  title={<>Ein Element festhalten, das andere vergleichen</>}
+  description={<>Orange: Sauerstoff zu 2 g Wasserstoff in <InlineMath math="\mathrm{H_2O}" /> und <InlineMath math="\mathrm{H_2O_2}" />. Violett: Stickstoff zu 32 g Sauerstoff in <InlineMath math="2\mathrm{N_2O}" /> und <InlineMath math="\mathrm{NO_2}" />. Ein Gitterschritt nach oben sind 8 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
@@ -178,14 +178,31 @@ Vergleiche nicht die Gesamtmassen von Wasser und Wasserstoffperoxid, denn beide 
 
 Beim Gesetz der konstanten Zusammensetzung vergleichen wir das Massenverhältnis der Elemente in einer Verbindung. Beim Gesetz der multiplen Proportionen vergleichen wir diese Verhältnisse in mehreren Verbindungen aus demselben Elementpaar. Die dabei auftretenden kleinen ganzzahligen Verhältnisse stützten Daltons Annahme, dass sich Atome in ganzzahligen Verhältnissen verbinden.
 
-Lass jeden Vergleich durch diese Schritte laufen, damit dich die Gesamtmassen nicht täuschen.
+Jede Linie gibt den Sauerstoff an, der sich mit einer Kohlenstoffmasse verbindet: <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO}" /> und <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO_2}" />. Leg den Kohlenstoff auf der grauen Linie auf <InlineMath math="12\ \mathrm{g}" /> fest und lies beide Sauerstoffmassen ab. Zoom hinein: Sie stehen im Verhältnis <InlineMath math="1:2" />, einem einfachen ganzzahligen Verhältnis.
 
-<Mermaid
-  title="Zwei Verbindungen richtig vergleichen"
-  description="Halt die Masse eines Elements fest und vergleich dann die Massen des anderen."
-  chart={`flowchart LR
-    A["Zwei Verbindungen aus denselben zwei Elementen"] --> B["Masse eines Elements festhalten"]
-    B --> C["Das andere Element vergleichen"]
-    C --> D["Einfaches ganzzahliges Verhältnis"]
-    A -.-> E["Nie die Gesamtmassen vergleichen"]`}
+<MathVisual
+  title={<>Kohlenstoff festlegen, Sauerstoff ablesen</>}
+  description={<>Sauerstoffmasse gegen Kohlenstoffmasse in <InlineMath math="\mathrm{CO}" /> (violett) und <InlineMath math="\mathrm{CO_2}" /> (orange). Waagerecht: Ein Gitterschritt entspricht 1 Gramm Kohlenstoff. Senkrecht: Ein Gitterschritt entspricht 4 Gramm Sauerstoff.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -1, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "co", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 5 } },
+      { id: "co2", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15, y: 10 } },
+      { id: "fixed", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 12, y: 9 } },
+      { id: "co-12", kind: "point", appearance: "secondary", at: { x: 12, y: 4 } },
+      { id: "co2-12", kind: "point", appearance: "primary", at: { x: 12, y: 8 } },
+    ],
+    labels: [
+      { key: "co", objectId: "co-12", at: { x: 12, y: 4 }, placement: "below-right" },
+      { key: "co2", objectId: "co2-12", at: { x: 12, y: 8 }, placement: "above-left" },
+      { key: "ratio", objectId: "fixed", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    co: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+    ratio: <InlineMath math="16:32=1:2" />,
+  }}
 />

@@ -167,8 +167,8 @@ To balance the equation, keep each chemical formula unchanged, <Highlight>adjust
 Here is the balanced photosynthesis equation counted atom by atom, with the reactants at the back, the products at the front and one grid step for <InlineMath math="4" /> atoms. Six carbon, twelve hydrogen and eighteen oxygen atoms on each side: light rearranges them, it doesn't create any.
 
 <MathVisual
-  title="Atoms in Balanced Photosynthesis"
-  description="6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ with carbon (gray), hydrogen (violet) and oxygen (orange). One grid step up is 4 atoms."
+  title={<>Atoms in Balanced Photosynthesis</>}
+  description={<><InlineMath math="6\mathrm{CO_2}+6\mathrm{H_2O}\rightarrow\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}" /> with carbon (gray), hydrogen (violet) and oxygen (orange). One grid step up is 4 atoms.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -223,16 +223,32 @@ Composting is a waste-treatment method, and it counts as green chemistry only wh
 
 To analyze an everyday chemical process, identify the substances that enter, the changes that occur, the substances that leave, and the hazards that can be prevented at the source.
 
-Judge each way of handling the leaves by what it releases.
+Burning dry leaves doesn't make matter disappear. One unit of cellulose burns as <InlineMath math="\mathrm{C_6H_{10}O_5}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+5\mathrm{H_2O}" />, so <InlineMath math="162\ \mathrm{g}" /> of leaf material and <InlineMath math="192\ \mathrm{g}" /> of oxygen leave as <InlineMath math="354\ \mathrm{g}" /> of gas and vapor, heavier than the leaves alone. Rotate the columns: the totals match, and all that carbon ends up in the air.
 
-<Mermaid
-  title="Three Ways to Handle Dry Leaves"
-  description="Each choice leads to different substances, so each gets a different green chemistry verdict."
-  chart={`flowchart TD
-    A["Dry leaves"] --> B["Open burning"]
-    A --> C["Composting"]
-    A --> D["Mixed trash"]
-    B --> E["Smoke and pollution"]
-    C --> F["Compost: treats existing waste"]
-    D --> G["More waste to handle"]`}
+<MathVisual
+  title={<>Burnt Leaves Don't Vanish</>}
+  description={<>Leaf cellulose and oxygen (left) against the carbon dioxide and water vapor they become (right). One grid step up is 40 grams.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 9.85 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 11.85, z: 11 }, target: { x: 1.5, y: 4.425, z: 0 } },
+    objects: [
+      { id: "leaves", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.025, z: 0 }, size: { length: 1.6, height: 4.05, width: 1.6 } },
+      { id: "air-oxygen", kind: "cuboid", appearance: "primary", center: { x: 0, y: 6.45, z: 0 }, size: { length: 1.6, height: 4.8, width: 1.6 } },
+      { id: "smoke-gas", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3.3, z: 0 }, size: { length: 1.6, height: 6.6, width: 1.6 } },
+      { id: "vapor", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 7.725, z: 0 }, size: { length: 1.6, height: 2.25, width: 1.6 } },
+    ],
+    labels: [
+      { key: "leaves", objectId: "leaves", at: { x: 0, y: 2.025, z: 0.85 }, placement: "right" },
+      { key: "oxygen", objectId: "air-oxygen", at: { x: 0, y: 6.45, z: 0.85 }, placement: "right" },
+      { key: "gas", objectId: "smoke-gas", at: { x: 3, y: 3.3, z: 0.85 }, placement: "right" },
+      { key: "vapor", objectId: "vapor", at: { x: 3, y: 7.725, z: 0.85 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    leaves: <InlineMath math="\mathrm{C_6H_{10}O_5}:\ 162\ \mathrm{g}" />,
+    oxygen: <InlineMath math="6\mathrm{O_2}:\ 192\ \mathrm{g}" />,
+    gas: <InlineMath math="6\mathrm{CO_2}:\ 264\ \mathrm{g}" />,
+    vapor: <InlineMath math="5\mathrm{H_2O}:\ 90\ \mathrm{g}" />,
+  }}
 />

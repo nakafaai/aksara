@@ -46,15 +46,34 @@ Die Schalen heißen <InlineMath math="\mathrm K" /> bis <InlineMath math="\mathr
 
 Das Wort **maximal** ist entscheidend. Die Schale <InlineMath math="\mathrm{M}" /> kann bis zu <InlineMath math="18" /> Elektronen aufnehmen. Daraus folgt aber nicht, dass jedes Atom die Schale <InlineMath math="\mathrm{M}" /> erst vollständig mit <InlineMath math="18" /> Elektronen füllt, bevor die nächste beginnt. Für die Beispiele bis Calcium verwenden wir das vereinfachte Schalenmuster im interaktiven Modell.
 
-Die Kapazitätsregel gibt jeder Schale ihre Grenze.
+Die Kapazitätsregel gibt jeder Schale ihre Grenze: Schale <InlineMath math="n" /> fasst höchstens <InlineMath math="2n^2" /> Elektronen. Dreh die Balken: Die Grenze wächst schnell, von <InlineMath math="2" /> in der K-Schale bis <InlineMath math="32" /> in der N-Schale.
 
-<Mermaid
-  title="Schalenkapazität 2n²"
-  description="Schale n fasst höchstens 2n² Elektronen."
-  chart={`flowchart LR
-    A["K, n = 1: 2"] --> B["L, n = 2: 8"]
-    B --> C["M, n = 3: 18"]
-    C --> D["N, n = 4: 32"]`}
+<MathVisual
+  title={<>Schalenkapazität <InlineMath math="2n^2" /></>}
+  description={<>Die meisten Elektronen, die jede der ersten vier Schalen fassen kann. Ein Gitterschritt nach oben entspricht 4 Elektronen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 9 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 9, z: 12 }, target: { x: 3.75, y: 3.5, z: 0 } },
+    objects: [
+      { id: "shell-k", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.2, height: 0.5, width: 1.2 } },
+      { id: "shell-l", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "shell-m", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "shell-n", kind: "cuboid", appearance: "answer", center: { x: 7.5, y: 4, z: 0 }, size: { length: 1.2, height: 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 0, y: 0.5, z: 0 }, placement: "above" },
+      { key: "l", objectId: "shell-l", at: { x: 2.5, y: 2, z: 0 }, placement: "above" },
+      { key: "m", objectId: "shell-m", at: { x: 5, y: 4.5, z: 0 }, placement: "above" },
+      { key: "n", objectId: "shell-n", at: { x: 7.5, y: 8, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2\cdot1^2=2" />,
+    l: <InlineMath math="\mathrm{L}:\ 2\cdot2^2=8" />,
+    m: <InlineMath math="\mathrm{M}:\ 2\cdot3^2=18" />,
+    n: <InlineMath math="\mathrm{N}:\ 2\cdot4^2=32" />,
+  }}
 />
 
 ## Schalenmodell für leichte Elemente
@@ -140,8 +159,8 @@ Nach den Schalen K und L bleiben <InlineMath math="20-2-8=10" /> Elektronen. Ach
 Hier ist Calcium im einfachen Schalenmodell: <InlineMath math="2, 8, 8, 2" /> Elektronen von der K-Schale nach außen. Zähl jeden Ring nach und achte auf die zwei fuchsiafarbenen Elektronen in Schale N, obwohl Schale M mehr aufnehmen könnte.
 
 <MathVisual
-  title="Calcium im Schalenmodell"
-  description="Die 20 Elektronen von Calcium in den Schalen K, L, M und N, die äußersten in Fuchsia."
+  title={<>Calcium im Schalenmodell</>}
+  description={<>Die 20 Elektronen von Calcium in den Schalen K, L, M und N, die äußersten in Fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },

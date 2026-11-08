@@ -19,16 +19,38 @@ Urutan bukti eksperimen dimulai dari percobaan sinar katode Thomson, dilanjutkan
 
 J. J. Thomson menemukan elektron pada tahun <InlineMath math="1897" /> dan menunjukkan bahwa partikel itu jauh lebih ringan daripada atom.
 
-Setiap percobaan menjawab satu pertanyaan dan membuka pertanyaan berikutnya.
+Tiap percobaan menjawab satu pertanyaan dan membuka pertanyaan berikutnya. Dalton membayangkan bola pejal pada 1803, Thomson menemukan elektron pada 1897, tim Rutherford menemukan inti yang mungil dan padat pada 1911, inti hidrogen dikenali sebagai proton pada 1919, dan Chadwick menemukan neutron pada 1932. Telusuri garisnya dan perhatikan betapa cepatnya tiga penemuan terakhir datang.
 
-<Mermaid
-  title="Dari Bola Pejal ke Tiga Partikel"
-  description="Bola-bola Dalton digantikan oleh elektron, inti atom, proton, dan neutron."
-  chart={`flowchart LR
-    A["Dalton: bola pejal"] --> B["Thomson: sinar katode, elektron"]
-    B --> C["Tim Rutherford: inti kecil dan padat"]
-    C --> D["Inti hidrogen: proton"]
-    D --> E["Massa yang kurang: neutron"]`}
+<MathVisual
+  title={<>Dari Bola Pejal ke Tiga Partikel</>}
+  description={<>Lima langkah penemuan struktur atom pada satu garis waktu. Satu kotak grid berarti 14 tahun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "dalton", kind: "point", appearance: "secondary", at: { x: (1803 - 1800) / 14, y: 0 } },
+      { id: "thomson", kind: "point", appearance: "secondary", at: { x: (1897 - 1800) / 14, y: 0 } },
+      { id: "rutherford", kind: "point", appearance: "secondary", at: { x: (1911 - 1800) / 14, y: 0 } },
+      { id: "proton", kind: "point", appearance: "secondary", at: { x: (1919 - 1800) / 14, y: 0 } },
+      { id: "chadwick", kind: "point", appearance: "answer", at: { x: (1932 - 1800) / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "dalton", objectId: "dalton", at: { x: (1803 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "thomson", objectId: "thomson", at: { x: (1897 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "rutherford", objectId: "rutherford", at: { x: (1911 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "proton", objectId: "proton", at: { x: (1919 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "chadwick", objectId: "chadwick", at: { x: (1932 - 1800) / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dalton: <>1803: bola pejal</>,
+    thomson: <>1897: elektron</>,
+    rutherford: <>1911: inti atom</>,
+    proton: <>1919: proton</>,
+    chadwick: <>1932: neutron</>,
+  }}
 />
 
 ## Bukti dari Tiga Eksperimen
@@ -169,8 +191,8 @@ Ingat tiga hubungan ini: **proton menentukan identitas unsur**, **neutron ikut m
 Inilah muatan relatif sebagai batang di atas dan di bawah nol. Elektron turun sampai <InlineMath math="-1" />, proton naik sampai <InlineMath math="+1" />, dan neutron tidak punya batang sama sekali. Satu proton dan satu elektron saling meniadakan, itulah sebabnya atom netral punya jumlah keduanya sama.
 
 <MathVisual
-  title="Muatan Relatif Tiga Partikel"
-  description="Elektron −1 di bawah nol, proton +1 di atas nol, neutron 0."
+  title={<>Muatan Relatif Tiga Partikel</>}
+  description={<>Elektron di <InlineMath math="-1" />, di bawah nol, proton di <InlineMath math="+1" />, di atas nol, dan neutron di <InlineMath math="0" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },

@@ -19,16 +19,38 @@ Die Beweiskette reicht von Thomsons Kathodenstrahlversuch über Rutherfords Gold
 
 Im Jahr <InlineMath math="1897" /> entdeckte J. J. Thomson das Elektron und zeigte, dass dieses Teilchen sehr viel leichter als ein Atom ist.
 
-Jedes Experiment beantwortete eine Frage und öffnete die nächste.
+Jedes Experiment beantwortete eine Frage und warf die nächste auf. Dalton stellte sich 1803 feste Kugeln vor, Thomson fand 1897 das Elektron, Rutherfords Team fand 1911 einen winzigen, dichten Kern, 1919 wurden Wasserstoffkerne als Protonen erkannt, und Chadwick fand 1932 das Neutron. Zoom die Linie entlang und achte darauf, wie schnell die letzten drei kamen.
 
-<Mermaid
-  title="Von festen Kugeln zu drei Teilchen"
-  description="Auf Daltons Kugeln folgten das Elektron, der Kern, das Proton und das Neutron."
-  chart={`flowchart LR
-    A["Dalton: feste Kugeln"] --> B["Thomson: Kathodenstrahlen, Elektron"]
-    B --> C["Rutherfords Team: winziger dichter Kern"]
-    C --> D["Wasserstoffkerne: Proton"]
-    D --> E["Fehlende Masse: Neutron"]`}
+<MathVisual
+  title={<>Von festen Kugeln zu drei Teilchen</>}
+  description={<>Fünf Schritte der Entdeckung des Atombaus auf einer Zeitleiste. Ein Gitterschritt entspricht 14 Jahren.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "dalton", kind: "point", appearance: "secondary", at: { x: (1803 - 1800) / 14, y: 0 } },
+      { id: "thomson", kind: "point", appearance: "secondary", at: { x: (1897 - 1800) / 14, y: 0 } },
+      { id: "rutherford", kind: "point", appearance: "secondary", at: { x: (1911 - 1800) / 14, y: 0 } },
+      { id: "proton", kind: "point", appearance: "secondary", at: { x: (1919 - 1800) / 14, y: 0 } },
+      { id: "chadwick", kind: "point", appearance: "answer", at: { x: (1932 - 1800) / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "dalton", objectId: "dalton", at: { x: (1803 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "thomson", objectId: "thomson", at: { x: (1897 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "rutherford", objectId: "rutherford", at: { x: (1911 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "proton", objectId: "proton", at: { x: (1919 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "chadwick", objectId: "chadwick", at: { x: (1932 - 1800) / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dalton: <>1803: feste Kugeln</>,
+    thomson: <>1897: Elektron</>,
+    rutherford: <>1911: Atomkern</>,
+    proton: <>1919: Proton</>,
+    chadwick: <>1932: Neutron</>,
+  }}
 />
 
 ## Belege aus drei Experimenten
@@ -170,8 +192,8 @@ Merke dir drei Beziehungen: **Protonen bestimmen die Elementidentität**, **Neut
 Hier sind die relativen Ladungen als Säulen über und unter null. Das Elektron reicht bis <InlineMath math="-1" /> hinunter, das Proton bis <InlineMath math="+1" /> hinauf, und das Neutron hat gar keine Säule. Ein Proton und ein Elektron heben sich auf, deshalb hat ein neutrales Atom von beiden gleich viele.
 
 <MathVisual
-  title="Relative Ladungen der drei Teilchen"
-  description="Elektron −1 unter null, Proton +1 über null, Neutron 0."
+  title={<>Relative Ladungen der drei Teilchen</>}
+  description={<>Elektron bei <InlineMath math="-1" /> unter null, Proton bei <InlineMath math="+1" /> über null, Neutron bei <InlineMath math="0" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },

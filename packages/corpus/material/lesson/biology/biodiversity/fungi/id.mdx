@@ -63,6 +63,49 @@ Fungi tidak berfotosintesis. Sel fungi **menyerap molekul organik** dari lingkun
 | Enzim luar | Zat kimia yang dilepaskan di luar tubuh | Menguraikan bahan kompleks sebelum diserap |
 | Dinding kitin | Bahan dinding sel yang kuat | Membedakan fungi dari tumbuhan berdinding selulosa |
 
+Benang putih pada tempe tumbuh di ujungnya, dan tiap ujung bisa bercabang jadi dua. Setelah <InlineMath math="n" /> kali bercabang ada sampai <InlineMath math="2^n" /> ujung, dan tiap ujung melepas enzim serta menyerap makanan. Perkecil tampilan dan hitung ujungnya di tiap tingkat.
+
+<MathVisual
+  title={<>Hifa Bercabang Melipatgandakan Ujung</>}
+  description={<>Satu hifa yang bercabang tiga kali. Titik ungu adalah ujung yang sedang tumbuh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hypha-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2.4 } },
+      { id: "hypha-1", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) } },
+      { id: "hypha-2", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) } },
+      { id: "hypha-3", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) } },
+      { id: "hypha-4", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-5", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-6", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) } },
+      { id: "hypha-7", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "hypha-8", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-9", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-10", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-11", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-12", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-13", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-14", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+      { id: "tip-0", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "tip-1", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-2", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-3", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-4", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-5", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-6", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-7", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "tips", objectId: "tip-0", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    tips: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Cara Makan Fungi Berbeda dari Hewan
 
 Fungi melepaskan enzim pada bahan organik, lalu **menyerap molekul kecil hasil pencernaan**. Hewan biasanya mencerna makanan di dalam tubuh, sedangkan tumbuhan membuat gula melalui fotosintesis.
@@ -76,19 +119,6 @@ Proses ini disebut **pencernaan ekstraseluler**. Hifa menyediakan permukaan temp
 ### Kitin Membedakan Dinding Sel Fungi
 
 Dinding sel fungi mengandung **kitin**, sedangkan dinding sel tumbuhan terutama mengandung selulosa. Kitin juga ditemukan pada rangka luar serangga. Bahan penyusun dinding sel menjadi salah satu ciri yang dipakai untuk membedakan fungi dari tumbuhan.
-
-Jajarkan kedua cara makan itu, maka urutan langkahnya terbalik.
-
-<Mermaid
-  title="Jamur Mencerna di Luar, Hewan di Dalam"
-  description="Jamur melepas enzim dulu lalu menyerap, sedangkan hewan memasukkan makanan dulu lalu mencernanya di dalam."
-  chart={`flowchart TD
-    A["Jamur"] --> B["Melepas enzim ke makanan"]
-    B --> C["Makanan diurai di luar"]
-    C --> D["Menyerap molekul kecil"]
-    E["Hewan"] --> F["Memasukkan makanan ke tubuh"]
-    F --> G["Mencernanya di dalam"]`}
-/>
 
 ## Penyebaran Fungi melalui Spora
 
@@ -116,6 +146,34 @@ Pada akar tumbuhan, sebagian fungi membentuk [**mikoriza**](https://research.fs.
   chart={`flowchart LR
     P["Tumbuhan"] -->|"Gula dari fotosintesis"| F["Fungi mikoriza"]
     F -->|"Air dan mineral"| P`}
+/>
+
+Jamur pengurai menguraikan daun gugur, jadi serasahnya menyusut. Sebagai model sederhana, anggap separuh serasah yang tersisa terurai tiap 4 minggu: setelah <InlineMath math="t" /> minggu, tersisa <InlineMath math="m=100\left(\tfrac{1}{2}\right)^{t/4}" /> gram. Ikuti kurvanya: jumlah yang terurai tiap bulan makin kecil, sementara waktu paruhnya tetap sama.
+
+<MathVisual
+  title={<>Jamur Membuat Serasah Tinggal Separuh</>}
+  description={<>Serasah yang tersisa dalam model sederhana, dengan separuhnya terurai tiap 4 minggu. Mendatar: satu kotak grid berarti 2 minggu. Tegak: satu kotak grid berarti 12,5 gram.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "litter", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (100 * 0.5 ** (0 / 4)) / 12.5 }, { x: 0.5, y: (100 * 0.5 ** (1 / 4)) / 12.5 }, { x: 1, y: (100 * 0.5 ** (2 / 4)) / 12.5 }, { x: 1.5, y: (100 * 0.5 ** (3 / 4)) / 12.5 }, { x: 2, y: (100 * 0.5 ** (4 / 4)) / 12.5 }, { x: 2.5, y: (100 * 0.5 ** (5 / 4)) / 12.5 }, { x: 3, y: (100 * 0.5 ** (6 / 4)) / 12.5 }, { x: 3.5, y: (100 * 0.5 ** (7 / 4)) / 12.5 }, { x: 4, y: (100 * 0.5 ** (8 / 4)) / 12.5 }, { x: 4.5, y: (100 * 0.5 ** (9 / 4)) / 12.5 }, { x: 5, y: (100 * 0.5 ** (10 / 4)) / 12.5 }, { x: 5.5, y: (100 * 0.5 ** (11 / 4)) / 12.5 }, { x: 6, y: (100 * 0.5 ** (12 / 4)) / 12.5 }, { x: 6.5, y: (100 * 0.5 ** (13 / 4)) / 12.5 }, { x: 7, y: (100 * 0.5 ** (14 / 4)) / 12.5 }, { x: 7.5, y: (100 * 0.5 ** (15 / 4)) / 12.5 }, { x: 8, y: (100 * 0.5 ** (16 / 4)) / 12.5 }] },
+      { id: "half-0", kind: "point", appearance: "secondary", at: { x: 0, y: 8 } },
+      { id: "half-4", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "half-8", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "half-12", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "half-16", kind: "point", appearance: "answer", at: { x: 8, y: 0.5 } },
+    ],
+    labels: [
+      { key: "start", objectId: "half-0", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "end", objectId: "half-16", at: { x: 8, y: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="100\ \mathrm{g}" />,
+    end: <InlineMath math="6{,}25\ \mathrm{g}" />,
+  }}
 />
 
 ## Fungi Mencerna Makanan di Luar Tubuh

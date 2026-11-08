@@ -30,16 +30,42 @@ The early debate offered two opposite answers: matter can be divided without lim
 
 Democritus called the smallest part *atomos*, a Greek term meaning uncuttable.
 
-The two answers split like this.
+Test Democritus's question with numbers. Halve a <InlineMath math="1\ \mathrm{cm}" /> grain <InlineMath math="n" /> times and its size is <InlineMath math="2^{-n}\ \mathrm{cm}" />. Only about <InlineMath math="27" /> halvings bring it down to the size of an atom, around <InlineMath math="10^{-10}\ \mathrm{m}" />. Each grid step down is ten times smaller, so zoom along the line and count the cuts.
 
-<Mermaid
-  title="Two Answers to One Question"
-  description="Either matter can be divided without end, or it stops at the smallest uncuttable unit, the atomos."
-  chart={`flowchart TD
-    A["Can matter be divided forever?"] --> B["Yes: no smallest part"]
-    A --> C["No: smallest uncuttable unit"]
-    C --> D["Democritus: atomos"]
-    D --> E["Tested much later by chemistry"]`}
+<MathVisual
+  title={<>Twenty-Seven Halvings to an Atom</>}
+  description={<>Size of a grain after each halving, starting at 1 cm. Horizontal: one grid step is 3 halvings. Vertical: one grid step down is ten times smaller.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "halving", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 9 }, { x: 1 / 3, y: 9 - 1 * Math.log10(2) }, { x: 2 / 3, y: 9 - 2 * Math.log10(2) }, { x: 1, y: 9 - 3 * Math.log10(2) }, { x: 4 / 3, y: 9 - 4 * Math.log10(2) }, { x: 5 / 3, y: 9 - 5 * Math.log10(2) }, { x: 2, y: 9 - 6 * Math.log10(2) }, { x: 7 / 3, y: 9 - 7 * Math.log10(2) }, { x: 8 / 3, y: 9 - 8 * Math.log10(2) }, { x: 3, y: 9 - 9 * Math.log10(2) }, { x: 10 / 3, y: 9 - 10 * Math.log10(2) }, { x: 11 / 3, y: 9 - 11 * Math.log10(2) }, { x: 4, y: 9 - 12 * Math.log10(2) }, { x: 13 / 3, y: 9 - 13 * Math.log10(2) }, { x: 14 / 3, y: 9 - 14 * Math.log10(2) }, { x: 5, y: 9 - 15 * Math.log10(2) }, { x: 16 / 3, y: 9 - 16 * Math.log10(2) }, { x: 17 / 3, y: 9 - 17 * Math.log10(2) }, { x: 6, y: 9 - 18 * Math.log10(2) }, { x: 19 / 3, y: 9 - 19 * Math.log10(2) }, { x: 20 / 3, y: 9 - 20 * Math.log10(2) }, { x: 7, y: 9 - 21 * Math.log10(2) }, { x: 22 / 3, y: 9 - 22 * Math.log10(2) }, { x: 23 / 3, y: 9 - 23 * Math.log10(2) }, { x: 8, y: 9 - 24 * Math.log10(2) }, { x: 25 / 3, y: 9 - 25 * Math.log10(2) }, { x: 26 / 3, y: 9 - 26 * Math.log10(2) }, { x: 9, y: 9 - 27 * Math.log10(2) }, { x: 28 / 3, y: 9 - 28 * Math.log10(2) }, { x: 29 / 3, y: 9 - 29 * Math.log10(2) }, { x: 10, y: 9 - 30 * Math.log10(2) }] },
+      { id: "atom-size", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "cut-0", kind: "point", appearance: "secondary", at: { x: 0, y: 9 } },
+      { id: "cut-3", kind: "point", appearance: "secondary", at: { x: 1, y: 9 - 3 * Math.log10(2) } },
+      { id: "cut-6", kind: "point", appearance: "secondary", at: { x: 2, y: 9 - 6 * Math.log10(2) } },
+      { id: "cut-9", kind: "point", appearance: "secondary", at: { x: 3, y: 9 - 9 * Math.log10(2) } },
+      { id: "cut-12", kind: "point", appearance: "secondary", at: { x: 4, y: 9 - 12 * Math.log10(2) } },
+      { id: "cut-15", kind: "point", appearance: "secondary", at: { x: 5, y: 9 - 15 * Math.log10(2) } },
+      { id: "cut-18", kind: "point", appearance: "secondary", at: { x: 6, y: 9 - 18 * Math.log10(2) } },
+      { id: "cut-21", kind: "point", appearance: "secondary", at: { x: 7, y: 9 - 21 * Math.log10(2) } },
+      { id: "cut-24", kind: "point", appearance: "secondary", at: { x: 8, y: 9 - 24 * Math.log10(2) } },
+      { id: "cut-27", kind: "point", appearance: "secondary", at: { x: 9, y: 9 - 27 * Math.log10(2) } },
+      { id: "cut-30", kind: "point", appearance: "secondary", at: { x: 10, y: 9 - 30 * Math.log10(2) } },
+      { id: "atom-reached", kind: "point", appearance: "answer", at: { x: 9, y: 9 - 27 * Math.log10(2) } },
+    ],
+    labels: [
+      { key: "start", objectId: "cut-0", at: { x: 0, y: 9 }, placement: "right" },
+      { key: "atom", objectId: "atom-reached", at: { x: 9, y: 9 - 27 * Math.log10(2) }, placement: "above-right" },
+      { key: "line", objectId: "atom-size", at: { x: 0, y: 1 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="1\ \mathrm{cm}" />,
+    atom: <InlineMath math="2^{-27}\ \mathrm{cm}\approx7\cdot10^{-11}\ \mathrm{m}" />,
+    line: <>about the size of an atom</>,
+  }}
 />
 
 ## Following the Reasoning of Democritus
@@ -88,8 +114,8 @@ This visual presents a **thought experiment** about dividing matter. Imagine cut
 Follow the thought experiment as numbers. Each cut halves the piece, so after <InlineMath math="n" /> cuts it is <InlineMath math="1/2^n" /> of the start. The columns below show only four cuts, and the last piece is already one sixteenth of the first. Democritus's question was whether this can go on forever or must stop at an uncuttable unit.
 
 <MathVisual
-  title="Halving a Piece Again and Again"
-  description="A piece 8 units tall cut in half four times. Each column is half the one before."
+  title={<>Halving a Piece Again and Again</>}
+  description={<>A piece 8 units tall cut in half four times. Each column is half the one before.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },

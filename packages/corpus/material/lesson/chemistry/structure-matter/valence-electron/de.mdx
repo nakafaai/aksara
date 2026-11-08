@@ -113,8 +113,8 @@ Für die Valenzelektronen dürfen nicht alle Elektronen addiert werden. Calcium 
 Hier ist Chlor, <InlineMath math="2, 8, 7" />. Seine äußerste besetzte Schale ist M, und die sieben fuchsiafarbenen Elektronen dort sind seine Valenzelektronen, eines weniger als ein voller Achtersatz.
 
 <MathVisual
-  title="Die sieben Valenzelektronen von Chlor"
-  description="Die 17 Elektronen von Chlor in den Schalen K, L und M, die Valenzelektronen in Fuchsia."
+  title={<>Die sieben Valenzelektronen von Chlor</>}
+  description={<>Die 17 Elektronen von Chlor in den Schalen K, L und M, die Valenzelektronen in Fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -232,13 +232,50 @@ Die Elemente <InlineMath math="\mathrm{B}" />, <InlineMath math="\mathrm{Al}" />
 
 <InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{K}" /> stehen in Gruppe <InlineMath math="1" />. Nach demselben Muster besitzen beide <InlineMath math="1" /> leicht abzugebendes Valenzelektron und bilden daher häufig <InlineMath math="+1" />-Ionen. Argon ist reaktionsträger als Chlor, weil es ein stabiles **Valenzoktett** besitzt. Ein Oktett bedeutet acht Valenzelektronen, nicht die vollständige Belegung der Schale M mit 18 Elektronen. Chlor nimmt bei der Ionenbildung häufig ein Elektron auf oder teilt Elektronen in kovalenten Bindungen.
 
-Nutz diese Schritte für jedes Hauptgruppenatom.
+Schreib die Schalenbesetzung auf, such die äußerste besetzte Schale und zähl ihre Elektronen. Mach das für die Ordnungszahlen 1 bis 20, und die Zahl steigt bis acht und fällt dann auf eins zurück, sobald eine neue Schale beginnt. Zoom auf den Abfall nach Neon und auf Chlor, dem ein Elektron bis acht fehlt.
 
-<Mermaid
-  title="Valenzelektronen finden"
-  description="Schreib die Schalenbesetzung, such die äußerste besetzte Schale und zähl ihre Elektronen."
-  chart={`flowchart LR
-    A["Ordnungszahl"] --> B["Schalenbesetzung"]
-    B --> C["Äußerste besetzte Schale"]
-    C --> D["Zähl ihre Elektronen: Valenzelektronen"]`}
+<MathVisual
+  title={<>Valenzelektronen steigen und beginnen neu</>}
+  description={<>Valenzelektronen für die Ordnungszahlen 1 bis 20. Waagerecht: Ein Gitterschritt entspricht 2 Ordnungszahlen. Senkrecht: Anzahl der Valenzelektronen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0.5, y: 1 }, { x: 1, y: 2 }] },
+      { id: "period-2", kind: "polyline", appearance: "reference", vertices: [{ x: 1.5, y: 1 }, { x: 2, y: 2 }, { x: 2.5, y: 3 }, { x: 3, y: 4 }, { x: 3.5, y: 5 }, { x: 4, y: 6 }, { x: 4.5, y: 7 }, { x: 5, y: 8 }] },
+      { id: "period-3", kind: "polyline", appearance: "reference", vertices: [{ x: 5.5, y: 1 }, { x: 6, y: 2 }, { x: 6.5, y: 3 }, { x: 7, y: 4 }, { x: 7.5, y: 5 }, { x: 8, y: 6 }, { x: 8.5, y: 7 }, { x: 9, y: 8 }] },
+      { id: "period-4", kind: "polyline", appearance: "reference", vertices: [{ x: 9.5, y: 1 }, { x: 10, y: 2 }] },
+      { id: "z1", kind: "point", appearance: "primary", at: { x: 0.5, y: 1 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "z3", kind: "point", appearance: "primary", at: { x: 1.5, y: 1 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 6 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 7 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8 } },
+      { id: "z11", kind: "point", appearance: "primary", at: { x: 5.5, y: 1 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 6.5, y: 3 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 7, y: 4 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 7.5, y: 5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 8, y: 6 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 8.5, y: 7 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 8 } },
+      { id: "z19", kind: "point", appearance: "primary", at: { x: 9.5, y: 1 } },
+      { id: "z20", kind: "point", appearance: "secondary", at: { x: 10, y: 2 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "cl", objectId: "z17", at: { x: 8.5, y: 7 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+  }}
 />

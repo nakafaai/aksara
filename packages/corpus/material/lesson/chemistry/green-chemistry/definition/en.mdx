@@ -16,15 +16,30 @@ Green chemistry applies across the [life cycle of a chemical product](https://ww
 
 Green chemistry begins with **process design**. Waste treatment remains important after waste forms. Before the process runs, green chemistry evaluates whether the starting materials, solvent, energy use, catalyst, and final product can be made safer.
 
-Ask the green chemistry questions at every stage of this life cycle, starting before anything is made.
+The last stage of the life cycle is a design choice too. If a product loses half of its remaining mass every <InlineMath math="T" /> months, <InlineMath math="\left(\tfrac{1}{2}\right)^{t/T}" /> of it is still there after <InlineMath math="t" /> months. With an illustrative <InlineMath math="T=2" /> the teal product is almost gone in two years, while a persistent one with <InlineMath math="T=120" /> keeps about <InlineMath math="87\%" />. Zoom along both curves.
 
-<Mermaid
-  title="The Life Cycle Green Chemistry Covers"
-  description="From design to final fate, each stage is a place to reduce hazards and waste."
-  chart={`flowchart LR
-    A["Design"] --> B["Manufacture"]
-    B --> C["Use"]
-    C --> D["Final fate: degrade or recover"]`}
+<MathVisual
+  title={<>Designed to Break Down</>}
+  description={<>Share of two illustrative products left over 24 months: a degradable design (teal) and a persistent one (gray). Horizontal: one grid step is 2 months. Vertical: one grid step is 20 percent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "persistent", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 120) }, { x: 1, y: 5 * 0.5 ** (2 / 120) }, { x: 1.5, y: 5 * 0.5 ** (3 / 120) }, { x: 2, y: 5 * 0.5 ** (4 / 120) }, { x: 2.5, y: 5 * 0.5 ** (5 / 120) }, { x: 3, y: 5 * 0.5 ** (6 / 120) }, { x: 3.5, y: 5 * 0.5 ** (7 / 120) }, { x: 4, y: 5 * 0.5 ** (8 / 120) }, { x: 4.5, y: 5 * 0.5 ** (9 / 120) }, { x: 5, y: 5 * 0.5 ** (10 / 120) }, { x: 5.5, y: 5 * 0.5 ** (11 / 120) }, { x: 6, y: 5 * 0.5 ** (12 / 120) }, { x: 6.5, y: 5 * 0.5 ** (13 / 120) }, { x: 7, y: 5 * 0.5 ** (14 / 120) }, { x: 7.5, y: 5 * 0.5 ** (15 / 120) }, { x: 8, y: 5 * 0.5 ** (16 / 120) }, { x: 8.5, y: 5 * 0.5 ** (17 / 120) }, { x: 9, y: 5 * 0.5 ** (18 / 120) }, { x: 9.5, y: 5 * 0.5 ** (19 / 120) }, { x: 10, y: 5 * 0.5 ** (20 / 120) }, { x: 10.5, y: 5 * 0.5 ** (21 / 120) }, { x: 11, y: 5 * 0.5 ** (22 / 120) }, { x: 11.5, y: 5 * 0.5 ** (23 / 120) }, { x: 12, y: 5 * 0.5 ** (24 / 120) }] },
+      { id: "degradable", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 2) }, { x: 1, y: 5 * 0.5 ** (2 / 2) }, { x: 1.5, y: 5 * 0.5 ** (3 / 2) }, { x: 2, y: 5 * 0.5 ** (4 / 2) }, { x: 2.5, y: 5 * 0.5 ** (5 / 2) }, { x: 3, y: 5 * 0.5 ** (6 / 2) }, { x: 3.5, y: 5 * 0.5 ** (7 / 2) }, { x: 4, y: 5 * 0.5 ** (8 / 2) }, { x: 4.5, y: 5 * 0.5 ** (9 / 2) }, { x: 5, y: 5 * 0.5 ** (10 / 2) }, { x: 5.5, y: 5 * 0.5 ** (11 / 2) }, { x: 6, y: 5 * 0.5 ** (12 / 2) }, { x: 6.5, y: 5 * 0.5 ** (13 / 2) }, { x: 7, y: 5 * 0.5 ** (14 / 2) }, { x: 7.5, y: 5 * 0.5 ** (15 / 2) }, { x: 8, y: 5 * 0.5 ** (16 / 2) }, { x: 8.5, y: 5 * 0.5 ** (17 / 2) }, { x: 9, y: 5 * 0.5 ** (18 / 2) }, { x: 9.5, y: 5 * 0.5 ** (19 / 2) }, { x: 10, y: 5 * 0.5 ** (20 / 2) }, { x: 10.5, y: 5 * 0.5 ** (21 / 2) }, { x: 11, y: 5 * 0.5 ** (22 / 2) }, { x: 11.5, y: 5 * 0.5 ** (23 / 2) }, { x: 12, y: 5 * 0.5 ** (24 / 2) }] },
+      { id: "persist-end", kind: "point", appearance: "reference", at: { x: 12, y: 5 * 0.5 ** (24 / 120) } },
+      { id: "degrade-half", kind: "point", appearance: "construction", at: { x: 1, y: 2.5 } },
+    ],
+    labels: [
+      { key: "persist", objectId: "persist-end", at: { x: 12, y: 5 * 0.5 ** (24 / 120) }, placement: "above-left" },
+      { key: "half", objectId: "degrade-half", at: { x: 1, y: 2.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    persist: <InlineMath math="\left(\tfrac{1}{2}\right)^{24/120}\approx87\%" />,
+    half: <InlineMath math="\left(\tfrac{1}{2}\right)^{2/2}=50\%" />,
+  }}
 />
 
 ## Preventing Waste during Process Design
@@ -56,8 +71,8 @@ This reaction does not directly produce carbon dioxide. Its life-cycle emissions
 The scene below draws the molecules of this reaction to scale. Count the atoms on each side: four violet hydrogen atoms and two orange oxygen atoms before the arrow, and the same four and two after it. Electrolysis only regroups the atoms, so nothing new appears at the electrolyser. What it needs is the electrical energy written on the arrow, and that's where the green chemistry question moves next.
 
 <MathVisual
-  title="Water Splits into Hydrogen and Oxygen"
-  description="Molecules drawn to scale in angstrom: O-H 0.96 Å at an angle of 104.5°, H-H 0.74 Å, O=O 1.21 Å. Orange points are oxygen atoms, violet points hydrogen atoms."
+  title={<>Water Splits into Hydrogen and Oxygen</>}
+  description={<>Molecules drawn to scale in angstrom: <InlineMath math="\mathrm{O{-}H}\ 0.96\ \text{Å}" /> at an angle of <InlineMath math="104.5^\circ" />, <InlineMath math="\mathrm{H{-}H}\ 0.74\ \text{Å}" />, <InlineMath math="\mathrm{O{=}O}\ 1.21\ \text{Å}" />. Orange points are oxygen atoms, violet points hydrogen atoms.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
@@ -126,18 +141,34 @@ Using <InlineMath math="\mathrm{CO_2}" /> does not by itself make the methanol p
 
 A green chemistry assessment covers the materials, energy, hazards, products, and waste from the start of the process to the end of use.
 
-The three arrows into the reactor below are questions from the list, so the CO2 route is only as green as its hydrogen, energy and catalyst.
+The reactor turns carbon dioxide into methanol by <InlineMath math="\mathrm{CO_2}+3\mathrm{H_2}\rightarrow\mathrm{CH_3OH}+\mathrm{H_2O}" />. Every hydrogen atom in the bars has to come from somewhere, so this route is only as green as its hydrogen, its energy and its catalyst. Rotate the bars and count the hydrogen on each side.
 
-<Mermaid
-  title="What Feeds Methanol from Carbon Dioxide"
-  description="The reactor needs hydrogen, energy and a catalyst, and it sends out methanol, water and any waste."
-  chart={`flowchart LR
-    A["CO2"] --> R["Catalytic reactor"]
-    H["H2 from which source?"] --> R
-    E["Energy from which source?"] --> R
-    K["Safe, durable catalyst?"] --> R
-    R --> M["Methanol"]
-    R --> W["Water and waste handled safely?"]`}
+<MathVisual
+  title={<>Atoms on Both Sides</>}
+  description={<>Carbon (gray), hydrogen (violet) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is 1 atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 10, z: 11 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "c-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "c-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "h-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-right", at: { x: 0, y: 1.3, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-right", at: { x: 2.5, y: 6.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 5, y: 2.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c: <InlineMath math="\mathrm{C}:\ 1=1" />,
+    h: <InlineMath math="\mathrm{H}:\ 3\cdot2=4+2" />,
+    o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
+  }}
 />
 
 ## Checking Green Claims

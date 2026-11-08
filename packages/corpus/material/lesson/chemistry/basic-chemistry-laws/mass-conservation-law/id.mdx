@@ -101,8 +101,8 @@ Neraca hanya mengukur materi yang masih berada di dalam batas sistem yang dipili
 Tiga kolom di bawah adalah angka yang dibaca neraca, dengan satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Kalau semua zat tetap di dalam, kolom tertutup tetap <InlineMath math="12{,}00\ \mathrm{g}" />. Pada sistem terbuka, <InlineMath math="1{,}00\ \mathrm{g}" /> belerang keluar melewati batas sistem sebelum bereaksi, jadi neraca hanya menunjukkan <InlineMath math="11{,}00\ \mathrm{g}" />. Massanya tidak hilang, tetapi keluar dari sistem yang sedang kamu timbang.
 
 <MathVisual
-  title="Angka yang Dibaca Neraca"
-  description="10,00 g seng dan 2,00 g belerang sebelum reaksi, lalu sesudahnya dalam sistem tertutup dan terbuka. Satu kotak grid ke atas sama dengan 4 g."
+  title={<>Angka yang Dibaca Neraca</>}
+  description={<>10,00 g seng dan 2,00 g belerang sebelum reaksi, lalu sesudahnya dalam sistem tertutup dan terbuka. Satu kotak grid ke atas sama dengan 4 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -160,13 +160,31 @@ Persamaan reaksi harus setara karena kedua sisinya memuat jumlah atom yang sama 
 
 Hukum perbandingan tetap menjawab pertanyaan yang berbeda. Jika dua unsur membentuk senyawa yang sama, apakah perbandingan massanya selalu tetap?
 
-Pisahkan ketiga massa itu di cabangnya masing-masing.
+Pisahkan tiga massa dalam percobaan seng dan belerang. Sebelum reaksi, kolomnya berisi seng yang akan bereaksi, seng yang tidak bereaksi, dan belerang. Sesudahnya, bagian yang bereaksi sudah menjadi <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di samping sisa seng yang sama. Putar kolomnya: kedua totalnya <InlineMath math="12{,}00\ \mathrm{g}" />.
 
-<Mermaid
-  title="Tiga Pertanyaan Massa"
-  description="Massa total, massa yang bereaksi, dan massa sisa menjawab pertanyaan yang berbeda."
-  chart={`flowchart TD
-    A["Percobaan Zn + S"] --> B["Total dalam sistem: 12,00 g sebelum dan sesudah"]
-    A --> C["Bereaksi: 4,08 g Zn + 2,00 g S = 6,08 g ZnS"]
-    A --> D["Sisa: 5,92 g Zn"]`}
+<MathVisual
+  title={<>Tiga Pertanyaan tentang Massa</>}
+  description={<>Sebelum (kiri): sisa seng (abu-abu), seng yang bereaksi (oranye), dan belerang (kuning). Sesudah (kanan): sisa seng (abu-abu) dan seng sulfida (teal). Satu kotak grid ke atas berarti 1 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 15, z: 11 }, target: { x: 1.5, y: 6, z: 0 } },
+    objects: [
+      { id: "zn-left-before", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zn-reacted", kind: "cuboid", appearance: "primary", center: { x: 0, y: 7.96, z: 0 }, size: { length: 1.6, height: 4.08, width: 1.6 } },
+      { id: "sulfur", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 11, z: 0 }, size: { length: 1.6, height: 2, width: 1.6 } },
+      { id: "zn-left-after", kind: "cuboid", appearance: "reference", center: { x: 3, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zns", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8.96, z: 0 }, size: { length: 1.6, height: 6.08, width: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "sulfur", at: { x: 0, y: 12, z: 0 }, placement: "above" },
+      { key: "after", objectId: "zns", at: { x: 3, y: 12, z: 0 }, placement: "above" },
+      { key: "left", objectId: "zn-left-after", at: { x: 3, y: 2.96, z: 0.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="4{,}08+5{,}92+2{,}00=12{,}00\ \mathrm{g}" />,
+    after: <InlineMath math="6{,}08+5{,}92=12{,}00\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{Zn}:\ 5{,}92\ \mathrm{g}" />,
+  }}
 />

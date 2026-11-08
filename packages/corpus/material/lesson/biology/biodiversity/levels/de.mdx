@@ -44,6 +44,51 @@ Ein sichtbares Merkmal wird meist nicht allein von Genen bestimmt. Die Wuchshöh
 
 Genetische Unterschiede können dazu führen, dass Individuen verschieden auf dieselbe Umweltveränderung reagieren. Eine vielfältigere Population enthält daher mit größerer Wahrscheinlichkeit Individuen, die unter den neuen Bedingungen überleben und sich fortpflanzen.
 
+Stell dir zwei Reispopulationen mit je 10 Pflanzen vor, jede danach platziert, wie gut sie eine Belastung wie eine lang anhaltende Überflutung verträgt. In der oberen Reihe haben alle Pflanzen dieselbe vererbte Variante, in der unteren sind die Varianten verschieden. Wenn eine neue Bedingung eine Toleranz jenseits der rosa Linie verlangt, hat nur die vielfältige Population noch Pflanzen, die durchhalten. Zoom auf die Linie und zähl die Punkte rechts davon.
+
+<MathVisual
+  title={<>Vielfalt gibt manchen Pflanzen eine Chance</>}
+  description={<>Beispielhafte Toleranz von 10 Pflanzen mit einer gemeinsamen Variante (oben) und 10 Pflanzen mit verschiedenen Varianten (unten). Punkte rechts der rosa Linie halten die neue Bedingung aus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "threshold", kind: "segment", appearance: "warning", from: { x: 7, y: 0 }, to: { x: 7, y: 3 } },
+      { id: "same-0", kind: "point", appearance: "reference", at: { x: 4.55, y: 2 } },
+      { id: "same-1", kind: "point", appearance: "reference", at: { x: 4.65, y: 2 } },
+      { id: "same-2", kind: "point", appearance: "reference", at: { x: 4.75, y: 2 } },
+      { id: "same-3", kind: "point", appearance: "reference", at: { x: 4.85, y: 2 } },
+      { id: "same-4", kind: "point", appearance: "reference", at: { x: 4.95, y: 2 } },
+      { id: "same-5", kind: "point", appearance: "reference", at: { x: 5.05, y: 2 } },
+      { id: "same-6", kind: "point", appearance: "reference", at: { x: 5.15, y: 2 } },
+      { id: "same-7", kind: "point", appearance: "reference", at: { x: 5.25, y: 2 } },
+      { id: "same-8", kind: "point", appearance: "reference", at: { x: 5.35, y: 2 } },
+      { id: "same-9", kind: "point", appearance: "reference", at: { x: 5.45, y: 2 } },
+      { id: "spread-0", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "spread-1", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "spread-2", kind: "point", appearance: "secondary", at: { x: 3.5, y: 1 } },
+      { id: "spread-3", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+      { id: "spread-4", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "spread-5", kind: "point", appearance: "secondary", at: { x: 5.5, y: 1 } },
+      { id: "spread-6", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "spread-7", kind: "point", appearance: "secondary", at: { x: 6.5, y: 1 } },
+      { id: "spread-8", kind: "point", appearance: "answer", at: { x: 7.5, y: 1 } },
+      { id: "spread-9", kind: "point", appearance: "answer", at: { x: 8, y: 1 } },
+    ],
+    labels: [
+      { key: "line", objectId: "threshold", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "same", objectId: "same-9", at: { x: 5.45, y: 2 }, placement: "right" },
+      { key: "spread", objectId: "spread-9", at: { x: 8, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    line: <>neue Bedingung</>,
+    same: <>0 von 10 halten durch</>,
+    spread: <>2 von 10 halten durch</>,
+  }}
+/>
+
 ## Vielfalt auf größeren Ebenen vergleichen
 
 Die genetische Vielfalt vergleicht Mitglieder einer Art. Die Artenvielfalt vergleicht gemeinsam vorkommende Arten. Die Ökosystemvielfalt bezieht zusätzlich ihre Lebensräume und ökologischen Beziehungen ein. Bei größeren Beobachtungsflächen unterscheiden wir deshalb die **Anzahl der Arten von den Bedingungen ihrer Lebensräume**.
@@ -66,8 +111,8 @@ Beide Flächen enthalten 10 Individuen und 3 Arten. Auf Fläche 2 sind die **Hä
 Die Szene unten macht aus den beiden Flächen Säulen, orange für Art A, violett für B und türkis für C, ein Gitterschritt steht für <InlineMath math="2" /> Individuen. Dreh sie, bis du beide Reihen nebeneinander siehst. Fläche 1 hat eine hohe Säule und zwei Stummel, Fläche 2 drei ähnlich hohe Säulen. Eine verbreitete Art, das in eine Zahl zu fassen, ist der Simpson-Index, <InlineMath math="1-\sum p_i^2" />, wobei <InlineMath math="p_i" /> der Anteil jeder Art an allen Individuen ist. Er erreicht <InlineMath math="0{,}34" /> für Fläche 1 und <InlineMath math="0{,}66" /> für Fläche 2, die gleichmäßigere Fläche kommt also bei gleicher Artenzahl auf fast den doppelten Wert.
 
 <MathVisual
-  title="Gleicher Artenreichtum, andere Gleichmäßigkeit"
-  description="Individuen der Arten A (orange), B (violett) und C (türkis) auf zwei hypothetischen, gleich großen Flächen. Ein Gitterschritt nach oben sind 2 Individuen."
+  title={<>Gleicher Artenreichtum, andere Gleichmäßigkeit</>}
+  description={<>Individuen der Arten A (orange), B (violett) und C (türkis) auf zwei hypothetischen, gleich großen Flächen. Ein Gitterschritt nach oben sind 2 Individuen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -111,22 +156,56 @@ Primäre Biodiversitätsdaten können aus Museen, wissenschaftlichen Sammlungen,
     D --> G["Verschiedene Lebensräume"]`}
 />
 
+Der Artenreichtum zählt, wie viele Arten an einem Ort leben. Beide Flächen haben 12 Individuen, aber auf der einen leben vier Arten und auf der anderen nur zwei. Zoom hinein und zähl die Farben auf jeder Fläche.
+
+<MathVisual
+  title={<>Gleiche Anzahl, anderer Artenreichtum</>}
+  description={<>Zwei Flächen mit je 12 Individuen. Jede Farbe ist eine Art.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plot-a", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "plot-b", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 4 }, { x: 6, y: 4 }] },
+      { id: "a-0-0", kind: "point", appearance: "primary", at: { x: 0.5, y: 0.75 } },
+      { id: "b-0-0", kind: "point", appearance: "primary", at: { x: 6.5, y: 0.75 } },
+      { id: "a-0-1", kind: "point", appearance: "primary", at: { x: 0.5, y: 2 } },
+      { id: "b-0-1", kind: "point", appearance: "primary", at: { x: 6.5, y: 2 } },
+      { id: "a-0-2", kind: "point", appearance: "primary", at: { x: 0.5, y: 3.25 } },
+      { id: "b-0-2", kind: "point", appearance: "primary", at: { x: 6.5, y: 3.25 } },
+      { id: "a-1-0", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.75 } },
+      { id: "b-1-0", kind: "point", appearance: "primary", at: { x: 7.5, y: 0.75 } },
+      { id: "a-1-1", kind: "point", appearance: "secondary", at: { x: 1.5, y: 2 } },
+      { id: "b-1-1", kind: "point", appearance: "primary", at: { x: 7.5, y: 2 } },
+      { id: "a-1-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 3.25 } },
+      { id: "b-1-2", kind: "point", appearance: "primary", at: { x: 7.5, y: 3.25 } },
+      { id: "a-2-0", kind: "point", appearance: "highlight", at: { x: 2.5, y: 0.75 } },
+      { id: "b-2-0", kind: "point", appearance: "secondary", at: { x: 8.5, y: 0.75 } },
+      { id: "a-2-1", kind: "point", appearance: "highlight", at: { x: 2.5, y: 2 } },
+      { id: "b-2-1", kind: "point", appearance: "secondary", at: { x: 8.5, y: 2 } },
+      { id: "a-2-2", kind: "point", appearance: "highlight", at: { x: 2.5, y: 3.25 } },
+      { id: "b-2-2", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.25 } },
+      { id: "a-3-0", kind: "point", appearance: "construction", at: { x: 3.5, y: 0.75 } },
+      { id: "b-3-0", kind: "point", appearance: "secondary", at: { x: 9.5, y: 0.75 } },
+      { id: "a-3-1", kind: "point", appearance: "construction", at: { x: 3.5, y: 2 } },
+      { id: "b-3-1", kind: "point", appearance: "secondary", at: { x: 9.5, y: 2 } },
+      { id: "a-3-2", kind: "point", appearance: "construction", at: { x: 3.5, y: 3.25 } },
+      { id: "b-3-2", kind: "point", appearance: "secondary", at: { x: 9.5, y: 3.25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "plot-a", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "b", objectId: "plot-b", at: { x: 8, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <>4 Arten</>,
+    b: <>2 Arten</>,
+  }}
+/>
+
 ## Bestimme zuerst die Ebene der Biodiversität
 
 Bestimme bei einer Naturbeobachtung zuerst, was verglichen wird. Unterschiede zwischen Mitgliedern einer Art betreffen die genetische Vielfalt, **wenn sie auf vererbten genetischen Varianten beruhen**. Unterschiede zwischen den vorkommenden Arten gehören zur Artenvielfalt. Unterschiede zwischen Lebensräumen und ökologischen Beziehungen gehören zur Ökosystemvielfalt.
 
 Ein Reisfeldrand, ein Garten oder ein Wald kann alle drei Ebenen zugleich enthalten. Der Ort bleibt gleich, doch die Fragestellung bestimmt, welche Ebene der Biodiversität untersucht wird.
-
-Nutz diesen Entscheidungsweg immer dann, wenn eine Frage einen Unterschied bei Lebewesen nennt.
-
-<Mermaid
-  title="Die Ebene aus dem Vergleich ablesen"
-  description="Starte bei dem, was verglichen wird, und folge dem Zweig bis zur Ebene der Biodiversität."
-  chart={`flowchart TD
-    A["Was wird verglichen?"] --> B["Mitglieder einer Art"]
-    A --> C["Arten, die zusammenleben"]
-    A --> D["Lebensräume und ihre Beziehungen"]
-    B --> E["Genetische Vielfalt"]
-    C --> F["Artenvielfalt: Reichtum und Gleichmäßigkeit"]
-    D --> G["Ökosystemvielfalt"]`}
-/>

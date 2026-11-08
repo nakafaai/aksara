@@ -19,16 +19,38 @@ The evidence sequence runs from Thomson's cathode ray experiment through Rutherf
 
 J. J. Thomson discovered the electron in <InlineMath math="1897" /> and showed that this particle was far lighter than an atom.
 
-Each experiment answered one question and opened the next.
+Each experiment answered one question and opened the next. Dalton pictured solid spheres in 1803, Thomson found the electron in 1897, Rutherford's team found a tiny dense nucleus in 1911, hydrogen nuclei were identified as protons in 1919, and Chadwick found the neutron in 1932. Zoom along the line and notice how fast the last three came.
 
-<Mermaid
-  title="From Solid Spheres to Three Particles"
-  description="Dalton's spheres gave way to the electron, the nucleus, the proton and the neutron."
-  chart={`flowchart LR
-    A["Dalton: solid spheres"] --> B["Thomson: cathode rays, electron"]
-    B --> C["Rutherford team: tiny dense nucleus"]
-    C --> D["Hydrogen nuclei: proton"]
-    D --> E["Missing mass: neutron"]`}
+<MathVisual
+  title={<>From Solid Spheres to Three Particles</>}
+  description={<>Five steps in the discovery of atomic structure on one time line. One grid step is 14 years.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "dalton", kind: "point", appearance: "secondary", at: { x: (1803 - 1800) / 14, y: 0 } },
+      { id: "thomson", kind: "point", appearance: "secondary", at: { x: (1897 - 1800) / 14, y: 0 } },
+      { id: "rutherford", kind: "point", appearance: "secondary", at: { x: (1911 - 1800) / 14, y: 0 } },
+      { id: "proton", kind: "point", appearance: "secondary", at: { x: (1919 - 1800) / 14, y: 0 } },
+      { id: "chadwick", kind: "point", appearance: "answer", at: { x: (1932 - 1800) / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "dalton", objectId: "dalton", at: { x: (1803 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "thomson", objectId: "thomson", at: { x: (1897 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "rutherford", objectId: "rutherford", at: { x: (1911 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "proton", objectId: "proton", at: { x: (1919 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "chadwick", objectId: "chadwick", at: { x: (1932 - 1800) / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dalton: <>1803: solid spheres</>,
+    thomson: <>1897: electron</>,
+    rutherford: <>1911: nucleus</>,
+    proton: <>1919: proton</>,
+    chadwick: <>1932: neutron</>,
+  }}
 />
 
 ## Evidence from Experimental Evidence and Atomic Structure
@@ -170,8 +192,8 @@ Remember these three relationships: **protons determine element identity**, **ne
 Here are the relative charges as bars above and below zero. The electron reaches down to <InlineMath math="-1" />, the proton up to <InlineMath math="+1" />, and the neutron has no bar at all. One proton and one electron cancel, which is why a neutral atom has equal numbers of both.
 
 <MathVisual
-  title="Relative Charges of the Three Particles"
-  description="Electron −1 below zero, proton +1 above zero, neutron 0."
+  title={<>Relative Charges of the Three Particles</>}
+  description={<>Electron at <InlineMath math="-1" /> below zero, proton at <InlineMath math="+1" /> above zero, neutron at <InlineMath math="0" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },

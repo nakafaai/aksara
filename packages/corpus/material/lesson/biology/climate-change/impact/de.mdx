@@ -46,8 +46,8 @@ Korallenbleiche zeigt starken Stress an und kann auftreten, bevor eine Koralle s
 Hitzestress summiert sich an einem Riff Woche für Woche. NOAA Coral Reef Watch misst ihn in **Degree Heating Weeks**: Nimm jede Woche, um wie viel Grad das Wasser über der Bleichschwelle der Koralle liegt, und addier die Wochen auf. Im Beispiel unten ist die gelbe Linie diese wöchentliche Überwärme und die pinke Linie ihre laufende Summe. Folge der pinken Linie nach oben: Sie überschreitet <InlineMath math="4\ ^\circ\text{C-Wochen}" />, ab denen deutliche Bleiche wahrscheinlich wird, und dann <InlineMath math="8" />, ab denen starke Bleiche und Korallensterben wahrscheinlich werden. Achte darauf, dass die pinke Linie ihre Höhe behält, wenn das Wasser abkühlt, weil der Stress schon passiert ist.
 
 <MathVisual
-  title="Hitzestress summiert sich am Riff"
-  description="Eine beispielhafte Meereshitzewelle über sechs Wochen. Waagrecht: Woche. Senkrecht: Grad über der Bleichschwelle (gelb) und ihre laufende Summe in °C-Wochen (pink)."
+  title={<>Hitzestress summiert sich am Riff</>}
+  description={<>Eine beispielhafte Meereshitzewelle über sechs Wochen. Waagrecht: Woche. Senkrecht: Grad über der Bleichschwelle (gelb) und ihre laufende Summe in °C-Wochen (pink).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -86,18 +86,41 @@ Hitzestress summiert sich an einem Riff Woche für Woche. NOAA Coral Reef Watch 
 | Der Stress lässt rechtzeitig nach | Die Koralle kann wieder Algen aufnehmen und sich erholen. |
 | Der Stress hält an | Krankheits- und Sterberisiken steigen. Die Lebensraumfunktion des Riffs kann abnehmen. |
 
-Die Geschichte der Koralle hat eine Gabelung, und welcher Zweig gilt, hängt davon ab, wie lange die Hitze anhält.
+Riffforschende zählen Hitzestress zusammen. Jede Woche, in der das Wasser mindestens <InlineMath math="1\ ^\circ\mathrm{C}" /> über der Bleichschwelle der Koralle liegt, fügt diesen Überschuss zu einer Summe hinzu, die Degree Heating Weeks heißt. Mit beispielhaften Wochenwerten überschreitet die Summe in Woche 6 die <InlineMath math="4" />, ab der Bleiche wahrscheinlich ist, und erreicht in Woche 8 die <InlineMath math="8" />, ab der schwere Bleiche und Korallensterben wahrscheinlich sind. Zoom hinein und such die Wochen, die nichts hinzufügen.
 
-<Mermaid
-  title="Zwei Ausgänge nach der Bleiche"
-  description="Warmes Wasser belastet die Partnerschaft von Koralle und Alge. Kurzer Stress lässt Erholung zu, langer Stress erhöht das Risiko des Absterbens."
-  chart={`flowchart TD
-    A["Meerwasser zu warm"] --> B["Symbiose von Koralle und Alge unter Stress"]
-    B --> C["Koralle stößt Algen ab und bleicht"]
-    C --> D["Hitze endet bald"]
-    C --> E["Hitze hält an"]
-    D --> F["Algen kehren zurück, Koralle erholt sich"]
-    E --> G["Krankheits- und Sterberisiko steigen"]`}
+<MathVisual
+  title={<>Hitzestress summiert sich Woche für Woche</>}
+  description={<>Degree Heating Weeks über 12 beispielhafte Wochen. Waagerecht: Wochen. Senkrecht: angesammelter Hitzestress in <InlineMath math="^\circ\mathrm{C}" />-Wochen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bleaching", kind: "segment", appearance: "highlight", from: { x: 0, y: 4 }, to: { x: 12, y: 4 } },
+      { id: "severe", kind: "segment", appearance: "warning", from: { x: 0, y: 8 }, to: { x: 12, y: 8 } },
+      { id: "stress", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 4, y: 1 + 1 }, { x: 5, y: 1 + 1 + 1.5 }, { x: 6, y: 1 + 1 + 1.5 + 1 }, { x: 7, y: 1 + 1 + 1.5 + 1 + 2 }, { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 }, { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }, { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 }] },
+      { id: "week-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "week-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0 } },
+      { id: "week-3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "week-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1 + 1 } },
+      { id: "week-5", kind: "point", appearance: "secondary", at: { x: 5, y: 1 + 1 + 1.5 } },
+      { id: "week-6", kind: "point", appearance: "answer", at: { x: 6, y: 1 + 1 + 1.5 + 1 } },
+      { id: "week-7", kind: "point", appearance: "secondary", at: { x: 7, y: 1 + 1 + 1.5 + 1 + 2 } },
+      { id: "week-8", kind: "point", appearance: "answer", at: { x: 8, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 } },
+      { id: "week-9", kind: "point", appearance: "secondary", at: { x: 9, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-10", kind: "point", appearance: "secondary", at: { x: 10, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-11", kind: "point", appearance: "secondary", at: { x: 11, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+      { id: "week-12", kind: "point", appearance: "secondary", at: { x: 12, y: 1 + 1 + 1.5 + 1 + 2 + 1.5 + 1 } },
+    ],
+    labels: [
+      { key: "four", objectId: "bleaching", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "eight", objectId: "severe", at: { x: 0, y: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    four: <>4: Bleiche wahrscheinlich</>,
+    eight: <>8: schwere Bleiche und Absterben wahrscheinlich</>,
+  }}
 />
 
 ## Veränderte Niederschlagsmuster gefährden Nahrung und Wasser
@@ -135,3 +158,33 @@ Bei wild lebenden Arten kann Klimawandel **das geografische Gebiet verschieben**
 Am Beispiel der Korallen lässt sich die **Wirkungskette Schritt für Schritt** verfolgen. Wärmeres Meerwasser kann die Symbiose der Korallen stören. Die Korallen bleichen aus, Rifffische verlieren Schutz und schließlich können auch Fischerei und Küstengemeinschaften betroffen sein.
 
 Dasselbe Muster kann bei Nahrung, Wasser und Gesundheit auftreten. Verfolge den gesamten Wirkungspfad bis zu den Organismen und Menschen, die von dem betroffenen System abhängen.
+
+An einer flachen Küste steigt das Land nur langsam an, also schiebt ein kleiner Meeresspiegelanstieg die Wasserkante weit ins Land. Steigt der Boden pro Meter um <InlineMath math="1\ \mathrm{cm}" />, ist die Steigung <InlineMath math="s=0{,}01" />, und ein Anstieg um <InlineMath math="\Delta h=0{,}5\ \mathrm{m}" /> verschiebt die Uferlinie um <InlineMath math="\Delta h/s=50\ \mathrm{m}" /> landeinwärts. Zoom dorthin, wo das höhere Wasser auf den Boden trifft.
+
+<MathVisual
+  title={<>Einen halben Meter hoch, fünfzig Meter hinein</>}
+  description={<>Eine flache Küste im Querschnitt, die Höhe gestreckt, damit die Steigung sichtbar wird. Waagerecht: Ein Gitterschritt entspricht 10 Metern. Senkrecht: Ein Gitterschritt entspricht 0,25 Metern.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ground", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 10, y: 4 }] },
+      { id: "sea-now", kind: "segment", appearance: "secondary", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sea-high", kind: "segment", appearance: "primary", from: { x: -2, y: 2 }, to: { x: 5, y: 2 } },
+      { id: "shore-now", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "shore-high", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+      { id: "retreat", kind: "segment", appearance: "warning", from: { x: 0, y: 0.2 }, to: { x: 5, y: 0.2 } },
+    ],
+    labels: [
+      { key: "rise", objectId: "sea-high", at: { x: -2, y: 2 }, placement: "above-right" },
+      { key: "shore", objectId: "shore-high", at: { x: 5, y: 2 }, placement: "above-left" },
+      { key: "move", objectId: "retreat", at: { x: 2.5, y: 0.2 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    rise: <InlineMath math="+0{,}5\ \mathrm{m}" />,
+    shore: <>neue Uferlinie</>,
+    move: <InlineMath math="50\ \mathrm{m}" />,
+  }}
+/>

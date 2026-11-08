@@ -45,8 +45,8 @@ For example, flight groups these animals together, but other traits separate the
 The scene below sorts six animals twice. The fuchsia circle uses one criterion, flight, and it catches the sparrow, the bat and the butterfly. The three class circles use shared body traits instead, so the penguin joins the sparrow, the cat joins the bat, and the ant joins the butterfly. The three flyers sit inside two groups at once. Neither grouping is wrong: they answer different questions, and only the class circles follow relatedness.
 
 <MathVisual
-  title="Same Animals, Two Criteria"
-  description="Six animals grouped by flight (fuchsia circle) and by class from shared body traits (orange, violet and teal circles)."
+  title={<>Same Animals, Two Criteria</>}
+  description={<>Six animals grouped by flight (fuchsia circle) and by class from shared body traits (orange, violet and teal circles).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
@@ -112,6 +112,59 @@ Phylogenetic classification infers evolutionary relationships. Evidence may incl
     D --> G["Phylogenetic"]`}
 />
 
+A key with yes-or-no questions splits every group into two. After <InlineMath math="k" /> questions you can tell apart up to <InlineMath math="2^k" /> groups, so three questions are enough for eight. Zoom in on each level and count the branches.
+
+<MathVisual
+  title={<>Each Question Doubles the Groups</>}
+  description={<>A dichotomous key with three yes-or-no questions. Each fork is one question, and each end point is one group.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-root-a0", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: -4, y: 2 } },
+      { id: "fork-root-a1", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 2 } },
+      { id: "fork-a0-b0", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -6, y: 1 } },
+      { id: "fork-a0-b1", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -2, y: 1 } },
+      { id: "fork-a1-b2", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 2, y: 1 } },
+      { id: "fork-a1-b3", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 6, y: 1 } },
+      { id: "fork-b0-c0", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -7, y: 0 } },
+      { id: "fork-b0-c1", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -5, y: 0 } },
+      { id: "fork-b1-c2", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -3, y: 0 } },
+      { id: "fork-b1-c3", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -1, y: 0 } },
+      { id: "fork-b2-c4", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 1, y: 0 } },
+      { id: "fork-b2-c5", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 3, y: 0 } },
+      { id: "fork-b3-c6", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 5, y: 0 } },
+      { id: "fork-b3-c7", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 7, y: 0 } },
+      { id: "node-root", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "node-a0", kind: "point", appearance: "secondary", at: { x: -4, y: 2 } },
+      { id: "node-a1", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "node-b0", kind: "point", appearance: "secondary", at: { x: -6, y: 1 } },
+      { id: "node-b1", kind: "point", appearance: "secondary", at: { x: -2, y: 1 } },
+      { id: "node-b2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "node-b3", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "node-c0", kind: "point", appearance: "answer", at: { x: -7, y: 0 } },
+      { id: "node-c1", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "node-c2", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "node-c3", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "node-c4", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "node-c5", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "node-c6", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "node-c7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "node-a1", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "two", objectId: "node-b3", at: { x: 6, y: 1 }, placement: "right" },
+      { key: "three", objectId: "node-c7", at: { x: 7, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="2^1=2" />,
+    two: <InlineMath math="2^2=4" />,
+    three: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Taxa and Ranks in a Hierarchy
 
 In classification, a **taxon** is a particular named group, while a **rank** is its level in a hierarchy. A common order starts with the broadest group, domain, followed by kingdom, phylum or division, class, order, family, genus, and species. Additional ranks can appear between these ranks.
@@ -122,19 +175,47 @@ But the hierarchy alone is not enough. An everyday label such as "animals that f
 
 In genome research, group names must stay consistent so data from many laboratories can be analyzed together. Public sequence databases use a [shared classification and nomenclature](https://www.ncbi.nlm.nih.gov/taxonomy) to connect organism names with genetic evidence.
 
-Here is one complete path through the ranks, for humans. Each step down is a narrower taxon that holds fewer organisms than the one above it.
+Here is one complete path through the ranks, for humans. Every rank sits inside the one above it and holds fewer organisms. Zoom in from the domain to the smallest circle, where only our own species is left.
 
-<Mermaid
-  title="From Domain to Species for Humans"
-  description="Each box names a taxon and its rank, from the broadest group at the top to one species at the bottom."
-  chart={`flowchart TD
-    A["Domain: Eukarya"] --> B["Kingdom: Animalia"]
-    B --> C["Phylum: Chordata"]
-    C --> D["Class: Mammalia"]
-    D --> E["Order: Primates"]
-    E --> F["Family: Hominidae"]
-    F --> G["Genus: Homo"]
-    G --> H["Species: Homo sapiens"]`}
+<MathVisual
+  title={<>Ranks Nested from Domain to Species</>}
+  description={<>Each circle is one taxon in the human classification, inside the taxon one rank above it.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rank-domain", kind: "circle", appearance: "primary", center: { x: 0, y: 8 }, radius: 8 },
+      { id: "rank-kingdom", kind: "circle", appearance: "reference", center: { x: 0, y: 7 }, radius: 7 },
+      { id: "rank-phylum", kind: "circle", appearance: "reference", center: { x: 0, y: 6 }, radius: 6 },
+      { id: "rank-class", kind: "circle", appearance: "reference", center: { x: 0, y: 5 }, radius: 5 },
+      { id: "rank-order", kind: "circle", appearance: "reference", center: { x: 0, y: 4 }, radius: 4 },
+      { id: "rank-family", kind: "circle", appearance: "reference", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "rank-genus", kind: "circle", appearance: "reference", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "rank-species", kind: "circle", appearance: "answer", center: { x: 0, y: 1 }, radius: 1 },
+      { id: "human", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "domain", objectId: "rank-domain", at: { x: 0, y: 16 }, placement: "above" },
+      { key: "kingdom", objectId: "rank-kingdom", at: { x: 0, y: 14 }, placement: "above" },
+      { key: "phylum", objectId: "rank-phylum", at: { x: 0, y: 12 }, placement: "above" },
+      { key: "class", objectId: "rank-class", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "order", objectId: "rank-order", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "family", objectId: "rank-family", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "genus", objectId: "rank-genus", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "species", objectId: "rank-species", at: { x: 0, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    domain: <>Domain Eukarya</>,
+    kingdom: <>Kingdom Animalia</>,
+    phylum: <>Phylum Chordata</>,
+    class: <>Class Mammalia</>,
+    order: <>Order Primates</>,
+    family: <>Family Hominidae</>,
+    genus: <>Genus Homo</>,
+    species: <>Species Homo sapiens</>,
+  }}
 />
 
 ## Criterion and Purpose of a Group Name

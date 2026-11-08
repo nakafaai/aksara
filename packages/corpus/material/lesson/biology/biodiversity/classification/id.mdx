@@ -45,8 +45,8 @@ Misalnya, kemampuan terbang menggabungkan tiga hewan ini, tetapi ciri lain memis
 Adegan di bawah mengelompokkan enam hewan dua kali. Lingkaran fuchsia memakai satu kriteria, yaitu bisa terbang, dan menangkap burung gereja, kelelawar, dan kupu-kupu. Tiga lingkaran kelas memakai ciri tubuh yang sama, jadi penguin bergabung dengan burung gereja, kucing dengan kelelawar, dan semut dengan kupu-kupu. Ketiga hewan yang bisa terbang berada di dua kelompok sekaligus. Kedua pengelompokan itu tidak salah: keduanya menjawab pertanyaan yang berbeda, dan hanya lingkaran kelas yang mengikuti kekerabatan.
 
 <MathVisual
-  title="Hewan Sama, Dua Kriteria"
-  description="Enam hewan dikelompokkan menurut kemampuan terbang (lingkaran fuchsia) dan menurut kelas dari ciri tubuh yang sama (lingkaran oranye, ungu, dan hijau toska)."
+  title={<>Hewan Sama, Dua Kriteria</>}
+  description={<>Enam hewan dikelompokkan menurut kemampuan terbang (lingkaran fuchsia) dan menurut kelas dari ciri tubuh yang sama (lingkaran oranye, ungu, dan hijau toska).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
@@ -112,6 +112,59 @@ Klasifikasi filogenetik menyimpulkan hubungan evolusi. Bukti yang dipakai dapat 
     D --> G["Filogenetik"]`}
 />
 
+Kunci dengan pertanyaan ya atau tidak membelah tiap kelompok jadi dua. Setelah <InlineMath math="k" /> pertanyaan kamu bisa membedakan sampai <InlineMath math="2^k" /> kelompok, jadi tiga pertanyaan cukup untuk delapan. Perbesar tiap tingkat dan hitung cabangnya.
+
+<MathVisual
+  title={<>Tiap Pertanyaan Menggandakan Kelompok</>}
+  description={<>Kunci dikotom dengan tiga pertanyaan ya atau tidak. Tiap percabangan adalah satu pertanyaan, dan tiap titik ujung adalah satu kelompok.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-root-a0", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: -4, y: 2 } },
+      { id: "fork-root-a1", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 2 } },
+      { id: "fork-a0-b0", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -6, y: 1 } },
+      { id: "fork-a0-b1", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -2, y: 1 } },
+      { id: "fork-a1-b2", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 2, y: 1 } },
+      { id: "fork-a1-b3", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 6, y: 1 } },
+      { id: "fork-b0-c0", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -7, y: 0 } },
+      { id: "fork-b0-c1", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -5, y: 0 } },
+      { id: "fork-b1-c2", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -3, y: 0 } },
+      { id: "fork-b1-c3", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -1, y: 0 } },
+      { id: "fork-b2-c4", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 1, y: 0 } },
+      { id: "fork-b2-c5", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 3, y: 0 } },
+      { id: "fork-b3-c6", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 5, y: 0 } },
+      { id: "fork-b3-c7", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 7, y: 0 } },
+      { id: "node-root", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "node-a0", kind: "point", appearance: "secondary", at: { x: -4, y: 2 } },
+      { id: "node-a1", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "node-b0", kind: "point", appearance: "secondary", at: { x: -6, y: 1 } },
+      { id: "node-b1", kind: "point", appearance: "secondary", at: { x: -2, y: 1 } },
+      { id: "node-b2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "node-b3", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "node-c0", kind: "point", appearance: "answer", at: { x: -7, y: 0 } },
+      { id: "node-c1", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "node-c2", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "node-c3", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "node-c4", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "node-c5", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "node-c6", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "node-c7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "node-a1", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "two", objectId: "node-b3", at: { x: 6, y: 1 }, placement: "right" },
+      { key: "three", objectId: "node-c7", at: { x: 7, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="2^1=2" />,
+    two: <InlineMath math="2^2=4" />,
+    three: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Takson dan Peringkat dalam Hierarki
 
 Dalam klasifikasi, **takson** adalah kelompok tertentu yang diberi nama, sedangkan **peringkat** menunjukkan posisi takson dalam hierarki. Urutan yang umum dipakai dimulai dari kelompok paling luas, yaitu domain, lalu kingdom, filum atau divisi, kelas, ordo, famili, genus, dan spesies. Peringkat tambahan dapat disisipkan di antara peringkat tersebut.
@@ -122,19 +175,47 @@ Namun hierarki saja belum cukup. Sebutan sehari-hari seperti "hewan yang dapat t
 
 Dalam penelitian genom, nama kelompok harus konsisten agar data dari banyak laboratorium dapat dianalisis bersama. Basis data sekuens publik memakai [klasifikasi dan tata nama yang sama](https://www.ncbi.nlm.nih.gov/taxonomy) untuk menghubungkan nama organisme dengan bukti genetik.
 
-Ini satu jalur lengkap melewati peringkat-peringkat itu, untuk manusia. Setiap langkah ke bawah adalah takson yang lebih sempit dan berisi lebih sedikit organisme daripada takson di atasnya.
+Ini satu jalur lengkap melewati semua tingkatan, untuk manusia. Tiap tingkatan ada di dalam tingkatan di atasnya dan memuat lebih sedikit organisme. Perbesar dari domain sampai lingkaran terkecil, tempat hanya spesies kita yang tersisa.
 
-<Mermaid
-  title="Dari Domain sampai Spesies untuk Manusia"
-  description="Setiap kotak menyebut satu takson dan peringkatnya, dari kelompok paling luas di atas sampai satu spesies di bawah."
-  chart={`flowchart TD
-    A["Domain: Eukarya"] --> B["Kingdom: Animalia"]
-    B --> C["Filum: Chordata"]
-    C --> D["Kelas: Mammalia"]
-    D --> E["Ordo: Primates"]
-    E --> F["Famili: Hominidae"]
-    F --> G["Genus: Homo"]
-    G --> H["Spesies: Homo sapiens"]`}
+<MathVisual
+  title={<>Tingkatan Bersarang dari Domain sampai Spesies</>}
+  description={<>Tiap lingkaran adalah satu takson dalam klasifikasi manusia, di dalam takson satu tingkat di atasnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rank-domain", kind: "circle", appearance: "primary", center: { x: 0, y: 8 }, radius: 8 },
+      { id: "rank-kingdom", kind: "circle", appearance: "reference", center: { x: 0, y: 7 }, radius: 7 },
+      { id: "rank-phylum", kind: "circle", appearance: "reference", center: { x: 0, y: 6 }, radius: 6 },
+      { id: "rank-class", kind: "circle", appearance: "reference", center: { x: 0, y: 5 }, radius: 5 },
+      { id: "rank-order", kind: "circle", appearance: "reference", center: { x: 0, y: 4 }, radius: 4 },
+      { id: "rank-family", kind: "circle", appearance: "reference", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "rank-genus", kind: "circle", appearance: "reference", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "rank-species", kind: "circle", appearance: "answer", center: { x: 0, y: 1 }, radius: 1 },
+      { id: "human", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "domain", objectId: "rank-domain", at: { x: 0, y: 16 }, placement: "above" },
+      { key: "kingdom", objectId: "rank-kingdom", at: { x: 0, y: 14 }, placement: "above" },
+      { key: "phylum", objectId: "rank-phylum", at: { x: 0, y: 12 }, placement: "above" },
+      { key: "class", objectId: "rank-class", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "order", objectId: "rank-order", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "family", objectId: "rank-family", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "genus", objectId: "rank-genus", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "species", objectId: "rank-species", at: { x: 0, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    domain: <>Domain Eukarya</>,
+    kingdom: <>Kingdom Animalia</>,
+    phylum: <>Filum Chordata</>,
+    class: <>Kelas Mammalia</>,
+    order: <>Ordo Primates</>,
+    family: <>Famili Hominidae</>,
+    genus: <>Genus Homo</>,
+    species: <>Spesies Homo sapiens</>,
+  }}
 />
 
 ## Kriteria dan Tujuan Nama Kelompok

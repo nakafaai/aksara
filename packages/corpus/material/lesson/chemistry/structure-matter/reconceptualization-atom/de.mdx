@@ -110,8 +110,8 @@ Das Verhältnis <InlineMath math="1:2" /> ist ein einfaches ganzzahliges Verhäl
 Bei festen <InlineMath math="12\ \mathrm{g}" /> Kohlenstoff enthält Kohlenmonoxid <InlineMath math="16\ \mathrm{g}" /> Sauerstoff und Kohlendioxid <InlineMath math="32\ \mathrm{g}" />, ein Gitterschritt für <InlineMath math="8\ \mathrm{g}" />. Die zweite Säule ist genau doppelt so hoch wie die erste, und Dalton las das als ein Sauerstoffatom gegen zwei.
 
 <MathVisual
-  title="Sauerstoff pro 12 g Kohlenstoff"
-  description="Sauerstoff, der in CO und CO₂ mit 12 g Kohlenstoff verbunden ist. Ein Gitterschritt nach oben sind 8 g."
+  title={<>Sauerstoff pro 12 g Kohlenstoff</>}
+  description={<>Sauerstoff, der in <InlineMath math="\mathrm{CO}" /> und <InlineMath math="\mathrm{CO_2}" /> mit 12 g Kohlenstoff verbunden ist. Ein Gitterschritt nach oben sind 8 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -150,3 +150,31 @@ J. J. Thomsons Kathodenstrahlversuche wiesen ein **negativ geladenes Teilchen** 
 Dalton nahm an, dass alle Atome desselben Elements die gleiche Masse haben. Diese Annahme konnte Isotope mit gleicher Protonenzahl und unterschiedlicher Neutronenzahl nicht erklären. Die Entdeckung subatomarer Teilchen erklärt, warum Atome desselben Elements verschiedene Massen haben können.
 
 Daltons Modell erklärt die Massenerhaltung, die konstante Zusammensetzung und die multiplen Proportionen. Es erklärt weder elektrische Ladung noch Isotope oder den inneren Aufbau eines Atoms. Diese späteren Befunde erfordern ein Modell mit subatomaren Teilchen.
+
+Daltons feste Kugeln können Alphateilchen, die von Goldfolie zurückprallen, nicht erklären. Sitzt die ganze positive Ladung in einem winzigen Kern, wird ein Teilchen, das im Abstand <InlineMath math="b" /> vorbeifliegt, um <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" /> abgelenkt, wobei <InlineMath math="b_0" /> von der Energie und den Ladungen abhängt. Nur ein Beinahe-Treffer, viel näher als <InlineMath math="b_0" />, wird weit zurückgelenkt. Zoom auf das linke Ende der Kurve.
+
+<MathVisual
+  title={<>Nur ein Beinahe-Treffer prallt zurück</>}
+  description={<>Ablenkwinkel eines Alphateilchens gegen seinen Abstand vom Kern. Waagerecht: Ein Gitterschritt entspricht dem halben Abstand <InlineMath math="b_0" />. Senkrecht: Ein Gitterschritt entspricht 30 Grad.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "deflection", kind: "polyline", appearance: "primary", vertices: [{ x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, { x: 1, y: (2 * Math.atan(4 / 2) * 180) / Math.PI / 30 }, { x: 1.5, y: (2 * Math.atan(4 / 3) * 180) / Math.PI / 30 }, { x: 2, y: (2 * Math.atan(4 / 4) * 180) / Math.PI / 30 }, { x: 2.5, y: (2 * Math.atan(4 / 5) * 180) / Math.PI / 30 }, { x: 3, y: (2 * Math.atan(4 / 6) * 180) / Math.PI / 30 }, { x: 3.5, y: (2 * Math.atan(4 / 7) * 180) / Math.PI / 30 }, { x: 4, y: (2 * Math.atan(4 / 8) * 180) / Math.PI / 30 }, { x: 4.5, y: (2 * Math.atan(4 / 9) * 180) / Math.PI / 30 }, { x: 5, y: (2 * Math.atan(4 / 10) * 180) / Math.PI / 30 }, { x: 5.5, y: (2 * Math.atan(4 / 11) * 180) / Math.PI / 30 }, { x: 6, y: (2 * Math.atan(4 / 12) * 180) / Math.PI / 30 }, { x: 6.5, y: (2 * Math.atan(4 / 13) * 180) / Math.PI / 30 }, { x: 7, y: (2 * Math.atan(4 / 14) * 180) / Math.PI / 30 }, { x: 7.5, y: (2 * Math.atan(4 / 15) * 180) / Math.PI / 30 }, { x: 8, y: (2 * Math.atan(4 / 16) * 180) / Math.PI / 30 }, { x: 8.5, y: (2 * Math.atan(4 / 17) * 180) / Math.PI / 30 }, { x: 9, y: (2 * Math.atan(4 / 18) * 180) / Math.PI / 30 }, { x: 9.5, y: (2 * Math.atan(4 / 19) * 180) / Math.PI / 30 }, { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }] },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 } },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "far", kind: "point", appearance: "reference", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 } },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="b=0{,}25\,b_0:\ \theta\approx152^\circ" />,
+    edge: <InlineMath math="b=b_0:\ \theta=90^\circ" />,
+    far: <InlineMath math="b=5\,b_0:\ \theta\approx23^\circ" />,
+  }}
+/>

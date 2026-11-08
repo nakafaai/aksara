@@ -106,8 +106,8 @@ Deuterium is sometimes written as <InlineMath math="\mathrm{D}" />, and tritium 
 The scene shows the nucleus of each hydrogen isotope, protons in orange at the back and neutrons in gray at the front. The proton column never changes, which keeps them all hydrogen. Only the neutron column grows, from <InlineMath math="0" /> to <InlineMath math="1" /> to <InlineMath math="2" />, and with it the mass number.
 
 <MathVisual
-  title="Three Isotopes of Hydrogen"
-  description="Protons (orange, back) and neutrons (gray, front) in hydrogen-1, hydrogen-2 and hydrogen-3. One grid step up is 1 particle."
+  title={<>Three Isotopes of Hydrogen</>}
+  description={<>Protons (orange, back) and neutrons (gray, front) in hydrogen-1, hydrogen-2 and hydrogen-3. One grid step up is 1 particle.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -161,16 +161,38 @@ If the atom is neutral, electrons still equal protons:
 
 So neutral <InlineMath math="{}^{14}_{6}\mathrm{C}" /> has <InlineMath math="6" /> protons, <InlineMath math="6" /> electrons, and <InlineMath math="8" /> neutrons.
 
-Ask which particle count changed, and the name follows.
+Place every nucleus by its neutrons across and its protons up. Isotopes of one element share <InlineMath math="Z" />, so the carbon isotopes line up on one amber row. An ion doesn't move on this map at all, because only its electrons changed. Zoom in and compare <InlineMath math="^{14}\mathrm{C}" /> with <InlineMath math="^{14}\mathrm{N}" />: the same mass number, different elements.
 
-<Mermaid
-  title="Isotope or Ion"
-  description="Different neutrons with the same protons give an isotope. Different electrons give an ion."
-  chart={`flowchart TD
-    A["Same element, same protons"] --> B["Neutron count differs"]
-    A --> C["Electron count differs"]
-    B --> D["Isotope: different mass number"]
-    C --> E["Ion: nonzero charge"]`}
+<MathVisual
+  title={<>Isotopes Line Up, Ions Stay Put</>}
+  description={<>Five nuclei by neutron number (across) and proton number (up). The amber row holds the three isotopes of carbon.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "carbon-row", kind: "segment", appearance: "highlight", from: { x: 5.5, y: 6 }, to: { x: 8.5, y: 6 } },
+      { id: "c12", kind: "point", appearance: "primary", at: { x: 6, y: 6 } },
+      { id: "c13", kind: "point", appearance: "primary", at: { x: 7, y: 6 } },
+      { id: "c14", kind: "point", appearance: "primary", at: { x: 8, y: 6 } },
+      { id: "n14", kind: "point", appearance: "secondary", at: { x: 7, y: 7 } },
+      { id: "o16", kind: "point", appearance: "construction", at: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 6, y: 6 }, placement: "below" },
+      { key: "c13", objectId: "c13", at: { x: 7, y: 6 }, placement: "below" },
+      { key: "c14", objectId: "c14", at: { x: 8, y: 6 }, placement: "below" },
+      { key: "n14", objectId: "n14", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "o16", objectId: "o16", at: { x: 8, y: 8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c12: <InlineMath math="^{12}\mathrm{C}" />,
+    c13: <InlineMath math="^{13}\mathrm{C}" />,
+    c14: <InlineMath math="^{14}\mathrm{C}" />,
+    n14: <InlineMath math="^{14}\mathrm{N}" />,
+    o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
 />
 
 ## Uses of Isotopes

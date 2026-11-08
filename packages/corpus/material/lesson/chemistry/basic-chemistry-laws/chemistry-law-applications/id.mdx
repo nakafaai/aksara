@@ -21,20 +21,31 @@ Daftar berikut menghubungkan jenis data dengan hukum yang sesuai.
 - Jika dua senyawa berbeda tersusun dari dua unsur yang sama, pakai hukum perbandingan berganda.
 - Jika zat yang dibandingkan semuanya gas pada suhu dan tekanan yang sama, pakai hukum perbandingan volume.
 
-Ini daftar yang sama sebagai jalur keputusan. Mulai dari atas dengan data yang kamu punya.
+Sebelum memilih hukum, periksa dulu apakah sistemnya tertutup. Tiap titik adalah satu percobaan, massa sebelum di sumbu mendatar dan massa sesudah di sumbu tegak, jadi sistem tertutup berada di garis abu-abu. Saat <InlineMath math="2\ \mathrm{g}" /> <InlineMath math="\mathrm{CaCO_3}" /> bereaksi dengan asam di gelas kimia terbuka, <InlineMath math="2\ \mathrm{g}\cdot\tfrac{44}{100}=0{,}88\ \mathrm{g}" /> karbon dioksida lepas, dan titiknya turun di bawah garis. Perbesar titik merah muda.
 
-<Mermaid
-  title="Pilih Hukum dari Datanya"
-  description="Setiap cabang menyebut jenis data dalam soal dan hukum dasar yang cocok untuknya."
-  chart={`flowchart TD
-    A["Data menggambarkan apa?"] --> B["Semua zat dalam sistem tertutup"]
-    A --> C["Satu senyawa murni"]
-    A --> D["Dua senyawa dari dua unsur yang sama"]
-    A --> E["Gas pada suhu dan tekanan yang sama"]
-    B --> F["Hukum kekekalan massa"]
-    C --> G["Hukum perbandingan tetap"]
-    D --> H["Hukum perbandingan berganda"]
-    E --> I["Hukum perbandingan volume"]`}
+<MathVisual
+  title={<>Titik di Garis Massanya Tetap</>}
+  description={<>Massa sebelum (mendatar) dan sesudah (tegak) untuk tiga percobaan tertutup dan satu gelas kimia terbuka, dalam gram.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 51 }, y: { min: 46, max: 51 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "same", kind: "segment", appearance: "reference", from: { x: 46, y: 46 }, to: { x: 51, y: 51 } },
+      { id: "flask", kind: "point", appearance: "secondary", at: { x: 47, y: 47 } },
+      { id: "bag", kind: "point", appearance: "secondary", at: { x: 48.5, y: 48.5 } },
+      { id: "sealed", kind: "point", appearance: "secondary", at: { x: 50, y: 50 } },
+      { id: "open", kind: "point", appearance: "warning", at: { x: 50, y: 49.12 } },
+    ],
+    labels: [
+      { key: "closed", objectId: "bag", at: { x: 48.5, y: 48.5 }, placement: "above-left" },
+      { key: "open", objectId: "open", at: { x: 50, y: 49.12 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    closed: <>sistem tertutup</>,
+    open: <InlineMath math="\text{terbuka: }50{,}00-0{,}88=49{,}12\ \mathrm{g}" />,
+  }}
 />
 
 ## Pola Massa dan Volume
@@ -98,8 +109,8 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 Adegan di bawah menumpuk gas-gas itu sebagai balok yang sama besar, satu balok untuk setiap koefisien, dan setiap balok bernilai <InlineMath math="300\ \mathrm{mL}" />. Putar adegannya lalu hitung: dua balok amonia menjadi tiga balok hidrogen dan satu balok nitrogen. Ukuran baloknya tidak pernah berubah, jadi perbandingan volume <InlineMath math="2:3:1" /> sama dengan perbandingan koefisien. Aturan ini hanya berlaku karena semua gas diukur pada suhu dan tekanan yang sama.
 
 <MathVisual
-  title="Volume Gas Mengikuti Koefisien"
-  description="Setiap balok adalah satu bagian sebesar 300 mL pada suhu dan tekanan yang sama. Hitung balok di setiap kolom 2NH₃ → 3H₂ + N₂."
+  title={<>Volume Gas Mengikuti Koefisien</>}
+  description={<>Setiap balok adalah satu bagian sebesar 300 mL pada suhu dan tekanan yang sama. Hitung balok di setiap kolom <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -161,14 +172,32 @@ Jawabannya adalah <InlineMath math="100\ \mathrm{mL}" /> gas oksigen dan <Inline
 
 Hukum perbandingan tetap dan berganda menunjukkan pola massa yang mendukung gagasan bahwa atom bergabung dalam rasio tertentu.
 
-Baca koefisiennya sebagai volume, lalu kalikan semuanya dengan 50 mL yang sama. Volume air hanya berlaku selama airnya tetap berupa gas.
+Baca koefisien <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\mathrm{CO_2(g)}+2\mathrm{H_2O(g)}" /> sebagai volume, lalu kalikan semuanya dengan <InlineMath math="50\ \mathrm{mL}" /> yang sama. Putar batangnya: gas-gasnya bereaksi dengan perbandingan <InlineMath math="1:2:1:2" />. Volume air hanya berlaku selama airnya tetap berupa gas.
 
-<Mermaid
-  title="Pembakaran Metana dalam Volume"
-  description="Pada suhu dan tekanan yang sama, koefisien 1:2:1:2 memberi volume gas untuk 50 mL metana."
-  chart={`flowchart LR
-    A["1 CH4: 50 mL"] --> C["1 CO2: 50 mL"]
-    B["2 O2: 100 mL"] --> C
-    A --> D["2 H2O sebagai gas: 100 mL"]
-    B --> D`}
+<MathVisual
+  title={<>Pembakaran Metana dalam Volume</>}
+  description={<>Volume gas pada suhu dan tekanan yang sama: pereaksi di belakang, hasil reaksi di depan. Satu kotak grid ke atas berarti 25 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.25, y: 2, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 2.3, z: -0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2.5, y: 4.3, z: -0.75 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 50\ \mathrm{mL}" />,
+    o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
+    h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
 />

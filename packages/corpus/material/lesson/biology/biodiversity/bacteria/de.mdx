@@ -79,15 +79,34 @@ In einer prokaryotischen Zelle liegt die DNA im Nukleoid und wird von keiner Ker
   }}
 />
 
-Jede dieser Alltagsveränderungen beginnt mit Bakterien, die im Lebensmittel arbeiten.
+Bakterien können Lebensmittel so schnell verändern, weil sie sich durch Teilung vermehren. Eine Zelle teilt sich in zwei, also gibt es nach <InlineMath math="n" /> Teilungen <InlineMath math="2^n" /> Zellen. Zoom auf die ersten Punkte und schau dann, wie steil die letzten steigen.
 
-<Mermaid
-  title="Bakterien verändern Lebensmittel"
-  description="Verschiedene Bakterien und Prozesse machen Joghurt und Nata de Coco oder lassen zu lange gelagertes Essen verderben."
-  chart={`flowchart LR
-    A["Bakterielle Aktivität im Lebensmittel"] --> B["Milch wird zu Joghurt"]
-    A --> C["Kokoswasser wird zu Nata de Coco"]
-    A --> D["Zu lange gelagertes Essen verdirbt"]`}
+<MathVisual
+  title={<>Teilung verdoppelt die Zellen</>}
+  description={<>Zellzahl nach jeder Teilung, ausgehend von einer Zelle. Waagerecht: Anzahl der Teilungen. Senkrecht: Ein Gitterschritt entspricht 10 Zellen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "count", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0.1 }, { x: 1, y: 0.2 }, { x: 2, y: 0.4 }, { x: 3, y: 0.8 }, { x: 4, y: 1.6 }, { x: 5, y: 3.2 }, { x: 6, y: 6.4 }] },
+      { id: "cell-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0.1 } },
+      { id: "cell-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.2 } },
+      { id: "cell-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0.4 } },
+      { id: "cell-3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8 } },
+      { id: "cell-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1.6 } },
+      { id: "cell-5", kind: "point", appearance: "secondary", at: { x: 5, y: 3.2 } },
+      { id: "cell-6", kind: "point", appearance: "answer", at: { x: 6, y: 6.4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "cell-0", at: { x: 0, y: 0.1 }, placement: "above-right" },
+      { key: "end", objectId: "cell-6", at: { x: 6, y: 6.4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="2^0=1" />,
+    end: <InlineMath math="2^6=64" />,
+  }}
 />
 
 ## Zellformen von Bakterien beobachten
@@ -123,6 +142,33 @@ Das Nukleoid ist nicht von einer Kernmembran umgeben. Die bakterielle DNA kann d
 ### Zellwände und Bakterienform
 
 Viele Bakterien besitzen eine Zellwand aus **Peptidoglykan**, einem molekularen Netzwerk, das Form und Schutz verleiht. Grampositive Bakterien haben meist eine dicke Peptidoglykan-Schicht. Bei gramnegativen Bakterien ist diese Schicht dünner und von einer Außenmembran umgeben. Der Unterschied zwischen der dicken und der dünnen Peptidoglykan-Schicht kann die Widerstandsfähigkeit gegen bestimmte Stoffe beeinflussen.
+
+Eine Zelle nimmt Nahrung über ihre Oberfläche auf und gibt dort Abfall ab, während ihr Bedarf mit dem Volumen wächst. Ein Würfel mit Kante <InlineMath math="s" /> hat die Oberfläche <InlineMath math="6s^2" /> und das Volumen <InlineMath math="s^3" />, also kommen auf jede Volumeneinheit <InlineMath math="\tfrac{6}{s}" /> Flächeneinheiten. Dreh die Würfel: Der kleinste hat für seine Größe die meiste Oberfläche, und das hilft einem winzigen Bakterium, Stoffe schnell auszutauschen.
+
+<MathVisual
+  title={<>Kleine Zellen haben mehr Oberfläche pro Volumen</>}
+  description={<>Würfel mit 1, 2 und 4 Mikrometern Kantenlänge. Jedes Label teilt die Oberfläche durch das Volumen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 5, y: 6, z: 13 }, target: { x: 4, y: 1.5, z: 0 } },
+    objects: [
+      { id: "cube-1", kind: "cuboid", appearance: "answer", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1, z: 0 }, size: { length: 2, height: 2, width: 2 } },
+      { id: "cube-4", kind: "cuboid", appearance: "reference", center: { x: 7, y: 2, z: 0 }, size: { length: 4, height: 4, width: 4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "cube-1", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "cube-2", at: { x: 3, y: 2, z: 0 }, placement: "above" },
+      { key: "s4", objectId: "cube-4", at: { x: 7, y: 4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    s1: <InlineMath math="\frac{6}{1}=6" />,
+    s2: <InlineMath math="\frac{24}{8}=3" />,
+    s4: <InlineMath math="\frac{96}{64}=1{,}5" />,
+  }}
+/>
 
 ## Bakterien bei Krankheiten und im Alltag
 

@@ -76,8 +76,8 @@ Diese Trends hängen von der **Anziehung des Kerns auf die Valenzelektronen** ab
 Natrium zeigt, warum die Position das Verhalten vorhersagt. Sein einziges äußeres Elektron in Fuchsia sitzt allein in Schale M, weit vom Kern und von zehn inneren Elektronen abgeschirmt, also lässt es sich leicht entfernen.
 
 <MathVisual
-  title="Das einsame Außenelektron von Natrium"
-  description="Die 11 Elektronen von Natrium in den Schalen K, L und M, das äußere in Fuchsia."
+  title={<>Das einsame Außenelektron von Natrium</>}
+  description={<>Die 11 Elektronen von Natrium in den Schalen K, L und M, das äußere in Fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -137,16 +137,49 @@ Bei einem Chloratom setzt die Aufnahme eines Elektrons Energie frei. Seine Elekt
 
 Edelgase wie <InlineMath math="\mathrm{Ar}" /> haben bereits stabile Valenzschalen, sodass sie zusätzliche Elektronen nur schwer aufnehmen können. Aus diesem Grund ist die Elektronenaffinität weniger eindeutig als der Atomradius oder die Ionisierungsenergie.
 
-Hier stehen beide Trends nebeneinander, jeweils mit dem Grund.
+Hier sind beide Trends in echten Daten. Entlang einer Periode bekommt der Kern mehr Protonen, während die Außenschale gleich bleibt, also lässt sich ein Elektron schwerer abziehen und die erste Ionisierungsenergie steigt. Am Anfang der nächsten Periode bringt eine neue Schale mehr Abstand und Abschirmung, und die Energie fällt steil. Zoom auf den rosa Absturz von Neon zu Natrium.
 
-<Mermaid
-  title="Entlang einer Periode, eine Gruppe hinunter"
-  description="Entlang einer Periode wird die Kernanziehung auf dieselbe Schale stärker. Eine Gruppe hinunter bringt eine neue Schale mehr Abstand und Abschirmung."
-  chart={`flowchart TD
-    A["Entlang der Periode, Na bis Cl"] --> B["Mehr Protonen, gleiche Außenschale"]
-    B --> C["Radius schrumpft, Ionisierungsenergie steigt"]
-    D["Gruppe hinunter, Li bis Na"] --> E["Eine innere Schale mehr"]
-    E --> F["Radius wächst, Ionisierungsenergie sinkt"]`}
+<MathVisual
+  title={<>Ionisierungsenergie über zwei Perioden</>}
+  description={<>Erste Ionisierungsenergie für die Ordnungszahlen 3 bis 18, Periode 2 (violett) und Periode 3 (orange). Waagerecht: Ein Gitterschritt entspricht 2 Ordnungszahlen. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-2", kind: "polyline", appearance: "secondary", vertices: [{ x: 1.5, y: 2.08 }, { x: 2, y: 3.596 }, { x: 2.5, y: 3.204 }, { x: 3, y: 4.344 }, { x: 3.5, y: 5.608 }, { x: 4, y: 5.256 }, { x: 4.5, y: 6.724 }, { x: 5, y: 8.324 }] },
+      { id: "period-3", kind: "polyline", appearance: "primary", vertices: [{ x: 5.5, y: 1.984 }, { x: 6, y: 2.952 }, { x: 6.5, y: 2.312 }, { x: 7, y: 3.148 }, { x: 7.5, y: 4.048 }, { x: 8, y: 4 }, { x: 8.5, y: 5.004 }, { x: 9, y: 6.084 }] },
+      { id: "drop", kind: "segment", appearance: "warning", from: { x: 5, y: 8.324 }, to: { x: 5.5, y: 1.984 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1.5, y: 2.08 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 3.596 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3.204 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4.344 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5.608 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 5.256 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 6.724 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8.324 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 5.5, y: 1.984 } },
+      { id: "z12", kind: "point", appearance: "primary", at: { x: 6, y: 2.952 } },
+      { id: "z13", kind: "point", appearance: "primary", at: { x: 6.5, y: 2.312 } },
+      { id: "z14", kind: "point", appearance: "primary", at: { x: 7, y: 3.148 } },
+      { id: "z15", kind: "point", appearance: "primary", at: { x: 7.5, y: 4.048 } },
+      { id: "z16", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "z17", kind: "point", appearance: "primary", at: { x: 8.5, y: 5.004 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 6.084 } },
+    ],
+    labels: [
+      { key: "li", objectId: "z3", at: { x: 1.5, y: 2.08 }, placement: "below" },
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8.324 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1.984 }, placement: "below" },
+      { key: "ar", objectId: "z18", at: { x: 9, y: 6.084 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}:\ 520" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ 2081" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 1521" />,
+  }}
 />
 
 ## Zwei Elementpaare vergleichen

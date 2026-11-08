@@ -113,8 +113,8 @@ Jangan menjumlahkan semua elektron untuk mencari elektron valensi. Untuk kalsium
 Inilah klorin, <InlineMath math="2, 8, 7" />. Kulit terluar yang terisinya adalah M, dan tujuh elektron fuchsia di sana adalah elektron valensinya, kurang satu dari delapan.
 
 <MathVisual
-  title="Tujuh Elektron Valensi Klorin"
-  description="17 elektron klorin di kulit K, L, dan M, dengan elektron valensi berwarna fuchsia."
+  title={<>Tujuh Elektron Valensi Klorin</>}
+  description={<>17 elektron klorin di kulit K, L, dan M, dengan elektron valensi berwarna fuchsia.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -232,13 +232,50 @@ Unsur <InlineMath math="\mathrm{B}" />, <InlineMath math="\mathrm{Al}" />, <Inli
 
 <InlineMath math="\mathrm{Na}" /> dan <InlineMath math="\mathrm{K}" /> berada pada golongan <InlineMath math="1" />, sehingga pola yang sama memberi masing-masing <InlineMath math="1" /> elektron valensi yang mudah dilepas, dan keduanya cenderung membentuk ion <InlineMath math="+1" />. Argon lebih sukar bereaksi daripada klorin karena memiliki **konfigurasi valensi oktet** yang stabil. Oktet berarti delapan elektron valensi, bukan bahwa seluruh kapasitas kulit M yang berjumlah 18 sudah terisi. Klorin sering menerima satu elektron ketika membentuk ion atau berbagi elektron dalam ikatan kovalen.
 
-Pakai langkah-langkah ini untuk atom golongan utama mana pun.
+Tulis konfigurasi kulitnya, cari kulit terluar yang terisi, lalu hitung elektronnya. Lakukan itu untuk nomor atom 1 sampai 20, dan jumlahnya naik sampai delapan, lalu kembali ke satu setiap kali kulit baru dimulai. Perbesar penurunan setelah neon, dan lihat klorin yang kurang satu elektron dari delapan.
 
-<Mermaid
-  title="Menemukan Elektron Valensi"
-  description="Tulis konfigurasi kulitnya, cari kulit terluar yang terisi, lalu hitung elektronnya."
-  chart={`flowchart LR
-    A["Nomor atom"] --> B["Konfigurasi kulit"]
-    B --> C["Kulit terluar yang terisi"]
-    C --> D["Hitung elektronnya: elektron valensi"]`}
+<MathVisual
+  title={<>Elektron Valensi Naik lalu Mulai Lagi</>}
+  description={<>Elektron valensi untuk nomor atom 1 sampai 20. Mendatar: satu kotak grid berarti 2 nomor atom. Tegak: jumlah elektron valensi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0.5, y: 1 }, { x: 1, y: 2 }] },
+      { id: "period-2", kind: "polyline", appearance: "reference", vertices: [{ x: 1.5, y: 1 }, { x: 2, y: 2 }, { x: 2.5, y: 3 }, { x: 3, y: 4 }, { x: 3.5, y: 5 }, { x: 4, y: 6 }, { x: 4.5, y: 7 }, { x: 5, y: 8 }] },
+      { id: "period-3", kind: "polyline", appearance: "reference", vertices: [{ x: 5.5, y: 1 }, { x: 6, y: 2 }, { x: 6.5, y: 3 }, { x: 7, y: 4 }, { x: 7.5, y: 5 }, { x: 8, y: 6 }, { x: 8.5, y: 7 }, { x: 9, y: 8 }] },
+      { id: "period-4", kind: "polyline", appearance: "reference", vertices: [{ x: 9.5, y: 1 }, { x: 10, y: 2 }] },
+      { id: "z1", kind: "point", appearance: "primary", at: { x: 0.5, y: 1 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "z3", kind: "point", appearance: "primary", at: { x: 1.5, y: 1 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 6 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 7 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8 } },
+      { id: "z11", kind: "point", appearance: "primary", at: { x: 5.5, y: 1 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 6, y: 2 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 6.5, y: 3 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 7, y: 4 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 7.5, y: 5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 8, y: 6 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 8.5, y: 7 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 8 } },
+      { id: "z19", kind: "point", appearance: "primary", at: { x: 9.5, y: 1 } },
+      { id: "z20", kind: "point", appearance: "secondary", at: { x: 10, y: 2 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1 }, placement: "below" },
+      { key: "cl", objectId: "z17", at: { x: 8.5, y: 7 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+  }}
 />

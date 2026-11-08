@@ -70,17 +70,38 @@ Ion bermuatan negatif disebut **anion**. Anion terbentuk saat atom menerima elek
   }}
 />
 
-Tanda q memberi tahu jenis ion yang kamu punya.
+Tanda <InlineMath math="q=p^{+}-e^{-}" /> memberi tahu jenis partikel yang kamu punya. Elektron yang lebih sedikit daripada proton menyisakan kation positif di kanan, elektron berlebih memberi anion negatif di kiri, dan atom netral ada di nol. Perbesar dan periksa tiap pengurangannya.
 
-<Mermaid
-  title="Kation atau Anion dari Muatannya"
-  description="q = p⁺ − e⁻: elektron yang lebih sedikit menghasilkan kation, elektron berlebih menghasilkan anion."
-  chart={`flowchart TD
-    A["q = proton - elektron"] --> B["q > 0: kehilangan elektron"]
-    A --> C["q < 0: menerima elektron"]
-    A --> D["q = 0: atom netral"]
-    B --> E["Kation"]
-    C --> F["Anion"]`}
+<MathVisual
+  title={<>Kation atau Anion dari Muatannya</>}
+  description={<>Lima partikel diletakkan menurut muatannya, proton dikurangi elektron. Kation (oranye) di kanan, anion (ungu) di kiri.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "charge-axis", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0 }, to: { x: 2.5, y: 0 } },
+      { id: "oxide", kind: "point", appearance: "secondary", at: { x: -2, y: 0 } },
+      { id: "chloride", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "neon", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "sodium", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "magnesium", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "oxide", objectId: "oxide", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "chloride", objectId: "chloride", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "neon", objectId: "neon", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "sodium", objectId: "sodium", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "magnesium", objectId: "magnesium", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    oxide: <InlineMath math="\mathrm{O^{2-}}:\ 8-10=-2" />,
+    chloride: <InlineMath math="\mathrm{Cl^{-}}:\ 17-18=-1" />,
+    neon: <InlineMath math="\mathrm{Ne}:\ 10-10=0" />,
+    sodium: <InlineMath math="\mathrm{Na^{+}}:\ 11-10=+1" />,
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}}:\ 12-10=+2" />,
+  }}
 />
 
 ## Muatan Ion dari Selisih Jumlah Proton dan Elektron
@@ -114,8 +135,8 @@ Tanda negatif pada <InlineMath math="\mathrm{F}^{-}" /> berarti jumlah elektron 
 Bandingkan atom litium dengan ion litium, proton berwarna oranye di belakang dan elektron berwarna ungu di depan. Kehilangan satu elektron menyisakan <InlineMath math="3" /> proton melawan <InlineMath math="2" /> elektron, jadi <InlineMath math="q=3-2=+1" />.
 
 <MathVisual
-  title="Atom Litium dan Ion Litium"
-  description="Proton (oranye, belakang) dan elektron (ungu, depan) pada Li dan Li⁺. Satu kotak grid ke atas sama dengan 2 partikel."
+  title={<>Atom Litium dan Ion Litium</>}
+  description={<>Proton (oranye, belakang) dan elektron (ungu, depan) pada <InlineMath math="\mathrm{Li}" /> dan <InlineMath math="\mathrm{Li^+}" />. Satu kotak grid ke atas sama dengan 2 partikel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },

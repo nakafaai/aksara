@@ -60,8 +60,8 @@ The remaining formula mass, <InlineMath math="50-32=18" />, enters water as a by
 The scene below compares this route with a second one that also makes methanol, <InlineMath math="\mathrm{CO}+2\mathrm{H_2}\rightarrow\mathrm{CH_3OH}" />. Each block is a formula mass, with one grid step for <InlineMath math="8" /> units. In both routes the reactant column and the product column are equally tall, because mass is conserved. Look at the top of the first product column: the pink block is water, the <InlineMath math="18" /> units that miss the desired product. The second route has no by-product, so its atom economy is <InlineMath math="100\%" />. Rotate the scene and compare the two product columns.
 
 <MathVisual
-  title="Atom Economy of Two Routes to Methanol"
-  description="Formula masses with Ar(H) = 1, Ar(C) = 12 and Ar(O) = 16, one grid step up for 8. Gray and violet are reactants, fuchsia is methanol, pink is water."
+  title={<>Atom Economy of Two Routes to Methanol</>}
+  description={<>Formula masses with Ar(H) = 1, Ar(C) = 12 and Ar(O) = 16, one grid step up for 8. Gray and violet are reactants, fuchsia is methanol, pink is water.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 10.5 }, y: { min: 0, max: 7.5 }, z: { min: -1, max: 1 } },
@@ -103,16 +103,34 @@ Bioplastic from fruit peels uses organic waste as a feedstock. This supports the
 
 Reusing a plastic bottle as a plant pot reduces waste by keeping the material in use. Green chemistry addresses a different step by designing a chemical reaction or product so it creates less hazard from the start.
 
-Risk needs both a hazard and an exposure, so the path below shows two places where a design can cut it.
+Risk needs both a hazard and an exposure, so an illustrative risk score is <InlineMath math="R=\text{hazard}\cdot\text{exposure}" />. Every curve joins points with the same risk. Starting at <InlineMath math="16" />, a safer material halves the hazard and a smaller dose or less contact cuts the exposure. Zoom in and see which curve each change lands on.
 
-<Mermaid
-  title="Two Places to Cut Chemical Risk"
-  description="Risk comes from a hazardous material and from contact with it. A safer material or less exposure both lower the risk."
-  chart={`flowchart LR
-    A["Hazard of the material"] --> C["Risk"]
-    B["Exposure: dose and contact"] --> C
-    D["Choose a safer material"] -.-> A
-    E["Reduce contact and amount"] -.-> B`}
+<MathVisual
+  title={<>Two Places to Cut Chemical Risk</>}
+  description={<>Illustrative risk scores with exposure across and hazard up. The curves join equal risk: 16 (pink), 8 (amber) and 4 (teal).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "risk-4", kind: "polyline", appearance: "construction", vertices: [{ x: 1, y: 4 / 1.0 }, { x: 1.25, y: 4 / 1.25 }, { x: 1.5, y: 4 / 1.5 }, { x: 1.75, y: 4 / 1.75 }, { x: 2, y: 4 / 2.0 }, { x: 2.25, y: 4 / 2.25 }, { x: 2.5, y: 4 / 2.5 }, { x: 2.75, y: 4 / 2.75 }, { x: 3, y: 4 / 3.0 }, { x: 3.25, y: 4 / 3.25 }, { x: 3.5, y: 4 / 3.5 }, { x: 3.75, y: 4 / 3.75 }, { x: 4, y: 4 / 4.0 }, { x: 4.25, y: 4 / 4.25 }, { x: 4.5, y: 4 / 4.5 }, { x: 4.75, y: 4 / 4.75 }, { x: 5, y: 4 / 5.0 }] },
+      { id: "risk-8", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.75, y: 8 / 1.75 }, { x: 2, y: 8 / 2.0 }, { x: 2.25, y: 8 / 2.25 }, { x: 2.5, y: 8 / 2.5 }, { x: 2.75, y: 8 / 2.75 }, { x: 3, y: 8 / 3.0 }, { x: 3.25, y: 8 / 3.25 }, { x: 3.5, y: 8 / 3.5 }, { x: 3.75, y: 8 / 3.75 }, { x: 4, y: 8 / 4.0 }, { x: 4.25, y: 8 / 4.25 }, { x: 4.5, y: 8 / 4.5 }, { x: 4.75, y: 8 / 4.75 }, { x: 5, y: 8 / 5.0 }] },
+      { id: "risk-16", kind: "polyline", appearance: "warning", vertices: [{ x: 3.25, y: 16 / 3.25 }, { x: 3.5, y: 16 / 3.5 }, { x: 3.75, y: 16 / 3.75 }, { x: 4, y: 16 / 4.0 }, { x: 4.25, y: 16 / 4.25 }, { x: 4.5, y: 16 / 4.5 }, { x: 4.75, y: 16 / 4.75 }, { x: 5, y: 16 / 5.0 }] },
+      { id: "start", kind: "point", appearance: "warning", at: { x: 4, y: 4 } },
+      { id: "safer", kind: "point", appearance: "highlight", at: { x: 4, y: 2 } },
+      { id: "less", kind: "point", appearance: "construction", at: { x: 1, y: 4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 4, y: 4 }, placement: "above-right" },
+      { key: "safer", objectId: "safer", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "less", objectId: "less", at: { x: 1, y: 4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="4\cdot4=16" />,
+    safer: <InlineMath math="\text{safer material: }4\cdot2=8" />,
+    less: <InlineMath math="\text{less contact: }1\cdot4=4" />,
+  }}
 />
 
 ## Evaluating Reactions and Feedstocks
@@ -123,17 +141,36 @@ A [catalyst](https://goldbook.iupac.org/terms/view/C00876) increases the reactio
 
 Renewable feedstocks also need careful study. Fruit peels, starch, and plant oils can be replenished, but growing, transporting, extracting, and processing them still uses land, water, and energy. Include all of those stages in the assessment.
 
-Use these checks in order when you judge one reaction and its feedstock.
+A catalyst opens a lower path over the energy hill between reactants and products. Fewer particles need extreme heat or pressure to get over it, so the reaction can run in milder conditions, and a selective catalyst can also cut by-products. Zoom in on both ends: the start and the finish don't move, only the height of the hill.
 
-<Mermaid
-  title="Checking a Reaction and Its Feedstock"
-  description="Start from the balanced equation and work through atom economy, conditions, catalyst and feedstock."
-  chart={`flowchart TD
-    A["Balanced equation"] --> B["Atom economy from formula masses"]
-    B --> C["Temperature, pressure and energy"]
-    C --> D["Catalyst for milder conditions, fewer by-products"]
-    D --> E["Renewable or waste-based feedstock"]
-    E --> F["Safer product and end of use"]`}
+<MathVisual
+  title={<>A Catalyst Lowers the Hill</>}
+  description={<>An illustrative energy profile of one reaction without a catalyst (gray) and with one (teal). Vertical: energy. Horizontal: progress of the reaction.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plain", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 3 - 1.5 * (0 / 10) ** 2 * (3 - 2 * (0 / 10)) + 4 * Math.sin((Math.PI * 0) / 10) ** 2 }, { x: 0.25, y: 3 - 1.5 * (0.25 / 10) ** 2 * (3 - 2 * (0.25 / 10)) + 4 * Math.sin((Math.PI * 0.25) / 10) ** 2 }, { x: 0.5, y: 3 - 1.5 * (0.5 / 10) ** 2 * (3 - 2 * (0.5 / 10)) + 4 * Math.sin((Math.PI * 0.5) / 10) ** 2 }, { x: 0.75, y: 3 - 1.5 * (0.75 / 10) ** 2 * (3 - 2 * (0.75 / 10)) + 4 * Math.sin((Math.PI * 0.75) / 10) ** 2 }, { x: 1, y: 3 - 1.5 * (1 / 10) ** 2 * (3 - 2 * (1 / 10)) + 4 * Math.sin((Math.PI * 1) / 10) ** 2 }, { x: 1.25, y: 3 - 1.5 * (1.25 / 10) ** 2 * (3 - 2 * (1.25 / 10)) + 4 * Math.sin((Math.PI * 1.25) / 10) ** 2 }, { x: 1.5, y: 3 - 1.5 * (1.5 / 10) ** 2 * (3 - 2 * (1.5 / 10)) + 4 * Math.sin((Math.PI * 1.5) / 10) ** 2 }, { x: 1.75, y: 3 - 1.5 * (1.75 / 10) ** 2 * (3 - 2 * (1.75 / 10)) + 4 * Math.sin((Math.PI * 1.75) / 10) ** 2 }, { x: 2, y: 3 - 1.5 * (2 / 10) ** 2 * (3 - 2 * (2 / 10)) + 4 * Math.sin((Math.PI * 2) / 10) ** 2 }, { x: 2.25, y: 3 - 1.5 * (2.25 / 10) ** 2 * (3 - 2 * (2.25 / 10)) + 4 * Math.sin((Math.PI * 2.25) / 10) ** 2 }, { x: 2.5, y: 3 - 1.5 * (2.5 / 10) ** 2 * (3 - 2 * (2.5 / 10)) + 4 * Math.sin((Math.PI * 2.5) / 10) ** 2 }, { x: 2.75, y: 3 - 1.5 * (2.75 / 10) ** 2 * (3 - 2 * (2.75 / 10)) + 4 * Math.sin((Math.PI * 2.75) / 10) ** 2 }, { x: 3, y: 3 - 1.5 * (3 / 10) ** 2 * (3 - 2 * (3 / 10)) + 4 * Math.sin((Math.PI * 3) / 10) ** 2 }, { x: 3.25, y: 3 - 1.5 * (3.25 / 10) ** 2 * (3 - 2 * (3.25 / 10)) + 4 * Math.sin((Math.PI * 3.25) / 10) ** 2 }, { x: 3.5, y: 3 - 1.5 * (3.5 / 10) ** 2 * (3 - 2 * (3.5 / 10)) + 4 * Math.sin((Math.PI * 3.5) / 10) ** 2 }, { x: 3.75, y: 3 - 1.5 * (3.75 / 10) ** 2 * (3 - 2 * (3.75 / 10)) + 4 * Math.sin((Math.PI * 3.75) / 10) ** 2 }, { x: 4, y: 3 - 1.5 * (4 / 10) ** 2 * (3 - 2 * (4 / 10)) + 4 * Math.sin((Math.PI * 4) / 10) ** 2 }, { x: 4.25, y: 3 - 1.5 * (4.25 / 10) ** 2 * (3 - 2 * (4.25 / 10)) + 4 * Math.sin((Math.PI * 4.25) / 10) ** 2 }, { x: 4.5, y: 3 - 1.5 * (4.5 / 10) ** 2 * (3 - 2 * (4.5 / 10)) + 4 * Math.sin((Math.PI * 4.5) / 10) ** 2 }, { x: 4.75, y: 3 - 1.5 * (4.75 / 10) ** 2 * (3 - 2 * (4.75 / 10)) + 4 * Math.sin((Math.PI * 4.75) / 10) ** 2 }, { x: 5, y: 3 - 1.5 * (5 / 10) ** 2 * (3 - 2 * (5 / 10)) + 4 * Math.sin((Math.PI * 5) / 10) ** 2 }, { x: 5.25, y: 3 - 1.5 * (5.25 / 10) ** 2 * (3 - 2 * (5.25 / 10)) + 4 * Math.sin((Math.PI * 5.25) / 10) ** 2 }, { x: 5.5, y: 3 - 1.5 * (5.5 / 10) ** 2 * (3 - 2 * (5.5 / 10)) + 4 * Math.sin((Math.PI * 5.5) / 10) ** 2 }, { x: 5.75, y: 3 - 1.5 * (5.75 / 10) ** 2 * (3 - 2 * (5.75 / 10)) + 4 * Math.sin((Math.PI * 5.75) / 10) ** 2 }, { x: 6, y: 3 - 1.5 * (6 / 10) ** 2 * (3 - 2 * (6 / 10)) + 4 * Math.sin((Math.PI * 6) / 10) ** 2 }, { x: 6.25, y: 3 - 1.5 * (6.25 / 10) ** 2 * (3 - 2 * (6.25 / 10)) + 4 * Math.sin((Math.PI * 6.25) / 10) ** 2 }, { x: 6.5, y: 3 - 1.5 * (6.5 / 10) ** 2 * (3 - 2 * (6.5 / 10)) + 4 * Math.sin((Math.PI * 6.5) / 10) ** 2 }, { x: 6.75, y: 3 - 1.5 * (6.75 / 10) ** 2 * (3 - 2 * (6.75 / 10)) + 4 * Math.sin((Math.PI * 6.75) / 10) ** 2 }, { x: 7, y: 3 - 1.5 * (7 / 10) ** 2 * (3 - 2 * (7 / 10)) + 4 * Math.sin((Math.PI * 7) / 10) ** 2 }, { x: 7.25, y: 3 - 1.5 * (7.25 / 10) ** 2 * (3 - 2 * (7.25 / 10)) + 4 * Math.sin((Math.PI * 7.25) / 10) ** 2 }, { x: 7.5, y: 3 - 1.5 * (7.5 / 10) ** 2 * (3 - 2 * (7.5 / 10)) + 4 * Math.sin((Math.PI * 7.5) / 10) ** 2 }, { x: 7.75, y: 3 - 1.5 * (7.75 / 10) ** 2 * (3 - 2 * (7.75 / 10)) + 4 * Math.sin((Math.PI * 7.75) / 10) ** 2 }, { x: 8, y: 3 - 1.5 * (8 / 10) ** 2 * (3 - 2 * (8 / 10)) + 4 * Math.sin((Math.PI * 8) / 10) ** 2 }, { x: 8.25, y: 3 - 1.5 * (8.25 / 10) ** 2 * (3 - 2 * (8.25 / 10)) + 4 * Math.sin((Math.PI * 8.25) / 10) ** 2 }, { x: 8.5, y: 3 - 1.5 * (8.5 / 10) ** 2 * (3 - 2 * (8.5 / 10)) + 4 * Math.sin((Math.PI * 8.5) / 10) ** 2 }, { x: 8.75, y: 3 - 1.5 * (8.75 / 10) ** 2 * (3 - 2 * (8.75 / 10)) + 4 * Math.sin((Math.PI * 8.75) / 10) ** 2 }, { x: 9, y: 3 - 1.5 * (9 / 10) ** 2 * (3 - 2 * (9 / 10)) + 4 * Math.sin((Math.PI * 9) / 10) ** 2 }, { x: 9.25, y: 3 - 1.5 * (9.25 / 10) ** 2 * (3 - 2 * (9.25 / 10)) + 4 * Math.sin((Math.PI * 9.25) / 10) ** 2 }, { x: 9.5, y: 3 - 1.5 * (9.5 / 10) ** 2 * (3 - 2 * (9.5 / 10)) + 4 * Math.sin((Math.PI * 9.5) / 10) ** 2 }, { x: 9.75, y: 3 - 1.5 * (9.75 / 10) ** 2 * (3 - 2 * (9.75 / 10)) + 4 * Math.sin((Math.PI * 9.75) / 10) ** 2 }, { x: 10, y: 3 - 1.5 * (10 / 10) ** 2 * (3 - 2 * (10 / 10)) + 4 * Math.sin((Math.PI * 10) / 10) ** 2 }] },
+      { id: "catalyst", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 3 - 1.5 * (0 / 10) ** 2 * (3 - 2 * (0 / 10)) + 1.8 * Math.sin((Math.PI * 0) / 10) ** 2 }, { x: 0.25, y: 3 - 1.5 * (0.25 / 10) ** 2 * (3 - 2 * (0.25 / 10)) + 1.8 * Math.sin((Math.PI * 0.25) / 10) ** 2 }, { x: 0.5, y: 3 - 1.5 * (0.5 / 10) ** 2 * (3 - 2 * (0.5 / 10)) + 1.8 * Math.sin((Math.PI * 0.5) / 10) ** 2 }, { x: 0.75, y: 3 - 1.5 * (0.75 / 10) ** 2 * (3 - 2 * (0.75 / 10)) + 1.8 * Math.sin((Math.PI * 0.75) / 10) ** 2 }, { x: 1, y: 3 - 1.5 * (1 / 10) ** 2 * (3 - 2 * (1 / 10)) + 1.8 * Math.sin((Math.PI * 1) / 10) ** 2 }, { x: 1.25, y: 3 - 1.5 * (1.25 / 10) ** 2 * (3 - 2 * (1.25 / 10)) + 1.8 * Math.sin((Math.PI * 1.25) / 10) ** 2 }, { x: 1.5, y: 3 - 1.5 * (1.5 / 10) ** 2 * (3 - 2 * (1.5 / 10)) + 1.8 * Math.sin((Math.PI * 1.5) / 10) ** 2 }, { x: 1.75, y: 3 - 1.5 * (1.75 / 10) ** 2 * (3 - 2 * (1.75 / 10)) + 1.8 * Math.sin((Math.PI * 1.75) / 10) ** 2 }, { x: 2, y: 3 - 1.5 * (2 / 10) ** 2 * (3 - 2 * (2 / 10)) + 1.8 * Math.sin((Math.PI * 2) / 10) ** 2 }, { x: 2.25, y: 3 - 1.5 * (2.25 / 10) ** 2 * (3 - 2 * (2.25 / 10)) + 1.8 * Math.sin((Math.PI * 2.25) / 10) ** 2 }, { x: 2.5, y: 3 - 1.5 * (2.5 / 10) ** 2 * (3 - 2 * (2.5 / 10)) + 1.8 * Math.sin((Math.PI * 2.5) / 10) ** 2 }, { x: 2.75, y: 3 - 1.5 * (2.75 / 10) ** 2 * (3 - 2 * (2.75 / 10)) + 1.8 * Math.sin((Math.PI * 2.75) / 10) ** 2 }, { x: 3, y: 3 - 1.5 * (3 / 10) ** 2 * (3 - 2 * (3 / 10)) + 1.8 * Math.sin((Math.PI * 3) / 10) ** 2 }, { x: 3.25, y: 3 - 1.5 * (3.25 / 10) ** 2 * (3 - 2 * (3.25 / 10)) + 1.8 * Math.sin((Math.PI * 3.25) / 10) ** 2 }, { x: 3.5, y: 3 - 1.5 * (3.5 / 10) ** 2 * (3 - 2 * (3.5 / 10)) + 1.8 * Math.sin((Math.PI * 3.5) / 10) ** 2 }, { x: 3.75, y: 3 - 1.5 * (3.75 / 10) ** 2 * (3 - 2 * (3.75 / 10)) + 1.8 * Math.sin((Math.PI * 3.75) / 10) ** 2 }, { x: 4, y: 3 - 1.5 * (4 / 10) ** 2 * (3 - 2 * (4 / 10)) + 1.8 * Math.sin((Math.PI * 4) / 10) ** 2 }, { x: 4.25, y: 3 - 1.5 * (4.25 / 10) ** 2 * (3 - 2 * (4.25 / 10)) + 1.8 * Math.sin((Math.PI * 4.25) / 10) ** 2 }, { x: 4.5, y: 3 - 1.5 * (4.5 / 10) ** 2 * (3 - 2 * (4.5 / 10)) + 1.8 * Math.sin((Math.PI * 4.5) / 10) ** 2 }, { x: 4.75, y: 3 - 1.5 * (4.75 / 10) ** 2 * (3 - 2 * (4.75 / 10)) + 1.8 * Math.sin((Math.PI * 4.75) / 10) ** 2 }, { x: 5, y: 3 - 1.5 * (5 / 10) ** 2 * (3 - 2 * (5 / 10)) + 1.8 * Math.sin((Math.PI * 5) / 10) ** 2 }, { x: 5.25, y: 3 - 1.5 * (5.25 / 10) ** 2 * (3 - 2 * (5.25 / 10)) + 1.8 * Math.sin((Math.PI * 5.25) / 10) ** 2 }, { x: 5.5, y: 3 - 1.5 * (5.5 / 10) ** 2 * (3 - 2 * (5.5 / 10)) + 1.8 * Math.sin((Math.PI * 5.5) / 10) ** 2 }, { x: 5.75, y: 3 - 1.5 * (5.75 / 10) ** 2 * (3 - 2 * (5.75 / 10)) + 1.8 * Math.sin((Math.PI * 5.75) / 10) ** 2 }, { x: 6, y: 3 - 1.5 * (6 / 10) ** 2 * (3 - 2 * (6 / 10)) + 1.8 * Math.sin((Math.PI * 6) / 10) ** 2 }, { x: 6.25, y: 3 - 1.5 * (6.25 / 10) ** 2 * (3 - 2 * (6.25 / 10)) + 1.8 * Math.sin((Math.PI * 6.25) / 10) ** 2 }, { x: 6.5, y: 3 - 1.5 * (6.5 / 10) ** 2 * (3 - 2 * (6.5 / 10)) + 1.8 * Math.sin((Math.PI * 6.5) / 10) ** 2 }, { x: 6.75, y: 3 - 1.5 * (6.75 / 10) ** 2 * (3 - 2 * (6.75 / 10)) + 1.8 * Math.sin((Math.PI * 6.75) / 10) ** 2 }, { x: 7, y: 3 - 1.5 * (7 / 10) ** 2 * (3 - 2 * (7 / 10)) + 1.8 * Math.sin((Math.PI * 7) / 10) ** 2 }, { x: 7.25, y: 3 - 1.5 * (7.25 / 10) ** 2 * (3 - 2 * (7.25 / 10)) + 1.8 * Math.sin((Math.PI * 7.25) / 10) ** 2 }, { x: 7.5, y: 3 - 1.5 * (7.5 / 10) ** 2 * (3 - 2 * (7.5 / 10)) + 1.8 * Math.sin((Math.PI * 7.5) / 10) ** 2 }, { x: 7.75, y: 3 - 1.5 * (7.75 / 10) ** 2 * (3 - 2 * (7.75 / 10)) + 1.8 * Math.sin((Math.PI * 7.75) / 10) ** 2 }, { x: 8, y: 3 - 1.5 * (8 / 10) ** 2 * (3 - 2 * (8 / 10)) + 1.8 * Math.sin((Math.PI * 8) / 10) ** 2 }, { x: 8.25, y: 3 - 1.5 * (8.25 / 10) ** 2 * (3 - 2 * (8.25 / 10)) + 1.8 * Math.sin((Math.PI * 8.25) / 10) ** 2 }, { x: 8.5, y: 3 - 1.5 * (8.5 / 10) ** 2 * (3 - 2 * (8.5 / 10)) + 1.8 * Math.sin((Math.PI * 8.5) / 10) ** 2 }, { x: 8.75, y: 3 - 1.5 * (8.75 / 10) ** 2 * (3 - 2 * (8.75 / 10)) + 1.8 * Math.sin((Math.PI * 8.75) / 10) ** 2 }, { x: 9, y: 3 - 1.5 * (9 / 10) ** 2 * (3 - 2 * (9 / 10)) + 1.8 * Math.sin((Math.PI * 9) / 10) ** 2 }, { x: 9.25, y: 3 - 1.5 * (9.25 / 10) ** 2 * (3 - 2 * (9.25 / 10)) + 1.8 * Math.sin((Math.PI * 9.25) / 10) ** 2 }, { x: 9.5, y: 3 - 1.5 * (9.5 / 10) ** 2 * (3 - 2 * (9.5 / 10)) + 1.8 * Math.sin((Math.PI * 9.5) / 10) ** 2 }, { x: 9.75, y: 3 - 1.5 * (9.75 / 10) ** 2 * (3 - 2 * (9.75 / 10)) + 1.8 * Math.sin((Math.PI * 9.75) / 10) ** 2 }, { x: 10, y: 3 - 1.5 * (10 / 10) ** 2 * (3 - 2 * (10 / 10)) + 1.8 * Math.sin((Math.PI * 10) / 10) ** 2 }] },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "end", kind: "point", appearance: "secondary", at: { x: 10, y: 1.5 } },
+      { id: "plain-top", kind: "point", appearance: "reference", at: { x: 5, y: 6.25 } },
+      { id: "cat-top", kind: "point", appearance: "construction", at: { x: 5, y: 4.05 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain-top", at: { x: 5, y: 6.25 }, placement: "above" },
+      { key: "cat", objectId: "cat-top", at: { x: 5, y: 4.05 }, placement: "right" },
+      { key: "start", objectId: "start", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 10, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    plain: <>without a catalyst</>,
+    cat: <>with a catalyst</>,
+    start: <>reactants</>,
+    end: <>products</>,
+  }}
 />
 
 ## Checking Green Claims

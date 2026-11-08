@@ -34,20 +34,6 @@ Die Tabelle zeigt drei verbreitete Beispiele aus einer längeren Liste. Übertra
 | Hände und Oberflächen | Übertragung von Oberflächen auf Hände und weiter zu Augen, Nase oder Mund | Hände mit Seife waschen, häufig berührte Flächen reinigen | Gegenstände reinigen und trotzdem oft das Gesicht berühren |
 | Mücken als Vektoren | Stiche und Mückenbrutstätten | Stehendes Wasser beseitigen, Stiche vermeiden, die häusliche Umgebung kontrollieren | Maßnahmen gegen Atemwegsviren auf ein Mückenproblem übertragen |
 
-Nutz diese Karte, wenn du eine Maßnahme auswählst: Fang beim Übertragungsweg an, nicht bei der Maßnahme, die du am liebsten magst.
-
-<Mermaid
-  title="Vom Übertragungsweg zur Maßnahme"
-  description="Jeder Weg verzweigt sich zu den Maßnahmen, die ihn unterbrechen."
-  chart={`flowchart LR
-    A["Wie verbreitet sich das Virus?"] --> B["Atemwegspartikel"]
-    A --> C["Hände und Oberflächen"]
-    A --> D["Mückenstiche"]
-    B --> E["Lüften, Abstand, Masken bei hohem Risiko"]
-    C --> F["Hände mit Seife waschen, oft berührte Flächen reinigen"]
-    D --> G["Stehendes Wasser beseitigen, Stiche verhindern"]`}
-/>
-
 ## Ansatzpunkte in jedem Übertragungsweg
 
 Jeder Übertragungsweg lässt sich an bestimmten Stellen unterbrechen. **Sobald der Übertragungsweg bekannt ist**, lässt sich der Zweck von Masken, Seife, Impfungen oder Vektorkontrolle direkt begründen.
@@ -61,8 +47,8 @@ Prävention besteht deshalb meist aus mehreren passenden Maßnahmen. Bei Atemweg
 Deshalb lohnt es sich, Maßnahmen zu kombinieren. Nenn <InlineMath math="R" /> die durchschnittliche Zahl der Menschen, die ein Fall ansteckt. Mit Beispielzahlen wächst eine Kette, in der jeder Fall <InlineMath math="2" /> andere ansteckt, in der fünften Generation auf <InlineMath math="2^5=32" /> neue Fälle. Senken Masken, Lüften und Händewaschen zusammen jeden Fall auf durchschnittlich <InlineMath math="0{,}8" /> Ansteckungen, schrumpft dieselbe Kette stattdessen auf etwa <InlineMath math="0{,}33" />. Folge beiden Linien von links nach rechts und achte darauf, dass der Wendepunkt bei <InlineMath math="R=1" /> liegt.
 
 <MathVisual
-  title="Ein Fall, fünf Generationen"
-  description="Beispielhafte Ansteckungsketten, die mit einem Fall beginnen. Waagrecht: Generation. Senkrecht: neue Fälle in Einheiten von 4."
+  title={<>Ein Fall, fünf Generationen</>}
+  description={<>Beispielhafte Ansteckungsketten, die mit einem Fall beginnen. Waagrecht: Generation. Senkrecht: neue Fälle in Einheiten von 4.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
@@ -92,6 +78,36 @@ Händehygiene entfernt Schmutz, Fett und Mikroorganismen, die nicht immer sichtb
 
 [Händewaschen](https://www.cdc.gov/clean-hands/data-research/facts-stats/) kann umhüllte und unbehüllte Viren mechanisch entfernen. Seife kann außerdem die Lipidschicht umhüllter Viren stören. Reibung löst Schmutz und Mikroorganismen, fließendes Wasser spült sie fort. Mechanische Entfernung und Störung der Lipidhülle ergänzen sich. Da Hände Material häufig von Oberflächen zum Gesicht tragen, kann Händewaschen diesen Übertragungsweg unterbrechen.
 
+Lüften unterbricht den Weg durch die Luft, weil frische Luft die Raumluft ständig ersetzt. Bei <InlineMath math="\lambda" /> Luftwechseln pro Stunde ist der Anteil der Partikel, die nach <InlineMath math="t" /> Stunden noch in der Luft sind, <InlineMath math="e^{-\lambda t}" />, solange niemand neue hinzufügt. Nach einer Stunde bleiben bei einem Luftwechsel etwa <InlineMath math="37\%" />, bei drei <InlineMath math="5\%" /> und bei sechs weniger als <InlineMath math="1\%" />. Zoom auf die ersten Minuten, wo die Linien auseinandergehen.
+
+<MathVisual
+  title={<>Frische Luft räumt den Raum</>}
+  description={<>Anteil der Partikel in der Luft, der in einem gut durchmischten Raum nach dem Ende der Quelle bleibt, bei 1 (grau), 3 (orange) und 6 (türkis) Luftwechseln pro Stunde. Waagerecht: Ein Gitterschritt entspricht 10 Minuten. Senkrecht: Ein Gitterschritt entspricht 20 Prozent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ach-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-1 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-1 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-1 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-1 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-1 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-1 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-1 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-1 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-1 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-1 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-1 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-1 * 60) / 60) }] },
+      { id: "end-1", kind: "point", appearance: "reference", at: { x: 6, y: 5 * Math.exp(-1) } },
+      { id: "ach-3", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-3 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-3 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-3 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-3 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-3 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-3 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-3 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-3 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-3 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-3 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-3 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-3 * 60) / 60) }] },
+      { id: "end-3", kind: "point", appearance: "primary", at: { x: 6, y: 5 * Math.exp(-3) } },
+      { id: "ach-6", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-6 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-6 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-6 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-6 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-6 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-6 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-6 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-6 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-6 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-6 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-6 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-6 * 60) / 60) }] },
+      { id: "end-6", kind: "point", appearance: "construction", at: { x: 6, y: 5 * Math.exp(-6) } },
+    ],
+    labels: [
+      { key: "one", objectId: "end-1", at: { x: 6, y: 5 * Math.exp(-1) }, placement: "right" },
+      { key: "three", objectId: "end-3", at: { x: 6, y: 5 * Math.exp(-3) }, placement: "right" },
+      { key: "six", objectId: "end-6", at: { x: 6, y: 5 * Math.exp(-6) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="e^{-1}\approx37\%" />,
+    three: <InlineMath math="e^{-3}\approx5\%" />,
+    six: <InlineMath math="e^{-6}<1\%" />,
+  }}
+/>
+
 ## Impfstoffe lösen Immunreaktionen aus und Virostatika hemmen die Replikation
 
 Ein **Impfstoff** blockiert Tröpfchen oder Aerosole nicht physisch. Nach der Impfung entwickelt das Immunsystem eine Reaktion, die einen bestimmten Erreger erkennt. Je nach Impfstoff und Erreger kann der Schutz vor einer Infektion unvollständig sein, obwohl der Schutz vor schwerer Erkrankung stark ist. Impfstoffe wirken über die Immunität. Masken, Lüftung und Hygiene verringern dagegen Exposition und Übertragung.
@@ -117,3 +133,35 @@ Das folgende Diagramm ordnet jede Maßnahme dem Schritt zu, an dem sie wirkt. Ma
 <Highlight>Bestimme vor der Wahl einer Maßnahme den Übertragungsweg</Highlight>. Verbessere bei Atemwegspartikeln die Lüftung und nutze geeignete Barrieren. Beseitige bei Mücken Brutstätten und verhindere Stiche. Achte bei Kontaktübertragung auf Hände, Oberflächen und Wunden.
 
 Jede Schutzmaßnahme beruht darauf, wie sich ein Virus verbreitet, in einen Wirt gelangt und sich vermehrt.
+
+Eine Mücke braucht im stehenden Wasser etwa eine Woche vom Ei bis zum erwachsenen Tier, bei warmem Wetter rund <InlineMath math="8" /> Tage. Wenn du Wasserbehälter alle <InlineMath math="7" /> Tage leerst und schrubbst, landet jede Brut vor Tag <InlineMath math="8" /> im Abfluss, also fliegt keine davon jemals. Zoom jede Reihe entlang und prüf, wo das Ausleeren sie abschneidet.
+
+<MathVisual
+  title={<>Wöchentliches Ausleeren schlägt die Mückenuhr</>}
+  description={<>Drei Bruten aus Eiern, die an den Tagen 0, 7 und 14 gelegt wurden. Jede Reihe wächst Richtung Tag 8 und endet beim nächsten Ausleeren (rosa Punkte). Ein Gitterschritt nach rechts ist ein Tag.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 22.5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "brood-0", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 7, y: 3 } },
+      { id: "drain-0", kind: "point", appearance: "warning", at: { x: 7, y: 3 } },
+      { id: "adult-0", kind: "segment", appearance: "reference", from: { x: 7, y: 3 }, to: { x: 8, y: 3 } },
+      { id: "brood-1", kind: "segment", appearance: "secondary", from: { x: 7, y: 2 }, to: { x: 14, y: 2 } },
+      { id: "drain-1", kind: "point", appearance: "warning", at: { x: 14, y: 2 } },
+      { id: "adult-1", kind: "segment", appearance: "reference", from: { x: 14, y: 2 }, to: { x: 15, y: 2 } },
+      { id: "brood-2", kind: "segment", appearance: "secondary", from: { x: 14, y: 1 }, to: { x: 21, y: 1 } },
+      { id: "drain-2", kind: "point", appearance: "warning", at: { x: 21, y: 1 } },
+      { id: "adult-2", kind: "segment", appearance: "reference", from: { x: 21, y: 1 }, to: { x: 22, y: 1 } },
+      { id: "would", kind: "point", appearance: "reference", at: { x: 8, y: 3 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain-0", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "adult", objectId: "would", at: { x: 8, y: 3 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    drain: <>am Tag 7 ausgeleert</>,
+    adult: <>die erwachsene Mücke käme am Tag 8</>,
+  }}
+/>

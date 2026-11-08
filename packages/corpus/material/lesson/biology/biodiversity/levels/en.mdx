@@ -44,6 +44,51 @@ A visible trait is usually not determined by genes alone. Plant height, for exam
 
 Genetic differences can make individuals respond differently to the same environmental change. A population with more variation is therefore more likely to include individuals that survive and reproduce under the new conditions.
 
+Picture two rice populations of 10 plants, each plant placed by how well it tolerates a stress such as a long flood. In the top row every plant has the same inherited variant, and in the bottom row the variants differ. When a new condition needs a tolerance beyond the pink line, only the varied population still has plants that cope. Zoom in on the line and count the points to its right.
+
+<MathVisual
+  title={<>Variation Gives Some Plants a Chance</>}
+  description={<>Illustrative stress tolerance of 10 plants with one shared variant (top) and 10 plants with different variants (bottom). Points right of the pink line cope with the new condition.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "threshold", kind: "segment", appearance: "warning", from: { x: 7, y: 0 }, to: { x: 7, y: 3 } },
+      { id: "same-0", kind: "point", appearance: "reference", at: { x: 4.55, y: 2 } },
+      { id: "same-1", kind: "point", appearance: "reference", at: { x: 4.65, y: 2 } },
+      { id: "same-2", kind: "point", appearance: "reference", at: { x: 4.75, y: 2 } },
+      { id: "same-3", kind: "point", appearance: "reference", at: { x: 4.85, y: 2 } },
+      { id: "same-4", kind: "point", appearance: "reference", at: { x: 4.95, y: 2 } },
+      { id: "same-5", kind: "point", appearance: "reference", at: { x: 5.05, y: 2 } },
+      { id: "same-6", kind: "point", appearance: "reference", at: { x: 5.15, y: 2 } },
+      { id: "same-7", kind: "point", appearance: "reference", at: { x: 5.25, y: 2 } },
+      { id: "same-8", kind: "point", appearance: "reference", at: { x: 5.35, y: 2 } },
+      { id: "same-9", kind: "point", appearance: "reference", at: { x: 5.45, y: 2 } },
+      { id: "spread-0", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "spread-1", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "spread-2", kind: "point", appearance: "secondary", at: { x: 3.5, y: 1 } },
+      { id: "spread-3", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+      { id: "spread-4", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "spread-5", kind: "point", appearance: "secondary", at: { x: 5.5, y: 1 } },
+      { id: "spread-6", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "spread-7", kind: "point", appearance: "secondary", at: { x: 6.5, y: 1 } },
+      { id: "spread-8", kind: "point", appearance: "answer", at: { x: 7.5, y: 1 } },
+      { id: "spread-9", kind: "point", appearance: "answer", at: { x: 8, y: 1 } },
+    ],
+    labels: [
+      { key: "line", objectId: "threshold", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "same", objectId: "same-9", at: { x: 5.45, y: 2 }, placement: "right" },
+      { key: "spread", objectId: "spread-9", at: { x: 8, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    line: <>new condition</>,
+    same: <>0 of 10 cope</>,
+    spread: <>2 of 10 cope</>,
+  }}
+/>
+
 ## Comparing Diversity at Larger Scales
 
 Genetic diversity compares members of one species. Species diversity compares the species that live together, while ecosystem diversity also compares their habitats and ecological relationships. As the observation area grows, **distinguish the species count from the habitat conditions** supporting those organisms.
@@ -66,8 +111,8 @@ Both plots contain 10 individuals and 3 species. However, **abundance is more ev
 The scene below turns the two plots into bars, orange for species A, violet for B and teal for C, with one grid step for <InlineMath math="2" /> individuals. Rotate it so you see both rows side by side. Plot 1 has one tall bar and two stubs, while plot 2 has three bars of similar height. One common way to put a number on this is Simpson's index, <InlineMath math="1-\sum p_i^2" />, where <InlineMath math="p_i" /> is each species' share of the individuals. It reaches <InlineMath math="0.34" /> for plot 1 and <InlineMath math="0.66" /> for plot 2, so the more even plot scores almost twice as high with the same species count.
 
 <MathVisual
-  title="Same Richness, Different Evenness"
-  description="Individuals of species A (orange), B (violet) and C (teal) in two hypothetical plots of equal area. One grid step up is 2 individuals."
+  title={<>Same Richness, Different Evenness</>}
+  description={<>Individuals of species A (orange), B (violet) and C (teal) in two hypothetical plots of equal area. One grid step up is 2 individuals.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -111,22 +156,56 @@ Primary biodiversity records can come from museums, scientific collections, DNA 
     D --> G["Different habitats"]`}
 />
 
+Species richness counts how many kinds live in a place. Both plots hold 12 individuals, but one has four species and the other only two. Zoom in and count the colors in each plot.
+
+<MathVisual
+  title={<>Same Count, Different Richness</>}
+  description={<>Two plots with 12 individuals each. Each color is one species.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plot-a", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "plot-b", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 4 }, { x: 6, y: 4 }] },
+      { id: "a-0-0", kind: "point", appearance: "primary", at: { x: 0.5, y: 0.75 } },
+      { id: "b-0-0", kind: "point", appearance: "primary", at: { x: 6.5, y: 0.75 } },
+      { id: "a-0-1", kind: "point", appearance: "primary", at: { x: 0.5, y: 2 } },
+      { id: "b-0-1", kind: "point", appearance: "primary", at: { x: 6.5, y: 2 } },
+      { id: "a-0-2", kind: "point", appearance: "primary", at: { x: 0.5, y: 3.25 } },
+      { id: "b-0-2", kind: "point", appearance: "primary", at: { x: 6.5, y: 3.25 } },
+      { id: "a-1-0", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.75 } },
+      { id: "b-1-0", kind: "point", appearance: "primary", at: { x: 7.5, y: 0.75 } },
+      { id: "a-1-1", kind: "point", appearance: "secondary", at: { x: 1.5, y: 2 } },
+      { id: "b-1-1", kind: "point", appearance: "primary", at: { x: 7.5, y: 2 } },
+      { id: "a-1-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 3.25 } },
+      { id: "b-1-2", kind: "point", appearance: "primary", at: { x: 7.5, y: 3.25 } },
+      { id: "a-2-0", kind: "point", appearance: "highlight", at: { x: 2.5, y: 0.75 } },
+      { id: "b-2-0", kind: "point", appearance: "secondary", at: { x: 8.5, y: 0.75 } },
+      { id: "a-2-1", kind: "point", appearance: "highlight", at: { x: 2.5, y: 2 } },
+      { id: "b-2-1", kind: "point", appearance: "secondary", at: { x: 8.5, y: 2 } },
+      { id: "a-2-2", kind: "point", appearance: "highlight", at: { x: 2.5, y: 3.25 } },
+      { id: "b-2-2", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.25 } },
+      { id: "a-3-0", kind: "point", appearance: "construction", at: { x: 3.5, y: 0.75 } },
+      { id: "b-3-0", kind: "point", appearance: "secondary", at: { x: 9.5, y: 0.75 } },
+      { id: "a-3-1", kind: "point", appearance: "construction", at: { x: 3.5, y: 2 } },
+      { id: "b-3-1", kind: "point", appearance: "secondary", at: { x: 9.5, y: 2 } },
+      { id: "a-3-2", kind: "point", appearance: "construction", at: { x: 3.5, y: 3.25 } },
+      { id: "b-3-2", kind: "point", appearance: "secondary", at: { x: 9.5, y: 3.25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "plot-a", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "b", objectId: "plot-b", at: { x: 8, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <>4 species</>,
+    b: <>2 species</>,
+  }}
+/>
+
 ## Choose the Level of Biodiversity First
 
 When observing nature, first identify what is being compared. Differences among members of one species concern genetic diversity **when they reflect inherited genetic variation**. Differences among the species present belong to species diversity. Differences among habitats and ecological relationships belong to ecosystem diversity.
 
 One rice field edge, garden, or forest can contain all three levels at once. The place stays the same, but the question determines which level of biodiversity is being studied.
-
-Use this decision path whenever a question names a difference in living things.
-
-<Mermaid
-  title="Find the Level from What Is Compared"
-  description="Start from the things being compared and follow the branch to the level of biodiversity."
-  chart={`flowchart TD
-    A["What is being compared?"] --> B["Members of one species"]
-    A --> C["Species living together"]
-    A --> D["Habitats and their relationships"]
-    B --> E["Genetic diversity"]
-    C --> F["Species diversity: richness and evenness"]
-    D --> G["Ecosystem diversity"]`}
-/>
