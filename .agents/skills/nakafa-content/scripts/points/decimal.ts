@@ -10,7 +10,7 @@ import {
   type NumericLiteral,
   numericLiteral,
   tupleLiterals,
-} from "#nakafa-content/points/point";
+} from "#nakafa-content/points/numeric";
 
 /**
  * Fewest fractional digits that make a coordinate a long decimal. An exact

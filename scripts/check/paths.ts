@@ -1,6 +1,10 @@
 import { Array as Arr, Effect, HashSet, Option } from "effect";
 
-import { enforceViolations, trackedFiles } from "#scripts/check/files";
+import {
+  enforceViolations,
+  isGenerated,
+  trackedFiles,
+} from "#scripts/check/files";
 import { runEntry } from "#scripts/entry";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
@@ -131,6 +135,28 @@ function isIdentity(segments: readonly string[], index: number) {
   return isBankSource(segments) && index >= QUESTION_BANK_PREFIX.length;
 }
 
+/** A word and its plurals, compared without case. */
+function forms(word: string): readonly string[] {
+  const lower = word.toLowerCase();
+  return [lower, `${lower}s`, `${lower}es`];
+}
+
+/**
+ * Whether a one-word name repeats the word of the folder it stands in, alone or as its plural, as `artifact/artifacts.ts`
+ * or `check/check.ts` do. A capability groups its modules under its own word, so each module names what it adds.
+ */
+function repeatsFolder(name: readonly string[], folder: readonly string[]) {
+  if (name.length !== 1 || folder.length !== 1) {
+    return false;
+  }
+  const [word] = name;
+  const [parent] = folder;
+  return (
+    Arr.contains(forms(parent), word.toLowerCase()) ||
+    Arr.contains(forms(word), parent.toLowerCase())
+  );
+}
+
 /** Allows toolchain files and uppercase repository documents by convention. */
 function isConventionalFile(file: string, basename: string) {
   if (HashSet.has(TOOLCHAIN_FILES, file)) {
@@ -140,7 +166,10 @@ function isConventionalFile(file: string, basename: string) {
   return isDocumentPath && DOCUMENT_PATTERN.test(basename);
 }
 
-/** Collects forbidden toolchains, JavaScript, and multi-word path names. */
+/**
+ * Collects forbidden toolchains, JavaScript, multi-word path names, and names that repeat their folder's word. A
+ * directory a tool writes keeps the names its tool gives it.
+ */
 export function pathViolations(files: readonly string[]): readonly string[] {
   const tracked = HashSet.fromIterable(files);
   return Arr.flatMap(files, (file) => {
@@ -163,16 +192,28 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       !FINAL_TEST_FILE_PATTERN.test(file)
         ? [`${file}: final tests must use .test.ts`]
         : [];
-    const nameViolations = Arr.flatMap(segments, (segment, index) => {
+    const named = isGenerated(file) ? [] : segments;
+    const nameViolations = Arr.flatMap(named, (segment, index) => {
       const isFile = index === segments.length - 1;
       if (
         isIdentity(segments, index) ||
-        (isFile && isConventionalFile(file, segment)) ||
-        words(segment, isFile).length <= 1
+        (isFile && isConventionalFile(file, segment))
       ) {
         return [];
       }
-      return [`${file}: ${segment} must be one word`];
+      const name = words(segment, isFile);
+      if (name.length > 1) {
+        return [`${file}: ${segment} must be one word`];
+      }
+      const folder = Arr.get(segments, index - 1);
+      return Option.exists(
+        folder,
+        (parent) =>
+          !isIdentity(segments, index - 1) &&
+          repeatsFolder(name, words(parent, false))
+      )
+        ? [`${file}: ${segment} repeats its folder's word`]
+        : [];
     });
 
     return [
