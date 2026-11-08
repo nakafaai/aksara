@@ -1,61 +1,118 @@
 export const metadata = {
-   title: "Nilai Harapan Distribusi Normal",
-  description: "Hubungkan rata-rata distribusi normal dengan nilai harapannya dalam soal statistika.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
-   subject: "Analisis Data dan Peluang",
+  title: "Nilai Harapan Distribusi Normal",
+  description: "Nilai harapan distribusi normal adalah rata-ratanya, μ. Buktikan dengan simetri dan integral, lalu pakai untuk skala, jumlah, dan soal cerita.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Analisis Data dan Peluang",
 };
 
-## Pusat Distribusi Normal Menentukan Nilai Harapan
+## Nilai Harapan Berada di Pusat Kurva
 
-**Nilai harapan** adalah rata-rata berbobot peluang dari suatu variabel acak, atau rata-rata jangka panjang yang didekati oleh banyak pengamatan saling bebas. Secara umum, nilai harapan tidak harus sama dengan nilai yang paling sering muncul. Khusus pada distribusi normal, rata-rata, median, modus, dan nilai harapan <Highlight>berada di pusat yang sama</Highlight>.
-
-Kesimetrian tersebut menghasilkan aturan nilai harapan yang sederhana.
-
-> Jika <InlineMath math="X \sim N(\mu, \sigma^2)" /> dengan <InlineMath math="\sigma>0" />, nilai harapannya sama dengan parameter rata-rata <InlineMath math="\mu" />.
-
-Secara matematis, kita dapat menuliskan:
+Jika <InlineMath math="X" /> berdistribusi normal dengan rata-rata <InlineMath math="\mu" /> dan simpangan baku <InlineMath math="\sigma > 0" />, ditulis <InlineMath math="X \sim N(\mu, \sigma^2)" />, nilai harapannya sama dengan parameter <InlineMath math="\mu" />:
 
 <BlockMath math="E(X) = \mu" />
 
-Pada notasi tersebut, <InlineMath math="X" /> adalah variabel acak berdistribusi normal dan <InlineMath math="\mu" /> adalah parameter rata-ratanya.
+Nilai harapan adalah **rata-rata berbobot peluang** dari semua nilai <InlineMath math="X" />. Kalau kamu mengambil banyak sekali pengamatan dari distribusi itu, rata-rata hasilnya makin dekat ke <InlineMath math="\mu" />. Simpangan baku <InlineMath math="\sigma" /> hanya mengatur lebar kurva, jadi **lebar kurva tidak mengubah nilai harapan**.
 
-Perhitungan berikut menunjukkan alasannya.
+Nilai ujian yang berdistribusi <InlineMath math="N(75, 10^2)" /> punya nilai harapan <InlineMath math="75" />. Pada kurva normal, rata-rata, median, modus, dan nilai harapan berimpit di sumbu simetri kurva. Grafik interaktif menandai pusat itu bersama dua pasang nilai yang sama tinggi di kiri dan kanannya.
 
-## Menurunkan Nilai Harapan dari Integral
+<LineEquation
+  title={<>Pasangan nilai yang sama tinggi di sekitar <InlineMath math="\mu = 2" /></>}
+  description={<>Kurva kepadatan <InlineMath math="N(2, 1)" />. Ruas tegak di <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" /> sama tinggi, begitu pula ruas di <InlineMath math="x = 0{,}5" /> dan <InlineMath math="x = 3{,}5" />, karena jaraknya ke pusat sama.</>}
+  showZAxis={false}
+  cameraPosition={[2, 0.2, 5.5]}
+  cameraTarget={[2, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -1.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 1 / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mu = 2" />, at: 1, offset: [0, 0.12, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: Math.exp(-0.5 * (1 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: 3, y: Math.exp(-0.5 * (3 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 0.5, y: 0, z: 0 },
+        { x: 0.5, y: Math.exp(-0.5 * (0.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="0{,}5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3.5, y: 0, z: 0 },
+        { x: 3.5, y: Math.exp(-0.5 * (3.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3{,}5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+  ]}
+/>
 
-Nilai harapan suatu variabel acak kontinu didefinisikan sebagai:
+## Pasangan Nilai yang Saling Menyeimbangkan
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot f(x) \, dx" />
+Mengapa nilai harapannya tepat di <InlineMath math="\mu" />? Kurva normal simetris terhadap garis <InlineMath math="x = \mu" />. Setiap nilai <InlineMath math="\mu + d" /> punya pasangan <InlineMath math="\mu - d" /> dengan kepadatan yang sama, karena rumus kepadatan hanya memuat kuadrat <InlineMath math="(x - \mu)^2" />, dan <InlineMath math="(+d)^2 = (-d)^2" />.
 
-Untuk distribusi normal dengan <InlineMath math="\sigma>0" />, fungsi kepadatan peluangnya adalah:
+Simpangan kedua nilai itu terhadap pusat adalah <InlineMath math="+d" /> dan <InlineMath math="-d" />. Dengan bobot yang sama, sumbangan keduanya saling meniadakan. Semua nilai bisa dipasangkan seperti itu, jadi **rata-rata simpangan terhadap pusat sama dengan nol**:
 
-<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+<BlockMath math="E(X - \mu) = 0 \quad\Longrightarrow\quad E(X) = \mu" />
 
-Substitusikan fungsi ini ke dalam rumus nilai harapan:
+Pada kurva <InlineMath math="N(2, 1)" />, ruas di <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" /> sama-sama setinggi <InlineMath math="\frac{1}{\sqrt{2\pi}}e^{-1/2} \approx 0{,}242" />. Ruas di <InlineMath math="x = 0{,}5" /> dan <InlineMath math="x = 3{,}5" /> sama-sama setinggi sekitar <InlineMath math="0{,}130" />. Argumen simetri ini masih butuh satu syarat, yaitu integral nilai harapannya harus ada, dan bukti dengan integral memastikan syarat itu terpenuhi.
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, dx" />
+## Membuktikan Rumusnya dengan Integral
 
-Gunakan substitusi <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Maka <InlineMath math="x = \sigma t + \mu" /> dan <InlineMath math="dx = \sigma \, dt" />.
-
-Tuliskan densitas asal setelah substitusi <InlineMath math="x=\sigma t+\mu" /> sebagai <InlineMath math="h(t)" />, dan pertahankan <InlineMath math="dx=\sigma\,dt" /> sebagai faktor terpisah:
+Untuk besaran acak kontinu, nilai harapan adalah integral dari <InlineMath math="x" /> dikali kepadatannya pada seluruh garis bilangan. Luas di bawah kurva seperti ini dihitung dengan [integral tentu](/id/materi/matematika/integral/integral-tentu), di sini dengan batas tak hingga. Pada besaran diskret, misalnya banyak sukses dalam [distribusi binomial](/id/materi/matematika/analisis-data-dan-peluang/nilai-harapan-distribusi-binomial), integral ini diganti penjumlahan.
 
 <MathContainer>
-  <BlockMath math="h(t)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac12t^2}" />
+  <BlockMath math="E(X) = \int_{-\infty}^{\infty} x f(x)\,dx" />
+  <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+</MathContainer>
 
-  <BlockMath math="E(X)=\int_{-\infty}^{\infty}(\sigma t+\mu)h(t)\sigma\,dt" />
-  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+Substitusi <InlineMath math="t = \frac{x-\mu}{\sigma}" /> **memindahkan pusat ke nol** dan mengukur jarak dalam satuan simpangan baku. Dari substitusi itu, <InlineMath math="x = \sigma t + \mu" /> dan <InlineMath math="dx = \sigma\,dt" />, sehingga faktor <InlineMath math="\sigma" /> di penyebut hilang:
+
+<MathContainer>
+  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu)\, e^{-\frac{1}{2}t^2}\,dt" />
   <BlockMath math="\begin{aligned} E(X) &amp;= \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt \\ &amp;\quad{}+ \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt \end{aligned}" />
 </MathContainer>
 
-Perhatikan bahwa:
-
-- **Integral pertama** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" /> karena <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> adalah fungsi ganjil. Dengan demikian, <InlineMath math="g(-t) = -g(t)" />, sehingga luas bertanda pada interval simetris <InlineMath math="(-\infty, \infty)" /> saling meniadakan.
-
-- **Integral kedua** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> adalah integral Gaussian. Setelah dikalikan faktor normalisasi <InlineMath math="1/\sqrt{2\pi}" />, hasilnya menjadi peluang total <InlineMath math="1" /> pada kepadatan normal standar.
-
-Kedua bagian integral pertama **konvergen secara terpisah**. Antiturunan <InlineMath math="-e^{-t^2/2}" /> menunjukkan besarnya tiap kontribusi, sehingga penjumlahannya sah dan tidak melibatkan pengurangan dua nilai tak berhingga.
+Integral pertama bernilai nol karena <InlineMath math="g(t) = t e^{-t^2/2}" /> adalah **fungsi ganjil**, yaitu <InlineMath math="g(-t) = -g(t)" />. Luas bertanda di kiri dan kanan sumbu tegak sama besar dengan tanda berlawanan, seperti [integral fungsi ganjil pada selang simetris](/id/materi/matematika/integral/sifat-sifat-integral-tentu). Kedua bagiannya berhingga, jadi nol ini tidak berasal dari pengurangan dua nilai tak hingga:
 
 <MathContainer>
   <BlockMath math="\int_0^\infty te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_0^\infty=0-(-1)=1" />
@@ -64,13 +121,13 @@ Kedua bagian integral pertama **konvergen secara terpisah**. Antiturunan <Inline
 
 <LineEquation
   title="Kontribusi di Kiri dan Kanan Saling Meniadakan"
-  description={<>Grafik <InlineMath math="g(t) = t e^{-t^2/2}" /> pada -3 sampai 3. Untuk t dan -t, tingginya sama besar dengan tanda berlawanan. Ekor di luar tampilan juga simetris.</>}
+  description={<>Grafik <InlineMath math="g(t) = t e^{-t^2/2}" /> pada <InlineMath math="-3 \le t \le 3" />. Untuk <InlineMath math="t" /> dan <InlineMath math="-t" />, tingginya sama besar dengan tanda berlawanan, dan ekor di luar tampilan juga simetris.</>}
   cameraPosition={[0, 0, 8]}
   showZAxis={false}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const t = (index - 30) / 10;
+      points: Array.from({ length: 601 }, (_, index) => {
+        const t = (index - 300) / 100;
         return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
       }),
       color: "#0d9488",
@@ -80,90 +137,103 @@ Kedua bagian integral pertama **konvergen secara terpisah**. Antiturunan <Inline
   ]}
 />
 
-Maka:
+Integral kedua adalah integral Gauss, nilainya <InlineMath math="\sqrt{2\pi}" />. Hasil akhirnya:
+
+<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi} = \mu" />
+
+Periksa dengan argumen simetri: keduanya memberi <InlineMath math="\mu" />, dan <InlineMath math="\sigma" /> hilang dari hasil akhir, persis seperti pasangan nilai yang sama tinggi di sekitar pusat.
+
+## Nilai Harapan Distribusi Normal Baku
+
+Distribusi normal baku adalah distribusi normal dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" />, ditulis <InlineMath math="Z \sim N(0, 1)" />. Rumus <InlineMath math="E(X) = \mu" /> langsung memberi **nilai harapan normal baku <InlineMath math="E(Z) = 0" />**.
+
+Setiap besaran normal bisa ditulis dari normal baku sebagai <InlineMath math="X = \mu + \sigma Z" />. Sifat linear nilai harapan, <InlineMath math="E(aZ + b) = aE(Z) + b" />, memberi jalan kedua tanpa integral:
+
+<BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
+
+Hubungan yang sama menjelaskan skor <InlineMath math="z = \frac{x - \mu}{\sigma}" />, yaitu jarak dari pusat dalam satuan simpangan baku, dengan rata-rata nol. Karena <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> berdistribusi normal baku, peluang <InlineMath math="P(X < x)" /> sama dengan <InlineMath math="\Phi\left(\frac{x - \mu}{\sigma}\right)" />, sehingga satu tabel untuk <InlineMath math="Z" /> cukup untuk setiap [distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/fungsi-distribusi-normal).
+
+## Sifat Linear Nilai Harapan
+
+Dua aturan menyelesaikan sebagian besar soal. Untuk bilangan tetap <InlineMath math="a" /> dan <InlineMath math="b" />, **nilai harapan ikut digeser dan diskalakan**, dan nilai harapan jumlah sama dengan jumlah nilai harapan:
 
 <MathContainer>
-<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi}" />
-<BlockMath math="E(X) = 0 + \mu = \mu" />
+  <BlockMath math="E(aX + b) = a\mu + b" />
+  <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-Jadi, nilai harapan variabel acak normal sama dengan **parameter rata-ratanya**.
+**Contoh 1**. Suhu rata-rata harian di Jakarta pada bulan Juni berdistribusi normal dengan <InlineMath math="\mu = 28^\circ\text{C}" /> dan <InlineMath math="\sigma = 3^\circ\text{C}" />. Konversi ke Fahrenheit adalah <InlineMath math="F = 1{,}8C + 32" />, bentuk <InlineMath math="aC + b" /> dengan <InlineMath math="a = 1{,}8" /> dan <InlineMath math="b = 32" />:
 
-> Untuk setiap distribusi normal <InlineMath math="X \sim N(\mu, \sigma^2)" />, berlaku <InlineMath math="E(X) = \mu" />. Ini berarti kita tidak perlu melakukan integrasi setiap kali menghitung nilai harapan distribusi normal, cukup menggunakan nilai parameter <InlineMath math="\mu" />.
+<BlockMath math="E(F) = 1{,}8 \cdot 28 + 32 = 82{,}4^\circ\text{F}" />
 
-## Arti Nilai Harapan dalam Data
+Periksa dengan sepasang suhu simetris. Suhu <InlineMath math="25^\circ\text{C}" /> dan <InlineMath math="31^\circ\text{C}" /> berjarak <InlineMath math="3" /> dari pusat dan menjadi <InlineMath math="77^\circ\text{F}" /> dan <InlineMath math="87{,}8^\circ\text{F}" />. Titik tengah keduanya <InlineMath math="\frac{77 + 87{,}8}{2} = 82{,}4" />, sama dengan hasil rumus.
 
-Untuk distribusi normal, hubungan antara nilai harapan dan rata-rata adalah sebagai berikut.
+**Contoh 2**. Berat satu kantong beras berdistribusi normal dengan <InlineMath math="\mu = 1{.}000\text{ g}" /> dan <InlineMath math="\sigma = 15\text{ g}" />. Nilai harapan berat total <InlineMath math="20" /> kantong adalah jumlah nilai harapan setiap kantong:
 
-Untuk variabel acak normal dengan rata-rata <InlineMath math="\mu" /> dan simpangan baku <InlineMath math="\sigma" />, **nilai harapannya** tepat <InlineMath math="\mu" />. Pada banyak pengamatan saling bebas dari distribusi tersebut, rata-rata sampel mendekati <InlineMath math="\mu" /> sesuai hukum bilangan besar.
+<BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{.}000 = 20{.}000\text{ g}" />
 
-**Contoh**:
+Periksa dengan sepuluh pasang kantong: setiap pasang bernilai harapan <InlineMath math="1{.}000 + 1{.}000 = 2{.}000\text{ g}" />, dan <InlineMath math="10 \cdot 2{.}000 = 20{.}000\text{ g}" />. Simpangan baku <InlineMath math="15\text{ g}" /> tidak ikut dihitung, karena simpangan baku hanya memengaruhi sebaran berat total, bukan pusatnya.
 
-Jika tinggi badan sekelompok siswa terdistribusi normal dengan rata-rata <InlineMath math="165 \text{ cm}" />, maka nilai harapan tinggi badan siswa yang dipilih secara acak adalah <InlineMath math="165 \text{ cm}" />.
+## Menemukan Pusat Kurva dari Peluang yang Diketahui
 
-## Nilai Harapan Skor Ujian dan Berat Bayi
+Kadang soal tidak menyebut <InlineMath math="\mu" /> secara langsung, tetapi memberi peluang yang simetris. Pada kurva normal, **dua ekor dengan luas sama berjarak sama dari pusat**.
 
-**Contoh 1**
+**Contoh 3**. Besaran <InlineMath math="X" /> berdistribusi normal dengan <InlineMath math="P(X < 40) = P(X > 60)" />. Kedua ekor sama luas, jadi <InlineMath math="40" /> dan <InlineMath math="60" /> berjarak sama dari pusat, dan pusatnya titik tengah keduanya:
 
-Misalkan hasil ujian matematika di suatu kelas terdistribusi normal dengan rata-rata <InlineMath math="\mu = 75" /> dan standar deviasi <InlineMath math="\sigma = 10" />. Berapakah nilai harapan skor ujian seorang siswa?
+<BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-**Penyelesaian**:
+Periksa dengan satu nilai simpangan baku, misalnya <InlineMath math="\sigma = 10" />: <InlineMath math="P(X < 40) = P(Z < -1) \approx 0{,}1587" /> dan <InlineMath math="P(X > 60) = P(Z > 1) \approx 0{,}1587" />. Kedua ekor sama luas, dan hal yang sama terjadi untuk setiap <InlineMath math="\sigma" />, karena <InlineMath math="40" /> dan <InlineMath math="60" /> selalu berjarak sama dari <InlineMath math="50" />.
 
-Karena distribusi normal memiliki sifat <InlineMath math="E(X) = \mu" />, maka nilai harapan skor ujian adalah:
+**Contoh 4**. Separuh perjalanan sebuah bus selesai dalam waktu kurang dari <InlineMath math="42" /> menit, dan waktu tempuhnya berdistribusi normal. Pernyataan itu berarti <InlineMath math="P(X < 42) = 0{,}5" />, jadi <InlineMath math="42" /> menit adalah median. Pada distribusi normal median sama dengan rata-rata, sehingga <InlineMath math="E(X) = 42" /> menit.
 
-<BlockMath math="E(X) = 75" />
+Periksa dengan simetri, misalnya untuk <InlineMath math="\sigma = 6" /> menit: <InlineMath math="P(X < 36) = P(X > 48) \approx 0{,}1587" />, jadi luas di kiri dan kanan <InlineMath math="42" /> sama besar.
 
-Jadi, nilai harapan skor ujian seorang siswa adalah <InlineMath math="75" />.
+## Kesalahan yang Sering Terjadi
 
-**Contoh 2**
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Menjawab <InlineMath math="\sigma" /> sebagai nilai harapan | <InlineMath math="\sigma" /> mengukur lebar sebaran, bukan pusat | Nilai harapan selalu terletak di sumbu simetri kurva |
+| Mengira <InlineMath math="X" /> pasti bernilai <InlineMath math="\mu" /> | Untuk besaran kontinu, <InlineMath math="P(X = \mu) = 0" /> | Nilai harapan adalah rata-rata jangka panjang, bukan hasil satu pengamatan |
+| Menulis <InlineMath math="E(X^2) = \mu^2" /> | Kuadrat tidak linear, sehingga <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | Untuk <InlineMath math="Z \sim N(0, 1)" />, <InlineMath math="E(Z^2) = 1" />, bukan <InlineMath math="0" /> |
+| Lupa menambahkan <InlineMath math="b" /> pada <InlineMath math="E(aX + b)" /> | Pergeseran <InlineMath math="b" /> memindahkan pusat kurva | Ubah sepasang nilai simetris dan periksa titik tengahnya |
+| Mengira penjumlahan butuh syarat saling bebas | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> berlaku tanpa syarat itu | Varians jumlah sama dengan jumlah varians hanya jika <InlineMath math="X" /> dan <InlineMath math="Y" /> tidak berkorelasi, misalnya saling bebas |
 
-Misalkan berat bayi baru lahir di suatu rumah sakit dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="3{.}200 \text{ gram}" /> dan simpangan baku <InlineMath math="400 \text{ gram}" />. Tentukan berat harapan satu bayi yang dipilih secara acak.
+Untuk soal <InlineMath math="E(X)" /> atau <InlineMath math="E(aX + b)" />, satu pertanyaan menangkap kesalahan pertama dan keempat: **apakah jawabanmu berada di sumbu simetri kurva yang ditanyakan**? Untuk <InlineMath math="E(X^2)" />, periksa dengan varians, karena <InlineMath math="E(X^2) - [E(X)]^2" /> harus sama dengan <InlineMath math="\sigma^2" />.
 
-**Penyelesaian**:
+## Latihan Soal
 
-Diketahui <InlineMath math="\mu = 3{.}200 \text{ gram}" /> dan <InlineMath math="\sigma = 400 \text{ gram}" />.
+Soal pertama dan kedua memakai rumus langsung, soal ketiga menuntut hubungan dengan varians, dan soal keempat menggabungkan simetri dengan pergeseran. **Tentukan dulu nilai <InlineMath math="\mu" />**, lalu periksa jawabanmu sebelum membaca pembahasan.
 
-Berat harapannya sama dengan parameter rata-rata:
+1. Waktu perjalanan dari rumah ke sekolah berdistribusi normal dengan rata-rata <InlineMath math="25" /> menit dan simpangan baku <InlineMath math="5" /> menit. Perjalanan pulang punya distribusi yang sama. Tentukan nilai harapan waktu sekali jalan dan waktu pulang pergi.
 
-<BlockMath math="E(X) = \mu = 3{.}200 \text{ gram}" />
+2. Besaran <InlineMath math="Z" /> berdistribusi normal baku. Tentukan <InlineMath math="E(3Z + 2)" />.
 
-## Latihan
+3. Besaran <InlineMath math="X" /> berdistribusi <InlineMath math="N(10, 2^2)" />. Tentukan <InlineMath math="E(X^2)" /> dengan memakai <InlineMath math="\operatorname{Var}(X) = E(X^2) - [E(X)]^2" />.
 
-Ketiga soal memberikan **rata-rata dan simpangan baku** suatu distribusi normal, lalu meminta nilai harapannya. Bacalah rata-rata langsung dari deskripsinya, karena nilai harapan distribusi normal sama dengan titik pusatnya.
+4. Besaran <InlineMath math="X" /> berdistribusi normal dengan <InlineMath math="P(X < 35) = P(X > 65)" />. Tentukan <InlineMath math="E(2X - 10)" />.
 
-1. Waktu tempuh dari rumah ke sekolah dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="25 \text{ menit}" /> dan simpangan baku <InlineMath math="5 \text{ menit}" />. Tentukan waktu tempuh harapannya.
+### Pembahasan
 
-2. Suhu udara harian di Jakarta selama Juni dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="28^\circ\text{C}" /> dan simpangan baku <InlineMath math="3^\circ\text{C}" />. Berapa suhu harapan pada hari yang dipilih secara acak?
+**Soal 1**. Rata-rata distribusi adalah <InlineMath math="25" />, jadi **nilai harapan sekali jalan <InlineMath math="25" /> menit**. Waktu pulang pergi adalah jumlah dua waktu perjalanan:
 
-3. Nilai ujian fisika siswa kelas <InlineMath math="12" /> dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="78" /> dan simpangan baku <InlineMath math="12" />. Berapa nilai harapan siswa yang dipilih secara acak?
-### Kunci Jawaban
+<BlockMath math="E(X_1 + X_2) = 25 + 25 = 50 \text{ menit}" />
 
-1. **Penyelesaian Soal 1**:
+Periksa: hasilnya dua kali rata-rata sekali jalan, dan simpangan baku <InlineMath math="5" /> menit tidak memengaruhi pusat.
 
-   Diketahui: <InlineMath math="\mu = 25 \text{ menit}" />, <InlineMath math="\sigma = 5 \text{ menit}" />
+**Soal 2**. Normal baku punya <InlineMath math="E(Z) = 0" />. Dengan sifat linear:
 
-   Karena distribusi normal memiliki sifat <InlineMath math="E(X) = \mu" />, maka:
+<BlockMath math="E(3Z + 2) = 3 \cdot 0 + 2 = 2" />
 
-   <BlockMath math="E(X) = 25 \text{ menit}" />
+Periksa: <InlineMath math="3Z + 2" /> berdistribusi <InlineMath math="N(2, 3^2)" />, kurva normal yang **berpusat di <InlineMath math="2" />**.
 
-   **Jawaban**: Nilai harapan waktu tempuh perjalanan adalah <InlineMath math="25 \text{ menit}" />.
+**Soal 3**. Dari <InlineMath math="N(10, 2^2)" />, nilai harapannya <InlineMath math="10" /> dan variansnya <InlineMath math="4" />. Susun ulang rumus varians untuk <InlineMath math="E(X^2)" />:
 
-2. **Penyelesaian Soal 2**:
+<BlockMath math="E(X^2) = \operatorname{Var}(X) + [E(X)]^2 = 4 + 10^2 = 104" />
 
-   Diketahui: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
+Periksa: <InlineMath math="104 > 100 = [E(X)]^2" />, sesuai dengan varians yang positif. Menulis <InlineMath math="E(X^2) = 100" /> adalah **kesalahan menganggap kuadrat linear**.
 
-   Menggunakan sifat dasar distribusi normal:
+**Soal 4**. Kedua ekor sama luas, jadi pusatnya titik tengah <InlineMath math="35" /> dan <InlineMath math="65" />, yaitu <InlineMath math="\mu = 50" />. Dengan sifat linear:
 
-   <BlockMath math="E(X) = \mu = 28^\circ\text{C}" />
+<BlockMath math="E(2X - 10) = 2 \cdot 50 - 10 = 90" />
 
-   **Jawaban**: Nilai harapan suhu udara adalah <InlineMath math="28^\circ\text{C}" />.
-
-3. **Penyelesaian Soal 3**:
-
-   Diketahui: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
-
-   Untuk peubah acak berdistribusi normal, berlaku <InlineMath math="E(X)=\mu" />. Jadi:
-
-   <BlockMath math="E(X) = \mu = 78" />
-
-   **Jawaban**: Nilai harapan ujian siswa adalah <InlineMath math="78" />.
+Periksa dengan sepasang nilai simetris: <InlineMath math="35" /> menjadi <InlineMath math="60" /> dan <InlineMath math="65" /> menjadi <InlineMath math="120" />. Titik tengah keduanya <InlineMath math="90" />, jadi **pusat yang baru tetap di tengah pasangan**.

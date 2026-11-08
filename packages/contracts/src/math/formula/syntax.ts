@@ -147,11 +147,11 @@ export const FormulaProblemSchema = Schema.Literals([
 export type FormulaProblem = typeof FormulaProblemSchema.Type;
 
 /** A formula that does not parse, with the problem and where it starts. */
-export class FormulaError extends Schema.TaggedError<FormulaError>()(
-  "FormulaError",
-  {
-    message: Schema.String,
-    position: Schema.Int,
-    problem: FormulaProblemSchema,
-  }
-) {}
+export class FormulaError extends Schema.TaggedError<
+  FormulaError,
+  { readonly brand: unique symbol }
+>()("FormulaError", {
+  message: Schema.String,
+  position: Schema.Int,
+  problem: FormulaProblemSchema,
+}) {}
