@@ -3,7 +3,7 @@ export const metadata = {
   description: "Determine polynomial degree from the highest nonzero exponent, including monomials and polynomials in several variables.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polynomial",
 };
 
@@ -48,6 +48,16 @@ Here is a summary of monomial degree examples in a table:
 | <InlineMath math="0.12x" />             | <InlineMath math="1" /> | The exponent of <InlineMath math="x" /> is <InlineMath math="1" />.                     |
 | <InlineMath math="2.17x^3yz^3" />       | <InlineMath math="7" /> | Sum of exponents <InlineMath math="3+1+3=7" />.                   |
 | <InlineMath math="10" />                | <InlineMath math="0" /> | Non-zero constant. Can be written as <InlineMath math="10x^0" />. |
+
+The degree shapes the whole graph. Put <InlineMath math="x = -2" /> into <InlineMath math="x" />, <InlineMath math="x^2" />, <InlineMath math="x^3" /> and <InlineMath math="x^4" />: the odd powers give negative values and the even powers give positive values, and each step up in degree doubles the size. That is why graphs of odd degree leave the picture in opposite directions on the left and right, while graphs of even degree rise on both sides.
+
+<BarChart
+  title={<>The powers of <InlineMath math="x" /> at <InlineMath math="x = -2" /></>}
+  description={<>Bars of <InlineMath math="(-2)^1" />, <InlineMath math="(-2)^2" />, <InlineMath math="(-2)^3" /> and <InlineMath math="(-2)^4" />: negative for odd degree, positive for even degree.</>}
+  yAxisLabel="Value"
+  data={[1, 2, 3, 4].map((d) => ({ name: "degree " + d, value: (-2) ** d }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Determining the Degree of a Polynomial
 
@@ -104,6 +114,40 @@ Determine the degree of the following polynomial:
 - The term <InlineMath math="1.72" /> has degree <InlineMath math="0" />.
 
 The highest degree is <InlineMath math="3" />. Therefore, the degree of this polynomial is <InlineMath math="3" />.
+
+The cubic <InlineMath math="8x^3 - 36x^2 + 54x - 27" /> equals <InlineMath math="(2x - 3)^3" />. Expanding with the binomial pattern gives each coefficient: <InlineMath math="2^3 = 8" />, <InlineMath math="3 \cdot 2^2 \cdot (-3) = -36" />, <InlineMath math="3 \cdot 2 \cdot (-3)^2 = 54" /> and <InlineMath math="(-3)^3 = -27" />. The bar at degree 3 is not zero, so the degree is 3, and the triple root <InlineMath math="x = 1.5" /> sits where <InlineMath math="2x - 3 = 0" />.
+
+<BarChart
+  title={<>Coefficients of <InlineMath math="(2x - 3)^3" /> by degree</>}
+  description={<>Bars of the coefficients <InlineMath math="8, -36, 54, -27" /> at degrees 3, 2, 1 and 0.</>}
+  yAxisLabel="Coefficient"
+  data={[3, 2, 1, 0].map((k) => ({ name: "degree " + k, value: [1, 3, 3, 1][k] * 2 ** k * (-3) ** (3 - k) }))}
+  chartConfig={{ value: { label: "Coefficient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Go back to the cancellation example. Once <InlineMath math="x^4 - x^4" /> drops out, what remains is <InlineMath math="3x^2 + 1" />, and its graph is a parabola: degree 2, opening upward from its lowest point <InlineMath math="(0, 1)" />. No trace of a fourth power is left.
+
+<MathVisual
+  title={<>What remains after the fourth powers cancel</>}
+  description={<>The parabola <InlineMath math="y = 3x^2 + 1" /> for <InlineMath math="-1.2 \le x \le 1.2" />, with its lowest point <InlineMath math="(0, 1)" />.</>}
+  labels={{
+    rest: <InlineMath math="3x^2 + 1" />,
+    low: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.9 }, y: { min: -0.5, max: 5.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rest", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: 0, c: 1 }, domain: { min: -1.2, max: 1.2 }, appearance: "primary" },
+      { id: "low", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "rest", objectId: "rest", at: { x: 1.2, y: 5.32 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 0, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Degree of the Zero Polynomial
 

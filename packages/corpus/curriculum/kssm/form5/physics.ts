@@ -12,6 +12,24 @@ export const kssmForm5PhysicsTopicNodes = [
       }),
     ],
     key: "form-5-physics-force-and-motion-ii",
+    materialCard: {
+      de: {
+        description: "Addiere Kräfte als Vektoren und finde die Resultierende.",
+        title: "Kraft und Bewegung II",
+      },
+      en: {
+        description: "Add forces as vectors and find their resultant.",
+        title: "Force and Motion II",
+      },
+      id: {
+        description: "Jumlahkan gaya sebagai vektor dan cari resultannya.",
+        title: "Gaya dan Gerak II",
+      },
+      ms: {
+        description: "Tambah daya sebagai vektor dan cari daya paduannya.",
+        title: "Daya dan Gerakan II",
+      },
+    },
     order: 10,
     translations: {
       de: {

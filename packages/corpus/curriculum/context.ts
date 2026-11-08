@@ -23,6 +23,18 @@ export class CurriculumContextError extends Schema.TaggedError<
   programKey: LearningProgramKeySchema,
 }) {}
 
+/**
+ * A material's card group declares no card copy, so the subject or course page
+ * that lists the material has no description to show its card with.
+ */
+export class CurriculumMaterialCardError extends Schema.TaggedError<
+  CurriculumMaterialCardError,
+  { readonly brand: unique symbol }
+>()("CurriculumMaterialCardError", {
+  nodeKey: Schema.String,
+  programKey: LearningProgramKeySchema,
+}) {}
+
 /** Finds the closest card group and subject/course parent for one material. */
 function findMaterialContext(
   route: CurriculumRouteDraft,
@@ -65,6 +77,12 @@ export const addMaterialContext = Effect.fn("AksaraCorpus.addMaterialContext")(
       if (!context) {
         return yield* new CurriculumContextError({
           nodeKey: route.nodeKey,
+          programKey: route.programKey,
+        });
+      }
+      if (context.group.materialCardDescription === undefined) {
+        return yield* new CurriculumMaterialCardError({
+          nodeKey: context.group.nodeKey,
           programKey: route.programKey,
         });
       }
