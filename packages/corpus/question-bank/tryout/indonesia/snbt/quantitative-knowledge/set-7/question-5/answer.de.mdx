@@ -1,23 +1,24 @@
-Für die Folge gilt die **Rekursionsgleichung**
+Bei drei geometrischen Gliedern schreibst du das mittlere Glied als <InlineMath math="a" /> und die beiden anderen als <InlineMath math="\tfrac{a}{r}" /> und <InlineMath math="ar" />. So **fällt der Quotient im Produkt weg**, und das mittlere Glied steht sofort fest.
 
-<BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+# Das mittlere Glied aus dem Produkt
 
-Gegeben sind <InlineMath math="a_3 = -1" /> und <InlineMath math="a_5 = 3" />. Gesucht ist <InlineMath math="a_2" />.
+<BlockMath math="\frac{a}{r}\cdot a\cdot ar=a^3=216\;\Longrightarrow\; a=6" />
 
-Zunächst bestimmen wir <InlineMath math="a_4" />. Dazu setzen wir <InlineMath math="n = 3" /> ein und verknüpfen <InlineMath math="a_3" />, <InlineMath math="a_4" /> und <InlineMath math="a_5" />.
+# Der Quotient aus der Summe
 
-<BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+Setze <InlineMath math="a=6" /> in die Summe ein und multipliziere beide Seiten mit <InlineMath math="r" />. So entsteht **eine quadratische Gleichung in <InlineMath math="r" />**.
 
-Mit <InlineMath math="a_5 = 3" /> und <InlineMath math="a_3 = -1" /> folgt:
+<BlockMath math="\begin{aligned}
+\frac6r+6+6r&=26\\
+6r^2-20r+6&=0\\
+3r^2-10r+3&=0\\
+(3r-1)(r-3)&=0
+\end{aligned}" />
 
-<BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+Der Wert <InlineMath math="r=3" /> liefert die Folge 2, 6, 18, und <InlineMath math="r=\tfrac13" /> liefert dieselben Zahlen rückwärts, 18, 6, 2. Beide enthalten dieselben Zahlen, die Antwort ist also eindeutig.
 
-Als Nächstes bestimmen wir <InlineMath math="a_2" />. Da <InlineMath math="a_3" /> und <InlineMath math="a_4" /> bekannt sind, setzen wir <InlineMath math="n = 2" /> ein und verknüpfen <InlineMath math="a_2" />, <InlineMath math="a_3" /> und <InlineMath math="a_4" />.
+Kontrolle: <InlineMath math="2+6+18=26" /> und <InlineMath math="2\cdot6\cdot18=216" />. Die Differenz zwischen größter und kleinster Zahl ist <InlineMath math="18-2=16" />.
 
-<BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+Der Wert 18 ist die größte Zahl selbst. Der Wert 20 ist die Summe der beiden äußeren Glieder, und 26 ist die Summe aller drei Glieder.
 
-Wir setzen <InlineMath math="a_3 = -1" /> und <InlineMath math="a_4 = 1" /> ein:
-
-<BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
-
-Somit ist der Wert von <InlineMath math="a_2" /> <InlineMath math="-1" />.
+Die Differenz zwischen größter und kleinster Zahl ist also **16**.

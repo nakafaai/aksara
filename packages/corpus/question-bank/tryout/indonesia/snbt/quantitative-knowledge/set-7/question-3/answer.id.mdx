@@ -1,10 +1,18 @@
-Bilangan yang dipilih harus memenuhi **kedua syarat sisa pembagian**. Kita hitung pembagian oleh 5 dan 4 untuk setiap kandidat.
+Kedua bilangan adalah selisih kecil antara akar dan bilangan bulat di dekatnya, jadi taksiran desimal kasar mudah menyesatkan. Cara yang pasti adalah **mengalikan dengan bentuk sekawan** agar selisihnya menjadi pecahan.
 
-| Bilangan | Pembagian oleh 5 | Pembagian oleh 4 | Memenuhi keduanya |
-| --- | --- | --- | --- |
-| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Ya |
-| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | Tidak |
-| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Ya |
-| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | Tidak |
+# Bentuk sekawan
 
-Hanya 19 dan 39 yang memenuhi kedua syarat, yaitu **pilihan 1 dan 3**.
+<BlockMath math="\begin{aligned}
+P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
+Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+\end{aligned}" />
+
+# Membandingkan penyebut
+
+Kedua pecahan berpembilang 1, jadi **pecahan dengan penyebut lebih kecil bernilai lebih besar**. Bandingkan kedua penyebut.
+
+<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+
+Ketidaksamaan terakhir benar karena <InlineMath math="\sqrt{24}>4" />. Penyebut <InlineMath math="P" /> lebih kecil, sehingga <InlineMath math="P>Q" />. Sebagai pemeriksaan, <InlineMath math="P\approx0{,}123" /> dan <InlineMath math="Q\approx0{,}101" />.
+
+Jadi, hubungan yang benar adalah **<InlineMath math="P>Q" />**.

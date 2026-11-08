@@ -1,23 +1,24 @@
-Diketahui **rumus rekursif** barisan bilangan:
+Untuk tiga suku geometri, tulis suku tengahnya sebagai <InlineMath math="a" /> dan kedua suku lain sebagai <InlineMath math="\tfrac{a}{r}" /> dan <InlineMath math="ar" />. Dengan pilihan ini **rasio hilang dari hasil kali**, jadi suku tengah langsung diketahui.
 
-<BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+# Suku tengah dari hasil kali
 
-Kita diberikan nilai <InlineMath math="a_3 = -1" /> dan <InlineMath math="a_5 = 3" />. Kita diminta untuk mencari nilai <InlineMath math="a_2" />.
+<BlockMath math="\frac{a}{r}\cdot a\cdot ar=a^3=216\;\Longrightarrow\; a=6" />
 
-Pertama, kita mencari nilai <InlineMath math="a_4" /> menggunakan rumus rekursif dengan menyubstitusi <InlineMath math="n = 3" /> untuk menghubungkan <InlineMath math="a_3" />, <InlineMath math="a_4" />, dan <InlineMath math="a_5" />.
+# Rasio dari jumlah
 
-<BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+Masukkan <InlineMath math="a=6" /> ke jumlah ketiga suku, lalu kalikan kedua ruas dengan <InlineMath math="r" /> untuk memperoleh **persamaan kuadrat dalam <InlineMath math="r" />**.
 
-Substitusikan nilai <InlineMath math="a_5 = 3" /> dan <InlineMath math="a_3 = -1" />:
+<BlockMath math="\begin{aligned}
+\frac6r+6+6r&=26\\
+6r^2-20r+6&=0\\
+3r^2-10r+3&=0\\
+(3r-1)(r-3)&=0
+\end{aligned}" />
 
-<BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+Nilai <InlineMath math="r=3" /> memberi barisan 2, 6, 18, sedangkan <InlineMath math="r=\tfrac13" /> memberi barisan yang sama dalam urutan terbalik, 18, 6, 2. Keduanya memuat bilangan yang sama, jadi jawabannya tunggal.
 
-Selanjutnya, kita mencari nilai <InlineMath math="a_2" />. Karena kita sudah memiliki nilai <InlineMath math="a_3" /> dan <InlineMath math="a_4" />, kita bisa menggunakan rumus rekursif dengan <InlineMath math="n = 2" /> untuk menghubungkan <InlineMath math="a_2" />, <InlineMath math="a_3" />, dan <InlineMath math="a_4" />.
+Pemeriksaan: <InlineMath math="2+6+18=26" /> dan <InlineMath math="2\cdot6\cdot18=216" />. Selisih bilangan terbesar dan terkecil adalah <InlineMath math="18-2=16" />.
 
-<BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+Nilai 18 adalah bilangan terbesar itu sendiri. Nilai 20 adalah jumlah kedua suku luar, dan nilai 26 adalah jumlah ketiga suku.
 
-Substitusikan nilai <InlineMath math="a_3 = -1" /> dan <InlineMath math="a_4 = 1" />:
-
-<BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
-
-Jadi, nilai <InlineMath math="a_2" /> adalah <InlineMath math="-1" />.
+Jadi, selisih bilangan terbesar dan terkecil adalah **16**.

@@ -7,23 +7,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-6$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$-3$$",
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$0$$",
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
           correct: true,
-          label: "$$3$$",
-        },
-        {
-          correct: false,
-          label: "$$6$$",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

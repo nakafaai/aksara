@@ -1,56 +1,22 @@
-Gesucht ist die **Tangente an den Graphen** von <InlineMath math="y = -x^2 - 2x + 8" /> an der Stelle <InlineMath math="x = -2" />. Dafür benötigen wir zunächst den Berührpunkt und anschließend die dortige Steigung.
+Bringe zuerst beide Seiten auf **dieselbe Basis**. Wegen <InlineMath math="\tfrac{1}{27}=\left(\tfrac13\right)^3" /> wird die Ungleichung zu einem Vergleich zweier Potenzen von <InlineMath math="\tfrac13" />.
 
-# Ordinate des Berührpunkts
+# Richtung bei einer Basis kleiner als eins
 
-Wir setzen <InlineMath math="x = -2" /> in die Funktionsgleichung ein:
+Die Funktion <InlineMath math="\left(\tfrac13\right)^t" /> ist fallend, also liefert ein kleinerer Exponent einen größeren Wert. Deshalb **dreht sich das Ungleichheitszeichen um**, wenn du die Exponenten vergleichst.
 
-<BlockMath math="y = -(-2)^2 - 2(-2) + 8" />
+<BlockMath math="\begin{aligned}
+\left(\tfrac13\right)^{x^2-2x}&>\left(\tfrac13\right)^{3}\\
+x^2-2x&<3\\
+x^2-2x-3&<0\\
+(x-3)(x+1)&<0
+\end{aligned}" />
 
-<BlockMath math="y = -4 + 4 + 8" />
+# Das Lösungsintervall
 
-<BlockMath math="y = 8" />
+Das Produkt <InlineMath math="(x-3)(x+1)" /> ist **zwischen seinen beiden Nullstellen negativ**, also gilt <InlineMath math="-1<x<3" />. Die Stellen <InlineMath math="-1" /> und <InlineMath math="3" /> gehören nicht dazu, weil das Zeichen streng ist.
 
-Der **Berührpunkt** ist also <InlineMath math="(-2, 8)" />.
+Die ganzen Zahlen in diesem Intervall sind 0, 1 und 2. Kontrolle mit <InlineMath math="x=1" />: Der Exponent ist <InlineMath math="-1" />, die linke Seite also 3, und <InlineMath math="3>\tfrac{1}{27}" />.
 
-# Steigung der Tangente
+Der Wert 5 zählt die beiden Randstellen mit. Ohne Umdrehen des Zeichens wäre die Lösung <InlineMath math="x<-1" /> oder <InlineMath math="x>3" />, und das sind unendlich viele ganze Zahlen.
 
-Die Tangentensteigung <InlineMath math="m" /> ist der Wert der **ersten Ableitung** <InlineMath math="y'" /> an dieser Stelle.
-
-<BlockMath math="y' = -2x - 2" />
-
-Einsetzen von <InlineMath math="x = -2" /> ergibt:
-
-<BlockMath math="m = -2(-2) - 2" />
-
-<BlockMath math="m = 4 - 2" />
-
-<BlockMath math="m = 2" />
-
-# Tangentengleichung
-
-Für eine Gerade durch <InlineMath math="(x_1, y_1)" /> mit der Steigung <InlineMath math="m" /> verwenden wir die **Punkt-Steigungs-Form**:
-
-<BlockMath math="y - y_1 = m(x - x_1)" />
-
-Mit <InlineMath math="x_1 = -2" />, <InlineMath math="y_1 = 8" /> und <InlineMath math="m = 2" /> folgt:
-
-<BlockMath math="y - 8 = 2(x - (-2))" />
-
-<BlockMath math="y - 8 = 2(x + 2)" />
-
-<BlockMath math="y - 8 = 2x + 4" />
-
-<BlockMath math="y = 2x + 4 + 8" />
-
-<BlockMath math="y = 2x + 12" />
-
-Somit lautet die Gleichung der Tangente <InlineMath math="y = 2x + 12" />.
-
-<LineEquation
- title="Kurve und Tangente haben denselben Berührpunkt"
- description="Die Kurve y=-x²-2x+8 und die Gerade y=2x+12 berühren sich in (-2,8) mit Steigung 2."
- cameraPosition={[-2,6,16]}
- cameraTarget={[-2,6,0]}
- showZAxis={false}
- data={[{color:"#4f46e5",points:Array.from({length:81},(_,i)=>{const x=-4+i/20;return {x,y:-x*x-2*x+8,z:0};}),showPoints:false,smooth:false},{color:"#ea580c",points:[{x:-4,y:4,z:0},{x:-2,y:8,z:0},{x:0,y:12,z:0}],showPoints:true,pointIndices:[1],smooth:false}]}
-/>
+Es gibt also **3** ganze Zahlen, die die Ungleichung erfüllen.

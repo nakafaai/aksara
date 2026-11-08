@@ -1,37 +1,30 @@
-Wir betrachten **zwei Gruppen von Tierhaltenden**:
-- Menschen, die Ziegen halten: <InlineMath math="K = 450" />
-- Menschen, die Hühner halten: <InlineMath math="A = 300" />
-- Gesamtbevölkerung: <InlineMath math="S = 600" />
+Die Handwerkerin stelle <InlineMath math="x" /> Taschen der Sorte A und <InlineMath math="y" /> Taschen der Sorte B her. Das ist **lineare Optimierung**: Der Gewinn wird auf dem Bereich maximiert, den Arbeitszeit und Material begrenzen.
 
-Mit <InlineMath math="M" /> und <InlineMath math="m" /> bezeichnen wir die größtmögliche und die kleinstmögliche Anzahl der Menschen, die beide Tierarten halten.
+# Modell und Eckpunkte
 
-# Größtmögliche Schnittmenge
+<BlockMath math="\begin{aligned}
+\text{Stunden}&:\quad 2x+3y\le60\\
+\text{Material}&:\quad x+y\le25\\
+\text{Gewinn}&:\quad K=40\,000x+50\,000y
+\end{aligned}" />
 
-Die Schnittmenge ist am größten, wenn die **kleinere Gruppe vollständig** in der größeren enthalten ist. Ihr Maximum entspricht daher der Größe der kleineren Gruppe.
+Beide Variablen sind außerdem nicht negativ, <InlineMath math="x\ge0" /> und <InlineMath math="y\ge0" />. Eine lineare Funktion erreicht ihr Maximum **in einem Eckpunkt des Bereichs**. Den Schnittpunkt der beiden Randgeraden erhältst du, indem du die doppelte Materialgleichung von der Stundengleichung abziehst.
 
-<BlockMath math="\begin{aligned}M&=\min(K,A)\\&=\min(450,300)\\&=300\end{aligned}" />
+<BlockMath math="\begin{aligned}
+(2x+3y)-2(x+y)&=60-50\\
+y&=10,\quad x=15
+\end{aligned}" />
 
-# Kleinstmögliche Schnittmenge
+# Gewinne vergleichen
 
-Die Schnittmenge ist am kleinsten, wenn die **Vereinigung möglichst groß** ist, also 600 Menschen umfasst. Die Summe der Gruppengrößen beträgt <InlineMath math="450+300=750" />. Die Differenz <InlineMath math="750-600" /> zählt die doppelt erfassten Personen:
+| Eckpunkt | Gewinn |
+| :---: | :---: |
+| <InlineMath math="(25,0)" /> | 1 000 000 Rupiah |
+| <InlineMath math="(15,10)" /> | 1 100 000 Rupiah |
+| <InlineMath math="(0,20)" /> | 1 000 000 Rupiah |
 
-<BlockMath math="m=\max(0,K+A-S)" />
+Der größte Gewinn liegt bei <InlineMath math="(15,10)" />, wo genau 60 Stunden und genau 25 Taschen verbraucht werden. **Beide Grenzen sind hier ausgeschöpft**.
 
-Einsetzen der bekannten Werte ergibt:
+Ein Gewinn von 1 250 000 Rupiah bedeutet 25 Taschen der Sorte B, wofür 75 Stunden nötig wären. Ein Gewinn von 1 200 000 Rupiah bedeutet 30 Taschen der Sorte A und verletzt die Materialgrenze. Ein Gewinn von 1 150 000 Rupiah entsteht, wenn man die Arbeitszeiten von A und B vertauscht.
 
-<BlockMath math="\begin{aligned}m&=\max(0,750-600)\\&=\max(0,150)\\&=150\end{aligned}" />
-
-Beide Grenzen sind mit den folgenden Verteilungen erreichbar.
-
-| Grenze | Nur Ziegen | Beides | Nur Hühner | Keines |
-| --- | --- | --- | --- | --- |
-| M | 150 | 300 | 0 | 150 |
-| m | 300 | 150 | 150 | 0 |
-
-# Summe aus Maximum und Minimum
-
-Gesucht ist die **Summe der beiden Grenzwerte**.
-
-<BlockMath math="\begin{aligned}M+m&=300+150\\&=450\end{aligned}" />
-
-Die gesuchte Summe beträgt somit <InlineMath math="450" />.
+Der größte Gewinn beträgt also **1 100 000 Rupiah**.

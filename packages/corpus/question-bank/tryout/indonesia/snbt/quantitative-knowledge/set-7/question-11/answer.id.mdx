@@ -1,33 +1,19 @@
-Kita akan menyederhanakan bentuk <InlineMath math="P" /> terlebih dahulu.
-Identitas pangkat memberi <InlineMath math="4^x = (2^2)^x = (2^x)^2" />. Maka bentuk <InlineMath math="4^x - 1" /> adalah **selisih kuadrat** yang dapat difaktorkan menjadi <InlineMath math="(2^x - 1)(2^x + 1)" />.
+Jari-jari kedua lingkaran tidak diketahui satu per satu, tetapi luas cincin hanya memerlukan **selisih kuadrat kedua jari-jari**, yaitu <InlineMath math="\pi(R^2-r^2)" />.
 
-Karena <InlineMath math="x>0" />, berlaku <InlineMath math="2^x-1>0" />. Jadi, faktor penyebut yang dicoret tidak nol.
+# Segitiga siku-siku dari titik singgung
 
-<BlockMath math="P = \frac{4^x - 1}{2^x - 1}" />
+Misalkan pusatnya <InlineMath math="O" />, tali busurnya <InlineMath math="AB" />, dan titik singgungnya <InlineMath math="T" />. Jari-jari lingkaran kecil <InlineMath math="OT" /> **tegak lurus tali busur di titik singgung**. Garis dari pusat yang tegak lurus tali busur membagi tali busur itu sama panjang, jadi <InlineMath math="AT=8" />.
 
-<BlockMath math="P = \frac{(2^x - 1)(2^x + 1)}{2^x - 1}" />
+Segitiga <InlineMath math="OTA" /> siku-siku di <InlineMath math="T" />, dengan <InlineMath math="OA=R" /> dan <InlineMath math="OT=r" />.
 
-<BlockMath math="P = 2^x + 1" />
+<BlockMath math="R^2=r^2+8^2\;\Longrightarrow\;R^2-r^2=64" />
 
-Selanjutnya, kita perhatikan bentuk <InlineMath math="Q" />:
+# Luas cincin
 
-<BlockMath math="Q = \frac{2^x + 1}{2^x}" />
+<BlockMath math="L=\pi R^2-\pi r^2=\pi(R^2-r^2)=64\pi" />
 
-Untuk menghubungkan kedua kuantitas, substitusikan <InlineMath math="P = 2^x + 1" /> ke dalam persamaan <InlineMath math="Q" />:
+Hasilnya **tidak bergantung pada ukuran masing-masing lingkaran**, asalkan tali busur sepanjang 16 cm menyinggung lingkaran kecil.
 
-<BlockMath math="Q = \frac{P}{2^x}" />
+Nilai <InlineMath math="256\pi" /> memakai panjang tali busur penuh 16 sebagai pengganti setengahnya. Nilai <InlineMath math="32\pi" /> mengambil setengah dari <InlineMath math="64\pi" />, seolah-olah menghitung luas segitiga. Nilai <InlineMath math="128\pi" /> menghitung <InlineMath math="\pi\cdot16\cdot8" />, dan nilai <InlineMath math="192\pi" /> mengurangkan <InlineMath math="64\pi" /> dari <InlineMath math="256\pi" />.
 
-<BlockMath math="P = Q \cdot 2^x" />
-
-Diketahui <InlineMath math="0 < x < 1" />. Kita analisis nilai <InlineMath math="2^x" /> pada rentang tersebut:
-- Jika <InlineMath math="x > 0" />, maka <InlineMath math="2^x > 2^0 \implies 2^x > 1" />.
-- Jika <InlineMath math="x < 1" />, maka <InlineMath math="2^x < 2^1 \implies 2^x < 2" />.
-
-Sehingga, <InlineMath math="1 < 2^x < 2" />.
-
-Kembali ke persamaan <InlineMath math="P = Q \cdot 2^x" />:
-Karena <InlineMath math="2^x > 1" /> dan <InlineMath math="Q" /> bernilai positif (karena <InlineMath math="2^x > 0" />), maka hasil kali <InlineMath math="Q" /> dengan bilangan yang lebih besar dari <InlineMath math="1" /> akan menghasilkan nilai yang lebih besar dari <InlineMath math="Q" /> itu sendiri.
-
-<BlockMath math="P > Q" />
-
-Jadi, hubungan yang benar adalah <InlineMath math="P > Q" />.
+Jadi, luas daerah di antara kedua lingkaran adalah **<InlineMath math="64\pi\text{ cm}^2" />**.

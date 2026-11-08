@@ -1,39 +1,22 @@
-Misalkan <InlineMath math="F" /> dan <InlineMath math="A" /> menyatakan **gaji sebelum kenaikan** milik Farhat dan Abas dalam ribuan rupiah.
+Ada dua jalan: menghitung data baru dari awal, atau memakai **sifat simpangan baku terhadap perkalian dan penjumlahan**. Jalan kedua lebih cepat, tetapi kita hitung dulu simpangan baku data awal.
 
-Diketahui perbandingan gaji awal mereka adalah <InlineMath math="2 : 3" />:
+# Simpangan baku data awal
 
-<BlockMath math="\begin{gathered}F:A=2:3\\F=\frac23A\end{gathered}" />
+Rata-rata data awal adalah 6. **Simpangan setiap data terhadap rata-rata** adalah <InlineMath math="-4,-2,0,2,4" />.
 
-Setelah gaji mereka masing-masing naik <InlineMath math="40{.}000" /> rupiah, perbandingan barunya menjadi <InlineMath math="5 : 7" />. Dalam satuan ribuan rupiah, kenaikannya adalah <InlineMath math="40" />.
+<BlockMath math="\begin{aligned}
+s^2&=\frac{16+4+0+4+16}{5}=\frac{40}{5}=8\\
+s&=\sqrt8=2\sqrt2
+\end{aligned}" />
 
-<BlockMath math="(F + 40) : (A + 40) = 5 : 7" />
+# Pengaruh transformasi
 
-Tuliskan perbandingan tersebut sebagai pecahan:
+Menambah 5 menggeser setiap data dan rata-ratanya sejauh 5, jadi **simpangan terhadap rata-rata tidak berubah**. Mengalikan dengan 3 membuat setiap simpangan 3 kali lebih besar, sehingga simpangan bakunya juga dikalikan 3.
 
-<BlockMath math="\frac{F + 40}{A + 40} = \frac{5}{7}" />
+<BlockMath math="s_{\text{baru}}=3\cdot2\sqrt2=6\sqrt2" />
 
-Perkalian silang menghasilkan:
+Pemeriksaan: data baru 11, 17, 23, 29, 35 memiliki rata-rata 23 dan simpangan <InlineMath math="-12,-6,0,6,12" />, sehingga variansnya <InlineMath math="\tfrac{360}{5}=72" /> dan simpangan bakunya <InlineMath math="\sqrt{72}=6\sqrt2" />.
 
-<BlockMath math="7(F + 40) = 5(A + 40)" />
+Nilai <InlineMath math="6\sqrt2+5" /> ikut menambahkan 5, padahal pergeseran tidak mengubah sebaran. Nilai <InlineMath math="2\sqrt2" /> mengabaikan perkalian, nilai <InlineMath math="18\sqrt2" /> mengalikan dengan 9, dan nilai 72 adalah varians, bukan simpangan baku.
 
-Selanjutnya, substitusikan <InlineMath math="F = \frac{2}{3}A" />:
-
-<BlockMath math="\begin{gathered}7\left(\frac23A+40\right)\\=5(A+40)\end{gathered}" />
-
-<BlockMath math="\frac{14}{3}A + 280 = 5A + 200" />
-
-Kumpulkan suku yang memuat <InlineMath math="A" /> di satu sisi dan konstanta di sisi lain:
-
-<BlockMath math="280 - 200 = 5A - \frac{14}{3}A" />
-
-<BlockMath math="80 = \frac{15}{3}A - \frac{14}{3}A" />
-
-<BlockMath math="80 = \frac{1}{3}A" />
-
-Dengan mengalikan kedua sisi dengan <InlineMath math="3" />, kita memperoleh nilai <InlineMath math="A" />:
-
-<BlockMath math="A = 80 \times 3" />
-
-<BlockMath math="A = 240" />
-
-Karena <InlineMath math="A" /> dihitung dalam satuan ribuan rupiah, gaji Abas sekarang adalah <InlineMath math="240{.}000" /> rupiah.
+Jadi, simpangan baku data yang baru adalah **<InlineMath math="6\sqrt2" />**.

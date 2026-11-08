@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$96$$",
+          column: 1,
+          label:
+            "$$n^3-n$$ habis dibagi $$6$$ untuk setiap bilangan bulat $$n$$.",
         },
         {
-          correct: false,
-          label: "$$120$$",
+          column: 2,
+          label:
+            "$$n^3-n$$ habis dibagi $$4$$ untuk setiap bilangan bulat $$n$$.",
         },
         {
-          correct: false,
-          label: "$$144$$",
+          column: 1,
+          label: "Jika $$n$$ ganjil, $$n^3-n$$ habis dibagi $$24$$.",
         },
         {
-          correct: true,
-          label: "$$72$$",
-        },
-        {
-          correct: false,
-          label: "$$168$$",
+          column: 2,
+          label:
+            "$$n^3-n$$ habis dibagi $$5$$ untuk setiap bilangan bulat $$n$$.",
         },
       ],
     },
