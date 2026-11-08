@@ -146,15 +146,14 @@ function forms(word: string): readonly string[] {
  * or `check/check.ts` do. A capability groups its modules under its own word, so each module names what it adds.
  */
 function repeatsFolder(name: readonly string[], folder: readonly string[]) {
-  if (name.length !== 1 || folder.length !== 1) {
-    return false;
-  }
-  const [word] = name;
-  const [parent] = folder;
-  return (
-    Arr.contains(forms(parent), word.toLowerCase()) ||
-    Arr.contains(forms(word), parent.toLowerCase())
-  );
+  return Option.match(Option.all([Arr.head(name), Arr.head(folder)]), {
+    onNone: () => false,
+    onSome: ([word, parent]) =>
+      name.length === 1 &&
+      folder.length === 1 &&
+      (Arr.contains(forms(parent), word.toLowerCase()) ||
+        Arr.contains(forms(word), parent.toLowerCase())),
+  });
 }
 
 /** Allows toolchain files and uppercase repository documents by convention. */
