@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "conclusion",
+  },
+  stimulus: "burung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Kotak sarang adalah penyebab utama bertambahnya jenis burung di Taman Kenanga.",
+        },
+        {
+          correct: false,
+          label:
+            "Banyak ekor burung di Taman Kenanga pada akhir 2025 hampir dua kali banyaknya pada awal 2024.",
+        },
+        {
+          correct: false,
+          label:
+            "Taman Melati kehilangan jenis-jenis burung yang pindah ke Taman Kenanga.",
+        },
+        {
+          correct: false,
+          label:
+            "Penanaman pohon buah lokal tidak berpengaruh terhadap banyak jenis burung di Taman Kenanga.",
+        },
+        {
           correct: true,
           label:
-            "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
-        },
-        {
-          correct: false,
-          label:
-            "Makan apel utuh sebelum makan siang selalu mencegah obesitas.",
-        },
-        {
-          correct: false,
-          label:
-            "Keempat olahan apel menghasilkan tingkat rasa kenyang yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
-        },
-        {
-          correct: false,
-          label:
-            "Penelitian ini membuktikan bahwa serat saja menyebabkan seluruh perbedaan di antara olahan apel.",
+            "Bertambahnya jenis burung di Taman Kenanga sudah terjadi sebelum kotak sarang dipasang.",
         },
       ],
     },

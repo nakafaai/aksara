@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "pos",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Mungkin", "Tidak mungkin"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Habitat yang dilindungi harus dipetakan sebelum konstruksi dimulai.",
+            "Bima dan Dani di pos utara, Ayu di pos tengah, Citra dan Eko di pos selatan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bagian rancangan yang melintasi habitat yang dilindungi harus dipindahkan.",
+            "Ayu dan Eko di pos utara, Dani di pos tengah, Bima dan Citra di pos selatan.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Jalur jembatan semula boleh tetap digunakan tanpa perubahan selama konstruksi.",
+            "Bima dan Eko di pos utara, Dani di pos tengah, Ayu dan Citra di pos selatan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Jalur jembatan semula melintasi habitat rangkong yang dilindungi.",
-        },
-        {
-          correct: false,
-          label: "Tim memindahkan jalur jembatan sebelum konstruksi.",
+            "Dani dan Eko di pos utara, Citra di pos tengah, Ayu dan Bima di pos selatan.",
         },
       ],
     },

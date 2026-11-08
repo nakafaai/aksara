@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "pos",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Seluruh $$120$$ bibit tomat bertahan hidup selama bulan pertama.",
-        },
-        {
-          correct: false,
-          label:
-            "Seluruh $$96$$ bibit yang bertahan hidup menghasilkan daun baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
-        },
-        {
-          correct: false,
-          label:
-            "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
+          label: "Citra bertugas di pos utara.",
         },
         {
           correct: true,
-          label:
-            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
+          label: "Bima dan Eko bertugas di pos utara.",
+        },
+        {
+          correct: false,
+          label: "Dani bertugas di pos utara.",
+        },
+        {
+          correct: false,
+          label: "Eko bertugas di pos selatan.",
+        },
+        {
+          correct: false,
+          label: "Bima dan Dani bertugas di pos yang sama.",
         },
       ],
     },

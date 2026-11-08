@@ -1,18 +1,12 @@
-Misalkan:
+Gabungkan tiga pernyataan pertama menjadi satu rantai: <InlineMath math="A>B>D>C" />. Pernyataan keempat hanya menyebut <InlineMath math="E<A" />, jadi **posisi E** dapat berada di mana saja di bawah A.
 
-- <InlineMath math="T" />: Usulan lulus penelaahan teknis.
-- <InlineMath math="B" />: Usulan lulus penelaahan anggaran.
-- <InlineMath math="A" />: Usulan disetujui.
-- <InlineMath math="S" />: Usulan dimasukkan ke jadwal penerbitan.
+A lebih tinggi daripada B, D, C, dan juga E. Jadi, gedung A **pasti** yang paling tinggi.
 
-Alur kerja dan fakta yang diberikan adalah:
+Pilihan lain tidak pasti, karena E dapat menempati beberapa posisi:
 
-<BlockMath math="(T \land B) \rightarrow A" />
+- Jika E di antara A dan B, E bukan yang paling rendah.
+- Jika E di antara A dan B, B menjadi tertinggi ketiga, bukan kedua.
+- Jika E paling rendah, E lebih rendah daripada D.
+- Jika E paling rendah, C bukan gedung yang paling rendah.
 
-<BlockMath math="A \rightarrow S" />
-
-<BlockMath math="T \land B" />
-
-Dari <InlineMath math="T \land B" />, aturan pertama menghasilkan <InlineMath math="A" />. Aturan kedua kemudian menghasilkan <InlineMath math="S" />. Kedua langkah tersebut merupakan penerapan langsung modus ponens.
-
-Jadi, simpulan mengikuti premis secara niscaya dan **pasti benar**.
+Jadi, yang pasti benar adalah gedung A adalah gedung yang paling tinggi.
