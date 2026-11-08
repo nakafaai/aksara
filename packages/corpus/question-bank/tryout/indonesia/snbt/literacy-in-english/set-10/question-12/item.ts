@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "app-reminders",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Labelling each amount made the supplier quotes final, so the team no longer needed to compare attendance scenarios.",
+            "On day 7, more than half of the reminder group were still using the app.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Assigning names beside unresolved amounts transferred the financial risk to those people and removed it from the budget.",
+            "On day 90, the reminder group had twice as many active users as the other group.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Classifying the figures and comparing attendance scenarios showed which optional choice threatened the deposit while keeping unresolved prices open for confirmation.",
+            "Between day 30 and day 90, the no-reminder group lost more than half of its remaining users.",
         },
         {
-          correct: false,
-          label:
-            "The two scenarios predicted the exact final cost of security and lighting, which allowed the team to close both questions immediately.",
-        },
-        {
-          correct: false,
-          label:
-            "Removing the projection rental mattered only because it made the spreadsheet cleaner, not because it protected a required payment.",
+          column: 1,
+          label: "People were placed in the two groups at random.",
         },
       ],
     },
